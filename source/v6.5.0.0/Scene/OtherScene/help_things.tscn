@@ -1,0 +1,21 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Scene/OtherScene/help_things.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/MagicWeapon/34.png" id="2"]
+[ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="3"]
+[ext_resource type="PackedScene" path="res://Scene/BackPack/Box_1.tscn" id="4"]
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("HelpThings", "script", "Node2D", "bg", "scale", "texture", "Sprite2D", "j1", "offset_left", "offset_top", "offset_right", "offset_bottom", "theme_override_colors/font_color", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "text", "horizontal_alignment", "vertical_alignment", "metadata/_edit_lock_", "Label", "j2", "dy", "cl_1", "icon", "cl_2", "cl_3", "scw"),
+"node_count": 9,
+"node_ids": PackedInt32Array(748927234, 121112405, 1109279093, 1329554211, 1166654273, 204576179, 1986348716, 831790906, 506178653),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 6, 3, -1, 2, 4, 1, 5, 2, 0, 1, 0, 21, 7, -1, 14, 8, 3, 9, 4, 10, 5, 11, 6, 4, 7, 12, 8, 13, 9, 14, 10, 15, 11, 16, 12, 17, 13, 18, 14, 19, 14, 20, 15, 0, 1, 0, 21, 22, -1, 14, 8, 16, 9, 4, 10, 17, 11, 6, 4, 7, 12, 8, 13, 9, 14, 10, 15, 11, 16, 12, 17, 13, 18, 14, 19, 14, 20, 15, 0, 1, 0, 21, 23, -1, 14, 8, 18, 9, 4, 10, 19, 11, 6, 4, 7, 12, 8, 13, 9, 14, 10, 15, 11, 16, 12, 17, 20, 18, 14, 19, 14, 20, 15, 0, 0, 0, 2147483647, 24, 21, 5, 8, 22, 9, 23, 10, 24, 11, 25, 25, 26, 0, 0, 0, 2147483647, 26, 21, 5, 8, 27, 9, 23, 10, 28, 11, 25, 25, 26, 0, 0, 0, 2147483647, 27, 21, 5, 8, 29, 9, 16, 10, 30, 11, 6, 25, 26, 0, 0, 0, 2147483647, 28, 21, 5, 8, 31, 9, 23, 10, 32, 11, 25, 25, 26, 0),
+"variants": [ExtResource("1"), Vector2(1, 0.5), ExtResource("2"), -185.0, -86.0, -125.0, 26.0, Vector2(0.7, 1.4), Color(0, 0, 0, 1), Color(1, 1, 1, 1), 11, ExtResource("3"), 100, "+", 1, true, -24.0, 36.0, 143.0, 203.0, "=", ExtResource("4"), -268.0, -25.0, -218.0, 25.0, null, -106.0, -56.0, 47.0, 97.0, 225.0, 275.0],
+"version": 3
+}

@@ -1,0 +1,676 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/Game4ImportedLevelBase.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/Level_56.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/5721bda62d4235875bf270246d3c94af426b1742bc31a5d67a25acef0e328e71.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/806f8258c4c0e3f26774de937d22feba61ee5db9c2f0e6f66dfbcb3538fff190.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/e73af5348cff89cff9be421d70202271c52423ea96527d26f679f40aa7a872ee.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/8f1388211abc957d6895fd4364d59210f9c346090eca858c66b2ece3cbbc3f8e.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/46926c19bb51ef8425ee02a9d2a43e9e719cabd8e99783bd08f92788ce32c59c.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/bfee5b4a67e4cccf61cbb3d81d7e1973d6d13f0ef592f9a74da4355e0f768c58.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/fcdfd87c68c14c9eeaa91e53841da6ff709ba7fa3995c95546fcb5cdae8c6d32.png" id="9"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/6ce98a4dbe1bdeb706322669de348a76fc07e642826931f03521b3e19892d7eb.png" id="10"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/8d7077051124b55fe4b090a817d79e0857e0d491c6d571e6be8534dcd418b866.png" id="11"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/ae2a380a6b9e924032edb74a8900c83c77b0aa02f36c207962ec60393535eb1d.png" id="12"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/02655074539ce25df240cbeb64a07cb371e7050dad8ac8616fafa011b68e08fa.png" id="13"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/be31979f6c93ca5b7cb4a0c1b3a944341e003606da15b5df6d4d398d5bb6b57c.png" id="14"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/f9b1b0e637cb45978408c93ffdc973e4d484cca922a15d165826d63507539433.png" id="15"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/2b0253e1edb278a590eb9b39ae6e920a9b2b65089518a29bd8b91a4cc179e89a.png" id="16"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/09381bb3026a5d06ad01750fa86ab8cd026d48c836bd9038e1c5a3357d536e6d.png" id="17"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/356475f3fa3234cd1947e4e9ac8881126faa7fb713b991f9f03c9d486f9897d0.png" id="18"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/94e8fbe4c6dd762ee6adac19d331127f38d05da285c2fe19edec6079fc3428d8.png" id="19"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/c3328baaccf9de6170c3be8131e53b158629e09cabcf4652b179d234a945208a.png" id="20"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/64f72846500dab54947b95d77a218776e18750564d4d78cc8223c30c4a5c5c45.png" id="21"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/e62b912623c9f7b3dc5353a9505e0e9372fc158548b176c671730caec8b62ff0.png" id="22"]
+[ext_resource type="Script" path="res://Script/Level/Game4RopeBridge.gd" id="23"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/items/emeishandao_rope.png" id="24"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_floor"]
+size = Vector2(1299.208, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_right"]
+size = Vector2(120, 2400)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_floor_2"]
+size = Vector2(613.6452, 41.735565)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_floor_3"]
+size = Vector2(2311.9185, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}],
+"loop": 1,
+"name": &"play",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}],
+"loop": 1,
+"name": &"play",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}],
+"loop": 1,
+"name": &"play",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}],
+"loop": 1,
+"name": &"play",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}],
+"loop": 1,
+"name": &"play",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_rope_segment"]
+size = Vector2(36, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_fall_death"]
+size = Vector2(2356, 19)
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 1,
+"conns": PackedInt32Array(73, 0, 104, 103, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1221902799), PackedInt32Array(653194421), PackedInt32Array(1466504861)],
+"names": PackedStringArray("Level_56", "script", "source_map", "display_name", "stage_number", "background_offset_y", "fixed_layers", "level_width_override", "background_baked", "GreenDetector", "CollisionShape2D", "ColorRect", "wall", "wall_left", "thb", "floor", "position", "shape", "right_wall", "floor_2", "floor_4", "rotation", "floor_5", "floor_3", "Monster", "Hero", "Create_1", "Create_2", "Create_3", "Create_4", "create_control", "fall_items", "BackGround", "End", "ImportedBackdrop", "z_index", "color", "polygon", "Polygon2D", "bg30_1", "texture", "Sprite2D", "bg31_1", "sprite_frames", "animation", "autoplay", "AnimatedSprite2D", "bg10_1", "bg11_1", "bg12_1", "bg13_1", "bg14_1", "front", "exit", "exit2", "RopeBridge1", "collision_mask", "end_offset", "segment_count", "segment_size", "segment_texture", "visual_offset", "StaticBody2D", "Sprite01", "Collision01", "Sprite02", "Collision02", "Sprite03", "Collision03", "Sprite04", "Collision04", "Sprite05", "Collision05", "Sprite06", "Collision06", "Sprite07", "Collision07", "Sprite08", "Collision08", "Sprite09", "Collision09", "Sprite10", "Collision10", "Sprite11", "Collision11", "scale", "Sprite12", "Collision12", "Sprite13", "Collision13", "RopeBridge2", "Sprite14", "Collision14", "FallDeath", "collision_layer", "Area2D", "Timer", "CanvasLayer", "ZM", "lj_tt", "zmPLAYER", "MonsterBlood", "Smooth", "_on_fall_death_body_entered", "body_entered"),
+"node_count": 75,
+"node_ids": PackedInt32Array(2023600328, 0, 0, 1592160960, 441070743, 1005679319, 1656570163, 1488410429, 466478783, 458132924, 516080996, 758971210, 752374434, 1515733936, 1079220781, 2084068838, 2115553614, 1191193559, 1024581528, 236987767, 984072609, 320584182, 857534213, 1308017251, 1537111353, 540988555, 74429308, 1360690014, 1764226026, 44489542, 1675769666, 817153859, 101937922, 1640325140, 1006789258, 56911369, 1424483274, 634342148, 1403529153, 1367773713, 1742890231, 1628309204, 1146871168, 604172894, 931096877, 2012165417, 1707628360, 1307969682, 1300051050, 312758708, 607376439, 661720755, 1292312811, 20395943, 1863400952, 161992037, 358605670, 361565736, 436646714, 1567206236, 1326589008, 943081533, 668734116, 77759478, 1442933236, 1701177726, 1355257954, 1155931361, 742843509, 1010161497, 376570436, 92010837, 1939458671, 51076990, 1085924519),
+"node_paths": [NodePath("wall"), NodePath("BackGround/End"), NodePath("BackGround")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 8, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 5, 8, 7, 0, 1073741824, 0, 2147483647, 786447, -1, 2, 16, 8, 17, 9, 0, 1073741824, 0, 2147483647, 1048594, -1, 2, 16, 10, 17, 11, 0, 1073741824, 0, 10, 1310739, -1, 2, 16, 12, 17, 13, 0, 1073741824, 0, 10, 1572884, -1, 3, 16, 14, 21, 15, 17, 13, 0, 1073741824, 0, 10, 1835030, -1, 3, 16, 16, 21, 17, 17, 13, 0, 1073741824, 0, 10, 2097175, -1, 2, 16, 18, 17, 19, 0, 1073741825, 0, 38, 262178, -1, 4, 35, 20, 16, 21, 36, 22, 37, 23, 0, 1073741825, 0, 41, 524327, -1, 2, 16, 24, 40, 25, 0, 1073741826, 0, 2147483647, 524307, -1, 1, 16, 26, 0, 9, 0, 46, 262186, -1, 4, 16, 27, 43, 28, 44, 29, 45, 30, 0, 9, 0, 41, 524335, -1, 2, 16, 31, 40, 32, 0, 9, 0, 46, 786480, -1, 4, 16, 33, 43, 34, 44, 29, 45, 30, 0, 9, 0, 46, 1048625, -1, 4, 16, 35, 43, 36, 44, 29, 45, 30, 0, 9, 0, 46, 1310770, -1, 4, 16, 37, 43, 38, 44, 29, 45, 30, 0, 9, 0, 46, 1572915, -1, 4, 16, 39, 43, 40, 44, 29, 45, 30, 0, 0, 0, 2147483647, 3145781, -1, 1, 16, 41, 0, 0, 0, 62, 3407927, -1, 9, 35, 42, 16, 43, 56, 44, 1, 45, 57, 46, 58, 47, 59, 48, 60, 49, 61, 50, 0, 17, 0, 41, 262207, -1, 3, 16, 51, 21, 52, 40, 49, 0, 17, 0, 10, 524352, -1, 3, 16, 53, 21, 52, 17, 54, 0, 17, 0, 41, 786497, -1, 3, 16, 55, 21, 52, 40, 49, 0, 17, 0, 10, 1048642, -1, 3, 16, 56, 21, 52, 17, 54, 0, 17, 0, 41, 1310787, -1, 3, 16, 57, 21, 52, 40, 49, 0, 17, 0, 10, 1572932, -1, 3, 16, 58, 21, 52, 17, 54, 0, 17, 0, 41, 1835077, -1, 3, 16, 59, 21, 52, 40, 49, 0, 17, 0, 10, 2097222, -1, 3, 16, 60, 21, 52, 17, 54, 0, 17, 0, 41, 2359367, -1, 3, 16, 61, 21, 52, 40, 49, 0, 17, 0, 10, 2621512, -1, 3, 16, 62, 21, 52, 17, 54, 0, 17, 0, 41, 2883657, -1, 3, 16, 63, 21, 52, 40, 49, 0, 17, 0, 10, 3145802, -1, 3, 16, 64, 21, 52, 17, 54, 0, 17, 0, 41, 3407947, -1, 3, 16, 65, 21, 52, 40, 49, 0, 17, 0, 10, 3670092, -1, 3, 16, 66, 21, 52, 17, 54, 0, 17, 0, 41, 3932237, -1, 3, 16, 67, 21, 52, 40, 49, 0, 17, 0, 10, 4194382, -1, 3, 16, 68, 21, 52, 17, 54, 0, 17, 0, 41, 4456527, -1, 3, 16, 69, 21, 52, 40, 49, 0, 17, 0, 10, 4718672, -1, 3, 16, 70, 21, 52, 17, 54, 0, 17, 0, 41, 4980817, -1, 3, 16, 71, 21, 52, 40, 49, 0, 17, 0, 10, 5242962, -1, 3, 16, 72, 21, 52, 17, 54, 0, 17, 0, 41, 5505107, -1, 3, 16, 73, 21, 52, 40, 49, 0, 17, 0, 10, 5767252, -1, 4, 16, 74, 21, 52, 85, 75, 17, 54, 0, 17, 0, 41, 6029398, -1, 3, 16, 76, 21, 52, 40, 49, 0, 17, 0, 10, 6291543, -1, 4, 16, 77, 21, 52, 85, 75, 17, 54, 0, 17, 0, 41, 6553688, -1, 3, 16, 78, 21, 52, 40, 49, 0, 17, 0, 10, 6815833, -1, 3, 16, 79, 21, 52, 17, 54, 0, 0, 0, 62, 3670106, -1, 9, 35, 42, 16, 80, 56, 44, 1, 45, 57, 81, 58, 82, 59, 48, 60, 49, 61, 50, 0, 44, 0, 41, 262207, -1, 3, 16, 83, 21, 84, 40, 49, 0, 44, 0, 10, 524352, -1, 3, 16, 85, 21, 84, 17, 54, 0, 44, 0, 41, 786497, -1, 3, 16, 86, 21, 84, 40, 49, 0, 44, 0, 10, 1048642, -1, 3, 16, 87, 21, 84, 17, 54, 0, 44, 0, 41, 1310787, -1, 3, 16, 88, 21, 84, 40, 49, 0, 44, 0, 10, 1572932, -1, 3, 16, 89, 21, 84, 17, 54, 0, 44, 0, 41, 1835077, -1, 3, 16, 90, 21, 84, 40, 49, 0, 44, 0, 10, 2097222, -1, 3, 16, 91, 21, 84, 17, 54, 0, 44, 0, 41, 2359367, -1, 3, 16, 92, 21, 84, 40, 49, 0, 44, 0, 10, 2621512, -1, 3, 16, 93, 21, 84, 17, 54, 0, 44, 0, 41, 2883657, -1, 3, 16, 94, 21, 84, 40, 49, 0, 44, 0, 10, 3145802, -1, 3, 16, 95, 21, 84, 17, 54, 0, 44, 0, 41, 3407947, -1, 3, 16, 96, 21, 84, 40, 49, 0, 44, 0, 10, 3670092, -1, 3, 16, 97, 21, 84, 17, 54, 0, 44, 0, 41, 3932237, -1, 3, 16, 98, 21, 84, 40, 49, 0, 44, 0, 10, 4194382, -1, 3, 16, 99, 21, 84, 17, 54, 0, 44, 0, 41, 4456527, -1, 3, 16, 100, 21, 84, 40, 49, 0, 44, 0, 10, 4718672, -1, 3, 16, 101, 21, 84, 17, 54, 0, 44, 0, 41, 4980817, -1, 3, 16, 102, 21, 84, 40, 49, 0, 44, 0, 10, 5242962, -1, 3, 16, 103, 21, 84, 17, 54, 0, 44, 0, 41, 5505107, -1, 3, 16, 104, 21, 84, 40, 49, 0, 44, 0, 10, 5767252, -1, 3, 16, 105, 21, 84, 17, 54, 0, 44, 0, 41, 6029398, -1, 3, 16, 106, 21, 84, 40, 49, 0, 44, 0, 10, 6291543, -1, 3, 16, 107, 21, 84, 17, 54, 0, 44, 0, 41, 6553688, -1, 3, 16, 108, 21, 84, 40, 49, 0, 44, 0, 10, 6815833, -1, 3, 16, 109, 21, 84, 17, 54, 0, 44, 0, 41, 7077979, -1, 3, 16, 110, 21, 84, 40, 49, 0, 44, 0, 10, 7340124, -1, 3, 16, 111, 21, 84, 17, 54, 0, 0, 0, 95, 3932253, -1, 3, 16, 112, 94, 44, 56, 113, 0, 73, 0, 10, 262154, -1, 1, 17, 114, 0),
+"variants": [ExtResource("1"), ExtResource("2"), "emeishandao", "峨眉山道", 56, 0.0, null, true, Vector2(625.383, 455.34998), SubResource("RectangleShape_floor"), Vector2(5045, -300), SubResource("RectangleShape_right"), Vector2(1996.5688, 422.34998), SubResource("RectangleShape_floor_2"), Vector2(1402.9999, 442), -0.06391304, Vector2(2603.0002, 441), 0.059788138, Vector2(3864.3499, 454.34998), SubResource("RectangleShape_floor_3"), -100, Vector2(258, -684), Color(0.025, 0.035, 0.055, 1), PackedVector2Array(-1000, -1200, 2500, -1200, 2500, 2200, -1000, 2200), Vector2(720, 349), ExtResource("3"), Vector2(0, -196), Vector2(413, 622.5), SubResource("SpriteFrames_1"), &"play", "play", Vector2(2492.5, 617.5), ExtResource("12"), Vector2(1399.5, 811.5), SubResource("SpriteFrames_2"), Vector2(2451.5, 811.5), SubResource("SpriteFrames_3"), Vector2(1575.5, 811.5), SubResource("SpriteFrames_4"), Vector2(2593.5, 811.5), SubResource("SpriteFrames_5"), Vector2(4835, 350), -1, Vector2(1266, 544), 0, ExtResource("23"), Vector2(426, -28), 13, Vector2(36, 10), ExtResource("24"), Vector2(-1, -112), Vector2(15.384615, -113.07692), -0.065633, Vector2(16.384613, -108.076904), SubResource("RectangleShape_rope_segment"), Vector2(48.153847, -115.23077), Vector2(49.153847, -110.230774), Vector2(80.92308, -117.38461), Vector2(81.92308, -112.38461), Vector2(113.69231, -119.53846), Vector2(114.69231, -114.53845), Vector2(146.46153, -121.69231), Vector2(147.46153, -116.69232), Vector2(179.23077, -123.84615), Vector2(180.23077, -118.84616), Vector2(212, -126), Vector2(213, -121), Vector2(244.76923, -128.15384), Vector2(245.76923, -123.15384), Vector2(277.53845, -130.3077), Vector2(278.53845, -125.30768), Vector2(310.30768, -132.46153), Vector2(311.30768, -127.46155), Vector2(343.07693, -134.61539), Vector2(344.0769, -129.61536), Vector2(0.99999994, 0.99999994), Vector2(375.84616, -136.76923), Vector2(376.8462, -131.76923), Vector2(408.6154, -138.92308), Vector2(409.6154, -133.9231), Vector2(2295, 514), Vector2(421, 26), 14, Vector2(14.035714, -111.07143), 0.061679, Vector2(15.035714, -107.07143), Vector2(44.107143, -109.21429), Vector2(45.107143, -105.21429), Vector2(74.17857, -107.35714), Vector2(75.17857, -103.35715), Vector2(104.25, -105.5), Vector2(105.25, -101.5), Vector2(134.32143, -103.64286), Vector2(135.32143, -99.64285), Vector2(164.39285, -101.78571), Vector2(165.39285, -97.78571), Vector2(194.46428, -99.92857), Vector2(195.46428, -95.92857), Vector2(224.53572, -98.07143), Vector2(225.53572, -94.07143), Vector2(254.60715, -96.21429), Vector2(255.60715, -92.21429), Vector2(284.67856, -94.35714), Vector2(285.67856, -90.35715), Vector2(314.75, -92.5), Vector2(315.75, -88.5), Vector2(344.82144, -90.64286), Vector2(345.82144, -86.64285), Vector2(374.89285, -88.78571), Vector2(375.89285, -84.78571), Vector2(404.9643, -86.92857), Vector2(405.9643, -82.92857), Vector2(2121, 658.5), 18, SubResource("RectangleShape_fall_death")],
+"version": 3
+}

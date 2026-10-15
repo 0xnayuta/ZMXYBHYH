@@ -1,0 +1,55 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Texture2D" path="res://Art/AddEffect/Fire/RoleBeHit.png" id="1"]
+[ext_resource type="Script" path="res://Script/Base/RoleBeHitEffect.gd" id="2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 101, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = ExtResource("1")
+region = Rect2(101, 0, 101, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3"]
+atlas = ExtResource("1")
+region = Rect2(202, 0, 101, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = ExtResource("1")
+region = Rect2(303, 0, 101, 125)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_role_be_hit"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4")
+}],
+"loop": 0,
+"name": &"RoleBeHit",
+"speed": 13.0
+}]
+
+[resource]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(0, 0, 6, 5, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("RoleBeHitEffect", "sprite_frames", "animation", "script", "AnimatedSprite2D", "_on_animation_finished", "animation_finished"),
+"node_count": 1,
+"node_ids": PackedInt32Array(317009874),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0),
+"variants": [SubResource("SpriteFrames_role_be_hit"), &"RoleBeHit", ExtResource("2")],
+"version": 3
+}

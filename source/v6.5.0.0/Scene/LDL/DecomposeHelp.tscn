@@ -1,0 +1,22 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/LDL/DecomposeHelp.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/show_text/502.png" id="2"]
+[ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="3"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/ClothesChange/8.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/ClothesChange/10.png" id="5"]
+
+[resource]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(10, 0, 44, 43, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("DecomposeHelp", "script", "Node2D", "ColorRect", "offset_left", "offset_top", "offset_right", "offset_bottom", "color", "metadata/_edit_lock_", "BG", "texture", "Sprite2D", "Title__", "theme_override_colors/font_color", "theme_override_colors/font_shadow_color", "theme_override_colors/font_outline_color", "theme_override_constants/shadow_offset_x", "theme_override_constants/shadow_offset_y", "theme_override_constants/outline_size", "theme_override_constants/shadow_outline_size", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "text", "Label", "ScrollContainer", "BoxContainer", "layout_mode", "size_flags_horizontal", "size_flags_vertical", "theme_override_constants/separation", "vertical", "_1", "autowrap_mode", "_5", "_6", "_7", "Close", "texture_normal", "texture_pressed", "texture_hover", "texture_disabled", "TextureButton", "_on_close_pressed", "pressed"),
+"node_count": 11,
+"node_ids": PackedInt32Array(1056107597, 1348890743, 1765512333, 502385116, 1453642356, 1572104319, 33792699, 789860166, 1667724521, 1978521657, 1539270066),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 3, 3, -1, 6, 4, 1, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 12, 10, -1, 1, 11, 7, 0, 2, 0, 24, 13, -1, 15, 4, 8, 5, 9, 6, 10, 7, 11, 14, 12, 15, 13, 16, 12, 17, 14, 18, 14, 19, 15, 20, 16, 21, 17, 22, 18, 23, 19, 9, 6, 0, 2, 0, 25, 25, -1, 4, 4, 20, 5, 11, 6, 21, 7, 22, 0, 4, 0, 26, 26, -1, 5, 27, 15, 28, 23, 29, 23, 30, 24, 31, 6, 0, 5, 0, 24, 32, -1, 12, 27, 15, 14, 25, 15, 12, 16, 25, 17, 14, 18, 14, 19, 26, 20, 27, 21, 17, 22, 28, 23, 29, 33, 26, 0, 5, 0, 24, 34, -1, 12, 27, 15, 14, 25, 15, 12, 16, 25, 17, 14, 18, 14, 19, 26, 20, 27, 21, 17, 22, 28, 23, 30, 33, 26, 0, 5, 0, 24, 35, -1, 12, 27, 15, 14, 25, 15, 12, 16, 25, 17, 14, 18, 14, 19, 26, 20, 27, 21, 17, 22, 28, 23, 31, 33, 26, 0, 5, 0, 24, 36, -1, 11, 27, 15, 14, 25, 15, 12, 16, 25, 17, 14, 18, 14, 19, 26, 20, 27, 21, 17, 22, 28, 23, 32, 0, 0, 0, 42, 37, -1, 9, 4, 33, 5, 34, 6, 35, 7, 36, 38, 37, 39, 37, 40, 38, 41, 37, 9, 6, 0),
+"variants": [ExtResource("1"), -923.0, -457.0, 927.0, 463.0, Color(0, 0, 0, 0.603922), true, ExtResource("2"), -55.0, -171.0, 45.0, -135.0, Color(0, 0, 0, 1), Color(1, 1, 1, 1), 0, 2, 8, ExtResource("3"), 25, "分解帮助", -333.0, 332.0, 166.0, 3, -10, Color(1, 0.635294, 0, 1), 1, 10, 20, "1.只有部分装备和道具并且有生成物的物品才可以参与分解。                        ", "2.分解装备时，若装备有强化等级，则返还使用总量一部分的1级强化石。邪灵及以上品质的装备可能分解出随机种类和数量的1级宝石。                       ", "3.分解需要消耗一定数量的灵魂。分解后，原物品将会消失。                       ", "4.部分物品可能会分解出特殊材料。                 ", 285.0, -181.0, 343.0, -125.0, ExtResource("4"), ExtResource("5")],
+"version": 3
+}

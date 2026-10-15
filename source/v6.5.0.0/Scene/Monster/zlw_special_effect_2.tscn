@@ -1,0 +1,231 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Monster/zlw_special_effect_2.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/Monster/Monster_56/BG_1.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Monster/Monster_55/ZL.png" id="3"]
+
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("3")
+region = Rect2(0, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("3")
+region = Rect2(176, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("3")
+region = Rect2(352, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="4"]
+atlas = ExtResource("3")
+region = Rect2(528, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="5"]
+atlas = ExtResource("3")
+region = Rect2(704, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="6"]
+atlas = ExtResource("3")
+region = Rect2(880, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="7"]
+atlas = ExtResource("3")
+region = Rect2(1056, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="8"]
+atlas = ExtResource("3")
+region = Rect2(1232, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="9"]
+atlas = ExtResource("3")
+region = Rect2(1408, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="10"]
+atlas = ExtResource("3")
+region = Rect2(1584, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="11"]
+atlas = ExtResource("3")
+region = Rect2(1760, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="12"]
+atlas = ExtResource("3")
+region = Rect2(0, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="13"]
+atlas = ExtResource("3")
+region = Rect2(176, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="14"]
+atlas = ExtResource("3")
+region = Rect2(352, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="15"]
+atlas = ExtResource("3")
+region = Rect2(528, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="16"]
+atlas = ExtResource("3")
+region = Rect2(704, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="17"]
+atlas = ExtResource("3")
+region = Rect2(880, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="18"]
+atlas = ExtResource("3")
+region = Rect2(1056, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="19"]
+atlas = ExtResource("3")
+region = Rect2(1232, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="20"]
+atlas = ExtResource("3")
+region = Rect2(1408, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="21"]
+atlas = ExtResource("3")
+region = Rect2(1584, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="22"]
+atlas = ExtResource("3")
+region = Rect2(1760, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="23"]
+atlas = ExtResource("3")
+region = Rect2(0, 352, 176, 176)
+
+[sub_resource type="AtlasTexture" id="24"]
+atlas = ExtResource("3")
+region = Rect2(176, 352, 176, 176)
+
+[sub_resource type="AtlasTexture" id="25"]
+atlas = ExtResource("3")
+region = Rect2(352, 352, 176, 176)
+
+[sub_resource type="AtlasTexture" id="26"]
+atlas = ExtResource("3")
+region = Rect2(528, 352, 176, 176)
+
+[sub_resource type="AtlasTexture" id="27"]
+atlas = ExtResource("3")
+region = Rect2(704, 352, 176, 176)
+
+[sub_resource type="AtlasTexture" id="28"]
+atlas = ExtResource("3")
+region = Rect2(880, 352, 176, 176)
+
+[sub_resource type="AtlasTexture" id="29"]
+atlas = ExtResource("3")
+region = Rect2(1056, 352, 176, 176)
+
+[sub_resource type="SpriteFrames" id="30"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}, {
+"duration": 1.0,
+"texture": SubResource("2")
+}, {
+"duration": 1.0,
+"texture": SubResource("3")
+}, {
+"duration": 1.0,
+"texture": SubResource("4")
+}, {
+"duration": 1.0,
+"texture": SubResource("5")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("7")
+}, {
+"duration": 1.0,
+"texture": SubResource("8")
+}, {
+"duration": 1.0,
+"texture": SubResource("9")
+}, {
+"duration": 1.0,
+"texture": SubResource("10")
+}, {
+"duration": 1.0,
+"texture": SubResource("11")
+}, {
+"duration": 1.0,
+"texture": SubResource("12")
+}, {
+"duration": 1.0,
+"texture": SubResource("13")
+}, {
+"duration": 1.0,
+"texture": SubResource("14")
+}, {
+"duration": 1.0,
+"texture": SubResource("15")
+}, {
+"duration": 1.0,
+"texture": SubResource("16")
+}, {
+"duration": 1.0,
+"texture": SubResource("17")
+}, {
+"duration": 1.0,
+"texture": SubResource("18")
+}, {
+"duration": 1.0,
+"texture": SubResource("19")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}, {
+"duration": 1.0,
+"texture": SubResource("21")
+}, {
+"duration": 1.0,
+"texture": SubResource("22")
+}, {
+"duration": 1.0,
+"texture": SubResource("23")
+}, {
+"duration": 1.0,
+"texture": SubResource("24")
+}, {
+"duration": 1.0,
+"texture": SubResource("25")
+}, {
+"duration": 1.0,
+"texture": SubResource("26")
+}, {
+"duration": 1.0,
+"texture": SubResource("27")
+}, {
+"duration": 1.0,
+"texture": SubResource("28")
+}, {
+"duration": 1.0,
+"texture": SubResource("29")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 30.0
+}]
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("zlwSpecialEffect_2", "script", "Node2D", "Bg1", "texture", "Sprite2D", "LZ_1", "position", "scale", "sprite_frames", "autoplay", "frame_progress", "speed_scale", "metadata/_edit_lock_", "AnimatedSprite2D", "LZ_2", "LZ_4", "LZ_3", "LZ_6", "LZ_5", "LZ_8", "LZ_7"),
+"node_count": 10,
+"node_ids": PackedInt32Array(1231062245, 816280287, 661597349, 1012799741, 1044961453, 1359013916, 878858554, 1045516505, 935350121, 1714502059),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 5, 3, -1, 1, 4, 1, 0, 0, 0, 14, 6, -1, 7, 7, 2, 8, 3, 9, 4, 10, 5, 11, 6, 12, 7, 13, 8, 0, 0, 0, 14, 15, -1, 7, 7, 9, 8, 10, 9, 4, 10, 5, 11, 11, 12, 7, 13, 8, 0, 0, 0, 14, 16, -1, 6, 7, 12, 9, 4, 10, 5, 11, 13, 12, 7, 13, 8, 0, 0, 0, 14, 17, -1, 6, 7, 14, 9, 4, 10, 5, 11, 15, 12, 7, 13, 8, 0, 0, 0, 14, 18, -1, 7, 7, 16, 8, 17, 9, 4, 10, 5, 11, 18, 12, 7, 13, 8, 0, 0, 0, 14, 19, -1, 7, 7, 19, 8, 20, 9, 4, 10, 5, 11, 21, 12, 7, 13, 8, 0, 0, 0, 14, 20, -1, 7, 7, 22, 8, 23, 9, 4, 10, 5, 11, 24, 12, 7, 13, 8, 0, 0, 0, 14, 21, -1, 7, 7, 25, 8, 23, 9, 4, 10, 5, 11, 26, 12, 7, 13, 8, 0),
+"variants": [ExtResource("1"), ExtResource("2"), Vector2(-23, -29), Vector2(1.4, 1.4), SubResource("30"), "default", 0.195103, 0.7, true, Vector2(-211, 67), Vector2(0.5, 0.5), 0.805873, Vector2(-109, -5), 0.816388, Vector2(-144, 58), 0.362373, Vector2(50, -11), Vector2(1.1, 1.1), 0.662715, Vector2(-29, 8), Vector2(0.85, 0.85), 0.618618, Vector2(156, 55), Vector2(1.2, 1.2), 0.880932, Vector2(84, 46), 0.0111331],
+"version": 3
+}

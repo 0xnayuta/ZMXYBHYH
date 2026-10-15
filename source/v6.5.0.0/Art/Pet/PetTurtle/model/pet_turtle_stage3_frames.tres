@@ -1,0 +1,144 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" uid="uid://b7xsmibysxy51" path="res://Art/Pet/PetTurtle/model/actions/stage3/death/death_0.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bp24etwy1hoij" path="res://Art/Pet/PetTurtle/model/actions/stage3/death/death_1.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dodpbdf2mjdcs" path="res://Art/Pet/PetTurtle/model/actions/stage3/death/death_2.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://djb3jf6bhfx5f" path="res://Art/Pet/PetTurtle/model/actions/stage3/death/death_3.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://wg7pr7li1i8l" path="res://Art/Pet/PetTurtle/model/actions/stage3/death/death_4.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://ujd4k0rejn0" path="res://Art/Pet/PetTurtle/model/actions/stage3/hit1/hit1_0.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://mv02qht3tma6" path="res://Art/Pet/PetTurtle/model/actions/stage3/hit1/hit1_1.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://dwral3rpeypnj" path="res://Art/Pet/PetTurtle/model/actions/stage3/hit1/hit1_2.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://bk4th3oyan2uq" path="res://Art/Pet/PetTurtle/model/actions/stage3/hit1/hit1_3.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://dm62n8hobdfl1" path="res://Art/Pet/PetTurtle/model/actions/stage3/hit2/hit2_0.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://l2vyfa65jm1l" path="res://Art/Pet/PetTurtle/model/actions/stage3/hit2/hit2_1.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://cgkqrfabh6de1" path="res://Art/Pet/PetTurtle/model/actions/stage3/hit2/hit2_2.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://dflsi3xdgpu4e" path="res://Art/Pet/PetTurtle/model/actions/stage3/hit3/hit3_0.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://cssb8wfkem3xp" path="res://Art/Pet/PetTurtle/model/actions/stage3/hit3/hit3_1.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://cy1nbx2tj6v2s" path="res://Art/Pet/PetTurtle/model/actions/stage3/hit3/hit3_2.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://d4e1rddjj1x63" path="res://Art/Pet/PetTurtle/model/actions/stage3/hurt/hurt_0.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://3wegbqy6bteo" path="res://Art/Pet/PetTurtle/model/actions/stage3/wait/wait_0.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://cv33cl3xjmje0" path="res://Art/Pet/PetTurtle/model/actions/stage3/wait/wait_1.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://6hpyq2qth0nd" path="res://Art/Pet/PetTurtle/model/actions/stage3/wait/wait_2.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://uw86cqdq5pjm" path="res://Art/Pet/PetTurtle/model/actions/stage3/wait/wait_3.png" id="20"]
+[ext_resource type="Texture2D" uid="uid://bujkoqayh82yn" path="res://Art/Pet/PetTurtle/model/actions/stage3/wait/wait_4.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://qwlqedwafpg2" path="res://Art/Pet/PetTurtle/model/actions/stage3/wait/wait_5.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://b6cuwv8xh2g5f" path="res://Art/Pet/PetTurtle/model/actions/stage3/walk/walk_0.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://bk31uy2kopekk" path="res://Art/Pet/PetTurtle/model/actions/stage3/walk/walk_1.png" id="24"]
+[ext_resource type="Texture2D" uid="uid://cgcjjxa8adu6h" path="res://Art/Pet/PetTurtle/model/actions/stage3/walk/walk_2.png" id="25"]
+[ext_resource type="Texture2D" uid="uid://b6yhql46c7i6l" path="res://Art/Pet/PetTurtle/model/actions/stage3/walk/walk_3.png" id="26"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("1")
+}, {
+"duration": 2.0,
+"texture": ExtResource("2")
+}, {
+"duration": 2.0,
+"texture": ExtResource("3")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4")
+}, {
+"duration": 2.0,
+"texture": ExtResource("5")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("6")
+}, {
+"duration": 2.0,
+"texture": ExtResource("7")
+}, {
+"duration": 2.0,
+"texture": ExtResource("8")
+}, {
+"duration": 10.0,
+"texture": ExtResource("9")
+}],
+"loop": 0,
+"name": &"hit1",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("10")
+}, {
+"duration": 2.0,
+"texture": ExtResource("11")
+}, {
+"duration": 10.0,
+"texture": ExtResource("12")
+}],
+"loop": 0,
+"name": &"hit2",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("13")
+}, {
+"duration": 2.0,
+"texture": ExtResource("14")
+}, {
+"duration": 10.0,
+"texture": ExtResource("15")
+}],
+"loop": 0,
+"name": &"hit3",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 8.0,
+"texture": ExtResource("16")
+}],
+"loop": 0,
+"name": &"hurt",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("17")
+}, {
+"duration": 2.0,
+"texture": ExtResource("18")
+}, {
+"duration": 2.0,
+"texture": ExtResource("19")
+}, {
+"duration": 3.0,
+"texture": ExtResource("20")
+}, {
+"duration": 2.0,
+"texture": ExtResource("21")
+}, {
+"duration": 4.0,
+"texture": ExtResource("22")
+}],
+"loop": 1,
+"name": &"wait",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 4.0,
+"texture": ExtResource("23")
+}, {
+"duration": 4.0,
+"texture": ExtResource("24")
+}, {
+"duration": 4.0,
+"texture": ExtResource("25")
+}, {
+"duration": 4.0,
+"texture": ExtResource("26")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 24.0
+}]

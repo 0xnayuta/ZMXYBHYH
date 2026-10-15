@@ -1,0 +1,21 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Monster/ZhuqueTigerArrow.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="Shape_hit"]
+size = Vector2(105, 32)
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("ZhuqueTigerArrow", "script", "Node2D", "middle", "HitBox", "collision_layer", "collision_mask", "Area2D", "Hit_Box", "shape", "CollisionShape2D", "BulletANI", "texture_filter", "AnimatedSprite2D", "BulletPlayer", "AnimationPlayer", "queue_timer", "one_shot", "Timer", "IsThrowClose"),
+"node_count": 8,
+"node_ids": PackedInt32Array(1373882696, 888132582, 116496359, 122561546, 1129416524, 814813662, 1882767200, 1339207313),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 2, 3, -1, 0, 0, 1, 0, 7, 4, -1, 2, 5, 1, 6, 2, 0, 2, 0, 10, 8, -1, 1, 9, 3, 0, 1, 0, 13, 11, -1, 1, 12, 4, 0, 0, 0, 15, 14, -1, 0, 0, 0, 0, 18, 16, -1, 1, 17, 5, 0, 0, 0, 18, 19, -1, 1, 17, 5, 0),
+"variants": [ExtResource("1"), 4, 8321, SubResource("Shape_hit"), 2, true],
+"version": 3
+}

@@ -1,0 +1,25 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Scene/show_text/choose_scene.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/117.png" id="2"]
+[ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="3"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/124.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/126.png" id="5"]
+[ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="6"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/119.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/121.png" id="8"]
+
+[resource]
+_bundled = {
+"conn_count": 3,
+"conns": PackedInt32Array(5, 0, 55, 54, 2, 0, 0, 7, 0, 55, 56, 2, 0, 0, 8, 0, 58, 57, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("choose_scene", "layout_mode", "anchors_preset", "anchor_right", "anchor_bottom", "offset_left", "offset_right", "offset_bottom", "grow_horizontal", "grow_vertical", "script", "metadata/_edit_lock_", "Control", "TextureRect", "color", "ColorRect", "bg", "anchor_left", "anchor_top", "offset_top", "texture", "ScrollContainer", "horizontal_scroll_mode", "Text", "texture_filter", "custom_minimum_size", "theme_override_colors/font_color", "theme_override_colors/font_shadow_color", "theme_override_colors/font_outline_color", "theme_override_constants/shadow_offset_x", "theme_override_constants/shadow_offset_y", "theme_override_constants/outline_size", "theme_override_constants/shadow_outline_size", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "vertical_alignment", "autowrap_mode", "Label", "qx", "scale", "focus_mode", "texture_normal", "texture_pressed", "texture_hover", "texture_disabled", "TextureButton", "calm", "horizontal_alignment", "qd", "disabled", "think_time", "wait_time", "one_shot", "Timer", "_on_qx_pressed", "pressed", "_on_qd_pressed", "_on_think_time_timeout", "timeout"),
+"node_count": 9,
+"node_ids": PackedInt32Array(1977907021, 770721941, 690826263, 762362033, 282638879, 1628313186, 1031046040, 1988063820, 1434115405),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 12, 0, -1, 11, 1, 0, 2, 1, 3, 2, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 5, 10, 6, 11, 7, 0, 0, 0, 15, 13, -1, 5, 1, 8, 6, 9, 7, 10, 14, 11, 11, 7, 0, 1, 0, 13, 16, -1, 13, 1, 12, 2, 13, 17, 14, 18, 14, 3, 14, 4, 14, 5, 15, 19, 16, 6, 17, 7, 18, 8, 5, 9, 5, 20, 19, 0, 2, 0, 21, 21, -1, 6, 1, 8, 5, 20, 19, 21, 6, 22, 7, 23, 22, 8, 0, 3, 0, 37, 23, -1, 15, 24, 5, 25, 24, 1, 5, 26, 25, 27, 26, 28, 25, 29, 8, 30, 8, 31, 5, 32, 27, 33, 28, 34, 29, 35, 12, 36, 12, 11, 7, 0, 2, 0, 45, 38, -1, 11, 1, 8, 5, 30, 19, 31, 6, 32, 7, 33, 39, 34, 40, 8, 41, 35, 42, 35, 43, 36, 44, 35, 0, 5, 0, 37, 46, -1, 10, 1, 8, 5, 37, 19, 38, 6, 39, 7, 40, 26, 41, 33, 42, 34, 43, 47, 12, 35, 12, 0, 2, 0, 45, 48, -1, 13, 1, 8, 5, 20, 19, 31, 6, 44, 7, 33, 39, 34, 40, 8, 49, 7, 41, 45, 42, 45, 43, 46, 44, 45, 11, 7, 0, 0, 0, 53, 50, -1, 2, 51, 47, 52, 7, 0),
+"variants": [3, 15, 1.0, -1.0, -2.0, 2, ExtResource("1"), true, 0, 938.0, 588.0, Color(0, 0, 0, 0.607843), 1, 8, 0.5, -155.0, -93.0, 176.0, 116.0, ExtResource("2"), 25.0, 39.0, 321.0, 132.0, Vector2(280, 0), Color(1, 1, 1, 1), Color(0, 0, 0, 1), 9, ExtResource("3"), 17, 206.0, 149.0, 274.0, 182.0, Vector2(1.45, 1.45), ExtResource("4"), ExtResource("5"), -59.2413, 6.0, -32.2413, 29.0, Color(1, 0, 0, 1), ExtResource("6"), 18, 93.0, ExtResource("7"), ExtResource("8"), 10.0],
+"version": 3
+}

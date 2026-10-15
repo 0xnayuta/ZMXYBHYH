@@ -1,0 +1,31 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/BaseThroughLevel.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/Level_17.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/Level/Boat.tscn" id="3"]
+[ext_resource type="Texture2D" path="res://Art/Level/Level_11/1_floorBg3.jpg" id="4"]
+[ext_resource type="Texture2D" path="res://Art/Level/Level_11/wch.png" id="5"]
+[ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="6"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(120, 846)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(5389, 141)
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 1,
+"conns": PackedInt32Array(4, 0, 62, 61, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1221902799), PackedInt32Array(653194421), PackedInt32Array(458132924), PackedInt32Array(1466504861), PackedInt32Array(1390746928)],
+"names": PackedStringArray("Level_17", "script", "GreenDetector", "CollisionShape2D", "ColorRect", "wall", "wall_left", "floor", "position", "polygon", "metadata/_edit_lock_", "CollisionPolygon2D", "shape", "thb", "Monster", "Hero", "Create_1", "Create_2", "Create_3", "Create_4", "create_control", "fall_items", "Boat", "HDDY", "collision_layer", "collision_mask", "Area2D", "check", "BackGround", "End", "1FloorBg3", "texture", "Sprite2D", "floor_2", "Wch", "front", "ParallaxLayer", "exit", "exit2", "Timer", "CanvasLayer", "ZM", "text", "offset_left", "offset_top", "offset_right", "offset_bottom", "theme_override_colors/font_color", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "Label", "text2", "layout_mode", "vertical_alignment", "text3", "lj_tt", "zmPLAYER", "MonsterBlood", "Smooth", "_on_hddy_body_entered", "body_entered"),
+"node_count": 13,
+"node_ids": PackedInt32Array(351866641, 1369150178, 1335216849, 956567312, 22727990, 1126857134, 1273506499, 241899720, 245569297, 2115553614, 1064913567, 1248417820, 2058651809),
+"node_paths": [NodePath("wall"), NodePath("BackGround/End"), NodePath("BackGround/floor_2"), NodePath("BackGround"), NodePath("CanvasLayer")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 1073741824, 0, 11, 524295, -1, 3, 8, 2, 9, 3, 10, 4, 0, 1073741824, 0, 3, 786435, -1, 3, 8, 5, 12, 6, 10, 4, 0, 0, 0, 2147483647, 2883606, 7, 1, 8, 8, 0, 0, 0, 26, 3145751, -1, 3, 8, 9, 24, 10, 25, 10, 0, 4, 0, 3, 262171, -1, 3, 8, 11, 12, 12, 10, 4, 0, 1073741825, 0, 32, 262174, -1, 2, 8, 13, 31, 14, 0, 1073741826, 0, 32, 262178, -1, 2, 8, 15, 31, 16, 0, 1073741827, 0, 36, 786467, -1, 0, 0, 0, 0, 2147483647, 3670053, -1, 2, 8, 17, 10, 4, 0, 1073741828, 0, 52, 524330, -1, 11, 43, 18, 44, 19, 45, 20, 46, 21, 47, 22, 48, 23, 49, 24, 50, 25, 51, 26, 42, 27, 10, 4, 0, 10, 0, 52, 262197, -1, 11, 54, 28, 43, 29, 45, 30, 46, 31, 47, 22, 48, 23, 49, 24, 50, 25, 51, 26, 55, 32, 10, 4, 0, 10, 0, 52, 524344, -1, 13, 54, 28, 43, 33, 44, 34, 45, 35, 46, 36, 47, 37, 48, 23, 49, 24, 50, 25, 51, 38, 42, 39, 55, 32, 10, 4, 0),
+"variants": [ExtResource("1"), ExtResource("2"), Vector2(4379, 357), PackedVector2Array(4, 1, -24, 30, -24, 169, 338, 173, 338, 2), true, Vector2(4660, 100), SubResource("1"), ExtResource("3"), Vector2(200, 295), Vector2(22, 1732), 16, Vector2(2642.5, 42.5), SubResource("2"), Vector2(720, 248), ExtResource("4"), Vector2(2453, 343), ExtResource("5"), Vector2(4491, 276), 402.0, 25.0, 577.0, 54.0, Color(1, 1, 1, 1), Color(0, 0, 0, 1), 8, ExtResource("6"), 25, "当前受击次数：
+受伤越多，boss越强", 0, 169.0, 344.0, 29.0, 1, -1.0, 55.0, 329.0, 84.0, Color(1, 0, 0, 1), 18, "忘川河的邪气会吞噬法力（无法回血，使用技能和法宝）"],
+"version": 3
+}

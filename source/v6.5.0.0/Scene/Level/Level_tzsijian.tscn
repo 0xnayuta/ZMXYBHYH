@@ -1,0 +1,36 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/BaseThroughLevel.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/Level_tzsijian.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Level/Level_10/250.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_tzsijian/96/1_floorBg96.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_tzsijian/96/bg961_parts/base_4.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/Level/Level_10/230.png" id="6"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(1400, 553)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(17, 1786)
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(101, 1420)
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(600, 1420)
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1221902799), PackedInt32Array(653194421), PackedInt32Array(1466504861), PackedInt32Array(458132924)],
+"names": PackedStringArray("Level_tzsijian", "script", "metadata/_edit_vertical_guides_", "GreenDetector", "CollisionShape2D", "ColorRect", "wall", "wall_left", "floor", "position", "shape", "metadata/_edit_lock_", "stop1", "thb", "stop5", "disabled", "stop_right", "Monster", "Hero", "Create_1", "Create_2", "Create_3", "Create_4", "create_control", "wait_time", "fall_items", "BackGround", "End", "250", "visible", "texture", "Sprite2D", "front", "ParallaxLayer", "125", "texture_filter", "scale", "tzsijian_top", "tzsijian_floor", "tzsijian_array", "tzsijian_fog", "floor_2", "230", "exit", "exit2", "Timer", "CanvasLayer", "ZM", "lj_tt", "zmPLAYER", "MonsterBlood", "Smooth"),
+"node_count": 15,
+"node_ids": PackedInt32Array(846124540, 579201075, 927760394, 484155124, 2026958050, 1989637868, 1853876432, 196410967, 1691409744, 244165411, 1087028596, 137677409, 1044004598, 304921116, 2115553614),
+"node_paths": [NodePath("wall"), NodePath("BackGround/End"), NodePath("BackGround"), NodePath("BackGround/floor_2")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 2, 1, 1, 2, 2, 0, 1073741824, 0, 4, 524296, -1, 3, 9, 3, 10, 4, 11, 5, 0, 1073741824, 0, 4, 786444, -1, 3, 9, 6, 10, 7, 11, 5, 0, 1073741824, 0, 4, 1310734, -1, 3, 9, 8, 10, 9, 15, 5, 0, 1073741824, 0, 4, 1572880, -1, 3, 9, 10, 10, 11, 11, 5, 0, 0, 0, 2147483647, 2359319, -1, 1, 24, 12, 0, 1073741825, 0, 31, 262172, -1, 3, 29, 13, 9, 14, 30, 15, 0, 1073741826, 0, 33, 524320, -1, 0, 0, 7, 0, 31, 262178, -1, 4, 35, 16, 9, 17, 36, 18, 30, 19, 0, 7, 0, 31, 524325, -1, 4, 35, 16, 9, 20, 36, 21, 30, 22, 0, 7, 0, 31, 786470, -1, 2, 29, 13, 9, 23, 0, 7, 0, 31, 1048615, -1, 2, 29, 13, 9, 24, 0, 7, 0, 31, 1310760, -1, 2, 29, 13, 9, 25, 0, 1073741827, 0, 31, 524330, -1, 5, 29, 13, 9, 26, 36, 27, 30, 28, 11, 5, 0, 0, 0, 2147483647, 3145771, -1, 2, 9, 29, 11, 5, 0),
+"variants": [ExtResource("1"), ExtResource("2"), [365.0, 1198.0], Vector2(600, 669.5), SubResource("1"), true, Vector2(1007.5, -406), SubResource("2"), Vector2(-54.5, -221), SubResource("3"), Vector2(1504, -221), SubResource("4"), 0.5, false, Vector2(716, 248), ExtResource("3"), 1, Vector2(606.5001, 179.50002), Vector2(1.1208334, 1.2839805), ExtResource("4"), Vector2(600, 421), Vector2(0.5, 0.5), ExtResource("5"), Vector2(600, 100), Vector2(600, 516), Vector2(600, 500), Vector2(1142.25, 547), Vector2(1.21007, 1), ExtResource("6"), Vector2(1135, 316)],
+"version": 3
+}

@@ -1,0 +1,29 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/Game4ImportedLevelBase.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/Level_68.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/taohuaguV383/background/bg30.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/taohuaguV383/background/bg10.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/taohuaguV383/background/bg11.png" id="5"]
+
+[sub_resource type="RectangleShape2D" id="side_shape"]
+size = Vector2(40, 1800)
+
+[sub_resource type="RectangleShape2D" id="floor_shape"]
+size = Vector2(1200, 300)
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1221902799), PackedInt32Array(653194421), PackedInt32Array(1466504861), PackedInt32Array()],
+"names": PackedStringArray("Level_68", "script", "source_map", "display_name", "stage_number", "background_offset_y", "fixed_layers", "level_width_override", "background_baked", "spawn_position", "GreenDetector", "CollisionShape2D", "ColorRect", "wall", "wall_left", "position", "shape", "thb", "floor", "right_wall", "Monster", "Hero", "Create_1", "Create_2", "Create_3", "Create_4", "create_control", "fall_items", "BackGround", "End", "bg30", "texture", "Sprite2D", "floor_2", "bg10", "scale", "front", "bg11", "exit", "exit2", "Timer", "CanvasLayer", "ZM", "lj_tt", "zmPLAYER", "MonsterBlood", "Smooth"),
+"node_count": 9,
+"node_ids": PackedInt32Array(297627378, 348738071, 0, 0, 1340691314, 458132924, 538650099, 277353163, 2115553614),
+"node_paths": [NodePath("wall"), NodePath("BackGround/End"), NodePath("BackGround"), NodePath("BackGround/front")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 9, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 5, 8, 7, 9, 8, 0, 1073741824, 0, 2147483647, 262158, -1, 2, 15, 9, 16, 10, 0, 1073741824, 0, 2147483647, 786450, -1, 2, 15, 11, 16, 12, 0, 1073741824, 0, 2147483647, 1048595, -1, 2, 15, 13, 16, 10, 0, 1073741825, 0, 32, 262174, -1, 2, 15, 14, 31, 15, 0, 1073741826, 0, 2147483647, 524321, -1, 1, 15, 16, 0, 5, 0, 32, 262178, -1, 3, 15, 17, 35, 18, 31, 19, 0, 1073741827, 0, 32, 262181, -1, 3, 15, 20, 35, 21, 31, 22, 0, 0, 0, 2147483647, 3145766, -1, 1, 15, 23, 0),
+"variants": [ExtResource("1"), ExtResource("2"), "taohuaguV383", "桃花谷", 68, 0.0, null, true, Vector2(160, 448), Vector2(-20, -300), SubResource("side_shape"), Vector2(600, 603), SubResource("floor_shape"), Vector2(1220, -300), Vector2(600, -827), ExtResource("3"), Vector2(0, -43), Vector2(601.00006, 367.5), Vector2(1.04, 1.165), ExtResource("4"), Vector2(602, -831.5), Vector2(1.0033333, 1.0063334), ExtResource("5"), Vector2(973, 372)],
+"version": 3
+}

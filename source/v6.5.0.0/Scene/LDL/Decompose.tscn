@@ -1,0 +1,28 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/LDL/Decompose.gd" id="1"]
+[ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="2"]
+[ext_resource type="Texture2D" path="res://Art/LDL/scw.png" id="3"]
+[ext_resource type="PackedScene" path="res://Scene/BackPack/Box_1.tscn" id="4"]
+[ext_resource type="Texture2D" path="res://Art/Level/Challenge/ui_beizhan_diaoluodi.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/LDL/171.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/LDL/fjbuton1.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/LDL/fjbuton2.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/LDL/176.png" id="9"]
+[ext_resource type="Texture2D" path="res://Art/Shop/46.png" id="10"]
+[ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/198.png" id="11"]
+
+[resource]
+_bundled = {
+"conn_count": 3,
+"conns": PackedInt32Array(10, 0, 59, 58, 2, 0, 0, 14, 0, 59, 60, 2, 0, 0, 15, 0, 62, 61, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("Decompose", "script", "Node2D", "Title", "anchors_preset", "anchor_left", "anchor_top", "anchor_right", "anchor_bottom", "offset_left", "offset_top", "offset_right", "offset_bottom", "grow_horizontal", "grow_vertical", "theme_override_colors/font_color", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "text", "horizontal_alignment", "vertical_alignment", "metadata/_edit_lock_", "Label", "Title2", "scw", "position", "texture", "Sprite2D", "RemoveItems", "TextureRect3", "expand_mode", "TextureRect", "TextureRect4", "layout_mode", "rotation", "ScrollContainer", "ItemList", "theme_override_constants/h_separation", "theme_override_constants/v_separation", "columns", "GridContainer", "jt_", "DecomposeButton", "texture_normal", "texture_pressed", "texture_hover", "texture_disabled", "TextureButton", "need_lh", "lh", "46", "show_behind_parent", "Help", "wait", "one_shot", "Timer", "_on_decompose_button_pressed", "pressed", "_on_help_pressed", "_on_wait_timeout", "timeout"),
+"node_count": 16,
+"node_ids": PackedInt32Array(1814045041, 954113548, 1656128617, 2129488960, 1795572004, 1111551378, 925079706, 1196621228, 1256228851, 1548730581, 506525891, 2142977301, 610040800, 328283816, 1135905558, 1310060650),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 24, 3, -1, 20, 4, 1, 5, 2, 6, 2, 7, 2, 8, 2, 9, 3, 10, 4, 11, 5, 12, 6, 13, 7, 14, 7, 15, 8, 16, 9, 17, 10, 18, 11, 19, 12, 20, 13, 21, 14, 22, 14, 23, 15, 0, 0, 0, 24, 25, -1, 19, 4, 1, 5, 2, 6, 2, 7, 2, 8, 2, 9, 16, 10, 17, 11, 18, 12, 19, 13, 7, 14, 7, 15, 20, 16, 9, 17, 21, 18, 11, 19, 22, 20, 23, 21, 14, 22, 14, 0, 0, 0, 29, 26, -1, 3, 27, 24, 28, 25, 23, 15, 0, 3, 0, 2147483647, 30, 26, 5, 9, 16, 10, 27, 11, 28, 12, 29, 23, 15, 0, 0, 0, 33, 31, -1, 7, 9, 30, 10, 19, 11, 31, 12, 32, 28, 33, 32, 14, 23, 15, 0, 5, 0, 33, 34, -1, 9, 35, 34, 9, 35, 10, 17, 11, 36, 12, 37, 36, 38, 28, 33, 32, 14, 23, 15, 0, 0, 0, 37, 37, -1, 5, 9, 39, 10, 40, 11, 41, 12, 42, 23, 15, 0, 7, 0, 42, 38, -1, 4, 35, 7, 39, 43, 40, 44, 41, 45, 0, 0, 0, 29, 43, -1, 3, 27, 46, 28, 47, 23, 15, 0, 0, 0, 49, 44, -1, 9, 9, 48, 10, 49, 11, 50, 12, 51, 45, 52, 46, 52, 47, 53, 48, 52, 23, 15, 0, 10, 0, 29, 50, -1, 2, 27, 54, 28, 55, 0, 11, 0, 24, 51, -1, 6, 9, 56, 10, 57, 11, 58, 12, 59, 22, 14, 23, 15, 0, 10, 0, 29, 52, -1, 4, 53, 15, 27, 60, 28, 61, 23, 15, 0, 0, 0, 49, 54, -1, 9, 9, 19, 10, 62, 11, 63, 12, 64, 45, 65, 46, 65, 47, 65, 48, 65, 23, 15, 0, 0, 0, 57, 55, -1, 1, 56, 15, 0),
+"variants": [ExtResource("1"), 8, 0.5, -29.0, -13.0, 99.0, 23.0, 2, Color(0.972549, 0.976471, 0, 1), Color(0, 0, 0, 1), 5, ExtResource("2"), 32, "物品分解", 1, true, -26.0, 141.0, 102.0, 177.0, Color(0.964706, 0.403922, 0, 1), 12, 24, "将会获得", Vector2(134, 75), ExtResource("3"), ExtResource("4"), -25.0, 24.0, 25.0, 27.0, 296.0, 316.0, ExtResource("5"), 0, 269.0, 575.0, 281.0, -3.14159, 15.0, 187.0, 280.0, 322.0, 18, 20, 4, Vector2(134, 158), ExtResource("6"), 20.0, 326.0, 160.0, 374.0, ExtResource("7"), ExtResource("8"), Vector2(190, 23), ExtResource("9"), 40.0, -12.0, 80.0, 14.0, Vector2(104, 55), ExtResource("10"), 119.0, 305.0, 163.0, ExtResource("11")],
+"version": 3
+}

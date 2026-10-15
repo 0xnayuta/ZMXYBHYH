@@ -1,0 +1,18 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" uid="uid://4cjfk53q15ki" path="res://Test/verify_active_skill_upgrade.gd" id="1"]
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("VerifyActiveSkillUpgrade", "script", "Node"),
+"node_count": 1,
+"node_ids": PackedInt32Array(242408202),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0),
+"variants": [ExtResource("1")],
+"version": 3
+}

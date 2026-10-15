@@ -1,0 +1,230 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Monster/zlw_special_effect.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/Monster/Monster_55/ZL.png" id="2"]
+
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("2")
+region = Rect2(176, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("2")
+region = Rect2(352, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="4"]
+atlas = ExtResource("2")
+region = Rect2(528, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="5"]
+atlas = ExtResource("2")
+region = Rect2(704, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="6"]
+atlas = ExtResource("2")
+region = Rect2(880, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="7"]
+atlas = ExtResource("2")
+region = Rect2(1056, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="8"]
+atlas = ExtResource("2")
+region = Rect2(1232, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="9"]
+atlas = ExtResource("2")
+region = Rect2(1408, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="10"]
+atlas = ExtResource("2")
+region = Rect2(1584, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="11"]
+atlas = ExtResource("2")
+region = Rect2(1760, 0, 176, 176)
+
+[sub_resource type="AtlasTexture" id="12"]
+atlas = ExtResource("2")
+region = Rect2(0, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="13"]
+atlas = ExtResource("2")
+region = Rect2(176, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="14"]
+atlas = ExtResource("2")
+region = Rect2(352, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="15"]
+atlas = ExtResource("2")
+region = Rect2(528, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="16"]
+atlas = ExtResource("2")
+region = Rect2(704, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="17"]
+atlas = ExtResource("2")
+region = Rect2(880, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="18"]
+atlas = ExtResource("2")
+region = Rect2(1056, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="19"]
+atlas = ExtResource("2")
+region = Rect2(1232, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="20"]
+atlas = ExtResource("2")
+region = Rect2(1408, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="21"]
+atlas = ExtResource("2")
+region = Rect2(1584, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="22"]
+atlas = ExtResource("2")
+region = Rect2(1760, 176, 176, 176)
+
+[sub_resource type="AtlasTexture" id="23"]
+atlas = ExtResource("2")
+region = Rect2(0, 352, 176, 176)
+
+[sub_resource type="AtlasTexture" id="24"]
+atlas = ExtResource("2")
+region = Rect2(176, 352, 176, 176)
+
+[sub_resource type="AtlasTexture" id="25"]
+atlas = ExtResource("2")
+region = Rect2(352, 352, 176, 176)
+
+[sub_resource type="AtlasTexture" id="26"]
+atlas = ExtResource("2")
+region = Rect2(528, 352, 176, 176)
+
+[sub_resource type="AtlasTexture" id="27"]
+atlas = ExtResource("2")
+region = Rect2(704, 352, 176, 176)
+
+[sub_resource type="AtlasTexture" id="28"]
+atlas = ExtResource("2")
+region = Rect2(880, 352, 176, 176)
+
+[sub_resource type="AtlasTexture" id="29"]
+atlas = ExtResource("2")
+region = Rect2(1056, 352, 176, 176)
+
+[sub_resource type="SpriteFrames" id="30"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}, {
+"duration": 1.0,
+"texture": SubResource("2")
+}, {
+"duration": 1.0,
+"texture": SubResource("3")
+}, {
+"duration": 1.0,
+"texture": SubResource("4")
+}, {
+"duration": 1.0,
+"texture": SubResource("5")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("7")
+}, {
+"duration": 1.0,
+"texture": SubResource("8")
+}, {
+"duration": 1.0,
+"texture": SubResource("9")
+}, {
+"duration": 1.0,
+"texture": SubResource("10")
+}, {
+"duration": 1.0,
+"texture": SubResource("11")
+}, {
+"duration": 1.0,
+"texture": SubResource("12")
+}, {
+"duration": 1.0,
+"texture": SubResource("13")
+}, {
+"duration": 1.0,
+"texture": SubResource("14")
+}, {
+"duration": 1.0,
+"texture": SubResource("15")
+}, {
+"duration": 1.0,
+"texture": SubResource("16")
+}, {
+"duration": 1.0,
+"texture": SubResource("17")
+}, {
+"duration": 1.0,
+"texture": SubResource("18")
+}, {
+"duration": 1.0,
+"texture": SubResource("19")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}, {
+"duration": 1.0,
+"texture": SubResource("21")
+}, {
+"duration": 1.0,
+"texture": SubResource("22")
+}, {
+"duration": 1.0,
+"texture": SubResource("23")
+}, {
+"duration": 1.0,
+"texture": SubResource("24")
+}, {
+"duration": 1.0,
+"texture": SubResource("25")
+}, {
+"duration": 1.0,
+"texture": SubResource("26")
+}, {
+"duration": 1.0,
+"texture": SubResource("27")
+}, {
+"duration": 1.0,
+"texture": SubResource("28")
+}, {
+"duration": 1.0,
+"texture": SubResource("29")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 15.0
+}]
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("ZLWSpecialEffect", "script", "Node2D", "Lunzi_4", "position", "scale", "sprite_frames", "autoplay", "frame_progress", "speed_scale", "metadata/_edit_lock_", "AnimatedSprite2D", "Lunzi_3", "Lunzi_1", "Lunzi_2", "Lunzi_5", "Lunzi_6"),
+"node_count": 7,
+"node_ids": PackedInt32Array(911276327, 739937546, 2115446607, 1326799597, 570002289, 624468356, 1712200875),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 11, 3, -1, 7, 4, 1, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 0, 0, 0, 11, 12, -1, 7, 4, 8, 5, 9, 6, 3, 7, 4, 8, 10, 9, 11, 10, 7, 0, 0, 0, 11, 13, -1, 7, 4, 12, 5, 13, 6, 3, 7, 4, 8, 14, 9, 15, 10, 7, 0, 0, 0, 11, 14, -1, 7, 4, 12, 5, 16, 6, 3, 7, 4, 8, 17, 9, 18, 10, 7, 0, 0, 0, 11, 15, -1, 7, 4, 19, 5, 20, 6, 3, 7, 4, 8, 21, 9, 22, 10, 7, 0, 0, 0, 11, 16, -1, 7, 4, 23, 5, 24, 6, 3, 7, 4, 8, 25, 9, 26, 10, 7, 0),
+"variants": [ExtResource("1"), Vector2(-45, -135), Vector2(0.3, 0.7), SubResource("30"), "default", 0.34722, -1.4, true, Vector2(50, -85), Vector2(0.5, 0.9), 0.439733, 1.2, Vector2(0, -90), Vector2(0.8, 1.4), 0.403165, -0.8, Vector2(0.3, 0.5), 0.833437, 1.5, Vector2(65, -130), Vector2(0.4, 0.6), 0.177893, 1.8, Vector2(35, -160), Vector2(0.2, 0.4), 0.878201, 3.0],
+"version": 3
+}

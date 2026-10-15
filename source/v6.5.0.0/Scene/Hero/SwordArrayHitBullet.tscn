@@ -1,0 +1,40 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Hero/RoleBullet.gd" id="1"]
+
+[sub_resource type="SpriteFrames" id="EmptyBulletFrames"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": 1,
+"name": &"Empty",
+"speed": 1.0
+}]
+
+[sub_resource type="CircleShape2D" id="SwordArrayHitShape"]
+radius = 300.0
+
+[sub_resource type="Animation" id="SwordArrayHitAnimation"]
+length = 0.1
+
+[sub_resource type="AnimationLibrary" id="SwordArrayHitLibrary"]
+_data = {
+&"SwordArrayHit": SubResource("SwordArrayHitAnimation")
+}
+
+[resource]
+_bundled = {
+"conn_count": 4,
+"conns": PackedInt32Array(4, 0, 26, 25, 2, 0, 0, 4, 0, 28, 27, 2, 0, 0, 4, 0, 30, 29, 2, 0, 0, 7, 0, 32, 31, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("RoleBullet", "script", "Node2D", "Middle", "BulletPlayer", "self_modulate", "scale", "sprite_frames", "animation", "AnimatedSprite2D", "SpecialEffect", "HitBox", "collision_layer", "collision_mask", "Area2D", "Collion", "shape", "disabled", "CollisionShape2D", "BulletPlayers", "libraries/", "AnimationPlayer", "QueueTimer", "one_shot", "Timer", "_on_hit_box_area_entered", "area_entered", "_on_hit_box_body_entered", "body_entered", "_on_hit_box_body_exited", "body_exited", "_on_queue_timer_timeout", "timeout"),
+"node_count": 8,
+"node_ids": PackedInt32Array(1146930687, 1305566279, 1983228006, 912083133, 1016497386, 387887344, 1146770327, 357310841),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 2, 3, -1, 0, 0, 1, 0, 9, 4, -1, 4, 5, 1, 6, 2, 7, 3, 8, 4, 0, 1, 0, 9, 10, -1, 2, 7, 3, 8, 4, 0, 1, 0, 14, 11, -1, 2, 12, 5, 13, 6, 0, 4, 0, 18, 15, -1, 2, 16, 7, 17, 8, 0, 1, 0, 21, 19, -1, 1, 20, 9, 0, 0, 0, 24, 22, -1, 1, 23, 8, 0),
+"variants": [ExtResource("1"), Color(0, 0, 0, 1), Vector2(1e-05, 1e-05), SubResource("EmptyBulletFrames"), &"Empty", 2, 3088, SubResource("SwordArrayHitShape"), true, SubResource("SwordArrayHitLibrary")],
+"version": 3
+}

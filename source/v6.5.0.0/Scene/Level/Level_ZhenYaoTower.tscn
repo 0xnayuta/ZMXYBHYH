@@ -1,0 +1,23 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/Game4ImportedLevelBase.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/Level_ZhenYaoTower.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Art/zhenyaota/far.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/zhenyaota/near.png" id="4"]
+[ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="5"]
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1221902799), PackedInt32Array(653194421), PackedInt32Array(458132924), PackedInt32Array(1390746928)],
+"names": PackedStringArray("Level_ZhenYaoTower", "script", "source_map", "display_name", "stage_number", "background_offset_y", "fixed_layers", "level_width_override", "background_baked", "GreenDetector", "CollisionShape2D", "ColorRect", "wall", "wall_left", "thb", "floor", "position", "right_wall", "Monster", "Hero", "Create_1", "Create_2", "Create_3", "Create_4", "create_control", "fall_items", "BackGround", "End", "TowerFarBackground", "z_index", "texture", "Sprite2D", "floor_2", "TowerNearBackground", "front", "exit", "exit2", "Timer", "CanvasLayer", "ZM", "lj_tt", "zmPLAYER", "MonsterBlood", "TowerFloorLabel", "offset_left", "offset_top", "offset_right", "offset_bottom", "theme_override_colors/font_color", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "text", "Label", "TowerHintLabel", "Smooth"),
+"node_count": 7,
+"node_ids": PackedInt32Array(1063028270, 0, 339773408, 270603812, 2115553614, 891314916, 1027802165),
+"node_paths": [NodePath("wall"), NodePath("BackGround/End"), NodePath("BackGround/floor_2"), NodePath("CanvasLayer")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 8, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 0, 1073741824, 0, 2147483647, 786447, -1, 1, 16, 9, 0, 1073741825, 0, 31, 262172, -1, 3, 29, 10, 16, 11, 30, 12, 0, 1073741826, 0, 31, 524321, -1, 3, 29, 13, 16, 14, 30, 15, 0, 0, 0, 2147483647, 3145763, -1, 1, 16, 14, 0, 1073741827, 0, 54, 1310763, -1, 10, 44, 16, 45, 17, 46, 18, 47, 19, 48, 20, 49, 21, 50, 22, 51, 23, 52, 24, 53, 25, 0, 1073741827, 0, 54, 1572919, -1, 10, 44, 16, 45, 26, 46, 18, 47, 27, 48, 20, 49, 21, 50, 28, 51, 23, 52, 29, 53, 30, 0),
+"variants": [ExtResource("1"), ExtResource("2"), "zhenyaota", "镇妖塔", 0, 0.0, null, 1200.0, true, Vector2(600, 619.5), -90, Vector2(600, 280), ExtResource("3"), -80, Vector2(600, 289), ExtResource("4"), 292.0, 19.0, 507.0, 55.0, Color(1, 0.933333, 0.713726, 1), Color(0.0901961, 0.0470588, 0.0235294, 1), 3, ExtResource("5"), 22, "第 1 层", 51.0, 83.0, 2, 16, "本次积分 0"],
+"version": 3
+}

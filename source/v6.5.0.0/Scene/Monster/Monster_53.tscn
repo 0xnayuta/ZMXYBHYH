@@ -1,0 +1,687 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/BaseMonster.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Monster/Monster_53.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Monster/Monster_53/atlas_small_monsters/pages/atlas_000.png" id="3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_302a06f9e3af"]
+atlas = ExtResource("3")
+region = Rect2(1039, 2, 847, 134)
+margin = Rect2(10, 10, 21, 21)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="1"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(124, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="2"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(248, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="3"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(372, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="4"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(496, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="5"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(0, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="6"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(620, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="7"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(744, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="8"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(124, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="9"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(248, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="10"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(372, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="11"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(0, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="12"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(496, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="13"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(620, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="14"]
+atlas = SubResource("AtlasTexture_302a06f9e3af")
+region = Rect2(744, 0, 124, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5154229e7293"]
+atlas = ExtResource("3")
+region = Rect2(2, 2, 1033, 154)
+margin = Rect2(36, 10, 47, 21)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="15"]
+atlas = SubResource("AtlasTexture_5154229e7293")
+region = Rect2(0, 0, 180, 175)
+
+[sub_resource type="AtlasTexture" id="16"]
+atlas = SubResource("AtlasTexture_5154229e7293")
+region = Rect2(540, 0, 180, 175)
+
+[sub_resource type="AtlasTexture" id="17"]
+atlas = SubResource("AtlasTexture_5154229e7293")
+region = Rect2(720, 0, 180, 175)
+
+[sub_resource type="AtlasTexture" id="18"]
+atlas = SubResource("AtlasTexture_5154229e7293")
+region = Rect2(900, 0, 180, 175)
+
+[sub_resource type="AtlasTexture" id="19"]
+atlas = SubResource("AtlasTexture_5154229e7293")
+region = Rect2(180, 0, 180, 175)
+
+[sub_resource type="AtlasTexture" id="20"]
+atlas = SubResource("AtlasTexture_5154229e7293")
+region = Rect2(360, 0, 180, 175)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65b7b40baf6a"]
+atlas = ExtResource("3")
+region = Rect2(2, 160, 393, 132)
+margin = Rect2(28, 10, 39, 21)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="21"]
+atlas = SubResource("AtlasTexture_65b7b40baf6a")
+region = Rect2(0, 0, 144, 153)
+
+[sub_resource type="AtlasTexture" id="22"]
+atlas = SubResource("AtlasTexture_65b7b40baf6a")
+region = Rect2(288, 0, 144, 153)
+
+[sub_resource type="AtlasTexture" id="23"]
+atlas = SubResource("AtlasTexture_65b7b40baf6a")
+region = Rect2(144, 0, 144, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9bf8dadd21f1"]
+atlas = ExtResource("3")
+region = Rect2(1890, 2, 120, 119)
+margin = Rect2(0, 0, 1, 1)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="24"]
+atlas = SubResource("AtlasTexture_9bf8dadd21f1")
+region = Rect2(0, 0, 121, 120)
+
+[sub_resource type="SpriteFrames" id="25"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}, {
+"duration": 1.0,
+"texture": SubResource("2")
+}, {
+"duration": 1.0,
+"texture": SubResource("3")
+}, {
+"duration": 1.0,
+"texture": SubResource("4")
+}, {
+"duration": 1.0,
+"texture": SubResource("5")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("7")
+}],
+"loop": 0,
+"name": &"Fly",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("8")
+}, {
+"duration": 1.0,
+"texture": SubResource("9")
+}, {
+"duration": 1.0,
+"texture": SubResource("10")
+}, {
+"duration": 1.0,
+"texture": SubResource("11")
+}, {
+"duration": 1.0,
+"texture": SubResource("12")
+}, {
+"duration": 1.0,
+"texture": SubResource("13")
+}, {
+"duration": 1.0,
+"texture": SubResource("14")
+}],
+"loop": 0,
+"name": &"Fly_wait",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("15")
+}, {
+"duration": 1.0,
+"texture": SubResource("16")
+}, {
+"duration": 1.0,
+"texture": SubResource("17")
+}, {
+"duration": 1.0,
+"texture": SubResource("18")
+}, {
+"duration": 1.0,
+"texture": SubResource("19")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("21")
+}, {
+"duration": 1.0,
+"texture": SubResource("22")
+}, {
+"duration": 1.0,
+"texture": SubResource("23")
+}, {
+"duration": 1.0,
+"texture": SubResource("23")
+}, {
+"duration": 1.0,
+"texture": SubResource("23")
+}, {
+"duration": 1.0,
+"texture": SubResource("23")
+}, {
+"duration": 1.0,
+"texture": SubResource("23")
+}, {
+"duration": 1.0,
+"texture": SubResource("23")
+}, {
+"duration": 1.0,
+"texture": SubResource("23")
+}, {
+"duration": 1.0,
+"texture": SubResource("23")
+}, {
+"duration": 1.0,
+"texture": SubResource("23")
+}, {
+"duration": 1.0,
+"texture": SubResource("23")
+}],
+"loop": 0,
+"name": &"hit1",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("24")
+}, {
+"duration": 1.0,
+"texture": SubResource("24")
+}, {
+"duration": 1.0,
+"texture": SubResource("24")
+}, {
+"duration": 1.0,
+"texture": SubResource("24")
+}, {
+"duration": 1.0,
+"texture": SubResource("24")
+}, {
+"duration": 1.0,
+"texture": SubResource("24")
+}, {
+"duration": 1.0,
+"texture": SubResource("24")
+}],
+"loop": 0,
+"name": &"hurt",
+"speed": 25.0
+}]
+
+[sub_resource type="Animation" id="26"]
+resource_name = "Fly"
+length = 0.777778
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MonsterDir/mr_ani:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.111111, 0.222222, 0.333333, 0.444444, 0.555556, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Fly"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BaseDamageBox/HitBox/HitBox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BaseDamageBox/HurtBox/HurtBox:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="27"]
+resource_name = "Fly_wait"
+length = 0.777778
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MonsterDir/mr_ani:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.111111, 0.222222, 0.333333, 0.444444, 0.555556, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Fly_wait"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BaseDamageBox/HitBox/HitBox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BaseDamageBox/HurtBox/HurtBox:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="28"]
+length = 1.06667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MonsterDir/mr_ani:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667, 0.933333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["death"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(22, 11)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BaseDamageBox/HitBox/HitBox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BaseDamageBox/HurtBox/HurtBox:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.9, 0.9001, 0.9002, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"fall_items"
+}, {
+"args": [],
+"method": &"fall_medicine"
+}, {
+"args": [],
+"method": &"fall_stone_"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="29"]
+length = 1.09091
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MonsterDir/mr_ani:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0909091, 0.181818, 0.272727, 0.363636, 0.454545, 0.545455, 0.636364, 0.727273, 0.818182, 0.909091, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["hit1"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BaseDamageBox/HitBox/HitBox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BaseDamageBox/HurtBox/HurtBox:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"CallBullet"
+}]
+}
+
+[sub_resource type="Animation" id="30"]
+length = 0.28
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MonsterDir/mr_ani:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["hurt"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BaseDamageBox/HitBox/HitBox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BaseDamageBox/HurtBox/HurtBox:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="31"]
+_data = {
+&"Fly": SubResource("26"),
+&"Fly_wait": SubResource("27"),
+&"death": SubResource("28"),
+&"hit1": SubResource("29"),
+&"hurt": SubResource("30")
+}
+
+[sub_resource type="CapsuleShape2D" id="32"]
+radius = 27.0
+height = 100.0
+
+[sub_resource type="CapsuleShape2D" id="33"]
+radius = 36.0
+height = 116.0
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(564181054), PackedInt32Array(1852090199)],
+"names": PackedStringArray("Monster_53", "script", "Bullet", "MonsterDir", "mr_ani", "sprite_frames", "animation", "offset", "mr_player", "libraries/", "BaseDamageBox", "HitBox", "collision_mask", "disabled", "HurtBox", "collision_layer", "position", "shape", "metadata/_edit_lock_", "pz", "CD_REMOVE", "damage_text", "change_state", "spontaneous_recovery", "Buff", "CalmHit", "RemoveHurtBL"),
+"node_count": 8,
+"node_ids": PackedInt32Array(580319083, 494160359, 1835746415, 145353887, 127304568, 692709197, 235198317, 200057952),
+"node_paths": [NodePath("MonsterDir"), NodePath("BaseDamageBox")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 1073741824, 0, 2147483647, 262148, -1, 3, 5, 2, 6, 3, 7, 4, 0, 0, 0, 2147483647, 786440, -1, 1, 9, 5, 0, 1073741825, 0, 2147483647, 262155, -1, 1, 12, 6, 0, 3, 0, 2147483647, 262155, -1, 1, 13, 7, 0, 1073741825, 0, 2147483647, 524302, -1, 1, 15, 8, 0, 5, 0, 2147483647, 262158, -1, 3, 16, 9, 17, 10, 18, 7, 0, 0, 0, 2147483647, 1310739, -1, 3, 16, 11, 17, 12, 18, 7, 0),
+"variants": [ExtResource("1"), ExtResource("2"), SubResource("25"), &"hit1", Vector2(10, 0), SubResource("31"), 128, true, 3136, Vector2(4, 5), SubResource("32"), Vector2(3, 4), SubResource("33")],
+"version": 3
+}

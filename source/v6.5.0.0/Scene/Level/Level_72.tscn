@@ -1,0 +1,432 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/Game4ImportedLevelBase.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/Level_72.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/liuligongV3/background/bg30.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/liuligongV3/background/bg10.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/liuligongV3/background/bg11.png" id="5"]
+[ext_resource type="Script" path="res://Script/Level/Game4PalaceTerrain.gd" id="6"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/terrain/item_1105.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/terrain/item_1106.png" id="8"]
+
+[sub_resource type="RectangleShape2D" id="floor_shape"]
+size = Vector2(5000, 300)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_fwm1u"]
+size = Vector2(1072.1799, 38)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_hqrsc"]
+size = Vector2(1186.2975, 38)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_215de"]
+size = Vector2(120, 22)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_ya3v3"]
+atlas = ExtResource("7")
+region = Rect2(0, 0, 144, 55)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_3l63p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_ya3v3")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_vesxq"]
+size = Vector2(120, 22)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_oauxn"]
+atlas = ExtResource("7")
+region = Rect2(0, 0, 144, 55)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_7q7y3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_oauxn")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_txyco"]
+size = Vector2(120, 22)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_djk31"]
+atlas = ExtResource("7")
+region = Rect2(0, 0, 144, 55)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_tbfg2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_djk31")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_s23ra"]
+size = Vector2(120, 22)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_8rntx"]
+atlas = ExtResource("7")
+region = Rect2(0, 0, 144, 55)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_dlcm8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_8rntx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_dngfm"]
+size = Vector2(120, 22)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_ntqep"]
+atlas = ExtResource("7")
+region = Rect2(0, 0, 144, 55)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_qqkv5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_ntqep")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_6jki3"]
+size = Vector2(120, 22)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_wvekx"]
+atlas = ExtResource("7")
+region = Rect2(0, 0, 144, 55)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_xxko2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_wvekx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_m02d0"]
+size = Vector2(120, 22)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_31dvk"]
+atlas = ExtResource("7")
+region = Rect2(0, 0, 144, 55)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_k4es4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_31dvk")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_7i2n8"]
+size = Vector2(120, 22)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_uq0q5"]
+atlas = ExtResource("7")
+region = Rect2(0, 0, 144, 55)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_26x00"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_uq0q5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_tvi5p"]
+size = Vector2(120, 22)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_ypki5"]
+atlas = ExtResource("7")
+region = Rect2(0, 0, 144, 55)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_kieqr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_ypki5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_wr7i5"]
+size = Vector2(120, 22)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_wml1q"]
+atlas = ExtResource("7")
+region = Rect2(0, 0, 144, 55)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_3qugl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_wml1q")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_07ip8"]
+size = Vector2(120, 22)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_vylhr"]
+atlas = ExtResource("7")
+region = Rect2(0, 0, 144, 55)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_dryf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_vylhr")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_310yi"]
+size = Vector2(120, 22)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_orjho"]
+atlas = ExtResource("7")
+region = Rect2(0, 0, 144, 55)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_nsvxw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_orjho")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_j8ty7"]
+size = Vector2(105, 22)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_qkp1h"]
+atlas = ExtResource("7")
+region = Rect2(0, 0, 144, 55)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_tj365"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_qkp1h")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_e2ivc"]
+size = Vector2(133, 35)
+
+[sub_resource type="AtlasTexture" id="terrain_AtlasTexture_gl41e"]
+atlas = ExtResource("8")
+region = Rect2(0, 0, 133, 106)
+
+[sub_resource type="SpriteFrames" id="terrain_SpriteFrames_y0e3j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("terrain_AtlasTexture_gl41e")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_r6445"]
+size = Vector2(64, 201)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_h85ws"]
+size = Vector2(64, 201)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_l1in3"]
+size = Vector2(64, 201)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_6mcmi"]
+size = Vector2(64, 201)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_k660g"]
+size = Vector2(64, 201)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_shvtw"]
+size = Vector2(64, 201)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_0eiae"]
+size = Vector2(64, 201)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_vjdw3"]
+size = Vector2(64, 201)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_n6v42"]
+size = Vector2(64, 201)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_w8wsx"]
+size = Vector2(64, 201)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_d5xom"]
+size = Vector2(64, 553.5)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_vlqu3"]
+size = Vector2(5242, 90)
+
+[sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_5mt5r"]
+size = Vector2(5000, 100)
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1221902799), PackedInt32Array(653194421), PackedInt32Array(458132924)],
+"names": PackedStringArray("Level_72", "position", "script", "source_map", "display_name", "stage_number", "background_offset_y", "fixed_layers", "level_width_override", "background_baked", "spawn_position", "GreenDetector", "CollisionShape2D", "ColorRect", "wall", "wall_left", "thb", "floor", "shape", "right_wall", "Monster", "Hero", "Create_1", "Create_2", "Create_3", "Create_4", "create_control", "fall_items", "BackGround", "End", "bg30_0", "z_index", "texture", "centered", "Sprite2D", "floor_2", "bg10_0", "bg11_0", "scale", "front", "exit", "exit2", "Timer", "CanvasLayer", "ZM", "lj_tt", "zmPLAYER", "MonsterBlood", "Smooth", "OriginalTerrain", "metadata/scene_bindings", "Node2D", "Ground0", "collision_layer", "collision_mask", "StaticBody2D", "@CollisionShape2D@4", "one_way_collision", "Ground1", "@CollisionShape2D@6", "SourceObject55", "@CollisionShape2D@7", "@AnimatedSprite2D@8", "visible", "sprite_frames", "AnimatedSprite2D", "SourceObject53", "@CollisionShape2D@9", "@AnimatedSprite2D@10", "SourceObject52", "@CollisionShape2D@11", "@AnimatedSprite2D@12", "SourceObject51", "@CollisionShape2D@13", "@AnimatedSprite2D@14", "SourceObject50", "@CollisionShape2D@15", "@AnimatedSprite2D@16", "SourceObject49", "@CollisionShape2D@17", "@AnimatedSprite2D@18", "SourceObject48", "@CollisionShape2D@19", "@AnimatedSprite2D@20", "SourceObject47", "@CollisionShape2D@21", "@AnimatedSprite2D@22", "SourceObject45", "@CollisionShape2D@23", "@AnimatedSprite2D@24", "SourceObject44", "@CollisionShape2D@25", "@AnimatedSprite2D@26", "SourceObject46", "@CollisionShape2D@27", "@AnimatedSprite2D@28", "SourceObject43", "@CollisionShape2D@29", "@AnimatedSprite2D@30", "SourceObject40", "@CollisionShape2D@31", "@AnimatedSprite2D@32", "SourceObject42", "@CollisionShape2D@33", "@AnimatedSprite2D@34", "SourceObject94", "@CollisionShape2D@35", "SourceObject95", "@CollisionShape2D@36", "SourceObject96", "@CollisionShape2D@37", "SourceObject97", "@CollisionShape2D@38", "SourceObject98", "@CollisionShape2D@39", "SourceObject99", "@CollisionShape2D@40", "SourceObject100", "@CollisionShape2D@41", "SourceObject101", "@CollisionShape2D@42", "SourceObject102", "@CollisionShape2D@43", "SourceObject103", "@CollisionShape2D@44", "SourceObject104", "@CollisionShape2D@45", "SourceObject108", "@CollisionShape2D@46", "FallDeath", "monitoring", "monitorable", "Area2D", "Region"),
+"node_count": 83,
+"node_ids": PackedInt32Array(482910121, 0, 0, 1898751455, 913111874, 1160963530, 137555328, 566593067, 1593514290, 2115553614, 221416180, 1623446772, 422863027, 937362111, 618564489, 1423175192, 161127145, 1715164403, 2076811067, 1933193715, 56609083, 1936463237, 1210732264, 1950826032, 1783403599, 1002245432, 906753208, 626328294, 721503592, 957282228, 1856043359, 743415992, 655311986, 1820048917, 1277293631, 1670950119, 228121091, 378912638, 32381947, 1157944935, 459848616, 2001557978, 1125909944, 1612821615, 2015976474, 344523490, 1848975550, 1961426809, 2005629986, 1416489236, 172813673, 1145114852, 1391279720, 543917680, 1854225754, 1633694511, 1367415876, 667398086, 371727267, 1615694684, 582228049, 1373386346, 2018677358, 1606778543, 1219968555, 1486774824, 435233224, 552594663, 711346198, 445057407, 933861780, 327591223, 1317137085, 929286407, 405209928, 470666363, 1030135010, 1236506647, 910703292, 892507350, 1137984188, 1369819645, 1989646373),
+"node_paths": [NodePath("wall"), NodePath("BackGround/End"), NodePath("BackGround/floor_2")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 10, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 0, 1073741824, 0, 2147483647, 786449, -1, 2, 1, 11, 18, 12, 0, 1073741824, 0, 2147483647, 1048595, -1, 1, 1, 13, 0, 0, 0, 2147483647, 786452, -1, 1, 1, 1, 0, 0, 0, 2147483647, 1048597, -1, 1, 1, 1, 0, 0, 0, 2147483647, 2621467, -1, 1, 1, 1, 0, 1073741825, 0, 34, 262174, -1, 3, 31, 14, 32, 15, 33, 16, 0, 1073741826, 0, 34, 524324, -1, 3, 31, 17, 32, 18, 33, 16, 0, 1073741826, 0, 34, 786469, -1, 5, 31, 17, 1, 19, 38, 20, 32, 21, 33, 16, 0, 0, 0, 2147483647, 3145768, -1, 1, 1, 22, 0, 0, 0, 51, 4194353, -1, 2, 2, 23, 50, 24, 0, 10, 0, 55, 262196, -1, 3, 1, 25, 53, 26, 54, 27, 0, 11, 0, 12, 262200, -1, 2, 18, 28, 57, 9, 0, 10, 0, 55, 524346, -1, 3, 1, 29, 53, 26, 54, 27, 0, 13, 0, 12, 262203, -1, 2, 18, 30, 57, 9, 0, 10, 0, 55, 786492, -1, 3, 1, 31, 53, 26, 54, 27, 0, 15, 0, 12, 262205, -1, 2, 18, 32, 57, 9, 0, 15, 0, 65, 524350, -1, 5, 63, 16, 31, 17, 1, 33, 64, 34, 33, 16, 0, 10, 0, 55, 1048642, -1, 3, 1, 35, 53, 26, 54, 27, 0, 18, 0, 12, 262211, -1, 2, 18, 36, 57, 9, 0, 18, 0, 65, 524356, -1, 5, 63, 16, 31, 17, 1, 33, 64, 37, 33, 16, 0, 10, 0, 55, 1310789, -1, 3, 1, 38, 53, 26, 54, 27, 0, 21, 0, 12, 262214, -1, 2, 18, 39, 57, 9, 0, 21, 0, 65, 524359, -1, 5, 63, 16, 31, 17, 1, 33, 64, 40, 33, 16, 0, 10, 0, 55, 1572936, -1, 3, 1, 41, 53, 26, 54, 27, 0, 24, 0, 12, 262217, -1, 2, 18, 42, 57, 9, 0, 24, 0, 65, 524362, -1, 5, 63, 16, 31, 17, 1, 33, 64, 43, 33, 16, 0, 10, 0, 55, 1835083, -1, 3, 1, 44, 53, 26, 54, 27, 0, 27, 0, 12, 262220, -1, 2, 18, 45, 57, 9, 0, 27, 0, 65, 524365, -1, 5, 63, 16, 31, 17, 1, 33, 64, 46, 33, 16, 0, 10, 0, 55, 2097230, -1, 3, 1, 47, 53, 26, 54, 27, 0, 30, 0, 12, 262223, -1, 2, 18, 48, 57, 9, 0, 30, 0, 65, 524368, -1, 5, 63, 16, 31, 17, 1, 33, 64, 49, 33, 16, 0, 10, 0, 55, 2359377, -1, 3, 1, 50, 53, 26, 54, 27, 0, 33, 0, 12, 262226, -1, 2, 18, 51, 57, 9, 0, 33, 0, 65, 524371, -1, 5, 63, 16, 31, 17, 1, 33, 64, 52, 33, 16, 0, 10, 0, 55, 2621524, -1, 3, 1, 53, 53, 26, 54, 27, 0, 36, 0, 12, 262229, -1, 2, 18, 54, 57, 9, 0, 36, 0, 65, 524374, -1, 5, 63, 16, 31, 17, 1, 33, 64, 55, 33, 16, 0, 10, 0, 55, 2883671, -1, 3, 1, 56, 53, 26, 54, 27, 0, 39, 0, 12, 262232, -1, 2, 18, 57, 57, 9, 0, 39, 0, 65, 524377, -1, 5, 63, 16, 31, 17, 1, 33, 64, 58, 33, 16, 0, 10, 0, 55, 3145818, -1, 3, 1, 59, 53, 26, 54, 27, 0, 42, 0, 12, 262235, -1, 2, 18, 60, 57, 9, 0, 42, 0, 65, 524380, -1, 5, 63, 16, 31, 17, 1, 33, 64, 61, 33, 16, 0, 10, 0, 55, 3407965, -1, 3, 1, 62, 53, 26, 54, 27, 0, 45, 0, 12, 262238, -1, 2, 18, 63, 57, 9, 0, 45, 0, 65, 524383, -1, 5, 63, 16, 31, 17, 1, 33, 64, 64, 33, 16, 0, 10, 0, 55, 3670112, -1, 3, 1, 65, 53, 26, 54, 27, 0, 48, 0, 12, 262241, -1, 2, 18, 66, 57, 9, 0, 48, 0, 65, 524386, -1, 5, 63, 16, 31, 17, 1, 33, 64, 67, 33, 16, 0, 10, 0, 55, 3932259, -1, 3, 1, 68, 53, 26, 54, 27, 0, 51, 0, 12, 262244, -1, 2, 18, 69, 57, 9, 0, 51, 0, 65, 524389, -1, 5, 63, 16, 31, 17, 1, 33, 64, 70, 33, 16, 0, 10, 0, 55, 4194406, -1, 3, 1, 71, 53, 26, 54, 27, 0, 54, 0, 12, 262247, -1, 2, 18, 72, 57, 9, 0, 54, 0, 65, 524392, -1, 5, 63, 16, 31, 17, 1, 73, 64, 74, 33, 16, 0, 10, 0, 55, 4456553, -1, 3, 1, 75, 53, 76, 54, 77, 0, 57, 0, 12, 262250, -1, 1, 18, 78, 0, 10, 0, 55, 4718699, -1, 3, 1, 79, 53, 76, 54, 77, 0, 59, 0, 12, 262252, -1, 1, 18, 80, 0, 10, 0, 55, 4980845, -1, 3, 1, 81, 53, 76, 54, 77, 0, 61, 0, 12, 262254, -1, 1, 18, 82, 0, 10, 0, 55, 5242991, -1, 3, 1, 83, 53, 76, 54, 77, 0, 63, 0, 12, 262256, -1, 1, 18, 84, 0, 10, 0, 55, 5505137, -1, 3, 1, 85, 53, 76, 54, 77, 0, 65, 0, 12, 262258, -1, 1, 18, 86, 0, 10, 0, 55, 5767283, -1, 3, 1, 87, 53, 76, 54, 77, 0, 67, 0, 12, 262260, -1, 1, 18, 88, 0, 10, 0, 55, 6029429, -1, 3, 1, 89, 53, 76, 54, 77, 0, 69, 0, 12, 262262, -1, 1, 18, 90, 0, 10, 0, 55, 6291575, -1, 3, 1, 91, 53, 76, 54, 77, 0, 71, 0, 12, 262264, -1, 1, 18, 92, 0, 10, 0, 55, 6553721, -1, 3, 1, 93, 53, 76, 54, 77, 0, 73, 0, 12, 262266, -1, 1, 18, 94, 0, 10, 0, 55, 6815867, -1, 3, 1, 95, 53, 76, 54, 77, 0, 75, 0, 12, 262268, -1, 1, 18, 96, 0, 10, 0, 55, 7078013, -1, 3, 1, 97, 53, 76, 54, 77, 0, 77, 0, 12, 262270, -1, 1, 18, 98, 0, 10, 0, 55, 7340159, -1, 2, 1, 99, 54, 27, 0, 79, 0, 12, 262272, -1, 1, 18, 100, 0, 10, 0, 132, 7602305, -1, 5, 1, 101, 53, 27, 54, 27, 130, 16, 131, 16, 0, 81, 0, 12, 262277, -1, 1, 18, 102, 0),
+"variants": [ExtResource("1"), Vector2(0, 0), ExtResource("2"), "liuligongV3", "琉璃宫", 72, 0.0, null, 5000.0, true, Vector2(32, 448), Vector2(2500, 555.5), SubResource("floor_shape"), Vector2(5060, -300), -5, ExtResource("3"), false, -1, ExtResource("4"), Vector2(3785, -82.00001), Vector2(1.0241667, 1.1433334), ExtResource("5"), Vector2(4880, 429), ExtResource("6"), {
+"_animation_data": {
+1105: {
+"columns": 28.0,
+"fps": 24.0,
+"frames": [0.0],
+"hits": [],
+"offset": [-72.0, -27.5],
+"size": [144.0, 55.0]
+},
+1106: {
+"columns": 30.0,
+"fps": 24.0,
+"frames": [0.0],
+"hits": [],
+"offset": [-66.5, -53.0],
+"size": [133.0, 106.0]
+}
+},
+"_hazards": [],
+"_hidden_platforms": [{
+"hide_delay": 0.1,
+"last_stand": -10000.0,
+"rect": Rect2(3461, 511, 120, 22),
+"region": NodePath("SourceObject55/@CollisionShape2D@7"),
+"sprite": NodePath("SourceObject55/@AnimatedSprite2D@8")
+}, {
+"hide_delay": 0.1,
+"last_stand": -10000.0,
+"rect": Rect2(3101, 511, 120, 22),
+"region": NodePath("SourceObject53/@CollisionShape2D@9"),
+"sprite": NodePath("SourceObject53/@AnimatedSprite2D@10")
+}, {
+"hide_delay": 0.1,
+"last_stand": -10000.0,
+"rect": Rect2(2981, 511, 120, 22),
+"region": NodePath("SourceObject52/@CollisionShape2D@11"),
+"sprite": NodePath("SourceObject52/@AnimatedSprite2D@12")
+}, {
+"hide_delay": 0.1,
+"last_stand": -10000.0,
+"rect": Rect2(2741, 511, 120, 22),
+"region": NodePath("SourceObject51/@CollisionShape2D@13"),
+"sprite": NodePath("SourceObject51/@AnimatedSprite2D@14")
+}, {
+"hide_delay": 0.1,
+"last_stand": -10000.0,
+"rect": Rect2(2621, 511, 120, 22),
+"region": NodePath("SourceObject50/@CollisionShape2D@15"),
+"sprite": NodePath("SourceObject50/@AnimatedSprite2D@16")
+}, {
+"hide_delay": 0.1,
+"last_stand": -10000.0,
+"rect": Rect2(2261, 511, 120, 22),
+"region": NodePath("SourceObject49/@CollisionShape2D@17"),
+"sprite": NodePath("SourceObject49/@AnimatedSprite2D@18")
+}, {
+"hide_delay": 0.1,
+"last_stand": -10000.0,
+"rect": Rect2(2141, 511, 120, 22),
+"region": NodePath("SourceObject48/@CollisionShape2D@19"),
+"sprite": NodePath("SourceObject48/@AnimatedSprite2D@20")
+}, {
+"hide_delay": 0.1,
+"last_stand": -10000.0,
+"rect": Rect2(2021, 511, 120, 22),
+"region": NodePath("SourceObject47/@CollisionShape2D@21"),
+"sprite": NodePath("SourceObject47/@AnimatedSprite2D@22")
+}, {
+"hide_delay": 0.1,
+"last_stand": -10000.0,
+"rect": Rect2(1781, 511, 120, 22),
+"region": NodePath("SourceObject45/@CollisionShape2D@23"),
+"sprite": NodePath("SourceObject45/@AnimatedSprite2D@24")
+}, {
+"hide_delay": 0.1,
+"last_stand": -10000.0,
+"rect": Rect2(1661, 511, 120, 22),
+"region": NodePath("SourceObject44/@CollisionShape2D@25"),
+"sprite": NodePath("SourceObject44/@AnimatedSprite2D@26")
+}, {
+"hide_delay": 0.1,
+"last_stand": -10000.0,
+"rect": Rect2(1541, 511, 120, 22),
+"region": NodePath("SourceObject46/@CollisionShape2D@27"),
+"sprite": NodePath("SourceObject46/@AnimatedSprite2D@28")
+}, {
+"hide_delay": 0.1,
+"last_stand": -10000.0,
+"rect": Rect2(1421, 511, 120, 22),
+"region": NodePath("SourceObject43/@CollisionShape2D@29"),
+"sprite": NodePath("SourceObject43/@AnimatedSprite2D@30")
+}, {
+"hide_delay": 1.0,
+"last_stand": -10000.0,
+"rect": Rect2(1177, 512, 105, 22),
+"region": NodePath("SourceObject40/@CollisionShape2D@31"),
+"sprite": NodePath("SourceObject40/@AnimatedSprite2D@32")
+}, {
+"hide_delay": 1.0,
+"last_stand": -10000.0,
+"rect": Rect2(1048, 512, 133, 35),
+"region": NodePath("SourceObject42/@CollisionShape2D@33"),
+"sprite": NodePath("SourceObject42/@AnimatedSprite2D@34")
+}],
+"death_region": NodePath("FallDeath/Region")
+}, Vector2(535.6, 529.8), 32, 0, SubResource("terrain_RectangleShape2D_fwm1u"), Vector2(4406.75, 529.8), SubResource("terrain_RectangleShape2D_hqrsc"), Vector2(3521, 522), SubResource("terrain_RectangleShape2D_215de"), Vector2(-72, -16.5), SubResource("terrain_SpriteFrames_3l63p"), Vector2(3161, 522), SubResource("terrain_RectangleShape2D_vesxq"), SubResource("terrain_SpriteFrames_7q7y3"), Vector2(3041, 522), SubResource("terrain_RectangleShape2D_txyco"), SubResource("terrain_SpriteFrames_tbfg2"), Vector2(2801, 522), SubResource("terrain_RectangleShape2D_s23ra"), SubResource("terrain_SpriteFrames_dlcm8"), Vector2(2681, 522), SubResource("terrain_RectangleShape2D_dngfm"), SubResource("terrain_SpriteFrames_qqkv5"), Vector2(2321, 522), SubResource("terrain_RectangleShape2D_6jki3"), SubResource("terrain_SpriteFrames_xxko2"), Vector2(2201, 522), SubResource("terrain_RectangleShape2D_m02d0"), SubResource("terrain_SpriteFrames_k4es4"), Vector2(2081, 522), SubResource("terrain_RectangleShape2D_7i2n8"), SubResource("terrain_SpriteFrames_26x00"), Vector2(1841, 522), SubResource("terrain_RectangleShape2D_tvi5p"), SubResource("terrain_SpriteFrames_kieqr"), Vector2(1721, 522), SubResource("terrain_RectangleShape2D_wr7i5"), SubResource("terrain_SpriteFrames_3qugl"), Vector2(1601, 522), SubResource("terrain_RectangleShape2D_07ip8"), SubResource("terrain_SpriteFrames_dryf4"), Vector2(1481, 522), SubResource("terrain_RectangleShape2D_310yi"), SubResource("terrain_SpriteFrames_nsvxw"), Vector2(1229.5, 523), SubResource("terrain_RectangleShape2D_j8ty7"), SubResource("terrain_SpriteFrames_tj365"), Vector2(1114.5, 529.5), SubResource("terrain_RectangleShape2D_e2ivc"), Vector2(-66.5, -35.5), SubResource("terrain_SpriteFrames_y0e3j"), Vector2(1389, 434), 1048576, 4, SubResource("terrain_RectangleShape2D_r6445"), Vector2(1932.5, 432), SubResource("terrain_RectangleShape2D_h85ws"), Vector2(1997, 431), SubResource("terrain_RectangleShape2D_l1in3"), Vector2(2413.25, 433), SubResource("terrain_RectangleShape2D_6mcmi"), Vector2(2590, 429), SubResource("terrain_RectangleShape2D_k660g"), Vector2(2892.25, 433), SubResource("terrain_RectangleShape2D_shvtw"), Vector2(2957, 434), SubResource("terrain_RectangleShape2D_0eiae"), Vector2(3255.25, 431), SubResource("terrain_RectangleShape2D_vjdw3"), Vector2(3429, 434), SubResource("terrain_RectangleShape2D_n6v42"), Vector2(3613.25, 433), SubResource("terrain_RectangleShape2D_w8wsx"), Vector2(3812, 266.75), SubResource("terrain_RectangleShape2D_d5xom"), Vector2(2621, -48), SubResource("terrain_RectangleShape2D_vlqu3"), Vector2(2500, 743), SubResource("terrain_RectangleShape2D_5mt5r")],
+"version": 3
+}

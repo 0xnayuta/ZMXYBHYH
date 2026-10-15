@@ -1,0 +1,26 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Pet/PetMouseBullet.gd" id="1"]
+
+[sub_resource type="SpriteFrames" id="frames"]
+animations = [{
+"frames": [],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+_bundled = {
+"conn_count": 2,
+"conns": PackedInt32Array(2, 0, 21, 20, 2, 0, 0, 6, 0, 23, 22, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("PetMouseBullet", "script", "Node2D", "middle", "HitBox", "collision_layer", "collision_mask", "Area2D", "Hit_Box", "CollisionShape2D", "BulletANI", "texture_filter", "sprite_frames", "AnimatedSprite2D", "BulletPlayer", "AnimationPlayer", "queue_timer", "one_shot", "Timer", "IsThrowClose", "_on_hit_box_area_entered", "area_entered", "_on_queue_timer_timeout", "timeout"),
+"node_count": 8,
+"node_ids": PackedInt32Array(1368899162, 1040416083, 1826592483, 1019346358, 1498602940, 1221995266, 561745229, 506482987),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 2, 3, -1, 0, 0, 1, 0, 7, 4, -1, 2, 5, 1, 6, 2, 0, 2, 0, 9, 8, -1, 0, 0, 1, 0, 13, 10, -1, 2, 11, 1, 12, 3, 0, 0, 0, 15, 14, -1, 0, 0, 0, 0, 18, 16, -1, 1, 17, 4, 0, 0, 0, 18, 19, -1, 1, 17, 4, 0),
+"variants": [ExtResource("1"), 2, 3072, SubResource("frames"), true],
+"version": 3
+}

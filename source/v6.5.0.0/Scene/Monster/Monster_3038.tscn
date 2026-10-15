@@ -1,0 +1,31 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/BaseMonster.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Monster/EmeiMountainMonster.gd" id="2"]
+[ext_resource type="Script" path="res://Script/Monster/MonsterSceneEditorPreview.gd" id="3"]
+
+[sub_resource type="RectangleShape2D" id="hit"]
+size = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="hurt"]
+size = Vector2(45, 100)
+
+[sub_resource type="CapsuleShape2D" id="body"]
+radius = 25.0
+height = 100.0
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1852090199)],
+"names": PackedStringArray("Monster_3038", "script", "monster_kind", "Bullet", "MonsterDir", "mr_ani", "mr_player", "BaseDamageBox", "HitBox", "collision_mask", "shape", "disabled", "HurtBox", "collision_layer", "position", "pz", "CD_REMOVE", "damage_text", "change_state", "spontaneous_recovery", "Buff", "CalmHit", "RemoveHurtBL", "EditorModelPreview", "Node2D"),
+"node_count": 7,
+"node_ids": PackedInt32Array(1936299080, 145353887, 127304568, 692709197, 235198317, 200057952, 93893349),
+"node_paths": [NodePath("BaseDamageBox")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 2, 1, 1, 2, 2, 0, 1073741824, 0, 2147483647, 262152, -1, 1, 9, 3, 0, 1, 0, 2147483647, 262152, -1, 2, 10, 4, 11, 5, 0, 1073741824, 0, 2147483647, 524300, -1, 1, 13, 6, 0, 3, 0, 2147483647, 262156, -1, 2, 14, 7, 10, 8, 0, 0, 0, 2147483647, 1310735, -1, 2, 14, 9, 10, 10, 0, 0, 0, 24, 3407895, -1, 1, 1, 11, 0),
+"variants": [ExtResource("1"), ExtResource("2"), 3038, 128, SubResource("hit"), true, 3136, Vector2(-4.5, -50), SubResource("hurt"), Vector2(0, -50), SubResource("body"), ExtResource("3")],
+"version": 3
+}

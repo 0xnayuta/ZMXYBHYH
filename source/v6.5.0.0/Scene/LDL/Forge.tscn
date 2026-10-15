@@ -1,0 +1,33 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/LDL/Forge.gd" id="1"]
+[ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="2"]
+[ext_resource type="Texture2D" path="res://Art/LDL/zzs.png" id="3"]
+[ext_resource type="PackedScene" path="res://Scene/LDL/ForgeMaterialBox.tscn" id="4"]
+[ext_resource type="Texture2D" path="res://Art/LDL/bs.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/LDL/scw.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/LDL/mc.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/LDL/sxlh.png" id="8"]
+[ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="9"]
+[ext_resource type="PackedScene" path="res://Scene/BackPack/Box_1.tscn" id="10"]
+[ext_resource type="Texture2D" path="res://Art/LDL/dz1.png" id="11"]
+[ext_resource type="Texture2D" path="res://Art/LDL/dz2.png" id="12"]
+[ext_resource type="Texture2D" path="res://Art/Shop/46.png" id="13"]
+[ext_resource type="Texture2D" path="res://Art/LDL/171.png" id="14"]
+[ext_resource type="Texture2D" path="res://Art/MagicWeapon/68.png" id="15"]
+[ext_resource type="Texture2D" path="res://Art/MagicWeapon/70.png" id="16"]
+
+[resource]
+_bundled = {
+"conn_count": 2,
+"conns": PackedInt32Array(22, 0, 68, 67, 2, 0, 0, 25, 0, 68, 69, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("Forge", "script", "Node2D", "Title", "anchors_preset", "anchor_left", "anchor_top", "anchor_right", "anchor_bottom", "offset_left", "offset_top", "offset_right", "offset_bottom", "grow_horizontal", "grow_vertical", "theme_override_colors/font_color", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "text", "horizontal_alignment", "vertical_alignment", "metadata/_edit_lock_", "Label", "Title2", "Zzs", "texture", "TextureRect", "BasicMaterial", "size_flags_horizontal", "size_flags_vertical", "ScrollContainer", "layout_mode", "theme_override_constants/separation", "alignment", "HBoxContainer", "ForgeMaterialBox", "ForgeMaterialBox2", "ForgeMaterialBox4", "ForgeMaterialBox3", "BSBoxPic", "Bs1", "Bs2", "Bs3", "Bs4", "BSBox", "LastItem", "Name", "scale", "expand_mode", "ItemName", "Need", "LH", "scw", "Froge", "texture_normal", "texture_pressed", "texture_hover", "texture_disabled", "TextureButton", "Light", "show_behind_parent", "position", "Sprite2D", "Arrow", "Help", "_on_froge_pressed", "pressed", "_on_help_pressed"),
+"node_count": 26,
+"node_ids": PackedInt32Array(1560238111, 1954203465, 1421986243, 1853941130, 2059935609, 600821837, 1511826245, 927414633, 1262459118, 1393879474, 2137411905, 415042587, 1231116827, 239889563, 745692494, 304769350, 988079449, 156342755, 2079765593, 655504698, 1841886354, 241839311, 1641069977, 433962812, 1900044169, 1331329833),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 24, 3, -1, 20, 4, 1, 5, 2, 6, 2, 7, 2, 8, 2, 9, 3, 10, 4, 11, 5, 12, 6, 13, 7, 14, 7, 15, 8, 16, 9, 17, 10, 18, 11, 19, 12, 20, 13, 21, 14, 22, 14, 23, 15, 0, 0, 0, 24, 25, -1, 20, 4, 1, 5, 2, 6, 2, 7, 2, 8, 2, 9, 16, 10, 17, 11, 18, 12, 19, 13, 7, 14, 7, 15, 20, 16, 9, 17, 10, 18, 11, 19, 21, 20, 22, 21, 14, 22, 14, 23, 15, 0, 0, 0, 28, 26, -1, 6, 9, 23, 10, 24, 11, 25, 12, 26, 27, 27, 23, 15, 0, 0, 0, 32, 29, -1, 5, 10, 28, 11, 29, 12, 30, 30, 31, 31, 31, 0, 4, 0, 36, 29, -1, 5, 33, 7, 30, 31, 31, 31, 34, 32, 35, 14, 0, 5, 0, 2147483647, 37, 33, 2, 33, 7, 27, 34, 0, 5, 0, 2147483647, 38, 33, 2, 33, 7, 27, 34, 0, 5, 0, 2147483647, 39, 33, 2, 33, 7, 27, 34, 0, 5, 0, 2147483647, 40, 33, 2, 33, 7, 27, 34, 0, 0, 0, 36, 41, -1, 6, 9, 35, 10, 36, 11, 37, 12, 38, 34, 32, 23, 15, 0, 10, 0, 28, 42, -1, 2, 33, 7, 27, 39, 0, 10, 0, 28, 43, -1, 2, 33, 7, 27, 39, 0, 10, 0, 28, 44, -1, 2, 33, 7, 27, 39, 0, 10, 0, 28, 45, -1, 2, 33, 7, 27, 39, 0, 0, 0, 36, 46, -1, 6, 9, 40, 10, 41, 11, 42, 12, 43, 34, 12, 23, 15, 0, 0, 0, 28, 47, -1, 6, 9, 35, 10, 44, 11, 45, 12, 46, 27, 47, 23, 15, 0, 16, 0, 28, 48, -1, 9, 33, 48, 9, 49, 10, 50, 11, 51, 12, 52, 49, 53, 27, 54, 50, 14, 23, 15, 0, 17, 0, 24, 51, -1, 12, 33, 48, 9, 55, 10, 56, 11, 57, 12, 58, 15, 59, 16, 9, 17, 10, 18, 11, 19, 60, 22, 14, 23, 15, 0, 16, 0, 28, 52, -1, 9, 33, 48, 9, 61, 10, 62, 11, 63, 12, 64, 49, 53, 27, 65, 50, 14, 23, 15, 0, 19, 0, 24, 53, -1, 12, 33, 48, 9, 66, 10, 67, 11, 68, 12, 69, 15, 70, 16, 9, 17, 71, 18, 72, 19, 21, 22, 14, 23, 15, 0, 16, 0, 2147483647, 54, 73, 5, 33, 48, 9, 74, 10, 74, 11, 75, 12, 75, 0, 0, 0, 60, 55, -1, 9, 9, 18, 10, 76, 11, 77, 12, 78, 56, 79, 57, 79, 58, 80, 59, 79, 23, 15, 0, 22, 0, 64, 61, -1, 4, 62, 15, 63, 81, 27, 82, 23, 15, 0, 0, 0, 28, 65, -1, 6, 9, 83, 10, 84, 11, 85, 12, 86, 27, 87, 23, 15, 0, 0, 0, 60, 66, -1, 9, 9, 88, 10, 89, 11, 90, 12, 91, 56, 92, 57, 92, 58, 93, 59, 92, 23, 15, 0),
+"variants": [ExtResource("1"), 8, 0.5, -29.0, -13.0, 99.0, 23.0, 2, Color(0.972549, 0.976471, 0, 1), Color(0, 0, 0, 1), 5, ExtResource("2"), 32, "打造", 1, true, -17.0, 51.0, 111.0, 87.0, Color(0, 0.976471, 0, 1), 22, "所需材料", 132.0, -2.0, 200.0, 65.0, ExtResource("3"), 82.0, 339.0, 149.0, 3, 15, ExtResource("4"), null, 12.0, 164.0, 336.0, 231.0, ExtResource("5"), 20.0, 172.0, 320.0, 222.0, 271.0, 80.0, 338.0, ExtResource("6"), 0, 72.0, 5.0, 128.0, 45.0, Vector2(0.7, 0.7), ExtResource("7"), 64.0, 4.0, 241.0, 35.0, Color(0.45098, 0.427451, 0.4, 1), 27, 71.0, 36.0, 173.0, 76.0, ExtResource("8"), 106.0, 10.0, 219.0, 37.0, Color(1, 1, 1, 1), 10, ExtResource("9"), ExtResource("10"), 8.0, 58.0, 331.0, 251.0, 379.0, ExtResource("11"), ExtResource("12"), Vector2(103, 56), ExtResource("13"), 144.0, 230.0, 195.0, 281.0, ExtResource("14"), 300.0, 1.0, 340.0, 41.0, ExtResource("15"), ExtResource("16")],
+"version": 3
+}

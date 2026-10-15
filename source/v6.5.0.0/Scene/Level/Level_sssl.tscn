@@ -1,0 +1,34 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/BaseThroughLevel.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/Level_sssl.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_sssl/97.jpg" id="3"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_Hide/ymjssslfloor.png" id="4"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(4700, 553)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(17, 1786)
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(4700, 553)
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(101, 1420)
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1221902799), PackedInt32Array(653194421), PackedInt32Array(458132924), PackedInt32Array(1466504861)],
+"names": PackedStringArray("Level_sssl", "script", "GreenDetector", "CollisionShape2D", "ColorRect", "wall", "wall_left", "floor", "position", "shape", "stop1", "stop2", "thb", "stop5", "disabled", "Monster", "Hero", "Create_1", "Create_2", "Create_3", "Create_4", "create_control", "fall_items", "BackGround", "End", "Bg", "scale", "texture", "Sprite2D", "floor_2", "Floor", "front", "ParallaxLayer", "exit", "exit2", "Timer", "CanvasLayer", "ZM", "lj_tt", "zmPLAYER", "MonsterBlood", "Smooth"),
+"node_count": 9,
+"node_ids": PackedInt32Array(1958690001, 1879190550, 48446099, 442672849, 743721207, 1210766286, 1498872623, 1461078311, 2115553614),
+"node_paths": [NodePath("wall"), NodePath("BackGround/End"), NodePath("BackGround/floor_2"), NodePath("BackGround")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 1073741824, 0, 3, 524295, -1, 2, 8, 2, 9, 3, 0, 1073741824, 0, 3, 786442, -1, 2, 8, 4, 9, 5, 0, 1073741824, 0, 3, 1048587, -1, 2, 8, 6, 9, 7, 0, 1073741824, 0, 3, 1572877, -1, 3, 8, 8, 9, 9, 14, 10, 0, 1073741825, 0, 28, 262169, -1, 3, 8, 11, 26, 12, 27, 13, 0, 1073741826, 0, 28, 524318, -1, 3, 8, 14, 26, 15, 27, 16, 0, 1073741827, 0, 32, 786463, -1, 0, 0, 0, 0, 2147483647, 3145761, -1, 1, 8, 17, 0),
+"variants": [ExtResource("1"), ExtResource("2"), Vector2(2350, 669), SubResource("1"), Vector2(1007.5, -406), SubResource("2"), Vector2(4708.5, -408), SubResource("3"), Vector2(-54.5, -221), SubResource("4"), true, Vector2(2527.25, 341.00003), Vector2(1.0864894, 1.1457627), ExtResource("3"), Vector2(2350, 553.5), Vector2(1, 1.127451), ExtResource("4"), Vector2(4550, 316)],
+"version": 3
+}

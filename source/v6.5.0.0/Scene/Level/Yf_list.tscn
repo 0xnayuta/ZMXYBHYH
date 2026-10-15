@@ -1,0 +1,26 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Level/Yf_list.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/01.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/02.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/03.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/04.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/05.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/06.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/07.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/414.png" id="9"]
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("yf_list", "position", "script", "all_images", "Node2D", "Sprite2D", "texture", "yf1", "offset_left", "offset_top", "offset_right", "offset_bottom", "metadata/_edit_use_anchors_", "TextureRect", "yf2", "yf3", "yf4", "yf5", "yf6", "yf7"),
+"node_count": 9,
+"node_ids": PackedInt32Array(1099585188, 1186848969, 77885405, 1916640238, 857848061, 1066520600, 1691790825, 447871390, 1156489966),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0, 0, 0, 5, 5, -1, 1, 6, 3, 0, 1, 0, 13, 7, -1, 5, 8, 4, 9, 5, 10, 6, 11, 7, 12, 8, 0, 1, 0, 13, 14, -1, 5, 8, 9, 9, 5, 10, 10, 11, 7, 12, 8, 0, 1, 0, 13, 15, -1, 5, 8, 11, 9, 5, 10, 12, 11, 7, 12, 8, 0, 1, 0, 13, 16, -1, 5, 8, 13, 9, 5, 10, 14, 11, 7, 12, 8, 0, 1, 0, 13, 17, -1, 5, 8, 15, 9, 5, 10, 16, 11, 7, 12, 8, 0, 1, 0, 13, 18, -1, 5, 8, 17, 9, 5, 10, 18, 11, 7, 12, 8, 0, 1, 0, 13, 19, -1, 5, 8, 19, 9, 5, 10, 20, 11, 7, 12, 8, 0),
+"variants": [Vector2(752, 112), ExtResource("1"), [ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6"), ExtResource("7"), ExtResource("8")], ExtResource("9"), -132.0, -29.0, -102.0, 31.0, true, -93.0, -63.0, -54.0, -24.0, -15.0, 15.0, 24.0, 54.0, 63.0, 93.0, 102.0, 132.0],
+"version": 3
+}

@@ -1,0 +1,61 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Level/Bai_gu_level.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/Level/Level_11/BaiGu.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Level/Level_11/88.png" id="3"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(76.5, 40.5)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(247, 184)
+
+[sub_resource type="Animation" id="3"]
+resource_name = "Show"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hide:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.9), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_and_hideInfo"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="4"]
+_data = {
+&"Show": SubResource("3")
+}
+
+[resource]
+_bundled = {
+"conn_count": 4,
+"conns": PackedInt32Array(3, 0, 25, 24, 2, 0, 0, 5, 0, 27, 26, 2, 0, 0, 5, 0, 29, 28, 2, 0, 0, 8, 0, 31, 30, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("BaiGuLevel", "script", "Node2D", "BaiGu", "texture", "metadata/_edit_lock_", "Sprite2D", "Hide", "position", "Hurt_box", "collision_layer", "collision_mask", "Area2D", "Hurt_", "shape", "CollisionShape2D", "CheckIn", "CheckIN", "disabled", "Show", "libraries/", "AnimationPlayer", "Await", "Timer", "_on_hurt_box_area_entered", "area_entered", "_on_check_in_body_entered", "body_entered", "_on_check_in_body_exited", "body_exited", "_on_await_timeout", "timeout"),
+"node_count": 9,
+"node_ids": PackedInt32Array(72129091, 1473149824, 1121108897, 391785578, 156628211, 848581264, 577017652, 1237350328, 24712068),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 6, 3, -1, 2, 4, 1, 5, 2, 0, 0, 0, 6, 7, -1, 3, 8, 3, 4, 4, 5, 2, 0, 0, 0, 12, 9, -1, 2, 10, 5, 11, 6, 0, 3, 0, 15, 13, -1, 2, 14, 7, 5, 2, 0, 0, 0, 12, 16, -1, 3, 10, 8, 11, 8, 5, 2, 0, 5, 0, 15, 17, -1, 3, 8, 9, 14, 10, 18, 2, 0, 0, 0, 21, 19, -1, 1, 20, 11, 0, 0, 0, 23, 22, -1, 0, 0),
+"variants": [ExtResource("1"), ExtResource("2"), true, Vector2(-57, 10), ExtResource("3"), 0, 2, SubResource("1"), 16, Vector2(-29.5, 83), SubResource("2"), SubResource("4")],
+"version": 3
+}

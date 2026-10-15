@@ -1,0 +1,35 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/BaseThroughLevel.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/Level_46.gd" id="2"]
+[ext_resource type="Script" path="res://Script/Level/Level46MovingPlatform.gd" id="3"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_xinshou/item1007.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_xinshou/bg10.png" id="5"]
+
+[sub_resource type="RectangleShape2D" id="Shape_floor"]
+size = Vector2(2400, 553)
+
+[sub_resource type="RectangleShape2D" id="Shape_left_wall"]
+size = Vector2(27, 630)
+
+[sub_resource type="RectangleShape2D" id="Shape_right_wall"]
+size = Vector2(30, 632)
+
+[sub_resource type="RectangleShape2D" id="Shape_platform"]
+size = Vector2(751, 21)
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1221902799), PackedInt32Array(1466504861)],
+"names": PackedStringArray("Level_46", "script", "GreenDetector", "CollisionShape2D", "ColorRect", "wall", "wall_left", "floor", "position", "shape", "stop_left", "disabled", "stop_right", "thb", "Monster", "Hero", "Create_1", "Create_2", "Create_3", "Create_4", "create_control", "fall_items", "TutorialMovingPlatform", "z_index", "collision_layer", "collision_mask", "AnimatableBody2D", "Sprite2D", "texture", "one_way_collision", "BackGround", "End", "front", "ParallaxLayer", "Background", "floor_2", "exit", "exit2", "Timer", "CanvasLayer", "ZM", "lj_tt", "zmPLAYER", "MonsterBlood", "Smooth"),
+"node_count": 10,
+"node_ids": PackedInt32Array(441318362, 1747814246, 1134183645, 1972304931, 1273876092, 125874087, 74452059, 378659875, 31263869, 2115553614),
+"node_paths": [NodePath("wall"), NodePath("BackGround")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 1073741824, 0, 3, 524295, -1, 2, 8, 2, 9, 3, 0, 1073741824, 0, 3, 786442, -1, 3, 8, 4, 9, 5, 11, 6, 0, 1073741824, 0, 3, 1048588, -1, 2, 8, 7, 9, 8, 0, 0, 0, 26, 2883606, -1, 5, 23, 9, 8, 10, 24, 11, 25, 11, 1, 12, 0, 4, 0, 27, 262171, -1, 1, 28, 13, 0, 4, 0, 3, 524291, -1, 3, 8, 14, 9, 15, 29, 6, 0, 1073741825, 0, 33, 524320, -1, 0, 0, 7, 0, 27, 262178, -1, 2, 8, 16, 28, 17, 0, 0, 0, 2147483647, 3407908, -1, 1, 8, 18, 0),
+"variants": [ExtResource("1"), ExtResource("2"), Vector2(1200, 669.5), SubResource("Shape_floor"), Vector2(1414.5, 323), SubResource("Shape_left_wall"), true, Vector2(2223, 313), SubResource("Shape_right_wall"), -1, Vector2(1811.5, 353), 32, ExtResource("3"), ExtResource("4"), Vector2(0, -10.5), SubResource("Shape_platform"), Vector2(601, 295), ExtResource("5"), Vector2(1806, 259)],
+"version": 3
+}

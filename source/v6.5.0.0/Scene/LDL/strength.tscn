@@ -1,0 +1,27 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/LDL/strength.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/215.png" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/BackPack/Box_1.tscn" id="3"]
+[ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="4"]
+[ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/212.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/202.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/LDL/176.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/LDL/188.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/LDL/533.png" id="9"]
+[ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="10"]
+
+[resource]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(14, 0, 47, 46, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("strength", "script", "metadata/_edit_lock_", "Node2D", "old_zb", "position", "texture", "Sprite2D", "offset_left", "offset_top", "offset_right", "offset_bottom", "n_q_1", "number", "layout_mode", "theme_override_colors/font_color", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "horizontal_alignment", "vertical_alignment", "Label", "n_q_2", "number2", "new_zb", "button_mask", "jt", "need_lh", "lh", "qh_", "size_flags_horizontal", "texture_normal", "texture_pressed", "texture_hover", "stretch_mode", "TextureButton", "Title", "anchors_preset", "anchor_left", "anchor_top", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "text", "_on_qh__pressed", "pressed"),
+"node_count": 16,
+"node_ids": PackedInt32Array(1454122461, 338816949, 1735057571, 1668960425, 560540505, 1642558793, 1533910750, 1506640827, 1968241688, 189182200, 228733379, 1398797396, 1585831810, 1523243363, 119674759, 937866746),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 3, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 7, 4, -1, 3, 5, 2, 6, 3, 2, 1, 0, 1, 0, 2147483647, 4, 4, 5, 8, 5, 9, 6, 10, 7, 11, 8, 2, 1, 0, 0, 0, 7, 12, -1, 3, 5, 9, 6, 3, 2, 1, 0, 3, 0, 2147483647, 12, 4, 5, 8, 6, 9, 6, 10, 8, 11, 8, 2, 1, 0, 4, 0, 22, 13, -1, 13, 14, 10, 8, 11, 9, 12, 10, 13, 11, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 2, 1, 0, 0, 0, 7, 23, -1, 3, 5, 22, 6, 3, 2, 1, 0, 6, 0, 2147483647, 23, 4, 5, 8, 5, 9, 6, 10, 7, 11, 8, 2, 1, 0, 7, 0, 22, 24, -1, 13, 14, 10, 8, 23, 9, 24, 10, 13, 11, 25, 15, 15, 16, 16, 17, 26, 18, 18, 19, 19, 20, 20, 21, 21, 2, 1, 0, 0, 0, 7, 25, -1, 3, 5, 27, 6, 28, 2, 1, 0, 9, 0, 2147483647, 25, 4, 6, 8, 5, 9, 29, 10, 7, 11, 30, 26, 10, 2, 1, 0, 0, 0, 7, 27, -1, 3, 5, 31, 6, 32, 2, 1, 0, 0, 0, 7, 28, -1, 3, 5, 33, 6, 34, 2, 1, 0, 12, 0, 22, 29, -1, 7, 8, 35, 9, 36, 10, 37, 11, 38, 18, 18, 21, 21, 2, 1, 0, 0, 0, 36, 30, -1, 10, 8, 39, 9, 40, 10, 41, 11, 42, 31, 26, 32, 43, 33, 43, 34, 44, 35, 45, 2, 1, 0, 0, 0, 22, 37, -1, 20, 38, 17, 39, 46, 40, 46, 41, 46, 42, 46, 8, 47, 9, 23, 10, 48, 11, 49, 43, 20, 44, 20, 15, 50, 16, 16, 17, 51, 18, 52, 19, 53, 45, 54, 20, 21, 21, 21, 2, 1, 0),
+"variants": [ExtResource("1"), true, Vector2(150, 50), ExtResource("2"), ExtResource("3"), -25.0, -26.0, 25.0, 24.0, Vector2(50, 140), 0, -16.0, 37.0, 66.0, 68.0, Color(0, 1, 0, 1), Color(0, 0, 0, 1), 8, ExtResource("4"), 20, 2, 1, Vector2(250, 140), -13.0, 36.0, 67.0, 6, Vector2(150, 225), ExtResource("5"), -24.0, 26.0, Vector2(150, 135), ExtResource("6"), Vector2(250, 310), ExtResource("7"), 40.0, -12.0, 80.0, 14.0, 83.0, 335.0, 223.0, 383.0, ExtResource("8"), ExtResource("9"), 3, 0.5, -29.0, 99.0, 23.0, Color(0.972549, 0.976471, 0, 1), 5, ExtResource("10"), 32, "装备强化"],
+"version": 3
+}

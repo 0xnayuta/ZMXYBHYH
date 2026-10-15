@@ -1,0 +1,20 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Texture2D" path="res://Art/Mount/Runtime/Mounts/1003100/idle/back_0.png" id="1"]
+[ext_resource type="Texture2D" path="res://Art/Mount/Runtime/Mounts/1003100/idle/front_0.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role1AllEquipment/Role_1_Body_Empty.png" id="3"]
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("RiderAdjustment", "editor_description", "metadata/role_id", "metadata/mount_id", "Node2D", "MountGuide", "modulate", "show_behind_parent", "position", "rotation", "scale", "Back", "texture", "region_enabled", "region_rect", "Sprite2D", "Front", "Pose", "Body", "texture_filter", "hframes", "vframes", "frame", "BodyFront", "visible", "z_index"),
+"node_count": 7,
+"node_ids": PackedInt32Array(1493850831, 1249672058, 986287323, 453397347, 1713938812, 1532646290, 581016078),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0, 0, 0, 4, 5, -1, 5, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 0, 1, 0, 15, 11, -1, 4, 8, 8, 12, 9, 13, 4, 14, 10, 0, 1, 0, 15, 16, -1, 4, 8, 11, 12, 12, 13, 4, 14, 13, 0, 0, 0, 4, 17, -1, 1, 8, 14, 0, 4, 0, 15, 18, -1, 6, 19, 15, 8, 16, 12, 17, 20, 18, 21, 19, 22, 20, 0, 4, 0, 15, 23, -1, 4, 24, 21, 25, 1, 19, 15, 8, 16, 0),
+"variants": ["角色 1 × 坐骑 1002200。只调整 Pose 节点；MountGuide 仅供 2D 编辑器对位，运行时隐藏。", 1, "1002200", Color(1, 1, 1, 0.55), true, Vector2(26.33169, 72.33366), -0.18256131, Vector2(1.0204083, 1.0204083), Vector2(-1, -61.5), ExtResource("1"), Rect2(2, 2, 270, 151), Vector2(-20, -59), ExtResource("2"), Rect2(2, 2, 242, 186), Vector2(0, -30), 2, Vector2(-15, -27), ExtResource("3"), 6, 14, 49, false],
+"version": 3
+}

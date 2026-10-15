@@ -1,0 +1,18 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" uid="uid://b16shd6fjyaiq" path="res://Script/Test/EastLateMonsterRuntimeProbe.gd" id="1"]
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("EastLateMonsterRuntimeProbe", "script", "Node2D"),
+"node_count": 1,
+"node_ids": PackedInt32Array(1679045929),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0),
+"variants": [ExtResource("1")],
+"version": 3
+}

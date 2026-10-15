@@ -1,0 +1,18 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Hero/WS_Effect.gd" id="1"]
+
+[resource]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(1, 0, 10, 9, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("WS_Effect", "show_behind_parent", "script", "live_time", "alfa_factor", "color", "Node2D", "DeathTimer", "Timer", "_on_death_timer_timeout", "timeout"),
+"node_count": 2,
+"node_ids": PackedInt32Array(1194126259, 714748780),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 6, 0, -1, 5, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 0, 0, 0, 8, 7, -1, 0, 0),
+"variants": [true, ExtResource("1"), 0.27, 0.8, Color(1, 0.85098, 0.827451, 1)],
+"version": 3
+}

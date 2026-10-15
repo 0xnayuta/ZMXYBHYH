@@ -1,0 +1,41 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/BaseThroughLevel.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/Level_7.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Level/Level_Sjg/248.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/Level/Level_7/112.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/Level/Level_7/225.png" id="5"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(811, 1420)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(845.5, 1420)
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(968.5, 1420)
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(697.75, 1420)
+
+[sub_resource type="RectangleShape2D" id="5"]
+size = Vector2(5169, 669)
+
+[sub_resource type="RectangleShape2D" id="6"]
+size = Vector2(258, 24.5)
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(653194421), PackedInt32Array(1466504861), PackedInt32Array(458132924)],
+"names": PackedStringArray("Level_7", "script", "GreenDetector", "CollisionShape2D", "ColorRect", "wall", "collision_mask", "wall_left", "stop1", "position", "shape", "metadata/_edit_lock_", "stop2", "stop3", "stop4", "stop5", "disabled", "floor", "thb", "Monster", "Hero", "Create_1", "Create_2", "Create_3", "Create_4", "create_control", "fall_items", "stage", "collision_layer", "StaticBody2D", "stage_1", "one_way_collision", "stage_2", "stage_3", "stage_4", "stage_5", "stage_6", "BackGround", "End", "248", "texture", "Sprite2D", "front", "ParallaxLayer", "112", "floor_2", "225", "exit", "exit2", "Timer", "CanvasLayer", "ZM", "lj_tt", "zmPLAYER", "MonsterBlood", "Smooth"),
+"node_count": 20,
+"node_ids": PackedInt32Array(244177719, 1221902799, 632847952, 1182673101, 1951333904, 1266956766, 1961574518, 1027790420, 540136975, 1565812514, 2073961475, 1029361229, 1367276900, 2145455414, 1870013327, 184105103, 1168704657, 440824723, 1024228659, 2115553614),
+"node_paths": [NodePath("BackGround/End"), NodePath("BackGround"), NodePath("BackGround/floor_2")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 0, 0, 2147483647, 524293, -1, 1, 6, 2, 0, 1, 0, 3, 524296, -1, 3, 9, 3, 10, 4, 11, 5, 0, 1, 0, 3, 786444, -1, 3, 9, 6, 10, 7, 11, 5, 0, 1, 0, 3, 1048589, -1, 3, 9, 8, 10, 9, 11, 5, 0, 1, 0, 3, 1310734, -1, 3, 9, 10, 10, 11, 11, 5, 0, 1, 0, 3, 1572879, -1, 4, 9, 12, 10, 11, 16, 5, 11, 5, 0, 1, 0, 3, 1835025, -1, 3, 9, 13, 10, 14, 11, 5, 0, 0, 0, 29, 2883611, -1, 2, 28, 15, 6, 2, 0, 8, 0, 3, 262174, -1, 4, 9, 16, 10, 17, 31, 5, 11, 5, 0, 8, 0, 3, 524320, -1, 4, 9, 18, 10, 17, 31, 5, 11, 5, 0, 8, 0, 3, 786465, -1, 4, 9, 19, 10, 17, 31, 5, 11, 5, 0, 8, 0, 3, 1048610, -1, 4, 9, 20, 10, 17, 31, 5, 11, 5, 0, 8, 0, 3, 1310755, -1, 4, 9, 21, 10, 17, 31, 5, 11, 5, 0, 8, 0, 3, 1572900, -1, 4, 9, 22, 10, 17, 31, 5, 11, 5, 0, 1073741824, 0, 41, 262183, -1, 3, 9, 23, 40, 24, 11, 5, 0, 1073741825, 0, 43, 524330, -1, 0, 0, 16, 0, 41, 262188, -1, 3, 9, 25, 40, 26, 11, 5, 0, 1073741826, 0, 41, 524334, -1, 3, 9, 27, 40, 28, 11, 5, 0, 0, 0, 2147483647, 3407919, -1, 2, 9, 29, 11, 5, 0),
+"variants": [ExtResource("1"), ExtResource("2"), 0, Vector2(1501.5, -217), SubResource("1"), true, Vector2(2671.25, -221), SubResource("2"), Vector2(3981.75, -201), SubResource("3"), Vector2(4988.25, -217), SubResource("4"), Vector2(3166.13, -211), Vector2(2581.5, 738.5), SubResource("5"), 32, Vector2(1179, 245.75), SubResource("6"), Vector2(1435, 121), Vector2(1678, 248), Vector2(3034, 113), Vector2(3285, 267), Vector2(3544, 115), Vector2(719, 248), ExtResource("3"), Vector2(2469, 358), ExtResource("4"), Vector2(2351, 405), ExtResource("5"), Vector2(4378, 325)],
+"version": 3
+}

@@ -1,0 +1,84 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/LDL/ldl.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/LDL/炼丹炉背景.jpg" id="2"]
+[ext_resource type="Texture2D" path="res://Art/LDL/100.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/LDL/114.png" id="4"]
+[ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="5"]
+[ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="6"]
+[ext_resource type="PackedScene" path="res://Scene/BackPack/Main_Backpack.tscn" id="7"]
+
+[sub_resource type="StyleBoxEmpty" id="1"]
+
+[sub_resource type="StyleBoxEmpty" id="3"]
+
+[sub_resource type="StyleBoxEmpty" id="2"]
+
+[sub_resource type="StyleBoxEmpty" id="4"]
+
+[sub_resource type="StyleBoxEmpty" id="5"]
+
+[sub_resource type="StyleBoxEmpty" id="6"]
+
+[sub_resource type="StyleBoxEmpty" id="8"]
+
+[sub_resource type="StyleBoxEmpty" id="7"]
+
+[sub_resource type="StyleBoxEmpty" id="9"]
+
+[sub_resource type="StyleBoxEmpty" id="10"]
+
+[sub_resource type="StyleBoxEmpty" id="11"]
+
+[sub_resource type="StyleBoxEmpty" id="13"]
+
+[sub_resource type="StyleBoxEmpty" id="12"]
+
+[sub_resource type="StyleBoxEmpty" id="14"]
+
+[sub_resource type="StyleBoxEmpty" id="15"]
+
+[sub_resource type="StyleBoxEmpty" id="16"]
+
+[sub_resource type="StyleBoxEmpty" id="18"]
+
+[sub_resource type="StyleBoxEmpty" id="17"]
+
+[sub_resource type="StyleBoxEmpty" id="19"]
+
+[sub_resource type="StyleBoxEmpty" id="20"]
+
+[sub_resource type="StyleBoxEmpty" id="26"]
+
+[sub_resource type="StyleBoxEmpty" id="28"]
+
+[sub_resource type="StyleBoxEmpty" id="27"]
+
+[sub_resource type="StyleBoxEmpty" id="29"]
+
+[sub_resource type="StyleBoxEmpty" id="30"]
+
+[sub_resource type="StyleBoxEmpty" id="31"]
+
+[sub_resource type="StyleBoxEmpty" id="33"]
+
+[sub_resource type="StyleBoxEmpty" id="32"]
+
+[sub_resource type="StyleBoxEmpty" id="34"]
+
+[sub_resource type="StyleBoxEmpty" id="35"]
+
+[resource]
+_bundled = {
+"conn_count": 9,
+"conns": PackedInt32Array(6, 0, 91, 90, 2, 0, 0, 7, 0, 91, 92, 2, 0, 0, 8, 0, 91, 93, 2, 0, 0, 9, 0, 91, 94, 2, 0, 0, 10, 0, 91, 95, 2, 0, 0, 11, 0, 91, 96, 2, 0, 0, 12, 0, 91, 97, 2, 0, 0, 13, 0, 91, 98, 2, 0, 0, 14, 0, 91, 99, 2, 0, 0),
+"editable_instances": [NodePath("Main_Backpack")],
+"id_paths": [],
+"names": PackedStringArray("ldl", "process_mode", "script", "Node2D", "fengeceng", "offset_right", "offset_bottom", "color", "metadata/_edit_lock_", "ColorRect", "bg", "position", "texture", "Sprite2D", "bg2", "bg3", "lh", "offset_left", "offset_top", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "vertical_alignment", "Label", "return", "theme_override_colors/font_hover_color", "theme_override_styles/normal", "theme_override_styles/pressed", "theme_override_styles/hover", "theme_override_styles/disabled", "theme_override_styles/focus", "text", "Button", "hc", "qh", "xq", "fj", "dz", "sz", "cg", "yjdy", "Main_Backpack", "MarginContainer", "VBoxContainer", "title", "TabBar", "HBoxContainer", "zb", "dj", "xhp", "pl_sell", "plcs", "pet_backpack", "label", "Sc_Box", "Gd_Box", "box_1", "box_2", "box_3", "box_4", "box_5", "box_6", "box_7", "box_8", "box_9", "box_10", "box_11", "box_12", "box_13", "box_14", "box_15", "box_16", "box_17", "box_18", "box_19", "box_20", "box_21", "box_22", "box_23", "box_24", "box_25", "ChangePage", "LastPage", "CurrentPageText", "NextPage", "coin_text", "coin_number", "add_equ", "add_dj", "add_xhp", "Timer", "_on_return_pressed", "pressed", "_on_hc_pressed", "_on_qh_pressed", "_on_xq_pressed", "_on_fj_pressed", "_on_dz_pressed", "_on_sz_pressed", "_on_cg_pressed", "_on_yjdy_pressed"),
+"node_count": 16,
+"node_ids": PackedInt32Array(1283984458, 408797461, 1525482465, 390866735, 1071965098, 1152013015, 1721434748, 753736055, 270854772, 80568196, 903403481, 1170397565, 874130184, 1653040572, 1020190753, 628195672),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 3, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 9, 4, -1, 4, 5, 2, 6, 3, 7, 4, 8, 5, 0, 0, 0, 13, 10, -1, 3, 11, 6, 12, 7, 8, 5, 0, 2, 0, 13, 14, -1, 3, 11, 8, 12, 9, 8, 5, 0, 3, 0, 13, 15, -1, 3, 11, 10, 12, 11, 8, 5, 0, 3, 0, 22, 16, -1, 8, 17, 12, 18, 13, 5, 14, 6, 15, 19, 16, 20, 17, 21, 18, 8, 5, 0, 0, 0, 31, 23, -1, 14, 17, 19, 18, 20, 5, 21, 6, 22, 24, 23, 19, 24, 20, 25, 25, 26, 26, 27, 27, 28, 28, 29, 29, 30, 30, 31, 8, 5, 0, 0, 0, 31, 32, -1, 14, 17, 32, 18, 33, 5, 34, 6, 35, 24, 23, 19, 24, 20, 25, 25, 36, 26, 37, 27, 38, 28, 39, 29, 40, 30, 41, 8, 5, 0, 0, 0, 31, 33, -1, 14, 17, 42, 18, 33, 5, 43, 6, 35, 24, 23, 19, 24, 20, 25, 25, 44, 26, 45, 27, 46, 28, 47, 29, 48, 30, 49, 8, 5, 0, 0, 0, 31, 34, -1, 14, 17, 50, 18, 33, 5, 51, 6, 35, 24, 23, 19, 24, 20, 25, 25, 52, 26, 53, 27, 54, 28, 55, 29, 56, 30, 57, 8, 5, 0, 0, 0, 31, 35, -1, 14, 17, 58, 18, 59, 5, 60, 6, 61, 24, 23, 19, 24, 20, 25, 25, 62, 26, 63, 27, 64, 28, 65, 29, 66, 30, 67, 8, 5, 0, 0, 0, 31, 36, -1, 14, 17, 68, 18, 59, 5, 69, 6, 61, 24, 23, 19, 24, 20, 25, 25, 70, 26, 71, 27, 72, 28, 73, 29, 74, 30, 75, 8, 5, 0, 0, 0, 31, 37, -1, 14, 17, 76, 18, 59, 5, 77, 6, 61, 24, 23, 19, 24, 20, 25, 25, 70, 26, 71, 27, 72, 28, 73, 29, 74, 30, 78, 8, 5, 0, 0, 0, 31, 38, -1, 14, 17, 79, 18, 59, 5, 80, 6, 61, 24, 23, 19, 24, 20, 25, 25, 70, 26, 71, 27, 72, 28, 73, 29, 74, 30, 81, 8, 5, 0, 0, 0, 31, 39, -1, 14, 17, 33, 18, 59, 5, 82, 6, 61, 24, 23, 19, 24, 20, 25, 25, 70, 26, 71, 27, 72, 28, 73, 29, 74, 30, 83, 8, 5, 0, 0, 0, 2147483647, 40, 84, 4, 17, 85, 18, 86, 5, 85, 6, 86, 0),
+"variants": [3, ExtResource("1"), 939.0, 589.0, Color(0, 0, 0, 1), true, Vector2(470, 295), ExtResource("2"), Vector2(12, 33), ExtResource("3"), Vector2(-3, -20), ExtResource("4"), 316.0, 226.0, 447.0, 251.0, ExtResource("5"), 19, 1, 844.0, 12.0, 898.0, 32.0, Color(1, 0.466667, 0, 1), ExtResource("6"), 25, SubResource("1"), SubResource("3"), SubResource("2"), SubResource("4"), SubResource("5"), "返 回", 140.0, 550.0, 190.0, 576.0, SubResource("6"), SubResource("8"), SubResource("7"), SubResource("9"), SubResource("10"), "合成", 70.0, 120.0, SubResource("11"), SubResource("13"), SubResource("12"), SubResource("14"), SubResource("15"), "强化", 210.0, 260.0, SubResource("16"), SubResource("18"), SubResource("17"), SubResource("19"), SubResource("20"), "镶嵌", 280.0, 547.0, 330.0, 578.0, SubResource("26"), SubResource("28"), SubResource("27"), SubResource("29"), SubResource("30"), "分解", 345.0, 395.0, SubResource("31"), SubResource("33"), SubResource("32"), SubResource("34"), SubResource("35"), "打造", 410.0, 460.0, "神铸", 480.0, 530.0, "淬骨", 650.0, "一键合成", ExtResource("7"), 661.0, 305.0],
+"version": 3
+}

@@ -1,0 +1,247 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/Game4ImportedLevelBase.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/Level_48.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/62694bd15c36a32e8b76e15012e09b3078fb6b2e569bfe48cc180b96aad1b726.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/03f549fa3a252f6e864d56752039cbffd49956a2156687fd93422f2b2c9ee273.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/ea34bf3070946b57229f40cdac5f576bfdbcc486e5f504dd2eef5eacc9c9d4c4.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/45c44bf41401a138aea5288ff81a087876d18119b0844be8a1305d62e439b389.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/45509a5a0f5a182b6e95aa931dc9d52474bdac642f50531e2a099e91e38a902f.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/c8eb06e23598080bc5db6247139874307ac9114d05c9dcea876bce8fa86b3677.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/53bd2fc893984511ace2fbeea3d041e8a1151f82c86c07bc237e0dcf05f57220.png" id="9"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/6756edf405448fc002fc02fcc4c41ab6ff198d8f714fd10976360223a6dd92f1.png" id="10"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/58910ca2c9ae6a66c6446fc9b8969b68f76039e4da17d0f76193d32c9913d932.png" id="11"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_floor"]
+size = Vector2(5485, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_right"]
+size = Vector2(120, 2400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}],
+"loop": 1,
+"name": &"play",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}],
+"loop": 1,
+"name": &"play",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}],
+"loop": 1,
+"name": &"play",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}],
+"loop": 1,
+"name": &"play",
+"speed": 20.0
+}]
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1221902799), PackedInt32Array(653194421), PackedInt32Array(458132924)],
+"names": PackedStringArray("Level_48", "script", "source_map", "display_name", "stage_number", "background_offset_y", "fixed_layers", "level_width_override", "background_baked", "GreenDetector", "CollisionShape2D", "ColorRect", "wall", "wall_left", "thb", "floor", "position", "shape", "right_wall", "Monster", "Hero", "Create_1", "Create_2", "Create_3", "Create_4", "create_control", "fall_items", "BackGround", "End", "ImportedBackdrop", "z_index", "color", "polygon", "Polygon2D", "bg30_1", "texture", "Sprite2D", "floor_2", "bg15_1", "sprite_frames", "animation", "autoplay", "AnimatedSprite2D", "bg14_1", "bg13_1", "bg12_1", "bg10_1", "bg10_2", "bg16_1", "bg17_1", "bg11_1", "front", "exit", "exit2", "Timer", "CanvasLayer", "ZM", "lj_tt", "zmPLAYER", "MonsterBlood", "Smooth"),
+"node_count": 15,
+"node_ids": PackedInt32Array(1551296767, 0, 0, 1229906324, 2051876954, 1327647345, 36208718, 266569152, 166008389, 2067827226, 1682365013, 10722748, 232834650, 634985104, 2115553614),
+"node_paths": [NodePath("wall"), NodePath("BackGround/End"), NodePath("BackGround/floor_2")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 8, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 5, 8, 7, 0, 1073741824, 0, 2147483647, 786447, -1, 2, 16, 8, 17, 9, 0, 1073741824, 0, 2147483647, 1048594, -1, 2, 16, 10, 17, 11, 0, 1073741825, 0, 33, 262173, -1, 3, 30, 12, 31, 13, 32, 14, 0, 1073741825, 0, 36, 524322, -1, 2, 16, 15, 35, 16, 0, 1073741826, 0, 42, 262182, -1, 4, 16, 17, 39, 18, 40, 19, 41, 20, 0, 1073741826, 0, 42, 524331, -1, 4, 16, 21, 39, 22, 40, 19, 41, 20, 0, 1073741826, 0, 42, 786476, -1, 4, 16, 23, 39, 24, 40, 19, 41, 20, 0, 1073741826, 0, 42, 1048621, -1, 4, 16, 25, 39, 26, 40, 19, 41, 20, 0, 1073741826, 0, 36, 1310766, -1, 2, 16, 27, 35, 28, 0, 1073741826, 0, 36, 1572911, -1, 2, 16, 29, 35, 28, 0, 1073741826, 0, 36, 1835056, -1, 2, 16, 30, 35, 31, 0, 1073741826, 0, 36, 2097201, -1, 2, 16, 32, 35, 28, 0, 1073741826, 0, 36, 2359346, -1, 2, 16, 33, 35, 34, 0, 0, 0, 2147483647, 3145780, -1, 1, 16, 35, 0),
+"variants": [ExtResource("1"), ExtResource("2"), "zhuquejieV1", "朱雀街", 48, 0.0, null, true, Vector2(2492.5, 690.5), SubResource("RectangleShape_floor"), Vector2(5045, -300), SubResource("RectangleShape_right"), -100, Color(0.025, 0.035, 0.055, 1), PackedVector2Array(-1000, -1200, 2500, -1200, 2500, 2200, -1000, 2200), Vector2(720, 123.5), ExtResource("3"), Vector2(3229.5, 226), SubResource("SpriteFrames_1"), &"play", "play", Vector2(2232.5, 226), SubResource("SpriteFrames_2"), Vector2(1235.5, 226.8), SubResource("SpriteFrames_3"), Vector2(238.5, 226), SubResource("SpriteFrames_4"), Vector2(498.5, 250), ExtResource("9"), Vector2(1495.5, 250), Vector2(2492.5, 250), ExtResource("10"), Vector2(3489.5, 250), Vector2(4486.5, 250), ExtResource("11"), Vector2(4835, 350)],
+"version": 3
+}

@@ -1,0 +1,57 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/LDL/strength.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/LDL/DivineForge.gd" id="2"]
+[ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
+bg_color = Color(0.411765, 0.176471, 0.0470588, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.862745, 0.568627, 0.196078, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pressed"]
+bg_color = Color(0.301961, 0.117647, 0.027451, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.760784, 0.286275, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+bg_color = Color(0.564706, 0.27451, 0.0784314, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.92549, 0.427451, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 1,
+"conns": PackedInt32Array(4, 0, 34, 33, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("divine_forge", "script", "old_zb", "n_q_1", "number", "n_q_2", "number2", "new_zb", "jt", "need_lh", "visible", "lh", "qh_", "Title", "text", "sz_", "offset_left", "offset_top", "offset_right", "offset_bottom", "mouse_default_cursor_shape", "theme_override_colors/font_color", "theme_override_colors/font_pressed_color", "theme_override_colors/font_hover_color", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "theme_override_styles/normal", "theme_override_styles/pressed", "theme_override_styles/hover", "theme_override_styles/focus", "Button", "_on_sz_pressed", "pressed"),
+"node_count": 5,
+"node_ids": PackedInt32Array(1415874053, 1585831810, 119674759, 937866746, 1294627390),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 0, 0, 2147483647, 1572873, -1, 1, 10, 2, 0, 0, 0, 2147483647, 1835020, -1, 1, 10, 2, 0, 0, 0, 2147483647, 2097165, -1, 1, 14, 3, 0, 0, 0, 32, 2359311, -1, 17, 16, 4, 17, 5, 18, 6, 19, 7, 20, 8, 21, 9, 22, 10, 23, 9, 24, 11, 25, 12, 26, 13, 27, 14, 28, 15, 29, 16, 30, 17, 31, 17, 14, 18, 0),
+"variants": [ExtResource("1"), ExtResource("2"), false, "装备神铸", 83.0, 335.0, 223.0, 383.0, 2, Color(1, 1, 1, 1), Color(1, 0.921569, 0.407843, 1), Color(0, 0, 0, 1), 6, ExtResource("3"), 30, SubResource("StyleBoxFlat_normal"), SubResource("StyleBoxFlat_pressed"), SubResource("StyleBoxFlat_hover"), "神 铸"],
+"version": 3
+}

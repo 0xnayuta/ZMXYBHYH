@@ -1,0 +1,20 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" uid="uid://bwruw7kep35d8" path="res://Scene/Pet/PetInterface.tscn" id="1"]
+[ext_resource type="Script" uid="uid://bhghoqceo20ka" path="res://Test/PetInterfaceEquipmentProbe.gd" id="2"]
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("PetInterfaceEquipmentProbe", "script", "symbol177", "shape81_id80", "shape81_id79", "txtname", "TigerLevelText", "shape47_id46", "listtxt_frame", "listtxt", "PetNameScroll", "PetNameList", "expmc_frame", "expmc_fill", "expmc", "atebtn", "eipbtn", "grmmc", "releasebtn", "eatimbtn", "btn_close", "shape145", "id144", "PetAttributePages", "StatRow1", "Name", "Value", "StatRow2", "StatRow3", "StatRow4", "StatRow5", "StatRow6", "StatRow7", "StatRow8", "StatRow9", "StatRow10", "fightbtn", "restbtn", "hptxt", "mptxt", "deftxt", "atktxt", "speedtxt", "eamptxt", "mdeftxt", "crittxt", "misstxt", "eahptxt", "PetAttributeShow", "TigerQualityWx", "TigerQualityGg", "TigerQualityLl", "shape10_魔法", "hpqualitymc_魔法资质条", "mpzizhibar", "mpzizhitxt", "mpzizhibtn", "shape10_攻击", "hpqualitymc_攻击资质条2", "atkzizhibar", "atkzizhitxt", "atkzizhibtn", "shape10_生命", "hpqualitymc_生命资质条", "hpzizhibar", "hpzizhitxt", "hpzizhibtn", "shape10_防御", "hpqualitymc_防御资质条", "defzizhibar", "defzizhitxt", "defzizhibtn", "hpqualitytxt", "shape10_根骨", "shape10_灵力", "shape10_悟性", "LearnSkillButton", "PetFormationButton", "UpgradeSkillButton", "shape44_id43", "PetBackPackShow", "bpmc", "equipment_id59", "zbst_id61", "zbst", "zbmz_id66", "zbmz", "zbxz_id69", "zbxz", "zbyf_id72", "zbyf", "zbjn_id75", "zbjn", "PetBackpackScroll", "PetBackpackGrid", "slot_1", "slot_2", "slot_3", "slot_4", "slot_5", "slot_6", "slot_7", "slot_8", "slot_9", "slot_10", "slot_11", "slot_12", "slot_13", "slot_14", "slot_15", "slot_16", "slot_17", "slot_18", "slot_19", "slot_20", "slot_21", "slot_22", "slot_23", "slot_24", "slot_25", "slot_26", "slot_27", "slot_28", "slot_29", "slot_30", "slot_31", "slot_32", "slot_33", "slot_34", "slot_35", "slot_36", "slot_37", "slot_38", "slot_39", "slot_40", "PetStrengthInterface", "zbmc", "ntxt", "etxt", "dtxt", "protxt", "ttxt", "atxt", "strength_bar_under_id189", "strbtn", "buyqh", "PetDevelopInterface", "sbtn", "nbtn", "giveUpThisPet", "shape249_id248", "okbtn", "nobtn", "symbol261", "PetEatImmortality", "symbol247", "shape206_id205", "mc1", "mc2", "mc3", "mc4", "mc5", "mc6", "mc7", "mc8", "PetStatPage1", "PetStatPage2", "PetSkillLearnPopup", "Window", "Title", "CloseButton", "SkillScroll", "SkillList", "LearnRowTemplate", "Content", "Frame", "Icon", "Description", "BookCount", "LearnButton", "PetSkillUpgradePopup", "SoulLabel", "SkillRowTemplate", "Mana", "Level", "Need", "UpgradeButton", "PetFormationPopup", "Resources", "FormationScroll", "FormationList", "FormationRowTemplate", "Effect", "Cost"),
+"node_count": 1,
+"node_ids": PackedInt32Array(1315134643),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0),
+"variants": [ExtResource("1"), ExtResource("2")],
+"version": 3
+}

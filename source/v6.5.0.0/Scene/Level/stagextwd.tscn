@@ -1,0 +1,21 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_2_3/gmtwstage.png" id="1"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(237, 37)
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("stagextwd", "Node2D", "Gmtwstage", "texture", "Sprite2D", "StaticBody2D", "collision_layer", "collision_mask", "CollisionShape2D", "position", "shape", "one_way_collision"),
+"node_count": 4,
+"node_ids": PackedInt32Array(196143011, 829059540, 562775297, 1241127874),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 0, 0, 4, 2, -1, 1, 3, 0, 0, 0, 0, 5, 5, -1, 2, 6, 1, 7, 1, 0, 2, 0, 8, 8, -1, 3, 9, 2, 10, 3, 11, 4, 0),
+"variants": [ExtResource("1"), 32, Vector2(0.5, 6.5), SubResource("1"), true],
+"version": 3
+}

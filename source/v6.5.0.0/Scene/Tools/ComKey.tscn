@@ -1,0 +1,21 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Texture2D" path="res://Art/2_5_9_0/key/p.png" id="1"]
+[ext_resource type="Texture2D" path="res://Art/2_5_9_0/key/u.png" id="2"]
+[ext_resource type="Script" path="res://Script/Tools/ComKey.gd" id="3"]
+[ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="4"]
+
+[resource]
+_bundled = {
+"conn_count": 4,
+"conns": PackedInt32Array(0, 0, 35, 34, 2, 0, 0, 0, 0, 37, 36, 2, 0, 0, 3, 0, 35, 38, 2, 0, 0, 3, 0, 37, 39, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("ComKey", "offset_right", "offset_bottom", "texture_normal", "texture_pressed", "ignore_texture_size", "stretch_mode", "script", "TextureButton", "Key", "custom_minimum_size", "layout_mode", "anchors_preset", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "theme_override_colors/font_color", "theme_override_colors/font_shadow_color", "theme_override_constants/shadow_offset_x", "theme_override_constants/shadow_offset_y", "theme_override_constants/outline_size", "theme_override_constants/shadow_outline_size", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "text", "horizontal_alignment", "vertical_alignment", "Label", "Control", "anchor_left", "anchor_top", "offset_left", "offset_top", "_on_button_down", "button_down", "_on_button_up", "button_up", "_on_texture_button_button_down", "_on_texture_button_button_up"),
+"node_count": 4,
+"node_ids": PackedInt32Array(29406400, 7504335, 350035060, 2127786811),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 8, 0, -1, 7, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 0, 0, 0, 28, 9, -1, 18, 10, 6, 11, 7, 12, 8, 13, 9, 14, 9, 15, 10, 16, 10, 17, 11, 18, 12, 19, 13, 20, 13, 21, 7, 22, 14, 23, 15, 24, 16, 25, 17, 26, 7, 27, 7, 0, 0, 0, 29, 29, -1, 10, 11, 7, 12, 18, 30, 9, 31, 9, 13, 9, 14, 9, 32, 19, 33, 19, 15, 13, 16, 13, 0, 2, 0, 8, 8, -1, 7, 11, 7, 1, 20, 2, 20, 3, 1, 4, 2, 5, 3, 6, 4, 0),
+"variants": [50.0, ExtResource("1"), ExtResource("2"), true, 4, ExtResource("3"), Vector2(50, 50), 1, 15, 1.0, 2, Color(0.901961, 0.890196, 0, 1), Color(0, 0, 0, 1), 0, 8, ExtResource("4"), 24, "Y", 3, -1.0, 10.0],
+"version": 3
+}

@@ -1,0 +1,26 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/BaseThroughLevel.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/Game4ImportedLevel.gd" id="2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_floor"]
+size = Vector2(1700, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_right"]
+size = Vector2(120, 2400)
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1221902799), PackedInt32Array(1466504861)],
+"names": PackedStringArray("Game4ImportedLevelBase", "script", "source_map", "display_name", "stage_number", "background_offset_y", "fixed_layers", "level_width_override", "background_baked", "GreenDetector", "CollisionShape2D", "ColorRect", "wall", "wall_left", "thb", "position", "floor", "shape", "right_wall", "Monster", "Hero", "Create_1", "Create_2", "Create_3", "Create_4", "create_control", "fall_items", "BackGround", "End", "floor_2", "front", "ParallaxLayer", "exit", "exit2", "Timer", "CanvasLayer", "ZM", "lj_tt", "zmPLAYER", "MonsterBlood", "Smooth"),
+"node_count": 6,
+"node_ids": PackedInt32Array(660392840, 1586212661, 2068771396, 442970453, 1282287360, 2115553614),
+"node_paths": [NodePath("wall"), NodePath("BackGround")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 8, 1, 1, 2, 2, 3, 2, 4, 3, 5, 4, 6, 5, 7, 4, 8, 6, 0, 1073741824, 0, 2147483647, 524302, -1, 1, 15, 7, 0, 1073741824, 0, 10, 786448, -1, 2, 15, 8, 17, 9, 0, 1073741824, 0, 10, 1048594, -1, 2, 15, 10, 17, 11, 0, 1073741825, 0, 31, 786462, -1, 0, 0, 0, 0, 2147483647, 3145760, -1, 1, 15, 12, 0),
+"variants": [ExtResource("1"), ExtResource("2"), "", 0, 0.0, null, false, Vector2(2500, -596), Vector2(600, 690.5), SubResource("RectangleShape_floor"), Vector2(1260, -300), SubResource("RectangleShape_right"), Vector2(1050, 350)],
+"version": 3
+}

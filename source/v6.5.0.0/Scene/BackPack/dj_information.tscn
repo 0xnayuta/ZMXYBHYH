@@ -1,0 +1,20 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/BackPack/dj_information.gd" id="1"]
+[ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="2"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/679.PNG" id="3"]
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("dj_information", "layout_mode", "anchor_right", "anchor_bottom", "offset_right", "offset_bottom", "grow_horizontal", "grow_vertical", "script", "Control", "ColorRect", "offset_left", "offset_top", "color", "MarginContainer", "custom_minimum_size", "metadata/_edit_lock_", "theme_override_constants/margin_left", "theme_override_constants/margin_top", "theme_override_constants/margin_right", "theme_override_constants/margin_bottom", "VBoxContainer", "theme_override_constants/separation", "title", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "text", "horizontal_alignment", "vertical_alignment", "Label", "name", "lx", "fgx", "position", "scale", "texture", "Sprite2D", "pz", "fgx2", "sl", "ms", "theme_override_colors/font_shadow_color", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "autowrap_mode", "sj", "theme_override_colors/font_color"),
+"node_count": 16,
+"node_ids": PackedInt32Array(527276617, 605017245, 1661786683, 56060824, 458428895, 289452351, 2081685337, 1621932404, 574581109, 981021209, 1142057259, 1196374986, 606992918, 1980566775, 384625159, 1805706074),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 9, 0, -1, 8, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 5, 8, 6, 0, 0, 0, 10, 10, -1, 6, 1, 7, 11, 8, 12, 9, 4, 10, 5, 11, 13, 12, 0, 0, 0, 14, 14, -1, 7, 15, 13, 1, 7, 11, 8, 12, 9, 4, 10, 5, 11, 16, 14, 0, 2, 0, 14, 14, -1, 5, 1, 5, 17, 15, 18, 16, 19, 15, 20, 16, 0, 3, 0, 21, 21, -1, 2, 1, 5, 22, 7, 0, 4, 0, 29, 23, -1, 6, 1, 5, 24, 17, 25, 18, 26, 19, 27, 20, 28, 20, 0, 4, 0, 29, 30, -1, 3, 1, 5, 25, 18, 26, 21, 0, 4, 0, 29, 31, -1, 3, 1, 5, 25, 18, 26, 22, 0, 7, 0, 36, 32, -1, 3, 33, 23, 34, 24, 35, 25, 0, 4, 0, 29, 37, -1, 3, 1, 5, 25, 18, 26, 26, 0, 9, 0, 36, 38, -1, 3, 33, 27, 34, 24, 35, 25, 0, 4, 0, 29, 39, -1, 3, 1, 5, 25, 18, 26, 28, 0, 11, 0, 36, 38, -1, 3, 33, 27, 34, 24, 35, 25, 0, 4, 0, 21, 21, -1, 2, 1, 5, 22, 29, 0, 13, 0, 29, 40, -1, 8, 1, 5, 41, 30, 42, 30, 43, 15, 25, 31, 26, 32, 28, 20, 44, 20, 0, 13, 0, 29, 45, -1, 5, 1, 5, 46, 33, 24, 17, 25, 34, 26, 35, 0),
+"variants": [3, 0.168, 0.263, 0.0800018, -0.170013, 2, ExtResource("1"), 0, 17.0, 3.0, 217.0, 228.0, Color(0, 0, 0, 0.705882), Vector2(200, 170), true, 5, 10, ExtResource("2"), 20, "道具详情", 1, "名称：", "类型：", Vector2(94.5, 26), Vector2(0.66805, 1), ExtResource("3"), "品质：", Vector2(94.5, 29), "数量：", 16, Color(0, 0, 0, 1), 15, "描述：", Color(1, 0.768627, 0, 1), 18, "售价："],
+"version": 3
+}

@@ -1,0 +1,42 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Level/River.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/Level/level_2/220.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Level/level_2/River.png" id="3"]
+
+[sub_resource type="Animation" id="1"]
+resource_name = "River"
+length = 9.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG/River:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(317.5, -15), Vector2(-300, -15)]
+}
+
+[sub_resource type="AnimationLibrary" id="2"]
+_data = {
+&"River": SubResource("1")
+}
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("River", "script", "Node2D", "BG", "position", "scale", "texture", "metadata/_edit_lock_", "Sprite2D", "RiverPlayer", "libraries/", "AnimationPlayer"),
+"node_count": 4,
+"node_ids": PackedInt32Array(473282901, 1553772974, 1318482067, 1357482765),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 8, 3, -1, 4, 4, 1, 5, 2, 6, 3, 7, 4, 0, 1, 0, 8, 0, -1, 4, 4, 5, 5, 6, 6, 7, 7, 4, 0, 0, 0, 11, 9, -1, 1, 10, 8, 0),
+"variants": [ExtResource("1"), Vector2(-287, 0), Vector2(4, 1), ExtResource("2"), true, Vector2(317.5, -15), Vector2(0.75, 1), ExtResource("3"), SubResource("2")],
+"version": 3
+}

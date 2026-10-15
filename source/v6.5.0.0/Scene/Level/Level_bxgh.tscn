@@ -1,0 +1,35 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/BaseThroughLevel.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/Level_bxgh.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_bxgh/bg501.png" id="3"]
+[ext_resource type="Script" path="res://Script/Level/LevelBXGHBoat.gd" id="4"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_bxgh/boat501.png" id="5"]
+
+[sub_resource type="RectangleShape2D" id="floor_shape"]
+size = Vector2(1803, 500)
+
+[sub_resource type="RectangleShape2D" id="wall_shape"]
+size = Vector2(80, 1400)
+
+[sub_resource type="RectangleShape2D" id="boat_shape"]
+size = Vector2(390, 20)
+
+[sub_resource type="RectangleShape2D" id="fall_death_shape"]
+size = Vector2(1703, 80)
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 1,
+"conns": PackedInt32Array(11, 0, 56, 55, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1221902799), PackedInt32Array(1466504861)],
+"names": PackedStringArray("Level_bxgh", "script", "GreenDetector", "CollisionShape2D", "ColorRect", "wall", "wall_left", "thb", "floor", "position", "shape", "disabled", "left_wall", "right_wall", "Monster", "Hero", "Create_1", "Create_2", "Create_3", "Create_4", "create_control", "fall_items", "BackGround", "End", "floor_2", "front", "ParallaxLayer", "EightImmortalsSea", "texture_filter", "scale", "texture", "Sprite2D", "exit", "visible", "exit2", "Timer", "CanvasLayer", "ZM", "lj_tt", "zmPLAYER", "MonsterBlood", "Smooth", "stage501Boat", "z_index", "collision_layer", "collision_mask", "AnimatableBody2D", "z_as_relative", "one_way_collision", "BossFootPoint", "metadata/_edit_group_", "Marker2D", "FallDeath", "Area2D", "BossFootPointPreview", "_on_fall_death_body_entered", "body_entered"),
+"node_count": 14,
+"node_ids": PackedInt32Array(1283519591, 1028014454, 455591314, 675495968, 2083447054, 587623669, 2115553614, 2124849840, 1806807171, 179555354, 1546396404, 962652420, 2136875704, 756416413),
+"node_paths": [NodePath("wall"), NodePath("BackGround")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 1073741824, 0, 3, 786440, -1, 3, 9, 2, 10, 3, 11, 4, 0, 1073741824, 0, 3, 1048588, -1, 2, 9, 5, 10, 6, 0, 1073741824, 0, 3, 1310733, -1, 2, 9, 7, 10, 6, 0, 1073741825, 0, 26, 786457, -1, 0, 0, 4, 0, 31, 262171, -1, 4, 28, 8, 9, 9, 29, 10, 30, 11, 0, 0, 0, 2147483647, 3145760, -1, 2, 33, 4, 9, 12, 0, 0, 0, 46, 4194346, -1, 5, 43, 13, 9, 14, 44, 15, 45, 15, 1, 16, 0, 7, 0, 31, 262175, -1, 4, 43, 13, 47, 17, 28, 8, 30, 18, 0, 7, 0, 3, 524291, -1, 3, 9, 19, 10, 20, 48, 4, 0, 7, 0, 51, 786481, -1, 2, 9, 21, 50, 4, 0, 0, 0, 53, 4456500, -1, 3, 9, 22, 44, 23, 45, 24, 0, 11, 0, 3, 262147, -1, 2, 9, 25, 10, 26, 0, 0, 0, 51, 4718646, -1, 0, 0),
+"variants": [ExtResource("1"), ExtResource("2"), Vector2(851.5, 670), SubResource("floor_shape"), true, Vector2(-40, -100), SubResource("wall_shape"), Vector2(1743, -100), 1, Vector2(606.25, 279), Vector2(1.2171514, 1.1548822), ExtResource("3"), Vector2(195, 274), -1, Vector2(199, 388), 32, ExtResource("4"), false, ExtResource("5"), Vector2(2, -27), SubResource("boat_shape"), Vector2(400, -37), Vector2(851.5, 928), 0, 22, Vector2(-38.5, -211), SubResource("fall_death_shape")],
+"version": 3
+}

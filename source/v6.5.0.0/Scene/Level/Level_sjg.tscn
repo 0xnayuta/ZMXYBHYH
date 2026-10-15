@@ -1,0 +1,29 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/BaseThroughLevel.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/Level_sjg.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Art/Level/Level_Sjg/248.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/Level/Level_Sjg/131.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/Level/Level_Sjg/232.png" id="5"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(1666, 1025)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(792.5, 2256)
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(1466504861)],
+"names": PackedStringArray("Level_sjg", "script", "GreenDetector", "CollisionShape2D", "ColorRect", "wall", "metadata/_edit_lock_", "wall_left", "floor", "position", "shape", "stop1", "thb", "Monster", "Hero", "Create_1", "Create_2", "Create_3", "Create_4", "create_control", "wait_time", "fall_items", "BackGround", "End", "248", "scale", "texture", "Sprite2D", "front", "ParallaxLayer", "131", "floor_2", "232", "exit", "exit2", "Timer", "CanvasLayer", "ZM", "lj_tt", "zmPLAYER", "MonsterBlood", "Smooth"),
+"node_count": 12,
+"node_ids": PackedInt32Array(120981214, 1221902799, 45743207, 105893002, 1989637868, 653194421, 312079600, 747723841, 45352590, 458132924, 194672932, 2115553614),
+"node_paths": [NodePath("BackGround")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 0, 0, 2147483647, 524293, -1, 1, 6, 2, 0, 1, 0, 3, 524296, -1, 3, 9, 3, 10, 4, 6, 2, 0, 1, 0, 3, 786443, -1, 2, 9, 5, 10, 6, 0, 0, 0, 2147483647, 2359315, -1, 1, 20, 7, 0, 1073741824, 0, 2147483647, 262167, -1, 1, 9, 8, 0, 5, 0, 27, 262168, -1, 3, 9, 9, 25, 10, 26, 11, 0, 1073741824, 0, 29, 524316, -1, 2, 9, 12, 6, 2, 0, 7, 0, 27, 262174, -1, 2, 9, 13, 26, 14, 0, 1073741824, 0, 2147483647, 786463, -1, 1, 6, 2, 0, 9, 0, 27, 524320, -1, 3, 9, 15, 25, 16, 26, 17, 0, 0, 0, 2147483647, 3145761, -1, 2, 9, 18, 6, 2, 0),
+"variants": [ExtResource("1"), ExtResource("2"), true, Vector2(792, 925.5), SubResource("1"), Vector2(1300.75, 126), SubResource("2"), 3.0, Vector2(4, 0), Vector2(675.25, 230.75), Vector2(1.0648856, 1.0745298), ExtResource("3"), Vector2(17, -48), Vector2(454, 328), ExtResource("4"), Vector2(589.25, 557), Vector2(1.0718678, 1), ExtResource("5"), Vector2(768, 326)],
+"version": 3
+}

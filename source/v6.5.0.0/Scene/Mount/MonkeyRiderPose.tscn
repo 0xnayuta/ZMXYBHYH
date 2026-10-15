@@ -1,0 +1,18 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role1AllEquipment/Role_1_Body_Empty.png" id="1"]
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("Pose", "position", "Node2D", "Body", "texture_filter", "texture", "hframes", "vframes", "frame", "Sprite2D"),
+"node_count": 2,
+"node_ids": PackedInt32Array(1643777605, 526188195),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 9, 3, -1, 6, 4, 1, 1, 2, 5, 3, 6, 4, 7, 5, 8, 6, 0),
+"variants": [Vector2(0, -30), 2, Vector2(-15, -27), ExtResource("1"), 6, 14, 49],
+"version": 3
+}

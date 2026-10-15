@@ -1,0 +1,46 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Shop/Choose_item.gd" id="1"]
+[ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="2"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/119.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/121.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/124.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/126.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/MagicWeapon/220.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/MagicWeapon/222.png" id="8"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.568627, 0.32549, 0.129412, 1)
+
+[sub_resource type="StyleBoxEmpty" id="2"]
+
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+corner_radius_top_right = 11
+corner_radius_bottom_right = 6
+corner_detail = 16
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 16
+corner_detail = 9
+
+[resource]
+_bundled = {
+"conn_count": 4,
+"conns": PackedInt32Array(6, 0, 54, 53, 2, 0, 0, 7, 0, 56, 55, 2, 0, 0, 8, 0, 56, 57, 2, 0, 0, 9, 0, 56, 58, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("ChooseItem", "script", "metadata/_edit_lock_", "Node2D", "BBg", "offset_left", "offset_top", "offset_right", "offset_bottom", "color", "ColorRect", "BG", "anchors_preset", "anchor_left", "anchor_top", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "size_flags_horizontal", "size_flags_vertical", "layout_mode", "Title", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "text", "Label", "ItemList", "mouse_default_cursor_shape", "theme_override_colors/font_color", "theme_override_colors/font_outline_color", "theme_override_colors/guide_color", "theme_override_constants/v_separation", "theme_override_constants/outline_size", "theme_override_constants/icon_margin", "theme_override_styles/panel", "theme_override_styles/focus", "max_columns", "Qd", "texture_normal", "texture_pressed", "texture_hover", "texture_disabled", "TextureButton", "Qx", "Close", "VSeparator", "visible", "theme_override_constants/separation", "theme_override_styles/separator", "VSeparator2", "HSeparator", "HSeparator2", "_on_item_list_item_selected", "item_selected", "_on_qd_pressed", "pressed", "_on_qx_pressed", "_on_close_pressed"),
+"node_count": 14,
+"node_ids": PackedInt32Array(1534666826, 811205486, 767135187, 413167721, 1902715664, 234143102, 712200983, 71917706, 494257754, 1570368867, 1145054871, 387186543, 2085584683, 1651230749),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 3, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 10, 4, -1, 6, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 2, 1, 0, 0, 0, 10, 10, -1, 6, 5, 7, 6, 8, 7, 9, 8, 10, 9, 11, 2, 1, 0, 0, 0, 10, 11, -1, 15, 12, 12, 13, 13, 14, 13, 15, 13, 16, 13, 5, 14, 6, 15, 7, 16, 8, 17, 17, 18, 18, 18, 19, 19, 20, 19, 9, 20, 2, 1, 0, 3, 0, 10, 10, -1, 7, 21, 21, 5, 22, 6, 23, 7, 24, 8, 25, 9, 26, 2, 1, 0, 3, 0, 26, 22, -1, 9, 21, 21, 5, 27, 6, 28, 7, 29, 8, 30, 23, 31, 24, 32, 25, 33, 2, 1, 0, 3, 0, 27, 27, -1, 18, 21, 21, 5, 34, 6, 35, 7, 24, 8, 36, 28, 18, 29, 37, 30, 38, 31, 37, 32, 39, 33, 40, 34, 19, 23, 31, 24, 41, 35, 42, 36, 43, 37, 44, 2, 1, 0, 3, 0, 43, 38, -1, 10, 21, 21, 5, 23, 6, 45, 7, 46, 8, 47, 39, 48, 40, 48, 41, 49, 42, 48, 2, 1, 0, 3, 0, 43, 44, -1, 10, 21, 21, 5, 9, 6, 45, 7, 50, 8, 47, 39, 51, 40, 51, 41, 52, 42, 51, 2, 1, 0, 3, 0, 43, 45, -1, 10, 21, 21, 5, 53, 6, 54, 7, 55, 8, 56, 39, 57, 40, 57, 41, 58, 42, 57, 2, 1, 0, 0, 0, 46, 46, -1, 8, 47, 59, 5, 60, 6, 61, 7, 62, 8, 63, 48, 40, 49, 64, 2, 1, 0, 0, 0, 46, 50, -1, 8, 47, 59, 5, 65, 6, 61, 7, 66, 8, 63, 48, 40, 49, 64, 2, 1, 0, 0, 0, 51, 51, -1, 7, 47, 59, 5, 67, 6, 10, 7, 68, 8, 69, 49, 70, 2, 1, 0, 0, 0, 51, 52, -1, 7, 47, 59, 5, 67, 6, 62, 7, 68, 8, 71, 49, 70, 2, 1, 0),
+"variants": [ExtResource("1"), true, -555.0, -361.0, 545.0, 339.0, Color(0, 0, 0, 0.623529), -152.0, -144.0, 164.0, 139.0, Color(0.541176, 0.372549, 0.176471, 1), 8, 0.5, -145.0, -138.0, 158.0, 132.0, 2, 4, Color(0.219608, 0.109804, 0.0313726, 1), 0, 14.0, 42.0, 288.0, 236.0, Color(0.643137, 0.407843, 0.117647, 1), 62.0, 2.0, 237.0, 31.0, ExtResource("2"), 25, "请选择一个物品", 16.0, 43.0, 233.0, Color(1, 1, 1, 1), Color(0, 0, 0, 1), 5, 10, 19, SubResource("1"), SubResource("2"), 3, 238.0, 110.0, 271.0, ExtResource("3"), ExtResource("4"), 232.0, ExtResource("5"), ExtResource("6"), 260.0, -2.0, 301.0, 39.0, ExtResource("7"), ExtResource("8"), false, -160.0, -148.0, -150.0, 142.0, SubResource("3"), 162.0, 172.0, -157.0, 169.0, 145.0, SubResource("4"), -143.0],
+"version": 3
+}
