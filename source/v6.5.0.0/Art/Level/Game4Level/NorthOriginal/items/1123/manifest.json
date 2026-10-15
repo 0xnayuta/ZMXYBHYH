@@ -1,0 +1,21 @@
+{
+  "source": "item\\1123\\1.swf",
+  "fps": 24.0,
+  "animations": {
+    "idle": {
+      "size": [
+        314,
+        79
+      ],
+      "columns": 1,
+      "frames": [
+        0
+      ],
+      "offset": [
+        -157,
+        -79
+      ],
+      "hits": []
+    }
+  }
+}

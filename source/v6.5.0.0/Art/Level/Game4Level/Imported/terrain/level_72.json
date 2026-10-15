@@ -1,0 +1,882 @@
+{
+  "source": "liuligongV3.swf + liuligongV3.dat",
+  "grounds": [
+    {
+      "rect": [
+        -0.4899809999999434,
+        510.79999999999995,
+        1072.179962,
+        38.0
+      ]
+    },
+    {
+      "rect": [
+        3813.601278,
+        510.79999999999995,
+        1186.297444,
+        38.0
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": 55,
+      "type": "BattleItemEntity",
+      "rect": [
+        3461.0,
+        511.0,
+        120.0,
+        22.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1105",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 53,
+      "type": "BattleItemEntity",
+      "rect": [
+        3101.0,
+        511.0,
+        120.0,
+        22.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1105",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 52,
+      "type": "BattleItemEntity",
+      "rect": [
+        2981.0,
+        511.0,
+        120.0,
+        22.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1105",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 51,
+      "type": "BattleItemEntity",
+      "rect": [
+        2741.0,
+        511.0,
+        120.0,
+        22.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1105",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 50,
+      "type": "BattleItemEntity",
+      "rect": [
+        2621.0,
+        511.0,
+        120.0,
+        22.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1105",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 49,
+      "type": "BattleItemEntity",
+      "rect": [
+        2261.0,
+        511.0,
+        120.0,
+        22.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1105",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 48,
+      "type": "BattleItemEntity",
+      "rect": [
+        2141.0,
+        511.0,
+        120.0,
+        22.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1105",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 47,
+      "type": "BattleItemEntity",
+      "rect": [
+        2021.0,
+        511.0,
+        120.0,
+        22.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1105",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 45,
+      "type": "BattleItemEntity",
+      "rect": [
+        1781.0,
+        511.0,
+        120.0,
+        22.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1105",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 44,
+      "type": "BattleItemEntity",
+      "rect": [
+        1661.0,
+        511.0,
+        120.0,
+        22.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1105",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 46,
+      "type": "BattleItemEntity",
+      "rect": [
+        1541.0,
+        511.0,
+        120.0,
+        22.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1105",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 43,
+      "type": "BattleItemEntity",
+      "rect": [
+        1421.0,
+        511.0,
+        120.0,
+        22.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1105",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 40,
+      "type": "BattleItemEntity",
+      "rect": [
+        1177.0,
+        512.0,
+        105.0,
+        22.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisible0AfterTime": "1000",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1105",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 42,
+      "type": "BattleItemEntity",
+      "rect": [
+        1048.0,
+        512.0,
+        133.0,
+        35.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "changeVisible0AfterTime": "1000",
+        "changeVisibleAtStand": "1",
+        "groupType": "ground",
+        "itemId": "1106",
+        "scaleX": "1",
+        "type": "viewers.entitys.others.BattleItemEntity",
+        "visible": "0"
+      }
+    },
+    {
+      "id": 94,
+      "type": "Trigger",
+      "rect": [
+        1357.0,
+        333.5,
+        64.0,
+        201.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "edge",
+        "scaleX": "1",
+        "type": "viewers.component.Trigger"
+      }
+    },
+    {
+      "id": 95,
+      "type": "Trigger",
+      "rect": [
+        1900.5,
+        331.5,
+        64.0,
+        201.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "edge",
+        "scaleX": "1",
+        "type": "viewers.component.Trigger"
+      }
+    },
+    {
+      "id": 96,
+      "type": "Trigger",
+      "rect": [
+        1965.0,
+        330.5,
+        64.0,
+        201.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "edge",
+        "scaleX": "1",
+        "type": "viewers.component.Trigger"
+      }
+    },
+    {
+      "id": 97,
+      "type": "Trigger",
+      "rect": [
+        2381.25,
+        332.5,
+        64.0,
+        201.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "edge",
+        "scaleX": "1",
+        "type": "viewers.component.Trigger"
+      }
+    },
+    {
+      "id": 98,
+      "type": "Trigger",
+      "rect": [
+        2558.0,
+        328.5,
+        64.0,
+        201.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "edge",
+        "scaleX": "1",
+        "type": "viewers.component.Trigger"
+      }
+    },
+    {
+      "id": 99,
+      "type": "Trigger",
+      "rect": [
+        2860.25,
+        332.5,
+        64.0,
+        201.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "edge",
+        "scaleX": "1",
+        "type": "viewers.component.Trigger"
+      }
+    },
+    {
+      "id": 100,
+      "type": "Trigger",
+      "rect": [
+        2925.0,
+        333.5,
+        64.0,
+        201.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "edge",
+        "scaleX": "1",
+        "type": "viewers.component.Trigger"
+      }
+    },
+    {
+      "id": 101,
+      "type": "Trigger",
+      "rect": [
+        3223.25,
+        330.5,
+        64.0,
+        201.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "edge",
+        "scaleX": "1",
+        "type": "viewers.component.Trigger"
+      }
+    },
+    {
+      "id": 102,
+      "type": "Trigger",
+      "rect": [
+        3397.0,
+        333.5,
+        64.0,
+        201.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "edge",
+        "scaleX": "1",
+        "type": "viewers.component.Trigger"
+      }
+    },
+    {
+      "id": 103,
+      "type": "Trigger",
+      "rect": [
+        3581.25,
+        332.5,
+        64.0,
+        201.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "edge",
+        "scaleX": "1",
+        "type": "viewers.component.Trigger"
+      }
+    },
+    {
+      "id": 104,
+      "type": "Trigger",
+      "rect": [
+        3780.0,
+        -10.0,
+        64.0,
+        553.5
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "edge",
+        "scaleX": "1",
+        "type": "viewers.component.Trigger"
+      }
+    },
+    {
+      "id": 105,
+      "type": "DeadEntity",
+      "rect": [
+        -5.0,
+        693.0,
+        5029.0,
+        16.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "groupType": "floor",
+        "itemId": "-1",
+        "scaleX": "1",
+        "trigger": "0",
+        "type": "viewers.entitys.others.DeadEntity"
+      }
+    },
+    {
+      "id": 108,
+      "type": "BattleItemEntity",
+      "rect": [
+        0.0,
+        -93.0,
+        5242.0,
+        90.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "kc",
+        "campId": "0",
+        "groupType": "wall",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    }
+  ],
+  "points": [
+    {
+      "point": 1,
+      "monster": 3308,
+      "position": [
+        733.0,
+        384.0
+      ],
+      "total": 6,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 1
+    },
+    {
+      "point": 2,
+      "monster": 3308,
+      "position": [
+        119.0,
+        378.0
+      ],
+      "total": 6,
+      "after_spawn": 0,
+      "after_dead": 1,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 1
+    },
+    {
+      "point": 3,
+      "monster": 3309,
+      "position": [
+        1448.0,
+        240.5
+      ],
+      "total": 2,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 2
+    },
+    {
+      "point": 4,
+      "monster": 3308,
+      "position": [
+        1743.0,
+        450.5
+      ],
+      "total": 4,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 2
+    },
+    {
+      "point": 5,
+      "monster": 3309,
+      "position": [
+        1820.0,
+        242.5
+      ],
+      "total": 3,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [
+        3,
+        4
+      ],
+      "face": -1,
+      "stage": 2
+    },
+    {
+      "point": 6,
+      "monster": 3308,
+      "position": [
+        1741.0,
+        447.5
+      ],
+      "total": 5,
+      "after_spawn": 5,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 2
+    },
+    {
+      "point": 7,
+      "monster": 3308,
+      "position": [
+        2650.0,
+        424.5
+      ],
+      "total": 4,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 3
+    },
+    {
+      "point": 8,
+      "monster": 3309,
+      "position": [
+        2492.0,
+        248.5
+      ],
+      "total": 2,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 3
+    },
+    {
+      "point": 9,
+      "monster": 3309,
+      "position": [
+        3052.5,
+        249.5
+      ],
+      "total": 2,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 3
+    },
+    {
+      "point": 10,
+      "monster": 3308,
+      "position": [
+        3114.5,
+        437.5
+      ],
+      "total": 4,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [
+        7,
+        8,
+        9
+      ],
+      "face": -1,
+      "stage": 3
+    },
+    {
+      "point": 11,
+      "monster": 3309,
+      "position": [
+        2989.5,
+        243.5
+      ],
+      "total": 2,
+      "after_spawn": 10,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 3
+    },
+    {
+      "point": 12,
+      "monster": 3309,
+      "position": [
+        2539.0,
+        249.5
+      ],
+      "total": 2,
+      "after_spawn": 11,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 3
+    },
+    {
+      "point": 13,
+      "monster": 3309,
+      "position": [
+        3720.0,
+        275.0
+      ],
+      "total": 3,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 4
+    },
+    {
+      "point": 14,
+      "monster": 3308,
+      "position": [
+        3493.5,
+        450.5
+      ],
+      "total": 4,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 4
+    },
+    {
+      "point": 15,
+      "monster": 3309,
+      "position": [
+        3418.0,
+        268.0
+      ],
+      "total": 2,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 4
+    },
+    {
+      "point": 16,
+      "monster": 3308,
+      "position": [
+        3950.5,
+        457.5
+      ],
+      "total": 4,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [
+        13,
+        14,
+        15
+      ],
+      "face": -1,
+      "stage": 4
+    },
+    {
+      "point": 17,
+      "monster": 3309,
+      "position": [
+        3490.5,
+        263.5
+      ],
+      "total": 2,
+      "after_spawn": 16,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 4
+    },
+    {
+      "point": 18,
+      "monster": 3309,
+      "position": [
+        3669.5,
+        278.5
+      ],
+      "total": 3,
+      "after_spawn": 17,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 4
+    },
+    {
+      "point": 20,
+      "monster": 3310,
+      "position": [
+        4696.5,
+        419.5
+      ],
+      "total": 1,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "face": -1,
+      "stage": 5
+    }
+  ],
+  "triggers": [
+    {
+      "x": 330.0,
+      "points": [
+        1,
+        2
+      ]
+    },
+    {
+      "x": 1235.0,
+      "points": [
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "x": 2283.0,
+      "points": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "x": 3219.5,
+      "points": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ]
+    },
+    {
+      "x": 4371.5,
+      "points": [
+        20
+      ]
+    }
+  ],
+  "exit": [
+    4888.5,
+    488.0
+  ]
+}

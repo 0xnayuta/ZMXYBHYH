@@ -1,0 +1,36 @@
+{
+  "source": "item\\1156\\1.swf",
+  "fps": 30.0,
+  "animations": {
+    "dead": {
+      "size": [
+        100,
+        107
+      ],
+      "columns": 1,
+      "frames": [
+        0
+      ],
+      "offset": [
+        -50,
+        -107
+      ],
+      "hits": []
+    },
+    "idle": {
+      "size": [
+        100,
+        111
+      ],
+      "columns": 1,
+      "frames": [
+        0
+      ],
+      "offset": [
+        -50,
+        -107
+      ],
+      "hits": []
+    }
+  }
+}

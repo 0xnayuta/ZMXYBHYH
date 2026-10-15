@@ -1,0 +1,43 @@
+{
+  "source": "item\\1148\\1.swf",
+  "fps": 24.0,
+  "animations": {
+    "attack1": {
+      "size": [
+        1,
+        1
+      ],
+      "columns": 1,
+      "frames": [
+        0
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "hits": [
+        [
+          -900,
+          -20,
+          1800,
+          20
+        ]
+      ]
+    },
+    "idle": {
+      "size": [
+        1,
+        1
+      ],
+      "columns": 1,
+      "frames": [
+        0
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "hits": []
+    }
+  }
+}

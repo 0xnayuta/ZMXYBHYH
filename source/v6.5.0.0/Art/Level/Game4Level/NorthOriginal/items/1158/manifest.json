@@ -1,0 +1,65 @@
+{
+  "source": "item\\1158\\1.swf",
+  "fps": 30.0,
+  "animations": {
+    "attack1": {
+      "size": [
+        162,
+        194
+      ],
+      "columns": 5,
+      "frames": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      "offset": [
+        -81,
+        -194
+      ],
+      "hits": []
+    },
+    "dead": {
+      "size": [
+        1,
+        1
+      ],
+      "columns": 1,
+      "frames": [
+        0
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "hits": []
+    },
+    "idle": {
+      "size": [
+        141,
+        94
+      ],
+      "columns": 1,
+      "frames": [
+        0
+      ],
+      "offset": [
+        -71,
+        -94
+      ],
+      "hits": []
+    }
+  }
+}

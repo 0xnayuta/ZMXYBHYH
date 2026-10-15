@@ -1,0 +1,553 @@
+{
+  "source": "assets/map/yunhaiV1.swf + .dat; YunChuanBattleMap.as",
+  "screens": 17,
+  "screen_width": 1200,
+  "grounds": [
+    {
+      "rect": [
+        177.18037101000002,
+        783.56224068,
+        73.73925798,
+        18.37551864
+      ],
+      "symbol": "ground"
+    }
+  ],
+  "objects": [
+    {
+      "id": 43,
+      "type": "BattleItemEntity",
+      "rect": [
+        90.0,
+        366.0,
+        144.0,
+        60.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "floor",
+        "itemId": "1117",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    },
+    {
+      "id": 44,
+      "type": "BattleItemEntity",
+      "rect": [
+        395.5,
+        518.5,
+        90.0,
+        32.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "floor",
+        "itemId": "1118",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    },
+    {
+      "id": 45,
+      "type": "BattleItemEntity",
+      "rect": [
+        660.0,
+        399.0,
+        136.0,
+        60.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "floor",
+        "itemId": "1116",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    },
+    {
+      "id": 46,
+      "type": "HurtEntity",
+      "rect": [
+        952.5,
+        311.5,
+        145.0,
+        58.0
+      ],
+      "properties": {
+        "atk": "2900",
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "floor",
+        "itemId": "1121",
+        "skillId": "5003100",
+        "type": "viewers.entitys.others.HurtEntity"
+      }
+    },
+    {
+      "id": 48,
+      "type": "MoveEntity",
+      "rect": [
+        90.5,
+        357.0,
+        145.0,
+        56.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "kc",
+        "campId": "0",
+        "groupType": "floor",
+        "itemId": "1122",
+        "moveLoop": "1",
+        "moveTime": "2000",
+        "scaleX": "1",
+        "screen": "2",
+        "speedX": "0",
+        "speedY": "30",
+        "trigger": "0",
+        "type": "viewers.entitys.others.MoveEntity"
+      }
+    },
+    {
+      "id": 49,
+      "type": "HurtEntity",
+      "rect": [
+        411.5,
+        283.5,
+        145.0,
+        58.0
+      ],
+      "properties": {
+        "atk": "2900",
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "floor",
+        "itemId": "1121",
+        "screen": "2",
+        "skillId": "5003100",
+        "type": "viewers.entitys.others.HurtEntity"
+      }
+    },
+    {
+      "id": 50,
+      "type": "BattleItemEntity",
+      "rect": [
+        678.5,
+        482.5,
+        90.0,
+        32.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "floor",
+        "itemId": "1118",
+        "screen": "2",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    },
+    {
+      "id": 51,
+      "type": "DestroyItemEntity",
+      "rect": [
+        917.5,
+        338.5,
+        185.0,
+        55.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "dead": "1",
+        "delayRevive": "3000",
+        "dieTime": "1000",
+        "groupType": "floor",
+        "itemId": "1120",
+        "screen": "2",
+        "type": "viewers.entitys.others.DestroyItemEntity"
+      }
+    },
+    {
+      "id": 52,
+      "type": "BattleItemEntity",
+      "rect": [
+        90.0,
+        418.5,
+        80.0,
+        25.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "floor",
+        "itemId": "1119",
+        "screen": "3",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    },
+    {
+      "id": 53,
+      "type": "HurtEntity",
+      "rect": [
+        327.5,
+        338.5,
+        145.0,
+        58.0
+      ],
+      "properties": {
+        "atk": "2900",
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "floor",
+        "itemId": "1121",
+        "screen": "3",
+        "skillId": "5003100",
+        "type": "viewers.entitys.others.HurtEntity"
+      }
+    },
+    {
+      "id": 54,
+      "type": "DestroyItemEntity",
+      "rect": [
+        640.5,
+        280.5,
+        185.0,
+        55.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "dead": "1",
+        "delayRevive": "3000",
+        "dieTime": "1000",
+        "groupType": "floor",
+        "itemId": "1120",
+        "screen": "3",
+        "type": "viewers.entitys.others.DestroyItemEntity"
+      }
+    },
+    {
+      "id": 55,
+      "type": "DestroyItemEntity",
+      "rect": [
+        958.5,
+        216.5,
+        185.0,
+        55.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "dead": "1",
+        "delayRevive": "3000",
+        "dieTime": "1500",
+        "groupType": "floor",
+        "itemId": "1120",
+        "screen": "3",
+        "type": "viewers.entitys.others.DestroyItemEntity"
+      }
+    },
+    {
+      "id": 56,
+      "type": "BattleItemEntity",
+      "rect": [
+        90.0,
+        343.0,
+        80.0,
+        25.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "floor",
+        "itemId": "1119",
+        "screen": "4",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    },
+    {
+      "id": 57,
+      "type": "MoveEntity",
+      "rect": [
+        328.5,
+        331.0,
+        145.0,
+        56.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "kc",
+        "campId": "0",
+        "groupType": "floor",
+        "itemId": "1122",
+        "moveLoop": "1",
+        "moveTime": "1600",
+        "scaleX": "1",
+        "screen": "4",
+        "speedX": "0",
+        "speedY": "30",
+        "trigger": "0",
+        "type": "viewers.entitys.others.MoveEntity"
+      }
+    },
+    {
+      "id": 58,
+      "type": "DestroyItemEntity",
+      "rect": [
+        622.5,
+        257.0,
+        185.0,
+        55.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "dead": "1",
+        "delayRevive": "3000",
+        "dieTime": "1500",
+        "groupType": "floor",
+        "itemId": "1120",
+        "screen": "4",
+        "type": "viewers.entitys.others.DestroyItemEntity"
+      }
+    },
+    {
+      "id": 59,
+      "type": "BattleItemEntity",
+      "rect": [
+        973.5,
+        344.5,
+        90.0,
+        32.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "floor",
+        "itemId": "1118",
+        "screen": "4",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    },
+    {
+      "id": 60,
+      "type": "BattleItemEntity",
+      "rect": [
+        90.0,
+        327.0,
+        136.0,
+        60.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "floor",
+        "itemId": "1116",
+        "screen": "5",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    },
+    {
+      "id": 61,
+      "type": "MoveEntity",
+      "rect": [
+        423.5,
+        457.0,
+        145.0,
+        56.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "kc",
+        "campId": "0",
+        "groupType": "floor",
+        "itemId": "1122",
+        "moveLoop": "1",
+        "moveTime": "2000",
+        "scaleX": "1",
+        "screen": "5",
+        "speedX": "40",
+        "speedY": "0",
+        "trigger": "0",
+        "type": "viewers.entitys.others.MoveEntity"
+      }
+    },
+    {
+      "id": 62,
+      "type": "BattleItemEntity",
+      "rect": [
+        1039.5,
+        399.5,
+        80.0,
+        25.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "floor",
+        "itemId": "1119",
+        "screen": "5",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    },
+    {
+      "id": 63,
+      "type": "DeadEntity",
+      "rect": [
+        0.0,
+        629.0,
+        20400.0,
+        25.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "groupType": "floor",
+        "itemId": "-1",
+        "scaleX": "1",
+        "trigger": "0",
+        "type": "viewers.entitys.others.DeadEntity"
+      }
+    },
+    {
+      "id": 64,
+      "type": "BattleItemEntity",
+      "rect": [
+        1062.0,
+        -0.5,
+        135.0,
+        596.5
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "ground",
+        "screen": "6",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    },
+    {
+      "id": 65,
+      "type": "BattleItemEntity",
+      "rect": [
+        995.0,
+        368.0,
+        67.0,
+        233.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "ground",
+        "screen": "6",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    },
+    {
+      "id": 66,
+      "type": "BattleItemEntity",
+      "rect": [
+        834.0,
+        368.0,
+        159.0,
+        42.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "ground",
+        "screen": "6",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    },
+    {
+      "id": 67,
+      "type": "DestroyItemEntity",
+      "rect": [
+        449.5,
+        268.5,
+        185.0,
+        55.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "dead": "1",
+        "delayRevive": "3000",
+        "dieTime": "1500",
+        "groupType": "floor",
+        "itemId": "1120",
+        "screen": "6",
+        "type": "viewers.entitys.others.DestroyItemEntity"
+      }
+    },
+    {
+      "id": 69,
+      "type": "BattleItemEntity",
+      "rect": [
+        92.5,
+        341.5,
+        90.0,
+        32.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "groupType": "floor",
+        "itemId": "1118",
+        "screen": "6",
+        "type": "viewers.entitys.others.BattleItemEntity"
+      }
+    }
+  ],
+  "points": [
+    {
+      "point": 1,
+      "monster": 3352,
+      "position": [
+        27.0,
+        141.0
+      ],
+      "stage": 1,
+      "total": 1,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "face": 1,
+      "ignore_count_multiplier": true
+    }
+  ],
+  "triggers": [
+    {
+      "x": 326.0,
+      "points": [
+        1
+      ]
+    }
+  ],
+  "exit": [
+    20189.0,
+    315.0
+  ]
+}

@@ -1,0 +1,181 @@
+[
+    {
+        "layer":  "bg30",
+        "asset_type":  "bitmap",
+        "width":  1440,
+        "height":  600,
+        "x":  null,
+        "y":  null,
+        "repeat":  1,
+        "speed":  20,
+        "assets":  [
+                       "res://Art/Level/Game4Level/Imported/pool/59209916f5252df9e220ee72d6c65346ec1ec68dfd7ce3758a8f210cdb20be79.png"
+                   ]
+    },
+    {
+        "layer":  "bg20",
+        "asset_type":  "bitmap",
+        "width":  3345,
+        "height":  340,
+        "x":  0,
+        "y":  138,
+        "repeat":  1,
+        "speed":  20,
+        "assets":  [
+                       "res://Art/Level/Game4Level/Imported/pool/cb10692efca54908ca0f4b623cf3b00844ae9dc584c1b202240b13bdc65f1375.png"
+                   ]
+    },
+    {
+        "layer":  "bg10",
+        "asset_type":  "bitmap",
+        "width":  997,
+        "height":  600,
+        "x":  0,
+        "y":  0,
+        "repeat":  1,
+        "speed":  20,
+        "assets":  [
+                       "res://Art/Level/Game4Level/Imported/pool/ea0ffe29b72c14ea10dac2ee232133f83c1486d65ea61631a6dd0c937cee12f6.png"
+                   ]
+    },
+    {
+        "layer":  "bg11",
+        "asset_type":  "bitmap",
+        "width":  997,
+        "height":  600,
+        "x":  997,
+        "y":  0,
+        "repeat":  1,
+        "speed":  20,
+        "assets":  [
+                       "res://Art/Level/Game4Level/Imported/pool/7337d23454d731c17feebcb2b8f8be51670b2ba62b6eb024bbfa7c1e6caac608.png"
+                   ]
+    },
+    {
+        "layer":  "bg12",
+        "asset_type":  "bitmap",
+        "width":  997,
+        "height":  600,
+        "x":  1994,
+        "y":  0,
+        "repeat":  1,
+        "speed":  20,
+        "assets":  [
+                       "res://Art/Level/Game4Level/Imported/pool/ea0ffe29b72c14ea10dac2ee232133f83c1486d65ea61631a6dd0c937cee12f6.png"
+                   ]
+    },
+    {
+        "layer":  "bg13",
+        "asset_type":  "bitmap",
+        "width":  997,
+        "height":  600,
+        "x":  2991,
+        "y":  0,
+        "repeat":  1,
+        "speed":  20,
+        "assets":  [
+                       "res://Art/Level/Game4Level/Imported/pool/7337d23454d731c17feebcb2b8f8be51670b2ba62b6eb024bbfa7c1e6caac608.png"
+                   ]
+    },
+    {
+        "layer":  "bg15",
+        "asset_type":  "bitmap",
+        "width":  997,
+        "height":  600,
+        "x":  3988,
+        "y":  0,
+        "repeat":  1,
+        "speed":  20,
+        "assets":  [
+                       "res://Art/Level/Game4Level/Imported/pool/d760e960a22b528d7e44a1da1c03d37f8ca9408c85aa7763849964faa42fd2e5.png"
+                   ]
+    },
+    {
+        "layer":  "bg18",
+        "asset_type":  "frame_animation",
+        "width":  452,
+        "height":  72,
+        "x":  1493,
+        "y":  514,
+        "repeat":  1,
+        "speed":  20,
+        "assets":  [
+                       "res://Art/Level/Game4Level/Imported/pool/202ff3c6e4f680942139226e052d93c827280d1c12e92d996a7e81fdbad2bb4f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/202ff3c6e4f680942139226e052d93c827280d1c12e92d996a7e81fdbad2bb4f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/202ff3c6e4f680942139226e052d93c827280d1c12e92d996a7e81fdbad2bb4f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/202ff3c6e4f680942139226e052d93c827280d1c12e92d996a7e81fdbad2bb4f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/6d6a4933794f8c6477812fabbd897ed75c4279327bb7484c507c3f26965e5c4e.png",
+                       "res://Art/Level/Game4Level/Imported/pool/6d6a4933794f8c6477812fabbd897ed75c4279327bb7484c507c3f26965e5c4e.png",
+                       "res://Art/Level/Game4Level/Imported/pool/6d6a4933794f8c6477812fabbd897ed75c4279327bb7484c507c3f26965e5c4e.png",
+                       "res://Art/Level/Game4Level/Imported/pool/6d6a4933794f8c6477812fabbd897ed75c4279327bb7484c507c3f26965e5c4e.png",
+                       "res://Art/Level/Game4Level/Imported/pool/666a12dfb9a204394519504c1231a397ee1a1c7933ea45769cbafde75d4386a1.png",
+                       "res://Art/Level/Game4Level/Imported/pool/666a12dfb9a204394519504c1231a397ee1a1c7933ea45769cbafde75d4386a1.png",
+                       "res://Art/Level/Game4Level/Imported/pool/666a12dfb9a204394519504c1231a397ee1a1c7933ea45769cbafde75d4386a1.png",
+                       "res://Art/Level/Game4Level/Imported/pool/666a12dfb9a204394519504c1231a397ee1a1c7933ea45769cbafde75d4386a1.png",
+                       "res://Art/Level/Game4Level/Imported/pool/57752722f083176833f6b1eda85f78e6f50d3eb4c1cc53169d545031675c830d.png",
+                       "res://Art/Level/Game4Level/Imported/pool/57752722f083176833f6b1eda85f78e6f50d3eb4c1cc53169d545031675c830d.png",
+                       "res://Art/Level/Game4Level/Imported/pool/57752722f083176833f6b1eda85f78e6f50d3eb4c1cc53169d545031675c830d.png",
+                       "res://Art/Level/Game4Level/Imported/pool/57752722f083176833f6b1eda85f78e6f50d3eb4c1cc53169d545031675c830d.png",
+                       "res://Art/Level/Game4Level/Imported/pool/97f019e84c4c02b92e5cf75d2c7512628a905e3a82c0bf7c0860fc0c5c7748cc.png",
+                       "res://Art/Level/Game4Level/Imported/pool/97f019e84c4c02b92e5cf75d2c7512628a905e3a82c0bf7c0860fc0c5c7748cc.png",
+                       "res://Art/Level/Game4Level/Imported/pool/97f019e84c4c02b92e5cf75d2c7512628a905e3a82c0bf7c0860fc0c5c7748cc.png",
+                       "res://Art/Level/Game4Level/Imported/pool/97f019e84c4c02b92e5cf75d2c7512628a905e3a82c0bf7c0860fc0c5c7748cc.png",
+                       "res://Art/Level/Game4Level/Imported/pool/733c5addcb5496282f9c7cab7ae84134e2d40626147c4642afbaf768c9e96b89.png",
+                       "res://Art/Level/Game4Level/Imported/pool/733c5addcb5496282f9c7cab7ae84134e2d40626147c4642afbaf768c9e96b89.png",
+                       "res://Art/Level/Game4Level/Imported/pool/733c5addcb5496282f9c7cab7ae84134e2d40626147c4642afbaf768c9e96b89.png",
+                       "res://Art/Level/Game4Level/Imported/pool/733c5addcb5496282f9c7cab7ae84134e2d40626147c4642afbaf768c9e96b89.png",
+                       "res://Art/Level/Game4Level/Imported/pool/871c517689f5b8e984964de01f30c07ffeb02d4aeead4ee1acb39732f48b022f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/871c517689f5b8e984964de01f30c07ffeb02d4aeead4ee1acb39732f48b022f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/871c517689f5b8e984964de01f30c07ffeb02d4aeead4ee1acb39732f48b022f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/871c517689f5b8e984964de01f30c07ffeb02d4aeead4ee1acb39732f48b022f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/43ccf4ace421cdcd765daba1abd3f490859f280efd8f7477aecd25f3d34f79dd.png",
+                       "res://Art/Level/Game4Level/Imported/pool/43ccf4ace421cdcd765daba1abd3f490859f280efd8f7477aecd25f3d34f79dd.png",
+                       "res://Art/Level/Game4Level/Imported/pool/43ccf4ace421cdcd765daba1abd3f490859f280efd8f7477aecd25f3d34f79dd.png",
+                       "res://Art/Level/Game4Level/Imported/pool/43ccf4ace421cdcd765daba1abd3f490859f280efd8f7477aecd25f3d34f79dd.png"
+                   ]
+    },
+    {
+        "layer":  "bg19",
+        "asset_type":  "frame_animation",
+        "width":  452,
+        "height":  72,
+        "x":  3488,
+        "y":  514,
+        "repeat":  1,
+        "speed":  20,
+        "assets":  [
+                       "res://Art/Level/Game4Level/Imported/pool/202ff3c6e4f680942139226e052d93c827280d1c12e92d996a7e81fdbad2bb4f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/202ff3c6e4f680942139226e052d93c827280d1c12e92d996a7e81fdbad2bb4f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/202ff3c6e4f680942139226e052d93c827280d1c12e92d996a7e81fdbad2bb4f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/202ff3c6e4f680942139226e052d93c827280d1c12e92d996a7e81fdbad2bb4f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/6d6a4933794f8c6477812fabbd897ed75c4279327bb7484c507c3f26965e5c4e.png",
+                       "res://Art/Level/Game4Level/Imported/pool/6d6a4933794f8c6477812fabbd897ed75c4279327bb7484c507c3f26965e5c4e.png",
+                       "res://Art/Level/Game4Level/Imported/pool/6d6a4933794f8c6477812fabbd897ed75c4279327bb7484c507c3f26965e5c4e.png",
+                       "res://Art/Level/Game4Level/Imported/pool/6d6a4933794f8c6477812fabbd897ed75c4279327bb7484c507c3f26965e5c4e.png",
+                       "res://Art/Level/Game4Level/Imported/pool/666a12dfb9a204394519504c1231a397ee1a1c7933ea45769cbafde75d4386a1.png",
+                       "res://Art/Level/Game4Level/Imported/pool/666a12dfb9a204394519504c1231a397ee1a1c7933ea45769cbafde75d4386a1.png",
+                       "res://Art/Level/Game4Level/Imported/pool/666a12dfb9a204394519504c1231a397ee1a1c7933ea45769cbafde75d4386a1.png",
+                       "res://Art/Level/Game4Level/Imported/pool/666a12dfb9a204394519504c1231a397ee1a1c7933ea45769cbafde75d4386a1.png",
+                       "res://Art/Level/Game4Level/Imported/pool/57752722f083176833f6b1eda85f78e6f50d3eb4c1cc53169d545031675c830d.png",
+                       "res://Art/Level/Game4Level/Imported/pool/57752722f083176833f6b1eda85f78e6f50d3eb4c1cc53169d545031675c830d.png",
+                       "res://Art/Level/Game4Level/Imported/pool/57752722f083176833f6b1eda85f78e6f50d3eb4c1cc53169d545031675c830d.png",
+                       "res://Art/Level/Game4Level/Imported/pool/57752722f083176833f6b1eda85f78e6f50d3eb4c1cc53169d545031675c830d.png",
+                       "res://Art/Level/Game4Level/Imported/pool/97f019e84c4c02b92e5cf75d2c7512628a905e3a82c0bf7c0860fc0c5c7748cc.png",
+                       "res://Art/Level/Game4Level/Imported/pool/97f019e84c4c02b92e5cf75d2c7512628a905e3a82c0bf7c0860fc0c5c7748cc.png",
+                       "res://Art/Level/Game4Level/Imported/pool/97f019e84c4c02b92e5cf75d2c7512628a905e3a82c0bf7c0860fc0c5c7748cc.png",
+                       "res://Art/Level/Game4Level/Imported/pool/97f019e84c4c02b92e5cf75d2c7512628a905e3a82c0bf7c0860fc0c5c7748cc.png",
+                       "res://Art/Level/Game4Level/Imported/pool/733c5addcb5496282f9c7cab7ae84134e2d40626147c4642afbaf768c9e96b89.png",
+                       "res://Art/Level/Game4Level/Imported/pool/733c5addcb5496282f9c7cab7ae84134e2d40626147c4642afbaf768c9e96b89.png",
+                       "res://Art/Level/Game4Level/Imported/pool/733c5addcb5496282f9c7cab7ae84134e2d40626147c4642afbaf768c9e96b89.png",
+                       "res://Art/Level/Game4Level/Imported/pool/733c5addcb5496282f9c7cab7ae84134e2d40626147c4642afbaf768c9e96b89.png",
+                       "res://Art/Level/Game4Level/Imported/pool/871c517689f5b8e984964de01f30c07ffeb02d4aeead4ee1acb39732f48b022f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/871c517689f5b8e984964de01f30c07ffeb02d4aeead4ee1acb39732f48b022f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/871c517689f5b8e984964de01f30c07ffeb02d4aeead4ee1acb39732f48b022f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/871c517689f5b8e984964de01f30c07ffeb02d4aeead4ee1acb39732f48b022f.png",
+                       "res://Art/Level/Game4Level/Imported/pool/43ccf4ace421cdcd765daba1abd3f490859f280efd8f7477aecd25f3d34f79dd.png",
+                       "res://Art/Level/Game4Level/Imported/pool/43ccf4ace421cdcd765daba1abd3f490859f280efd8f7477aecd25f3d34f79dd.png",
+                       "res://Art/Level/Game4Level/Imported/pool/43ccf4ace421cdcd765daba1abd3f490859f280efd8f7477aecd25f3d34f79dd.png",
+                       "res://Art/Level/Game4Level/Imported/pool/43ccf4ace421cdcd765daba1abd3f490859f280efd8f7477aecd25f3d34f79dd.png"
+                   ]
+    }
+]

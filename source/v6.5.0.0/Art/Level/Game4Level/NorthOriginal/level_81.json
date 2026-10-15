@@ -1,0 +1,1472 @@
+{
+  "source": "Dungeon.xml 35; map/huzhongdongtian.swf + .dat",
+  "number": 81,
+  "nightmare": false,
+  "dungeon": {
+    "id": "35",
+    "name": "壶中洞天",
+    "bossName": "空间祖巫",
+    "dropName": "缠星藻、青铜石、镜魂丝、帝空扳指制作书",
+    "shareDungeonID": "",
+    "ticket": "",
+    "classType": "HuZhongDongTian",
+    "dungeonItem": "",
+    "monsterID": "3425;3426;3427;3423;3424;3422",
+    "monsterNum": "26;20;20;1;1;1",
+    "dropId": "107,108,109,116;107,108,109,116;107,108,109,116;-1;-1;1180,1260",
+    "comefromId": "-1",
+    "fromId": "34",
+    "prevId": "34",
+    "needLevel": "1",
+    "nextId": "36",
+    "mapURL": "huzhongdongtian",
+    "manhua": "",
+    "icon": "",
+    "noticeId": "",
+    "screenWidth": "1200",
+    "width": "4997",
+    "height": "750",
+    "sceneStart": "0,1000,2000,3000,3784",
+    "birthPoint": "90,500",
+    "boss": "1",
+    "dailyCountMax": "-1",
+    "weekCountMax": "-1",
+    "maxCount": "-1",
+    "time": "-1",
+    "avgClearTime": "180",
+    "dungeonProp": "-1",
+    "equips": "",
+    "horseId": "-1",
+    "horseId2": "",
+    "horse2Probability": "",
+    "petIds": "-1",
+    "bgMusic": "8",
+    "totalNum": "67",
+    "isHide": "0",
+    "specialDoor": "0",
+    "clearType": "2",
+    "bossId": "3422",
+    "challengeAgain": "1",
+    "consumePointTicket": "0",
+    "difficult": "0",
+    "consumePower": "-1",
+    "showItemId": "-1",
+    "resurrection": "1",
+    "freeResurrection": "1",
+    "canEquipSword": "1",
+    "resurrectionPlace": "",
+    "fixedAttribute": "0",
+    "resurrectionTime": "-1",
+    "order": "",
+    "completeTime": "",
+    "videoRole2001": "http://my.4399.com/forums/mtag-82186",
+    "videoRole2002": "http://my.4399.com/forums/mtag-82186",
+    "videoRole2003": "http://my.4399.com/forums/mtag-82186",
+    "videoRole2004": "http://my.4399.com/forums/mtag-82186",
+    "videoRole2005": "http://my.4399.com/forums/mtag-82186",
+    "videoRole20001": "http://my.4399.com/forums/mtag-82186",
+    "videoRole20002": "http://my.4399.com/forums/mtag-82186",
+    "videoRole": "http://my.4399.com/forums/mtag-82186",
+    "take": "1;1;1",
+    "closeSkill": "",
+    "closeSys": "",
+    "param": "",
+    "challengeAgainByTicket": "0",
+    "levelMosters": "",
+    "cheatScore": "",
+    "canCarryItemIds": "",
+    "itemBagLimit": "-1",
+    "petCrystal": "0"
+  },
+  "name": "壶中洞天",
+  "width": 4997.0,
+  "height": 750.0,
+  "grounds": [
+    {
+      "symbol": "ground",
+      "rect": [
+        7.82879779999999,
+        649.3,
+        436.3424044000001,
+        38.0
+      ],
+      "one_way": false
+    },
+    {
+      "symbol": "ground",
+      "rect": [
+        628.7787978,
+        648.3,
+        436.34240439999996,
+        38.0
+      ],
+      "one_way": false
+    },
+    {
+      "symbol": "ground",
+      "rect": [
+        2967.6287978,
+        649.3,
+        436.3424044000003,
+        38.0
+      ],
+      "one_way": false
+    },
+    {
+      "symbol": "ground",
+      "rect": [
+        1248.653364,
+        649.3,
+        278.49327200000016,
+        38.0
+      ],
+      "one_way": false
+    },
+    {
+      "symbol": "ground",
+      "rect": [
+        2213.603364,
+        649.3,
+        278.4932719999997,
+        38.0
+      ],
+      "one_way": false
+    },
+    {
+      "symbol": "ground",
+      "rect": [
+        1683.6634292,
+        649.3,
+        142.47314159999996,
+        38.0
+      ],
+      "one_way": false
+    },
+    {
+      "symbol": "ground",
+      "rect": [
+        1925.6134292,
+        649.3,
+        142.4731416000002,
+        38.0
+      ],
+      "one_way": false
+    },
+    {
+      "symbol": "ground",
+      "rect": [
+        2607.6134291999997,
+        649.3,
+        142.47314160000042,
+        38.0
+      ],
+      "one_way": false
+    },
+    {
+      "symbol": "ground",
+      "rect": [
+        3572.5634292,
+        649.3,
+        142.47314160000042,
+        38.0
+      ],
+      "one_way": false
+    },
+    {
+      "symbol": "ground",
+      "rect": [
+        3954.3098632,
+        634.9499999999999,
+        864.8802735999998,
+        38.0
+      ],
+      "one_way": false
+    }
+  ],
+  "backgrounds": [
+    {
+      "name": "bg12B",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg12B.png",
+      "origin": [
+        -109,
+        -36
+      ],
+      "properties": {
+        "x": "535",
+        "y": "660"
+      },
+      "position": [
+        535.0,
+        660.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg13B",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg13B.png",
+      "origin": [
+        -109,
+        -36
+      ],
+      "properties": {
+        "x": "840",
+        "y": "633"
+      },
+      "position": [
+        840.0,
+        633.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg14B",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg14B.png",
+      "origin": [
+        -109,
+        -36
+      ],
+      "properties": {
+        "x": "1150",
+        "y": "650"
+      },
+      "position": [
+        1150.0,
+        650.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg15B",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg15B.png",
+      "origin": [
+        -109,
+        -36
+      ],
+      "properties": {
+        "x": "1366",
+        "y": "635"
+      },
+      "position": [
+        1366.0,
+        635.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg16B",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg16B.png",
+      "origin": [
+        -109,
+        -36
+      ],
+      "properties": {
+        "x": "1600",
+        "y": "651"
+      },
+      "position": [
+        1600.0,
+        651.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg17B",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg17B.png",
+      "origin": [
+        -109,
+        -36
+      ],
+      "properties": {
+        "x": "1852",
+        "y": "640"
+      },
+      "position": [
+        1852.0,
+        640.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg18B",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg18B.png",
+      "origin": [
+        -109,
+        -36
+      ],
+      "properties": {
+        "x": "2127",
+        "y": "652"
+      },
+      "position": [
+        2127.0,
+        652.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg19B",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg19B.png",
+      "origin": [
+        -109,
+        -36
+      ],
+      "properties": {
+        "x": "2340",
+        "y": "631"
+      },
+      "position": [
+        2340.0,
+        631.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg19C",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg19C.png",
+      "origin": [
+        -109,
+        -36
+      ],
+      "properties": {
+        "x": "2855",
+        "y": "670"
+      },
+      "position": [
+        2855.0,
+        670.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg19D",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg19D.png",
+      "origin": [
+        -109,
+        -36
+      ],
+      "properties": {
+        "x": "3485",
+        "y": "660"
+      },
+      "position": [
+        3485.0,
+        660.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg19E",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg19E.png",
+      "origin": [
+        -109,
+        -36
+      ],
+      "properties": {
+        "x": "3834",
+        "y": "670"
+      },
+      "position": [
+        3834.0,
+        670.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg19H",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg19H.png",
+      "origin": [
+        -109,
+        -36
+      ],
+      "properties": {
+        "x": "4905",
+        "y": "663"
+      },
+      "position": [
+        4905.0,
+        663.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg10",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg10.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "x": "0",
+        "y": "450"
+      },
+      "position": [
+        0.0,
+        450.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg11",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg11.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "x": "3947",
+        "y": "600"
+      },
+      "position": [
+        3947.0,
+        600.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg11A",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg11A.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "x": "0",
+        "y": "630"
+      },
+      "position": [
+        0.0,
+        630.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg12",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg12.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "x": "4278",
+        "y": "413"
+      },
+      "position": [
+        4278.0,
+        413.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg12A",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg12A.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "x": "615",
+        "y": "630"
+      },
+      "position": [
+        615.0,
+        630.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg13A",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg13A.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "x": "1234",
+        "y": "630"
+      },
+      "position": [
+        1234.0,
+        630.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg14A",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg14A.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "x": "1673",
+        "y": "630"
+      },
+      "position": [
+        1673.0,
+        630.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg15A",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg15A.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "x": "1909",
+        "y": "630"
+      },
+      "position": [
+        1909.0,
+        630.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg16A",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg16A.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "x": "2199",
+        "y": "630"
+      },
+      "position": [
+        2199.0,
+        630.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg17A",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg17A.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "x": "2595",
+        "y": "630"
+      },
+      "position": [
+        2595.0,
+        630.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg18A",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg18A.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "x": "2956",
+        "y": "630"
+      },
+      "position": [
+        2956.0,
+        630.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg19A",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg19A.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "x": "3563",
+        "y": "630"
+      },
+      "position": [
+        3563.0,
+        630.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg30",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg30.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "speedX": "1.13",
+        "x": "0",
+        "y": "0"
+      },
+      "position": [
+        0.0,
+        0.0
+      ],
+      "visible": true
+    },
+    {
+      "name": "bg31",
+      "path": "res://Art/Level/Game4Level/NorthOriginal/maps/huzhongdongtian/bg31.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {
+        "speedX": "1.13",
+        "x": "240",
+        "y": "0"
+      },
+      "position": [
+        240.0,
+        0.0
+      ],
+      "visible": true
+    }
+  ],
+  "objects": [
+    {
+      "id": 39,
+      "type": "HurtEntity",
+      "rect": [
+        0.0,
+        659.0,
+        5000.0,
+        91.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "ground",
+        "itemId": "1155",
+        "skillId": "5003700",
+        "type": "viewers.entitys.others.HurtEntity"
+      }
+    }
+  ],
+  "points": [
+    {
+      "point": 50,
+      "monster": 3422,
+      "position": [
+        4373.0,
+        513.0
+      ],
+      "total": 1,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "50",
+        "total": "1"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3422",
+        "view": "3"
+      },
+      "stage": 6,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 1,
+      "monster": 3425,
+      "position": [
+        350.0,
+        553.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "1",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "0.5",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3425",
+        "view": "1"
+      },
+      "stage": 1,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 4,
+      "monster": 3427,
+      "position": [
+        1850.0,
+        446.0
+      ],
+      "total": 4,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "4",
+        "total": "4"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3427",
+        "view": "1"
+      },
+      "stage": 2,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 8,
+      "monster": 3426,
+      "position": [
+        2690.0,
+        539.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "8",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3426",
+        "view": "1"
+      },
+      "stage": 3,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 7,
+      "monster": 3425,
+      "position": [
+        2074.0,
+        535.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "7",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "0.5",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3425",
+        "view": "1"
+      },
+      "stage": 3,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 2,
+      "monster": 3426,
+      "position": [
+        872.0,
+        549.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "2",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3426",
+        "view": "1"
+      },
+      "stage": 1,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 3,
+      "monster": 3425,
+      "position": [
+        1191.0,
+        525.0
+      ],
+      "total": 4,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "3",
+        "total": "4"
+      },
+      "tile": {
+        "birthInterval": "0.5",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3425",
+        "view": "1"
+      },
+      "stage": 2,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 6,
+      "monster": 3427,
+      "position": [
+        1192.0,
+        453.0
+      ],
+      "total": 4,
+      "face": -1.0,
+      "after_spawn": 5,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "5",
+        "createAfterPointDealAll": "0",
+        "id": "6",
+        "total": "4"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3427",
+        "view": "1"
+      },
+      "stage": 2,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 5,
+      "monster": 3425,
+      "position": [
+        1850.0,
+        517.0
+      ],
+      "total": 4,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [
+        3,
+        4
+      ],
+      "properties": {
+        "createAfterAllPointDead": "3,4",
+        "createAfterPoint": "-1",
+        "createAfterPointDealAll": "-1",
+        "id": "5",
+        "total": "4"
+      },
+      "tile": {
+        "birthInterval": "0.5",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3425",
+        "view": "1"
+      },
+      "stage": 2,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 12,
+      "monster": 3427,
+      "position": [
+        2696.0,
+        428.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 11,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "11",
+        "createAfterPointDealAll": "0",
+        "id": "12",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3427",
+        "view": "1"
+      },
+      "stage": 3,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 10,
+      "monster": 3425,
+      "position": [
+        2738.0,
+        540.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [
+        7,
+        8,
+        9
+      ],
+      "properties": {
+        "createAfterAllPointDead": "7,8,9",
+        "createAfterPoint": "-1",
+        "createAfterPointDealAll": "-1",
+        "id": "10",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "0.5",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3425",
+        "view": "1"
+      },
+      "stage": 3,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 11,
+      "monster": 3426,
+      "position": [
+        2118.0,
+        537.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 10,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "10",
+        "createAfterPointDealAll": "0",
+        "id": "11",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3426",
+        "view": "1"
+      },
+      "stage": 3,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 9,
+      "monster": 3427,
+      "position": [
+        2104.0,
+        433.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "9",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3427",
+        "view": "1"
+      },
+      "stage": 3,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 13,
+      "monster": 3425,
+      "position": [
+        3185.0,
+        552.5
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "13",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "0.5",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3425",
+        "view": "1"
+      },
+      "stage": 4,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 170,
+      "monster": 3426,
+      "position": [
+        3143.0,
+        550.5
+      ],
+      "total": 4,
+      "face": -1.0,
+      "after_spawn": 16,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "16",
+        "createAfterPointDealAll": "0",
+        "id": "170",
+        "total": "4"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3426",
+        "view": "1"
+      },
+      "stage": 4,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 18,
+      "monster": 3427,
+      "position": [
+        3983.0,
+        455.5
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 170,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "170",
+        "createAfterPointDealAll": "0",
+        "id": "18",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3427",
+        "view": "1"
+      },
+      "stage": 4,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 15,
+      "monster": 3427,
+      "position": [
+        3359.0,
+        440.5
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "15",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3427",
+        "view": "1"
+      },
+      "stage": 4,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 16,
+      "monster": 3425,
+      "position": [
+        3937.0,
+        556.5
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [
+        13,
+        14,
+        15
+      ],
+      "properties": {
+        "createAfterAllPointDead": "13,14,15",
+        "createAfterPoint": "-1",
+        "createAfterPointDealAll": "-1",
+        "id": "16",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "0.5",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3425",
+        "view": "1"
+      },
+      "stage": 4,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 14,
+      "monster": 3426,
+      "position": [
+        3844.0,
+        557.5
+      ],
+      "total": 4,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "14",
+        "total": "4"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3426",
+        "view": "1"
+      },
+      "stage": 4,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 17,
+      "monster": 3427,
+      "position": [
+        4520.0,
+        429.0
+      ],
+      "total": 4,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "17",
+        "total": "4"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3427",
+        "view": "1"
+      },
+      "stage": 5,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 101,
+      "monster": 3426,
+      "position": [
+        304.0,
+        550.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 100,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "100",
+        "createAfterPointDealAll": "0",
+        "id": "101",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3426",
+        "view": "1"
+      },
+      "stage": 1,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 100,
+      "monster": 3425,
+      "position": [
+        910.0,
+        548.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [
+        1,
+        2
+      ],
+      "properties": {
+        "createAfterAllPointDead": "1,2",
+        "createAfterPoint": "-1",
+        "createAfterPointDealAll": "-1",
+        "id": "100",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "0.5",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3425",
+        "view": "1"
+      },
+      "stage": 1,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 500,
+      "monster": 3427,
+      "position": [
+        4593.0,
+        844.0
+      ],
+      "total": 999,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "500",
+        "total": "999"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3427",
+        "view": "1"
+      },
+      "stage": 7,
+      "ignore_count_multiplier": true
+    }
+  ],
+  "triggers": [
+    {
+      "rect": [
+        85.0,
+        -5.0,
+        15.0,
+        672.0
+      ],
+      "points": [
+        1,
+        2,
+        100,
+        101
+      ],
+      "properties": {
+        "point": "1,2,100,101"
+      }
+    },
+    {
+      "rect": [
+        1375.0,
+        2.0,
+        12.0,
+        649.0
+      ],
+      "points": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "properties": {
+        "point": "3,4,5,6"
+      }
+    },
+    {
+      "rect": [
+        2368.0,
+        -31.0,
+        17.0,
+        732.0
+      ],
+      "points": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "properties": {
+        "point": "7,8,9,10,11,12"
+      }
+    },
+    {
+      "rect": [
+        3271.0,
+        1.0,
+        15.0,
+        715.0
+      ],
+      "points": [
+        13,
+        14,
+        15,
+        16,
+        170,
+        18
+      ],
+      "properties": {
+        "point": "13,14,15,16,170,18"
+      }
+    },
+    {
+      "rect": [
+        4363.0,
+        894.0,
+        253.0,
+        166.5
+      ],
+      "points": [
+        17
+      ],
+      "properties": {
+        "deletedAtTriggerAfter": "0",
+        "point": "17"
+      }
+    },
+    {
+      "rect": [
+        4405.0,
+        -8.0,
+        54.0,
+        725.0
+      ],
+      "points": [
+        50
+      ],
+      "properties": {
+        "point": "50"
+      }
+    },
+    {
+      "rect": [
+        4636.0,
+        759.75,
+        79.5,
+        166.5
+      ],
+      "points": [
+        500
+      ],
+      "properties": {
+        "point": "500"
+      }
+    }
+  ],
+  "exits": [
+    {
+      "rect": [
+        4290.0,
+        600.0,
+        177.0,
+        30.0
+      ],
+      "properties": {
+        "bId": "0",
+        "itemId": "1001",
+        "visible": "0"
+      }
+    }
+  ]
+}
