@@ -661,7 +661,9 @@ func _set_gem_resonance_information(data: Dictionary) -> void :
 	if label == null:
 		label = Label.new()
 		label.name = "GemResonance"
-		label.add_theme_font_override("font", eq_lx.get_theme_font("font"))
+		var font_override = eq_lx.get_theme_font("font")
+		if font_override != null:
+			label.add_theme_font_override("font", font_override)
 		label.add_theme_font_size_override("font_size", 18)
 		label.add_theme_color_override("font_color", Color("e8c478"))
 		container.add_child(label)
