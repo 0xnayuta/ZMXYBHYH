@@ -1,0 +1,422 @@
+{
+  "fps": 30,
+  "canvas": {
+    "width": 1600,
+    "height": 1200
+  },
+  "frames": [
+    {
+      "file": "cmly_trim_000.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_001.png",
+      "left": 0,
+      "top": 16,
+      "width": 374,
+      "height": 65
+    },
+    {
+      "file": "cmly_trim_002.png",
+      "left": 0,
+      "top": 0,
+      "width": 376,
+      "height": 78
+    },
+    {
+      "file": "cmly_trim_003.png",
+      "left": 0,
+      "top": 32,
+      "width": 373,
+      "height": 49
+    },
+    {
+      "file": "cmly_trim_004.png",
+      "left": 0,
+      "top": 32,
+      "width": 395,
+      "height": 42
+    },
+    {
+      "file": "cmly_trim_005.png",
+      "left": 0,
+      "top": 16,
+      "width": 266,
+      "height": 65
+    },
+    {
+      "file": "cmly_trim_006.png",
+      "left": 0,
+      "top": 32,
+      "width": 260,
+      "height": 33
+    },
+    {
+      "file": "cmly_trim_007.png",
+      "left": 0,
+      "top": 32,
+      "width": 271,
+      "height": 33
+    },
+    {
+      "file": "cmly_trim_008.png",
+      "left": 0,
+      "top": 48,
+      "width": 280,
+      "height": 28
+    },
+    {
+      "file": "cmly_trim_009.png",
+      "left": 0,
+      "top": 16,
+      "width": 261,
+      "height": 77
+    },
+    {
+      "file": "cmly_trim_010.png",
+      "left": 0,
+      "top": 64,
+      "width": 333,
+      "height": 37
+    },
+    {
+      "file": "cmly_trim_011.png",
+      "left": 0,
+      "top": 0,
+      "width": 262,
+      "height": 177
+    },
+    {
+      "file": "cmly_trim_012.png",
+      "left": 0,
+      "top": 16,
+      "width": 286,
+      "height": 161
+    },
+    {
+      "file": "cmly_trim_013.png",
+      "left": 0,
+      "top": 48,
+      "width": 400,
+      "height": 100
+    },
+    {
+      "file": "cmly_trim_014.png",
+      "left": 0,
+      "top": 48,
+      "width": 384,
+      "height": 102
+    },
+    {
+      "file": "cmly_trim_015.png",
+      "left": 0,
+      "top": 32,
+      "width": 273,
+      "height": 209
+    },
+    {
+      "file": "cmly_trim_016.png",
+      "left": 0,
+      "top": 32,
+      "width": 385,
+      "height": 154
+    },
+    {
+      "file": "cmly_trim_017.png",
+      "left": 0,
+      "top": 32,
+      "width": 269,
+      "height": 273
+    },
+    {
+      "file": "cmly_trim_018.png",
+      "left": 0,
+      "top": 16,
+      "width": 285,
+      "height": 225
+    },
+    {
+      "file": "cmly_trim_019.png",
+      "left": 0,
+      "top": 48,
+      "width": 370,
+      "height": 177
+    },
+    {
+      "file": "cmly_trim_020.png",
+      "left": 0,
+      "top": 16,
+      "width": 374,
+      "height": 225
+    },
+    {
+      "file": "cmly_trim_021.png",
+      "left": 0,
+      "top": 0,
+      "width": 294,
+      "height": 273
+    },
+    {
+      "file": "cmly_trim_022.png",
+      "left": 0,
+      "top": 16,
+      "width": 384,
+      "height": 125
+    },
+    {
+      "file": "cmly_trim_023.png",
+      "left": 0,
+      "top": 32,
+      "width": 271,
+      "height": 241
+    },
+    {
+      "file": "cmly_trim_024.png",
+      "left": 0,
+      "top": 32,
+      "width": 275,
+      "height": 177
+    },
+    {
+      "file": "cmly_trim_025.png",
+      "left": 0,
+      "top": 32,
+      "width": 293,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_026.png",
+      "left": 0,
+      "top": 0,
+      "width": 282,
+      "height": 65
+    },
+    {
+      "file": "cmly_trim_027.png",
+      "left": 0,
+      "top": 0,
+      "width": 316,
+      "height": 145
+    },
+    {
+      "file": "cmly_trim_028.png",
+      "left": 0,
+      "top": 16,
+      "width": 327,
+      "height": 161
+    },
+    {
+      "file": "cmly_trim_029.png",
+      "left": 0,
+      "top": 16,
+      "width": 375,
+      "height": 129
+    },
+    {
+      "file": "cmly_trim_030.png",
+      "left": 0,
+      "top": 16,
+      "width": 275,
+      "height": 193
+    },
+    {
+      "file": "cmly_trim_031.png",
+      "left": 0,
+      "top": 16,
+      "width": 855,
+      "height": 168
+    },
+    {
+      "file": "cmly_trim_032.png",
+      "left": 0,
+      "top": 48,
+      "width": 847,
+      "height": 177
+    },
+    {
+      "file": "cmly_trim_033.png",
+      "left": 0,
+      "top": 16,
+      "width": 397,
+      "height": 257
+    },
+    {
+      "file": "cmly_trim_034.png",
+      "left": 0,
+      "top": 0,
+      "width": 660,
+      "height": 298
+    },
+    {
+      "file": "cmly_trim_035.png",
+      "left": 0,
+      "top": 48,
+      "width": 715,
+      "height": 291
+    },
+    {
+      "file": "cmly_trim_036.png",
+      "left": 0,
+      "top": 80,
+      "width": 313,
+      "height": 305
+    },
+    {
+      "file": "cmly_trim_037.png",
+      "left": 0,
+      "top": 0,
+      "width": 344,
+      "height": 433
+    },
+    {
+      "file": "cmly_trim_038.png",
+      "left": 0,
+      "top": 144,
+      "width": 389,
+      "height": 161
+    },
+    {
+      "file": "cmly_trim_039.png",
+      "left": 0,
+      "top": 0,
+      "width": 511,
+      "height": 186
+    },
+    {
+      "file": "cmly_trim_040.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_041.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_042.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_043.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_044.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_045.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_046.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_047.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_048.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_049.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_050.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_051.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_052.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_053.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_054.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_055.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_056.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_057.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "file": "cmly_trim_058.png",
+      "left": 0,
+      "top": 0,
+      "width": 1,
+      "height": 1
+    }
+  ]
+}

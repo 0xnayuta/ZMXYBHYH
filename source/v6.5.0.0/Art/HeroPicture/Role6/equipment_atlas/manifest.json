@@ -1,0 +1,3222 @@
+[
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y10_body",
+        "pages":  [
+                      "y10_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y10_weapon",
+        "pages":  [
+                      "y10_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y11_body",
+        "pages":  [
+                      "y11_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y11_weapon",
+        "pages":  [
+                      "y11_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y12_body",
+        "pages":  [
+                      "y12_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y12_weapon",
+        "pages":  [
+                      "y12_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y13_body",
+        "pages":  [
+                      "y13_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y13_weapon",
+        "pages":  [
+                      "y13_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y14_body",
+        "pages":  [
+                      "y14_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y14_weapon",
+        "pages":  [
+                      "y14_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y15_body",
+        "pages":  [
+                      "y15_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y15_weapon",
+        "pages":  [
+                      "y15_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y16_body",
+        "pages":  [
+                      "y16_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y16_weapon",
+        "pages":  [
+                      "y16_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y17_body",
+        "pages":  [
+                      "y17_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y17_weapon",
+        "pages":  [
+                      "y17_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y18_body",
+        "pages":  [
+                      "y18_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y18_weapon",
+        "pages":  [
+                      "y18_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y22_body",
+        "pages":  [
+                      "y22_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y22_weapon",
+        "pages":  [
+                      "y22_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y23_body",
+        "pages":  [
+                      "y23_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y23_weapon",
+        "pages":  [
+                      "y23_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y24_body",
+        "pages":  [
+                      "y24_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y24_weapon",
+        "pages":  [
+                      "y24_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y25_body",
+        "pages":  [
+                      "y25_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y25_weapon",
+        "pages":  [
+                      "y25_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y26_body",
+        "pages":  [
+                      "y26_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y26_weapon",
+        "pages":  [
+                      "y26_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y27_body",
+        "pages":  [
+                      "y27_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y27_weapon",
+        "pages":  [
+                      "y27_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y28_body",
+        "pages":  [
+                      "y28_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y28_weapon",
+        "pages":  [
+                      "y28_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y29_body",
+        "pages":  [
+                      "y29_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y29_weapon",
+        "pages":  [
+                      "y29_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y2V500_body",
+        "pages":  [
+                      "y2V500_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y2V500_weapon",
+        "pages":  [
+                      "y2V500_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y31_body",
+        "pages":  [
+                      "y31_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y31_weapon",
+        "pages":  [
+                      "y31_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y32_body",
+        "pages":  [
+                      "y32_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y32_weapon",
+        "pages":  [
+                      "y32_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y33_body",
+        "pages":  [
+                      "y33_body_00.png"
+                  ],
+        "unique_frames":  167.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y33_weapon",
+        "pages":  [
+                      "y33_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y34_body",
+        "pages":  [
+                      "y34_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y34_weapon",
+        "pages":  [
+                      "y34_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y35_body",
+        "pages":  [
+                      "y35_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y35_weapon",
+        "pages":  [
+                      "y35_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y36_body",
+        "pages":  [
+                      "y36_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y36_weapon",
+        "pages":  [
+                      "y36_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y37_body",
+        "pages":  [
+                      "y37_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y37_weapon",
+        "pages":  [
+                      "y37_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y39_body",
+        "pages":  [
+                      "y39_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y39_weapon",
+        "pages":  [
+                      "y39_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y3_body",
+        "pages":  [
+                      "y3_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y3_weapon",
+        "pages":  [
+                      "y3_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y40_body",
+        "pages":  [
+                      "y40_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y40_weapon",
+        "pages":  [
+                      "y40_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y42_body",
+        "pages":  [
+                      "y42_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y42_weapon",
+        "pages":  [
+                      "y42_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y44_body",
+        "pages":  [
+                      "y44_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y44_weapon",
+        "pages":  [
+                      "y44_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y45_body",
+        "pages":  [
+                      "y45_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y45_weapon",
+        "pages":  [
+                      "y45_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y47_body",
+        "pages":  [
+                      "y47_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y47_weapon",
+        "pages":  [
+                      "y47_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y4_body",
+        "pages":  [
+                      "y4_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y4_weapon",
+        "pages":  [
+                      "y4_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y5_body",
+        "pages":  [
+                      "y5_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y5_weapon",
+        "pages":  [
+                      "y5_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y6_body",
+        "pages":  [
+                      "y6_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y6_weapon",
+        "pages":  [
+                      "y6_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y7_body",
+        "pages":  [
+                      "y7_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y7_weapon",
+        "pages":  [
+                      "y7_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y8_body",
+        "pages":  [
+                      "y8_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y8_weapon",
+        "pages":  [
+                      "y8_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y9_body",
+        "pages":  [
+                      "y9_body_00.png"
+                  ],
+        "unique_frames":  188.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y9_weapon",
+        "pages":  [
+                      "y9_weapon_00.png"
+                  ],
+        "unique_frames":  97.0
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "default_body_front",
+        "pages":  [
+                      "default_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y10_body_front",
+        "pages":  [
+                      "y10_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y11_body_front",
+        "pages":  [
+                      "y11_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y12_body_front",
+        "pages":  [
+                      "y12_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y13_body_front",
+        "pages":  [
+                      "y13_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y14_body_front",
+        "pages":  [
+                      "y14_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y15_body_front",
+        "pages":  [
+                      "y15_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y16_body_front",
+        "pages":  [
+                      "y16_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y17_body_front",
+        "pages":  [
+                      "y17_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y18_body_front",
+        "pages":  [
+                      "y18_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y22_body_front",
+        "pages":  [
+                      "y22_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y23_body_front",
+        "pages":  [
+                      "y23_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y24_body_front",
+        "pages":  [
+                      "y24_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y25_body_front",
+        "pages":  [
+                      "y25_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y26_body_front",
+        "pages":  [
+                      "y26_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y27_body_front",
+        "pages":  [
+                      "y27_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y28_body_front",
+        "pages":  [
+                      "y28_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y29_body_front",
+        "pages":  [
+                      "y29_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y2V500_body_front",
+        "pages":  [
+                      "y2V500_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y31_body_front",
+        "pages":  [
+                      "y31_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y32_body_front",
+        "pages":  [
+                      "y32_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y33_body_front",
+        "pages":  [
+                      "y33_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y34_body_front",
+        "pages":  [
+                      "y34_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y35_body_front",
+        "pages":  [
+                      "y35_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y36_body_front",
+        "pages":  [
+                      "y36_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y37_body_front",
+        "pages":  [
+                      "y37_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y39_body_front",
+        "pages":  [
+                      "y39_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y3_body_front",
+        "pages":  [
+                      "y3_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y40_body_front",
+        "pages":  [
+                      "y40_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y42_body_front",
+        "pages":  [
+                      "y42_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y44_body_front",
+        "pages":  [
+                      "y44_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y45_body_front",
+        "pages":  [
+                      "y45_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y47_body_front",
+        "pages":  [
+                      "y47_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y4_body_front",
+        "pages":  [
+                      "y4_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y5_body_front",
+        "pages":  [
+                      "y5_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y6_body_front",
+        "pages":  [
+                      "y6_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y7_body_front",
+        "pages":  [
+                      "y7_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y8_body_front",
+        "pages":  [
+                      "y8_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    },
+    {
+        "animations":  [
+                           "wait",
+                           "run",
+                           "hurt",
+                           "death",
+                           "jump1",
+                           "drop",
+                           "jump2",
+                           "hit5",
+                           "hit1",
+                           "hit2",
+                           "hit3",
+                           "hit4",
+                           "skill1",
+                           "skill1_air",
+                           "skill2",
+                           "skill3",
+                           "skill4",
+                           "skill5",
+                           "skill5_enhanced"
+                       ],
+        "layer":  "y9_body_front",
+        "pages":  [
+                      "y9_body_front_00.png"
+                  ],
+        "unique_frames":  94
+    }
+]
