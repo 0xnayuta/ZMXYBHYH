@@ -1,0 +1,1 @@
+{"animation":"effect1_1","fps":30.0,"loop":true,"frame_count":2,"back_atlases":["back_0.png"],"front_atlases":["front_0.png"],"frames":[{"back":{"offset":[-87,-40],"region":[2,2,173,57],"page":0},"front":null,"ride":null},{"back":{"offset":[-87,-40],"region":[177,2,173,57],"page":0},"front":null,"ride":null}]}
