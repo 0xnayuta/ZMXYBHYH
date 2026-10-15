@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6wodptlkpyfm"
-valid=false
+path="res://godot/imported/地图背景.jpg-c745a2ce687960231a8f5c35c5d1cbbc.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Art/Game_4/西牛贺洲_噩梦/地图背景.jpg"
+dest_files=["res://godot/imported/地图背景.jpg-c745a2ce687960231a8f5c35c5d1cbbc.ctex"]
 
 [params]
 

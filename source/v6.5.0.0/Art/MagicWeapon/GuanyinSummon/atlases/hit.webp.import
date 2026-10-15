@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1baluvc5l5oe"
-valid=false
+path="res://godot/imported/hit.webp-6043d1db3055435f07d203017a82e3ec.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Art/MagicWeapon/GuanyinSummon/atlases/hit.webp"
+dest_files=["res://godot/imported/hit.webp-6043d1db3055435f07d203017a82e3ec.ctex"]
 
 [params]
 

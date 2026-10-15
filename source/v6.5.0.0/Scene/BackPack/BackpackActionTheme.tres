@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3]
 
-[ext_resource type="FontFile" uid="uid://bbi3fb2l27log" path="res://Font/8_FZCuYuan-M03S.ttf" id="1"]
+[ext_resource type="FontFile" uid="uid://cj5ardrdbwejy" path="res://Font/8_FZCuYuan-M03S.ttf" id="1"]
 
 [sub_resource type="StyleBoxFlat" id="disabled"]
 bg_color = Color(0.643137, 0.364706, 0.0901961, 1)

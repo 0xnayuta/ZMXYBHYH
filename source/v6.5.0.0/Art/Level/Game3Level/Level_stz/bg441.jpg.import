@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://df0jykfhcehv"
-valid=false
+path="res://godot/imported/bg441.jpg-a9f096f3c1bfdef4b69859e5df37bfd2.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_stz/bg441.jpg"
+dest_files=["res://godot/imported/bg441.jpg-a9f096f3c1bfdef4b69859e5df37bfd2.ctex"]
 
 [params]
 

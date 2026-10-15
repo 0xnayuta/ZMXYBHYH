@@ -11,7 +11,7 @@ func ADDMusic():
 	elif MainSet.set_data["music"] == 2:
 		if MyMainMusic != null:
 			MyMainMusic.queue_free()
-		MyMainMusic = Global.addBGM_(self, "res://Music/MainSceneMusic/zmxy_2BGM.ogg")
+		MyMainMusic = Global.addBGM_(self, "res://Music/MainSceneMusic/zmxy_2BGM.mp3")
 	elif MainSet.set_data["music"] == 3:
 		if MyMainMusic != null:
 			MyMainMusic.queue_free()

@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dx8h2nym36ekq"
-valid=false
+path="res://godot/imported/炼丹炉背景.jpg-4ad2488ed140f5d7268f3698271cd81d.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Art/LDL/炼丹炉背景.jpg"
+dest_files=["res://godot/imported/炼丹炉背景.jpg-4ad2488ed140f5d7268f3698271cd81d.ctex"]
 
 [params]
 

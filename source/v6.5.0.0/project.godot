@@ -37,6 +37,7 @@ PaSkill="*res://Passive_Skills.gd"
 MainMusic="*res://MainMusic.gd"
 Signals="*res://Signals.gd"
 Global="*res://Global.gd"
+MCPGameBridge="res://addons/godot_mcp/game_bridge/mcp_game_bridge.gd"
 
 [display]
 
@@ -63,10 +64,21 @@ movie_writer/disable_vsync=true
 
 text_editor/behavior/indent/type=1
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_mcp/plugin.cfg")
+
 [global_group]
 
 Player=""
 Monster=""
+
+[godot_mcp]
+
+bind_mode=0
+custom_bind_ip=""
+port_override_enabled=false
+port_override=6550
 
 [importer_defaults]
 

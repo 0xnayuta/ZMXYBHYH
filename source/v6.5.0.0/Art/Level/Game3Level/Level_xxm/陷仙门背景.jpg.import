@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvarf7b8yayop"
-valid=false
+path="res://godot/imported/陷仙门背景.jpg-ef3723e29b05cd30d2c55a87cc254ea5.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_xxm/陷仙门背景.jpg"
+dest_files=["res://godot/imported/陷仙门背景.jpg-ef3723e29b05cd30d2c55a87cc254ea5.ctex"]
 
 [params]
 

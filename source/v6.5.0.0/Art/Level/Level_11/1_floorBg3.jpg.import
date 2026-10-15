@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpbqkqkfbdwlk"
-valid=false
+path="res://godot/imported/1_floorBg3.jpg-5dec8bd6612093297ca394e67a78015a.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Art/Level/Level_11/1_floorBg3.jpg"
+dest_files=["res://godot/imported/1_floorBg3.jpg-5dec8bd6612093297ca394e67a78015a.ctex"]
 
 [params]
 

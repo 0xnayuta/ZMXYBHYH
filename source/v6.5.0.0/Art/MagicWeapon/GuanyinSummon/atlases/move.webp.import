@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckyc0exghap8l"
-valid=false
+path="res://godot/imported/move.webp-27b484392658cc9aa9162b4bde75d13d.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Art/MagicWeapon/GuanyinSummon/atlases/move.webp"
+dest_files=["res://godot/imported/move.webp-27b484392658cc9aa9162b4bde75d13d.ctex"]
 
 [params]
 

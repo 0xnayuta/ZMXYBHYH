@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drefrojhk0lc5"
-valid=false
+path="res://godot/imported/背景1.jpg-ad6b594f63e92bc5fe48f232af5a6ea9.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Art/MainGame/背景1.jpg"
+dest_files=["res://godot/imported/背景1.jpg-ad6b594f63e92bc5fe48f232af5a6ea9.ctex"]
 
 [params]
 

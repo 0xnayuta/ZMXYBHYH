@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0cjnix025lrv"
-valid=false
+path="res://godot/imported/sssl.jpg-f98af79f4b00cd03b384e6a56fe6e9b1.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Art/LevelInfoBg/sssl.jpg"
+dest_files=["res://godot/imported/sssl.jpg-f98af79f4b00cd03b384e6a56fe6e9b1.ctex"]
 
 [params]
 

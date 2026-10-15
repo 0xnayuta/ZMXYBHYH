@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/BackPack/BackPack.gdc" id="1"]
+[ext_resource type="Script" path="res://Script/BackPack/BackPack.gd" id="1"]
 [ext_resource type="Script" path="res://Script/BackPack/RoleAttributeIntegerFormat.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/BackPack/207.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/BackPack/BackPackLight02.png" id="4"]
