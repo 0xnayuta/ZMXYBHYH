@@ -288,7 +288,9 @@ func _apply_hit_stun(target: BaseMonster) -> void :
 static func preload_effect_data() -> bool:
 	if _shared_data != null:
 		return true
-	var atlas: = ResourceLoader.load(ATLAS_PATH, "SpineAtlasResource", ResourceLoader.CACHE_MODE_REUSE) as SpineAtlasResource
+	if not ClassDB.class_exists("SpineSkeletonDataResource") or not ClassDB.class_exists("SpineSprite"):
+		return false
+	var atlas: Variant = ResourceLoader.load(ATLAS_PATH, "", ResourceLoader.CACHE_MODE_REUSE)
 	var skeleton_file: = ResourceLoader.load(SKELETON_PATH, "Resource", ResourceLoader.CACHE_MODE_REUSE)
 	if atlas == null:
 		push_error("HmzAwakenEffect: 无法加载 Spine atlas: " + ATLAS_PATH)

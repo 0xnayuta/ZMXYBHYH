@@ -484,7 +484,7 @@ static func _preload_effect_data() -> bool:
 		return true
 	if not ClassDB.class_exists("SpineSkeletonDataResource") or not ClassDB.class_exists("SpineSprite"):
 		return false
-	var atlas: = ResourceLoader.load(ATLAS_PATH, "SpineAtlasResource", ResourceLoader.CACHE_MODE_REUSE) as SpineAtlasResource
+	var atlas: Variant = ResourceLoader.load(ATLAS_PATH, "", ResourceLoader.CACHE_MODE_REUSE)
 	var skeleton_file: = ResourceLoader.load(SKELETON_PATH, "Resource", ResourceLoader.CACHE_MODE_REUSE)
 	if atlas == null or skeleton_file == null:
 		push_error("苍木龙陨 Spine 资源加载失败")
