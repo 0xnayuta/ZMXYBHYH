@@ -1,0 +1,20 @@
+{
+  "3159": "assets/man/3159/1.swf",
+  "3160": "assets/man/3160/1.swf",
+  "3161": "assets/man/3161/1V1.swf",
+  "3172": "assets/man/3172/1.swf",
+  "3177": "assets/man/3177/1.swf",
+  "3179": "assets/man/3179/1.swf",
+  "3181": "assets/man/3181/1.swf",
+  "3182": "assets/man/3182/1.swf",
+  "3178": {
+    "source_swf": null,
+    "shared_visual_source": "3177",
+    "reason": "assets/man/3178 does not exist in the supplied official assets"
+  },
+  "3183": {
+    "source_swf": null,
+    "shared_visual_source": "3181",
+    "reason": "assets/man/3183 does not exist in the supplied official assets"
+  }
+}

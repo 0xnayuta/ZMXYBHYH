@@ -1,0 +1,93 @@
+{
+  "padding": 2,
+  "page_size": 2048,
+  "root": "res://Art/Monster/Game3_SpecialEffect/Monster_3_3",
+  "source_frames": 5,
+  "source_bytes": 178838,
+  "pages": [
+    {
+      "path": "res://Art/Monster/Game3_SpecialEffect/Monster_3_3/atlas_small_monsters/pages/atlas_000.png"
+    }
+  ],
+  "sequences": {},
+  "files": {
+    "res://Art/Monster/Game3_SpecialEffect/Monster_3_3/SpecialEffect_4.png": [
+      1,
+      0,
+      2,
+      2,
+      1597,
+      347,
+      46,
+      34,
+      115,
+      49
+    ],
+    "res://Art/Monster/Game3_SpecialEffect/Monster_3_3/SpecialEffect_5.png": [
+      2,
+      0,
+      2,
+      353,
+      467,
+      118,
+      16,
+      2,
+      1145,
+      4
+    ],
+    "res://Art/Monster/Game3_SpecialEffect/Monster_3_3/SpecialEffect_6.png": [
+      3,
+      0,
+      473,
+      353,
+      705,
+      90,
+      57,
+      24,
+      427,
+      110
+    ],
+    "res://Art/Monster/Game3_SpecialEffect/Monster_3_3/SpecialEffect_7.png": [
+      4,
+      0,
+      1887,
+      2,
+      59,
+      59,
+      0,
+      0,
+      0,
+      0
+    ],
+    "res://Art/Monster/Game3_SpecialEffect/Monster_3_3/SpecialEffect_8.png": [
+      5,
+      0,
+      1603,
+      2,
+      280,
+      164,
+      2,
+      2,
+      662,
+      4
+    ]
+  },
+  "consumer_scenes": [
+    "res://Scene/Base/BaseMonster.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster87Bullet.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster88Bullet.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster90Bullet.tscn",
+    "res://Scene/Monster/Monster_86.tscn",
+    "res://Scene/Monster/Monster_87.tscn",
+    "res://Scene/Monster/Monster_88.tscn",
+    "res://Scene/Monster/Monster_90.tscn",
+    "res://Scene/Monster/Monster_92.tscn"
+  ],
+  "monster_ids": [
+    86,
+    87,
+    88,
+    90,
+    92
+  ]
+}

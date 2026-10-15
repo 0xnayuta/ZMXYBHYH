@@ -1,0 +1,107 @@
+{
+  "padding": 2,
+  "page_size": 2048,
+  "root": "res://Art/Monster/Monster_31",
+  "source_frames": 7,
+  "source_bytes": 219919,
+  "pages": [
+    {
+      "path": "res://Art/Monster/Monster_31/atlas_small_monsters/pages/atlas_000.png"
+    }
+  ],
+  "sequences": {},
+  "files": {
+    "res://Art/Monster/Monster_31/Death.png": [
+      1,
+      0,
+      2,
+      2,
+      1591,
+      134,
+      19,
+      10,
+      73,
+      20
+    ],
+    "res://Art/Monster/Monster_31/Hit.png": [
+      2,
+      0,
+      1597,
+      2,
+      327,
+      128,
+      20,
+      10,
+      30,
+      20
+    ],
+    "res://Art/Monster/Monster_31/Hurt.png": [
+      3,
+      0,
+      1928,
+      2,
+      109,
+      90,
+      0,
+      0,
+      0,
+      0
+    ],
+    "res://Art/Monster/Monster_31/SP1.png": [
+      4,
+      0,
+      437,
+      140,
+      214,
+      104,
+      10,
+      10,
+      24,
+      20
+    ],
+    "res://Art/Monster/Monster_31/SP2.png": [
+      5,
+      0,
+      1030,
+      140,
+      577,
+      51,
+      19,
+      18,
+      39,
+      37
+    ],
+    "res://Art/Monster/Monster_31/Wait.png": [
+      6,
+      0,
+      655,
+      140,
+      371,
+      103,
+      10,
+      10,
+      21,
+      20
+    ],
+    "res://Art/Monster/Monster_31/Walk.png": [
+      7,
+      0,
+      2,
+      140,
+      431,
+      113,
+      38,
+      10,
+      61,
+      20
+    ]
+  },
+  "consumer_scenes": [
+    "res://Scene/Base/BaseMonster.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/poision.tscn",
+    "res://Scene/Monster/Monster_31.tscn"
+  ],
+  "monster_ids": [
+    31
+  ]
+}

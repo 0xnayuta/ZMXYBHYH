@@ -1,0 +1,156 @@
+{
+  "padding": 2,
+  "page_size": 2048,
+  "root": "res://Art/Monster/Game3Monster/Monster_120",
+  "source_frames": 11,
+  "source_bytes": 391407,
+  "pages": [
+    {
+      "path": "res://Art/Monster/Game3Monster/Monster_120/atlas_small_monsters/pages/atlas_000.png"
+    }
+  ],
+  "sequences": {},
+  "files": {
+    "res://Art/Monster/Game3Monster/Monster_120/Monster120.png": [
+      1,
+      0,
+      2,
+      2,
+      846,
+      709,
+      17,
+      15,
+      54,
+      41
+    ],
+    "res://Art/Monster/Game3Monster/Monster_120/Monster120Bullet1/1.png": [
+      2,
+      0,
+      1254,
+      2,
+      62,
+      42,
+      219,
+      0,
+      219,
+      0
+    ],
+    "res://Art/Monster/Game3Monster/Monster_120/Monster120Bullet1/10.png": [
+      3,
+      0,
+      852,
+      2,
+      63,
+      42,
+      0,
+      0,
+      218,
+      0
+    ],
+    "res://Art/Monster/Game3Monster/Monster_120/Monster120Bullet1/2.png": [
+      4,
+      0,
+      1320,
+      2,
+      62,
+      42,
+      195,
+      0,
+      219,
+      0
+    ],
+    "res://Art/Monster/Game3Monster/Monster_120/Monster120Bullet1/3.png": [
+      5,
+      0,
+      919,
+      2,
+      63,
+      42,
+      170,
+      0,
+      218,
+      0
+    ],
+    "res://Art/Monster/Game3Monster/Monster_120/Monster120Bullet1/4.png": [
+      6,
+      0,
+      986,
+      2,
+      63,
+      42,
+      146,
+      0,
+      218,
+      0
+    ],
+    "res://Art/Monster/Game3Monster/Monster_120/Monster120Bullet1/5.png": [
+      7,
+      0,
+      1386,
+      2,
+      62,
+      42,
+      122,
+      0,
+      219,
+      0
+    ],
+    "res://Art/Monster/Game3Monster/Monster_120/Monster120Bullet1/6.png": [
+      8,
+      0,
+      1053,
+      2,
+      63,
+      42,
+      97,
+      0,
+      218,
+      0
+    ],
+    "res://Art/Monster/Game3Monster/Monster_120/Monster120Bullet1/7.png": [
+      9,
+      0,
+      1120,
+      2,
+      63,
+      42,
+      73,
+      0,
+      218,
+      0
+    ],
+    "res://Art/Monster/Game3Monster/Monster_120/Monster120Bullet1/8.png": [
+      10,
+      0,
+      1452,
+      2,
+      62,
+      42,
+      49,
+      0,
+      219,
+      0
+    ],
+    "res://Art/Monster/Game3Monster/Monster_120/Monster120Bullet1/9.png": [
+      11,
+      0,
+      1187,
+      2,
+      63,
+      42,
+      24,
+      0,
+      218,
+      0
+    ]
+  },
+  "consumer_scenes": [
+    "res://Scene/Base/BaseMonster.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster120Bullet1.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster120Bullet2.tscn",
+    "res://Scene/Monster/Monster_120.tscn"
+  ],
+  "monster_ids": [
+    120
+  ]
+}

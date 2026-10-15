@@ -1,0 +1,868 @@
+{
+  "format": "FFDec composite sprite frames, cropped, deduplicated, 2048 atlases",
+  "count": 86,
+  "source_bytes": 969130025,
+  "atlas_bytes": 314845912,
+  "monsters": [
+    {
+      "id": "3001",
+      "swf": "",
+      "source_bytes": 1860786,
+      "source_frames": 120,
+      "unique_frames": 0,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 125803
+    },
+    {
+      "id": "3002",
+      "swf": "",
+      "source_bytes": 2449344,
+      "source_frames": 187,
+      "unique_frames": 0,
+      "sequences": 6,
+      "pages": 6,
+      "atlas_bytes": 109794
+    },
+    {
+      "id": "3003",
+      "swf": "",
+      "source_bytes": 1352809,
+      "source_frames": 107,
+      "unique_frames": 0,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 75197
+    },
+    {
+      "id": "3004",
+      "swf": "",
+      "source_bytes": 3424439,
+      "source_frames": 118,
+      "unique_frames": 0,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 165377
+    },
+    {
+      "id": "3005",
+      "swf": "",
+      "source_bytes": 6908709,
+      "source_frames": 247,
+      "unique_frames": 0,
+      "sequences": 9,
+      "pages": 1,
+      "atlas_bytes": 2709900
+    },
+    {
+      "id": "3006",
+      "swf": "",
+      "source_bytes": 11448494,
+      "source_frames": 290,
+      "unique_frames": 0,
+      "sequences": 7,
+      "pages": 1,
+      "atlas_bytes": 2425981
+    },
+    {
+      "id": "3007",
+      "swf": "",
+      "source_bytes": 23487844,
+      "source_frames": 318,
+      "unique_frames": 0,
+      "sequences": 15,
+      "pages": 6,
+      "atlas_bytes": 11133658
+    },
+    {
+      "id": "3008",
+      "swf": "",
+      "source_bytes": 1000802,
+      "source_frames": 105,
+      "unique_frames": 0,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 87130
+    },
+    {
+      "id": "3009",
+      "swf": "",
+      "source_bytes": 643789,
+      "source_frames": 105,
+      "unique_frames": 0,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 39695
+    },
+    {
+      "id": "3010",
+      "swf": "",
+      "source_bytes": 1852771,
+      "source_frames": 118,
+      "unique_frames": 0,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 152359
+    },
+    {
+      "id": "3011",
+      "swf": "",
+      "source_bytes": 1461767,
+      "source_frames": 123,
+      "unique_frames": 0,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 59104
+    },
+    {
+      "id": "3012",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3012\\1.swf",
+      "source_bytes": 1135790,
+      "source_frames": 25,
+      "unique_frames": 10,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 396278
+    },
+    {
+      "id": "3019",
+      "swf": "",
+      "source_bytes": 5629406,
+      "source_frames": 190,
+      "unique_frames": 0,
+      "sequences": 7,
+      "pages": 1,
+      "atlas_bytes": 454649
+    },
+    {
+      "id": "3020",
+      "swf": "",
+      "source_bytes": 4058219,
+      "source_frames": 212,
+      "unique_frames": 0,
+      "sequences": 9,
+      "pages": 1,
+      "atlas_bytes": 382740
+    },
+    {
+      "id": "3021",
+      "swf": "",
+      "source_bytes": 69414216,
+      "source_frames": 435,
+      "unique_frames": 0,
+      "sequences": 11,
+      "pages": 19,
+      "atlas_bytes": 12723213
+    },
+    {
+      "id": "3028",
+      "swf": "",
+      "source_bytes": 940895,
+      "source_frames": 155,
+      "unique_frames": 0,
+      "sequences": 7,
+      "pages": 1,
+      "atlas_bytes": 57587
+    },
+    {
+      "id": "3029",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3029\\1.swf",
+      "source_bytes": 1654963,
+      "source_frames": 162,
+      "unique_frames": 34,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 449565
+    },
+    {
+      "id": "3030",
+      "swf": "",
+      "source_bytes": 1770445,
+      "source_frames": 163,
+      "unique_frames": 0,
+      "sequences": 7,
+      "pages": 1,
+      "atlas_bytes": 106669
+    },
+    {
+      "id": "3031",
+      "swf": "",
+      "source_bytes": 1152831,
+      "source_frames": 139,
+      "unique_frames": 0,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 65735
+    },
+    {
+      "id": "3032",
+      "swf": "",
+      "source_bytes": 1936972,
+      "source_frames": 127,
+      "unique_frames": 0,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 121941
+    },
+    {
+      "id": "3033",
+      "swf": "",
+      "source_bytes": 7782686,
+      "source_frames": 353,
+      "unique_frames": 0,
+      "sequences": 11,
+      "pages": 1,
+      "atlas_bytes": 1546765
+    },
+    {
+      "id": "3034",
+      "swf": "",
+      "source_bytes": 9097857,
+      "source_frames": 298,
+      "unique_frames": 0,
+      "sequences": 11,
+      "pages": 1,
+      "atlas_bytes": 2681170
+    },
+    {
+      "id": "3035",
+      "swf": "",
+      "source_bytes": 0,
+      "source_frames": 0,
+      "unique_frames": 0,
+      "sequences": 10,
+      "pages": 19,
+      "atlas_bytes": 23189547
+    },
+    {
+      "id": "3036",
+      "swf": "",
+      "source_bytes": 989779,
+      "source_frames": 115,
+      "unique_frames": 0,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 66839
+    },
+    {
+      "id": "3037",
+      "swf": "",
+      "source_bytes": 2370152,
+      "source_frames": 224,
+      "unique_frames": 0,
+      "sequences": 7,
+      "pages": 1,
+      "atlas_bytes": 141802
+    },
+    {
+      "id": "3038",
+      "swf": "",
+      "source_bytes": 1168815,
+      "source_frames": 157,
+      "unique_frames": 0,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 67811
+    },
+    {
+      "id": "3039",
+      "swf": "",
+      "source_bytes": 2198279,
+      "source_frames": 147,
+      "unique_frames": 0,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 124483
+    },
+    {
+      "id": "3040",
+      "swf": "",
+      "source_bytes": 10360615,
+      "source_frames": 339,
+      "unique_frames": 0,
+      "sequences": 9,
+      "pages": 1,
+      "atlas_bytes": 881068
+    },
+    {
+      "id": "3041",
+      "swf": "",
+      "source_bytes": 7680827,
+      "source_frames": 327,
+      "unique_frames": 0,
+      "sequences": 9,
+      "pages": 1,
+      "atlas_bytes": 2496286
+    },
+    {
+      "id": "3042",
+      "swf": "",
+      "source_bytes": 0,
+      "source_frames": 0,
+      "unique_frames": 0,
+      "sequences": 8,
+      "pages": 38,
+      "atlas_bytes": 26094286
+    },
+    {
+      "id": "3047",
+      "swf": "",
+      "source_bytes": 2215854,
+      "source_frames": 158,
+      "unique_frames": 0,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 133253
+    },
+    {
+      "id": "3048",
+      "swf": "",
+      "source_bytes": 628770,
+      "source_frames": 252,
+      "unique_frames": 0,
+      "sequences": 8,
+      "pages": 1,
+      "atlas_bytes": 28933
+    },
+    {
+      "id": "3049",
+      "swf": "",
+      "source_bytes": 1320896,
+      "source_frames": 152,
+      "unique_frames": 0,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 30170
+    },
+    {
+      "id": "3050",
+      "swf": "",
+      "source_bytes": 762245,
+      "source_frames": 252,
+      "unique_frames": 0,
+      "sequences": 8,
+      "pages": 1,
+      "atlas_bytes": 30943
+    },
+    {
+      "id": "3051",
+      "swf": "",
+      "source_bytes": 590006,
+      "source_frames": 252,
+      "unique_frames": 0,
+      "sequences": 8,
+      "pages": 1,
+      "atlas_bytes": 24061
+    },
+    {
+      "id": "3056",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3056\\1.swf",
+      "source_bytes": 2147646,
+      "source_frames": 163,
+      "unique_frames": 10,
+      "sequences": 8,
+      "pages": 1,
+      "atlas_bytes": 219629
+    },
+    {
+      "id": "3065",
+      "swf": "",
+      "source_bytes": 2035753,
+      "source_frames": 147,
+      "unique_frames": 0,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 115233
+    },
+    {
+      "id": "3066",
+      "swf": "",
+      "source_bytes": 1190935,
+      "source_frames": 150,
+      "unique_frames": 0,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 91782
+    },
+    {
+      "id": "3067",
+      "swf": "",
+      "source_bytes": 2303715,
+      "source_frames": 142,
+      "unique_frames": 0,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 142279
+    },
+    {
+      "id": "3068",
+      "swf": "",
+      "source_bytes": 1428067,
+      "source_frames": 153,
+      "unique_frames": 0,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 52056
+    },
+    {
+      "id": "3069",
+      "swf": "",
+      "source_bytes": 19478616,
+      "source_frames": 265,
+      "unique_frames": 0,
+      "sequences": 9,
+      "pages": 2,
+      "atlas_bytes": 5732730
+    },
+    {
+      "id": "3070",
+      "swf": "",
+      "source_bytes": 17497123,
+      "source_frames": 758,
+      "unique_frames": 0,
+      "sequences": 17,
+      "pages": 2,
+      "atlas_bytes": 5171778
+    },
+    {
+      "id": "3071",
+      "swf": "",
+      "source_bytes": 8685448,
+      "source_frames": 51,
+      "unique_frames": 0,
+      "sequences": 2,
+      "pages": 2,
+      "atlas_bytes": 4424144
+    },
+    {
+      "id": "3076",
+      "swf": "",
+      "source_bytes": 8997321,
+      "source_frames": 297,
+      "unique_frames": 0,
+      "sequences": 7,
+      "pages": 1,
+      "atlas_bytes": 497467
+    },
+    {
+      "id": "3077",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3077\\1.swf",
+      "source_bytes": 20969807,
+      "source_frames": 315,
+      "unique_frames": 62,
+      "sequences": 15,
+      "pages": 4,
+      "atlas_bytes": 5508997
+    },
+    {
+      "id": "3078",
+      "swf": "",
+      "source_bytes": 84910428,
+      "source_frames": 335,
+      "unique_frames": 0,
+      "sequences": 4,
+      "pages": 18,
+      "atlas_bytes": 19715622
+    },
+    {
+      "id": "3080",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3080\\1.swf",
+      "source_bytes": 1300876,
+      "source_frames": 92,
+      "unique_frames": 7,
+      "sequences": 8,
+      "pages": 1,
+      "atlas_bytes": 162860
+    },
+    {
+      "id": "3081",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3081\\1.swf",
+      "source_bytes": 3773081,
+      "source_frames": 92,
+      "unique_frames": 6,
+      "sequences": 8,
+      "pages": 1,
+      "atlas_bytes": 315691
+    },
+    {
+      "id": "3082",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3082\\1.swf",
+      "source_bytes": 2438034,
+      "source_frames": 36,
+      "unique_frames": 6,
+      "sequences": 8,
+      "pages": 1,
+      "atlas_bytes": 101369
+    },
+    {
+      "id": "3117",
+      "swf": "",
+      "source_bytes": 21102195,
+      "source_frames": 284,
+      "unique_frames": 0,
+      "sequences": 11,
+      "pages": 2,
+      "atlas_bytes": 5495836
+    },
+    {
+      "id": "3118",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3118\\1.swf",
+      "source_bytes": 1633325,
+      "source_frames": 129,
+      "unique_frames": 24,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 395950
+    },
+    {
+      "id": "3119",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3119\\1.swf",
+      "source_bytes": 849091,
+      "source_frames": 122,
+      "unique_frames": 24,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 208631
+    },
+    {
+      "id": "3120",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3120\\1V1.swf",
+      "source_bytes": 4494561,
+      "source_frames": 122,
+      "unique_frames": 31,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 1346606
+    },
+    {
+      "id": "3121",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3121\\1.swf",
+      "source_bytes": 784807,
+      "source_frames": 133,
+      "unique_frames": 20,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 153065
+    },
+    {
+      "id": "3122",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3122\\1.swf",
+      "source_bytes": 604277,
+      "source_frames": 129,
+      "unique_frames": 23,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 126627
+    },
+    {
+      "id": "3123",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3123\\1.swf",
+      "source_bytes": 810358,
+      "source_frames": 130,
+      "unique_frames": 26,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 227652
+    },
+    {
+      "id": "3125",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3125\\1.swf",
+      "source_bytes": 6899717,
+      "source_frames": 204,
+      "unique_frames": 55,
+      "sequences": 7,
+      "pages": 1,
+      "atlas_bytes": 2480063
+    },
+    {
+      "id": "3136",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3136\\1.swf",
+      "source_bytes": 8071644,
+      "source_frames": 161,
+      "unique_frames": 16,
+      "sequences": 8,
+      "pages": 1,
+      "atlas_bytes": 999228
+    },
+    {
+      "id": "3144",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3144\\1.swf",
+      "source_bytes": 1769671,
+      "source_frames": 135,
+      "unique_frames": 25,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 345753
+    },
+    {
+      "id": "3159",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3159\\1.swf",
+      "source_bytes": 1240765,
+      "source_frames": 131,
+      "unique_frames": 21,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 265331
+    },
+    {
+      "id": "3160",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3160\\1.swf",
+      "source_bytes": 1967950,
+      "source_frames": 130,
+      "unique_frames": 22,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 470413
+    },
+    {
+      "id": "3161",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3161\\1V1.swf",
+      "source_bytes": 2426848,
+      "source_frames": 148,
+      "unique_frames": 30,
+      "sequences": 7,
+      "pages": 1,
+      "atlas_bytes": 604035
+    },
+    {
+      "id": "3172",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3172\\1.swf",
+      "source_bytes": 1848063,
+      "source_frames": 149,
+      "unique_frames": 21,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 332098
+    },
+    {
+      "id": "3177",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3177\\1.swf",
+      "source_bytes": 2348790,
+      "source_frames": 189,
+      "unique_frames": 39,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 730231
+    },
+    {
+      "id": "3179",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3179\\1.swf",
+      "source_bytes": 10270419,
+      "source_frames": 422,
+      "unique_frames": 78,
+      "sequences": 9,
+      "pages": 1,
+      "atlas_bytes": 2285974
+    },
+    {
+      "id": "3181",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3181\\1.swf",
+      "source_bytes": 1206138,
+      "source_frames": 151,
+      "unique_frames": 19,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 179637
+    },
+    {
+      "id": "3182",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3182\\1.swf",
+      "source_bytes": 223751553,
+      "source_frames": 469,
+      "unique_frames": 160,
+      "sequences": 12,
+      "pages": 17,
+      "atlas_bytes": 53287627
+    },
+    {
+      "id": "3198",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3198\\1.swf",
+      "source_bytes": 1012306,
+      "source_frames": 143,
+      "unique_frames": 24,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 246917
+    },
+    {
+      "id": "3199",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3199\\1.swf",
+      "source_bytes": 2268671,
+      "source_frames": 144,
+      "unique_frames": 22,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 458282
+    },
+    {
+      "id": "3200",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3200\\1V2.swf",
+      "source_bytes": 8418869,
+      "source_frames": 261,
+      "unique_frames": 73,
+      "sequences": 9,
+      "pages": 1,
+      "atlas_bytes": 2413213
+    },
+    {
+      "id": "3201",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3201\\1.swf",
+      "source_bytes": 1814972,
+      "source_frames": 170,
+      "unique_frames": 38,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 518077
+    },
+    {
+      "id": "3222",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3222\\1.swf",
+      "source_bytes": 1270421,
+      "source_frames": 202,
+      "unique_frames": 33,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 221234
+    },
+    {
+      "id": "3223",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3223\\1.swf",
+      "source_bytes": 5362172,
+      "source_frames": 254,
+      "unique_frames": 55,
+      "sequences": 7,
+      "pages": 1,
+      "atlas_bytes": 1435771
+    },
+    {
+      "id": "3224",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3224\\1.swf",
+      "source_bytes": 8335329,
+      "source_frames": 264,
+      "unique_frames": 50,
+      "sequences": 8,
+      "pages": 1,
+      "atlas_bytes": 2046957
+    },
+    {
+      "id": "3225",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3225\\1.swf",
+      "source_bytes": 2874722,
+      "source_frames": 184,
+      "unique_frames": 35,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 824191
+    },
+    {
+      "id": "3276",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3276\\1.swf",
+      "source_bytes": 2029100,
+      "source_frames": 138,
+      "unique_frames": 22,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 354275
+    },
+    {
+      "id": "3277",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3277\\1.swf",
+      "source_bytes": 67131987,
+      "source_frames": 322,
+      "unique_frames": 125,
+      "sequences": 10,
+      "pages": 8,
+      "atlas_bytes": 30414483
+    },
+    {
+      "id": "3308",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3308\\1.swf",
+      "source_bytes": 2046559,
+      "source_frames": 204,
+      "unique_frames": 34,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 372633
+    },
+    {
+      "id": "3309",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3309\\1.swf",
+      "source_bytes": 1148243,
+      "source_frames": 156,
+      "unique_frames": 25,
+      "sequences": 6,
+      "pages": 1,
+      "atlas_bytes": 212871
+    },
+    {
+      "id": "3310",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3310\\1V1.swf",
+      "source_bytes": 6055987,
+      "source_frames": 307,
+      "unique_frames": 113,
+      "sequences": 12,
+      "pages": 1,
+      "atlas_bytes": 1646725
+    },
+    {
+      "id": "3311",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3311\\1.swf",
+      "source_bytes": 843046,
+      "source_frames": 126,
+      "unique_frames": 10,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 94354
+    },
+    {
+      "id": "3320",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3320\\1.swf",
+      "source_bytes": 2136009,
+      "source_frames": 147,
+      "unique_frames": 30,
+      "sequences": 5,
+      "pages": 1,
+      "atlas_bytes": 485761
+    },
+    {
+      "id": "3323",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3323\\1V1.swf",
+      "source_bytes": 19699433,
+      "source_frames": 347,
+      "unique_frames": 72,
+      "sequences": 10,
+      "pages": 2,
+      "atlas_bytes": 5683000
+    },
+    {
+      "id": "3343",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3343\\1.swf",
+      "source_bytes": 133642368,
+      "source_frames": 388,
+      "unique_frames": 177,
+      "sequences": 11,
+      "pages": 18,
+      "atlas_bytes": 54695649
+    },
+    {
+      "id": "3352",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3352\\1.swf",
+      "source_bytes": 17604852,
+      "source_frames": 314,
+      "unique_frames": 122,
+      "sequences": 11,
+      "pages": 3,
+      "atlas_bytes": 7688171
+    },
+    {
+      "id": "3370",
+      "swf": "C:\\Users\\Administrator\\Desktop\\\u9020\u68a6\u897f\u6e383\\assets\\man\\3370\\1.swf",
+      "source_bytes": 25445885,
+      "source_frames": 314,
+      "unique_frames": 58,
+      "sequences": 8,
+      "pages": 1,
+      "atlas_bytes": 3467162
+    }
+  ]
+}

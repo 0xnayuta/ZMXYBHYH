@@ -1,0 +1,51 @@
+{
+  "padding": 2,
+  "page_size": 2048,
+  "root": "res://Art/Monster/Monster_37_38",
+  "source_frames": 2,
+  "source_bytes": 76939,
+  "pages": [
+    {
+      "path": "res://Art/Monster/Monster_37_38/atlas_small_monsters/pages/atlas_000.png"
+    }
+  ],
+  "sequences": {},
+  "files": {
+    "res://Art/Monster/Monster_37_38/BulletEffect.png": [
+      1,
+      0,
+      2,
+      2,
+      657,
+      79,
+      28,
+      10,
+      39,
+      21
+    ],
+    "res://Art/Monster/Monster_37_38/DeadLink.png": [
+      2,
+      0,
+      663,
+      2,
+      215,
+      64,
+      10,
+      10,
+      21,
+      20
+    ]
+  },
+  "consumer_scenes": [
+    "res://Scene/Base/BaseMonster.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster118Bullet2.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster37Bullet.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/poision.tscn",
+    "res://Scene/Monster/Monster_105.tscn",
+    "res://Scene/Monster/Monster_118.tscn"
+  ],
+  "monster_ids": [
+    105,
+    118
+  ]
+}

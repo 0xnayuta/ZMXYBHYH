@@ -1,0 +1,112 @@
+{
+  "padding": 2,
+  "page_size": 2048,
+  "root": "res://Art/Monster/Game3Monster/Monster_5",
+  "source_frames": 6,
+  "source_bytes": 1823965,
+  "pages": [
+    {
+      "path": "res://Art/Monster/Game3Monster/Monster_5/atlas_small_monsters/pages/atlas_000.png"
+    },
+    {
+      "path": "res://Art/Monster/Game3Monster/Monster_5/atlas_small_monsters/pages/atlas_001.png"
+    }
+  ],
+  "sequences": {},
+  "files": {
+    "res://Art/Monster/Game3Monster/Monster_5/Monster_104.png": [
+      1,
+      1,
+      833,
+      2,
+      844,
+      682,
+      29,
+      47,
+      56,
+      68
+    ],
+    "res://Art/Monster/Game3Monster/Monster_5/Monster_105.png": [
+      2,
+      1,
+      2,
+      2,
+      827,
+      686,
+      39,
+      46,
+      73,
+      64
+    ],
+    "res://Art/Monster/Game3Monster/Monster_5/Monster_106.png": [
+      3,
+      0,
+      2,
+      2,
+      1090,
+      919,
+      54,
+      46,
+      110,
+      81
+    ],
+    "res://Art/Monster/Game3Monster/Monster_5/Monster_109.png": [
+      4,
+      0,
+      831,
+      925,
+      836,
+      690,
+      31,
+      46,
+      64,
+      60
+    ],
+    "res://Art/Monster/Game3Monster/Monster_5/Monster_111.png": [
+      5,
+      0,
+      2,
+      925,
+      825,
+      695,
+      39,
+      33,
+      75,
+      55
+    ],
+    "res://Art/Monster/Game3Monster/Monster_5/Monster_113.png": [
+      6,
+      0,
+      1096,
+      2,
+      851,
+      855,
+      29,
+      27,
+      49,
+      45
+    ]
+  },
+  "consumer_scenes": [
+    "res://Scene/Base/BaseMonster.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster104Bullet.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster111Bullet.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster112Bullet.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster37Bullet.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/poision.tscn",
+    "res://Scene/Monster/Monster_104.tscn",
+    "res://Scene/Monster/Monster_105.tscn",
+    "res://Scene/Monster/Monster_106.tscn",
+    "res://Scene/Monster/Monster_109.tscn",
+    "res://Scene/Monster/Monster_111.tscn",
+    "res://Scene/Monster/Monster_113.tscn"
+  ],
+  "monster_ids": [
+    104,
+    105,
+    106,
+    109,
+    111,
+    113
+  ]
+}

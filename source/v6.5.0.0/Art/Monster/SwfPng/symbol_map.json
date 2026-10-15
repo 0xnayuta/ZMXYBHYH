@@ -1,0 +1,159 @@
+{
+  "3159": {
+    "wait": 22,
+    "walk": 21,
+    "hurt": 25,
+    "death": 30,
+    "hit1": 39
+  },
+  "3160": {
+    "wait": 42,
+    "walk": 37,
+    "hurt": 45,
+    "death": 49,
+    "hit1": 63
+  },
+  "3161": {
+    "wait": 205,
+    "walk": 210,
+    "hurt": 204,
+    "death": 35,
+    "hit1": 166,
+    "hit2": 188,
+    "hit3": 189
+  },
+  "3172": {
+    "wait": 23,
+    "walk": 22,
+    "hurt": 25,
+    "death": 28,
+    "hit1": 50
+  },
+  "3177": {
+    "wait": 28,
+    "walk": 27,
+    "hurt": 31,
+    "death": 83,
+    "hit1": 82,
+    "hit2": 59
+  },
+  "3179": {
+    "wait": 30,
+    "walk": 29,
+    "hurt": 34,
+    "death": 209,
+    "hit1": 205,
+    "hit2": 161,
+    "hit3": 144,
+    "hit4": 121,
+    "hit5": 82
+  },
+  "3181": {
+    "wait": 14,
+    "walk": 13,
+    "hurt": 17,
+    "death": 18,
+    "hit1": 23,
+    "hit2": 20
+  },
+  "3182": {
+    "wait": 28,
+    "walk": 27,
+    "hurt": 31,
+    "death": 148,
+    "hit1": 147,
+    "hit2": 138,
+    "hit3": 125,
+    "hit4": 124,
+    "hit5": 109,
+    "hit6": 92,
+    "effect2_1": 164,
+    "effect3_1": 161
+  },
+  "3118": {
+    "wait": 28,
+    "walk": 22,
+    "hurt": 31,
+    "death": 32,
+    "hit1": 47
+  },
+  "3119": {
+    "wait": 24,
+    "walk": 23,
+    "hurt": 27,
+    "death": 28,
+    "hit1": 37
+  },
+  "3120": {
+    "wait": 137,
+    "walk": 138,
+    "hurt": 136,
+    "death": 53,
+    "hit1": 134
+  },
+  "3121": {
+    "wait": 19,
+    "walk": 18,
+    "hurt": 22,
+    "death": 25,
+    "hit1": 46
+  },
+  "3122": {
+    "wait": 12,
+    "walk": 11,
+    "hurt": 15,
+    "death": 16,
+    "hit1": 38
+  },
+  "3123": {
+    "wait": 8,
+    "walk": 7,
+    "hurt": 10,
+    "death": 59,
+    "hit1": 48
+  },
+  "3125": {
+    "wait": 32,
+    "walk": 31,
+    "hurt": 34,
+    "death": 155,
+    "hit1": 152,
+    "hit2": 100,
+    "hit3": 49
+  },
+  "3136": {
+    "wait": 18,
+    "walk": 4,
+    "hurt": 21,
+    "death": 3,
+    "hit1": 60,
+    "effect1_1": 58,
+    "effect2_1": 46,
+    "effect5_1": 34
+  },
+  "3144": {
+    "wait": 24,
+    "walk": 23,
+    "hurt": 25,
+    "death": 26,
+    "hit1": 39
+  },
+  "3198": {"wait": 14, "walk": 13, "hurt": 17, "death": 18, "hit1": 37},
+  "3199": {"wait": 16, "walk": 15, "hurt": 19, "death": 22, "hit1": 35},
+  "3200": {"wait": 143, "walk": 144, "hurt": 142, "death": 25, "hit1": 49, "hit2": 76, "hit3": 97, "effect3_1": 108, "effect3_2": 117},
+  "3201": {"wait": 14, "walk": 13, "hurt": 17, "death": 18, "hit1": 48, "hit2": 30},
+  "3222": {"wait": 20, "walk": 19, "hurt": 23, "death": 24, "hit1": 30, "attack1_1": 29},
+  "3223": {"wait": 21, "walk": 19, "hurt": 24, "death": 70, "hit1": 69, "hit2": 40, "hit3": 25},
+  "3224": {"wait": 33, "walk": 5, "hurt": 8, "death": 94, "hit1": 85, "hit2": 49, "hit3": 24, "effect1_1": 62},
+  "3225": {"wait": 4, "walk": 3, "hurt": 6, "death": 70, "hit1": 69, "hit2": 34},
+  "3276": {"wait": 25, "walk": 20, "hurt": 28, "death": 29, "hit1": 41},
+  "3277": {"wait": 25, "walk": 25, "hurt": 92, "death": 87, "hit1": 84, "hit2": 67, "hit3": 54, "effect1_1": 167, "effect2_1": 166, "effect3_1": 163},
+  "3308": {"wait": 26, "walk": 23, "hurt": 30, "death": 35, "hit1": 65, "hit2": 48},
+  "3309": {"wait": 18, "walk": 17, "hurt": 21, "death": 23, "hit1": 43, "attack1_1": 30},
+  "3310": {"wait": 198, "walk": 290, "hurt": 197, "death": 78, "hit1": 92, "hit2": 119, "hit3": 156, "effect1_1": 101, "effect2_1": 132, "effect3_1": 167, "effect3_2": 178, "effect3_3": 187},
+  "3311": {"wait": 4, "walk": 3, "hurt": 5, "death": 17, "hit1": 16},
+  "3320": {"wait": 21, "walk": 19, "hurt": 24, "death": 25, "hit1": 45},
+  "3323": {"wait": 157, "walk": 158, "hurt": 156, "death": 65, "hit1": 92, "hit2": 113, "hit3": 123, "effect2_1": 122, "effect3_1": 35, "effect3_2": 46},
+  "3343": {"wait": 32, "walk": 31, "hurt": 125, "death": 120, "hit1": 118, "hit2": 93, "hit3": 76, "effect1_1": 230, "effect2_1": 229, "effect2_2": 218, "effect3_1": 189},
+  "3352": {"wait": 35, "walk": 33, "hurt": 35, "death": 119, "hit1": 115, "hit2": 103, "hit3": 72, "effect1_1": 114, "effect2_1": 94, "effect2_2": 85, "effect3_1": 46}
+}

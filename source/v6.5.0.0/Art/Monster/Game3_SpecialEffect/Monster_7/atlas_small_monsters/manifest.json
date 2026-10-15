@@ -1,0 +1,50 @@
+{
+  "padding": 2,
+  "page_size": 2048,
+  "root": "res://Art/Monster/Game3_SpecialEffect/Monster_7",
+  "source_frames": 2,
+  "source_bytes": 34697,
+  "pages": [
+    {
+      "path": "res://Art/Monster/Game3_SpecialEffect/Monster_7/atlas_small_monsters/pages/atlas_000.png"
+    }
+  ],
+  "sequences": {},
+  "files": {
+    "res://Art/Monster/Game3_SpecialEffect/Monster_7/Foursz/SpecialEffect_4.png": [
+      1,
+      0,
+      891,
+      2,
+      63,
+      42,
+      0,
+      0,
+      0,
+      1
+    ],
+    "res://Art/Monster/Game3_SpecialEffect/Monster_7/Foursz/SpecialEffect_5.png": [
+      2,
+      0,
+      2,
+      2,
+      885,
+      258,
+      4,
+      2,
+      47,
+      4
+    ]
+  },
+  "consumer_scenes": [
+    "res://Scene/Base/BaseMonster.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster120Bullet1.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster120Bullet2.tscn",
+    "res://Scene/Monster/Monster_120.tscn",
+    "res://Scene/Monster/Monster_1301.tscn"
+  ],
+  "monster_ids": [
+    120,
+    1301
+  ]
+}

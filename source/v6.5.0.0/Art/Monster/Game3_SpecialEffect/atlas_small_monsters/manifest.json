@@ -1,0 +1,62 @@
+{
+  "padding": 2,
+  "page_size": 2048,
+  "root": "res://Art/Monster/Game3_SpecialEffect",
+  "source_frames": 3,
+  "source_bytes": 127443,
+  "pages": [
+    {
+      "path": "res://Art/Monster/Game3_SpecialEffect/atlas_small_monsters/pages/atlas_000.png"
+    }
+  ],
+  "sequences": {},
+  "files": {
+    "res://Art/Monster/Game3_SpecialEffect/SpecialEffect_4.png": [
+      1,
+      0,
+      2,
+      2,
+      1527,
+      132,
+      19,
+      2,
+      2385,
+      5
+    ],
+    "res://Art/Monster/Game3_SpecialEffect/SpecialEffect_5.png": [
+      2,
+      0,
+      2,
+      138,
+      1337,
+      51,
+      16,
+      6,
+      35,
+      13
+    ],
+    "res://Art/Monster/Game3_SpecialEffect/SpecialEffect_6.png": [
+      3,
+      0,
+      1533,
+      2,
+      375,
+      105,
+      7,
+      3,
+      907,
+      5
+    ]
+  },
+  "consumer_scenes": [
+    "res://Scene/Base/BaseMonster.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster76Bullet1.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/Monster76Bullet2.tscn",
+    "res://Scene/Monster/Monster_74.tscn",
+    "res://Scene/Monster/Monster_76.tscn"
+  ],
+  "monster_ids": [
+    74,
+    76
+  ]
+}
