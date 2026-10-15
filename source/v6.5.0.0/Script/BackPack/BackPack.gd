@@ -48,6 +48,8 @@ var back_pack_jm
 var message
 var current_pro_page: int = 1
 var show_back_pack = true
+var _last_equipped_snapshot: Array = []
+var _props_refresh_timer: float = 0.0
 func _ready() -> void :
 	IniShowWingTxButton()
 	match int(PlayerData.player_data["Myself"]):
@@ -69,7 +71,10 @@ func _ready() -> void :
 		name_1.text = str(MainSet.set_data["其他存档"][str(MemoryClass.get_cd_number())]["name"])
 	$background / gy.self_modulate = Color(1, 1, 1, 1)
 	get_level()
+	set_backpack_properies()
 func _physics_process(_delta: float) -> void :
+	if not is_visible_in_tree():
+		return
 
 	if PlayerData.player_data["翅膀显示"]:
 		wings.modulate = Color(1, 1, 1, 1)
@@ -78,10 +83,12 @@ func _physics_process(_delta: float) -> void :
 	onEqchange()
 	SetWingsOffset()
 
-	set_backpack_properies()
+	_props_refresh_timer += _delta
+	if _props_refresh_timer >= 0.1:
+		_props_refresh_timer = 0.0
+		set_backpack_properies()
 	if Global.BoxCount > 0:
 		Global.BoxCount -= 1
-
 
 func get_level():
 
@@ -335,6 +342,18 @@ func set_backpack_properies():
 	exp_bar.value = float(RoleProp.baseroleprop.exp) / RoleProp.baseroleprop.max_exp
 	exp_text.text = str(RoleProp.baseroleprop.exp) + "/" + str(RoleProp.baseroleprop.max_exp)
 func set_icon():
+	var current_snapshot = [
+		PlayerData.player_data.get("武器", []),
+		PlayerData.player_data.get("防具", []),
+		PlayerData.player_data.get("饰品", []),
+		PlayerData.player_data.get("头衔", []),
+		PlayerData.player_data.get("时装", []),
+		PlayerData.player_data.get("翅膀", []),
+		PlayerData.player_data.get("法宝", [])
+	]
+	if current_snapshot == _last_equipped_snapshot:
+		return
+	_last_equipped_snapshot = current_snapshot.duplicate(true)
 	if PlayerData.player_data["武器"].size() != 0:
 		wq.get_item_name = PlayerData.player_data["武器"][0]["名字"]
 		wq.set_button_icon(load_(PlayerData.player_data["武器"][0]["名字"]))
@@ -386,16 +405,20 @@ func set_icon():
 	else:
 		fb.set_button_icon(load_("fb"))
 func load_(name_):
-
-	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
-	return abc
+	var primary_path = "res://Art/BackPack/AllItems/" + str(name_) + ".png"
+	if ResourceLoader.exists(primary_path):
+		return load(primary_path)
+	var fallback_path = "res://Art/BackPack/" + str(name_) + ".png"
+	if ResourceLoader.exists(fallback_path):
+		return load(fallback_path)
+	return null
 func _on_first_pressed() -> void :
 	current_pro_page = 1
-
+	set_backpack_properies()
 
 func _on_second_pressed() -> void :
 	current_pro_page = 2
-
+	set_backpack_properies()
 
 func _on_close_pressed() -> void :
 	queue_free()
