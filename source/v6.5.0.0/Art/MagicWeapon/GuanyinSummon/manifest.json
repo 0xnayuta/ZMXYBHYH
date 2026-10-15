@@ -1,0 +1,33 @@
+{
+  "source": "C:\\Users\\Administrator\\Desktop\\造梦西游3\\法宝素材\\观音模型",
+  "spine_version": "3.8.55",
+  "bones": 169,
+  "slots": 115,
+  "animations": {
+    "atk": 55,
+    "die": 18,
+    "hit": 18,
+    "idle": 40,
+    "move": 30,
+    "skill_a": 55,
+    "skill_b": 108
+  },
+  "fps": 30,
+  "crop_box": [
+    379,
+    247,
+    1001,
+    882
+  ],
+  "frame_size": [
+    622,
+    635
+  ],
+  "note": "原始Spine动画逐帧透明烘焙；仅整体缩小，不重绘。运行时使用7张图集降低加载卡顿。",
+  "runtime_format": "7 atlas textures with 324 AtlasTexture regions",
+  "runtime_frame_size": [
+    311,
+    318
+  ],
+  "green_background_removed": true
+}

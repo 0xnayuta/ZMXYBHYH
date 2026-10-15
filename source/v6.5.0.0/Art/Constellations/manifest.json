@@ -1,0 +1,93 @@
+﻿{
+    "generated_from":  "source_constellation_assets",
+    "bosses":  [
+                   {
+                       "level":  1,
+                       "source":  140,
+                       "name":  "Zhen"
+                   },
+                   {
+                       "level":  2,
+                       "source":  142,
+                       "name":  "Yi"
+                   },
+                   {
+                       "level":  3,
+                       "source":  144,
+                       "name":  "Zhang"
+                   },
+                   {
+                       "level":  4,
+                       "source":  146,
+                       "name":  "Xing"
+                   },
+                   {
+                       "level":  5,
+                       "source":  147,
+                       "name":  "Liu"
+                   },
+                   {
+                       "level":  6,
+                       "source":  149,
+                       "name":  "Gui"
+                   },
+                   {
+                       "level":  7,
+                       "source":  150,
+                       "name":  "Jing"
+                   },
+                   {
+                       "level":  8,
+                       "source":  151,
+                       "name":  "Bi"
+                   },
+                   {
+                       "level":  9,
+                       "source":  152,
+                       "name":  "Shi"
+                   },
+                   {
+                       "level":  10,
+                       "source":  156,
+                       "name":  "Wei"
+                   },
+                   {
+                       "level":  11,
+                       "source":  157,
+                       "name":  "Xu"
+                   },
+                   {
+                       "level":  12,
+                       "source":  158,
+                       "name":  "Nv"
+                   },
+                   {
+                       "level":  13,
+                       "source":  159,
+                       "name":  "Niu"
+                   },
+                   {
+                       "level":  14,
+                       "source":  162,
+                       "name":  "Dou"
+                   }
+               ],
+    "summons":  [
+                    {
+                        "level":  0,
+                        "source":  141,
+                        "name":  "SummonA"
+                    },
+                    {
+                        "level":  0,
+                        "source":  143,
+                        "name":  "SummonB"
+                    },
+                    {
+                        "level":  0,
+                        "source":  145,
+                        "name":  "SummonC"
+                    }
+                ],
+    "generated_at":  "2026-08-14T18:44:54.0633656Z"
+}
