@@ -1,0 +1,451 @@
+extends Control
+var get_name_
+var page: int = 0
+var number: int = 0
+var EQ_prop = {}
+var jm
+
+
+
+
+var pet_owner: Node = null
+var pet_source: Variant = null
+var pet_index: int = -1
+var pet_slot_type: String = ""
+var pet_action_label: String = "装备"
+var is_pet_action: bool = false
+var source_box: Node = null
+var outside_click_enabled: bool = false
+
+@onready var infor = $VBoxContainer / infor
+@onready var lock_button: Button = $VBoxContainer / lock
+@onready var lock_text: Label = $VBoxContainer / lock / Text
+func _ready() -> void :
+	infor.text = "第" + str(page) + "页" + "第" + str(number + 1) + "格"
+	call_deferred("_refresh_lock_button")
+	call_deferred("_enable_outside_click")
+	await get_tree().create_timer(1.8).timeout
+	if jm == null and not is_pet_action:
+		queue_free()
+		return
+	_refresh_lock_button()
+
+func _enable_outside_click() -> void :
+	outside_click_enabled = true
+
+func _input(event: InputEvent) -> void :
+	if not outside_click_enabled or not is_visible_in_tree():
+		return
+	var click_position: = Vector2.ZERO
+	if event is InputEventMouseButton:
+		if not event.pressed or event.button_index != MOUSE_BUTTON_LEFT:
+			return
+		click_position = event.position
+	elif event is InputEventScreenTouch:
+		if not event.pressed:
+			return
+		click_position = event.position
+	else:
+		return
+	if not _control_has_point($Panel, click_position) and not _control_has_point($VBoxContainer, click_position):
+		queue_free()
+
+func _control_has_point(control: Control, screen_position: Vector2) -> bool:
+	var local_position: = control.get_global_transform_with_canvas().affine_inverse() * screen_position
+	return Rect2(Vector2.ZERO, control.size).has_point(local_position)
+
+func _get_inventory_entry() -> Dictionary:
+	if page <= 0 or number < 0:
+		return {}
+	var pages: Variant = PlayerData.player_data.get("装备列表", {})
+	if not pages is Dictionary:
+		return {}
+	var items: Variant = pages.get("页码" + str(page), [])
+	if not items is Array or number >= (items as Array).size():
+		return {}
+	var item: Variant = (items as Array)[number]
+	return item as Dictionary if item is Dictionary else {}
+
+func _is_locked() -> bool:
+	var item: = _get_inventory_entry()
+	var data: Variant = item.get("Data", {})
+	return data is Dictionary and bool((data as Dictionary).get("锁定", false))
+
+func _refresh_lock_button() -> void :
+	if lock_button == null:
+		return
+	lock_button.visible = not is_pet_action
+	if is_pet_action:
+		return
+	var locked: = _is_locked()
+	lock_text.text = "解 锁" if locked else "锁 定"
+	lock_button.tooltip_text = "解锁后才能出售" if locked else "锁定物品，禁止出售"
+	if source_box != null and is_instance_valid(source_box):
+		source_box.item_locked = locked
+
+func _on_lock_pressed() -> void :
+	if is_pet_action:
+		return
+	var item: = _get_inventory_entry()
+	var data: Variant = item.get("Data", {})
+	if not data is Dictionary:
+		return
+	(data as Dictionary)["锁定"] = not bool((data as Dictionary).get("锁定", false))
+	EQ_prop = data
+	MemoryClass.保存游戏(Global.cd_path)
+	_refresh_lock_button()
+
+func setup_pet_action(owner: Node, source: Variant, index: int, slot_type: String, action_label: String = "装备") -> void :
+	pet_owner = owner
+	pet_source = source
+	pet_index = index
+	pet_slot_type = slot_type
+	pet_action_label = action_label
+	is_pet_action = owner != null
+	get_name_ = _pet_item_name(source)
+	EQ_prop = _pet_item_data(source)
+	page = 1
+	number = maxi(index, 0)
+	set_meta("pet_action_label", action_label)
+
+	show_behind_parent = false
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	if infor != null:
+		infor.text = "第1页第%d格" % (number + 1) if index >= 0 else "已装备"
+	var action_button: = get_node_or_null("VBoxContainer/equ") as Button
+	if action_button != null:
+		var can_equip: bool = not owner.has_method("can_equip_pet_item") or owner.call("can_equip_pet_item") == true
+		action_button.disabled = index >= 0 and not can_equip
+		action_button.tooltip_text = "请先选择宠物" if action_button.disabled else action_label
+
+func _pet_item_name(source: Variant) -> String:
+	if source is Dictionary:
+		var item: = source as Dictionary
+		return str(item.get("名字", item.get("名称", "宠物装备")))
+	return str(source)
+
+func _pet_item_data(source: Variant) -> Dictionary:
+	if not (source is Dictionary):
+		return {}
+	var item: = source as Dictionary
+	var data: Variant = item.get("Data", {})
+	if data is Dictionary and not (data as Dictionary).is_empty():
+		return (data as Dictionary).duplicate(true)
+	return item.duplicate(true)
+
+func _call_pet_action(method_name: String) -> bool:
+	if not is_pet_action or pet_owner == null or not is_instance_valid(pet_owner):
+		return false
+	if not pet_owner.has_method(method_name):
+		return false
+	var result = pet_owner.call(method_name, pet_source, pet_index, pet_slot_type, pet_action_label)
+
+	return result == null or result == true
+
+func _on_equ_pressed() -> void :
+	if is_pet_action:
+		if _call_pet_action("pet_equip_from_popup"):
+			queue_free()
+		return
+	var new_list = PlayerData.GetzbData(page, number)
+	if not CheckCanEquipment(new_list["名字"]):
+		return
+	match AE.AllEquipment_[new_list["名字"]]["类型"]:
+		"武器":
+			PlayerData.remove_zb(page, number)
+			if PlayerData.player_data["武器"].size() != 0:
+				var mz = PlayerData.player_data["武器"][0]["名字"]
+				var ql = PlayerData.player_data["武器"][0]["强化等级"]
+				EQ_prop = PlayerData.player_data["武器"][0]["Data"]
+				PlayerData.player_data["武器"].clear()
+				PlayerData.player_data["武器"].push_back(new_list)
+				PlayerData.zl_zb()
+				PlayerData.add_zb(mz, ql, EQ_prop)
+			else:
+				PlayerData.player_data["武器"].clear()
+				PlayerData.player_data["武器"].push_back(new_list)
+				PlayerData.zl_zb()
+		"防具":
+			PlayerData.remove_zb(page, number)
+			if PlayerData.player_data["防具"].size() != 0:
+				var mz = PlayerData.player_data["防具"][0]["名字"]
+				var ql = PlayerData.player_data["防具"][0]["强化等级"]
+				EQ_prop = PlayerData.player_data["防具"][0]["Data"]
+				PlayerData.player_data["防具"].clear()
+				PlayerData.player_data["防具"].push_back(new_list)
+				PlayerData.zl_zb()
+				PlayerData.add_zb(mz, ql, EQ_prop)
+
+			else:
+				PlayerData.player_data["防具"].clear()
+				PlayerData.player_data["防具"].push_back(new_list)
+				PlayerData.zl_zb()
+		"饰品":
+			PlayerData.remove_zb(page, number)
+			if PlayerData.player_data["饰品"].size() != 0:
+				var mz = PlayerData.player_data["饰品"][0]["名字"]
+				var ql = PlayerData.player_data["饰品"][0]["强化等级"]
+				EQ_prop = PlayerData.player_data["饰品"][0]["Data"]
+				PlayerData.player_data["饰品"].clear()
+				PlayerData.player_data["饰品"].push_back(new_list)
+				PlayerData.zl_zb()
+				PlayerData.add_zb(mz, ql, EQ_prop)
+			else:
+				PlayerData.player_data["饰品"].clear()
+				PlayerData.player_data["饰品"].push_back(new_list)
+				PlayerData.zl_zb()
+		"神骨":
+			PlayerData.remove_zb(page, number)
+			var equipped_shengu: Array = PlayerData.ensure_shengu_slot()
+			if not equipped_shengu.is_empty():
+				var old_item: Dictionary = equipped_shengu[0]
+				equipped_shengu.clear()
+				equipped_shengu.push_back(new_list)
+				PlayerData.zl_zb()
+				PlayerData.add_zb(
+					str(old_item.get("名字", "")), 
+					int(old_item.get("强化等级", 0)), 
+					old_item.get("Data", {})
+				)
+			else:
+				equipped_shengu.push_back(new_list)
+				PlayerData.zl_zb()
+		"头衔":
+			PlayerData.remove_zb(page, number)
+			if PlayerData.player_data["头衔"].size() != 0:
+				var mz = PlayerData.player_data["头衔"][0]["名字"]
+				var ql = PlayerData.player_data["头衔"][0]["强化等级"]
+				EQ_prop = PlayerData.player_data["头衔"][0]["Data"]
+				PlayerData.player_data["头衔"].clear()
+				PlayerData.player_data["头衔"].push_back(new_list)
+				PlayerData.zl_zb()
+				PlayerData.add_zb(mz, ql, EQ_prop)
+			else:
+				PlayerData.player_data["头衔"].clear()
+				PlayerData.player_data["头衔"].push_back(new_list)
+				PlayerData.zl_zb()
+		"头像框":
+			PlayerData.remove_zb(page, number)
+			var equipped_avatar_frames: Array = PlayerData.ensure_avatar_frame_slot()
+			if not equipped_avatar_frames.is_empty() and equipped_avatar_frames[0] is Dictionary:
+				var old_item: Dictionary = equipped_avatar_frames[0]
+				equipped_avatar_frames.clear()
+				equipped_avatar_frames.push_back(new_list)
+				PlayerData.zl_zb()
+				PlayerData.add_zb(
+					str(old_item.get("名字", "")), 
+					int(old_item.get("强化等级", 0)), 
+					old_item.get("Data", {})
+				)
+			else:
+				equipped_avatar_frames.clear()
+				equipped_avatar_frames.push_back(new_list)
+				PlayerData.zl_zb()
+		"时装":
+			PlayerData.remove_zb(page, number)
+			if PlayerData.player_data["时装"].size() != 0:
+				var mz = PlayerData.player_data["时装"][0]["名字"]
+				var ql = PlayerData.player_data["时装"][0]["强化等级"]
+				EQ_prop = PlayerData.player_data["时装"][0]["Data"]
+				PlayerData.player_data["时装"].clear()
+				PlayerData.player_data["时装"].push_back(new_list)
+				PlayerData.zl_zb()
+				PlayerData.add_zb(mz, ql, EQ_prop)
+
+			else:
+				PlayerData.player_data["时装"].clear()
+				PlayerData.player_data["时装"].push_back(new_list)
+				PlayerData.zl_zb()
+		"翅膀":
+			PlayerData.remove_zb(page, number)
+			if PlayerData.player_data["翅膀"].size() != 0:
+				var mz = PlayerData.player_data["翅膀"][0]["名字"]
+				var ql = PlayerData.player_data["翅膀"][0]["强化等级"]
+				EQ_prop = PlayerData.player_data["翅膀"][0]["Data"]
+				PlayerData.player_data["翅膀"].clear()
+				PlayerData.player_data["翅膀"].push_back(new_list)
+				PlayerData.zl_zb()
+				PlayerData.add_zb(mz, ql, EQ_prop)
+			else:
+				PlayerData.player_data["翅膀"].clear()
+				PlayerData.player_data["翅膀"].push_back(new_list)
+				PlayerData.zl_zb()
+		"法宝":
+			PlayerData.remove_zb(page, number)
+			if Global.FB_CD <= 0:
+				if PlayerData.player_data["法宝"].size() != 0:
+					var mz = PlayerData.player_data["法宝"][0]["名字"]
+					var ql = PlayerData.player_data["法宝"][0]["强化等级"]
+					var wx = PlayerData.player_data["法宝"][0]["五行"]
+					EQ_prop = PlayerData.player_data["法宝"][0]["Data"]
+					PlayerData.player_data["法宝"].clear()
+					PlayerData.player_data["法宝"].push_back(new_list)
+					PlayerData.zl_zb()
+					PlayerData.add_fb(mz, ql, wx, EQ_prop)
+				else:
+					PlayerData.player_data["法宝"].clear()
+					PlayerData.player_data["法宝"].push_back(new_list)
+					PlayerData.zl_zb()
+			else:
+				var mz = new_list["名字"]
+				var ql = new_list["强化等级"]
+				var wx = new_list["五行"]
+				EQ_prop = new_list["Data"]
+				PlayerData.add_fb(mz, ql, wx, EQ_prop)
+				var parent = Global.get_parent_(self, 3)
+				Global.AddMessageShow(parent, "当前法宝正在使用，无法更换！！", 1.5, Vector2(485, 240))
+	RoleProp.get_equ_last_pro()
+	RoleProp.get_last_prop()
+	if is_instance_valid(RoleProp.SourcePlayer):
+		RoleProp.SourcePlayer.onEqchange()
+	MemoryClass.保存游戏(Global.cd_path)
+	queue_free()
+
+
+func _on_sell_pressed() -> void :
+	if is_pet_action:
+		if _call_pet_action("pet_sell_from_popup"):
+			queue_free()
+		return
+	if _is_locked():
+		lock_button.grab_focus()
+		Global.AddMessageShow(Global.get_ui_popup_layer(), "该物品已锁定，请先解锁后再出售！", 1.5, Vector2.ZERO)
+		return
+	if EQ_prop == null:
+		PlayerData.remove_zb(page, number)
+		return
+	if not EQ_prop.has("类型"):
+		PlayerData.remove_zb(page, number)
+		return
+	var Lx = EQ_prop["类型"]
+	var pz = EQ_prop["品质"]
+	match Lx:
+		"武器", "防具", "饰品":
+			if EQ_prop["宝石"].size() == 0:
+				pass
+			else:
+				var parent = Global.get_parent_(self, 3)
+				Global.AddMessageShow(parent, "请先卸下该装备上的宝石！！", 1.5, Vector2(485, 240))
+				return
+	var abc = PlayerData.GetzbData(page, number)
+
+	var Name = PlayerData.GetzbData(page, number)["Data"]["名字"]
+	if pz == "传说" or pz == "玄冥" or pz == "魂器" or pz == "神器" or pz == "邪灵":
+		_show_sell_confirm("确定要卖出" + str(pz) + "品质的" + str(Name) + "吗？（此装备已强化至+" + str(abc["强化等级"]) + "。）")
+		return
+	if Lx == "法宝":
+		_show_sell_confirm("确定要卖出" + str(Lx) + str(Name) + "吗？（此装备已强化至+" + str(abc["强化等级"]) + "。）")
+		return
+	if abc["强化等级"] > 0:
+		_show_sell_confirm("确定要卖出" + str(Lx) + str(Name) + "吗？（此装备已强化至+" + str(abc["强化等级"]) + "。）")
+		return
+
+	var get_value = AE.AllEquipment_[get_name_]["售价"]
+	PlayerData.add_soul(get_value)
+	MemoryClass.保存游戏(Global.cd_path)
+	PlayerData.remove_zb(page, number)
+	PlayerData.zl_zb()
+	queue_free()
+
+func _show_sell_confirm(confirm_text: String) -> void :
+	self.visible = false
+	Signals.ConnectChooseBoxSignal(self, "sell")
+	jm = Global.add_choose_text(Global.get_ui_popup_layer(), Vector2.ZERO, confirm_text, 0)
+	if jm == null:
+		return
+	var popup: = jm as Control
+	if popup == null:
+		return
+	popup.process_mode = Node.PROCESS_MODE_ALWAYS
+	var overlay: = popup.get_node_or_null("TextureRect") as ColorRect
+	if overlay == null:
+		return
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	overlay.color = Color.TRANSPARENT
+	call_deferred("_center_sell_confirm_popup", popup)
+
+func _center_sell_confirm_popup(popup: Control) -> void :
+	if popup == null or not is_instance_valid(popup):
+		return
+	await get_tree().process_frame
+	var overlay: = popup.get_node_or_null("TextureRect") as ColorRect
+	if overlay == null:
+		return
+	var dialog: = overlay.get_node_or_null("bg") as Control
+	if dialog == null:
+		return
+	var dialog_size: = dialog.size
+	dialog.anchor_left = 0.0
+	dialog.anchor_top = 0.0
+	dialog.anchor_right = 0.0
+	dialog.anchor_bottom = 0.0
+	dialog.offset_left = (overlay.size.x - dialog_size.x) * 0.5
+	dialog.offset_top = (overlay.size.y - dialog_size.y) * 0.5
+	dialog.offset_right = dialog.offset_left + dialog_size.x
+	dialog.offset_bottom = dialog.offset_top + dialog_size.y
+func sell():
+	if _is_locked():
+		visible = true
+		_refresh_lock_button()
+		return
+	var get_value = AE.AllEquipment_[get_name_]["售价"]
+	PlayerData.add_soul(get_value)
+	MemoryClass.保存游戏(Global.cd_path)
+	PlayerData.remove_zb(page, number)
+	PlayerData.zl_zb()
+func get_number():
+	var number_ = int(str(get_parent().name).split("_")[1]) - 1
+	return number_
+func load_(name_):
+	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
+	return abc
+
+
+func _on_mouse_exited() -> void :
+	pass
+
+
+
+func _on_v_box_container_mouse_exited() -> void :
+	pass
+
+
+
+func _on_panel_mouse_exited() -> void :
+	pass
+
+func CheckCanEquipment(EquipmentName):
+	var RoleID: int = PlayerData.player_data["Myself"]
+	var parent = Global.get_parent_(self, 3)
+	var EqBase = AE.AllEquipment_[EquipmentName]["所属"]
+	var Name_ = AE.AllEquipment_[EquipmentName]["名字"] as String
+	var RoleBase: String
+	if EqBase == "通用":
+		return true
+	match RoleID:
+		1:
+			RoleBase = "悟空"
+			if EqBase == "悟空":
+				return true
+		2:
+			RoleBase = "唐僧"
+			if EqBase == "唐僧":
+				return true
+		3:
+			RoleBase = "八戒"
+			if EqBase == "八戒":
+				return true
+		4:
+			RoleBase = "沙僧"
+			if EqBase == "沙僧·铲" or EqBase == "沙僧·弓" or EqBase == "沙僧":
+				return true
+		5:
+			RoleBase = "白龙"
+			if EqBase == "白龙":
+				return true
+		6:
+			RoleBase = "哪吒"
+			if EqBase == "哪吒":
+				return true
+	Global.AddMessageShow(parent, Name_ + "属于" + EqBase + "，" + RoleBase + "无法穿戴！！", 1.5, Vector2(485, 240))
+	return false

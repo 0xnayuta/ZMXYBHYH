@@ -1,0 +1,2 @@
+extends BaseMonster
+class_name Monster71

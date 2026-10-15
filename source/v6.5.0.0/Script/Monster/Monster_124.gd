@@ -1,0 +1,49 @@
+extends BaseMonster
+class_name Monster124
+
+func monster_1301():
+	self.is_Fly = true
+	self.is_boss = false
+	self.my_mr_name = "雷钻怪"
+	self.attack_in = 30
+	self.level = 55
+	self.SHp = 65000
+	self.Hp = self.SHp
+	self.def = 355
+	self.mdef = 365
+	self.crit = 28
+	self.miss = 28
+	self.lucky = 40
+	self.Htarget = 0
+	self.Toughness = 35
+	self.ar = 65
+	self.sp = 65
+	self.Critreduce = 0
+	self.speed = 12
+	self.mysee = 600
+	self.attackRange = 135
+	self.attackDesire = 85
+	self.behit_calmtime = 0.4
+	self.rush_speed = self.speed * 25
+	self.self_rhp = 0
+	self.add_exp = 100
+	self.fall_coin = 30
+	self.objattackDic["hit1"] = {
+		"power": 1000, 
+		"hurtBack": [-4, -9], 
+		"attackKind": "physics"
+	}
+
+	self.fall_pro = 0.28
+	self.fall_list = [
+		{
+			"name": "ygs", 
+			"value": 1
+		}, 
+	]
+	self.fall_stone_pro = 0
+	self.fall_stone = [
+	]
+func _ready() -> void :
+	super._ready()
+	monster_1301()

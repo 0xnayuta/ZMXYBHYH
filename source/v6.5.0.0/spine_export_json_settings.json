@@ -1,0 +1,10 @@
+{
+  "class": "export-json",
+  "name": "JSON",
+  "extension": ".json",
+  "format": "JSON",
+  "prettyPrint": false,
+  "nonessential": true,
+  "cleanUp": false,
+  "warnings": true
+}

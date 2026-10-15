@@ -1,0 +1,438 @@
+extends BaseMonster
+class_name Monster132
+
+var IsStrength: bool
+var RelifTimes: int = 0
+var ShouldRelive: bool = false
+var CreateCount: int = randi_range(600, 720)
+var is_resurrecting: bool = false
+var resurrection_completed: bool = false
+var custom_death_handled: bool = false
+var death_timer: Timer
+
+func monster_132():
+	self.is_boss = true
+	self.my_mr_name = "天庭战神"
+	self.attack_in = 60
+	self.level = RoleProp.baseroleprop.Level + 5
+	self.SHp = 300000
+	self.Hp = self.SHp
+	self.def = 200
+	self.mdef = 200
+	self.crit = 50
+	self.miss = 25
+	self.lucky = 115
+	self.Htarget = 35
+	self.Toughness = 0
+	self.ar = 0
+	self.sp = 0
+	self.Critreduce = 0
+	self.speed = 14
+	self.mysee = 500
+	self.attackRange = 245
+	self.attackDesire = 100
+	self.behit_calmtime = 0
+	self.self_rhp = 0
+	self.add_exp = 120
+	self.fall_coin = 155
+
+	self.objattackDic["hit1"] = {
+		"power": 200, 
+		"hurtBack": [-4, -7], 
+		"attackKind": "magic", 
+		"HitProtect": 10, 
+	}
+
+	self.objattackDic["hit2"] = {
+		"power": 200, 
+		"hurtBack": [-5, -1], 
+		"attackKind": "magic", 
+		"HitProtect": 0, 
+		"addeffect": {
+			"Name": "DefeReduce", 
+			"AddTime": 5, 
+			"ReduceInterval": 0, 
+			"value": 1, 
+			"AttackKind": "", 
+			"DeBuff": true, 
+			"CanRemove": false, 
+			"CanAdd": false, 
+		}
+	}
+
+	self.fall_pro = 0.05
+	self.fall_list = [
+		{"name": "canglongjiezzs", "value": 1}
+	]
+
+	self.fall_stone_pro = 0.05
+	self.fall_stone = [
+		{"name": "canglonglingpo", "value": randi_range(1, 2)}
+	]
+
+func _ready() -> void :
+	super._ready()
+	monster_132()
+	Skill_1_CD = randi_range(3, 5)
+	Skill_2_CD = randi_range(5, 8)
+
+	death_timer = Timer.new()
+	death_timer.name = "DeathTimer"
+	death_timer.one_shot = true
+	add_child(death_timer)
+
+func _physics_process(delta: float) -> void :
+	if is_resurrecting or resurrection_completed:
+		if CanSetGra():
+			gravity = -980
+		else:
+			gravity = 0
+
+		if not is_on_floor() and not is_Fly:
+			velocity.y -= gravity * delta
+		move_and_slide()
+		return
+
+	super._physics_process(delta)
+
+	if Hp > 0 and not is_resurrecting and not resurrection_completed:
+		CreateCount -= 1
+		if CreateCount <= 0:
+			var Shallow = Global.Create_Monster(133, get_parent(), position) as Monster133
+			if Shallow:
+				Shallow.MyParent = self
+				CreateCount = randi_range(600, 720)
+
+func _process(delta: float) -> void :
+	if Hp <= 0 and not custom_death_handled and not is_resurrecting and not resurrection_completed:
+		custom_death_handled = true
+		handle_custom_death()
+
+func death() -> bool:
+	if is_resurrecting or resurrection_completed or ShouldRelive:
+		return false
+
+	if RelifTimes < 9 and Hp <= 0:
+		return true
+
+	if Hp <= 0:
+		return true
+
+	return false
+
+func handle_custom_death():
+	velocity = Vector2.ZERO
+	is_attacking = false
+
+	if RelifTimes < 9:
+		start_resurrection()
+	else:
+		final_death()
+
+func start_resurrection():
+	is_resurrecting = true
+	ShouldRelive = true
+	set_meta("counts_as_alive_for_stage_clear", true)
+
+	if hit_box:
+		hit_box.disabled = true
+	if hurt_box:
+		hurt_box.disabled = true
+
+	if mr_player.is_playing():
+		mr_player.stop()
+
+	RelifTimes += 1
+
+	if has_node("MonsterDir/mr_ani"):
+		var mr_ani = $MonsterDir / mr_ani
+		if mr_ani.sprite_frames and mr_ani.sprite_frames.has_animation("death1"):
+			mr_ani.animation = "death1"
+			mr_ani.frame = 0
+			mr_ani.play()
+
+			var frame_count = mr_ani.sprite_frames.get_frame_count("death1")
+			var speed_val = mr_ani.sprite_frames.get_animation_speed("death1")
+			var anim_duration = frame_count / speed_val if speed_val > 0 else 6.0
+
+			death_timer.wait_time = anim_duration
+			if death_timer.timeout.is_connected(_on_resurrection_animation_complete):
+				death_timer.timeout.disconnect(_on_resurrection_animation_complete)
+			death_timer.timeout.connect(_on_resurrection_animation_complete, CONNECT_ONE_SHOT)
+			death_timer.start()
+			return
+
+	if mr_player and mr_player.has_animation("death1"):
+		mr_player.play("death1")
+		death_timer.wait_time = 6.0
+		if death_timer.timeout.is_connected(_on_resurrection_animation_complete):
+			death_timer.timeout.disconnect(_on_resurrection_animation_complete)
+		death_timer.timeout.connect(_on_resurrection_animation_complete, CONNECT_ONE_SHOT)
+		death_timer.start()
+		return
+
+	await get_tree().create_timer(0.5).timeout
+	perform_resurrection()
+
+func _on_resurrection_animation_complete():
+	perform_resurrection()
+
+func perform_resurrection():
+	SHp = int(SHp * 1.2)
+	Hp = SHp
+	def += 20
+	mdef += 20
+	ar += 10
+	sp += 10
+	speed += 1
+	ebol += 0.25
+
+	if objattackDic.size() != 0:
+		for attack_name in objattackDic:
+			if objattackDic[attack_name].has("power"):
+				objattackDic[attack_name].power = int(objattackDic[attack_name].power * 1.2)
+
+	fall_pro += 0.08
+	fall_stone_pro += 0.08
+
+	ShouldRelive = false
+	is_resurrecting = false
+	resurrection_completed = true
+	is_death = false
+	is_fall = false
+	custom_death_handled = false
+	set_meta("counts_as_alive_for_stage_clear", false)
+
+	Skill_1_CD = 0
+	Skill_2_CD = 0
+	Skill_3_CD = 0
+
+	if hit_box:
+		hit_box.disabled = false
+	if hurt_box:
+		hurt_box.disabled = false
+
+	if has_node("MonsterDir/SpecialEffect"):
+		var special_effect = $MonsterDir / SpecialEffect
+
+		special_effect.position = Vector2.ZERO
+
+		special_effect.scale.x = 1
+
+		if special_effect is AnimatedSprite2D and special_effect.sprite_frames:
+			if special_effect.sprite_frames.has_animation("Relive"):
+				special_effect.play("Relive")
+			elif special_effect.sprite_frames.has_animation("relive"):
+				special_effect.play("relive")
+
+	resume_idle_animation()
+
+	await get_tree().create_timer(1.0).timeout
+	resurrection_completed = false
+
+func resume_idle_animation():
+	if mr_player.is_playing():
+		mr_player.stop()
+
+	if has_node("MonsterDir/mr_ani"):
+		var mr_ani = $MonsterDir / mr_ani
+		if mr_ani.is_playing():
+			mr_ani.stop()
+
+	if mr_player.has_animation("wait"):
+		mr_player.play("wait")
+	elif mr_player.has_animation("idle"):
+		mr_player.play("idle")
+	elif has_node("MonsterDir/mr_ani"):
+		var mr_ani = $MonsterDir / mr_ani
+		if mr_ani.sprite_frames:
+			if mr_ani.sprite_frames.has_animation("wait"):
+				mr_ani.animation = "wait"
+				mr_ani.play()
+			elif mr_ani.sprite_frames.has_animation("idle"):
+				mr_ani.animation = "idle"
+				mr_ani.play()
+
+func final_death():
+	is_death = true
+	set_meta("counts_as_alive_for_stage_clear", false)
+
+	if mr_player.has_animation("death"):
+		mr_player.play("death")
+	elif has_node("MonsterDir/mr_ani"):
+		var mr_ani = $MonsterDir / mr_ani
+		if mr_ani.sprite_frames and mr_ani.sprite_frames.has_animation("death"):
+			mr_ani.animation = "death"
+			mr_ani.play()
+
+	super.set_exp()
+	super.set_gxp()
+
+	if PlayerData.player_data.has(my_mr_name):
+		PlayerData.player_data[my_mr_name] += 1
+
+	settle_death_drops()
+
+	await get_tree().create_timer(2.0).timeout
+
+	if is_instance_valid(self):
+		queue_free()
+
+func state_death():
+	if RelifTimes < 9:
+		set_meta("counts_as_alive_for_stage_clear", true)
+		if not custom_death_handled and not is_resurrecting and not resurrection_completed:
+			custom_death_handled = true
+			handle_custom_death()
+		return
+	if not custom_death_handled:
+		custom_death_handled = true
+		final_death()
+
+func is_alive_for_stage_clear() -> bool:
+	return RelifTimes < 9 or is_resurrecting or resurrection_completed or ShouldRelive or bool(get_meta("counts_as_alive_for_stage_clear", false))
+
+func Monster_Intelligence():
+	if is_resurrecting or resurrection_completed or ShouldRelive:
+		return
+
+	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
+		has_target = true
+	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
+		if has_target == false:
+			normal_state()
+		else:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+				have_target()
+				if Skill_1_CD <= 0:
+					do_hit_1()
+				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 560:
+					if Skill_2_CD <= 0:
+						do_hit_2()
+			else:
+				stop_move()
+				if Skill_2_CD <= 0:
+					do_hit_2()
+				elif Skill_1_CD <= 0:
+					do_hit_1()
+				if count % 60 == 0:
+					if randi_range(0, 100) < attackDesire:
+						attack_target()
+
+func check_hp():
+	if is_resurrecting or resurrection_completed:
+		return
+
+	if Hp >= SHp:
+		Hp = SHp
+	if Hp <= 0 and not custom_death_handled:
+		Hp = 0
+
+func do_hit_1():
+	if is_resurrecting or resurrection_completed:
+		return
+
+	super.to_hero()
+	Skill_1_CD = randi_range(15, 18)
+	hit_name = "hit2"
+	velocity.x = 0
+	is_attacking = true
+	mr_player.play("hit2")
+	await mr_player.animation_finished
+	is_attacking = false
+	stop_move()
+
+func do_hit_2():
+	if is_resurrecting or resurrection_completed:
+		return
+
+	super.to_hero()
+	Skill_2_CD = randi_range(11, 13)
+	hit_name = "hit3"
+	velocity.x = 0
+	is_attacking = true
+	mr_player.play("hit3")
+	await mr_player.animation_finished
+	is_attacking = false
+	stop_move()
+
+func TweenToTop():
+	if is_resurrecting or resurrection_completed or _movement_command_is_blocked():
+		return
+
+	var tween = create_control_movement_tween()
+	tween.tween_property(self, "position", Vector2(0, -250) + position, 2)
+	velocity = Vector2(0, 0)
+
+func CallBullet():
+	if is_resurrecting or resurrection_completed:
+		return
+
+	var MaxCount: int = 15
+	var Num: int = 0
+
+	while Num < MaxCount:
+		var NewRotation = 360.0 / MaxCount * Num
+		var rad = deg_to_rad(NewRotation)
+		var stabPosition = Vector2(
+			self.position.x + sin(rad) * 300, 
+			self.position.y - 15 - cos(rad) * 300
+		)
+		var Arrow = Global.add_Bullet(
+			"Monster132Bullet", 
+			self.bullet, 
+			false, 
+			1, 
+			stabPosition, 
+			"hit2", 
+			self.objattackDic["hit2"]
+		)
+		if Arrow:
+			Arrow.rotation_degrees = NewRotation - 90
+
+		await get_tree().create_timer(0.05, false).timeout
+		Num += 1
+
+func _on_hurt_box_area_entered(area: Area2D):
+	if is_resurrecting or resurrection_completed:
+		return
+
+	super._on_hurt_box_area_entered(area)
+
+	var Bl: float = 0.02 + RelifTimes * 0.01
+	if IsStrength:
+		Global.AddBuff(RoleProp.SourcePlayer.buff, {
+			"Name": "Fire", 
+			"AddTime": 5, 
+			"ReduceInterval": 1, 
+			"value": int(RoleProp.roleprop.SHp * Bl), 
+			"AttackKind": "real", 
+			"CanAdd": true, 
+			"CanRemove": false
+		})
+		IsStrength = false
+
+func StrengthSelf():
+	if is_resurrecting or resurrection_completed:
+		return
+
+	IsStrength = false
+	if objattackDic.size() != 0:
+		for i in objattackDic:
+			if objattackDic[i].has("power"):
+				objattackDic[i].power *= 1.2
+
+	for i in range(randi_range(3, 6)):
+		cure_hp(int(SHp * randf_range(0.01, 0.02)))
+		await get_tree().create_timer(0.2, false).timeout
+
+func OnStrength():
+	if is_resurrecting or resurrection_completed:
+		return
+
+	IsStrength = true
+
+func _exit_tree():
+	super._exit_tree()
+	if death_timer and death_timer.timeout.is_connected(_on_resurrection_animation_complete):
+		death_timer.timeout.disconnect(_on_resurrection_animation_complete)

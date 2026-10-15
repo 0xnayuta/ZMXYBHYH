@@ -1,0 +1,70 @@
+extends Node2D
+
+enum ColorType{
+	WHITE, 
+	YELLOW, 
+	BLUE, 
+	RED
+}
+
+var Idle = true
+var Value: int
+var color_type: ColorType = ColorType.WHITE
+
+@onready var check: CollisionShape2D = $Check / Check
+var Speed: float = 0
+var tween
+
+func _ready() -> void :
+	match color_type:
+		ColorType.WHITE:
+			self.modulate = Color(1, 1, 1, 0)
+		ColorType.YELLOW:
+			self.modulate = Color(1, 1, 0, 0)
+		ColorType.BLUE:
+			self.modulate = Color(0, 0.5, 1, 0)
+		ColorType.RED:
+			self.modulate = Color(1, 0.2, 0.2, 0)
+
+func _physics_process(delta: float) -> void :
+	if Idle:
+		tween = create_tween().set_parallel(true)
+		match color_type:
+			ColorType.WHITE:
+				tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 1.5)
+			ColorType.YELLOW:
+				tween.tween_property(self, "modulate", Color(1, 1, 0, 1), 1.5)
+			ColorType.BLUE:
+				tween.tween_property(self, "modulate", Color(0, 0.5, 1, 1), 1.5)
+			ColorType.RED:
+				tween.tween_property(self, "modulate", Color(1, 0.2, 0.2, 1), 1.5)
+		tween.tween_property(self, "position", position + Vector2(0, - randi_range(20, 40)), 0.4)
+		await get_tree().create_timer(0.6, false).timeout
+		Idle = false
+
+	if not Idle:
+		self.position += Global.GetPositionBetween(self, RoleProp.SourcePlayer) * Speed * 0.5
+		check.disabled = false
+		Speed += 0.2
+		if Speed >= 20:
+			Speed = 20
+
+func _on_check_body_entered(body: Node2D) -> void :
+	if body is BaseHero:
+		var hero = body as BaseHero
+
+
+		PlayerData.add_soul(Value)
+
+
+		match color_type:
+			ColorType.YELLOW:
+				RoleProp.ws_value += 5
+			ColorType.BLUE:
+				hero.cure_Mp(10)
+			ColorType.RED:
+				hero.cure_Hp(10)
+			_:
+				pass
+
+		queue_free()
