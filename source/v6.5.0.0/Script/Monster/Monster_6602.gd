@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster6602
 var DeathCount: int = 0
 var XYcount: int = 0
 

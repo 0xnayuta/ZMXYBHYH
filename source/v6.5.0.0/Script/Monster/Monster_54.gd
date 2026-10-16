@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster54
 
 var CheckCount: int = 0
 

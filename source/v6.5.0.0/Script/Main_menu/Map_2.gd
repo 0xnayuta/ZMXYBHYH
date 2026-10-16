@@ -1,5 +1,4 @@
 extends Node2D
-class_name Map2
 
 const MAP_DESIGN_SIZE := Vector2(940.0, 590.0)
 const MAP_SHADOW_FADE := 55.0

@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster14501
 
 var IsSky = false
 var RoundList = []
@@ -11,7 +10,7 @@ var has_summoned_next = false
 var CurrentStage: int = 0
 var IsRelif: bool
 var is_have_wdww: bool = false
-var wdww: Boss_XieShaSeng_Wdww
+var wdww: BossXieShaSengWdww
 
 
 func monster_14501():
@@ -346,7 +345,7 @@ func _summon_next_stage():
 	var next_boss_scene := Global.load_scene_uncached("res://Scene/Monster/Monster_14501.tscn")
 	if next_boss_scene == null:
 		return
-	var next_boss = next_boss_scene.instantiate() as Monster14501
+	var next_boss = next_boss_scene.instantiate() as BaseMonster
 
 	next_boss.current_stage = current_stage + 1
 	next_boss.position = position + Vector2(randi_range(-50, 50), 0)

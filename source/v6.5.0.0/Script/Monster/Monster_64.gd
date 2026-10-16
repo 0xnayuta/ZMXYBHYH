@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster64
 var IsDrop = false
 var First: bool = true
 var FS: bool = false

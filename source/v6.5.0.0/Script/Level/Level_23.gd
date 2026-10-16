@@ -1,5 +1,4 @@
 extends BaseLevel
-class_name Level23
 @onready var stop_5: CollisionShape2D = $wall/stop5
 @onready var stop_1: CollisionShape2D = $wall/stop1
 @onready var stop_2: CollisionShape2D = $wall/stop2

@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster1402
 
 var ShouldFly: bool
 var IsCall: bool

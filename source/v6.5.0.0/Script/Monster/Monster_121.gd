@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster121
 var IsRush: bool
 var CreateCount: int = 0
 

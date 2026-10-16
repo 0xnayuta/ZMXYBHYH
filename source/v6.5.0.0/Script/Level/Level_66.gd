@@ -1,5 +1,4 @@
 extends Game4ImportedLevel
-class_name Level66
 
 const STAGE_COUNT := 5
 const SCREEN_STARTS := [0.0, 1000.0, 2000.0, 3000.0, 4000.0]

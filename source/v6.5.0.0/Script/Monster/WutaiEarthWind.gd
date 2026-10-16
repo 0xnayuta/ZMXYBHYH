@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name WutaiEarthWind
 
 const PROJECTILE_SCRIPT := preload("res://Script/Monster/WutaiMinghaiProjectile.gd")
 const ROOT_BASE := "res://Art/Monster/SwfPng"

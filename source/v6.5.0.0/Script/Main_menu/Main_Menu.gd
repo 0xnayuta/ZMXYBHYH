@@ -1,5 +1,4 @@
 extends Node2D
-class_name MainMenu
 const MAIN_MENU_DESIGN_SIZE := Vector2(940.0, 590.0)
 var abx: TextureButton
 @onready var ar_infer: Node2D = $ar_infer

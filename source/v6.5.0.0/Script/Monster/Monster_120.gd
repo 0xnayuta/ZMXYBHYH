@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster120
 var CureBl: float = 1
 
 

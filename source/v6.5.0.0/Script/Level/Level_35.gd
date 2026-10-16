@@ -1,5 +1,4 @@
 extends BaseLevel
-class_name Level35
 
 const XYDSTAGE_SCENE = preload("res://Scene/Level/xyd_stage.tscn")
 

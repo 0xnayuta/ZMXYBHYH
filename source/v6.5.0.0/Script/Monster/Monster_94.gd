@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster94
 var LevelBase
 var Stage = 1
 

@@ -1,4 +1,3 @@
-class_name setBoxObj
 extends Node2D
 
 @onready var mobile = $"../ButtonGroup"

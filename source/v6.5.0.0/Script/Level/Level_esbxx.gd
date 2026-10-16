@@ -1,5 +1,4 @@
 extends BaseLevel
-class_name LevelEsbxx
 
 const BOSS_SCENE := preload("res://Scene/Monster/ConstellationBossBase.tscn")
 const BOSS_GROUND_SPAWN := Vector2(500, 438)

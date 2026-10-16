@@ -77,7 +77,7 @@ func _on_hix_box_area_entered(area: Area2D) -> void:
 	if target is BaseHero:
 		if RoleProp.is_ws_state:
 			return
-		if target is role3:
+		if target is Role3Hero:
 			if target.Is_sdBuff or target.IsTMc:
 				return
 		target.state_behit()

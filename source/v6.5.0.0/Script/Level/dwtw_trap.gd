@@ -50,10 +50,10 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		target.reduce_hp(objattackDic[hit_name]["power"], self, self)
 		if RoleProp.is_ws_state:
 			return
-		if target is role3:
+		if target is Role3Hero:
 			if target.Is_sdBuff:
 				return
-		if target is role3:
+		if target is Role3Hero:
 			if target.IsTMc:
 				return
 		target.state_behit()

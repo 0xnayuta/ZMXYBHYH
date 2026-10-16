@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster103
 var MyChild: MonsterBullet
 
 

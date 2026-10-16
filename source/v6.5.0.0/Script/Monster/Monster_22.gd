@@ -104,7 +104,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if self.Hp <= 0:
 		var par = get_parent().get_parent()
-		if par is level10 or par is LevelNMGHDGQ:
+		if par is Level10 or par is LevelNMGHDGQ:
 			if boss_2 == null:
 				boss_2 = Global.Create_Monster(23, get_parent(), Vector2(self.position.x, 330))
 

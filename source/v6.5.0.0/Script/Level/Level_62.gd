@@ -1,5 +1,4 @@
 extends Game4ImportedLevel
-class_name Level62
 
 const MINGHAI_BACKGROUND_MANIFEST := "res://Art/Level/Game4Level/RuntimeAtlas/Level62Background/manifest.json"
 const MINGHAI_BACKGROUND_SEAM_SHADER := preload("res://Shader/MinghaiBackgroundSeam.gdshader")

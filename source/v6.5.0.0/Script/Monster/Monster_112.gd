@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster112
 var blink_count: int = randi_range(80, 120)
 
 

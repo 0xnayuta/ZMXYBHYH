@@ -1,5 +1,4 @@
 extends Game4ImportedLevel
-class_name Level54
 
 const NANHAI_MONSTER_SCRIPT := preload("res://Script/Monster/NanhaiMonster.gd")
 const FOUR_HEADED_BOSS_SCRIPT := preload("res://Script/Monster/FourHeadedBoss.gd")

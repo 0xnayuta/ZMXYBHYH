@@ -1,5 +1,4 @@
 extends BaseLevel
-class_name Level47
 
 const SCREEN_STARTS := [0.0, 1000.0, 2000.0, 3000.0]
 const SCREEN_RIGHTS := [1200.0, 2200.0, 3200.0, 4200.0]

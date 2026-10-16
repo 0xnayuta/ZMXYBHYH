@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster63
 var _is_casting_skill = false
 var _combo_skill_queued: bool = false
 static var instance_count: int = 0

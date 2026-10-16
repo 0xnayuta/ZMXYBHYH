@@ -1,5 +1,4 @@
 extends Node2D
-class_name Ldl
 const FULLSCREEN_DESIGN_SIZE := Vector2(940, 590)
 @onready var bg: Sprite2D = $bg
 @onready var bg_2: Sprite2D = $bg/bg2

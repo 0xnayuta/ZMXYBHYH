@@ -7,7 +7,7 @@ var _body_stream: StreamedPngEffect
 var _body_action: StringName = &""
 @onready var body_animation: AnimatedSprite2D = $MonsterDir/mr_ani
 
-var my_summoner: role2 = null
+var my_summoner: Role2Hero = null
 
 var is_skill_1_active: bool = false
 var is_skill_2_active: bool = false

@@ -1,4 +1,3 @@
-class_name BaseMap
 extends CanvasLayer
 
 var playerData = PlayerData

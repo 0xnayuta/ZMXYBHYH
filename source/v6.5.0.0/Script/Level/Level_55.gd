@@ -1,5 +1,4 @@
 extends Game4ImportedLevel
-class_name Level55
 
 const BOSS_SCENE_PATH := "res://Scene/Level/Level_55_Boss.tscn"
 const BOSS_SOURCE_MAP := "fahualingdong_bossV1"

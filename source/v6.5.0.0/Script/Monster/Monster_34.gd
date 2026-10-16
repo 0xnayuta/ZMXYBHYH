@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster34
 var should_death = false
 
 

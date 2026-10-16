@@ -1,5 +1,4 @@
 extends BaseLevel
-class_name Levelllbt
 @onready var stop_1: CollisionShape2D = $wall/stop1
 @onready var level_text: Label = $LevelText
 @onready var bbg: ColorRect = $bbg

@@ -1,5 +1,4 @@
 extends Node2D
-class_name Map8Nightmare
 
 const MAP_DESIGN_SIZE := Vector2(940.0, 590.0)
 const MAP_VARIANT := "Map_8_1"

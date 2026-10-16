@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster1407
 
 var alternate_side: bool = false
 

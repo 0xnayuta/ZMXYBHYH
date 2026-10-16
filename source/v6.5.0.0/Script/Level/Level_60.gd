@@ -1,5 +1,4 @@
 extends Game4ImportedLevel
-class_name Level60
 
 const HAZARD_1022_PROJECTILE_SCRIPT := preload("res://Script/Level/Level60Hazard1022Projectile.gd")
 

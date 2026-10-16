@@ -1,5 +1,4 @@
 extends Node2D
-class_name BasicSHop
 
 const SHOP_BASE_SIZE := Vector2(940.0, 591.0)
 const SHOP_SHADOW_FADE := 55.0

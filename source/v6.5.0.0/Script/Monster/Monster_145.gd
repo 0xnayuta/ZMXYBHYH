@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster145
 var IsSky = false
 var RoundList = []
 var Rolelevel = RoleProp.baseroleprop.Level

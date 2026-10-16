@@ -1,5 +1,4 @@
 extends BaseMagicWeapon
-class_name EightImmortalMagicWeapon
 
 @export var weapon_id: String = ""
 @export var model_path: String = ""

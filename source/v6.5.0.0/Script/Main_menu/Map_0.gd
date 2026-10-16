@@ -1,5 +1,4 @@
 extends Node2D
-class_name Map0
 
 const MAP_DESIGN_SIZE := Vector2(940.0, 590.0)
 const PET_PANEL_SIZE := Vector2(653.0, 513.0)

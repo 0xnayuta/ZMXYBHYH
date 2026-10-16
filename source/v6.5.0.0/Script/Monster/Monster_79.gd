@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster79
 var CurrentStage: int = 0
 var IsRelif: bool
 

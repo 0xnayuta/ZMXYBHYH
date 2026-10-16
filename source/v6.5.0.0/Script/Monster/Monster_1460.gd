@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster1460
 
 const FRAME_ROOT := "res://Art/Monster/Tongtian3057"
 const ATLAS_MANIFEST := FRAME_ROOT + "/atlas/manifest.json"

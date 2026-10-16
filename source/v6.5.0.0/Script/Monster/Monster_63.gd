@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster641
 var DeathCount: int = 0
 var Hurtcount: int = 0
 var Should_FS: bool = false

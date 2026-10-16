@@ -1,4 +1,3 @@
-class_name UserKey
 extends TouchScreenButton
 
 @onready var TextKey: Label = $Key

@@ -1,5 +1,4 @@
 extends Node2D
-class_name BasicBackPack
 
 @onready var LdlClass = preload("res://Script/LDL/ldl.gd")
 

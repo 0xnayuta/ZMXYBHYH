@@ -1,5 +1,4 @@
 extends Node2D
-class_name Map9
 
 const MAP_DESIGN_SIZE := Vector2(940.0, 590.0)
 const LEFT_ALIGNED_BUTTON_NAMES := [

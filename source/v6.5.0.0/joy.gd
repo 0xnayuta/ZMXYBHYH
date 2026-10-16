@@ -1,4 +1,3 @@
-class_name AppYg
 extends TouchScreenButton
 
 const DRAG_RADIUS := 64.0

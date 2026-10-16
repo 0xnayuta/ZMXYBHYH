@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster130
 
 const MODEL_ROOT := "res://Art/Monster/Game3Monster/Monster_130"
 const ACTION_FRAME_DIRS := {

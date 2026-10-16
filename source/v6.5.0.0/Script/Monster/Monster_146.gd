@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster146
 
 var moonlight_active = false
 var moonlight_timer = 0.0
@@ -296,7 +295,7 @@ func state_death() -> void:
 func _summon_phantom():
 	var phantom_scene = Global.load_scene_uncached("res://Scene/Monster/Monster_146.tscn")
 	if phantom_scene:
-		var phantom_instance = phantom_scene.instantiate() as Monster146
+		var phantom_instance = phantom_scene.instantiate() as BaseMonster
 		phantom_instance.is_phantom = true
 
 		var spawn_position = position + Vector2(randi_range(-50, 50), randi_range(-30, 30))

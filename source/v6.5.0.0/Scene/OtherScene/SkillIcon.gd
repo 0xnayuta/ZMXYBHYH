@@ -124,8 +124,8 @@ func _current_mount_runtime() -> Node:
 func _update_nezha_effects(delta: float) -> void:
 	var source_player = RoleProp.SourcePlayer
 	var is_nezha := _current_role_id() == 6 and source_player is NeZhaHero
-	var is_role4 := _current_role_id() == 4 and source_player is role4
-	var is_role3 := _current_role_id() == 3 and source_player is role3
+	var is_role4 := _current_role_id() == 4 and source_player is Role4Hero
+	var is_role3 := _current_role_id() == 3 and source_player is Role3Hero
 	var icon_scale: float = maxf(absf(scale.x), 0.001)
 	var effect_scale := Vector2.ONE / icon_scale if is_nezha or is_role4 else Vector2.ONE
 	power_effect.scale = effect_scale

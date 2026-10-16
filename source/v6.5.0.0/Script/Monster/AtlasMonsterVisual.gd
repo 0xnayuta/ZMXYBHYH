@@ -1,5 +1,4 @@
 extends AnimatedSprite2D
-class_name AtlasMonsterVisual
 
 signal play_end
 

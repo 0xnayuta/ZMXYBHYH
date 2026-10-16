@@ -330,7 +330,7 @@ func CallRound_():
 
 
 func CallMonster():
-	if get_parent().get_parent() is level21:
+	if get_parent().get_parent() is Level21:
 		if Boss_3 == null:
 			Boss_3 = Global.Create_Monster(56, get_parent(), Vector2(1450, 320)) as Monster56
 			var BaseLevel_ = get_parent().get_parent() as BaseLevel

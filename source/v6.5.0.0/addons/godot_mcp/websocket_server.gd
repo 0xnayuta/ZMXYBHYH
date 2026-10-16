@@ -1,6 +1,5 @@
 @tool
 extends Node
-class_name MCPWebSocketServer
 
 signal command_received(id: String, command: String, params: Dictionary)
 signal client_connected()

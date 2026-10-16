@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster12
 var is_eggs = false
 var is_play = false
 var relive_effect

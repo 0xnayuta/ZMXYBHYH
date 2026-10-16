@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster1410
 
 static var instance_count: int = 0
 const LIGHT_ORB_LIFE_SECONDS := 10

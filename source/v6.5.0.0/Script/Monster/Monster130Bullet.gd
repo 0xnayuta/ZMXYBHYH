@@ -1,5 +1,4 @@
 extends MonsterBullet
-class_name Monster130Bullet
 
 const EFFECT_FPS := 24.0
 const EFFECT_ROOT := "res://Art/Monster/Game3Monster/Monster_130/effects"

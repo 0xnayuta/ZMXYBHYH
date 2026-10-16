@@ -1,5 +1,4 @@
 extends CanvasLayer
-class_name CreatePlayer
 
 @onready var role_cards: HBoxContainer = $FitRoot/RoleCards
 @onready var shengcun: HBoxContainer = $FitRoot/InfoPanel/Stats/shengcun

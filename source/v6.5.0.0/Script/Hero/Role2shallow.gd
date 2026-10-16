@@ -1,5 +1,5 @@
 extends BaseHero
-class_name role2shallow
+class_name Role2Shallow
 
 var my_owner: BaseHero = null
 @onready var hurt_box = $base_damagebox/HurtBox/HurtBox

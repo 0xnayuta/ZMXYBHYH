@@ -323,7 +323,7 @@ enum State {
 	is_under,
 }
 var hit_name
-var monster_blood_bar: mr_blood_bar
+var monster_blood_bar: MrBloodBar
 var Onset: bool
 var BaseLevel_: Node
 var ShouldInSky: bool
@@ -1715,7 +1715,7 @@ func Role5Bullet(last_hurt, source_target = null):
 		return
 	if get_Player == null or last_hurt <= 0:
 		return
-	if not get_Player is role5:
+	if not get_Player is Role5Hero:
 		return
 	randomize()
 	if randi_range(0, 100) > 15:
@@ -3389,7 +3389,7 @@ func CheckPlayerHaveDebuff(Target):
 
 
 func WDHurt():
-	if RoleProp.SourcePlayer is role4:
+	if RoleProp.SourcePlayer is Role4Hero:
 		if PlayerData.player_data["技能学习"]["技能10"]["等级"] > 0:
 			var VoodooCounts = Global.CheckWD(self)
 			if VoodooCounts >= 7:
@@ -3408,7 +3408,7 @@ func WDHurt():
 
 
 func _is_mds_awaken_active() -> bool:
-	if not RoleProp.SourcePlayer is role4:
+	if not RoleProp.SourcePlayer is Role4Hero:
 		return false
 	var awaken_data: Variant = PlayerData.player_data.get("技能觉醒", {})
 	var enabled_data: Variant = PlayerData.player_data.get("技能觉醒启用", {})

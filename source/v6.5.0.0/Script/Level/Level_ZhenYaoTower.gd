@@ -1,5 +1,4 @@
 extends Game4ImportedLevel
-class_name LevelZhenYaoTower
 
 const TOWER_CURRENT_FLOOR_KEY := "镇妖塔当前层数"
 const TOWER_MAX_FLOOR_KEY := "镇妖塔最高层数"

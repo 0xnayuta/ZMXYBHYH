@@ -1,5 +1,4 @@
 extends "res://Script/Monster/SwordBossBase.gd"
-class_name Monster951
 
 
 func _configure_sword_boss() -> void:

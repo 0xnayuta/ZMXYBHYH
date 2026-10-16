@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster3201
 var get_hero: BaseHero
 @onready var wing: AnimatedSprite2D = $MonsterDir/Wing
 

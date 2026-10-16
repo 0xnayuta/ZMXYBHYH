@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster46
 var Curecount: int = 0
 var DeBuffList = [
 	{

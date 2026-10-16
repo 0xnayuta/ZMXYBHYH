@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster140
 var ShouldFly: bool
 var Sword_: Monster117
 var FireRound: Monster116

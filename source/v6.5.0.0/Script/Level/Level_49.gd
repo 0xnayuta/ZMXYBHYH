@@ -1,5 +1,4 @@
 extends Game4ImportedLevel
-class_name Level49
 
 const WEIYANG_STAGE_COUNT := 5
 const WEIYANG_SCREEN_STARTS := [0.0, 1000.0, 2000.0, 3000.0, 3784.0]

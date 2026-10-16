@@ -1,5 +1,4 @@
 extends BaseLevel
-class_name level36
 
 var platforms = {}
 

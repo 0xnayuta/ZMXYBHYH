@@ -440,15 +440,15 @@ func refresh_rider_appearance() -> void:
 
 
 func _get_rider_role_id() -> int:
-	if hero is role1:
+	if hero is Role1Hero:
 		return 1
-	if hero is role2:
+	if hero is Role2Hero:
 		return 2
-	if hero is role3:
+	if hero is Role3Hero:
 		return 3
-	if hero is role4:
+	if hero is Role4Hero:
 		return 4
-	if hero is role5:
+	if hero is Role5Hero:
 		return 5
 	if hero is NeZhaHero:
 		return 6

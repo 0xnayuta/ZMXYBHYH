@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster8
 
 var buff_icon
 @onready var rd: Area2D = $Rd

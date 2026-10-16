@@ -1,4 +1,4 @@
-class_name SetList extends HBoxContainer
+extends HBoxContainer
 
 @onready var backpack: TextureButton = $"../ButtonGroup/backpack"
 @onready var set_: TextureButton = $"../ButtonGroup/set"

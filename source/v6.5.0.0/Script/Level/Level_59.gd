@@ -1,5 +1,4 @@
 extends Game4ImportedLevel
-class_name Level59
 
 const WUTAI_STAGE_COUNT := 5
 const WUTAI_STAGE_HEIGHT := 1312.0

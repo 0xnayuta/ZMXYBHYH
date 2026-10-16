@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster44
 var MonsterList = [39, 40, 30, 31]
 var Curecount: int = 0
 

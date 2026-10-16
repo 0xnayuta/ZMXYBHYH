@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster33
 var hand_1
 var hand_2
 var is_set

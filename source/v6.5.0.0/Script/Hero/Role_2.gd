@@ -1,5 +1,5 @@
 extends BaseHero
-class_name role2
+class_name Role2Hero
 
 const JHSJ_AWAKEN_EFFECT := preload("res://Scene/Hero/RoleSpecialEffectSlim/JHSJAwakenEffect.tscn")
 

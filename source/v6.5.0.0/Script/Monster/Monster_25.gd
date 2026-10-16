@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster25
 var is_can_attack
 var dir = 1
 var is_can_move

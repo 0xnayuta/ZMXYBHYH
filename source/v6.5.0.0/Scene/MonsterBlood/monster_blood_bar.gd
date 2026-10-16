@@ -1,5 +1,5 @@
 extends Node2D
-class_name mr_blood_bar
+class_name MrBloodBar
 @onready var blood_bar: TextureProgressBar = $blood_bar
 @onready var blood_text: Label = $blood_bar/blood_text
 @onready var queue_free_timer: Timer = $queue_free_Timer

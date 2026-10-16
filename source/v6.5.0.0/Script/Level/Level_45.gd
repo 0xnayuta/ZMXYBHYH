@@ -1,5 +1,4 @@
 extends BaseLevel
-class_name Level45
 
 @onready var stop_left: CollisionShape2D = $wall/stop_left
 @onready var stop_right: CollisionShape2D = $wall/stop_right

@@ -1,2 +1,1 @@
 extends BaseLevel
-class_name LevelZzdy

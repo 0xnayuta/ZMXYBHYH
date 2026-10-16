@@ -1,5 +1,4 @@
 extends "res://Script/Pet/PetTurtleSummonBase.gd"
-class_name PetYinTigerSummonBase
 
 const SKILL_HX := "hx"
 const SKILL_MHXS := "mhxs"

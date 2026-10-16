@@ -1,4 +1,3 @@
-class_name JoyLeft
 extends Control
 
 var isSet: bool = false

@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster11
 var CureCount: int = 0
 
 

@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster36
 var should_death = false
 var WaitTime = [120, 90, 180, 60]
 var GetWWaitTime: int

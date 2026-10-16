@@ -1,5 +1,4 @@
 extends Game4ImportedLevel
-class_name Level50
 
 const JIUHUA_STAGE_COUNT := 5
 const JIUHUA_BGM_PATH := "res://Music/level/original_bg_02.mp3"

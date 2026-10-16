@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster109
 var IsShow: bool = true
 var ShowCount: int = randi_range(300, 480)
 var HideCount: int = randi_range(300, 480)

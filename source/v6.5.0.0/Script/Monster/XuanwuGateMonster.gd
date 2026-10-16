@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name XuanwuGateMonster
 
 const FRAME_ROOT := "res://Art/Monster/SwfPng"
 const BOSS_ATLAS_MANIFEST := FRAME_ROOT + "/3005/atlas/manifest.json"

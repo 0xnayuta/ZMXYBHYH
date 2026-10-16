@@ -1,4 +1,3 @@
-class_name RoleInfor
 extends Node2D
 
 var _gogo: AnimatedSprite2D

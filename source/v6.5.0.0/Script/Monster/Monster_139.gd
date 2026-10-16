@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster139
 var ShowBox: bool = false
 var BigBody: bool = false
 var CanMove: bool = false

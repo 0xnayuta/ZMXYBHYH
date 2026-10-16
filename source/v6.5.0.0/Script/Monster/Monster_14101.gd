@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster14101
 var WHSCount: int = 0
 
 

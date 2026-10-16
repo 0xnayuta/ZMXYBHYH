@@ -1,5 +1,4 @@
 extends BaseLevel
-class_name LevelGHG
 
 const MONSTER_130_SCENE := preload("res://Scene/Monster/Monster_130.tscn")
 

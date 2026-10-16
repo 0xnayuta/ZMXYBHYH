@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster10
 
 
 func monster_10():

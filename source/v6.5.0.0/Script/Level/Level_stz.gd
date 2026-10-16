@@ -1,5 +1,4 @@
 extends BaseLevel
-class_name LevelSTZ
 
 const PRINCE_IDS := [4401, 4402, 4403]
 

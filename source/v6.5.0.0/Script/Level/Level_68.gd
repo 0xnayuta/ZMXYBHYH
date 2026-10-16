@@ -1,5 +1,4 @@
 extends Game4ImportedLevel
-class_name Level68
 
 const STAGE_COUNT := 4
 const ROOM_WIDTH := 1200.0

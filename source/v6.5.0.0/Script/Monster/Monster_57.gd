@@ -317,7 +317,7 @@ func normalBullet():
 
 
 func CallMonster():
-	if get_parent().get_parent() is level21:
+	if get_parent().get_parent() is Level21:
 		if Boss_2 == null:
 			Boss_2 = Global.Create_Monster(55, get_parent(), Vector2(1450, 320)) as Monster55
 			var BaseLevel_ = get_parent().get_parent() as BaseLevel

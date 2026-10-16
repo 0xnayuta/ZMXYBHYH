@@ -1,4 +1,4 @@
-class_name ComKey extends TextureButton
+extends TextureButton
 
 @onready var TextKey: Label = $Key
 @onready var sizeNode: TextureButton = $Control/TextureButton

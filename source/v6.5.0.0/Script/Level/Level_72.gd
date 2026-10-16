@@ -1,5 +1,4 @@
 extends Game4EastLateLevel
-class_name Level72
 
 
 func _init() -> void:

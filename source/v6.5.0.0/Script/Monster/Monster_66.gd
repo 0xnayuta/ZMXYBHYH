@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster66
 @onready var death_: Timer = $Death
 var IsDrop = false
 

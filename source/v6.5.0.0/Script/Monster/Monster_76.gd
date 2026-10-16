@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster76
 var Round
 
 

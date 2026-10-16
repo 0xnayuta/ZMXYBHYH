@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster19
 var use_skill_2
 
 

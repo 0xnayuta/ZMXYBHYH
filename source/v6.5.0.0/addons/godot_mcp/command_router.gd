@@ -1,6 +1,5 @@
 @tool
 extends RefCounted
-class_name MCPCommandRouter
 
 var _commands: Dictionary = {}
 var _handlers: Array[MCPBaseCommand] = []

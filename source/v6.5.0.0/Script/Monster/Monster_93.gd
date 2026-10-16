@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster93
 var Dog: Monster72
 var CallDog: bool
 

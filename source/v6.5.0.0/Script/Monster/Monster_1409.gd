@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster1409
 
 static var instance_count: int = 0
 

@@ -1,5 +1,5 @@
 extends BaseLevel
-class_name level21
+class_name Level21
 var is_set: bool = false
 @onready var stop_1: CollisionShape2D = $wall/stop1
 @onready var stop_2: CollisionShape2D = $wall/stop2

@@ -1,5 +1,4 @@
 extends Node2D
-class_name ChangeClothesjm
 
 @onready var HaveOrNot: Label = $BG/HaveOrNot
 @onready var cdorxx: Label = $BG/change/cdorxx

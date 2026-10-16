@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster41
 var already_use_mrsp = false
 var is_speed_up = false
 var count_: int = 0
@@ -137,7 +136,7 @@ func do_hit_2():
 	mr_player.play("mrsp")
 	await mr_player.animation_finished
 	already_use_mrsp = true
-	if get_parent_ is level15:
+	if get_parent_ is Level15:
 		get_parent_.add_ini()
 	is_attacking = false
 

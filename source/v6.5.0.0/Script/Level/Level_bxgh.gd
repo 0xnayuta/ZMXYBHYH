@@ -1,5 +1,4 @@
 extends BaseLevel
-class_name LevelBXGH
 
 const BOSS_ORDER: Array[int] = [163, 175, 165, 166, 168, 169, 174, 164]
 const CAMERA_RIGHT_LIMIT := 1200.0

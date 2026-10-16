@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster215
 
 const FRAME_ROOT := "res://Art/Monster/Game3Monster/Monster_215"
 const SOURCE_FPS := 30.0

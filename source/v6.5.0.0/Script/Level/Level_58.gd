@@ -1,5 +1,4 @@
 extends Game4ImportedLevel
-class_name Level58
 
 const EMEI_MONSTER_SCRIPT := preload("res://Script/Monster/EmeiMountainMonster.gd")
 const FIRE_ANCESTOR_SCRIPT := preload("res://Script/Monster/FireAncestorBoss.gd")

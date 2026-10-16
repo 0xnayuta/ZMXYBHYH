@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name EightImmortalsBoss
 
 const PROJECTILE_SCRIPT := preload("res://Script/Monster/WutaiMinghaiProjectile.gd")
 const SOURCE_FPS := 24.0

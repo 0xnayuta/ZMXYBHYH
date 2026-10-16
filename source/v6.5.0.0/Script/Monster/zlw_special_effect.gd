@@ -1,5 +1,4 @@
 extends Node2D
-class_name ZLWRound
 @onready var lunzi_4: AnimatedSprite2D = $Lunzi_4
 @onready var lunzi_3: AnimatedSprite2D = $Lunzi_3
 @onready var lunzi_1: AnimatedSprite2D = $Lunzi_1

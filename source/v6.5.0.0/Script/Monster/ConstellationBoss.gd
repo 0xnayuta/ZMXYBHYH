@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name ConstellationBoss
 
 const PROJECTILE_SCRIPT := preload("res://Script/Monster/WutaiMinghaiProjectile.gd")
 const STREAM_SCRIPT := preload("res://Script/Monster/StreamedPngEffect.gd")

@@ -1,5 +1,4 @@
 extends Game4ImportedLevel
-class_name Level51
 
 const SHUANGXI_MONSTER_SCRIPT := preload("res://Script/Monster/ShuangxiTempleMonster.gd")
 const SHUANGXI_BOSS_ARROW_SCRIPT := preload("res://Script/Monster/ShuangxiBossArrow.gd")

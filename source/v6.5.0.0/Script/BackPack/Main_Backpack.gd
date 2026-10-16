@@ -1,5 +1,4 @@
 extends Control
-class_name MainBackPack
 @onready var coin_number: Label = $coin_text/coin_number
 @onready var tab_bar: TabBar = $MarginContainer/VBoxContainer/TabBar
 @onready var current_page_text: Label = $ChangePage/CurrentPageText

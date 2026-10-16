@@ -1,4 +1,3 @@
-class_name SxmgCSM
 extends Area2D
 
 

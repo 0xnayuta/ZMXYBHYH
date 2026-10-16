@@ -141,7 +141,7 @@ func TJGLCure():
 	var player = get_parent().get_parent() as BaseHero
 
 	var real_player = player
-	if player is role2shallow and player.my_owner != null:
+	if player is Role2Shallow and player.my_owner != null:
 		real_player = player.my_owner
 
 	for i in RoleList:
@@ -152,7 +152,7 @@ func TJGLCure():
 			var heal_value = int(TotalValue * CureValue)
 			var effective_heal = i.cure_Hp(heal_value)
 
-			if i == real_player and real_player is role2:
+			if i == real_player and real_player is Role2Hero:
 				var max_hp = RoleProp.roleprop.SHp
 				var excess = heal_value - effective_heal
 				if excess > 0:
@@ -284,7 +284,7 @@ func _get_zznh_buff_info() -> Dictionary:
 
 func Role3SdCure():
 	var Player = get_parent()
-	if Player is role3:
+	if Player is Role3Hero:
 		var Level = PlayerData.player_data["技能学习"]["技能6"]["等级"] + 1
 		var CureValue = int(6 + RoleProp.roleprop.SHp * (0.004 + Level * 0.001))
 		Player.cure_Hp(CureValue)
@@ -296,7 +296,7 @@ func Role3RemoveBuff():
 		return
 	wiilQueue = true
 	var Player = get_parent()
-	if Player is role3:
+	if Player is Role3Hero:
 		Player.Is_sdBuff = false
 
 

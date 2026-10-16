@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name ZhuqueStreetMonster
 
 const SOURCE_FPS := 30.0
 const FRAME_ROOT := "res://Art/Monster/SwfPng"

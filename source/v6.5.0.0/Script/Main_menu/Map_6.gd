@@ -1,5 +1,4 @@
 extends Node2D
-class_name Map6
 
 const MAP_DESIGN_SIZE := Vector2(940.0, 590.0)
 const LEVEL_HIGHLIGHT_SHADER := preload("res://Shader/WsEffect.gdshader")

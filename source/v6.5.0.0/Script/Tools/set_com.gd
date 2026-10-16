@@ -1,4 +1,3 @@
-class_name SetConKey
 extends Control
 
 @onready var joy_right: Control = $joy_right

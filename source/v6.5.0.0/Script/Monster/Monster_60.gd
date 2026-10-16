@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster60
 var Is_Top: bool = false
 var Is_Drop: bool = false
 var has_summoned_war_god_xingtian: bool = false

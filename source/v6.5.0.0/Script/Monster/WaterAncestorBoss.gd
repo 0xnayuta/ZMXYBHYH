@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name WaterAncestorBoss
 
 const PROJECTILE_SCRIPT := preload("res://Script/Monster/NanhaiProjectile.gd")
 const ROOT := "res://Art/Monster/SwfPng/3035"

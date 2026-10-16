@@ -1,5 +1,5 @@
 extends BaseHero
-class_name role4
+class_name Role4Hero
 const BI_LUO_TIAN_EFFECT = preload("res://Script/Hero/BiLuoTianEffect.gd")
 const CANG_MU_LONG_YUN_EFFECT = preload("res://Script/Hero/CangMuLongYunEffect.gd")
 const ROLE4_POISON_ARRAY_AWAKEN_EFFECT = preload("res://Script/Hero/Role4PoisonArrayAwakenEffect.gd")

@@ -1,5 +1,4 @@
 extends BaseMagicWeapon
-class_name Zlwdah
 
 var ADDTime: float
 var ADDBl: float = 1

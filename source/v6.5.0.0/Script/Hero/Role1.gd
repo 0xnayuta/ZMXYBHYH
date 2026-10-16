@@ -1,5 +1,5 @@
 extends BaseHero
-class_name role1
+class_name Role1Hero
 
 const WUSHUANG_HUOYAN_EFFECT = preload("res://Script/Hero/WuShuangHuoYanJinJingEffect.gd")
 const HMZ_AWAKEN_EFFECT = preload("res://Scene/Hero/RoleSpecialEffectSlim/HmzAwakenEffect.tscn")

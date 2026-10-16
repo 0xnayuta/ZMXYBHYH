@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name WutaiEarthAncestor3071
 
 const ROOT := "res://Art/Monster/SwfPng/3071"
 const ATLAS_MANIFEST := ROOT + "/atlas/manifest.json"

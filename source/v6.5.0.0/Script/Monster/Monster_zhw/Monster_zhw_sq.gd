@@ -1,5 +1,4 @@
 extends SummonBaseMonster
-class_name Monsterzhw_sq
 
 var weapon_level: int = 1
 var attribute_scale: float = 0.1

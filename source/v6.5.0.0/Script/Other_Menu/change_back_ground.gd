@@ -1,4 +1,3 @@
-class_name Bgimage
 extends CanvasLayer
 
 signal setBg(index: int)

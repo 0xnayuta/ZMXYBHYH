@@ -127,10 +127,10 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if self.Hp <= 0:
 		var par = get_parent().get_parent()
-		if par is level10 or par is LevelNMGHDGQ:
+		if par is Level10 or par is LevelNMGHDGQ:
 			if boss_3 == null:
 				var po: Vector2
-				if par is level10:
+				if par is Level10:
 					po = Vector2(1425, 330)
 				elif par is LevelNMGHDGQ:
 					po = Vector2(435, 330)

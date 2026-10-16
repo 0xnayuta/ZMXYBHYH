@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster6601
 @onready var special_effect: AnimatedSprite2D = $MonsterDir/SpecialEffect
 var Num: int = 0
 var MUbei: BaseMonster

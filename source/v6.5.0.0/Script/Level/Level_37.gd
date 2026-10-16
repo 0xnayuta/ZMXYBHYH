@@ -1,5 +1,4 @@
 extends BaseLevel
-class_name level37
 
 var platforms = {}
 var platform_target_positions = {}

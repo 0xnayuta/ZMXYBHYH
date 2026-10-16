@@ -112,7 +112,7 @@ var ZhenFaCd: float
 var Istsz: bool
 var canglongremove: bool
 var SXYRCannotCure: bool
-var MyShallow: role2shallow
+var MyShallow: Role2Shallow
 var IsDoubleFallPro: bool
 var IsIndestructible: bool
 var IsIndestructible1: bool = false
@@ -702,13 +702,13 @@ func _physics_process(delta: float) -> void:
 	RoleProp.role_pos = position
 	remove_hit_data()
 	if not is_on_floor():
-		if self is role1:
+		if self is Role1Hero:
 			hit_count = 0
-		elif self is role3:
+		elif self is Role3Hero:
 			hit_count = 1
-		elif self is role4:
+		elif self is Role4Hero:
 			hit_count = 1
-		elif self is role5:
+		elif self is Role5Hero:
 			hit_count = 4
 		velocity.y -= gravity * delta
 	if is_on_floor() and velocity.y == 0:
@@ -745,7 +745,7 @@ func _physics_process(delta: float) -> void:
 		pass
 	elif NoLimitBuff():
 		if IsTMc:
-			if self is role3:
+			if self is Role3Hero:
 				if Input.is_action_pressed("slz"):
 					get_skill("tmc2")
 				if Input.is_action_pressed("lys"):
@@ -813,7 +813,7 @@ func ProcessSanXianHuTiEffect():
 
 
 func CanNormalControl():
-	if not self is role5:
+	if not self is Role5Hero:
 		if is_attacking == false and is_be_attacking == false and is_using_skills == false and not death():
 			return true
 	else:
@@ -835,7 +835,7 @@ func NoarmalControl():
 		return
 
 	if not Islljy:
-		if not self is role5:
+		if not self is Role5Hero:
 			NorMalMove()
 		else:
 			if CanMoveWhenUseSkill:
@@ -1709,7 +1709,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 	var TotalCureMonster = int(MonsterTarget.ebol * last_hit)
 	MonsterTarget.cure_hp(TotalCureMonster)
-	if self is role3 and RoleProp.is_ws_state:
+	if self is Role3Hero and RoleProp.is_ws_state:
 		last_hit = int(last_hit * 0.63)
 	if MonsterTarget != null:
 		MonsterTarget.total_hit += last_hit
@@ -1718,39 +1718,39 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 			Global.AddMonster141Aura(self.Bullet, self.position, MonsterTarget)
 	Global.TotalRoleHurt += int(last_hit)
 	if not is_miss:
-		if self is role1:
+		if self is Role1Hero:
 			Global.addSound_(self, "res://Music/Hero/49_Role1_beAttack.mp3")
-		elif self is role2:
+		elif self is Role2Hero:
 			Global.addSound_(self, "res://Music/Hero/62_Role2_beAttack.mp3")
-		elif self is role5:
+		elif self is Role5Hero:
 			Global.addSound_(self, "res://Music/Hero/Role5/13_hurtStand.mp3")
 		else:
 			Global.addSound_(self, "res://Music/Hero/68_Role3_beAttack.mp3")
 		_add_role_hit_effect_throttled()
 		if not IsTMc:
 			_add_role_protect(randi_range(3, 7))
-	if self is role3:
+	if self is Role3Hero:
 		if randi_range(0, 100) <= 2 + PlayerData.player_data["技能学习"]["技能10"]["等级"] * 0.5:
 			var Level = PlayerData.player_data["技能学习"]["技能10"]["等级"]
 			if Level > 0:
 				if not get_parent().get_parent() is Level17 and not get_parent().get_parent() is Level22:
 					cure_Hp(RoleProp.roleprop.power * (0.5 + Level * 0.03))
 
-	if self is role1 or self is role2 or self is role4 or self is NeZhaHero:
+	if self is Role1Hero or self is Role2Hero or self is Role4Hero or self is NeZhaHero:
 		if is_miss or RoleProp.is_ws_state or IsSuperArmor or needProtect or is_knockback_immune():
 			is_be_attacking = false
 		else:
 			be_hit_back(MonsterTarget, Target)
 			_queue_hit_stiff(MonsterTarget, Target)
 			call_deferred("state_behit")
-	elif self is role3:
+	elif self is Role3Hero:
 		if is_miss or Is_sdBuff or IsTMc or IsSuperArmor or needProtect:
 			is_be_attacking = false
 		else:
 			be_hit_back(MonsterTarget, Target)
 			_queue_hit_stiff(MonsterTarget, Target)
 			call_deferred("state_behit")
-	elif self is role5:
+	elif self is Role5Hero:
 		if is_miss or RoleProp.is_ws_state or IsSuperArmor or Role5Bt or needProtect:
 			is_be_attacking = false
 		else:
@@ -1811,7 +1811,7 @@ func reduce_hp(value: int, target_boss, target_obj):
 	if target_boss == null or target_obj == null:
 		return
 
-	if self is role2 and hd > 0:
+	if self is Role2Hero and hd > 0:
 		var absorbed = min(hd, value)
 		value -= absorbed
 		hd -= absorbed
@@ -1880,7 +1880,7 @@ func effect_reducehp(value, atkKind):
 	CureValue = 1
 	IdleCount = 0
 
-	if self is role2 and hd > 0:
+	if self is Role2Hero and hd > 0:
 		var absorbed = min(hd, value)
 		value -= absorbed
 		hd -= absorbed
@@ -2012,7 +2012,7 @@ func get_Monster_last_hurt(target_boss, target_obj):
 	if IsIndestructible or IsIndestructible1:
 		if Hurt >= RoleProp.roleprop.Hp:
 			return 0
-	if self is role3:
+	if self is Role3Hero:
 		if IsTMc:
 			if Hurt > 0:
 				if target_boss != null:
@@ -3004,7 +3004,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			var Monster = area.get_parent().get_parent()
 			if Monster != null:
 				if Monster is BaseMonster and not _is_summon_or_pet_target(Monster):
-					if self is role4:
+					if self is Role4Hero:
 						if objattackDic[get_action]["addeffect"]["Name"] == "Voodoo":
 							if Global.CheckWD(Monster) < 10:
 								Global.AddBuff(Monster.buff, objattackDic[get_action]["addeffect"])
@@ -3012,7 +3012,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 							Global.AddBuff(Monster.buff, objattackDic[get_action]["addeffect"])
 					else:
 						Global.AddBuff(Monster.buff, objattackDic[get_action]["addeffect"])
-	if self is role1:
+	if self is Role1Hero:
 		if get_action == "qsez":
 			velocity.x = 0
 			Global.addSound_(self, "res://Music/Hero/27_Role1_hit13_2.mp3")
@@ -3285,7 +3285,7 @@ func get_skill(name1):
 	if not Role1SkillInter.has(cooldown_key):
 		push_warning("忽略未知角色技能：%s" % raw_skill_name)
 		return
-	if self is role1:
+	if self is Role1Hero:
 		var IsCanUseSlz = false
 		if name1 == "slz":
 			for i in PlayerData.player_data["技能学习"]["技能键位"]:
@@ -3350,7 +3350,7 @@ func get_skill(name1):
 					do_qsez()
 			"":
 				return
-	elif self is role2:
+	elif self is Role2Hero:
 		if not is_on_floor():
 			if name1 == "smb":
 				return
@@ -3404,7 +3404,7 @@ func get_skill(name1):
 				if Role1SkillInter["zfjg"] <= 0:
 					call("Skill_Zfjg")
 					RoleProp.roleprop.Mp -= get_need_mp(name1, false)
-	elif self is role3:
+	elif self is Role3Hero:
 		if name1 == "tmc2":
 			if Role1SkillInter["tmc"] <= 0:
 				Skill_TMC2()
@@ -3445,7 +3445,7 @@ func get_skill(name1):
 			"bdqk":
 				if Role1SkillInter["bdqk"] <= 0:
 					call("Skill_BDQK")
-	elif self is role4:
+	elif self is Role4Hero:
 		if RoleProp.roleprop.Mp >= get_need_mp(name1, false) and Role1SkillInter[cooldown_key] <= 0:
 			RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 		else:
@@ -3484,7 +3484,7 @@ func get_skill(name1):
 			"jdz":
 				if Role1SkillInter["jdz"] <= 0:
 					ShovelJDZ()
-	elif self is role5:
+	elif self is Role5Hero:
 		if RoleProp.roleprop.Mp >= get_need_mp(name1, false) and Role1SkillInter[cooldown_key] <= 0:
 			RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 		else:
@@ -4056,8 +4056,10 @@ func SetWingsOffset():
 			CurrentWingsName = PlayerData.player_data["翅膀"][0]["名字"]
 	else:
 		CurrentWingsName = PlayerData.player_data["幻化列表"]["翅膀"]
-	var special_wing_position := Vector2(41, -4) if self is role1 else _wings_base_position
-	var special_wing_offset_y := 0.0 if self is role1 or self is role4 or self is role5 or self is NeZhaHero else -25.0
+	var special_wing_position := Vector2(41, -4) if self is Role1Hero else _wings_base_position
+	var special_wing_offset_y := (
+		0.0 if self is Role1Hero or self is Role4Hero or self is Role5Hero or self is NeZhaHero else -25.0
+	)
 	if CurrentWingsName == _last_wings_name:
 		if CurrentWingsName == "xyzy":
 			wings.position = special_wing_position
@@ -4077,45 +4079,45 @@ func SetWingsOffset():
 	wings.flip_h = CurrentWingsName == "xyzy" or CurrentWingsName == "hhyq"
 	match CurrentWingsName:
 		"xtzy", "ttzy":
-			if self is role2 or self is role3:
+			if self is Role2Hero or self is Role3Hero:
 				wings.position = Vector2(0, 0)
 			else:
 				wings.offset = Vector2(0, 0)
 			wings.scale = Vector2(1.4, 1.4)
 		"xqzy":
-			if self is role2 or self is role3:
+			if self is Role2Hero or self is Role3Hero:
 				wings.position = Vector2(14, 10)
 			else:
 				wings.offset = Vector2(5, 10)
 			wings.scale = Vector2(1.2, 1.2)
 		"jmzy":
-			if self is role2 or self is role3:
+			if self is Role2Hero or self is Role3Hero:
 				wings.position = Vector2(45, 15)
 			else:
 				wings.offset = Vector2(25, 15)
 			wings.scale = Vector2(1.1, 1.1)
 		"xmzy":
-			if self is role2 or self is role3:
+			if self is Role2Hero or self is Role3Hero:
 				wings.position = Vector2(40, -25)
 			else:
 				wings.offset = Vector2(30, -15)
 			wings.scale = Vector2(1, 1)
 		"bszy":
-			if self is role2 or self is role3:
+			if self is Role2Hero or self is Role3Hero:
 				wings.position = Vector2(30, 0)
 			else:
 				wings.offset = Vector2(20, 10)
 			wings.scale = Vector2(1, 1)
 		"wyzy":
-			if self is role2 or self is role3:
+			if self is Role2Hero or self is Role3Hero:
 				wings.position = Vector2(30, 0)
 			else:
 				wings.offset = Vector2(15, 15)
 			wings.scale = Vector2(1, 1)
 		"ryzy":
-			if self is role2:
+			if self is Role2Hero:
 				wings.position = Vector2(30, 0)
-			elif self is role3:
+			elif self is Role3Hero:
 				wings.position = Vector2(45, -20)
 				wings.scale = Vector2(1.1, 1.1)
 			else:

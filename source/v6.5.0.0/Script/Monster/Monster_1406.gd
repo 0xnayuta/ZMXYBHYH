@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster1406
 
 var MyChild: MonsterBullet
 var Count: int = 0

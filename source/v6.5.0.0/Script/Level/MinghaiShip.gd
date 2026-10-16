@@ -1,5 +1,4 @@
 extends AnimatableBody2D
-class_name MinghaiShip
 
 @export var speed_x: float = 10.0
 @export var right_edge: float = 1200.0

@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster148
 
 var bullet1_portals: Array = []
 var bullet2_active: bool = false

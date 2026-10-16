@@ -1325,7 +1325,7 @@ func _leave_level_from_exit() -> void:
 	if self is Level22:
 		Global.change_scene("res://Scene/Level/Level_xtqfb.tscn")
 		return
-	if self is level10 or self is level21:
+	if self is Level10 or self is Level21:
 		if _restart_level_for_auto_battle():
 			return
 		if MainSet.set_data["剧情跳过"]:

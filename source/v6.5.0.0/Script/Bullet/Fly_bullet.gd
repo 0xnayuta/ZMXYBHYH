@@ -1,5 +1,4 @@
 extends CharacterBody2D
-class_name BaseBullet
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var speed_
@@ -62,7 +61,7 @@ func check_and_free():
 func _on_hit_area_area_entered(area: Area2D) -> void:
 	var target = area.get_parent().get_parent()
 
-	if target is Boss_XieShaSeng_Wdww:
+	if target is BossXieShaSengWdww:
 		return
 	if objattackDic[hit_name].has("addeffect"):
 		Global.AddBuff(target.buff, objattackDic[hit_name]["addeffect"])

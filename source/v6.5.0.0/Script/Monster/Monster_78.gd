@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster78
 var MyBrother
 
 

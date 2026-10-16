@@ -97,7 +97,7 @@ func _create_floor():
 		get_parent().add_child(floor_instance)
 
 	var player_pos := Player.global_position
-	if Player is role4:
+	if Player is Role4Hero:
 		var support_y := _get_role4_floor_position_y()
 		target_position_y = support_y
 		last_player_y = player_pos.y
@@ -139,7 +139,7 @@ func _update_floor_position(delta: float):
 	if floor_instance == null or Player == null:
 		return
 
-	if Player is role4:
+	if Player is Role4Hero:
 		floor_instance.global_position.x = Player.global_position.x
 		_update_role4_floor_position(delta)
 		return
@@ -215,7 +215,7 @@ func _on_floor_body_entered(body: Node2D):
 func _on_floor_body_exited(body: Node2D):
 	if body == Player:
 		is_player_on_floor = false
-		if Player != null and not Player is role4:
+		if Player != null and not Player is Role4Hero:
 			target_position_y = Player.position.y - 30
 
 			if not is_moving_down:
@@ -227,7 +227,7 @@ func _on_floor_body_exited(body: Node2D):
 
 
 func _on_follow_timeout():
-	if Player != null and not is_player_on_floor and not Player is role4:
+	if Player != null and not is_player_on_floor and not Player is Role4Hero:
 		target_position_y = Player.position.y - 30
 		is_following_y = true
 

@@ -1,7 +1,6 @@
 extends BaseMonster
-class_name Monster91
 var IsFs: bool
-var Fs: Monster91
+var Fs: BaseMonster = null
 var CallCount: int = 0
 var Bl: float = 1
 

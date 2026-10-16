@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster89
 @onready var gethd: Timer = $GetHd
 @onready var remove_hd_and_cure: Timer = $RemoveHdAndCure
 @onready var special_effect_1: AnimatedSprite2D = $MonsterDir/SpecialEffect1

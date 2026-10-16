@@ -1,5 +1,4 @@
 extends TextureRect
-class_name mgcd
 @onready var skillicon: TextureRect = $skillicon
 @onready var pic_box: TextureProgressBar = $PicBox
 @onready var last_time: Timer = $LastTime

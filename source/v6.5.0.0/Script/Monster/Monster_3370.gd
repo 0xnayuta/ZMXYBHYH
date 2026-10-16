@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster3370
 
 const PROJECTILE_SCRIPT := preload("res://Script/Monster/NanhaiProjectile.gd")
 const ATLAS_MANIFEST := "res://Art/Monster/SwfPng/3370/atlas/manifest.json"

@@ -1,5 +1,4 @@
 extends BaseMonster
-class_name Monster108
 var IsCombo: bool
 
 
