@@ -212,7 +212,7 @@ func _on_boss_treasure_toggled():
 
 func _on_changetomain_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_0.tscn")
+	Global.change_scene("res://Scene/main_menu/map_0.tscn")
 
 
 func _on_ld_l_pressed() -> void:
@@ -302,51 +302,51 @@ func check_pass_level():
 
 func _on_button_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_1.tscn")
+	Global.change_scene("res://Scene/main_menu/map_1.tscn")
 
 
 func _on_level_11_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "鬼城", Vector2(0, 0), "res://Scene/Level/Level_11.tscn")
+	Global.add_level_info(_ui_parent(), "鬼城", Vector2(0, 0), "res://Scene/Level/level_11.tscn")
 
 
 func _on_level_12_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "无常巷", Vector2(0, 0), "res://Scene/Level/Level_12.tscn")
+	Global.add_level_info(_ui_parent(), "无常巷", Vector2(0, 0), "res://Scene/Level/level_12.tscn")
 
 
 func _on_level_13_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "鬼门关", Vector2(0, 0), "res://Scene/Level/Level_13.tscn")
+	Global.add_level_info(_ui_parent(), "鬼门关", Vector2(0, 0), "res://Scene/Level/level_13.tscn")
 
 
 func _on_level_14_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "接引院", Vector2(0, 0), "res://Scene/Level/Level_14.tscn")
+	Global.add_level_info(_ui_parent(), "接引院", Vector2(0, 0), "res://Scene/Level/level_14.tscn")
 
 
 func _on_level_15_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "判官府", Vector2(0, 0), "res://Scene/Level/Level_15.tscn")
+	Global.add_level_info(_ui_parent(), "判官府", Vector2(0, 0), "res://Scene/Level/level_15.tscn")
 
 
 func _on_level_16_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "阎罗殿", Vector2(0, 0), "res://Scene/Level/Level_16.tscn")
+	Global.add_level_info(_ui_parent(), "阎罗殿", Vector2(0, 0), "res://Scene/Level/level_16.tscn")
 
 
 func _on_level_17_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "忘川河", Vector2(0, 0), "res://Scene/Level/Level_17.tscn")
+	Global.add_level_info(_ui_parent(), "忘川河", Vector2(0, 0), "res://Scene/Level/level_17.tscn")
 
 
 func _on_level_18_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "奈何桥", Vector2(0, 0), "res://Scene/Level/Level_18.tscn")
+	Global.add_level_info(_ui_parent(), "奈何桥", Vector2(0, 0), "res://Scene/Level/level_18.tscn")
 
 
 func _on_level_19_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "望乡台", Vector2(0, 0), "res://Scene/Level/Level_19.tscn")
+	Global.add_level_info(_ui_parent(), "望乡台", Vector2(0, 0), "res://Scene/Level/level_19.tscn")
 
 
 func _on_level_20_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "转轮殿", Vector2(0, 0), "res://Scene/Level/Level_21.tscn")
+	Global.add_level_info(_ui_parent(), "转轮殿", Vector2(0, 0), "res://Scene/Level/level_21.tscn")
 
 
 func _on_level_nmg_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "火焰山", Vector2(0, 0), "res://Scene/Level/Level_nmg.tscn")
+	Global.add_level_info(_ui_parent(), "火焰山", Vector2(0, 0), "res://Scene/Level/level_nmg.tscn")
 
 
 func _on_level_lxdy_pressed() -> void:
@@ -431,7 +431,7 @@ func play_an(Level):
 func _on_changetott_pressed() -> void:
 	if PlayerData.check_pass("天庭"):
 		Global.cleanup_transient_ui()
-		Global.change_scene("res://Scene/main_menu/Map_3.tscn")
+		Global.change_scene("res://Scene/main_menu/map_3.tscn")
 	else:
 		if PlayerData.player_data.转轮殿 != 1:
 			Global.add_message_show(get_parent(), "需要通关转轮殿！！", 1.5, Vector2(470, 300))

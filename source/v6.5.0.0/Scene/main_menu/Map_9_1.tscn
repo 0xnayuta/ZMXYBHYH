@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/main_menu/Map_9_1.gd" id="1"]
+[ext_resource type="Script" path="res://Script/main_menu/map_9_1.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/Game_4/西牛贺洲_噩梦/地图背景.jpg" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/1047.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/1049.png" id="4"]

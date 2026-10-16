@@ -429,4 +429,4 @@ func move_playerto_boss():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is BaseHero:
-		Global.change_scene("res://Scene/Level/Level_dtwd.tscn")
+		Global.change_scene("res://Scene/Level/level_dtwd.tscn")

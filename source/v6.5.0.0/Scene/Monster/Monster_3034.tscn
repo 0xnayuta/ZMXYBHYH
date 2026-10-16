@@ -1,8 +1,8 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/BaseMonster.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Monster/FourHeadedBoss.gd" id="2"]
-[ext_resource type="Script" path="res://Script/Monster/MonsterSceneEditorPreview.gd" id="3"]
+[ext_resource type="PackedScene" path="res://Scene/Base/base_monster.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Monster/four_headed_boss.gd" id="2"]
+[ext_resource type="Script" path="res://Script/Monster/monster_scene_editor_preview.gd" id="3"]
 
 [sub_resource type="RectangleShape2D" id="hit"]
 size = Vector2(145, 140)

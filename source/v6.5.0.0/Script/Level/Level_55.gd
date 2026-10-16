@@ -1,9 +1,9 @@
 extends Game4ImportedLevel
 
-const BOSS_SCENE_PATH := "res://Scene/Level/Level_55_Boss.tscn"
+const BOSS_SCENE_PATH := "res://Scene/Level/level_55_boss.tscn"
 const BOSS_SOURCE_MAP := "fahualingdong_bossV1"
-const BOSS_MONSTER_SCENE_PATH := "res://Scene/Monster/Monster_3035.tscn"
-const NANHAI_MONSTER_SCRIPT_PATH := "res://Script/Monster/NanhaiMonster.gd"
+const BOSS_MONSTER_SCENE_PATH := "res://Scene/Monster/monster_3035.tscn"
+const NANHAI_MONSTER_SCRIPT_PATH := "res://Script/Monster/nanhai_monster.gd"
 
 const MAIN_STAGE_COUNT := 4
 const MAIN_SCREEN_STARTS := [0.0, 1000.0, 2000.0, 3000.0]

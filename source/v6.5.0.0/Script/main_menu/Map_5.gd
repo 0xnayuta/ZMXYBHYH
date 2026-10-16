@@ -243,43 +243,43 @@ func check_pass_level() -> void:
 
 
 func _on_level_40_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "绝仙门", Vector2(0, 0), "res://Scene/Level/Level_40.tscn")
+	Global.add_level_info(_ui_parent(), "绝仙门", Vector2(0, 0), "res://Scene/Level/level_40.tscn")
 
 
 func _on_level_41_pressed() -> void:
 	if not _require_map5_prerequisite("绝仙门"):
 		return
-	Global.add_level_info(_ui_parent(), "紫晶门", Vector2(0, 0), "res://Scene/Level/Level_41.tscn")
+	Global.add_level_info(_ui_parent(), "紫晶门", Vector2(0, 0), "res://Scene/Level/level_41.tscn")
 
 
 func _on_level_42_pressed() -> void:
 	if not _require_map5_prerequisite("紫晶门"):
 		return
-	Global.add_level_info(_ui_parent(), "戮仙门", Vector2(0, 0), "res://Scene/Level/Level_42.tscn")
+	Global.add_level_info(_ui_parent(), "戮仙门", Vector2(0, 0), "res://Scene/Level/level_42.tscn")
 
 
 func _on_level_43_pressed() -> void:
 	if not _require_map5_prerequisite("戮仙门"):
 		return
-	Global.add_level_info(_ui_parent(), "指景宫", Vector2(0, 0), "res://Scene/Level/Level_43.tscn")
+	Global.add_level_info(_ui_parent(), "指景宫", Vector2(0, 0), "res://Scene/Level/level_43.tscn")
 
 
 func _on_level_44_pressed() -> void:
 	if not _require_map5_prerequisite("指景宫"):
 		return
-	Global.add_level_info(_ui_parent(), "陷仙门", Vector2(0, 0), "res://Scene/Level/Level_44.tscn")
+	Global.add_level_info(_ui_parent(), "陷仙门", Vector2(0, 0), "res://Scene/Level/level_44.tscn")
 
 
 func _on_level_45_pressed() -> void:
 	if not _require_map5_prerequisite("陷仙门"):
 		return
-	Global.add_level_info(_ui_parent(), "绝境宫", Vector2(0, 0), "res://Scene/Level/Level_45.tscn")
+	Global.add_level_info(_ui_parent(), "绝境宫", Vector2(0, 0), "res://Scene/Level/level_45.tscn")
 
 
 func _on_level_46_pressed() -> void:
 	if not _require_map5_prerequisite("绝境宫"):
 		return
-	Global.add_level_info(_ui_parent(), "通天教主", Vector2(0, 0), "res://Scene/Level/Level_46.tscn")
+	Global.add_level_info(_ui_parent(), "通天教主", Vector2(0, 0), "res://Scene/Level/level_46.tscn")
 
 
 func _on_hdzm_pressed() -> void:
@@ -316,7 +316,7 @@ func _on_task_pressed() -> void:
 
 func _on_return_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_0.tscn")
+	Global.change_scene("res://Scene/main_menu/map_0.tscn")
 
 
 func _on_game_set_pressed() -> void:
@@ -333,11 +333,11 @@ func _on_pellet_pressed() -> void:
 
 func _on_jjtj_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_4.tscn")
+	Global.change_scene("res://Scene/main_menu/map_4.tscn")
 
 
 func _on_south_continent_pressed() -> void:
 	if not _require_map5_prerequisite("通天教主", "通关通天教主后开启南瞻部洲！"):
 		return
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_6.tscn")
+	Global.change_scene("res://Scene/main_menu/map_6.tscn")

@@ -5,23 +5,23 @@ const PET_PANEL_SIZE := Vector2(653.0, 513.0)
 const PLAYER_HEAD_BASE_POSITION := Vector2(15.0, 2.0)
 const PLAYER_PANEL_BASE_POSITION := Vector2(8.0, 8.0)
 const PLAYER_LEVEL_BASE_POSITION := Vector2(10.0, 84.0)
-const BACKPACK_SCENE_PATH := "res://Scene/BackPack/BackPack.tscn"
-const PET_SCENE_PATH := "res://Scene/Pet/PetInterface.tscn"
-const MOUNT_SCENE_PATH := "res://Scene/main_menu/MountPanel.tscn"
-const ZHUXIAN_SWORD_PAGE_PATH := "res://Scene/main_menu/ZhuXianSwordPage.tscn"
-const WANLING_CATALOG_PAGE_PATH := "res://Scene/main_menu/WanLingCatalogPage.tscn"
-const EQUIPMENT_CATALOG_PAGE_PATH := "res://Scene/main_menu/EquipmentCatalogPage.tscn"
-const BODY_TRAINING_SCENE_PATH := "res://Scene/main_menu/BodyTraining.tscn"
-const ZHENYAO_TOWER_SCENE_PATH := "res://Scene/main_menu/ZhenYaoTower.tscn"
-const SOUTH_CONTINENT_PATH := "res://Scene/main_menu/Map_6.tscn"
-const EAST_CONTINENT_PATH := "res://Scene/main_menu/Map_7.tscn"
-const NORTH_CONTINENT_PATH := "res://Scene/main_menu/Map_8.tscn"
-const WEST_CONTINENT_PATH := "res://Scene/main_menu/Map_9.tscn"
-const HUMAN_WORLD_PATH := "res://Scene/main_menu/Map_1.tscn"
-const UNDERWORLD_PATH := "res://Scene/main_menu/Map_2.tscn"
-const HEAVEN_PATH := "res://Scene/main_menu/Map_3.tscn"
-const HEAVEN_JIEJIAO_PATH := "res://Scene/main_menu/Map_4.tscn"
-const HEAVEN_BIYOU_PATH := "res://Scene/main_menu/Map_5.tscn"
+const BACKPACK_SCENE_PATH := "res://Scene/BackPack/back_pack.tscn"
+const PET_SCENE_PATH := "res://Scene/Pet/pet_interface.tscn"
+const MOUNT_SCENE_PATH := "res://Scene/main_menu/mount_panel.tscn"
+const ZHUXIAN_SWORD_PAGE_PATH := "res://Scene/main_menu/zhu_xian_sword_page.tscn"
+const WANLING_CATALOG_PAGE_PATH := "res://Scene/main_menu/wan_ling_catalog_page.tscn"
+const EQUIPMENT_CATALOG_PAGE_PATH := "res://Scene/main_menu/equipment_catalog_page.tscn"
+const BODY_TRAINING_SCENE_PATH := "res://Scene/main_menu/body_training.tscn"
+const ZHENYAO_TOWER_SCENE_PATH := "res://Scene/main_menu/zhen_yao_tower.tscn"
+const SOUTH_CONTINENT_PATH := "res://Scene/main_menu/map_6.tscn"
+const EAST_CONTINENT_PATH := "res://Scene/main_menu/map_7.tscn"
+const NORTH_CONTINENT_PATH := "res://Scene/main_menu/map_8.tscn"
+const WEST_CONTINENT_PATH := "res://Scene/main_menu/map_9.tscn"
+const HUMAN_WORLD_PATH := "res://Scene/main_menu/map_1.tscn"
+const UNDERWORLD_PATH := "res://Scene/main_menu/map_2.tscn"
+const HEAVEN_PATH := "res://Scene/main_menu/map_3.tscn"
+const HEAVEN_JIEJIAO_PATH := "res://Scene/main_menu/map_4.tscn"
+const HEAVEN_BIYOU_PATH := "res://Scene/main_menu/map_5.tscn"
 const ROLE_HEAD_PATHS := {
 	1: "res://Art/HeroPicture/RoleProperiesBox/hud_swk.png",
 	2: "res://Art/HeroPicture/RoleProperiesBox/hud_tsz.png",
@@ -291,4 +291,4 @@ func _on_group_pressed() -> void:
 
 func _on_return_pressed() -> void:
 	_save_if_possible()
-	Global.change_scene("res://Scene/main_menu/Main_Menu.tscn")
+	Global.change_scene("res://Scene/main_menu/main_menu.tscn")

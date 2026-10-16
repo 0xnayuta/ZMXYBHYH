@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/Game4ImportedLevelBase.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/Level_53.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/Base/game4_imported_level_base.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/level_53.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/c5571aa2a6465fe657dfc35b3f3bab16478a0d24c46c926ebba9d8d768501b85.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/a2014b27158670d5ee513484c400e7631cc858b33f0c3c048d516b6492b3e60a.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/a0b2349b102c773a6deef21c8f92624d7045c9b408f54020d70a574246e5cdd4.png" id="5"]
@@ -44,7 +44,7 @@
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/1c130f5a745f66a5f56c18ee31a121b20d433e0c5d50b9b9d6b8d0bb779eca22.png" id="42"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/e430fdcc47b538dfa44868ad563e210e47579dfac8188a0a80f2cb3ce4c5b6cf.png" id="43"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/33e8fa8b02910554e894a044eeaa03ac91e16b96d3188942665dcb8e3c2ac359.png" id="44"]
-[ext_resource type="Script" path="res://Script/Level/Level53Ship.gd" id="45"]
+[ext_resource type="Script" path="res://Script/Level/level53_ship.gd" id="45"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/items/1002/idle.png" id="46"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape_floor"]

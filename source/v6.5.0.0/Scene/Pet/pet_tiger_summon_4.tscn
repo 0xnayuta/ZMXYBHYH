@@ -1,0 +1,451 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Pet/pet_tiger_summon_base.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://Art/Pet/PetTiger/model/pet_tiger_stage4_frames.tres" id="2"]
+
+[sub_resource type="Animation" id="anim_death"]
+resource_name = "death"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MonsterDir/mr_ani:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"death"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="anim_hit1"]
+resource_name = "hit1"
+length = 0.45
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.18),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"call_hit_1_bullet"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"hit1"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="anim_hit2"]
+resource_name = "hit2"
+length = 0.45
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.18),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"call_hy_bullet"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"hit2"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="anim_hit3_1"]
+resource_name = "hit3_1"
+length = 0.45
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.18),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"call_sxhz_hit"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"hit3_1"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="anim_hit3_2"]
+resource_name = "hit3_2"
+length = 0.45
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.18),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"call_sxhz_hit"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"hit3_2"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="anim_hit4"]
+resource_name = "hit4"
+length = 0.45
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.18),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"call_hsqj_bullet"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"hit4"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="anim_hit5"]
+resource_name = "hit5"
+length = 0.45
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.18),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"call_bhaoyi_hit"
+}]
+}
+
+[sub_resource type="Animation" id="anim_hit6"]
+resource_name = "hit6"
+length = 0.45
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.18),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"call_bhaoyi_hit"
+}]
+}
+
+[sub_resource type="Animation" id="anim_hurt"]
+resource_name = "hurt"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MonsterDir/mr_ani:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"hurt"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="anim_wait"]
+resource_name = "wait"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MonsterDir/mr_ani:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"wait"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="anim_walk"]
+resource_name = "walk"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MonsterDir/mr_ani:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterDir/mr_ani:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"walk"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterDir/mr_ani:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="lib"]
+_data = {
+&"death": SubResource("anim_death"),
+&"hit1": SubResource("anim_hit1"),
+&"hit2": SubResource("anim_hit2"),
+&"hit3_1": SubResource("anim_hit3_1"),
+&"hit3_2": SubResource("anim_hit3_2"),
+&"hit4": SubResource("anim_hit4"),
+&"hit5": SubResource("anim_hit5"),
+&"hit6": SubResource("anim_hit6"),
+&"hurt": SubResource("anim_hurt"),
+&"wait": SubResource("anim_wait"),
+&"walk": SubResource("anim_walk")
+}
+
+[sub_resource type="CircleShape2D" id="hit_shape"]
+radius = 35.0
+
+[sub_resource type="CapsuleShape2D" id="hurt_shape"]
+radius = 44.0
+height = 132.0
+
+[sub_resource type="CapsuleShape2D" id="pz_shape"]
+radius = 24.0
+height = 56.0
+
+[resource]
+_bundled = {
+"conn_count": 8,
+"conns": PackedInt32Array(6, 0, 40, 39, 2, 0, 0, 6, 0, 42, 41, 2, 0, 0, 8, 0, 40, 43, 2, 0, 0, 11, 0, 45, 44, 2, 0, 0, 13, 0, 45, 46, 2, 0, 0, 14, 0, 45, 47, 2, 0, 0, 16, 0, 45, 48, 2, 0, 0, 17, 0, 45, 49, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("PetTigerSummon4", "collision_layer", "collision_mask", "script", "CharacterBody2D", "Bullet", "Node", "MonsterDir", "Node2D", "mr_ani", "texture_filter", "scale", "sprite_frames", "animation", "offset", "AnimatedSprite2D", "mr_player", "libraries/", "AnimationPlayer", "BaseDamageBox", "HitBox", "Area2D", "position", "shape", "disabled", "CollisionShape2D", "HurtBox", "pz", "CD_REMOVE", "autostart", "Timer", "damage_text", "change_state", "wait_time", "spontaneous_recovery", "Buff", "CalmHit", "RemoveHurtBL", "one_shot", "_on_hit_box_area_entered", "area_entered", "_on_hit_box_area_exited", "area_exited", "_on_hurt_box_area_entered", "_on_cd_remove_timeout", "timeout", "_on_change_state_timeout", "_on_spontaneous_recovery_timeout", "_on_calm_hit_timeout", "_on_remove_hurt_bl_timeout"),
+"node_count": 18,
+"node_ids": PackedInt32Array(60533618, 1598108635, 1683118523, 793300808, 782480139, 927845221, 528973069, 1935324676, 1068653265, 883091184, 160299124, 1725135214, 1138935843, 1883316928, 1371796924, 261296640, 635207561, 2141848287),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0, 0, 0, 6, 5, -1, 0, 0, 0, 0, 8, 7, -1, 0, 0, 2, 0, 15, 9, -1, 5, 10, 3, 11, 4, 12, 5, 13, 6, 14, 7, 0, 0, 0, 18, 16, -1, 1, 17, 8, 0, 0, 0, 8, 19, -1, 0, 0, 5, 0, 21, 20, -1, 2, 1, 3, 2, 9, 0, 6, 0, 25, 20, -1, 3, 22, 10, 23, 11, 24, 12, 0, 5, 0, 21, 26, -1, 2, 1, 13, 2, 0, 0, 8, 0, 25, 26, -1, 3, 22, 14, 23, 15, 24, 12, 0, 0, 0, 25, 27, -1, 2, 22, 16, 23, 17, 0, 0, 0, 30, 28, -1, 1, 29, 12, 0, 0, 0, 8, 31, -1, 0, 0, 0, 0, 30, 32, -1, 2, 33, 18, 29, 12, 0, 0, 0, 30, 34, -1, 2, 33, 18, 29, 12, 0, 0, 0, 6, 35, -1, 0, 0, 0, 0, 30, 36, -1, 0, 0, 0, 0, 30, 37, -1, 1, 38, 12, 0),
+"variants": [4, 33, ExtResource("1"), 2, Vector2(1.1, 1.1), ExtResource("2"), &"wait", Vector2(0, -45), SubResource("lib"), 2048, Vector2(-28, -28), SubResource("hit_shape"), true, 128, Vector2(27, -36), SubResource("hurt_shape"), Vector2(0, -6), SubResource("pz_shape"), 2.0],
+"version": 3
+}

@@ -1,0 +1,361 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Hero/role_bullet.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/zhenfa/senluozhen/slzEffect.png" id="2"]
+
+[sub_resource type="AtlasTexture" id="646"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 601, 87)
+
+[sub_resource type="SpriteFrames" id="BulletFrames"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("646")
+}, {
+"duration": 1.0,
+"texture": SubResource("646")
+}, {
+"duration": 1.0,
+"texture": SubResource("646")
+}, {
+"duration": 1.0,
+"texture": SubResource("646")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"SLZBullet",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="795"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 670, 242)
+
+[sub_resource type="AtlasTexture" id="796"]
+atlas = ExtResource("2")
+region = Rect2(670, 0, 670, 242)
+
+[sub_resource type="AtlasTexture" id="797"]
+atlas = ExtResource("2")
+region = Rect2(1340, 0, 670, 242)
+
+[sub_resource type="AtlasTexture" id="798"]
+atlas = ExtResource("2")
+region = Rect2(0, 242, 670, 242)
+
+[sub_resource type="AtlasTexture" id="799"]
+atlas = ExtResource("2")
+region = Rect2(670, 242, 670, 242)
+
+[sub_resource type="AtlasTexture" id="800"]
+atlas = ExtResource("2")
+region = Rect2(1340, 242, 670, 242)
+
+[sub_resource type="AtlasTexture" id="801"]
+atlas = ExtResource("2")
+region = Rect2(0, 484, 670, 242)
+
+[sub_resource type="AtlasTexture" id="802"]
+atlas = ExtResource("2")
+region = Rect2(670, 484, 670, 242)
+
+[sub_resource type="AtlasTexture" id="803"]
+atlas = ExtResource("2")
+region = Rect2(1340, 484, 670, 242)
+
+[sub_resource type="AtlasTexture" id="804"]
+atlas = ExtResource("2")
+region = Rect2(0, 726, 670, 242)
+
+[sub_resource type="AtlasTexture" id="805"]
+atlas = ExtResource("2")
+region = Rect2(670, 726, 670, 242)
+
+[sub_resource type="AtlasTexture" id="806"]
+atlas = ExtResource("2")
+region = Rect2(1340, 726, 670, 242)
+
+[sub_resource type="AtlasTexture" id="807"]
+atlas = ExtResource("2")
+region = Rect2(0, 968, 670, 242)
+
+[sub_resource type="AtlasTexture" id="808"]
+atlas = ExtResource("2")
+region = Rect2(670, 968, 670, 242)
+
+[sub_resource type="AtlasTexture" id="809"]
+atlas = ExtResource("2")
+region = Rect2(1340, 968, 670, 242)
+
+[sub_resource type="SpriteFrames" id="SpecialFrames"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("795")
+}, {
+"duration": 1.0,
+"texture": SubResource("796")
+}, {
+"duration": 1.0,
+"texture": SubResource("797")
+}, {
+"duration": 1.0,
+"texture": SubResource("798")
+}, {
+"duration": 1.0,
+"texture": SubResource("799")
+}, {
+"duration": 1.0,
+"texture": SubResource("800")
+}, {
+"duration": 1.0,
+"texture": SubResource("801")
+}, {
+"duration": 1.0,
+"texture": SubResource("802")
+}, {
+"duration": 1.0,
+"texture": SubResource("803")
+}, {
+"duration": 1.0,
+"texture": SubResource("804")
+}, {
+"duration": 1.0,
+"texture": SubResource("805")
+}, {
+"duration": 1.0,
+"texture": SubResource("806")
+}, {
+"duration": 1.0,
+"texture": SubResource("807")
+}, {
+"duration": 1.0,
+"texture": SubResource("808")
+}, {
+"duration": 1.0,
+"texture": SubResource("809")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"slz",
+"speed": 16.0
+}]
+
+[sub_resource type="RectangleShape2D" id="979"]
+size = Vector2(116, 136)
+
+[sub_resource type="RectangleShape2D" id="1032"]
+size = Vector2(557, 70)
+
+[sub_resource type="Animation" id="SLZBulletAnimation"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BulletPlayer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BulletPlayer:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["SLZBullet"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BulletPlayer:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BulletPlayer:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BulletPlayer:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BulletPlayer:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SpecialEffect:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SpecialEffect:offset")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -40)]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("..")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("HitBox/Collion:shape")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("1032")]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HitBox/Collion:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("HitBox/Collion:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("..")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"add_slz_buff"
+}]
+}
+tracks/13/type = "method"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("SpecialEffect")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"slz", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("BulletPlayers:speed_scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="BulletLibrary"]
+_data = {
+&"SLZBullet": SubResource("SLZBulletAnimation")
+}
+
+[resource]
+_bundled = {
+"conn_count": 4,
+"conns": PackedInt32Array(4, 0, 30, 29, 2, 0, 0, 4, 0, 32, 31, 2, 0, 0, 4, 0, 34, 33, 2, 0, 0, 7, 0, 36, 35, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("RoleBullet", "script", "Node2D", "Middle", "BulletPlayer", "self_modulate", "scale", "sprite_frames", "animation", "offset", "AnimatedSprite2D", "SpecialEffect", "autoplay", "flip_h", "HitBox", "collision_layer", "collision_mask", "Area2D", "Collion", "position", "shape", "disabled", "CollisionShape2D", "BulletPlayers", "libraries/", "AnimationPlayer", "QueueTimer", "one_shot", "Timer", "_on_hit_box_area_entered", "area_entered", "_on_hit_box_body_entered", "body_entered", "_on_hit_box_body_exited", "body_exited", "_on_queue_timer_timeout", "timeout"),
+"node_count": 8,
+"node_ids": PackedInt32Array(250913439, 627496004, 318709373, 203958957, 2052597100, 1334055354, 969926109, 320473592),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 2, 3, -1, 0, 0, 1, 0, 10, 4, -1, 5, 5, 1, 6, 2, 7, 3, 8, 4, 9, 5, 0, 1, 0, 10, 11, -1, 6, 6, 6, 7, 7, 8, 8, 12, 9, 9, 10, 13, 11, 0, 1, 0, 17, 14, -1, 2, 15, 12, 16, 13, 0, 4, 0, 22, 18, -1, 3, 19, 14, 20, 15, 21, 11, 0, 1, 0, 25, 23, -1, 1, 24, 16, 0, 0, 0, 28, 26, -1, 1, 27, 11, 0),
+"variants": [ExtResource("1"), Color(0, 0, 0, 1), Vector2(1e-05, 1e-05), SubResource("BulletFrames"), &"SLZBullet", Vector2(0, -15), Vector2(1, 1.2), SubResource("SpecialFrames"), &"slz", "slz", Vector2(-8, 6), true, 2, 2064, Vector2(-33, 0), SubResource("979"), SubResource("BulletLibrary")],
+"version": 3
+}

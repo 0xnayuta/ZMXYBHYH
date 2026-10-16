@@ -21,8 +21,8 @@ var has_shown_start_hint: bool = false
 
 
 func _ready() -> void:
-	load("res://Scene/Monster/Monster_123.tscn")
-	load("res://Scene/Monster/Monster_1404.tscn")
+	load("res://Scene/Monster/monster_123.tscn")
+	load("res://Scene/Monster/monster_1404.tscn")
 	Global.CurrentLevel = "仙音岛"
 	Global.add_bgm(self, "res://Music/level/Floor1_3.mp3")
 	self.level_stage = 40

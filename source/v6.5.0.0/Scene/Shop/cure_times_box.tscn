@@ -1,0 +1,44 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Texture2D" path="res://Art/set_menu/653.png" id="1"]
+[ext_resource type="Script" path="res://Script/Shop/cure_times_box.gd" id="2"]
+[ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="3"]
+[ext_resource type="Texture2D" path="res://Art/MagicWeapon/220.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/MagicWeapon/222.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/MagicWeapon/149.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/MagicWeapon/145.png" id="7"]
+
+[sub_resource type="StyleBoxEmpty" id="1"]
+
+[sub_resource type="StyleBoxEmpty" id="3"]
+
+[sub_resource type="StyleBoxEmpty" id="2"]
+
+[sub_resource type="StyleBoxEmpty" id="4"]
+
+[sub_resource type="StyleBoxEmpty" id="5"]
+
+[sub_resource type="StyleBoxEmpty" id="6"]
+
+[sub_resource type="StyleBoxEmpty" id="8"]
+
+[sub_resource type="StyleBoxEmpty" id="7"]
+
+[sub_resource type="StyleBoxEmpty" id="9"]
+
+[sub_resource type="StyleBoxEmpty" id="10"]
+
+[resource]
+_bundled = {
+"conn_count": 8,
+"conns": PackedInt32Array(3, 0, 54, 53, 2, 0, 0, 6, 0, 54, 55, 2, 0, 0, 7, 0, 57, 56, 2, 0, 0, 8, 0, 54, 58, 2, 0, 0, 13, 0, 54, 59, 2, 0, 0, 14, 0, 57, 60, 2, 0, 0, 15, 0, 54, 61, 2, 0, 0, 19, 0, 54, 62, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("CureTimesBox", "offset_left", "offset_top", "offset_right", "offset_bottom", "texture", "script", "TextureRect", "ColorRect", "layout_mode", "color", "Title", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "text", "metadata/_edit_lock_", "Label", "Close", "texture_normal", "texture_pressed", "texture_hover", "texture_disabled", "TextureButton", "LPDH", "theme_override_constants/separation", "HBoxContainer", "Min", "theme_override_styles/normal", "theme_override_styles/pressed", "theme_override_styles/hover", "theme_override_styles/disabled", "theme_override_styles/focus", "Button", "lpline", "placeholder_text", "alignment", "LineEdit", "Max", "Title2", "theme_override_colors/font_color", "Title4", "horizontal_alignment", "vertical_alignment", "LHDH", "lhmin", "lhline", "lhmax", "Title3", "Title5", "Title6", "dh", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "_on_close_pressed", "pressed", "_on_min_pressed", "_on_lpline_text_changed", "text_changed", "_on_max_pressed", "_on_lhmin_pressed", "_on_lhline_text_changed", "_on_lhmax_pressed", "_on_dh_pressed"),
+"node_count": 21,
+"node_ids": PackedInt32Array(877407949, 504795475, 112932154, 621598065, 1263954641, 817382002, 992025164, 1955801017, 1900150975, 925752013, 1082787390, 1979688535, 974318075, 748041803, 353225538, 317853305, 533417690, 1590461587, 54527311, 2086620851, 491176363),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 7, 0, -1, 6, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 0, 0, 0, 8, 8, -1, 6, 9, 6, 1, 7, 2, 8, 3, 9, 4, 10, 10, 11, 0, 0, 0, 16, 11, -1, 9, 9, 6, 1, 12, 2, 13, 3, 14, 4, 15, 12, 16, 13, 17, 14, 18, 15, 19, 0, 0, 0, 22, 17, -1, 10, 9, 6, 1, 20, 2, 21, 3, 22, 4, 23, 18, 24, 19, 24, 20, 25, 21, 24, 15, 19, 0, 0, 0, 25, 23, -1, 6, 9, 6, 1, 26, 2, 27, 3, 28, 4, 29, 24, 6, 0, 4, 0, 16, 11, -1, 4, 9, 30, 12, 16, 13, 31, 14, 32, 0, 4, 0, 32, 26, -1, 7, 9, 30, 27, 33, 28, 34, 29, 35, 30, 36, 31, 37, 14, 38, 0, 4, 0, 36, 33, -1, 3, 9, 30, 34, 39, 35, 40, 0, 4, 0, 32, 37, -1, 7, 9, 30, 27, 41, 28, 42, 29, 43, 30, 44, 31, 45, 14, 46, 0, 0, 0, 16, 38, -1, 10, 9, 6, 1, 47, 2, 48, 3, 49, 4, 50, 39, 51, 12, 16, 13, 52, 14, 53, 15, 19, 0, 0, 0, 16, 40, -1, 12, 9, 6, 1, 54, 2, 55, 3, 56, 4, 57, 39, 51, 12, 16, 13, 52, 14, 58, 41, 40, 42, 40, 15, 19, 0, 0, 0, 25, 43, -1, 6, 9, 6, 1, 59, 2, 60, 3, 61, 4, 62, 15, 19, 0, 11, 0, 16, 11, -1, 4, 9, 30, 12, 16, 13, 31, 14, 63, 0, 11, 0, 32, 44, -1, 7, 9, 30, 27, 33, 28, 34, 29, 35, 30, 36, 31, 37, 14, 38, 0, 11, 0, 36, 45, -1, 3, 9, 30, 34, 39, 35, 40, 0, 11, 0, 32, 46, -1, 7, 9, 30, 27, 41, 28, 42, 29, 43, 30, 44, 31, 45, 14, 46, 0, 0, 0, 16, 47, -1, 10, 9, 6, 1, 64, 2, 65, 3, 66, 4, 67, 39, 51, 12, 16, 13, 52, 14, 68, 15, 19, 0, 0, 0, 16, 48, -1, 12, 9, 6, 1, 69, 2, 70, 3, 71, 4, 72, 39, 51, 12, 16, 13, 52, 14, 73, 41, 40, 42, 40, 15, 19, 0, 0, 0, 16, 49, -1, 12, 9, 6, 1, 74, 2, 75, 3, 76, 4, 77, 39, 51, 12, 16, 13, 52, 14, 78, 41, 40, 42, 40, 15, 19, 0, 0, 0, 22, 50, -1, 10, 9, 6, 1, 79, 2, 80, 3, 81, 4, 82, 18, 83, 19, 83, 20, 84, 21, 83, 15, 19, 0, 19, 0, 16, 16, -1, 14, 9, 6, 1, 85, 2, 85, 3, 64, 4, 86, 39, 87, 51, 88, 52, 89, 12, 16, 13, 90, 14, 91, 41, 40, 42, 40, 15, 19, 0),
+"variants": [316.0, 104.0, 642.0, 445.0, ExtResource("1"), ExtResource("2"), 0, -770.0, -443.0, 1201.0, 852.0, Color(0, 0, 0, 0), 109.0, 46.0, 209.0, 75.0, ExtResource("3"), 25, "兑换次数", true, 272.0, 11.0, 313.0, 52.0, ExtResource("4"), ExtResource("5"), 24.0, 94.0, 291.0, 134.0, 2, 20, "令牌兑换：", SubResource("1"), SubResource("3"), SubResource("2"), SubResource("4"), SubResource("5"), "最小", "次数", 1, SubResource("6"), SubResource("8"), SubResource("7"), SubResource("9"), SubResource("10"), "最大", 98.0, 125.0, 203.0, 145.0, Color(1, 0.752941, 0, 1), 16, "1令牌 = 1次数", 10.0, 146.0, 301.0, 166.0, "令牌当前次数：", 25.0, 160.0, 268.0, 200.0, "灵魂兑换：", 91.0, 202.0, 229.0, 222.0, "50000灵魂 = 1次数", 20.0, 219.0, 311.0, 239.0, "灵魂当前次数：", 18.0, 245.0, 309.0, 265.0, "总次数：", 118.0, 280.0, 211.0, 315.0, ExtResource("6"), ExtResource("7"), 1.0, 32.0, Color(1, 1, 0, 1), Color(0, 0, 0, 1), 6, 22, "兑换"],
+"version": 3
+}

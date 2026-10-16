@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/main_menu/Map_0.gd" id="1"]
+[ext_resource type="Script" path="res://Script/main_menu/map_0.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/Main_menu/Map0/bg_runtime.jpg" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Main_menu/Map0/south_normal.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Main_menu/Map0/south_highlight.png" id="4"]

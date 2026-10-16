@@ -199,45 +199,45 @@ func _ready() -> void:
 
 
 func _on_level_31_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "火龙岛", Vector2(0, 0), "res://Scene/Level/Level_31.tscn")
+	Global.add_level_info(_ui_parent(), "火龙岛", Vector2(0, 0), "res://Scene/Level/level_31.tscn")
 
 
 func _on_level_32_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "九龙岛", Vector2(0, 0), "res://Scene/Level/Level_32.tscn")
+	Global.add_level_info(_ui_parent(), "九龙岛", Vector2(0, 0), "res://Scene/Level/level_32.tscn")
 
 
 func _on_level_33_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "龙脊山", Vector2(0, 0), "res://Scene/Level/Level_33.tscn")
+	Global.add_level_info(_ui_parent(), "龙脊山", Vector2(0, 0), "res://Scene/Level/level_33.tscn")
 
 
 func _on_level_34_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "尾妖林", Vector2(0, 0), "res://Scene/Level/Level_34.tscn")
+	Global.add_level_info(_ui_parent(), "尾妖林", Vector2(0, 0), "res://Scene/Level/level_34.tscn")
 
 
 func _on_level_35_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "仙音岛", Vector2(0, 0), "res://Scene/Level/Level_35.tscn")
+	Global.add_level_info(_ui_parent(), "仙音岛", Vector2(0, 0), "res://Scene/Level/level_35.tscn")
 
 
 func _on_level_36_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "仙幻岛", Vector2(0, 0), "res://Scene/Level/Level_36.tscn")
+	Global.add_level_info(_ui_parent(), "仙幻岛", Vector2(0, 0), "res://Scene/Level/level_36.tscn")
 
 
 func _on_level_37_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "仙树岛", Vector2(0, 0), "res://Scene/Level/Level_37.tscn")
+	Global.add_level_info(_ui_parent(), "仙树岛", Vector2(0, 0), "res://Scene/Level/level_37.tscn")
 
 
 func _on_level_38_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "蓬莱岛", Vector2(0, 0), "res://Scene/Level/Level_38.tscn")
+	Global.add_level_info(_ui_parent(), "蓬莱岛", Vector2(0, 0), "res://Scene/Level/level_38.tscn")
 
 
 func _on_level_39_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "蓬莱仙境", Vector2(0, 0), "res://Scene/Level/Level_39.tscn")
+	Global.add_level_info(_ui_parent(), "蓬莱仙境", Vector2(0, 0), "res://Scene/Level/level_39.tscn")
 
 
 func _on_level_byg_pressed() -> void:
 	if PlayerData.check_pass("碧游宫"):
 		Global.cleanup_transient_ui()
-		Global.change_scene("res://Scene/main_menu/Map_5.tscn")
+		Global.change_scene("res://Scene/main_menu/map_5.tscn")
 	else:
 		if PlayerData.player_data["蓬莱仙境"] != 1:
 			Global.add_message_show(get_parent(), "需要通关蓬莱仙境！！", 1.5, Vector2(470, 300))
@@ -248,7 +248,7 @@ func _on_level_byg_pressed() -> void:
 		else:
 			PlayerData.player_data["碧游宫"] = true
 			Global.cleanup_transient_ui()
-			Global.change_scene("res://Scene/main_menu/Map_5.tscn")
+			Global.change_scene("res://Scene/main_menu/map_5.tscn")
 
 
 func _on_level_esbxx_pressed() -> void:
@@ -259,7 +259,7 @@ func _on_level_esbxx_pressed() -> void:
 		Global.add_message_show(get_parent(), "需通关尾妖林！！", 1.5, Vector2(470, 300))
 		return
 	Global.SelectedConstellationLevel = 0
-	Global.add_level_info(_ui_parent(), "挑战28星宿", Vector2.ZERO, "res://Scene/Level/Level_esbxx.tscn")
+	Global.add_level_info(_ui_parent(), "挑战28星宿", Vector2.ZERO, "res://Scene/Level/level_esbxx.tscn")
 
 
 func _on_level_znyy_pressed() -> void:
@@ -301,7 +301,7 @@ func _on_task_pressed() -> void:
 
 func _on_return_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_0.tscn")
+	Global.change_scene("res://Scene/main_menu/map_0.tscn")
 
 
 func _on_game_set_pressed() -> void:

@@ -8,10 +8,10 @@ var is_set: bool = false
 
 
 func _ready() -> void:
-	load("res://Scene/Monster/Monster_55.tscn")
-	load("res://Scene/Monster/Monster_56.tscn")
-	load("res://Scene/Monster/Monster_57.tscn")
-	load("res://Scene/Monster/Monster_58.tscn")
+	load("res://Scene/Monster/monster_55.tscn")
+	load("res://Scene/Monster/monster_56.tscn")
+	load("res://Scene/Monster/monster_57.tscn")
+	load("res://Scene/Monster/monster_58.tscn")
 	Global.CurrentLevel = "转轮殿"
 	Global.add_bgm(self, "res://Music/level/2_bg4.mp3")
 	self.is_two_scene = true

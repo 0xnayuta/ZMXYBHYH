@@ -1,6 +1,6 @@
 extends Game4ImportedLevel
 
-const HAZARD_1022_PROJECTILE_SCRIPT := preload("res://Script/Level/Level60Hazard1022Projectile.gd")
+const HAZARD_1022_PROJECTILE_SCRIPT := preload("res://Script/Level/level60_hazard1022_projectile.gd")
 
 const JINXIU_STAGE_COUNT := 5
 const DAT_Y_OFFSET := 2912.0
@@ -14,9 +14,9 @@ const JINXIU_FORWARD_TOPS := [-600.0, -1200.0, -1800.0, -2400.0, -2912.0]
 const JINXIU_BACK_BOTTOMS := [590.0, 0.0, -600.0, -1200.0, -2322.0]
 
 const LEVEL_60_SOURCE_SCENE_MAP := {
-	3067: "res://Scene/Monster/Monster_3067.tscn",
-	3065: "res://Scene/Monster/Monster_3065.tscn",
-	3070: "res://Scene/Monster/Monster_3070.tscn",
+	3067: "res://Scene/Monster/monster_3067.tscn",
+	3065: "res://Scene/Monster/monster_3065.tscn",
+	3070: "res://Scene/Monster/monster_3070.tscn",
 }
 
 const LEVEL_60_MONSTER_DATA := {

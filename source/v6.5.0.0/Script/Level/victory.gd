@@ -81,51 +81,51 @@ func _save_completed_level() -> bool:
 func _on_return_map_pressed() -> void:
 	RoleProp.ws_value = 0
 	if Global.CurrentLevel == "镇妖塔":
-		Global.change_scene("res://Scene/main_menu/Map_0.tscn")
+		Global.change_scene("res://Scene/main_menu/map_0.tscn")
 		MemoryClass.save_game(Global.cd_path)
 		return
 	match int(PlayerData.player_data["Map_num"]):
 		1:
-			Global.change_scene("res://Scene/main_menu/Map_1.tscn")
+			Global.change_scene("res://Scene/main_menu/map_1.tscn")
 		2:
 			if PlayerData.player_data["地府"]:
-				Global.change_scene("res://Scene/main_menu/Map_2.tscn")
+				Global.change_scene("res://Scene/main_menu/map_2.tscn")
 			else:
-				Global.change_scene("res://Scene/main_menu/Map_1.tscn")
+				Global.change_scene("res://Scene/main_menu/map_1.tscn")
 		3:
 			if PlayerData.player_data["天庭"]:
-				Global.change_scene("res://Scene/main_menu/Map_3.tscn")
+				Global.change_scene("res://Scene/main_menu/map_3.tscn")
 			else:
-				Global.change_scene("res://Scene/main_menu/Map_1.tscn")
+				Global.change_scene("res://Scene/main_menu/map_1.tscn")
 		4:
 			if PlayerData.player_data["截教天镜"]:
-				Global.change_scene("res://Scene/main_menu/Map_4.tscn")
+				Global.change_scene("res://Scene/main_menu/map_4.tscn")
 			else:
-				Global.change_scene("res://Scene/main_menu/Map_1.tscn")
+				Global.change_scene("res://Scene/main_menu/map_1.tscn")
 		5:
 			if PlayerData.player_data.has("碧游宫") and PlayerData.player_data["碧游宫"]:
-				Global.change_scene("res://Scene/main_menu/Map_5.tscn")
+				Global.change_scene("res://Scene/main_menu/map_5.tscn")
 			else:
-				Global.change_scene("res://Scene/main_menu/Map_1.tscn")
+				Global.change_scene("res://Scene/main_menu/map_1.tscn")
 		6:
 			if int(PlayerData.player_data.get("通天教主", 0)) == 1:
-				Global.change_scene("res://Scene/main_menu/Map_6.tscn")
+				Global.change_scene("res://Scene/main_menu/map_6.tscn")
 			else:
-				Global.change_scene("res://Scene/main_menu/Map_1.tscn")
+				Global.change_scene("res://Scene/main_menu/map_1.tscn")
 		7:
-			Global.change_scene("res://Scene/main_menu/Map_7.tscn")
+			Global.change_scene("res://Scene/main_menu/map_7.tscn")
 		8:
 			if PlayerData.player_data.get("Map_variant", "") == "Map_8_1":
-				Global.change_scene("res://Scene/main_menu/Map_8_1.tscn")
+				Global.change_scene("res://Scene/main_menu/map_8_1.tscn")
 			else:
-				Global.change_scene("res://Scene/main_menu/Map_8.tscn")
+				Global.change_scene("res://Scene/main_menu/map_8.tscn")
 		9:
 			if PlayerData.player_data.get("Map_variant", "") == "Map_9_1":
-				Global.change_scene("res://Scene/main_menu/Map_9_1.tscn")
+				Global.change_scene("res://Scene/main_menu/map_9_1.tscn")
 			else:
-				Global.change_scene("res://Scene/main_menu/Map_9.tscn")
+				Global.change_scene("res://Scene/main_menu/map_9.tscn")
 		_:
-			Global.change_scene("res://Scene/main_menu/Map_1.tscn")
+			Global.change_scene("res://Scene/main_menu/map_1.tscn")
 	MemoryClass.save_game(Global.cd_path)
 
 

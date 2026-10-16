@@ -1,7 +1,7 @@
 extends Game4ImportedLevel
 
-const NANHAI_MONSTER_SCRIPT := preload("res://Script/Monster/NanhaiMonster.gd")
-const FOUR_HEADED_BOSS_SCRIPT := preload("res://Script/Monster/FourHeadedBoss.gd")
+const NANHAI_MONSTER_SCRIPT := preload("res://Script/Monster/nanhai_monster.gd")
+const FOUR_HEADED_BOSS_SCRIPT := preload("res://Script/Monster/four_headed_boss.gd")
 
 const JIULONG_STAGE_COUNT := 5
 const JIULONG_SCREEN_STARTS := [0.0, 1000.0, 2000.0, 3000.0, 3784.0]

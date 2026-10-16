@@ -1,5 +1,5 @@
 extends BaseMonster
-const Level15 := preload("res://Script/Level/Level_15.gd")
+const Level15 := preload("res://Script/Level/level_15.gd")
 var already_use_mrsp = false
 var is_speed_up = false
 var count_: int = 0

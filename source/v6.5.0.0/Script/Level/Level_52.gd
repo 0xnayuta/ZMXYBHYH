@@ -1,8 +1,8 @@
 extends Game4ImportedLevel
 
-const JIUHUA_MONSTER_SCRIPT := preload("res://Script/Monster/JiuhuaMountainMonster.gd")
-const SHUANGXI_MONSTER_SCRIPT := preload("res://Script/Monster/ShuangxiTempleMonster.gd")
-const SHENGUANG_BOSS_SCRIPT := preload("res://Script/Monster/ShenguangJinlingBoss.gd")
+const JIUHUA_MONSTER_SCRIPT := preload("res://Script/Monster/jiuhua_mountain_monster.gd")
+const SHUANGXI_MONSTER_SCRIPT := preload("res://Script/Monster/shuangxi_temple_monster.gd")
+const SHENGUANG_BOSS_SCRIPT := preload("res://Script/Monster/shenguang_jinling_boss.gd")
 
 const SHENGUANG_STAGE_COUNT := 5
 const SHENGUANG_SCREEN_STARTS := [0.0, 1000.0, 2000.0, 3000.0, 3784.0]

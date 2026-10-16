@@ -21,10 +21,10 @@ func _apply_hp_multiplier(monster: BaseMonster):
 
 
 func _ready() -> void:
-	load("res://Scene/Monster/Monster_119.tscn")
-	load("res://Scene/Monster/Monster_118.tscn")
-	load("res://Scene/Monster/Monster_120.tscn")
-	load("res://Scene/Monster/Monster_122.tscn")
+	load("res://Scene/Monster/monster_119.tscn")
+	load("res://Scene/Monster/monster_118.tscn")
+	load("res://Scene/Monster/monster_120.tscn")
+	load("res://Scene/Monster/monster_122.tscn")
 	Global.CurrentLevel = "蓬莱仙境"
 	Global.add_bgm(self, "res://Music/level/34_bg5.mp3")
 	self.level_stage = 44

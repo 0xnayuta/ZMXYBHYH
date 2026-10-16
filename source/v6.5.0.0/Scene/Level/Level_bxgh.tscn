@@ -1,9 +1,9 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/BaseThroughLevel.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/Level_bxgh.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/Base/base_through_level.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/level_bxgh.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_bxgh/bg501.png" id="3"]
-[ext_resource type="Script" path="res://Script/Level/LevelBXGHBoat.gd" id="4"]
+[ext_resource type="Script" path="res://Script/Level/level_bxgh_boat.gd" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_bxgh/boat501.png" id="5"]
 
 [sub_resource type="RectangleShape2D" id="floor_shape"]

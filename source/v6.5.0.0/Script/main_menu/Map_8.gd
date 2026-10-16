@@ -167,7 +167,7 @@ func _on_map_level_pressed(level_number: int) -> void:
 
 func _on_nightmare_portal_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_8_1.tscn")
+	Global.change_scene("res://Scene/main_menu/map_8_1.tscn")
 
 
 func _on_memory_class_pressed() -> void:
@@ -201,7 +201,7 @@ func _on_task_pressed() -> void:
 
 func _on_return_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_0.tscn")
+	Global.change_scene("res://Scene/main_menu/map_0.tscn")
 
 
 func _on_game_set_pressed() -> void:
@@ -218,12 +218,12 @@ func _on_pellet_pressed() -> void:
 
 func _on_jjtj_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_7.tscn")
+	Global.change_scene("res://Scene/main_menu/map_7.tscn")
 
 
 func _on_west_continent_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_9.tscn")
+	Global.change_scene("res://Scene/main_menu/map_9.tscn")
 
 
 func _has_prerequisite(number: int) -> bool:

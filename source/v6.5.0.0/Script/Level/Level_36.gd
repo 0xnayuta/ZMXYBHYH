@@ -6,7 +6,7 @@ var platforms = {}
 func _ready() -> void:
 	Global.CurrentLevel = "仙幻岛"
 	Global.add_bgm(self, "res://Music/level/BGM_Normal.mp3")
-	load("res://Scene/Monster/Monster_1406.tscn")
+	load("res://Scene/Monster/monster_1406.tscn")
 
 	self.level_stage = 41
 

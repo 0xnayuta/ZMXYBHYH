@@ -1,0 +1,269 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Monster/monster_bullet.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/Monster/Monster_37_38/atlas_small_monsters/pages/atlas_000.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/AddEffect/Fire/Skull.png" id="3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m1f36"]
+radius = 121.103
+
+[sub_resource type="CanvasItemMaterial" id="3526"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56908f79354e"]
+atlas = ExtResource("2")
+region = Rect2(2, 2, 657, 79)
+margin = Rect2(28, 10, 39, 21)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="2083"]
+atlas = SubResource("AtlasTexture_56908f79354e")
+region = Rect2(0, 0, 116, 100)
+
+[sub_resource type="AtlasTexture" id="2084"]
+atlas = SubResource("AtlasTexture_56908f79354e")
+region = Rect2(348, 0, 116, 100)
+
+[sub_resource type="AtlasTexture" id="2085"]
+atlas = SubResource("AtlasTexture_56908f79354e")
+region = Rect2(464, 0, 116, 100)
+
+[sub_resource type="AtlasTexture" id="2086"]
+atlas = SubResource("AtlasTexture_56908f79354e")
+region = Rect2(580, 0, 116, 100)
+
+[sub_resource type="AtlasTexture" id="2087"]
+atlas = SubResource("AtlasTexture_56908f79354e")
+region = Rect2(116, 0, 116, 100)
+
+[sub_resource type="AtlasTexture" id="2088"]
+atlas = SubResource("AtlasTexture_56908f79354e")
+region = Rect2(232, 0, 116, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_slotx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"Empty",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("2083")
+}, {
+"duration": 1.0,
+"texture": SubResource("2083")
+}, {
+"duration": 1.0,
+"texture": SubResource("2084")
+}, {
+"duration": 1.0,
+"texture": SubResource("2084")
+}, {
+"duration": 1.0,
+"texture": SubResource("2085")
+}, {
+"duration": 1.0,
+"texture": SubResource("2085")
+}, {
+"duration": 1.0,
+"texture": SubResource("2086")
+}, {
+"duration": 1.0,
+"texture": SubResource("2086")
+}, {
+"duration": 1.0,
+"texture": SubResource("2087")
+}, {
+"duration": 1.0,
+"texture": SubResource("2087")
+}, {
+"duration": 1.0,
+"texture": SubResource("2088")
+}, {
+"duration": 1.0,
+"texture": SubResource("2088")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"Monster37Bullet",
+"speed": 25.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xf4ek"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c5lpy"]
+radius = 39.0128
+
+[sub_resource type="Animation" id="Animation_hid6y"]
+length = 0.52
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("middle/BulletANI:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [SubResource("CanvasItemMaterial_xf4ek")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("middle/BulletANI:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("middle/BulletANI:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("middle/BulletANI:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("middle/BulletANI:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": ["Monster37Bullet"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("middle/BulletANI:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("middle/BulletANI:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44, 0.48),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("middle/HitBox/Hit_Box:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("middle/HitBox/Hit_Box:shape")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CircleShape2D_c5lpy")]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("middle/HitBox/Hit_Box:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("poision:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath(".")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4c4xa"]
+_data = {
+&"Monster37Bullet": SubResource("Animation_hid6y")
+}
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("MonsterBullet", "script", "Node2D", "middle", "HitBox", "collision_layer", "collision_mask", "Area2D", "Hit_Box", "position", "shape", "CollisionShape2D", "BulletANI", "self_modulate", "material", "scale", "sprite_frames", "animation", "AnimatedSprite2D", "BulletPlayer", "libraries/", "movie_quit_on_finish", "AnimationPlayer", "poision", "visible", "texture", "Sprite2D", "queue_timer", "Timer", "IsThrowClose", "one_shot"),
+"node_count": 9,
+"node_ids": PackedInt32Array(700859760, 402054114, 110801940, 1237294488, 68043811, 1749242751, 1544745007, 1468005626, 1253881274),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 2, 3, -1, 0, 0, 1, 0, 7, 4, -1, 2, 5, 1, 6, 2, 0, 2, 0, 11, 8, -1, 2, 9, 3, 10, 4, 0, 1, 0, 18, 12, -1, 6, 13, 5, 14, 6, 9, 7, 15, 8, 16, 9, 17, 10, 0, 0, 0, 22, 19, -1, 2, 20, 11, 21, 12, 0, 0, 0, 26, 23, -1, 3, 24, 13, 9, 14, 25, 15, 0, 0, 0, 28, 27, -1, 0, 0, 0, 0, 28, 29, -1, 1, 30, 12, 0),
+"variants": [ExtResource("1"), 4, 8321, Vector2(223, -1), SubResource("CircleShape2D_m1f36"), Color(1, 1, 0, 1), SubResource("3526"), Vector2(1432, 0), Vector2(1, 6), SubResource("SpriteFrames_slotx"), &"Empty", SubResource("AnimationLibrary_4c4xa"), true, false, Vector2(0, 16), ExtResource("3")],
+"version": 3
+}

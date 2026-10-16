@@ -23,8 +23,8 @@ var _light_hit_time: Dictionary = {}
 
 
 func _ready() -> void:
-	load("res://Scene/Monster/Monster_122.tscn")
-	load("res://Scene/Monster/Monster_118.tscn")
+	load("res://Scene/Monster/monster_122.tscn")
+	load("res://Scene/Monster/monster_118.tscn")
 	Global.CurrentLevel = "尾妖林"
 	Global.add_bgm(self, "res://Music/level/34_bg5.mp3")
 	self.level_stage = 39
@@ -489,4 +489,4 @@ func _on_check_area_entered(area: Area2D) -> void:
 
 
 func _transport_to_hidden_level():
-	Global.change_scene("res://Scene/Level/Level_34_1.tscn")
+	Global.change_scene("res://Scene/Level/level_34_1.tscn")

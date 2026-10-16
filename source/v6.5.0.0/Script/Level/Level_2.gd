@@ -65,4 +65,4 @@ func set_through():
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	Global.change_scene("res://Scene/Level/Level_sjg.tscn")
+	Global.change_scene("res://Scene/Level/level_sjg.tscn")

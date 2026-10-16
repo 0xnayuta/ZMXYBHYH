@@ -1,7 +1,7 @@
 extends BaseHero
 class_name Role2Hero
 
-const JHSJ_AWAKEN_EFFECT := preload("res://Scene/Hero/RoleSpecialEffectSlim/JHSJAwakenEffect.tscn")
+const JHSJ_AWAKEN_EFFECT := preload("res://Scene/Hero/RoleSpecialEffectSlim/jhsj_awaken_effect.tscn")
 
 var zhw_list: Array = []
 var current_zhw_summon: Node2D = null
@@ -42,7 +42,7 @@ func _prewarm_role2_skill_effects() -> void:
 		JHSJAwakenEffect.preload_effect_data()
 	if Global._equipped_role_skill_names().has("zfjg"):
 		Global.preload_scene_path("res://Scene/Hero/RoleSpecialEffectSlim/zfjg_zh.tscn")
-		Global.preload_scene_path("res://Scene/Monster/Monster_zhw/Monster_143_zhw.tscn")
+		Global.preload_scene_path("res://Scene/Monster/Monster_zhw/monster_143_zhw.tscn")
 
 
 func role_2_handler():
@@ -440,7 +440,7 @@ func _summon_zhw():
 	if all_zhw.size() >= _get_zhw_summon_limit():
 		return
 
-	var summon_scene := Global.load_scene_uncached("res://Scene/Monster/Monster_zhw/Monster_143_zhw.tscn")
+	var summon_scene := Global.load_scene_uncached("res://Scene/Monster/Monster_zhw/monster_143_zhw.tscn")
 	if summon_scene == null:
 		return
 	var summon_instance = summon_scene.instantiate()

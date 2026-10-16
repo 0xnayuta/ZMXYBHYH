@@ -1,0 +1,22 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Base/base_stage.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_2_3/Stage.png" id="2"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(208, 27)
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("BaseStage", "script", "Node2D", "Stage", "texture", "Sprite2D", "Stage2", "collision_layer", "collision_mask", "StaticBody2D", "position", "shape", "one_way_collision", "metadata/_edit_lock_", "CollisionShape2D"),
+"node_count": 4,
+"node_ids": PackedInt32Array(513056223, 1034392699, 1739365385, 1775272096),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 5, 3, -1, 1, 4, 1, 0, 0, 0, 9, 6, -1, 2, 7, 2, 8, 2, 0, 2, 0, 14, 3, -1, 4, 10, 3, 11, 4, 12, 5, 13, 5, 0),
+"variants": [ExtResource("1"), ExtResource("2"), 32, Vector2(0, -3.5), SubResource("1"), true],
+"version": 3
+}

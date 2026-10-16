@@ -1,8 +1,8 @@
 extends Game4ImportedLevel
 
-const EMEI_MONSTER_SCRIPT := preload("res://Script/Monster/EmeiMountainMonster.gd")
-const FIRE_ANCESTOR_SCRIPT := preload("res://Script/Monster/FireAncestorBoss.gd")
-const FIRE_ANCESTOR_ORB_SCRIPT := preload("res://Script/Monster/FireAncestorOrb.gd")
+const EMEI_MONSTER_SCRIPT := preload("res://Script/Monster/emei_mountain_monster.gd")
+const FIRE_ANCESTOR_SCRIPT := preload("res://Script/Monster/fire_ancestor_boss.gd")
+const FIRE_ANCESTOR_ORB_SCRIPT := preload("res://Script/Monster/fire_ancestor_orb.gd")
 
 const JINDING_STAGE_COUNT := 5
 const JINDING_SCREEN_STARTS := [0.0, 1000.0, 2000.0, 3000.0, 3784.0]

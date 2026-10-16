@@ -88,18 +88,18 @@
     ]
   },
   "consumer_scenes": [
-    "res://Scene/Base/BaseMonster.tscn",
-    "res://Scene/Monster/MonsterBulletSlim/Monster104Bullet.tscn",
-    "res://Scene/Monster/MonsterBulletSlim/Monster111Bullet.tscn",
-    "res://Scene/Monster/MonsterBulletSlim/Monster112Bullet.tscn",
-    "res://Scene/Monster/MonsterBulletSlim/Monster37Bullet.tscn",
+    "res://Scene/Base/base_monster.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/monster104_bullet.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/monster111_bullet.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/monster112_bullet.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/monster37_bullet.tscn",
     "res://Scene/Monster/MonsterBulletSlim/poision.tscn",
-    "res://Scene/Monster/Monster_104.tscn",
-    "res://Scene/Monster/Monster_105.tscn",
-    "res://Scene/Monster/Monster_106.tscn",
-    "res://Scene/Monster/Monster_109.tscn",
-    "res://Scene/Monster/Monster_111.tscn",
-    "res://Scene/Monster/Monster_113.tscn"
+    "res://Scene/Monster/monster_104.tscn",
+    "res://Scene/Monster/monster_105.tscn",
+    "res://Scene/Monster/monster_106.tscn",
+    "res://Scene/Monster/monster_109.tscn",
+    "res://Scene/Monster/monster_111.tscn",
+    "res://Scene/Monster/monster_113.tscn"
   ],
   "monster_ids": [
     104,

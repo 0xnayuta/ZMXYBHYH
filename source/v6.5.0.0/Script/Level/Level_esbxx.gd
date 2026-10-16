@@ -1,6 +1,6 @@
 extends BaseLevel
 
-const BOSS_SCENE := preload("res://Scene/Monster/ConstellationBossBase.tscn")
+const BOSS_SCENE := preload("res://Scene/Monster/constellation_boss_base.tscn")
 const BOSS_GROUND_SPAWN := Vector2(500, 438)
 const BOSS_SPAWN_X_SPACING := 80.0
 const BACKGROUND_PATH_FORMAT := "res://Art/Constellations/Background/%d.png"

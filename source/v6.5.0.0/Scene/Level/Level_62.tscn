@@ -1,11 +1,11 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/Game4ImportedLevelBase.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/Level_62.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/Base/game4_imported_level_base.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/level_62.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/6c51733a7bad0e3c5e1288e44356c504f29eee3b7e497e373d5b88ad35204c63.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/698b1962663e098c2e226c3d63332f2040a9c1af965662efdce42c9b0aa306d8.png" id="4"]
-[ext_resource type="Script" path="res://Script/Level/MinghaiBackgroundEditorPreview.gd" id="5"]
-[ext_resource type="Script" path="res://Script/Level/MinghaiShip.gd" id="6"]
+[ext_resource type="Script" path="res://Script/Level/minghai_background_editor_preview.gd" id="5"]
+[ext_resource type="Script" path="res://Script/Level/minghai_ship.gd" id="6"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/items/1050/idle.png" id="7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape_floor"]

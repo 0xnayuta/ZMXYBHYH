@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/Game4ImportedLevelBase.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/Level_58.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/Base/game4_imported_level_base.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/level_58.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/5721bda62d4235875bf270246d3c94af426b1742bc31a5d67a25acef0e328e71.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/806f8258c4c0e3f26774de937d22feba61ee5db9c2f0e6f66dfbcb3538fff190.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/e73af5348cff89cff9be421d70202271c52423ea96527d26f679f40aa7a872ee.png" id="5"]
@@ -39,9 +39,9 @@
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/b453754eac9bcd174dc7acacd9affa5ffbf42420a1c0d141602c200fb74ff296.png" id="37"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/73ac18a6fc306ab3bb4d5dec323706ca7efaaadd5b9caab043390cf35161a526.png" id="38"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/32a5d0a82cc6610ca1790acc7c3a3a693231ca30c8dd241951fa1f3ef5a720e3.png" id="39"]
-[ext_resource type="Script" path="res://Script/Level/Game4RopeBridge.gd" id="40"]
+[ext_resource type="Script" path="res://Script/Level/game4_rope_bridge.gd" id="40"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/items/jindingyunhai_rope.png" id="41"]
-[ext_resource type="Script" path="res://Script/Level/Level46MovingPlatform.gd" id="42"]
+[ext_resource type="Script" path="res://Script/Level/level46_moving_platform.gd" id="42"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/items/jindingyunhai_platform.png" id="43"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape_floor"]

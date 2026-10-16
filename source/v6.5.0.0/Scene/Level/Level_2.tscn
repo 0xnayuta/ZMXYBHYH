@@ -1,12 +1,12 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/BaseThroughLevel.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/Level_2.gd" id="2"]
-[ext_resource type="PackedScene" path="res://Scene/Level/XP.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Scene/Base/base_through_level.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/level_2.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/Level/xp.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Scene/Level/stage.tscn" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Level/Level_1/19_1.png" id="5"]
 [ext_resource type="Texture2D" path="res://Art/Level/level_2/50.png" id="6"]
-[ext_resource type="PackedScene" path="res://Scene/Level/River.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://Scene/Level/river.tscn" id="7"]
 [ext_resource type="Texture2D" path="res://Art/Level/level_2/227.png" id="8"]
 
 [sub_resource type="RectangleShape2D" id="1"]

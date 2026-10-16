@@ -1,8 +1,8 @@
 extends Node2D
 class_name Forge
 
-const FORGE_ITEM_BOX_SCENE: PackedScene = preload("res://Scene/BackPack/Box_1.tscn")
-const FORGE_MATERIAL_BOX_SCENE: PackedScene = preload("res://Scene/LDL/ForgeMaterialBox.tscn")
+const FORGE_ITEM_BOX_SCENE: PackedScene = preload("res://Scene/BackPack/box_1.tscn")
+const FORGE_MATERIAL_BOX_SCENE: PackedScene = preload("res://Scene/LDL/forge_material_box.tscn")
 @onready var scw: Button = $LastItem/scw
 @onready var zzs: TextureRect = $Zzs
 @onready var last_item: TextureRect = $LastItem

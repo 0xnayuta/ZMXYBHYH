@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/BaseMagicWeapon.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/MagicWeapon/Zlwdah.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/Base/base_magic_weapon.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/MagicWeapon/zlwdah.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/zlwdah.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon_Zlwdah/zlwdah.png" id="4"]
 

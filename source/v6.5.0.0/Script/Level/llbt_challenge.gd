@@ -59,7 +59,7 @@ func _enter_llbt_level() -> void:
 		return
 	_close_popup_chain()
 	Global.cleanup_transient_ui()
-	Global.call_deferred("change_scene", "res://Scene/Level/Level_llbt.tscn")
+	Global.call_deferred("change_scene", "res://Scene/Level/level_llbt.tscn")
 
 
 func _physics_process(delta: float) -> void:

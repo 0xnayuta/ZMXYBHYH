@@ -1,6 +1,6 @@
 extends BaseHero
 class_name Role5Hero
-const LEI_TING_JIE_ZHEN_EFFECT = preload("res://Script/Hero/LeiTingJieZhenEffect.gd")
+const LEI_TING_JIE_ZHEN_EFFECT = preload("res://Script/Hero/lei_ting_jie_zhen_effect.gd")
 const FHF_NORMAL_COOLDOWN := 9.0
 const FHF_AWAKEN_COOLDOWN := FHF_NORMAL_COOLDOWN / 3.0
 const FHF_PRE_END := 0.3

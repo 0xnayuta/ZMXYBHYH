@@ -1,0 +1,19 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Pet/pet_neat_summon_1.tscn" id="1"]
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("PetNeatSummon3", "turtle_stage", "Bullet", "MonsterDir", "mr_ani", "mr_player", "BaseDamageBox", "HitBox", "HurtBox", "pz", "CD_REMOVE", "damage_text", "change_state", "spontaneous_recovery", "Buff", "CalmHit", "RemoveHurtBL"),
+"node_count": 1,
+"node_ids": PackedInt32Array(662377685),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0),
+"variants": [ExtResource("1"), 3],
+"version": 3
+}

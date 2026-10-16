@@ -79,36 +79,36 @@ func _on_return_map_pressed() -> void:
 	RoleProp.ws_value = 0
 	Global.is_DeadLink = false
 	if Global.CurrentLevel == "镇妖塔":
-		Global.change_scene("res://Scene/main_menu/Map_0.tscn")
+		Global.change_scene("res://Scene/main_menu/map_0.tscn")
 		MemoryClass.save_game(Global.cd_path)
 		return
 	match int(PlayerData.player_data["Map_num"]):
 		1:
-			Global.change_scene("res://Scene/main_menu/Map_1.tscn")
+			Global.change_scene("res://Scene/main_menu/map_1.tscn")
 		2:
-			Global.change_scene("res://Scene/main_menu/Map_2.tscn")
+			Global.change_scene("res://Scene/main_menu/map_2.tscn")
 		3:
-			Global.change_scene("res://Scene/main_menu/Map_3.tscn")
+			Global.change_scene("res://Scene/main_menu/map_3.tscn")
 		4:
-			Global.change_scene("res://Scene/main_menu/Map_4.tscn")
+			Global.change_scene("res://Scene/main_menu/map_4.tscn")
 		5:
-			Global.change_scene("res://Scene/main_menu/Map_5.tscn")
+			Global.change_scene("res://Scene/main_menu/map_5.tscn")
 		6:
-			Global.change_scene("res://Scene/main_menu/Map_6.tscn")
+			Global.change_scene("res://Scene/main_menu/map_6.tscn")
 		7:
-			Global.change_scene("res://Scene/main_menu/Map_7.tscn")
+			Global.change_scene("res://Scene/main_menu/map_7.tscn")
 		8:
 			if PlayerData.player_data.get("Map_variant", "") == "Map_8_1":
-				Global.change_scene("res://Scene/main_menu/Map_8_1.tscn")
+				Global.change_scene("res://Scene/main_menu/map_8_1.tscn")
 			else:
-				Global.change_scene("res://Scene/main_menu/Map_8.tscn")
+				Global.change_scene("res://Scene/main_menu/map_8.tscn")
 		9:
 			if PlayerData.player_data.get("Map_variant", "") == "Map_9_1":
-				Global.change_scene("res://Scene/main_menu/Map_9_1.tscn")
+				Global.change_scene("res://Scene/main_menu/map_9_1.tscn")
 			else:
-				Global.change_scene("res://Scene/main_menu/Map_9.tscn")
+				Global.change_scene("res://Scene/main_menu/map_9.tscn")
 		_:
-			Global.change_scene("res://Scene/main_menu/Map_0.tscn")
+			Global.change_scene("res://Scene/main_menu/map_0.tscn")
 	MemoryClass.save_game(Global.cd_path)
 
 

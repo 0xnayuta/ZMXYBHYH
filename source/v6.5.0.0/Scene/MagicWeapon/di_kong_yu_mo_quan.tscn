@@ -1,0 +1,20 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="PackedScene" path="res://Scene/Base/base_magic_weapon.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/MagicWeapon/di_kong_yu_mo_quan.gd" id="2"]
+
+[resource]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("DiKongYuMoQuan", "script", "Bullet", "MgAction", "FieldAnchor", "top_level", "z_index", "Node2D", "SpawnEffect", "visible", "AnimatedSprite2D", "FieldEffect", "CastFlash", "position", "MgPlayer", "SkillCD", "HitBox"),
+"node_count": 5,
+"node_ids": PackedInt32Array(1181870610, 928035921, 1825446893, 1078325012, 1521769084),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 0, 0, 7, 786436, -1, 2, 5, 2, 6, 3, 0, 1, 0, 10, 262152, -1, 1, 9, 4, 0, 1, 0, 10, 524299, -1, 1, 9, 4, 0, 0, 0, 10, 1048588, -1, 3, 9, 4, 6, 5, 13, 6, 0),
+"variants": [ExtResource("1"), ExtResource("2"), true, 2, false, 3, Vector2(0, -30)],
+"version": 3
+}

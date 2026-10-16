@@ -44,6 +44,6 @@ func _on_hddy_body_entered(body: Node2D) -> void:
 		if PlayerData.get_item_data("bsz") > 0:
 			PlayerData.remove_dj("bsz", PlayerData.get_dj_page("bsz"), 1)
 			MemoryClass.save_game(Global.cd_path)
-			Global.change_scene("res://Scene/Level/Level_hddy.tscn")
+			Global.change_scene("res://Scene/Level/level_hddy.tscn")
 		else:
 			RoleProp.roleprop.Hp = -100

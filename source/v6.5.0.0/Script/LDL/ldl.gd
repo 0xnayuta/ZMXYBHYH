@@ -219,7 +219,7 @@ func _on_sz_pressed() -> void:
 func add_sz_jm() -> void:
 	MLdl.loc_ = "神铸"
 	if DivineForge_ == null:
-		var scene := preload("res://Scene/LDL/DivineForge.tscn")
+		var scene := preload("res://Scene/LDL/divine_forge.tscn")
 		DivineForge_ = scene.instantiate()
 		bg_2.add_child(DivineForge_)
 		DivineForge_.position = Vector2(-315, -205)
@@ -244,7 +244,7 @@ func _on_cg_pressed() -> void:
 func add_cg_jm() -> void:
 	if BoneForge_ != null:
 		return
-	var scene := preload("res://Scene/LDL/BoneForge.tscn")
+	var scene := preload("res://Scene/LDL/bone_forge.tscn")
 	BoneForge_ = scene.instantiate()
 	bg_2.add_child(BoneForge_)
 	BoneForge_.position = Vector2(-315, -205)
@@ -268,7 +268,7 @@ func remove_sz_jm() -> void:
 
 func add_onekey_jm():
 	if OneKeySyn_ == null:
-		var scene = preload("res://Scene/LDL/OneKeySynthesis.tscn")
+		var scene = preload("res://Scene/LDL/one_key_synthesis.tscn")
 		OneKeySyn_ = scene.instantiate()
 		bg_2.add_child(OneKeySyn_)
 		OneKeySyn_.position = Vector2(-315, -205)

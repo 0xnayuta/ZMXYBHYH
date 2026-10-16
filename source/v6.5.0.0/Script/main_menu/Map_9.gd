@@ -150,7 +150,7 @@ func _on_map_level_pressed(level_number: int) -> void:
 
 func _on_nightmare_portal_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_9_1.tscn")
+	Global.change_scene("res://Scene/main_menu/map_9_1.tscn")
 
 
 func _on_memory_class_pressed() -> void:
@@ -184,7 +184,7 @@ func _on_task_pressed() -> void:
 
 func _on_return_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_0.tscn")
+	Global.change_scene("res://Scene/main_menu/map_0.tscn")
 
 
 func _on_game_set_pressed() -> void:
@@ -201,4 +201,4 @@ func _on_pellet_pressed() -> void:
 
 func _on_jjtj_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_8.tscn")
+	Global.change_scene("res://Scene/main_menu/map_8.tscn")

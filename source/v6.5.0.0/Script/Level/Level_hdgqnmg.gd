@@ -6,11 +6,11 @@ var is_cc = false
 
 func _ready() -> void:
 	Global.add_bgm(self, "res://Music/level/10_bg4.mp3")
-	load("res://Scene/Monster/Monster_141.tscn")
-	load("res://Scene/Monster/Monster_22.tscn")
-	load("res://Scene/Monster/Monster_23.tscn")
-	load("res://Scene/Monster/Monster_24.tscn")
-	load("res://Scene/Monster/Monster_25.tscn")
+	load("res://Scene/Monster/monster_141.tscn")
+	load("res://Scene/Monster/monster_22.tscn")
+	load("res://Scene/Monster/monster_23.tscn")
+	load("res://Scene/Monster/monster_24.tscn")
+	load("res://Scene/Monster/monster_25.tscn")
 	Global.CurrentLevel = ""
 	self.level_stage = 1
 	super._ready()
@@ -36,7 +36,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if PlayerData.check_eq_zb("头衔", "xczg"):
-		Global.change_scene("res://Scene/main_menu/Main_Menu.tscn")
+		Global.change_scene("res://Scene/main_menu/main_menu.tscn")
 	if not is_cc:
 		if Role_.position.x >= 600:
 			create_control.wait_time = 3

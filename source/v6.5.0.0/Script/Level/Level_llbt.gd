@@ -217,10 +217,10 @@ func _leave_level_from_exit() -> void:
 			if Global.LLBTLevel < 24:
 				Global.LLBTLevel += 1
 			_save_auto_battle_progress()
-			Global.change_scene("res://Scene/Level/Level_llbt.tscn")
+			Global.change_scene("res://Scene/Level/level_llbt.tscn")
 	elif Global.LLBTWXMS:
 		_save_auto_battle_progress()
-		Global.change_scene("res://Scene/Level/Level_llbt.tscn")
+		Global.change_scene("res://Scene/Level/level_llbt.tscn")
 
 
 func _save_auto_battle_progress() -> bool:

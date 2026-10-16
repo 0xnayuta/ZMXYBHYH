@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/BaseMagicWeapon.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/MagicWeapon/Cucurbit.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/Base/base_magic_weapon.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/MagicWeapon/cucurbit.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon1/dshl_wait.png" id="3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2no8o"]

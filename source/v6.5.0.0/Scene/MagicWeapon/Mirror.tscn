@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/BaseMagicWeapon.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/MagicWeapon/Mirror.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/Base/base_magic_weapon.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/MagicWeapon/mirror.gd" id="2"]
 
 [sub_resource type="Animation" id="Animation_83ri1"]
 length = 0.001

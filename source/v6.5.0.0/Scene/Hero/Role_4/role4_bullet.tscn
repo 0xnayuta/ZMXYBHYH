@@ -1,0 +1,22 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/Hero/role4_bullet.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role4/SpecialEffet_9.png" id="2"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 19.0263
+
+[resource]
+_bundled = {
+"conn_count": 2,
+"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 0, 4, 0, 21, 20, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("Role4Bullet", "script", "Node2D", "SpecialEffet9", "texture", "metadata/_edit_lock_", "Sprite2D", "Check", "position", "collision_layer", "collision_mask", "Area2D", "shape", "CollisionShape2D", "QueueTimer", "wait_time", "autostart", "Timer", "_on_check_body_entered", "body_entered", "_on_queue_timer_timeout", "timeout"),
+"node_count": 5,
+"node_ids": PackedInt32Array(471901056, 1932202442, 436305291, 1476034103, 647994375),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 6, 3, -1, 2, 4, 1, 5, 2, 0, 0, 0, 11, 7, -1, 3, 8, 3, 9, 4, 10, 5, 0, 2, 0, 13, 7, -1, 1, 12, 6, 0, 0, 0, 17, 14, -1, 2, 15, 7, 16, 2, 0),
+"variants": [ExtResource("1"), ExtResource("2"), true, Vector2(-1, -1), 0, 4, SubResource("1"), 4.0],
+"version": 3
+}

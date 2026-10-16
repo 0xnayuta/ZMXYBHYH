@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/main_menu/Map_4.gd" id="1"]
+[ext_resource type="Script" path="res://Script/main_menu/map_4.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/LevelButtonIcon/4.jpg" id="2"]
 [ext_resource type="Shader" path="res://Shader/WsEffect.gdshader" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/LevelButtonIcon/hld_1.png" id="4"]

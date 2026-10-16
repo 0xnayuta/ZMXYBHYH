@@ -58,7 +58,7 @@ func summon_zlw():
 		Global.current_magic_summon.queue_free()
 		Global.current_magic_summon = null
 
-	var summon_scene := Global.load_scene_uncached("res://Scene/Monster/Monster_zhw/Monster_142_sqzlw.tscn")
+	var summon_scene := Global.load_scene_uncached("res://Scene/Monster/Monster_zhw/monster_142_sqzlw.tscn")
 	if summon_scene == null:
 		return
 	var summon_instance = summon_scene.instantiate()

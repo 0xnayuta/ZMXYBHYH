@@ -1,0 +1,18 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/MagicWeapon/main_sword_array_weapon.gd" id="1"]
+
+[resource]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("MainSwordArrayWeapon", "script", "Node2D", "Sprite2D", "scale", "AnimatedSprite2D"),
+"node_count": 2,
+"node_ids": PackedInt32Array(75703416, 2125586296),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 5, 3, -1, 1, 4, 1, 0),
+"variants": [ExtResource("1"), Vector2(0.72, 0.72)],
+"version": 3
+}

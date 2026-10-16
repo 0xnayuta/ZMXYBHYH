@@ -11,9 +11,9 @@ var cur_level
 var bp_c: int = 0
 var _backpack_scene: PackedScene
 
-const BACKPACK_SCENE := "res://Scene/BackPack/BackPack.tscn"
+const BACKPACK_SCENE := "res://Scene/BackPack/back_pack.tscn"
 const SET_MENU_SCENE := "res://Scene/set_menu.tscn"
-const PET_INTERFACE_SCENE := "res://Scene/Pet/PetInterface.tscn"
+const PET_INTERFACE_SCENE := "res://Scene/Pet/pet_interface.tscn"
 
 
 func _viewport_center() -> Vector2:

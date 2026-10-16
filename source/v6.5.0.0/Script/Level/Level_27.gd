@@ -327,7 +327,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if CanThrough:
 		if Input.is_action_pressed("Exit"):
-			Global.change_scene("res://Scene/Level/Level_ymj.tscn")
+			Global.change_scene("res://Scene/Level/level_ymj.tscn")
 	if current_stage >= 1:
 		if check_can_pass() and current_stage < 4:
 			role_information.gogo.visible = true

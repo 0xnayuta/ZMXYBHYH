@@ -1,10 +1,10 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/Game4ImportedLevelBase.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/Level_75.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/Base/game4_imported_level_base.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Level/level_75.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/yunhaiV1/background/bg10.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/yunhaiV1/background/bg11.png" id="4"]
-[ext_resource type="Script" path="res://Script/Level/CloudTerrain.gd" id="5"]
+[ext_resource type="Script" path="res://Script/Level/cloud_terrain.gd" id="5"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/terrain/item_1117.png" id="6"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/terrain/item_1118.png" id="7"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/terrain/item_1116.png" id="8"]

@@ -85,9 +85,9 @@
     ]
   },
   "consumer_scenes": [
-    "res://Scene/Base/BaseMonster.tscn",
-    "res://Scene/Monster/MonsterBulletSlim/Monster54Bullet.tscn",
-    "res://Scene/Monster/Monster_54.tscn"
+    "res://Scene/Base/base_monster.tscn",
+    "res://Scene/Monster/MonsterBulletSlim/monster54_bullet.tscn",
+    "res://Scene/Monster/monster_54.tscn"
   ],
   "monster_ids": [
     54

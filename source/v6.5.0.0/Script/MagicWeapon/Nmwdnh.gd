@@ -79,7 +79,7 @@ func summon_zlw():
 		current_summon.queue_free()
 		current_summon = null
 
-	var summon_scene := Global.load_scene_uncached("res://Scene/Monster/Monster_zhw/Monster_141_zhw.tscn")
+	var summon_scene := Global.load_scene_uncached("res://Scene/Monster/Monster_zhw/monster_141_zhw.tscn")
 	if summon_scene == null:
 		return
 	var summon_instance = summon_scene.instantiate()

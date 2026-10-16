@@ -13,7 +13,7 @@ var isClick: bool = false
 var offser_: Vector2 = Vector2.ZERO
 var touch_scale: float = 1.0
 const keyPath: String = "user://KeyConfig.json"
-const MOUNT_CATALOG := preload("res://Script/Mount/MountCatalog.gd")
+const MOUNT_CATALOG := preload("res://Script/Mount/mount_catalog.gd")
 
 const UserStr: PackedStringArray = ["wk", "ts", "bj", "ss", "bl", "bl"]
 const KEY_BUTTON_COUNT: int = 11

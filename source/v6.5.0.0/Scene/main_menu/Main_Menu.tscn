@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/main_menu/Main_Menu.gd" id="1"]
+[ext_resource type="Script" path="res://Script/main_menu/main_menu.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/MainGame/bg_extended_runtime.png" id="2"]
 [ext_resource type="Texture2D" path="res://Art/MainGame/zmbh_runtime.png" id="3"]
 [ext_resource type="FontFile" path="res://Font/1_aaa_FZCuYuan-M03S.ttf" id="4"]

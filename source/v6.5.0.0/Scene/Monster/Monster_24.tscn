@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/BaseMonster.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Monster/Monster_24.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/Base/base_monster.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/Monster/monster_24.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Cow/Third/DefineSprite_Monster24BG/1.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Red_eyes/RedEyes.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Cow/Third/Heart.png" id="5"]

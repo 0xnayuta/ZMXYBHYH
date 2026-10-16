@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/main_menu/Game_information.gd" id="1"]
+[ext_resource type="Script" path="res://Script/main_menu/game_information.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/LDL/炼丹炉背景.jpg" id="2"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="3"]
 [ext_resource type="Texture2D" path="res://Art/game_pic/679.PNG" id="4"]

@@ -247,7 +247,7 @@ func _on_task_pressed() -> void:
 
 func _on_return_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_0.tscn")
+	Global.change_scene("res://Scene/main_menu/map_0.tscn")
 
 
 func _on_game_set_pressed() -> void:
@@ -264,9 +264,9 @@ func _on_pellet_pressed() -> void:
 
 func _on_jjtj_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_6.tscn")
+	Global.change_scene("res://Scene/main_menu/map_6.tscn")
 
 
 func _on_north_continent_pressed() -> void:
 	Global.cleanup_transient_ui()
-	Global.change_scene("res://Scene/main_menu/Map_8.tscn")
+	Global.change_scene("res://Scene/main_menu/map_8.tscn")

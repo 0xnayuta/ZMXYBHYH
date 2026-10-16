@@ -8,7 +8,7 @@ extends CanvasLayer
 @onready var set_key: Button = $bg/box/SetKey
 
 var set_key_tscn: PackedScene = preload("res://Scene/Tools/set_com.tscn")
-var auto_battle_tscn: PackedScene = preload("res://Scene/AutoBattleConfig.tscn")
+var auto_battle_tscn: PackedScene = preload("res://Scene/auto_battle_config.tscn")
 var tree: SceneTree
 var icon_scale: float = 1.0
 var joy_enabled: bool = true
@@ -60,43 +60,43 @@ func _on_continue_game_pressed() -> void:
 func _on_continue_game_2_pressed() -> void:
 	tree.paused = false
 	if Global.CurrentLevel == "镇妖塔":
-		Global.change_scene("res://Scene/main_menu/Map_0.tscn")
+		Global.change_scene("res://Scene/main_menu/map_0.tscn")
 		return
-	var target_map := "res://Scene/main_menu/Map_1.tscn"
+	var target_map := "res://Scene/main_menu/map_1.tscn"
 	match int(PlayerData.player_data.get("Map_num", 1)):
 		2:
 			if PlayerData.player_data.get("地府", false):
-				target_map = "res://Scene/main_menu/Map_2.tscn"
+				target_map = "res://Scene/main_menu/map_2.tscn"
 		3:
 			if PlayerData.player_data.get("天庭", false):
-				target_map = "res://Scene/main_menu/Map_3.tscn"
+				target_map = "res://Scene/main_menu/map_3.tscn"
 		4:
 			if PlayerData.player_data.get("截教天镜", false):
-				target_map = "res://Scene/main_menu/Map_4.tscn"
+				target_map = "res://Scene/main_menu/map_4.tscn"
 		5:
 			if PlayerData.player_data.get("碧游宫", false):
-				target_map = "res://Scene/main_menu/Map_5.tscn"
+				target_map = "res://Scene/main_menu/map_5.tscn"
 		6:
 			if int(PlayerData.player_data.get("通天教主", 0)) == 1:
-				target_map = "res://Scene/main_menu/Map_6.tscn"
+				target_map = "res://Scene/main_menu/map_6.tscn"
 		7:
-			target_map = "res://Scene/main_menu/Map_7.tscn"
+			target_map = "res://Scene/main_menu/map_7.tscn"
 		8:
 			if PlayerData.player_data.get("Map_variant", "") == "Map_8_1":
-				target_map = "res://Scene/main_menu/Map_8_1.tscn"
+				target_map = "res://Scene/main_menu/map_8_1.tscn"
 			else:
-				target_map = "res://Scene/main_menu/Map_8.tscn"
+				target_map = "res://Scene/main_menu/map_8.tscn"
 		9:
 			if PlayerData.player_data.get("Map_variant", "") == "Map_9_1":
-				target_map = "res://Scene/main_menu/Map_9_1.tscn"
+				target_map = "res://Scene/main_menu/map_9_1.tscn"
 			else:
-				target_map = "res://Scene/main_menu/Map_9.tscn"
+				target_map = "res://Scene/main_menu/map_9.tscn"
 	Global.change_scene(target_map)
 
 
 func _on_continue_game_4_pressed() -> void:
 	tree.paused = false
-	Global.change_scene("res://Scene/main_menu/Main_Menu.tscn")
+	Global.change_scene("res://Scene/main_menu/main_menu.tscn")
 
 
 func _on_bgm_control_pressed() -> void:

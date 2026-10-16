@@ -1,7 +1,7 @@
 extends Node2D
 class_name Synthesis
 
-const RecipeData = preload("res://Script/LDL/RecipeData.gd")
+const RecipeData = preload("res://Script/LDL/recipe_data.gd")
 
 var PropListName = [
 	"SHp",

@@ -179,7 +179,7 @@ func use_xhp():
 			if PlayerData.player_data["望乡台"] == 1:
 				PlayerData.remove_xhp(my_name, my_page, 1)
 				Global.cleanup_transient_ui()
-				Global.change_scene("res://Scene/Level/Level_Eighteenth_Hell.tscn")
+				Global.change_scene("res://Scene/Level/level_eighteenth_hell.tscn")
 				return
 			else:
 				var parent = get_parent().get_parent().get_parent()
