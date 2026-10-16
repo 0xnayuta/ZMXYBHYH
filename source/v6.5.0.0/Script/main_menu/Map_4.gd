@@ -33,7 +33,7 @@ const RIGHT_ALIGNED_BUTTON_NAMES := [
 @onready var level_esbxx: TextureButton = $Level_esbxx
 @onready var level_znyy: TextureButton = $Level_znyy
 
-var MaxPage: int = 4
+var max_page: int = 4
 var skill_target
 var my_music
 var _map_shadow_rects := []
@@ -154,45 +154,45 @@ func _ready() -> void:
 		get_viewport().size_changed.connect(_fit_to_fullscreen)
 	if not MainSet.set_data["LevelTT"]:
 		MainSet.set_data["LevelTT"] = true
-		Global.add_message_show(Global.Windows_, "恭喜通到达天庭，解锁角色“沙悟净”！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "恭喜通到达天庭，解锁角色“沙悟净”！！", 1.5, Vector2(470, 300))
 		MemoryClass.main_bc()
-	Global.LLBTLevel = 1
-	Global.LLBTBOSSMS = false
-	Global.LLBTCGMS = false
-	Global.LLBTWXMS = false
+	Global.llbt_level = 1
+	Global.llbtbossms = false
+	Global.llbtcgms = false
+	Global.llbtwxms = false
 	RoleProp.set_full_hp()
 	RoleProp.set_full_mp()
-	RoleProp.CurrentHp = RoleProp.roleprop.Hp
-	RoleProp.CurrentMp = RoleProp.roleprop.Mp
+	RoleProp.current_hp = RoleProp.roleprop.Hp
+	RoleProp.current_mp = RoleProp.roleprop.Mp
 
 	for i in range(1, 11):
 		play_an(i)
 
-	if MainSet.set_data["CurrentLevelPage"] <= MaxPage:
-		MainSet.set_data["CurrentLevelPage"] = MaxPage
+	if MainSet.set_data["CurrentLevelPage"] <= max_page:
+		MainSet.set_data["CurrentLevelPage"] = max_page
 		MemoryClass.main_bc()
-	if MainMusic.MyMainMusic == null:
+	if MainMusic.my_main_music == null:
 		MainMusic.add_music()
-	Global.CurrentLevel = ""
-	if not Global.IsFrist:
-		Global.add_message_show(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
-		Global.IsFrist = true
-	Global.PlayerBeHitCount = 0
-	Global.LastLevelPath = ""
-	Global.FB_CD = 0
+	Global.current_level = ""
+	if not Global.is_frist:
+		Global.add_message_show(Global.windows, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
+		Global.is_frist = true
+	Global.player_be_hit_count = 0
+	Global.last_level_path = ""
+	Global.fb_cd = 0
 	get_tree().paused = false
 	PlayerData.player_data["Map_num"] = 4
 	PlayerData.player_data["HeavenMap_num"] = 4
 	MemoryClass.save_game(Global.cd_path)
-	Global.is_Mpo = false
+	Global.is_mpo = false
 	Global.is_ice = false
 	Global.is_poision = false
-	Global.is_Fire = false
+	Global.is_fire = false
 	Global.is_speed_down = false
 	Global.is_stun = false
-	Global.is_Bleed = false
-	Global.is_EyeFix = false
-	Global.is_DeadLink = false
+	Global.is_bleed = false
+	Global.is_eye_fix = false
+	Global.is_dead_link = false
 	RoleProp.ws_value = 0
 	MemoryClass.main_dq()
 	check_pass_level()
@@ -258,7 +258,7 @@ func _on_level_esbxx_pressed() -> void:
 	if PlayerData.player_data["尾妖林"] == 0:
 		Global.add_message_show(get_parent(), "需通关尾妖林！！", 1.5, Vector2(470, 300))
 		return
-	Global.SelectedConstellationLevel = 0
+	Global.selected_constellation_level = 0
 	Global.add_level_info(_ui_parent(), "挑战28星宿", Vector2.ZERO, "res://Scene/level/level_esbxx.tscn")
 
 

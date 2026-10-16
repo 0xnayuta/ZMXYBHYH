@@ -8,23 +8,23 @@ extends Node2D
 @onready var lz_8: AnimatedSprite2D = $LZ_8
 @onready var lz_7: AnimatedSprite2D = $LZ_7
 
-var CurrentCount: int = 8:
+var current_count: int = 8:
 	set(value):
-		CurrentCount = value
+		current_count = value
 		_on_round_change()
-var Speed: float = 1:
+var speed: float = 1:
 	set(value):
-		Speed = value
+		speed = value
 		set_speed()
-var LunziList: Array = []
+var lunzi_list: Array = []
 
 
 func _ready() -> void:
-	LunziList = [lz_1, lz_2, lz_3, lz_4, lz_5, lz_6, lz_7, lz_8]
+	lunzi_list = [lz_1, lz_2, lz_3, lz_4, lz_5, lz_6, lz_7, lz_8]
 
 
 func _on_round_change():
-	if CurrentCount == 6:
+	if current_count == 6:
 		lz_1.visible = true
 		lz_2.visible = true
 		lz_3.visible = true
@@ -33,7 +33,7 @@ func _on_round_change():
 		lz_6.visible = true
 		lz_7.visible = false
 		lz_8.visible = false
-	elif CurrentCount == 5:
+	elif current_count == 5:
 		lz_1.visible = true
 		lz_2.visible = false
 		lz_3.visible = true
@@ -42,7 +42,7 @@ func _on_round_change():
 		lz_6.visible = true
 		lz_7.visible = false
 		lz_8.visible = false
-	elif CurrentCount == 4:
+	elif current_count == 4:
 		lz_1.visible = true
 		lz_2.visible = false
 		lz_3.visible = false
@@ -51,7 +51,7 @@ func _on_round_change():
 		lz_6.visible = true
 		lz_7.visible = false
 		lz_8.visible = false
-	elif CurrentCount == 3:
+	elif current_count == 3:
 		lz_1.visible = true
 		lz_2.visible = false
 		lz_3.visible = false
@@ -60,7 +60,7 @@ func _on_round_change():
 		lz_6.visible = true
 		lz_7.visible = false
 		lz_8.visible = false
-	elif CurrentCount == 2:
+	elif current_count == 2:
 		lz_1.visible = true
 		lz_2.visible = false
 		lz_3.visible = false
@@ -69,7 +69,7 @@ func _on_round_change():
 		lz_6.visible = true
 		lz_7.visible = false
 		lz_8.visible = false
-	elif CurrentCount == 1:
+	elif current_count == 1:
 		lz_1.visible = true
 		lz_2.visible = false
 		lz_3.visible = false
@@ -78,7 +78,7 @@ func _on_round_change():
 		lz_6.visible = false
 		lz_7.visible = false
 		lz_8.visible = false
-	elif CurrentCount == 0:
+	elif current_count == 0:
 		lz_1.visible = false
 		lz_2.visible = false
 		lz_3.visible = false
@@ -87,7 +87,7 @@ func _on_round_change():
 		lz_6.visible = false
 		lz_7.visible = false
 		lz_8.visible = false
-	elif CurrentCount == 7:
+	elif current_count == 7:
 		lz_1.visible = true
 		lz_2.visible = true
 		lz_3.visible = true
@@ -96,7 +96,7 @@ func _on_round_change():
 		lz_6.visible = true
 		lz_7.visible = true
 		lz_8.visible = false
-	elif CurrentCount == 8:
+	elif current_count == 8:
 		lz_1.visible = true
 		lz_2.visible = true
 		lz_3.visible = true
@@ -109,9 +109,9 @@ func _on_round_change():
 
 func set_speed():
 	var num: int = 0
-	for i in LunziList:
-		if Speed != 1:
-			i.speed_scale = i.speed_scale * Speed
+	for i in lunzi_list:
+		if speed != 1:
+			i.speed_scale = i.speed_scale * speed
 		else:
 			i.speed_scale = 0.7
 			num += 1

@@ -6,17 +6,17 @@ extends BaseLevel
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "东海"
+	Global.current_level = "东海"
 	bgm_node = Global.add_bgm(self, "res://Music/level/21_bg3.mp3")
 	self.level_stage = 8
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [16, 16, 14, 14, 15, 15, 15, 15],
 		"stage_2": [14, 14, 16, 15, 15, 16, 15, 14, 16, 14, 16, 15, 15, 14, 16, 14, 16, 14, 16, 15, 15, 14, 16, 14],
 		"stage_3": [14, 14, 16, 16, 16, 15, 16, 14, 16, 15, 16, 14, 16, 17, 16, 14, 16, 15, 15, 14, 16, 14],
 		"stage_4": [18],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [900, 900, 900, 900, 700, 700, 700, 700],
 		"stage_2":
 		[
@@ -72,7 +72,7 @@ func _ready() -> void:
 		],
 		"stage_4": [4550],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [300, 300, 300, 300, 300, 300, 300, 300, 300],
 		"stage_2":
 		[

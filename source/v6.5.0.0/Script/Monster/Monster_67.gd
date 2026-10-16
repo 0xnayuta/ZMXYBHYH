@@ -130,8 +130,8 @@ func do_hit_3():
 
 
 func _on_hit_box_area_exited(_area: Area2D) -> void:
-	var Xx = 5 * (1 - float(Hp) / float(SHp)) + randi_range(0, 1)
-	self.cure_hp(Xx * objattackDic[hit_name]["power"])
+	var xx = 5 * (1 - float(Hp) / float(SHp)) + randi_range(0, 1)
+	self.cure_hp(xx * objattackDic[hit_name]["power"])
 	super._on_hit_box_area_entered(_area)
 
 
@@ -189,8 +189,8 @@ func call_bullet():
 
 
 func call_sz():
-	var SZ = Global.create_monster(68, get_parent(), position) as Monster68
-	SZ.Myfather = self
+	var sz = Global.create_monster(68, get_parent(), position) as Monster68
+	sz.myfather = self
 
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理

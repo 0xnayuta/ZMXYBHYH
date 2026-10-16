@@ -25,18 +25,18 @@ var _green_boundary_cached: bool = false
 
 const SPRITE_ANGLE_OFFSET: float = PI
 
-var IsCanCure: bool
-var CureCount: int
+var is_can_cure: bool
+var cure_count: int
 var name_: String = "Role2Bullet5"
 var Player: BaseHero
-var Direction: bool = true
+var direction: bool = true
 var is_set: bool = false
 var tllz_awaken_extra: bool = false
 var _tllz_awaken_targets: Dictionary = {}
 var jhbhcount: int
-var CheckCount: int = 0
+var check_count: int = 0
 var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
-var BCRotationList = [30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360]
+var bc_rotation_list = [30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360]
 var num: int = 0
 
 
@@ -58,7 +58,7 @@ func _exit_tree() -> void:
 
 
 func spawn_reflect_effect(pos: Vector2, dir_velocity: Vector2, hit_dic: Dictionary) -> void:
-	var effect_bullet = Global.add_role_bullet(get_tree().root, pos, Direction, "Role2Bullet7_tx", hit_dic)
+	var effect_bullet = Global.add_role_bullet(get_tree().root, pos, direction, "Role2Bullet7_tx", hit_dic)
 	if effect_bullet:
 		var anim_player = effect_bullet.get_node("Middle/BulletPlayers")
 		if anim_player:
@@ -153,7 +153,7 @@ func _on_green_area_exited(area: Area2D) -> void:
 
 func _physics_process(_delta: float) -> void:
 	tqz_cure()
-	CheckCount += 1
+	check_count += 1
 
 	if not is_set:
 		if Global.get_parent_(self, 2) is BaseHero:
@@ -161,13 +161,13 @@ func _physics_process(_delta: float) -> void:
 		elif Global.get_parent_(self, 1) is BaseHero:
 			Player = Global.get_parent_(self, 1)
 		bullet_players.play(name_)
-		if Direction:
+		if direction:
 			middle.scale.x = -1
 		else:
 			middle.scale.x = 1
 
 		if name_ == "Role2Bullet7_zd":
-			var dir_vec = Vector2.RIGHT if Direction else Vector2.LEFT
+			var dir_vec = Vector2.RIGHT if direction else Vector2.LEFT
 			velocity = dir_vec * speed_mag
 			self.rotation = velocity.angle() + SPRITE_ANGLE_OFFSET
 			middle.scale.x = 1
@@ -182,7 +182,7 @@ func _physics_process(_delta: float) -> void:
 			queue_free()
 	else:
 		if name_ == "Role2Bullet5":
-			if Direction:
+			if direction:
 				self.position.x += 2
 			else:
 				self.position.x -= 2
@@ -220,14 +220,14 @@ func move_with_reflection(current_velocity: Vector2, delta: float) -> void:
 func call_jhbh1():
 	if Player == null or not is_instance_valid(Player):
 		return
-	BCRotationList.reverse()
+	bc_rotation_list.reverse()
 	if jhbhcount % 5 == 0:
 		if num > 11:
 			num = 0
 		var bc = Global.add_role_bullet(
 			Player.Bullet, position + bullet_player.position, Player.PlayerDir, "Role2Bullet5_1", HitDic
 		)
-		bc.rotation_degrees = BCRotationList[num]
+		bc.rotation_degrees = bc_rotation_list[num]
 		bc.scale = Vector2(1.5, 1.5)
 		num += 1
 	jhbhcount += 1
@@ -236,10 +236,10 @@ func call_jhbh1():
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	if get_meta("liusha_boss_visual_only", false):
 		return
-	var Target := _get_monster_from_hit_area(area)
-	if Target == null:
+	var target := _get_monster_from_hit_area(area)
+	if target == null:
 		return
-	if _is_summon_or_pet_target(Target):
+	if _is_summon_or_pet_target(target):
 		return
 	else:
 		if name_ == "Role2Bullet7":
@@ -249,18 +249,18 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			await tree.create_timer(0.5).timeout
 			if not is_inside_tree() or is_queued_for_deletion():
 				return
-			if is_instance_valid(Target):
-				Global.add_role_bullet(tree.root, Target.global_position, Direction, "Role2Bullet7_1", HitDic)
+			if is_instance_valid(target):
+				Global.add_role_bullet(tree.root, target.global_position, direction, "Role2Bullet7_1", HitDic)
 
 		match name_:
 			"SwordArrayHit":
 				if HitDic.has("addeffect"):
-					Global.add_buff(Target.buff, HitDic["addeffect"])
+					Global.add_buff(target.buff, HitDic["addeffect"])
 				if HitDic.has("defe_reduce"):
 					(
 						Global
 						. add_buff(
-							Target.buff,
+							target.buff,
 							{
 								"Name": "DefeReduce",
 								"AddTime": 8,
@@ -273,7 +273,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 					)
 			"Role5Bullet4":
 				Global.add_buff(
-					Target.buff,
+					target.buff,
 					{
 						"Name": "speed_down",
 						"AddTime": 1,
@@ -284,20 +284,20 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 						"DeBuff": true
 					}
 				)
-				_apply_tllz_awaken_effect(Target)
+				_apply_tllz_awaken_effect(target)
 			"Role5Bullet2":
-				if Target != null:
-					Target.llrdCount = 300
-					if not Target.CannotAttract:
-						tween_to_llrd_center(Target)
+				if target != null:
+					target.llrd_count = 300
+					if not target.cannot_attract:
+						tween_to_llrd_center(target)
 			"SMSRBullet", "TtzsszBullet", "NMWBullet2":
 				if HitDic.has("addeffect"):
-					Global.add_buff(Target.buff, HitDic["addeffect"])
+					Global.add_buff(target.buff, HitDic["addeffect"])
 			"Role4Bullet6":
-				if Global.check_wd(Target) < 7 and HitDic.has("addeffect"):
-					Global.add_buff(Target.buff, HitDic["addeffect"])
+				if Global.check_wd(target) < 7 and HitDic.has("addeffect"):
+					Global.add_buff(target.buff, HitDic["addeffect"])
 				Global.add_buff(
-					Target.buff,
+					target.buff,
 					{
 						"Name": "speed_down",
 						"AddTime": 0.6,
@@ -309,19 +309,19 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 					}
 				)
 			"Role4Bullet3":
-				if Global.check_wd(Target) < 10 and HitDic.has("addeffect"):
-					Global.add_buff(Target.buff, HitDic["addeffect"])
+				if Global.check_wd(target) < 10 and HitDic.has("addeffect"):
+					Global.add_buff(target.buff, HitDic["addeffect"])
 			"ZLWBullet":
 				if HitDic.has("addeffect"):
-					Global.add_buff(Target.buff, HitDic["addeffect"])
+					Global.add_buff(target.buff, HitDic["addeffect"])
 			"LPZBullet":
-				var Levellpz = PlayerData.player_data["落魄阵"]["Level"]
-				var Value = 0.02 * Levellpz
-				var Rnd = 10 * Levellpz
+				var levellpz = PlayerData.player_data["落魄阵"]["Level"]
+				var Value = 0.02 * levellpz
+				var rnd = 10 * levellpz
 				randomize()
-				if randi_range(0, 100) <= Rnd:
+				if randi_range(0, 100) <= rnd:
 					Global.add_buff(
-						Target.buff,
+						target.buff,
 						{
 							"Name": "lpzbuff",
 							"AddTime": 10,
@@ -345,8 +345,8 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			return
 
 		var jgz_level = 0
-		if Target and Target.has_node("Buff"):
-			for buff_node in Target.buff.get_children():
+		if target and target.has_node("Buff"):
+			for buff_node in target.buff.get_children():
 				if buff_node.BuffInfo.get("Name") == "jgz":
 					jgz_level = buff_node.BuffInfo.get("value", 1)
 					break
@@ -359,7 +359,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		if rand_val > threshold:
 			return
 		if HitDic.has("addeffect"):
-			Global.add_buff(Target.buff, HitDic["addeffect"])
+			Global.add_buff(target.buff, HitDic["addeffect"])
 
 
 func add_music(num):
@@ -397,7 +397,7 @@ func _apply_tllz_awaken_effect(target: BaseMonster) -> void:
 		return
 	var source_player: BaseHero = Player
 	if source_player == null or not is_instance_valid(source_player):
-		var source_candidate: Variant = RoleProp.SourcePlayer
+		var source_candidate: Variant = RoleProp.source_player
 		if source_candidate is BaseHero and is_instance_valid(source_candidate):
 			source_player = source_candidate as BaseHero
 	if source_player == null or not is_instance_valid(source_player):
@@ -456,27 +456,27 @@ func _get_monster_from_hit_area(area: Area2D) -> BaseMonster:
 
 
 func face_to_boss():
-	var MrList = []
+	var mr_list = []
 	var desired_angle := rotation
 	if Player is BaseHero:
-		MrList = Player.get_parent().get_parent().monster.get_children()
+		mr_list = Player.get_parent().get_parent().monster.get_children()
 	var nearest_target: BaseMonster = null
 	var nearest_target_position := Vector2.ZERO
 	var nearest_distance := INF
-	for Target in MrList:
+	for target in mr_list:
 		if (
-			Target == null
-			or not is_instance_valid(Target)
-			or Target.is_queued_for_deletion()
-			or not Target is BaseMonster
+			target == null
+			or not is_instance_valid(target)
+			or target.is_queued_for_deletion()
+			or not target is BaseMonster
 		):
 			continue
-		var target := Target as BaseMonster
-		if target is Monster48 or _is_summon_or_pet_target(target):
+		var monster_target := target as BaseMonster
+		if monster_target is Monster48 or _is_summon_or_pet_target(monster_target):
 			continue
-		if target.Hp <= 0 or target.is_death:
+		if monster_target.Hp <= 0 or monster_target.is_death:
 			continue
-		var target_position := _get_monster_aim_position(target)
+		var target_position := _get_monster_aim_position(monster_target)
 		var target_distance := global_position.distance_squared_to(target_position)
 		if target_distance < nearest_distance:
 			nearest_distance = target_distance
@@ -512,19 +512,19 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 	match name_:
 		"TQZBullet":
 			if body is BaseHero:
-				IsCanCure = true
+				is_can_cure = true
 
 
 func _on_hit_box_body_exited(body: Node2D) -> void:
 	match name_:
 		"TQZBullet":
 			if body is BaseHero:
-				IsCanCure = false
+				is_can_cure = false
 
 
 func add_slz_buff():
 	Global.add_buff(
-		RoleProp.SourcePlayer.buff,
+		RoleProp.source_player.buff,
 		{
 			"Name": "slzbuff",
 			"AddTime": 10,
@@ -539,7 +539,7 @@ func add_slz_buff():
 
 func add_tsz_buff():
 	Global.add_buff(
-		RoleProp.SourcePlayer.buff,
+		RoleProp.source_player.buff,
 		{
 			"Name": "tszbuff",
 			"AddTime": 10,
@@ -553,12 +553,12 @@ func add_tsz_buff():
 
 
 func add_tqz_buff():
-	if not IsCanCure:
+	if not is_can_cure:
 		return
 	Global.remove_all_active_buffs()
-	Global.add_special_effect(RoleProp.SourcePlayer, Vector2(0, 0), "tqzbuff", Vector2(1, 1), false, 1)
+	Global.add_special_effect(RoleProp.source_player, Vector2(0, 0), "tqzbuff", Vector2(1, 1), false, 1)
 	Global.add_buff(
-		RoleProp.SourcePlayer.buff,
+		RoleProp.source_player.buff,
 		{
 			"Name": "SuperArmor",
 			"AddTime": 1,
@@ -573,14 +573,14 @@ func add_tqz_buff():
 
 func tqz_cure():
 	if name_ == "TQZBullet":
-		if IsCanCure:
-			if CureCount % 60 == 0 and CureCount != 0:
-				var Levellpz = PlayerData.player_data["太清阵"]["Level"]
-				var CureValue = int(Levellpz * 0.05 * RoleProp.roleprop.power)
-				RoleProp.SourcePlayer.cure_hp(CureValue)
-			CureCount += 1
+		if is_can_cure:
+			if cure_count % 60 == 0 and cure_count != 0:
+				var levellpz = PlayerData.player_data["太清阵"]["Level"]
+				var cure_value = int(levellpz * 0.05 * RoleProp.roleprop.power)
+				RoleProp.source_player.cure_hp(cure_value)
+			cure_count += 1
 		else:
-			CureCount = 0
+			cure_count = 0
 
 
 func tllz_queue():

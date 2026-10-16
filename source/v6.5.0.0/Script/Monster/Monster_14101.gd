@@ -1,5 +1,5 @@
 extends BaseMonster
-var WHSCount: int = 0
+var whs_count: int = 0
 
 
 func monster_14101():
@@ -112,13 +112,13 @@ func _ready() -> void:
 	Skill_2_CD = 10
 	Skill_3_CD = 5
 	Skill_4_CD = 12
-	Skill_5_CD = 15
+	skill_5_cd = 15
 
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	WHSCount += 1
-	if WHSCount % 600 == 0:
+	whs_count += 1
+	if whs_count % 600 == 0:
 		var bullet = Global.add_bullet(
 			"Monster141Bullet4", self, true, 1, Vector2(0, -30), "hit6", self.objattackDic["hit6"]
 		)
@@ -234,8 +234,8 @@ func call_bullet_1():
 
 
 func call_bullet_alt2():
-	var Dis = int(Global.get_dis_betweem(self, RoleProp.SourcePlayer))
-	if Dis < attackRange:
+	var dis = int(Global.get_dis_betweem(self, RoleProp.source_player))
+	if dis < attackRange:
 		return
 	var bb
 	if self.MonsterDirection:

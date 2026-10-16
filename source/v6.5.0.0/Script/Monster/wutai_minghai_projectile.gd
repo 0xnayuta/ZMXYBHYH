@@ -115,7 +115,7 @@ func _init() -> void:
 
 func configure(config: Dictionary) -> void:
 	owner_monster = config.get("owner") as BaseMonster
-	MyFather = owner_monster
+	my_father = owner_monster
 	spawn_global_position = config.get("position", Vector2.ZERO)
 	hit_name = str(config.get("hit_name", "hit1"))
 	AttList = (config.get("attack_data", {}) as Dictionary).duplicate(true)
@@ -494,7 +494,7 @@ func _process_overlapping_player_bodies() -> void:
 	if global_player != null and is_instance_valid(global_player) and not players.has(global_player):
 		players.append(global_player)
 	if players.is_empty():
-		var source_player := RoleProp.SourcePlayer as BaseHero
+		var source_player := RoleProp.source_player as BaseHero
 		if source_player != null:
 			players.append(source_player)
 	var shape_node := get_node_or_null("middle/HitBox/Hit_Box") as CollisionShape2D
@@ -503,7 +503,7 @@ func _process_overlapping_player_bodies() -> void:
 	var hit_center := shape_node.global_position if shape_node != null else global_position
 	for player_value in players:
 		var player := player_value as BaseHero
-		if player == null or not is_instance_valid(player) or player.IsDeath or player.needProtect:
+		if player == null or not is_instance_valid(player) or player.is_death or player.need_protect:
 			continue
 		var target_id := player.get_instance_id()
 		if _hit_targets_in_pulse.has(target_id):
@@ -547,7 +547,7 @@ func _on_streamed_hit_box_area_entered(area: Area2D) -> void:
 	var target_id := hit_role.get_instance_id()
 	if _hit_targets_in_pulse.has(target_id):
 		return
-	if hit_role.IsDeath or hit_role.needProtect:
+	if hit_role.is_death or hit_role.need_protect:
 		_set_monitoring(false)
 		_reenable_next_frame = true
 		return

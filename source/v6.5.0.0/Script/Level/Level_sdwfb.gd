@@ -9,19 +9,19 @@ func _ready() -> void:
 	load("res://Scene/monster/monster_59.tscn")
 
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [59],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [850],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [200],
 		"stage_2": [],
 		"stage_3": [],

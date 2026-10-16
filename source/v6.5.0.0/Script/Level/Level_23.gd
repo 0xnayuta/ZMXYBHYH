@@ -7,14 +7,14 @@ extends BaseLevel
 @onready var check: Area2D = $Check
 @onready var tp: Area2D = $Tp
 
-var HurtCount: int = 0
-var IsPlay: bool = false
+var hurt_count: int = 0
+var is_play: bool = false
 var animation_played: bool = false
 var can_through: bool = false
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "天宫道"
+	Global.current_level = "天宫道"
 	Global.add_bgm(self, "res://Music/level/Floor1_3.mp3")
 	self.level_stage = 22
 	super._ready()
@@ -27,7 +27,7 @@ func _ready() -> void:
 	if $yun.has_animation("open"):
 		$yun.connect("animation_finished", Callable(self, "_on_animation_finished"))
 
-	Monster_group = {
+	monster_group = {
 		"stage_1": [74, 75, 74, 75, 74, 75, 74, 75, 74, 75, 74, 75, 74, 75, 74, 75, 74, 75, 74, 75],
 		"stage_2":
 		[
@@ -101,7 +101,7 @@ func _ready() -> void:
 		],
 		"stage_4": [78, 77],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1":
 		[250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000],
 		"stage_2":
@@ -182,7 +182,7 @@ func _ready() -> void:
 		],
 		"stage_4": [4450, 3600],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			475,
@@ -333,11 +333,11 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if HurtCount >= 5 and not animation_played:
-		if not IsPlay:
+	if hurt_count >= 5 and not animation_played:
+		if not is_play:
 			if $yun.has_animation("open"):
 				$yun.play("open")
-				IsPlay = true
+				is_play = true
 
 				$Check/check.disabled = true
 
@@ -370,7 +370,7 @@ func set_through():
 
 func _on_check_area_entered(area: Area2D) -> void:
 	if not $Check/check.disabled:
-		HurtCount += 1
+		hurt_count += 1
 		Global.add_mr_hurt($Check, Vector2(0, 0))
 
 

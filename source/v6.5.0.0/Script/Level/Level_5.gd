@@ -32,20 +32,20 @@ var hit_count: int = 0
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "七星洞"
+	Global.current_level = "七星洞"
 	bgm_node = Global.add_bgm(self, "res://Music/level/7_bg2.mp3")
 
 	add_trap_sky()
 	set_trap_floor()
 	self.level_stage = 5
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [7, 7, 7, 7, 9, 9, 9, 9, 9],
 		"stage_2": [7, 7, 7, 9, 9, 9, 10, 10, 10, 7, 7, 7, 7, 7, 9, 9, 10, 10, 10],
 		"stage_3": [9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 9, 9, 10, 10, 9, 9, 9, 10, 10, 9],
 		"stage_4": [11],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [750, 750, 750, 750, 750, 1000, 1000, 1000, 1000],
 		"stage_2":
 		[
@@ -94,7 +94,7 @@ func _ready() -> void:
 		],
 		"stage_4": [4550],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [300, 300, 300, 300, 300, 300, 300, 300, 300],
 		"stage_2": [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
 		"stage_3": [100, 100, 100, 100, 100, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],

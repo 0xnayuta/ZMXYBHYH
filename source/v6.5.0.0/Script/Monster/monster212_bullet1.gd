@@ -22,10 +22,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	ThrowCount += 1
+	throw_count += 1
 	get_prop()
 	position.x += _move_direction * FLY_SPEED * maxf(speed, 0.1) * delta
-	if ThrowCount > int(1.5 * 60.0):
+	if throw_count > int(1.5 * 60.0):
 		queue_free()
 
 

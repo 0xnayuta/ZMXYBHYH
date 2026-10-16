@@ -2,9 +2,9 @@ extends Node2D
 const DIGIT_ADVANCE := 20
 
 @onready var show_player: AnimationPlayer = $ShowPlayer
-@onready var number: HBoxContainer = $Midlle/Number
+@onready var number: HBoxContainer = $Midlle/number
 
-var Number: int
+var damage_value: int
 var Type: String
 var is_set: bool = false
 var is_crit: bool
@@ -14,7 +14,7 @@ var _digit_nodes: Array[TextureRect] = []
 
 
 func setup(value, type_, crit: bool, tar) -> void:
-	Number = int(value)
+	damage_value = int(value)
 	Type = str(type_)
 	is_crit = crit
 	target = tar
@@ -30,7 +30,7 @@ func setup(value, type_, crit: bool, tar) -> void:
 func change_number():
 	if target != null and not is_instance_valid(target):
 		target = null
-	var loc_2 = str(Number)
+	var loc_2 = str(damage_value)
 	var loc_1 = loc_2.split("")
 	var digit_index := 0
 	var widest_texture := 0

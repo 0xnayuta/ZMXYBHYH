@@ -66,7 +66,7 @@ var _texture_bounds_cache: Dictionary = {}
 
 
 func _ready() -> void:
-	FB_Level = clampi(PlayerData.get_most_level("dzyl"), 1, 10)
+	fb_level = clampi(PlayerData.get_most_level("dzyl"), 1, 10)
 	mg_action.sprite_frames = _build_frames("wait", IDLE_FRAMES, true, 12.0)
 	special_effect.sprite_frames = _build_frames("effect", EFFECT_FRAMES, false, 30.0)
 	aura_effect.sprite_frames = _build_frames("effect", AURA_FRAMES, true, 10.0)
@@ -76,8 +76,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	FB_Level = clampi(PlayerData.get_most_level("dzyl"), 1, 10)
-	needMp = 50
+	fb_level = clampi(PlayerData.get_most_level("dzyl"), 1, 10)
+	need_mp = 50
 	super._physics_process(delta)
 	if is_use:
 		_follow_hero_during_skill()
@@ -98,13 +98,13 @@ func _follow_hero_during_skill() -> void:
 	if role_x != null and role_y != null:
 		hero_position = Vector2(float(role_x), float(role_y))
 
-	if RoleProp.Directon:
+	if RoleProp.directon:
 		scale.x = -1
-		SelfDir = true
+		self_dir = true
 		position = hero_position - Vector2(100, 180)
 	else:
 		scale.x = 1
-		SelfDir = false
+		self_dir = false
 		position = hero_position - Vector2(-100, 180)
 
 
@@ -135,7 +135,7 @@ func _get_player_visible_foot_global_position() -> Variant:
 	if ground_position != null:
 		return ground_position
 	var visible_bottom: Variant = null
-	for node_path in ["Action/RoleBody", "Action/RoleEquipment", "Action/RoleBodyFront"]:
+	for node_path in ["Action/role_body", "Action/RoleEquipment", "Action/RoleBodyFront"]:
 		var sprite := Player.get_node_or_null(node_path) as Sprite2D
 		if sprite == null or not sprite.visible or sprite.texture == null:
 			continue
@@ -341,7 +341,7 @@ func _clear_skill_effect() -> void:
 func use_over() -> void:
 	mg_action.visible = false
 	is_use = false
-	Global.FB_CD = 1
+	Global.fb_cd = 1
 	usecd = COOLDOWN_DURATION
 	if PlayerData.check_have_wx("dzyl", "木"):
 		usecd *= 0.8

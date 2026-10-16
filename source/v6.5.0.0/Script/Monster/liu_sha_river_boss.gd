@@ -264,7 +264,7 @@ func _exit_tree() -> void:
 
 func _configure_boss() -> void:
 	is_boss = true
-	CannotAttract = true
+	cannot_attract = true
 	level = 55
 	crit = 30
 	miss = 18
@@ -448,7 +448,7 @@ func _physics_process(delta: float) -> void:
 		mr_ani.visible = not (is_attacking and _active_skill == "hit9" and not death())
 
 	if _gxp_active or boss_kind == 192:
-		IsSuperArmor = true
+		super_armor_active = true
 
 
 func can_set_gra():
@@ -512,7 +512,7 @@ func _enter_gxp() -> void:
 		return
 	_gxp_active = true
 	_gxp_afterimage_timer = 0.0
-	IsSuperArmor = true
+	super_armor_active = true
 	speed = int(round(float(speed) * 1.5))
 	iniSpeed = speed
 	get_tree().create_timer(10.0, false).timeout.connect(_exit_gxp, CONNECT_ONE_SHOT)
@@ -522,7 +522,7 @@ func _exit_gxp() -> void:
 	if not _gxp_active:
 		return
 	_gxp_active = false
-	IsSuperArmor = false
+	super_armor_active = false
 	speed = maxi(1, int(round(float(speed) / 1.5)))
 	iniSpeed = speed
 

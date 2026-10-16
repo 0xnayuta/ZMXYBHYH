@@ -87,7 +87,7 @@ func _init() -> void:
 
 func configure(config: Dictionary) -> void:
 	owner_monster = config.get("owner") as BaseMonster
-	MyFather = owner_monster
+	my_father = owner_monster
 	spawn_global_position = config.get("position", Vector2.ZERO)
 	hit_name = str(config.get("hit_name", "hit1"))
 	AttList = (config.get("attack_data", {}) as Dictionary).duplicate(true)

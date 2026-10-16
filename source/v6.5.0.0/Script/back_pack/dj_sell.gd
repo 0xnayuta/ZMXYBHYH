@@ -7,7 +7,7 @@ const UNLOCK_BUTTON_ICON = preload("res://Art/BackPack/dj_unlock_button.png")
 @onready var sell_number: LineEdit = $MarginContainer2/MarginContainer/VBoxContainer/sell_number
 @onready var use: TextureButton = $MarginContainer2/MarginContainer/VBoxContainer/use
 @onready var sell: Button = $MarginContainer2/MarginContainer/VBoxContainer/sell
-var ChooseJM
+var choose_jm
 var source_box: Node = null
 var outside_click_enabled: bool = false
 
@@ -52,8 +52,8 @@ func _control_has_point(control: Control, screen_position: Vector2) -> bool:
 
 
 func _physics_process(_delta: float) -> void:
-	infor.text = "名字：" + str(AE.AllEquipment_[my_name][DataKeys.NAME])
-	if AE.AllEquipment_[my_name][DataKeys.TYPE] == "道具" and is_set == false:
+	infor.text = "名字：" + str(AE.all_equipment[my_name][DataKeys.NAME])
+	if AE.all_equipment[my_name][DataKeys.TYPE] == "道具" and is_set == false:
 		use.disabled = true
 		is_set = true
 	be_number = int(sell_number.text)
@@ -61,7 +61,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _get_inventory_entry() -> Dictionary:
-	var list_name := "道具列表" if AE.AllEquipment_[my_name][DataKeys.TYPE] == "道具" else "消耗品列表"
+	var list_name := "道具列表" if AE.all_equipment[my_name][DataKeys.TYPE] == "道具" else "消耗品列表"
 	var pages: Variant = PlayerData.player_data.get(list_name, {})
 	if not pages is Dictionary:
 		return {}
@@ -117,12 +117,12 @@ func _on_sell_pressed() -> void:
 		Global.add_message_show(Global.get_ui_popup_layer(), "该物品已锁定，请先解锁后再出售！", 1.5, Vector2.ZERO)
 		return
 	be_number = _get_sell_count()
-	var Type = AE.AllEquipment_[my_name][DataKeys.TYPE]
+	var Type = AE.all_equipment[my_name][DataKeys.TYPE]
 	match Type:
 		"道具":
 			var get_list = PlayerData.remove_dj(my_name, my_page, be_number)
 			if be_number > 0 and int(get_list["获得灵魂"]) > 0:
-				var name_ = AE.AllEquipment_[my_name][DataKeys.NAME]
+				var name_ = AE.all_equipment[my_name][DataKeys.NAME]
 				var parent = get_parent().get_parent().get_parent()
 				Global.add_message_show(
 					parent,
@@ -136,7 +136,7 @@ func _on_sell_pressed() -> void:
 		"消耗品":
 			var get_list = PlayerData.remove_xhp(my_name, my_page, be_number)
 			if be_number > 0 and int(get_list["获得灵魂"]) > 0:
-				var name_ = AE.AllEquipment_[my_name][DataKeys.NAME]
+				var name_ = AE.all_equipment[my_name][DataKeys.NAME]
 				var parent = get_parent().get_parent().get_parent()
 				Global.add_message_show(
 					parent,
@@ -187,7 +187,7 @@ func use_xhp():
 		"mpyj":
 			self.visible = false
 			Signals.connect_choose_box_signal(self, "use_mpyj")
-			ChooseJM = Global.add_choose_text(
+			choose_jm = Global.add_choose_text(
 				Global.get_parent_(self, 3), Vector2(0, 0), "确定使用孟婆药剂吗，所有高于1级的技能等级将清除为1（不返还灵魂）？", 0
 			)
 		"qhsbx":

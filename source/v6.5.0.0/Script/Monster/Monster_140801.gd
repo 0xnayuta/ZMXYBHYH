@@ -1,11 +1,11 @@
 extends BaseMonster
 class_name Monster140801
 
-var MyTarget: BaseHero
+var my_target: BaseHero
 
 
 func monster_140801():
-	self.CannotAttract = true
+	self.cannot_attract = true
 	self.is_boss = false
 	self.my_mr_name = "寄生孑孓"
 	self.attack_in = 90
@@ -58,10 +58,10 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	reset_pro()
 
-	if MyTarget == null:
+	if my_target == null:
 		self.Hp = -100
 	else:
-		if self.position.x >= MyTarget.position.x:
+		if self.position.x >= my_target.position.x:
 			move_left()
 		else:
 			move_right()
@@ -89,34 +89,34 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		return
 
 	var last_hurt = get_role_last_hurt(get_target) * RoleProp.ws_up_power
-	GetHurt = last_hurt
+	hurt_received = last_hurt
 
 	if get_Player is BaseHero:
-		if get_Player.is_DeadLink:
+		if get_Player.is_dead_link:
 			get_Player.effect_reducehp(last_hurt, "real")
 
 	cure_ws_value()
 	hurt_reduce_hp(last_hurt, get_target)
 
-	if MyTarget != null and last_hurt > 0:
-		MyTarget.effect_reducehp(last_hurt, "real")
+	if my_target != null and last_hurt > 0:
+		my_target.effect_reducehp(last_hurt, "real")
 
-	Global.TotalRoleHit += last_hurt
+	Global.total_role_hit += last_hurt
 	if get_target is BaseHero or get_target is MgHit or get_target is Role1Shallow or get_target is RoleBullet:
 		match get_target.HitDic["attackKind"]:
 			"physics":
-				Global.TotalPhyHit += last_hurt
+				Global.total_phy_hit += last_hurt
 			"magic":
-				Global.TotalMagHit += last_hurt
+				Global.total_mag_hit += last_hurt
 			"real":
-				Global.TotalRealHit += last_hurt
+				Global.total_real_hit += last_hurt
 
 	if not is_miss and last_hurt > 0:
 		if MainSet.set_data["MonsterLittleBlood"]:
 			if monster_blood_bar == null:
 				monster_blood_bar = Global.add_monster_blood(self, Vector2(-30, -90), Hp / float(SHp), Hp)
 		Global.add_sound(self, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
-		HurtSpecialEffect = Global.add_mr_hurt(pz, Vector2(0, 0))
+		hurt_special_effect = Global.add_mr_hurt(pz, Vector2(0, 0))
 
 	get_target = null
 

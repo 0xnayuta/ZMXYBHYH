@@ -1,8 +1,8 @@
 extends BaseMonster
-var IsFs: bool
-var Fs: BaseMonster = null
-var CallCount: int = 0
-var Bl: float = 1
+var is_fs: bool
+var fs: BaseMonster = null
+var call_count: int = 0
+var bl: float = 1
 
 
 func monster_91():
@@ -38,7 +38,7 @@ func monster_91():
 		"HitProtect": 30,
 	}
 	self.objattackDic["hit2"] = {
-		"power": int(350 * Bl),
+		"power": int(350 * bl),
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
 		"HitProtect": 5,
@@ -156,8 +156,8 @@ func do_hit_3():
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	Bl = 1 + float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp)
-	match self.BaseLevel_.current_stage:
+	bl = 1 + float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp)
+	match self.base_level.current_stage:
 		1:
 			if position.x <= 0:
 				position.x = 50
@@ -188,8 +188,8 @@ func ai_think():
 			normal_state()
 		else:
 			if Hp <= SHp * 0.65:
-				if not IsFs:
-					if Fs == null:
+				if not is_fs:
+					if fs == null:
 						do_hit_3()
 						return
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
@@ -220,13 +220,13 @@ func ai_think():
 func to_top():
 	if _movement_command_is_blocked():
 		return
-	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 100)
+	var po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 100)
 	if MonsterDirection:
-		Po = Vector2(position.x, 100)
+		po = Vector2(position.x, 100)
 	else:
-		Po = Vector2(position.x, 100)
+		po = Vector2(position.x, 100)
 	var tween = create_control_movement_tween()
-	tween.tween_property(self, "position", Po, 0.5)
+	tween.tween_property(self, "position", po, 0.5)
 
 
 func to_drop():
@@ -279,20 +279,20 @@ func add_bullet():
 
 
 func call_self():
-	if Fs == null:
-		Fs = Global.create_monster(91, get_parent(), position)
-		Fs.IsFs = true
-		Fs.my_mr_name = "袁洪·分身"
-		Fs.SHp = int(self.SHp * 0.5)
-		Fs.Hp = Fs.SHp
-		Fs.fall_list = []
-		Fs.fall_pro = 0
+	if fs == null:
+		fs = Global.create_monster(91, get_parent(), position)
+		fs.is_fs = true
+		fs.my_mr_name = "袁洪·分身"
+		fs.SHp = int(self.SHp * 0.5)
+		fs.Hp = fs.SHp
+		fs.fall_list = []
+		fs.fall_pro = 0
 
 
 func state_death():
-	if not IsFs:
-		if Fs != null:
-			Fs.Hp = -100
+	if not is_fs:
+		if fs != null:
+			fs.Hp = -100
 	hit_name = "hit5"
 	if add_exp > 0 and RoleProp.baseroleprop.Level < 90:
 		if PlayerData.player_data["西天王殿"]:
@@ -310,13 +310,13 @@ func state_death():
 			Global.add_aura(get_parent().get_parent().fall_it, pp, fall_coin)
 		fall_coin = 0
 	velocity.x = 0
-	if IsFs:
+	if is_fs:
 		mr_player.play("death2")
 	else:
 		mr_player.play("death")
 	if not is_death:
 		if PlayerData.player_data.has(my_mr_name):
-			var Current = PlayerData.player_data[my_mr_name]
+			var current = PlayerData.player_data[my_mr_name]
 			PlayerData.player_data[my_mr_name] += 1
 		is_death = true
 		await mr_player.animation_finished

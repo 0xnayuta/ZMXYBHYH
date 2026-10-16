@@ -9,13 +9,13 @@ var is_set = false
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "牛魔谷"
+	Global.current_level = "牛魔谷"
 	Global.add_bgm(self, "res://Music/level/10_bg4.mp3")
 	self.is_two_scene = true
 	self.level_stage = 10
-	Global.GameOver == 1
+	Global.game_over == 1
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1":
 		[
 			21,
@@ -73,7 +73,7 @@ func _ready() -> void:
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1":
 		[
 			150,
@@ -131,7 +131,7 @@ func _ready() -> void:
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			300,

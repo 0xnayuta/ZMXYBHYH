@@ -63,15 +63,15 @@ var temp_mdef_bonus: int = 0
 var temp_max_hp_bonus_rate: float = 0.0
 var temp_power_bonus_rate: float = 0.0
 var mount_speed_multiplier: float = 1.0
-var Islljy: bool = false
-var IsYxBuff: bool = false
-var YxBuffPowerRate: float = 0.0
-var YxBuffCritRate: float = 0.0
-var YxBuffLuckyRate: float = 0.0
+var islljy: bool = false
+var is_yx_buff: bool = false
+var yx_buff_power_rate: float = 0.0
+var yx_buff_crit_rate: float = 0.0
+var yx_buff_lucky_rate: float = 0.0
 
-var IsMagicDrain: bool = false
-var StoredMP: int = 0
-var IsSanXianHuTiUsed: bool = false
+var is_magic_drain: bool = false
+var stored_mp: int = 0
+var is_san_xian_hu_ti_used: bool = false
 
 @onready var zhen_fa: Timer = $ZhenFa
 @onready var effect_body: Node2D = $Action/EffectBody
@@ -81,12 +81,12 @@ var IsSanXianHuTiUsed: bool = false
 @onready var damage_text: Node2D = $Damage_Text
 @onready var pz: CollisionShape2D = $pz
 @onready var action: Node2D = $Action
-@onready var WSTimer = $WSTimer
+@onready var ws_timer = $WSTimer
 @onready var magic_weapon: Node2D = $MagicWeapon
-@onready var MyHurtBox = $base_damagebox/HurtBox/HurtBox
+@onready var my_hurt_box = $base_damagebox/HurtBox/HurtBox
 @onready var name_: Label = $Name_
-@onready var RoleBody: Sprite2D = $Action/RoleBody
-@onready var RoleEq: Sprite2D = $Action/RoleEquipment
+@onready var role_body: Sprite2D = $Action/role_body
+@onready var role_eq: Sprite2D = $Action/RoleEquipment
 @onready var Bullet = $Bullet
 @onready var wings: AnimatedSprite2D = $Action/Wings
 @onready var buff: Node = $Buff
@@ -101,69 +101,69 @@ var IsSanXianHuTiUsed: bool = false
 @onready var wuqi: AnimatedSprite2D = $Action/EffectBody/wuqi
 
 var xrbl: float
-var IsXr: bool
+var is_xr: bool
 var tszzs: float
-var Role5Bt: bool
-var CanMoveWhenUseSkill: bool
+var role5_bt: bool
+var can_move_when_use_skill: bool
 var tszbsjm: float
 var slzjs: float
 var slzjs2: float
 var ZhenFaCd: float
-var Istsz: bool
+var istsz: bool
 var canglongremove: bool
-var SXYRCannotCure: bool
-var MyShallow: Role2Shallow
-var IsDoubleFallPro: bool
+var sxyr_cannot_cure: bool
+var my_shallow: Role2Shallow
+var is_double_fall_pro: bool
 var IsIndestructible: bool
-var IsIndestructible1: bool = false
+var is_indestructible1: bool = false
 var ran_num = randi_range(0, 100)
-var Onfloor: bool
-var IsSuperArmor: bool
-var IsScary: bool
+var onfloor: bool
+var super_armor_active: bool
+var is_scary: bool
 var IsDefeReduce: bool
-var IsDeath: bool = false
+var is_death: bool = false
 var DefeReduce: float
-var NewPosition: float
-var OldPosition: float
-var OldIsCheck: bool
-var IsTMc: bool
-var Is_sdBuff: bool
-var IdleCount: int = 0
-var IsInSky: bool = false
-var CureValue: float = 1
-var IsUseSMB = false
-var CUreCureCount: int = 0
+var new_position: float
+var old_position: float
+var old_is_check: bool
+var is_t_mc: bool
+var is_sd_buff: bool
+var idle_count: int = 0
+var is_in_sky: bool = false
+var cure_value: float = 1
+var is_use_smb = false
+var c_ure_cure_count: int = 0
 var is_silent: bool
-var is_Bound_to_the_ground: bool
+var is_bound_to_the_ground: bool
 var is_jdy: bool
-var is_CureHp: bool
-var CureHpValue: int
-var Skill_Clam: float
+var is_cure_hp: bool
+var cure_hp_value: int
+var skill_clam: float
 var PlayerDir: bool = false
 var is_fabao_jiasu: bool = false
 var _fabao_jiasu_base_speed: int = 240
 var MaxProtect: float = 100
 var CurrentProtect: float = 0.0
 var Mgtarget
-var MainSwordArrayTarget: Node2D
+var main_sword_array_target: Node2D
 var _last_main_sword_array_id: String = ""
 var lyfb_calm: float
 var slz_calm: float
 var hmz_calm: float
 var is_stun = false
 var is_jump = false
-var is_speedDown: bool
+var is_speed_down: bool
 var get_action = "wait"
-var is_Immobilize = false
-var needProtect = false
-var need_removeProtect = false
+var is_immobilize = false
+var need_protect = false
+var need_remove_protect = false
 var _hit_reaction_generation: int = 0
 var _pending_hit_stiff_seconds: Array[float] = []
 var BloodFix: bool = false
 var LifeManaLock: bool = false
-var IsWDZT: bool
-var SMB1
-var Isslz: bool
+var is_wdzt: bool
+var smb1
+var isslz: bool
 
 var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
 var Role1SkillInter = {
@@ -223,7 +223,7 @@ var Role1SkillInter = {
 	"fhf": 0,
 	"ltjz": 0
 }
-var Role1SkillMaxInter = {
+var role1_skill_max_inter = {
 	"slz": 0,
 	"hytj": 0,
 	"lys": 0,
@@ -285,7 +285,7 @@ var _last_role_hit_effect_msec: int = 0
 
 
 func _ready() -> void:
-	RoleProp.SourcePlayer = self
+	RoleProp.source_player = self
 
 	_capture_wings_base_transform()
 	call_deferred("_scan_late_static_wing_tracks")
@@ -432,13 +432,13 @@ func _sync_main_sword_array_weapon() -> void:
 		active = ""
 	if active == "":
 		_last_main_sword_array_id = ""
-		if is_instance_valid(MainSwordArrayTarget):
-			MainSwordArrayTarget.queue_free()
-		MainSwordArrayTarget = null
+		if is_instance_valid(main_sword_array_target):
+			main_sword_array_target.queue_free()
+		main_sword_array_target = null
 		return
-	if is_instance_valid(MainSwordArrayTarget):
+	if is_instance_valid(main_sword_array_target):
 		if _last_main_sword_array_id != active:
-			MainSwordArrayTarget.set_sword_id(active)
+			main_sword_array_target.set_sword_id(active)
 			_last_main_sword_array_id = active
 		return
 	var scene_parent := get_parent()
@@ -450,11 +450,11 @@ func _sync_main_sword_array_weapon() -> void:
 	var sword_array_scene := Global.load_scene_uncached(MAIN_SWORD_ARRAY_WEAPON_SCENE_PATH)
 	if sword_array_scene == null:
 		return
-	MainSwordArrayTarget = sword_array_scene.instantiate()
-	MainSwordArrayTarget.sword_id = active
-	MainSwordArrayTarget.Player = self
-	parent.add_child(MainSwordArrayTarget)
-	MainSwordArrayTarget.position = position + (Vector2(-170, -190) if PlayerDir else Vector2(170, -190))
+	main_sword_array_target = sword_array_scene.instantiate()
+	main_sword_array_target.sword_id = active
+	main_sword_array_target.Player = self
+	parent.add_child(main_sword_array_target)
+	main_sword_array_target.position = position + (Vector2(-170, -190) if PlayerDir else Vector2(170, -190))
 	_last_main_sword_array_id = active
 
 
@@ -475,11 +475,11 @@ func ws_skill() -> bool:
 	if not fashion is Dictionary:
 		return true
 	var fashion_id := str(fashion.get(DataKeys.NAME, ""))
-	var SZName: String = str(Global.get_clean_name(fashion_id))
-	var Pz := fashion_id.split(SZName)[0]
-	if Pz == "putong":
+	var sz_name: String = str(Global.get_clean_name(fashion_id))
+	var pz := fashion_id.split(sz_name)[0]
+	if pz == "putong":
 		return true
-	match SZName:
+	match sz_name:
 		"ttzssz":
 			if not objattackDic.has("ttzs"):
 				return true
@@ -492,7 +492,7 @@ func ws_skill() -> bool:
 			if not objattackDic.has("zlw"):
 				return true
 			addzlw_effect()
-			if Pz == "shenqi":
+			if pz == "shenqi":
 				startzlw_shenqi_effect()
 		"smsrsz":
 			if not objattackDic.has("smsr"):
@@ -501,13 +501,13 @@ func ws_skill() -> bool:
 				smsrsz_timer = Timer.new()
 				add_child(smsrsz_timer)
 				smsrsz_timer.timeout.connect(_on_smsrsz_timer_timeout)
-			if Pz == "shenqi":
+			if pz == "shenqi":
 				addsmsr_shenqi_lightning_round()
 			else:
 				addsmsr_effect()
 			smsrsz_timer.start(1.0)
 
-			if Pz == "shishi" or Pz == "xieling":
+			if pz == "shishi" or pz == "xieling":
 				Global.add_buff(
 					self.buff,
 					{
@@ -521,7 +521,7 @@ func ws_skill() -> bool:
 						"CanAdd": false
 					}
 				)
-			elif Pz == "hunqi" or Pz == "chuanshuo":
+			elif pz == "hunqi" or pz == "chuanshuo":
 				for child in self.buff.get_children():
 					if child is BaseBuff and child.BuffInfo.get("DeBuff", false):
 						child.queue_free()
@@ -563,18 +563,18 @@ func _physics_process(delta: float) -> void:
 	set_wings_offset()
 	process_san_xian_hu_ti_effect()
 
-	if Islljy:
+	if islljy:
 		velocity.x = 0
 
-	if not SXYRCannotCure:
+	if not sxyr_cannot_cure:
 		if PlayerData.check_eq_zb("头衔", "sxyr"):
-			SXYRCannotCure = true
+			sxyr_cannot_cure = true
 
-	if not IsSanXianHuTiUsed and PlayerData.check_eq_zb("饰品", "huayan"):
+	if not is_san_xian_hu_ti_used and PlayerData.check_eq_zb("饰品", "huayan"):
 		var hp_percent = float(RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) * 100
 
 		if hp_percent <= 20.0:
-			IsSanXianHuTiUsed = true
+			is_san_xian_hu_ti_used = true
 
 			var sxht_buff_info = {
 				"Name": "SanXianHuTi",
@@ -593,7 +593,7 @@ func _physics_process(delta: float) -> void:
 		if Role1SkillInter[i] > 0:
 			Role1SkillInter[i] -= 0.1
 	if MainSet.set_data["NotShowRoleBody"]:
-		RoleBody.visible = false
+		role_body.visible = false
 		$Action/Wings.visible = false
 		$Action/Wings.modulate = Color(1, 1, 1, 0)
 	else:
@@ -607,7 +607,7 @@ func _physics_process(delta: float) -> void:
 		tx.visible = false
 	if MainSet.set_data["NotShowRoleEQ"]:
 		role_equipment.visible = false
-	if IsDeath:
+	if is_death:
 		return
 	_update_fashion_values_if_needed()
 	_process_auto_battle(delta)
@@ -616,22 +616,22 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("无双"):
 			if not RoleProp.is_ws_state and ws_skill():
 				RoleProp.is_ws_state = true
-	if CureValue >= 4:
-		CureValue = 4
+	if cure_value >= 4:
+		cure_value = 4
 	if is_on_floor():
-		if not Onfloor:
-			NewPosition = self.position.y
-			OldIsCheck = false
+		if not onfloor:
+			new_position = self.position.y
+			old_is_check = false
 
-		Onfloor = true
+		onfloor = true
 	if not is_on_floor():
-		Onfloor = false
-	if not OldIsCheck:
+		onfloor = false
+	if not old_is_check:
 		if velocity.y > 0:
-			OldPosition = self.position.y
-			OldIsCheck = true
+			old_position = self.position.y
+			old_is_check = true
 	if velocity.y <= 0:
-		OldIsCheck = false
+		old_is_check = false
 	improve_self_recovery_when_idle()
 	check_add_buff()
 
@@ -650,7 +650,7 @@ func _physics_process(delta: float) -> void:
 		name_.text = archive_name
 
 	self_protect()
-	RoleProp.Directon = PlayerDir
+	RoleProp.directon = PlayerDir
 	null_szfb_case()
 	on_szfb_change()
 	check_remove_or_add_fb()
@@ -659,13 +659,13 @@ func _physics_process(delta: float) -> void:
 		_sync_main_sword_array_weapon()
 
 	if Mgtarget != null and "is_zcld" in Mgtarget and Mgtarget.is_zcld:
-		zcld_level = Mgtarget.FB_Level
+		zcld_level = Mgtarget.fb_level
 	else:
 		zcld_level = 0
 
 	if RoleProp.is_ws_state:
-		if WSTimer.is_stopped():
-			WSTimer.start(0.1)
+		if ws_timer.is_stopped():
+			ws_timer.start(0.1)
 
 	if (
 		Input.is_action_just_pressed("down")
@@ -677,15 +677,15 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(0.5).timeout
 		set_collision_mask_value(6, true)
 
-		if not is_using_skills and not is_attacking and not IsDeath:
+		if not is_using_skills and not is_attacking and not is_death:
 			get_action = "down"
-	if death() and not IsDeath:
-		IsDeath = true
+	if death() and not is_death:
+		is_death = true
 		Global.remove_a_all_buff()
 		is_ice = false
 		is_stun = false
-		is_Immobilize = false
-		IsScary = false
+		is_immobilize = false
+		is_scary = false
 		velocity.x = 0
 		velocity.y = 0
 		get_action = "death"
@@ -717,14 +717,14 @@ func _physics_process(delta: float) -> void:
 		_play_locomotion_animation(&"wait")
 		get_action = "wait"
 
-	if not no_limit_buff() and not IsDeath:
-		IsInSky = false
-		if not IsTMc:
-			if not IsScary:
+	if not no_limit_buff() and not is_death:
+		is_in_sky = false
+		if not is_t_mc:
+			if not is_scary:
 				velocity.x = 0
 				role_action_player.play("hurt")
 			else:
-				if IsScary:
+				if is_scary:
 					when_scary()
 	if Input.is_action_pressed("MagicWeapon"):
 		if not get_parent().get_parent() is Level17 and not get_parent().get_parent() is Level22:
@@ -734,7 +734,7 @@ func _physics_process(delta: float) -> void:
 				else:
 					if no_limit_buff():
 						use_fb()
-	if is_Immobilize:
+	if is_immobilize:
 		velocity = Vector2(0, 0)
 	if not no_limit_buff():
 		if has_method("_cancel_skill_for_control"):
@@ -744,7 +744,7 @@ func _physics_process(delta: float) -> void:
 	if mount_runtime != null and bool(mount_runtime.call("process_mounted_control", delta)):
 		pass
 	elif no_limit_buff():
-		if IsTMc:
+		if is_t_mc:
 			if self is Role3Hero:
 				if Input.is_action_pressed("slz"):
 					get_skill("tmc2")
@@ -768,7 +768,7 @@ func _physics_process(delta: float) -> void:
 
 	was_ws_state = RoleProp.is_ws_state
 
-	Global.Player_dir = PlayerDir
+	Global.player_dir = PlayerDir
 	move_and_slide()
 
 
@@ -817,7 +817,7 @@ func can_normal_control():
 		if is_attacking == false and is_be_attacking == false and is_using_skills == false and not death():
 			return true
 	else:
-		if CanMoveWhenUseSkill:
+		if can_move_when_use_skill:
 			if not death():
 				return true
 		else:
@@ -827,48 +827,48 @@ func can_normal_control():
 
 
 func noarmal_control():
-	if IsUseSMB:
+	if is_use_smb:
 		return
 
 	if MainSet.is_auto_battle_enabled() and not _is_auto_battle_skill_only():
 		_process_auto_battle_movement()
 		return
 
-	if not Islljy:
+	if not islljy:
 		if not self is Role5Hero:
 			nor_mal_move()
 		else:
-			if CanMoveWhenUseSkill:
+			if can_move_when_use_skill:
 				var direction_ = Input.get_axis("move_left", "move_right")
 
-				if IsReverseMove:
+				if is_reverse_move:
 					direction_ = -direction_
 
 				if direction_:
-					velocity.x = direction_ * walk_speed * 0.7 * ReverseMoveSpeedMultiplier * mount_speed_multiplier
+					velocity.x = direction_ * walk_speed * 0.7 * reverse_move_speed_multiplier * mount_speed_multiplier
 				else:
-					velocity.x = move_toward(velocity.x, 0, walk_speed * 0.7 * ReverseMoveSpeedMultiplier)
+					velocity.x = move_toward(velocity.x, 0, walk_speed * 0.7 * reverse_move_speed_multiplier)
 			else:
 				nor_mal_move()
 
 	if Input.is_action_just_pressed("jump"):
-		if not is_Bound_to_the_ground:
+		if not is_bound_to_the_ground:
 			jump()
 	if Input.is_action_pressed("slz") and not is_using_skills:
-		var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["Y"]
-		get_skill(Skill_name)
+		var skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["Y"]
+		get_skill(skill_name)
 	if Input.is_action_pressed("lys") and not is_using_skills:
-		var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["U"]
-		get_skill(Skill_name)
+		var skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["U"]
+		get_skill(skill_name)
 	if Input.is_action_pressed("lyfb") and not is_using_skills:
-		var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["I"]
-		get_skill(Skill_name)
+		var skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["I"]
+		get_skill(skill_name)
 	if Input.is_action_pressed("hmz") and not is_using_skills:
-		var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["O"]
-		get_skill(Skill_name)
+		var skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["O"]
+		get_skill(skill_name)
 	if Input.is_action_pressed("hytj") and not is_using_skills:
-		var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["L"]
-		get_skill(Skill_name)
+		var skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["L"]
+		get_skill(skill_name)
 
 
 func _process_auto_battle(delta: float) -> void:
@@ -881,14 +881,14 @@ func _process_auto_battle(delta: float) -> void:
 		_auto_battle_skill_cursor = 0
 		_auto_battle_skill_cast_counts.clear()
 		return
-	if IsDeath:
+	if is_death:
 		return
 	_process_auto_battle_equipment()
 	if _try_auto_battle_wushuang():
 		return
 	if is_silent or is_using_skills or is_attacking or is_be_attacking:
 		return
-	if is_stun or is_ice or is_Immobilize:
+	if is_stun or is_ice or is_immobilize:
 		return
 	_auto_battle_elapsed += delta
 	if _auto_battle_elapsed < AUTO_BATTLE_INTERVAL:
@@ -1073,10 +1073,10 @@ func _process_auto_battle_movement() -> void:
 		velocity.x = 0.0
 		_set_auto_battle_idle()
 		return
-	if IsDeath or is_silent or is_using_skills or is_attacking or is_be_attacking:
+	if is_death or is_silent or is_using_skills or is_attacking or is_be_attacking:
 		velocity.x = 0.0
 		return
-	if not no_limit_buff() or is_Bound_to_the_ground:
+	if not no_limit_buff() or is_bound_to_the_ground:
 		velocity.x = 0.0
 		return
 
@@ -1114,7 +1114,7 @@ func _process_auto_battle_movement() -> void:
 		direction_
 		* walk_speed
 		* RoleProp.ws_up_power
-		* ReverseMoveSpeedMultiplier
+		* reverse_move_speed_multiplier
 		* AUTO_BATTLE_MOVE_SPEED_SCALE
 		* mount_speed_multiplier
 	)
@@ -1193,7 +1193,7 @@ func _find_auto_battle_monster(node: Node) -> BaseMonster:
 func _auto_battle_jump_if_blocked() -> void:
 	if _auto_battle_jump_elapsed < AUTO_BATTLE_JUMP_COOLDOWN:
 		return
-	if not is_on_floor() or is_Bound_to_the_ground or is_jump:
+	if not is_on_floor() or is_bound_to_the_ground or is_jump:
 		return
 	if is_attacking or is_be_attacking or is_using_skills:
 		return
@@ -1268,7 +1268,7 @@ func _is_auto_battle_skill_active(_skill_id: String) -> bool:
 func nor_mal_move():
 	var direction_ = Input.get_axis("move_left", "move_right")
 
-	if IsReverseMove:
+	if is_reverse_move:
 		direction_ = -direction_
 
 	if direction_ > 0:
@@ -1289,14 +1289,14 @@ func nor_mal_move():
 
 	if direction_:
 		velocity.x = (
-			direction_ * walk_speed * RoleProp.ws_up_power * ReverseMoveSpeedMultiplier * mount_speed_multiplier
+			direction_ * walk_speed * RoleProp.ws_up_power * reverse_move_speed_multiplier * mount_speed_multiplier
 		)
 	else:
-		velocity.x = move_toward(velocity.x, 0, walk_speed * RoleProp.ws_up_power * ReverseMoveSpeedMultiplier)
+		velocity.x = move_toward(velocity.x, 0, walk_speed * RoleProp.ws_up_power * reverse_move_speed_multiplier)
 
 
 func no_limit_buff():
-	return not is_ice and not is_stun and not is_EyeFix and not IsDeath and not is_Immobilize and not IsScary
+	return not is_ice and not is_stun and not is_eye_fix and not is_death and not is_immobilize and not is_scary
 
 
 func is_riding_mount() -> bool:
@@ -1552,7 +1552,7 @@ func check_can_wait():
 		and velocity.y == 0
 		and not death()
 		and get_action != "run"
-		and not IsTMc
+		and not is_t_mc
 	)
 
 
@@ -1616,13 +1616,13 @@ func state_behit():
 	var stiff_seconds := -1.0
 	if not _pending_hit_stiff_seconds.is_empty():
 		stiff_seconds = _pending_hit_stiff_seconds.pop_front()
-	if needProtect or is_knockback_immune():
+	if need_protect or is_knockback_immune():
 		_cancel_hit_reaction()
 		return
-	if RoleProp.roleprop.Hp <= 0 or IsDeath:
+	if RoleProp.roleprop.Hp <= 0 or is_death:
 		_cancel_hit_reaction()
-		if RoleProp.roleprop.Hp <= 0 and not IsDeath:
-			IsDeath = true
+		if RoleProp.roleprop.Hp <= 0 and not is_death:
+			is_death = true
 			Global.remove_a_all_buff()
 			velocity.x = 0
 			velocity.y = 0
@@ -1633,13 +1633,13 @@ func state_behit():
 		return
 
 	_prepare_hit_reaction()
-	if needProtect:
+	if need_protect:
 		_cancel_hit_reaction()
 		return
 
 	_hit_reaction_generation += 1
 	var reaction_generation := _hit_reaction_generation
-	IsInSky = false
+	is_in_sky = false
 	is_be_attacking = true
 	is_using_skills = false
 
@@ -1647,7 +1647,7 @@ func state_behit():
 
 	if not is_instance_valid(self) or not is_instance_valid(role_action_player):
 		return
-	if needProtect or reaction_generation != _hit_reaction_generation:
+	if need_protect or reaction_generation != _hit_reaction_generation:
 		return
 
 	role_action_player.stop()
@@ -1668,22 +1668,22 @@ func state_behit():
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	if is_dikong_field_invincible() or IsDeath or needProtect:
+	if is_dikong_field_invincible() or is_death or need_protect:
 		return
-	IsInSky = false
-	CUreCureCount = 0
-	CureValue = 1
-	IdleCount = 0
+	is_in_sky = false
+	c_ure_cure_count = 0
+	cure_value = 1
+	idle_count = 0
 
-	Global.TotalHurtCount += 1
-	var Target = area.get_parent().get_parent()
-	var MonsterTarget: BaseMonster
-	MonsterTarget = check_monster(area)
-	if Target == null or MonsterTarget == null:
+	Global.total_hurt_count += 1
+	var target = area.get_parent().get_parent()
+	var monster_target: BaseMonster
+	monster_target = check_monster(area)
+	if target == null or monster_target == null:
 		return
-	if Target.objattackDic.size() == 0:
+	if target.objattackDic.size() == 0:
 		return
-	if str(Target.get("skill_name")) == "Monster118Bullet2":
+	if str(target.get("skill_name")) == "Monster118Bullet2":
 		Global.add_buff(
 			self.buff,
 			{
@@ -1697,26 +1697,26 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 				"AttackKind": "magic"
 			}
 		)
-	if MonsterTarget is Monster47:
-		Global.PlayerBeHitCount += 1
-	var last_hit = get_monster_last_hurt(MonsterTarget, Target) * (1 - slzjs) * (1 - slzjs2)
+	if monster_target is Monster47:
+		Global.player_be_hit_count += 1
+	var last_hit = get_monster_last_hurt(monster_target, target) * (1 - slzjs) * (1 - slzjs2)
 
-	if MonsterTarget != null:
-		if MonsterTarget.IsLpz:
-			var Levellpz = PlayerData.player_data["落魄阵"]["Level"]
-			MonsterTarget.lpzjs = Levellpz * 0.01
-			last_hit *= (1 - MonsterTarget.lpzjs)
+	if monster_target != null:
+		if monster_target.is_lpz:
+			var levellpz = PlayerData.player_data["落魄阵"]["Level"]
+			monster_target.lpzjs = levellpz * 0.01
+			last_hit *= (1 - monster_target.lpzjs)
 
-	var TotalCureMonster = int(MonsterTarget.ebol * last_hit)
-	MonsterTarget.cure_hp(TotalCureMonster)
+	var total_cure_monster = int(monster_target.ebol * last_hit)
+	monster_target.cure_hp(total_cure_monster)
 	if self is Role3Hero and RoleProp.is_ws_state:
 		last_hit = int(last_hit * 0.63)
-	if MonsterTarget != null:
-		MonsterTarget.total_hit += last_hit
-		if MonsterTarget is Monster141:
+	if monster_target != null:
+		monster_target.total_hit += last_hit
+		if monster_target is Monster141:
 			effect_reducehp(int(RoleProp.roleprop.SHp * 0.01), "real")
-			Global.add_monster141_aura(self.Bullet, self.position, MonsterTarget)
-	Global.TotalRoleHurt += int(last_hit)
+			Global.add_monster141_aura(self.Bullet, self.position, monster_target)
+	Global.total_role_hurt += int(last_hit)
 	if not is_miss:
 		if self is Role1Hero:
 			Global.add_sound(self, "res://Music/Hero/49_Role1_beAttack.mp3")
@@ -1727,7 +1727,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		else:
 			Global.add_sound(self, "res://Music/Hero/68_Role3_beAttack.mp3")
 		_add_role_hit_effect_throttled()
-		if not IsTMc:
+		if not is_t_mc:
 			_add_role_protect(randi_range(3, 7))
 	if self is Role3Hero:
 		if randi_range(0, 100) <= 2 + PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] * 0.5:
@@ -1737,28 +1737,28 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 					cure_hp(RoleProp.roleprop.power * (0.5 + cur_level * 0.03))
 
 	if self is Role1Hero or self is Role2Hero or self is Role4Hero or self is NeZhaHero:
-		if is_miss or RoleProp.is_ws_state or IsSuperArmor or needProtect or is_knockback_immune():
+		if is_miss or RoleProp.is_ws_state or super_armor_active or need_protect or is_knockback_immune():
 			is_be_attacking = false
 		else:
-			be_hit_back(MonsterTarget, Target)
-			_queue_hit_stiff(MonsterTarget, Target)
+			be_hit_back(monster_target, target)
+			_queue_hit_stiff(monster_target, target)
 			call_deferred("state_behit")
 	elif self is Role3Hero:
-		if is_miss or Is_sdBuff or IsTMc or IsSuperArmor or needProtect:
+		if is_miss or is_sd_buff or is_t_mc or super_armor_active or need_protect:
 			is_be_attacking = false
 		else:
-			be_hit_back(MonsterTarget, Target)
-			_queue_hit_stiff(MonsterTarget, Target)
+			be_hit_back(monster_target, target)
+			_queue_hit_stiff(monster_target, target)
 			call_deferred("state_behit")
 	elif self is Role5Hero:
-		if is_miss or RoleProp.is_ws_state or IsSuperArmor or Role5Bt or needProtect:
+		if is_miss or RoleProp.is_ws_state or super_armor_active or role5_bt or need_protect:
 			is_be_attacking = false
 		else:
-			be_hit_back(MonsterTarget, Target)
-			_queue_hit_stiff(MonsterTarget, Target)
+			be_hit_back(monster_target, target)
+			_queue_hit_stiff(monster_target, target)
 			call_deferred("state_behit")
 
-	reduce_hp(last_hit, MonsterTarget, Target)
+	reduce_hp(last_hit, monster_target, target)
 
 
 func reduce_hp(value: int, target_boss, target_obj):
@@ -1800,13 +1800,13 @@ func reduce_hp(value: int, target_boss, target_obj):
 				return
 	if RoleProp.roleprop.Hp <= 0:
 		return
-	if IsIndestructible or IsIndestructible1:
+	if IsIndestructible or is_indestructible1:
 		if value >= RoleProp.roleprop.Hp:
 			return
 
-	CUreCureCount = 0
-	CureValue = 1
-	IdleCount = 0
+	c_ure_cure_count = 0
+	cure_value = 1
+	idle_count = 0
 
 	if target_boss == null or target_obj == null:
 		return
@@ -1835,11 +1835,11 @@ func reduce_hp(value: int, target_boss, target_obj):
 	if typeof(attack_data) != TYPE_DICTIONARY or not attack_data.has("attackKind"):
 		return
 
-	var ATKind = String(attack_data["attackKind"])
+	var at_kind = String(attack_data["attackKind"])
 	if value > 0:
 		var pp = get_parent().get_parent()
 		var po = Vector2(self.position.x, self.position.y - 110)
-		Global.add_damage_text(pp, po, value, ATKind, is_crit, self)
+		Global.add_damage_text(pp, po, value, at_kind, is_crit, self)
 	is_crit = false
 	is_miss = false
 
@@ -1872,13 +1872,13 @@ func effect_reducehp(value, atkKind):
 				return
 	if RoleProp.roleprop.Hp <= 0:
 		return
-	if IsIndestructible or IsIndestructible1:
+	if IsIndestructible or is_indestructible1:
 		if value >= RoleProp.roleprop.Hp:
 			return
 
-	CUreCureCount = 0
-	CureValue = 1
-	IdleCount = 0
+	c_ure_cure_count = 0
+	cure_value = 1
+	idle_count = 0
 
 	if self is Role2Hero and hd > 0:
 		var absorbed = min(hd, value)
@@ -1894,13 +1894,13 @@ func effect_reducehp(value, atkKind):
 	if atkKind == "physics":
 		var reduce_rate = snapped(RoleProp.roleprop.Def / float(RoleProp.roleprop.Def + 250), 0.001)
 		value = int(value * (1 - reduce_rate))
-		Global.TotalPhyHurt += value
+		Global.total_phy_hurt += value
 	elif atkKind == "magic":
 		var reduce_rate = snapped(RoleProp.roleprop.Mdef / float(RoleProp.roleprop.Mdef + 250), 0.001)
 		value = int(value * (1 - reduce_rate))
-		Global.TotalMagHurt += value
+		Global.total_mag_hurt += value
 	elif atkKind == "real":
-		Global.TotalRealHurt += value
+		Global.total_real_hurt += value
 
 	value = _apply_damage_vs_reduction(value)
 
@@ -1909,7 +1909,7 @@ func effect_reducehp(value, atkKind):
 		return
 
 	RoleProp.roleprop.Hp -= value
-	Global.TotalRoleHurt += int(value)
+	Global.total_role_hurt += int(value)
 
 	if value > 0:
 		var pp = get_parent().get_parent()
@@ -1922,8 +1922,8 @@ func get_monster_last_hurt(target_boss, target_obj):
 	is_miss = false
 	if target_boss == null or target_obj == null:
 		return 0
-	var Target = check_monster(target_boss) as BaseMonster
-	if Target == null:
+	var target = check_monster(target_boss) as BaseMonster
+	if target == null:
 		return 0
 	var hit_name_value = target_obj.get("hit_name")
 	if hit_name_value == null or String(hit_name_value).is_empty():
@@ -1941,24 +1941,24 @@ func get_monster_last_hurt(target_boss, target_obj):
 		return 0
 	if not attack_data.has("attackKind") or not attack_data.has("power"):
 		return 0
-	var LevelInter = abs(target_boss.level - RoleProp.baseroleprop.cur_level)
+	var level_inter = abs(target_boss.level - RoleProp.baseroleprop.cur_level)
 
 	var lx = String(attack_data["attackKind"])
 	var Hurt = int(attack_data["power"])
 	if bool(attack_data.get("stz_stack_bonus", false)) and buff != null:
 		for buff_node in buff.get_children():
-			if buff_node is BaseBuff and buff_node.IsSet:
+			if buff_node is BaseBuff and buff_node.is_set:
 				var buff_info: Dictionary = buff_node.BuffInfo
 				if str(buff_info.get("Name", "")) == "monster137buff":
 					Hurt += 100
-	var Miss = RoleProp.roleprop.Miss - Target.Htarget
-	var Crit = Target.crit - RoleProp.roleprop.CritReduce
-	var Lucky = Target.lucky - RoleProp.roleprop.Toughness
-	var last_def = RoleProp.roleprop.Def - Target.ar
-	var last_mdef = RoleProp.roleprop.Mdef - Target.sp
-	var crit_bl = LevelInter * 0.07
-	var lucky_bl = LevelInter * 0.07
-	var IniHurt = Hurt
+	var Miss = RoleProp.roleprop.Miss - target.Htarget
+	var Crit = target.crit - RoleProp.roleprop.CritReduce
+	var Lucky = target.lucky - RoleProp.roleprop.Toughness
+	var last_def = RoleProp.roleprop.Def - target.ar
+	var last_mdef = RoleProp.roleprop.Mdef - target.sp
+	var crit_bl = level_inter * 0.07
+	var lucky_bl = level_inter * 0.07
+	var ini_hurt = Hurt
 
 	if Miss <= 0:
 		Miss = 0
@@ -1991,7 +1991,7 @@ func get_monster_last_hurt(target_boss, target_obj):
 	Miss = snapped(Miss / float(Miss + 100), 0.001)
 	randomize()
 	if randf_range(0, 1) <= Miss:
-		Global.TotalMissCount += 1
+		Global.total_miss_count += 1
 		is_miss = true
 		return 0
 	if randf_range(0, 1) <= Crit:
@@ -2001,25 +2001,25 @@ func get_monster_last_hurt(target_boss, target_obj):
 	if lx == "physics":
 		var damage_reduction_rate = snapped(last_def / float(last_def + 250), 0.001)
 		Hurt = int(Hurt * (1 - damage_reduction_rate))
-		Global.TotalPhyHurt += Hurt
+		Global.total_phy_hurt += Hurt
 	elif lx == "magic":
 		var damage_reduction_rate = snapped(last_mdef / float(last_mdef + 250), 0.001)
 		Hurt = int(Hurt * (1 - damage_reduction_rate))
-		Global.TotalMagHurt += Hurt
+		Global.total_mag_hurt += Hurt
 	elif lx == "real":
-		Global.TotalRealHurt += Hurt
+		Global.total_real_hurt += Hurt
 
-	if IsIndestructible or IsIndestructible1:
+	if IsIndestructible or is_indestructible1:
 		if Hurt >= RoleProp.roleprop.Hp:
 			return 0
 	if self is Role3Hero:
-		if IsTMc:
+		if is_t_mc:
 			if Hurt > 0:
 				if target_boss != null:
 					if target_boss is BaseMonster:
 						var cur_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能5"][DataKeys.LEVEL] + 1
-						var LastHurt = int(IniHurt * (2 + cur_level * 0.2))
-						target_boss.receive_reflected_damage(LastHurt, "magic", int(RoleProp.roleprop.sp))
+						var last_hurt = int(ini_hurt * (2 + cur_level * 0.2))
+						target_boss.receive_reflected_damage(last_hurt, "magic", int(RoleProp.roleprop.sp))
 	return Hurt
 
 
@@ -2201,7 +2201,7 @@ func reduce_mp(value: int = 0):
 
 
 func cure_hp(value: int = 0):
-	if SXYRCannotCure:
+	if sxyr_cannot_cure:
 		return 0
 	if RoleProp.roleprop.Hp <= 0:
 		return 0
@@ -2215,9 +2215,9 @@ func cure_hp(value: int = 0):
 
 	RoleProp.roleprop.Hp += effective
 	_apply_pet_turtle_link_heal(int(effective))
-	is_CureHp = true
-	CureHpValue = int(effective)
-	Global.TotalCureHp += int(effective)
+	is_cure_hp = true
+	cure_hp_value = int(effective)
+	Global.total_cure_hp += int(effective)
 
 	var le = get_parent().get_parent() as BaseLevel
 	for i in le.get_node("Monster").get_children():
@@ -2297,7 +2297,7 @@ func _clear_pet_turtle_link_meta() -> void:
 
 
 func f_bcure_hp(value: int):
-	if SXYRCannotCure:
+	if sxyr_cannot_cure:
 		return
 	if get_parent().get_parent() is Level17 or get_parent().get_parent() is Level22:
 		return
@@ -2320,13 +2320,13 @@ func _on_spontaneous_recovery_timeout() -> void:
 		return
 	if get_parent().get_parent() is Level17 or get_parent().get_parent() is Level22 or BloodFix or LifeManaLock:
 		return
-	if CureValue >= 4:
-		CureValue = 4
+	if cure_value >= 4:
+		cure_value = 4
 
 	if RoleProp.roleprop.Hp < RoleProp.roleprop.SHp and RoleProp.roleprop.Hp > 0:
-		if not SXYRCannotCure:
-			Global.TotalCureHp += int(RoleProp.roleprop.R_hp * CureValue)
-			RoleProp.roleprop.Hp += int(RoleProp.roleprop.R_hp * CureValue)
+		if not sxyr_cannot_cure:
+			Global.total_cure_hp += int(RoleProp.roleprop.R_hp * cure_value)
+			RoleProp.roleprop.Hp += int(RoleProp.roleprop.R_hp * cure_value)
 
 	if RoleProp.roleprop.Mp < RoleProp.roleprop.SMp:
 		var has_magic_drain_buff = false
@@ -2341,7 +2341,7 @@ func _on_spontaneous_recovery_timeout() -> void:
 		else:
 			RoleProp.roleprop.Mp += RoleProp.roleprop.R_mp
 
-			IsMagicDrain = false
+			is_magic_drain = false
 
 
 func get_need_mp(skill_name, bool_):
@@ -2625,38 +2625,38 @@ func _on_ws_timer_timeout() -> void:
 
 
 func _add_role_protect(value: float) -> bool:
-	if value <= 0.0 or IsDeath or needProtect:
-		return needProtect
+	if value <= 0.0 or is_death or need_protect:
+		return need_protect
 	CurrentProtect = clampf(CurrentProtect + value, 0.0, MaxProtect)
 	if CurrentProtect >= MaxProtect:
 		_activate_role_protect()
-	return needProtect
+	return need_protect
 
 
 func _activate_role_protect() -> void:
-	if IsDeath or needProtect:
+	if is_death or need_protect:
 		return
 	CurrentProtect = MaxProtect
-	needProtect = true
-	need_removeProtect = true
+	need_protect = true
+	need_remove_protect = true
 	_cancel_hit_reaction()
 	_set_protect_visual(true)
 	$Protect.start(3.0)
 
 
 func _clear_role_protect() -> void:
-	needProtect = false
-	need_removeProtect = false
+	need_protect = false
+	need_remove_protect = false
 	CurrentProtect = 0.0
 	_set_protect_visual(false)
 
 
 func self_protect():
 	CurrentProtect = clampf(CurrentProtect, 0.0, MaxProtect)
-	if not needProtect and CurrentProtect >= MaxProtect:
+	if not need_protect and CurrentProtect >= MaxProtect:
 		_activate_role_protect()
 		return
-	if needProtect:
+	if need_protect:
 		_set_protect_visual(true)
 		if $Protect.is_stopped():
 			_clear_role_protect()
@@ -2674,55 +2674,55 @@ var _protect_visual_active := false
 
 
 func _set_protect_visual(active: bool) -> void:
-	if is_instance_valid(MyHurtBox):
-		MyHurtBox.set_deferred("disabled", active)
+	if is_instance_valid(my_hurt_box):
+		my_hurt_box.set_deferred("disabled", active)
 	_protect_visual_active = active
 	var alpha := 0.5 if active else 1.0
-	if is_instance_valid(RoleBody):
-		RoleBody.self_modulate = Color(1, 1, 1, alpha)
-	if is_instance_valid(RoleEq):
-		RoleEq.self_modulate = Color(1, 1, 1, alpha)
+	if is_instance_valid(role_body):
+		role_body.self_modulate = Color(1, 1, 1, alpha)
+	if is_instance_valid(role_eq):
+		role_eq.self_modulate = Color(1, 1, 1, alpha)
 
 
 func on_eqchange():
-	var WQ: String
-	var Fj: String
+	var wq: String
+	var fj: String
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON] == "":
 		if PlayerData.player_data[DataKeys.WEAPON].size() == 0:
-			WQ = "Empty"
+			wq = "Empty"
 		else:
-			WQ = str(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME])
+			wq = str(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME])
 	else:
-		WQ = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON])
-	change_eq(WQ)
+		wq = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON])
+	change_eq(wq)
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR] == "":
 		if PlayerData.player_data[DataKeys.FASHION].size() == 0:
 			if PlayerData.player_data[DataKeys.ARMOR].size() == 0:
-				Fj = "Empty"
+				fj = "Empty"
 			else:
-				Fj = str(PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME])
+				fj = str(PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME])
 		else:
-			Fj = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
+			fj = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
 	else:
-		Fj = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR])
-	Fj = Global.get_clean_name(Fj)
+		fj = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR])
+	fj = Global.get_clean_name(fj)
 
-	change_body(Fj)
+	change_body(fj)
 	var mount_runtime := get_node_or_null("MountRuntime")
 	if mount_runtime != null and mount_runtime.has_method("refresh_rider_appearance"):
 		mount_runtime.call("refresh_rider_appearance")
-	add_special_effect_clothes(WQ, Fj)
-	var WingsList
+	add_special_effect_clothes(wq, fj)
+	var wings_list
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
 		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
 			wings.visible = false
-			WingsList = "empty"
+			wings_list = "empty"
 		else:
-			WingsList = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
+			wings_list = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 	else:
-		WingsList = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
+		wings_list = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
 	var show_wings: bool = (
-		WingsList != "empty"
+		wings_list != "empty"
 		and bool(PlayerData.player_data.get("翅膀显示", true))
 		and not bool(MainSet.set_data.get("NotShowRoleBody", false))
 	)
@@ -2731,16 +2731,16 @@ func on_eqchange():
 	if not show_wings:
 		wings.stop()
 		return
-	if WingsList == "xyzy":
+	if wings_list == "xyzy":
 		_ensure_xianyu_wing_animation()
-	elif WingsList == "hhyq":
+	elif wings_list == "hhyq":
 		_ensure_huahao_wing_animation()
 
 	_set_xianyu_wing_flip_tracks(false)
-	_set_static_wing_animation_tracks(WingsList == "hhyq" or WingsList == "xyzy")
-	wings.flip_h = WingsList == "xyzy" or WingsList == "hhyq"
+	_set_static_wing_animation_tracks(wings_list == "hhyq" or wings_list == "xyzy")
+	wings.flip_h = wings_list == "xyzy" or wings_list == "hhyq"
 	wings.z_index = 0
-	wings.play(WingsList)
+	wings.play(wings_list)
 	_last_wings_name = ""
 	set_wings_offset()
 
@@ -2932,20 +2932,20 @@ func _ensure_huahao_wing_animation() -> void:
 
 
 func change_body(name1):
-	self.RoleBody.texture = Global.load_role1_body(name1)
-	preload("res://Script/hero/moon_palace_clothes_effect.gd").sync(RoleBody, str(name1), true)
+	self.role_body.texture = Global.load_role1_body(name1)
+	preload("res://Script/hero/moon_palace_clothes_effect.gd").sync(role_body, str(name1), true)
 
 
 func change_eq(name1):
-	self.RoleEq.texture = Global.load_role1_eq(name1)
+	self.role_eq.texture = Global.load_role1_eq(name1)
 
 
 func add_special_effect_clothes(EqName, ClothesName):
-	var Lastname = EqName + ClothesName
-	var BodyList = [toukui, jianjia, huwan, shenti, yaodai, xiabai]
-	match Lastname:
+	var lastname = EqName + ClothesName
+	var body_list = [toukui, jianjia, huwan, shenti, yaodai, xiabai]
+	match lastname:
 		"zxstgzxstj":
-			for i in BodyList:
+			for i in body_list:
 				if i != null:
 					i.play("zxstj")
 					i.offset = Vector2(0, 0)
@@ -2954,7 +2954,7 @@ func add_special_effect_clothes(EqName, ClothesName):
 			wuqi.scale = Vector2(0.87, 0.87)
 			return
 		"pftygpftyj":
-			for i in BodyList:
+			for i in body_list:
 				if i != null:
 					i.play("pftyj")
 					match str(i.name):
@@ -2974,7 +2974,7 @@ func add_special_effect_clothes(EqName, ClothesName):
 			wuqi.scale = Vector2(0.87, 0.87)
 			return
 		"slshgslshj":
-			for i in BodyList:
+			for i in body_list:
 				if i != null:
 					i.play("slshj")
 					match str(i.name):
@@ -3065,8 +3065,8 @@ func get_real_target(get_tt):
 
 
 func check_add_buff():
-	var not_SanXianHuTi = true
-	var not_ReverseMove = true
+	var not_san_xian_hu_ti = true
+	var not_reverse_move = true
 	var not_magic_drain = true
 	var not_yxbuff = true
 	var not_lljy = true
@@ -3076,21 +3076,21 @@ func check_add_buff():
 	var not_stun = true
 	var not_sppeddown = true
 	var not_silent = true
-	var not_BoundFloor = true
-	var not_Immobilize = true
-	var not_BloodFix = true
-	var not_LifeManaLock = true
-	var not_DefeReduce = true
-	var not_Scary = true
-	var not_SuperArmor = true
-	var not_Indestructible = true
-	var not_Indestructible1 = true
-	var not_DoubleFallPro = true
-	var not_IsWDZT = true
+	var not_bound_floor = true
+	var not_immobilize = true
+	var not_blood_fix = true
+	var not_life_mana_lock = true
+	var not_defe_reduce = true
+	var not_scary = true
+	var not_super_armor = true
+	var not_indestructible = true
+	var not_indestructible1 = true
+	var not_double_fall_pro = true
+	var not_is_wdzt = true
 	var not_slz = true
 	var not_tsz = true
-	var not_NoDeBuff = true
-	var not_Xr = true
+	var not_no_de_buff = true
+	var not_xr = true
 	if self.buff == null:
 		return
 
@@ -3103,163 +3103,163 @@ func check_add_buff():
 			var buff_info: Dictionary = i.BuffInfo
 			match str(buff_info["Name"]):
 				"SanXianHuTi":
-					not_SanXianHuTi = false
+					not_san_xian_hu_ti = false
 				"ReverseMove":
-					IsReverseMove = true
-					ReverseMoveSpeedMultiplier = 2.0
-					not_ReverseMove = false
+					is_reverse_move = true
+					reverse_move_speed_multiplier = 2.0
+					not_reverse_move = false
 				"yxbuff":
-					IsYxBuff = true
+					is_yx_buff = true
 					var bonus_rate = buff_info.get("value", 0.5)
-					YxBuffPowerRate = bonus_rate
-					YxBuffCritRate = bonus_rate
-					YxBuffLuckyRate = bonus_rate
+					yx_buff_power_rate = bonus_rate
+					yx_buff_crit_rate = bonus_rate
+					yx_buff_lucky_rate = bonus_rate
 					not_yxbuff = false
 				"MagicDrain":
-					IsMagicDrain = true
-					StoredMP = buff_info.get("stored_mp", 0)
+					is_magic_drain = true
+					stored_mp = buff_info.get("stored_mp", 0)
 					not_magic_drain = false
 				"lljybuff":
-					Islljy = true
+					islljy = true
 					not_lljy = false
 				"NoDeBuff":
 					NoDeBuff = true
-					not_NoDeBuff = false
+					not_no_de_buff = false
 				"lpzbuff":
-					IsXr = true
-					not_Xr = false
+					is_xr = true
+					not_xr = false
 				"tszbuff":
-					Istsz = true
+					istsz = true
 					not_tsz = false
 				"slzbuff":
-					Isslz = true
+					isslz = true
 					not_slz = false
 				"Ice":
 					is_ice = true
 					not_ice = false
 				"PoisionBody":
-					IsWDZT = true
-					not_IsWDZT = false
+					is_wdzt = true
+					not_is_wdzt = false
 				"SuperArmor":
-					IsSuperArmor = true
-					not_SuperArmor = false
+					super_armor_active = true
+					not_super_armor = false
 				"DoubleFallPro":
-					IsDoubleFallPro = true
-					not_DoubleFallPro = false
+					is_double_fall_pro = true
+					not_double_fall_pro = false
 				"DefeReduce":
 					IsDefeReduce = true
-					not_DefeReduce = false
+					not_defe_reduce = false
 				"Indestructible":
 					IsIndestructible = true
-					not_Indestructible = false
+					not_indestructible = false
 				"Indestructible1":
-					IsIndestructible1 = true
-					not_Indestructible1 = false
+					is_indestructible1 = true
+					not_indestructible1 = false
 				"DeadLink":
-					is_DeadLink = true
+					is_dead_link = true
 					not_dl = false
 				"EyeFix":
-					is_EyeFix = true
+					is_eye_fix = true
 					not_eyefix = false
 				"Immobilize":
-					is_Immobilize = true
-					not_Immobilize = false
+					is_immobilize = true
+					not_immobilize = false
 				"stun":
 					is_stun = true
 					not_stun = false
 				"speed_down":
-					is_speedDown = true
+					is_speed_down = true
 					not_sppeddown = false
 				"BloodFix":
 					BloodFix = true
-					not_BloodFix = false
+					not_blood_fix = false
 				"LifeManaLock":
 					LifeManaLock = true
-					not_LifeManaLock = false
+					not_life_mana_lock = false
 				"silent":
 					is_silent = true
 					not_silent = false
 				"Boundground":
-					is_Bound_to_the_ground = true
-					not_BoundFloor = false
+					is_bound_to_the_ground = true
+					not_bound_floor = false
 				"Scary":
-					IsScary = true
-					not_Scary = false
+					is_scary = true
+					not_scary = false
 
-	if not_ReverseMove:
-		IsReverseMove = false
-		ReverseMoveSpeedMultiplier = 1.0
+	if not_reverse_move:
+		is_reverse_move = false
+		reverse_move_speed_multiplier = 1.0
 
 	if not_magic_drain:
-		IsMagicDrain = false
-		StoredMP = 0
+		is_magic_drain = false
+		stored_mp = 0
 
 	if not_yxbuff:
-		IsYxBuff = false
-		YxBuffPowerRate = 0.0
-		YxBuffCritRate = 0.0
-		YxBuffLuckyRate = 0.0
+		is_yx_buff = false
+		yx_buff_power_rate = 0.0
+		yx_buff_crit_rate = 0.0
+		yx_buff_lucky_rate = 0.0
 
 	if not_lljy:
-		Islljy = false
+		islljy = false
 
-	if not_Xr:
-		IsXr = false
+	if not_xr:
+		is_xr = false
 		xrbl = 0
-	if not_NoDeBuff:
+	if not_no_de_buff:
 		NoDeBuff = false
 	if not_tsz:
-		Istsz = false
+		istsz = false
 		tszzs = 0
 	if not_slz:
-		Isslz = false
+		isslz = false
 		slzjs2 = 0
-	if not_IsWDZT:
-		IsWDZT = false
-	if not_DoubleFallPro:
-		IsDoubleFallPro = false
-	if not_Indestructible:
+	if not_is_wdzt:
+		is_wdzt = false
+	if not_double_fall_pro:
+		is_double_fall_pro = false
+	if not_indestructible:
 		IsIndestructible = false
-	if not_Indestructible1:
-		IsIndestructible1 = false
-	if not_SuperArmor:
-		IsSuperArmor = _skill_super_armor_active()
-	if not_DefeReduce:
+	if not_indestructible1:
+		is_indestructible1 = false
+	if not_super_armor:
+		super_armor_active = _skill_super_armor_active()
+	if not_defe_reduce:
 		IsDefeReduce = false
 		DefeReduce = 0
-	if not_Scary:
-		IsScary = false
-	if not_BloodFix:
+	if not_scary:
+		is_scary = false
+	if not_blood_fix:
 		BloodFix = false
-	if not_LifeManaLock:
+	if not_life_mana_lock:
 		LifeManaLock = false
-	if not_BoundFloor:
-		is_Bound_to_the_ground = false
+	if not_bound_floor:
+		is_bound_to_the_ground = false
 	if not_silent:
 		is_silent = false
 	if not_ice:
 		is_ice = false
 	if not_dl:
-		is_DeadLink = false
+		is_dead_link = false
 	if not_eyefix:
-		is_EyeFix = false
+		is_eye_fix = false
 	if not_stun:
 		is_stun = false
-	if not_Immobilize:
-		is_Immobilize = false
+	if not_immobilize:
+		is_immobilize = false
 	if not_sppeddown:
-		is_speedDown = false
+		is_speed_down = false
 		walk_speed = _fabao_jiasu_base_speed * 2 if is_fabao_jiasu else 240
 	if buff.get_child_count() == 0:
-		is_speedDown = false
+		is_speed_down = false
 		walk_speed = _fabao_jiasu_base_speed * 2 if is_fabao_jiasu else 240
 		is_stun = false
-		is_EyeFix = false
+		is_eye_fix = false
 		is_ice = false
-		is_DeadLink = false
+		is_dead_link = false
 		is_silent = false
-		is_Bound_to_the_ground = false
-		IsReverseMove = false
+		is_bound_to_the_ground = false
+		is_reverse_move = false
 
 
 func get_skill(name1):
@@ -3286,12 +3286,12 @@ func get_skill(name1):
 		push_warning("忽略未知角色技能：%s" % raw_skill_name)
 		return
 	if self is Role1Hero:
-		var IsCanUseSlz = false
+		var is_can_use_slz = false
 		if name1 == "slz":
 			for i in PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]:
 				if str(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"][i]) == "slz":
-					IsCanUseSlz = true
-			if not IsCanUseSlz:
+					is_can_use_slz = true
+			if not is_can_use_slz:
 				return
 		if name1 == "hyjj":
 			if not check_canuse_some_skill():
@@ -3354,7 +3354,7 @@ func get_skill(name1):
 		if not is_on_floor():
 			if name1 == "smb":
 				return
-		if SMB1 == null:
+		if smb1 == null:
 			if RoleProp.roleprop.Mp < get_need_mp(name1, false) or Role1SkillInter[cooldown_key] > 0:
 				return
 		match name1:
@@ -3373,7 +3373,7 @@ func get_skill(name1):
 			"shy":
 				if Role1SkillInter["shy"] <= 0:
 					skill_shy()
-					if MyShallow == null:
+					if my_shallow == null:
 						RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 			"sgq":
 				if Role1SkillInter["sgq"] <= 0:
@@ -3394,7 +3394,7 @@ func get_skill(name1):
 			"smb":
 				if Role1SkillInter["smb"] <= 0:
 					skill_smb()
-					if SMB1 == null:
+					if smb1 == null:
 						RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 			"by":
 				if Role1SkillInter["by"] <= 0:
@@ -3524,26 +3524,26 @@ func get_skill(name1):
 
 func improve_self_recovery_when_idle():
 	if is_be_attacking:
-		CUreCureCount = 0
-		CureValue = 1
+		c_ure_cure_count = 0
+		cure_value = 1
 	else:
-		CUreCureCount += 1
-	if CUreCureCount % 180 == 0 and CUreCureCount != 0:
-		CureValue += 0.5
+		c_ure_cure_count += 1
+	if c_ure_cure_count % 180 == 0 and c_ure_cure_count != 0:
+		cure_value += 0.5
 	if velocity.x == 0:
-		IdleCount += 1
+		idle_count += 1
 	else:
-		IdleCount = 0
-	if IdleCount % 120 == 0 and IdleCount != 0:
-		CureValue += 0.5
+		idle_count = 0
+	if idle_count % 120 == 0 and idle_count != 0:
+		cure_value += 0.5
 
 
 func reset_insky():
-	IsInSky = false
+	is_in_sky = false
 
 
 func set_insky():
-	IsInSky = true
+	is_in_sky = true
 
 
 func _prewarm_heavy_skill_resources() -> void:
@@ -3618,9 +3618,9 @@ func add_ttzs_effect():
 
 
 func addnmw_effect():
-	var PositionList_1 = [Vector2(-65, 500), Vector2(65, 500)]
-	var PositionList_2 = [Vector2(-175, 500), Vector2(175, 500)]
-	var PositionList_3 = [Vector2(-285, 500), Vector2(285, 500)]
+	var position_list_1 = [Vector2(-65, 500), Vector2(65, 500)]
+	var position_list_2 = [Vector2(-175, 500), Vector2(175, 500)]
+	var position_list_3 = [Vector2(-285, 500), Vector2(285, 500)]
 	var bullet_spawn_positions = {
 		"1": [Vector2(-185, 500), Vector2(65, 500), Vector2(-65, 500), Vector2(185, 500)],
 		"2":
@@ -3644,17 +3644,17 @@ func addnmw_effect():
 			Vector2(385, 500)
 		],
 	}
-	var SZName = Global.get_clean_name(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
-	var Pz = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]).split(SZName)[0]
-	var Count: int = 1
-	match Pz:
+	var sz_name = Global.get_clean_name(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
+	var pz = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]).split(sz_name)[0]
+	var count: int = 1
+	match pz:
 		"youxiu":
-			Count = 1
+			count = 1
 		"jingliang":
-			Count = 2
+			count = 2
 		"shishi":
-			Count = 3
-	for i in bullet_spawn_positions[str(Count)]:
+			count = 3
+	for i in bullet_spawn_positions[str(count)]:
 		Global.add_role_bullet(self.Bullet, Vector2(i.x + position.x, 500), false, "NMWBullet2", objattackDic["nmw"])
 
 
@@ -3663,43 +3663,43 @@ func set_sz_value():
 	current_fashion_quality = ""
 	if PlayerData.player_data[DataKeys.FASHION].size() <= 0:
 		return
-	var SZName = Global.get_clean_name(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
-	var Pz = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]).split(SZName)[0]
-	var Bl = 1
-	match SZName:
+	var sz_name = Global.get_clean_name(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
+	var pz = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]).split(sz_name)[0]
+	var bl = 1
+	match sz_name:
 		"ttzssz":
 			var Power: int
-			var Pj: float
-			var Time_: float
-			match Pz:
+			var pj: float
+			var time: float
+			match pz:
 				"youxiu":
 					Power = RoleProp.roleprop.power * 1
-					Pj = 0.15
-					Time_ = 4
+					pj = 0.15
+					time = 4
 				"jingliang":
 					Power = RoleProp.roleprop.power * 1.5
-					Pj = 0.25
-					Time_ = 6
+					pj = 0.25
+					time = 6
 				"shishi":
 					Power = RoleProp.roleprop.power * 2
-					Pj = 0.35
-					Time_ = 8
+					pj = 0.35
+					time = 8
 				"xieling":
 					Power = RoleProp.roleprop.power * 2.5
-					Pj = 0.4
-					Time_ = 10
+					pj = 0.4
+					time = 10
 				"hunqi":
 					Power = RoleProp.roleprop.power * 3
-					Pj = 0.45
-					Time_ = 12
+					pj = 0.45
+					time = 12
 				"chuanshuo":
 					Power = RoleProp.roleprop.power * 3.5
-					Pj = 0.5
-					Time_ = 14
+					pj = 0.5
+					time = 14
 				"shenqi":
 					Power = RoleProp.roleprop.power * 4
-					Pj = 0.4
-					Time_ = 16
+					pj = 0.4
+					time = 16
 			objattackDic["ttzs"] = {
 				"power": int(Power),
 				"hurtBack": [1, -1],
@@ -3707,9 +3707,9 @@ func set_sz_value():
 				"addeffect":
 				{
 					"Name": "DefeReduce",
-					"AddTime": Time_,
+					"AddTime": time,
 					"ReduceInterval": 0,
-					"value": Pj,
+					"value": pj,
 					"AttackKind": "",
 					"CanRemove": true,
 					"CanAdd": false,
@@ -3719,37 +3719,37 @@ func set_sz_value():
 		"nmwsz":
 			var max_hp = RoleProp.roleprop.SHp
 			var Power: int
-			var Pj: float
-			var Time_: float
-			match Pz:
+			var pj: float
+			var time: float
+			match pz:
 				"youxiu":
 					Power = max_hp * 0.3
-					Pj = max_hp * 0.05
-					Time_ = 2
+					pj = max_hp * 0.05
+					time = 2
 				"jingliang":
 					Power = max_hp * 0.5
-					Pj = max_hp * 0.07
-					Time_ = 3
+					pj = max_hp * 0.07
+					time = 3
 				"shishi":
 					Power = max_hp * 0.7
-					Pj = max_hp * 0.09
-					Time_ = 5
+					pj = max_hp * 0.09
+					time = 5
 				"xieling":
 					Power = max_hp * 0.9
-					Pj = max_hp * 0.11
-					Time_ = 7
+					pj = max_hp * 0.11
+					time = 7
 				"hunqi":
 					Power = max_hp * 1.1
-					Pj = max_hp * 0.13
-					Time_ = 9
+					pj = max_hp * 0.13
+					time = 9
 				"chuanshuo":
 					Power = max_hp * 1.3
-					Pj = max_hp * 0.15
-					Time_ = 11
+					pj = max_hp * 0.15
+					time = 11
 				"shenqi":
 					Power = max_hp * 1.5
-					Pj = max_hp * 0.17
-					Time_ = 13
+					pj = max_hp * 0.17
+					time = 13
 			objattackDic["nmw"] = {
 				"power": int(Power),
 				"hurtBack": [1, -1],
@@ -3757,9 +3757,9 @@ func set_sz_value():
 				"addeffect":
 				{
 					"Name": "Fire",
-					"AddTime": Time_,
+					"AddTime": time,
 					"ReduceInterval": 1,
-					"value": int(Pj),
+					"value": int(pj),
 					"AttackKind": "real",
 					"CanRemove": true,
 					"CanAdd": false,
@@ -3768,29 +3768,29 @@ func set_sz_value():
 			}
 		"zlwsz":
 			var Power: int
-			var Time_: float
-			match Pz:
+			var time: float
+			match pz:
 				"youxiu":
 					Power = RoleProp.roleprop.power * 3
-					Time_ = 2
+					time = 2
 				"jingliang":
 					Power = RoleProp.roleprop.power * 4
-					Time_ = 3
+					time = 3
 				"shishi":
 					Power = RoleProp.roleprop.power * 5
-					Time_ = 4
+					time = 4
 				"xieling":
 					Power = RoleProp.roleprop.power * 6
-					Time_ = 5
+					time = 5
 				"hunqi":
 					Power = RoleProp.roleprop.power * 7
-					Time_ = 6
+					time = 6
 				"chuanshuo":
 					Power = RoleProp.roleprop.power * 8
-					Time_ = 7
+					time = 7
 				"shenqi":
 					Power = RoleProp.roleprop.power * 9
-					Time_ = 8
+					time = 8
 			objattackDic["zlw"] = {
 				"power": int(Power),
 				"hurtBack": [1, -1],
@@ -3798,7 +3798,7 @@ func set_sz_value():
 				"addeffect":
 				{
 					"Name": "stun",
-					"AddTime": Time_,
+					"AddTime": time,
 					"ReduceInterval": 0,
 					"value": 0,
 					"AttackKind": "",
@@ -3807,7 +3807,7 @@ func set_sz_value():
 					"DeBuff": true
 				}
 			}
-			if Pz == "shenqi":
+			if pz == "shenqi":
 				objattackDic["zlw_shenqi_ws"] = {
 					"power": int(RoleProp.roleprop.power * 2.5),
 					"hurtBack": [0, 0],
@@ -3828,9 +3828,9 @@ func set_sz_value():
 
 		"smsrsz":
 			has_smsrsz_fashion = true
-			current_fashion_quality = Pz
+			current_fashion_quality = pz
 			var Power: int
-			match Pz:
+			match pz:
 				"youxiu":
 					Power = RoleProp.roleprop.power * 3
 				"jingliang":
@@ -3873,7 +3873,7 @@ func _update_fashion_values_if_needed() -> void:
 
 
 func when_scary():
-	if not IsScary or is_be_attacking:
+	if not is_scary or is_be_attacking:
 		return
 	if ran_num <= 20:
 		_play_locomotion_animation(&"wait")
@@ -3951,13 +3951,13 @@ func jsfzsy():
 	_last_hero_formation = formation_name
 	_last_hero_formation_level = formation_level
 	if formation_name == "slz":
-		var Levelslz = formation_level
-		slzjs = Levelslz * 0.01
+		var levelslz = formation_level
+		slzjs = levelslz * 0.01
 	else:
 		slzjs = 0
 	if formation_name == "tsz":
-		var Leveltsz = formation_level
-		tszbsjm = Leveltsz * 0.01
+		var leveltsz = formation_level
+		tszbsjm = leveltsz * 0.01
 	else:
 		tszbsjm = 0
 
@@ -4014,8 +4014,8 @@ func _try_use_main_sword_array() -> bool:
 	if ZhenFaCd > 0:
 		return true
 	_sync_main_sword_array_weapon()
-	if is_instance_valid(MainSwordArrayTarget) and MainSwordArrayTarget.has_method("cast_skill"):
-		MainSwordArrayTarget.cast_skill()
+	if is_instance_valid(main_sword_array_target) and main_sword_array_target.has_method("cast_skill"):
+		main_sword_array_target.cast_skill()
 		_set_main_sword_array_cooldown_visible(false)
 		_start_zhen_fa_cd(30)
 		return true
@@ -4025,7 +4025,7 @@ func _try_use_main_sword_array() -> bool:
 func _start_zhen_fa_cd(cd_time: float) -> void:
 	ZhenFaCd = cd_time
 	if is_instance_valid(Global.zhen_fa):
-		Global.zhen_fa.MaxTime = ZhenFaCd
+		Global.zhen_fa.max_time = ZhenFaCd
 	if is_instance_valid(zhen_fa):
 		zhen_fa.start(ZhenFaCd)
 
@@ -4039,8 +4039,8 @@ func _set_main_sword_array_cooldown_visible(value: bool) -> void:
 	var active := str(PlayerData.player_data.get("主线剑阵出战", ""))
 	if active == "":
 		return
-	if is_instance_valid(MainSwordArrayTarget):
-		MainSwordArrayTarget.visible = value
+	if is_instance_valid(main_sword_array_target):
+		main_sword_array_target.visible = value
 
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
@@ -4048,36 +4048,36 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 
 
 func set_wings_offset():
-	var CurrentWingsName: String
+	var current_wings_name: String
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
 		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
-			CurrentWingsName = "empty"
+			current_wings_name = "empty"
 		else:
-			CurrentWingsName = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
+			current_wings_name = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 	else:
-		CurrentWingsName = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
+		current_wings_name = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
 	var special_wing_position := Vector2(41, -4) if self is Role1Hero else _wings_base_position
 	var special_wing_offset_y := (
 		0.0 if self is Role1Hero or self is Role4Hero or self is Role5Hero or self is NeZhaHero else -25.0
 	)
-	if CurrentWingsName == _last_wings_name:
-		if CurrentWingsName == "xyzy":
+	if current_wings_name == _last_wings_name:
+		if current_wings_name == "xyzy":
 			wings.position = special_wing_position
 			wings.offset = Vector2(0, special_wing_offset_y)
 			wings.rotation = 0.0
 			wings.scale = Vector2.ONE
 			return
-		if CurrentWingsName == "hhyq":
+		if current_wings_name == "hhyq":
 			wings.position = special_wing_position
 			wings.offset = Vector2(60, special_wing_offset_y)
 			wings.rotation = 0.0
 			wings.scale = Vector2.ONE
 			return
 		return
-	_last_wings_name = CurrentWingsName
+	_last_wings_name = current_wings_name
 	_reset_wings_base_transform()
-	wings.flip_h = CurrentWingsName == "xyzy" or CurrentWingsName == "hhyq"
-	match CurrentWingsName:
+	wings.flip_h = current_wings_name == "xyzy" or current_wings_name == "hhyq"
+	match current_wings_name:
 		"xtzy", "ttzy":
 			if self is Role2Hero or self is Role3Hero:
 				wings.position = Vector2(0, 0)
@@ -4135,7 +4135,7 @@ func set_wings_offset():
 
 
 func reset_san_xian_hu_ti():
-	IsSanXianHuTiUsed = false
+	is_san_xian_hu_ti_used = false
 
 # ==============================================================================
 # Phase 6-3: 现代 GDScript 规范 snake_case 双轨兼容函数入口

@@ -6,22 +6,22 @@ var is_cc = false
 func _ready() -> void:
 	Global.add_bgm(self, "res://Music/level/17_bg6.mp3")
 	load("res://Scene/monster/monster_29.tscn")
-	Global.CurrentLevel = "火焰山"
+	Global.current_level = "火焰山"
 	self.level_stage = 10
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [29],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [850],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [200],
 		"stage_2": [],
 		"stage_3": [],

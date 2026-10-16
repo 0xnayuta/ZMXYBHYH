@@ -54,7 +54,7 @@ func _update_percentage_attributes() -> void:
 func _get_effective_damage_reduction() -> float:
 	var permanent_reduction := maxf(0.0, float(RoleProp.roleprop.get("damage_reduction", 0.0)))
 	var temporary_reduction := 0.0
-	var source_player: Variant = RoleProp.SourcePlayer
+	var source_player: Variant = RoleProp.source_player
 	if source_player != null and is_instance_valid(source_player):
 		var player := source_player as BaseHero
 		if player != null:

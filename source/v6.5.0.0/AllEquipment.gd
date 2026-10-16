@@ -2,7 +2,7 @@ extends Node
 
 const DATA_SCRIPT := "res://Script/data/all_equipment_data.gd"
 
-var PropListName = [
+var prop_list_name = [
 	"SHp",
 	"SMp",
 	"power",
@@ -22,11 +22,11 @@ var PropListName = [
 ]
 var _data: Node
 
-var AllEquipment_: Dictionary:
+var all_equipment: Dictionary:
 	get:
-		return _get_data().AllEquipment_
+		return _get_data().all_equipment
 	set(value):
-		_get_data().AllEquipment_ = value
+		_get_data().all_equipment = value
 
 
 func _ready() -> void:

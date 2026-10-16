@@ -3,14 +3,14 @@ class_name Monster24
 var hand_1
 var hand_2
 var is_set
-@onready var RandFire: Timer = $Fire
-@onready var ShowHeartTimer: Timer = $Heart
+@onready var rand_fire: Timer = $Fire
+@onready var show_heart_timer: Timer = $Heart
 var boos_4: Monster141
 
 
 func monster_24():
 	if get_parent().get_parent() is LevelNMGHDGQ:
-		self.CannotAttract = true
+		self.cannot_attract = true
 		self.is_bt = true
 		self.is_boss = true
 		self.my_mr_name = "牛魔王·鬼"
@@ -61,7 +61,7 @@ func monster_24():
 			{"name": "putongnmwsz", "value": 0},
 		]
 		return
-	self.CannotAttract = true
+	self.cannot_attract = true
 	self.is_bt = true
 	self.is_boss = true
 	self.my_mr_name = "牛魔王·鬼"
@@ -157,7 +157,7 @@ func _on_add_eyes_timeout() -> void:
 
 
 func call_fire_1():
-	RandFire.stop()
+	rand_fire.stop()
 	Skill_1_CD = 30
 	var ppx = [-450, -350, -250, -150, -50, 50, 150, 250, 350]
 	var ppy = [370, 370, 370, 370, 370, 370, 370, 370, 370]
@@ -226,7 +226,7 @@ func call_fire_4():
 			self.objattackDic["Fire"]
 		)
 	await get_tree().create_timer(1, false).timeout
-	RandFire.start(randi_range(4, 5))
+	rand_fire.start(randi_range(4, 5))
 
 
 func _on_fire_timeout() -> void:
@@ -243,11 +243,11 @@ func _on_fire_timeout() -> void:
 
 
 func show_heart():
-	ShowHeartTimer.start(randi_range(6, 11))
+	show_heart_timer.start(randi_range(6, 11))
 
 
 func hide_heart():
-	ShowHeartTimer.start(randi_range(6, 8))
+	show_heart_timer.start(randi_range(6, 8))
 
 
 func _on_heart_timeout() -> void:

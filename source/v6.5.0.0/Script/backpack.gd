@@ -68,7 +68,7 @@ func _main_role():
 		var level_role: Variant = cur_level.get("Role_")
 		if is_instance_valid(level_role):
 			return level_role
-	var source_player: Variant = RoleProp.SourcePlayer
+	var source_player: Variant = RoleProp.source_player
 	return source_player if is_instance_valid(source_player) else null
 
 
@@ -82,7 +82,7 @@ func _second_role():
 
 func _reset_mobile_timer() -> void:
 	if mobile != null and is_instance_valid(mobile):
-		mobile.setCd = 0
+		mobile.set_cd = 0
 
 
 func _on_backpack_pressed() -> void:
@@ -211,7 +211,7 @@ func _can_resume_level() -> bool:
 	if cur_level == null:
 		return true
 	var role_info = cur_level.get("role_information")
-	return role_info == null or not role_info.isStop
+	return role_info == null or not role_info.is_stop
 
 
 func _has_open_child() -> bool:

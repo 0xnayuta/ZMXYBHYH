@@ -1,15 +1,15 @@
 extends BaseMonster
 class_name Monster57
-var RoundSpeed: int = 230
-var RoundChaseTime: float = 2.3
-var RoundThrowCOUNT: int = 2
-var RoundList = []
-var Boss_2: Monster55
+var round_speed: int = 230
+var round_chase_time: float = 2.3
+var round_throw_count: int = 2
+var round_list = []
+var boss_2: Monster55
 
 
 func monster_57():
 	if get_parent().get_parent() is LevelZLDHDGQ:
-		self.is_Fly = true
+		self.is_fly = true
 		self.is_boss = true
 		self.my_mr_name = "转轮·圣王"
 		self.attack_in = 120
@@ -102,7 +102,7 @@ func monster_57():
 			{"name": "zlwdahsp2", "value": 1},
 		]
 		return
-	self.is_Fly = true
+	self.is_fly = true
 	self.is_boss = true
 	self.my_mr_name = "转轮·圣王"
 	self.attack_in = 120
@@ -245,97 +245,97 @@ func use_skill():
 func change_properies():
 	if Hp >= SHp * 0.8 and Hp <= SHp:
 		attack_in = 180
-		RoundSpeed = 230
-		RoundChaseTime = 2.3
-		RoundThrowCOUNT = 2
+		round_speed = 230
+		round_chase_time = 2.3
+		round_throw_count = 2
 	elif Hp >= SHp * 0.6 and Hp <= SHp * 0.8:
 		attack_in = 150
-		RoundSpeed = 260
-		RoundChaseTime = 2.6
-		RoundThrowCOUNT = 3
+		round_speed = 260
+		round_chase_time = 2.6
+		round_throw_count = 3
 	elif Hp >= SHp * 0.4 and Hp <= SHp * 0.6:
 		attack_in = 120
-		RoundSpeed = 300
-		RoundChaseTime = 3
-		RoundThrowCOUNT = 3
+		round_speed = 300
+		round_chase_time = 3
+		round_throw_count = 3
 	elif Hp >= SHp * 0.2 and Hp <= SHp * 0.4:
 		attack_in = 100
-		RoundSpeed = 300
-		RoundChaseTime = 4
-		RoundThrowCOUNT = 4
+		round_speed = 300
+		round_chase_time = 4
+		round_throw_count = 4
 	elif Hp >= 0 and Hp <= SHp * 0.2:
 		attack_in = 100
-		RoundSpeed = 300
-		RoundChaseTime = 5
-		RoundThrowCOUNT = 5
+		round_speed = 300
+		round_chase_time = 5
+		round_throw_count = 5
 
 
 func call_round():
-	var RoundPositionList = []
+	var round_position_list = []
 	var tween = get_tree().create_tween().set_parallel(true)
-	for i in range(RoundThrowCOUNT):
+	for i in range(round_throw_count):
 		var round = Global.add_bullet(
 			"Monster57Bullet", bullet, false, 1, position, "dmzhl", self.objattackDic["dmzhl"]
 		)
-		RoundList.push_back(round)
-	for i in RoundList:
+		round_list.push_back(round)
+	for i in round_list:
 		if i != null:
 			var pp = Vector2(
 				RoleProp.get_nearest_monster_target_position(global_position).x + randi_range(-220, 220), 500
 			)
 			tween.tween_property(i, "position", pp, 0.35)
-	RoundList.clear()
+	round_list.clear()
 
 
 func normal_bullet():
 	var Bullet
-	var BulletName: String
-	var Hit_name: String
+	var bullet_name: String
+	var hit_name: String
 	var bullet_pos = Vector2(self.position.x, self.position.y + 15)
-	var RndNum = randi_range(0, 100)
-	if RndNum <= 100 and RndNum >= 75:
-		BulletName = "Monster57Bullet"
-		Hit_name = "hit1"
-	elif RndNum < 75 and RndNum >= 50:
-		BulletName = "Monster57Bullet2"
-		Hit_name = "hit1_1"
-	elif RndNum < 50 and RndNum >= 25:
-		BulletName = "Monster57Bullet3"
-		Hit_name = "hit1_2"
+	var rnd_num = randi_range(0, 100)
+	if rnd_num <= 100 and rnd_num >= 75:
+		bullet_name = "Monster57Bullet"
+		hit_name = "hit1"
+	elif rnd_num < 75 and rnd_num >= 50:
+		bullet_name = "Monster57Bullet2"
+		hit_name = "hit1_1"
+	elif rnd_num < 50 and rnd_num >= 25:
+		bullet_name = "Monster57Bullet3"
+		hit_name = "hit1_2"
 	else:
-		BulletName = "Monster57Bullet4"
-		Hit_name = "hit1_3"
+		bullet_name = "Monster57Bullet4"
+		hit_name = "hit1_3"
 	if MonsterDirection:
 		Bullet = Global.call_chase_bullet(
 			self.bullet,
-			BulletName,
-			RoundSpeed,
-			RoundChaseTime,
+			bullet_name,
+			round_speed,
+			round_chase_time,
 			false,
 			bullet_pos,
-			Hit_name,
-			self.objattackDic[Hit_name]
+			hit_name,
+			self.objattackDic[hit_name]
 		)
 	else:
 		Bullet = Global.call_chase_bullet(
 			self.bullet,
-			BulletName,
-			RoundSpeed,
-			RoundChaseTime,
+			bullet_name,
+			round_speed,
+			round_chase_time,
 			false,
 			bullet_pos,
-			Hit_name,
-			self.objattackDic[Hit_name]
+			hit_name,
+			self.objattackDic[hit_name]
 		)
 	Bullet.scale = Vector2(0.5, 0.5)
 
 
 func call_monster():
 	if get_parent().get_parent() is Level21:
-		if Boss_2 == null:
-			Boss_2 = Global.create_monster(55, get_parent(), Vector2(1450, 320)) as Monster55
-			var BaseLevel_ = get_parent().get_parent() as BaseLevel
+		if boss_2 == null:
+			boss_2 = Global.create_monster(55, get_parent(), Vector2(1450, 320)) as Monster55
+			var base_level = get_parent().get_parent() as BaseLevel
 	elif get_parent().get_parent() is LevelZLDHDGQ:
-		if Boss_2 == null:
-			Boss_2 = Global.create_monster(55, get_parent(), Vector2(750, 320)) as Monster55
-			var BaseLevel_ = get_parent().get_parent() as BaseLevel
+		if boss_2 == null:
+			boss_2 = Global.create_monster(55, get_parent(), Vector2(750, 320)) as Monster55
+			var base_level = get_parent().get_parent() as BaseLevel

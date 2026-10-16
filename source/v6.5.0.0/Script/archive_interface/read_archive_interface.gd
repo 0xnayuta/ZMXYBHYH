@@ -8,7 +8,7 @@ const CLOUD_IMPORT_TEMP_DIR := "user://cloud_save_import"
 const CLOUD_UPLOAD_MAX_BYTES := 3 * 1024 * 1024
 const CLOUD_SAVE_DOWNLOAD_URL := "https://pan.xunlei.com/s/VP0hqWiZoC9jJJ1zAoyj5dYEA1"
 
-var Initialized_Data = {}
+var initialized_data = {}
 @onready var cd_number: LineEdit = $background/cd_number
 @onready var all_ar: GridContainer = $ScrollContainer/AllAr
 @onready var cloud_popup: Control = $CloudArchivePopup
@@ -654,7 +654,7 @@ func _on_delete_pressed() -> void:
 func remove_data_():
 	remove_data()
 	var archive_path: String = "user://MyAr_" + cd_number.text + ".json"
-	if not MemoryClass.safe_write_archive(archive_path, Initialized_Data):
+	if not MemoryClass.safe_write_archive(archive_path, initialized_data):
 		Global.add_message_show(self, "存档重置失败，请重试", 1.5, Vector2(470, 300))
 		return
 	add_ar()
@@ -662,7 +662,7 @@ func remove_data_():
 
 
 func remove_data():
-	Initialized_Data = PlayerData.Initialized_Data.duplicate(true)
+	initialized_data = PlayerData.initialized_data.duplicate(true)
 	MemoryClass.remove_main_data(int(cd_number.text))
 
 	MemoryClass.main_bc()

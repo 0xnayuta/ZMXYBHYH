@@ -1,6 +1,6 @@
 extends BaseMonster
 class_name Monster77
-var Round
+var round_num
 
 
 func monster_77():
@@ -131,14 +131,14 @@ func do_hit_2():
 
 
 func add_child_1():
-	var Rotation
-	var Rotation2
+	var rotation_value
+	var rotation2
 	var po: Vector2
 	var bullet_spawn_positions = []
 	if MonsterDirection:
 		po = Vector2(70, -20)
-		Rotation = -11
-		Rotation2 = 40
+		rotation_value = -11
+		rotation2 = 40
 		bullet_spawn_positions = [
 			Vector2(1400, -1000), Vector2(1200, -1000), Vector2(1000, -1000), Vector2(800, -1000), Vector2(600, -1000)
 		]
@@ -151,17 +151,17 @@ func add_child_1():
 			Vector2(-800, -1000),
 			Vector2(-600, -1000)
 		]
-		Rotation = 11
-		Rotation2 = -40
+		rotation_value = 11
+		rotation2 = -40
 	var child = Global.add_bullet(
 		"Monster77Bullet2", bullet, MonsterDirection, 2, position + po, "hit2", self.objattackDic["hit2"]
 	)
-	child.rotation_degrees = Rotation
+	child.rotation_degrees = rotation_value
 	var dir = MonsterDirection
 	await get_tree().create_timer(1, false).timeout
 	for i in bullet_spawn_positions:
 		child = Global.add_bullet("Monster77Bullet3", bullet, dir, 2, position + i, "hit3", self.objattackDic["hit3"])
-		child.rotation_degrees = Rotation2
+		child.rotation_degrees = rotation2
 		await get_tree().create_timer(0.5, false).timeout
 
 

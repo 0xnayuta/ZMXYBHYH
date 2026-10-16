@@ -23,12 +23,12 @@ var is_casting_skill = false
 
 var is_using_hmz = false
 var is_hmz_drop = false
-var Skill_
-var is_in_sky = false
-var Hyjj = []
-var Interv: int
-var ShallowList: Array
-var WIsPress: bool
+var skill
+var sky_active = false
+var hyjj = []
+var interv: int
+var shallow_list: Array
+var w_is_press: bool
 const GSRS_ZZ_ACTION := &"gsrs_zz_action"
 
 
@@ -58,7 +58,7 @@ func _prepare_gsrs_zz_action() -> bool:
 
 	var animation := gsrs_source.duplicate(true) as Animation
 	var character_prefixes := [
-		"Action/RoleBody:",
+		"Action/role_body:",
 		"Action/RoleEquipment:",
 		"Action/Wings:",
 	]
@@ -170,11 +170,11 @@ func role_1():
 	var level_12 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能12"][DataKeys.LEVEL] + 1
 	hmz_ws_damage_level = max(1, level_12)
 	if level_10 == 0:
-		RoleProp.Role1SXBJ = 0
-		RoleProp.Role1SXxx = 0
+		RoleProp.role1_sxbj = 0
+		RoleProp.role1_s_xxx = 0
 	else:
-		RoleProp.Role1SXBJ = 4 + (level_10 - 1) * 1.6
-		RoleProp.Role1SXxx = 0.03 + (level_10 - 1) * 0.003
+		RoleProp.role1_sxbj = 4 + (level_10 - 1) * 1.6
+		RoleProp.role1_s_xxx = 0.03 + (level_10 - 1) * 0.003
 	self.objattackDic["hit1"] = {
 		"power": RoleProp.roleprop.power * randf_range(1, 1.2),
 		"hurtBack": [2, 0],
@@ -299,7 +299,7 @@ func _physics_process(delta: float) -> void:
 		gravity = -2280
 	else:
 		gravity = -980
-	if is_in_sky:
+	if sky_active:
 		velocity.y = -10
 	super._physics_process(delta)
 	if get_action == "lyfb" and _is_skill_awakened("lyfb") and _is_skill_awaken_enabled("lyfb"):
@@ -307,40 +307,40 @@ func _physics_process(delta: float) -> void:
 	if no_limit_buff():
 		if Input.is_action_pressed("Exit"):
 			remove_w.start(0.2)
-			WIsPress = true
-		if WIsPress:
+			w_is_press = true
+		if w_is_press:
 			if (
 				not is_riding_mount()
 				and Input.is_action_pressed("normalhit")
 				and not is_be_attacking
 				and not is_using_skills
-				and Interv <= 0
+				and interv <= 0
 			):
 				get_skill("slz")
 				return
-			elif Input.is_action_pressed("slz") and not is_be_attacking and not is_using_skills and Interv <= 0:
-				var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["Y"]
-				if Skill_name == "jdy":
+			elif Input.is_action_pressed("slz") and not is_be_attacking and not is_using_skills and interv <= 0:
+				var skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["Y"]
+				if skill_name == "jdy":
 					get_skill("jdy2")
 					return
-			elif Input.is_action_pressed("lys") and not is_be_attacking and not is_using_skills and Interv <= 0:
-				var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["U"]
-				if Skill_name == "jdy":
+			elif Input.is_action_pressed("lys") and not is_be_attacking and not is_using_skills and interv <= 0:
+				var skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["U"]
+				if skill_name == "jdy":
 					get_skill("jdy2")
 					return
-			elif Input.is_action_pressed("lyfb") and not is_be_attacking and not is_using_skills and Interv <= 0:
-				var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["I"]
-				if Skill_name == "jdy":
+			elif Input.is_action_pressed("lyfb") and not is_be_attacking and not is_using_skills and interv <= 0:
+				var skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["I"]
+				if skill_name == "jdy":
 					get_skill("jdy2")
 					return
-			elif Input.is_action_pressed("hmz") and not is_be_attacking and not is_using_skills and Interv <= 0:
-				var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["O"]
-				if Skill_name == "jdy":
+			elif Input.is_action_pressed("hmz") and not is_be_attacking and not is_using_skills and interv <= 0:
+				var skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["O"]
+				if skill_name == "jdy":
 					get_skill("jdy2")
 					return
-			elif Input.is_action_pressed("hytj") and not is_be_attacking and not is_using_skills and Interv <= 0:
-				var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["L"]
-				if Skill_name == "jdy":
+			elif Input.is_action_pressed("hytj") and not is_be_attacking and not is_using_skills and interv <= 0:
+				var skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["L"]
+				if skill_name == "jdy":
 					get_skill("jdy2")
 					return
 		else:
@@ -349,7 +349,7 @@ func _physics_process(delta: float) -> void:
 				and Input.is_action_pressed("normalhit")
 				and not is_be_attacking
 				and not is_using_skills
-				and Interv <= 0
+				and interv <= 0
 			):
 				match hit_count:
 					0:
@@ -367,7 +367,7 @@ func turn_to_wait():
 
 
 func do_normalhit_1():
-	Interv = objattackDic["hit1"]["HitInterv"]
+	interv = objattackDic["hit1"]["HitInterv"]
 	super.get_hit_data("hit1")
 	get_action = "hit1"
 	is_can_move_attack_in_sky()
@@ -381,7 +381,7 @@ func do_normalhit_1():
 
 
 func do_normalhit_2():
-	Interv = objattackDic["hit2"]["HitInterv"]
+	interv = objattackDic["hit2"]["HitInterv"]
 	get_action = "hit2"
 	super.get_hit_data("hit2")
 	velocity.x = 0
@@ -394,7 +394,7 @@ func do_normalhit_2():
 
 
 func do_normalhit_3():
-	Interv = objattackDic["hit3"]["HitInterv"]
+	interv = objattackDic["hit3"]["HitInterv"]
 	get_action = "hit3"
 	super.get_hit_data("hit3")
 	velocity.x = 0
@@ -407,7 +407,7 @@ func do_normalhit_3():
 
 
 func do_normalhit_4():
-	Interv = objattackDic["hit4"]["HitInterv"]
+	interv = objattackDic["hit4"]["HitInterv"]
 	get_action = "hit4"
 	super.get_hit_data("hit4")
 	velocity.x = 0
@@ -588,7 +588,7 @@ func _prepare_hyjj_pose_animation() -> bool:
 	for track_index in range(pose.get_track_count() - 1, -1, -1):
 		var track_path := String(pose.track_get_path(track_index))
 		if not (
-			track_path.begins_with("Action/RoleBody:")
+			track_path.begins_with("Action/role_body:")
 			or track_path.begins_with("Action/RoleEquipment:")
 			or track_path.begins_with("Action/Wings:")
 		):
@@ -686,8 +686,8 @@ func do_hmz_pro():
 
 
 func do_hmz_one():
-	RoleBody.self_modulate = Color(1, 1, 1, 0)
-	RoleEq.self_modulate = Color(1, 1, 1, 0)
+	role_body.self_modulate = Color(1, 1, 1, 0)
+	role_eq.self_modulate = Color(1, 1, 1, 0)
 	wings.self_modulate = Color(1, 1, 1, 0)
 	tx.self_modulate = Color(1, 1, 1, 0)
 
@@ -778,14 +778,14 @@ func do_hmz_one():
 
 
 func cleanup_hmz_state():
-	hurt_box.disabled = needProtect
+	hurt_box.disabled = need_protect
 	is_using_skills = false
 	is_attacking = false
 	is_hmz_drop = false
 	is_using_hmz = false
 	is_invincible = false
 	is_casting_skill = false
-	_set_protect_visual(needProtect)
+	_set_protect_visual(need_protect)
 	if wings:
 		wings.self_modulate = Color(1, 1, 1, 1)
 	if tx:
@@ -874,8 +874,8 @@ func _is_skill_awaken_enabled(skill_id: String) -> bool:
 
 
 func do_hmz_pro_old():
-	RoleBody.self_modulate = Color(1, 1, 1, 0)
-	RoleEq.self_modulate = Color(1, 1, 1, 0)
+	role_body.self_modulate = Color(1, 1, 1, 0)
+	role_eq.self_modulate = Color(1, 1, 1, 0)
 	velocity.x = 0
 	velocity.y = 0
 	role_action_player.play("hmz__")
@@ -1015,7 +1015,7 @@ func do_hmz_two_old():
 	is_using_skills = false
 	is_attacking = false
 	is_hmz_drop = false
-	_set_protect_visual(needProtect)
+	_set_protect_visual(need_protect)
 
 	role_action_player.play("hmz__")
 	turn_to_wait()
@@ -1026,11 +1026,11 @@ func state_behit():
 
 
 func fly():
-	is_in_sky = true
+	sky_active = true
 
 
 func reset():
-	is_in_sky = false
+	sky_active = false
 	gravity = -980.0
 
 
@@ -1055,16 +1055,16 @@ func add_music(idx):
 
 
 func call_hyjj():
-	for i in Hyjj:
+	for i in hyjj:
 		if i == null:
-			Hyjj.erase(i)
-	if Hyjj.size() < 3:
-		Hyjj.push_back(Global.add_role_bullet_1(self.Bullet, Vector2(100, 0), "hyjj", self.objattackDic["hyjj"]))
+			hyjj.erase(i)
+	if hyjj.size() < 3:
+		hyjj.push_back(Global.add_role_bullet_1(self.Bullet, Vector2(100, 0), "hyjj", self.objattackDic["hyjj"]))
 
 
 func add_shallow():
 	var pp = self.get_parent()
-	ShallowList = pp.get_children()
+	shallow_list = pp.get_children()
 
 
 func set_shallowaction(action_: String):
@@ -1072,8 +1072,8 @@ func set_shallowaction(action_: String):
 		self.objattackDic[action_]["power"]
 		* (0.7 + (PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1) * 0.03)
 	)
-	if ShallowList.size() != 0:
-		for i in ShallowList:
+	if shallow_list.size() != 0:
+		for i in shallow_list:
 			if i != null:
 				if i is Role1Shallow:
 					i.action = action_
@@ -1082,11 +1082,11 @@ func set_shallowaction(action_: String):
 
 
 func _on_nor_mal_hit_interv_timeout() -> void:
-	Interv -= 1
+	interv -= 1
 
 
 func _on_remove_w_timeout() -> void:
-	WIsPress = false
+	w_is_press = false
 
 
 func remove_speed():

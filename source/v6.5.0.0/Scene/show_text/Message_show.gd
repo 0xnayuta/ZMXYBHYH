@@ -1,7 +1,7 @@
 extends Node2D
 @onready var message: Label = $Message
 @onready var message_player: AnimationPlayer = $MessagePlayer
-var ShowText: String
+var show_text: String
 var LastTime: float
 var _started := false
 
@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	message.text = str(ShowText)
+	message.text = str(show_text)
 	if _started:
 		return
 	_started = true

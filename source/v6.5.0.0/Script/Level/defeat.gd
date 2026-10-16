@@ -64,7 +64,7 @@ func _ready() -> void:
 	box_1.set_button_icon(load_("xczg"))
 	box_1.qh_level = 0
 	box_1.wx = []
-	box_1.EQ_prop = AE.AllEquipment_["xczg"]
+	box_1.EQ_prop = AE.all_equipment["xczg"]
 	if MainSet.is_auto_battle_enabled() and bool(MainSet.set_data.get("AutoBattleRetry", false)):
 		call_deferred("_auto_rechallenge")
 
@@ -77,8 +77,8 @@ func _auto_rechallenge() -> void:
 
 func _on_return_map_pressed() -> void:
 	RoleProp.ws_value = 0
-	Global.is_DeadLink = false
-	if Global.CurrentLevel == "镇妖塔":
+	Global.is_dead_link = false
+	if Global.current_level == "镇妖塔":
 		Global.change_scene("res://Scene/main_menu/map_0.tscn")
 		MemoryClass.save_game(Global.cd_path)
 		return
@@ -118,22 +118,22 @@ var _is_rechallenging := false
 func _reset_role_state_for_rechallenge() -> void:
 	RoleProp.set_full_hp()
 	RoleProp.set_full_mp()
-	RoleProp.CurrentHp = int(RoleProp.roleprop.Hp)
-	RoleProp.CurrentMp = int(RoleProp.roleprop.Mp)
+	RoleProp.current_hp = int(RoleProp.roleprop.Hp)
+	RoleProp.current_mp = int(RoleProp.roleprop.Mp)
 	RoleProp.ws_value = 0
 	RoleProp.is_ws_state = false
-	Global.is_DeadLink = false
+	Global.is_dead_link = false
 
 
 func _on_re_challenge_pressed() -> void:
 	if _is_rechallenging:
 		return
-	if Global.LastLevelPath == "":
-		Global.add_message_show(Global.Windows_, "获取关卡信息时出现错误，请手动更换关卡！！", 1.5, Vector2(470, 300))
+	if Global.last_level_path == "":
+		Global.add_message_show(Global.windows, "获取关卡信息时出现错误，请手动更换关卡！！", 1.5, Vector2(470, 300))
 		return
 	_is_rechallenging = true
 	_reset_role_state_for_rechallenge()
-	Global.change_scene(Global.LastLevelPath)
+	Global.change_scene(Global.last_level_path)
 
 
 func load_(name_):

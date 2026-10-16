@@ -171,9 +171,9 @@ func normal_state():
 
 
 func call_lxhjq():
-	var Po: Vector2
+	var po: Vector2
 	if MonsterDirection:
-		Po = Vector2(90, -15) + position
+		po = Vector2(90, -15) + position
 	else:
-		Po = Vector2(-90, -15) + position
-	Global.add_bullet("Monster29Bullet", self.bullet, self.MonsterDirection, 1, Po, "lxhjq", self.objattackDic["lxhjq"])
+		po = Vector2(-90, -15) + position
+	Global.add_bullet("Monster29Bullet", self.bullet, self.MonsterDirection, 1, po, "lxhjq", self.objattackDic["lxhjq"])

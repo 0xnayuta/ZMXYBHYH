@@ -189,20 +189,20 @@ func call_bullet_2():
 
 
 func call_bullet_3():
-	var PositionList1 = [Vector2(position.x + 150, 0), Vector2(position.x + 0, 100), Vector2(position.x - 150, 0)]
-	var PositionList2 = [Vector2(position.x + 300, 100), Vector2(position.x - 300, 100)]
-	var PositionList3 = [Vector2(position.x + 450, 200), Vector2(position.x - 450, 200)]
-	var PositionList4 = [Vector2(position.x + 600, 0), Vector2(position.x - 600, 0)]
-	for i in PositionList1:
+	var position_list1 = [Vector2(position.x + 150, 0), Vector2(position.x + 0, 100), Vector2(position.x - 150, 0)]
+	var position_list2 = [Vector2(position.x + 300, 100), Vector2(position.x - 300, 100)]
+	var position_list3 = [Vector2(position.x + 450, 200), Vector2(position.x - 450, 200)]
+	var position_list4 = [Vector2(position.x + 600, 0), Vector2(position.x - 600, 0)]
+	for i in position_list1:
 		Global.add_bullet("Monster112Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 	await get_tree().create_timer(0.2, false).timeout
-	for i in PositionList2:
+	for i in position_list2:
 		Global.add_bullet("Monster112Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 	await get_tree().create_timer(0.2, false).timeout
-	for i in PositionList3:
+	for i in position_list3:
 		Global.add_bullet("Monster112Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 	await get_tree().create_timer(0.2, false).timeout
-	for i in PositionList4:
+	for i in position_list4:
 		Global.add_bullet("Monster112Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 	await get_tree().create_timer(0.2, false).timeout
 

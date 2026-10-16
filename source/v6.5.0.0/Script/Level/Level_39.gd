@@ -25,11 +25,11 @@ func _ready() -> void:
 	load("res://Scene/monster/monster_118.tscn")
 	load("res://Scene/monster/monster_120.tscn")
 	load("res://Scene/monster/monster_122.tscn")
-	Global.CurrentLevel = "蓬莱仙境"
+	Global.current_level = "蓬莱仙境"
 	Global.add_bgm(self, "res://Music/level/34_bg5.mp3")
 	self.level_stage = 44
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [118, 119, 120, 118, 119, 120, 118, 119, 120, 118, 119, 122, 118, 119, 122, 118, 119, 122],
 		"stage_2":
 		[
@@ -111,7 +111,7 @@ func _ready() -> void:
 		],
 		"stage_4": [1410],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [400, 750, 320, 830, 450, 700, 150, 950, 200, 900, 250, 850, 180, 980, 220, 880, 280, 780],
 		"stage_2":
 		[
@@ -194,7 +194,7 @@ func _ready() -> void:
 		],
 		"stage_4": [4300, 4400, 4500, 4600, 4700, 4450, 4550, 4650, 4350, 4480, 4580, 4680],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			420,

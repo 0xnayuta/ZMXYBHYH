@@ -2,8 +2,8 @@ extends Node
 
 const BODY_TRAINING_DATA = preload("res://Script/data/body_training_data.gd")
 
-var Directon: bool
-var SourcePlayer
+var directon: bool
+var source_player
 var roleprop = {}
 var baseroleprop = {}
 var equprop = {}
@@ -34,10 +34,10 @@ var sz_prop = {}
 var tx_prop = {}
 var cb_prop = {}
 var fb_prop = {}
-var Role1SXBJ: float
-var Role1SXxx: float
-var CurrentHp: int = 1
-var CurrentMp: int = 1
+var role1_sxbj: float
+var role1_s_xxx: float
+var current_hp: int = 1
+var current_mp: int = 1
 var pet_life_bonus: int = 0
 var pet_attack_bonus: int = 0
 var pet_defense_bonus: int = 0
@@ -51,7 +51,7 @@ var _cached_sword_props: Dictionary = {}
 var _cached_body_props: Dictionary = {}
 var _cached_wanling_props: Dictionary = {}
 var _cached_mount_props: Dictionary = {}
-var PelletProps = {
+var pellet_props = {
 	"1品丹":
 	{
 		"生命": 100,
@@ -98,7 +98,7 @@ var PelletProps = {
 		"回魔": 0.4,
 	},
 }
-var ZhenFaProps = {
+var zhen_fa_props = {
 	"森罗阵":
 	{
 		"1": {"Type": "物防", "Value": 1},
@@ -139,8 +139,8 @@ func unregister_monster_attack_target(target: Node2D) -> void:
 
 func get_nearest_monster_target_position(origin: Vector2) -> Vector2:
 	var nearest_position := Vector2.ZERO
-	if SourcePlayer is Node2D and is_instance_valid(SourcePlayer):
-		nearest_position = (SourcePlayer as Node2D).global_position
+	if source_player is Node2D and is_instance_valid(source_player):
+		nearest_position = (source_player as Node2D).global_position
 	elif role_pos is Vector2:
 		nearest_position = role_pos
 	elif role_pos_x != null and role_pos_y != null:
@@ -162,15 +162,15 @@ func get_nearest_monster_target_position(origin: Vector2) -> Vector2:
 
 func get_zf_loc_prop(Name, loc):
 	var Level = int(PlayerData.player_data[Name][str(loc)]["Level"])
-	var Dic = ZhenFaProps[Name]
-	var Prop = int(Dic[str(loc)]["Value"]) * Level
+	var dic = zhen_fa_props[Name]
+	var Prop = int(dic[str(loc)]["Value"]) * Level
 	return Prop
 
 
 func get_next_level_prop(Name, loc):
 	var Level = int(PlayerData.player_data[Name][str(loc)]["Level"]) + 1
-	var Dic = ZhenFaProps[Name]
-	var Prop = int(Dic[str(loc)]["Value"]) * Level
+	var dic = zhen_fa_props[Name]
+	var Prop = int(dic[str(loc)]["Value"]) * Level
 	return Prop
 
 
@@ -523,19 +523,19 @@ func _ready() -> void:
 func get_pellet_prop():
 	var Hp: int = 0
 	var Mp: int = 0
-	var Att: int = 0
+	var att: int = 0
 	var Crit: int = 0
 	var Lucky: int = 0
-	var Emp: float = 0
+	var emp: float = 0
 	for i in range(6):
 		if i > 0:
-			Hp += PlayerData.player_data["生命丹" + str(i)] * PelletProps[str(i) + "品丹"][DataKeys.HP]
-			Mp += PlayerData.player_data["魔法丹" + str(i)] * PelletProps[str(i) + "品丹"][DataKeys.MP]
-			Att += PlayerData.player_data["攻击丹" + str(i)] * PelletProps[str(i) + "品丹"][DataKeys.ATTACK]
-			Crit += PlayerData.player_data["暴击丹" + str(i)] * PelletProps[str(i) + "品丹"]["暴击"]
-			Lucky += PlayerData.player_data["幸运丹" + str(i)] * PelletProps[str(i) + "品丹"]["幸运"]
-			Emp += PlayerData.player_data["回魔丹" + str(i)] * PelletProps[str(i) + "品丹"]["回魔"]
-	return [Hp, Mp, Att, Crit, Lucky, Emp]
+			Hp += PlayerData.player_data["生命丹" + str(i)] * pellet_props[str(i) + "品丹"][DataKeys.HP]
+			Mp += PlayerData.player_data["魔法丹" + str(i)] * pellet_props[str(i) + "品丹"][DataKeys.MP]
+			att += PlayerData.player_data["攻击丹" + str(i)] * pellet_props[str(i) + "品丹"][DataKeys.ATTACK]
+			Crit += PlayerData.player_data["暴击丹" + str(i)] * pellet_props[str(i) + "品丹"]["暴击"]
+			Lucky += PlayerData.player_data["幸运丹" + str(i)] * pellet_props[str(i) + "品丹"]["幸运"]
+			emp += PlayerData.player_data["回魔丹" + str(i)] * pellet_props[str(i) + "品丹"]["回魔"]
+	return [Hp, Mp, att, Crit, Lucky, emp]
 
 
 func _get_static_prop_signature() -> int:
@@ -595,16 +595,16 @@ func _refresh_static_prop_cache() -> void:
 
 func get_last_prop():
 	if PlayerData.check_eq_zb("头衔", "xczg"):
-		if SourcePlayer != null:
-			for i in SourcePlayer.buff.get_children():
+		if source_player != null:
+			for i in source_player.buff.get_children():
 				if i.BuffInfo.has("DeBuff") and i.BuffInfo["DeBuff"]:
 					i.queue_free()
 	var is_sxyr: bool = bool(PlayerData.check_eq_zb("头衔", "sxyr"))
-	if is_sxyr and SourcePlayer != null and not SourcePlayer.SXYRCannotCure:
+	if is_sxyr and source_player != null and not source_player.sxyr_cannot_cure:
 		roleprop.SHp = 1
 		roleprop.Hp = 1
-		SourcePlayer.SXYRCannotCure = true
-		for i in SourcePlayer.buff.get_children():
+		source_player.sxyr_cannot_cure = true
+		for i in source_player.buff.get_children():
 			if i.BuffInfo.has("DeBuff") and i.BuffInfo["DeBuff"]:
 				i.queue_free()
 
@@ -662,9 +662,9 @@ func get_last_prop():
 				)
 			)
 		)
-		if SourcePlayer != null:
+		if source_player != null:
 			roleprop.SHp = maxi(
-				1, int(round(float(roleprop.SHp) * (1.0 + maxf(0.0, SourcePlayer.temp_max_hp_bonus_rate))))
+				1, int(round(float(roleprop.SHp) * (1.0 + maxf(0.0, source_player.temp_max_hp_bonus_rate))))
 			)
 	roleprop.SMp = (
 		baseroleprop.SMp
@@ -693,7 +693,7 @@ func get_last_prop():
 		baseroleprop.Crit
 		+ equprop.Crit
 		+ Paslprop.Crit
-		+ Role1SXBJ
+		+ role1_sxbj
 		+ pellet[3]
 		+ zf_crit
 		+ sword_crit
@@ -709,16 +709,16 @@ func get_last_prop():
 		+ sword_lucky
 		+ float(_cached_mount_props.get("Lucky", 0.0))
 	)
-	if SourcePlayer != null and SourcePlayer.IsYxBuff:
-		roleprop.power = int(base_power * (1 + SourcePlayer.YxBuffPowerRate))
-		roleprop.Crit = base_crit * (1 + SourcePlayer.YxBuffCritRate)
-		roleprop.Lucky = int(base_lucky * (1 + SourcePlayer.YxBuffLuckyRate))
+	if source_player != null and source_player.is_yx_buff:
+		roleprop.power = int(base_power * (1 + source_player.yx_buff_power_rate))
+		roleprop.Crit = base_crit * (1 + source_player.yx_buff_crit_rate)
+		roleprop.Lucky = int(base_lucky * (1 + source_player.yx_buff_lucky_rate))
 	else:
 		roleprop.power = base_power
 		roleprop.Crit = base_crit
 		roleprop.Lucky = base_lucky
-	if SourcePlayer != null:
-		roleprop.power = int(round(float(roleprop.power) * (1.0 + maxf(0.0, SourcePlayer.temp_power_bonus_rate))))
+	if source_player != null:
+		roleprop.power = int(round(float(roleprop.power) * (1.0 + maxf(0.0, source_player.temp_power_bonus_rate))))
 	roleprop.Def = (
 		baseroleprop.Def
 		+ equprop.Def
@@ -741,10 +741,10 @@ func get_last_prop():
 		+ wanling_mdef
 		+ mount_mdef
 	)
-	if SourcePlayer != null:
-		roleprop.Def += SourcePlayer.temp_def_bonus
-		roleprop.Mdef += SourcePlayer.temp_mdef_bonus
-		if SourcePlayer.IsTMc:
+	if source_player != null:
+		roleprop.Def += source_player.temp_def_bonus
+		roleprop.Mdef += source_player.temp_mdef_bonus
+		if source_player.is_t_mc:
 			roleprop.Def = int(round(float(roleprop.Def) * 1.5))
 			roleprop.Mdef = int(round(float(roleprop.Mdef) * 1.5))
 	roleprop.Miss = (
@@ -764,7 +764,7 @@ func get_last_prop():
 		baseroleprop.vampirism
 		+ equprop.vampirism
 		+ Paslprop.vampirism
-		+ Role1SXxx
+		+ role1_s_xxx
 		+ float(_cached_wanling_props.get("vampirism", 0.0))
 	)
 	roleprop.Toughness = baseroleprop.Toughness + equprop.Toughness + Paslprop.Toughness
@@ -1053,7 +1053,7 @@ func get_bs_tx_properties():
 
 
 func _set_slot_gem_properties(slot_name: String, properties: Dictionary) -> void:
-	for property_name in AE.PropListName:
+	for property_name in AE.prop_list_name:
 		properties[property_name] = 0
 	var equipped: Array = PlayerData.player_data.get(slot_name, [])
 	if equipped.is_empty():

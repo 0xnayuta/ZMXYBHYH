@@ -229,14 +229,14 @@ func _play_sprite_animation(anim_name: StringName) -> void:
 
 func _physics_process(delta: float) -> void:
 	if _skill_busy:
-		IsSuperArmor = true
-		CannotAttract = true
+		super_armor_active = true
+		cannot_attract = true
 	if not _death_started:
 		_advance_ai_timers(delta)
 	super._physics_process(delta)
 	if _skill_busy:
-		IsSuperArmor = true
-		CannotAttract = true
+		super_armor_active = true
+		cannot_attract = true
 	if death() and not _death_started:
 		_begin_death()
 
@@ -396,9 +396,9 @@ func _begin_skill_super_armor() -> void:
 	if _skill_super_armor_active:
 		return
 	_skill_super_armor_active = true
-	_cannot_attract_before_skill = CannotAttract
-	CannotAttract = true
-	IsSuperArmor = true
+	_cannot_attract_before_skill = cannot_attract
+	cannot_attract = true
+	super_armor_active = true
 	is_be_attacking = false
 	_cancel_hurt_reaction()
 	_kill_control_movement_tweens()
@@ -409,8 +409,8 @@ func _end_skill_super_armor() -> void:
 	if not _skill_super_armor_active:
 		return
 	_skill_super_armor_active = false
-	CannotAttract = _cannot_attract_before_skill
-	IsSuperArmor = _has_other_super_armor_buff()
+	cannot_attract = _cannot_attract_before_skill
+	super_armor_active = _has_other_super_armor_buff()
 
 
 func _has_other_super_armor_buff() -> bool:
@@ -496,7 +496,7 @@ func _spawn_skill_1_projectile(spawn_position: Vector2, projectile_velocity: Vec
 	projectile.skill_name = "Tongtian3057Projectile"
 	projectile.spawn_global_position = spawn_position
 	projectile.travel_velocity = projectile_velocity
-	projectile.MyFather = self
+	projectile.my_father = self
 	bullet.add_child(projectile)
 
 
@@ -510,7 +510,7 @@ func _fire_skill_2_once() -> void:
 	beam.skill_name = "Tongtian3057Beam"
 	beam.spawn_global_position = global_position
 	beam.facing_right = monster_dir.scale.x < 0.0
-	beam.MyFather = self
+	beam.my_father = self
 	bullet.add_child(beam)
 
 

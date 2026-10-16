@@ -4,7 +4,7 @@ extends BaseLevel
 @onready var stop_2: CollisionShape2D = $wall/stop2
 @onready var stop_3: CollisionShape2D = $wall/stop3
 @onready var stop_5: CollisionShape2D = $wall/stop5
-var HurtCount: int = 0
+var hurt_count: int = 0
 
 @onready var jg: Node2D = $jg
 @onready var light_1: Node2D = $jg/Light1
@@ -14,7 +14,7 @@ var HurtCount: int = 0
 
 @onready var check: Area2D = $Check
 
-var IsPlay: bool = false
+var is_play: bool = false
 var lights_on: bool = false
 var is_transporting: bool = false
 const LIGHT_HIT_COOLDOWN_MS := 180
@@ -25,7 +25,7 @@ var _light_hit_time: Dictionary = {}
 func _ready() -> void:
 	load("res://Scene/monster/monster_122.tscn")
 	load("res://Scene/monster/monster_118.tscn")
-	Global.CurrentLevel = "尾妖林"
+	Global.current_level = "尾妖林"
 	Global.add_bgm(self, "res://Music/level/34_bg5.mp3")
 	self.level_stage = 39
 	super._ready()
@@ -33,7 +33,7 @@ func _ready() -> void:
 	$Check/check.disabled = true
 	_setup_hidden_lights()
 
-	Monster_group = {
+	monster_group = {
 		"stage_1": [118, 118, 118, 118, 118, 118, 118, 118, 118, 122, 122, 122, 122, 122, 122, 122, 122, 122],
 		"stage_2":
 		[
@@ -116,7 +116,7 @@ func _ready() -> void:
 		"stage_4": [1403]
 	}
 
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1":
 		[350, 800, 350, 800, 350, 800, 100, 1000, 100, 1000, 100, 1000, 100, 1000, 100, 1000, 100, 1000, 100, 1000],
 		"stage_2":
@@ -201,7 +201,7 @@ func _ready() -> void:
 		"stage_4": [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500],
 	}
 
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			420,
@@ -421,7 +421,7 @@ func _is_light_attack_area(area: Area2D) -> bool:
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
-	if not lights_on and not IsPlay and _check_lights_match():
+	if not lights_on and not is_play and _check_lights_match():
 		_on_all_lights_on()
 
 	if current_stage >= 1:
@@ -442,7 +442,7 @@ func _check_lights_match() -> bool:
 
 
 func _on_all_lights_on():
-	IsPlay = true
+	is_play = true
 	lights_on = true
 
 	Global.add_message_show(self, "所有灯已点亮！", 2.5, Vector2(500, 300))
@@ -477,10 +477,10 @@ func set_through():
 
 func _on_check_area_entered(area: Area2D) -> void:
 	if not $Check/check.disabled:
-		HurtCount += 1
+		hurt_count += 1
 		Global.add_mr_hurt($Check, Vector2(0, 0))
 
-		if HurtCount >= 3 and not is_transporting:
+		if hurt_count >= 3 and not is_transporting:
 			is_transporting = true
 
 			Global.add_message_show(self, "传送开启！", 1.5, Vector2(500, 200))

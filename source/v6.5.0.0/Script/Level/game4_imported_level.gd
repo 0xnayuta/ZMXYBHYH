@@ -50,21 +50,21 @@ var _spawn_runtime_ready := false
 func _ready() -> void:
 	_play_level_bgm(_level_bgm_path())
 	_read_level_width_from_scene()
-	Global.CurrentLevel = display_name
+	Global.current_level = display_name
 	level_stage = stage_number
-	Global.GameOver = 1
+	Global.game_over = 1
 	if is_two_scene == null:
 		is_two_scene = false
 	_create_screen_walls()
 	var stage_total := maxi(4, _stage_count())
-	Monster_group.clear()
-	Monster_position_x.clear()
-	Monster_position_y.clear()
+	monster_group.clear()
+	monster_position_x.clear()
+	monster_position_y.clear()
 	for stage in range(1, stage_total + 1):
 		var stage_key := _stage_key(stage)
-		Monster_group[stage_key] = []
-		Monster_position_x[stage_key] = []
-		Monster_position_y[stage_key] = []
+		monster_group[stage_key] = []
+		monster_position_x[stage_key] = []
+		monster_position_y[stage_key] = []
 	_configure_level_monsters()
 	super._ready()
 	if Role_ != null:
@@ -93,17 +93,17 @@ func _play_level_bgm(bgm_path: String) -> void:
 func _configure_level_monsters() -> void:
 	for stage in range(1, _stage_count() + 1):
 		var stage_key := _stage_key(stage)
-		Monster_group[stage_key] = []
-		Monster_position_x[stage_key] = []
-		Monster_position_y[stage_key] = []
+		monster_group[stage_key] = []
+		monster_position_x[stage_key] = []
+		monster_position_y[stage_key] = []
 
 	for point in _birth_points():
 		var stage_key := _stage_key(int(point["stage"]))
 		var spawn_position: Vector2 = point["position"]
 		for _unit in range(int(point["total"])):
-			Monster_group[stage_key].append(int(point["monster"]))
-			Monster_position_x[stage_key].append(spawn_position.x)
-			Monster_position_y[stage_key].append(spawn_position.y)
+			monster_group[stage_key].append(int(point["monster"]))
+			monster_position_x[stage_key].append(spawn_position.x)
+			monster_position_y[stage_key].append(spawn_position.y)
 
 
 func _physics_process(delta: float) -> void:
@@ -126,9 +126,9 @@ func _apply_monster_count_multiplier() -> void:
 			var spawn_position: Vector2 = point["position"]
 			for _copy in range(1, _count_multiplier):
 				for _unit in range(int(point["total"])):
-					Monster_group[stage_key].append(int(point["monster"]))
-					Monster_position_x[stage_key].append(spawn_position.x)
-					Monster_position_y[stage_key].append(spawn_position.y)
+					monster_group[stage_key].append(int(point["monster"]))
+					monster_position_x[stage_key].append(spawn_position.x)
+					monster_position_y[stage_key].append(spawn_position.y)
 
 	_initialize_point_states()
 	_spawn_runtime_ready = true
@@ -150,7 +150,7 @@ func _initialize_point_states() -> void:
 
 func _preload_level_resources() -> void:
 	var level_monster_ids: Array = []
-	var first_stage_ids: Variant = Monster_group.get(_stage_key(1), [])
+	var first_stage_ids: Variant = monster_group.get(_stage_key(1), [])
 	if first_stage_ids is Array:
 		level_monster_ids.append_array(first_stage_ids)
 	_stage_preload_requested[1] = true
@@ -161,7 +161,7 @@ func _request_stage_resource_preload(stage: int) -> void:
 	if stage < 1 or stage > _stage_count() or _stage_preload_requested.has(stage):
 		return
 	_stage_preload_requested[stage] = true
-	var stage_ids: Variant = Monster_group.get(_stage_key(stage), [])
+	var stage_ids: Variant = monster_group.get(_stage_key(stage), [])
 	if not stage_ids is Array or stage_ids.is_empty():
 		return
 	call_deferred("_preload_stage_resources", (stage_ids as Array).duplicate())
@@ -300,9 +300,9 @@ func _apply_spawn_facing(created: BaseMonster, face: float) -> void:
 
 func _remove_pending_spawn(stage: int, monster_id: int, spawn_position: Vector2) -> void:
 	var stage_key := _stage_key(stage)
-	var ids: Array = Monster_group[stage_key]
-	var positions_x: Array = Monster_position_x[stage_key]
-	var positions_y: Array = Monster_position_y[stage_key]
+	var ids: Array = monster_group[stage_key]
+	var positions_x: Array = monster_position_x[stage_key]
+	var positions_y: Array = monster_position_y[stage_key]
 	var remove_index := -1
 	for index in range(ids.size()):
 		if int(ids[index]) != monster_id:
@@ -326,7 +326,7 @@ func check_can_create(stage: int) -> bool:
 	if stage < 1 or stage > _stage_count():
 		return false
 	var stage_key := _stage_key(stage)
-	return _get_alive_stage_monster_count() < 6 * _count_multiplier and not Monster_group[stage_key].is_empty()
+	return _get_alive_stage_monster_count() < 6 * _count_multiplier and not monster_group[stage_key].is_empty()
 
 
 func check_can_pass() -> bool:
@@ -334,7 +334,7 @@ func check_can_pass() -> bool:
 		return false
 	var stage_key := _stage_key(current_stage)
 	return (
-		Monster_group[stage_key].is_empty()
+		monster_group[stage_key].is_empty()
 		and _stage_points_finished(current_stage)
 		and _get_alive_stage_monster_count() == 0
 	)

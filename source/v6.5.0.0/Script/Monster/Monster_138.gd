@@ -1,24 +1,24 @@
 extends BaseMonster
 class_name Monster138
-var MyTarget: BaseMonster
-var LinkedTargets: Array[BaseMonster] = []
+var my_target: BaseMonster
+var linked_targets: Array[BaseMonster] = []
 
 
 func set_linked_targets(targets: Array[BaseMonster]) -> void:
-	LinkedTargets.clear()
+	linked_targets.clear()
 	for target in targets:
-		if target != null and is_instance_valid(target) and not LinkedTargets.has(target):
-			LinkedTargets.append(target)
-	MyTarget = LinkedTargets[0] if not LinkedTargets.is_empty() else null
+		if target != null and is_instance_valid(target) and not linked_targets.has(target):
+			linked_targets.append(target)
+	my_target = linked_targets[0] if not linked_targets.is_empty() else null
 
 
 func transfer_linked_damage(damage: int) -> void:
 	if damage <= 0:
 		return
-	if LinkedTargets.is_empty():
-		_transfer_damage_to_target(MyTarget, damage)
+	if linked_targets.is_empty():
+		_transfer_damage_to_target(my_target, damage)
 		return
-	for target in LinkedTargets:
+	for target in linked_targets:
 		_transfer_damage_to_target(target, damage)
 
 
@@ -30,18 +30,18 @@ func _transfer_damage_to_target(target: BaseMonster, damage: int) -> void:
 
 
 func _get_primary_target() -> BaseMonster:
-	if MyTarget != null and is_instance_valid(MyTarget) and MyTarget.Hp > 0:
-		return MyTarget
-	for target in LinkedTargets:
+	if my_target != null and is_instance_valid(my_target) and my_target.Hp > 0:
+		return my_target
+	for target in linked_targets:
 		if target != null and is_instance_valid(target) and target.Hp > 0:
-			MyTarget = target
+			my_target = target
 			return target
-	MyTarget = null
+	my_target = null
 	return null
 
 
 func monster_138():
-	self.CannotAttract = true
+	self.cannot_attract = true
 	self.is_boss = false
 	self.my_mr_name = "巫毒娃娃"
 	self.attack_in = 90
@@ -127,28 +127,28 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	last_hurt *= (0.8 + PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] * 0.005)
 	if last_hurt >= Hp:
 		last_hurt = Hp
-	GetHurt = last_hurt
+	hurt_received = last_hurt
 	if get_Player is BaseHero:
-		if get_Player.is_DeadLink:
+		if get_Player.is_dead_link:
 			get_Player.effect_reducehp(last_hurt, "real")
 	cure_ws_value()
 	hurt_reduce_hp(last_hurt, get_target)
 	transfer_linked_damage(last_hurt)
-	Global.TotalRoleHit += last_hurt
+	Global.total_role_hit += last_hurt
 	if get_target is BaseHero or get_target is MgHit or get_target is Role1Shallow or get_target is RoleBullet:
 		match get_target.HitDic["attackKind"]:
 			"physics":
-				Global.TotalPhyHit += last_hurt
+				Global.total_phy_hit += last_hurt
 			"magic":
-				Global.TotalMagHit += last_hurt
+				Global.total_mag_hit += last_hurt
 			"real":
-				Global.TotalRealHit += last_hurt
+				Global.total_real_hit += last_hurt
 	if not is_miss and last_hurt > 0:
 		if MainSet.set_data["MonsterLittleBlood"]:
 			if monster_blood_bar == null:
 				monster_blood_bar = Global.add_monster_blood(self, Vector2(-30, -90), Hp / float(SHp), Hp)
 		Global.add_sound(self, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
-		HurtSpecialEffect = Global.add_mr_hurt(pz, Vector2(0, 0))
+		hurt_special_effect = Global.add_mr_hurt(pz, Vector2(0, 0))
 	get_target = null
 
 

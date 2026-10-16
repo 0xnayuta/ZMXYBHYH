@@ -1,7 +1,7 @@
 extends BaseMagicWeapon
 
-var ADDTime: float
-var ADDBl: float = 1
+var add_time: float
+var add_bl: float = 1
 
 var role_6_scene = null
 var current_summon: Node = null
@@ -20,19 +20,19 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	self.FB_Level = PlayerData.get_most_level("zlwdah") + 1
-	weapon_level = self.FB_Level
+	self.fb_level = PlayerData.get_most_level("zlwdah") + 1
+	weapon_level = self.fb_level
 
 	if weapon_level >= 10:
 		summon_attribute_scale = 1.0
 	else:
 		summon_attribute_scale = 0.1 + (weapon_level - 1) * 0.1
 
-	needMp = 50 + self.FB_Level * 5
+	need_mp = 50 + self.fb_level * 5
 	if PlayerData.check_have_wx("zlwdah", "木"):
-		ADDTime = self.FB_Level * 0.1 + 3
+		add_time = self.fb_level * 0.1 + 3
 	else:
-		ADDTime = 3
+		add_time = 3
 
 	super._physics_process(delta)
 	if not is_use:
@@ -49,7 +49,7 @@ func show_skill():
 
 func use_over():
 	self.usecd = 5
-	Global.FB_CD = 1
+	Global.fb_cd = 1
 	is_use = false
 	skill_cd.start(5)
 

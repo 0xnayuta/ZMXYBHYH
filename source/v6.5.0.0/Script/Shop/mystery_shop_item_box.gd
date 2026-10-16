@@ -1,11 +1,11 @@
 extends TextureRect
 var _item_hover_inside := false
-@onready var ItemBox: Button = $ItemBox
+@onready var item_box: Button = $ItemBox
 var _item_hover_popup
-@onready var ItemNum: Label = $Num
-@onready var NeedValue: Label = $Need
-@onready var PurchaseButton: Button = $Purchase
-var AllItemList = {
+@onready var item_num: Label = $Num
+@onready var need_value: Label = $Need
+@onready var purchase_button: Button = $Purchase
+var all_item_list = {
 	"Box_1":
 	[
 		{"Name": "xuantie", "Value": 5, "WX": [], "Level": 0, "Need": 500},
@@ -82,38 +82,38 @@ var AllItemList = {
 		{"Name": "putongzlwsz", "Value": 1, "WX": [], "Level": 0, "Need": 50000}
 	]
 }
-var MyNum: int
-var NewList = {}
-var MyFather
-var IsOpen: bool
+var my_num: int
+var new_list = {}
+var my_father
+var is_open: bool
 @onready var mystery_shop_item_box: TextureRect = $"."
 
 
 func open():
-	IsOpen = true
-	ItemBox.disabled = false
-	ItemBox.visible = true
-	ItemNum.visible = true
-	NeedValue.visible = true
-	PurchaseButton.disabled = false
-	PurchaseButton.visible = true
+	is_open = true
+	item_box.disabled = false
+	item_box.visible = true
+	item_num.visible = true
+	need_value.visible = true
+	purchase_button.disabled = false
+	purchase_button.visible = true
 	mystery_shop_item_box.texture = load("res://Art/Shop/ShopItemBox.png")
 	self.set_box()
-	ItemNum.text = str(AE.AllEquipment_[NewList["Name"]][DataKeys.NAME]) + "×" + str(NewList["Value"])
-	NeedValue.text = str(NewList["Need"]) + "灵魂"
+	item_num.text = str(AE.all_equipment[new_list["Name"]][DataKeys.NAME]) + "×" + str(new_list["Value"])
+	need_value.text = str(new_list["Need"]) + "灵魂"
 
 
 func close():
-	IsOpen = false
+	is_open = false
 	mystery_shop_item_box.texture = load("res://Art/Shop/CloseItemBox.png")
-	ItemBox.disabled = true
-	ItemBox.visible = false
-	ItemNum.text = ""
-	ItemNum.visible = false
-	NeedValue.text = ""
-	NeedValue.visible = false
-	PurchaseButton.disabled = true
-	PurchaseButton.visible = false
+	item_box.disabled = true
+	item_box.visible = false
+	item_num.text = ""
+	item_num.visible = false
+	need_value.text = ""
+	need_value.visible = false
+	purchase_button.disabled = true
+	purchase_button.visible = false
 
 
 func _ready() -> void:
@@ -121,89 +121,89 @@ func _ready() -> void:
 
 
 func get_list():
-	return AllItemList["Box_" + str(MyNum)]
+	return all_item_list["Box_" + str(my_num)]
 
 
 func basic_set():
-	ItemBox.is_in_ldl_gz = true
-	ItemBox.is_in_hhgz = true
+	item_box.is_in_ldl_gz = true
+	item_box.is_in_hhgz = true
 
 
 func set_box():
-	var CurrentList = AllItemList["Box_" + str(MyNum)]
-	NewList = CurrentList[randi_range(0, CurrentList.size() - 1)]
-	var Type = AE.AllEquipment_[NewList["Name"]][DataKeys.TYPE]
+	var current_list = all_item_list["Box_" + str(my_num)]
+	new_list = current_list[randi_range(0, current_list.size() - 1)]
+	var Type = AE.all_equipment[new_list["Name"]][DataKeys.TYPE]
 	match Type:
 		"武器", "饰品", "防具", "时装", "头衔":
-			ItemBox.qh_level = NewList["Level"]
-			ItemBox.wx = []
+			item_box.qh_level = new_list["Level"]
+			item_box.wx = []
 		"法宝":
-			ItemBox.wx = NewList["WX"]
+			item_box.wx = new_list["WX"]
 		"道具", "消耗品":
-			ItemBox.total_number = NewList["Value"]
-	ItemBox.EQ_prop = AE.AllEquipment_[NewList["Name"]]
-	ItemBox.get_item_name = NewList["Name"]
-	ItemBox.set_meta("item_name", NewList["Name"])
-	ItemBox.set_button_icon(load_(NewList["Name"]))
+			item_box.total_number = new_list["Value"]
+	item_box.EQ_prop = AE.all_equipment[new_list["Name"]]
+	item_box.get_item_name = new_list["Name"]
+	item_box.set_meta("item_name", new_list["Name"])
+	item_box.set_button_icon(load_(new_list["Name"]))
 
 
 func _on_purchase_pressed() -> void:
 	if PlayerData.player_data["购买次数"] <= 0:
-		Global.add_message_show(Global.Windows_, "购买次数不足！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "购买次数不足！！", 1.5, Vector2(470, 300))
 		return
-	var Need: int = NewList["Need"]
+	var Need: int = new_list["Need"]
 	if PlayerData.get_soul() < Need:
-		Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "灵魂不足！！", 1.5, Vector2(470, 300))
 		return
 	PlayerData.spend_soul(Need)
 	PlayerData.player_data["购买次数"] -= 1
-	var Type = AE.AllEquipment_[NewList["Name"]][DataKeys.TYPE]
+	var Type = AE.all_equipment[new_list["Name"]][DataKeys.TYPE]
 	match Type:
 		"武器", "饰品", "防具", "时装", "头衔":
-			PlayerData.add_zb(NewList["Name"], NewList["Level"], {})
+			PlayerData.add_zb(new_list["Name"], new_list["Level"], {})
 		"法宝":
-			if NewList["WX"] == []:
-				PlayerData.add_fb(NewList["Name"], 0, Global.get_wx(0), {})
+			if new_list["WX"] == []:
+				PlayerData.add_fb(new_list["Name"], 0, Global.get_wx(0), {})
 			else:
-				PlayerData.add_fb(NewList["Name"], 0, NewList["WX"], {})
+				PlayerData.add_fb(new_list["Name"], 0, new_list["WX"], {})
 		"道具":
-			PlayerData.add_dj(NewList["Name"], NewList["Value"])
+			PlayerData.add_dj(new_list["Name"], new_list["Value"])
 		"消耗品":
-			PlayerData.add_xhp(NewList["Name"], NewList["Value"])
-	Global.add_message_show(Global.Windows_, "购买成功", 1.5, Vector2(520, 340))
+			PlayerData.add_xhp(new_list["Name"], new_list["Value"])
+	Global.add_message_show(Global.windows, "购买成功", 1.5, Vector2(520, 340))
 	open_and_close_box()
 	MemoryClass.save_game(Global.cd_path)
 
 
 func open_and_close_box():
-	match int(MyNum):
+	match int(my_num):
 		1:
-			for i in MyFather.ChildList1:
-				if i.IsOpen:
+			for i in my_father.child_list1:
+				if i.is_open:
 					i.open()
-			for i in MyFather.ChildList2:
-				if i.IsOpen:
+			for i in my_father.child_list2:
+				if i.is_open:
 					return
 			if randi_range(0, 100) < 50:
-				MyFather.item_2.open()
+				my_father.item_2.open()
 		2:
 			self.close()
-			MyFather.item_1.open()
+			my_father.item_1.open()
 			if randi_range(0, 100) < 50:
-				MyFather.item_3.open()
+				my_father.item_3.open()
 		3:
 			self.close()
-			MyFather.item_1.open()
+			my_father.item_1.open()
 			if randi_range(0, 100) < 40:
-				MyFather.item_4.open()
+				my_father.item_4.open()
 		4:
 			self.close()
-			MyFather.item_1.open()
+			my_father.item_1.open()
 			if randi_range(0, 100) < 10:
-				MyFather.item_5.open()
+				my_father.item_5.open()
 		5:
 			self.close()
-			MyFather.item_1.open()
+			my_father.item_1.open()
 
 
 func load_(name_):
@@ -246,7 +246,7 @@ func _show_item_info(item_box) -> void:
 	var item_name = item_box.get_item_name
 	if (item_name == "" or item_name == "empty") and item_box.has_meta("item_name"):
 		item_name = str(item_box.get_meta("item_name"))
-	if item_name == "" or item_name == "empty" or not AE.AllEquipment_.has(item_name):
+	if item_name == "" or item_name == "empty" or not AE.all_equipment.has(item_name):
 		return
 	var parent_node = Global.get_ui_popup_layer()
 	var popup_pos = Global.screen_popup_position()

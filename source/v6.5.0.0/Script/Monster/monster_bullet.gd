@@ -26,9 +26,9 @@ enum RuntimeKind {
 	MONSTER_101_2,
 	MONSTER_1407_5,
 }
-var CanCure: bool
-var IsThrow: bool
-var ThrowCount: int = 0
+var can_cure: bool
+var is_throw: bool
+var throw_count: int = 0
 var level = 0
 var def = 0
 var mdef = 0
@@ -54,13 +54,13 @@ var attackKind
 var hurtBack
 var hit_name
 var total_hit = 0
-var ShowMonster71: bool
-var FlySpeed: float = 0
-var Count: int = 0
+var show_monster71: bool
+var fly_speed: float = 0
+var count: int = 0
 @onready var middle: Node2D = $middle
-var IsSet: bool
-var PlayerPosition
-var MyFather: BaseMonster
+var is_set: bool
+var player_position
+var my_father: BaseMonster
 var pet_tiger_layer_sprites: Array[Sprite2D] = []
 var pet_tiger_last_frame: int = -1
 var monster5_stream_sprite: Sprite2D
@@ -878,7 +878,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	ThrowCount += 1
+	throw_count += 1
 	if skill_name.is_empty():
 		return
 	if skill_name != _runtime_skill_name:
@@ -896,10 +896,10 @@ func _physics_process(_delta: float) -> void:
 		RuntimeKind.PET_PHOENIX:
 			_physics_pet_phoenix_bullet(_delta)
 			return
-	if not IsSet:
-		PlayerPosition = RoleProp.get_nearest_monster_target_position(global_position)
+	if not is_set:
+		player_position = RoleProp.get_nearest_monster_target_position(global_position)
 		get_prop()
-		IsSet = true
+		is_set = true
 
 	if _runtime_kind == RuntimeKind.MONSTER_1410:
 		if monster1410_life_left > 0.0:
@@ -923,20 +923,20 @@ func _physics_process(_delta: float) -> void:
 
 	match _runtime_kind:
 		RuntimeKind.MONSTER_90:
-			self.position += Global.get_position_between(self, RoleProp.SourcePlayer) * FlySpeed * 0.5
-			FlySpeed += 2
-			if FlySpeed >= 10:
-				FlySpeed = 10
+			self.position += Global.get_position_between(self, RoleProp.source_player) * fly_speed * 0.5
+			fly_speed += 2
+			if fly_speed >= 10:
+				fly_speed = 10
 		RuntimeKind.MONSTER_101_2:
-			self.position += Global.get_position_between(self, RoleProp.SourcePlayer) * FlySpeed * 0.5
-			FlySpeed += 0.1
-			if FlySpeed >= 5:
-				FlySpeed = 5
-			if Count % 240 == 0:
+			self.position += Global.get_position_between(self, RoleProp.source_player) * fly_speed * 0.5
+			fly_speed += 0.1
+			if fly_speed >= 5:
+				fly_speed = 5
+			if count % 240 == 0:
 				move_player_toself()
-			Count += 1
+			count += 1
 		RuntimeKind.MONSTER_1407_5:
-			var player = RoleProp.SourcePlayer
+			var player = RoleProp.source_player
 			if player and is_instance_valid(player):
 				var distance = position.distance_to(player.position)
 				var max_radius = 2000
@@ -2239,7 +2239,7 @@ func _physics_pet_tiger_bullet(delta: float) -> void:
 			var frame_index: int = clampi(bullet_ani.frame, 0, timeline.size() - 1)
 			has_visible_frame = not Array(timeline[frame_index]).is_empty()
 		hit_box.monitoring = has_visible_frame and not bool(get_meta("pet_tiger_disabled", false))
-	if ThrowCount > int(PET_TIGER_BULLET_FPS * 2.0):
+	if throw_count > int(PET_TIGER_BULLET_FPS * 2.0):
 		queue_free()
 
 
@@ -2278,7 +2278,7 @@ func _apply_pet_tiger_id60_six_hit(role: Node) -> void:
 		return
 	if not role.has_method("effect_reducehp"):
 		return
-	var owner := MyFather
+	var owner := my_father
 	if owner == null and get_parent() != null and get_parent().get_parent() is BaseMonster:
 		owner = get_parent().get_parent()
 	var hit_data = AttList
@@ -2453,7 +2453,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 
 	if skill_name == "Monster1410Bullet1" and bullet_player.current_animation == "Monster1410Bullet1_1":
 		var role = _get_hit_owner(area)
-		if role == RoleProp.SourcePlayer or (role and role.is_in_group("players")):
+		if role == RoleProp.source_player or (role and role.is_in_group("players")):
 			var stun_effect = {
 				"Name": "stun",
 				"AddTime": 2,
@@ -2465,12 +2465,12 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			}
 			Global.add_buff(role.buff, stun_effect)
 
-			if not clone_spawned and MyFather and MyFather.has_method("spawn_clone"):
+			if not clone_spawned and my_father and my_father.has_method("spawn_clone"):
 				clone_spawned = true
-				MyFather.call_deferred("spawn_clone")
+				my_father.call_deferred("spawn_clone")
 
 	if get_parent().get_parent() is Monster85:
-		get_parent().get_parent().HitCount += 1
+		get_parent().get_parent().hit_count += 1
 
 	var role = _get_hit_owner(area)
 	if not role:
@@ -2573,7 +2573,7 @@ func monster_70_bullet_2():
 			po = Vector2(-168, 140)
 		else:
 			po = Vector2(168, 140)
-		if ShowMonster71:
+		if show_monster71:
 			Global.add_bullet(
 				"monster_70_bullet_2", get_parent().get_parent().bullet, dir, 1, po + position, hit_name, objattackDic
 			)
@@ -2581,13 +2581,13 @@ func monster_70_bullet_2():
 
 func move_player_toself():
 	var tween = create_tween()
-	tween.tween_property(RoleProp.SourcePlayer, "position", position, 0.6)
+	tween.tween_property(RoleProp.source_player, "position", position, 0.6)
 
 
 func tween_to_player():
 	await get_tree().create_timer(0.2, false).timeout
 	var desired_angle
-	desired_angle = position.angle_to_point(RoleProp.SourcePlayer.position)
+	desired_angle = position.angle_to_point(RoleProp.source_player.position)
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "rotation", desired_angle, 0.2)
 
@@ -2610,14 +2610,14 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 		return
 
 	if skill_name == "Monster110Bullet":
-		if ThrowCount > 60:
+		if throw_count > 60:
 			if body is BaseMonster:
 				if body is Monster110:
 					body.cure_hp(body.SHp * 0.05)
 					body.Skill_1_CD = 0
 					self.queue_free()
 	if skill_name == "Monster142Bullet1":
-		if CanCure:
+		if can_cure:
 			if body is BaseMonster:
 				if body is Monster142:
 					body.cure_hp(body.SHp * 0.1)
@@ -2670,24 +2670,24 @@ func look_at_player():
 					self.look_at(closest_monster.position)
 					return
 
-	self.look_at(RoleProp.SourcePlayer.position)
+	self.look_at(RoleProp.source_player.position)
 
 
 func can_curee():
-	CanCure = true
+	can_cure = true
 
 
 func add_round_shallow():
-	if IsThrow:
+	if is_throw:
 		var effect_scene := load("res://Scene/hero/role_1/ws_effect.tscn") as PackedScene
 		if effect_scene == null:
 			return
-		var WS_Effect = effect_scene.instantiate()
-		WS_Effect.add_child(bullet_ani.duplicate())
-		WS_Effect.live_time = 0.4
-		WS_Effect.color = Color(1, 1, 1, 0.8)
-		WS_Effect.set("position", get("position"))
-		get_parent().add_child(WS_Effect)
+		var ws_effect = effect_scene.instantiate()
+		ws_effect.add_child(bullet_ani.duplicate())
+		ws_effect.live_time = 0.4
+		ws_effect.color = Color(1, 1, 1, 0.8)
+		ws_effect.set("position", get("position"))
+		get_parent().add_child(ws_effect)
 
 
 func _on_queue_timer_timeout() -> void:
@@ -2698,7 +2698,7 @@ func _on_queue_timer_timeout() -> void:
 
 
 func _on_is_throw_close_timeout() -> void:
-	IsThrow = false
+	is_throw = false
 
 
 func move_with_reflection(velocity: Vector2, delta: float):
@@ -2748,7 +2748,7 @@ func destroy_with_explosion():
 func redirect_to_player():
 	if not is_inside_tree():
 		return
-	var player = RoleProp.SourcePlayer
+	var player = RoleProp.source_player
 	if player and is_instance_valid(player):
 		var new_dir = (player.global_position - global_position).normalized()
 		var speed = bounce_velocity.length()

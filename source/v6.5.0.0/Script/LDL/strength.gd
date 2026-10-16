@@ -122,7 +122,7 @@ func set_color():
 func _on_qh__pressed() -> void:
 	var selected_name: String = str(MLdl.qh_list.get(DataKeys.NAME, ""))
 	var selected_data: Dictionary = MLdl.qh_list.get("Data", {}) if MLdl.qh_list.get("Data", {}) is Dictionary else {}
-	var template_data: Dictionary = AE.AllEquipment_.get(selected_name, {})
+	var template_data: Dictionary = AE.all_equipment.get(selected_name, {})
 	if (
 		bool(selected_data.get("不可强化", template_data.get("不可强化", false)))
 		and selected_name not in ["cjxianjie", "cdxianjie", "zhxianjie"]
@@ -130,7 +130,7 @@ func _on_qh__pressed() -> void:
 		Global.add_message_show(get_parent(), "该装备无法强化！", 1.5, Vector2(15, -45))
 		return
 	if old_zb_name == "empty" or new_zb_name == "empty" or selected_name == "":
-		Global.add_message_show(Global.Windows_, "请先选择一件装备！！！", 1.5, Vector2(470, 295))
+		Global.add_message_show(Global.windows, "请先选择一件装备！！！", 1.5, Vector2(470, 295))
 		return
 	var position_index: int = int(MLdl.qh_list.get("位置", -1))
 	var equipment: Variant = _get_selected_equipment(position_index)
@@ -140,10 +140,10 @@ func _on_qh__pressed() -> void:
 	var current_level = int(equipment.get(DataKeys.ENHANCE_LEVEL, 0))
 	MLdl.qh_list[DataKeys.ENHANCE_LEVEL] = current_level
 	qh_level = current_level
-	var Type = AE.AllEquipment_.get(MLdl.qh_list[DataKeys.NAME], {}).get(DataKeys.QUALITY, "")
-	var MaxLevel: int = _get_strength_max_level(MLdl.qh_list[DataKeys.NAME])
-	if current_level >= MaxLevel:
-		Global.add_message_show(get_parent(), str(Type) + "品质装备最高强化" + str(MaxLevel) + "级！！", 1.5, Vector2(15, -45))
+	var Type = AE.all_equipment.get(MLdl.qh_list[DataKeys.NAME], {}).get(DataKeys.QUALITY, "")
+	var max_level: int = _get_strength_max_level(MLdl.qh_list[DataKeys.NAME])
+	if current_level >= max_level:
+		Global.add_message_show(get_parent(), str(Type) + "品质装备最高强化" + str(max_level) + "级！！", 1.5, Vector2(15, -45))
 		return
 	old_zb_name = MLdl.qh_list[DataKeys.NAME]
 	if PlayerData.get_item_data(qhs_1_name) >= qhs_1_num and PlayerData.get_item_data(qhs_2_name) >= qhs_2_num:
@@ -159,8 +159,8 @@ func _on_qh__pressed() -> void:
 			if str(MLdl.qh_list.get("来源", "装备背包")) == "人物穿戴":
 				RoleProp.get_equ_last_pro()
 				RoleProp.get_last_prop()
-				if is_instance_valid(RoleProp.SourcePlayer):
-					RoleProp.SourcePlayer.on_eqchange()
+				if is_instance_valid(RoleProp.source_player):
+					RoleProp.source_player.on_eqchange()
 			Global.add_message_show(get_parent(), "强化成功！！", 1.5, Vector2(15, -45))
 		else:
 			Global.add_message_show(get_parent(), "灵魂不足！无法强化！！", 1.5, Vector2(15, -45))
@@ -202,7 +202,7 @@ func _get_selected_equipment(position_index: int) -> Variant:
 
 
 func _show_invalid_strength_selection() -> void:
-	Global.add_message_show(Global.Windows_, "装备位置已变化，请重新选择装备！", 1.5, Vector2(470, 295))
+	Global.add_message_show(Global.windows, "装备位置已变化，请重新选择装备！", 1.5, Vector2(470, 295))
 	remove_infomation()
 
 

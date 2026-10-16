@@ -1,10 +1,10 @@
 extends BaseMonster
 class_name Monster62
 
-var ShouldFly: bool
-var IsCall: bool
-var OnsetEatblood: bool
-var RemoveBlood: bool
+var should_fly: bool
+var is_call: bool
+var onset_eatblood: bool
+var remove_blood: bool
 
 
 func monster_62():

@@ -7,18 +7,18 @@ extends BaseLevel
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "鬼门关"
+	Global.current_level = "鬼门关"
 	sd.start(randi_range(2, 3))
 	Global.add_bgm(self, "res://Music/level/26_bg1.mp3")
 	self.level_stage = 13
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [27, 27, 27, 27],
 		"stage_2": [27, 27, 28, 27, 27, 28, 27, 27, 28, 27, 27, 27, 27, 27, 28, 27, 27, 27, 27, 27, 28, 28],
 		"stage_3": [28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28],
 		"stage_4": [33],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [600, 600, 600, 600],
 		"stage_2":
 		[
@@ -82,7 +82,7 @@ func _ready() -> void:
 		],
 		"stage_4": [4220],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [360, 360, 360, 360],
 		"stage_2":
 		[

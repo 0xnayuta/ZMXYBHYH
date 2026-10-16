@@ -124,7 +124,7 @@ func _ready() -> void:
 	Skill_2_CD = 8
 	Skill_3_CD = 15
 	Skill_4_CD = 20
-	Skill_5_CD = 30
+	skill_5_cd = 30
 
 	instance_count += 1
 
@@ -155,7 +155,7 @@ func ai_think():
 					do_hit_3()
 				if Skill_4_CD <= 0:
 					do_hit_4()
-				if Skill_5_CD <= 0:
+				if skill_5_cd <= 0:
 					do_hit_5()
 			else:
 				stop_move()
@@ -167,7 +167,7 @@ func ai_think():
 					do_hit_3()
 				if Skill_4_CD <= 0:
 					do_hit_4()
-				if Skill_5_CD <= 0:
+				if skill_5_cd <= 0:
 					do_hit_5()
 
 

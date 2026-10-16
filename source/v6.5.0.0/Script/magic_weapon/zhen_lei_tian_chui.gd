@@ -24,8 +24,8 @@ var _cast_token: int = 0
 
 
 func _ready() -> void:
-	FB_Level = _get_weapon_level()
-	needMp = 50
+	fb_level = _get_weapon_level()
+	need_mp = 50
 	mg_action.sprite_frames = _build_frames(
 		"wait", "res://Art/MagicWeapon/MagicWeapon_ZhenLeiTianChui/idle_frames/%d.png", IDLE_FRAME_COUNT, true
 	)
@@ -42,8 +42,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	FB_Level = _get_weapon_level()
-	needMp = 50
+	fb_level = _get_weapon_level()
+	need_mp = 50
 	super._physics_process(delta)
 	if not is_use:
 		mg_action.visible = skill_cd.is_stopped()
@@ -95,7 +95,7 @@ func show_skill() -> void:
 
 
 func _get_casting_hero() -> BaseHero:
-	var source_player: Variant = RoleProp.SourcePlayer
+	var source_player: Variant = RoleProp.source_player
 	if source_player is BaseHero and is_instance_valid(source_player):
 		return source_player as BaseHero
 	if Player != null and is_instance_valid(Player):
@@ -104,7 +104,7 @@ func _get_casting_hero() -> BaseHero:
 
 
 func _place_effect(casting_hero: BaseHero) -> void:
-	var direction_sign := 1.0 if bool(RoleProp.Directon) else -1.0
+	var direction_sign := 1.0 if bool(RoleProp.directon) else -1.0
 	effect_anchor.global_position = (
 		casting_hero.global_position + Vector2(direction_sign * EFFECT_FORWARD_OFFSET, EFFECT_VERTICAL_OFFSET)
 	)
@@ -204,7 +204,7 @@ func use_over() -> void:
 	_clear_effects()
 	mg_action.visible = false
 	is_use = false
-	Global.FB_CD = 1
+	Global.fb_cd = 1
 	usecd = COOLDOWN_DURATION
 	if PlayerData.check_have_wx(WEAPON_ID, "木"):
 		usecd *= 0.8

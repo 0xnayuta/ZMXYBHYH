@@ -13,7 +13,7 @@ func _get_body_front_frames(equipment_id: String) -> SpriteFrames:
 	return NeZhaEquipmentVisuals.get_body_front_frames(equipment_id)
 
 
-@onready var role_body: Sprite2D = get_node("../RoleBody")
+@onready var role_body: Sprite2D = get_node("../role_body")
 @onready var role_equipment: Sprite2D = get_node("../RoleEquipment")
 @onready var role_body_front: Sprite2D = get_node("../RoleBodyFront")
 

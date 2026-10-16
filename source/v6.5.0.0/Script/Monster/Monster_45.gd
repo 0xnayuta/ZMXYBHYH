@@ -1,11 +1,11 @@
 extends BaseMonster
-var Curecount: int = 0
+var curecount: int = 0
 
 
 func monster_45():
 	self.is_bt = true
 	self.is_boss = true
-	self.CannotAttract = true
+	self.cannot_attract = true
 	self.my_mr_name = "鬼门·贪婪"
 	self.attack_in = 0
 	self.level = 90
@@ -54,14 +54,14 @@ func ai_think():
 	velocity.x = 0
 	if is_on_floor():
 		velocity.y = 0
-	if Curecount % 120 == 0:
+	if curecount % 120 == 0:
 		monster_cure_hp()
-	Curecount += 1
+	curecount += 1
 
 
 func monster_cure_hp():
-	var BaseLevel_ = get_parent().get_parent() as BaseLevel
-	for i in BaseLevel_.monster.get_children():
+	var base_level = get_parent().get_parent() as BaseLevel
+	for i in base_level.monster.get_children():
 		if i != null:
 			if i is BaseMonster and not i is Monster138:
 				i.cure_hp(i.SHp * 0.02)

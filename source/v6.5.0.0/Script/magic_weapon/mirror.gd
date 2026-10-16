@@ -1,17 +1,17 @@
 extends BaseMagicWeapon
 class_name Mirror
-var FixTarget: BaseMonster
-var FollowTarget: BaseObject
-var BloodEffect
-var InitSpeed: int = 5
-var Speed: int = 5
-var isBegin: bool
-var FixTime: int = 960
+var fix_target: BaseMonster
+var follow_target: BaseObject
+var blood_effect
+var init_speed: int = 5
+var speed: int = 5
+var is_begin: bool
+var fix_time: int = 960
 var MonsterList: Array = []
-var TotalHp: int = 0
-var IsShowSkill: bool
+var total_hp: int = 0
+var is_show_skill: bool
 var velocity
-var IsFollow: bool
+var is_follow: bool
 var _stream_sprite: Sprite2D
 var _stream_time := 0.0
 var _stream_frame := -1
@@ -182,15 +182,15 @@ func _physics_process(delta: float) -> void:
 	if monster_version != _monster_snapshot_version:
 		_monster_snapshot_version = monster_version
 		MonsterList = _get_active_monster_snapshot()
-	self.FB_Level = PlayerData.get_most_level("bsyj") + 1
+	self.fb_level = PlayerData.get_most_level("bsyj") + 1
 	var has_wood: bool = bool(PlayerData.check_have_wx("bsyj", "木"))
-	var attack_signature := "%d:%s:%d" % [self.FB_Level, str(has_wood), int(RoleProp.roleprop.SHp)]
+	var attack_signature := "%d:%s:%d" % [self.fb_level, str(has_wood), int(RoleProp.roleprop.SHp)]
 	if attack_signature != _attack_signature:
 		_attack_signature = attack_signature
 		objattackDic["hit1"] = {
 			"power":
 			int(
-				RoleProp.roleprop.SHp * ((0.16 + self.FB_Level * 0.01) if has_wood else (0.08 + self.FB_Level * 0.005))
+				RoleProp.roleprop.SHp * ((0.16 + self.fb_level * 0.01) if has_wood else (0.08 + self.fb_level * 0.005))
 			),
 			"hurtBack": [0, 0],
 			"attackKind": "real",
@@ -204,65 +204,65 @@ func _physics_process(delta: float) -> void:
 				"DeBuff": true
 			}
 		}
-	needMp = 25
+	need_mp = 25
 	var a_2
 	super._physics_process(delta)
-	if FollowTarget != null:
+	if follow_target != null:
 		var target: Vector2
-		if FollowTarget is BaseMonster:
-			target = FollowTarget.position - Vector2(0, 140)
-		elif FollowTarget is BaseHero:
-			target = FollowTarget.position - Vector2(0, 70)
-		velocity = position.direction_to(target) * Speed
+		if follow_target is BaseMonster:
+			target = follow_target.position - Vector2(0, 140)
+		elif follow_target is BaseHero:
+			target = follow_target.position - Vector2(0, 70)
+		velocity = position.direction_to(target) * speed
 		self.position.x = self.position.x + velocity.x
 		self.position.y = self.position.y + velocity.y
-		if Speed < 15:
-			Speed += 1
+		if speed < 15:
+			speed += 1
 		a_2 = position.distance_to(target)
 		if a_2 < 10:
-			if FollowTarget == FixTarget:
-				isBegin = true
-				FollowTarget = null
-				Speed = InitSpeed
-			elif FollowTarget == Player:
+			if follow_target == fix_target:
+				is_begin = true
+				follow_target = null
+				speed = init_speed
+			elif follow_target == Player:
 				use_over()
-				Player.f_bcure_hp(TotalHp)
-				TotalHp = 0
+				Player.f_bcure_hp(total_hp)
+				total_hp = 0
 			else:
 				use_over()
-				FixTime = 0
+				fix_time = 0
 
-	if isBegin:
-		if FixTarget != null:
-			self.position = FixTarget.position - Vector2(0, 140)
-			if FixTime % 60 == 0:
+	if is_begin:
+		if fix_target != null:
+			self.position = fix_target.position - Vector2(0, 140)
+			if fix_time % 60 == 0:
 				add_special_effect()
-				if FixTarget == null or not FixTarget is BaseMonster:
-					FixTime = 0
+				if fix_target == null or not fix_target is BaseMonster:
+					fix_time = 0
 				else:
-					if FixTarget != null and FixTarget is BaseMonster:
-						Global.add_buff(FixTarget.buff, objattackDic["hit1"]["addeffect"])
-						TotalHp += reduce_hp()
+					if fix_target != null and fix_target is BaseMonster:
+						Global.add_buff(fix_target.buff, objattackDic["hit1"]["addeffect"])
+						total_hp += reduce_hp()
 					else:
-						FixTime = 0
+						fix_time = 0
 		else:
-			FixTime = 0
+			fix_time = 0
 
-		if FixTime == 0:
-			FollowTarget = Player
-			FixTarget = null
-			isBegin = false
-		if FixTime > 0:
-			FixTime -= 1
+		if fix_time == 0:
+			follow_target = Player
+			fix_target = null
+			is_begin = false
+		if fix_time > 0:
+			fix_time -= 1
 	_update_stream_sprite(delta)
 
 
 func show_skill():
 	if _monster_snapshot_version < 0:
 		MonsterList = _get_active_monster_snapshot()
-	IsFollow = true
-	IsShowSkill = true
-	Global.FB_CD = 5
+	is_follow = true
+	is_show_skill = true
+	Global.fb_cd = 5
 	var Monster: BaseMonster = null
 	var a_2 = 0
 	var Monster_2: BaseMonster = null
@@ -287,26 +287,26 @@ func show_skill():
 		a_2 += 1
 	if Monster != null:
 		mg_player.play("hit")
-		FixTarget = Monster
-		FollowTarget = FixTarget
-	if FollowTarget == null or FixTarget == null:
-		RoleProp.roleprop.Mp += needMp
+		fix_target = Monster
+		follow_target = fix_target
+	if follow_target == null or fix_target == null:
+		RoleProp.roleprop.Mp += need_mp
 		use_over()
-	IsShowSkill = false
+	is_show_skill = false
 
 
 func use_over():
-	IsFollow = false
-	IsShowSkill = false
-	isBegin = false
-	FixTime = 60 * 16
+	is_follow = false
+	is_show_skill = false
+	is_begin = false
+	fix_time = 60 * 16
 	is_use = false
-	Global.FB_CD = 0
+	Global.fb_cd = 0
 	self.usecd = 0
 	skill_cd.start(1)
-	FollowTarget = null
-	isBegin = false
-	Speed = InitSpeed
+	follow_target = null
+	is_begin = false
+	speed = init_speed
 
 
 func _on_check_monster_body_entered(body: Node2D) -> void:
@@ -317,7 +317,7 @@ func _on_check_monster_body_entered(body: Node2D) -> void:
 
 func reduce_hp():
 	var hurt = int(objattackDic["hit1"]["power"] / 15)
-	FixTarget.reduce_hp(hurt)
+	fix_target.reduce_hp(hurt)
 	return hurt
 
 
@@ -334,8 +334,8 @@ func check_monster_death():
 
 
 func free() -> void:
-	FollowTarget = null
-	FixTarget = null
+	follow_target = null
+	fix_target = null
 
 
 func add_special_effect():
@@ -343,8 +343,8 @@ func add_special_effect():
 
 
 func _on_timer_timeout() -> void:
-	if not isBegin:
-		if FollowTarget == null and FixTarget == null:
+	if not is_begin:
+		if follow_target == null and fix_target == null:
 			use_over()
 
 

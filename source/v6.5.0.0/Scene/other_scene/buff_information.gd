@@ -1,37 +1,37 @@
 extends MarginContainer
 var BuffName: String
 @onready var buff_infor: Label = $MarginContainer/BuffInfor
-var DataList = {}
-var TotalTimes: int = 1
-var LastHurt: float
-var MMTime: int = 99999
-var Parent
-var OtherText: String
+var data_list = {}
+var total_times: int = 1
+var last_hurt: float
+var mm_time: int = 99999
+var parent_node
+var other_text: String
 
 
 func _physics_process(delta: float) -> void:
-	if DataList.has("CanRemove"):
-		if DataList["CanRemove"]:
-			OtherText = "(低级负面)"
+	if data_list.has("CanRemove"):
+		if data_list["CanRemove"]:
+			other_text = "(低级负面)"
 		else:
-			OtherText = "(高级负面)"
+			other_text = "(高级负面)"
 	else:
-		OtherText = "(低级负面)"
-	if Parent == null:
+		other_text = "(低级负面)"
+	if parent_node == null:
 		return
-	BuffName = Parent.DataList["Name"]
-	var LastTime = Parent.BuffTime
-	var Value = Parent.DataList["value"]
-	var ReduceInterval = Parent.DataList["ReduceInterval"]
-	var ATKKind = Parent.DataList["AttackKind"]
-	var Get_DamageType: String
-	match ATKKind:
+	BuffName = parent_node.data_list["Name"]
+	var LastTime = parent_node.BuffTime
+	var Value = parent_node.data_list["value"]
+	var ReduceInterval = parent_node.data_list["ReduceInterval"]
+	var atk_kind = parent_node.data_list["AttackKind"]
+	var get_damage_type: String
+	match atk_kind:
 		"physics":
-			Get_DamageType = "物理"
+			get_damage_type = "物理"
 		"magic":
-			Get_DamageType = "魔法"
+			get_damage_type = "魔法"
 		"real":
-			Get_DamageType = "真实"
+			get_damage_type = "真实"
 	match BuffName:
 		"PetLifeBonus":
 			buff_infor.text = "生命加成：生命上限增加%d，剩余%s秒。" % [int(Value), str(snapped(LastTime, 0.1))]
@@ -40,17 +40,17 @@ func _physics_process(delta: float) -> void:
 		"PetDefenseBonus":
 			buff_infor.text = (
 				"防御加成：物防增加%d，魔防增加%d，剩余%s秒。"
-				% [int(Value), int(DataList.get("magic_value", Value)), str(snapped(LastTime, 0.1))]
+				% [int(Value), int(data_list.get("magic_value", Value)), str(snapped(LastTime, 0.1))]
 			)
 		"PetManaBonus":
 			buff_infor.text = "魔法加成：魔法上限增加%d，剩余%s秒。" % [int(Value), str(snapped(LastTime, 0.1))]
 		"Ice":
-			if LastTime < MMTime:
-				buff_infor.text = "该单位处于冰冻状态，" + str(snapped(LastTime, 0.1)) + "秒内无法行动。" + OtherText
+			if LastTime < mm_time:
+				buff_infor.text = "该单位处于冰冻状态，" + str(snapped(LastTime, 0.1)) + "秒内无法行动。" + other_text
 			else:
-				buff_infor.text = "该单位处于被永久冰冻无法行动。" + OtherText
+				buff_infor.text = "该单位处于被永久冰冻无法行动。" + other_text
 		"Bleed":
-			if LastTime < MMTime:
+			if LastTime < mm_time:
 				buff_infor.text = (
 					"该单位处于持续"
 					+ str(snapped(LastTime, 0.1))
@@ -58,10 +58,10 @@ func _physics_process(delta: float) -> void:
 					+ str(ReduceInterval)
 					+ "秒"
 					+ "受到"
-					+ str(LastHurt)
-					+ str(Get_DamageType)
+					+ str(last_hurt)
+					+ str(get_damage_type)
 					+ "伤害。"
-					+ OtherText
+					+ other_text
 				)
 			else:
 				buff_infor.text = (
@@ -69,13 +69,13 @@ func _physics_process(delta: float) -> void:
 					+ str(ReduceInterval)
 					+ "秒"
 					+ "受到"
-					+ str(LastHurt)
-					+ str(Get_DamageType)
+					+ str(last_hurt)
+					+ str(get_damage_type)
 					+ "伤害。"
-					+ OtherText
+					+ other_text
 				)
 		"poision":
-			if LastTime < MMTime:
+			if LastTime < mm_time:
 				buff_infor.text = (
 					"该单位处于持续"
 					+ str(snapped(LastTime, 0.1))
@@ -83,10 +83,10 @@ func _physics_process(delta: float) -> void:
 					+ str(ReduceInterval)
 					+ "秒"
 					+ "受到"
-					+ str(LastHurt)
-					+ str(Get_DamageType)
+					+ str(last_hurt)
+					+ str(get_damage_type)
 					+ "伤害。"
-					+ OtherText
+					+ other_text
 				)
 			else:
 				buff_infor.text = (
@@ -94,13 +94,13 @@ func _physics_process(delta: float) -> void:
 					+ str(ReduceInterval)
 					+ "秒"
 					+ "受到"
-					+ str(LastHurt)
-					+ str(Get_DamageType)
+					+ str(last_hurt)
+					+ str(get_damage_type)
 					+ "伤害。"
-					+ OtherText
+					+ other_text
 				)
 		"Fire":
-			if LastTime < MMTime:
+			if LastTime < mm_time:
 				buff_infor.text = (
 					"该单位处于持续"
 					+ str(snapped(LastTime, 0.1))
@@ -108,10 +108,10 @@ func _physics_process(delta: float) -> void:
 					+ str(ReduceInterval)
 					+ "秒"
 					+ "受到"
-					+ str(LastHurt)
-					+ str(Get_DamageType)
+					+ str(last_hurt)
+					+ str(get_damage_type)
 					+ "伤害。"
-					+ OtherText
+					+ other_text
 				)
 			else:
 				buff_infor.text = (
@@ -119,90 +119,90 @@ func _physics_process(delta: float) -> void:
 					+ str(ReduceInterval)
 					+ "秒"
 					+ "受到"
-					+ str(LastHurt)
-					+ str(Get_DamageType)
+					+ str(last_hurt)
+					+ str(get_damage_type)
 					+ "伤害。"
-					+ OtherText
+					+ other_text
 				)
 		"stun":
-			if LastTime < MMTime:
-				buff_infor.text = "该单位处于眩晕状态，" + str(snapped(LastTime, 0.1)) + "秒内无法行动。" + OtherText
+			if LastTime < mm_time:
+				buff_infor.text = "该单位处于眩晕状态，" + str(snapped(LastTime, 0.1)) + "秒内无法行动。" + other_text
 			else:
-				buff_infor.text = "该单位被永久眩晕无法行动。" + OtherText
+				buff_infor.text = "该单位被永久眩晕无法行动。" + other_text
 		"EyeFix":
-			if LastTime < MMTime:
-				buff_infor.text = "该单位处于眩目状态，" + str(snapped(LastTime, 0.1)) + "秒内无法行动。" + OtherText
+			if LastTime < mm_time:
+				buff_infor.text = "该单位处于眩目状态，" + str(snapped(LastTime, 0.1)) + "秒内无法行动。" + other_text
 			else:
-				buff_infor.text = "该单位被永久眩目无法行动。" + OtherText
+				buff_infor.text = "该单位被永久眩目无法行动。" + other_text
 		"DeadLink":
-			if LastTime < MMTime:
-				buff_infor.text = "该单位被施加" + str(snapped(LastTime, 0.1)) + "秒的死亡连接，在此期间攻击施加者，自身也会受到同等伤害。" + OtherText
+			if LastTime < mm_time:
+				buff_infor.text = "该单位被施加" + str(snapped(LastTime, 0.1)) + "秒的死亡连接，在此期间攻击施加者，自身也会受到同等伤害。" + other_text
 			else:
-				buff_infor.text = "该单位永久施加死亡连接，在此期间攻击施加者，自身也会受到同等伤害。" + OtherText
+				buff_infor.text = "该单位永久施加死亡连接，在此期间攻击施加者，自身也会受到同等伤害。" + other_text
 		"nlls":
-			if LastTime < MMTime:
-				buff_infor.text = str(snapped(LastTime, 0.1)) + "秒内，玩家移动的越快，法力和生命流失的越快。" + OtherText
+			if LastTime < mm_time:
+				buff_infor.text = str(snapped(LastTime, 0.1)) + "秒内，玩家移动的越快，法力和生命流失的越快。" + other_text
 			else:
-				buff_infor.text = "玩家移动的越快，法力和生命流失的越快。" + OtherText
+				buff_infor.text = "玩家移动的越快，法力和生命流失的越快。" + other_text
 		"speed_down":
-			if LastTime < MMTime:
-				buff_infor.text = str(snapped(LastTime, 0.1)) + "秒内，移动速度降低" + str(LastHurt * 100) + "%" + OtherText
+			if LastTime < mm_time:
+				buff_infor.text = str(snapped(LastTime, 0.1)) + "秒内，移动速度降低" + str(last_hurt * 100) + "%" + other_text
 			else:
-				buff_infor.text = "移动速度永久降低" + str(snapped(LastHurt, 0.1) * 100) + "%" + OtherText
+				buff_infor.text = "移动速度永久降低" + str(snapped(last_hurt, 0.1) * 100) + "%" + other_text
 		"Boundground":
-			if LastTime < MMTime:
-				buff_infor.text = "该单位处于缚地状态，" + str(snapped(LastTime, 0.1)) + "秒内无法跳跃。" + OtherText
+			if LastTime < mm_time:
+				buff_infor.text = "该单位处于缚地状态，" + str(snapped(LastTime, 0.1)) + "秒内无法跳跃。" + other_text
 			else:
-				buff_infor.text = "该单位被永久缚地无法跳跃。" + OtherText
+				buff_infor.text = "该单位被永久缚地无法跳跃。" + other_text
 		"silent":
-			if LastTime < MMTime:
-				buff_infor.text = "该单位处于沉默状态，" + str(snapped(LastTime, 0.1)) + "秒内无法使用技能。" + OtherText
+			if LastTime < mm_time:
+				buff_infor.text = "该单位处于沉默状态，" + str(snapped(LastTime, 0.1)) + "秒内无法使用技能。" + other_text
 			else:
-				buff_infor.text = "该单位被永久沉默无法使用技能。" + OtherText
+				buff_infor.text = "该单位被永久沉默无法使用技能。" + other_text
 		"Immobilize":
-			if LastTime < MMTime:
-				buff_infor.text = "该单位处于定身状态，" + str(snapped(LastTime, 0.1)) + "秒内无法行动。" + OtherText
+			if LastTime < mm_time:
+				buff_infor.text = "该单位处于定身状态，" + str(snapped(LastTime, 0.1)) + "秒内无法行动。" + other_text
 			else:
-				buff_infor.text = "该单位被永久定身无法行动。" + OtherText
+				buff_infor.text = "该单位被永久定身无法行动。" + other_text
 		"BloodFix":
-			if LastTime < MMTime:
-				buff_infor.text = "该单位处于封疗状态，" + str(snapped(LastTime, 0.1)) + "秒内无法回复生命值。" + OtherText
+			if LastTime < mm_time:
+				buff_infor.text = "该单位处于封疗状态，" + str(snapped(LastTime, 0.1)) + "秒内无法回复生命值。" + other_text
 			else:
-				buff_infor.text = "该单位被永久封疗无法回复生命值。" + OtherText
+				buff_infor.text = "该单位被永久封疗无法回复生命值。" + other_text
 		"Scary":
-			if LastTime < MMTime:
-				buff_infor.text = "该单位被恐惧，" + str(snapped(LastTime, 0.1)) + "秒无法自由行动。" + OtherText
+			if LastTime < mm_time:
+				buff_infor.text = "该单位被恐惧，" + str(snapped(LastTime, 0.1)) + "秒无法自由行动。" + other_text
 			else:
-				buff_infor.text = "该单位被永久恐惧，无法自由行动。" + OtherText
+				buff_infor.text = "该单位被永久恐惧，无法自由行动。" + other_text
 		"DefeReduce":
-			if LastTime < MMTime:
+			if LastTime < mm_time:
 				buff_infor.text = (
 					"该单位处于破甲状态，"
 					+ str(snapped(LastTime, 0.1))
 					+ "秒内双抗被无视"
-					+ str(snapped(LastHurt, 0.01) * 100)
+					+ str(snapped(last_hurt, 0.01) * 100)
 					+ "% 。"
-					+ OtherText
+					+ other_text
 				)
 			else:
-				buff_infor.text = "该单位被永久破甲，双抗被无视" + str(snapped(LastHurt, 0.01) * 100) + "% 。" + OtherText
+				buff_infor.text = "该单位被永久破甲，双抗被无视" + str(snapped(last_hurt, 0.01) * 100) + "% 。" + other_text
 		"SuperArmor":
-			if LastTime < MMTime:
+			if LastTime < mm_time:
 				buff_infor.text = "该单位处于霸体状态，" + str(snapped(LastTime, 0.1)) + "秒内免疫击退。"
 			else:
 				buff_infor.text = "该单位永久处于霸体状态。"
 		"Indestructible":
-			if LastTime < MMTime:
+			if LastTime < mm_time:
 				buff_infor.text = "该单位处于不灭灵体状态，" + str(snapped(LastTime, 0.1)) + "秒内免疫高于自身当前生命的伤害。"
 		"Indestructible1":
-			if LastTime < MMTime:
+			if LastTime < mm_time:
 				buff_infor.text = "该单位处于伏妖护盾状态，" + str(snapped(LastTime, 0.1)) + "秒内免疫高于自身当前生命的伤害。"
 			else:
 				buff_infor.text = "该单位永久免疫高于自身当前生命的伤害。"
 		"DoubleFallPro":
 			buff_infor.text = "幸运的喜鹊：" + str(snapped(LastTime, 0.1)) + "秒内怪物掉率翻倍，地狱强化石随机宝箱也受到加成。"
 		"Voodoo":
-			if LastTime < MMTime:
+			if LastTime < mm_time:
 				buff_infor.text = (
 					"该单位处于持续"
 					+ str(snapped(LastTime, 0.1))
@@ -210,10 +210,10 @@ func _physics_process(delta: float) -> void:
 					+ str(ReduceInterval)
 					+ "秒"
 					+ "受到"
-					+ str(LastHurt)
-					+ str(Get_DamageType)
+					+ str(last_hurt)
+					+ str(get_damage_type)
 					+ "伤害。"
-					+ OtherText
+					+ other_text
 				)
 			else:
 				buff_infor.text = (
@@ -221,51 +221,51 @@ func _physics_process(delta: float) -> void:
 					+ str(ReduceInterval)
 					+ "秒"
 					+ "受到"
-					+ str(LastHurt)
-					+ str(Get_DamageType)
+					+ str(last_hurt)
+					+ str(get_damage_type)
 					+ "伤害。"
-					+ OtherText
+					+ other_text
 				)
 		"slzbuff":
-			var Levelslz = PlayerData.player_data["森罗阵"]["Level"]
-			if LastTime < MMTime:
+			var levelslz = PlayerData.player_data["森罗阵"]["Level"]
+			if LastTime < mm_time:
 				buff_infor.text = (
-					"该单位获得森罗阵的加护，" + str(snapped(LastTime, 0.1)) + "秒内，受伤降低" + str(Levelslz * 0.02 * 100) + "%"
+					"该单位获得森罗阵的加护，" + str(snapped(LastTime, 0.1)) + "秒内，受伤降低" + str(levelslz * 0.02 * 100) + "%"
 				)
 			else:
-				buff_infor.text = "该单位获得森罗阵的加护，受伤永久降低" + str(snapped(Levelslz * 0.02, 0.01) * 100) + "%"
+				buff_infor.text = "该单位获得森罗阵的加护，受伤永久降低" + str(snapped(levelslz * 0.02, 0.01) * 100) + "%"
 		"lpzbuff":
-			var Levelslz = PlayerData.player_data["落魄阵"]["Level"]
-			if LastTime < MMTime:
-				buff_infor.text = "该单位被施加虚弱，" + str(snapped(LastTime, 0.1)) + "秒内，伤害降低" + str(LastHurt * 100) + "%"
+			var levelslz = PlayerData.player_data["落魄阵"]["Level"]
+			if LastTime < mm_time:
+				buff_infor.text = "该单位被施加虚弱，" + str(snapped(LastTime, 0.1)) + "秒内，伤害降低" + str(last_hurt * 100) + "%"
 			else:
-				buff_infor.text = "该单位被施加虚弱，伤害永久降低" + str(snapped(LastHurt, 0.01) * 100) + "%"
+				buff_infor.text = "该单位被施加虚弱，伤害永久降低" + str(snapped(last_hurt, 0.01) * 100) + "%"
 		"tszbuff":
-			var Levelslz = PlayerData.player_data["落魄阵"]["Level"]
-			if LastTime < MMTime:
+			var levelslz = PlayerData.player_data["落魄阵"]["Level"]
+			if LastTime < mm_time:
 				buff_infor.text = (
-					"该单位获得腾蛇加护，" + str(snapped(LastTime, 0.1)) + "秒内，伤害增加" + str(Levelslz * 0.015 * 100) + "%"
+					"该单位获得腾蛇加护，" + str(snapped(LastTime, 0.1)) + "秒内，伤害增加" + str(levelslz * 0.015 * 100) + "%"
 				)
 			else:
-				buff_infor.text = "该单位获得腾蛇加护，伤害永久增加" + str(snapped(Levelslz * 0.015, 0.001) * 100) + "%"
+				buff_infor.text = "该单位获得腾蛇加护，伤害永久增加" + str(snapped(levelslz * 0.015, 0.001) * 100) + "%"
 		"PoisionBody":
 			buff_infor.text = "该单位获得万毒加护，受伤减少，免疫部分击退，并对攻击者施加”巫毒“。"
 		"lljybuff":
 			buff_infor.text = "该单位被点穴，" + str(snapped(LastTime, 0.1)) + "秒内，无法行动"
 		"jgz":
-			var jgz_level = int(DataList["value"])
+			var jgz_level = int(data_list["value"])
 			var hurt_bonus = 20 + (jgz_level - 1) * 8
 
-			if LastTime < MMTime:
+			if LastTime < mm_time:
 				buff_infor.text = "该单位被紧箍咒束缚，" + str(snapped(LastTime, 0.1)) + "秒内受到的伤害提升" + str(hurt_bonus) + "%！"
 			else:
 				buff_infor.text = "该单位被永久紧箍咒束缚，受到的伤害提升" + str(hurt_bonus) + "%！"
 
 		"zznh":
-			var zznh_level = int(DataList["value"])
+			var zznh_level = int(data_list["value"])
 			var hurt_bonus = 10 + (zznh_level - 1) * 10
-			var defense_text := "，并降低50%物理防御和魔法防御" if float(DataList.get("defense_reduction", 0.0)) > 0.0 else ""
-			if LastTime < MMTime:
+			var defense_text := "，并降低50%物理防御和魔法防御" if float(data_list.get("defense_reduction", 0.0)) > 0.0 else ""
+			if LastTime < mm_time:
 				buff_infor.text = (
 					"该单位被战争怒吼震慑，"
 					+ str(snapped(LastTime, 0.1))
@@ -279,12 +279,12 @@ func _physics_process(delta: float) -> void:
 				buff_infor.text = "该单位被永久战争怒吼震慑，受到的伤害提升" + str(hurt_bonus) + "%" + defense_text + "！"
 
 		"NoDeBuff":
-			if LastTime < MMTime:
+			if LastTime < mm_time:
 				buff_infor.text = "该单位" + str(snapped(LastTime, 0.1)) + "秒内，免疫所有负面状态。"
 			else:
 				buff_infor.text = "该单位永久免疫所有负面状态。"
 		"flls":
-			if LastTime < MMTime:
+			if LastTime < mm_time:
 				buff_infor.text = (
 					"该单位处于持续"
 					+ str(snapped(LastTime, 0.1))
@@ -292,18 +292,18 @@ func _physics_process(delta: float) -> void:
 					+ str(ReduceInterval)
 					+ "秒"
 					+ "扣除"
-					+ str(LastHurt)
+					+ str(last_hurt)
 					+ "魔法"
-					+ OtherText
+					+ other_text
 				)
 			else:
 				buff_infor.text = (
-					"该单位被添加永久法力流失，每过" + str(ReduceInterval) + "秒" + "扣除" + str(LastHurt) + "魔法。" + OtherText
+					"该单位被添加永久法力流失，每过" + str(ReduceInterval) + "秒" + "扣除" + str(last_hurt) + "魔法。" + other_text
 				)
 		"yxbuff":
 			buff_infor.text = "提升攻击力、暴击率、幸运。"
 		"HealOverTime":
-			if LastTime < MMTime:
+			if LastTime < mm_time:
 				buff_infor.text = (
 					"该单位获得持续"
 					+ str(snapped(LastTime, 0.1))
@@ -311,21 +311,21 @@ func _physics_process(delta: float) -> void:
 					+ str(ReduceInterval)
 					+ "秒"
 					+ "恢复"
-					+ str(snapped(LastHurt * 100, 0.1))
+					+ str(snapped(last_hurt * 100, 0.1))
 					+ "%最大生命值。"
 				)
 			else:
 				buff_infor.text = (
-					"该单位获得永久治疗效果，每过" + str(ReduceInterval) + "秒" + "恢复" + str(snapped(LastHurt * 100, 0.1)) + "%最大生命值。"
+					"该单位获得永久治疗效果，每过" + str(ReduceInterval) + "秒" + "恢复" + str(snapped(last_hurt * 100, 0.1)) + "%最大生命值。"
 				)
 		"LifeManaLock":
-			if LastTime < MMTime:
-				buff_infor.text = "该单位处于生命法力封锁状态，" + str(snapped(LastTime, 0.1)) + "秒内无法回复生命值和法力值。" + OtherText
+			if LastTime < mm_time:
+				buff_infor.text = "该单位处于生命法力封锁状态，" + str(snapped(LastTime, 0.1)) + "秒内无法回复生命值和法力值。" + other_text
 			else:
-				buff_infor.text = "该单位被永久生命法力封锁，无法回复生命值和法力值。" + OtherText
+				buff_infor.text = "该单位被永久生命法力封锁，无法回复生命值和法力值。" + other_text
 
 		"SMSRSZ_CD":
-			if LastTime < MMTime:
+			if LastTime < mm_time:
 				buff_infor.text = "弹道类技能消除效果进入" + str(snapped(LastTime, 0.1)) + "冷却。"
 
 	await get_tree().create_timer(3, false).timeout

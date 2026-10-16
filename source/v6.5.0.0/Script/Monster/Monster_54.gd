@@ -1,6 +1,6 @@
 extends BaseMonster
 
-var CheckCount: int = 0
+var check_count: int = 0
 
 
 func monster_54():

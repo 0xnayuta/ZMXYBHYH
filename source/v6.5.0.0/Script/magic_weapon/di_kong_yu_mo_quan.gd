@@ -25,8 +25,8 @@ var _visible_bottom_cache: Dictionary = {}
 
 
 func _ready() -> void:
-	FB_Level = _get_official_level()
-	needMp = 50
+	fb_level = _get_official_level()
+	need_mp = 50
 	mg_action.sprite_frames = _build_frames(
 		"wait", "res://Art/MagicWeapon/MagicWeapon_DiKongYuMoQuan/idle_frames/%d.png", IDLE_FRAME_COUNT, true, 12.0
 	)
@@ -47,8 +47,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	FB_Level = _get_official_level()
-	needMp = 50
+	fb_level = _get_official_level()
+	need_mp = 50
 	super._physics_process(delta)
 	if _field_active:
 		_update_player_protection()
@@ -221,7 +221,7 @@ func use_over() -> void:
 	_clear_field_effects()
 	mg_action.visible = false
 	is_use = false
-	Global.FB_CD = 1
+	Global.fb_cd = 1
 	usecd = COOLDOWN_DURATION
 	if PlayerData.check_have_wx(WEAPON_ID, "木"):
 		usecd *= 0.8

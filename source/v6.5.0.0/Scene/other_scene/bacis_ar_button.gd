@@ -5,7 +5,7 @@ extends TextureButton
 @onready var level_and_role: Label = $InfoBox/LevelAndRole
 @onready var time: Label = $InfoBox/Time
 
-var MyNum: int
+var archive_num: int
 
 
 func _physics_process(_delta: float) -> void:
@@ -14,8 +14,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func set_normal_info() -> void:
-	my_num.text = str(MyNum)
-	var archive_data: Dictionary = MemoryClass.peek_archive_data(_archive_path(MyNum))
+	my_num.text = str(archive_num)
+	var archive_data: Dictionary = MemoryClass.peek_archive_data(_archive_path(archive_num))
 	var role_id: int = int(archive_data.get("Myself", 0))
 	if role_id < 1 or role_id > 6:
 		name_label.text = ""
@@ -23,17 +23,17 @@ func set_normal_info() -> void:
 		level_and_role.text = "空存档"
 		return
 
-	var metadata: Dictionary = _archive_metadata(MyNum)
+	var metadata: Dictionary = _archive_metadata(archive_num)
 	var archive_time: String = str(metadata.get("time", ""))
 	if archive_time.strip_edges() == "":
-		archive_time = MemoryClass.read_archive_time(_archive_path(MyNum))
+		archive_time = MemoryClass.read_archive_time(_archive_path(archive_num))
 		if archive_time != "":
-			MemoryClass.repair_archive_time(MyNum, archive_time)
+			MemoryClass.repair_archive_time(archive_num, archive_time)
 	var archive_name: String = str(metadata.get("name", ""))
 	time.text = archive_time
 	name_label.text = "名字：" + archive_name if archive_name != "" else ""
 	level_and_role.text = (
-		"Lv：" + str(MemoryClass.get_archive_level(_archive_path(MyNum))) + "    " + _role_name(role_id)
+		"Lv：" + str(MemoryClass.get_archive_level(_archive_path(archive_num))) + "    " + _role_name(role_id)
 	)
 
 
@@ -73,12 +73,12 @@ func _role_name(role_id: int) -> String:
 
 
 func _on_pressed() -> void:
-	Global.cd_path = "user://MyAr_" + str(MyNum) + ".json"
+	Global.cd_path = "user://MyAr_" + str(archive_num) + ".json"
 	if not MemoryClass.load_game(Global.cd_path):
 		return
 	if PlayerData.player_data.has("FileValue"):
-		if float(PlayerData.player_data["FileValue"]) <= float(Global.FileNum):
-			PlayerData.player_data["FileValue"] = Global.FileNum
+		if float(PlayerData.player_data["FileValue"]) <= float(Global.file_num):
+			PlayerData.player_data["FileValue"] = Global.file_num
 		else:
 			Global.add_message_show(get_parent(), "当前游戏不是最新版本，请使用最新版本游戏！！！", 1.5, Vector2(470, 340))
 			return

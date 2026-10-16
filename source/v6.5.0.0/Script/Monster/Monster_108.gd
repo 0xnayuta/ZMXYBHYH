@@ -1,5 +1,5 @@
 extends BaseMonster
-var IsCombo: bool
+var is_combo: bool
 
 
 func monster_108():
@@ -114,7 +114,7 @@ func ai_think():
 
 
 func do_hit_1():
-	IsCombo = true
+	is_combo = true
 	super.to_hero()
 	Skill_1_CD = 7
 	hit_name = "hit2"
@@ -178,11 +178,11 @@ func to_drop():
 
 
 func no_combo():
-	ShouldInSky = false
+	should_in_sky = false
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	ShouldInSky = false
+	should_in_sky = false
 	super._on_hurt_box_area_entered(area)
 
 

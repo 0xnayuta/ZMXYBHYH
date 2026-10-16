@@ -181,11 +181,11 @@ func setup_skills():
 
 	Skill_3_CD = 7 * cd_multiplier
 	Skill_4_CD = 9 * cd_multiplier
-	Skill_5_CD = 11 * cd_multiplier
+	skill_5_cd = 11 * cd_multiplier
 
 
 func try_use_skills():
-	if ShouldInSky:
+	if should_in_sky:
 		return
 
 	if randi_range(0, 100) >= attackDesire:
@@ -197,7 +197,7 @@ func try_use_skills():
 		do_hit_1()
 	elif Skill_3_CD <= 0:
 		do_hit_3()
-	elif Skill_5_CD <= 0:
+	elif skill_5_cd <= 0:
 		do_hit_5()
 
 
@@ -289,7 +289,7 @@ func do_hit_5():
 		monster_dir.scale.x = 1
 		MonsterDirection = true
 
-	Skill_5_CD = 20
+	skill_5_cd = 20
 	velocity.x = 0
 	hit_name = "hit5"
 	is_attacking = true
@@ -304,12 +304,12 @@ func do_hit_5():
 func call_bullet_1():
 	if not current_target or not is_instance_valid(current_target):
 		return
-	var Round = Global.add_bullet(
+	var round_num = Global.add_bullet(
 		"Monster142Bullet1", self.bullet, false, 1, position, "hit1", self.objattackDic["hit1"]
 	)
-	setup_bullet_collision(Round)
+	setup_bullet_collision(round_num)
 	var tween = create_tween()
-	tween.tween_property(Round, "position", current_target.position, 0.5)
+	tween.tween_property(round_num, "position", current_target.position, 0.5)
 
 
 func call_bullet_3():
@@ -330,17 +330,17 @@ func call_bullet_3():
 
 
 func call_bullet_4():
-	var MaxCount: int = 10
+	var max_count: int = 10
 	var target_count: int = 0
 	var bullet_spawn_positions = []
-	while target_count < MaxCount:
-		var NewRotation = 360 / MaxCount
-		NewRotation = NewRotation * target_count
-		var stabPosition = Vector2(
-			self.position.x + sin(float(NewRotation) * PI / 180) * 150,
-			self.position.y - 15 - cos(float(NewRotation) * PI / 180) * 150
+	while target_count < max_count:
+		var new_rotation = 360 / max_count
+		new_rotation = new_rotation * target_count
+		var stab_position = Vector2(
+			self.position.x + sin(float(new_rotation) * PI / 180) * 150,
+			self.position.y - 15 - cos(float(new_rotation) * PI / 180) * 150
 		)
-		bullet_spawn_positions.push_back(stabPosition)
+		bullet_spawn_positions.push_back(stab_position)
 		target_count += 1
 	if not MonsterDirection:
 		bullet_spawn_positions.reverse()
@@ -364,27 +364,27 @@ func call_bullet_5():
 		Vector2(500 + position.x, 450)
 	]
 	randomize()
-	var CountTime = bullet_spawn_positions.size() * 0.1
+	var count_time = bullet_spawn_positions.size() * 0.1
 	bullet_spawn_positions.shuffle()
 	for i in bullet_spawn_positions:
-		var Round = Global.add_bullet(
+		var round_num = Global.add_bullet(
 			"Monster55Bullet", self.bullet, false, 1, position, "hit5", self.objattackDic["hit5"]
 		)
-		setup_bullet_collision(Round)
-		RoundList.push_back(Round)
+		setup_bullet_collision(round_num)
+		round_list.push_back(round_num)
 		var tween = create_tween()
-		tween.tween_property(Round, "position", i, 1)
+		tween.tween_property(round_num, "position", i, 1)
 		await get_tree().create_timer(0.1, false).timeout
 	await get_tree().create_timer(2, false).timeout
-	for i in RoundList:
+	for i in round_list:
 		if is_instance_valid(i):
 			var tween = create_tween()
 			tween.tween_property(i, "position", self.position, 1)
-	await get_tree().create_timer(CountTime, false).timeout
-	for i in RoundList:
+	await get_tree().create_timer(count_time, false).timeout
+	for i in round_list:
 		if is_instance_valid(i):
 			i.queue_free()
-	RoundList.clear()
+	round_list.clear()
 
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理

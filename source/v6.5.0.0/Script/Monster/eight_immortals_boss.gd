@@ -221,7 +221,7 @@ func _configure_stats() -> void:
 	)
 	var level_step := ceili(float(average_level) / 10.0)
 	is_boss = bool(_config.get("is_boss", true))
-	CannotAttract = true
+	cannot_attract = true
 	my_mr_name = str(_config.get("name", "八仙首领"))
 	level = average_level
 	SHp = int(_config.get("hp", level_step * level_step * 10000 * (0.4 + average_level * 0.01)))
@@ -412,9 +412,9 @@ func _body_animation_offset(state_name: StringName) -> Vector2:
 
 
 func ai_think() -> void:
-	if _skill_busy or Time.get_ticks_msec() < _attack_recovery_until_msec or Hp <= 0 or RoleProp.SourcePlayer == null:
+	if _skill_busy or Time.get_ticks_msec() < _attack_recovery_until_msec or Hp <= 0 or RoleProp.source_player == null:
 		return
-	var target := RoleProp.SourcePlayer as Node2D
+	var target := RoleProp.source_player as Node2D
 	if target == null:
 		return
 
@@ -424,7 +424,7 @@ func ai_think() -> void:
 		_combat_range_latched = false
 		normal_state()
 		return
-	if is_ice or is_sleep or is_stun or is_Immobilize or Islljy or cannotchangestatewhenattorbeatt():
+	if is_ice or is_sleep or is_stun or is_immobilize or islljy or cannotchangestatewhenattorbeatt():
 		return
 	if not _is_standing_on_boat():
 		return
@@ -447,7 +447,7 @@ func ai_think() -> void:
 
 
 func _is_standing_on_boat() -> bool:
-	if is_on_floor() or is_Fly:
+	if is_on_floor() or is_fly:
 		return true
 
 	var level_node := get_level_node()
@@ -610,7 +610,7 @@ func _cast_174(action: StringName) -> void:
 	elif action == &"hit2":
 		_fire(action, 35, _at_facing(30.0), {})
 	else:
-		var target := RoleProp.SourcePlayer as Node2D
+		var target := RoleProp.source_player as Node2D
 		if target != null:
 			_fire(action, 26, Vector2(target.global_position.x, _source_world_y(250.0)), {})
 
@@ -705,7 +705,7 @@ func _source_world_y(source_y: float) -> float:
 func _cast_164_rain() -> void:
 	var hits := randi_range(1, 3)
 	for index in range(hits):
-		var target := RoleProp.SourcePlayer as Node2D
+		var target := RoleProp.source_player as Node2D
 		if target != null:
 			_fire(
 				&"hit2",
@@ -721,7 +721,7 @@ func _cast_165_sleep() -> void:
 	_fire(&"hit2", 1, global_position, {"damage_enabled": false})
 	var targets := _active_pet_targets()
 	if targets.is_empty():
-		var player := RoleProp.SourcePlayer as BaseHero
+		var player := RoleProp.source_player as BaseHero
 		if player != null:
 			targets.append(player)
 	var sleep_damage := maxi(1, (level * 20 - 150) / 4)
@@ -799,8 +799,8 @@ func _drive_164_pull(projectile: WutaiMinghaiProjectile) -> void:
 
 func _active_players() -> Array[BaseHero]:
 	var players: Array[BaseHero] = []
-	var candidate: Variant = RoleProp.SourcePlayer
-	if candidate is BaseHero and is_instance_valid(candidate) and not candidate.IsDeath:
+	var candidate: Variant = RoleProp.source_player
+	if candidate is BaseHero and is_instance_valid(candidate) and not candidate.is_death:
 		players.append(candidate)
 	return players
 
@@ -1027,7 +1027,7 @@ func _try_stun_166_attacker(target: Variant) -> void:
 	if randf() >= 0.6:
 		return
 	var attacker := _resolve_attacker_hero(target)
-	if attacker == null or attacker.IsDeath:
+	if attacker == null or attacker.is_death:
 		return
 	(
 		Global
@@ -1052,7 +1052,7 @@ func _resolve_attacker_hero(target: Variant) -> BaseHero:
 		if node is BaseHero:
 			return node as BaseHero
 		node = node.get_parent()
-	var source_player := RoleProp.SourcePlayer as BaseHero
+	var source_player := RoleProp.source_player as BaseHero
 	return source_player
 
 

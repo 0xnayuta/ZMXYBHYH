@@ -21,11 +21,11 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	ThrowCount += 1
+	throw_count += 1
 	_elapsed += delta
 	get_prop()
 	hit_box.monitoring = _elapsed >= HIT_START_TIME
-	if ThrowCount > int(0.75 * 60.0):
+	if throw_count > int(0.75 * 60.0):
 		queue_free()
 
 

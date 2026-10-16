@@ -70,7 +70,7 @@ func is_hidden_feature_enabled(feature_name: String) -> bool:
 	return bool(_hidden_feature_flags.get(feature_name, false))
 
 
-var AllBuffList = [
+var all_buff_list = [
 	"speed_down",
 	"DefeReduce",
 	"nlls",
@@ -107,7 +107,7 @@ var AllBuffList = [
 	"zznh",
 	"SMSRSZ_CD"
 ]
-var BuffList = []
+var buff_list = []
 var _ui_popup_layer
 var _active_hover_popup
 
@@ -119,12 +119,12 @@ const SOUND_PLAYER_POOL_LIMIT := 32
 const COMBAT_HIT_DAMAGE_POOL_SIZE := 12
 const COMBAT_HIT_EFFECT_POOL_SIZE := 16
 const COMBAT_HIT_SOUND_POOL_SIZE := 6
-var ChooseList = []
-var ChooseMs: bool
+var choose_list = []
+var choose_ms: bool
 var buff_box
-var MgCdPic
+var mg_cd_pic
 var zhen_fa
-var LHHJBossList = {}
+var lhhj_boss_list = {}
 
 const BASIC_AR_BUTTON_PATH := "res://Scene/other_scene/bacis_ar_button.tscn"
 const ADD_WEAPON_BULLET_PATHS := {
@@ -411,13 +411,13 @@ const DYNAMIC_MONSTER_SCENE_PATHS := {
 }
 
 var BasicArButton = null
-var addWeaponBullet = null
+var weapon_bullet_node = null
 var bullet = null
 var hit_text = null
 var damage_text = null
 var monster_blood = null
 var monster_be_hit = null
-var SpecialAffect = null
+var special_affect = null
 var Aura_ = null
 var BuffIcon_ = null
 var DamageNumber = null
@@ -428,7 +428,7 @@ var lj = null
 var moment_texxt = null
 var MessageShow = null
 var BaseBuff_ = null
-var RoleBullet_ = null
+var role_bullet = null
 var FlyBullet = null
 var ChaseBullet_ = null
 
@@ -443,99 +443,98 @@ func _ready() -> void:
 	call_deferred("prewarm_permanent_small_ui_scenes")
 
 
-var CloudSword_ = null
-var PurpleGoldBell_ = null
-var Zcld_ = null
-var Cucurbit_ = null
-var Sword_ = null
-var Mirror_ = null
-var GhostDoll_ = null
-var Dhqf_ = null
-var MagicUmbrella_ = null
-var PurpleGlodCucurbit_ = null
-var Hybrofoline_ = null
-var Yujingping_ = null
-var Zlwdah_ = null
-var Sqzlw_ = null
-var Nmwdnh_ = null
-var XianYujingping_ = null
-var Yx_ = null
-var Qlsword_ = null
-var Cucurbit2_ = null
+var cloud_sword = null
+var purple_gold_bell = null
+var zcld = null
+var cucurbit = null
+var sword = null
+var mirror = null
+var ghost_doll = null
+var dhqf = null
+var magic_umbrella = null
+var purple_glod_cucurbit = null
+var hybrofoline = null
+var yujingping = null
+var zlwdah = null
+var sqzlw = null
+var nmwdnh = null
+var xian_yujingping = null
+var yx = null
+var qlsword = null
+var cucurbit2 = null
 
 var _monster_scene_cache = {}
 var _monster_script_bullet_scene_cache: Dictionary = {}
 var _last_full_monster_bullet_name := ""
 var _level_resource_preload_signature := ""
 var _last_combo_value: int = 0
-var IsFrist: bool
-var Is_Show: bool
-var CollectNum: int = 0
-var PlayerBeHitCount: int = 0
-var GameOver: int = 1
-var LLBTWXMS: bool = false
-var LLBTCGMS: bool = true
-var LLBTBOSSMS: bool
-var BoxCount: int = 0
-var LLBTLevel: int = 1
+var is_frist: bool
+var is_show: bool
+var collect_num: int = 0
+var player_be_hit_count: int = 0
+var game_over: int = 1
+var llbtwxms: bool = false
+var llbtcgms: bool = true
+var llbtbossms: bool
+var box_count: int = 0
+var llbt_level: int = 1
 
-var InfiniteLevelMultiplier: float = 0.0
-var CurrentLevel: String
-var SelectedThreePrinceId: int = 0
-var SelectedEightImmortalId: int = 0
-var SelectedConstellationLevel: int = 1
-var ConstellationBestTier: Dictionary = {}
-var LevelDropProData = {}
-var LevelBeginTime = ""
-var LevelEndTime = ""
-var MostLianji: int = 0
-var LastPropHp: float
-var TotalRoleHurt: int
-var LastLevelPath: String
+var infinite_level_multiplier: float = 0.0
+var current_level: String
+var selected_three_prince_id: int = 0
+var selected_eight_immortal_id: int = 0
+var selected_constellation_level: int = 1
+var constellation_best_tier: Dictionary = {}
+var level_drop_pro_data = {}
+var level_begin_time = ""
+var level_end_time = ""
+var most_lianji: int = 0
+var last_prop_hp: float
+var total_role_hurt: int
+var last_level_path: String
 var cd_path: String = ""
 
-var TotalRoleHit: int
-var TotalCureHp: int
-var TotalPhyHit: int
-var TotalMagHit: int
-var TotalRealHit: int
-var TotalPhyHurt: int
-var TotalMagHurt: int
-var TotalRealHurt: int
-var TotalHurtCount: int
-var TotalHitCount: int
-var TotalCritCount: int
-var TotalMissCount: int
-var Windows_
-var FileNum = 1.201
-var Mytime
-var Player_pos_x
+var total_role_hit: int
+var total_cure_hp: int
+var total_phy_hit: int
+var total_mag_hit: int
+var total_real_hit: int
+var total_phy_hurt: int
+var total_mag_hurt: int
+var total_real_hurt: int
+var total_hurt_count: int
+var total_hit_count: int
+var total_crit_count: int
+var total_miss_count: int
+var windows
+var file_num = 1.201
+var mytime
+var player_pos_x
 var zb_packisfull = false
 var dj_packisfull = false
 var xhp_packisfull = false
 var should_change: bool
-var Forge_
-var FB_CD: int
+var forge
+var fb_cd: int
 var is_in_ldl
 var get_target
-var is_Mpo
+var is_mpo
 var is_ice
 var is_poision
-var is_Fire
+var is_fire
 var is_speed_down
 var is_stun
-var is_Bleed
-var is_EyeFix
-var is_DeadLink
-var LJ_times: int
+var is_bleed
+var is_eye_fix
+var is_dead_link
+var lj_times: int
 var lj_count: int
 
-var Player_dir_
 var remove_jq
 var wait_time: float = 0.8
 var get_player
-var NeedChangeItem: bool = true
-var Player_dir
+var need_change_item: bool = true
+var player_dir
 
 var _resource_cache = {}
 var _audio_cache = {}
@@ -1530,22 +1529,22 @@ func clear_combat_runtime_cache() -> void:
 	damage_text = null
 	monster_blood = null
 	monster_be_hit = null
-	SpecialAffect = null
+	special_affect = null
 	DamageNumber = null
 	MissEffect = null
-	RoleBullet_ = null
+	role_bullet = null
 	FlyBullet = null
 	ChaseBullet_ = null
-	SpecialEffectBullet = null
-	Role4Bullet_ = null
-	RoleBullet_1 = null
-	Role1Shallow = null
-	Monster65Bullet = null
-	RoleSpecialEffect_ = null
-	Role2Shallow = null
-	SMBEffect = null
-	NewBullet = null
-	BossBlood_ = null
+	special_effect_bullet = null
+	role4_bullet = null
+	role_bullet_1 = null
+	role1_shallow = null
+	monster65_bullet = null
+	role_special_effect = null
+	role2_shallow = null
+	smb_effect = null
+	new_bullet = null
+	boss_blood = null
 	_all_hero_skill_resources_preloaded = false
 	if current_magic_summon != null and is_instance_valid(current_magic_summon):
 		current_magic_summon.queue_free()
@@ -1713,17 +1712,17 @@ func release_role_runtime_resources() -> void:
 	_erase_cached_paths_by_prefix(_resource_cache, ["res://Art/HeroPicture/", "res://Scene/hero/"])
 	_erase_cached_paths_by_prefix(_texture_cache, ["res://Art/HeroPicture/"])
 	_erase_cached_paths_by_prefix(_audio_cache, ["res://Music/Hero/"])
-	SpecialEffectBullet = null
-	RoleBullet_ = null
+	special_effect_bullet = null
+	role_bullet = null
 	FlyBullet = null
 	ChaseBullet_ = null
-	Role4Bullet_ = null
-	RoleBullet_1 = null
-	Role1Shallow = null
-	RoleSpecialEffect_ = null
-	Role2Shallow = null
-	SMBEffect = null
-	NewBullet = null
+	role4_bullet = null
+	role_bullet_1 = null
+	role1_shallow = null
+	role_special_effect = null
+	role2_shallow = null
+	smb_effect = null
+	new_bullet = null
 
 
 func _erase_cached_paths_by_prefix(cache: Dictionary, prefixes: Array) -> void:
@@ -2493,8 +2492,8 @@ func prewarm_current_role_runtime_resources(role_id: int = 0) -> void:
 	if role_id == 2 and _equipped_role_skill_names().has("by"):
 		BING_YU_EFFECT_SCRIPT.prewarm_frames()
 		await get_tree().process_frame
-	if role_id == 1 and (equipped_skills.has("hmz") or equipped_skills.has("hmz_ws")) and not SpecialEffectBullet:
-		SpecialEffectBullet = _load_scene("res://Scene/hero/role_1/hmz_effect/special_effect_bullet.tscn")
+	if role_id == 1 and (equipped_skills.has("hmz") or equipped_skills.has("hmz_ws")) and not special_effect_bullet:
+		special_effect_bullet = _load_scene("res://Scene/hero/role_1/hmz_effect/special_effect_bullet.tscn")
 	_prewarmed_role_id = role_id
 
 
@@ -2538,8 +2537,8 @@ func _legacy_preload_current_role_skill_resources(role: Variant) -> void:
 		role_scene_paths = ["res://Scene/hero/role_4/role4_bullet.tscn"]
 	for scene_path in role_scene_paths:
 		_warm_scene_instance(preload_scene_path(scene_path))
-	if role_id == 1 and not SpecialEffectBullet:
-		SpecialEffectBullet = _load_scene("res://Scene/hero/role_1/hmz_effect/special_effect_bullet.tscn")
+	if role_id == 1 and not special_effect_bullet:
+		special_effect_bullet = _load_scene("res://Scene/hero/role_1/hmz_effect/special_effect_bullet.tscn")
 	var sounds: Array[String] = []
 	if role_id == 1:
 		sounds = [
@@ -2638,7 +2637,7 @@ func _cached_scene(property_name: StringName, path: String) -> PackedScene:
 
 
 var lhhjbutton = null
-var MosaicHelp = null
+var mosaic_help = null
 var back_pack = null
 var touch_text = null
 var cd_jm = null
@@ -2647,10 +2646,10 @@ var set_menu = null
 var mycamera = null
 var music_set = null
 var target_scene: String = ""
-var FourSwordsEndlessMode: bool = false
-var SSSLendlessMode: bool = false
-var ConstellationEndlessMode: bool = false
-var ThreePrinceEndlessMode: bool = false
+var four_swords_endless_mode: bool = false
+var sss_lendless_mode: bool = false
+var constellation_endless_mode: bool = false
+var three_prince_endless_mode: bool = false
 
 var _preloaded_scene: PackedScene = null
 var _preloading_path: String = ""
@@ -2693,15 +2692,15 @@ var dj_infor = null
 var fall_equ = null
 var pl_sell = null
 var ldl = null
-var Game_information = null
+var game_information = null
 var zd_skill = null
 var Skill_learn = null
 var role_information = null
-var SpecialEffectBullet = null
+var special_effect_bullet = null
 var choose_text = null
 var zztwtrap = null
-var BuffIcon = null
-var Trap_ = null
+var buff_icon = null
+var trap = null
 var bd_skill = null
 var nmw_hands = null
 var qh_jm = null
@@ -2709,101 +2708,101 @@ var change_background = null
 var synthesis = null
 var magp_infor = null
 var shop_ttems = null
-var SHop = null
+var s_hop = null
 var ldl_help = null
-var Choose_Item = null
-var WS_Effect = null
+var choose_item = null
+var ws_effect = null
 
-var SkillSelect = null
-var UseMagicWeapon = null
-var MagicHelp = null
+var skill_select = null
+var use_magic_weapon = null
+var magic_help = null
 
-var Sound_ = null
-var Mosaic_ = null
-var BGM_ = null
-var Role4Bullet_ = null
-var GameSet_ = null
-var SkillKeySet = null
-var RoleBullet_1 = null
-var Role1Shallow = null
-var ChangeClothesJm = null
-var HHjm = null
-var ZLw_stage = null
-var AfterLevelEnd = null
-var Buffinfor = null
-var Monster65Bullet = null
-var ChoosePlayer = null
-var RoleSpecialEffect_ = null
-var Role2Shallow = null
-var SMBEffect = null
-var NewBullet = null
-var RoleMagicNeed = null
-var GameNeedKnow = null
-var MonsterHead = null
-var LevelFallBox = null
+var sound = null
+var mosaic = null
+var bgm = null
+var role4_bullet = null
+var game_set = null
+var skill_key_set = null
+var role_bullet_1 = null
+var role1_shallow = null
+var change_clothes_jm = null
+var h_hjm = null
+var z_lw_stage = null
+var after_level_end = null
+var buffinfor = null
+var monster65_bullet = null
+var choose_player = null
+var role_special_effect = null
+var role2_shallow = null
+var smb_effect = null
+var new_bullet = null
+var role_magic_need = null
+var game_need_know = null
+var monster_head = null
+var level_fall_box = null
 var LevelInfo = null
-var Pj = null
-var HelpThing = null
-var Hc_Help = null
-var BossBlood_ = null
+var pj = null
+var help_thing = null
+var hc_help = null
+var boss_blood = null
 var Stage = null
-var Decompose_ = null
-var Decompose_Help = null
-var RewardBox = null
-var RewardInfo = null
-var TaskTitle = null
-var BasicTask_ = null
+var decompose = null
+var decompose_help = null
+var reward_box = null
+var reward_info = null
+var task_title = null
+var basic_task = null
 var TaskReward = null
-var ADDFont = null
+var add_font = null
 var GameAnnouncement = null
-var BasicPellet_ = null
-var TransBox = null
-var llbtChallenge = null
-var Forges = null
-var ForgeBox = null
-var ForgeHelp = null
-var BasicMonmentInfo = null
-var MonsterInfo = null
+var basic_pellet = null
+var trans_box = null
+var llbt_challenge = null
+var forges = null
+var forge_box = null
+var forge_help = null
+var basic_monment_info = null
+var monster_info = null
 var HDZM = null
 var LSH = null
 var LXDY = null
-var DsgChoose = null
-var Line = null
+var dsg_choose = null
+var line = null
 var MysteryShop = null
-var CureTimesBox = null
-var LetterForPlayer = null
-var SomeMonsterHelp = null
-var Lhhj_ = null
+var cure_times_box = null
+var letter_for_player = null
+var some_monster_help = null
+var lhhj = null
 var listbutton = null
 var lhhjhelp = null
-var Monster141Aura = null
+var monster141_aura = null
 var ReturnBackMap = null
-var Zhenfalxbutton = null
-var ZhenFaInfo = null
-var ZhenFaUi = null
-var _28Ui = null
+var zhenfalxbutton = null
+var zhen_fa_info = null
+var zhen_fa_ui = null
+var _28_ui = null
 var zhenyanbutton = null
-var ZhenYanCureLevel = null
-var ZhenFaTuPo = null
-var ZhenFaHelp = null
-var RoleButton = null
-var Star = null
+var zhen_yan_cure_level = null
+var zhen_fa_tu_po = null
+var zhen_fa_help = null
+var role_button = null
+var star = null
 
 
 func add_star(parent, Type):
-	if not Star:
-		Star = _load_scene("res://Scene/other_scene/star.tscn")
-	var target = instance_scene(Star, parent)
+	if not star:
+		star = _load_scene("res://Scene/other_scene/star.tscn")
+	var target = instance_scene(star, parent)
 	target.Type = Type
 	return target
 
 
-func add_role_button(parent, MyName, MyFather):
-	if not RoleButton:
-		RoleButton = _load_scene("res://Scene/other_scene/role_button.tscn")
-	var target = instance_scene(RoleButton, parent)
-	target.MyName = MyName
-	target.MyFather = MyFather
+func add_role_button(parent, my_name, my_father):
+	if not role_button:
+		role_button = _load_scene("res://Scene/other_scene/role_button.tscn")
+	var target = instance_scene(role_button, parent)
+	target.my_name = my_name
+	target.my_father = my_father
 	return target
 
 
@@ -2811,77 +2810,77 @@ func add_basic_ar_button(parent, Num):
 	var target = instance_scene(_cached_scene(&"BasicArButton", BASIC_AR_BUTTON_PATH), parent)
 	if target == null:
 		return null
-	target.MyNum = Num
+	target.my_num = Num
 	return target
 
 
 func add_zhen_fa_help(parent, position):
-	if not ZhenFaHelp:
-		ZhenFaHelp = _load_scene("res://Scene/other_scene/zhen_fa_help.tscn")
-	var target = instance_scene(ZhenFaHelp, parent)
+	if not zhen_fa_help:
+		zhen_fa_help = _load_scene("res://Scene/other_scene/zhen_fa_help.tscn")
+	var target = instance_scene(zhen_fa_help, parent)
 	target.position = position
 	return target
 
 
-func add_zhen_fa_tu_po(parent, position, Father):
-	if not ZhenFaTuPo:
-		ZhenFaTuPo = _load_scene("res://Scene/other_scene/zhen_fa_tu_po.tscn")
-	var target = instance_scene(ZhenFaTuPo, parent)
+func add_zhen_fa_tu_po(parent, position, father):
+	if not zhen_fa_tu_po:
+		zhen_fa_tu_po = _load_scene("res://Scene/other_scene/zhen_fa_tu_po.tscn")
+	var target = instance_scene(zhen_fa_tu_po, parent)
 	target.position = position
-	target.Father = Father
+	target.father = father
 	return target
 
 
-func add_zhen_yan_cure_level(parent, position, Father):
-	if not ZhenYanCureLevel:
-		ZhenYanCureLevel = _load_scene("res://Scene/other_scene/zhen_yan_cure_level.tscn")
-	var target = instance_scene(ZhenYanCureLevel, parent)
+func add_zhen_yan_cure_level(parent, position, father):
+	if not zhen_yan_cure_level:
+		zhen_yan_cure_level = _load_scene("res://Scene/other_scene/zhen_yan_cure_level.tscn")
+	var target = instance_scene(zhen_yan_cure_level, parent)
 	target.position = position
-	target.Father = Father
+	target.father = father
 	return target
 
 
-func addzhenyanbutton(parent, position, LocNum, Father):
+func addzhenyanbutton(parent, position, loc_num, father):
 	if not zhenyanbutton:
 		zhenyanbutton = _load_scene("res://Scene/other_scene/zhenyanbutton.tscn")
 	var target = instance_scene(zhenyanbutton, parent)
 	target.position = position
-	target.LocNum = LocNum
-	target.Father = Father
+	target.loc_num = loc_num
+	target.father = father
 	return target
 
 
 func add_28_ui(parent, position):
-	if not _28Ui:
-		_28Ui = _load_scene("res://Scene/other_scene/twenty_eight_constellations.tscn")
-	var target = instance_scene(_28Ui, parent)
+	if not _28_ui:
+		_28_ui = _load_scene("res://Scene/other_scene/twenty_eight_constellations.tscn")
+	var target = instance_scene(_28_ui, parent)
 	target.position = position
 	return target
 
 
 func add_zhen_fa_ui(parent, position):
-	if not ZhenFaUi:
-		ZhenFaUi = _load_scene("res://Scene/other_scene/zhen_fa_ui.tscn")
-	var target = instance_scene(ZhenFaUi, parent)
+	if not zhen_fa_ui:
+		zhen_fa_ui = _load_scene("res://Scene/other_scene/zhen_fa_ui.tscn")
+	var target = instance_scene(zhen_fa_ui, parent)
 	target.position = position
 	return target
 
 
-func add_zhen_fa_info(parent, position, Father):
-	if not ZhenFaInfo:
-		ZhenFaInfo = _load_scene("res://Scene/other_scene/zhenfainfo.tscn")
-	var target = instance_scene(ZhenFaInfo, parent)
+func add_zhen_fa_info(parent, position, father):
+	if not zhen_fa_info:
+		zhen_fa_info = _load_scene("res://Scene/other_scene/zhenfainfo.tscn")
+	var target = instance_scene(zhen_fa_info, parent)
 	target.position = position
-	target.Father = Father
+	target.father = father
 	return target
 
 
-func add_zhenfalxbutton(parent, zhenfaName, Father):
-	if not Zhenfalxbutton:
-		Zhenfalxbutton = _load_scene("res://Scene/other_scene/zhenfalxbutton.tscn")
-	var target = instance_scene(Zhenfalxbutton, parent)
-	target.zhenfaName = zhenfaName
-	target.Father = Father
+func add_zhenfalxbutton(parent, zhenfa_name, father):
+	if not zhenfalxbutton:
+		zhenfalxbutton = _load_scene("res://Scene/other_scene/zhenfalxbutton.tscn")
+	var target = instance_scene(zhenfalxbutton, parent)
+	target.zhenfa_name = zhenfa_name
+	target.father = father
 	return target
 
 
@@ -2893,11 +2892,11 @@ func addhdgqmap(parent, position):
 	return target
 
 
-func add_monster141_aura(parent, position_, TargetMonster):
-	if not Monster141Aura:
-		Monster141Aura = _load_scene("res://Scene/other_scene/nmw_aura.tscn")
-	var target = instance_scene(Monster141Aura, parent)
-	target.TargetMonster = TargetMonster
+func add_monster141_aura(parent, position_, target_monster):
+	if not monster141_aura:
+		monster141_aura = _load_scene("res://Scene/other_scene/nmw_aura.tscn")
+	var target = instance_scene(monster141_aura, parent)
+	target.target_monster = target_monster
 	target.position = position_
 	return target
 
@@ -2910,20 +2909,20 @@ func addlhhjhelp(parent, position):
 	return target
 
 
-func addlistbutton(parent, selfName, Father, Num):
+func addlistbutton(parent, self_name, father, Num):
 	if not listbutton:
 		listbutton = _load_scene("res://Scene/other_scene/list_button.tscn")
 	var target = instance_scene(listbutton, parent)
-	target.selfName = selfName
-	target.Father = Father
+	target.self_name = self_name
+	target.father = father
 	target.Num = Num
 	return target
 
 
 func addlhhj(parent, position):
-	if not Lhhj_:
-		Lhhj_ = _load_scene("res://Scene/other_scene/lhhj.tscn")
-	var target = instance_scene(Lhhj_, parent)
+	if not lhhj:
+		lhhj = _load_scene("res://Scene/other_scene/lhhj.tscn")
+	var target = instance_scene(lhhj, parent)
 	target.scale = Vector2.ONE
 	if position == Vector2.ZERO or position == Vector2(0, 0):
 		target.position = viewport_center_for_parent(parent) - Vector2(461, 282)
@@ -2932,43 +2931,43 @@ func addlhhj(parent, position):
 	return target
 
 
-func addlhhjbutton(parent, selfName, Father):
+func addlhhjbutton(parent, self_name, father):
 	if not lhhjbutton:
 		lhhjbutton = _load_scene("res://Scene/other_scene/lhhj_button.tscn")
 	var target = instance_scene(lhhjbutton, parent)
-	target.selfName = selfName
-	target.Father = Father
+	target.self_name = self_name
+	target.father = father
 	return target
 
 
 func add_some_monster_help(parent, position):
-	if not SomeMonsterHelp:
-		SomeMonsterHelp = _load_scene("res://Scene/monster/some_monster_help.tscn")
-	var target = instance_scene(SomeMonsterHelp, parent)
+	if not some_monster_help:
+		some_monster_help = _load_scene("res://Scene/monster/some_monster_help.tscn")
+	var target = instance_scene(some_monster_help, parent)
 	target.position = position
 	return target
 
 
 func add_mosaic_help(parent, position):
-	if not MosaicHelp:
-		MosaicHelp = _load_scene("res://Scene/ldl/mosaic_help.tscn")
-	var target = instance_scene(MosaicHelp, parent)
+	if not mosaic_help:
+		mosaic_help = _load_scene("res://Scene/ldl/mosaic_help.tscn")
+	var target = instance_scene(mosaic_help, parent)
 	target.position = position
 	return target
 
 
 func add_letter_for_player(parent, position):
-	if not LetterForPlayer:
-		LetterForPlayer = _load_scene("res://Scene/other_scene/a_letter_for_all_players.tscn")
-	var target = instance_scene(LetterForPlayer, parent)
+	if not letter_for_player:
+		letter_for_player = _load_scene("res://Scene/other_scene/a_letter_for_all_players.tscn")
+	var target = instance_scene(letter_for_player, parent)
 	target.position = position
 	return target
 
 
 func add_cure_times_box(parent, position):
-	if not CureTimesBox:
-		CureTimesBox = _load_scene("res://Scene/shop/cure_times_box.tscn")
-	var target = instance_scene(CureTimesBox, parent)
+	if not cure_times_box:
+		cure_times_box = _load_scene("res://Scene/shop/cure_times_box.tscn")
+	var target = instance_scene(cure_times_box, parent)
 	target.position = position
 	return target
 
@@ -2984,28 +2983,28 @@ func add_mystery_shop(parent, position):
 	return target
 
 
-func add_trans_box(parent, name_, Transmogrified_):
-	if not TransBox:
-		TransBox = _load_scene("res://Scene/other_scene/transmogtified_box.tscn")
-	var target = instance_scene(TransBox, parent)
-	target.SelfName_ = name_
-	target.Transmogrified_ = Transmogrified_
+func add_trans_box(parent, name_, transmogrified):
+	if not trans_box:
+		trans_box = _load_scene("res://Scene/other_scene/transmogtified_box.tscn")
+	var target = instance_scene(trans_box, parent)
+	target.self_name = name_
+	target.transmogrified = transmogrified
 	return target
 
 
 func add_role4_bullet(parent, Player, position: Vector2):
-	if not Role4Bullet_:
-		Role4Bullet_ = _load_scene("res://Scene/hero/role_4/role4_bullet.tscn")
-	var target = instance_scene(Role4Bullet_, parent)
+	if not role4_bullet:
+		role4_bullet = _load_scene("res://Scene/hero/role_4/role4_bullet.tscn")
+	var target = instance_scene(role4_bullet, parent)
 	target.Player = Player
 	target.position = position
 	return target
 
 
 func add_line(parent, Monster, Type):
-	if not Line:
-		Line = _load_scene("res://Scene/level/line_effect.tscn")
-	var target = instance_scene(Line, parent)
+	if not line:
+		line = _load_scene("res://Scene/level/line_effect.tscn")
+	var target = instance_scene(line, parent)
 	target.position = Vector2(0, 0)
 	target.Type = Type
 	target.Monster = Monster
@@ -3013,20 +3012,20 @@ func add_line(parent, Monster, Type):
 
 
 func add_dsg_choose(parent):
-	if not DsgChoose:
-		DsgChoose = _load_scene("res://Scene/level/dsg_choose.tscn")
-	var target = instance_scene(DsgChoose, parent)
+	if not dsg_choose:
+		dsg_choose = _load_scene("res://Scene/level/dsg_choose.tscn")
+	var target = instance_scene(dsg_choose, parent)
 	target.position = Vector2(0, 0)
 	return target
 
 
-func add_hdzm(parent, Parent):
+func add_hdzm(parent, parent_node):
 	if not HDZM:
 		HDZM = _load_scene("res://Scene/level/hdzm.tscn")
 	var target = instance_scene(HDZM, parent)
 	target.scale = Vector2.ONE
 	target.position = viewport_center_for_parent(parent) - Vector2(493, 260)
-	target.Parent = Parent
+	target.parent_node = parent_node
 	var guard_script = load("res://Script/level/hdzm_window_guard.gd")
 	if guard_script != null:
 		var guard = guard_script.new()
@@ -3035,7 +3034,7 @@ func add_hdzm(parent, Parent):
 	return target
 
 
-func add_lsh(parent, Parent):
+func add_lsh(parent, parent_node):
 	if not LSH:
 		LSH = _load_scene("res://Scene/other_scene/lsh.tscn")
 	var target = instance_scene(LSH, parent)
@@ -3044,7 +3043,7 @@ func add_lsh(parent, Parent):
 	return target
 
 
-func add_lxdy(parent, Parent):
+func add_lxdy(parent, parent_node):
 	if not LXDY:
 		LXDY = _load_scene("res://Scene/other_scene/lxdy.tscn")
 	var target = instance_scene(LXDY, parent)
@@ -3054,60 +3053,60 @@ func add_lxdy(parent, Parent):
 
 
 func add_monster_info(parent, MonsterName, position):
-	if not MonsterInfo:
-		MonsterInfo = _load_scene("res://Scene/monster/boss_info.tscn")
-	var target = instance_scene(MonsterInfo, parent)
+	if not monster_info:
+		monster_info = _load_scene("res://Scene/monster/boss_info.tscn")
+	var target = instance_scene(monster_info, parent)
 	target.MonsterName = MonsterName
 	target.position = position
 	return target
 
 
-func add_basic_monment_info(parent, ShowText, position):
-	if not BasicMonmentInfo:
-		BasicMonmentInfo = _load_scene("res://Scene/other_scene/basic_monment_info.tscn")
-	var target = instance_scene(BasicMonmentInfo, parent)
-	target.ShowText = ShowText
+func add_basic_monment_info(parent, show_text, position):
+	if not basic_monment_info:
+		basic_monment_info = _load_scene("res://Scene/other_scene/basic_monment_info.tscn")
+	var target = instance_scene(basic_monment_info, parent)
+	target.show_text = show_text
 	target.position = position
 	return target
 
 
 func add_forge_help(parent, position):
-	if not ForgeHelp:
-		ForgeHelp = _load_scene("res://Scene/ldl/forge_help.tscn")
-	var target = instance_scene(ForgeHelp, parent)
+	if not forge_help:
+		forge_help = _load_scene("res://Scene/ldl/forge_help.tscn")
+	var target = instance_scene(forge_help, parent)
 	target.position = position
 	return target
 
 
 func add_forge_box(parent, Name, Num):
-	if not ForgeBox:
-		ForgeBox = _load_scene("res://Scene/ldl/forge_material_box.tscn")
-	var target = instance_scene(ForgeBox, parent)
+	if not forge_box:
+		forge_box = _load_scene("res://Scene/ldl/forge_material_box.tscn")
+	var target = instance_scene(forge_box, parent)
 	target.ItemName = Name
 	target.NeedNum = Num
 	return target
 
 
 func add_forges(parent, position):
-	if not Forges:
-		Forges = _load_scene("res://Scene/ldl/forge.tscn")
-	var target = instance_scene(Forges, parent)
+	if not forges:
+		forges = _load_scene("res://Scene/ldl/forge.tscn")
+	var target = instance_scene(forges, parent)
 	target.position = position
 	return target
 
 
 func addllbt_challenge(parent, position):
-	if not llbtChallenge:
-		llbtChallenge = _load_scene("res://Scene/level/llbt_challenge.tscn")
-	var target = instance_scene(llbtChallenge, parent)
+	if not llbt_challenge:
+		llbt_challenge = _load_scene("res://Scene/level/llbt_challenge.tscn")
+	var target = instance_scene(llbt_challenge, parent)
 	target.position = position
 	return target
 
 
 func add_basic_pellet(parent, position):
-	if not BasicPellet_:
-		BasicPellet_ = _load_scene("res://Scene/pellet/basic_pellet.tscn")
-	var target = instance_scene(BasicPellet_, parent)
+	if not basic_pellet:
+		basic_pellet = _load_scene("res://Scene/pellet/basic_pellet.tscn")
+	var target = instance_scene(basic_pellet, parent)
 	target.position = position
 	return target
 
@@ -3123,36 +3122,36 @@ func add_game_announcement(parent, position):
 	return target
 
 
-func add_font_(parent, ShowText, Font_, FontSize, FontColor, OutLineSize, OutLineColor):
-	if not ADDFont:
-		ADDFont = _load_scene("res://Scene/show_text/message_info.tscn")
-	var target = instance_scene(ADDFont, parent)
-	if Font_ == null:
-		target.Font_ = null
+func add_font_(parent, show_text, font, font_size, font_color, out_line_size, out_line_color):
+	if not add_font:
+		add_font = _load_scene("res://Scene/show_text/message_info.tscn")
+	var target = instance_scene(add_font, parent)
+	if font == null:
+		target.font = null
 	else:
-		target.Font_ = load(Font_)
-	target.ShowText = ShowText
-	target.FontColor = FontColor
-	target.OutLineSize = OutLineSize
-	target.OutLineColor = OutLineColor
-	target.FontSize = FontSize
+		target.font = load(font)
+	target.show_text = show_text
+	target.font_color = font_color
+	target.out_line_size = out_line_size
+	target.out_line_color = out_line_color
+	target.font_size = font_size
 	return target
 
 
-func add_task_reward(parent, ItemName, TotalNum):
+func add_task_reward(parent, ItemName, total_num):
 	if not TaskReward:
 		TaskReward = _load_scene("res://Scene/task/task_reward.tscn")
 	var target = instance_scene(TaskReward, parent)
 	target.ItemName = ItemName
-	target.TotalNum = TotalNum
+	target.total_num = total_num
 	target.z_index = 99
 	return target
 
 
 func add_basic_task(parent, position):
-	if not BasicTask_:
-		BasicTask_ = _load_scene("res://Scene/task/basic_task.tscn")
-	var target = instance_scene(BasicTask_, parent)
+	if not basic_task:
+		basic_task = _load_scene("res://Scene/task/basic_task.tscn")
+	var target = instance_scene(basic_task, parent)
 	if position == Vector2.ZERO or position == Vector2(0, 0):
 		target.position = viewport_center_for_parent(parent) - Vector2(470, 295)
 	else:
@@ -3160,13 +3159,13 @@ func add_basic_task(parent, position):
 	return target
 
 
-func add_task_title(parent, TaskType, TaskName, MyFather):
-	if not TaskTitle:
-		TaskTitle = _load_scene("res://Scene/task/task_title.tscn")
-	var target = instance_scene(TaskTitle, parent)
+func add_task_title(parent, TaskType, TaskName, my_father):
+	if not task_title:
+		task_title = _load_scene("res://Scene/task/task_title.tscn")
+	var target = instance_scene(task_title, parent)
 	target.TaskName = TaskName
 	target.TaskType = TaskType
-	target.MyFather = MyFather
+	target.my_father = my_father
 	target.z_index = 99
 	return target
 
@@ -3263,7 +3262,7 @@ func configure_backpack_role_preview(page: Node, player: Variant = null) -> void
 		return
 	var valid_player: Variant = player if is_instance_valid(player) else null
 	var role_id := _role_id_from_runtime_node(valid_player)
-	var role_body := page.get_node_or_null("background/RoleBody") as Sprite2D
+	var role_body := page.get_node_or_null("background/role_body") as Sprite2D
 	var role_equipment := page.get_node_or_null("background/RoleEquipment") as Sprite2D
 	if role_body != null:
 		role_body.texture = (
@@ -3465,25 +3464,25 @@ func viewport_center_for_parent(parent_node: Node) -> Vector2:
 	return center
 
 
-func add_reward_info(parent, position, List, UseItemName, UseNum):
-	if not RewardInfo:
-		RewardInfo = _load_scene("res://Scene/other_scene/reward_interface.tscn")
-	var target = instance_scene(RewardInfo, parent)
+func add_reward_info(parent, position, list, use_item_name, use_num):
+	if not reward_info:
+		reward_info = _load_scene("res://Scene/other_scene/reward_interface.tscn")
+	var target = instance_scene(reward_info, parent)
 	if position == Vector2.ZERO:
 		target.position = viewport_center_for_parent(parent) - Vector2(478, 210)
 	else:
 		target.position = position
-	target.UseNum = UseNum
-	target.UseItemName = UseItemName
-	target.ItemList_ = List
+	target.use_num = use_num
+	target.use_item_name = use_item_name
+	target.item_list = list
 	target.z_index = 99
 	return target
 
 
 func add_reward_box(parent, item_id, Num):
-	if not RewardBox:
-		RewardBox = _load_scene("res://Scene/other_scene/reward_box_2.tscn")
-	var target = instance_scene(RewardBox, parent)
+	if not reward_box:
+		reward_box = _load_scene("res://Scene/other_scene/reward_box_2.tscn")
+	var target = instance_scene(reward_box, parent)
 	target.item_id = item_id
 	target.Name = item_id
 	target.Num = Num
@@ -3491,17 +3490,17 @@ func add_reward_box(parent, item_id, Num):
 
 
 func add_decompose_help(parent, position):
-	if not Decompose_Help:
-		Decompose_Help = _load_scene("res://Scene/ldl/decompose_help.tscn")
-	var target = instance_scene(Decompose_Help, parent)
+	if not decompose_help:
+		decompose_help = _load_scene("res://Scene/ldl/decompose_help.tscn")
+	var target = instance_scene(decompose_help, parent)
 	target.position = position
 	return target
 
 
 func add_decompose_(parent, position):
-	if not Decompose_:
-		Decompose_ = _load_scene("res://Scene/ldl/decompose.tscn")
-	var target = instance_scene(Decompose_, parent)
+	if not decompose:
+		decompose = _load_scene("res://Scene/ldl/decompose.tscn")
+	var target = instance_scene(decompose, parent)
 	target.position = position
 	return target
 
@@ -3510,7 +3509,7 @@ func add_zztw_trap(parent, Name, position):
 	if not zztwtrap:
 		zztwtrap = _load_scene("res://Scene/level/zztw_trap.tscn")
 	var target = instance_scene(zztwtrap, parent)
-	target.MyName = Name
+	target.my_name = Name
 	target.position = position
 	return target
 
@@ -3525,66 +3524,66 @@ func add_stage(parent, Obj, position):
 
 
 func add_boss_blood_(parent, Obj):
-	if not BossBlood_:
-		BossBlood_ = _load_scene(BOSS_BLOOD_PATH)
-	var target = instance_scene(BossBlood_, parent)
+	if not boss_blood:
+		boss_blood = _load_scene(BOSS_BLOOD_PATH)
+	var target = instance_scene(boss_blood, parent)
 	target.GetObj = Obj
 	return target
 
 
 func add_hc_help(parent, position):
-	if not Hc_Help:
-		Hc_Help = _load_scene("res://Scene/other_scene/hc_help.tscn")
-	var target = instance_scene(Hc_Help, parent)
+	if not hc_help:
+		hc_help = _load_scene("res://Scene/other_scene/hc_help.tscn")
+	var target = instance_scene(hc_help, parent)
 	target.position = position
 	return target
 
 
-func add_help_thing(parent, position, ItemInfo):
-	if not HelpThing:
-		HelpThing = _load_scene("res://Scene/other_scene/help_things.tscn")
-	var target = instance_scene(HelpThing, parent)
-	target.ItemInfo = ItemInfo
+func add_help_thing(parent, position, item_info):
+	if not help_thing:
+		help_thing = _load_scene("res://Scene/other_scene/help_things.tscn")
+	var target = instance_scene(help_thing, parent)
+	target.item_info = item_info
 	target.position = position
 	return target
 
 
 func add_pj(parent, position, Num):
-	if not Pj:
-		Pj = _load_scene("res://Scene/other_scene/ping_jia.tscn")
-	var target = instance_scene(Pj, parent)
+	if not pj:
+		pj = _load_scene("res://Scene/other_scene/ping_jia.tscn")
+	var target = instance_scene(pj, parent)
 	target.Num = Num
 	target.position = position
 	return target
 
 
 func get_current_level_fall_pro(default_pro: float) -> float:
-	if LevelDropProData.is_empty():
+	if level_drop_pro_data.is_empty():
 		var level_info_scene = _load_scene("res://Scene/other_scene/level_info.tscn")
 		if level_info_scene != null:
 			var probe = level_info_scene.instantiate()
 			if probe != null:
 				sync_level_drop_pro_data(probe.LevelInfo)
 				probe.queue_free()
-	var level_name = str(CurrentLevel)
+	var level_name = str(current_level)
 	var base_pro = -1.0
-	if level_name != "" and LevelDropProData.has(level_name):
-		base_pro = float(LevelDropProData[level_name])
+	if level_name != "" and level_drop_pro_data.has(level_name):
+		base_pro = float(level_drop_pro_data[level_name])
 	var effective_pro = default_pro
 	if base_pro >= 0.0:
 		var diff = int(MainSet.set_data.get("Difficult", 0))
 		var multipliers = [1.0, 2.0, 3.0, 3.0]
 		diff = clampi(diff, 0, multipliers.size() - 1)
 		effective_pro = base_pro * multipliers[diff] / 100.0
-	if RoleProp.SourcePlayer != null and RoleProp.SourcePlayer.IsDoubleFallPro:
+	if RoleProp.source_player != null and RoleProp.source_player.is_double_fall_pro:
 		effective_pro *= 2.0
 	return clampf(effective_pro, 0.0, 1.0)
 
 
 func sync_level_drop_pro_data(level_info: Dictionary) -> void:
-	LevelDropProData.clear()
+	level_drop_pro_data.clear()
 	for level_name in level_info.keys():
-		LevelDropProData[level_name] = level_info[level_name].get("fall_pro", 0)
+		level_drop_pro_data[level_name] = level_info[level_name].get("fall_pro", 0)
 
 
 func _enter_level_without_info(parent, path):
@@ -3597,7 +3596,7 @@ func _enter_level_without_info(parent, path):
 
 
 func add_level_info(parent, Name, position, path):
-	CurrentLevel = Name
+	current_level = Name
 	var show_level_info := bool(MainSet.set_data.get("LevelInfo", false))
 	if (
 		str(path)
@@ -3611,22 +3610,22 @@ func add_level_info(parent, Name, position, path):
 	):
 		show_level_info = true
 	if str(path) == "res://Scene/level/level_tzsijian.tscn":
-		FourSwordsEndlessMode = false
+		four_swords_endless_mode = false
 	if str(path) == "res://Scene/level/level_stz.tscn":
-		ThreePrinceEndlessMode = false
+		three_prince_endless_mode = false
 	if str(path) == "res://Scene/level/level_sssl.tscn":
-		SSSLendlessMode = false
+		sss_lendless_mode = false
 	if str(path) == "res://Scene/level/level_esbxx.tscn":
-		ConstellationEndlessMode = false
+		constellation_endless_mode = false
 	if str(path) == "res://Scene/level/level_bxgh.tscn":
-		SelectedEightImmortalId = 0
+		selected_eight_immortal_id = 0
 	if not LevelInfo:
 		LevelInfo = _load_scene("res://Scene/other_scene/level_info.tscn")
 	if not show_level_info:
 		var probe = LevelInfo.instantiate()
 		if probe != null:
 			probe.LevelName = Name
-			probe.TargetStagePath = path
+			probe.target_stage_path = path
 			sync_level_drop_pro_data(probe.LevelInfo)
 			var nightmare_block_message := ""
 			if probe.has_method("_get_nightmare_entry_block_message"):
@@ -3641,7 +3640,7 @@ func add_level_info(parent, Name, position, path):
 		return null
 	sync_level_drop_pro_data(target.LevelInfo)
 	target.LevelName = Name
-	target.TargetStagePath = path
+	target.target_stage_path = path
 	if position == Vector2.ZERO or position == Vector2(0, 0):
 		target.position = viewport_center_for_parent(parent) - Vector2(470, 295)
 	else:
@@ -3650,19 +3649,19 @@ func add_level_info(parent, Name, position, path):
 
 
 func add_monster_head(parent, Name, IsBoss, ScenePath := ""):
-	if not MonsterHead:
-		MonsterHead = _load_scene("res://Scene/other_scene/monster_head_info.tscn")
-	var target = instance_scene(MonsterHead, parent)
+	if not monster_head:
+		monster_head = _load_scene("res://Scene/other_scene/monster_head_info.tscn")
+	var target = instance_scene(monster_head, parent)
 	target.MonsterName = Name
 	target.IsBoss = IsBoss
-	target.MonsterScenePath = ScenePath
+	target.monster_scene_path = ScenePath
 	return target
 
 
 func add_level_fall_box(parent, Inldl, Inhhgz, Name, qh_level, wx, EqProp):
-	if not LevelFallBox:
-		LevelFallBox = _load_scene("res://Scene/back_pack/box_1.tscn")
-	var target = instance_scene(LevelFallBox, parent)
+	if not level_fall_box:
+		level_fall_box = _load_scene("res://Scene/back_pack/box_1.tscn")
+	var target = instance_scene(level_fall_box, parent)
 	target.is_in_ldl_gz = Inldl
 	target.is_in_hhgz = Inhhgz
 	target.qh_level = qh_level
@@ -3675,9 +3674,9 @@ func add_level_fall_box(parent, Inldl, Inhhgz, Name, qh_level, wx, EqProp):
 
 
 func add_item_box(parent, Inldl, Inhhgz, Name, qh_level, num, wx, EqProp):
-	if not LevelFallBox:
-		LevelFallBox = _load_scene("res://Scene/back_pack/box_1.tscn")
-	var target = instance_scene(LevelFallBox, parent)
+	if not level_fall_box:
+		level_fall_box = _load_scene("res://Scene/back_pack/box_1.tscn")
+	var target = instance_scene(level_fall_box, parent)
 	target.is_in_ldl_gz = Inldl
 	target.is_in_hhgz = Inhhgz
 	target.qh_level = qh_level
@@ -3690,54 +3689,53 @@ func add_item_box(parent, Inldl, Inhhgz, Name, qh_level, num, wx, EqProp):
 
 
 func add_game_need_know(parent, position):
-	if not GameNeedKnow:
-		GameNeedKnow = _load_scene("res://Scene/other_scene/game_need_know.tscn")
-	var target = instance_scene(GameNeedKnow, parent)
+	if not game_need_know:
+		game_need_know = _load_scene("res://Scene/other_scene/game_need_know.tscn")
+	var target = instance_scene(game_need_know, parent)
 	target.position = position
 	return target
 
 
-func add_role_magic_need(parent, position, name_, Old, New):
-	if not RoleMagicNeed:
-		RoleMagicNeed = _load_scene("res://Scene/skill/role_magic_need.tscn")
-	var target = instance_scene(RoleMagicNeed, parent)
+func add_role_magic_need(parent, position, name_, old, new):
+	if not role_magic_need:
+		role_magic_need = _load_scene("res://Scene/skill/role_magic_need.tscn")
+	var target = instance_scene(role_magic_need, parent)
 	target.position = position
-	target.Skill_name = name_
-	target.CurrentNeed = Old
-	target.NextNeed = New
+	target.skill_name = name_
+	target.current_need = old
+	target.next_need = new
 	return target
 
 
-func add_new_bullet(parent, position, Dir, name_, Dic):
-	if not NewBullet:
-		NewBullet = _load_scene("res://Scene/hero/bullet_bullet.tscn")
-	var target = instance_scene(NewBullet, parent)
+func add_new_bullet(parent, position, dir, name_, dic):
+	if not new_bullet:
+		new_bullet = _load_scene("res://Scene/hero/bullet_bullet.tscn")
+	var target = instance_scene(new_bullet, parent)
 	target.position = position
 	target.name_ = name_
-	target.HitDic = Dic
-	target.Direction = Dir
+	target.HitDic = dic
+	target.direction = dir
 	return target
 
 
-func add_smb_effect(parent, position, Dir):
-	if not SMBEffect:
-		SMBEffect = _load_scene("res://Scene/hero/role_2/smb_effect.tscn")
-	var target = instance_scene(SMBEffect, parent)
+func add_smb_effect(parent, position, dir):
+	if not smb_effect:
+		smb_effect = _load_scene("res://Scene/hero/role_2/smb_effect.tscn")
+	var target = instance_scene(smb_effect, parent)
 	target.position = position
-	target.Dir = Dir
+	target.dir = dir
 	return target
 
 
-func add_role2_shallow(parent, position, Dir):
-	if not Role2Shallow:
-		Role2Shallow = _load_scene("res://Scene/base/role2shallow.tscn")
-	var target = instance_scene(Role2Shallow, parent)
+func add_role2_shallow(parent, position, dir):
+	if not role2_shallow: role2_shallow = _load_scene("res://Scene/base/role2shallow.tscn")
+	var target = instance_scene(role2_shallow, parent)
 	target.position = position
-	target.Dir = Dir
+	target.dir = dir
 	return target
 
 
-func add_role_special_effect(parent, position, Dir, name_):
+func add_role_special_effect(parent, position, dir, name_):
 	var effect_name := str(name_)
 	var scene = null
 	if effect_name in ["sd", "sd2"]:
@@ -3748,17 +3746,17 @@ func add_role_special_effect(parent, position, Dir, name_):
 		var slim_path := ROLE_SPECIAL_EFFECT_SLIM_DIR.path_join(effect_name + ".tscn")
 		scene = load_scene_uncached(slim_path) if ResourceLoader.exists(slim_path) else null
 	if scene == null:
-		if not RoleSpecialEffect_:
-			RoleSpecialEffect_ = _load_scene("res://Scene/hero/role_special_effect.tscn")
-		scene = RoleSpecialEffect_
+		if not role_special_effect:
+			role_special_effect = _load_scene("res://Scene/hero/role_special_effect.tscn")
+		scene = role_special_effect
 	var target = instance_scene(scene, parent)
 	target.position = position
-	target.SpecialEffectName = name_
-	target.Dir = Dir
+	target.special_effect_name = name_
+	target.dir = dir
 	return target
 
 
-func add_role_bullet(parent, position, Dir, name_, Dic):
+func add_role_bullet(parent, position, dir, name_, dic):
 	var bullet_name := str(name_)
 	var scene = null
 	if bullet_name in ["Role3Bullet2", "TtzsszBullet"]:
@@ -3776,23 +3774,23 @@ func add_role_bullet(parent, position, Dir, name_, Dic):
 		return
 	target.position = position
 	target.name_ = name_
-	target.HitDic = Dic
-	target.Direction = Dir
+	target.HitDic = dic
+	target.direction = dir
 	return target
 
 
 func add_choose_player(parent, position_):
-	if not ChoosePlayer:
-		ChoosePlayer = _load_scene("res://Scene/main_menu/choose_player.tscn")
-	var target = instance_scene(ChoosePlayer, parent)
+	if not choose_player:
+		choose_player = _load_scene("res://Scene/main_menu/choose_player.tscn")
+	var target = instance_scene(choose_player, parent)
 	target.position = position_
 	return target
 
 
 func add_monster65_bullet(parent, position_):
-	if not Monster65Bullet:
-		Monster65Bullet = _load_scene("res://Scene/monster/monster65bullet.tscn")
-	var target = instance_scene(Monster65Bullet, parent)
+	if not monster65_bullet:
+		monster65_bullet = _load_scene("res://Scene/monster/monster65bullet.tscn")
+	var target = instance_scene(monster65_bullet, parent)
 	target.position = position_
 	return target
 
@@ -3808,10 +3806,10 @@ func add_aura(parent, position_, Value, color_type = 0):
 
 
 func add_buffinfor(parent, position_, Data):
-	if not Buffinfor:
-		Buffinfor = _load_scene("res://Scene/other_scene/buff_information.tscn")
-	var target = instance_scene(Buffinfor, parent)
-	target.DataList = Data
+	if not buffinfor:
+		buffinfor = _load_scene("res://Scene/other_scene/buff_information.tscn")
+	var target = instance_scene(buffinfor, parent)
+	target.data_list = Data
 	apply_popup_screen_layout(target, position_, Vector2(320, 120))
 	prepare_hover_info_popup(target, true)
 	return target
@@ -3827,7 +3825,7 @@ func add_buff_icon(parent, Data):
 	if target == null:
 		return null
 	parent.add_child(target)
-	target.DataList = Data
+	target.data_list = Data
 	var buff_name := str(Data.get("Name", "")) if Data is Dictionary else ""
 	if not buff_name.is_empty():
 		target.name = buff_name
@@ -3842,9 +3840,9 @@ func is_monster_control_buff(buff_name: Variant) -> bool:
 func add_buff(parent, BuffInfo):
 	if parent == null or not (BuffInfo is Dictionary):
 		return null
-	var Target = parent.get_parent()
-	if Target != null and Target.get("NoDeBuff") != null:
-		if Target.get("NoDeBuff"):
+	var target = parent.get_parent()
+	if target != null and target.get("NoDeBuff") != null:
+		if target.get("NoDeBuff"):
 			if (
 				BuffInfo.has("DeBuff")
 				and BuffInfo["DeBuff"]
@@ -3855,7 +3853,7 @@ func add_buff(parent, BuffInfo):
 	var new_name := str(BuffInfo.get("Name", ""))
 	if new_name == "":
 		return null
-	if Target is BaseMonster and Target.is_control_immune() and is_monster_control_buff(new_name):
+	if target is BaseMonster and target.is_control_immune() and is_monster_control_buff(new_name):
 		return null
 	var unique_buff_names := [
 		"Ice",
@@ -3897,7 +3895,7 @@ func add_buff(parent, BuffInfo):
 			if child_buff is Dictionary and str(child_buff.get("Name", "")) == new_name:
 				if child.get("BuffTime") != null:
 					child.BuffInfo = BuffInfo.duplicate(true)
-					child.LastValue = float(BuffInfo.get("value", 0.0))
+					child.last_value = float(BuffInfo.get("value", 0.0))
 					if new_name == "speed_down" and child.has_method("apply_slow_speed"):
 						child.apply_slow_speed()
 					child.LastTime = float(BuffInfo.get("AddTime", 0.0))
@@ -3909,11 +3907,11 @@ func add_buff(parent, BuffInfo):
 					):
 						child.refresh_pet_owner_bonus(maxi(0, int(BuffInfo.get("value", 0))))
 					if (
-						Target is BaseMonster
-						and not Target.is_control_immune()
+						target is BaseMonster
+						and not target.is_control_immune()
 						and new_name in ["Ice", "stun", "EyeFix", "Immobilize", "lljybuff"]
 					):
-						Target.interrupt_movement_for_control()
+						target.interrupt_movement_for_control()
 					return child
 				return null
 	var node_instance = instance_scene(_cached_scene(&"BaseBuff_", BASE_BUFF_PATH), parent)
@@ -3923,11 +3921,11 @@ func add_buff(parent, BuffInfo):
 		var buff_instance = node_instance
 		buff_instance.BuffInfo = BuffInfo.duplicate(true)
 		if (
-			Target is BaseMonster
-			and not Target.is_control_immune()
+			target is BaseMonster
+			and not target.is_control_immune()
 			and new_name in ["Ice", "stun", "EyeFix", "Immobilize", "lljybuff"]
 		):
-			Target.interrupt_movement_for_control()
+			target.interrupt_movement_for_control()
 		return buff_instance
 	else:
 		print("Invalid BaseBuff instance")
@@ -3936,9 +3934,9 @@ func add_buff(parent, BuffInfo):
 
 
 func add_after_level_end(parent, position):
-	if not AfterLevelEnd:
-		AfterLevelEnd = _load_scene("res://Scene/other_scene/after_level_end.tscn")
-	var target = instance_scene(AfterLevelEnd, parent)
+	if not after_level_end:
+		after_level_end = _load_scene("res://Scene/other_scene/after_level_end.tscn")
+	var target = instance_scene(after_level_end, parent)
 	target.z_index = 9999
 	target.top_level = true
 	if position != Vector2.ZERO and position != Vector2(0, 0):
@@ -3975,33 +3973,33 @@ func add_combo_num(parent, ComboNum_):
 	return target
 
 
-func add_z_lw_stage(parent, position, Speed, Dir, Max, PD):
-	if not ZLw_stage:
-		ZLw_stage = _load_scene("res://Scene/level/zlw_fly_floor.tscn")
-	var target = instance_scene(ZLw_stage, parent)
+func add_z_lw_stage(parent, position, speed, dir, max_num, pd):
+	if not z_lw_stage:
+		z_lw_stage = _load_scene("res://Scene/level/zlw_fly_floor.tscn")
+	var target = instance_scene(z_lw_stage, parent)
 	target.position = position
-	target.Direction = Dir
-	target.Speed = Speed
-	target.MaxPosition_x = Max
-	target.PD = PD
+	target.direction = dir
+	target.speed = speed
+	target.max_position_x = max_num
+	target.pd = pd
 	return target
 
 
 func add_h_hjm(parent, position):
-	if not HHjm:
-		HHjm = _load_scene("res://Scene/other_scene/transmogrified.tscn")
-	var target = instance_scene(HHjm, parent)
+	if not h_hjm:
+		h_hjm = _load_scene("res://Scene/other_scene/transmogrified.tscn")
+	var target = instance_scene(h_hjm, parent)
 	target.position = position
 	return target
 
 
-func add_change_clothes_jm(parent, position, name_, Transmogrified_):
-	if not ChangeClothesJm:
-		ChangeClothesJm = _load_scene("res://Scene/other_scene/c_hange_clothes_jm.tscn")
-	var target = instance_scene(ChangeClothesJm, parent)
+func add_change_clothes_jm(parent, position, name_, transmogrified):
+	if not change_clothes_jm:
+		change_clothes_jm = _load_scene("res://Scene/other_scene/c_hange_clothes_jm.tscn")
+	var target = instance_scene(change_clothes_jm, parent)
 	target.position = position
-	target.SelfName_ = name_
-	target.Transmogrified_ = Transmogrified_
+	target.self_name = name_
+	target.transmogrified = transmogrified
 	return target
 
 
@@ -4076,7 +4074,7 @@ func add_damage_text(parent, position, value, Type, is_crit, tar):
 	else:
 		target.target = tar
 		target.Type = Type
-		target.Number = value
+		target.damage_value = value
 		target.is_crit = is_crit
 	return target
 
@@ -4096,38 +4094,38 @@ func _on_damage_text_freed():
 
 
 func add_role1_shallow(parent, position, dir, int_action):
-	if not Role1Shallow:
-		Role1Shallow = _load_scene("res://Scene/hero/role1_s_hallow.tscn")
-	var target = instance_scene(Role1Shallow, parent)
+	if not role1_shallow:
+		role1_shallow = _load_scene("res://Scene/hero/role1_s_hallow.tscn")
+	var target = instance_scene(role1_shallow, parent)
 	target.position = position
 	target.iniaction = int_action
 	target.direction = dir
 	return target
 
 
-func add_role_bullet_1(parent, position, name_, Dic):
-	if not RoleBullet_1:
-		RoleBullet_1 = _load_scene("res://Scene/hero/role_bullet_1.tscn")
-	var target = instance_scene(RoleBullet_1, parent)
+func add_role_bullet_1(parent, position, name_, dic):
+	if not role_bullet_1:
+		role_bullet_1 = _load_scene("res://Scene/hero/role_bullet_1.tscn")
+	var target = instance_scene(role_bullet_1, parent)
 	target.position = position
 	target.name_ = name_
-	target.HitDic = Dic
+	target.HitDic = dic
 	return target
 
 
 func add_skill_key_set(parent, position, name_):
-	if not SkillKeySet:
-		SkillKeySet = _load_scene("res://Scene/skill/skill_key_set.tscn")
-	var target = instance_scene(SkillKeySet, parent)
+	if not skill_key_set:
+		skill_key_set = _load_scene("res://Scene/skill/skill_key_set.tscn")
+	var target = instance_scene(skill_key_set, parent)
 	target.position = position
 	target.need_name = name_
 	return target
 
 
 func add_game_set(parent, position):
-	if not GameSet_:
-		GameSet_ = _load_scene("res://Scene/main_menu/game_set.tscn")
-	var target = instance_scene(GameSet_, parent)
+	if not game_set:
+		game_set = _load_scene("res://Scene/main_menu/game_set.tscn")
+	var target = instance_scene(game_set, parent)
 	if target == null:
 		return null
 	var design_size := Vector2(942, 589)
@@ -4142,17 +4140,17 @@ func add_game_set(parent, position):
 
 
 func add_bgm(parent, target_):
-	if not BGM_:
-		BGM_ = _load_scene("res://Scene/all_sound/bgm.tscn")
-	var target = instance_scene(BGM_, parent)
+	if not bgm:
+		bgm = _load_scene("res://Scene/all_sound/bgm.tscn")
+	var target = instance_scene(bgm, parent)
 	target.target = target_
 	return target
 
 
 func add_mosaic_(parent, position):
-	if not Mosaic_:
-		Mosaic_ = _load_scene("res://Scene/ldl/mosaic.tscn")
-	var target = instance_scene(Mosaic_, parent)
+	if not mosaic:
+		mosaic = _load_scene("res://Scene/ldl/mosaic.tscn")
+	var target = instance_scene(mosaic, parent)
 	target.position = position
 	return target
 
@@ -4189,9 +4187,9 @@ func add_sound(parent, target_, priority: int = 0):
 
 
 func add_magic_help(parent, position):
-	if not MagicHelp:
-		MagicHelp = _load_scene("res://Scene/magic_weapon/magic_help.tscn")
-	var target = instance_scene(MagicHelp, parent)
+	if not magic_help:
+		magic_help = _load_scene("res://Scene/magic_weapon/magic_help.tscn")
+	var target = instance_scene(magic_help, parent)
 	target.z_index = 99
 	target.position = position
 	return target
@@ -4202,24 +4200,24 @@ func _get_viewport_center_position() -> Vector2:
 
 
 func add_use_magic_weapon(parent, position):
-	if not UseMagicWeapon:
-		UseMagicWeapon = _load_scene("res://Scene/back_pack/use_magic_weapon.tscn")
-	var target = instance_scene(UseMagicWeapon, parent)
+	if not use_magic_weapon:
+		use_magic_weapon = _load_scene("res://Scene/back_pack/use_magic_weapon.tscn")
+	var target = instance_scene(use_magic_weapon, parent)
 	target.z_index = 99
 	target.position = position
 	return target
 
 
 func add_skill_select(parent, position, name_):
-	if not SkillSelect:
-		SkillSelect = _load_scene("res://Scene/back_pack/skill_select.tscn")
-	var target = instance_scene(SkillSelect, parent)
+	if not skill_select:
+		skill_select = _load_scene("res://Scene/back_pack/skill_select.tscn")
+	var target = instance_scene(skill_select, parent)
 	target.wp_name = name_
 	target.position = position
 	return target
 
 
-func add_weapon_bullet(parent, position, name_, List, dir, Rand):
+func add_weapon_bullet(parent, position, name_, list, dir, Rand):
 	var scene_path := str(ADD_WEAPON_BULLET_PATHS.get(str(name_), ""))
 	if scene_path.is_empty() or not ResourceLoader.exists(scene_path):
 		push_error("Missing lazy weapon bullet scene for: " + str(name_))
@@ -4228,8 +4226,8 @@ func add_weapon_bullet(parent, position, name_, List, dir, Rand):
 	var target = instance_scene(_cached_scene(cache_key, scene_path), parent)
 	if target == null:
 		return null
-	target.objattackDic = List
-	target.Rnd = Rand
+	target.objattackDic = list
+	target.rnd = Rand
 	target.name_ = name_
 	target.dir = dir
 	target.position = position
@@ -4568,35 +4566,35 @@ func add_magic_weapon(parent, name_, position):
 	return target
 
 
-func add_message_show(Parent, NeedText: String, Time_: float, Position: Vector2):
-	var target = instance_scene(_cached_scene(&"MessageShow", MESSAGE_SHOW_PATH), Parent)
+func add_message_show(parent_node, NeedText: String, time: float, Position: Vector2):
+	var target = instance_scene(_cached_scene(&"MessageShow", MESSAGE_SHOW_PATH), parent_node)
 	if target == null:
 		return null
 	target.z_index = 999
 	if Position == Vector2.ZERO or Position == Vector2(470, 300):
-		target.position = viewport_center_for_parent(Parent)
+		target.position = viewport_center_for_parent(parent_node)
 	else:
 		target.position = Position
-	target.ShowText = NeedText
-	target.LastTime = Time_
+	target.show_text = NeedText
+	target.LastTime = time
 	center_popup_texts(target)
 	return target
 
 
 func add_ws_effect(parent):
-	if not WS_Effect:
-		WS_Effect = _load_scene("res://Scene/hero/role_1/ws_effect.tscn")
-	var target = instance_scene(WS_Effect, parent)
+	if not ws_effect:
+		ws_effect = _load_scene("res://Scene/hero/role_1/ws_effect.tscn")
+	var target = instance_scene(ws_effect, parent)
 	return target
 
 
-func add_choose_item(parent, position, List, name_, page):
-	if not Choose_Item:
-		Choose_Item = _load_scene("res://Scene/shop/choose_item.tscn")
-	var target = instance_scene(Choose_Item, parent)
+func add_choose_item(parent, position, list, name_, page):
+	if not choose_item:
+		choose_item = _load_scene("res://Scene/shop/choose_item.tscn")
+	var target = instance_scene(choose_item, parent)
 	target.name_ = name_
 	target.page_ = page
-	target.list_ = List
+	target.list_ = list
 	target.z_index = 99
 	if position == Vector2.ZERO or position == Vector2(460, 260):
 		target.position = viewport_center_for_parent(parent)
@@ -4615,9 +4613,9 @@ func add_s_y_n_help(parent, position):
 
 
 func add_shop(parent, position):
-	if not SHop:
-		SHop = _load_scene("res://Scene/shop/shop.tscn")
-	var target = instance_scene(SHop, parent)
+	if not s_hop:
+		s_hop = _load_scene("res://Scene/shop/shop.tscn")
+	var target = instance_scene(s_hop, parent)
 	target.z_index = 99
 	target.position = position
 	return target
@@ -4727,9 +4725,9 @@ func add_lj(parent, position_):
 
 
 func add_trap(parent, position_, name_):
-	if not Trap_:
-		Trap_ = _load_scene("res://Scene/level/trap.tscn")
-	var target = instance_scene(Trap_, parent)
+	if not trap:
+		trap = _load_scene("res://Scene/level/trap.tscn")
+	var target = instance_scene(trap, parent)
 	target.z_index = 99
 	target.get_name_ = name_
 	target.position = position_
@@ -4737,9 +4735,9 @@ func add_trap(parent, position_, name_):
 
 
 func add_buff_icon_text(parent, text_):
-	if not BuffIcon:
-		BuffIcon = _load_scene("res://Scene/back_pack/buff.tscn")
-	var target = instance_scene(BuffIcon, parent)
+	if not buff_icon:
+		buff_icon = _load_scene("res://Scene/back_pack/buff.tscn")
+	var target = instance_scene(buff_icon, parent)
 	target.z_index = 99
 	target.texture_ = text_
 	return target
@@ -4764,10 +4762,10 @@ func add_special_effect(parent, position_, name_, scale_, direction, speed_):
 	if target == null:
 		return null
 	target.z_index = 99
-	target.Effect_name = name_
+	target.effect_name = name_
 	target.scale_ = scale_
-	target.Effect_speed = speed_
-	target.Effect_dir = direction
+	target.effect_speed = speed_
+	target.effect_dir = direction
 	target.position = position_
 	return target
 
@@ -4784,9 +4782,9 @@ func add_choose_text(parent, position_, text_, calm_time):
 
 
 func add_special_effect_bullet(parent, position_, scale_, name_, dir):
-	if not SpecialEffectBullet:
-		SpecialEffectBullet = _load_scene("res://Scene/hero/role_1/hmz_effect/special_effect_bullet.tscn")
-	var target = instance_scene(SpecialEffectBullet, parent)
+	if not special_effect_bullet:
+		special_effect_bullet = _load_scene("res://Scene/hero/role_1/hmz_effect/special_effect_bullet.tscn")
+	var target = instance_scene(special_effect_bullet, parent)
 	target.z_index = 99
 	target.position = position_
 	target.scale_ = scale_
@@ -4838,9 +4836,9 @@ func add_bd_skillscene(parent, position):
 
 
 func add_gm_infor(parent, position):
-	if not Game_information:
-		Game_information = _load_scene("res://Scene/main_menu/game_information.tscn")
-	var target = instance_scene(Game_information, parent)
+	if not game_information:
+		game_information = _load_scene("res://Scene/main_menu/game_information.tscn")
+	var target = instance_scene(game_information, parent)
 	target.z_index = 99
 	target.position = position
 	return target
@@ -4936,7 +4934,7 @@ func add_equ_propeties_box(parent, position, name_, qh_level, wx, Data):
 	var target = instance_scene(equ_propeties_box, parent)
 	target.z_index = 199
 	var item_data: Dictionary = Data.duplicate(true) if Data is Dictionary else {}
-	var template: Dictionary = AE.AllEquipment_.get(str(name_), {})
+	var template: Dictionary = AE.all_equipment.get(str(name_), {})
 	if item_data.is_empty() and str(template.get("所属", "")) == "宠物装备":
 		item_data = template.duplicate(true)
 	var item_type := str(item_data.get(DataKeys.TYPE, template.get(DataKeys.TYPE, "")))
@@ -4969,7 +4967,7 @@ func add_se_eq_jm(parent, position, name_, page_, number_):
 		sell_or_equ = _load_scene("res://Scene/back_pack/sell_or_equ.tscn")
 	var target = instance_scene(sell_or_equ, parent)
 	target.page = page_
-	target.number = number_
+	target.damage_value = number_
 	target.get_name_ = name_
 	target.z_index = 99
 	target.position = position
@@ -5271,13 +5269,13 @@ func instance_scene_safe(target_scene_, parent):
 	return target
 
 
-func add_role_bullet_1_safe(parent, position, name_, Dic):
-	if not RoleBullet_1:
-		RoleBullet_1 = _load_scene("res://Scene/hero/role_bullet_1.tscn")
-	var target = RoleBullet_1.instantiate()
+func add_role_bullet_1_safe(parent, position, name_, dic):
+	if not role_bullet_1:
+		role_bullet_1 = _load_scene("res://Scene/hero/role_bullet_1.tscn")
+	var target = role_bullet_1.instantiate()
 	target.position = position
 	target.name_ = name_
-	target.HitDic = Dic
+	target.HitDic = dic
 	parent.call_deferred("add_child", target)
 	return target
 
@@ -5352,15 +5350,15 @@ func _physics_process(_delta: float) -> void:
 			_debug_perf_elapsed = 0.0
 			_update_debug_perf_overlay()
 	if MainSet.set_data.has("FileValue"):
-		if float(MainSet.set_data["FileValue"]) < float(FileNum):
-			MainSet.set_data["FileValue"] = FileNum
-	if BoxCount > 0:
-		BoxCount -= 1
+		if float(MainSet.set_data["FileValue"]) < float(file_num):
+			MainSet.set_data["FileValue"] = file_num
+	if box_count > 0:
+		box_count -= 1
 	lj_count += 1
 	if lj_count > 100:
 		lj_count = 0
-		LJ_times = 0
-		check_combo_milestone(LJ_times)
+		lj_times = 0
+		check_combo_milestone(lj_times)
 
 
 func check_combo_milestone(current_combo: int):
@@ -5502,15 +5500,15 @@ func check_dir_between_two_obj(Player, Monster):
 
 
 func remove_all_buff():
-	Global.is_Mpo = false
+	Global.is_mpo = false
 	Global.is_ice = false
 	Global.is_poision = false
-	Global.is_Fire = false
+	Global.is_fire = false
 	Global.is_speed_down = false
 	Global.is_stun = false
-	Global.is_Bleed = false
-	Global.is_EyeFix = false
-	Global.is_DeadLink = false
+	Global.is_bleed = false
+	Global.is_eye_fix = false
+	Global.is_dead_link = false
 	RoleProp.ws_value = 0
 
 
@@ -5519,52 +5517,52 @@ func load_(name_):
 	return abc
 
 
-func add_all_item_num(List, Num, NumRange):
+func add_all_item_num(list, Num, NumRange):
 	randomize()
-	var Dic = {}
-	for i in List:
-		Dic[i] = {"Name": i, "Num": 0}
+	var dic = {}
+	for i in list:
+		dic[i] = {"Name": i, "Num": 0}
 	for i in range(Num):
-		var item_name = List[randi_range(0, List.size() - 1)]
-		Dic[item_name]["Num"] += NumRange
+		var item_name = list[randi_range(0, list.size() - 1)]
+		dic[item_name]["Num"] += NumRange
 	var List_ = []
-	for i in Dic:
-		if int(Dic[i]["Num"]) == 0:
+	for i in dic:
+		if int(dic[i]["Num"]) == 0:
 			List_.push_back(i)
 	for i in List_:
-		Dic.erase(i)
-	for i in Dic:
-		var num = Dic[i]["Num"]
+		dic.erase(i)
+	for i in dic:
+		var num = dic[i]["Num"]
 		PlayerData.add_dj(i, num)
-	return Dic
+	return dic
 
 
-func get_all_item_num(List, Num, NumRange):
+func get_all_item_num(list, Num, NumRange):
 	randomize()
-	var Dic = {}
-	for i in List:
-		Dic[i] = {"Name": i, "Num": 0}
+	var dic = {}
+	for i in list:
+		dic[i] = {"Name": i, "Num": 0}
 	for i in range(Num):
-		var item_name = List[randi_range(0, List.size() - 1)]
-		Dic[item_name]["Num"] += NumRange
+		var item_name = list[randi_range(0, list.size() - 1)]
+		dic[item_name]["Num"] += NumRange
 	var List_ = []
-	for i in Dic:
-		if int(Dic[i]["Num"]) == 0:
+	for i in dic:
+		if int(dic[i]["Num"]) == 0:
 			List_.push_back(i)
 	for i in List_:
-		Dic.erase(i)
-	for i in Dic:
+		dic.erase(i)
+	for i in dic:
 		var item_name = i
-		var Num_ = Dic[i]["Num"]
-		Dic[i] = {"Name": item_name, "Value": Num_, "Prop": {}, "WX": [], "StrengthValue": 0}
+		var num = dic[i]["Num"]
+		dic[i] = {"Name": item_name, "Value": num, "Prop": {}, "WX": [], "StrengthValue": 0}
 	var ll = []
-	for i in Dic:
-		ll.push_back(Dic[i])
+	for i in dic:
+		ll.push_back(dic[i])
 	return ll
 
 
 func remove_all_active_buffs():
-	for i in RoleProp.SourcePlayer.buff.get_children():
+	for i in RoleProp.source_player.buff.get_children():
 		if i != null:
 			if i.BuffInfo["AddTime"] < 999:
 				if i.BuffInfo.has("CanRemove"):
@@ -5575,7 +5573,7 @@ func remove_all_active_buffs():
 
 
 func remove_a_all_buff():
-	for i in RoleProp.SourcePlayer.buff.get_children():
+	for i in RoleProp.source_player.buff.get_children():
 		if i != null:
 			match i.BuffInfo["Name"]:
 				"DoubleFallPro":
@@ -5584,35 +5582,35 @@ func remove_a_all_buff():
 
 
 func on_fresh():
-	var Dic = Time.get_datetime_dict_from_system()
-	var MyDic = PlayerData.player_data["MyTime"]
-	if MyDic == {}:
+	var dic = Time.get_datetime_dict_from_system()
+	var my_dic = PlayerData.player_data["MyTime"]
+	if my_dic == {}:
 		return
-	if int(Dic["year"]) < int(MyDic["year"]):
+	if int(dic["year"]) < int(my_dic["year"]):
 		return false
-	elif int(Dic["year"]) > int(MyDic["year"]):
+	elif int(dic["year"]) > int(my_dic["year"]):
 		return true
 	else:
-		if int(Dic["month"]) < int(MyDic["month"]):
+		if int(dic["month"]) < int(my_dic["month"]):
 			return false
-		elif int(Dic["month"]) > int(MyDic["month"]):
+		elif int(dic["month"]) > int(my_dic["month"]):
 			return true
 		else:
-			if int(Dic["day"]) < int(MyDic["day"]):
+			if int(dic["day"]) < int(my_dic["day"]):
 				return false
-			elif int(Dic["day"]) > int(MyDic["day"]):
+			elif int(dic["day"]) > int(my_dic["day"]):
 				return true
 			else:
 				return false
 
 
 func check_wd(OBJ):
-	var Count: int = 0
+	var count: int = 0
 	for i in OBJ.buff.get_children():
 		if i != null:
 			if i.BuffInfo["Name"] == "Voodoo":
-				Count += 1
-	return Count
+				count += 1
+	return count
 
 
 func remove_wd(OBJ):

@@ -41,7 +41,7 @@ var _attack_hit_consumed := false
 
 
 func _ready() -> void:
-	IsSuperArmor = true
+	super_armor_active = true
 	var attack_area := hit_box.get_parent() as Area2D if hit_box != null else null
 	if attack_area != null:
 		attack_area.monitorable = false

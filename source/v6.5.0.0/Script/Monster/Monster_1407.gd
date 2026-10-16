@@ -2,8 +2,8 @@ extends BaseMonster
 
 var alternate_side: bool = false
 
-var MyChild: MonsterBullet
-var Count: int = 0
+var my_child: MonsterBullet
+var tick_count: int = 0
 var is_checking_silent: bool = false
 var silent_check_timer: Timer
 var has_summoned_1404: bool = false
@@ -14,7 +14,7 @@ var is_special_combo: bool = false
 
 
 func monster_1407():
-	self.is_Fly = true
+	self.is_fly = true
 	self.is_boss = true
 	self.my_mr_name = "琼霄娘娘"
 	self.rush_speed = 600
@@ -134,16 +134,16 @@ func _ready() -> void:
 	Skill_2_CD = 10
 	Skill_3_CD = 7
 	Skill_4_CD = 12
-	Skill_5_CD = 25
+	skill_5_cd = 25
 
 
 func ai_think():
-	if MyChild != null:
-		Count += 1
-		if Count >= 900:
-			MyChild.queue_free()
-			MyChild = null
-			Count = 0
+	if my_child != null:
+		tick_count += 1
+		if tick_count >= 900:
+			my_child.queue_free()
+			my_child = null
+			tick_count = 0
 
 	if is_attacking or is_special_combo:
 		return
@@ -166,7 +166,7 @@ func ai_think():
 				do_hit_3()
 			elif Skill_4_CD <= 0:
 				do_hit_4()
-			elif Skill_5_CD <= 0:
+			elif skill_5_cd <= 0:
 				do_hit_5()
 			else:
 				normal_state()
@@ -180,7 +180,7 @@ func ai_think():
 				do_hit_2_1()
 			elif Skill_4_CD <= 0:
 				do_hit_4()
-			elif Skill_5_CD <= 0:
+			elif skill_5_cd <= 0:
 				do_hit_5()
 			else:
 				have_target()
@@ -280,7 +280,7 @@ func do_hit_5():
 	if is_attacking or is_special_combo:
 		return
 	super.to_hero()
-	Skill_5_CD = randi_range(40, 45)
+	skill_5_cd = randi_range(40, 45)
 	hit_name = "hit5"
 	velocity.x = 0
 	is_attacking = true
@@ -329,11 +329,11 @@ func call_bullet_4():
 
 
 func call_bullet_5():
-	if MyChild == null:
-		MyChild = Global.add_bullet(
+	if my_child == null:
+		my_child = Global.add_bullet(
 			"Monster1407Bullet5", self.bullet, false, 1, Vector2(500, -270), "hit5", self.objattackDic["hit5"]
 		)
-		Count = 0
+		tick_count = 0
 
 
 func move_player_2():

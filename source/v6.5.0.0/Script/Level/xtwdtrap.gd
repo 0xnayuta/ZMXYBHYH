@@ -4,12 +4,12 @@ extends Node2D
 
 var hit_name
 var get_name_
-var IsHit: bool
+var is_hit: bool
 var is_play
 var total_hit = 0
 var objattackDic = {}
 var Player
-var HitCount: int = 0
+var hit_count: int = 0
 
 
 func _ready():
@@ -18,16 +18,16 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
-	var Parent = get_parent()
-	Player = Parent.Role_
+	var parent_node = get_parent()
+	Player = parent_node.Role_
 
-	if not IsHit:
-		HitCount = 0
+	if not is_hit:
+		hit_count = 0
 		animation_player.play("Empty")
 	else:
-		if HitCount % 120 == 0 and cooldown_timer.is_stopped():
+		if hit_count % 120 == 0 and cooldown_timer.is_stopped():
 			animation_player.play("Hit")
-		HitCount += 1
+		hit_count += 1
 
 
 func _on_hix_box_area_entered(area: Area2D) -> void:
@@ -78,7 +78,7 @@ func _on_hix_box_area_entered(area: Area2D) -> void:
 		if RoleProp.is_ws_state:
 			return
 		if target is Role3Hero:
-			if target.Is_sdBuff or target.IsTMc:
+			if target.is_sd_buff or target.is_t_mc:
 				return
 		target.state_behit()
 		if randi_range(0, 100) < 50:
@@ -101,11 +101,11 @@ func _on_hix_box_area_entered(area: Area2D) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	IsHit = true
+	is_hit = true
 
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
-	IsHit = false
+	is_hit = false
 
 
 func _on_cooldown_timer_timeout() -> void:

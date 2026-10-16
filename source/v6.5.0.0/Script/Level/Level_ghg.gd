@@ -7,26 +7,26 @@ const MONSTER_130_SCENE := preload("res://Scene/monster/monster_130.tscn")
 
 
 func _ready() -> void:
-	Monster_group = {
+	monster_group = {
 		"stage_1": [130],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [500],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [200],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Global.CurrentLevel = "广寒宫"
-	Global.GameOver = 1
+	Global.current_level = "广寒宫"
+	Global.game_over = 1
 	level_stage = 0
 	is_two_scene = false
 	Global.add_bgm(self, "res://Music/level/BGM_Normal.mp3")
@@ -50,7 +50,7 @@ func set_through() -> void:
 
 
 func one_check_can_exit() -> bool:
-	if not Monster_group.has("stage_1") or not Monster_group["stage_1"].is_empty():
+	if not monster_group.has("stage_1") or not monster_group["stage_1"].is_empty():
 		return false
 	return _get_alive_stage_monster_count() == 0
 

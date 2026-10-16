@@ -4,7 +4,7 @@ const XIANYU_WING_PATH_FORMAT := "res://Art/HeroPicture/Wings/xyzy/role%d.tres"
 const HUAHAO_WING_FRAME_DIR := "res://Art/HeroPicture/Wings/hhyq"
 @onready var bg_2: Sprite2D = $BG/BG2
 @onready var infor: Label = $BG/ChangePage/Infor
-@onready var role_body: Sprite2D = $BG/Player/RoleBody
+@onready var role_body: Sprite2D = $BG/Player/role_body
 @onready var role_equipment: Sprite2D = $BG/Player/RoleEquipment
 @onready var role_body_front: Sprite2D = $BG/Player/RoleBodyFront
 @onready var wqq: Button = $BG/wqq
@@ -25,12 +25,12 @@ var _wing_base_transform_initialized := false
 var _special_wing_track_states: Array[Dictionary] = []
 var _special_wing_tracks_disabled := false
 
-var CurrentType: String = "全部":
+var current_type: String = "全部":
 	set(vl):
-		CurrentType = vl
+		current_type = vl
 		currentpage = 1
 		add_box()
-var PlayerId = int(PlayerData.player_data["Myself"])
+var player_id = int(PlayerData.player_data["Myself"])
 var currentpage: int = 1
 var maxpage: int = 4
 var _nezha_body_id := "Empty"
@@ -62,7 +62,7 @@ func _is_transmog_item_visible(item_id: String) -> bool:
 	return not REMOVED_TRANSMOG_ITEM_IDS.has(item_id)
 
 
-var RoleItemList = {
+var role_item_list = {
 	"悟空":
 	[
 		"wkjdyhwq",
@@ -544,30 +544,30 @@ var RoleItemList = {
 
 func push_eq_to_list():
 	PlayerData.ensure_acquired_equipment_data()
-	var List = []
+	var list = []
 	match int(PlayerData.player_data["Myself"]):
 		1:
-			List = RoleItemList["悟空"]
-			RoleItemList[DataKeys.TITLE].push_back("qtds")
+			list = role_item_list["悟空"]
+			role_item_list[DataKeys.TITLE].push_back("qtds")
 		2:
-			List = RoleItemList["唐僧"]
-			RoleItemList[DataKeys.TITLE].push_back("jcz")
+			list = role_item_list["唐僧"]
+			role_item_list[DataKeys.TITLE].push_back("jcz")
 		3:
-			List = RoleItemList["八戒"]
-			RoleItemList[DataKeys.TITLE].push_back("tpys")
+			list = role_item_list["八戒"]
+			role_item_list[DataKeys.TITLE].push_back("tpys")
 		4:
-			List = RoleItemList["沙僧"]
-			RoleItemList[DataKeys.TITLE].push_back("jldj")
+			list = role_item_list["沙僧"]
+			role_item_list[DataKeys.TITLE].push_back("jldj")
 		5:
-			List = RoleItemList["白龙"]
-			RoleItemList[DataKeys.TITLE].push_back("lwstz")
+			list = role_item_list["白龙"]
+			role_item_list[DataKeys.TITLE].push_back("lwstz")
 		6:
-			List = RoleItemList["哪吒"]
-	for i in RoleItemList[DataKeys.WINGS]:
-		List.push_back(i)
-	for i in RoleItemList[DataKeys.TITLE]:
-		List.push_back(i)
-	for i in List:
+			list = role_item_list["哪吒"]
+	for i in role_item_list[DataKeys.WINGS]:
+		list.push_back(i)
+	for i in role_item_list[DataKeys.TITLE]:
+		list.push_back(i)
+	for i in list:
 		if not _is_transmog_item_visible(str(i)):
 			continue
 		if PlayerData.has_acquired_equipment(str(i)):
@@ -576,82 +576,82 @@ func push_eq_to_list():
 
 
 func get_current_role_list():
-	var OtherList = []
+	var other_list = []
 	match int(PlayerData.player_data["Myself"]):
 		1:
 			role.text = "悟空"
-			for i in RoleItemList["悟空"]:
-				OtherList.push_back(i)
+			for i in role_item_list["悟空"]:
+				other_list.push_back(i)
 		2:
 			role.text = "唐僧"
-			for i in RoleItemList["唐僧"]:
-				OtherList.push_back(i)
+			for i in role_item_list["唐僧"]:
+				other_list.push_back(i)
 		3:
 			role.text = "八戒"
-			for i in RoleItemList["八戒"]:
-				OtherList.push_back(i)
+			for i in role_item_list["八戒"]:
+				other_list.push_back(i)
 		4:
 			role.text = "沙僧"
-			for i in RoleItemList["沙僧"]:
-				OtherList.push_back(i)
+			for i in role_item_list["沙僧"]:
+				other_list.push_back(i)
 		5:
 			role.text = "白龙"
-			for i in RoleItemList["白龙"]:
-				OtherList.push_back(i)
+			for i in role_item_list["白龙"]:
+				other_list.push_back(i)
 		6:
 			role.text = "哪吒"
-			for i in RoleItemList["哪吒"]:
-				OtherList.push_back(i)
-	for index in range(OtherList.size() - 1, -1, -1):
-		if not _is_transmog_item_visible(str(OtherList[index])):
-			OtherList.remove_at(index)
-	return OtherList
+			for i in role_item_list["哪吒"]:
+				other_list.push_back(i)
+	for index in range(other_list.size() - 1, -1, -1):
+		if not _is_transmog_item_visible(str(other_list[index])):
+			other_list.remove_at(index)
+	return other_list
 
 
 func get_current_type_list():
-	var List = get_current_role_list()
-	var NewList = []
-	if CurrentType == "全部":
-		return List
-	for i in List:
-		if AE.AllEquipment_.has(i) and AE.AllEquipment_[i][DataKeys.TYPE] == CurrentType:
-			NewList.push_back(i)
-	return NewList
+	var list = get_current_role_list()
+	var new_list = []
+	if current_type == "全部":
+		return list
+	for i in list:
+		if AE.all_equipment.has(i) and AE.all_equipment[i][DataKeys.TYPE] == current_type:
+			new_list.push_back(i)
+	return new_list
 
 
 func get_current_max_page():
-	var CurrentList = get_current_type_list()
-	if int(CurrentList.size()) % 6 == 0:
-		return int(CurrentList.size() / 6)
+	var current_list = get_current_type_list()
+	if int(current_list.size()) % 6 == 0:
+		return int(current_list.size() / 6)
 	else:
-		return int(CurrentList.size() / 6) + 1
+		return int(current_list.size() / 6) + 1
 
 
 func get_page_list():
-	var CurrentList = get_current_type_list()
-	var PageDic = {}
+	var current_list = get_current_type_list()
+	var page_dic = {}
 	for i in range(get_current_max_page()):
 		var num = i + 1
-		PageDic["Page_" + str(num)] = []
+		page_dic["Page_" + str(num)] = []
 	var loc_1_: int = 1
 	var num: int = 1
-	var PageNum: int = 1
-	for i in CurrentList:
+	var page_num: int = 1
+	for i in current_list:
 		if num < 6:
 			num += 1
-			PageDic["Page_" + str(PageNum)].push_back(i)
+			page_dic["Page_" + str(page_num)].push_back(i)
 		else:
 			num = 1
-			PageDic["Page_" + str(PageNum)].push_back(i)
-			PageNum += 1
+			page_dic["Page_" + str(page_num)].push_back(i)
+			page_num += 1
 
-	return PageDic
+	return page_dic
 
 
 func get_finish_item_num():
 	var target_count: int = 0
-	var List = []
-	if CurrentType == "全部":
+	var list = []
+	if current_type == "全部":
 		for item_id in PlayerData.player_data["幻化拥有列表"]:
 			if _is_transmog_item_visible(str(item_id)):
 				target_count += 1
@@ -659,18 +659,18 @@ func get_finish_item_num():
 	for i in PlayerData.player_data["幻化拥有列表"]:
 		if (
 			_is_transmog_item_visible(str(i))
-			and AE.AllEquipment_.has(i)
-			and AE.AllEquipment_[i][DataKeys.TYPE] == CurrentType
+			and AE.all_equipment.has(i)
+			and AE.all_equipment[i][DataKeys.TYPE] == current_type
 		):
-			List.push_back(i)
-	return List.size()
+			list.push_back(i)
+	return list.size()
 
 
 func add_box():
 	remove_box()
-	var Dic = get_page_list()
-	if Dic.size() > 0:
-		for i in Dic["Page_" + str(currentpage)]:
+	var dic = get_page_list()
+	if dic.size() > 0:
+		for i in dic["Page_" + str(currentpage)]:
 			Global.add_trans_box(box_list, i, self)
 
 
@@ -704,7 +704,7 @@ func set_box_():
 			wqq.EQ_prop = {}
 		else:
 			wqq.set_button_icon(load_(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON]))
-			wqq.EQ_prop = AE.AllEquipment_[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON]]
+			wqq.EQ_prop = AE.all_equipment[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON]]
 		wqq.qh_level = 0
 		wqq.wx = []
 	if fjj.get_item_name == "empty":
@@ -719,7 +719,7 @@ func set_box_():
 			fjj.EQ_prop = {}
 		else:
 			fjj.set_button_icon(load_(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR]))
-			fjj.EQ_prop = AE.AllEquipment_[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR]]
+			fjj.EQ_prop = AE.all_equipment[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR]]
 		fjj.qh_level = 0
 		fjj.wx = []
 	if cbb.get_item_name == "empty":
@@ -734,13 +734,13 @@ func set_box_():
 			cbb.EQ_prop = {}
 		else:
 			cbb.set_button_icon(load_(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]))
-			cbb.EQ_prop = AE.AllEquipment_[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]]
+			cbb.EQ_prop = AE.all_equipment[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]]
 		cbb.qh_level = 0
 		cbb.wx = []
 
 
 func _ready() -> void:
-	PlayerId = int(PlayerData.player_data.get("Myself", 1))
+	player_id = int(PlayerData.player_data.get("Myself", 1))
 	if wings.sprite_frames != null:
 		wings.sprite_frames = wings.sprite_frames.duplicate(true)
 	_wing_base_position = wings.position
@@ -750,29 +750,29 @@ func _ready() -> void:
 	_ensure_title_preview_animations()
 	push_eq_to_list()
 	maxpage = get_current_max_page()
-	match PlayerId:
+	match player_id:
 		1:
 			$BG/Player/Playerplay.play("Wait")
-			RoleItemList[DataKeys.TITLE].push_back("qtds")
+			role_item_list[DataKeys.TITLE].push_back("qtds")
 		2:
 			$BG/Player/Playerplay.play("Wait2")
-			RoleItemList[DataKeys.TITLE].push_back("jcz")
+			role_item_list[DataKeys.TITLE].push_back("jcz")
 		3:
 			$BG/Player/Playerplay.play("Wait3")
-			RoleItemList[DataKeys.TITLE].push_back("tpys")
+			role_item_list[DataKeys.TITLE].push_back("tpys")
 		4:
 			$BG/Player/Playerplay.play("wait4")
-			RoleItemList[DataKeys.TITLE].push_back("jldj")
+			role_item_list[DataKeys.TITLE].push_back("jldj")
 		5:
 			$BG/Player/Playerplay.play("wait5")
-			RoleItemList[DataKeys.TITLE].push_back("lwstz")
+			role_item_list[DataKeys.TITLE].push_back("lwstz")
 	infor.text = str(currentpage) + "/" + str(maxpage)
 	on_eqchange()
 	add_box()
 
 
 func _physics_process(_delta: float) -> void:
-	if PlayerId == 6:
+	if player_id == 6:
 		_update_nezha_preview(_delta)
 	set_wings_offset()
 	var target_count = get_finish_item_num()
@@ -780,7 +780,7 @@ func _physics_process(_delta: float) -> void:
 	infor.text = str(currentpage) + "/" + str(maxpage)
 
 	collect_value.text = (
-		str(CurrentType) + "收集进度：(" + str(target_count) + "/" + str(get_current_type_list().size()) + ")"
+		str(current_type) + "收集进度：(" + str(target_count) + "/" + str(get_current_type_list().size()) + ")"
 	)
 
 
@@ -801,49 +801,49 @@ func _on_next_pressed() -> void:
 
 
 func on_eqchange():
-	var WQ: String
-	var Fj: String
+	var wq: String
+	var fj: String
 
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON] == "":
 		if PlayerData.player_data[DataKeys.WEAPON].size() == 0:
-			WQ = "Empty"
+			wq = "Empty"
 		else:
-			WQ = str(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME])
+			wq = str(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME])
 	else:
-		WQ = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON])
-	change_eq(WQ)
+		wq = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON])
+	change_eq(wq)
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR] == "":
 		if PlayerData.player_data[DataKeys.FASHION].size() == 0:
 			if PlayerData.player_data[DataKeys.ARMOR].size() == 0:
-				Fj = "Empty"
+				fj = "Empty"
 			else:
-				Fj = str(PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME])
+				fj = str(PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME])
 		else:
-			Fj = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
+			fj = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
 	else:
-		Fj = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR])
-	Fj = Global.get_clean_name(Fj)
-	change_body(Fj)
-	var WingsList
+		fj = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR])
+	fj = Global.get_clean_name(fj)
+	change_body(fj)
+	var wings_list
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
 		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
 			wings.visible = false
-			WingsList = "empty"
+			wings_list = "empty"
 		else:
 			wings.visible = true
-			WingsList = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
+			wings_list = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 	else:
 		wings.visible = true
-		WingsList = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
+		wings_list = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
 
-	if WingsList == "xyzy":
+	if wings_list == "xyzy":
 		_ensure_xianyu_wing_animation()
-	elif WingsList == "hhyq":
+	elif wings_list == "hhyq":
 		_ensure_huahao_wing_animation()
-	_set_special_preview_tracks(WingsList == "xyzy" or WingsList == "hhyq")
-	wings.flip_h = WingsList == "xyzy" or WingsList == "hhyq"
+	_set_special_preview_tracks(wings_list == "xyzy" or wings_list == "hhyq")
+	wings.flip_h = wings_list == "xyzy" or wings_list == "hhyq"
 	wings.z_index = 0
-	wings.play(WingsList)
+	wings.play(wings_list)
 	change_tx()
 	set_box_()
 
@@ -891,14 +891,14 @@ func _set_special_preview_tracks(disabled: bool) -> void:
 
 func change_body(name_):
 	preload("res://Script/hero/moon_palace_clothes_effect.gd").sync(role_body, str(name_))
-	if PlayerId == 6:
+	if player_id == 6:
 		_nezha_body_id = str(name_)
 		return
 	role_body.texture = Global.load_role1_body(name_)
 
 
 func change_eq(name_):
-	if PlayerId == 6:
+	if player_id == 6:
 		_nezha_weapon_id = str(name_)
 		return
 	role_equipment.texture = Global.load_role1_eq(name_)
@@ -941,8 +941,8 @@ func load_(name_):
 func _ensure_xianyu_wing_animation() -> void:
 	if wings.sprite_frames == null:
 		return
-	PlayerId = int(PlayerData.player_data.get("Myself", 1))
-	var source_frames := load(XIANYU_WING_PATH_FORMAT % clampi(PlayerId, 1, 6)) as SpriteFrames
+	player_id = int(PlayerData.player_data.get("Myself", 1))
+	var source_frames := load(XIANYU_WING_PATH_FORMAT % clampi(player_id, 1, 6)) as SpriteFrames
 	if source_frames == null or not source_frames.has_animation(&"xyzy"):
 		return
 	if wings.sprite_frames.has_animation(&"xyzy"):
@@ -1012,45 +1012,45 @@ func change_tx():
 
 
 func _on_total_pressed() -> void:
-	CurrentType = "全部"
+	current_type = "全部"
 
 
 func _on_wq_pressed() -> void:
-	CurrentType = "武器"
+	current_type = "武器"
 
 
 func _on_fj_pressed() -> void:
-	CurrentType = "防具"
+	current_type = "防具"
 
 
 func _on_cb_pressed() -> void:
-	CurrentType = "翅膀"
+	current_type = "翅膀"
 
 
 func _on_sz_pressed() -> void:
-	CurrentType = "时装"
+	current_type = "时装"
 
 
 func _on_tx_pressed() -> void:
-	CurrentType = "头衔"
+	current_type = "头衔"
 
 
 func set_wings_offset():
-	var CurrentWingsName: String
+	var current_wings_name: String
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
 		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
-			CurrentWingsName = "empty"
+			current_wings_name = "empty"
 		else:
-			CurrentWingsName = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
+			current_wings_name = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 	else:
-		CurrentWingsName = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
-	if PlayerId == 2:
+		current_wings_name = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
+	if player_id == 2:
 		wings.position = Vector2(41, -4)
 	elif _wing_base_transform_initialized:
 		wings.position = _wing_base_position
 		wings.rotation = _wing_base_rotation
 		wings.scale = _wing_base_scale
-	match CurrentWingsName:
+	match current_wings_name:
 		"xtzy", "ttzy":
 			wings.offset = Vector2(0, 0)
 			wings.scale = Vector2(1.6, 1.6)

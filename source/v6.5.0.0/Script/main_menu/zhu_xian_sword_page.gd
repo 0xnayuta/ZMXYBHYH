@@ -166,7 +166,7 @@ func _refresh_state() -> void:
 		if action_button != null:
 			action_button.disabled = not can_battle
 			action_button.modulate = Color(1, 1, 1, 1) if can_battle else Color(0.62, 0.62, 0.62, 1)
-		var text := card.get_node_or_null("ActionButton/Text") as TextureRect
+		var text := card.get_node_or_null("ActionButton/text_str") as TextureRect
 		if text != null:
 			text.texture = REST_TEXT if selected else BATTLE_TEXT
 		var upgrade_button := card.get_node_or_null("UpgradeButton") as TextureButton
@@ -351,8 +351,8 @@ func _apply_role_prop() -> void:
 		RoleProp.set_basic_prop()
 		RoleProp.check_hp()
 		RoleProp.check_mp()
-		if RoleProp.SourcePlayer != null and RoleProp.SourcePlayer.has_method("jsfzsy"):
-			RoleProp.SourcePlayer.jsfzsy()
+		if RoleProp.source_player != null and RoleProp.source_player.has_method("jsfzsy"):
+			RoleProp.source_player.jsfzsy()
 
 
 func _save_if_possible() -> void:
@@ -365,6 +365,6 @@ func _save_if_possible() -> void:
 
 func _show_message(message: String) -> void:
 	var parent: Node = self
-	if Global.Windows_ != null:
-		parent = Global.Windows_
+	if Global.windows != null:
+		parent = Global.windows
 	Global.add_message_show(parent, message, 1.2, get_viewport().get_visible_rect().size * 0.5)

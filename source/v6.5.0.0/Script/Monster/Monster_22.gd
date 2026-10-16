@@ -7,7 +7,7 @@ var boss_2: Monster23
 
 func monster_22():
 	if get_parent().get_parent() is LevelNMGHDGQ:
-		self.CannotAttract = true
+		self.cannot_attract = true
 		self.is_bt = true
 		self.is_boss = true
 		self.my_mr_name = "牛魔王·兽"
@@ -57,7 +57,7 @@ func monster_22():
 		self.fall_stone_pro = 0
 		self.fall_stone = []
 		return
-	self.CannotAttract = true
+	self.cannot_attract = true
 	self.is_bt = true
 	self.is_boss = true
 	self.my_mr_name = "牛魔王·兽"

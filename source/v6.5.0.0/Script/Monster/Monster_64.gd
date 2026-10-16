@@ -1,7 +1,7 @@
 extends BaseMonster
-var IsDrop = false
-var First: bool = true
-var FS: bool = false
+var is_drop = false
+var first: bool = true
+var fs: bool = false
 @onready var change_timer: Timer = $ChangeTimer
 @onready var special_effect: AnimatedSprite2D = $MonsterDir/SpecialEffect
 
@@ -143,9 +143,9 @@ func _ready() -> void:
 	Skill_2_CD = 6
 	Skill_3_CD = 4
 	Skill_4_CD = 8
-	Skill_5_CD = 15
-	Skill_6_CD = 20
-	Skill_7_CD = 13
+	skill_5_cd = 15
+	skill_6_cd = 20
+	skill_7_cd = 13
 
 
 func ai_think():
@@ -166,14 +166,14 @@ func ai_think():
 				if Skill_4_CD <= 0:
 					do_hit_4()
 				if (
-					Skill_5_CD <= 0
+					skill_5_cd <= 0
 					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 100
 				):
 					do_hit_5()
-				if Skill_6_CD <= 0:
+				if skill_6_cd <= 0:
 					do_hit_6()
 				if (
-					Skill_7_CD <= 0
+					skill_7_cd <= 0
 					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400
 				):
 					do_hit_7()
@@ -188,14 +188,14 @@ func ai_think():
 				if Skill_4_CD <= 0:
 					do_hit_4()
 				if (
-					Skill_5_CD <= 0
+					skill_5_cd <= 0
 					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 100
 				):
 					do_hit_5()
-				if Skill_6_CD <= 0:
+				if skill_6_cd <= 0:
 					do_hit_6()
 				if (
-					Skill_7_CD <= 0
+					skill_7_cd <= 0
 					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400
 				):
 					do_hit_7()
@@ -251,7 +251,7 @@ func do_hit_4():
 
 func do_hit_5():
 	super.to_hero()
-	Skill_5_CD = randi_range(10, 15)
+	skill_5_cd = randi_range(10, 15)
 	hit_name = "sgq"
 	velocity.x = 0
 	is_attacking = true
@@ -263,7 +263,7 @@ func do_hit_5():
 
 func do_hit_6():
 	super.to_hero()
-	Skill_6_CD = randi_range(30, 40)
+	skill_6_cd = randi_range(30, 40)
 	hit_name = "tsyd"
 	velocity.x = 0
 	is_attacking = true
@@ -275,7 +275,7 @@ func do_hit_6():
 
 func do_hit_7():
 	super.to_hero()
-	Skill_7_CD = randi_range(10, 15)
+	skill_7_cd = randi_range(10, 15)
 	hit_name = "hit1_2"
 	velocity.x = 0
 	is_attacking = true
@@ -317,7 +317,7 @@ func call_fly_bullet():
 			self.objattackDic["hit1"]
 		)
 		fz.get_node("AnimatedSprite2D").flip_h = true
-	if First:
+	if first:
 		fz.scale = Vector2(1, 1)
 	else:
 		fz.scale = Vector2(1.5, 1.5)
@@ -348,63 +348,63 @@ func call_fly_bullet2():
 			self.objattackDic["zhq_3"]
 		)
 		fz.get_node("AnimatedSprite2D").flip_h = true
-	if First:
+	if first:
 		fz.scale = Vector2(1, 1)
 	else:
 		fz.scale = Vector2(2, 2)
 
 
 func _on_timer_timeout() -> void:
-	if not FS:
-		FS = true
+	if not fs:
+		fs = true
 		change_timer.start(randi_range(9, 11))
 	else:
-		FS = false
+		fs = false
 		change_timer.start(randi_range(22, 25))
 	change_self_color()
 
 
 func change_self_color():
-	var TWEEN = get_tree().create_tween()
+	var tween = get_tree().create_tween()
 
-	if FS:
-		TWEEN.tween_property(self, "modulate", Color("00ffff"), 1)
+	if fs:
+		tween.tween_property(self, "modulate", Color("00ffff"), 1)
 	else:
-		TWEEN.tween_property(self, "modulate", Color("ffffff"), 1)
+		tween.tween_property(self, "modulate", Color("ffffff"), 1)
 	pass
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	super._on_hurt_box_area_entered(area)
-	if FS:
+	if fs:
 		if get_Player != null:
-			get_Player.effect_reducehp(self.GetHurt, "real")
-		self.GetHurt = 0
+			get_Player.effect_reducehp(self.hurt_received, "real")
+		self.hurt_received = 0
 
 
 func to_top():
 	if _movement_command_is_blocked():
 		return
-	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, -30)
+	var po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, -30)
 	var tween = create_control_movement_tween()
-	tween.tween_property(self, "position", Po, 0.4)
+	tween.tween_property(self, "position", po, 0.4)
 
 
 func to_drop():
 	if _movement_command_is_blocked():
 		velocity.y = 0
-		IsDrop = false
+		is_drop = false
 		return
 	velocity.y += 800
 
 	await mr_player.animation_finished
 	is_attacking = false
-	IsDrop = false
+	is_drop = false
 
 
 func call_bullet():
 	var bullet_spawn_positions
-	if First:
+	if first:
 		bullet_spawn_positions = [
 			Vector2(-158, 105), Vector2(158, 105), Vector2(0, 105), Vector2(-315, 105), Vector2(315, 105)
 		]
@@ -416,7 +416,7 @@ func call_bullet():
 		var bb = Global.add_bullet(
 			"Monster63Bullet", self.bullet, false, 1, i + self.position, "tsyd", self.objattackDic["tsyd"]
 		)
-		if First:
+		if first:
 			bb.scale = Vector2(1.5, 1.5)
 		else:
 			bb.scale = Vector2(2.0, 2.0)

@@ -19,7 +19,7 @@ func show_skill():
 
 func use_over():
 	self.usecd = 5
-	Global.FB_CD = 1
+	Global.fb_cd = 1
 	is_use = false
 
 	skill_cd.start(5)

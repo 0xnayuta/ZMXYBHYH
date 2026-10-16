@@ -1,14 +1,14 @@
 extends Node
 var _all_equipment: Dictionary = {}
 var _equipment_loaded := false
-var AllEquipment_: Dictionary:
+var all_equipment: Dictionary:
 	get:
 		ensure_loaded()
 		return _all_equipment
 	set(value):
 		_all_equipment = value
 		_equipment_loaded = true
-var PropListName = [
+var prop_list_name = [
 	"SHp",
 	"SMp",
 	"power",
@@ -47,7 +47,7 @@ func ensure_loaded() -> void:
 
 
 func all_equ():
-	AllEquipment_ = {
+	all_equipment = {
 		"zqym": {"名字": "朱雀羽毛", "所属": "星宿掉落", "品质": "普通", "颜色": "FFFFFF", "类型": "道具", "描述": "朱雀掉落的羽毛。", "售价": 0},
 		"zqjy": {"名字": "朱雀精元", "所属": "星宿掉落", "品质": "普通", "颜色": "FFFFFF", "类型": "道具", "描述": "朱雀的精元。", "售价": 0},
 		"xwjy": {"名字": "玄武精元", "所属": "星宿掉落", "品质": "普通", "颜色": "FFFFFF", "类型": "道具", "描述": "玄武的精元。", "售价": 0},
@@ -18701,24 +18701,24 @@ func _add_mid_autumn_equipment_items() -> void:
 	for item_id in definitions:
 		var definition: Dictionary = definitions[item_id]
 		var base_id := str(definition["base"])
-		var item_data: Dictionary = AllEquipment_[base_id].duplicate(true)
+		var item_data: Dictionary = all_equipment[base_id].duplicate(true)
 		item_data["名字"] = str(definition["name"])
 		item_data["图标"] = "res://Art/BackPack/AllItems/%s.png" % item_id
 		item_data["描述"] = str(item_data.get("描述", "")).replace("仙域", "中秋")
-		for property_name in PropListName:
+		for property_name in prop_list_name:
 			if item_data.has(property_name):
 				item_data[property_name] = _scale_mid_autumn_equipment_value(item_data[property_name])
 		var strength_data: Dictionary = item_data.get("强化属性", {}).duplicate(true)
 		for property_name in strength_data:
 			strength_data[property_name] = _scale_mid_autumn_equipment_value(strength_data[property_name])
 		item_data["强化属性"] = strength_data
-		AllEquipment_[item_id] = item_data
+		all_equipment[item_id] = item_data
 		var book_id := "%szzs" % item_id
-		var book_data: Dictionary = AllEquipment_[str(definition["book_base"])].duplicate(true)
+		var book_data: Dictionary = all_equipment[str(definition["book_base"])].duplicate(true)
 		book_data["名字"] = "%s制作书" % str(definition["name"])
 		book_data["图标"] = "res://Art/BackPack/AllItems/%s.png" % book_id
 		book_data["描述"] = "在炼丹炉中消耗指定材料可以打造%s。" % str(definition["name"])
-		AllEquipment_[book_id] = book_data
+		all_equipment[book_id] = book_data
 
 
 func _add_moon_palace_equipment_items() -> void:
@@ -18726,23 +18726,23 @@ func _add_moon_palace_equipment_items() -> void:
 		for part in ["fj", "wq"]:
 			var base_id: String = "zq" + part + role_id
 			var item_id: String = "yg" + part + role_id
-			var item_data: Dictionary = AllEquipment_[base_id].duplicate(true)
+			var item_data: Dictionary = all_equipment[base_id].duplicate(true)
 			item_data["名字"] = str(item_data["名字"]).replace("中秋", "月宫")
 			item_data["描述"] = str(item_data.get("描述", "")).replace("中秋", "月宫")
 			item_data["图标"] = "res://Art/BackPack/AllItems/%s.png" % item_id
-			for property_name in PropListName:
+			for property_name in prop_list_name:
 				if item_data.has(property_name):
 					item_data[property_name] = _scale_moon_palace_value(item_data[property_name])
 			var strength: Dictionary = item_data.get("强化属性", {})
 			for property_name in strength:
 				strength[property_name] = _scale_moon_palace_value(strength[property_name])
-			AllEquipment_[item_id] = item_data
+			all_equipment[item_id] = item_data
 			var book_id := item_id + "zzs"
-			var book_data: Dictionary = AllEquipment_[base_id + "zzs"].duplicate(true)
+			var book_data: Dictionary = all_equipment[base_id + "zzs"].duplicate(true)
 			book_data["名字"] = str(item_data["名字"]) + "制作书"
 			book_data["描述"] = "在炼丹炉中消耗指定材料可以打造%s。" % str(item_data["名字"])
 			book_data["图标"] = "res://Art/BackPack/AllItems/%s.png" % book_id
-			AllEquipment_[book_id] = book_data
+			all_equipment[book_id] = book_data
 
 
 func _scale_moon_palace_value(value):
@@ -18788,7 +18788,7 @@ func _add_human_soul_crystal_items() -> void:
 	}
 	for monster_id in monster_names:
 		var item_id := "human_soul_crystal_%d" % int(monster_id)
-		AllEquipment_[item_id] = {
+		all_equipment[item_id] = {
 			"名字": str(monster_names[monster_id]) + "魂晶",
 			"所属": "魂晶",
 			"品质": "史诗",
@@ -18829,7 +18829,7 @@ func _add_underworld_soul_crystal_items() -> void:
 	}
 	for monster_id in monster_names:
 		var item_id := "underworld_soul_crystal_%d" % int(monster_id)
-		AllEquipment_[item_id] = {
+		all_equipment[item_id] = {
 			"名字": str(monster_names[monster_id]) + "魂晶",
 			"所属": "魂晶",
 			"品质": "史诗",
@@ -18891,7 +18891,7 @@ func _add_heaven_soul_crystal_items() -> void:
 	}
 	for monster_id in monster_names:
 		var item_id := "heaven_soul_crystal_%d" % int(monster_id)
-		AllEquipment_[item_id] = {
+		all_equipment[item_id] = {
 			"名字": str(monster_names[monster_id]) + "魂晶",
 			"所属": "魂晶",
 			"品质": "史诗",
@@ -18909,7 +18909,7 @@ func get_divine_forge_stage(data: Dictionary) -> int:
 
 func can_divine_forge(name_: String, data: Dictionary = {}) -> bool:
 	ensure_loaded()
-	var template: Dictionary = AllEquipment_.get(name_, {})
+	var template: Dictionary = all_equipment.get(name_, {})
 	if bool(data.get("不可神铸", template.get("不可神铸", false))):
 		return false
 	var item_type := str(data.get("类型", template.get("类型", "")))
@@ -18940,7 +18940,7 @@ func get_divine_forge_stage_prefix(data: Dictionary) -> String:
 
 func get_divine_forge_display_name(name_: String, data: Dictionary) -> String:
 	ensure_loaded()
-	var template: Dictionary = AllEquipment_.get(name_, {})
+	var template: Dictionary = all_equipment.get(name_, {})
 	var base_name := str(data.get("名字", template.get("名字", name_)))
 	if not can_divine_forge(name_, data):
 		return base_name
@@ -18949,7 +18949,7 @@ func get_divine_forge_display_name(name_: String, data: Dictionary) -> String:
 
 func _get_divine_forge_item_data(name_: String, data: Dictionary) -> Dictionary:
 	ensure_loaded()
-	var item_data: Dictionary = AllEquipment_.get(name_, {}).duplicate(true)
+	var item_data: Dictionary = all_equipment.get(name_, {}).duplicate(true)
 	for key in data:
 		item_data[key] = data[key]
 	return item_data
@@ -18958,7 +18958,7 @@ func _get_divine_forge_item_data(name_: String, data: Dictionary) -> Dictionary:
 func _get_divine_forge_strength_data(name_: String, data: Dictionary) -> Dictionary:
 	ensure_loaded()
 	var strength_data: Dictionary = {}
-	var template: Dictionary = AllEquipment_.get(name_, {})
+	var template: Dictionary = all_equipment.get(name_, {})
 	if template.get("强化属性", {}) is Dictionary:
 		strength_data = template.get("强化属性", {}).duplicate(true)
 	if data.get("强化属性", {}) is Dictionary:
@@ -18969,15 +18969,15 @@ func _get_divine_forge_strength_data(name_: String, data: Dictionary) -> Diction
 
 func _get_raw_divine_forge_gem_properties(name_: String, data: Dictionary) -> Dictionary:
 	var gem_properties: Dictionary = {}
-	for property_name in PropListName:
+	for property_name in prop_list_name:
 		gem_properties[property_name] = 0
 	var item_data := _get_divine_forge_item_data(name_, data)
 	var gems = item_data.get("宝石", [])
 	if not gems is Array:
 		return gem_properties
 	for gem_name in gems:
-		var gem_data: Dictionary = AllEquipment_.get(str(gem_name), {})
-		for property_name in PropListName:
+		var gem_data: Dictionary = all_equipment.get(str(gem_name), {})
+		for property_name in prop_list_name:
 			if gem_data.has(property_name):
 				gem_properties[property_name] += gem_data[property_name]
 	return gem_properties
@@ -18993,7 +18993,7 @@ func get_gem_resonance_level(data: Dictionary) -> int:
 	var minimum_level := 0
 	for gem_id in gems:
 		var gem_name := str(gem_id)
-		var gem_data: Dictionary = AllEquipment_.get(gem_name, {})
+		var gem_data: Dictionary = all_equipment.get(gem_name, {})
 		var level_text := gem_name.get_slice("_", 1)
 		if str(gem_data.get("所属", "")) != "宝石" or not level_text.is_valid_int():
 			return 0
@@ -19016,7 +19016,7 @@ func scale_gem_resonance_value(value, data: Dictionary):
 func get_divine_forge_gem_properties(name_: String, data: Dictionary) -> Dictionary:
 	var gem_properties: Dictionary = _get_raw_divine_forge_gem_properties(name_, data)
 	var item_data: Dictionary = _get_divine_forge_item_data(name_, data)
-	for property_name in PropListName:
+	for property_name in prop_list_name:
 		gem_properties[property_name] = scale_gem_resonance_value(gem_properties[property_name], item_data)
 	return gem_properties
 
@@ -19029,7 +19029,7 @@ func get_divine_forge_properties(name_: String, qh_level: int, data: Dictionary,
 		raw_gem_properties = get_divine_forge_gem_properties(name_, item_data)
 	var result: Dictionary = item_data.duplicate(true)
 	result["强化属性"] = strength_data
-	for property_name in PropListName:
+	for property_name in prop_list_name:
 		var base_value: float = float(item_data.get(property_name, 0.0))
 		var strength_value: float = float(strength_data.get(property_name, 0.0)) * float(qh_level)
 		var raw_total: float = base_value + strength_value
@@ -19040,15 +19040,15 @@ func get_divine_forge_properties(name_: String, qh_level: int, data: Dictionary,
 
 
 func get_last_equ_pro(name_, qh_level, Data):
-	var MY_EQdata = Data.duplicate(true)
-	if AllEquipment_[name_]["类型"] == "道具":
-		return MY_EQdata
-	for i in MY_EQdata.size():
-		if MY_EQdata["强化属性"].has(MY_EQdata.keys()[i]):
-			MY_EQdata[MY_EQdata.keys()[i]] = (
-				MY_EQdata["强化属性"][MY_EQdata.keys()[i]] * qh_level + Data[MY_EQdata.keys()[i]]
+	var my_e_qdata = Data.duplicate(true)
+	if all_equipment[name_]["类型"] == "道具":
+		return my_e_qdata
+	for i in my_e_qdata.size():
+		if my_e_qdata["强化属性"].has(my_e_qdata.keys()[i]):
+			my_e_qdata[my_e_qdata.keys()[i]] = (
+				my_e_qdata["强化属性"][my_e_qdata.keys()[i]] * qh_level + Data[my_e_qdata.keys()[i]]
 			)
-	return MY_EQdata
+	return my_e_qdata
 
 
 func get_fb_last_equ_pro(name_, qh_level, wxlist, Data):

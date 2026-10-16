@@ -78,10 +78,10 @@ func _configure_monster() -> void:
 	fall_list = Array(config.get("drop_list", [])).duplicate(true)
 	independent_fall_list = Array(config.get("independent_drop_list", [])).duplicate(true)
 	is_boss = false
-	IsSuperArmor = true
-	CannotAttract = true
+	super_armor_active = true
+	cannot_attract = true
 	NoGrav = false
-	is_Fly = false
+	is_fly = false
 	objattackDic.clear()
 	var attacks: Dictionary = config.get("attacks", {})
 	var attack: Dictionary = attacks.get("hit1", {})
@@ -245,8 +245,8 @@ func _physics_process(delta: float) -> void:
 	if not death():
 		global_position.x = source_target_x
 		velocity.x = source_move_speed
-	IsSuperArmor = true
-	CannotAttract = true
+	super_armor_active = true
+	cannot_attract = true
 	monster_dir.scale.x = 1.0
 	base_damage_box.scale.x = 1.0
 	if not death() and _elapsed >= SOURCE_LIFETIME:

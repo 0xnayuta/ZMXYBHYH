@@ -135,8 +135,8 @@ func _physics_process(delta: float) -> void:
 				elif par is LevelNMGHDGQ:
 					po = Vector2(435, 330)
 				boss_3 = Global.create_monster(24, get_parent(), po) as Monster24
-				var BaseLevel_ = get_parent().get_parent() as BaseLevel
-				BaseLevel_.MonsterArray.push_back(boss_3)
+				var base_level = get_parent().get_parent() as BaseLevel
+				base_level.monster_array.push_back(boss_3)
 
 
 func ai_think():

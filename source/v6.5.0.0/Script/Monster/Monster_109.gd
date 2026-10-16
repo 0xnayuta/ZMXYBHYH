@@ -1,7 +1,7 @@
 extends BaseMonster
-var IsShow: bool = true
-var ShowCount: int = randi_range(300, 480)
-var HideCount: int = randi_range(300, 480)
+var is_show: bool = true
+var show_count: int = randi_range(300, 480)
+var hide_count: int = randi_range(300, 480)
 
 
 func monster_109():
@@ -53,20 +53,20 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
-	if IsShow:
-		ShowCount -= 1
-		if ShowCount <= 0:
-			ShowCount = randi_range(300, 480)
+	if is_show:
+		show_count -= 1
+		if show_count <= 0:
+			show_count = randi_range(300, 480)
 			var tween = get_tree().create_tween()
 			tween.tween_property(self, "modulate", Color(1, 1, 1, 0.2), 1)
-			IsShow = false
+			is_show = false
 	else:
-		HideCount -= 1
-		if HideCount <= 0:
-			HideCount = randi_range(300, 480)
+		hide_count -= 1
+		if hide_count <= 0:
+			hide_count = randi_range(300, 480)
 			var tween = get_tree().create_tween()
 			tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 1)
-			IsShow = true
+			is_show = true
 
 
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
@@ -78,7 +78,7 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 			buff_target.reduce_mp(mp_reduce)
 			print("对目标 %s 扣除蓝量：%d" % [buff_target.name, mp_reduce])
 
-	if not IsShow and is_instance_valid(buff_target):
+	if not is_show and is_instance_valid(buff_target):
 		var buff_node = null
 		var methods_to_try = [
 			func(): return buff_target.get_node("buff") if buff_target.has_node("buff") else null,
@@ -116,5 +116,5 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	if IsShow:
+	if is_show:
 		super._on_hurt_box_area_entered(area)

@@ -4,18 +4,18 @@ class_name Decompose
 @onready var item_list: GridContainer = $ScrollContainer/ItemList
 @onready var lh: Label = $DecomposeButton/need_lh/lh
 @onready var wait: Timer = $wait
-var CanDe: bool = true
-var BSList = ["sms_1", "fls_1", "mfs_1", "wfs_1", "gjs_1", "bjs_1", "sbs_1"]
-var NormalItems = {
+var can_de: bool = true
+var bs_list = ["sms_1", "fls_1", "mfs_1", "wfs_1", "gjs_1", "bjs_1", "sbs_1"]
+var normal_items = {
 	"qhs_2": {"Value": [{"name": "qhs_1", "num": 3}], "Need": 1000},
 	"qhs_3": {"Value": [{"name": "qhs_2", "num": 3}], "Need": 1000},
 	"qhs_4": {"Value": [{"name": "qhs_3", "num": 3}], "Need": 1000},
 	"ttlp":
 	{"Value": [{"name": "ttlp1", "num": 1}, {"name": "ttlp2", "num": 1}, {"name": "ttlp3", "num": 1}], "Need": 100},
 }
-var ItemList_ = []
+var item_data = []
 var NeedLh: int
-var Is_set: bool
+var is_set: bool
 
 
 func _ready() -> void:
@@ -25,40 +25,40 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if PlayerData.player_data[DataKeys.DECOMPOSE_LIST].size() != 0:
-		Is_set = false
+		is_set = false
 		set_remove_items_properies()
-		if Global.NeedChangeItem:
+		if Global.need_change_item:
 			change_item_list()
-			Global.NeedChangeItem = false
+			Global.need_change_item = false
 	else:
-		if not Is_set:
+		if not is_set:
 			remove_l_ist()
 			add_empty()
-			Is_set = true
+			is_set = true
 		remove_infomation()
 
 
-func pushqhs(Name_, Level):
-	var TotalNum: int
+func pushqhs(name_str, Level):
+	var total_num: int
 	match Level:
 		0:
-			TotalNum = 0
+			total_num = 0
 		1:
-			TotalNum = 3
+			total_num = 3
 		2:
-			TotalNum = 7
+			total_num = 7
 		3:
-			TotalNum = 28
+			total_num = 28
 		4:
-			TotalNum = 57
+			total_num = 57
 		5:
-			TotalNum = 96
+			total_num = 96
 		6:
-			TotalNum = 205
+			total_num = 205
 		7:
-			TotalNum = 417
-	if TotalNum > 0:
-		ItemList_.push_back({"name": "qhs_1", "num": TotalNum})
+			total_num = 417
+	if total_num > 0:
+		item_data.push_back({"name": "qhs_1", "num": total_num})
 
 
 func add_empty():
@@ -66,71 +66,71 @@ func add_empty():
 		Global.add_item_box(item_list, true, true, "empty", 0, 0, [], [])
 
 
-func push_bs(Name_, Type):
+func push_bs(name_str, Type):
 	match Type:
 		"传说", "神器":
 			if randi_range(0, 100) < 30:
 				for i in range(randi_range(1, 3)):
-					ItemList_.push_back({"name": BSList[randi_range(0, BSList.size() - 1)], "num": 1})
+					item_data.push_back({"name": bs_list[randi_range(0, bs_list.size() - 1)], "num": 1})
 		"魂器", "邪灵":
 			if randi_range(0, 100) < 40:
 				for i in range(randi_range(1, 2)):
-					ItemList_.push_back({"name": BSList[randi_range(0, BSList.size() - 1)], "num": 1})
+					item_data.push_back({"name": bs_list[randi_range(0, bs_list.size() - 1)], "num": 1})
 
 
 func push_basic_item(Type):
-	var BasicItemList_ = ["xuantie", "sichou", "tanmu"]
+	var basic_item_list = ["xuantie", "sichou", "tanmu"]
 	match Type:
 		"普通":
-			ItemList_.push_back({"name": BasicItemList_[randi_range(0, 2)], "num": 1})
+			item_data.push_back({"name": basic_item_list[randi_range(0, 2)], "num": 1})
 			return
 		"优秀":
-			ItemList_.push_back({"name": BasicItemList_[randi_range(0, 2)], "num": 3})
+			item_data.push_back({"name": basic_item_list[randi_range(0, 2)], "num": 3})
 			return
 		"精良":
-			ItemList_.push_back({"name": BasicItemList_[randi_range(0, 2)], "num": 5})
+			item_data.push_back({"name": basic_item_list[randi_range(0, 2)], "num": 5})
 			return
 		"史诗":
-			ItemList_.push_back({"name": BasicItemList_[randi_range(0, 2)], "num": 7})
+			item_data.push_back({"name": basic_item_list[randi_range(0, 2)], "num": 7})
 			return
 		"传说":
 			for i in range(randi_range(1, 2)):
-				ItemList_.push_back({"name": BasicItemList_[randi_range(0, 2)], "num": 7})
+				item_data.push_back({"name": basic_item_list[randi_range(0, 2)], "num": 7})
 			return
 
 	for i in range(randi_range(1, 3)):
-		ItemList_.push_back({"name": BasicItemList_[randi_range(0, 2)], "num": randi_range(5, 10)})
+		item_data.push_back({"name": basic_item_list[randi_range(0, 2)], "num": randi_range(5, 10)})
 
 
-func bs_fj(Name_):
-	var Base = AE.AllEquipment_[Name_]["所属"]
-	if Base != "宝石":
+func bs_fj(name_str):
+	var base = AE.all_equipment[name_str]["所属"]
+	if base != "宝石":
 		return
-	var NameList = str(Name_).split("_")
-	var cur_level = NameList[1]
-	var item_name = NameList[0]
-	if Base != "宝石":
+	var name_list = str(name_str).split("_")
+	var cur_level = name_list[1]
+	var item_name = name_list[0]
+	if base != "宝石":
 		return
 	if int(cur_level) <= 1:
 		return
-	NormalItems[Name_] = {"Value": [], "Need": 100}
+	normal_items[name_str] = {"Value": [], "Need": 100}
 	for i in range(3):
-		NormalItems[Name_]["Value"].push_back({"name": str(item_name) + "_" + str(int(cur_level) - 1), "num": 1})
+		normal_items[name_str]["Value"].push_back({"name": str(item_name) + "_" + str(int(cur_level) - 1), "num": 1})
 
 
 func change_item_list():
 	remove_l_ist()
-	ItemList_ = []
+	item_data = []
 
 	if PlayerData.player_data[DataKeys.DECOMPOSE_LIST].size() != 0:
-		var Name_ = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
+		var name_str = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
 		var cur_level = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.ENHANCE_LEVEL]
 		var Data = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0]["Data"]
-		var get_tt = AE.AllEquipment_[Name_][DataKeys.TYPE]
-		if NormalItems.has(Name_):
-			if NormalItems[Name_].has("Need"):
-				NeedLh = NormalItems[Name_]["Need"]
-				lh.text = str(NormalItems[Name_]["Need"])
+		var get_tt = AE.all_equipment[name_str][DataKeys.TYPE]
+		if normal_items.has(name_str):
+			if normal_items[name_str].has("Need"):
+				NeedLh = normal_items[name_str]["Need"]
+				lh.text = str(normal_items[name_str]["Need"])
 			else:
 				NeedLh = 1000
 				lh.text = str(1000)
@@ -140,24 +140,24 @@ func change_item_list():
 		var num: int = 0
 		match get_tt:
 			"武器", "饰品", "防具":
-				pushqhs(Name_, cur_level)
-				push_bs(Name_, AE.AllEquipment_[Name_][DataKeys.QUALITY])
-				push_basic_item(AE.AllEquipment_[Name_][DataKeys.QUALITY])
-				if ItemList_.size() != 0:
-					for i in ItemList_:
+				pushqhs(name_str, cur_level)
+				push_bs(name_str, AE.all_equipment[name_str][DataKeys.QUALITY])
+				push_basic_item(AE.all_equipment[name_str][DataKeys.QUALITY])
+				if item_data.size() != 0:
+					for i in item_data:
 						var ItemName = i["name"]
-						var Type = AE.AllEquipment_[ItemName][DataKeys.TYPE]
+						var Type = AE.all_equipment[ItemName][DataKeys.TYPE]
 						var target_count = i["num"]
 						var box
 						match Type:
 							"武器", "饰品", "防具":
 								box = Global.add_item_box(
-									item_list, true, true, ItemName, target_count, 0, [], AE.AllEquipment_[ItemName]
+									item_list, true, true, ItemName, target_count, 0, [], AE.all_equipment[ItemName]
 								)
 								box.set_button_icon(load_(ItemName))
 							"道具":
 								box = Global.add_item_box(
-									item_list, true, true, ItemName, 0, target_count, [], AE.AllEquipment_[ItemName]
+									item_list, true, true, ItemName, 0, target_count, [], AE.all_equipment[ItemName]
 								)
 								box.set_button_icon(load_(ItemName))
 						num += 1
@@ -169,15 +169,15 @@ func change_item_list():
 						Global.add_item_box(item_list, true, true, "empty", 0, 0, [], [])
 
 			"道具":
-				bs_fj(Name_)
-				if not NormalItems.has(Name_):
+				bs_fj(name_str)
+				if not normal_items.has(name_str):
 					for i in range(8):
 						Global.add_item_box(item_list, true, true, "empty", 0, 0, [], [])
 					return
 				else:
-					for i in NormalItems[Name_]["Value"]:
+					for i in normal_items[name_str]["Value"]:
 						var box = Global.add_item_box(
-							item_list, true, true, i["name"], 0, i["num"], [], AE.AllEquipment_[i["name"]]
+							item_list, true, true, i["name"], 0, i["num"], [], AE.all_equipment[i["name"]]
 						)
 						box.set_button_icon(load_(i["name"]))
 						num += 1
@@ -187,7 +187,7 @@ func change_item_list():
 
 
 func remove_l_ist():
-	ItemList_ = []
+	item_data = []
 	for i in item_list.get_children():
 		if i != null:
 			i.free()
@@ -200,48 +200,48 @@ func set_remove_items_properies():
 
 
 func _on_decompose_button_pressed() -> void:
-	if not CanDe:
-		Global.add_message_show(Global.Windows_, "点击过快！", 1.5, Vector2(500, 305))
+	if not can_de:
+		Global.add_message_show(Global.windows, "点击过快！", 1.5, Vector2(500, 305))
 		return
 	else:
-		CanDe = false
+		can_de = false
 		wait.start(0.1)
 	if PlayerData.get_soul() < NeedLh:
-		Global.add_message_show(Global.Windows_, "灵魂不足！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "灵魂不足！", 1.5, Vector2(500, 305))
 		return
 
 	if PlayerData.player_data[DataKeys.DECOMPOSE_LIST].size() != 0:
-		var Name_ = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
+		var name_str = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
 		var cur_level = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.ENHANCE_LEVEL]
 		var Data = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0]["Data"]
-		var get_tt = AE.AllEquipment_[Name_][DataKeys.TYPE]
-		var Typee = AE.AllEquipment_[Name_][DataKeys.TYPE]
-		var ItemName_ = AE.AllEquipment_[Name_][DataKeys.NAME]
+		var get_tt = AE.all_equipment[name_str][DataKeys.TYPE]
+		var typee = AE.all_equipment[name_str][DataKeys.TYPE]
+		var item_name = AE.all_equipment[name_str][DataKeys.NAME]
 		if cur_level > 0:
 			Global.add_choose_text(
-				Global.get_parent_(self, 3), Vector2(0, 0), "确定要分解" + str(ItemName_) + "吗？（该装备包含强化等级！）", 0
+				Global.get_parent_(self, 3), Vector2(0, 0), "确定要分解" + str(item_name) + "吗？（该装备包含强化等级！）", 0
 			)
 		else:
-			Global.add_choose_text(Global.get_parent_(self, 3), Vector2(0, 0), "确定要分解" + str(ItemName_) + "吗？", 0)
+			Global.add_choose_text(Global.get_parent_(self, 3), Vector2(0, 0), "确定要分解" + str(item_name) + "吗？", 0)
 	else:
-		Global.add_message_show(Global.Windows_, "先放点什么吧~", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "先放点什么吧~", 1.5, Vector2(500, 305))
 
 
 func fj():
 	if PlayerData.player_data[DataKeys.DECOMPOSE_LIST].size() != 0:
 		var list = []
-		var Name_ = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
+		var name_str = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
 		var cur_level = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.ENHANCE_LEVEL]
 		var Data = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0]["Data"]
-		var get_tt = AE.AllEquipment_[Name_][DataKeys.TYPE]
-		var Typee = AE.AllEquipment_[Name_][DataKeys.TYPE]
-		var ItemName_ = AE.AllEquipment_[Name_][DataKeys.NAME]
+		var get_tt = AE.all_equipment[name_str][DataKeys.TYPE]
+		var typee = AE.all_equipment[name_str][DataKeys.TYPE]
+		var item_name = AE.all_equipment[name_str][DataKeys.NAME]
 		match get_tt:
 			"武器", "饰品", "防具":
-				if ItemList_.size() != 0:
-					for i in ItemList_:
+				if item_data.size() != 0:
+					for i in item_data:
 						var ItemName = i["name"]
-						var Type = AE.AllEquipment_[ItemName][DataKeys.TYPE]
+						var Type = AE.all_equipment[ItemName][DataKeys.TYPE]
 						var target_count = i["num"]
 						var box
 						match Type:
@@ -250,7 +250,7 @@ func fj():
 									{
 										"Name": ItemName,
 										"Value": 1,
-										"Prop": AE.AllEquipment_[ItemName],
+										"Prop": AE.all_equipment[ItemName],
 										"WX": [],
 										"StrengthValue": target_count
 									}
@@ -262,47 +262,47 @@ func fj():
 								)
 								PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
 					Global.add_reward_info(Global.get_parent_(self, 3), Vector2(0, 0), list, null, null)
-					Global.add_message_show(Global.Windows_, "分解成功！！", 1.5, Vector2(500, 305))
+					Global.add_message_show(Global.windows, "分解成功！！", 1.5, Vector2(500, 305))
 					PlayerData.spend_soul(NeedLh)
 				else:
 					Global.add_message_show(
-						Global.Windows_, str(Typee) + str(ItemName_) + "不会分解出任何物品！！", 1.5, Vector2(500, 305)
+						Global.windows, str(typee) + str(item_name) + "不会分解出任何物品！！", 1.5, Vector2(500, 305)
 					)
 
 			"道具":
-				bs_fj(Name_)
-				if not NormalItems.has(Name_):
-					var name_ = AE.AllEquipment_[Name_][DataKeys.NAME]
-					var Type = AE.AllEquipment_[Name_][DataKeys.TYPE]
+				bs_fj(name_str)
+				if not normal_items.has(name_str):
+					var name_ = AE.all_equipment[name_str][DataKeys.NAME]
+					var Type = AE.all_equipment[name_str][DataKeys.TYPE]
 					Global.add_message_show(
-						Global.Windows_, str(Type) + str(name_) + "不可以进行分解！！", 1.5, Vector2(500, 305)
+						Global.windows, str(Type) + str(name_) + "不可以进行分解！！", 1.5, Vector2(500, 305)
 					)
 					return
 				else:
 					PlayerData.spend_soul(NeedLh)
-					for i in NormalItems[Name_]["Value"]:
-						var item_name = i["name"]
+					for i in normal_items[name_str]["Value"]:
+						var loop_item_name = i["name"]
 						var target_count = i["num"]
 						list.push_back(
-							{"Name": item_name, "Value": target_count, "Prop": [], "WX": [], "StrengthValue": 0}
+							{"Name": loop_item_name, "Value": target_count, "Prop": [], "WX": [], "StrengthValue": 0}
 						)
 					Global.add_reward_info(Global.get_parent_(self, 3), Vector2(0, 0), list, null, null)
 					PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
-					Global.add_message_show(Global.Windows_, "分解成功！！", 1.5, Vector2(500, 305))
+					Global.add_message_show(Global.windows, "分解成功！！", 1.5, Vector2(500, 305))
 
 
 func remove_infomation():
 	if PlayerData.player_data[DataKeys.DECOMPOSE_LIST].size() != 0:
-		var Name_ = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
+		var name_str = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
 		var cur_level = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.ENHANCE_LEVEL]
 		var Data = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0]["Data"]
-		var get_tt = AE.AllEquipment_[Name_][DataKeys.TYPE]
+		var get_tt = AE.all_equipment[name_str][DataKeys.TYPE]
 		match get_tt:
 			"武器", "饰品", "防具":
-				PlayerData.add_zb(Name_, cur_level, Data)
+				PlayerData.add_zb(name_str, cur_level, Data)
 				PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
 			"道具":
-				PlayerData.add_dj(Name_, 1)
+				PlayerData.add_dj(name_str, 1)
 	remove_items.set_button_icon(load_(str("empty")))
 	PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
 
@@ -318,4 +318,4 @@ func _on_help_pressed() -> void:
 
 func _on_wait_timeout() -> void:
 	print("123")
-	CanDe = true
+	can_de = true

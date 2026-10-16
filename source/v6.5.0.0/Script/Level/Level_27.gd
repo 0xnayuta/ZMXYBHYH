@@ -5,17 +5,17 @@ extends BaseLevel
 @onready var door_check: Area2D = $DoorCheck
 @onready var stop_5: CollisionShape2D = $wall/stop5
 
-var HitCount: int = 0
-var IsOpen: bool
-var CanThrough: bool
+var hit_count: int = 0
+var is_open: bool
+var can_through: bool
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "北天王殿"
+	Global.current_level = "北天王殿"
 	bgm_node = Global.add_bgm(self, "res://Music/level/sdtw.mp3")
 	self.level_stage = 26
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81],
 		"stage_2":
 		[
@@ -89,7 +89,7 @@ func _ready() -> void:
 		],
 		"stage_4": [85],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [150, 450, 850, 150, 450, 850, 150, 450, 850, 200, 650, 200, 650, 200, 650, 200, 650, 200, 650, 850],
 		"stage_2":
 		[
@@ -169,7 +169,7 @@ func _ready() -> void:
 		],
 		"stage_4": [4500],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			435,
@@ -320,12 +320,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if HitCount >= 5:
-		if not IsOpen:
+	if hit_count >= 5:
+		if not is_open:
 			$mm.play("open")
-			IsOpen = true
+			is_open = true
 	super._physics_process(delta)
-	if CanThrough:
+	if can_through:
 		if Input.is_action_pressed("Exit"):
 			Global.change_scene("res://Scene/level/level_ymj.tscn")
 	if current_stage >= 1:
@@ -360,14 +360,14 @@ func set_through():
 
 
 func _on_door_check_area_entered(area: Area2D) -> void:
-	HitCount += 1
+	hit_count += 1
 	Global.add_mr_hurt(door_check, Vector2(0, 0))
 
 
 func _on_csm_body_entered(body: Node2D) -> void:
 	if body is BaseHero:
-		CanThrough = true
+		can_through = true
 
 
 func _on_csm_body_exited(body: Node2D) -> void:
-	CanThrough = false
+	can_through = false

@@ -3,11 +3,11 @@ class_name Role2Shallow
 
 var my_owner: BaseHero = null
 @onready var hurt_box = $base_damagebox/HurtBox/HurtBox
-var Interv: int
-var ShallowList: Array
-var Dir: bool
-var ShouldUseSkill: bool
-var SkillName: String
+var interv: int
+var shallow_list: Array
+var dir: bool
+var should_use_skill: bool
+var skill_name: String
 var is_set: bool
 
 
@@ -40,7 +40,7 @@ func role_2_handler():
 
 func _physics_process(delta: float) -> void:
 	$Action/EffectBody.visible = false
-	if self.IsInSky:
+	if self.is_in_sky:
 		self.gravity = 0
 		velocity.y = 0
 	else:
@@ -49,8 +49,8 @@ func _physics_process(delta: float) -> void:
 		hit_count = 0
 		velocity.y -= gravity * delta
 	role_2_handler()
-	if not ShouldUseSkill:
-		if Dir:
+	if not should_use_skill:
+		if dir:
 			$Action.scale.x = -1
 			velocity.x = walk_speed
 			_play_locomotion_animation(&"run")
@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 
 
 func use_skill():
-	match SkillName:
+	match skill_name:
 		"xbz":
 			skill_tjgl()
 		"tjgl":
@@ -119,16 +119,16 @@ func add_tjgl():
 
 func add_xbz():
 	var bullet_spawn_positions = [Vector2(-80, -15)]
-	var ScaleList = [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1.5, 1.5)]
-	if !Dir:
+	var scale_list = [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1.5, 1.5)]
+	if !dir:
 		bullet_spawn_positions = [Vector2(-80, -15), Vector2(-175, -20), Vector2(-275, -25)]
 	else:
 		bullet_spawn_positions = [Vector2(80, -15), Vector2(175, -20), Vector2(275, -25)]
 	for i in bullet_spawn_positions.size():
 		var xbz = Global.add_role_bullet(
-			self.Bullet, bullet_spawn_positions[i] + position, Dir, "Role2Bullet3", objattackDic["xbz"]
+			self.Bullet, bullet_spawn_positions[i] + position, dir, "Role2Bullet3", objattackDic["xbz"]
 		)
-		xbz.scale = ScaleList[i]
+		xbz.scale = scale_list[i]
 		await get_tree().create_timer(0.2, false).timeout
 
 
@@ -140,7 +140,7 @@ func add_jhsj_2():
 
 
 func _on_death___timeout() -> void:
-	if not ShouldUseSkill:
+	if not should_use_skill:
 		self.queue_free()
 
 

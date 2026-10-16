@@ -1,6 +1,6 @@
 extends BaseMonster
 class_name Monster144
-var ShouldChase: bool = false
+var should_chase: bool = false
 @onready var normal_walk_timer: Timer = $NormalWalkTimer
 @onready var jcqb: RayCast2D = $jcqb
 @onready var jumpcd: Timer = $Jumpcd
@@ -8,12 +8,12 @@ var ShouldChase: bool = false
 @onready var can_jumpqb: RayCast2D = $CanJumpqb
 
 enum WangWang { MoveLeft, MoveRight, QBMoveLeft, QBMoveRight, Jump, Smile, Dance, Cry, Wait, NormalWalk, Chase }
-var WangState = WangWang.NormalWalk
-var IsJump: bool
+var wang_state = WangWang.NormalWalk
+var is_jump: bool
 
 
 func monster_144():
-	self.CannotAttract = true
+	self.cannot_attract = true
 	self.is_boss = false
 	self.my_mr_name = "汪汪"
 	self.attack_in = 10
@@ -59,11 +59,11 @@ func ai_think():
 		if qbtimer.is_stopped():
 			qbtimer.start(3)
 		if monster_dir.scale.x == 1:
-			WangState = WangWang.QBMoveRight
+			wang_state = WangWang.QBMoveRight
 		else:
-			WangState = WangWang.QBMoveLeft
+			wang_state = WangWang.QBMoveLeft
 
-	match WangState:
+	match wang_state:
 		WangWang.Wait:
 			stop_move()
 		WangWang.Dance:
@@ -92,7 +92,7 @@ func move_left():
 	base_damage_box.scale.x = 1
 	monster_dir.scale.x = 1
 	velocity.x = -speed * 10
-	if not IsJump:
+	if not is_jump:
 		mr_player.play("walk")
 
 
@@ -100,7 +100,7 @@ func move_right():
 	base_damage_box.scale.x = -1
 	monster_dir.scale.x = -1
 	velocity.x = speed * 10
-	if not IsJump:
+	if not is_jump:
 		mr_player.play("walk")
 
 
@@ -124,7 +124,7 @@ func jump():
 	if jumpcd.time_left <= 0:
 		randomize()
 		jumpcd.start(randi_range(1, 4))
-		IsJump = true
+		is_jump = true
 		if monster_dir.scale.x == 1:
 			velocity.x = -speed * 18
 		else:
@@ -132,8 +132,8 @@ func jump():
 		velocity.y = -randi_range(400, 900)
 		mr_player.play("jump")
 		await mr_player.animation_finished
-	IsJump = false
-	WangState = WangWang.NormalWalk
+	is_jump = false
+	wang_state = WangWang.NormalWalk
 
 
 func normal_state():
@@ -179,7 +179,7 @@ func do_hit_1():
 	mr_player.play("scary")
 	await mr_player.animation_finished
 	is_attacking = false
-	WangState = WangWang.NormalWalk
+	wang_state = WangWang.NormalWalk
 
 
 func do_hit_2():
@@ -191,7 +191,7 @@ func do_hit_2():
 	mr_player.play("dance")
 	await mr_player.animation_finished
 	is_attacking = false
-	WangState = WangWang.NormalWalk
+	wang_state = WangWang.NormalWalk
 
 
 func do_hit_3():
@@ -203,49 +203,49 @@ func do_hit_3():
 	mr_player.play("cry")
 	await mr_player.animation_finished
 	is_attacking = false
-	WangState = WangWang.NormalWalk
+	wang_state = WangWang.NormalWalk
 
 
 func _on_normal_walk_timer_timeout() -> void:
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) > 600:
 		if randi_range(0, 100) < 30:
-			WangState = WangWang.Cry
+			wang_state = WangWang.Cry
 		else:
-			WangState = WangWang.Chase
+			wang_state = WangWang.Chase
 	else:
 		randomize()
 		var aa = randi_range(0, 100)
 		if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) > 500:
 			if aa < 70:
-				WangState = WangWang.NormalWalk
+				wang_state = WangWang.NormalWalk
 			else:
-				WangState = WangWang.Chase
+				wang_state = WangWang.Chase
 		else:
 			if aa < 70:
-				WangState = WangWang.NormalWalk
+				wang_state = WangWang.NormalWalk
 			else:
 				if aa > 75:
-					WangState = WangWang.Smile
+					wang_state = WangWang.Smile
 				else:
-					WangState = WangWang.Dance
+					wang_state = WangWang.Dance
 
 
 func _on_qbtimer_timeout() -> void:
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) > 500:
-		WangState = WangWang.Cry
+		wang_state = WangWang.Cry
 	else:
 		randomize()
 		var aa = randi_range(0, 100)
 		if aa > 30:
 			if aa < 50:
-				WangState = WangWang.NormalWalk
+				wang_state = WangWang.NormalWalk
 			else:
-				WangState = WangWang.Chase
+				wang_state = WangWang.Chase
 		else:
 			if aa < 5:
-				WangState = WangWang.Dance
+				wang_state = WangWang.Dance
 			else:
-				WangState = WangWang.Smile
+				wang_state = WangWang.Smile
 
 
 func reduce_hp(value: int):

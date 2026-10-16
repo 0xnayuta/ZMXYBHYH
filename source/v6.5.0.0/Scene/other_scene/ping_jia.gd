@@ -2,14 +2,14 @@ extends Node2D
 @onready var texture_rect: TextureRect = $TextureRect
 
 var Num: int
-var IsSet: bool
+var is_set: bool
 
 
 func _physics_process(delta: float) -> void:
-	if not IsSet:
+	if not is_set:
 		texture_rect.texture = load_(Num)
 		$AnimationPlayer.play("show")
-		IsSet = true
+		is_set = true
 
 
 func load_(name_):

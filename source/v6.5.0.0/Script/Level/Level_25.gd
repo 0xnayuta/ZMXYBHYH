@@ -9,14 +9,14 @@ extends BaseLevel
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "南天王殿"
+	Global.current_level = "南天王殿"
 
 	bgm_node = Global.add_bgm(self, "res://Music/level/sdtw.mp3")
 	self.level_stage = 24
 	add_trap()
 	super._ready()
 
-	Monster_group = {
+	monster_group = {
 		"stage_1": [81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81, 81],
 		"stage_2":
 		[
@@ -91,7 +91,7 @@ func _ready() -> void:
 		"stage_4": [83],
 	}
 
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [150, 450, 850, 150, 450, 850, 150, 450, 850, 200, 650, 200, 650, 200, 650, 200, 650, 200, 650, 850],
 		"stage_2":
 		[
@@ -172,7 +172,7 @@ func _ready() -> void:
 		"stage_4": [4500],
 	}
 
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			435,

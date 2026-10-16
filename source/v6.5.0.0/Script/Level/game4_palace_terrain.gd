@@ -108,11 +108,11 @@ func _physics_process(delta: float) -> void:
 			continue
 		var hit_rect := _rect(hit)
 		hit_rect.position += hazard["origin"] as Vector2
-		if hit_rect.intersects(role_rect) and not role.IsDeath and not role.needProtect:
+		if hit_rect.intersects(role_rect) and not role.is_death and not role.need_protect:
 			hazard["last_hit"] = _clock
 			_damage_role(role, int(hazard["damage"]), "magic")
 	if _death_y > 0.0:
-		if role_rect.end.y >= _death_y and not role.IsDeath:
+		if role_rect.end.y >= _death_y and not role.is_death:
 			RoleProp.roleprop.Hp = 0
 		for child in _level.monster.get_children():
 			if child is BaseMonster and not child.is_death and child.position.y >= _death_y:

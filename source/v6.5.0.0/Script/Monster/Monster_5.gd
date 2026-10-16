@@ -107,10 +107,10 @@ func do_hit_2():
 
 
 func call_yyzl():
-	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 500)
+	var po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 500)
 	await get_tree().create_timer(1, false).timeout
 	MonsterBullet.wait_for_monster5_stream_images()
 	if not is_inside_tree() or is_queued_for_deletion():
 		return
-	var ly = Global.add_bullet("Monster5Bullet", self.bullet, false, 1, Po, "yyzl", self.objattackDic["yyzl"])
+	var ly = Global.add_bullet("Monster5Bullet", self.bullet, false, 1, po, "yyzl", self.objattackDic["yyzl"])
 	ly.scale = Vector2(0.57, 0.7)

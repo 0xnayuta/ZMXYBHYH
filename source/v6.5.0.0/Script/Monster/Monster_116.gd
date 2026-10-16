@@ -3,7 +3,7 @@ class_name Monster116
 
 
 func monster_116():
-	self.is_Fly = true
+	self.is_fly = true
 	self.is_boss = true
 	self.my_mr_name = "五龙轮"
 	self.attack_in = 60
@@ -82,8 +82,8 @@ func call_bullet():
 
 
 func monster_cure_hp():
-	var BaseLevel_ = get_parent().get_parent() as BaseLevel
-	for i in BaseLevel_.monster.get_children():
+	var base_level = get_parent().get_parent() as BaseLevel
+	for i in base_level.monster.get_children():
 		if i != null:
 			if i is BaseMonster and not i is Monster138:
 				i.cure_hp(i.SHp * 0.05)

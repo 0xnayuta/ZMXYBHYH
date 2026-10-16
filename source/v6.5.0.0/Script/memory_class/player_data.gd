@@ -5,7 +5,7 @@ const DataKeys := preload("res://Script/base/data_keys.gd")
 const SOUL_MIN: int = 0
 const SOUL_MAX: int = 99999999999
 
-var All_Equipment = ["ryjgb", "xhmj", "xhxh"]
+var all_equipment = ["ryjgb", "xhmj", "xhxh"]
 var _check_zb_elapsed: float = 0.0
 var _invalid_data_exit_started := false
 const PET_LIST_KEY := "宠物列表"
@@ -600,7 +600,7 @@ const PET_TIGER_PET := {
 	"装备": {"zbst": {}, "zbmz": {}, "zbxz": {}, "zbyf": {}, "zbjn": {}},
 	"出战": false
 }
-var Initialized_Data: Dictionary = {
+var initialized_data: Dictionary = {
 	"玩家等级": 1,
 	"玩家当前经验": 0,
 	"装备列表":
@@ -2625,9 +2625,9 @@ func add_pet_backpack_item(item_id: String, amount: int = 1, data_override: Dict
 		return 0
 	var item_data: Dictionary = data_override.duplicate(true)
 	if item_data.is_empty():
-		if AE == null or not AE.AllEquipment_.has(item_id):
+		if AE == null or not AE.all_equipment.has(item_id):
 			return 0
-		item_data = AE.AllEquipment_[item_id].duplicate(true)
+		item_data = AE.all_equipment[item_id].duplicate(true)
 	if item_data.is_empty():
 		return 0
 
@@ -2671,8 +2671,8 @@ func get_equipment_strength_max_level(item: Dictionary = {}, item_id: String = "
 	):
 		return 0
 	var quality := str(item.get(DataKeys.QUALITY, nested.get(DataKeys.QUALITY, ""))).strip_edges()
-	if quality == "" and AE != null and AE.AllEquipment_.has(resolved_item_id):
-		quality = str(AE.AllEquipment_[resolved_item_id].get(DataKeys.QUALITY, "")).strip_edges()
+	if quality == "" and AE != null and AE.all_equipment.has(resolved_item_id):
+		quality = str(AE.all_equipment[resolved_item_id].get(DataKeys.QUALITY, "")).strip_edges()
 	if quality == "" or STANDARD_STRENGTH_QUALITIES.has(quality):
 		return 30
 	return PET_EQUIPMENT_MAX_STRENGTH_LEVEL
@@ -2923,8 +2923,8 @@ func take_equipped_equipment_for_mosaic(
 	equipped.clear()
 	RoleProp.get_equ_last_pro()
 	RoleProp.get_last_prop()
-	if is_instance_valid(RoleProp.SourcePlayer):
-		RoleProp.SourcePlayer.on_eqchange()
+	if is_instance_valid(RoleProp.source_player):
+		RoleProp.source_player.on_eqchange()
 	return stored_item
 
 
@@ -2994,8 +2994,8 @@ func restore_mosaic_equipment() -> bool:
 			)
 		RoleProp.get_equ_last_pro()
 		RoleProp.get_last_prop()
-		if is_instance_valid(RoleProp.SourcePlayer):
-			RoleProp.SourcePlayer.on_eqchange()
+		if is_instance_valid(RoleProp.source_player):
+			RoleProp.source_player.on_eqchange()
 	else:
 		add_zb(
 			str(selected.get(DataKeys.NAME, "")), int(selected.get(DataKeys.ENHANCE_LEVEL, 0)), selected.get("Data", {})
@@ -3410,10 +3410,10 @@ func _migrate_retired_xianyu_item_array(items: Array) -> void:
 
 
 func _replace_retired_xianyu_item_data(item: Dictionary, new_id: String) -> void:
-	if not AE.AllEquipment_.has(new_id):
+	if not AE.all_equipment.has(new_id):
 		return
 	var old_data = item.get("Data", {})
-	var new_data = AE.AllEquipment_[new_id].duplicate(true)
+	var new_data = AE.all_equipment[new_id].duplicate(true)
 	if old_data is Dictionary and old_data.has(DataKeys.GEM):
 		new_data[DataKeys.GEM] = old_data[DataKeys.GEM].duplicate(true)
 	item[DataKeys.NAME] = new_id
@@ -3960,7 +3960,7 @@ func _normalize_pet_phoenix(pet: Dictionary) -> void:
 		player_data[ACTIVE_PET_KEY] = "PetPhoenix"
 
 
-var SynList = {
+var syn_list = {
 	"放入列表": {"物品1": [], "物品2": [], "物品3": []},
 }
 
@@ -3975,9 +3975,9 @@ func get_total_zb_list():
 
 
 func record_acquired_equipment(item_id: String) -> void:
-	if not AE.AllEquipment_.has(item_id) or _is_removed_equipment_id(item_id):
+	if not AE.all_equipment.has(item_id) or _is_removed_equipment_id(item_id):
 		return
-	if str(AE.AllEquipment_[item_id].get(DataKeys.TYPE, "")) not in ["武器", "防具", "时装", "翅膀", "头衔"]:
+	if str(AE.all_equipment[item_id].get(DataKeys.TYPE, "")) not in ["武器", "防具", "时装", "翅膀", "头衔"]:
 		return
 	var acquired_value: Variant = player_data.get("已获取装备列表", [])
 	var acquired: Array = acquired_value if acquired_value is Array else []
@@ -4012,19 +4012,18 @@ func has_acquired_equipment(item_id: String) -> bool:
 	return player_data.get("已获取装备列表", []).has(item_id) or player_data.get("幻化拥有列表", []).has(item_id)
 
 
-func add_zb(name_, qh_level, Data_) -> bool:
+func add_zb(name_, qh_level, data) -> bool:
 	var equipment_id := str(name_)
 	if equipment_id == "" or _is_removed_equipment_id(equipment_id):
 		return false
-	if not AE.AllEquipment_.has(equipment_id):
+	if not AE.all_equipment.has(equipment_id):
 		return false
 
 	var page_number: int = int(check_can_use_page("装备列表"))
 	if page_number == 0:
 		return false
-	var data: Dictionary = Data_.duplicate(true) if Data_ is Dictionary else {}
 	if data.is_empty():
-		data = (AE.AllEquipment_[equipment_id] as Dictionary).duplicate(true)
+		data = (AE.all_equipment[equipment_id] as Dictionary).duplicate(true)
 	player_data[DataKeys.EQUIPMENT_LIST]["页码" + str(page_number)].push_back(
 		{"名字": equipment_id, "强化等级": qh_level, "Data": data}
 	)
@@ -4032,19 +4031,18 @@ func add_zb(name_, qh_level, Data_) -> bool:
 	return true
 
 
-func add_fb(name_, qh_level, wx, Data_) -> bool:
+func add_fb(name_, qh_level, wx, data) -> bool:
 	var equipment_id := str(name_)
 	if equipment_id == "" or equipment_id in RETIRED_WUDU_MAGIC_WEAPONS:
 		return false
-	if not AE.AllEquipment_.has(equipment_id):
+	if not AE.all_equipment.has(equipment_id):
 		return false
 
 	var page_number: int = int(check_can_use_page("装备列表"))
 	if page_number == 0:
 		return false
-	var data: Dictionary = Data_.duplicate(true) if Data_ is Dictionary else {}
 	if data.is_empty():
-		data = (AE.AllEquipment_[equipment_id] as Dictionary).duplicate(true)
+		data = (AE.all_equipment[equipment_id] as Dictionary).duplicate(true)
 	player_data[DataKeys.EQUIPMENT_LIST]["页码" + str(page_number)].push_back(
 		{"名字": equipment_id, "强化等级": qh_level, "五行": wx, "Data": data}
 	)
@@ -4123,7 +4121,7 @@ func organize_backpack() -> bool:
 
 func _backpack_material_group(item: Dictionary) -> Array:
 	var item_id := str(item.get(DataKeys.NAME, ""))
-	var template: Dictionary = AE.AllEquipment_.get(item_id, {})
+	var template: Dictionary = AE.all_equipment.get(item_id, {})
 	var item_name := str(template.get(DataKeys.NAME, item_id))
 	var group := str(template.get("所属", ""))
 	var family := item_name
@@ -4163,8 +4161,8 @@ func _backpack_item_before(a: Dictionary, b: Dictionary) -> bool:
 	var quality_order := ["普通", "优秀", "精良", "史诗", "邪灵", "魂器", "传说", "神器", "玄冥", "黑神话", "无敌"]
 	var a_id := str(a.get(DataKeys.NAME, ""))
 	var b_id := str(b.get(DataKeys.NAME, ""))
-	var a_template: Dictionary = AE.AllEquipment_.get(a_id, {})
-	var b_template: Dictionary = AE.AllEquipment_.get(b_id, {})
+	var a_template: Dictionary = AE.all_equipment.get(a_id, {})
+	var b_template: Dictionary = AE.all_equipment.get(b_id, {})
 	var a_data: Dictionary = a.get("Data", {}) if a.get("Data", {}) is Dictionary else {}
 	var b_data: Dictionary = b.get("Data", {}) if b.get("Data", {}) is Dictionary else {}
 	var a_rank := quality_order.find(str(a_data.get(DataKeys.QUALITY, a_template.get(DataKeys.QUALITY, ""))))
@@ -4194,7 +4192,7 @@ func zl_zb():
 			list.push_back(z)
 		player_data[DataKeys.EQUIPMENT_LIST]["页码" + str(u)].clear()
 	for i in list:
-		var lx = AE.AllEquipment_[i.名字][DataKeys.TYPE]
+		var lx = AE.all_equipment[i.名字][DataKeys.TYPE]
 		if lx != "法宝":
 			add_zb(i.名字, i.强化等级, i.Data)
 		else:
@@ -4296,15 +4294,15 @@ func check_wx_num():
 
 
 func get_most_level(need_):
-	var LevelList = []
+	var level_list = []
 	if PlayerData.check_zb(need_).size() != 0:
 		for i in PlayerData.check_zb(need_):
 			var get_data = i["data"]
 			var get_level = get_data[DataKeys.ENHANCE_LEVEL]
-			LevelList.push_back(get_level)
-		LevelList.sort()
-		LevelList.reverse()
-		return LevelList[0]
+			level_list.push_back(get_level)
+		level_list.sort()
+		level_list.reverse()
+		return level_list[0]
 	return 0
 
 
@@ -4376,7 +4374,7 @@ func get_total_dj_list():
 func add_dj(name_, number, locked := false):
 	if number <= 0:
 		return
-	if not AE.AllEquipment_.has(name_):
+	if not AE.all_equipment.has(name_):
 		return
 
 	var existing_page = get_dj_page(name_)
@@ -4392,9 +4390,9 @@ func add_dj(name_, number, locked := false):
 	if usable_page == 0:
 		return
 
-	var Data_ = AE.AllEquipment_[name_]
+	var data = AE.all_equipment[name_]
 	player_data[DataKeys.ITEM_LIST]["页码" + str(usable_page)].push_back(
-		{"名字": name_, "数量": number, "Data": Data_, "锁定": bool(locked)}
+		{"名字": name_, "数量": number, "Data": data, "锁定": bool(locked)}
 	)
 
 
@@ -4441,7 +4439,7 @@ func remove_dj(name_, page, num):
 	if last_num <= 0:
 		player_data[DataKeys.ITEM_LIST]["页码" + str(page)].remove_at(x)
 	if not Global.is_in_ldl:
-		all_coin = AE.AllEquipment_[name_]["售价"] * num
+		all_coin = AE.all_equipment[name_]["售价"] * num
 		add_soul(all_coin)
 	var list = {"名字": name_, "数量": last_num, "获得灵魂": all_coin, "卖出数量": num}
 	return list
@@ -4555,7 +4553,7 @@ func remove_xhp(name_, page, num):
 	if last_num <= 0:
 		player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(page)].remove_at(x)
 	if not Global.is_in_ldl:
-		all_coin = AE.AllEquipment_[name_]["售价"] * num
+		all_coin = AE.all_equipment[name_]["售价"] * num
 		add_soul(all_coin)
 	var list = {"名字": name_, "数量": last_num, "获得灵魂": all_coin, "卖出数量": num}
 	return list
@@ -4570,7 +4568,7 @@ func migrate_consumables_from_dj_to_xhp() -> void:
 			var item = page[x]
 			if item.has(DataKeys.NAME):
 				var item_name = item[DataKeys.NAME]
-				if AE.AllEquipment_.has(item_name) and AE.AllEquipment_[item_name][DataKeys.TYPE] == "消耗品":
+				if AE.all_equipment.has(item_name) and AE.all_equipment[item_name][DataKeys.TYPE] == "消耗品":
 					var item_num = int(item[DataKeys.COUNT]) if item.has(DataKeys.COUNT) else 1
 					page.remove_at(x)
 					move_list.push_back({"名字": item_name, "数量": item_num, "锁定": bool(item.get("锁定", false))})
@@ -4579,10 +4577,10 @@ func migrate_consumables_from_dj_to_xhp() -> void:
 		add_xhp(item[DataKeys.NAME], int(item[DataKeys.COUNT]), bool(item.get("锁定", false)))
 
 
-func check_can_use_page(Target):
-	for i in range(player_data[Target].size()):
+func check_can_use_page(target):
+	for i in range(player_data[target].size()):
 		var u = i + 1
-		if player_data[Target]["页码" + str(u)].size() < 25:
+		if player_data[target]["页码" + str(u)].size() < 25:
 			return u
 	return 0
 
@@ -4617,13 +4615,13 @@ func _process(_delta: float) -> void:
 				skill_keys[key_name] = "by"
 
 	if MainSet.set_data.has("FileValue"):
-		if Global != null and float(MainSet.set_data["FileValue"]) < float(Global.FileNum):
-			MainSet.set_data["FileValue"] = Global.FileNum
+		if Global != null and float(MainSet.set_data["FileValue"]) < float(Global.file_num):
+			MainSet.set_data["FileValue"] = Global.file_num
 
 	if MainSet.set_data["xg"] and not _invalid_data_exit_started:
 		_invalid_data_exit_started = true
 		if Global != null:
-			Global.add_message_show(Global.Windows_, "数据不正常哦，我退出啦~", 4, Vector2(485, 295))
+			Global.add_message_show(Global.windows, "数据不正常哦，我退出啦~", 4, Vector2(485, 295))
 		await get_tree().create_timer(2, false).timeout
 		get_tree().quit()
 
@@ -4641,23 +4639,23 @@ func removedata():
 
 
 func check_next_day():
-	var Dic = Time.get_datetime_dict_from_system()
-	var MyDic = PlayerData.player_data["MyTime"]
-	if MyDic == {}:
+	var dic = Time.get_datetime_dict_from_system()
+	var my_dic = PlayerData.player_data["MyTime"]
+	if my_dic == {}:
 		return
-	if int(Dic["year"]) < int(MyDic["year"]):
+	if int(dic["year"]) < int(my_dic["year"]):
 		return false
-	elif int(Dic["year"]) > int(MyDic["year"]):
+	elif int(dic["year"]) > int(my_dic["year"]):
 		return true
 	else:
-		if int(Dic["month"]) < int(MyDic["month"]):
+		if int(dic["month"]) < int(my_dic["month"]):
 			return false
-		elif int(Dic["month"]) > int(MyDic["month"]):
+		elif int(dic["month"]) > int(my_dic["month"]):
 			return true
 		else:
-			if int(Dic["day"]) < int(MyDic["day"]):
+			if int(dic["day"]) < int(my_dic["day"]):
 				return false
-			elif int(Dic["day"]) > int(MyDic["day"]):
+			elif int(dic["day"]) > int(my_dic["day"]):
 				return true
 			else:
 				return false
@@ -4666,7 +4664,7 @@ func check_next_day():
 func add_ini_buff():
 	if player_data["初始Buff"].size() != 0:
 		for i in player_data["初始Buff"]:
-			Global.add_buff(RoleProp.SourcePlayer.buff, i)
+			Global.add_buff(RoleProp.source_player.buff, i)
 
 
 func check_same_ini_buff(Need):
@@ -4678,10 +4676,10 @@ func check_same_ini_buff(Need):
 	return false
 
 
-func check_pass(Local):
+func check_pass(local):
 	if bool(player_data.get("隐藏地图全开", false)):
 		return true
-	match Local:
+	match local:
 		"天庭":
 			if player_data["转轮殿"] == 1 and get_item_data("ttlp") != 0 and player_data["天庭"]:
 				return true

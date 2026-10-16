@@ -1,6 +1,6 @@
 extends Node
 
-var need_lhList = [
+var need_lh_list = [
 	5000,
 	10000,
 	15000,
@@ -23,15 +23,15 @@ var need_lhList = [
 	100000,
 	105000
 ]
-var Rx_value = [
+var rx_value = [
 	0, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100
 ]
-var Mq_value = [0, 100, 130, 160, 200, 240, 280, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000]
-var Kb_value = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
-var Yh_value = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
-var Hh_value = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
-var Mr_value = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
-var Ps_value = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+var mq_value = [0, 100, 130, 160, 200, 240, 280, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000]
+var kb_value = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+var yh_value = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+var hh_value = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+var mr_value = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+var ps_value = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
 
 
 func _physics_process(_delta: float) -> void:
@@ -55,17 +55,17 @@ func _extend_linear(values: Array, level: int) -> int:
 func get_value(name_: String, level: int) -> int:
 	match name_:
 		"热血":
-			return _extend_linear(Rx_value, level)
+			return _extend_linear(rx_value, level)
 		"魔泉":
-			return _extend_linear(Mq_value, level)
+			return _extend_linear(mq_value, level)
 		"狂暴":
-			return _extend_linear(Kb_value, level)
+			return _extend_linear(kb_value, level)
 		"永恒":
-			return _extend_linear(Yh_value, level)
+			return _extend_linear(yh_value, level)
 		"辉煌":
-			return _extend_linear(Hh_value, level)
+			return _extend_linear(hh_value, level)
 		"敏锐":
-			return _extend_linear(Mr_value, level)
+			return _extend_linear(mr_value, level)
 		"收益":
 			return max(0, level) * 5
 	return 0
@@ -97,6 +97,6 @@ func get_passive_skill_properties():
 
 func get_lh(name_):
 	var get_level = int(PlayerData.player_data["被动技能"].get(name_, 0))
-	if get_level < need_lhList.size():
-		return need_lhList[get_level]
+	if get_level < need_lh_list.size():
+		return need_lh_list[get_level]
 	return 5000 * (get_level + 1)

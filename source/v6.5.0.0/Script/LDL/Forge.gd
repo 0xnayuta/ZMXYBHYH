@@ -10,8 +10,8 @@ const FORGE_MATERIAL_BOX_SCENE: PackedScene = preload("res://Scene/ldl/forge_mat
 @onready var basic_material: HBoxContainer = $BasicMaterial/BasicMaterial
 @onready var lh: Label = $LastItem/Need/LH
 @onready var bs_box: HBoxContainer = $BSBox
-var ItemData = {}
-var ItemMaterialList = {
+var item_data = {}
+var item_material_list = {
 	"tfljzzs": {"xuantie": 40, "tanmu": 40},
 	"mgzhzzs": {"tanmu": 40, "sichou": 40},
 	"tdlzjzzs": {"xuantie": 30, "tanmu": 30, "sichou": 30},
@@ -123,13 +123,13 @@ var ItemMaterialList = {
 
 
 func _ready() -> void:
-	Global.Forge_ = self
+	Global.forge = self
 	addbzpic()
 	lh.text = str(5000)
 	remove_name_and_need()
 
 	scw.is_in_ldl_gz = true
-	scw.HideProp = false
+	scw.hide_prop = false
 
 
 var current_book: String = ""
@@ -171,7 +171,7 @@ func load_material_box():
 func add_item_box():
 	var book_name := _get_current_book_name()
 	var ItemName := book_name.split("zzs")[0] if book_name != "" else ""
-	if ItemName == "" or not AE.AllEquipment_.has(ItemName):
+	if ItemName == "" or not AE.all_equipment.has(ItemName):
 		scw.get_item_name = "empty"
 		scw.icon = load_("empty")
 		scw.EQ_prop = {}
@@ -179,13 +179,13 @@ func add_item_box():
 		return
 
 	if PlayerData.player_data["宝珠列表"].size() <= 0:
-		ItemData = get_eq_prop()
+		item_data = get_eq_prop()
 	else:
-		ItemData = get_bz_prop()
+		item_data = get_bz_prop()
 
 	scw.get_item_name = ItemName
 	scw.icon = load_(str(ItemName))
-	scw.EQ_prop = ItemData
+	scw.EQ_prop = item_data
 	scw.is_in_ldl_gz = true
 
 	refresh_name()
@@ -198,13 +198,13 @@ func refresh_name():
 
 	var book_name := _get_current_book_name()
 	var ItemName := book_name.split("zzs")[0] if book_name != "" else ""
-	if ItemName == "" or not AE.AllEquipment_.has(ItemName):
+	if ItemName == "" or not AE.all_equipment.has(ItemName):
 		remove_name_and_need()
 		return
-	var item_name = AE.AllEquipment_[ItemName][DataKeys.NAME]
-	var Color_ = AE.AllEquipment_[ItemName]["颜色"]
+	var item_name = AE.all_equipment[ItemName][DataKeys.NAME]
+	var color = AE.all_equipment[ItemName]["颜色"]
 	item_name.text = str(item_name)
-	item_name.add_theme_color_override("font_color", Color_)
+	item_name.add_theme_color_override("font_color", color)
 
 
 func addbzpic():
@@ -221,13 +221,13 @@ func addbzpic():
 		var item_name := str(jewel.get(DataKeys.NAME, ""))
 		var data_value: Variant = jewel.get("Data", {})
 		var Data: Dictionary = data_value if data_value is Dictionary else {}
-		var ItemBox := _add_forge_item_box(bs_box, str(item_name), 0, 1, [], Data, true, false)
-		if ItemBox == null or not is_instance_valid(ItemBox):
+		var item_box := _add_forge_item_box(bs_box, str(item_name), 0, 1, [], Data, true, false)
+		if item_box == null or not is_instance_valid(item_box):
 			continue
 		var icon_path := "res://Art/BackPack/AllItems/%s.png" % str(item_name)
-		ItemBox.set("icon", ResourceLoader.load(icon_path) as Texture2D if ResourceLoader.exists(icon_path) else null)
-		ItemBox.ForgeBZID = idx
-		ItemBox.is_in_ldl_gz = true
+		item_box.set("icon", ResourceLoader.load(icon_path) as Texture2D if ResourceLoader.exists(icon_path) else null)
+		item_box.forge_bzid = idx
+		item_box.is_in_ldl_gz = true
 
 
 func remove_bspic(id: int):
@@ -245,7 +245,7 @@ func remove_bspic(id: int):
 		return
 	var jewel: Dictionary = jewel_value
 	var jewel_name := str(jewel.get(DataKeys.NAME, ""))
-	if jewel_name == "" or not AE.AllEquipment_.has(jewel_name):
+	if jewel_name == "" or not AE.all_equipment.has(jewel_name):
 		print("警告：宝珠名称无效，跳过移除索引 ", id)
 		return
 	if id < bs_box.get_child_count():
@@ -271,7 +271,7 @@ func remove_infomation():
 			continue
 		var jewel: Dictionary = jewel_value
 		var item_name := str(jewel.get(DataKeys.NAME, ""))
-		if item_name != "" and AE.AllEquipment_.has(item_name):
+		if item_name != "" and AE.all_equipment.has(item_name):
 			PlayerData.add_dj(item_name, 1)
 	bz_list.clear()
 	MemoryClass.save_game(Global.cd_path)
@@ -418,7 +418,7 @@ func remove_all() -> bool:
 	var jewels: Array = jewels_value
 	jewels.clear()
 	addbzpic()
-	ItemData = {}
+	item_data = {}
 	remove_zzs_box()
 	remove_material_box()
 	return true
@@ -484,10 +484,10 @@ func _clear_children_now(parent: Node) -> void:
 
 func _on_froge_pressed_legacy() -> void:
 	if zzs.get_children().size() == 0:
-		Global.add_message_show(Global.Windows_, "请先放入制作书！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "请先放入制作书！！", 1.5, Vector2(500, 305))
 		return
 	if PlayerData.get_soul() < 5000:
-		Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "灵魂不足！！", 1.5, Vector2(500, 305))
 		return
 
 	if check_full_material():
@@ -496,7 +496,7 @@ func _on_froge_pressed_legacy() -> void:
 		if zzs.get_children().size() == 1:
 			ItemName = str(zzs.get_children()[0].get_item_name).split("zzs")[0]
 
-		var new_equip_data = AE.AllEquipment_[ItemName].duplicate(true)
+		var new_equip_data = AE.all_equipment[ItemName].duplicate(true)
 		var legacy_jewels_value: Variant = PlayerData.player_data.get("宝珠列表", [])
 		if not legacy_jewels_value is Array:
 			return
@@ -505,12 +505,12 @@ func _on_froge_pressed_legacy() -> void:
 				return
 			var jewel: Dictionary = jewel_value
 			var jewel_name := str(jewel.get(DataKeys.NAME, ""))
-			var jewel_data_value: Variant = AE.AllEquipment_.get(jewel_name, {})
+			var jewel_data_value: Variant = AE.all_equipment.get(jewel_name, {})
 			if jewel_name == "" or not jewel_data_value is Dictionary:
 				return
 			var jewel_data: Dictionary = jewel_data_value
 
-			for prop in AE.PropListName:
+			for prop in AE.prop_list_name:
 				if jewel_data.has(prop):
 					new_equip_data[prop] += jewel_data[prop]
 
@@ -524,7 +524,7 @@ func _on_froge_pressed_legacy() -> void:
 		print("保存前 new_equip_data.power = ", new_equip_data.power)
 		print("宝珠列表长度 = ", PlayerData.player_data["宝珠列表"].size())
 
-		match AE.AllEquipment_[ItemName][DataKeys.TYPE]:
+		match AE.all_equipment[ItemName][DataKeys.TYPE]:
 			"法宝":
 				PlayerData.add_fb(ItemName, 0, AE.get_wx(), new_equip_data)
 			"武器", "防具", "饰品", "时装", "头衔", "翅膀":
@@ -532,34 +532,34 @@ func _on_froge_pressed_legacy() -> void:
 
 		remove_all()
 		PlayerData.spend_soul(5000)
-		Global.add_message_show(Global.Windows_, "打造成功！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "打造成功！！", 1.5, Vector2(500, 305))
 	else:
-		Global.add_message_show(Global.Windows_, "材料不足！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "材料不足！！", 1.5, Vector2(500, 305))
 
 
 func _on_froge_pressed() -> void:
 	if zzs == null or zzs.get_child_count() != 1:
-		Global.add_message_show(Global.Windows_, "请先放入制作书！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "请先放入制作书！！", 1.5, Vector2(500, 305))
 		return
 
 	var book_box: Node = zzs.get_child(0)
 	var book_name := _get_current_book_name()
 	var item_name := book_name.split("zzs")[0] if book_name != "" else ""
-	if book_name == "" or item_name == "" or not ItemMaterialList.has(book_name) or not AE.AllEquipment_.has(item_name):
-		Global.add_message_show(Global.Windows_, "制作书数据异常，无法打造！！", 1.5, Vector2(500, 305))
+	if book_name == "" or item_name == "" or not item_material_list.has(book_name) or not AE.all_equipment.has(item_name):
+		Global.add_message_show(Global.windows, "制作书数据异常，无法打造！！", 1.5, Vector2(500, 305))
 		return
 	if PlayerData.get_soul() < 5000:
-		Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "灵魂不足！！", 1.5, Vector2(500, 305))
 		return
 	if not check_full_material():
-		Global.add_message_show(Global.Windows_, "材料或制作书不足！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "材料或制作书不足！！", 1.5, Vector2(500, 305))
 		return
 
-	var item_data: Dictionary = AE.AllEquipment_[item_name] as Dictionary
+	var item_data: Dictionary = AE.all_equipment[item_name] as Dictionary
 	var equipment_type := str(item_data.get(DataKeys.TYPE, ""))
 	var jewels_value: Variant = PlayerData.player_data.get("宝珠列表", [])
 	if not jewels_value is Array:
-		Global.add_message_show(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
 		return
 
 	var snapshot: Dictionary = PlayerData.player_data.duplicate(true)
@@ -573,19 +573,19 @@ func _on_froge_pressed() -> void:
 	var jewels: Array = jewels_value
 	for jewel_value in jewels:
 		if not jewel_value is Dictionary:
-			Global.add_message_show(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.windows, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
 			return
 		var jewel: Dictionary = jewel_value
 		var jewel_name := str(jewel.get(DataKeys.NAME, ""))
-		if jewel_name == "" or not AE.AllEquipment_.has(jewel_name):
-			Global.add_message_show(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
+		if jewel_name == "" or not AE.all_equipment.has(jewel_name):
+			Global.add_message_show(Global.windows, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
 			return
-		var jewel_data_value: Variant = AE.AllEquipment_.get(jewel_name, {})
+		var jewel_data_value: Variant = AE.all_equipment.get(jewel_name, {})
 		if not jewel_data_value is Dictionary:
-			Global.add_message_show(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.windows, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
 			return
 		var jewel_data: Dictionary = jewel_data_value
-		for prop in AE.PropListName:
+		for prop in AE.prop_list_name:
 			if jewel_data.has(prop):
 				new_equip_data[prop] = new_equip_data.get(prop, 0) + jewel_data[prop]
 		var jewel_strength_value: Variant = jewel_data.get(DataKeys.ENHANCE_PROP, {})
@@ -601,25 +601,25 @@ func _on_froge_pressed() -> void:
 		"武器", "防具", "饰品", "神骨", "时装", "头衔", "翅膀":
 			added = PlayerData.add_zb(item_name, 0, new_equip_data)
 		_:
-			Global.add_message_show(Global.Windows_, "该制作书的装备类型不支持打造！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.windows, "该制作书的装备类型不支持打造！！", 1.5, Vector2(500, 305))
 			return
 	if not added:
-		Global.add_message_show(Global.Windows_, "装备栏已满或装备数据无效，未扣除材料！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "装备栏已满或装备数据无效，未扣除材料！！", 1.5, Vector2(500, 305))
 		return
 
 	if not remove_all() or not PlayerData.spend_soul(5000):
 		_restore_forge_state(snapshot, book_name, book_level, book_props)
-		Global.add_message_show(Global.Windows_, "打造失败，材料未扣除！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "打造失败，材料未扣除！！", 1.5, Vector2(500, 305))
 		return
 	if not MemoryClass.save_game(Global.cd_path):
 		_restore_forge_state(snapshot, book_name, book_level, book_props)
-		Global.add_message_show(Global.Windows_, "存档保存失败，本次打造已撤销！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "存档保存失败，本次打造已撤销！！", 1.5, Vector2(500, 305))
 		return
-	Global.add_message_show(Global.Windows_, "打造成功！！", 1.5, Vector2(500, 305))
+	Global.add_message_show(Global.windows, "打造成功！！", 1.5, Vector2(500, 305))
 
 
 func _get_material_list(book_name: String) -> Dictionary:
-	var material_list: Variant = ItemMaterialList.get(book_name, {})
+	var material_list: Variant = item_material_list.get(book_name, {})
 	if material_list is Dictionary:
 		return material_list
 	return {}
@@ -640,23 +640,23 @@ func _get_current_book_name() -> String:
 func get_bz_prop_legacy():
 	if PlayerData.player_data["宝珠列表"].size() <= 0:
 		return
-	var BZProp = {}
-	for i in AE.PropListName:
-		BZProp[i] = 0
+	var bz_prop = {}
+	for i in AE.prop_list_name:
+		bz_prop[i] = 0
 	for i in PlayerData.player_data["宝珠列表"]:
-		i["Data"] = AE.AllEquipment_[i[DataKeys.NAME]]
-		for u in AE.PropListName:
-			BZProp[u] += i["Data"][u]
+		i["Data"] = AE.all_equipment[i[DataKeys.NAME]]
+		for u in AE.prop_list_name:
+			bz_prop[u] += i["Data"][u]
 	var book_name := _get_current_book_name()
 	if book_name == "":
 		return
 	var ItemName := book_name.split("zzs")[0]
-	if not AE.AllEquipment_.has(ItemName):
+	if not AE.all_equipment.has(ItemName):
 		return
-	var PropList = AE.AllEquipment_[ItemName].duplicate(true)
-	for i in AE.PropListName:
-		PropList[i] += BZProp[i]
-	return PropList
+	var prop_list = AE.all_equipment[ItemName].duplicate(true)
+	for i in AE.prop_list_name:
+		prop_list[i] += bz_prop[i]
+	return prop_list
 
 
 func get_bz_prop() -> Dictionary:
@@ -668,29 +668,29 @@ func get_bz_prop() -> Dictionary:
 		return {}
 
 	var bonus: Dictionary = {}
-	for prop in AE.PropListName:
+	for prop in AE.prop_list_name:
 		bonus[prop] = 0
 	for jewel_value in jewels:
 		if not jewel_value is Dictionary:
 			return {}
 		var jewel: Dictionary = jewel_value
 		var jewel_name := str(jewel.get(DataKeys.NAME, ""))
-		if jewel_name == "" or not AE.AllEquipment_.has(jewel_name):
+		if jewel_name == "" or not AE.all_equipment.has(jewel_name):
 			return {}
-		var jewel_data_value: Variant = AE.AllEquipment_.get(jewel_name, {})
+		var jewel_data_value: Variant = AE.all_equipment.get(jewel_name, {})
 		if not jewel_data_value is Dictionary:
 			return {}
 		var jewel_data: Dictionary = jewel_data_value
-		for prop in AE.PropListName:
+		for prop in AE.prop_list_name:
 			if jewel_data.has(prop):
 				bonus[prop] = bonus.get(prop, 0) + jewel_data[prop]
 
 	var book_name := _get_current_book_name()
 	var item_name := book_name.split("zzs")[0] if book_name != "" else ""
-	if item_name == "" or not AE.AllEquipment_.has(item_name):
+	if item_name == "" or not AE.all_equipment.has(item_name):
 		return {}
-	var prop_list: Dictionary = (AE.AllEquipment_[item_name] as Dictionary).duplicate(true)
-	for prop in AE.PropListName:
+	var prop_list: Dictionary = (AE.all_equipment[item_name] as Dictionary).duplicate(true)
+	for prop in AE.prop_list_name:
 		if prop_list.has(prop):
 			prop_list[prop] += bonus.get(prop, 0)
 	return prop_list
@@ -701,9 +701,9 @@ func get_eq_prop():
 	if book_name == "":
 		return
 	var ItemName := book_name.split("zzs")[0]
-	if not AE.AllEquipment_.has(ItemName):
+	if not AE.all_equipment.has(ItemName):
 		return
-	return AE.AllEquipment_[ItemName]
+	return AE.all_equipment[ItemName]
 	pass
 
 

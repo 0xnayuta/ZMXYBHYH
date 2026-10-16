@@ -1,12 +1,12 @@
 extends Button
-var MyName: String
-var MyFather
+var my_name: String
+var my_father
 @onready var role_name: Label = $RoleName
 
 
 func _physics_process(delta: float) -> void:
-	self.set_button_icon(load("res://Art/MainGame/ChoosePlayer/" + str(MyName) + ".png"))
-	match MyName:
+	self.set_button_icon(load("res://Art/MainGame/choose_player/" + str(my_name) + ".png"))
+	match my_name:
 		"swk":
 			role_name.text = "孙悟空"
 		"zbj":
@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_pressed() -> void:
 	var role_id := 0
-	match MyName:
+	match my_name:
 		"swk":
 			role_id = 1
 		"tsz":
@@ -33,5 +33,5 @@ func _on_pressed() -> void:
 			role_id = 4
 		"xbl":
 			role_id = 5
-	if role_id > 0 and MyFather and MyFather.has_method("set_role"):
-		MyFather.set_role(role_id)
+	if role_id > 0 and my_father and my_father.has_method("set_role"):
+		my_father.set_role(role_id)

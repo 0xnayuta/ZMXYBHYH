@@ -16,23 +16,23 @@ func _return_to_current_map() -> void:
 
 
 func _ready() -> void:
-	Global.CurrentLevel = ""
+	Global.current_level = ""
 	Global.add_bgm(self, "res://Music/level/17_bg6.mp3")
 	self.level_stage = 1
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [132],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [500],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [450],
 		"stage_2": [],
 		"stage_3": [],

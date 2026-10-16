@@ -19,7 +19,7 @@ var monster_instance1: BaseHero
 @onready var monster_dir: Node2D = $MonsterDir
 @onready var remove_hurt_bl: Timer = $RemoveHurtBL
 
-var IsSky = false
+var is_sky = false
 var is_friendly: bool = true
 var current_target: BaseMonster = null
 var monster_target_group: String = "monsters"
@@ -27,7 +27,7 @@ var player_reference: BaseHero = null
 var force_collision_setup: bool = true
 
 var monster_blood_bar = null
-var MyBlood = null
+var my_blood = null
 
 var has_target: bool = false
 var count: int = 0
@@ -106,7 +106,7 @@ func find_player_reference():
 
 
 func _physics_process(delta: float) -> void:
-	if IsSky == true:
+	if is_sky == true:
 		gravity = 0
 		velocity.y = 0
 	else:

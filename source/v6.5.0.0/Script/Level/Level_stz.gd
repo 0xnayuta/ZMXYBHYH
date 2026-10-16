@@ -14,30 +14,30 @@ var _monster_count_multiplier := 1
 
 
 func _ready() -> void:
-	selected_prince_id = int(Global.SelectedThreePrinceId)
+	selected_prince_id = int(Global.selected_three_prince_id)
 	if selected_prince_id not in PRINCE_IDS:
 		selected_prince_id = 4401
 	_monster_count_multiplier = clampi(int(MainSet.set_data.get("CreateMonsterCount", 1)), 1, 5)
-	Monster_group = {
+	monster_group = {
 		"stage_1": [selected_prince_id],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [500],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [300],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Global.CurrentLevel = "挑战三太子"
-	Global.GameOver = 1
+	Global.current_level = "挑战三太子"
+	Global.game_over = 1
 	level_stage = 44
 	_set_selected_background()
 	Global.add_bgm(self, "res://Music/level/music_emsd.mp3")
@@ -57,17 +57,17 @@ func _physics_process(delta: float) -> void:
 
 
 func _exit_tree() -> void:
-	Global.ThreePrinceEndlessMode = false
+	Global.three_prince_endless_mode = false
 
 
 func _restart_endless_round() -> void:
-	if not is_inside_tree() or not Global.ThreePrinceEndlessMode:
+	if not is_inside_tree() or not Global.three_prince_endless_mode:
 		_endless_restart_pending = false
 		return
 	for _index in range(_monster_count_multiplier):
-		Monster_group["stage_1"].append(selected_prince_id)
-		Monster_position_x["stage_1"].append(500)
-		Monster_position_y["stage_1"].append(300)
+		monster_group["stage_1"].append(selected_prince_id)
+		monster_position_x["stage_1"].append(500)
+		monster_position_y["stage_1"].append(300)
 	can_exit = false
 	exit.visible = false
 	exit_2.disabled = true
@@ -83,11 +83,11 @@ func set_through() -> void:
 
 
 func one_check_can_exit() -> bool:
-	if not Monster_group.has("stage_1") or Monster_group["stage_1"].size() > 0:
+	if not monster_group.has("stage_1") or monster_group["stage_1"].size() > 0:
 		return false
 	if _get_alive_stage_monster_count() != 0:
 		return false
-	if Global.ThreePrinceEndlessMode:
+	if Global.three_prince_endless_mode:
 		if not _endless_restart_pending:
 			_endless_restart_pending = true
 			call_deferred("_restart_endless_round")

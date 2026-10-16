@@ -1,23 +1,23 @@
 extends Node2D
 class_name Role4Bullet
 var Player: BaseHero
-var OldMonster: BaseMonster
-var TargetMonster: BaseMonster
-var HitCount: int = 0
-var Speed = 10
-var IsSet: bool
+var old_monster: BaseMonster
+var target_monster: BaseMonster
+var hit_count: int = 0
+var speed = 10
+var is_set: bool
 
 
 func _physics_process(delta: float) -> void:
-	if not IsSet:
-		TargetMonster = check_monster()
-		OldMonster = TargetMonster
-		IsSet = true
-	if TargetMonster != null:
-		self.position += Global.get_position_between(self, TargetMonster) * Speed
+	if not is_set:
+		target_monster = check_monster()
+		old_monster = target_monster
+		is_set = true
+	if target_monster != null:
+		self.position += Global.get_position_between(self, target_monster) * speed
 	else:
 		queue_free()
-	if TargetMonster == null or OldMonster == null:
+	if target_monster == null or old_monster == null:
 		self.queue_free()
 
 
@@ -26,10 +26,10 @@ func _on_queue_timer_timeout() -> void:
 
 
 func check_monster():
-	var MrList = []
+	var mr_list = []
 	if Player is BaseHero:
-		MrList = Player.get_parent().get_parent().monster.get_children()
-	for i in MrList:
+		mr_list = Player.get_parent().get_parent().monster.get_children()
+	for i in mr_list:
 		if _is_valid_tmc_target(i):
 			return i
 	return null
@@ -42,7 +42,7 @@ func _is_valid_tmc_target(target: Node) -> bool:
 		return false
 	if not (target is BaseMonster):
 		return false
-	if target == OldMonster:
+	if target == old_monster:
 		return false
 	if target.Hp <= 0:
 		return false
@@ -52,7 +52,7 @@ func _is_valid_tmc_target(target: Node) -> bool:
 
 
 func _process(delta: float) -> void:
-	if HitCount > 3:
+	if hit_count > 3:
 		queue_free()
 
 
@@ -60,8 +60,8 @@ func _on_check_body_entered(body: Node2D) -> void:
 	if body == null:
 		return
 	if body is BaseMonster:
-		if body == TargetMonster and _is_valid_tmc_target(body):
-			OldMonster = TargetMonster
+		if body == target_monster and _is_valid_tmc_target(body):
+			old_monster = target_monster
 			(
 				Global
 				. add_buff(
@@ -90,4 +90,4 @@ func _on_check_body_entered(body: Node2D) -> void:
 					}
 				)
 			)
-			TargetMonster = check_monster()
+			target_monster = check_monster()

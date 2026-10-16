@@ -1,7 +1,7 @@
 extends BaseMonster
 
-var MyChild: MonsterBullet
-var Count: int = 0
+var my_child: MonsterBullet
+var tick_count: int = 0
 var is_checking_silent: bool = false
 var silent_check_timer: Timer
 var has_summoned_1404: bool = false
@@ -10,7 +10,7 @@ var shield_value: int = 0
 
 
 func monster_1406():
-	self.is_Fly = true
+	self.is_fly = true
 	self.is_boss = true
 	self.my_mr_name = "琼霄"
 	self.rush_speed = 550
@@ -120,12 +120,12 @@ func _physics_process(delta: float) -> void:
 
 
 func ai_think():
-	if MyChild != null:
-		Count += 1
-		if Count >= 900:
-			MyChild.queue_free()
+	if my_child != null:
+		tick_count += 1
+		if tick_count >= 900:
+			my_child.queue_free()
 	else:
-		Count = 0
+		tick_count = 0
 
 	var distance_x = abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x)
 	var distance_y = abs(RoleProp.get_nearest_monster_target_position(global_position).y - position.y)
@@ -278,15 +278,15 @@ func call_bullet_2():
 
 
 func call_bullet_3():
-	var PositionList1 = [Vector2(position.x, position.y)]
+	var position_list1 = [Vector2(position.x, position.y)]
 
-	for i in PositionList1:
+	for i in position_list1:
 		Global.call_chase_bullet(self.bullet, "Monster1406Bullet3", 300, 5, false, i, "hit3", self.objattackDic["hit3"])
 	await get_tree().create_timer(0.2, false).timeout
 
 
 func check_player_has_silent() -> bool:
-	var player = RoleProp.SourcePlayer
+	var player = RoleProp.source_player
 	if player == null or player.buff == null:
 		return false
 
@@ -298,7 +298,7 @@ func check_player_has_silent() -> bool:
 
 
 func apply_control_reverse(reverse_time: float):
-	var player = RoleProp.SourcePlayer
+	var player = RoleProp.source_player
 	if player == null or player.buff == null:
 		return
 

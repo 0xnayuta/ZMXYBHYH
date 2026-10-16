@@ -6,15 +6,15 @@ var owner_player: BaseHero = null
 @onready var middle: Node2D = $Middle
 var skill_level: int = 1
 var zznh_defense_reduction: float = 0.0
-var RoleList = []
-var SpecialEffectName: String
-var Dir: bool
-var IsSet: bool
+var role_list = []
+var special_effect_name: String
+var dir: bool
+var is_set: bool
 var myhccount: int
 var MonsterList = []
-var CureCount: int = 0
-var PPl: BaseHero
-var wiilQueue: bool
+var cure_count: int = 0
+var p_pl: BaseHero
+var wiil_queue: bool
 var _persistent_restart_queued := false
 const JGZ_HALF_SIZE := Vector2(275.0, 175.0)
 const JGZ_CENTER_OFFSET := Vector2(0.0, -29.0)
@@ -70,27 +70,27 @@ func _prepare_animation_material(animation_name: String) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if PPl == null and get_parent() is BaseHero:
-		PPl = get_parent()
-	CureCount += 1
-	if not wiilQueue:
-		if SpecialEffectName == "sd2":
-			PPl.Is_sdBuff = true
-	if not IsSet:
-		if Dir:
+	if p_pl == null and get_parent() is BaseHero:
+		p_pl = get_parent()
+	cure_count += 1
+	if not wiil_queue:
+		if special_effect_name == "sd2":
+			p_pl.is_sd_buff = true
+	if not is_set:
+		if dir:
 			middle.scale.x = -1
 		else:
 			middle.scale.x = 1
-		_prepare_animation_material(SpecialEffectName)
-		special_player.play(SpecialEffectName)
-		IsSet = true
+		_prepare_animation_material(special_effect_name)
+		special_player.play(special_effect_name)
+		is_set = true
 
-	if SpecialEffectName == "myhc":
+	if special_effect_name == "myhc":
 		myhccount += 1
 		if myhccount % 60 == 0:
 			myhc_cure()
 
-	if SpecialEffectName == "jgz":
+	if special_effect_name == "jgz":
 		_apply_jgz_to_overlapping_bodies()
 		for i in MonsterList.duplicate():
 			if not _can_control_monster(i):
@@ -98,8 +98,8 @@ func _physics_process(delta: float) -> void:
 				continue
 			i.velocity.y = 0
 
-	if SpecialEffectName == "zznh":
-		var effect_owner: Node = PPl if PPl != null else get_parent()
+	if special_effect_name == "zznh":
+		var effect_owner: Node = p_pl if p_pl != null else get_parent()
 		var monster_container: Node = effect_owner.get_parent().get_parent().monster
 		var monster_count: int = monster_container.get_child_count()
 		var monster_index := 0
@@ -110,26 +110,26 @@ func _physics_process(delta: float) -> void:
 				if _can_control_monster(i):
 					i.velocity.y = 0
 
-	if SpecialEffectName == "sd2":
-		if CureCount % 60 == 0:
+	if special_effect_name == "sd2":
+		if cure_count % 60 == 0:
 			role3_sd_cure()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is BaseHero:
-		RoleList.push_back(body)
+		role_list.push_back(body)
 
-	if SpecialEffectName == "jgz":
+	if special_effect_name == "jgz":
 		_apply_jgz_to_monster(body)
 
-	if SpecialEffectName == "zznh":
+	if special_effect_name == "zznh":
 		if _can_control_monster(body):
 			Global.add_buff(body.buff, _get_zznh_buff_info())
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if RoleList.has(body):
-		RoleList.erase(body)
+	if role_list.has(body):
+		role_list.erase(body)
 
 
 func _on_animation_player_animation_finished(anim_name: String):
@@ -144,12 +144,12 @@ func tjgl_cure():
 	if player is Role2Shallow and player.my_owner != null:
 		real_player = player.my_owner
 
-	for i in RoleList:
+	for i in role_list:
 		if i != null and is_instance_valid(i) and i is BaseHero:
 			var level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
-			var TotalValue = int(RoleProp.roleprop.SHp * 0.2)
-			var CureValue = 0.6 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) + 1
-			var heal_value = int(TotalValue * CureValue)
+			var total_value = int(RoleProp.roleprop.SHp * 0.2)
+			var cure_value = 0.6 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) + 1
+			var heal_value = int(total_value * cure_value)
 			var effective_heal = i.cure_hp(heal_value)
 
 			if i == real_player and real_player is Role2Hero:
@@ -176,7 +176,7 @@ func tjgl_cure():
 
 
 func myhc_cure():
-	for i in RoleList:
+	for i in role_list:
 		if i != null and is_instance_valid(i):
 			if i is BaseHero:
 				var level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1
@@ -214,7 +214,7 @@ func _apply_jgz_to_monster(body: Node) -> void:
 			"DeBuff": true
 		}
 	)
-	if body.CannotAttract and not _allows_role_special_control(body):
+	if body.cannot_attract and not _allows_role_special_control(body):
 		return
 	body.is_jgz = true
 	var tween = body.create_control_movement_tween()
@@ -241,23 +241,23 @@ func _is_inside_jgz_rect(monster: BaseMonster, center: Vector2) -> bool:
 
 func add_role_3_cure_effect():
 	var Player = get_parent()
-	Player.My_SD.push_back(Global.add_role_special_effect(Player, Vector2(0, -20), false, "sd2"))
+	Player.my_sd.push_back(Global.add_role_special_effect(Player, Vector2(0, -20), false, "sd2"))
 
 
 func add_role2_cure_effect():
 	var Player = get_parent()
-	Player.My_SD.push_back(Global.add_role_special_effect(Player, Vector2(0, -20), false, "tjgl"))
+	Player.my_sd.push_back(Global.add_role_special_effect(Player, Vector2(0, -20), false, "tjgl"))
 
 
 func move_monster_to_player():
 	var Player = get_parent()
-	var MList = Player.get_parent().get_parent().monster.get_children()
+	var m_list = Player.get_parent().get_parent().monster.get_children()
 	var valid_monsters = []
 
-	for i in MList:
-		if _can_control_monster(i) and (not i.CannotAttract or _allows_role_special_control(i)):
+	for i in m_list:
+		if _can_control_monster(i) and (not i.cannot_attract or _allows_role_special_control(i)):
 			valid_monsters.append(i)
-			if SpecialEffectName == "zznh":
+			if special_effect_name == "zznh":
 				Global.add_buff(i.buff, _get_zznh_buff_info())
 
 	if valid_monsters.size() == 0:
@@ -286,22 +286,22 @@ func role3_sd_cure():
 	var Player = get_parent()
 	if Player is Role3Hero:
 		var cur_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能6"][DataKeys.LEVEL] + 1
-		var CureValue = int(6 + RoleProp.roleprop.SHp * (0.004 + cur_level * 0.001))
-		Player.cure_hp(CureValue)
+		var cure_value = int(6 + RoleProp.roleprop.SHp * (0.004 + cur_level * 0.001))
+		Player.cure_hp(cure_value)
 
 
 func role_3_remove_buff():
 	if bool(get_meta("persistent_sd", false)):
-		wiilQueue = false
+		wiil_queue = false
 		return
-	wiilQueue = true
+	wiil_queue = true
 	var Player = get_parent()
 	if Player is Role3Hero:
-		Player.Is_sdBuff = false
+		Player.is_sd_buff = false
 
 
 func finish_effect() -> void:
-	if bool(get_meta("persistent_sd", false)) and SpecialEffectName == "sd2":
+	if bool(get_meta("persistent_sd", false)) and special_effect_name == "sd2":
 		if _persistent_restart_queued:
 			return
 		_persistent_restart_queued = true
@@ -314,12 +314,12 @@ func _restart_persistent_effect() -> void:
 	_persistent_restart_queued = false
 	if not is_inside_tree() or is_queued_for_deletion():
 		return
-	CureCount = 0
-	wiilQueue = false
-	IsSet = true
+	cure_count = 0
+	wiil_queue = false
+	is_set = true
 	var special_an := get_node_or_null("Middle/SpecialAN") as AnimatedSprite2D
 	if special_an != null:
 		special_an.frame = 0
 	special_player.stop()
-	special_player.play(SpecialEffectName)
+	special_player.play(special_effect_name)
 	special_player.seek(0.0, true)

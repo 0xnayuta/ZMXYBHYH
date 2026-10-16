@@ -80,7 +80,7 @@ func _ready() -> void:
 func _initialize_summon_base() -> void:
 	randomize()
 	ran_num = randi_range(0, 100)
-	RndiCount = randi_range(0, 100)
+	rndi_count = randi_range(0, 100)
 	if has_node("CalmHit"):
 		$CalmHit.start(1.0)
 	if not has_node("Buff"):
@@ -383,7 +383,7 @@ func ai_think() -> void:
 
 
 func try_use_skills() -> void:
-	if ShouldInSky:
+	if should_in_sky:
 		return
 	if not is_instance_valid(current_target):
 		return
@@ -620,7 +620,7 @@ func _restart_phoenix_sprite(anim_name: String) -> void:
 
 
 func play_move_animation() -> void:
-	if is_Fly:
+	if is_fly:
 		if _play_phoenix_action("Fly", false) or _play_phoenix_action("fly", false):
 			return
 	_play_phoenix_action("walk", false)
@@ -628,7 +628,7 @@ func play_move_animation() -> void:
 
 func stop_move() -> void:
 	velocity.x = 0
-	if is_Fly:
+	if is_fly:
 		if _play_phoenix_action("Fly_wait", false) or _play_phoenix_action("fly_wait", false):
 			return
 	_play_phoenix_action("wait", false)
@@ -639,7 +639,7 @@ func reset_attack_state() -> void:
 	is_attacking = false
 	_attack_lock = false
 	hit_name = ""
-	if death() or ShouldInSky:
+	if death() or should_in_sky:
 		return
 	if velocity.x != 0:
 		play_move_animation()

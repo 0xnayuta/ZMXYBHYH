@@ -1,6 +1,6 @@
 extends BaseMonster
 class_name Monster102
-var MyChild: MonsterBullet
+var my_child: MonsterBullet
 
 
 func monster_101():
@@ -183,12 +183,12 @@ func call_bullet_1():
 
 func call_bullet_2():
 	var bullet_node
-	var BulletList = []
+	var bullet_list = []
 	if self.MonsterDirection:
-		BulletList = [Vector2(0, 0), Vector2(50, 0)]
+		bullet_list = [Vector2(0, 0), Vector2(50, 0)]
 	else:
-		BulletList = [Vector2(0, 0), Vector2(-50, 0)]
-	for i in BulletList:
+		bullet_list = [Vector2(0, 0), Vector2(-50, 0)]
+	for i in bullet_list:
 		bullet_node = Global.add_bullet(
 			"Monster102Bullet1", self.bullet, false, 1, i + position, "hit3", self.objattackDic["hit3"]
 		)
@@ -197,7 +197,7 @@ func call_bullet_2():
 
 
 func call_bullet_3():
-	MyChild = Global.add_bullet("Monster102Bullet2", self, false, 1, Vector2(0, 0), "hit3", self.objattackDic["hit3"])
+	my_child = Global.add_bullet("Monster102Bullet2", self, false, 1, Vector2(0, 0), "hit3", self.objattackDic["hit3"])
 
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理

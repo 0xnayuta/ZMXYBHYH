@@ -26,7 +26,7 @@ func _physics_process(_delta: float) -> void:
 	if get_parent().get_script() != null and get_parent().get_script().resource_path.ends_with("BackPack.gdc"):
 		if self.position.y + color_rect.size.y >= 320:
 			self.position.y = 320 - color_rect.size.y
-	elif get_parent() == Global.Windows_:
+	elif get_parent() == Global.windows:
 		var viewport_size := get_viewport().get_visible_rect().size
 		if self.position.y + color_rect.size.y >= viewport_size.y:
 			self.position.y = viewport_size.y - color_rect.size.y - 8.0
@@ -39,25 +39,25 @@ func _physics_process(_delta: float) -> void:
 	if is_set == false:
 		create_tween().tween_property(self, "modulate", Color(1, 1, 1, 1), 0.2)
 		set_color()
-		name_.text = "名称：" + str(AE.AllEquipment_[get_name_()][DataKeys.NAME])
-		lx.text = "类型：" + str(AE.AllEquipment_[get_name_()][DataKeys.TYPE])
-		pz.text = "品质：" + str(AE.AllEquipment_[get_name_()][DataKeys.QUALITY])
-		if str(AE.AllEquipment_[get_name_()][DataKeys.TYPE]) == "消耗品":
+		name_.text = "名称：" + str(AE.all_equipment[get_name_()][DataKeys.NAME])
+		lx.text = "类型：" + str(AE.all_equipment[get_name_()][DataKeys.TYPE])
+		pz.text = "品质：" + str(AE.all_equipment[get_name_()][DataKeys.QUALITY])
+		if str(AE.all_equipment[get_name_()][DataKeys.TYPE]) == "消耗品":
 			sl.text = "拥有：" + str(PlayerData.get_xhp_data(get_name_())) + " 个"
 		else:
 			sl.text = "拥有：" + str(PlayerData.get_item_data(get_name_())) + " 个"
-		ms.text = "描述：" + str(AE.AllEquipment_[get_name_()]["描述"])
-		sj.text = "售价：" + str(AE.AllEquipment_[get_name_()]["售价"]) + "灵魂。"
+		ms.text = "描述：" + str(AE.all_equipment[get_name_()]["描述"])
+		sj.text = "售价：" + str(AE.all_equipment[get_name_()]["售价"]) + "灵魂。"
 		is_set = true
 
 
 func set_color():
-	if str(AE.AllEquipment_[get_name_()].get(DataKeys.QUALITY, "")) == "黑神话":
+	if str(AE.all_equipment[get_name_()].get(DataKeys.QUALITY, "")) == "黑神话":
 		_apply_black_myth_text_style(name_)
 		_apply_black_myth_text_style(pz)
 		return
-	name_.add_theme_color_override("font_color", AE.AllEquipment_[get_name_()]["颜色"])
-	pz.add_theme_color_override("font_color", AE.AllEquipment_[get_name_()]["颜色"])
+	name_.add_theme_color_override("font_color", AE.all_equipment[get_name_()]["颜色"])
+	pz.add_theme_color_override("font_color", AE.all_equipment[get_name_()]["颜色"])
 
 
 func _apply_black_myth_text_style(label: Label) -> void:

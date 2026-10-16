@@ -1,6 +1,6 @@
 extends BaseMagicWeapon
 class_name Hybrofoline
-var IsCure: bool
+var is_cure: bool
 var _hit_data := {"power": 0, "hurtBack": [5, -5], "attackKind": "physics"}
 
 
@@ -9,14 +9,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if IsCure:
+	if is_cure:
 		self.position = Player.position - Vector2(0, 200)
-	self.FB_Level = PlayerData.get_most_level("kyl") + 1
-	needMp = 50 + self.FB_Level * 5
+	self.fb_level = PlayerData.get_most_level("kyl") + 1
+	need_mp = 50 + self.fb_level * 5
 	if PlayerData.check_have_wx("kyl", "木"):
-		_hit_data["power"] = 100 + int(RoleProp.roleprop.SHp * (randf_range(0.02, 0.05)) + 0.02 * self.FB_Level)
+		_hit_data["power"] = 100 + int(RoleProp.roleprop.SHp * (randf_range(0.02, 0.05)) + 0.02 * self.fb_level)
 	else:
-		_hit_data["power"] = 50 + int(RoleProp.roleprop.SHp * (randf_range(0.01, 0.02)) + 0.01 * self.FB_Level)
+		_hit_data["power"] = 50 + int(RoleProp.roleprop.SHp * (randf_range(0.01, 0.02)) + 0.01 * self.fb_level)
 	super._physics_process(delta)
 	if not is_use:
 		mg_player.play("wait")
@@ -29,8 +29,8 @@ func show_skill():
 
 
 func use_over():
-	IsCure = false
-	Global.FB_CD = 1
+	is_cure = false
+	Global.fb_cd = 1
 	is_use = false
 	self.usecd = 15
 	skill_cd.start(15)
@@ -42,7 +42,7 @@ func cure():
 
 
 func add_super_armor():
-	IsCure = true
+	is_cure = true
 	(
 		Global
 		. add_buff(

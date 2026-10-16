@@ -9,7 +9,7 @@ class_name Mosaic
 @onready var bs_6: Button = $bs_6/bs_6
 @onready var bs_7: Button = $bs_7/bs_7
 @onready var bs_8: Button = $bs_8/bs_8
-@onready var Zb: Button = $zb/Zb
+@onready var zb: Button = $zb/zb
 
 const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/Pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
 
@@ -29,7 +29,7 @@ func set_box_in_ld_l():
 	bs_2.is_in_ldl_gz = true
 	bs_3.is_in_ldl_gz = true
 	bs_4.is_in_ldl_gz = true
-	Zb.is_in_ldl_gz = true
+	zb.is_in_ldl_gz = true
 
 	bs_5.is_in_ldl_gz = true
 	bs_6.is_in_ldl_gz = true
@@ -39,25 +39,25 @@ func set_box_in_ld_l():
 
 func set_zb_properies():
 	var selected: Dictionary = PlayerData.player_data[DataKeys.INLAY_LIST][0]
-	Zb.qh_level = int(selected[DataKeys.ENHANCE_LEVEL])
-	Zb.get_item_name = str(selected[DataKeys.NAME])
-	Zb.strength_source = str(selected.get("来源", "装备背包"))
-	Zb.strength_index = int(selected.get("位置", -1))
-	Zb.set_meta("equipped_type", str(selected.get("穿戴栏", "")))
-	if Zb.strength_source == "宠物背包" and selected.get("宠物装备", {}) is Dictionary:
+	zb.qh_level = int(selected[DataKeys.ENHANCE_LEVEL])
+	zb.get_item_name = str(selected[DataKeys.NAME])
+	zb.strength_source = str(selected.get("来源", "装备背包"))
+	zb.strength_index = int(selected.get("位置", -1))
+	zb.set_meta("equipped_type", str(selected.get("穿戴栏", "")))
+	if zb.strength_source == "宠物背包" and selected.get("宠物装备", {}) is Dictionary:
 		var pet_item: Dictionary = selected["宠物装备"]
-		Zb.set_button_icon(_pet_item_icon(pet_item, Zb.get_item_name))
-		Zb.EQ_prop = pet_item
+		zb.set_button_icon(_pet_item_icon(pet_item, zb.get_item_name))
+		zb.EQ_prop = pet_item
 	else:
-		Zb.set_button_icon(load_(Zb.get_item_name))
-		Zb.EQ_prop = selected["Data"]
+		zb.set_button_icon(load_(zb.get_item_name))
+		zb.EQ_prop = selected["Data"]
 
 
 func set_other_prop():
-	var BSsize = PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"][DataKeys.GEM].size()
+	var b_ssize = PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"][DataKeys.GEM].size()
 	var bs_list = [bs_1, bs_2, bs_3, bs_4, bs_5, bs_6, bs_7, bs_8]
 	for i in range(bs_list.size()):
-		if i < BSsize:
+		if i < b_ssize:
 			bs_list[i].set_button_icon(
 				load_(str(PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"][DataKeys.GEM][i]))
 			)
@@ -67,13 +67,13 @@ func set_other_prop():
 
 func remove_infomation():
 	PlayerData.restore_mosaic_equipment()
-	Zb.set_button_icon(load_(str("empty")))
-	Zb.get_item_name = "empty"
-	Zb.qh_level = 0
-	Zb.EQ_prop = {}
-	Zb.strength_source = "装备背包"
-	Zb.strength_index = -1
-	Zb.set_meta("equipped_type", "")
+	zb.set_button_icon(load_(str("empty")))
+	zb.get_item_name = "empty"
+	zb.qh_level = 0
+	zb.EQ_prop = {}
+	zb.strength_source = "装备背包"
+	zb.strength_index = -1
+	zb.set_meta("equipped_type", "")
 	bs_1.set_button_icon(load_(str("empty")))
 	bs_2.set_button_icon(load_(str("empty")))
 	bs_3.set_button_icon(load_(str("empty")))

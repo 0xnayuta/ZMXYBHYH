@@ -1,6 +1,6 @@
 extends BaseMonster
 class_name Monster114
-var IsCombo: bool
+var is_combo: bool
 
 
 func monster_114():
@@ -173,24 +173,24 @@ func call_bullet():
 
 
 func call_bullet_2():
-	var PositionList1 = [Vector2(position.x + 150, 500), Vector2(position.x + 0, 500), Vector2(position.x - 150, 500)]
-	var PositionList2 = [Vector2(position.x + 300, 500), Vector2(position.x - 300, 500)]
-	var PositionList3 = [Vector2(position.x + 450, 500), Vector2(position.x - 450, 500)]
-	var PositionList4 = [Vector2(position.x + 600, 500), Vector2(position.x - 600, 500)]
-	var PositionList5 = [Vector2(position.x + 750, 500), Vector2(position.x - 750, 500)]
-	for i in PositionList1:
+	var position_list1 = [Vector2(position.x + 150, 500), Vector2(position.x + 0, 500), Vector2(position.x - 150, 500)]
+	var position_list2 = [Vector2(position.x + 300, 500), Vector2(position.x - 300, 500)]
+	var position_list3 = [Vector2(position.x + 450, 500), Vector2(position.x - 450, 500)]
+	var position_list4 = [Vector2(position.x + 600, 500), Vector2(position.x - 600, 500)]
+	var position_list5 = [Vector2(position.x + 750, 500), Vector2(position.x - 750, 500)]
+	for i in position_list1:
 		Global.add_bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
 	await get_tree().create_timer(0.2, false).timeout
-	for i in PositionList2:
+	for i in position_list2:
 		Global.add_bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
 	await get_tree().create_timer(0.2, false).timeout
-	for i in PositionList3:
+	for i in position_list3:
 		Global.add_bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
 	await get_tree().create_timer(0.2, false).timeout
-	for i in PositionList4:
+	for i in position_list4:
 		Global.add_bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
 	await get_tree().create_timer(0.2, false).timeout
-	for i in PositionList5:
+	for i in position_list5:
 		Global.add_bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
 
 # ==============================================================================

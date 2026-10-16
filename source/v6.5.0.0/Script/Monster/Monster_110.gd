@@ -1,7 +1,7 @@
 extends BaseMonster
 class_name Monster110
-var Aex
-var IsRush: bool
+var aex
+var is_rush: bool
 
 
 func monster_110():
@@ -94,7 +94,7 @@ func _ready() -> void:
 
 
 func ai_think():
-	if IsRush:
+	if is_rush:
 		if MonsterDirection:
 			velocity.x = 600
 		else:
@@ -151,18 +151,18 @@ func do_hit_2():
 func call_aex():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
-	Aex = Global.add_bullet("Monster110Bullet", bullet, false, 1, pp, "hit2", self.objattackDic["hit2"])
-	tween.tween_property(Aex, "position", RoleProp.get_nearest_monster_target_position(global_position), 0.5)
+	aex = Global.add_bullet("Monster110Bullet", bullet, false, 1, pp, "hit2", self.objattackDic["hit2"])
+	tween.tween_property(aex, "position", RoleProp.get_nearest_monster_target_position(global_position), 0.5)
 	await get_tree().create_timer(2.5, false).timeout
 
 
 func return_():
-	if Aex != null:
+	if aex != null:
 		var tween = get_tree().create_tween()
 		var pp = Vector2(self.position.x, self.position.y)
-		tween.tween_property(Aex, "position", pp, 0.3)
+		tween.tween_property(aex, "position", pp, 0.3)
 		await get_tree().create_timer(0.28, false).timeout
-		Aex.queue_free()
+		aex.queue_free()
 
 
 func call_gc():
@@ -185,8 +185,8 @@ func call_gc():
 
 
 func begin():
-	IsRush = true
+	is_rush = true
 
 
 func end():
-	IsRush = false
+	is_rush = false

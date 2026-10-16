@@ -1,9 +1,9 @@
 extends BaseMonster
 class_name Monster49
 var is_stop: bool = false
-var CallMonsterList: Dictionary = {"List_0": [4, 5, 11], "List_1": [28, 30, 31]}
-var CallMonsterID: int = 0
-var CallMonster: BaseMonster
+var call_monster_list: Dictionary = {"List_0": [4, 5, 11], "List_1": [28, 30, 31]}
+var call_monster_id: int = 0
+var call_monster: BaseMonster
 var is_cr: bool = false
 
 
@@ -116,37 +116,37 @@ func move():
 
 
 func create_monster():
-	if CallMonsterID == 0:
+	if call_monster_id == 0:
 		if Hp < SHp * 0.5:
 			self.modulate = Color(1, 1, 1, 0.5)
 			$BaseDamageBox/HurtBox/HurtBox.disabled = true
-			var Get_list = CallMonsterList["List_" + str(CallMonsterID)]
-			var MonsterID: int = Get_list[randi_range(0, Get_list.size() - 1)]
-			CallMonster = Global.create_monster(18, get_parent(), self.position)
+			var get_list = call_monster_list["List_" + str(call_monster_id)]
+			var monster_id: int = get_list[randi_range(0, get_list.size() - 1)]
+			call_monster = Global.create_monster(18, get_parent(), self.position)
 			strength_boss()
 			is_stop = true
 			mr_player.play("wait")
-			CallMonsterID = 1
-	elif CallMonsterID == 1:
+			call_monster_id = 1
+	elif call_monster_id == 1:
 		if Hp < SHp * 0.25:
 			is_stop = true
 			mr_player.play("wait")
 			self.modulate = Color(1, 1, 1, 0.5)
 			$BaseDamageBox/HurtBox/HurtBox.disabled = true
-			var Get_list = CallMonsterList["List_" + str(CallMonsterID)]
-			var MonsterID: int = Get_list[randi_range(0, Get_list.size() - 1)]
-			CallMonster = Global.create_monster(37, get_parent(), self.position)
+			var get_list = call_monster_list["List_" + str(call_monster_id)]
+			var monster_id: int = get_list[randi_range(0, get_list.size() - 1)]
+			call_monster = Global.create_monster(37, get_parent(), self.position)
 			strength_boss()
-			CallMonsterID = 2
+			call_monster_id = 2
 
 
 func check_call_monster_death():
-	if CallMonster != null:
-		if CallMonster.is_death:
+	if call_monster != null:
+		if call_monster.is_death:
 			is_stop = false
 			self.modulate = Color(1, 1, 1, 1)
 			$BaseDamageBox/HurtBox/HurtBox.disabled = false
-			CallMonster = null
+			call_monster = null
 
 
 func add_nlls():
@@ -168,9 +168,9 @@ func add_nlls():
 
 
 func call_bullet():
-	var Bullet_
+	var bullet
 	if MonsterDirection:
-		Bullet_ = Global.call_chase_bullet(
+		bullet = Global.call_chase_bullet(
 			self.bullet,
 			"Monster49Bullet_1",
 			280,
@@ -181,7 +181,7 @@ func call_bullet():
 			self.objattackDic["mffd_1"]
 		)
 	else:
-		Bullet_ = Global.call_chase_bullet(
+		bullet = Global.call_chase_bullet(
 			self.bullet,
 			"Monster49Bullet_1",
 			280,
@@ -191,28 +191,28 @@ func call_bullet():
 			"mffd_1",
 			self.objattackDic["mffd_1"]
 		)
-	Bullet_.scale = Vector2(2, 2)
+	bullet.scale = Vector2(2, 2)
 
 
 func strength_boss():
-	if CallMonster != null:
-		CallMonster.SHp = 20000
-		CallMonster.Hp = CallMonster.SHp
-		CallMonster.level = RoleProp.baseroleprop.Level - 2
-		CallMonster.def = 100
-		CallMonster.mdef = 100
-		CallMonster.Hp = CallMonster.SHp
-		CallMonster.fall_pro = 0
-		CallMonster.use_parent_material = true
+	if call_monster != null:
+		call_monster.SHp = 20000
+		call_monster.Hp = call_monster.SHp
+		call_monster.level = RoleProp.baseroleprop.Level - 2
+		call_monster.def = 100
+		call_monster.mdef = 100
+		call_monster.Hp = call_monster.SHp
+		call_monster.fall_pro = 0
+		call_monster.use_parent_material = true
 
-		if CallMonster is Monster18:
-			CallMonster.my_mr_name = "邪·蛟魔王"
-		elif CallMonster is Monster37:
-			CallMonster.my_mr_name = "邪·秦广王"
-		CallMonster.modulate = Color("00ffff")
-		for i in CallMonster.objattackDic:
-			if CallMonster.objattackDic[i].has("power"):
-				CallMonster.objattackDic[i]["power"] = randi_range(265, 330)
+		if call_monster is Monster18:
+			call_monster.my_mr_name = "邪·蛟魔王"
+		elif call_monster is Monster37:
+			call_monster.my_mr_name = "邪·秦广王"
+		call_monster.modulate = Color("00ffff")
+		for i in call_monster.objattackDic:
+			if call_monster.objattackDic[i].has("power"):
+				call_monster.objattackDic[i]["power"] = randi_range(265, 330)
 
 
 func call_fly_bullet():

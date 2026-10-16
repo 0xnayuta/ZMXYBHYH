@@ -22,13 +22,13 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	needMp = 50
-	self.FB_Level = PlayerData.get_most_level("dshl") + 1
+	need_mp = 50
+	self.fb_level = PlayerData.get_most_level("dshl") + 1
 	var add_effect: Dictionary = _hit_data["addeffect"]
 	if PlayerData.check_have_wx("dshl", "木"):
-		_hit_data["power"] = 100 + int(RoleProp.roleprop.power * randf_range(0.15, 0.18)) + 70 * self.FB_Level
+		_hit_data["power"] = 100 + int(RoleProp.roleprop.power * randf_range(0.15, 0.18)) + 70 * self.fb_level
 	else:
-		_hit_data["power"] = 50 + int(RoleProp.roleprop.power * randf_range(0.09, 0.12)) + 40 * self.FB_Level
+		_hit_data["power"] = 50 + int(RoleProp.roleprop.power * randf_range(0.09, 0.12)) + 40 * self.fb_level
 	add_effect["value"] = int(RoleProp.roleprop.power * 0.1)
 	super._physics_process(delta)
 	if not is_use:
@@ -42,7 +42,7 @@ func show_skill():
 
 
 func use_over():
-	Global.FB_CD = 1
+	Global.fb_cd = 1
 	self.usecd = 6
 	is_use = false
 	skill_cd.start(6)

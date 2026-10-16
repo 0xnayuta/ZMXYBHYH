@@ -6,7 +6,7 @@ var iniaction: int
 var is_set = false
 var is_attacking = false
 var dir: int
-var is_Get = false
+var is_get = false
 @onready var role_1_shallow: Area2D = $Role1Shallow
 @onready var role_action: Sprite2D = $RoleAction
 @onready var role_player: AnimationPlayer = $RolePlayer

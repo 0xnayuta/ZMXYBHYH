@@ -1,9 +1,9 @@
 extends Node2D
-@onready var stage_info: Label = $Hdgqbg/StageInfo
+@onready var stage_info: Label = $Hdgqbg/stage_info
 var LastTime: int
-var TargetMap: String
-var IniText = "搜遍了整个天庭，都找不到玉帝。唯一的可能就是玉帝被人挟持，通过混沌之门传送到另一个世界里了。而要进入那个世界必须拥有通天令牌和足够强的实力。斩妖除魔，找到罪魁祸首，加油挑战自我吧！"
-var TextList = {
+var target_map: String
+var ini_text = "搜遍了整个天庭，都找不到玉帝。唯一的可能就是玉帝被人挟持，通过混沌之门传送到另一个世界里了。而要进入那个世界必须拥有通天令牌和足够强的实力。斩妖除魔，找到罪魁祸首，加油挑战自我吧！"
+var text_list = {
 	"nmg":
 	"通过混沌之门穿越回造一时代的牛魔谷，夺取牛魔王的怒吼，与此同时被黑白无常救下的牛魔王也穿越回造一时代，以第四形态出现！掉落物：牛魔王1,2,3：一定数量牛魔王的怒吼残片,牛魔王4：牛魔王的怒吼制作书，牛魔王精华（法宝暂未制作，可以先收集材料！）",
 	"zld":
@@ -13,22 +13,22 @@ var TextList = {
 
 
 func _ready() -> void:
-	stage_info.text = IniText
+	stage_info.text = ini_text
 
 
 func _on_return_nmg_pressed() -> void:
-	TargetMap = "nmg"
-	stage_info.text = TextList[TargetMap]
+	target_map = "nmg"
+	stage_info.text = text_list[target_map]
 
 
 func _on_return_zld_pressed() -> void:
-	TargetMap = "zld"
-	stage_info.text = TextList[TargetMap]
+	target_map = "zld"
+	stage_info.text = text_list[target_map]
 
 
 func _on_return_sssl_pressed() -> void:
-	TargetMap = "sssl"
-	stage_info.text = TextList[TargetMap]
+	target_map = "sssl"
+	stage_info.text = text_list[target_map]
 
 
 func _on_close_pressed() -> void:
@@ -36,13 +36,13 @@ func _on_close_pressed() -> void:
 
 
 func _on_challenge_pressed() -> void:
-	if TargetMap == null or TargetMap == "":
-		Global.add_message_show(Global.Windows_, "请先选择穿越地点！！", 1.5, Vector2(500, 305))
+	if target_map == null or target_map == "":
+		Global.add_message_show(Global.windows, "请先选择穿越地点！！", 1.5, Vector2(500, 305))
 		return
-	match TargetMap:
+	match target_map:
 		"nmg":
 			Global.change_scene("res://Scene/level/level_hdgqnmg.tscn")
 		"zld":
 			Global.change_scene("res://Scene/level/level_hdgqzld.tscn")
 		"sssl":
-			Global.add_message_show(Global.Windows_, "青龙之森暂未开放！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.windows, "青龙之森暂未开放！！", 1.5, Vector2(500, 305))

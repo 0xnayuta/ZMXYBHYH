@@ -1,29 +1,29 @@
 extends CharacterBody2D
 var item_name: String
 var num_: int
-var Is_set: bool
-var Is_set2: bool
+var is_set: bool
+var is_set2: bool
 @onready var item_pic: Sprite2D = $item_pic
 @onready var remove_pl = $remove_player
 @onready var get_area: CollisionShape2D = $Area2D/get_area
-var IsPick: bool
+var is_pick: bool
 var Player: BaseHero
 
 
 func _physics_process(delta: float) -> void:
-	if not Is_set2:
+	if not is_set2:
 		set_pic(item_name)
 		if MainSet.set_data["automatically_pick_up_items"]:
 			get_area.disabled = true
 		else:
 			get_area.disabled = false
-		Is_set2 = true
+		is_set2 = true
 	Player = get_parent().get_parent().Role_
 
 	if not is_on_floor():
 		velocity.y -= delta * -980
 	if MainSet.set_data["automatically_pick_up_items"]:
-		if not IsPick:
+		if not is_pick:
 			automatically_pick_up_items()
 
 	move_and_slide()
@@ -38,7 +38,7 @@ func set_pic(name_):
 		texture = load_soft(texture_path)
 
 	if not texture:
-		var item_data: Dictionary = AE.AllEquipment_.get(str(name_), {})
+		var item_data: Dictionary = AE.all_equipment.get(str(name_), {})
 		var custom_icon_path := str(item_data.get("图标", ""))
 		if custom_icon_path != "":
 			texture = load_soft(custom_icon_path)
@@ -80,7 +80,7 @@ func pick_up_items(body):
 	if MainSet.set_data["PickUpItemsMusic"]:
 		Global.add_sound(self, "res://Music/level/86_pickup.mp3")
 	if item_name != "peach" and item_name != "Bble" and item_name != "radish":
-		var get_type = AE.AllEquipment_[item_name][DataKeys.TYPE]
+		var get_type = AE.all_equipment[item_name][DataKeys.TYPE]
 		match get_type:
 			"武器", "防具", "饰品", "翅膀", "时装", "头衔":
 				if not PlayerData.check_can_use_page("装备列表") == 0:
@@ -119,7 +119,7 @@ func pick_up_items(body):
 
 		"radish":
 			body.cure_hp(RoleProp.roleprop.SHp * 0.25)
-	IsPick = true
+	is_pick = true
 	remove_pl.play("remove")
 
 
@@ -130,4 +130,4 @@ func _save_pet_backpack_pickup() -> void:
 
 
 func pick():
-	IsPick = true
+	is_pick = true

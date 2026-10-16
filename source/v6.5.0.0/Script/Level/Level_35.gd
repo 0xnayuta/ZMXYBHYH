@@ -23,7 +23,7 @@ var has_shown_start_hint: bool = false
 func _ready() -> void:
 	load("res://Scene/monster/monster_123.tscn")
 	load("res://Scene/monster/monster_1404.tscn")
-	Global.CurrentLevel = "仙音岛"
+	Global.current_level = "仙音岛"
 	Global.add_bgm(self, "res://Music/level/Floor1_3.mp3")
 	self.level_stage = 40
 	self.is_two_scene = true
@@ -33,20 +33,20 @@ func _ready() -> void:
 	connect_stage_signals()
 	init_puzzle()
 
-	Monster_group = {
+	monster_group = {
 		"stage_1": [123, 123, 123, 123, 123, 123, 123],
 		"stage_2": [1404],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1":
 		[250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000],
 		"stage_2": [1048],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			300,
@@ -92,7 +92,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			role_information.gogo.visible = false
 
-	if Role_ and not Role_.IsDeath and Role_.position.y > 700:
+	if Role_ and not Role_.is_death and Role_.position.y > 700:
 		Role_.effect_reducehp(999999, "real")
 
 
@@ -233,7 +233,7 @@ func on_puzzle_completed():
 
 
 func spawn_final_boss():
-	if Monster_group["stage_2"].size() > 0:
+	if monster_group["stage_2"].size() > 0:
 		level_create_monster(2)
 
 
@@ -254,7 +254,7 @@ func get_stage_node_by_index(index: int) -> StageNode:
 func check_stage1_monster_kills():
 	var current_monster_count = _get_alive_stage_monster_count()
 	var original_monster_count = 7
-	var killed_count = original_monster_count - (Monster_group["stage_1"].size() + current_monster_count)
+	var killed_count = original_monster_count - (monster_group["stage_1"].size() + current_monster_count)
 	killed_count = clamp(killed_count, 0, 7)
 
 	if killed_count > stage1_monster_killed_count:
@@ -324,7 +324,7 @@ func _on_create_control_timeout() -> void:
 	if (
 		current_stage == 2
 		and puzzle_solved
-		and Monster_group["stage_2"].size() > 0
+		and monster_group["stage_2"].size() > 0
 		and _get_alive_stage_monster_count() == 0
 	):
 		if check_can_create(2):
@@ -333,9 +333,9 @@ func _on_create_control_timeout() -> void:
 
 func check_can_create(stage: int) -> bool:
 	var stage_key = "stage_" + str(stage)
-	if not Monster_group.has(stage_key):
+	if not monster_group.has(stage_key):
 		return false
-	return _get_alive_stage_monster_count() < 6 and Monster_group[stage_key].size() > 0
+	return _get_alive_stage_monster_count() < 6 and monster_group[stage_key].size() > 0
 
 
 func reset_note_assignment():

@@ -1,5 +1,5 @@
 extends BaseMonster
-var MyBrother
+var my_brother
 
 
 func monster_78():
@@ -71,7 +71,7 @@ func _ready() -> void:
 
 func ai_think():
 	get_monster_76()
-	if MyBrother != null:
+	if my_brother != null:
 		self.def = 600
 		self.mdef = 600
 	else:
@@ -121,15 +121,15 @@ func get_monster_76():
 		var tta = get_parent().get_children()
 		for i in tta:
 			if i is Monster77:
-				MyBrother = i
+				my_brother = i
 
 
 func strength():
-	if MyBrother != null:
-		MyBrother.cure_hp(SHp * 0.4)
-		for i in MyBrother.objattackDic:
-			if MyBrother.objattackDic[i].has("power"):
-				MyBrother.objattackDic[i]["power"] *= 1.05
+	if my_brother != null:
+		my_brother.cure_hp(SHp * 0.4)
+		for i in my_brother.objattackDic:
+			if my_brother.objattackDic[i].has("power"):
+				my_brother.objattackDic[i]["power"] *= 1.05
 
 
 func add_child_2():

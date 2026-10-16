@@ -5,36 +5,36 @@ extends TextureRect
 @onready var title_5: Label = $Title5
 @onready var title_6: Label = $Title6
 
-var lpTimes: int = 0
-var lhTimes: int = 0
-var TotalTimes: int = 0
-var Lhdhvalue: int = 50000
+var lp_times: int = 0
+var lh_times: int = 0
+var total_times: int = 0
+var lhdhvalue: int = 50000
 const MAX_EXCHANGE_TIMES: int = 9999
 
 
 func _get_max_lh_times() -> int:
-	if Lhdhvalue <= 0:
+	if lhdhvalue <= 0:
 		return 0
-	return min(int(PlayerData.get_soul() / Lhdhvalue), MAX_EXCHANGE_TIMES)
+	return min(int(PlayerData.get_soul() / lhdhvalue), MAX_EXCHANGE_TIMES)
 
 
 func _set_lp_times(value: int) -> void:
-	lpTimes = clampi(value, 0, min(int(PlayerData.get_item_data("smlp")), MAX_EXCHANGE_TIMES))
-	if lpline != null and lpline.text != str(lpTimes):
-		lpline.text = str(lpTimes)
+	lp_times = clampi(value, 0, min(int(PlayerData.get_item_data("smlp")), MAX_EXCHANGE_TIMES))
+	if lpline != null and lpline.text != str(lp_times):
+		lpline.text = str(lp_times)
 
 
 func _set_lh_times(value: int) -> void:
-	lhTimes = clampi(value, 0, _get_max_lh_times())
-	if lhline != null and lhline.text != str(lhTimes):
-		lhline.text = str(lhTimes)
+	lh_times = clampi(value, 0, _get_max_lh_times())
+	if lhline != null and lhline.text != str(lh_times):
+		lhline.text = str(lh_times)
 
 
 func _physics_process(delta: float) -> void:
-	TotalTimes = lhTimes + lpTimes
-	title_4.text = "令牌可兑换次数：" + str(lpTimes)
-	title_5.text = "灵魂可兑换次数：" + str(lhTimes)
-	title_6.text = "总次数：" + str(TotalTimes)
+	total_times = lh_times + lp_times
+	title_4.text = "令牌可兑换次数：" + str(lp_times)
+	title_5.text = "灵魂可兑换次数：" + str(lh_times)
+	title_6.text = "总次数：" + str(total_times)
 
 
 func _on_lpline_text_changed(new_text: String) -> void:
@@ -70,23 +70,23 @@ func _on_lhmax_pressed() -> void:
 
 
 func _on_dh_pressed() -> void:
-	_set_lp_times(lpTimes)
-	_set_lh_times(lhTimes)
-	TotalTimes = lhTimes + lpTimes
-	if TotalTimes > 0:
-		if int(PlayerData.get_item_data("smlp")) < lpTimes:
-			Global.add_message_show(Global.Windows_, "令牌不足！！", 1.5, Vector2(470, 300))
+	_set_lp_times(lp_times)
+	_set_lh_times(lh_times)
+	total_times = lh_times + lp_times
+	if total_times > 0:
+		if int(PlayerData.get_item_data("smlp")) < lp_times:
+			Global.add_message_show(Global.windows, "令牌不足！！", 1.5, Vector2(470, 300))
 			return
-		if lhTimes > _get_max_lh_times():
-			Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(470, 300))
+		if lh_times > _get_max_lh_times():
+			Global.add_message_show(Global.windows, "灵魂不足！！", 1.5, Vector2(470, 300))
 			return
-		PlayerData.remove_dj("smlp", PlayerData.get_dj_page("smlp"), lpTimes)
-		PlayerData.spend_soul(Lhdhvalue * lhTimes)
-		PlayerData.player_data["购买次数"] += TotalTimes
+		PlayerData.remove_dj("smlp", PlayerData.get_dj_page("smlp"), lp_times)
+		PlayerData.spend_soul(lhdhvalue * lh_times)
+		PlayerData.player_data["购买次数"] += total_times
 		MemoryClass.save_game(Global.cd_path)
-		Global.add_message_show(Global.Windows_, "成功兑换" + str(TotalTimes) + "次购买次数！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "成功兑换" + str(total_times) + "次购买次数！！", 1.5, Vector2(470, 300))
 	else:
-		Global.add_message_show(Global.Windows_, "兑换次数为0！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "兑换次数为0！！", 1.5, Vector2(470, 300))
 
 
 func _on_close_pressed() -> void:

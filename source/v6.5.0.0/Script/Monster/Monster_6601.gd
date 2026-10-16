@@ -1,7 +1,7 @@
 extends BaseMonster
 @onready var special_effect: AnimatedSprite2D = $MonsterDir/SpecialEffect
 var Num: int = 0
-var MUbei: BaseMonster
+var m_ubei: BaseMonster
 
 
 func monster_6601():
@@ -131,7 +131,7 @@ func ai_think():
 					if Skill_1_CD <= 0:
 						use_skill_1()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 600:
-					if MUbei == null:
+					if m_ubei == null:
 						if Skill_2_CD <= 0:
 							use_skill_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400:
@@ -147,7 +147,7 @@ func ai_think():
 				elif Skill_1_CD <= 0:
 					use_skill_1()
 				elif Skill_2_CD <= 0:
-					if MUbei == null:
+					if m_ubei == null:
 						if Skill_2_CD <= 0:
 							use_skill_2()
 				elif Skill_4_CD <= 0:
@@ -272,8 +272,8 @@ func change_skill():
 
 
 func call_m_ubei():
-	if MUbei == null:
-		MUbei = Global.create_monster(6602, get_parent(), Vector2(490, 260))
+	if m_ubei == null:
+		m_ubei = Global.create_monster(6602, get_parent(), Vector2(490, 260))
 
 
 func call_wg_wb_ullet():
@@ -286,9 +286,9 @@ func call_wg_wb_ullet():
 
 
 func call_tsw_bullet():
-	var PP = self.position
+	var pp = self.position
 	var bullet_spawn_positions = [
-		Vector2(-180, 0) + PP, Vector2(0, 0) + PP, Vector2(180, 0) + PP, Vector2(-360, 0) + PP, Vector2(360, 0) + PP
+		Vector2(-180, 0) + pp, Vector2(0, 0) + pp, Vector2(180, 0) + pp, Vector2(-360, 0) + pp, Vector2(360, 0) + pp
 	]
 	for i in range(5):
 		var bullet_pos = bullet_spawn_positions[i]
@@ -300,39 +300,39 @@ func call_tsw_bullet():
 
 
 func call_bcw_bullet():
-	var PoSITION
+	var po_sition
 	if MonsterDirection:
-		PoSITION = self.position + Vector2(200, -30)
+		po_sition = self.position + Vector2(200, -30)
 	else:
-		PoSITION = self.position + Vector2(-200, -30)
+		po_sition = self.position + Vector2(-200, -30)
 	var bullet_instance = Global.add_bullet(
-		"Monster61BCW", self.bullet, MonsterDirection, 1, PoSITION, "skill_1_1", self.objattackDic["skill_1_1"]
+		"Monster61BCW", self.bullet, MonsterDirection, 1, po_sition, "skill_1_1", self.objattackDic["skill_1_1"]
 	)
 	if bullet_instance:
 		bullet_instance.scale = Vector2(1.5, 1.5)
 
 
 func call_dsw_bullet():
-	var PoSITION
+	var po_sition
 	if MonsterDirection:
-		PoSITION = self.position + Vector2(300, -50)
+		po_sition = self.position + Vector2(300, -50)
 	else:
-		PoSITION = self.position + Vector2(-300, -50)
+		po_sition = self.position + Vector2(-300, -50)
 	var bullet_instance = Global.add_bullet(
-		"Monster61DSW", self.bullet, MonsterDirection, 1, PoSITION, "skill_1_2", self.objattackDic["skill_1_2"]
+		"Monster61DSW", self.bullet, MonsterDirection, 1, po_sition, "skill_1_2", self.objattackDic["skill_1_2"]
 	)
 	if bullet_instance:
 		bullet_instance.scale = Vector2(1.5, 1.5)
 
 
 func call_bullet_4():
-	var PoSITION
+	var po_sition
 	if MonsterDirection:
-		PoSITION = self.position + Vector2(300, 0)
+		po_sition = self.position + Vector2(300, 0)
 	else:
-		PoSITION = self.position + Vector2(-300, 0)
+		po_sition = self.position + Vector2(-300, 0)
 	var bullet_instance = Global.add_bullet(
-		"Monster66bull4", self.bullet, MonsterDirection, 1, PoSITION, "skill_4", self.objattackDic["skill_4"]
+		"Monster66bull4", self.bullet, MonsterDirection, 1, po_sition, "skill_4", self.objattackDic["skill_4"]
 	)
 
 
@@ -341,11 +341,11 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 		if RoleProp.roleprop.Hp <= RoleProp.roleprop.Hp * 0.2:
 			Hp = SHp * 0.2
 		else:
-			var Bl = float(Hp) / float(SHp)
-			if Bl >= 0.9:
-				Bl = 0.9
+			var bl = float(Hp) / float(SHp)
+			if bl >= 0.9:
+				bl = 0.9
 			Hp = float(RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) * SHp
-			RoleProp.roleprop.Hp = RoleProp.roleprop.SHp * Bl
+			RoleProp.roleprop.Hp = RoleProp.roleprop.SHp * bl
 
 	return super._on_hit_box_area_entered(area)
 

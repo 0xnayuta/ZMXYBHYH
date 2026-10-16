@@ -1,7 +1,7 @@
 extends BaseMonster
-var IsSky = false
-var RoundList = []
-var Rolelevel = RoleProp.baseroleprop.Level
+var is_sky = false
+var round_list = []
+var rolelevel = RoleProp.baseroleprop.Level
 
 
 func monster_142():
@@ -137,7 +137,7 @@ func do_hit_2():
 
 func call_bullet_1():
 	var bb
-	var sp = 1 + Rolelevel * 0.015
+	var sp = 1 + rolelevel * 0.015
 	if self.MonsterDirection:
 		bb = Global.add_bullet(
 			"Monster145Bullet1", self.bullet, false, sp, Vector2(20, 0) + position, "hit1", self.objattackDic["hit1"]
@@ -152,7 +152,7 @@ func call_bullet_1():
 
 func call_bullet_2():
 	await get_tree().create_timer(2, false).timeout
-	var sp = 0.5 + Rolelevel * 0.01
+	var sp = 0.5 + rolelevel * 0.01
 	for i in range(5):
 		var Bullet
 		var bullet_pos = Vector2(position.x + randi_range(-450, 500), -800)
@@ -164,7 +164,7 @@ func call_bullet_2():
 
 
 func call_bullet_3():
-	var sp = 1 + Rolelevel * 0.02
+	var sp = 1 + rolelevel * 0.02
 	var bb
 	if self.MonsterDirection:
 		bb = Global.add_bullet(
@@ -191,7 +191,7 @@ func call_bullet_3():
 
 
 func call_bullet_4():
-	var sp = 0.5 + Rolelevel * 0.01
+	var sp = 0.5 + rolelevel * 0.01
 	var bb
 	if self.MonsterDirection:
 		bb = Global.add_bullet(

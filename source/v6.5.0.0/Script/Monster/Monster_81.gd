@@ -2,10 +2,10 @@ extends BaseMonster
 
 
 func monster_81():
-	self.CHangeClamCount = 2
-	self.IsSmartMonster = true
-	self.SmartWaitCount = 60
-	self.SmartHitCount = 60
+	self.c_hange_clam_count = 2
+	self.is_smart_monster = true
+	self.smart_wait_count = 60
+	self.smart_hit_count = 60
 	self.is_boss = false
 	self.my_mr_name = "天兵·刀"
 	self.attack_in = 10

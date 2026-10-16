@@ -1,15 +1,15 @@
 extends Node2D
-var HitCount: int = 0
+var hit_count: int = 0
 @onready var b_sz: AnimationPlayer = $BSz
 
 
 func _physics_process(delta: float) -> void:
-	if HitCount >= 5:
+	if hit_count >= 5:
 		b_sz.play("death")
 
 
 func _on_area_2d_area_entered(area: Area2D, _extra = null) -> void:
-	HitCount += 1
+	hit_count += 1
 	Global.add_mr_hurt(self, Vector2(0, 0))
 
 

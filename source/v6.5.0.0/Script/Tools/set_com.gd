@@ -5,11 +5,11 @@ extends Control
 @onready var yg = $joy_left/joyBG/joy
 @onready var control_: Control = $Control
 @onready var size_: Slider = $Control/SizeBar
-@onready var tmBar_: Slider = $Control/TMBar
+@onready var tm_bar: Slider = $Control/TMBar
 
-var isSet: bool = false
-var curNode: CanvasItem
-var isClick: bool = false
+var is_set: bool = false
+var cur_node: CanvasItem
+var is_click: bool = false
 var offser_: Vector2 = Vector2.ZERO
 var touch_scale: float = 1.0
 const keyPath: String = "user://KeyConfig.json"
@@ -127,43 +127,43 @@ var keys: Array = [
 	},
 ]
 
-var TextKeyTscn: PackedScene = preload("res://Scene/tools/user_key.tscn")
-var keyList: Array = []
-var playerData: Dictionary = {}
-var keyObj: Dictionary = {}
+var text_key_tscn: PackedScene = preload("res://Scene/tools/user_key.tscn")
+var key_list: Array = []
+var player_data: Dictionary = {}
+var key_obj: Dictionary = {}
 var _dynamic_icons_initialized := false
 
 
 func _ready() -> void:
 	default_keys = keys.duplicate(true)
-	playerData = PlayerData.player_data
+	player_data = PlayerData.player_data
 	add_to_group("TouchControlSetCom")
-	yg.isSet = isSet
+	yg.is_set = is_set
 
 	for i in range(KEY_BUTTON_COUNT):
-		var node = TextKeyTscn.instantiate()
-		node.isSet = isSet
-		node.setKey = self
-		keyList.append(node)
+		var node = text_key_tscn.instantiate()
+		node.is_set = is_set
+		node.set_key = self
+		key_list.append(node)
 		joy_right.add_child(node)
-		if isSet:
+		if is_set:
 			node.pic_box.visible = false
 
-	if not isSet:
+	if not is_set:
 		control_.queue_free()
 		mouse_filter = Control.MOUSE_FILTER_IGNORE
 	else:
 		process_mode = Node.PROCESS_MODE_ALWAYS
 		control_.visible = true
-		curNode = keyList[0]
+		cur_node = key_list[0]
 
 	set_jpng(7, "t")
 	init()
 
 
 func init() -> void:
-	playerData = PlayerData.player_data
-	var index: int = int(playerData.get("Myself", 1))
+	player_data = PlayerData.player_data
+	var index: int = int(player_data.get("Myself", 1))
 	if index < 1 or index > UserStr.size():
 		index = 1
 	set_jpng(6, UserStr[index - 1])
@@ -186,10 +186,10 @@ func init() -> void:
 
 	for i in range(KEY_BUTTON_COUNT):
 		var obj: Dictionary = keys[i]
-		var node = keyList[i]
+		var node = key_list[i]
 		set_dic(obj, node)
-		node.Text = obj["key"]
-		node.TextKey.text = node.Text
+		node.text_str = obj["key"]
+		node.text_key.text = node.text_str
 		node.action = obj["ClickKey"]
 		if node.has_method("_ensure_ws_effect"):
 			node._ensure_ws_effect()
@@ -199,61 +199,61 @@ func init() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if isSet and curNode != null:
-		var nodeSize: Vector2 = curNode.get("size_") if curNode.get("size_") != null else Vector2(70, 70)
-		var nodeSize_: float = min(nodeSize.x, nodeSize.y)
-		var base_size: float = float(curNode.get("curSize")) if curNode.get("curSize") != null else max(nodeSize_, 1.0)
-		var size_value: float = nodeSize_ / max(base_size, 1.0) * 100.0
-		var alpha_value: float = curNode.modulate.a * 255.0
+	if is_set and cur_node != null:
+		var node_size: Vector2 = cur_node.get("size_") if cur_node.get("size_") != null else Vector2(70, 70)
+		var size_min: float = min(node_size.x, node_size.y)
+		var base_size: float = float(cur_node.get("curSize")) if cur_node.get("curSize") != null else max(size_min, 1.0)
+		var size_value: float = size_min / max(base_size, 1.0) * 100.0
+		var alpha_value: float = cur_node.modulate.a * 255.0
 		if not is_equal_approx(size_.value, size_value):
 			size_.value = size_value
-		if not is_equal_approx(tmBar_.value, alpha_value):
-			tmBar_.value = alpha_value
+		if not is_equal_approx(tm_bar.value, alpha_value):
+			tm_bar.value = alpha_value
 
-	var skill_data = playerData.get(DataKeys.SKILL_LEARNED, {})
-	keyObj = skill_data.get("技能键位", {}) if skill_data is Dictionary else {}
+	var skill_data = player_data.get(DataKeys.SKILL_LEARNED, {})
+	key_obj = skill_data.get("技能键位", {}) if skill_data is Dictionary else {}
 
-	if isClick:
+	if is_click:
 		joy_left.position = get_global_mouse_position() - offser_
 
 	var mount_runtime := _current_mount_runtime()
 	var use_mount_skills := (
-		not isSet
+		not is_set
 		and mount_runtime != null
 		and mount_runtime.has_method("is_riding_mount")
 		and bool(mount_runtime.call("is_riding_mount"))
 	)
 	for i in range(5):
 		var key_name: String = keys[i]["key"]
-		var skill_name: String = str(keyObj.get(key_name, ""))
-		var userKey = keyList[i]
+		var skill_name: String = str(key_obj.get(key_name, ""))
+		var user_key = key_list[i]
 		if use_mount_skills:
 			var mount_skill: Dictionary = mount_runtime.call("get_mount_skill_for_slot", i)
 			var mount_skill_id := str(mount_skill.get("id", ""))
 			if (
 				_dynamic_icons_initialized
-				and int(userKey.mount_skill_slot) == i
-				and userKey.SkillName == mount_skill_id
+				and int(user_key.mount_skill_slot) == i
+				and user_key.skill_name == mount_skill_id
 			):
 				continue
-			userKey.mount_skill_slot = i
-			userKey.SkillName = mount_skill_id
+			user_key.mount_skill_slot = i
+			user_key.skill_name = mount_skill_id
 			if mount_skill_id != "":
-				userKey.TextKey.visible = false
-				set_texture2_d(userKey, MOUNT_CATALOG.get_icon_path(mount_skill_id))
+				user_key.text_key.visible = false
+				set_texture2_d(user_key, MOUNT_CATALOG.get_icon_path(mount_skill_id))
 			else:
-				userKey.TextKey.visible = true
-				set_texture2_d(userKey, "res://Art/2_5_9_0/key/p.png")
+				user_key.text_key.visible = true
+				set_texture2_d(user_key, "res://Art/2_5_9_0/key/p.png")
 			continue
-		if int(userKey.mount_skill_slot) != -1:
-			userKey.mount_skill_slot = -1
-		if _dynamic_icons_initialized and userKey.SkillName == skill_name:
+		if int(user_key.mount_skill_slot) != -1:
+			user_key.mount_skill_slot = -1
+		if _dynamic_icons_initialized and user_key.skill_name == skill_name:
 			continue
-		userKey.SkillName = skill_name
+		user_key.skill_name = skill_name
 		if skill_name != "":
-			userKey.TextKey.visible = false
+			user_key.text_key.visible = false
 			set_texture2_d(
-				userKey,
+				user_key,
 				_first_existing(
 					[
 						"res://Art/Skill/SkillIcon/" + skill_name + ".png",
@@ -262,64 +262,64 @@ func _physics_process(_delta: float) -> void:
 				)
 			)
 		else:
-			userKey.TextKey.visible = true
-			set_texture2_d(userKey, "res://Art/2_5_9_0/key/p.png")
+			user_key.text_key.visible = true
+			set_texture2_d(user_key, "res://Art/2_5_9_0/key/p.png")
 
-	var fbStr: String = str(playerData.get("实战法宝", ""))
-	var userKey_ = keyList[5]
-	if not _dynamic_icons_initialized or userKey_.SkillName != fbStr:
-		userKey_.SkillName = fbStr
-		if fbStr == "":
-			userKey_.TextKey.visible = true
-			set_texture2_d(userKey_, "res://Art/2_5_9_0/key/p.png")
+	var fb_str: String = str(player_data.get("实战法宝", ""))
+	var user_key = key_list[5]
+	if not _dynamic_icons_initialized or user_key.skill_name != fb_str:
+		user_key.skill_name = fb_str
+		if fb_str == "":
+			user_key.text_key.visible = true
+			set_texture2_d(user_key, "res://Art/2_5_9_0/key/p.png")
 		else:
-			userKey_.TextKey.visible = false
+			user_key.text_key.visible = false
 			set_texture2_d(
-				userKey_,
+				user_key,
 				_first_existing(
 					[
-						"res://Art/2_5_9_0/fbIcon/" + fbStr + ".png",
-						"res://Art/MagicWeapon/Skill_Icon/" + fbStr + ".png",
-						"res://Art/BackPack/AllItems/" + fbStr + ".png",
-						"res://Art/ItemIcon/" + fbStr + ".png",
+						"res://Art/2_5_9_0/fbIcon/" + fb_str + ".png",
+						"res://Art/MagicWeapon/skill_icon/" + fb_str + ".png",
+						"res://Art/BackPack/AllItems/" + fb_str + ".png",
+						"res://Art/ItemIcon/" + fb_str + ".png",
 					]
 				)
 			)
 
-	var wsKey = keyList[8]
-	if not _dynamic_icons_initialized or wsKey.res_ == "":
-		wsKey.SkillName = ""
-		wsKey.TextKey.visible = false
-		set_texture2_d(wsKey, "res://Art/RoleInfoIcon/416.png")
+	var ws_key = key_list[8]
+	if not _dynamic_icons_initialized or ws_key.res_ == "":
+		ws_key.skill_name = ""
+		ws_key.text_key.visible = false
+		set_texture2_d(ws_key, "res://Art/RoleInfoIcon/416.png")
 
-	var swordKey = keyList[9]
+	var sword_key = key_list[9]
 	var active_sword: String = _active_main_sword_array_id()
-	var sword_visible := isSet or active_sword != ""
-	if swordKey.visible != sword_visible:
-		swordKey.visible = sword_visible
-	if not _dynamic_icons_initialized or swordKey.SkillName != active_sword:
-		swordKey.SkillName = active_sword
+	var sword_visible := is_set or active_sword != ""
+	if sword_key.visible != sword_visible:
+		sword_key.visible = sword_visible
+	if not _dynamic_icons_initialized or sword_key.skill_name != active_sword:
+		sword_key.skill_name = active_sword
 		if active_sword == "":
-			swordKey.TextKey.visible = true
-			if isSet:
-				set_texture2_d(swordKey, "res://Art/2_5_9_0/key/p.png")
+			sword_key.text_key.visible = true
+			if is_set:
+				set_texture2_d(sword_key, "res://Art/2_5_9_0/key/p.png")
 		else:
-			swordKey.TextKey.visible = false
-			set_texture2_d(swordKey, _main_sword_array_icon_path(active_sword))
+			sword_key.text_key.visible = false
+			set_texture2_d(sword_key, _main_sword_array_icon_path(active_sword))
 
 	_update_mount_button()
 	_dynamic_icons_initialized = true
 
 
 func _update_mount_button() -> void:
-	if MOUNT_BUTTON_INDEX < 0 or MOUNT_BUTTON_INDEX >= keyList.size():
+	if MOUNT_BUTTON_INDEX < 0 or MOUNT_BUTTON_INDEX >= key_list.size():
 		return
-	var mount_key = keyList[MOUNT_BUTTON_INDEX]
+	var mount_key = key_list[MOUNT_BUTTON_INDEX]
 	var mount_visible := PlayerData.is_mount_system_unlocked() and not PlayerData.get_active_mount().is_empty()
 	if mount_visible:
-		mount_key.Text = "Z"
-		mount_key.TextKey.text = "Z"
-		mount_key.TextKey.visible = true
+		mount_key.text_str = "Z"
+		mount_key.text_key.text = "Z"
+		mount_key.text_key.visible = true
 		if mount_key.res_ == "":
 			set_texture2_d(mount_key, "res://Art/2_5_9_0/key/p.png")
 	mount_key.visible = mount_visible
@@ -337,8 +337,8 @@ func _active_main_sword_array_id() -> String:
 		return ""
 	if PlayerData.has_method("ensure_main_sword_array"):
 		PlayerData.ensure_main_sword_array()
-	playerData = PlayerData.player_data
-	var active := str(playerData.get(PlayerData.MAIN_SWORD_ARRAY_KEY, ""))
+	player_data = PlayerData.player_data
+	var active := str(player_data.get(PlayerData.MAIN_SWORD_ARRAY_KEY, ""))
 	if active != "" and PlayerData.has_method("can_main_sword_array_battle"):
 		if not PlayerData.can_main_sword_array_battle(active):
 			return ""
@@ -349,12 +349,12 @@ func _main_sword_array_icon_path(sword_id: String) -> String:
 	return _first_existing(MAIN_SWORD_ARRAY_ICON_PATHS.get(sword_id, []))
 
 
-func set_texture2_d(userKey, path: String) -> void:
+func set_texture2_d(user_key, path: String) -> void:
 	if path == "":
 		path = "res://Art/2_5_9_0/key/p.png"
 	var is_magic_weapon_icon := (
 		path.find("/Art/2_5_9_0/fbIcon/") != -1
-		or path.find("/Art/MagicWeapon/Skill_Icon/") != -1
+		or path.find("/Art/MagicWeapon/skill_icon/") != -1
 		or path.find("/Art/BackPack/AllItems/") != -1
 		or path.find("/Art/ItemIcon/") != -1
 	)
@@ -368,27 +368,27 @@ func set_texture2_d(userKey, path: String) -> void:
 		or is_main_sword_array_icon
 	)
 	var res_key := ("frame:" + path + ":" + str(0.8)) if is_skill_icon else path
-	if userKey.res_ == res_key:
+	if user_key.res_ == res_key:
 		return
-	userKey.res_ = res_key
-	userKey.visible = false
-	if userKey.has_method("set_framed_icon") and is_skill_icon:
-		userKey.set_framed_icon(path, "res://Art/2_5_9_0/key/p.png", 0.8)
-	elif userKey.has_method("set_button_texture"):
-		userKey.set_button_texture(path)
+	user_key.res_ = res_key
+	user_key.visible = false
+	if user_key.has_method("set_framed_icon") and is_skill_icon:
+		user_key.set_framed_icon(path, "res://Art/2_5_9_0/key/p.png", 0.8)
+	elif user_key.has_method("set_button_texture"):
+		user_key.set_button_texture(path)
 	else:
 		var res_: Texture2D = load(path)
 		if res_ == null:
 			res_ = load("res://Art/2_5_9_0/key/p.png")
-		userKey.texture_normal = res_
-		userKey.texture_pressed = res_
-		userKey.pic_box.texture_progress = res_
-	userKey.visible = true
+		user_key.texture_normal = res_
+		user_key.texture_pressed = res_
+		user_key.pic_box.texture_progress = res_
+	user_key.visible = true
 
 
 func _on_button_pressed() -> void:
 	for i in range(KEY_BUTTON_COUNT):
-		get_dic(keys[i], keyList[i])
+		get_dic(keys[i], key_list[i])
 	get_dic(keys[JOY_CONFIG_INDEX], joy_left)
 	_save_keys_config()
 	get_tree().call_group("TouchControlSetCom", "init")
@@ -415,16 +415,16 @@ func _on_reset_layout_pressed() -> void:
 func _apply_keys_to_nodes() -> void:
 	for i in range(KEY_BUTTON_COUNT):
 		var obj: Dictionary = keys[i]
-		var node = keyList[i]
+		var node = key_list[i]
 		set_dic(obj, node)
-		node.Text = obj["key"]
-		node.TextKey.text = node.Text
+		node.text_str = obj["key"]
+		node.text_key.text = node.text_str
 		node.action = obj["ClickKey"]
 		node.res_ = ""
 		if node.has_method("_ensure_ws_effect"):
 			node._ensure_ws_effect()
 	set_dic(keys[JOY_CONFIG_INDEX], joy_left)
-	curNode = keyList[0] if keyList.size() > 0 else null
+	cur_node = key_list[0] if key_list.size() > 0 else null
 	apply_global_scale(_touch_icon_scale())
 
 
@@ -433,11 +433,11 @@ func get_dic(obj: Dictionary, node: CanvasItem) -> void:
 	var size__: Dictionary = obj["size"]
 	pos_["x"] = node.position.x
 	pos_["y"] = node.position.y
-	var nodeSize: Vector2 = node.get("size_") if node.get("size_") != null else Vector2(70, 70)
-	size__["x"] = nodeSize.x
-	size__["y"] = nodeSize.y
+	var node_size: Vector2 = node.get("size_") if node.get("size_") != null else Vector2(70, 70)
+	size__["x"] = node_size.x
+	size__["y"] = node_size.y
 	obj["modulate"] = node.modulate.a
-	obj["curSize"] = node.get("curSize") if node.get("curSize") != null else max(nodeSize.x, nodeSize.y)
+	obj["curSize"] = node.get("curSize") if node.get("curSize") != null else max(node_size.x, node_size.y)
 
 
 func set_dic(obj: Dictionary, node: CanvasItem) -> void:
@@ -457,27 +457,27 @@ func _on_button_2_pressed() -> void:
 
 
 func set_jpng(index: int, str_: String) -> void:
-	if index < 0 or index >= keyList.size():
+	if index < 0 or index >= key_list.size():
 		return
-	var node = keyList[index]
-	node.TextKey.visible = false
+	var node = key_list[index]
+	node.text_key.visible = false
 	set_texture2_d(node, _first_existing(["res://Art/2_5_9_0/png/" + str_ + ".png"]))
 
 
 func _on_button_button_down() -> void:
-	if isSet:
-		curNode = joy_left
+	if is_set:
+		cur_node = joy_left
 		offser_ = get_global_mouse_position() - joy_left.position
-		isClick = true
+		is_click = true
 
 
 func _on_button_button_up() -> void:
-	isClick = false
+	is_click = false
 
 
 func _on_tree_exited() -> void:
 	_release_actions()
-	if isSet:
+	if is_set:
 		_clear_role_stop()
 
 
@@ -503,17 +503,17 @@ func _release_actions() -> void:
 
 
 func _on_size_bar_value_changed(value: float) -> void:
-	if curNode == null:
+	if cur_node == null:
 		return
-	var base_size: float = float(curNode.get("curSize")) if curNode.get("curSize") != null else 70.0
-	var curSizeValue: float = value / 100.0 * base_size
-	if curNode.get("size_") != null:
-		curNode.set("size_", Vector2(curSizeValue, curSizeValue))
+	var base_size: float = float(cur_node.get("curSize")) if cur_node.get("curSize") != null else 70.0
+	var cur_size_value: float = value / 100.0 * base_size
+	if cur_node.get("size_") != null:
+		cur_node.set("size_", Vector2(cur_size_value, cur_size_value))
 
 
 func _on_tm_bar_value_changed(value: float) -> void:
-	if curNode:
-		curNode.modulate.a = value / 255.0
+	if cur_node:
+		cur_node.modulate.a = value / 255.0
 
 
 func _touch_icon_scale() -> float:
@@ -524,7 +524,7 @@ func _touch_icon_scale() -> float:
 
 
 func _current_mount_runtime() -> Node:
-	var player = RoleProp.SourcePlayer
+	var player = RoleProp.source_player
 	if player == null or not is_instance_valid(player):
 		return null
 	return player.get_node_or_null("MountRuntime")
@@ -532,7 +532,7 @@ func _current_mount_runtime() -> Node:
 
 func apply_global_scale(value: float) -> void:
 	touch_scale = value
-	for node in keyList:
+	for node in key_list:
 		node.set("touch_scale", value)
 	if joy_left != null:
 		joy_left.set("touch_scale", value)
@@ -540,9 +540,9 @@ func apply_global_scale(value: float) -> void:
 
 func set_joy_enabled(value: bool) -> void:
 	if joy_left != null:
-		joy_left.visible = value or isSet
+		joy_left.visible = value or is_set
 	if yg != null:
-		yg.isSet = isSet or not value
+		yg.is_set = is_set or not value
 		if not value and yg.has_method("_release_dirs"):
 			yg._release_dirs()
 	if not value:
@@ -557,4 +557,4 @@ func _clear_role_stop() -> void:
 		return
 	var role_info = tree.get_first_node_in_group("RoleInformation")
 	if role_info != null:
-		role_info.isStop = false
+		role_info.is_stop = false

@@ -4,7 +4,7 @@ class_name Monster117
 
 func monster_117():
 	self.rush_speed = 800
-	self.is_Fly = true
+	self.is_fly = true
 	self.is_boss = true
 	self.my_mr_name = "飞烟剑"
 	self.attack_in = 60

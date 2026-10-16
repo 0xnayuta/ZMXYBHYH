@@ -25,12 +25,12 @@ func _physics_process(_delta: float) -> void:
 			_set_total_num(1)
 		elif total_num > MAX_SHOP_BUY_NUM:
 			_set_total_num(MAX_SHOP_BUY_NUM)
-	if item_name_ != "" and AE.AllEquipment_.has(item_name_):
-		item_name.text = str(AE.AllEquipment_[item_name_].get(DataKeys.NAME, item_name_))
+	if item_name_ != "" and AE.all_equipment.has(item_name_):
+		item_name.text = str(AE.all_equipment[item_name_].get(DataKeys.NAME, item_name_))
 		items.set_button_icon(load_(item_name_))
 		items.qh_level = 0
 		items.wx = []
-		items.EQ_prop = AE.AllEquipment_[item_name_]
+		items.EQ_prop = AE.all_equipment[item_name_]
 	lh_need.text = str(_effective_price())
 
 
@@ -124,13 +124,13 @@ func _on_goumai_pressed() -> void:
 
 func add_item_toplayer(times):
 	var parent_ = Global.get_parent_(self, 3)
-	if item_name_ == "" or not AE.AllEquipment_.has(item_name_):
+	if item_name_ == "" or not AE.all_equipment.has(item_name_):
 		Global.add_message_show(parent_, "商品信息错误！", 1.5, Vector2(485, 295))
 		return
 
 	var buy_num := clampi(int(times), 1, MAX_SHOP_BUY_NUM)
 	_set_total_num(buy_num)
-	var item_data: Dictionary = AE.AllEquipment_[item_name_]
+	var item_data: Dictionary = AE.all_equipment[item_name_]
 	var lx = str(item_data.get(DataKeys.TYPE, ""))
 	var cklb := _get_backpack_list_name(lx)
 

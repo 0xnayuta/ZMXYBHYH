@@ -39,7 +39,7 @@ var _monitor_reenable_at: float = -1.0
 
 func _ready() -> void:
 	set_meta("is_monster_bullet", true)
-	MyFather = _find_owner_boss()
+	my_father = _find_owner_boss()
 	get_prop()
 	_build_effect_frames()
 	if additive_blend:
@@ -68,15 +68,15 @@ static func _get_additive_material() -> CanvasItemMaterial:
 
 func _process(delta: float) -> void:
 	_elapsed += delta
-	if follow_owner and MyFather != null and is_instance_valid(MyFather):
-		global_position = MyFather.global_position + follow_owner_offset
+	if follow_owner and my_father != null and is_instance_valid(my_father):
+		global_position = my_father.global_position + follow_owner_offset
 
-		var owner_dir := MyFather.get_node_or_null("MonsterDir") as Node2D
+		var owner_dir := my_father.get_node_or_null("MonsterDir") as Node2D
 		dir = owner_dir != null and owner_dir.scale.x < 0.0
 		_apply_visual_transform()
-	elif track_target and RoleProp.SourcePlayer != null and is_instance_valid(RoleProp.SourcePlayer):
+	elif track_target and RoleProp.source_player != null and is_instance_valid(RoleProp.source_player):
 		global_position = global_position.move_toward(
-			RoleProp.SourcePlayer.global_position + Vector2(0.0, -55.0), track_speed * delta
+			RoleProp.source_player.global_position + Vector2(0.0, -55.0), track_speed * delta
 		)
 	else:
 		var previous_position := global_position

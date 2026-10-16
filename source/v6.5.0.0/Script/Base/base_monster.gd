@@ -133,7 +133,7 @@ const HEAVEN_NIGHTMARE_SOUL_CRYSTAL_MONSTER_IDS := [
 ]
 
 @onready var buff: Node = $Buff
-var Islljy: bool
+var islljy: bool
 var lpzzs: float
 var tqzbs: float
 var _last_monster_formation := ""
@@ -142,26 +142,26 @@ var _lhhj_drop_disabled := false
 var tszzs: float
 var lpzjs: float
 var NoGrav: bool
-var RndiCount: int = randi_range(0, 100)
+var rndi_count: int = randi_range(0, 100)
 var get_Player: BaseHero
-var get_Summon: SummonBaseMonster
-var CHangeClamCount: float
-var HurtSpecialEffect: Node2D
-var IsSmartMonster: bool
+var get_summon: SummonBaseMonster
+var c_hange_clam_count: float
+var hurt_special_effect: Node2D
+var is_smart_monster: bool
 var is_bt
 var damage_bonus: float = 0.0
 var damage_reduction: float = 0.0
 
-var IsScary: bool
-var HurtBl: float = 1
+var is_scary: bool
+var hurt_bl: float = 1
 var is_death: bool = false
 var DefeReduce: float
 var max_ = 2
 var current_ = 0
-var IsSuperArmor: bool
+var super_armor_active: bool
 var is_bounds = false
-var SmartHitCount: int
-var SmartWaitCount: int
+var smart_hit_count: int
+var smart_wait_count: int
 var NoTarget: bool
 var IsIndestructible: bool
 var llrdzs: float
@@ -169,7 +169,7 @@ var ran_1 = randf_range(0, 1)
 var ran_2 = randf_range(0, 1)
 var ran_3 = randf_range(0, 1)
 var ran_4 = randf_range(0, 1)
-var is_Immobilize: bool = false
+var is_immobilize: bool = false
 var BloodFix: bool = false
 var LifeManaLock: bool = false
 var level: int
@@ -179,7 +179,7 @@ var mdef: int
 var lucky: int
 var crit: int
 var miss: int
-var is_speedDown: bool
+var is_speed_down: bool
 var attackRange: int
 var attackDesire: int
 var mysee: int
@@ -187,17 +187,17 @@ var Skill_1_CD: int = 10
 var Skill_2_CD: int
 var Skill_3_CD: int
 var Skill_4_CD: int
-var Skill_5_CD: int
-var Skill_6_CD: int
-var Skill_7_CD: int
-var Skill_8_CD: int
+var skill_5_cd: int
+var skill_6_cd: int
+var skill_7_cd: int
+var skill_8_cd: int
 var state
 var ran_num: int = randi_range(10, 100)
 var speed
 var behit_calmtime: float
 var Htarget: int
 var Toughness: float = 0.0
-var GetHurt: int
+var hurt_received: int
 var Critreduce: int
 var ar: int
 var sp: int
@@ -214,7 +214,7 @@ var IsDefeReduce: bool
 var add_exp: int
 var self_rhp: int
 var is_boss = false
-var Therapeutic_effects: float
+var therapeutic_effects: float
 var fall_coin
 var my_mr_name
 
@@ -280,9 +280,9 @@ var add_buff
 var is_quiescent = false
 var ws_hd = false
 var lj_count: int = 0
-var is_enter_hitBox
+var is_enter_hit_box
 var rush_speed: float = 0.0
-var HitTarget
+var hit_target
 var get_target
 var is_set_: bool
 var iniSpeed
@@ -293,10 +293,10 @@ var is_zznh: bool = false
 var zznh_bl: float = 1.0
 var zznh_defense_reduction: float = 0.0
 
-var MyBlood
-var CannotAttract: bool
-var IsLpz: bool
-var IsLLRD: bool
+var my_blood
+var cannot_attract: bool
+var is_lpz: bool
+var is_llrd: bool
 @onready var bullet: Node = $Bullet
 @onready var hit_box: CollisionShape2D = $BaseDamageBox/HitBox/HitBox
 @onready var hurt_box: CollisionShape2D = $BaseDamageBox/HurtBox/HurtBox
@@ -310,12 +310,12 @@ var IsLLRD: bool
 
 var level_cache_valid: bool = false
 
-var llrdCount: int = 0
-var RunHit: bool
-var RunHitCount: int = 0
+var llrd_count: int = 0
+var run_hit_active: bool
+var run_hit_count: int = 0
 var MonsterDirection: bool = false
-var HitText
-var is_Fly = false
+var hit_text
+var is_fly = false
 enum State {
 	other,
 	Death,
@@ -324,9 +324,9 @@ enum State {
 }
 var hit_name
 var monster_blood_bar: MrBloodBar
-var Onset: bool
-var BaseLevel_: Node
-var ShouldInSky: bool
+var onset: bool
+var base_level: Node
+var should_in_sky: bool
 var _ai_tick_offset: int = randi_range(0, 7)
 var _friendly_knockback_generation: int = 0
 var _control_movement_locked: bool = false
@@ -369,15 +369,15 @@ func set_gra():
 
 
 func can_set_gra():
-	return not NoGrav and not Islljy and not ShouldInSky
+	return not NoGrav and not islljy and not should_in_sky
 
 
 func _ready() -> void:
 	self.SHp = self.SHp + randi_range(0, 1)
 	self.Hp = self.Hp + randi_range(0, 1)
-	$CalmHit.start(CHangeClamCount)
+	$CalmHit.start(c_hange_clam_count)
 
-	if is_Fly:
+	if is_fly:
 		if mr_player.has_animation("Fly_wait"):
 			mr_player.play("Fly_wait")
 		elif mr_player.has_animation("fly_wait"):
@@ -426,49 +426,49 @@ func try_play_default_animation():
 
 
 func get_level_node() -> Node:
-	if level_cache_valid and is_instance_valid(BaseLevel_):
-		return BaseLevel_
+	if level_cache_valid and is_instance_valid(base_level):
+		return base_level
 
 	if not is_inside_tree():
 		return null
 
 	var tree = get_tree()
 	if not tree:
-		BaseLevel_ = self
+		base_level = self
 		level_cache_valid = true
-		return BaseLevel_
+		return base_level
 
 	var node = get_parent()
 	while node:
 		if node is BaseLevel:
-			BaseLevel_ = node
+			base_level = node
 			level_cache_valid = true
-			return BaseLevel_
+			return base_level
 		node = node.get_parent()
 
 	var base_levels = tree.get_nodes_in_group("BaseLevel")
 	if base_levels.size() > 0:
-		BaseLevel_ = base_levels[0]
+		base_level = base_levels[0]
 		level_cache_valid = true
-		return BaseLevel_
+		return base_level
 
 	var scene_root = tree.current_scene
 	if scene_root and scene_root.has_node("BaseLevel"):
-		BaseLevel_ = scene_root.get_node("BaseLevel")
+		base_level = scene_root.get_node("BaseLevel")
 		level_cache_valid = true
-		return BaseLevel_
+		return base_level
 
 	var all_nodes = tree.get_nodes_in_group("level_container")
 	if all_nodes.size() > 0:
-		BaseLevel_ = all_nodes[0]
+		base_level = all_nodes[0]
 		level_cache_valid = true
-		return BaseLevel_
+		return base_level
 
-	BaseLevel_ = tree.current_scene
-	if not BaseLevel_:
-		BaseLevel_ = self
+	base_level = tree.current_scene
+	if not base_level:
+		base_level = self
 	level_cache_valid = true
-	return BaseLevel_
+	return base_level
 
 
 func invalidate_level_cache():
@@ -485,10 +485,10 @@ func _physics_process(delta: float) -> void:
 		gravity = -980
 	else:
 		gravity = 0
-	if Islljy and Hp > 0:
+	if islljy and Hp > 0:
 		mr_player.play("hurt")
-	if llrdCount > 0:
-		llrdCount -= 1
+	if llrd_count > 0:
+		llrd_count -= 1
 		llrdzs = 1.3
 	else:
 		llrdzs = 1
@@ -510,9 +510,9 @@ func _physics_process(delta: float) -> void:
 
 	if MainSet.set_data["MonsterBloodSHow"]:
 		if is_boss:
-			if MyBlood == null:
-				var Parent = level_node.monster_blood
-				MyBlood = Global.add_boss_blood_(Parent, self)
+			if my_blood == null:
+				var parent_node = level_node.monster_blood
+				my_blood = Global.add_boss_blood_(parent_node, self)
 
 	if self.position.x <= 0:
 		self.position.x = 100
@@ -537,12 +537,11 @@ func _physics_process(delta: float) -> void:
 	count += 1
 	if death():
 		state = State.Death
-
 		if has_meta("tower_floor") and not get_meta("death_drops_settled", false):
 			settle_death_drops()
 	else:
 		state = State.other
-	if not is_on_floor() and not is_Fly:
+	if not is_on_floor() and not is_fly:
 		velocity.y -= gravity * delta
 	match state:
 		State.Death:
@@ -553,7 +552,7 @@ func _physics_process(delta: float) -> void:
 		ai_think()
 	if is_movement_locked_by_control():
 		interrupt_movement_for_control()
-	elif IsScary:
+	elif is_scary:
 		if not is_be_attacking:
 			when_scary()
 	check_hp()
@@ -588,20 +587,20 @@ func _should_run_ai_this_frame() -> bool:
 func is_limit_buff():
 	if is_control_immune():
 		return false
-	return is_movement_locked_by_control() or IsScary
+	return is_movement_locked_by_control() or is_scary
 
 
 func is_movement_locked_by_control() -> bool:
 	if is_control_immune():
 		return false
-	return is_ice or is_stun or is_Immobilize or is_sleep or Islljy or is_EyeFix
+	return is_ice or is_stun or is_immobilize or is_sleep or islljy or is_eye_fix
 
 
 func interrupt_movement_for_control() -> void:
 	if is_control_immune():
 		return
 	velocity.x = 0
-	if is_Fly:
+	if is_fly:
 		velocity.y = 0
 	_kill_control_movement_tweens()
 	if _control_movement_locked:
@@ -612,7 +611,7 @@ func interrupt_movement_for_control() -> void:
 	var current_animation := String(mr_player.current_animation)
 	if current_animation in ["walk", "walk_1", "walk_2", "run", "Fly", "fly"]:
 		var idle_animations := (
-			["Fly_wait", "fly_wait", "wait", "idle"] if is_Fly else ["wait", "idle", "wait_1", "wait_2"]
+			["Fly_wait", "fly_wait", "wait", "idle"] if is_fly else ["wait", "idle", "wait_1", "wait_2"]
 		)
 		for idle_animation in idle_animations:
 			if mr_player.has_animation(idle_animation):
@@ -759,7 +758,7 @@ func is_spawn_damage_protected() -> bool:
 
 
 func is_control_immune() -> bool:
-	return IsSuperArmor or is_boss_protecting()
+	return super_armor_active or is_boss_protecting()
 
 
 func _enforce_control_immunity_state() -> void:
@@ -767,18 +766,18 @@ func _enforce_control_immunity_state() -> void:
 		return
 	is_be_attacking = false
 	is_stun = false
-	is_Immobilize = false
+	is_immobilize = false
 	is_ice = false
 	is_sleep = false
-	is_EyeFix = false
-	is_DeadLink = false
+	is_eye_fix = false
+	is_dead_link = false
 	BloodFix = false
 	LifeManaLock = false
-	IsScary = false
-	Islljy = false
-	is_speedDown = false
-	IsReverseMove = false
-	ReverseMoveSpeedMultiplier = 1.0
+	is_scary = false
+	islljy = false
+	is_speed_down = false
+	is_reverse_move = false
+	reverse_move_speed_multiplier = 1.0
 	if iniSpeed != null:
 		speed = iniSpeed
 	_kill_control_movement_tweens()
@@ -813,7 +812,7 @@ func _release_pet_tiger_sxhz_air_hold() -> void:
 		remove_meta("pet_tiger_sxhz_hold_position")
 	_remove_pet_tiger_sxhz_stun_buff()
 	NoGrav = false
-	ShouldInSky = false
+	should_in_sky = false
 	is_be_attacking = false
 	is_stun = false
 	velocity.x = 0
@@ -869,23 +868,23 @@ func ai_think():
 		and not is_sleep
 		and not is_stun
 		and not cannotchangestatewhenattorbeatt()
-		and not is_Immobilize
-		and not Islljy
+		and not is_immobilize
+		and not islljy
 	):
 		if has_target == false:
 			normal_state()
 		else:
-			if IsSmartMonster:
+			if is_smart_monster:
 				if abs(position.x - float(role_position_x)) >= attackRange:
-					if RndiCount < SmartWaitCount:
+					if rndi_count < smart_wait_count:
 						have_target()
 					else:
 						normal_state()
 					if count % 90 == 0:
-						if randi_range(0, 100) < SmartHitCount:
+						if randi_range(0, 100) < smart_hit_count:
 							attack_target()
 				else:
-					if RndiCount < 60:
+					if rndi_count < 60:
 						normal_state()
 					else:
 						stop_move()
@@ -895,8 +894,8 @@ func ai_think():
 			else:
 				if follow_hero():
 					have_target()
-					if RunHit:
-						if count % RunHitCount == 0:
+					if run_hit_active:
+						if count % run_hit_count == 0:
 							if randi_range(0, 100) <= attackDesire:
 								attack_target()
 							else:
@@ -944,20 +943,20 @@ func attack_target():
 		base_damage_box.scale.x = 1
 		monster_dir.scale.x = 1
 	hit_name = "hit1"
-	if not is_Fly:
+	if not is_fly:
 		velocity.x = 0
 	is_attacking = true
 	mr_player.play("hit1")
 	await mr_player.animation_finished
 	is_attacking = false
-	if not is_Fly:
+	if not is_fly:
 		stop_move()
 
 
 func normal_state():
 	if is_quiescent:
 		return
-	if is_Fly:
+	if is_fly:
 		if ran_num < 95:
 			if RoleProp.get_nearest_monster_target_position(global_position).y > position.y + randi_range(125, 245):
 				move_down()
@@ -982,7 +981,7 @@ func normal_state():
 func else_have_target():
 	if is_quiescent:
 		return
-	if is_Fly:
+	if is_fly:
 		if RoleProp.get_nearest_monster_target_position(global_position).y > position.y + randi_range(15, 85):
 			move_up()
 		elif RoleProp.get_nearest_monster_target_position(global_position).y < position.y - randi_range(15, 85):
@@ -998,7 +997,7 @@ func else_have_target():
 func have_target():
 	if is_quiescent:
 		return
-	if is_Fly:
+	if is_fly:
 		if RoleProp.get_nearest_monster_target_position(global_position).y > position.y + randi_range(125, 245):
 			move_down()
 		elif RoleProp.get_nearest_monster_target_position(global_position).y < position.y + randi_range(15, 45):
@@ -1017,11 +1016,11 @@ func move_left():
 	base_damage_box.scale.x = 1
 	monster_dir.scale.x = 1
 
-	if IsScary:
+	if is_scary:
 		velocity.x = -speed * 15
 	else:
 		velocity.x = -speed * 10
-	var movement_animation := "Fly" if is_Fly else "walk"
+	var movement_animation := "Fly" if is_fly else "walk"
 	if mr_player.current_animation != movement_animation:
 		mr_player.play(movement_animation)
 
@@ -1034,11 +1033,11 @@ func move_right():
 	base_damage_box.scale.x = -1
 	monster_dir.scale.x = -1
 
-	if IsScary:
+	if is_scary:
 		velocity.x = speed * 15
 	else:
 		velocity.x = speed * 10
-	var movement_animation := "Fly" if is_Fly else "walk"
+	var movement_animation := "Fly" if is_fly else "walk"
 	if mr_player.current_animation != movement_animation:
 		mr_player.play(movement_animation)
 
@@ -1049,7 +1048,7 @@ func move_up():
 			velocity.y = 0
 		return
 	velocity.y = -speed * randi_range(7, 9)
-	if not is_Fly:
+	if not is_fly:
 		mr_player.play("walk")
 	else:
 		mr_player.play("Fly")
@@ -1061,7 +1060,7 @@ func move_down():
 			velocity.y = 0
 		return
 	velocity.y = speed * randi_range(7, 9)
-	if not is_Fly:
+	if not is_fly:
 		mr_player.play("walk")
 	else:
 		mr_player.play("Fly")
@@ -1071,7 +1070,7 @@ func stop_move():
 	if _hurt_reaction_active:
 		return
 	velocity.x = 0
-	var idle_animation := "Fly_wait" if is_Fly else "wait"
+	var idle_animation := "Fly_wait" if is_fly else "wait"
 	if mr_player.current_animation != idle_animation:
 		mr_player.play(idle_animation)
 
@@ -1197,7 +1196,7 @@ func be_hit_back(target):
 		else:
 			attack_to_left(target.HitDic["hurtBack"])
 	elif target is RoleBullet:
-		if not target.Direction:
+		if not target.direction:
 			attack_to_right(target.HitDic["hurtBack"])
 		else:
 			attack_to_left(target.HitDic["hurtBack"])
@@ -1237,7 +1236,7 @@ func attack_to_right(list):
 	var sp_x = list[0]
 	var sp_y = list[1]
 	self.velocity.x = -sp_x * 30
-	if not is_Fly:
+	if not is_fly:
 		self.velocity.y = sp_y * 15
 	else:
 		self.velocity.y = sp_y * 3
@@ -1249,7 +1248,7 @@ func attack_to_left(list):
 	var sp_x = list[0]
 	var sp_y = list[1]
 	self.velocity.x = sp_x * 30
-	if not is_Fly:
+	if not is_fly:
 		self.velocity.y = sp_y * 15
 	else:
 		self.velocity.y = sp_y * 3
@@ -1275,7 +1274,7 @@ func state_death():
 		set_gxp()
 		if not get_meta("sssl_kill_counted", false):
 			set_meta("sssl_kill_counted", true)
-			if PlayerData.player_data.has(my_mr_name) and not BaseLevel_ is Lhhj:
+			if PlayerData.player_data.has(my_mr_name) and not base_level is Lhhj:
 				PlayerData.player_data[my_mr_name] += 1
 		is_death = true
 		mr_player.play("death")
@@ -1291,15 +1290,15 @@ func state_death():
 
 		if not is_death:
 			if PlayerData.player_data.has(my_mr_name):
-				var Current = PlayerData.player_data[my_mr_name]
+				var current = PlayerData.player_data[my_mr_name]
 				if self is Monster17 or self is Monster30 or self is Monster31 or self is Monster28:
 					if is_boss:
-						if not BaseLevel_ is Lhhj:
+						if not base_level is Lhhj:
 							PlayerData.player_data[my_mr_name] += 1
 				elif self is Monster49:
 					pass
 				else:
-					if not BaseLevel_ is Lhhj:
+					if not base_level is Lhhj:
 						PlayerData.player_data[my_mr_name] += 1
 		is_death = true
 		await mr_player.animation_finished
@@ -1309,8 +1308,8 @@ func state_death():
 				is_bounds = true
 				mr_player.play("bounds")
 				if PlayerData.player_data.has(my_mr_name):
-					var Current = PlayerData.player_data[my_mr_name]
-					if not BaseLevel_ is Lhhj:
+					var current = PlayerData.player_data[my_mr_name]
+					if not base_level is Lhhj:
 						PlayerData.player_data[my_mr_name] += 1
 
 				return
@@ -1318,8 +1317,8 @@ func state_death():
 			mr_player.play("death")
 			if not is_death:
 				if PlayerData.player_data.has(my_mr_name):
-					var Current = PlayerData.player_data[my_mr_name]
-					if not BaseLevel_ is Lhhj:
+					var current = PlayerData.player_data[my_mr_name]
+					if not base_level is Lhhj:
 						PlayerData.player_data[my_mr_name] += 1
 			is_death = true
 			await mr_player.animation_finished
@@ -1438,7 +1437,7 @@ func _is_heaven_nightmare_level() -> bool:
 
 func _get_human_nightmare_soul_drop_chance() -> float:
 	var soul_drop_chance := 0.25
-	if RoleProp.SourcePlayer != null and RoleProp.SourcePlayer.IsDoubleFallPro:
+	if RoleProp.source_player != null and RoleProp.source_player.is_double_fall_pro:
 		soul_drop_chance = clampf(soul_drop_chance * 2.0, 0.0, 1.0)
 	return soul_drop_chance
 
@@ -1477,7 +1476,7 @@ func fall_items():
 		var difficulty_index := clampi(int(MainSet.set_data.get("Difficult", 0)), 0, 3)
 		var difficulty_multiplier: float = [1.0, 2.0, 3.0, 3.0][difficulty_index]
 		var drop_chance := clampf(float(independent_drop.get("chance", 0.0)) * difficulty_multiplier, 0.0, 1.0)
-		if RoleProp.SourcePlayer != null and RoleProp.SourcePlayer.IsDoubleFallPro:
+		if RoleProp.source_player != null and RoleProp.source_player.is_double_fall_pro:
 			drop_chance = clampf(drop_chance * 2.0, 0.0, 1.0)
 		var independent_roll := randf()
 		if independent_roll <= drop_chance:
@@ -1507,7 +1506,7 @@ func fall_items():
 		_save_direct_pet_backpack_drop()
 	if int(MainSet.set_data.get("Difficult", 0)) == 2:
 		var hell_box_fall_pro := 0.2
-		if RoleProp.SourcePlayer != null and RoleProp.SourcePlayer.IsDoubleFallPro:
+		if RoleProp.source_player != null and RoleProp.source_player.is_double_fall_pro:
 			hell_box_fall_pro *= 2.0
 		hell_box_fall_pro = clampf(hell_box_fall_pro, 0.0, 1.0)
 		if randf_range(0, 1) <= hell_box_fall_pro:
@@ -1617,7 +1616,7 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 
 	var old_target: Variant = get_target
 	var old_player: BaseHero = get_Player
-	var old_source_player: Variant = RoleProp.SourcePlayer
+	var old_source_player: Variant = RoleProp.source_player
 	var old_tszzs: float = source_player.tszzs
 	var old_hit_data: Variant = source_target.get("HitDic")
 	if not hit_data.is_empty():
@@ -1625,10 +1624,10 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 
 	get_target = source_target
 	get_Player = source_player
-	RoleProp.SourcePlayer = source_player
+	RoleProp.source_player = source_player
 	has_target = true
-	Global.TotalHitCount += 1
-	if source_player.Istsz:
+	Global.total_hit_count += 1
+	if source_player.istsz:
 		var tsz_level := int(PlayerData.player_data["腾蛇阵"]["Level"])
 		source_player.tszzs = tsz_level * 0.015
 	else:
@@ -1640,29 +1639,29 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 			* RoleProp.ws_up_power
 			* jgz_bl
 			* zznh_bl
-			* HurtBl
+			* hurt_bl
 			* (1.0 + lpzzs)
 			* (1.0 + source_player.tszzs)
 			* llrdzs
 		)
 	)
 	last_hurt = int(hurt_reduce_hp(last_hurt, source_target))
-	GetHurt = last_hurt
-	if source_player.is_DeadLink:
+	hurt_received = last_hurt
+	if source_player.is_dead_link:
 		source_player.effect_reducehp(last_hurt, "real")
 	cure_ws_value()
 	add_lj(last_hurt)
-	Global.TotalRoleHit += last_hurt
+	Global.total_role_hit += last_hurt
 	role5_bullet(last_hurt, source_target)
 	var attack_data: Variant = source_target.get("HitDic")
 	if attack_data is Dictionary:
 		match str(attack_data.get("attackKind", "")):
 			"physics":
-				Global.TotalPhyHit += last_hurt
+				Global.total_phy_hit += last_hurt
 			"magic":
-				Global.TotalMagHit += last_hurt
+				Global.total_mag_hit += last_hurt
 			"real":
-				Global.TotalRealHit += last_hurt
+				Global.total_real_hit += last_hurt
 	if last_hurt > 0 and not death() and not is_death:
 		if MainSet.set_data["MonsterLittleBlood"]:
 			if monster_blood_bar == null:
@@ -1674,12 +1673,12 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 		if not monster_18_protect() and not monster102_protect() and not is_control_immune():
 			_interrupt_attack_state_on_hit()
 			state_hurt()
-		HurtSpecialEffect = Global.add_mr_hurt(pz, Vector2(0, 0))
+		hurt_special_effect = Global.add_mr_hurt(pz, Vector2(0, 0))
 
 	get_target = old_target
 	get_Player = old_player
 	source_player.tszzs = old_tszzs
-	RoleProp.SourcePlayer = old_source_player
+	RoleProp.source_player = old_source_player
 	if not hit_data.is_empty():
 		source_target.set("HitDic", old_hit_data)
 	return last_hurt
@@ -1710,8 +1709,8 @@ func role5_bullet(last_hurt, source_target = null):
 			return
 	if passive_source is MgHit:
 		return
-	var SLevel = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
-	if SLevel <= 0:
+	var s_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
+	if s_level <= 0:
 		return
 	if get_Player == null or last_hurt <= 0:
 		return
@@ -1720,16 +1719,16 @@ func role5_bullet(last_hurt, source_target = null):
 	randomize()
 	if randi_range(0, 100) > 15:
 		return
-	var HurtValue = int(last_hurt * 0.3 + (SLevel * 0.02))
+	var hurt_value = int(last_hurt * 0.3 + (s_level * 0.02))
 	Global.add_role_bullet(
 		get_Player.Bullet,
 		Vector2(position.x, position.y + 30),
 		false,
 		"Role5Bullet6",
-		{"power": HurtValue, "hurtBack": [0, 0], "attackKind": "real", "WSValue": 5}
+		{"power": hurt_value, "hurtBack": [0, 0], "attackKind": "real", "WSValue": 5}
 	)
-	var bl = 1 + (SLevel * 0.2)
-	get_Player.cure_hp(HurtValue * bl)
+	var bl = 1 + (s_level * 0.2)
+	get_Player.cure_hp(hurt_value * bl)
 
 
 func _get_damage_source_player(target) -> BaseHero:
@@ -1756,7 +1755,7 @@ func _get_damage_source_player(target) -> BaseHero:
 			var source_player: Variant = source_weapon.get("Player")
 			if source_player is BaseHero:
 				return source_player as BaseHero
-	var current_player: Variant = RoleProp.SourcePlayer
+	var current_player: Variant = RoleProp.source_player
 	if current_player is BaseHero and is_instance_valid(current_player):
 		return current_player as BaseHero
 	return null
@@ -1788,11 +1787,11 @@ func get_role_last_hurt(target):
 	var Hurt = 0
 	var Miss = 0
 	var Crit = 0
-	var LastDef = 0
-	var LastMdef = 0
+	var last_def = 0
+	var last_mdef = 0
 	var cur_level: int = 0
 	var Lucky = 0
-	var HurtLx: String = "real"
+	var hurt_lx: String = "real"
 	if (
 		target is BaseHero
 		or target is BaseMagicWeapon
@@ -1803,15 +1802,15 @@ func get_role_last_hurt(target):
 	):
 		Miss = miss - RoleProp.roleprop.Htarget
 		Crit = RoleProp.roleprop.Crit - Critreduce
-		LastDef = def - RoleProp.roleprop.ar
-		LastMdef = mdef - RoleProp.roleprop.sp
+		last_def = def - RoleProp.roleprop.ar
+		last_mdef = mdef - RoleProp.roleprop.sp
 		cur_level = RoleProp.baseroleprop.cur_level
 		Lucky = RoleProp.roleprop.Lucky - Toughness
 	elif target is BaseBuff:
 		Miss = miss - RoleProp.roleprop.Htarget
 		Crit = RoleProp.roleprop.Crit - Critreduce
-		LastDef = def - RoleProp.roleprop.ar
-		LastMdef = mdef - RoleProp.roleprop.sp
+		last_def = def - RoleProp.roleprop.ar
+		last_mdef = mdef - RoleProp.roleprop.sp
 		cur_level = RoleProp.baseroleprop.cur_level
 		Lucky = RoleProp.roleprop.Lucky - Toughness
 	else:
@@ -1819,11 +1818,11 @@ func get_role_last_hurt(target):
 
 	if not target is BaseBuff:
 		Hurt = target.HitDic["power"]
-		HurtLx = target.HitDic["attackKind"]
+		hurt_lx = target.HitDic["attackKind"]
 	else:
-		Hurt = target.LastValue
-		HurtLx = str(target.BuffInfo.get("AttackKind", ""))
-	var source_player := RoleProp.SourcePlayer as BaseHero
+		Hurt = target.last_value
+		hurt_lx = str(target.BuffInfo.get("AttackKind", ""))
+	var source_player := RoleProp.source_player as BaseHero
 	if source_player != null and is_instance_valid(source_player):
 		var monster149_buff_until := int(source_player.get_meta("monster149_buff_until", 0))
 		if monster149_buff_until > 0:
@@ -1831,8 +1830,8 @@ func get_role_last_hurt(target):
 				Hurt = int(float(Hurt) / 2.0)
 			else:
 				source_player.remove_meta("monster149_buff_until")
-	if RoleProp.SourcePlayer.IsXr:
-		Hurt *= RoleProp.SourcePlayer.xrbl
+	if RoleProp.source_player.is_xr:
+		Hurt *= RoleProp.source_player.xrbl
 	if Miss <= 0:
 		Miss = 0
 	else:
@@ -1853,14 +1852,14 @@ func get_role_last_hurt(target):
 			Crit = Crit * (1 - crit_bl)
 		else:
 			Crit = Crit * (1 + crit_bl)
-	if LastDef <= 0:
-		LastDef = 0
-	if LastMdef <= 0:
-		LastMdef = 0
+	if last_def <= 0:
+		last_def = 0
+	if last_mdef <= 0:
+		last_mdef = 0
 	if IsDefeReduce:
 		var defense_reduction := get_effective_defense_reduction()
-		LastDef *= 1.0 - defense_reduction
-		LastMdef *= 1.0 - defense_reduction
+		last_def *= 1.0 - defense_reduction
+		last_mdef *= 1.0 - defense_reduction
 	if Lucky <= 0:
 		Lucky = 0
 	else:
@@ -1885,15 +1884,15 @@ func get_role_last_hurt(target):
 	if randf_range(0, 1) <= Crit:
 		bl = 2 + snapped(Lucky / float(Lucky + 100), 0.001) + tqzbs
 		Hurt = Hurt * bl
-		Global.TotalCritCount += 1
+		Global.total_crit_count += 1
 		is_crit = true
 
-	match HurtLx:
+	match hurt_lx:
 		"physics":
-			var damage_reduction_rate = snapped(LastDef / float(LastDef + 100), 0.001)
+			var damage_reduction_rate = snapped(last_def / float(last_def + 100), 0.001)
 			Hurt = int(Hurt * (1 - damage_reduction_rate))
 		"magic":
-			var damage_reduction_rate = snapped(LastMdef / float(LastMdef + 100), 0.001)
+			var damage_reduction_rate = snapped(last_mdef / float(last_mdef + 100), 0.001)
 			Hurt = int(Hurt * (1 - damage_reduction_rate))
 	if IsIndestructible:
 		if Hurt >= Hp:
@@ -1927,8 +1926,8 @@ func reduce_hp(value: int):
 	Hp -= last_value
 	if not bool(get_meta("mds_awaken_skip_combo", false)):
 		total_hurt += last_value
-	Global.TotalRoleHit += last_value
-	Global.TotalRealHit += last_value
+	Global.total_role_hit += last_value
+	Global.total_real_hit += last_value
 	var level_node = get_level_node()
 	var po = Vector2(self.position.x - 20, self.position.y - 240)
 	if last_value > 0:
@@ -1954,14 +1953,14 @@ func reduce_pet_hp(value: int, attack_kind: String) -> int:
 	var last_value := int(hd_reduce(value))
 	Hp -= last_value
 	total_hurt += last_value
-	Global.TotalRoleHit += last_value
+	Global.total_role_hit += last_value
 	match damage_kind:
 		"physics":
-			Global.TotalPhyHit += last_value
+			Global.total_phy_hit += last_value
 		"magic":
-			Global.TotalMagHit += last_value
+			Global.total_mag_hit += last_value
 		_:
-			Global.TotalRealHit += last_value
+			Global.total_real_hit += last_value
 	if last_value > 0:
 		var level_node := get_level_node()
 		if level_node != null:
@@ -2021,7 +2020,7 @@ func resolve_friendly_damage(base_damage: int, attack_kind: String, attacker: No
 		)
 		resolved_damage = int(float(base_damage) * crit_multiplier)
 		is_crit = true
-		Global.TotalCritCount += 1
+		Global.total_crit_count += 1
 	if attack_kind in ["physics", "magic"]:
 		var penetration_name := "ar" if attack_kind == "physics" else "sp"
 		var penetration := (
@@ -2040,7 +2039,7 @@ func resolve_friendly_damage(base_damage: int, attack_kind: String, attacker: No
 
 
 func _get_friendly_damage_taken_multiplier() -> float:
-	return maxf(0.0, jgz_bl * zznh_bl * HurtBl * (1.0 + lpzzs) * llrdzs)
+	return maxf(0.0, jgz_bl * zznh_bl * hurt_bl * (1.0 + lpzzs) * llrdzs)
 
 
 func receive_friendly_damage(base_damage: int, attack_kind: String, attacker: Node = null) -> int:
@@ -2123,7 +2122,7 @@ func add_hurt_text(value, target):
 		or target is MgHit
 		or target is Role1Shallow
 	):
-		var HurtLx = target.HitDic["attackKind"]
+		var hurt_lx = target.HitDic["attackKind"]
 		if is_miss:
 			var level_node = get_level_node()
 			var po = Vector2(self.position.x - 20, self.position.y - 240)
@@ -2131,12 +2130,12 @@ func add_hurt_text(value, target):
 		else:
 			var level_node = get_level_node()
 			var po = Vector2(self.position.x - 20, self.position.y - 240)
-			Global.add_damage_text(level_node, po, value, HurtLx, is_crit, self)
+			Global.add_damage_text(level_node, po, value, hurt_lx, is_crit, self)
 	elif target is BaseBuff:
-		var HurtLx = str(target.BuffInfo.get("AttackKind", ""))
+		var hurt_lx = str(target.BuffInfo.get("AttackKind", ""))
 		var level_node = get_level_node()
 		var po = Vector2(self.position.x - 20, self.position.y - 240)
-		Global.add_damage_text(level_node, po, value, HurtLx, is_crit, self)
+		Global.add_damage_text(level_node, po, value, hurt_lx, is_crit, self)
 
 
 func hd_reduce(value):
@@ -2165,7 +2164,7 @@ func cure_hp(value: int):
 		return
 	if LifeManaLock:
 		return
-	value = value * (1 + Therapeutic_effects)
+	value = value * (1 + therapeutic_effects)
 	if value + Hp >= SHp:
 		value = SHp - Hp
 	if value > 0:
@@ -2184,14 +2183,14 @@ func remove_cd():
 		Skill_3_CD -= 1
 	if Skill_4_CD >= 0:
 		Skill_4_CD -= 1
-	if Skill_5_CD >= 0:
-		Skill_5_CD -= 1
-	if Skill_6_CD >= 0:
-		Skill_6_CD -= 1
-	if Skill_7_CD >= 0:
-		Skill_7_CD -= 1
-	if Skill_8_CD >= 0:
-		Skill_8_CD -= 1
+	if skill_5_cd >= 0:
+		skill_5_cd -= 1
+	if skill_6_cd >= 0:
+		skill_6_cd -= 1
+	if skill_7_cd >= 0:
+		skill_7_cd -= 1
+	if skill_8_cd >= 0:
+		skill_8_cd -= 1
 
 
 func _on_cd_remove_timeout() -> void:
@@ -2311,7 +2310,7 @@ func remove_hd():
 
 
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
-	is_enter_hitBox = true
+	is_enter_hit_box = true
 	var buff_target: Node2D = null
 	var rro = area.get_parent().get_parent()
 
@@ -2356,18 +2355,18 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 func add_lj(value):
 	if value <= 0:
 		return
-	Global.LJ_times += 1
-	Global.check_combo_milestone(Global.LJ_times)
-	if Global.LJ_times >= Global.MostLianji:
-		Global.MostLianji = Global.LJ_times
+	Global.lj_times += 1
+	Global.check_combo_milestone(Global.lj_times)
+	if Global.lj_times >= Global.most_lianji:
+		Global.most_lianji = Global.lj_times
 	var level_node = get_level_node()
-	Global.add_combo(level_node.lj_tt, Global.LJ_times, Vector2(0, 0))
+	Global.add_combo(level_node.lj_tt, Global.lj_times, Vector2(0, 0))
 	Global.lj_count = 0
 
 
 func monster_18_protect():
 	if self is Monster18:
-		if self.MonsterDirection == Global.Player_dir:
+		if self.MonsterDirection == Global.player_dir:
 			if self.MonsterDirection == false:
 				Global.add_special_effect(self, Vector2(0, 5), "protect", Vector2(1.1, 1.1), false, 1)
 			else:
@@ -2461,17 +2460,17 @@ func check_add_buff():
 	var not_stun = true
 	var not_sppeddown = true
 	var not_silent = true
-	var not_BoundFloor = true
-	var not_Immobilize = true
-	var not_BloodFix = true
-	var not_LifeManaLock = true
-	var not_DefeReduce = true
-	var not_Scary = true
-	var not_SuperArmor = true
-	var not_Indestructible = true
+	var not_bound_floor = true
+	var not_immobilize = true
+	var not_blood_fix = true
+	var not_life_mana_lock = true
+	var not_defe_reduce = true
+	var not_scary = true
+	var not_super_armor = true
+	var not_indestructible = true
 	var not_lpz = true
 	var not_lljy = true
-	var not_NoDeBuff = true
+	var not_no_de_buff = true
 	if self.buff == null:
 		return
 
@@ -2491,58 +2490,58 @@ func check_add_buff():
 					zznh_defense_reduction = float(buff_info.get("defense_reduction", 0.0))
 					if zznh_defense_reduction > 0.0:
 						IsDefeReduce = true
-						not_DefeReduce = false
+						not_defe_reduce = false
 				"jgz":
 					is_jgz = true
 					not_jgz = false
 					var skill_level = buff_info.get("value", 1)
 					jgz_bl = 1.2 + (skill_level - 1) * 0.1
 				"lljybuff":
-					Islljy = true
+					islljy = true
 					not_lljy = false
 				"NoDeBuff":
 					NoDeBuff = true
-					not_NoDeBuff = false
+					not_no_de_buff = false
 				"lpzbuff":
-					IsLpz = true
+					is_lpz = true
 					not_lpz = false
 				"Ice":
 					is_ice = true
 					not_ice = false
 				"Indestructible":
 					IsIndestructible = true
-					not_Indestructible = false
+					not_indestructible = false
 				"DefeReduce":
 					IsDefeReduce = true
-					DefeReduce = float(buff_info.get("value", i.LastValue))
-					not_DefeReduce = false
+					DefeReduce = float(buff_info.get("value", i.last_value))
+					not_defe_reduce = false
 				"SuperArmor":
-					IsSuperArmor = true
-					not_SuperArmor = false
+					super_armor_active = true
+					not_super_armor = false
 				"DeadLink":
-					is_DeadLink = true
+					is_dead_link = true
 					not_dl = false
 				"EyeFix":
-					is_EyeFix = true
+					is_eye_fix = true
 					not_eyefix = false
 				"Immobilize":
-					is_Immobilize = true
-					not_Immobilize = false
+					is_immobilize = true
+					not_immobilize = false
 				"stun":
 					is_stun = true
 					not_stun = false
 				"speed_down":
-					is_speedDown = true
+					is_speed_down = true
 					not_sppeddown = false
 				"BloodFix":
 					BloodFix = true
-					not_BloodFix = false
+					not_blood_fix = false
 				"LifeManaLock":
 					LifeManaLock = true
-					not_LifeManaLock = false
+					not_life_mana_lock = false
 				"Scary":
-					IsScary = true
-					not_Scary = false
+					is_scary = true
+					not_scary = false
 
 	if not_zznh:
 		is_zznh = false
@@ -2552,46 +2551,46 @@ func check_add_buff():
 	if not_jgz:
 		is_jgz = false
 		jgz_bl = 1
-	if not_NoDeBuff:
+	if not_no_de_buff:
 		NoDeBuff = false
 	if not_lljy:
-		Islljy = false
+		islljy = false
 	if not_lpz:
-		IsLpz = false
+		is_lpz = false
 		lpzjs = 0
-	if not_Indestructible:
+	if not_indestructible:
 		IsIndestructible = false
-	if not_DefeReduce:
+	if not_defe_reduce:
 		DefeReduce = 0
 		IsDefeReduce = false
-	if not_SuperArmor:
-		IsSuperArmor = false
-	if not_Scary:
-		IsScary = false
-	if not_BloodFix:
+	if not_super_armor:
+		super_armor_active = false
+	if not_scary:
+		is_scary = false
+	if not_blood_fix:
 		BloodFix = false
-	if not_LifeManaLock:
+	if not_life_mana_lock:
 		LifeManaLock = false
-	if not_Immobilize:
-		is_Immobilize = false
+	if not_immobilize:
+		is_immobilize = false
 	if not_ice:
 		is_ice = false
 	if not_dl:
-		is_DeadLink = false
+		is_dead_link = false
 	if not_eyefix:
-		is_EyeFix = false
+		is_eye_fix = false
 	if not_stun:
 		is_stun = false
 	if not_sppeddown:
-		is_speedDown = false
+		is_speed_down = false
 		speed = iniSpeed
 	if buff_child_count == 0:
-		is_speedDown = false
+		is_speed_down = false
 		speed = iniSpeed
 		is_stun = false
-		is_EyeFix = false
+		is_eye_fix = false
 		is_ice = false
-		is_DeadLink = false
+		is_dead_link = false
 
 	if is_movement_locked_by_control():
 		interrupt_movement_for_control()
@@ -2690,11 +2689,11 @@ func set_full_hp():
 
 
 func _on_calm_hit_timeout() -> void:
-	RndiCount = randi_range(0, 100)
+	rndi_count = randi_range(0, 100)
 
 
 func _on_remove_hurt_bl_timeout() -> void:
-	HurtBl = 1
+	hurt_bl = 1
 
 
 func add_monster_death_effect():
@@ -2713,7 +2712,7 @@ func when_scary():
 
 func monster102_protect():
 	if self is Monster102:
-		if self.MyChild != null:
+		if self.my_child != null:
 			return true
 	return false
 
@@ -3386,37 +3385,37 @@ func _pet_matches_active_name(pet: Dictionary, active_name: String) -> bool:
 	return pet_name == active_name or pet_title == active_name or pet_type == active_name
 
 
-func check_player_have_debuff(Target):
+func check_player_have_debuff(target):
 	if get_Player == null:
 		return
 	for i in get_Player.buff.get_children():
 		if i != null:
-			if i.BuffInfo["Name"] == Target:
+			if i.BuffInfo["Name"] == target:
 				return true
 	return false
 
 
 func wd_hurt():
-	if RoleProp.SourcePlayer is Role4Hero:
+	if RoleProp.source_player is Role4Hero:
 		if PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] > 0:
-			var VoodooCounts = Global.check_wd(self)
-			if VoodooCounts >= 7:
-				var SkillLevel = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
-				var Power = int(RoleProp.roleprop.power) * (0.5 + SkillLevel * 0.05)
-				var SkillPower = int(VoodooCounts * Power)
-				if SkillPower > 0:
+			var voodoo_counts = Global.check_wd(self)
+			if voodoo_counts >= 7:
+				var skill_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
+				var Power = int(RoleProp.roleprop.power) * (0.5 + skill_level * 0.05)
+				var skill_power = int(voodoo_counts * Power)
+				if skill_power > 0:
 					Global.add_sound(self, "res://Music/Hero/Role4/mds.mp3")
 					Global.add_special_effect(self, Vector2(0, -25), "mds", Vector2(1, 1), false, 1)
 					if _is_mds_awaken_active():
 						set_meta("mds_awaken_skip_combo", true)
-					reduce_hp(SkillPower)
+					reduce_hp(skill_power)
 					if has_meta("mds_awaken_skip_combo"):
 						remove_meta("mds_awaken_skip_combo")
 				Global.remove_wd(self)
 
 
 func _is_mds_awaken_active() -> bool:
-	if not RoleProp.SourcePlayer is Role4Hero:
+	if not RoleProp.source_player is Role4Hero:
 		return false
 	var awaken_data: Variant = PlayerData.player_data.get("技能觉醒", {})
 	var enabled_data: Variant = PlayerData.player_data.get("技能觉醒启用", {})
@@ -3437,13 +3436,13 @@ func jsfzsy():
 	_last_monster_formation = formation_name
 	_last_monster_formation_level = formation_level
 	if formation_name == "lpz":
-		var Levellpz = formation_level
-		lpzzs = Levellpz * 0.01
+		var levellpz = formation_level
+		lpzzs = levellpz * 0.01
 	else:
 		lpzzs = 0
 	if formation_name == "tqz":
-		var Leveltqz = formation_level
-		tqzbs = Leveltqz * 0.01
+		var leveltqz = formation_level
+		tqzbs = leveltqz * 0.01
 	else:
 		tqzbs = 0
 

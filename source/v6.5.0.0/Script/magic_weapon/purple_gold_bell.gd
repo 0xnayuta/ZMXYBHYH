@@ -8,12 +8,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	self.FB_Level = PlayerData.get_most_level("zjfyd") + 1
-	needMp = 50 + self.FB_Level * 15
+	self.fb_level = PlayerData.get_most_level("zjfyd") + 1
+	need_mp = 50 + self.fb_level * 15
 	if PlayerData.check_have_wx("zjfyd", "木"):
-		_hit_data["power"] = 5 + (FB_Level - 1) * 0.5
+		_hit_data["power"] = 5 + (fb_level - 1) * 0.5
 	else:
-		_hit_data["power"] = 2.5 + (FB_Level - 1) * 0.25
+		_hit_data["power"] = 2.5 + (fb_level - 1) * 0.25
 	super._physics_process(delta)
 	if not is_use:
 		mg_player.play("wait")
@@ -26,7 +26,7 @@ func show_skill():
 
 
 func use_over():
-	Global.FB_CD = 1
+	Global.fb_cd = 1
 	is_use = false
 	self.usecd = 30
 	skill_cd.start(30)

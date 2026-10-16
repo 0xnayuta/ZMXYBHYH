@@ -1,11 +1,11 @@
 extends BaseMonster
 var MonsterList = [39, 40, 30, 31]
-var Curecount: int = 0
+var curecount: int = 0
 
 
 func monster_44():
 	self.is_bt = true
-	self.CannotAttract = true
+	self.cannot_attract = true
 	preload("res://Scene/monster/monster_39.tscn")
 	preload("res://Scene/monster/monster_40.tscn")
 	preload("res://Scene/monster/monster_28.tscn")
@@ -61,16 +61,16 @@ func _physics_process(delta: float) -> void:
 
 
 func ai_think():
-	if Curecount % 60 == 0:
+	if curecount % 60 == 0:
 		monster_call()
-	Curecount += 1
+	curecount += 1
 
 
 func monster_call():
-	var BaseLevel_ = get_parent().get_parent() as BaseLevel
-	if BaseLevel_.monster.get_children().size() < 6:
-		var ChlidMonster = MonsterList[randi_range(0, MonsterList.size() - 1)]
-		var mm = Global.create_monster(ChlidMonster, get_parent(), Vector2(self.position.x, self.position.y - 30))
+	var base_level = get_parent().get_parent() as BaseLevel
+	if base_level.monster.get_children().size() < 6:
+		var chlid_monster = MonsterList[randi_range(0, MonsterList.size() - 1)]
+		var mm = Global.create_monster(chlid_monster, get_parent(), Vector2(self.position.x, self.position.y - 30))
 		if mm is BaseMonster:
 			if mm.is_boss:
 				mm.is_boss = false

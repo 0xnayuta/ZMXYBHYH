@@ -891,7 +891,7 @@ func _get_zhuxian_effect_position(target: BaseMonster) -> Vector2:
 
 
 func _get_player_direction() -> bool:
-	return bool(RoleProp.Directon)
+	return bool(RoleProp.directon)
 
 
 func _get_follow_origin() -> Vector2:
@@ -990,7 +990,7 @@ func _spawn_sword_hit_bullet(center: Vector2, hit_radius: float, hit_dic: Dictio
 	bullet.global_position = center
 	bullet.name_ = "SwordArrayHit"
 	bullet.HitDic = hit_dic
-	bullet.Direction = direction
+	bullet.direction = direction
 	bullet.set_meta("sword_array_damage", true)
 	bullet.visible = false
 	bullet.is_set = true
@@ -1166,7 +1166,7 @@ func _apply_sword_hit_feedback(monster: BaseMonster, value: int, source: RoleBul
 		and not monster.is_boss_protecting()
 		and (not bool(source.get_meta("sword_array_damage", false)) or Global.can_show_sword_hit_effect())
 	):
-		monster.HurtSpecialEffect = Global.add_mr_hurt(monster.pz, Vector2(0, 0))
+		monster.hurt_special_effect = Global.add_mr_hurt(monster.pz, Vector2(0, 0))
 
 
 func _play_sword_hurt_animation(monster: BaseMonster) -> void:

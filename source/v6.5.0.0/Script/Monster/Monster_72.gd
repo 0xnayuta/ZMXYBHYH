@@ -1,7 +1,7 @@
 extends BaseMonster
 class_name Monster72
-var MyFather: BaseMonster
-var IsCall: bool
+var my_father: BaseMonster
+var is_call: bool
 
 
 func monster_72():
@@ -127,11 +127,11 @@ func do_hit_2():
 
 
 func call_monster_bullet():
-	var BulletName = "Monster72Bullet"
+	var bullet_name = "Monster72Bullet"
 	var bullet_pos
 	var bullet_spawn_positions = [Vector2(0, 0), Vector2(0, -75), Vector2(0, 75)]
 	for i in bullet_spawn_positions:
-		Global.add_bullet(BulletName, self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"])
+		Global.add_bullet(bullet_name, self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"])
 		await get_tree().create_timer(0.3, false).timeout
 
 
@@ -143,27 +143,27 @@ func strength_obj():
 	self.crit += 10
 	sp += 10
 	ar += 10
-	if MyFather != null:
-		MyFather.cure_hp(SHp * 0.15)
-		for i in MyFather.objattackDic:
-			if MyFather.objattackDic[i].has("power"):
-				MyFather.objattackDic[i]["power"] *= 1.05
-		MyFather.crit += 5
-		MyFather.sp += 5
-		MyFather.ar += 5
+	if my_father != null:
+		my_father.cure_hp(SHp * 0.15)
+		for i in my_father.objattackDic:
+			if my_father.objattackDic[i].has("power"):
+				my_father.objattackDic[i]["power"] *= 1.05
+		my_father.crit += 5
+		my_father.sp += 5
+		my_father.ar += 5
 
 
 func call_monster():
-	if not IsCall:
-		var Self = Global.create_monster(72, get_parent(), position)
-		Self.SHp = SHp * 1.5
-		Self.Hp = Self.SHp
-		Self.def = def * 1.2
-		Self.mdef = mdef * 1.2
-		Self.modulate = Color("00ffff")
-		Self.my_mr_name = "邪·哮天犬"
-		Self.IsCall = true
-		for i in Self.objattackDic:
-			if Self.objattackDic[i].has("power"):
-				Self.objattackDic[i]["power"] = self.objattackDic[i]["power"] * 1.5
-		IsCall = true
+	if not is_call:
+		var self_ref = Global.create_monster(72, get_parent(), position)
+		self_ref.SHp = SHp * 1.5
+		self_ref.Hp = self_ref.SHp
+		self_ref.def = def * 1.2
+		self_ref.mdef = mdef * 1.2
+		self_ref.modulate = Color("00ffff")
+		self_ref.my_mr_name = "邪·哮天犬"
+		self_ref.is_call = true
+		for i in self_ref.objattackDic:
+			if self_ref.objattackDic[i].has("power"):
+				self_ref.objattackDic[i]["power"] = self.objattackDic[i]["power"] * 1.5
+		is_call = true

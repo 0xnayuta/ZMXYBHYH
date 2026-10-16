@@ -54,8 +54,8 @@ func _setup_sword_sprite_frames() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	self.FB_Level = PlayerData.get_most_level("qlsword") + 1
-	weapon_level = self.FB_Level
+	self.fb_level = PlayerData.get_most_level("qlsword") + 1
+	weapon_level = self.fb_level
 
 	super._physics_process(delta)
 
@@ -263,7 +263,7 @@ func use_over():
 	var cd_time = _get_floor_duration()
 
 	self.usecd = cd_time
-	Global.FB_CD = 1
+	Global.fb_cd = 1
 	is_use = false
 
 	skill_cd.start(cd_time)

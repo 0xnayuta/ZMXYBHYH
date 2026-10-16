@@ -10,47 +10,47 @@ extends Node2D
 @onready var m_power: Label = $BG/bg_2/m_Power
 @onready var m_def: Label = $BG/bg_2/m_Def
 @onready var m_m_def: Label = $BG/bg_2/m_MDef
-@onready var name_: Label = $BG/Name_
+@onready var name_: Label = $BG/name_str
 @onready var icon: Sprite2D = $BG/Icon
 @onready var icon_player: AnimationPlayer = $BG/IconPlayer
 @onready var magic_weapon_skill_title: Label = $BG/MagicWeaponSkillTitle
 @onready var magic_weapon_skill: Label = $BG/ScrollContainer/VBoxContainer/MagicWeaponSkill
-@onready var PaTitle_: Label = $BG/ScrollContainer/VBoxContainer/PsTitle
+@onready var pa_title: Label = $BG/ScrollContainer/VBoxContainer/PsTitle
 @onready var magic_weapon_skill_2: Label = $BG/ScrollContainer/VBoxContainer/MagicWeaponSkill2
 @onready var icon_: Sprite2D = $BG/Icon_
 
 const PREVIEW_ICONS := {
-	"zcld": "res://Art/MagicWeapon/Skill_Icon/zcld.png",
-	"dshl": "res://Art/MagicWeapon/Skill_Icon/dshl.png",
-	"dhqf": "res://Art/MagicWeapon/Skill_Icon/dhqf.png",
-	"tsgj": "res://Art/MagicWeapon/Skill_Icon/wjgz.png",
-	"bsyj": "res://Art/MagicWeapon/Skill_Icon/bsyj.png",
-	"lsys": "res://Art/MagicWeapon/Skill_Icon/lsys.png",
-	"xhmt": "res://Art/MagicWeapon/Skill_Icon/xhmt.png",
-	"kyl": "res://Art/MagicWeapon/Skill_Icon/kyl.png",
-	"xhhl": "res://Art/MagicWeapon/Skill_Icon/xhhl.png",
-	"qyj": "res://Art/MagicWeapon/Skill_Icon/qyj.png",
-	"zjfyd": "res://Art/MagicWeapon/Skill_Icon/zjfyd.png",
-	"zjhl": "res://Art/MagicWeapon/Skill_Icon/zjhl.png",
-	"yjp": "res://Art/MagicWeapon/Skill_Icon/yjp.png",
-	"yx": "res://Art/MagicWeapon/Skill_Icon/yx.png",
-	"qlsword": "res://Art/MagicWeapon/Skill_Icon/qlsword.png",
-	"dzyl": "res://Art/MagicWeapon/Skill_Icon/dzyl.png",
-	"469000004": "res://Art/MagicWeapon/Skill_Icon/469000004.png",
-	"469000011": "res://Art/MagicWeapon/Skill_Icon/469000011.png",
-	"zlwdah": "res://Art/MagicWeapon/Skill_Icon/zlwdah.png",
-	"sqzlw": "res://Art/MagicWeapon/Skill_Icon/zlwdah.png",
-	"nmwdnh": "res://Art/MagicWeapon/Skill_Icon/nmwdnh.png",
-	"sqnmwdnh": "res://Art/MagicWeapon/Skill_Icon/nmwdnh.png",
-	"xianyjp": "res://Art/MagicWeapon/Skill_Icon/xianyjp.png",
-	"yyzlj": "res://Art/MagicWeapon/Skill_Icon/yyzlj.png",
-	"ywhl": "res://Art/MagicWeapon/Skill_Icon/ywhl.png",
-	"zhyx": "res://Art/MagicWeapon/Skill_Icon/zhyx.png",
-	"bjs": "res://Art/MagicWeapon/Skill_Icon/bjs.png",
-	"sxyg": "res://Art/MagicWeapon/Skill_Icon/sxyg.png",
-	"dkhl": "res://Art/MagicWeapon/Skill_Icon/dkhl.png",
-	"yyb": "res://Art/MagicWeapon/Skill_Icon/yyb.png",
-	"hehua": "res://Art/MagicWeapon/Skill_Icon/hehua.png",
+	"zcld": "res://Art/MagicWeapon/skill_icon/zcld.png",
+	"dshl": "res://Art/MagicWeapon/skill_icon/dshl.png",
+	"dhqf": "res://Art/MagicWeapon/skill_icon/dhqf.png",
+	"tsgj": "res://Art/MagicWeapon/skill_icon/wjgz.png",
+	"bsyj": "res://Art/MagicWeapon/skill_icon/bsyj.png",
+	"lsys": "res://Art/MagicWeapon/skill_icon/lsys.png",
+	"xhmt": "res://Art/MagicWeapon/skill_icon/xhmt.png",
+	"kyl": "res://Art/MagicWeapon/skill_icon/kyl.png",
+	"xhhl": "res://Art/MagicWeapon/skill_icon/xhhl.png",
+	"qyj": "res://Art/MagicWeapon/skill_icon/qyj.png",
+	"zjfyd": "res://Art/MagicWeapon/skill_icon/zjfyd.png",
+	"zjhl": "res://Art/MagicWeapon/skill_icon/zjhl.png",
+	"yjp": "res://Art/MagicWeapon/skill_icon/yjp.png",
+	"yx": "res://Art/MagicWeapon/skill_icon/yx.png",
+	"qlsword": "res://Art/MagicWeapon/skill_icon/qlsword.png",
+	"dzyl": "res://Art/MagicWeapon/skill_icon/dzyl.png",
+	"469000004": "res://Art/MagicWeapon/skill_icon/469000004.png",
+	"469000011": "res://Art/MagicWeapon/skill_icon/469000011.png",
+	"zlwdah": "res://Art/MagicWeapon/skill_icon/zlwdah.png",
+	"sqzlw": "res://Art/MagicWeapon/skill_icon/zlwdah.png",
+	"nmwdnh": "res://Art/MagicWeapon/skill_icon/nmwdnh.png",
+	"sqnmwdnh": "res://Art/MagicWeapon/skill_icon/nmwdnh.png",
+	"xianyjp": "res://Art/MagicWeapon/skill_icon/xianyjp.png",
+	"yyzlj": "res://Art/MagicWeapon/skill_icon/yyzlj.png",
+	"ywhl": "res://Art/MagicWeapon/skill_icon/ywhl.png",
+	"zhyx": "res://Art/MagicWeapon/skill_icon/zhyx.png",
+	"bjs": "res://Art/MagicWeapon/skill_icon/bjs.png",
+	"sxyg": "res://Art/MagicWeapon/skill_icon/sxyg.png",
+	"dkhl": "res://Art/MagicWeapon/skill_icon/dkhl.png",
+	"yyb": "res://Art/MagicWeapon/skill_icon/yyb.png",
+	"hehua": "res://Art/MagicWeapon/skill_icon/hehua.png",
 }
 
 const SKILL_INFO := {
@@ -128,7 +128,7 @@ func _refresh_weapon_visual_if_needed() -> void:
 	if nn_name == _displayed_weapon_name:
 		return
 	_displayed_weapon_name = nn_name
-	name_.text = str(AE.AllEquipment_[nn_name][DataKeys.NAME])
+	name_.text = str(AE.all_equipment[nn_name][DataKeys.NAME])
 	set_skill_info(nn_name)
 	_show_lazy_preview(nn_name)
 
@@ -171,7 +171,7 @@ func set_skill_info(weapon_name: String = "") -> void:
 	icon_.texture = Global.get_cached_texture(str(PREVIEW_ICONS.get(weapon_name, "")))
 	magic_weapon_skill_title.text = str(info.get("title", ""))
 	magic_weapon_skill.text = str(info.get("desc", ""))
-	PaTitle_.text = "被动技能"
+	pa_title.text = "被动技能"
 	magic_weapon_skill_2.text = str(info.get("passive", "暂无"))
 
 

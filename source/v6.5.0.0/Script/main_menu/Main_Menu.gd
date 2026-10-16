@@ -2,29 +2,29 @@ extends Node2D
 const MAIN_MENU_DESIGN_SIZE := Vector2(940.0, 590.0)
 var abx: TextureButton
 @onready var ar_infer: Node2D = $ar_infer
-@onready var BGset: Node2D = $BGset
+@onready var b_gset: Node2D = $BGset
 
 @onready var begin_game: TextureButton = $Begin_game
 
-@onready var Music_set = $Music_set
+@onready var music_set = $Music_set
 
 @onready var music: TextureButton = $music
 
 @onready var tiaoguo: TextureButton = $tiaoguo
 @onready var tiaoguo_label: Label = $tiaoguo/tiaoguo_label
 
-@onready var BackGround = $background
+@onready var back_ground = $background
 @onready var name_: Label = $name
 
 @onready var name_2: Label = $name/name2
 @onready var http_request: HTTPRequest = $HTTPRequest
-var Times: int = 0
+var times: int = 0
 var my_music
 var is_playing = false
 var cd_jm
 var message_box
 var music_jm
-var GameSet_: GameSet
+var game_set: GameSet
 var _last_plot_skip: Variant = null
 var _last_main_menu_bg := -1
 var _active_main_menu_background_path := ""
@@ -58,22 +58,22 @@ func _ready() -> void:
 		print("错误：Global 未加载")
 		return
 	if MainSet.set_data.has("FileValue"):
-		if float(MainSet.set_data["FileValue"]) < float(Global.FileNum):
-			MainSet.set_data["FileValue"] = Global.FileNum
+		if float(MainSet.set_data["FileValue"]) < float(Global.file_num):
+			MainSet.set_data["FileValue"] = Global.file_num
 	Global.cd_path = ""
-	Global.CollectNum = 0
-	Global.LLBTLevel = 1
-	Global.LLBTBOSSMS = false
-	Global.LLBTCGMS = false
-	Global.LLBTWXMS = false
-	Global.Windows_ = get_parent()
-	Global.FB_CD = 0
-	Global.is_EyeFix = false
-	Global.is_DeadLink = false
+	Global.collect_num = 0
+	Global.llbt_level = 1
+	Global.llbtbossms = false
+	Global.llbtcgms = false
+	Global.llbtwxms = false
+	Global.windows = get_parent()
+	Global.fb_cd = 0
+	Global.is_eye_fix = false
+	Global.is_dead_link = false
 	MemoryClass.remove_play_data()
 	RoleProp.ws_value = 0
 	MemoryClass.main_dq()
-	if MainMusic.MyMainMusic == null:
+	if MainMusic.my_main_music == null:
 		MainMusic.add_music()
 	if MainSet.set_data["FristGame"]:
 		Global.add_game_need_know(_menu_content_parent(), Vector2(0, 0))
@@ -81,7 +81,7 @@ func _ready() -> void:
 
 
 func _exit_tree() -> void:
-	BackGround.texture = null
+	back_ground.texture = null
 	Global.release_cached_texture(_active_main_menu_background_path)
 	_active_main_menu_background_path = ""
 
@@ -90,7 +90,7 @@ func _apply_main_menu_background(index: int) -> void:
 	var clamped_index := clampi(index, 1, 6)
 	var next_background_path := "res://Art/MainGame/背景%d_runtime.jpg" % clamped_index
 	if _active_main_menu_background_path != "" and _active_main_menu_background_path != next_background_path:
-		BackGround.texture = null
+		back_ground.texture = null
 		Global.release_cached_texture(_active_main_menu_background_path)
 	_active_main_menu_background_path = next_background_path
 	_last_main_menu_bg = clamped_index
@@ -103,7 +103,7 @@ func _apply_main_menu_background(index: int) -> void:
 			name_2.text = "《八荒湮隳篇·智取十万天兵》"
 		4, 5, 6:
 			name_2.text = ""
-	BackGround.texture = (
+	back_ground.texture = (
 		ResourceLoader.load(next_background_path, "Texture2D", ResourceLoader.CACHE_MODE_IGNORE) as Texture2D
 	)
 
@@ -117,7 +117,7 @@ func _physics_process(_delta: float) -> void:
 	if main_menu_bg != _last_main_menu_bg and main_menu_bg >= 1 and main_menu_bg <= 6:
 		_apply_main_menu_background(main_menu_bg)
 	RoleProp.ws_value = 0
-	var music_menu_open := Music_set.get_child_count() != 0
+	var music_menu_open := music_set.get_child_count() != 0
 	if music.disabled != music_menu_open:
 		music.disabled = music_menu_open
 	if music_menu_open:
@@ -125,10 +125,10 @@ func _physics_process(_delta: float) -> void:
 			if music_jm.is_change:
 				MainMusic.add_music()
 				music_jm.is_change = false
-	if GameSet_ != null:
-		if GameSet_.MusicIsChange:
+	if game_set != null:
+		if game_set.music_is_change:
 			MainMusic.add_music()
-			GameSet_.MusicIsChange = false
+			game_set.music_is_change = false
 
 
 func _on_begin_game_pressed() -> void:
@@ -140,7 +140,7 @@ func _on_begin_game_pressed() -> void:
 
 func _on_music_pressed() -> void:
 	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
-	music_jm = Global.add_music_set(Music_set, Vector2(0, 0))
+	music_jm = Global.add_music_set(music_set, Vector2(0, 0))
 
 
 func _on_gmae_help_pressed() -> void:
@@ -161,12 +161,12 @@ func _on_tiaoguo_pressed() -> void:
 
 func _on_change_bg_pressed() -> void:
 	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
-	Global.add_change_bg(BGset, Vector2(0, 0))
+	Global.add_change_bg(b_gset, Vector2(0, 0))
 
 
 func _on_game_set_pressed() -> void:
 	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
-	GameSet_ = Global.add_game_set(_menu_content_parent(), Vector2(0, 0))
+	game_set = Global.add_game_set(_menu_content_parent(), Vector2(0, 0))
 
 
 func _on_game_warn_pressed() -> void:
@@ -178,8 +178,8 @@ func check_time():
 	var error = http_request.request("http://quan.suning.com/getSysTime.do")
 	if error != OK:
 		push_error("在HTTP请求中发生了一个错误。")
-	Times += 1
-	if Times >= 15:
+	times += 1
+	if times >= 15:
 		Global.add_message_show(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
 
 
@@ -196,13 +196,13 @@ func _on_body_received(request, body):
 		check_time()
 		Global.add_message_show(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
 		return null
-	var TImeUnix = int(utc_time["sysTime2"])
-	if TImeUnix == null or str(TImeUnix) == "":
+	var t_ime_unix = int(utc_time["sysTime2"])
+	if t_ime_unix == null or str(t_ime_unix) == "":
 		print("无法获取时间3！！")
 		check_time()
 		Global.add_message_show(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
 		return null
-	return TImeUnix
+	return t_ime_unix
 
 
 func _on_http_request_request_completed(
@@ -210,7 +210,7 @@ func _on_http_request_request_completed(
 ) -> void:
 	if _on_body_received(result, body) != null:
 		var abc = str(_on_body_received(result, body)).split()
-		var DataList = {
+		var data_list = {
 			"year": str(abc[0] + abc[1] + abc[2] + abc[3]),
 			"month": str(abc[4] + abc[5]),
 			"day": str(abc[6] + abc[7]),
@@ -218,32 +218,32 @@ func _on_http_request_request_completed(
 			"minute": str(abc[10] + abc[11]),
 			"second": str(abc[12] + abc[13]),
 		}
-		refresh_time(DataList)
+		refresh_time(data_list)
 
 
-func refresh_time(DataList):
-	var Dic = DataList
-	var MyDic = MainSet.set_data["MyTime"]
+func refresh_time(data_list):
+	var dic = data_list
+	var my_dic = MainSet.set_data["MyTime"]
 
-	if MyDic.size() <= 0:
+	if my_dic.size() <= 0:
 		return
-	if int(Dic["year"]) < int(MyDic["year"]):
+	if int(dic["year"]) < int(my_dic["year"]):
 		return
-	elif int(Dic["year"]) > int(MyDic["year"]):
+	elif int(dic["year"]) > int(my_dic["year"]):
 		print("更新年")
-		MainSet.set_data["MyTime"] = DataList
+		MainSet.set_data["MyTime"] = data_list
 	else:
-		if int(Dic["month"]) < int(MyDic["month"]):
+		if int(dic["month"]) < int(my_dic["month"]):
 			return
-		elif int(Dic["month"]) > int(MyDic["month"]):
+		elif int(dic["month"]) > int(my_dic["month"]):
 			print("更新月")
-			MainSet.set_data["MyTime"] = DataList
+			MainSet.set_data["MyTime"] = data_list
 		else:
-			if int(Dic["day"]) < int(MyDic["day"]):
+			if int(dic["day"]) < int(my_dic["day"]):
 				return
-			elif int(Dic["day"]) > int(MyDic["day"]):
+			elif int(dic["day"]) > int(my_dic["day"]):
 				print("更新日")
-				MainSet.set_data["MyTime"] = DataList
+				MainSet.set_data["MyTime"] = data_list
 			else:
 				return
 	MemoryClass.main_bc()

@@ -14,10 +14,10 @@ var wx = []
 var is_in_hh = false
 var is_in_hhgz = false
 var get_tt
-var HideProp: bool
-var ForgeBZID: int
-var IsChoose: bool
-var MainBack
+var hide_prop: bool
+var forge_bzid: int
+var is_choose: bool
+var main_back
 @onready var item_number: Label = $item_number
 var is_in_ldl
 var strength_source := "装备背包"
@@ -82,8 +82,8 @@ func _physics_process(_delta: float) -> void:
 		get_type = "宠物装备"
 		item_number.text = "+%d" % qh_level if qh_level > 0 else ""
 	elif get_item_name != "empty":
-		if AE.AllEquipment_.has(get_item_name):
-			get_type = AE.AllEquipment_[get_item_name][DataKeys.TYPE]
+		if AE.all_equipment.has(get_item_name):
+			get_type = AE.all_equipment[get_item_name][DataKeys.TYPE]
 			match get_type:
 				"武器":
 					item_number.text = ""
@@ -120,16 +120,16 @@ func _physics_process(_delta: float) -> void:
 
 func on_press_when_in_back():
 	var parent_ = Global.get_parent_(self, 6)
-	var Position_ = Global.popup_position_for_parent(parent_, Vector2(18, 18))
+	var position_vec = Global.popup_position_for_parent(parent_, Vector2(18, 18))
 	var number = get_number()
 	match get_type:
 		"武器", "防具", "饰品", "神骨", "翅膀", "时装", "头衔", "法宝", "时装", "头衔", "翅膀":
-			sell_box = Global.add_se_eq_jm(parent_, Position_, get_item_name, current_page, number)
+			sell_box = Global.add_se_eq_jm(parent_, position_vec, get_item_name, current_page, number)
 			_keep_click_menu_near_item(sell_box, parent_)
 			sell_box.EQ_prop = EQ_prop
 			sell_box.source_box = self
 		"消耗品", "道具":
-			var pp = Global.add_dj_sell(parent_, Position_, get_item_name, current_page)
+			var pp = Global.add_dj_sell(parent_, position_vec, get_item_name, current_page)
 			_keep_click_menu_near_item(pp, parent_)
 			pp.EQ_prop = EQ_prop
 			pp.source_box = self
@@ -168,7 +168,7 @@ func on_press_when_strength():
 		var parent_ = Global.get_parent_(self, 7)
 		Global.add_message_show(parent_, "该装备不可强化！", 1.5, Vector2(500, 305))
 		return
-	var get_tt = "宠物装备" if strength_source == "宠物背包" else AE.AllEquipment_[get_item_name][DataKeys.TYPE]
+	var get_tt = "宠物装备" if strength_source == "宠物背包" else AE.all_equipment[get_item_name][DataKeys.TYPE]
 	if get_tt != "道具" and get_tt != "消耗品" and get_tt != "法宝":
 		var max_level = _get_strength_max_level(get_item_name)
 		if qh_level < max_level:
@@ -185,7 +185,7 @@ func on_press_when_strength():
 
 
 func on_press_when_divine_forge() -> void:
-	var item_data: Dictionary = AE.AllEquipment_.get(get_item_name, {})
+	var item_data: Dictionary = AE.all_equipment.get(get_item_name, {})
 	if (
 		bool(EQ_prop.get("不可神铸", item_data.get("不可神铸", false)))
 		or item_data.is_empty()
@@ -204,7 +204,7 @@ func on_press_when_divine_forge() -> void:
 
 
 func on_press_when_bone_forge() -> void:
-	var item_data: Dictionary = AE.AllEquipment_.get(get_item_name, {})
+	var item_data: Dictionary = AE.all_equipment.get(get_item_name, {})
 	var item_type := str(EQ_prop.get(DataKeys.TYPE, item_data.get(DataKeys.TYPE, "")))
 	var next_stage := str(EQ_prop.get("下一阶段", item_data.get("下一阶段", "")))
 	if item_data.is_empty() or item_type != "神骨" or next_stage == "":
@@ -247,7 +247,7 @@ func on_press_when_synthesis():
 		for i in PlayerData.player_data["放入列表"]:
 			var mylist = PlayerData.player_data["放入列表"][i]
 			if mylist.size() == 0:
-				var get_tt = AE.AllEquipment_[get_item_name][DataKeys.TYPE]
+				var get_tt = AE.all_equipment[get_item_name][DataKeys.TYPE]
 				if get_tt == "法宝":
 					Global.add_message_show(parent_, "法宝无法参与合成！！！", 1.5, Vector2(500, 305))
 					return
@@ -286,7 +286,7 @@ func on_press_when_synthesis():
 			return
 		var list = PlayerData.player_data["放入列表"]["物品" + str(num)]
 		if list.has(str(get_item_name)):
-			var get_tt = AE.AllEquipment_[list[0]][DataKeys.TYPE]
+			var get_tt = AE.all_equipment[list[0]][DataKeys.TYPE]
 			if get_tt == "武器" or get_tt == "防具" or get_tt == "饰品" or get_tt == "翅膀" or get_tt == "时装" or get_tt == "头衔":
 				PlayerData.add_zb(get_item_name, list[3], EQ_prop)
 			elif get_tt == "道具":
@@ -301,15 +301,15 @@ func on_press_when_synthesis():
 
 
 func on_press_when_dz():
-	if Global.Forge_ == null:
+	if Global.forge == null:
 		return
-	var item_data: Dictionary = AE.AllEquipment_.get(str(get_item_name), {})
+	var item_data: Dictionary = AE.all_equipment.get(str(get_item_name), {})
 	if item_data.is_empty():
 		return
 	var Type := str(item_data.get(DataKeys.TYPE, ""))
-	var Have := str(item_data.get("所属", ""))
+	var have := str(item_data.get("所属", ""))
 	var item_name := str(item_data.get(DataKeys.NAME, ""))
-	if Type == "" or Have == "" or item_name == "":
+	if Type == "" or have == "" or item_name == "":
 		Global.add_message_show(Global.get_parent_(self, 7), "物品数据异常，无法参与打造！", 1.5, Vector2(500, 305))
 		return
 	var parent_ = Global.get_parent_(self, 7)
@@ -317,14 +317,14 @@ func on_press_when_dz():
 		if Type != "道具":
 			Global.add_message_show(parent_, str(item_name) + "不可以参与打造！", 1.5, Vector2(500, 305))
 			return
-		if Global.Forge_.zzs.get_children().size() <= 0:
-			if Have != "制作书":
+		if Global.forge.zzs.get_children().size() <= 0:
+			if have != "制作书":
 				Global.add_message_show(parent_, "只有制作书可以参与打造！", 1.5, Vector2(500, 305))
 				return
 			else:
-				Global.Forge_.replace_book(get_item_name, qh_level, EQ_prop)
+				Global.forge.replace_book(get_item_name, qh_level, EQ_prop)
 		else:
-			if Have != "制作书":
+			if have != "制作书":
 				var count_baozhu = 0
 				var count_jingshi = 0
 				var jewels_value: Variant = PlayerData.player_data.get("宝珠列表", [])
@@ -336,7 +336,7 @@ func on_press_when_dz():
 						continue
 					var item: Dictionary = item_value
 					var jewel_name := str(item.get(DataKeys.NAME, ""))
-					var jewel_data: Variant = AE.AllEquipment_.get(jewel_name, {})
+					var jewel_data: Variant = AE.all_equipment.get(jewel_name, {})
 					if not jewel_data is Dictionary:
 						continue
 					var belong := str((jewel_data as Dictionary).get("所属", ""))
@@ -345,7 +345,7 @@ func on_press_when_dz():
 					elif belong == "晶石":
 						count_jingshi += 1
 
-				if Have == "宝珠" or Have == "晶石":
+				if have == "宝珠" or have == "晶石":
 					if count_baozhu + count_jingshi >= 4:
 						Global.add_message_show(parent_, "最多4颗！", 1.5, Vector2(500, 305))
 						return
@@ -353,15 +353,15 @@ func on_press_when_dz():
 					Global.add_message_show(parent_, "只能放入宝珠或晶石！", 1.5, Vector2(500, 305))
 					return
 
-				var BzProp = {"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
-				PlayerData.player_data["宝珠列表"].push_back(BzProp)
-				Global.Forge_.addbzpic()
+				var bz_prop = {"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
+				PlayerData.player_data["宝珠列表"].push_back(bz_prop)
+				Global.forge.addbzpic()
 				PlayerData.remove_dj(get_item_name, PlayerData.get_dj_page(get_item_name), 1)
 				return
 			else:
-				Global.Forge_.replace_book(get_item_name, qh_level, EQ_prop)
+				Global.forge.replace_book(get_item_name, qh_level, EQ_prop)
 	else:
-		Global.Forge_.remove_bspic(ForgeBZID)
+		Global.forge.remove_bspic(forge_bzid)
 
 
 func _set_forge_book_box_properties(item_box) -> void:
@@ -387,22 +387,22 @@ func on_press_whenfj():
 		return
 	if not is_in_ldl_gz:
 		var parent_ = Global.get_parent_(self, 7)
-		var get_tt = AE.AllEquipment_[get_item_name][DataKeys.TYPE]
-		var Base = AE.AllEquipment_[get_item_name]["所属"]
-		var Name_
+		var get_tt = AE.all_equipment[get_item_name][DataKeys.TYPE]
+		var base = AE.all_equipment[get_item_name]["所属"]
+		var name_str
 		if PlayerData.player_data[DataKeys.DECOMPOSE_LIST].size() != 0:
-			Name_ = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
+			name_str = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
 			var cur_level = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.ENHANCE_LEVEL]
 			var Data = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0]["Data"]
-			get_tt = AE.AllEquipment_[Name_][DataKeys.TYPE]
+			get_tt = AE.all_equipment[name_str][DataKeys.TYPE]
 			match get_tt:
 				"武器", "饰品", "防具":
-					PlayerData.add_zb(Name_, cur_level, Data)
+					PlayerData.add_zb(name_str, cur_level, Data)
 					PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
 				"道具":
-					PlayerData.add_dj(Name_, 1)
+					PlayerData.add_dj(name_str, 1)
 					PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
-		var get_tt2 = AE.AllEquipment_[get_item_name][DataKeys.TYPE]
+		var get_tt2 = AE.all_equipment[get_item_name][DataKeys.TYPE]
 		match get_tt2:
 			"法宝":
 				Global.add_message_show(parent_, "法宝不可以分解！！", 1.5, Vector2(500, 305))
@@ -437,16 +437,16 @@ func on_press_whenfj():
 				return
 	else:
 		if PlayerData.player_data[DataKeys.DECOMPOSE_LIST].size() != 0:
-			var Name_ = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
+			var name_str = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
 			var cur_level = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.ENHANCE_LEVEL]
 			var Data = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0]["Data"]
-			get_tt = AE.AllEquipment_[Name_][DataKeys.TYPE]
+			get_tt = AE.all_equipment[name_str][DataKeys.TYPE]
 			match get_tt:
 				"武器", "饰品", "防具":
-					PlayerData.add_zb(Name_, cur_level, Data)
+					PlayerData.add_zb(name_str, cur_level, Data)
 					PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
 				"道具":
-					PlayerData.add_dj(Name_, 1)
+					PlayerData.add_dj(name_str, 1)
 					PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
 		return
 
@@ -461,8 +461,8 @@ func on_press_when_xq():
 			if not PlayerData.take_pet_equipment_for_mosaic(strength_index, EQ_prop, get_item_name):
 				Global.add_message_show(parent_, "宠物装备位置已变化，请重新选择！！", 1.5, Vector2(500, 305))
 			return
-		var get_tt = AE.AllEquipment_[get_item_name][DataKeys.TYPE]
-		var Base = AE.AllEquipment_[get_item_name]["所属"]
+		var get_tt = AE.all_equipment[get_item_name][DataKeys.TYPE]
+		var base = AE.all_equipment[get_item_name]["所属"]
 		if PlayerData.player_data[DataKeys.INLAY_LIST].size() == 0:
 			match get_tt:
 				"法宝":
@@ -473,7 +473,7 @@ func on_press_when_xq():
 					return
 
 				"道具":
-					if Base == "宝石":
+					if base == "宝石":
 						if PlayerData.player_data[DataKeys.INLAY_LIST].size() == 0:
 							Global.add_message_show(parent_, "请先放入装备！！", 1.5, Vector2(500, 305))
 					else:
@@ -508,7 +508,7 @@ func on_press_when_xq():
 					Global.add_message_show(parent_, "不可放入消耗品！！", 1.5, Vector2(500, 305))
 					return
 				"道具":
-					if Base == "宝石":
+					if base == "宝石":
 						if Data[DataKeys.GEM].size() < get_max_bs():
 							if Data[DataKeys.GEM].size() != 0:
 								PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"][DataKeys.GEM].push_back(
@@ -540,7 +540,7 @@ func on_press_when_xq():
 			if strength_source == "宠物背包":
 				PlayerData.restore_mosaic_equipment()
 				return
-			var get_tt = AE.AllEquipment_[get_item_name][DataKeys.TYPE]
+			var get_tt = AE.all_equipment[get_item_name][DataKeys.TYPE]
 			match get_tt:
 				"武器", "饰品", "防具", "神骨", "翅膀", "时装", "头衔":
 					PlayerData.restore_mosaic_equipment()
@@ -554,7 +554,7 @@ func on_press_when_xq():
 
 func _on_pressed() -> void:
 	var parent_
-	if Global.BoxCount > 0:
+	if Global.box_count > 0:
 		if is_in_ldl:
 			parent_ = Global.get_parent_(self, 7)
 		else:
@@ -565,8 +565,8 @@ func _on_pressed() -> void:
 			Global.add_message_show(parent_, "点击过快！！", 1.5, Vector2(500, 305))
 		return
 	else:
-		Global.BoxCount = 6
-	if HideProp:
+		Global.box_count = 6
+	if hide_prop:
 		return
 	if is_in_hh or is_in_shop or is_in_hhgz:
 		return
@@ -588,7 +588,7 @@ func _on_pressed() -> void:
 				"镶嵌":
 					on_press_when_xq()
 				"分解":
-					Global.NeedChangeItem = true
+					Global.need_change_item = true
 					on_press_whenfj()
 				"打造":
 					on_press_when_dz()
@@ -596,7 +596,7 @@ func _on_pressed() -> void:
 
 
 func _on_mouse_entered() -> void:
-	if HideProp:
+	if hide_prop:
 		return
 	if get_item_name != "empty" and add_equ_box == null:
 		var tt = get_parent_()
@@ -630,12 +630,12 @@ func _get_equipment_source_index() -> int:
 
 
 func get_parent_():
-	var LastParent
+	var last_parent
 	if is_in_hh or is_in_hhgz or is_in_shop or is_in_ldl_gz or is_in_ldl:
-		LastParent = Global.Windows_
+		last_parent = Global.windows
 	else:
-		LastParent = Global.get_parent_(self, 7)
-	return LastParent
+		last_parent = Global.get_parent_(self, 7)
+	return last_parent
 
 
 func get_max_bs():

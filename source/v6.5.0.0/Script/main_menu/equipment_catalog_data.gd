@@ -39,7 +39,7 @@ func initialize(all_equipment: Dictionary) -> void:
 		_register_level(str(level_name), level_info.LevelInfo[level_name])
 
 	for level_id in range(63, 76):
-		level_info.TargetStagePath = "res://Scene/level/Level_%d.tscn" % level_id
+		level_info.target_stage_path = "res://Scene/level/Level_%d.tscn" % level_id
 		var info: Dictionary = level_info._get_level_info()
 		_register_level("东胜神洲·" + str(info.get("LevelName", "")), info)
 	level_info.free()
@@ -56,10 +56,10 @@ func initialize(all_equipment: Dictionary) -> void:
 			recipes[result] = []
 		recipes[result].append(recipe)
 	var forge = load("res://Script/ldl/forge.gd").new()
-	forge_materials = forge.ItemMaterialList.duplicate(true)
+	forge_materials = forge.item_material_list.duplicate(true)
 	forge.free()
 	var shop = load("res://Script/shop/shop.gd").new()
-	for category in shop.CUSTOM_SHOP_ITEMS.values():
+	for category in shop.custom_shop_items.values():
 		for item in category:
 			shop_items[str(item.get(DataKeys.NAME, ""))] = true
 	shop.free()

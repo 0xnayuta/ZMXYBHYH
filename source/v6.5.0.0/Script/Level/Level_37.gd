@@ -11,7 +11,7 @@ var jjc02_original_pos: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "仙树岛"
+	Global.current_level = "仙树岛"
 	Global.add_bgm(self, "res://Music/level/BGM_Normal.mp3")
 	load("res://Scene/monster/monster_1406.tscn")
 
@@ -21,7 +21,7 @@ func _ready() -> void:
 
 	_init_platforms()
 
-	Monster_group = {
+	monster_group = {
 		"stage_1":
 		[
 			124,
@@ -53,7 +53,7 @@ func _ready() -> void:
 		"stage_3": [],
 		"stage_4": [1407],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1":
 		[
 			250,
@@ -85,7 +85,7 @@ func _ready() -> void:
 		"stage_3": [],
 		"stage_4": [850],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[300, 500, 300, 500, 300, 500, 300, 500, 300, 500, 300, 500, 0, 200, 0, 200, 0, 200, 0, 200, 0, 200, 0, 200],
 		"stage_2": [],
@@ -219,7 +219,7 @@ func _physics_process(delta: float) -> void:
 
 		handle_stage_transition()
 
-	if Role_ and not Role_.IsDeath and Role_.position.y > 800:
+	if Role_ and not Role_.is_death and Role_.position.y > 800:
 		Role_.effect_reducehp(999999, "real")
 
 

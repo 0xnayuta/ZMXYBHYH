@@ -3,17 +3,17 @@ extends Line2D
 var Type: String
 var Player: BaseHero
 var Monster: BaseMonster
-var ReduceCount: int
+var reduce_count: int
 
 
 func _physics_process(delta: float) -> void:
-	Player = RoleProp.SourcePlayer
+	Player = RoleProp.source_player
 	if Player != null:
 		points[1] = Player.position
 
-	ReduceCount += 1
-	if ReduceCount % 60 == 0:
-		ReduceCount = 0
+	reduce_count += 1
+	if reduce_count % 60 == 0:
+		reduce_count = 0
 		match Type:
 			"Red":
 				if Player != null:

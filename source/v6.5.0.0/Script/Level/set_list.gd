@@ -5,23 +5,23 @@ extends HBoxContainer
 @onready var skill: TextureButton = $"../ButtonGroup/skill"
 @onready var magic_weapon: TextureButton = $"../ButtonGroup/magic_weapon"
 @onready var pet: TextureButton = $"../ButtonGroup/pet"
-var setCd: float = 0
+var set_cd: float = 0
 
 
 func _physics_process(delta):
 	if !backpack.visible:
-		setCd = 0
+		set_cd = 0
 	else:
-		setCd += delta
-		if setCd >= 5:
-			setCd = 0
+		set_cd += delta
+		if set_cd >= 5:
+			set_cd = 0
 			_on_menu_pressed()
 
 
 func _on_menu_pressed():
-	var isHidden: bool = !backpack.visible
-	backpack.visible = isHidden
-	set_.visible = isHidden
-	skill.visible = isHidden
-	magic_weapon.visible = isHidden
-	pet.visible = isHidden
+	var is_hidden: bool = !backpack.visible
+	backpack.visible = is_hidden
+	set_.visible = is_hidden
+	skill.visible = is_hidden
+	magic_weapon.visible = is_hidden
+	pet.visible = is_hidden

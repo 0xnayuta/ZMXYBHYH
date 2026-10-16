@@ -7,7 +7,7 @@ var player_power: int = 0
 var damage_ratio: float = 0.3
 var damage_scale: float = 1.0
 
-var WHSCount: int = 0
+var whs_count: int = 0
 
 
 func set_weapon_level(level: int, scale: float, damage_scale_: float = 1.0) -> void:
@@ -179,8 +179,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	WHSCount += 1
-	if WHSCount % 600 == 0:
+	whs_count += 1
+	if whs_count % 600 == 0:
 		var bullet = Global.add_bullet(
 			"Monster141Bullet4", self, true, 1, Vector2(0, -30), "hit6", objattackDic["hit6"]
 		)
@@ -195,11 +195,11 @@ func setup_skills() -> void:
 	Skill_2_CD = 20 * cd_multiplier
 	Skill_3_CD = 15 * cd_multiplier
 	Skill_4_CD = 12 * cd_multiplier
-	Skill_5_CD = 15 * cd_multiplier
+	skill_5_cd = 15 * cd_multiplier
 
 
 func try_use_skills() -> void:
-	if ShouldInSky:
+	if should_in_sky:
 		return
 	if randi_range(0, 100) >= attackDesire:
 		return

@@ -1,9 +1,9 @@
 extends BaseMonster
 
-var ShouldFly: bool
-var IsCall: bool
-var OnsetEatblood: bool
-var RemoveBlood: bool
+var should_fly: bool
+var is_call: bool
+var onset_eatblood: bool
+var remove_blood: bool
 
 
 func monster_1405():
@@ -192,12 +192,12 @@ func do_hit_4():
 
 
 func call_bullet_2():
-	var PositionList1 = [Vector2(position.x, position.y - 200)]
-	var PositionList2 = [Vector2(position.x - 200, position.y - 200), Vector2(position.x + 200, position.y - 200)]
+	var position_list1 = [Vector2(position.x, position.y - 200)]
+	var position_list2 = [Vector2(position.x - 200, position.y - 200), Vector2(position.x + 200, position.y - 200)]
 
 	var player = get_Player if get_Player else null
 
-	for i in PositionList1:
+	for i in position_list1:
 		var bullet = Global.add_bullet(
 			"Monster1405Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"]
 		)
@@ -205,7 +205,7 @@ func call_bullet_2():
 			await get_tree().create_timer(0.6, false).timeout
 			bullet.look_at(player.position)
 
-	for i in PositionList2:
+	for i in position_list2:
 		var bullet = Global.add_bullet(
 			"Monster1405Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"]
 		)
@@ -215,14 +215,14 @@ func call_bullet_2():
 
 
 func call_bullet_3():
-	var PositionList1 = [Vector2(position.x, position.y - 20), Vector2(position.x, position.y + 20)]
-	var PositionList2 = [Vector2(position.x, position.y - 40), Vector2(position.x, position.y + 40)]
-	var PositionList3 = [Vector2(position.x, position.y - 60), Vector2(position.x, position.y + 60)]
-	var PositionList4 = [Vector2(position.x, position.y - 80), Vector2(position.x, position.y + 80)]
+	var position_list1 = [Vector2(position.x, position.y - 20), Vector2(position.x, position.y + 20)]
+	var position_list2 = [Vector2(position.x, position.y - 40), Vector2(position.x, position.y + 40)]
+	var position_list3 = [Vector2(position.x, position.y - 60), Vector2(position.x, position.y + 60)]
+	var position_list4 = [Vector2(position.x, position.y - 80), Vector2(position.x, position.y + 80)]
 
 	var player = get_Player if get_Player else null
 
-	for i in PositionList1:
+	for i in position_list1:
 		var bullet = Global.add_bullet(
 			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
 		)
@@ -230,7 +230,7 @@ func call_bullet_3():
 			bullet.look_at(player.position)
 	await get_tree().create_timer(0.2, false).timeout
 
-	for i in PositionList2:
+	for i in position_list2:
 		var bullet = Global.add_bullet(
 			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
 		)
@@ -238,7 +238,7 @@ func call_bullet_3():
 			bullet.look_at(player.position)
 	await get_tree().create_timer(0.2, false).timeout
 
-	for i in PositionList3:
+	for i in position_list3:
 		var bullet = Global.add_bullet(
 			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
 		)
@@ -246,7 +246,7 @@ func call_bullet_3():
 			bullet.look_at(player.position)
 	await get_tree().create_timer(0.2, false).timeout
 
-	for i in PositionList4:
+	for i in position_list4:
 		var bullet = Global.add_bullet(
 			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
 		)
@@ -258,7 +258,7 @@ func call_bullet_3():
 func add_fire():
 	Global.add_bullet("Monster1405Bullet4", self, false, 1, Vector2(-20, -50), "hit4", self.objattackDic["hit4"])
 
-	var player = RoleProp.SourcePlayer
+	var player = RoleProp.source_player
 	var stun_effect = {
 		"Name": "DeadLink",
 		"AddTime": 7,

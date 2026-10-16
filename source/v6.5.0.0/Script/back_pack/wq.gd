@@ -209,7 +209,7 @@ func _on_pressed() -> void:
 				set_button_icon(load("res://Art/BackPack/cb.png"))
 			PlayerData.player_data[DataKeys.WINGS].clear()
 		"fb":
-			if Global.FB_CD <= 0:
+			if Global.fb_cd <= 0:
 				if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() != 0:
 					var name_ = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
 					var ql = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL]
@@ -224,8 +224,8 @@ func _on_pressed() -> void:
 	qh_level = 0
 	RoleProp.get_equ_last_pro()
 	RoleProp.get_last_prop()
-	if is_instance_valid(RoleProp.SourcePlayer):
-		RoleProp.SourcePlayer.on_eqchange()
+	if is_instance_valid(RoleProp.source_player):
+		RoleProp.source_player.on_eqchange()
 	MemoryClass.save_game(Global.cd_path)
 
 

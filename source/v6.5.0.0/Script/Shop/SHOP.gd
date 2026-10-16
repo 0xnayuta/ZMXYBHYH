@@ -13,18 +13,18 @@ const SHOP_CATEGORY_WING := "翅膀"
 @onready var role: Label = $BG/BG2/bg_3/Role
 @onready var line_edit: LineEdit = $BG/BG2/HBoxContainer2/LineEdit
 
-var GET_ItemName: String = ""
+var get_item_name: String = ""
 var current_page: int = 1:
 	set(vl):
 		if current_page != vl:
 			current_page = vl
 			change_page()
 var max_page: int = 1
-var List_x = [-220, 0, 220, -220, 0, 220, -220, 0, 220]
-var List_y = [-120, -120, -120, -20, -20, -20, 80, 80, 80]
-var PlayeId = int(PlayerData.player_data["Myself"])
+var list_x = [-220, 0, 220, -220, 0, 220, -220, 0, 220]
+var list_y = [-120, -120, -120, -20, -20, -20, 80, 80, 80]
+var playe_id = int(PlayerData.player_data["Myself"])
 
-var CUSTOM_SHOP_ITEMS = {
+var custom_shop_items = {
 	"装备":
 	[
 		{"名字": "tpys", "灵魂": 2000000},
@@ -149,16 +149,16 @@ var CUSTOM_SHOP_ITEMS = {
 	],
 }
 
-var CurrentType = SHOP_CATEGORY_ALL:
+var current_type = SHOP_CATEGORY_ALL:
 	set(vl):
-		GET_ItemName = ""
+		get_item_name = ""
 		if line_edit != null:
 			line_edit.text = ""
-		CurrentType = str(vl)
+		current_type = str(vl)
 		current_page = 1
 		change_page()
 
-var TotalItemList = []
+var total_item_list = []
 var _custom_shop_item_types = {}
 var shop_item_list = []
 var _shop_shadow_rects := []
@@ -243,8 +243,8 @@ func _read_custom_item_price(item: Dictionary) -> int:
 	if item.has("cost"):
 		return int(item["cost"])
 	var item_name := _read_custom_item_name(item)
-	if AE.AllEquipment_.has(item_name):
-		return get_price_by_quality(str(AE.AllEquipment_[item_name].get(DataKeys.QUALITY, "")))
+	if AE.all_equipment.has(item_name):
+		return get_price_by_quality(str(AE.all_equipment[item_name].get(DataKeys.QUALITY, "")))
 	return 0
 
 
@@ -252,7 +252,7 @@ func _normalize_custom_shop_item(item: Dictionary, category: String) -> Dictiona
 	var item_name := _read_custom_item_name(item)
 	if item_name == "":
 		return {}
-	if not AE.AllEquipment_.has(item_name):
+	if not AE.all_equipment.has(item_name):
 		push_warning("商店商品不存在: " + item_name)
 		return {}
 	_custom_shop_item_types[item_name] = category
@@ -260,37 +260,37 @@ func _normalize_custom_shop_item(item: Dictionary, category: String) -> Dictiona
 
 
 func _load_custom_shop_items() -> void:
-	TotalItemList.clear()
+	total_item_list.clear()
 	_custom_shop_item_types.clear()
 	for category in [SHOP_CATEGORY_EQUIPMENT, SHOP_CATEGORY_ITEM, SHOP_CATEGORY_FASHION, SHOP_CATEGORY_WING]:
-		for item in CUSTOM_SHOP_ITEMS.get(category, []):
+		for item in custom_shop_items.get(category, []):
 			if item is Dictionary:
 				var normalized := _normalize_custom_shop_item(item, category)
 				if normalized.size() > 0:
-					TotalItemList.push_back(normalized)
+					total_item_list.push_back(normalized)
 	if Global.is_hidden_feature_enabled(Global.HIDDEN_FEATURE_ALL_SHOP_ITEMS):
 		_append_all_equipment_items()
 
 
 func _append_all_equipment_items() -> void:
 	var existing_ids := {}
-	for item in TotalItemList:
+	for item in total_item_list:
 		if item is Dictionary:
 			existing_ids[_shop_item_id(item)] = true
-	var item_ids: Array = AE.AllEquipment_.keys()
+	var item_ids: Array = AE.all_equipment.keys()
 	item_ids.sort()
 	for item_id_value in item_ids:
 		var item_id := str(item_id_value)
 		if existing_ids.has(item_id):
 			continue
-		var item_data: Variant = AE.AllEquipment_.get(item_id, {})
+		var item_data: Variant = AE.all_equipment.get(item_id, {})
 		if not (item_data is Dictionary):
 			continue
 		var category := _shop_category_for_type(str(item_data.get(DataKeys.TYPE, "")))
 		if category == "":
 			continue
 		_custom_shop_item_types[item_id] = category
-		TotalItemList.push_back(
+		total_item_list.push_back(
 			{"id": item_id, "price": get_price_by_quality(str(item_data.get(DataKeys.QUALITY, "")))}
 		)
 
@@ -320,7 +320,7 @@ func _shop_item_price(item: Dictionary) -> int:
 
 
 func _current_role_owner_name() -> String:
-	match PlayeId:
+	match playe_id:
 		1:
 			return "悟空"
 		2:
@@ -338,7 +338,7 @@ func _current_role_owner_name() -> String:
 
 
 func _is_fashion_for_current_role(item_id: String) -> bool:
-	var item_data: Dictionary = AE.AllEquipment_[item_id]
+	var item_data: Dictionary = AE.all_equipment[item_id]
 	var owner := str(item_data.get("所属", "")).strip_edges()
 	return owner == "通用" or owner == _current_role_owner_name()
 
@@ -353,7 +353,7 @@ func _ready() -> void:
 	_layout_fullscreen()
 	if not get_viewport().size_changed.is_connected(_layout_fullscreen):
 		get_viewport().size_changed.connect(_layout_fullscreen)
-	PlayeId = int(PlayerData.player_data["Myself"])
+	playe_id = int(PlayerData.player_data["Myself"])
 	_load_custom_shop_items()
 	set_role_name()
 	page.text = str(current_page) + "/" + str(max_page)
@@ -388,53 +388,53 @@ func _is_shop_item_visible(item) -> bool:
 	if not item is Dictionary:
 		return false
 	var item_id := _shop_item_id(item)
-	if item_id == "" or not AE.AllEquipment_.has(item_id):
+	if item_id == "" or not AE.all_equipment.has(item_id):
 		return false
 	var item_category := str(_custom_shop_item_types.get(item_id, ""))
-	if CurrentType == SHOP_CATEGORY_ALL:
+	if current_type == SHOP_CATEGORY_ALL:
 		if item_category == SHOP_CATEGORY_FASHION or item_category == SHOP_CATEGORY_EQUIPMENT:
 			return _is_shop_item_for_current_role(item_id)
 		return true
-	if item_category != CurrentType:
+	if item_category != current_type:
 		return false
-	if CurrentType == SHOP_CATEGORY_FASHION or CurrentType == SHOP_CATEGORY_EQUIPMENT:
+	if current_type == SHOP_CATEGORY_FASHION or current_type == SHOP_CATEGORY_EQUIPMENT:
 		return _is_shop_item_for_current_role(item_id)
 	return true
 
 
 func set_current_page_type_items():
-	var GetTargetList = []
-	if GET_ItemName != "":
-		var keyword = GET_ItemName.strip_edges().to_lower()
-		for item in TotalItemList:
+	var get_target_list = []
+	if get_item_name != "":
+		var keyword = get_item_name.strip_edges().to_lower()
+		for item in total_item_list:
 			if _is_shop_item_visible(item):
 				var item_id := _shop_item_id(item)
-				var item_name = str(AE.AllEquipment_[item_id].get(DataKeys.NAME, item_id)).to_lower()
+				var item_name = str(AE.all_equipment[item_id].get(DataKeys.NAME, item_id)).to_lower()
 				if keyword in item_name:
-					GetTargetList.append(item)
+					get_target_list.append(item)
 	else:
-		for item in TotalItemList:
+		for item in total_item_list:
 			if _is_shop_item_visible(item):
-				GetTargetList.append(item)
+				get_target_list.append(item)
 
-	var total = GetTargetList.size()
-	var MaxPage = max(1, int(ceil(total / 9.0)))
-	max_page = MaxPage
+	var total = get_target_list.size()
+	var max_page = max(1, int(ceil(total / 9.0)))
+	max_page = max_page
 
-	var MyList = {}
-	for p in range(MaxPage):
-		MyList["Page_" + str(p + 1)] = []
+	var my_list = {}
+	for p in range(max_page):
+		my_list["Page_" + str(p + 1)] = []
 
 	var page_idx = 1
-	for item in GetTargetList:
+	for item in get_target_list:
 		var page_key = "Page_" + str(page_idx)
-		if MyList[page_key].size() < 9:
-			MyList[page_key].append(item)
+		if my_list[page_key].size() < 9:
+			my_list[page_key].append(item)
 		else:
 			page_idx += 1
-			MyList["Page_" + str(page_idx)].append(item)
+			my_list["Page_" + str(page_idx)].append(item)
 
-	return MyList
+	return my_list
 
 
 func _physics_process(_delta: float) -> void:
@@ -443,7 +443,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func set_role_name():
-	match PlayeId:
+	match playe_id:
 		1:
 			role.text = "角色：悟空"
 		2:
@@ -485,7 +485,7 @@ func add_shop_item():
 		var items = page_items[key]
 		var idx = 0
 		for item in items:
-			var pos = Vector2(List_x[idx], List_y[idx])
+			var pos = Vector2(list_x[idx], list_y[idx])
 			var target = Global.add_shop_items($BG/BG2, pos, _shop_item_id(item), _shop_item_price(item))
 			if target != null:
 				shop_item_list.append(target)
@@ -497,31 +497,31 @@ func _on_close_pressed() -> void:
 
 
 func _on_charge_pressed() -> void:
-	Global.add_message_show(Global.Windows_, "充值渠道已关闭，无法充值，请使用灵魂购买商品。", 1.5, Vector2(485, 295))
+	Global.add_message_show(Global.windows, "充值渠道已关闭，无法充值，请使用灵魂购买商品。", 1.5, Vector2(485, 295))
 
 
 func _on_total_pressed() -> void:
-	CurrentType = SHOP_CATEGORY_ALL
+	current_type = SHOP_CATEGORY_ALL
 
 
 func _on_zb_pressed() -> void:
-	CurrentType = SHOP_CATEGORY_EQUIPMENT
+	current_type = SHOP_CATEGORY_EQUIPMENT
 
 
 func _on_dj_pressed() -> void:
-	CurrentType = SHOP_CATEGORY_ITEM
+	current_type = SHOP_CATEGORY_ITEM
 
 
 func _on_sz_pressed() -> void:
-	CurrentType = SHOP_CATEGORY_FASHION
+	current_type = SHOP_CATEGORY_FASHION
 
 
 func _on_cb_pressed() -> void:
-	CurrentType = SHOP_CATEGORY_WING
+	current_type = SHOP_CATEGORY_WING
 
 
 func _on_line_edit_text_changed(new_text: String) -> void:
-	GET_ItemName = new_text
+	get_item_name = new_text
 
 
 func _on_qd_pressed() -> void:

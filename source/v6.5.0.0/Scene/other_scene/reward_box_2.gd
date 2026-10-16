@@ -13,7 +13,7 @@ var Name:
 
 
 func _ready() -> void:
-	items.HideProp = true
+	items.hide_prop = true
 
 
 func _physics_process(delta: float) -> void:
@@ -22,8 +22,8 @@ func _physics_process(delta: float) -> void:
 		items.total_number = 1
 	else:
 		items.total_number = Num
-	name_.text = AE.AllEquipment_[item_id][DataKeys.NAME]
-	var color = AE.AllEquipment_[item_id]["颜色"]
+	name_.text = AE.all_equipment[item_id][DataKeys.NAME]
+	var color = AE.all_equipment[item_id]["颜色"]
 	name_.add_theme_color_override("font_color", color)
 	name_.add_theme_color_override("font_outline_color", color)
 	set_physics_process(false)

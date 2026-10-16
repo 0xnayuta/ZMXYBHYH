@@ -171,7 +171,7 @@ func normal_state():
 
 
 func call_sfjm_fire():
-	var FirePosition = [
+	var fire_position = [
 		Vector2(self.position.x - 180, self.position.y - 20),
 		Vector2(self.position.x - 360, self.position.y - 20),
 		Vector2(self.position.x, self.position.y - 20),
@@ -179,7 +179,7 @@ func call_sfjm_fire():
 		Vector2(self.position.x + 360, self.position.y - 20)
 	]
 	for i in range(5):
-		Global.add_bullet("Monster42Bullet", self.bullet, false, 2, FirePosition[i], "sfjm", self.objattackDic["sfjm"])
+		Global.add_bullet("Monster42Bullet", self.bullet, false, 2, fire_position[i], "sfjm", self.objattackDic["sfjm"])
 
 
 func call_xmhd():

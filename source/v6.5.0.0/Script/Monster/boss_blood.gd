@@ -40,10 +40,10 @@ func _layout_labels_for_normal_bar() -> void:
 	blood_value.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 
 
-var BigBarHpCHange:
+var big_bar_hp_c_hange:
 	set(vl):
-		BigBarHpCHange = vl
-		on_hp_change(BigBarHpCHange)
+		big_bar_hp_c_hange = vl
+		on_hp_change(big_bar_hp_c_hange)
 
 
 func _ready() -> void:
@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		return
 	_collect_buff_info()
-	for buff_name in Global.AllBuffList:
+	for buff_name in Global.all_buff_list:
 		set_buff_icon_info(buff_name)
 	var hp := int(GetObj.Hp)
 	var shp := int(GetObj.SHp)
@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 		_last_shp = shp
 		var ratio := float(hp) / maxf(float(shp), 1.0)
 		boss_blood.value = ratio
-		BigBarHpCHange = ratio
+		big_bar_hp_c_hange = ratio
 		blood_value.text = " " + str(hp) + "/" + str(shp) + "(" + str(snapped(ratio, 0.001) * 100) + "%)"
 	if display_name != _last_name:
 		_last_name = display_name
@@ -202,7 +202,7 @@ func set_buff_icon_info(Name: String):
 		buff_icon.visible = is_have
 	if is_have:
 		var buff_info: Dictionary = _buff_info_by_name[Name]
-		buff_icon.DataList = buff_info.duplicate()
+		buff_icon.data_list = buff_info.duplicate()
 	if buff_icon.is_physics_processing() != is_have:
 		buff_icon.set_physics_process(is_have)
 
@@ -231,13 +231,13 @@ func get_or_create_buff_icon(buff_name: String) -> Control:
 
 		return new_buff_icon
 	else:
-		print_debug("无法加载 BuffIcon 场景：", buff_name)
+		print_debug("无法加载 buff_icon 场景：", buff_name)
 		return null
 
 
 func pre_create_buff_icons():
 	"预创建所有 buff 图标（可选）"
-	for buff_name in Global.AllBuffList:
+	for buff_name in Global.all_buff_list:
 		get_or_create_buff_icon(buff_name)
 
 

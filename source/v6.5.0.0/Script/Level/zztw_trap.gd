@@ -1,7 +1,7 @@
 extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-var Drop: bool
-var MyName: String
+var drop: bool
+var my_name: String
 var objattackDic = {}
 var hit_name
 
@@ -13,7 +13,7 @@ func _get_trap_power() -> float:
 
 
 func _physics_process(delta: float) -> void:
-	hit_name = MyName
+	hit_name = my_name
 	if objattackDic.is_empty():
 		objattackDic = {
 			"Trap1": {"power": 0.0, "hurtBack": [15, -15], "attackKind": "real"},
@@ -24,20 +24,20 @@ func _physics_process(delta: float) -> void:
 	objattackDic["Trap1"]["power"] = trap_power
 	objattackDic["Trap2"]["power"] = trap_power
 	objattackDic["Trap3"]["power"] = trap_power
-	if MyName == "Trap1":
-		if not Drop:
+	if my_name == "Trap1":
+		if not drop:
 			animation_player.play("Trap2")
-	if MyName == "Trap3":
+	if my_name == "Trap3":
 		animation_player.play("Trap3")
 
 
 func _on_area_2d_area_entered(area: Area2D, _extra = null) -> void:
-	if MyName == "Trap1":
-		Drop = true
+	if my_name == "Trap1":
+		drop = true
 		animation_player.play("Trap1")
 		await animation_player.animation_finished
 		animation_player.play("Trap2")
-		Drop = false
+		drop = false
 
 
 func _on_hit_box_area_entered(area: Area2D, _extra = null) -> void:
@@ -47,10 +47,10 @@ func _on_hit_box_area_entered(area: Area2D, _extra = null) -> void:
 		if RoleProp.is_ws_state:
 			return
 		if target is Role3Hero:
-			if target.Is_sdBuff:
+			if target.is_sd_buff:
 				return
 		if target is Role3Hero:
-			if target.IsTMc:
+			if target.is_t_mc:
 				return
 		target.state_behit()
 		if randi_range(0, 100) < 50:

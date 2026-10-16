@@ -1,9 +1,9 @@
 extends BaseMagicWeapon
 class_name Yx
 
-var ADDTime: float
-var ADDBl: float = 1
-var CooldownTime: float = 20
+var add_time: float
+var add_bl: float = 1
+var cooldown_time: float = 20
 
 var original_body_color: Color = Color.WHITE
 var original_equipment_color: Color = Color.WHITE
@@ -11,17 +11,17 @@ var is_colored: bool = false
 
 
 func _physics_process(delta: float) -> void:
-	self.FB_Level = PlayerData.get_most_level("yx")
-	needMp = 50 + self.FB_Level * 5
+	self.fb_level = PlayerData.get_most_level("yx")
+	need_mp = 50 + self.fb_level * 5
 
-	ADDTime = 10
-	CooldownTime = 20
+	add_time = 10
+	cooldown_time = 20
 
 	if PlayerData.check_have_wx("yx", "木"):
-		ADDTime += self.FB_Level * 0.25
-		CooldownTime -= self.FB_Level * 0.25
-		if CooldownTime < ADDTime + 1:
-			CooldownTime = ADDTime + 1
+		add_time += self.fb_level * 0.25
+		cooldown_time -= self.fb_level * 0.25
+		if cooldown_time < add_time + 1:
+			cooldown_time = add_time + 1
 
 	super._physics_process(delta)
 	if not is_use:
@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 func show_skill():
 	mg_player.play("hit")
 
-	var base_level = self.FB_Level
+	var base_level = self.fb_level
 	var max_level = 10
 	var percentage_rate = 0.2 + (0.3 * min(base_level, max_level) / max_level)
 
@@ -40,7 +40,7 @@ func show_skill():
 			Player.buff,
 			{
 				"Name": "yxbuff",
-				"AddTime": ADDTime,
+				"AddTime": add_time,
 				"ReduceInterval": 0,
 				"value": percentage_rate,
 				"AttackKind": "",
@@ -50,7 +50,7 @@ func show_skill():
 			}
 		)
 
-		var role_body = Player.get_node_or_null("Action/RoleBody")
+		var role_body = Player.get_node_or_null("Action/role_body")
 		var role_equipment = Player.get_node_or_null("Action/RoleEquipment")
 
 		if role_body and role_equipment:
@@ -69,7 +69,7 @@ func show_skill():
 				if old_tween:
 					old_tween.kill()
 
-			var restore_timer = get_tree().create_timer(ADDTime)
+			var restore_timer = get_tree().create_timer(add_time)
 			restore_timer.timeout.connect(func(): _restore_role_colors(role_body, role_equipment))
 		else:
 			print("警告：找不到角色身体或装备节点")
@@ -92,10 +92,10 @@ func _restore_role_colors(body_node, equipment_node):
 
 
 func use_over():
-	self.usecd = CooldownTime
-	Global.FB_CD = 1
+	self.usecd = cooldown_time
+	Global.fb_cd = 1
 	is_use = false
-	skill_cd.start(CooldownTime)
+	skill_cd.start(cooldown_time)
 
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理

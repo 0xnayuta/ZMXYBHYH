@@ -29,8 +29,8 @@ const SKILL_BOOK_NAME := "一阶技能书"
 const SKILL_BOOK_SECOND_ID := "2_jns"
 const SKILL_BOOK_SECOND_NAME := "二阶技能书"
 const PASSIVE_SKILLS := ["sx", "sjt", "rj", "mds", "yyb"]
-var TargetSkill: int
-var SkillInfo
+var target_skill: int
+var skill_info
 var _skill_row_heights: Array[float] = []
 
 var skill_variant_config = {}
@@ -55,7 +55,7 @@ var Skill_Name = {
 	"角色6": ["九龙神火", "风火冲刺", "火轮切割", "火莲化身", "六臂连刺"]
 }
 
-var Skill_Infor = {
+var skill_infor = {
 	"角色1":
 	[
 		"奋力一击，将敌人击飞至空中，造成魔法伤害。",
@@ -157,7 +157,7 @@ func _ensure_nezha_yinyang_skill() -> void:
 		return
 	skill_list.append("nz_yysj")
 	Skill_Name[role_key].append("阴阳神剑")
-	Skill_Infor[role_key].append("开启后每隔0.27秒消耗魔法，向前方发射1把阴剑和1把阳剑。再次释放可关闭。")
+	skill_infor[role_key].append("开启后每隔0.27秒消耗魔法，向前方发射1把阴剑和1把阳剑。再次释放可关闭。")
 
 
 func ensure_extra_skill_slots():
@@ -188,7 +188,7 @@ func ensure_extra_skill_slots():
 
 func _center_upgrade_controls(row_count: int) -> void:
 	for i in range(1, row_count + 1):
-		var upgrade_button = get_node_or_null("ScrollContainer/HBoxContainer/sk_lv/Skill_" + str(i))
+		var upgrade_button = get_node_or_null("ScrollContainer/HBoxContainer/sk_lv/skill" + str(i))
 		if upgrade_button == null:
 			continue
 		upgrade_button.offset_left = 296.0
@@ -260,7 +260,7 @@ func _normalize_skill_rows(row_count: int):
 			get_node_or_null("ScrollContainer/HBoxContainer/sk_pi/ski_" + str(i)), 44.0 + 74.0 * idx, 110.0 + 74.0 * idx
 		)
 		_set_row_offsets(
-			get_node_or_null("ScrollContainer/HBoxContainer/sk_lv/Skill_" + str(i)),
+			get_node_or_null("ScrollContainer/HBoxContainer/sk_lv/skill" + str(i)),
 			65.0 + 74.0 * idx,
 			88.0 + 74.0 * idx
 		)
@@ -356,7 +356,7 @@ func _ready() -> void:
 			var mx_cb = Callable(self, mx_fn)
 			if not ski_btn.mouse_exited.is_connected(mx_cb):
 				ski_btn.mouse_exited.connect(mx_cb)
-		var up_btn = get_node_or_null("ScrollContainer/HBoxContainer/sk_lv/Skill_" + str(i))
+		var up_btn = get_node_or_null("ScrollContainer/HBoxContainer/sk_lv/skill" + str(i))
 		if up_btn and up_btn is Button:
 			var up_fn = "_on_skill_" + str(i) + "_pressed"
 			var up_cb = Callable(self, up_fn)
@@ -384,7 +384,7 @@ func _set_skill_slot_visibility(skill_count: int) -> void:
 		for node_path in [
 			"ScrollContainer/HBoxContainer/Sk_na/skill_" + str(index),
 			"ScrollContainer/HBoxContainer/sk_pi/ski_" + str(index),
-			"ScrollContainer/HBoxContainer/sk_lv/Skill_" + str(index),
+			"ScrollContainer/HBoxContainer/sk_lv/skill" + str(index),
 			"ScrollContainer/HBoxContainer/sk_le/sk_" + str(index),
 			"ScrollContainer/HBoxContainer/sk_ms/s_" + str(index),
 		]:
@@ -416,7 +416,7 @@ func _fit_skill_descriptions_to_grid() -> void:
 			get_node_or_null("ScrollContainer/HBoxContainer/sk_pi/ski_" + str(i)), icon_top, icon_top + 66.0
 		)
 		_set_row_offsets(
-			get_node_or_null("ScrollContainer/HBoxContainer/sk_lv/Skill_" + str(i)), row_center - 24.0, row_center - 1.0
+			get_node_or_null("ScrollContainer/HBoxContainer/sk_lv/skill" + str(i)), row_center - 24.0, row_center - 1.0
 		)
 		_set_row_offsets(
 			get_node_or_null("ScrollContainer/HBoxContainer/sk_le/sk_" + str(i)), row_center - 19.0, row_center + 19.0
@@ -580,10 +580,10 @@ func get_skill_name(Num):
 
 
 func get_need_mp():
-	var skill_name = get_skill_list_name(TargetSkill - 1)
-	var Old = _compute_mp_cost(skill_name, false)
-	var New = _compute_mp_cost(skill_name, true)
-	return [Old, New]
+	var skill_name = get_skill_list_name(target_skill - 1)
+	var old = _compute_mp_cost(skill_name, false)
+	var new = _compute_mp_cost(skill_name, true)
+	return [old, new]
 
 
 func set_skill_icon():
@@ -591,10 +591,10 @@ func set_skill_icon():
 	var skill_list = Skill_list[role_key]
 	for i in range(skill_list.size()):
 		var target = get_node("ScrollContainer/HBoxContainer/sk_pi/ski_" + str(i + 1))
-		var Skill_nbname = skill_list[i]
-		if Skill_nbname == "hmz_ws":
-			Skill_nbname = "hmz_ws"
-		target.set_button_icon(load("res://Art/Skill/SkillIcon/" + str(Skill_nbname) + ".png"))
+		var skill_nbname = skill_list[i]
+		if skill_nbname == "hmz_ws":
+			skill_nbname = "hmz_ws"
+		target.set_button_icon(load("res://Art/Skill/SkillIcon/" + str(skill_nbname) + ".png"))
 
 
 func set_skill_name():
@@ -610,13 +610,13 @@ func set_skill_level():
 	var skill_list = Skill_list[role_key]
 	for i in range(skill_list.size()):
 		var target = get_node("ScrollContainer/HBoxContainer/sk_le/sk_" + str(i + 1))
-		var SkillLevel = get_skill_level_by_index(i)
-		target.text = "Lv:" + str(SkillLevel)
+		var skill_level = get_skill_level_by_index(i)
+		target.text = "Lv:" + str(skill_level)
 
 
 func set_skill_infor():
 	var role_key = get_role_key()
-	var skill_infor_list = Skill_Infor[role_key]
+	var skill_infor_list = skill_infor[role_key]
 	for i in range(skill_infor_list.size()):
 		var target = get_node("ScrollContainer/HBoxContainer/sk_ms/s_" + str(i + 1))
 		target.text = skill_infor_list[i]
@@ -626,24 +626,24 @@ func set_skill_lh():
 	var role_key = get_role_key()
 	var skill_list = Skill_list[role_key]
 	for i in range(skill_list.size()):
-		var target = get_node("ScrollContainer/HBoxContainer/sk_lv/Skill_" + str(i + 1) + "/Need")
-		var SkillLevel = get_skill_level_by_index(i)
+		var target = get_node("ScrollContainer/HBoxContainer/sk_lv/skill" + str(i + 1) + "/Need")
+		var skill_level = get_skill_level_by_index(i)
 
-		if SkillLevel >= get_skill_max_level(str(skill_list[i])):
+		if skill_level >= get_skill_max_level(str(skill_list[i])):
 			target.text = "已满级"
-		elif skill_list[i] not in PASSIVE_SKILLS and SkillLevel >= SKILL_BOOK_START_LEVEL:
-			target.text = "需：" + get_skill_book_name(SkillLevel) + "x" + str(get_skill_book_need(SkillLevel))
+		elif skill_list[i] not in PASSIVE_SKILLS and skill_level >= SKILL_BOOK_START_LEVEL:
+			target.text = "需：" + get_skill_book_name(skill_level) + "x" + str(get_skill_book_need(skill_level))
 		elif skill_list[i] in PASSIVE_SKILLS:
-			var need = 500 + 500 * SkillLevel
+			var need = 500 + 500 * skill_level
 			target.text = "需：" + str(need) + "灵魂"
 
 		else:
-			var need = 100 + (i * 300) + 500 * SkillLevel
+			var need = 100 + (i * 300) + 500 * skill_level
 			target.text = "需：" + str(need) + "灵魂"
 
 
 func up_level():
-	if TargetSkill <= 0:
+	if target_skill <= 0:
 		Global.add_message_show(self, "技能信息获取失败，无法升级！！", 1.5, Vector2(395, 180))
 		return
 
@@ -652,7 +652,7 @@ func up_level():
 	var max_skill = skill_list.size()
 
 	if (
-		TargetSkill == 11
+		target_skill == 11
 		&& role_key != "角色1"
 		&& role_key != "角色2"
 		&& role_key != "角色3"
@@ -661,12 +661,12 @@ func up_level():
 	):
 		Global.add_message_show(self, "该角色无此技能！！", 1.5, Vector2(395, 180))
 		return
-	if TargetSkill > max_skill:
+	if target_skill > max_skill:
 		Global.add_message_show(self, "技能不存在！！", 1.5, Vector2(395, 180))
 		return
 
-	var target_internal: String = str(skill_list[TargetSkill - 1])
-	var target_storage_index = get_level_storage_index(TargetSkill - 1)
+	var target_internal: String = str(skill_list[target_skill - 1])
+	var target_storage_index = get_level_storage_index(target_skill - 1)
 
 	var level: int = int(
 		PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能" + str(target_storage_index)][DataKeys.LEVEL]
@@ -688,8 +688,8 @@ func up_level():
 		return
 
 	if target_internal in PASSIVE_SKILLS:
-		var NeedLevel = skill10_xz(level)
-		if RoleProp.baseroleprop["Level"] >= NeedLevel:
+		var need_level = skill10_xz(level)
+		if RoleProp.baseroleprop["Level"] >= need_level:
 			var need = 500 + 500 * level
 			if PlayerData.get_soul() >= need:
 				PlayerData.spend_soul(need)
@@ -697,10 +697,10 @@ func up_level():
 			else:
 				Global.add_message_show(self, "灵魂不足！！", 1.5, Vector2(395, 180))
 		else:
-			Global.add_message_show(self, "等级不足，需达到：" + str(NeedLevel) + "级！！", 1.5, Vector2(395, 180))
+			Global.add_message_show(self, "等级不足，需达到：" + str(need_level) + "级！！", 1.5, Vector2(395, 180))
 
 	else:
-		var i = TargetSkill - 1
+		var i = target_skill - 1
 		var need = 100 + (i * 300) + 500 * level
 		if PlayerData.get_soul() >= need:
 			PlayerData.spend_soul(need)
@@ -751,77 +751,77 @@ func get_skill_list_name(num):
 
 
 func _on_skill_1_pressed() -> void:
-	TargetSkill = 1
+	target_skill = 1
 	_show_tip()
 
 
 func _on_skill_2_pressed() -> void:
-	TargetSkill = 2
+	target_skill = 2
 	_show_tip()
 
 
 func _on_skill_3_pressed() -> void:
-	TargetSkill = 3
+	target_skill = 3
 	_show_tip()
 
 
 func _on_skill_4_pressed() -> void:
-	TargetSkill = 4
+	target_skill = 4
 	_show_tip()
 
 
 func _on_skill_5_pressed() -> void:
-	TargetSkill = 5
+	target_skill = 5
 	_show_tip()
 
 
 func _on_skill_6_pressed() -> void:
-	TargetSkill = 6
+	target_skill = 6
 	_show_tip()
 
 
 func _on_skill_7_pressed() -> void:
-	TargetSkill = 7
+	target_skill = 7
 	_show_tip()
 
 
 func _on_skill_8_pressed() -> void:
-	TargetSkill = 8
+	target_skill = 8
 	_show_tip()
 
 
 func _on_skill_9_pressed() -> void:
-	TargetSkill = 9
+	target_skill = 9
 	_show_tip()
 
 
 func _on_skill_10_pressed() -> void:
-	TargetSkill = 10
+	target_skill = 10
 	_show_tip()
 
 
 func _on_skill_11_pressed() -> void:
-	TargetSkill = 11
+	target_skill = 11
 	_show_tip()
 
 
 func _on_skill_12_pressed() -> void:
-	TargetSkill = 12
+	target_skill = 12
 	_show_tip()
 
 
 func _on_skill_13_pressed() -> void:
-	TargetSkill = 13
+	target_skill = 13
 	_show_tip()
 
 
 func _show_tip():
 	Signals.connect_choose_box_signal(self, "up_level")
 
-	var skill_name = get_skill_name(TargetSkill)
+	var skill_name = get_skill_name(target_skill)
 	var old_mp = 0
 	var new_mp = 0
-	var player = RoleProp.SourcePlayer
+	var player = RoleProp.source_player
 
 	if player:
 		var mp_info = get_need_mp()
@@ -834,9 +834,9 @@ func _show_tip():
 
 	var tip = "确定要升级技能%s吗？ 魔耗：%s→%s" % [skill_name, old_mp, new_mp]
 	var skill_list = Skill_list[get_role_key()]
-	if TargetSkill > 0 and TargetSkill <= skill_list.size():
-		var skill_internal: String = str(skill_list[TargetSkill - 1])
-		var level: int = get_skill_level_by_index(TargetSkill - 1)
+	if target_skill > 0 and target_skill <= skill_list.size():
+		var skill_internal: String = str(skill_list[target_skill - 1])
+		var level: int = get_skill_level_by_index(target_skill - 1)
 		if skill_internal not in PASSIVE_SKILLS and level >= SKILL_BOOK_START_LEVEL and level < MAX_SKILL_LEVEL:
 			var book_need := get_skill_book_need(level)
 			var book_id := get_skill_book_id(level)
@@ -1027,9 +1027,9 @@ func _show_mp(_index):
 
 
 func _clear_info():
-	if SkillInfo != null and is_instance_valid(SkillInfo):
-		SkillInfo.queue_free()
-	SkillInfo = null
+	if skill_info != null and is_instance_valid(skill_info):
+		skill_info.queue_free()
+	skill_info = null
 
 
 func _on_skill5_button_pressed():

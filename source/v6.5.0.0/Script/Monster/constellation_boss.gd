@@ -521,7 +521,7 @@ func _configure_boss(config: Dictionary) -> void:
 	fall_list = Array(config.get("drop_list", [])).duplicate(true)
 	independent_fall_list = Array(config.get("independent_drop_list", [])).duplicate(true)
 	is_boss = bool(config.get("is_boss", true))
-	is_Immobilize = bool(config.get("control_immune", false))
+	is_immobilize = bool(config.get("control_immune", false))
 	boss_max_protect = float(config.get("max_protect", 100.0))
 	if source_id in [140, 142, 144, 146, 147, 149, 150, 151, 152, 156, 157, 158, 159, 162]:
 		speed = 4.0
@@ -1664,7 +1664,7 @@ func _emit_monster162_skill(skill: int) -> void:
 
 func _monster149_gaze_effect(_effect_position: Vector2) -> void:
 	for target in _constellation_players():
-		if target.needProtect:
+		if target.need_protect:
 			continue
 		var target_faces_right := target.PlayerDir
 		var in_gaze := false
@@ -1690,7 +1690,7 @@ func _is_alive_constellation_player(target: Node) -> bool:
 	if target == null or not is_instance_valid(target) or not target is BaseHero:
 		return false
 	var player := target as BaseHero
-	return not player.IsDeath and not player.death()
+	return not player.is_death and not player.death()
 
 
 func _monster150_start_blackout(_effect_position: Vector2) -> void:

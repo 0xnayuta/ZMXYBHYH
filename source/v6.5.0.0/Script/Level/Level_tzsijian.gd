@@ -53,28 +53,28 @@ var _endless_restart_pending := false
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "鎸戞垬鍥涘墤"
+	Global.current_level = "鎸戞垬鍥涘墤"
 	Global.add_bgm(self, "res://Music/level/10_bg4.mp3")
 	self.is_two_scene = true
 	self.level_stage = 10
-	Global.GameOver = 1
+	Global.game_over = 1
 	super._ready()
 	_setup_tzsijian_background()
 	_boss_count_multiplier = clamp(int(MainSet.set_data.get("CreateMonsterCount", 1)), 1, 5)
 	MainSet.set_data["CreateMonsterCount"] = _boss_count_multiplier
-	Monster_group = {
+	monster_group = {
 		"stage_1": [],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [],
 		"stage_2": [],
 		"stage_3": [],
@@ -101,7 +101,7 @@ func _preload_level_resources() -> void:
 
 
 func _exit_tree() -> void:
-	Global.FourSwordsEndlessMode = false
+	Global.four_swords_endless_mode = false
 	for bg_node in _bg_anim_nodes:
 		if is_instance_valid(bg_node):
 			if bg_node is StreamedPngEffect:
@@ -120,10 +120,10 @@ func _exit_tree() -> void:
 func check_can_create(stage) -> bool:
 	if int(stage) != 1:
 		return false
-	if not Monster_group.has("stage_1"):
+	if not monster_group.has("stage_1"):
 		return false
 	return (
-		Monster_group["stage_1"].size() > 0
+		monster_group["stage_1"].size() > 0
 		and _get_alive_stage_monster_count() < BASE_BOSS_CONCURRENT_LIMIT * _boss_count_multiplier
 	)
 
@@ -132,16 +132,16 @@ func level_create_monster(stage) -> void:
 	if int(stage) != 1:
 		return
 	var stage_key := "stage_1"
-	if Monster_group[stage_key].is_empty():
+	if monster_group[stage_key].is_empty():
 		return
-	var boss_id := int(Monster_group[stage_key].pop_front())
+	var boss_id := int(monster_group[stage_key].pop_front())
 	if not SWORD_BOSS_POSITIONS.has(boss_id):
 		return
 	var spawn_position: Vector2 = SWORD_BOSS_POSITIONS[boss_id]
-	if Monster_position_x[stage_key].size() > 0:
-		spawn_position.x = float(Monster_position_x[stage_key].pop_front())
-	if Monster_position_y[stage_key].size() > 0:
-		spawn_position.y = float(Monster_position_y[stage_key].pop_front())
+	if monster_position_x[stage_key].size() > 0:
+		spawn_position.x = float(monster_position_x[stage_key].pop_front())
+	if monster_position_y[stage_key].size() > 0:
+		spawn_position.y = float(monster_position_y[stage_key].pop_front())
 	var target: Node = Global.create_monster(boss_id, monster, spawn_position)
 	if target != null:
 		if not _spawned_bosses.has(boss_id):
@@ -293,9 +293,9 @@ func _queue_sword_boss_wave(boss_id: int) -> void:
 	_queued_boss_ids[boss_id] = true
 	for index in range(_boss_count_multiplier):
 		var spawn_position := _get_boss_spawn_position(boss_id, index)
-		Monster_group["stage_1"].append(boss_id)
-		Monster_position_x["stage_1"].append(spawn_position.x)
-		Monster_position_y["stage_1"].append(spawn_position.y)
+		monster_group["stage_1"].append(boss_id)
+		monster_position_x["stage_1"].append(spawn_position.x)
+		monster_position_y["stage_1"].append(spawn_position.y)
 
 
 func _get_boss_spawn_position(boss_id: int, index: int) -> Vector2:
@@ -333,7 +333,7 @@ func one_check_can_exit():
 	var round_cleared: bool = bool(super.one_check_can_exit())
 	if not round_cleared or not _queued_boss_ids.has(954) or not _preparing_boss_ids.is_empty():
 		return false
-	if not Global.FourSwordsEndlessMode:
+	if not Global.four_swords_endless_mode:
 		return true
 	if not _endless_restart_pending:
 		_endless_restart_pending = true
@@ -342,23 +342,23 @@ func one_check_can_exit():
 
 
 func _restart_endless_round() -> void:
-	if not is_inside_tree() or not Global.FourSwordsEndlessMode:
+	if not is_inside_tree() or not Global.four_swords_endless_mode:
 		_endless_restart_pending = false
 		return
 	await get_tree().process_frame
-	if not is_inside_tree() or not Global.FourSwordsEndlessMode:
+	if not is_inside_tree() or not Global.four_swords_endless_mode:
 		_endless_restart_pending = false
 		return
 	_trim_endless_round_loot()
 	for stage_key in ["stage_1", "stage_2", "stage_3", "stage_4"]:
-		Monster_group[stage_key].clear()
-		Monster_position_x[stage_key].clear()
-		Monster_position_y[stage_key].clear()
+		monster_group[stage_key].clear()
+		monster_position_x[stage_key].clear()
+		monster_position_y[stage_key].clear()
 	_spawned_bosses.clear()
 	_queued_boss_ids.clear()
 	_preparing_boss_ids.clear()
 	await get_tree().create_timer(ENDLESS_ROUND_DELAY, false).timeout
-	if not is_inside_tree() or not Global.FourSwordsEndlessMode:
+	if not is_inside_tree() or not Global.four_swords_endless_mode:
 		_endless_restart_pending = false
 		return
 	for sword_node in _bg_sword_nodes.values():

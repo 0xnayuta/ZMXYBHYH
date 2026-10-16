@@ -32,24 +32,24 @@ var _boss_background: AnimatedSprite2D = null
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "通天教主"
+	Global.current_level = "通天教主"
 	Global.add_bgm(self, "res://Music/level/10_bg4.mp3")
 	level_stage = 48
 	is_two_scene = false
-	Global.GameOver = 1
-	Monster_group = {
+	Global.game_over = 1
+	monster_group = {
 		"stage_1": [],
 		"stage_2": [BOSS_MONSTER_ID],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [],
 		"stage_2": [BOSS_SPAWN_POSITION.x],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [],
 		"stage_2": [BOSS_SPAWN_POSITION.y],
 		"stage_3": [],
@@ -103,24 +103,24 @@ func _spawn_boss_if_pending() -> void:
 	if not _second_wave_started or not check_can_create(BOSS_STAGE):
 		return
 	var stage_key := "stage_%d" % BOSS_STAGE
-	var pending_count: int = Monster_group[stage_key].size()
+	var pending_count: int = monster_group[stage_key].size()
 	var pending_x: float = (
-		float(Monster_position_x[stage_key][0])
-		if not Monster_position_x[stage_key].is_empty()
+		float(monster_position_x[stage_key][0])
+		if not monster_position_x[stage_key].is_empty()
 		else BOSS_SPAWN_POSITION.x
 	)
 	var pending_y: float = (
-		float(Monster_position_y[stage_key][0])
-		if not Monster_position_y[stage_key].is_empty()
+		float(monster_position_y[stage_key][0])
+		if not monster_position_y[stage_key].is_empty()
 		else BOSS_SPAWN_POSITION.y
 	)
 	mr = null
 	level_create_monster(BOSS_STAGE)
 	if not is_instance_valid(mr):
-		if Monster_group[stage_key].size() < pending_count:
-			Monster_group[stage_key].push_front(BOSS_MONSTER_ID)
-			Monster_position_x[stage_key].push_front(pending_x)
-			Monster_position_y[stage_key].push_front(pending_y)
+		if monster_group[stage_key].size() < pending_count:
+			monster_group[stage_key].push_front(BOSS_MONSTER_ID)
+			monster_position_x[stage_key].push_front(pending_x)
+			monster_position_y[stage_key].push_front(pending_y)
 		push_error("通天教主创建失败，已恢复待刷队列")
 		return
 

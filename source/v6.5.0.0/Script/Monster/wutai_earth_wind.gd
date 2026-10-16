@@ -22,7 +22,7 @@ var _configured := false
 func _ready() -> void:
 	set_meta("is_summon", true)
 	NoGrav = true
-	IsSuperArmor = true
+	super_armor_active = true
 	_runtime_config = _resolve_runtime_config()
 	if not _runtime_config.is_empty():
 		_configure_summon(_runtime_config)

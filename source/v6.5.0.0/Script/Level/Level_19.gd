@@ -12,8 +12,8 @@ class_name Level19
 @onready var bsz_4: Node2D = $BSZ4
 @onready var bsz_5: Node2D = $BSZ5
 var entercount: int = 0
-var Canthro = false
-var CanPass = false
+var canthro = false
+var can_pass = false
 var mm: Monster50
 var mm2: Monster49
 var randi_num = randi_range(0, 2)
@@ -21,13 +21,13 @@ var can_notpass = false
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "望乡台"
+	Global.current_level = "望乡台"
 	var ppx = [1685, 2160, 2640]
 	check_hero.position = Vector2(ppx[randi_num], 35)
 	Global.add_bgm(self, "res://Music/level/9_bg3.mp3")
 	self.level_stage = 19
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [51, 53, 51, 53, 51, 53, 51, 53, 54, 54, 54, 53, 53, 53, 51, 51, 51, 51, 51, 51],
 		"stage_2":
 		[
@@ -101,7 +101,7 @@ func _ready() -> void:
 		],
 		"stage_4": [49],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1":
 		[250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000],
 		"stage_2":
@@ -182,7 +182,7 @@ func _ready() -> void:
 		],
 		"stage_4": [4550],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			255,
@@ -335,17 +335,17 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if mm != null:
 		if mm.death():
-			Canthro = true
+			canthro = true
 	if bsz != null and bsz_2 != null and bsz_3 != null and bsz_4 != null and bsz_5 != null:
 		if current_stage == 4:
-			CanPass = true
+			can_pass = true
 			if randi_num == 0:
 				bsz_4.free()
 			elif randi_num == 1:
 				bsz_5.free()
 			elif randi_num == 2:
 				bsz.free()
-	if CanPass:
+	if can_pass:
 		if can_notpass:
 			ck_hero.disabled = true
 		else:
@@ -374,7 +374,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	entercount += 1
 	if entercount >= 5:
 		if body is BaseHero:
-			if CanPass:
+			if can_pass:
 				if mm == null:
 					mm = Global.create_monster(50, monster, check_hero.position) as Monster50
 					ck_hero.set_deferred("disabled", true)

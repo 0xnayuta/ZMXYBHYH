@@ -184,7 +184,7 @@ func ai_think() -> void:
 		return
 	if abs(float(RoleProp.get_nearest_monster_target_position(global_position).x) - position.x) < mysee:
 		has_target = true
-	if is_ice or is_sleep or is_stun or is_Immobilize or cannotchangestatewhenattorbeatt() or bhaoyi_running:
+	if is_ice or is_sleep or is_stun or is_immobilize or cannotchangestatewhenattorbeatt() or bhaoyi_running:
 		return
 	if not has_target:
 		normal_state()
@@ -282,10 +282,10 @@ func _clear_tiger_skill_cooldowns() -> void:
 	Skill_2_CD = 0
 	Skill_3_CD = 0
 	Skill_4_CD = 0
-	Skill_5_CD = 0
-	Skill_6_CD = 0
-	Skill_7_CD = 0
-	Skill_8_CD = 0
+	skill_5_cd = 0
+	skill_6_cd = 0
+	skill_7_cd = 0
+	skill_8_cd = 0
 
 
 func _to_target_side() -> void:

@@ -319,8 +319,8 @@ func state_death():
 			return
 		mr_player_1.play("bounds")
 		if PlayerData.player_data.has(my_mr_name):
-			var Current = PlayerData.player_data[my_mr_name]
-			if not BaseLevel_ is Lhhj:
+			var current = PlayerData.player_data[my_mr_name]
+			if not base_level is Lhhj:
 				PlayerData.player_data[my_mr_name] += 1
 
 				return
@@ -331,8 +331,8 @@ func state_death():
 		mr_player.play("death")
 		if not is_death:
 			if PlayerData.player_data.has(my_mr_name):
-				var Current = PlayerData.player_data[my_mr_name]
-				if not BaseLevel_ is Lhhj:
+				var current = PlayerData.player_data[my_mr_name]
+				if not base_level is Lhhj:
 					PlayerData.player_data[my_mr_name] += 1
 		is_death = true
 		await mr_player.animation_finished

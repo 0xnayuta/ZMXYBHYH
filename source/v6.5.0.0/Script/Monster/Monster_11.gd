@@ -1,5 +1,5 @@
 extends BaseMonster
-var CureCount: int = 0
+var cure_count: int = 0
 
 
 func monster_11():
@@ -88,9 +88,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if super.check_player_have_debuff("poision"):
-		if CureCount % 60 == 0:
+		if cure_count % 60 == 0:
 			cure_hp(200)
-		CureCount += 1
+		cure_count += 1
 
 
 func ai_think():

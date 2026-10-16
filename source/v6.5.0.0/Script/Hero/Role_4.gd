@@ -10,11 +10,11 @@ const LHSQ_AWAKEN_BONUS_PER_STACK := 0.2
 const LHSQ_AWAKEN_MAX_STACKS := 5
 const LHSQ_AWAKEN_DURATION := 10.0
 const SKILL_INPUT_ACTIONS := [&"slz", &"lys", &"lyfb", &"hmz", &"hytj"]
-var WDWW: Monster138
+var wdww: Monster138
 @onready var hurt_box = $base_damagebox/HurtBox/HurtBox
-var Interv: int
-var IsFly: bool
-var JDZ
+var interv: int
+var is_fly: bool
+var jdz
 var tkj_awaken_mode: int = 0
 var _wdzt_awaken_enabled := false
 var _wdzt_awaken_mp_elapsed := 0.0
@@ -34,7 +34,7 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	temp_max_hp_bonus_rate = 0.0
 	temp_power_bonus_rate = 0.0
-	if RoleProp.SourcePlayer == self:
+	if RoleProp.source_player == self:
 		RoleProp.get_last_prop()
 		RoleProp.check_hp()
 	super._exit_tree()
@@ -65,8 +65,8 @@ func _is_auto_battle_skill_active(skill_id: String) -> bool:
 
 
 func role_4():
-	RoleProp.Role1SXBJ = 0
-	RoleProp.Role1SXxx = 0
+	RoleProp.role1_sxbj = 0
+	RoleProp.role1_s_xxx = 0
 
 	if not is_in_group("Player"):
 		add_to_group("Player")
@@ -225,7 +225,7 @@ func role_4():
 
 
 func _physics_process(delta: float) -> void:
-	if IsFly:
+	if is_fly:
 		gravity = 0
 	else:
 		gravity = -980.0
@@ -241,7 +241,7 @@ func _physics_process(delta: float) -> void:
 			and Input.is_action_pressed("normalhit")
 			and not is_be_attacking
 			and not is_using_skills
-			and Interv <= 0
+			and interv <= 0
 		):
 			match hit_count:
 				0:
@@ -500,35 +500,35 @@ func call_wdww():
 		bullet_pos = Vector2(30, -30)
 	else:
 		bullet_pos = Vector2(-30, -30)
-	if WDWW != null:
-		WDWW.queue_free()
+	if wdww != null:
+		wdww.queue_free()
 	var target_limit := (
 		WDWW_AWAKEN_TARGET_LIMIT if _is_skill_awakened("wdww") and _is_skill_awaken_enabled("wdww") else 1
 	)
 	var targets := _get_wdww_targets(target_limit)
 	if targets.is_empty():
 		return
-	var Target: BaseMonster = targets[0]
-	WDWW = Global.create_monster(138, get_parent().get_parent().monster, position + bullet_pos) as Monster138
-	if WDWW == null:
+	var target: BaseMonster = targets[0]
+	wdww = Global.create_monster(138, get_parent().get_parent().monster, position + bullet_pos) as Monster138
+	if wdww == null:
 		return
-	WDWW.SHp = Target.SHp * (0.25 + PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] * 0.02)
-	WDWW.Hp = WDWW.SHp
-	WDWW.set_linked_targets(targets)
+	wdww.SHp = target.SHp * (0.25 + PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] * 0.02)
+	wdww.Hp = wdww.SHp
+	wdww.set_linked_targets(targets)
 
 
 func call_jdz():
 	if get_action == "bylt" or get_action == "cmly":
 		return
-	if JDZ != null:
-		JDZ.queue_free()
-	JDZ = Global.add_role_bullet(self.Bullet, position + Vector2(0, 30), false, "Role4Bullet6", objattackDic["jdz"])
-	if JDZ != null:
-		JDZ.start_auto_free(10)
+	if jdz != null:
+		jdz.queue_free()
+	jdz = Global.add_role_bullet(self.Bullet, position + Vector2(0, 30), false, "Role4Bullet6", objattackDic["jdz"])
+	if jdz != null:
+		jdz.start_auto_free(10)
 		if _is_skill_awakened("jdz") and _is_skill_awaken_enabled("jdz"):
 			var level = get_parent().get_parent()
 			var effect := ROLE4_POISON_ARRAY_AWAKEN_EFFECT.new()
-			effect.setup(self, PlayerDir, objattackDic["jdz"], JDZ)
+			effect.setup(self, PlayerDir, objattackDic["jdz"], jdz)
 			level.add_child(effect)
 
 
@@ -557,7 +557,7 @@ func add_wdzt():
 func _process_wdzt_awaken(delta: float) -> void:
 	if not _wdzt_awaken_enabled:
 		return
-	if IsDeath or not _is_wdzt_awaken_active():
+	if is_death or not _is_wdzt_awaken_active():
 		_disable_wdzt_awaken()
 		return
 	_wdzt_awaken_mp_elapsed += delta
@@ -583,7 +583,7 @@ func _disable_wdzt_awaken() -> void:
 			and str(child.BuffInfo.get("Name", "")) == "PoisionBody"
 		):
 			child.queue_free()
-	IsWDZT = false
+	is_wdzt = false
 
 
 func _is_wdzt_awaken_active() -> bool:
@@ -606,7 +606,7 @@ func _add_lhsq_awaken_stack() -> void:
 func _process_lhsq_awaken(delta: float) -> void:
 	if lhsq_awaken_stacks <= 0:
 		return
-	if IsDeath or not _is_lhsq_awaken_active():
+	if is_death or not _is_lhsq_awaken_active():
 		_clear_lhsq_awaken_bonus()
 		return
 	lhsq_awaken_time_left = maxf(0.0, lhsq_awaken_time_left - delta)
@@ -732,7 +732,7 @@ func add_music(num: int):
 
 
 func _on_nor_mal_hit_interv_timeout() -> void:
-	Interv -= 1
+	interv -= 1
 
 
 func to_top():
@@ -765,7 +765,7 @@ func fly_top():
 
 
 func to_top_2():
-	IsFly = true
+	is_fly = true
 	if PlayerDir:
 		velocity = Vector2(0, -1800)
 	else:
@@ -773,48 +773,48 @@ func to_top_2():
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	if IsDeath or needProtect:
+	if is_death or need_protect:
 		return
-	IsInSky = false
-	CUreCureCount = 0
-	CureValue = 1
-	IdleCount = 0
+	is_in_sky = false
+	c_ure_cure_count = 0
+	cure_value = 1
+	idle_count = 0
 
-	Global.TotalHurtCount += 1
-	var Target = area.get_parent().get_parent()
-	var MonsterTarget: BaseMonster
-	MonsterTarget = check_monster(area)
-	if Target == null or MonsterTarget == null:
+	Global.total_hurt_count += 1
+	var target = area.get_parent().get_parent()
+	var monster_target: BaseMonster
+	monster_target = check_monster(area)
+	if target == null or monster_target == null:
 		return
-	if Target.objattackDic.size() == 0:
+	if target.objattackDic.size() == 0:
 		return
-	if MonsterTarget is Monster47:
-		Global.PlayerBeHitCount += 1
-	var last_hit = get_monster_last_hurt(MonsterTarget, Target) * (1 - slzjs) * (1 - slzjs2)
-	if MonsterTarget != null:
-		if MonsterTarget.IsLpz:
-			var Levellpz = PlayerData.player_data["落魄阵"]["Level"]
-			MonsterTarget.lpzjs = Levellpz * 0.01
-			last_hit *= (1 - MonsterTarget.lpzjs)
-	var TotalCureMonster = int(MonsterTarget.ebol * last_hit)
-	MonsterTarget.cure_hp(TotalCureMonster)
-	if self.IsWDZT:
-		var ReduecHurt = int(
+	if monster_target is Monster47:
+		Global.player_be_hit_count += 1
+	var last_hit = get_monster_last_hurt(monster_target, target) * (1 - slzjs) * (1 - slzjs2)
+	if monster_target != null:
+		if monster_target.is_lpz:
+			var levellpz = PlayerData.player_data["落魄阵"]["Level"]
+			monster_target.lpzjs = levellpz * 0.01
+			last_hit *= (1 - monster_target.lpzjs)
+	var total_cure_monster = int(monster_target.ebol * last_hit)
+	monster_target.cure_hp(total_cure_monster)
+	if self.is_wdzt:
+		var reduec_hurt = int(
 			last_hit * (0.7 - PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能3"][DataKeys.LEVEL] * 0.02)
 		)
-		var CureHurt = last_hit - ReduecHurt
-		last_hit = ReduecHurt
+		var cure_hurt = last_hit - reduec_hurt
+		last_hit = reduec_hurt
 		if randi_range(0, 100) < 20:
-			cure_hp(CureHurt)
-	if MonsterTarget != null:
-		MonsterTarget.total_hit += last_hit
-		if MonsterTarget is Monster141:
+			cure_hp(cure_hurt)
+	if monster_target != null:
+		monster_target.total_hit += last_hit
+		if monster_target is Monster141:
 			effect_reducehp(int(RoleProp.roleprop.SHp * 0.01), "real")
-			Global.add_monster141_aura(self.Bullet, self.position, MonsterTarget)
-		if self.IsWDZT:
-			if Global.check_wd(MonsterTarget) < 7:
+			Global.add_monster141_aura(self.Bullet, self.position, monster_target)
+		if self.is_wdzt:
+			if Global.check_wd(monster_target) < 7:
 				Global.add_buff(
-					MonsterTarget.buff,
+					monster_target.buff,
 					{
 						"Name": "Voodoo",
 						"AddTime": 5,
@@ -826,41 +826,41 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 						"DeBuff": true
 					}
 				)
-	Global.TotalRoleHurt += int(last_hit)
+	Global.total_role_hurt += int(last_hit)
 	if not is_miss:
 		Global.add_sound(self, "res://Music/Hero/68_Role3_beAttack.mp3")
 		Global.add_mr_hurt(pz, Vector2(5, -20))
-		if not IsTMc:
+		if not is_t_mc:
 			_add_role_protect(randi_range(3, 7))
-	if is_miss or RoleProp.is_ws_state or IsSuperArmor or IsWDZT or needProtect:
+	if is_miss or RoleProp.is_ws_state or super_armor_active or is_wdzt or need_protect:
 		is_be_attacking = false
 	else:
-		be_hit_back(MonsterTarget, Target)
-		_queue_hit_stiff(MonsterTarget, Target)
+		be_hit_back(monster_target, target)
+		_queue_hit_stiff(monster_target, target)
 		state_behit()
-	reduce_hp(last_hit, MonsterTarget, Target)
+	reduce_hp(last_hit, monster_target, target)
 
 
 func _prepare_hit_reaction() -> void:
-	IsFly = false
+	is_fly = false
 
 
 func fall():
-	IsFly = false
+	is_fly = false
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	if get_action == "lhsq":
 		var mm = area.get_parent().get_parent()
-		var CureValue: float = 1
-		CureValue += 0.3 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp)
+		var cure_value: float = 1
+		cure_value += 0.3 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp)
 		if mm is BaseMonster and not _is_summon_or_pet_target(mm):
-			var CurePower = (
+			var cure_power = (
 				objattackDic["lhsq"]["power"]
 				* (0.2 + (PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL]) * 0.03)
-				* CureValue
+				* cure_value
 			)
-			cure_hp(CurePower)
+			cure_hp(cure_power)
 			_add_lhsq_awaken_stack()
 	if objattackDic.has(get_action):
 		if objattackDic[get_action].has("addeffect"):

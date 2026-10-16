@@ -166,17 +166,17 @@ func ai_think() -> void:
 	if (
 		_skill_busy
 		or Hp <= 0
-		or RoleProp.SourcePlayer == null
+		or RoleProp.source_player == null
 		or RoleProp.get_nearest_monster_target_position(global_position).x == null
 	):
 		return
-	var distance := global_position.distance_to(RoleProp.SourcePlayer.global_position)
+	var distance := global_position.distance_to(RoleProp.source_player.global_position)
 	if distance < mysee:
 		has_target = true
 	if not has_target:
 		normal_state()
 		return
-	if is_ice or is_sleep or is_stun or is_Immobilize or Islljy or cannotchangestatewhenattorbeatt():
+	if is_ice or is_sleep or is_stun or is_immobilize or islljy or cannotchangestatewhenattorbeatt():
 		return
 
 	if Skill_1_CD <= 0 and distance < 1000.0:
@@ -247,7 +247,7 @@ func _cast_gaze() -> void:
 	if Hp > 0:
 		var effect = _spawn_effect("Monster130Bullet3", global_position, "hit3", objattackDic["hit3"])
 		if effect != null:
-			effect.MyFather = self
+			effect.my_father = self
 			effect.set_meta("monster130_gaze_lifetime", randf_range(1.0, 3.0))
 	await get_tree().create_timer(10.0 / 24.0, false).timeout
 	is_attacking = false
@@ -301,7 +301,7 @@ func _spawn_effect(effect_name: String, spawn_position: Vector2, attack_name: St
 		if effect is Node2D:
 			effect.set_as_top_level(true)
 			effect.global_position = spawn_position
-		effect.MyFather = self
+		effect.my_father = self
 	return effect
 
 
@@ -346,8 +346,8 @@ func _apply_gaze_control() -> void:
 
 func _get_player_and_pet_targets() -> Array[Node2D]:
 	var result: Array[Node2D] = []
-	if RoleProp.SourcePlayer != null and is_instance_valid(RoleProp.SourcePlayer) and RoleProp.SourcePlayer is Node2D:
-		result.append(RoleProp.SourcePlayer as Node2D)
+	if RoleProp.source_player != null and is_instance_valid(RoleProp.source_player) and RoleProp.source_player is Node2D:
+		result.append(RoleProp.source_player as Node2D)
 	var scene_root := get_tree().current_scene
 	if scene_root != null:
 		_collect_pet_targets(scene_root, result)
@@ -397,5 +397,5 @@ func _try_unlock_pet_rabbit() -> void:
 		return
 	if not PlayerData.has_method("unlock_pet_rabbit") or not PlayerData.unlock_pet_rabbit():
 		return
-	Global.add_message_show(Global.Windows_, "击败嫦娥，成功解锁宠物月兔！", 2.0, Vector2(500, 305))
+	Global.add_message_show(Global.windows, "击败嫦娥，成功解锁宠物月兔！", 2.0, Vector2(500, 305))
 	MemoryClass.save_game(Global.cd_path)

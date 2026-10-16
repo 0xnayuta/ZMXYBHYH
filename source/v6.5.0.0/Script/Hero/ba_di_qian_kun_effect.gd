@@ -281,14 +281,14 @@ func _apply_hit(target: BaseMonster, damage_multiplier: float = 1.0) -> void:
 			* RoleProp.ws_up_power
 			* target.jgz_bl
 			* target.zznh_bl
-			* target.HurtBl
+			* target.hurt_bl
 			* (1.0 + target.lpzzs)
 			* (1.0 + owner_player.tszzs)
 			* target.llrdzs
 		)
 	)
 	if damage > 0:
-		target.GetHurt = damage
+		target.hurt_received = damage
 		target.hurt_reduce_hp(damage, owner_player)
 		if MainSet.set_data["MonsterLittleBlood"]:
 			if target.monster_blood_bar == null:
@@ -298,11 +298,11 @@ func _apply_hit(target: BaseMonster, damage_multiplier: float = 1.0) -> void:
 		target.add_lj(damage)
 		if not target.is_control_immune():
 			_apply_hit_stun(target)
-		Global.TotalRoleHit += damage
-		Global.TotalPhyHit += damage
+		Global.total_role_hit += damage
+		Global.total_phy_hit += damage
 		Global.add_sound(target, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 		if not target.is_miss and not target.is_boss_protecting():
-			target.HurtSpecialEffect = Global.add_mr_hurt(target.pz, Vector2(0, 0))
+			target.hurt_special_effect = Global.add_mr_hurt(target.pz, Vector2(0, 0))
 		if not RoleProp.is_ws_state:
 			RoleProp.ws_value += int(hit_data.get("WSValue", 8))
 	owner_player.HitDic = old_hit_data

@@ -1,5 +1,5 @@
 extends BaseMonster
-var Round
+var round_num
 
 
 func monster_76():
@@ -108,19 +108,19 @@ func do_hit_2():
 func call_round():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
-	Round = Global.add_bullet("Monster76Bullet2", bullet, false, 1, pp, "hit2", self.objattackDic["hit2"])
-	tween.tween_property(Round, "position", setposition(), 0.5)
+	round_num = Global.add_bullet("Monster76Bullet2", bullet, false, 1, pp, "hit2", self.objattackDic["hit2"])
+	tween.tween_property(round_num, "position", setposition(), 0.5)
 	await get_tree().create_timer(2.5, false).timeout
 	return_()
 
 
 func return_():
-	if Round != null:
+	if round_num != null:
 		var tween = get_tree().create_tween()
 		var pp = Vector2(self.position.x, self.position.y)
-		tween.tween_property(Round, "position", pp, 0.3)
+		tween.tween_property(round_num, "position", pp, 0.3)
 		await get_tree().create_timer(0.28, false).timeout
-		Round.queue_free()
+		round_num.queue_free()
 
 
 func setposition():

@@ -83,7 +83,7 @@ func _physics_process(_delta: float) -> void:
 	var stone_count := _count_item_all_pages(stone_id)
 	n_q_1.set_button_icon(load_(stone_id))
 	n_q_1.get_item_name = stone_id
-	n_q_1.EQ_prop = AE.AllEquipment_.get(stone_id, {})
+	n_q_1.EQ_prop = AE.all_equipment.get(stone_id, {})
 	n_q_1.total_number = 0
 	num_b1.text = str(stone_count) + "/" + str(required_stones)
 	_set_requirement_color(num_b1, stone_count >= required_stones)
@@ -110,7 +110,7 @@ func _on_sz_pressed() -> void:
 	var target_stage := current_stage + 1
 	var stone_id := _stone_id(target_stage)
 	if _count_item_all_pages(stone_id) < STONES_PER_STAGE:
-		_show_message(str(AE.AllEquipment_[stone_id][DataKeys.NAME]) + "不足，需要20颗！")
+		_show_message(str(AE.all_equipment[stone_id][DataKeys.NAME]) + "不足，需要20颗！")
 		return
 	_consume_item_all_pages(stone_id, STONES_PER_STAGE)
 	var upgraded_data := item_data.duplicate(true)
@@ -120,8 +120,8 @@ func _on_sz_pressed() -> void:
 	if str(selected["source"]) == "人物穿戴":
 		RoleProp.get_equ_last_pro()
 		RoleProp.get_last_prop()
-		if is_instance_valid(RoleProp.SourcePlayer):
-			RoleProp.SourcePlayer.on_eqchange()
+		if is_instance_valid(RoleProp.source_player):
+			RoleProp.source_player.on_eqchange()
 	_show_message("神铸成功！")
 	_refresh_backpack()
 	MemoryClass.save_game(Global.cd_path)
@@ -193,7 +193,7 @@ func _set_requirement_color(label: Label, enough: bool) -> void:
 
 
 func _show_message(message: String) -> void:
-	var parent_node: Node = Global.Windows_ if is_instance_valid(Global.Windows_) else get_parent()
+	var parent_node: Node = Global.windows if is_instance_valid(Global.windows) else get_parent()
 	Global.add_message_show(parent_node, message, 1.5, Vector2(470, 295))
 
 

@@ -1,6 +1,6 @@
 extends BaseMonster
-var Dog: Monster72
-var CallDog: bool
+var dog: Monster72
+var call_dog: bool
 
 
 func monster_93():
@@ -99,13 +99,13 @@ func _ready() -> void:
 
 
 func ai_think():
-	if Dog == null and not CallDog:
-		Dog = Global.create_monster(72, get_parent(), position)
-		Dog.SHp = 70000
-		Dog.Hp = Dog.SHp
-		Dog.IsCall = true
-		Dog.MyFather = self
-		CallDog = true
+	if dog == null and not call_dog:
+		dog = Global.create_monster(72, get_parent(), position)
+		dog.SHp = 70000
+		dog.Hp = dog.SHp
+		dog.is_call = true
+		dog.my_father = self
+		call_dog = true
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
@@ -193,26 +193,26 @@ func do_hit_4():
 
 func add_bullet():
 	var bullet_spawn_positions = [Vector2()]
-	var Position2: Vector2
-	var Tween_ = create_tween().set_parallel(true)
+	var position2: Vector2
+	var tween = create_tween().set_parallel(true)
 	if MonsterDirection:
 		bullet_spawn_positions = [Vector2(-10, -315), Vector2(70, -70), Vector2(-65, -70)]
-		Position2 = Vector2(-10, -160)
+		position2 = Vector2(-10, -160)
 	else:
 		bullet_spawn_positions = [Vector2(10, -315), Vector2(-70, -70), Vector2(65, -70)]
-		Position2 = Vector2(10, -160)
+		position2 = Vector2(10, -160)
 	for i in bullet_spawn_positions:
-		var Line = Global.add_bullet(
+		var line = Global.add_bullet(
 			"Monster93Bullet", self.bullet, MonsterDirection, 1.6, i + position, "hit5", self.objattackDic["hit5"]
 		)
 		if MonsterDirection:
-			Tween_.tween_property(Line, "rotation_degrees", 45, 2)
+			tween.tween_property(line, "rotation_degrees", 45, 2)
 		else:
-			Tween_.tween_property(Line, "rotation_degrees", -45, 2)
-	var Line2 = Global.add_bullet(
-		"Monster93Bullet", self.bullet, MonsterDirection, 1.6, Position2 + position, "hit5", self.objattackDic["hit5"]
+			tween.tween_property(line, "rotation_degrees", -45, 2)
+	var line2 = Global.add_bullet(
+		"Monster93Bullet", self.bullet, MonsterDirection, 1.6, position2 + position, "hit5", self.objattackDic["hit5"]
 	)
-	Line2.scale.y = 2.2
+	line2.scale.y = 2.2
 
 
 func blood_fix():

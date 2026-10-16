@@ -1,15 +1,14 @@
 extends BaseMonster
 const BossXieShaSengWdww := preload("res://Script/monster/monster_14501_wdww.gd")
 
-var IsSky = false
-var RoundList = []
-var Rolelevel = RoleProp.baseroleprop.Level
+var is_sky = false
+var round_list = []
+var rolelevel = RoleProp.baseroleprop.Level
 var current_stage: int = 1
 var max_stage: int = 5
 var has_summoned_next = false
 
-var CurrentStage: int = 0
-var IsRelif: bool
+var is_relif: bool
 var is_have_wdww: bool = false
 var wdww: BossXieShaSengWdww
 

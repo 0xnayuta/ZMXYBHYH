@@ -9,24 +9,24 @@ var is_cc := false
 
 
 func _ready() -> void:
-	Global.CurrentLevel = ""
+	Global.current_level = ""
 	Global.add_bgm(self, "res://Music/level/BGM_Normal.mp3")
 	Global.load_level_monster_scene("res://Scene/monster/Monster_%d.tscn" % boss_scene_id)
 	level_stage = 1
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [boss_scene_id],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [850],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [boss_spawn_y],
 		"stage_2": [],
 		"stage_3": [],

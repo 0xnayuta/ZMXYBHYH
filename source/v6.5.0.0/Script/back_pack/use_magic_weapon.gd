@@ -3,10 +3,10 @@ extends Node2D
 @onready var bg: Sprite2D = $BG
 @onready var page_infor: Label = $BG/HBoxContainer/PageInfor
 
-var InforList = []
+var infor_list = []
 var current_page: int = 1
 var max_page: int = 0
-var positionList = [Vector2(0, -110), Vector2(0, 10), Vector2(0, 130)]
+var position_list = [Vector2(0, -110), Vector2(0, 10), Vector2(0, 130)]
 
 const MAGIC_WEAPON_IDS := [
 	"zcld",
@@ -108,14 +108,14 @@ func add_infor():
 		return
 	var page_items: Array = fbinfor[page_key]
 	for i in page_items.size():
-		var infor = Global.add_skill_select(bg, positionList[i], page_items[i])
-		InforList.push_back(infor)
+		var infor = Global.add_skill_select(bg, position_list[i], page_items[i])
+		infor_list.push_back(infor)
 
 
 func remove_infor():
-	for i in InforList:
+	for i in infor_list:
 		i.queue_free()
-	InforList.clear()
+	infor_list.clear()
 
 
 func _on_last_pressed() -> void:

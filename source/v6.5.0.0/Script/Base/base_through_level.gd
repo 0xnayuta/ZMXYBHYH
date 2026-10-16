@@ -34,25 +34,25 @@ var can_exit = false
 var _auto_exit_settling := false
 var current_stage = 0
 var back_target
-var Monster_group = {
+var monster_group = {
 	"stage_1": [],
 	"stage_2": [],
 	"stage_3": [],
 	"stage_4": [],
 }
-var Monster_position_x = {
+var monster_position_x = {
 	"stage_1": [],
 	"stage_2": [],
 	"stage_3": [],
 	"stage_4": [],
 }
-var Monster_position_y = {
+var monster_position_y = {
 	"stage_1": [],
 	"stage_2": [],
 	"stage_3": [],
 	"stage_4": [],
 }
-var MonsterArray: Array = []
+var monster_array: Array = []
 var can_create: bool
 var mr_num = 0
 
@@ -71,21 +71,21 @@ func _ready() -> void:
 		RoleProp.ws_value = 0
 	create_control.wait_time = float(MainSet.set_data.get("CreateMonsterSpeed", 0.3))
 	MainMusic.remove_music()
-	if not Global.Is_Show:
+	if not Global.is_show:
 		var zm_player: AnimationPlayer = $CanvasLayer/zmPLAYER
 		if zm_player.has_animation("gdzm"):
 			zm_player.play("gdzm")
-		Global.Is_Show = true
+		Global.is_show = true
 		pass
-	Global.Is_Show = true
-	Global.FB_CD = -10
-	Global.LastLevelPath = str(self.scene_file_path)
+	Global.is_show = true
+	Global.fb_cd = -10
+	Global.last_level_path = str(self.scene_file_path)
 	remove_all_records()
-	Global.LevelBeginTime = Time.get_datetime_string_from_system(false, true)
-	var RoleId = int(PlayerData.player_data.get("Myself", 1))
-	if RoleId <= 0:
-		RoleId = 1
-	Role_ = Global.call_hero("role_" + str(RoleId), hero, Vector2(100, 340), false)
+	Global.level_begin_time = Time.get_datetime_string_from_system(false, true)
+	var role_id = int(PlayerData.player_data.get("Myself", 1))
+	if role_id <= 0:
+		role_id = 1
+	Role_ = Global.call_hero("role_" + str(role_id), hero, Vector2(100, 340), false)
 	if role_information == null:
 		role_information = Global.add_role_information(self, Vector2(0, 0))
 		role_information.z_index = 10
@@ -1276,9 +1276,9 @@ func _physics_process(_delta: float) -> void:
 	if current_stage >= 1:
 		if not is_two_scene:
 			if (
-				Monster_group["stage_2"].size() == 0
-				and Monster_group["stage_3"].size() == 0
-				and Monster_group["stage_4"].size() == 0
+				monster_group["stage_2"].size() == 0
+				and monster_group["stage_3"].size() == 0
+				and monster_group["stage_4"].size() == 0
 			):
 				if one_check_can_exit():
 					Global.preload_next("res://Scene/level/victory.tscn")
@@ -1293,9 +1293,9 @@ func _physics_process(_delta: float) -> void:
 					exit_ready = true
 		else:
 			if (
-				Monster_group["stage_2"].size() == 0
-				and Monster_group["stage_3"].size() == 0
-				and Monster_group["stage_4"].size() == 0
+				monster_group["stage_2"].size() == 0
+				and monster_group["stage_3"].size() == 0
+				and monster_group["stage_4"].size() == 0
 			):
 				if one_check_can_exit():
 					Global.preload_next("res://Scene/level/victory.tscn")
@@ -1326,7 +1326,7 @@ func _leave_level_from_exit() -> void:
 	if not is_inside_tree():
 		return
 	if self is Level19:
-		if self.Canthro:
+		if self.canthro:
 			add_tg(level_stage)
 	else:
 		add_tg(level_stage)
@@ -1344,16 +1344,16 @@ func _leave_level_from_exit() -> void:
 		else:
 			Global.change_scene("res://Scene/main_menu/game_over_1.tscn")
 	elif self is Level19:
-		if self.Canthro:
+		if self.canthro:
 			if not _restart_level_for_auto_battle():
 				Global.change_scene("res://Scene/level/victory.tscn")
 		else:
-			RoleProp.CurrentHp = RoleProp.roleprop.Hp
-			RoleProp.CurrentMp = RoleProp.roleprop.Mp
+			RoleProp.current_hp = RoleProp.roleprop.Hp
+			RoleProp.current_mp = RoleProp.roleprop.Mp
 			Global.change_scene("res://Scene/level/level_20.tscn")
 	elif self is Level20:
-		RoleProp.CurrentHp = RoleProp.roleprop.Hp
-		RoleProp.CurrentMp = RoleProp.roleprop.Mp
+		RoleProp.current_hp = RoleProp.roleprop.Hp
+		RoleProp.current_mp = RoleProp.roleprop.Mp
 		Global.change_scene("res://Scene/level/level_20.tscn")
 	else:
 		if not _restart_level_for_auto_battle():
@@ -1365,7 +1365,7 @@ func _restart_level_for_auto_battle() -> bool:
 		return false
 	if not bool(MainSet.set_data.get("AutoBattleRetry", false)):
 		return false
-	if Global.LastLevelPath == "":
+	if Global.last_level_path == "":
 		return false
 	var archive_path := str(Global.cd_path).strip_edges()
 	if archive_path == "":
@@ -1374,38 +1374,38 @@ func _restart_level_for_auto_battle() -> bool:
 		push_warning("自动重战保存失败：%s" % archive_path)
 	RoleProp.set_full_hp()
 	RoleProp.set_full_mp()
-	RoleProp.CurrentHp = int(RoleProp.roleprop.Hp)
-	RoleProp.CurrentMp = int(RoleProp.roleprop.Mp)
+	RoleProp.current_hp = int(RoleProp.roleprop.Hp)
+	RoleProp.current_mp = int(RoleProp.roleprop.Mp)
 	RoleProp.ws_value = 0
 	RoleProp.is_ws_state = false
-	Global.is_DeadLink = false
+	Global.is_dead_link = false
 	Global.remove_all_buff()
-	Global.change_scene(Global.LastLevelPath)
+	Global.change_scene(Global.last_level_path)
 	return true
 
 
 func _align_monster_spawn_tables() -> void:
 	for stage_key in ["stage_1", "stage_2", "stage_3", "stage_4"]:
-		if not Monster_group.has(stage_key):
-			Monster_group[stage_key] = []
-		if not Monster_position_x.has(stage_key):
-			Monster_position_x[stage_key] = []
-		if not Monster_position_y.has(stage_key):
-			Monster_position_y[stage_key] = []
-		var ids: Array = Monster_group[stage_key]
-		var pos_x: Array = Monster_position_x[stage_key]
-		var pos_y: Array = Monster_position_y[stage_key]
+		if not monster_group.has(stage_key):
+			monster_group[stage_key] = []
+		if not monster_position_x.has(stage_key):
+			monster_position_x[stage_key] = []
+		if not monster_position_y.has(stage_key):
+			monster_position_y[stage_key] = []
+		var ids: Array = monster_group[stage_key]
+		var pos_x: Array = monster_position_x[stage_key]
+		var pos_y: Array = monster_position_y[stage_key]
 		var keep := mini(ids.size(), mini(pos_x.size(), pos_y.size()))
 		if keep < ids.size() or keep < pos_x.size() or keep < pos_y.size():
 			push_warning(
 				"关卡刷怪表长度不一致，已对齐: %s ids=%d x=%d y=%d -> %d" % [stage_key, ids.size(), pos_x.size(), pos_y.size(), keep]
 			)
 		if keep < ids.size():
-			Monster_group[stage_key] = ids.slice(0, keep)
+			monster_group[stage_key] = ids.slice(0, keep)
 		if keep < pos_x.size():
-			Monster_position_x[stage_key] = pos_x.slice(0, keep)
+			monster_position_x[stage_key] = pos_x.slice(0, keep)
 		if keep < pos_y.size():
-			Monster_position_y[stage_key] = pos_y.slice(0, keep)
+			monster_position_y[stage_key] = pos_y.slice(0, keep)
 
 
 func _apply_monster_count_multiplier():
@@ -1415,35 +1415,35 @@ func _apply_monster_count_multiplier():
 	if count <= 1:
 		return
 	for stage_key in ["stage_1", "stage_2", "stage_3", "stage_4"]:
-		if not Monster_group.has(stage_key):
+		if not monster_group.has(stage_key):
 			continue
-		var orig_ids = Monster_group[stage_key].duplicate()
+		var orig_ids = monster_group[stage_key].duplicate()
 		var new_ids = []
 		for ci in range(count):
 			new_ids.append_array(orig_ids)
-		Monster_group[stage_key] = new_ids
+		monster_group[stage_key] = new_ids
 
-		if Monster_position_x.has(stage_key):
-			var orig_x = Monster_position_x[stage_key].duplicate()
+		if monster_position_x.has(stage_key):
+			var orig_x = monster_position_x[stage_key].duplicate()
 			var new_x = []
 			for ci in range(count):
 				new_x.append_array(orig_x)
-			Monster_position_x[stage_key] = new_x
+			monster_position_x[stage_key] = new_x
 
-		if Monster_position_y.has(stage_key):
-			var orig_y = Monster_position_y[stage_key].duplicate()
+		if monster_position_y.has(stage_key):
+			var orig_y = monster_position_y[stage_key].duplicate()
 			var new_y = []
 			for ci in range(count):
 				new_y.append_array(orig_y)
-			Monster_position_y[stage_key] = new_y
+			monster_position_y[stage_key] = new_y
 	_align_monster_spawn_tables()
 
 
 func _preload_level_resources() -> void:
 	var level_monster_ids: Array = []
 	for stage_key in ["stage_1", "stage_2", "stage_3", "stage_4"]:
-		if Monster_group.has(stage_key) and Monster_group[stage_key] is Array:
-			level_monster_ids.append_array(Monster_group[stage_key])
+		if monster_group.has(stage_key) and monster_group[stage_key] is Array:
+			level_monster_ids.append_array(monster_group[stage_key])
 	_stage_preload_requested[1] = true
 	await Global.preload_level_monster_runtime_resources(level_monster_ids)
 
@@ -1460,7 +1460,7 @@ func _request_stage_resource_preload(stage: int) -> void:
 	if stage < 1 or stage > 4 or _stage_preload_requested.has(stage):
 		return
 	_stage_preload_requested[stage] = true
-	var stage_ids: Variant = Monster_group.get("stage_%d" % stage, [])
+	var stage_ids: Variant = monster_group.get("stage_%d" % stage, [])
 	if not stage_ids is Array or stage_ids.is_empty():
 		return
 	call_deferred("_preload_stage_resources", stage_ids.duplicate())
@@ -1480,25 +1480,25 @@ func level_create_monster(stage):
 
 	var stage_key = "stage_" + str(stage)
 	if (
-		not Monster_group.has(stage_key)
-		or not Monster_position_x.has(stage_key)
-		or not Monster_position_y.has(stage_key)
+		not monster_group.has(stage_key)
+		or not monster_position_x.has(stage_key)
+		or not monster_position_y.has(stage_key)
 	):
 		return
-	if Monster_group[stage_key].size() == 0:
+	if monster_group[stage_key].size() == 0:
 		return
-	if Monster_position_x[stage_key].size() == 0 or Monster_position_y[stage_key].size() == 0:
+	if monster_position_x[stage_key].size() == 0 or monster_position_y[stage_key].size() == 0:
 		push_error("关卡刷怪坐标表为空: %s" % stage_key)
-		Monster_group[stage_key].clear()
+		monster_group[stage_key].clear()
 		return
 
-	var mr_xh = Monster_group[stage_key][0]
-	var mr_loc_x = Monster_position_x[stage_key][0]
-	var mr_loc_y = Monster_position_y[stage_key][0]
-	Monster_group[stage_key].remove_at(0)
-	Monster_position_x[stage_key].remove_at(0)
-	Monster_position_y[stage_key].remove_at(0)
-	if mr_num <= Monster_group[stage_key].size():
+	var mr_xh = monster_group[stage_key][0]
+	var mr_loc_x = monster_position_x[stage_key][0]
+	var mr_loc_y = monster_position_y[stage_key][0]
+	monster_group[stage_key].remove_at(0)
+	monster_position_x[stage_key].remove_at(0)
+	monster_position_y[stage_key].remove_at(0)
+	if mr_num <= monster_group[stage_key].size():
 		mr = Global.create_monster(mr_xh, monster, Vector2(mr_loc_x, mr_loc_y))
 		can_create = false
 
@@ -1532,17 +1532,17 @@ func change_mysee():
 
 
 func check_monster_death():
-	if MonsterArray != []:
-		for i in MonsterArray:
+	if monster_array != []:
+		for i in monster_array:
 			if i != null:
 				if i is BaseMonster:
 					if i.death():
-						MonsterArray.erase(i)
+						monster_array.erase(i)
 				else:
-					MonsterArray.erase(i)
+					monster_array.erase(i)
 
 			else:
-				MonsterArray.erase(i)
+				monster_array.erase(i)
 
 
 func _is_stage_monster_node(node: Node) -> bool:
@@ -1593,11 +1593,11 @@ func check_can_create(stage):
 
 	var stage_key = "stage_" + str(stage)
 
-	if not Monster_group.has(stage_key):
+	if not monster_group.has(stage_key):
 		return false
 
 	var count = clamp(int(MainSet.set_data.get("CreateMonsterCount", 1)), 1, 5)
-	return _get_alive_stage_monster_count() < 6 * count and Monster_group[stage_key].size() > 0
+	return _get_alive_stage_monster_count() < 6 * count and monster_group[stage_key].size() > 0
 
 
 func _on_create_control_timeout() -> void:
@@ -1633,10 +1633,10 @@ func check_can_pass():
 
 	var stage_key = "stage_" + str(current_stage)
 
-	if not Monster_group.has(stage_key):
+	if not monster_group.has(stage_key):
 		return false
 
-	return Monster_group[stage_key].size() == 0 and _get_alive_stage_monster_count() == 0
+	return monster_group[stage_key].size() == 0 and _get_alive_stage_monster_count() == 0
 
 
 func check_can_exit():
@@ -1645,10 +1645,10 @@ func check_can_exit():
 
 	var stage_key = "stage_" + str(current_stage)
 
-	if not Monster_group.has(stage_key):
+	if not monster_group.has(stage_key):
 		return false
 
-	return Monster_group[stage_key].size() == 0 and current_stage == 4 and _get_alive_stage_monster_count() == 0
+	return monster_group[stage_key].size() == 0 and current_stage == 4 and _get_alive_stage_monster_count() == 0
 
 
 func one_check_can_exit():
@@ -1657,10 +1657,10 @@ func one_check_can_exit():
 
 	var stage_key = "stage_" + str(current_stage)
 
-	if not Monster_group.has(stage_key):
+	if not monster_group.has(stage_key):
 		return false
 
-	return Monster_group[stage_key].size() == 0 and _get_alive_stage_monster_count() == 0
+	return monster_group[stage_key].size() == 0 and _get_alive_stage_monster_count() == 0
 
 
 func always_can_pass():
@@ -1689,7 +1689,7 @@ func add_tg(level):
 			PlayerData.player_data["云川"] = 1
 		return
 
-	var progression_level_name := str(Global.CurrentLevel)
+	var progression_level_name := str(Global.current_level)
 	if (
 		progression_level_name
 		in [
@@ -1828,19 +1828,19 @@ func shake_(strength: float, times: int, inte: float):
 
 
 func remove_all_records():
-	Global.LevelBeginTime = ""
-	Global.MostLianji = 0
-	Global.LastPropHp = 0
-	Global.TotalRoleHurt = 0
-	Global.TotalCureHp = 0
-	Global.TotalPhyHit = 0
-	Global.TotalMagHit = 0
-	Global.TotalRealHit = 0
-	Global.TotalPhyHurt = 0
-	Global.TotalMagHurt = 0
-	Global.TotalRealHurt = 0
-	Global.TotalHurtCount = 0
-	Global.TotalHitCount = 0
-	Global.TotalRoleHit = 0
-	Global.TotalCritCount = 0
-	Global.TotalMissCount = 0
+	Global.level_begin_time = ""
+	Global.most_lianji = 0
+	Global.last_prop_hp = 0
+	Global.total_role_hurt = 0
+	Global.total_cure_hp = 0
+	Global.total_phy_hit = 0
+	Global.total_mag_hit = 0
+	Global.total_real_hit = 0
+	Global.total_phy_hurt = 0
+	Global.total_mag_hurt = 0
+	Global.total_real_hurt = 0
+	Global.total_hurt_count = 0
+	Global.total_hit_count = 0
+	Global.total_role_hit = 0
+	Global.total_crit_count = 0
+	Global.total_miss_count = 0

@@ -89,8 +89,8 @@ func _physics_process(delta: float) -> void:
 		lifetime = float(get_meta("monster130_gaze_lifetime", lifetime))
 		if not _gaze_applied and _elapsed >= lifetime:
 			_gaze_applied = true
-			if MyFather != null and is_instance_valid(MyFather) and MyFather.has_method("_apply_gaze_control"):
-				MyFather.call("_apply_gaze_control")
+			if my_father != null and is_instance_valid(my_father) and my_father.has_method("_apply_gaze_control"):
+				my_father.call("_apply_gaze_control")
 			queue_free()
 	elif _elapsed >= lifetime:
 		queue_free()

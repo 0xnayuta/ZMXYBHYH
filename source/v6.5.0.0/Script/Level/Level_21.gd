@@ -12,13 +12,13 @@ func _ready() -> void:
 	load("res://Scene/monster/monster_56.tscn")
 	load("res://Scene/monster/monster_57.tscn")
 	load("res://Scene/monster/monster_58.tscn")
-	Global.CurrentLevel = "转轮殿"
+	Global.current_level = "转轮殿"
 	Global.add_bgm(self, "res://Music/level/2_bg4.mp3")
 	self.is_two_scene = true
 	self.level_stage = 20
-	Global.GameOver = 2
+	Global.game_over = 2
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1":
 		[
 			58,
@@ -76,7 +76,7 @@ func _ready() -> void:
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1":
 		[
 			150,
@@ -134,7 +134,7 @@ func _ready() -> void:
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			300,
@@ -227,8 +227,8 @@ func _has_pending_boss_form() -> bool:
 	if monster == null:
 		return false
 	for child in monster.get_children():
-		if child is Monster57 and child.death() and child.Boss_2 == null:
+		if child is Monster57 and child.death() and child.boss_2 == null:
 			return true
-		if child is Monster55 and child.death() and child.Boss_3 == null:
+		if child is Monster55 and child.death() and child.boss_3 == null:
 			return true
 	return false

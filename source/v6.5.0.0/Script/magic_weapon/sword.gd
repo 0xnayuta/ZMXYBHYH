@@ -14,20 +14,20 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	needMp = 30 + 10 * self.FB_Level
-	self.FB_Level = PlayerData.get_most_level("tsgj") + 1
+	need_mp = 30 + 10 * self.fb_level
+	self.fb_level = PlayerData.get_most_level("tsgj") + 1
 	var add_effect: Dictionary = _hit_data["addeffect"]
 	if PlayerData.check_have_wx("tsgj", "木"):
-		_hit_data["power"] = 100 + int(RoleProp.roleprop.power * randf_range(0.28, 0.35)) + 50 * self.FB_Level
-		add_effect["AddTime"] = 3 + 0.18 * self.FB_Level
+		_hit_data["power"] = 100 + int(RoleProp.roleprop.power * randf_range(0.28, 0.35)) + 50 * self.fb_level
+		add_effect["AddTime"] = 3 + 0.18 * self.fb_level
 	else:
-		_hit_data["power"] = 100 + int(RoleProp.roleprop.power * randf_range(0.15, 0.2)) + 100 * self.FB_Level
-		add_effect["AddTime"] = 1 + 0.18 * self.FB_Level
+		_hit_data["power"] = 100 + int(RoleProp.roleprop.power * randf_range(0.15, 0.2)) + 100 * self.fb_level
+		add_effect["AddTime"] = 1 + 0.18 * self.fb_level
 	super._physics_process(delta)
 
 
 func show_skill():
-	Global.FB_CD = 3
+	Global.fb_cd = 3
 	mg_player.play("hit")
 	await mg_player.animation_finished
 	use_over()

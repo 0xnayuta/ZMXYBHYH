@@ -1,10 +1,10 @@
 extends BaseMonster
-var ShouldFly: bool
-var Sword_: Monster117
-var FireRound: Monster116
-var IsCall: bool
-var OnsetEatblood: bool
-var RemoveBlood: bool
+var should_fly: bool
+var sword: Monster117
+var fire_round: Monster116
+var is_call: bool
+var onset_eatblood: bool
+var remove_blood: bool
 
 
 func monster_140():
@@ -118,18 +118,18 @@ func _ready() -> void:
 	Skill_2_CD = 10
 	Skill_3_CD = 5
 	Skill_4_CD = 12
-	Skill_5_CD = 15
+	skill_5_cd = 15
 
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	if not IsCall:
-		if Sword_ == null:
-			Sword_ = Global.create_monster(117, get_parent(), self.position)
-		if FireRound == null:
-			FireRound = Global.create_monster(116, get_parent(), self.position)
-		IsCall = true
-	if Sword_ != null or FireRound != null:
+	if not is_call:
+		if sword == null:
+			sword = Global.create_monster(117, get_parent(), self.position)
+		if fire_round == null:
+			fire_round = Global.create_monster(116, get_parent(), self.position)
+		is_call = true
+	if sword != null or fire_round != null:
 		ebol = 10
 	else:
 		ebol = 1
@@ -144,7 +144,7 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
 				have_target()
-				if Skill_5_CD <= 0:
+				if skill_5_cd <= 0:
 					do_hit_5()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -169,7 +169,7 @@ func ai_think():
 					do_hit_3()
 				if Skill_4_CD <= 0:
 					do_hit_4()
-				if Skill_5_CD <= 0:
+				if skill_5_cd <= 0:
 					do_hit_5()
 				if count % 90 == 0:
 					if randi_range(0, 100) < attackDesire:
@@ -226,7 +226,7 @@ func do_hit_4():
 
 func do_hit_5():
 	super.to_hero()
-	Skill_5_CD = 14
+	skill_5_cd = 14
 	hit_name = "hit5"
 	velocity.x = 0
 	is_attacking = true
@@ -241,13 +241,13 @@ func move_to_top_and_face_player():
 		return
 	velocity.y = 0
 	var tween = create_control_movement_tween().set_parallel(true)
-	var Po = Vector2(position.x, position.y - 350)
+	var po = Vector2(position.x, position.y - 350)
 	if position.y - 350 <= -100:
-		Po = Vector2(position.x, -100)
-	tween.tween_property(self, "position", Po, 0.2)
-	var TargetDegrees = -position.angle_to(RoleProp.get_nearest_monster_target_position(global_position))
-	tween.tween_property(self, "rotation", TargetDegrees, 0.2)
-	ShouldInSky = true
+		po = Vector2(position.x, -100)
+	tween.tween_property(self, "position", po, 0.2)
+	var target_degrees = -position.angle_to(RoleProp.get_nearest_monster_target_position(global_position))
+	tween.tween_property(self, "rotation", target_degrees, 0.2)
+	should_in_sky = true
 
 
 func tweentotop():
@@ -257,7 +257,7 @@ func tweentotop():
 	var tween = create_control_movement_tween().set_parallel(true)
 	tween.tween_property(self, "position", Vector2(position.x, -100), 0.2)
 	velocity.y = 0
-	ShouldInSky = true
+	should_in_sky = true
 
 
 func not_move_player():
@@ -275,7 +275,7 @@ func remove_speedx():
 
 
 func drop():
-	ShouldInSky = false
+	should_in_sky = false
 
 
 func call_bullet_1():
@@ -340,7 +340,7 @@ func call_bullet_4():
 
 func to_sky():
 	velocity.y = 0
-	ShouldInSky = true
+	should_in_sky = true
 	velocity.y = 0
 
 
@@ -388,14 +388,14 @@ func check_player():
 
 
 func reduce_hp(value: int):
-	if Sword_ != null or FireRound != null:
+	if sword != null or fire_round != null:
 		if value > 0:
 			value *= 0.5
 	super.reduce_hp(value)
 
 
 func hurt_reduce_hp(value, target):
-	if Sword_ != null or FireRound != null:
+	if sword != null or fire_round != null:
 		if value > 0:
 			value *= 0.5
 	return super.hurt_reduce_hp(value, target)

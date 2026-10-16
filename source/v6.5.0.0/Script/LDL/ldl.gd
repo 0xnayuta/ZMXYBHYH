@@ -5,14 +5,14 @@ const FULLSCREEN_DESIGN_SIZE := Vector2(940, 590)
 @onready var main_backpack: Control = $Main_Backpack
 @onready var lh: Label = $bg/bg2/lh
 
-var Synthesis_: Synthesis
-var Strength_: Strength
-var Mosaic_: Mosaic
-var Decompose_: Decompose
-var Forge_: Forge
-var OneKeySyn_: OneKeySynthesis
-var DivineForge_: DivineForge
-var BoneForge_: Node
+var synthesis: Synthesis
+var strength: Strength
+var mosaic: Mosaic
+var decompose: Decompose
+var forge: Forge
+var one_key_syn: OneKeySynthesis
+var divine_forge: DivineForge
+var bone_forge: Node
 
 
 func _physics_process(_delta: float) -> void:
@@ -72,7 +72,7 @@ func _on_xq_pressed() -> void:
 		remove_onekey_jm()
 		add_xq_jm()
 	else:
-		Global.add_message_show(Global.Windows_, "通关南天门后开启镶嵌功能！", 1.5, Vector2(470, 285))
+		Global.add_message_show(Global.windows, "通关南天门后开启镶嵌功能！", 1.5, Vector2(470, 285))
 
 
 func _on_return_pressed() -> void:
@@ -91,43 +91,43 @@ func _on_return_pressed() -> void:
 
 func add_qh_jm():
 	MLdl.loc_ = "强化"
-	if Strength_ == null:
-		Strength_ = Global.add_strength(bg_2, Vector2(-315, -205))
+	if strength == null:
+		strength = Global.add_strength(bg_2, Vector2(-315, -205))
 		MemoryClass.save_game(Global.cd_path)
-		Strength_.remove_infomation()
+		strength.remove_infomation()
 
 
 func remove_qh_jm():
-	if Strength_ != null:
-		Strength_.remove_infomation()
+	if strength != null:
+		strength.remove_infomation()
 		MemoryClass.save_game(Global.cd_path)
-		Strength_.queue_free()
+		strength.queue_free()
 
 
 func add_hc_jm():
 	MLdl.loc_ = "合成"
-	if Synthesis_ == null:
-		Synthesis_ = Global.add_synthesis(bg_2, Vector2(-315, -205))
+	if synthesis == null:
+		synthesis = Global.add_synthesis(bg_2, Vector2(-315, -205))
 
 
 func remove_hc_jm():
-	if Synthesis_ != null:
-		Synthesis_.remove_infomation()
+	if synthesis != null:
+		synthesis.remove_infomation()
 		MemoryClass.save_game(Global.cd_path)
-		Synthesis_.queue_free()
+		synthesis.queue_free()
 
 
 func add_xq_jm():
 	MLdl.loc_ = "镶嵌"
-	if Mosaic_ == null:
-		Mosaic_ = Global.add_mosaic_(bg_2, Vector2(-315, -205))
+	if mosaic == null:
+		mosaic = Global.add_mosaic_(bg_2, Vector2(-315, -205))
 
 
 func remove_xq_jm():
-	if Mosaic_ != null:
-		Mosaic_.remove_infomation()
+	if mosaic != null:
+		mosaic.remove_infomation()
 		MemoryClass.save_game(Global.cd_path)
-		Mosaic_.queue_free()
+		mosaic.queue_free()
 
 
 func _on_hh_pressed() -> void:
@@ -156,15 +156,15 @@ func _on_fj_pressed() -> void:
 
 func add_fj_jm():
 	MLdl.loc_ = "分解"
-	if Decompose_ == null:
-		Decompose_ = Global.add_decompose_(bg_2, Vector2(-305, -200))
+	if decompose == null:
+		decompose = Global.add_decompose_(bg_2, Vector2(-305, -200))
 
 
 func remove_fj_jm():
-	if Decompose_ != null:
-		Decompose_.remove_infomation()
+	if decompose != null:
+		decompose.remove_infomation()
 		MemoryClass.save_game(Global.cd_path)
-		Decompose_.queue_free()
+		decompose.queue_free()
 
 
 func _on_dz_pressed() -> void:
@@ -181,15 +181,15 @@ func _on_dz_pressed() -> void:
 
 func add_dz_jm():
 	MLdl.loc_ = "打造"
-	if Forge_ == null:
-		Forge_ = Global.add_forges(bg_2, Vector2(-340, -200))
+	if forge == null:
+		forge = Global.add_forges(bg_2, Vector2(-340, -200))
 
 
 func remove_dz_jm():
-	if Forge_ != null:
-		Forge_.remove_infomation()
+	if forge != null:
+		forge.remove_infomation()
 		MemoryClass.save_game(Global.cd_path)
-		Forge_.queue_free()
+		forge.queue_free()
 
 
 func _on_yjdy_pressed() -> void:
@@ -218,12 +218,12 @@ func _on_sz_pressed() -> void:
 
 func add_sz_jm() -> void:
 	MLdl.loc_ = "神铸"
-	if DivineForge_ == null:
+	if divine_forge == null:
 		var scene := preload("res://Scene/ldl/divine_forge.tscn")
-		DivineForge_ = scene.instantiate()
-		bg_2.add_child(DivineForge_)
-		DivineForge_.position = Vector2(-315, -205)
-		DivineForge_.remove_infomation()
+		divine_forge = scene.instantiate()
+		bg_2.add_child(divine_forge)
+		divine_forge.position = Vector2(-315, -205)
+		divine_forge.remove_infomation()
 
 
 func _on_cg_pressed() -> void:
@@ -242,39 +242,39 @@ func _on_cg_pressed() -> void:
 
 
 func add_cg_jm() -> void:
-	if BoneForge_ != null:
+	if bone_forge != null:
 		return
 	var scene := preload("res://Scene/ldl/bone_forge.tscn")
-	BoneForge_ = scene.instantiate()
-	bg_2.add_child(BoneForge_)
-	BoneForge_.position = Vector2(-315, -205)
-	BoneForge_.remove_infomation()
+	bone_forge = scene.instantiate()
+	bg_2.add_child(bone_forge)
+	bone_forge.position = Vector2(-315, -205)
+	bone_forge.remove_infomation()
 
 
 func remove_cg_jm() -> void:
-	if is_instance_valid(BoneForge_):
-		BoneForge_.remove_infomation()
-		BoneForge_.queue_free()
-	BoneForge_ = null
+	if is_instance_valid(bone_forge):
+		bone_forge.remove_infomation()
+		bone_forge.queue_free()
+	bone_forge = null
 
 
 func remove_sz_jm() -> void:
-	if is_instance_valid(DivineForge_):
-		DivineForge_.remove_infomation()
+	if is_instance_valid(divine_forge):
+		divine_forge.remove_infomation()
 		MemoryClass.save_game(Global.cd_path)
-		DivineForge_.queue_free()
-	DivineForge_ = null
+		divine_forge.queue_free()
+	divine_forge = null
 
 
 func add_onekey_jm():
-	if OneKeySyn_ == null:
+	if one_key_syn == null:
 		var scene = preload("res://Scene/ldl/one_key_synthesis.tscn")
-		OneKeySyn_ = scene.instantiate()
-		bg_2.add_child(OneKeySyn_)
-		OneKeySyn_.position = Vector2(-315, -205)
+		one_key_syn = scene.instantiate()
+		bg_2.add_child(one_key_syn)
+		one_key_syn.position = Vector2(-315, -205)
 
 
 func remove_onekey_jm():
-	if OneKeySyn_ != null:
-		OneKeySyn_.queue_free()
-		OneKeySyn_ = null
+	if one_key_syn != null:
+		one_key_syn.queue_free()
+		one_key_syn = null

@@ -1,43 +1,43 @@
 extends BaseLevel
 class_name Level22
 @onready var floor: Node2D = $Floor
-var Is_set: bool
-var CallCount: int = 0
+var is_set: bool
+var call_count: int = 0
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "九重天"
+	Global.current_level = "九重天"
 	Global.add_bgm(self, "res://Music/level/Floor1_3.mp3")
 	self.level_stage = 1
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [700],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [-5100],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
 	add_stage()
-	Is_set = true
+	is_set = true
 	my_camera.max_top = -5426
 	my_camera.max_right = 940
 	role_information.gogo.visible = false
 
 
 func _physics_process(delta: float) -> void:
-	CallCount += 1
-	if CallCount % 360 == 0:
+	call_count += 1
+	if call_count % 360 == 0:
 		for i in range(randi_range(1, 2)):
 			Global.create_monster(73, monster, Role_.position + Vector2(randi_range(-120, 102), randi_range(-125, 155)))
 	if Role_.position.y <= -4900:
@@ -59,7 +59,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func add_stage():
 	randomize()
-	var StageInfo = [
+	var stage_info = [
 		{"Type": "an_" + str(randi_range(1, 5)), "Position": Vector2(randi_range(335, 395), 190)},
 		{"Type": "an_4" + str(randi_range(1, 5)), "Position": Vector2(randi_range(450, 595), -50)},
 		{"Type": "an_4" + str(randi_range(1, 5)), "Position": Vector2(randi_range(305, 340), -290)},
@@ -84,7 +84,7 @@ func add_stage():
 		{"Type": "an_5" + str(randi_range(1, 5)), "Position": Vector2(randi_range(465, 595), -4810)},
 	]
 	var Stage
-	for i in StageInfo:
+	for i in stage_info:
 		var ta = "an_" + str(randi_range(1, 5))
 		Stage = Global.add_stage(floor, "an_" + str(randi_range(1, 5)), i["Position"])
 		if randi_range(0, 50) > 25:

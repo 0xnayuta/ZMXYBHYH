@@ -10,7 +10,7 @@ func _ready() -> void:
 	self.is_two_scene = true
 	self.level_stage = 1
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1":
 		[
 			135,
@@ -68,7 +68,7 @@ func _ready() -> void:
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1":
 		[
 			150,
@@ -126,7 +126,7 @@ func _ready() -> void:
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			300,

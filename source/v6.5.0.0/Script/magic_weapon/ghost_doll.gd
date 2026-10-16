@@ -1,11 +1,11 @@
 extends BaseMagicWeapon
 class_name GhostDoll
-var FollowTarget: BaseMonster
+var follow_target: BaseMonster
 var MonsterList = []
 var _monster_refresh_elapsed: float = 0.0
-var HitTimes: int = 0
-var MaxTimes: int = 0
-var isBegin: bool
+var hit_times: int = 0
+var max_times: int = 0
+var is_begin: bool
 var _hit_data := {"power": 0, "hurtBack": [1, -2], "attackKind": "magic"}
 
 
@@ -27,44 +27,44 @@ func _physics_process(delta: float) -> void:
 	if _monster_refresh_elapsed >= 0.1 or MonsterList.is_empty():
 		_monster_refresh_elapsed = 0.0
 		MonsterList = _get_active_monster_snapshot()
-	self.FB_Level = PlayerData.get_most_level("xhmt") + 1
+	self.fb_level = PlayerData.get_most_level("xhmt") + 1
 	if PlayerData.check_have_wx("xhmt", "木"):
-		_hit_data["power"] = int(25 + RoleProp.roleprop.power * (0.15 + (self.FB_Level * 0.03)))
-		MaxTimes = 5 + int(self.FB_Level / 3)
+		_hit_data["power"] = int(25 + RoleProp.roleprop.power * (0.15 + (self.fb_level * 0.03)))
+		max_times = 5 + int(self.fb_level / 3)
 	else:
-		_hit_data["power"] = int(12 + RoleProp.roleprop.power * (0.07 + (self.FB_Level * 0.02)))
-		MaxTimes = 3 + int(self.FB_Level / 3)
-	needMp = 25 + self.FB_Level * 5
+		_hit_data["power"] = int(12 + RoleProp.roleprop.power * (0.07 + (self.fb_level * 0.02)))
+		max_times = 3 + int(self.fb_level / 3)
+	need_mp = 25 + self.fb_level * 5
 	super._physics_process(delta)
-	if HitTimes > 0:
+	if hit_times > 0:
 		get_target()
-		if FollowTarget != null:
-			if not isBegin:
+		if follow_target != null:
+			if not is_begin:
 				var changepp: Vector2
 				var tween = get_tree().create_tween()
 				changepp = Vector2(0, 112)
-				tween.tween_property(self, "position", FollowTarget.position - changepp, 0.25)
-				isBegin = true
+				tween.tween_property(self, "position", follow_target.position - changepp, 0.25)
+				is_begin = true
 		else:
 			use_over()
-		if isBegin:
+		if is_begin:
 			mg_player.play("hit")
 			await mg_player.animation_finished
 			change_dir()
-			isBegin = false
+			is_begin = false
 			get_target()
-			if HitTimes <= 0:
+			if hit_times <= 0:
 				use_over()
 
 
 func change_dir():
-	if FollowTarget != null:
-		if FollowTarget is BaseMonster:
-			if self.position.x > FollowTarget.position.x:
+	if follow_target != null:
+		if follow_target is BaseMonster:
+			if self.position.x > follow_target.position.x:
 				scale.x = 1
-				self.SelfDir = false
+				self.self_dir = false
 			else:
-				self.SelfDir = true
+				self.self_dir = true
 				scale.x = -1
 
 
@@ -84,11 +84,11 @@ func show_skill():
 			Monster_2 = MonsterList[a_2]
 		else:
 			use_over()
-			FollowTarget = null
+			follow_target = null
 			return null
 		if Monster_2 == null:
 			use_over()
-			FollowTarget = null
+			follow_target = null
 			return null
 		if Monster_2 is Monster138:
 			a_2 += 1
@@ -97,19 +97,19 @@ func show_skill():
 		if a_3 <= a_1:
 			a_1 = a_3
 			if Monster_2 is Monster48:
-				if Monster_2.ChangeBody:
+				if Monster_2.change_body_flag:
 					use_over()
-					FollowTarget = null
+					follow_target = null
 					return null
 			Monster = Monster_2
 		a_2 += 1
 	if Monster != null:
-		FollowTarget = Monster
-		Global.FB_CD = 5
-		HitTimes = MaxTimes
+		follow_target = Monster
+		Global.fb_cd = 5
+		hit_times = max_times
 	change_dir()
-	if FollowTarget == null:
-		RoleProp.roleprop.Mp += needMp
+	if follow_target == null:
+		RoleProp.roleprop.Mp += need_mp
 		use_over()
 
 
@@ -126,11 +126,11 @@ func get_target():
 			Monster_2 = MonsterList[a_2]
 		else:
 			use_over()
-			FollowTarget = null
+			follow_target = null
 			return null
 		if Monster_2 == null:
 			use_over()
-			FollowTarget = null
+			follow_target = null
 			return null
 		if Monster_2 is Monster138:
 			a_2 += 1
@@ -139,21 +139,21 @@ func get_target():
 		if a_3 <= a_1:
 			a_1 = a_3
 			if Monster_2 is Monster48:
-				if Monster_2.ChangeBody:
-					FollowTarget = null
+				if Monster_2.change_body_flag:
+					follow_target = null
 					use_over()
 					return null
 			Monster = Monster_2
 		a_2 += 1
 	if Monster != null:
 		if not Monster_2 is Monster138:
-			FollowTarget = Monster
+			follow_target = Monster
 
 
 func use_over():
-	FollowTarget = null
-	HitTimes = 0
-	isBegin = false
+	follow_target = null
+	hit_times = 0
+	is_begin = false
 	is_use = false
 	if PlayerData.check_have_wx("xhmt", "木"):
 		self.usecd = 6
@@ -165,32 +165,32 @@ func use_over():
 
 
 func reduce_times():
-	HitTimes -= 1
+	hit_times -= 1
 
 
 func ghost_bullet_1():
-	var Gh_1
+	var gh_1
 	var attack_data := get_attack_snapshot()
-	if self.SelfDir:
-		Gh_1 = Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_1", attack_data, self.SelfDir, 100)
+	if self.self_dir:
+		gh_1 = Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_1", attack_data, self.self_dir, 100)
 	else:
-		Gh_1 = Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_1", attack_data, !self.SelfDir, 100)
+		gh_1 = Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_1", attack_data, !self.self_dir, 100)
 
 
 func ghost_bullet_2():
 	var attack_data := get_attack_snapshot()
-	if self.SelfDir:
-		Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_2", attack_data, self.SelfDir, 100)
+	if self.self_dir:
+		Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_2", attack_data, self.self_dir, 100)
 	else:
-		Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_2", attack_data, !self.SelfDir, 100)
+		Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_2", attack_data, !self.self_dir, 100)
 
 
 func ghost_bullet_3():
 	var attack_data := get_attack_snapshot()
-	if self.SelfDir:
-		Global.add_weapon_bullet(self, Vector2(-60, 30), "GhostDollBullet_3", attack_data, !self.SelfDir, 100)
+	if self.self_dir:
+		Global.add_weapon_bullet(self, Vector2(-60, 30), "GhostDollBullet_3", attack_data, !self.self_dir, 100)
 	else:
-		Global.add_weapon_bullet(self, Vector2(-60, 30), "GhostDollBullet_3", attack_data, self.SelfDir, 100)
+		Global.add_weapon_bullet(self, Vector2(-60, 30), "GhostDollBullet_3", attack_data, self.self_dir, 100)
 
 
 func _on_check_monster_body_entered(body: Node2D) -> void:
@@ -198,7 +198,7 @@ func _on_check_monster_body_entered(body: Node2D) -> void:
 
 
 func free() -> void:
-	FollowTarget = null
+	follow_target = null
 
 
 func _on_skill_cd_timeout() -> void:

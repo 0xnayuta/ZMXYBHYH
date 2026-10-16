@@ -1,10 +1,10 @@
 extends BaseMonster
 
-var CureBl: float = 1
+var cure_bl: float = 1
 
 
 func monster_119():
-	self.is_Fly = false
+	self.is_fly = false
 	self.is_boss = false
 	self.my_mr_name = "噩梦炼气师"
 	self.attack_in = 30
@@ -123,7 +123,7 @@ func strength_self():
 	for i in objattackDic:
 		if objattackDic[i].has("power"):
 			objattackDic[i].power *= 1.2
-	CureBl += 0.5
+	cure_bl += 0.5
 	def += 10
 	mdef += 10
 
@@ -131,4 +131,4 @@ func strength_self():
 func _on_hit_box_area_exited(_area: Area2D) -> void:
 	super._on_hit_box_area_entered(_area)
 	if hit_name == "hit2":
-		cure_hp(SHp * 0.1 * CureBl)
+		cure_hp(SHp * 0.1 * cure_bl)

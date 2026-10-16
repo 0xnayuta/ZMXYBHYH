@@ -8,23 +8,23 @@ extends Node2D
 @onready var item: Button = $TextureRect/Item
 @onready var need: Label = $TextureRect/Need
 @onready var needlh: Label = $lh/needlh
-var ZhenFaType
-var Father
-var RealName
+var zhen_fa_type
+var father
+var real_name
 
 
 func _physics_process(delta: float) -> void:
-	if Father != null:
-		ZhenFaType = Father.CurrentZhenFaName
-		match ZhenFaType:
+	if father != null:
+		zhen_fa_type = father.current_zhen_fa_name
+		match zhen_fa_type:
 			"slz":
-				RealName = "森罗阵"
+				real_name = "森罗阵"
 			"lpz":
-				RealName = "落魄阵"
+				real_name = "落魄阵"
 			"tsz":
-				RealName = "腾蛇阵"
+				real_name = "腾蛇阵"
 			"tqz":
-				RealName = "太清阵"
+				real_name = "太清阵"
 		set_item_pic()
 		set_need_and_lh_info()
 		set_skill_info()
@@ -37,7 +37,7 @@ func set_item_pic():
 	item.set_button_icon(load_(item_name))
 	item.qh_level = 0
 	item.wx = []
-	item.EQ_prop = AE.AllEquipment_[item_name]
+	item.EQ_prop = AE.all_equipment[item_name]
 
 
 func load_(name_):
@@ -46,13 +46,13 @@ func load_(name_):
 
 
 func set_add_prop_text():
-	var cur_level = PlayerData.player_data[RealName]["Level"]
+	var cur_level = PlayerData.player_data[real_name]["Level"]
 	old_text.text = "阵法等级：Lv." + str(cur_level)
 	if cur_level + 1 < 10:
 		new_text.text = "阵法等级：Lv." + str(cur_level + 1)
 	else:
 		new_text.text = "已满级"
-	match RealName:
+	match real_name:
 		"森罗阵":
 			add_prop_old.text = "附加属性：最终伤害减少" + str(cur_level) + "%"
 			if cur_level < 10:
@@ -80,8 +80,8 @@ func set_add_prop_text():
 
 
 func set_skill_info():
-	var cur_level = PlayerData.player_data[RealName]["Level"]
-	match RealName:
+	var cur_level = PlayerData.player_data[real_name]["Level"]
+	match real_name:
 		"森罗阵":
 			skill_info_old.text = "森罗阵Lv." + str(cur_level) + "：使用后立刻获得森罗加护（自身受伤减少" + str(cur_level * 2) + "%，持续10秒。）"
 			if cur_level < 10:
@@ -131,13 +131,13 @@ func set_skill_info():
 
 
 func set_need_and_lh_info():
-	var cur_level = PlayerData.player_data[RealName]["Level"]
+	var cur_level = PlayerData.player_data[real_name]["Level"]
 	var item_name = "zftps"
-	var MaterialNeedValue = int(cur_level) * 10 + 10
+	var material_need_value = int(cur_level) * 10 + 10
 	var NeedLh = int(cur_level) * 10000 + 1000
-	var CurrentNum = int(PlayerData.get_item_data(item_name))
-	need.text = str(PlayerData.get_item_data(item_name)) + "/" + str(MaterialNeedValue)
-	if CurrentNum >= MaterialNeedValue:
+	var current_num = int(PlayerData.get_item_data(item_name))
+	need.text = str(PlayerData.get_item_data(item_name)) + "/" + str(material_need_value)
+	if current_num >= material_need_value:
 		need.add_theme_color_override("font_color", "00ff00")
 	else:
 		need.add_theme_color_override("font_color", "ff0000")
@@ -145,35 +145,35 @@ func set_need_and_lh_info():
 
 
 func check_full_level():
-	var List = PlayerData.player_data[RealName]
-	var cur_level = PlayerData.player_data[RealName]["Level"]
-	var NeedLevel = 5 + cur_level * 5
-	for i in List:
-		if typeof(List[i]) == TYPE_DICTIONARY:
-			if List[i]["Level"] < NeedLevel:
+	var list = PlayerData.player_data[real_name]
+	var cur_level = PlayerData.player_data[real_name]["Level"]
+	var need_level = 5 + cur_level * 5
+	for i in list:
+		if typeof(list[i]) == TYPE_DICTIONARY:
+			if list[i]["Level"] < need_level:
 				return false
 	return true
 
 
 func _on_tupo_pressed() -> void:
-	var cur_level = PlayerData.player_data[RealName]["Level"]
+	var cur_level = PlayerData.player_data[real_name]["Level"]
 	var item_name = "zftps"
-	var MaterialNeedValue = int(cur_level) * 10 + 10
+	var material_need_value = int(cur_level) * 10 + 10
 	var NeedLh = int(cur_level) * 10000 + 1000
-	var CurrentNum := int(PlayerData.get_item_data(item_name))
+	var current_num := int(PlayerData.get_item_data(item_name))
 	if cur_level >= 10:
-		Global.add_message_show(Global.Windows_, "阵法已满级！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "阵法已满级！！", 1.5, Vector2(500, 305))
 		return
-	if CurrentNum < MaterialNeedValue:
-		Global.add_message_show(Global.Windows_, "材料不足！！", 1.5, Vector2(500, 305))
+	if current_num < material_need_value:
+		Global.add_message_show(Global.windows, "材料不足！！", 1.5, Vector2(500, 305))
 		return
 	if PlayerData.get_soul() < NeedLh:
-		Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "灵魂不足！！", 1.5, Vector2(500, 305))
 		return
 	if not check_full_level():
-		Global.add_message_show(Global.Windows_, "还有阵法未达到指定要求！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "还有阵法未达到指定要求！！", 1.5, Vector2(500, 305))
 		return
 	PlayerData.spend_soul(NeedLh)
-	PlayerData.remove_dj(item_name, PlayerData.get_dj_page(item_name), MaterialNeedValue)
-	PlayerData.player_data[RealName]["Level"] += 1
-	Global.add_message_show(Global.Windows_, "阵法突破成功！！", 1.5, Vector2(500, 305))
+	PlayerData.remove_dj(item_name, PlayerData.get_dj_page(item_name), material_need_value)
+	PlayerData.player_data[real_name]["Level"] += 1
+	Global.add_message_show(Global.windows, "阵法突破成功！！", 1.5, Vector2(500, 305))

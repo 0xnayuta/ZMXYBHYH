@@ -1,7 +1,7 @@
 extends Control
-@onready var show_text: Label = $MarginContainer/ShowText
+@onready var show_text: Label = $MarginContainer/show_text
 
-var ShowText
+var text_value
 
 
 func _ready() -> void:
@@ -9,4 +9,4 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	show_text.text = str(ShowText)
+	show_text.text = str(text_value)

@@ -149,7 +149,7 @@ func get_death():
 
 func _on_relife_timeout() -> void:
 	var par = get_parent()
-	var Black = Global.create_monster(30, par, Vector2(self.position.x, self.position.y))
-	var BaseLevel_ = get_parent().get_parent() as BaseLevel
-	BaseLevel_.MonsterArray.push_back(Black)
+	var black = Global.create_monster(30, par, Vector2(self.position.x, self.position.y))
+	var base_level = get_parent().get_parent() as BaseLevel
+	base_level.monster_array.push_back(black)
 	$relife.stop()

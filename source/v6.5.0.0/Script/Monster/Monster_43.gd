@@ -165,7 +165,7 @@ func ai_think():
 
 
 func movetorolebehind():
-	if RoleProp.Directon:
+	if RoleProp.directon:
 		self.position.x = RoleProp.get_nearest_monster_target_position(global_position).x
 	else:
 		self.position.x = RoleProp.get_nearest_monster_target_position(global_position).x

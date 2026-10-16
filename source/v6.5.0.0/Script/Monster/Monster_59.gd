@@ -1,6 +1,6 @@
 extends BaseMonster
 class_name Monster59
-var RoleBeHitCount = Global.PlayerBeHitCount
+var role_be_hit_count = Global.player_be_hit_count
 
 
 func monster_59(BeHitCount):
@@ -86,8 +86,8 @@ func _ready() -> void:
 	Skill_1_CD = 0
 	Skill_2_CD = 0
 	Skill_3_CD = 0
-	RoleBeHitCount = Global.PlayerBeHitCount
-	monster_59(RoleBeHitCount)
+	role_be_hit_count = Global.player_be_hit_count
+	monster_59(role_be_hit_count)
 
 
 func ai_think():
@@ -144,18 +144,18 @@ func do_hit_2():
 
 
 func call_zzzy():
-	var BulletName = "Monster59Bullet_1"
+	var bullet_name = "Monster59Bullet_1"
 	var bullet_pos
 	if MonsterDirection:
 		bullet_pos = Vector2(420, randi_range(-130, 130)) + self.position
-		Global.add_bullet(BulletName, self.bullet, true, 1, bullet_pos, "zzzy", self.objattackDic["zzzy"])
+		Global.add_bullet(bullet_name, self.bullet, true, 1, bullet_pos, "zzzy", self.objattackDic["zzzy"])
 	else:
 		bullet_pos = Vector2(-420, randi_range(-130, 130)) + self.position
-		Global.add_bullet(BulletName, self.bullet, false, 1, bullet_pos, "zzzy", self.objattackDic["zzzy"])
+		Global.add_bullet(bullet_name, self.bullet, false, 1, bullet_pos, "zzzy", self.objattackDic["zzzy"])
 
 
 func call_zzhy():
-	var target_count = 3 + int(RoleBeHitCount / 3)
+	var target_count = 3 + int(role_be_hit_count / 3)
 	for i in range(target_count):
 		var bullet_pos = Vector2(
 			RoleProp.get_nearest_monster_target_position(global_position).x + randi_range(-140, 140), 500
@@ -165,7 +165,7 @@ func call_zzhy():
 
 func state_hurt():
 	is_jgz = false
-	if RoleBeHitCount >= 13:
+	if role_be_hit_count >= 13:
 		is_be_attacking = false
 		return
 	super.state_hurt()

@@ -301,7 +301,7 @@ func _spawn_next_tower_monster() -> void:
 		return
 
 	var spawn_data: Dictionary = _pending_monsters.pop_front()
-	Monster_group["stage_1"] = _pending_monsters.duplicate()
+	monster_group["stage_1"] = _pending_monsters.duplicate()
 	var monster_id := int(spawn_data["monster"])
 	var spawn_position: Vector2 = spawn_data["position"]
 	var created := Global.create_monster(monster_id, monster, spawn_position)
@@ -339,9 +339,9 @@ func _load_tower_floor(floor_number: int, reset_role_position: bool = true) -> v
 	_run_points = maxi(0, int(PlayerData.player_data.get(TOWER_RUN_POINTS_KEY, 0)))
 	current_stage = 1
 	_pending_monsters = _build_floor_spawn_list(_tower_floor)
-	Monster_group["stage_1"] = _pending_monsters.duplicate()
+	monster_group["stage_1"] = _pending_monsters.duplicate()
 	for stage_key in ["stage_2", "stage_3", "stage_4"]:
-		Monster_group[stage_key] = []
+		monster_group[stage_key] = []
 	_tower_floor_complete = false
 	_tower_exit_can_use = false
 	_auto_next_floor_elapsed = -1.0
@@ -476,8 +476,8 @@ func _advance_tower_floor() -> void:
 		create_control.stop()
 	_save_floor_progress(next_floor)
 	if RoleProp.roleprop != null:
-		RoleProp.CurrentHp = RoleProp.roleprop.Hp
-		RoleProp.CurrentMp = RoleProp.roleprop.Mp
+		RoleProp.current_hp = RoleProp.roleprop.Hp
+		RoleProp.current_mp = RoleProp.roleprop.Mp
 	prepare_floor_plan(next_floor)
 	MemoryClass.save_game(Global.cd_path)
 	Global.change_scene(TOWER_LEVEL_SCENE_PATH, true)

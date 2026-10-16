@@ -39,7 +39,7 @@ func show_skill() -> void:
 	_summon_guanyin()
 	mg_action.play("hit")
 	usecd = SUMMON_COOLDOWN
-	Global.FB_CD = 1
+	Global.fb_cd = 1
 	is_use = false
 	skill_cd.start(SUMMON_COOLDOWN)
 
@@ -53,10 +53,10 @@ func _summon_guanyin() -> void:
 	var summon := guanyin_scene.instantiate()
 	if summon == null:
 		return
-	var hero := RoleProp.SourcePlayer as Node2D
+	var hero := RoleProp.source_player as Node2D
 	var spawn_position := global_position + Vector2(100, 0)
 	if is_instance_valid(hero):
-		spawn_position = hero.global_position + Vector2(120 if not RoleProp.Directon else -120, 0)
+		spawn_position = hero.global_position + Vector2(120 if not RoleProp.directon else -120, 0)
 	get_tree().current_scene.add_child(summon)
 	summon.global_position = spawn_position
 	if summon.has_method("apply_role_property_snapshot"):

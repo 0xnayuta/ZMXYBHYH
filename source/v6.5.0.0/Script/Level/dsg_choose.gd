@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 var _is_closing := false
-var SourcePopup: Node = null
+var source_popup: Node = null
 
 
 func _ensure_dsg_progress() -> void:
@@ -40,10 +40,10 @@ func _close_popup_chain() -> void:
 	_is_closing = true
 	process_mode = Node.PROCESS_MODE_DISABLED
 	visible = false
-	if SourcePopup != null and is_instance_valid(SourcePopup) and not SourcePopup.is_queued_for_deletion():
-		if SourcePopup is CanvasItem:
-			(SourcePopup as CanvasItem).visible = false
-		SourcePopup.queue_free()
+	if source_popup != null and is_instance_valid(source_popup) and not source_popup.is_queued_for_deletion():
+		if source_popup is CanvasItem:
+			(source_popup as CanvasItem).visible = false
+		source_popup.queue_free()
 	queue_free()
 
 
@@ -67,28 +67,28 @@ func _on_dsgyc_2_pressed() -> void:
 	if _dsg_stage_clear("兜率宫1"):
 		_enter_dsg_level("res://Scene/level/level_dsg_2.tscn")
 	else:
-		Global.add_message_show(Global.Windows_, "请先通过兜率宫一层", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "请先通过兜率宫一层", 1.5, Vector2(470, 300))
 
 
 func _on_dsgyc_3_pressed() -> void:
 	if _dsg_stage_clear("兜率宫2"):
 		_enter_dsg_level("res://Scene/level/level_dsg_3.tscn")
 	else:
-		Global.add_message_show(Global.Windows_, "请先通过兜率宫地下一层", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "请先通过兜率宫地下一层", 1.5, Vector2(470, 300))
 
 
 func _on_dsgyc_4_pressed() -> void:
 	if _dsg_stage_clear("兜率宫3"):
 		_enter_dsg_level("res://Scene/level/level_dsg_4.tscn")
 	else:
-		Global.add_message_show(Global.Windows_, "请先通过兜率宫地下二层", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "请先通过兜率宫地下二层", 1.5, Vector2(470, 300))
 
 
 func _on_dsgyc_5_pressed() -> void:
 	if _dsg_stage_clear("兜率宫4"):
 		_enter_dsg_level("res://Scene/level/level_dsg_5.tscn")
 	else:
-		Global.add_message_show(Global.Windows_, "请先通过兜率宫地下三层", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "请先通过兜率宫地下三层", 1.5, Vector2(470, 300))
 
 
 func _on_close_pressed() -> void:

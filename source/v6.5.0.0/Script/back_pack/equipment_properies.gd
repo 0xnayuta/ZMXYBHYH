@@ -24,28 +24,28 @@ extends Node2D
 @onready var eq_ms: Label = $pro_wk/information/inf/VBoxContainer/eq_ms
 @onready var eq_sj: Label = $pro_wk/information/inf/VBoxContainer/eq_sj
 @onready var color_rect: ColorRect = $ColorRect
-@onready var BsProList = $pro_wk/information/inf/BsProp
+@onready var bs_pro_list = $pro_wk/information/inf/BsProp
 @onready var have: Label = $pro_wk/information/inf/VBoxContainer2/have
 @onready var v_box_container_3: VBoxContainer = $pro_wk/information/inf/VBoxContainer3
 
-@onready var Bs_eq_hp: Label = $pro_wk/information/inf/BsProp/eq_hp
-@onready var Bs_eq_mp: Label = $pro_wk/information/inf/BsProp/eq_mp
-@onready var Bs_eq_power: Label = $pro_wk/information/inf/BsProp/eq_power
-@onready var Bs_eq_def: Label = $pro_wk/information/inf/BsProp/eq_def
-@onready var Bs_eq_mdef: Label = $pro_wk/information/inf/BsProp/eq_mdef
-@onready var Bs_eq_crit: Label = $pro_wk/information/inf/BsProp/eq_crit
-@onready var Bs_eq_miss: Label = $pro_wk/information/inf/BsProp/eq_miss
-@onready var Bs_eq_ehp: Label = $pro_wk/information/inf/BsProp/eq_ehp
-@onready var Bs_eq_emp: Label = $pro_wk/information/inf/BsProp/eq_emp
-@onready var Bs_eq_mz: Label = $pro_wk/information/inf/BsProp/eq_mz
-@onready var Bs_eq_lucky: Label = $pro_wk/information/inf/BsProp/eq_lucky
-@onready var Bs_eq_rx: Label = $pro_wk/information/inf/BsProp/eq_rx
-@onready var Bs_eq_pj: Label = $pro_wk/information/inf/BsProp/eq_pj
-@onready var Bs_eq_pm: Label = $pro_wk/information/inf/BsProp/eq_pm
-@onready var Bs_eq_xx: Label = $pro_wk/information/inf/BsProp/eq_xx
-@onready var Bs_eq_bm: Label = $pro_wk/information/inf/BsProp/eq_bm
+@onready var bs_eq_hp: Label = $pro_wk/information/inf/BsProp/eq_hp
+@onready var bs_eq_mp: Label = $pro_wk/information/inf/BsProp/eq_mp
+@onready var bs_eq_power: Label = $pro_wk/information/inf/BsProp/eq_power
+@onready var bs_eq_def: Label = $pro_wk/information/inf/BsProp/eq_def
+@onready var bs_eq_mdef: Label = $pro_wk/information/inf/BsProp/eq_mdef
+@onready var bs_eq_crit: Label = $pro_wk/information/inf/BsProp/eq_crit
+@onready var bs_eq_miss: Label = $pro_wk/information/inf/BsProp/eq_miss
+@onready var bs_eq_ehp: Label = $pro_wk/information/inf/BsProp/eq_ehp
+@onready var bs_eq_emp: Label = $pro_wk/information/inf/BsProp/eq_emp
+@onready var bs_eq_mz: Label = $pro_wk/information/inf/BsProp/eq_mz
+@onready var bs_eq_lucky: Label = $pro_wk/information/inf/BsProp/eq_lucky
+@onready var bs_eq_rx: Label = $pro_wk/information/inf/BsProp/eq_rx
+@onready var bs_eq_pj: Label = $pro_wk/information/inf/BsProp/eq_pj
+@onready var bs_eq_pm: Label = $pro_wk/information/inf/BsProp/eq_pm
+@onready var bs_eq_xx: Label = $pro_wk/information/inf/BsProp/eq_xx
+@onready var bs_eq_bm: Label = $pro_wk/information/inf/BsProp/eq_bm
 
-var Bs_prop = {
+var bs_prop = {
 	"SHp": 0,
 	"SMp": 0,
 	"power": 0,
@@ -210,8 +210,8 @@ func _set_pet_information() -> void:
 	have.visible = false
 	eq_czl.visible = false
 	eq_star_level.visible = false
-	BsProList.visible = data.get(DataKeys.GEM, []) is Array and not (data.get(DataKeys.GEM, []) as Array).is_empty()
-	if BsProList.visible:
+	bs_pro_list.visible = data.get(DataKeys.GEM, []) is Array and not (data.get(DataKeys.GEM, []) as Array).is_empty()
+	if bs_pro_list.visible:
 		set_bs_infor()
 	else:
 		_set_gem_resonance_information(data)
@@ -333,7 +333,7 @@ func _call_divine_helper(method_names: Array, args: Array):
 
 
 func _is_divine_eligible(name_: String, data: Dictionary) -> bool:
-	var template: Dictionary = AE.AllEquipment_.get(name_, {})
+	var template: Dictionary = AE.all_equipment.get(name_, {})
 	var item_type := str(data.get(DataKeys.TYPE, template.get(DataKeys.TYPE, "")))
 	var quality := str(data.get(DataKeys.QUALITY, template.get(DataKeys.QUALITY, "")))
 	var quality_rank := {
@@ -371,7 +371,7 @@ func _get_divine_display_name(name_: String) -> String:
 	)
 	if display_name != null:
 		return str(display_name)
-	var base_name := str(EQ_prop.get(DataKeys.NAME, AE.AllEquipment_.get(name_, {}).get(DataKeys.NAME, name_)))
+	var base_name := str(EQ_prop.get(DataKeys.NAME, AE.all_equipment.get(name_, {}).get(DataKeys.NAME, name_)))
 	var prefixes := ["", "一阶·", "二阶·", "三阶·", "四阶·", "五阶·", "六阶·", "七阶·", "八阶·", "九阶·"]
 	return prefixes[_get_divine_stage(EQ_prop)] + base_name if _is_divine_eligible(name_, EQ_prop) else base_name
 
@@ -397,7 +397,7 @@ func _get_divine_gem_properties(name_: String, data: Dictionary) -> Dictionary:
 	if not data.has(DataKeys.GEM) or not data[DataKeys.GEM] is Array:
 		return result
 	for gem_name in data[DataKeys.GEM]:
-		var gem_data: Dictionary = AE.AllEquipment_.get(str(gem_name), {})
+		var gem_data: Dictionary = AE.all_equipment.get(str(gem_name), {})
 		for property_name in DIVINE_PROPERTY_NAMES:
 			if gem_data.has(property_name):
 				result[property_name] += AE.scale_gem_resonance_value(gem_data[property_name], data)
@@ -414,7 +414,7 @@ func _physics_process(_delta: float) -> void:
 			self.position.y = 320 - color_rect.size.y
 		if self.position.x + color_rect.size.x >= 495:
 			self.position.x = 270 - color_rect.size.x
-	elif get_parent() == Global.Windows_:
+	elif get_parent() == Global.windows:
 		var viewport_size := get_viewport().get_visible_rect().size
 		if self.position.y + color_rect.size.y >= viewport_size.y:
 			self.position.y = viewport_size.y - color_rect.size.y - 8.0
@@ -434,35 +434,35 @@ func _physics_process(_delta: float) -> void:
 	if nam == "empty":
 		return
 	color_rect.size = $pro_wk/information.size
-	if BsProList != null:
+	if bs_pro_list != null:
 		if EQ_prop != {}:
 			if EQ_prop.has(DataKeys.GEM):
 				if EQ_prop[DataKeys.GEM].size() == 0:
-					BsProList.queue_free()
+					bs_pro_list.queue_free()
 	if not is_set:
 		create_tween().tween_property(self, "modulate", Color(1, 1, 1, 1), 0.2)
 		set_some_pro_color(nam)
 		set_information_(nam)
-		if AE.AllEquipment_[nam][DataKeys.TYPE] != "道具" and AE.AllEquipment_[nam][DataKeys.TYPE] != "消耗品":
+		if AE.all_equipment[nam][DataKeys.TYPE] != "道具" and AE.all_equipment[nam][DataKeys.TYPE] != "消耗品":
 			have.queue_free()
 			set_bs_infor()
 		else:
 			if v_box_container_3 != null:
 				v_box_container_3.queue_free()
-			if BsProList != null:
-				BsProList.queue_free()
+			if bs_pro_list != null:
+				bs_pro_list.queue_free()
 		is_set = true
 
 
 func set_some_pro_color(name_):
-	if str(AE.AllEquipment_[name_].get(DataKeys.QUALITY, "")) == "黑神话":
+	if str(AE.all_equipment[name_].get(DataKeys.QUALITY, "")) == "黑神话":
 		_apply_black_myth_text_style(eq_name)
 		_apply_black_myth_text_style(eq_pz)
 		return
-	eq_name.add_theme_color_override("font_color", AE.AllEquipment_[name_]["颜色"])
-	eq_name.add_theme_color_override("font_outline_color", AE.AllEquipment_[name_]["颜色"])
-	eq_pz.add_theme_color_override("font_color", AE.AllEquipment_[name_]["颜色"])
-	eq_pz.add_theme_color_override("font_outline_color", AE.AllEquipment_[name_]["颜色"])
+	eq_name.add_theme_color_override("font_color", AE.all_equipment[name_]["颜色"])
+	eq_name.add_theme_color_override("font_outline_color", AE.all_equipment[name_]["颜色"])
+	eq_pz.add_theme_color_override("font_color", AE.all_equipment[name_]["颜色"])
+	eq_pz.add_theme_color_override("font_outline_color", AE.all_equipment[name_]["颜色"])
 
 
 func _apply_black_myth_text_style(label: Label) -> void:
@@ -470,27 +470,27 @@ func _apply_black_myth_text_style(label: Label) -> void:
 
 
 func set_information_(name_: String):
-	if AE.AllEquipment_[name_][DataKeys.TYPE] == "道具" or AE.AllEquipment_[name_][DataKeys.TYPE] == "消耗品":
-		eq_name.text = str(AE.AllEquipment_[name_][DataKeys.NAME])
-		eq_pz.text = "品质：" + str(AE.AllEquipment_[name_][DataKeys.QUALITY])
-		if AE.AllEquipment_[name_].has("所属"):
-			if AE.AllEquipment_[name_]["所属"] != "" and AE.AllEquipment_[name_]["所属"] != "无":
+	if AE.all_equipment[name_][DataKeys.TYPE] == "道具" or AE.all_equipment[name_][DataKeys.TYPE] == "消耗品":
+		eq_name.text = str(AE.all_equipment[name_][DataKeys.NAME])
+		eq_pz.text = "品质：" + str(AE.all_equipment[name_][DataKeys.QUALITY])
+		if AE.all_equipment[name_].has("所属"):
+			if AE.all_equipment[name_]["所属"] != "" and AE.all_equipment[name_]["所属"] != "无":
 				eq_lx.text = (
-					"类型：" + str(AE.AllEquipment_[name_][DataKeys.TYPE]) + "·" + str(AE.AllEquipment_[name_]["所属"])
+					"类型：" + str(AE.all_equipment[name_][DataKeys.TYPE]) + "·" + str(AE.all_equipment[name_]["所属"])
 				)
 			else:
-				eq_lx.text = "类型：" + str(AE.AllEquipment_[name_][DataKeys.TYPE])
+				eq_lx.text = "类型：" + str(AE.all_equipment[name_][DataKeys.TYPE])
 		else:
-			eq_lx.text = "类型：" + str(AE.AllEquipment_[name_][DataKeys.TYPE])
-		if str(AE.AllEquipment_[name_][DataKeys.TYPE]) == "消耗品":
+			eq_lx.text = "类型：" + str(AE.all_equipment[name_][DataKeys.TYPE])
+		if str(AE.all_equipment[name_][DataKeys.TYPE]) == "消耗品":
 			have.text = "拥有：" + str(PlayerData.get_xhp_data(name_)) + " 个"
 		else:
 			have.text = "拥有：" + str(PlayerData.get_item_data(name_)) + " 个"
-		if AE.AllEquipment_[name_]["描述"] == "" and eq_ms != null:
+		if AE.all_equipment[name_]["描述"] == "" and eq_ms != null:
 			eq_ms.queue_free()
 		else:
-			eq_ms.text = "描述:" + str(AE.AllEquipment_[name_]["描述"])
-		eq_sj.text = "售价:" + str(AE.AllEquipment_[name_]["售价"]) + "灵魂。"
+			eq_ms.text = "描述:" + str(AE.all_equipment[name_]["描述"])
+		eq_sj.text = "售价:" + str(AE.all_equipment[name_]["售价"]) + "灵魂。"
 		return
 
 	var equipment_data_source: Node = AE._get_data()
@@ -503,7 +503,7 @@ func set_information_(name_: String):
 	eq_lx.text = "类型：" + str(get_properies(name_, "类型")[0]) + "·" + str(get_properies(name_, "所属")[0])
 	match get_properies(name_, "类型")[0]:
 		"法宝":
-			if not AE.AllEquipment_[name_].has(DataKeys.FIVE_ELEMENTS) and eq_star_level != null:
+			if not AE.all_equipment[name_].has(DataKeys.FIVE_ELEMENTS) and eq_star_level != null:
 				eq_star_level.queue_free()
 			else:
 				if get_wx() == "":
@@ -594,12 +594,12 @@ func set_information_(name_: String):
 			else:
 				eq_bm.text = "暴免:" + str(get_properies(name_, "CritReduce")[0])
 
-			if AE.AllEquipment_[name_]["描述"] == "" and eq_ms != null:
+			if AE.all_equipment[name_]["描述"] == "" and eq_ms != null:
 				eq_ms.queue_free()
 			else:
-				eq_ms.text = "描述:" + str(AE.AllEquipment_[name_]["描述"])
+				eq_ms.text = "描述:" + str(AE.all_equipment[name_]["描述"])
 		"武器", "防具", "饰品", "神骨", "头衔", "时装", "翅膀":
-			if not AE.AllEquipment_[name_].has(DataKeys.FIVE_ELEMENTS) and eq_star_level != null:
+			if not AE.all_equipment[name_].has(DataKeys.FIVE_ELEMENTS) and eq_star_level != null:
 				eq_star_level.queue_free()
 			else:
 				eq_star_level.text = "五行：" + str(get_wx())
@@ -685,14 +685,14 @@ func set_information_(name_: String):
 
 
 func set_bs_infor():
-	if not is_pet_equipment and str(AE.AllEquipment_.get(nam, {}).get(DataKeys.TYPE, "")) == "法宝":
-		BsProList.hide()
+	if not is_pet_equipment and str(AE.all_equipment.get(nam, {}).get(DataKeys.TYPE, "")) == "法宝":
+		bs_pro_list.hide()
 		return
 	if not EQ_prop.has(DataKeys.GEM):
 		self.queue_free()
 		return
 	_set_gem_resonance_information(EQ_prop)
-	for child in BsProList.get_children():
+	for child in bs_pro_list.get_children():
 		child.queue_free()
 	if EQ_prop[DataKeys.GEM].size() == 0:
 		return
@@ -718,7 +718,7 @@ func set_bs_infor():
 
 	var equipment_data_source: Node = AE._get_data()
 	for i in EQ_prop[DataKeys.GEM]:
-		var gem_data = AE.AllEquipment_.get(i)
+		var gem_data = AE.all_equipment.get(i)
 		if gem_data == null:
 			continue
 
@@ -750,7 +750,7 @@ func set_bs_infor():
 
 		var hbox = HBoxContainer.new()
 		hbox.alignment = 0
-		BsProList.add_child(hbox)
+		bs_pro_list.add_child(hbox)
 
 		var icon_path = "res://Art/BackPack/AllItems/" + str(i) + ".png"
 		var tex = load(icon_path)
@@ -772,7 +772,7 @@ func _set_gem_resonance_information(data: Dictionary) -> void:
 	if not gems is Array:
 		return
 	var resonance := AE.get_gem_resonance_level(data)
-	var container := BsProList.get_parent()
+	var container := bs_pro_list.get_parent()
 	var label := container.get_node_or_null("GemResonance") as Label
 	if label == null:
 		label = Label.new()
@@ -783,7 +783,7 @@ func _set_gem_resonance_information(data: Dictionary) -> void:
 		label.add_theme_font_size_override("font_size", 18)
 		label.add_theme_color_override("font_color", Color("e8c478"))
 		container.add_child(label)
-		container.move_child(label, BsProList.get_index())
+		container.move_child(label, bs_pro_list.get_index())
 	if resonance > 0:
 		label.text = "宝石共鸣：%d级\n宝石属性加成：+%d%%" % [resonance, resonance * 15]
 	else:
@@ -803,11 +803,11 @@ func set_bs_prop():
 		return {}
 	var equipment_data_source: Node = AE._get_data()
 	var divine_gem_properties: Dictionary = equipment_data_source.get_divine_forge_gem_properties(nam, EQ_prop)
-	for property_name in Bs_prop:
-		Bs_prop[property_name] = divine_gem_properties.get(property_name, 0)
+	for property_name in bs_prop:
+		bs_prop[property_name] = divine_gem_properties.get(property_name, 0)
 	if EQ_prop[DataKeys.GEM].is_empty():
 		return {}
-	return Bs_prop
+	return bs_prop
 
 
 func get_properies(name_, need):
@@ -830,13 +830,13 @@ func get_properies(name_, need):
 		if EQ_prop.has(DataKeys.ENHANCE_PROP) and EQ_prop[DataKeys.ENHANCE_PROP].has(need):
 			strengthen_val = EQ_prop[DataKeys.ENHANCE_PROP][need]
 		elif (
-			AE.AllEquipment_[name_].has(DataKeys.ENHANCE_PROP)
-			and AE.AllEquipment_[name_][DataKeys.ENHANCE_PROP].has(need)
+			AE.all_equipment[name_].has(DataKeys.ENHANCE_PROP)
+			and AE.all_equipment[name_][DataKeys.ENHANCE_PROP].has(need)
 		):
-			strengthen_val = AE.AllEquipment_[name_][DataKeys.ENHANCE_PROP][need]
+			strengthen_val = AE.all_equipment[name_][DataKeys.ENHANCE_PROP][need]
 
 		var equipment_data_source: Node = AE._get_data()
-		var base_value = EQ_prop.get(need, AE.AllEquipment_[name_].get(need, 0))
+		var base_value = EQ_prop.get(need, AE.all_equipment[name_].get(need, 0))
 		var scaled_base = equipment_data_source.scale_divine_forge_value(base_value, name_, EQ_prop)
 		var scaled_strength = equipment_data_source.scale_divine_forge_value(
 			float(strengthen_val) * float(qh_level), name_, EQ_prop

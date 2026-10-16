@@ -1,10 +1,10 @@
 extends BaseMonster
 class_name Monster50
 var is_stop: bool = false
-var CallMonsterList: Dictionary = {"List_0": [18, 20, 23], "List_1": [37, 43, 41]}
-var CallMonsterID: int = 0
-var CallMonster: BaseMonster
-var is_BeCall = false
+var call_monster_list: Dictionary = {"List_0": [18, 20, 23], "List_1": [37, 43, 41]}
+var call_monster_id: int = 0
+var call_monster: BaseMonster
+var is_be_call = false
 
 
 func monster_50():
@@ -99,7 +99,7 @@ func _physics_process(delta: float) -> void:
 
 
 func ai_think():
-	if is_BeCall:
+	if is_be_call:
 		velocity.x = 0
 		self.modulate = Color(1, 1, 1, 0.0)
 		$BaseDamageBox/HurtBox/HurtBox.disabled = true
@@ -163,39 +163,39 @@ func move():
 
 
 func create_monster():
-	if CallMonsterID == 0:
+	if call_monster_id == 0:
 		if Hp < SHp * 0.5:
 			self.modulate = Color(1, 1, 1, 0.5)
 			$BaseDamageBox/HurtBox/HurtBox.disabled = true
-			var Get_list = CallMonsterList["List_" + str(CallMonsterID)]
-			var MonsterID: int = Get_list[randi_range(0, Get_list.size() - 1)]
-			if CallMonster == null:
-				CallMonster = Global.create_monster(20, get_parent(), self.position)
+			var get_list = call_monster_list["List_" + str(call_monster_id)]
+			var monster_id: int = get_list[randi_range(0, get_list.size() - 1)]
+			if call_monster == null:
+				call_monster = Global.create_monster(20, get_parent(), self.position)
 			strength_boss()
 			is_stop = true
 			mr_player.play("wait")
-			CallMonsterID = 1
-	elif CallMonsterID == 1:
+			call_monster_id = 1
+	elif call_monster_id == 1:
 		if Hp < SHp * 0.25:
 			is_stop = true
 			mr_player.play("wait")
 			self.modulate = Color(1, 1, 1, 0.5)
 			$BaseDamageBox/HurtBox/HurtBox.disabled = true
-			var Get_list = CallMonsterList["List_" + str(CallMonsterID)]
-			var MonsterID: int = Get_list[randi_range(0, Get_list.size() - 1)]
-			if CallMonster == null:
-				CallMonster = Global.create_monster(43, get_parent(), self.position)
+			var get_list = call_monster_list["List_" + str(call_monster_id)]
+			var monster_id: int = get_list[randi_range(0, get_list.size() - 1)]
+			if call_monster == null:
+				call_monster = Global.create_monster(43, get_parent(), self.position)
 			strength_boss()
-			CallMonsterID = 2
+			call_monster_id = 2
 
 
 func check_call_monster_death():
-	if CallMonster != null:
-		if CallMonster.is_death:
+	if call_monster != null:
+		if call_monster.is_death:
 			is_stop = false
 			self.modulate = Color(1, 1, 1, 1)
 			$BaseDamageBox/HurtBox/HurtBox.disabled = false
-			CallMonster = null
+			call_monster = null
 
 
 func add_nlls():
@@ -217,61 +217,61 @@ func add_nlls():
 
 
 func call_bullet():
-	var Bullet_
-	var BulletName: String
-	var Hit_name: String
+	var bullet
+	var bullet_name: String
+	var hit_name: String
 	if randi_range(0, 100) < 50:
-		BulletName = "Monster49Bullet_1"
-		Hit_name = "mffd_1"
+		bullet_name = "Monster49Bullet_1"
+		hit_name = "mffd_1"
 	else:
-		BulletName = "Monster49Bullet_2"
-		Hit_name = "mffd_2"
+		bullet_name = "Monster49Bullet_2"
+		hit_name = "mffd_2"
 	if MonsterDirection:
-		Bullet_ = Global.call_chase_bullet(
+		bullet = Global.call_chase_bullet(
 			self.bullet,
-			BulletName,
+			bullet_name,
 			330,
 			4,
 			false,
 			Vector2(self.position.x + 220, self.position.y - 180),
-			Hit_name,
-			self.objattackDic[Hit_name]
+			hit_name,
+			self.objattackDic[hit_name]
 		)
 	else:
-		Bullet_ = Global.call_chase_bullet(
+		bullet = Global.call_chase_bullet(
 			self.bullet,
-			BulletName,
+			bullet_name,
 			330,
 			4,
 			false,
 			Vector2(self.position.x - 220, self.position.y - 180),
-			Hit_name,
-			self.objattackDic[Hit_name]
+			hit_name,
+			self.objattackDic[hit_name]
 		)
-	Bullet_.scale = Vector2(2, 2)
+	bullet.scale = Vector2(2, 2)
 
 
 func strength_boss():
-	if CallMonster != null:
-		if CallMonster is Monster43:
-			CallMonster.SHp = SHp
-			CallMonster.my_mr_name = "邪·阎罗王"
-		elif CallMonster is Monster20:
-			CallMonster.my_mr_name = "邪·鲨魔王"
-			CallMonster.SHp = SHp * 0.75
-		CallMonster.Hp = CallMonster.SHp
-		CallMonster.level = level
-		CallMonster.def = def * 1.1
-		CallMonster.mdef = mdef * 1.1
-		CallMonster.fall_pro = 0
-		CallMonster.Hp = CallMonster.SHp
-		CallMonster.speed = speed
-		CallMonster.modulate = Color("00ffff")
-		CallMonster.fall_list = []
-		if CallMonster is Monster20:
-			for i in CallMonster.objattackDic:
-				if CallMonster.objattackDic[i].has("power"):
-					CallMonster.objattackDic[i]["power"] = randi_range(265, 330)
+	if call_monster != null:
+		if call_monster is Monster43:
+			call_monster.SHp = SHp
+			call_monster.my_mr_name = "邪·阎罗王"
+		elif call_monster is Monster20:
+			call_monster.my_mr_name = "邪·鲨魔王"
+			call_monster.SHp = SHp * 0.75
+		call_monster.Hp = call_monster.SHp
+		call_monster.level = level
+		call_monster.def = def * 1.1
+		call_monster.mdef = mdef * 1.1
+		call_monster.fall_pro = 0
+		call_monster.Hp = call_monster.SHp
+		call_monster.speed = speed
+		call_monster.modulate = Color("00ffff")
+		call_monster.fall_list = []
+		if call_monster is Monster20:
+			for i in call_monster.objattackDic:
+				if call_monster.objattackDic[i].has("power"):
+					call_monster.objattackDic[i]["power"] = randi_range(265, 330)
 
 
 func call_fly_bullet():

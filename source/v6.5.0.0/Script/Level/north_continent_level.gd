@@ -216,7 +216,7 @@ func _request_stage_resource_preload(stage: int) -> void:
 
 
 func _preload_north_trigger(stage: int) -> void:
-	var ids: Array = Monster_group.get(_stage_key(stage), []).duplicate()
+	var ids: Array = monster_group.get(_stage_key(stage), []).duplicate()
 	await Global.preload_level_monster_runtime_resources(ids)
 	if is_inside_tree():
 		_ready_triggers[stage] = true
@@ -410,7 +410,7 @@ func enter_void_space(boss: BaseMonster) -> void:
 	_camera_initialized = false
 	Role_.velocity = Vector2.ZERO
 	_update_screen_bounds()
-	Role_.SXYRCannotCure = true
+	Role_.sxyr_cannot_cure = true
 	_void_units.clear()
 	for i in range(4):
 		var unit := Global.create_monster(3423, monster, Vector2(4420 + i * 130, 570))
@@ -429,7 +429,7 @@ func leave_void_space() -> void:
 		my_camera.limit_smoothed = true
 	_camera_initialized = false
 	Role_.velocity = Vector2.ZERO
-	Role_.SXYRCannotCure = false
+	Role_.sxyr_cannot_cure = false
 	_palace_terrain.set_void_space(false)
 	if is_instance_valid(_void_boss) and not _void_boss.death():
 		_void_boss.visible = true

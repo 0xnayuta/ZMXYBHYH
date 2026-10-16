@@ -180,15 +180,15 @@ var _blackout_serial := 0
 
 
 func _ready() -> void:
-	selected_level = clampi(int(Global.SelectedConstellationLevel), 1, 14)
+	selected_level = clampi(int(Global.selected_constellation_level), 1, 14)
 	current_tier = 1
 	_boss_count_multiplier = clampi(int(MainSet.set_data.get("CreateMonsterCount", 1)), 1, 5)
 	MainSet.set_data["CreateMonsterCount"] = _boss_count_multiplier
-	Monster_group = {"stage_1": [], "stage_2": [], "stage_3": [], "stage_4": []}
-	Monster_position_x = {"stage_1": [], "stage_2": [], "stage_3": [], "stage_4": []}
-	Monster_position_y = {"stage_1": [], "stage_2": [], "stage_3": [], "stage_4": []}
-	Global.CurrentLevel = "挑战28星宿阵"
-	Global.GameOver = 1
+	monster_group = {"stage_1": [], "stage_2": [], "stage_3": [], "stage_4": []}
+	monster_position_x = {"stage_1": [], "stage_2": [], "stage_3": [], "stage_4": []}
+	monster_position_y = {"stage_1": [], "stage_2": [], "stage_3": [], "stage_4": []}
+	Global.current_level = "挑战28星宿阵"
+	Global.game_over = 1
 	level_stage = 47
 	is_two_scene = false
 	if constellation_background != null:
@@ -201,7 +201,7 @@ func _ready() -> void:
 
 
 func _exit_tree() -> void:
-	Global.ConstellationEndlessMode = false
+	Global.constellation_endless_mode = false
 
 
 func _prepare_level_runtime_resources() -> void:
@@ -289,13 +289,13 @@ func on_constellation_boss_defeated(boss: BaseMonster) -> void:
 	_advancing = true
 	var key := str(selected_level)
 	var stored_best := PlayerData.get_constellation_highest_defeated_tier(selected_level)
-	var best := mini(maxi(maxi(stored_best, int(Global.ConstellationBestTier.get(key, 0))), current_tier), 10)
+	var best := mini(maxi(maxi(stored_best, int(Global.constellation_best_tier.get(key, 0))), current_tier), 10)
 	var progress_changed := PlayerData.record_constellation_defeated_tier(selected_level, best)
-	Global.ConstellationBestTier[key] = best
+	Global.constellation_best_tier[key] = best
 	if progress_changed and str(Global.cd_path).contains("Ar_"):
 		MemoryClass.save_game(str(Global.cd_path))
 	if current_tier >= 10:
-		completed = not Global.ConstellationEndlessMode
+		completed = not Global.constellation_endless_mode
 	else:
 		current_tier += 1
 	call_deferred("_advance_after_boss")
@@ -326,11 +326,11 @@ func get_constellation_tier() -> int:
 func _get_highest_defeated_tier() -> int:
 	var key := str(selected_level)
 	var stored_best := PlayerData.get_constellation_highest_defeated_tier(selected_level)
-	var legacy_best := clampi(int(Global.ConstellationBestTier.get(key, 0)), 0, 10)
+	var legacy_best := clampi(int(Global.constellation_best_tier.get(key, 0)), 0, 10)
 	if legacy_best > stored_best:
 		PlayerData.record_constellation_defeated_tier(selected_level, legacy_best)
 		stored_best = legacy_best
-	Global.ConstellationBestTier[key] = stored_best
+	Global.constellation_best_tier[key] = stored_best
 	return stored_best
 
 

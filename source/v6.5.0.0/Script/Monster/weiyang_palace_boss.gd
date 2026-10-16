@@ -90,8 +90,8 @@ func _configure_monster() -> void:
 	is_boss = bool(config["is_boss"])
 	boss_max_protect = float(config["max_protect"])
 	NoGrav = true
-	IsSuperArmor = true
-	CannotAttract = true
+	super_armor_active = true
+	cannot_attract = true
 	objattackDic.clear()
 	var attacks: Dictionary = config["attacks"]
 	for attack_name: String in attacks:
@@ -413,8 +413,8 @@ func _enforce_original_fixed_state() -> void:
 	position = _fixed_position
 	monster_dir.scale.x = 1.0
 	base_damage_box.scale.x = 1.0
-	IsSuperArmor = true
-	CannotAttract = true
+	super_armor_active = true
+	cannot_attract = true
 	NoGrav = true
 
 

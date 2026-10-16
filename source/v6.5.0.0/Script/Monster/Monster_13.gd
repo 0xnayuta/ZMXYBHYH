@@ -3,7 +3,7 @@ class_name Monster
 
 
 func monster_13():
-	self.is_Fly = true
+	self.is_fly = true
 	self.is_boss = false
 	self.my_mr_name = "机甲鹰"
 	self.attack_in = 10

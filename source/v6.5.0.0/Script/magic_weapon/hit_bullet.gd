@@ -5,13 +5,13 @@ class_name MgHit
 @onready var bullet_ani: AnimatedSprite2D = $Bullet
 
 var source_weapon: BaseMagicWeapon = null
-var Rnd: int
+var rnd: int
 var name_
 var objattackDic = {}
 var dir: bool
 var get_dir: bool
 var is_set: bool = false
-var PP
+var pp
 var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
 
 var target_monster: BaseMonster = null
@@ -32,11 +32,11 @@ var _wdsl2_hit_count: Dictionary = {}
 
 func _physics_process(delta: float) -> void:
 	if not is_set:
-		PP = get_parent()
-		if PP is BaseMagicWeapon:
+		pp = get_parent()
+		if pp is BaseMagicWeapon:
 			pass
 		else:
-			PP = PP.get_parent()
+			pp = pp.get_parent()
 		if dir:
 			scale.x = -scale.x
 		is_set = true
@@ -134,7 +134,7 @@ func update_attraction(_delta: float):
 			continue
 		if monster.is_control_immune():
 			continue
-		if monster.CannotAttract:
+		if monster.cannot_attract:
 			continue
 
 		var distance = global_position.distance_to(monster.global_position)
@@ -153,10 +153,10 @@ func update_attraction(_delta: float):
 
 
 func remove_infor():
-	BaseHit.Mg_hit = 0
-	BaseHit.Mghitbakc_x = 0
-	BaseHit.Mghitbakc_y = 0
-	BaseHit.Mg_hit_lx = ""
+	BaseHit.mg_hit = 0
+	BaseHit.mghitbakc_x = 0
+	BaseHit.mghitbakc_y = 0
+	BaseHit.mg_hit_lx = ""
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -182,7 +182,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			Global.add_buff(target.buff, stun_buff)
 
 		if objattackDic.has("addeffect") and objattackDic["addeffect"].size() != 0:
-			if randi_range(0, 100) < Rnd:
+			if randi_range(0, 100) < rnd:
 				Global.add_buff(target.buff, objattackDic["addeffect"])
 
 		if name_ == "wdsfBullet1" or name_ == "wdshBullet1" or name_ == "wdstBullet1" or name_ == "wdslBullet1":

@@ -15,11 +15,11 @@ const YGTH_AWAKEN_SCALE := Vector2(2.0, 2.0)
 
 @onready var hurt_box = $base_damagebox/HurtBox/HurtBox
 
-var Interv: int
-var InSky: bool
+var interv: int
+var in_sky: bool
 var tllz
-var CanMoveInSky: bool
-var Role5EatBlood: float
+var can_move_in_sky: bool
+var role5_eat_blood: float
 
 
 func _ready() -> void:
@@ -74,9 +74,9 @@ func role_5():
 	var level_9 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] + 1
 	var level_10 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
 	var level_11 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能11"][DataKeys.LEVEL] + 1
-	Role5EatBlood = level_10 * 0.05
-	RoleProp.Role1SXBJ = 0
-	RoleProp.Role1SXxx = 0
+	role5_eat_blood = level_10 * 0.05
+	RoleProp.role1_sxbj = 0
+	RoleProp.role1_s_xxx = 0
 	self.objattackDic["hit1"] = {
 		"power": RoleProp.roleprop.power * randf_range(1, 1.2),
 		"hurtBack": [1, 0],
@@ -198,12 +198,12 @@ func role_5():
 
 func _physics_process(delta: float) -> void:
 	role_5()
-	if InSky:
+	if in_sky:
 		gravity = 0
 	else:
 		gravity = -980.0
-	if Interv > 0:
-		Interv -= 1
+	if interv > 0:
+		interv -= 1
 	super._physics_process(delta)
 	if no_limit_buff():
 		if (
@@ -211,7 +211,7 @@ func _physics_process(delta: float) -> void:
 			and Input.is_action_pressed("normalhit")
 			and not is_be_attacking
 			and not is_using_skills
-			and Interv <= 0
+			and interv <= 0
 		):
 			match hit_count:
 				0:
@@ -225,13 +225,13 @@ func _physics_process(delta: float) -> void:
 				4:
 					do_normalhit_5()
 	else:
-		self.CanMoveWhenUseSkill = false
-		InSky = false
-		self.Role5Bt = false
+		self.can_move_when_use_skill = false
+		in_sky = false
+		self.role5_bt = false
 
 
 func do_normalhit_1():
-	Interv = objattackDic["hit1"]["HitInterv"]
+	interv = objattackDic["hit1"]["HitInterv"]
 	super.get_hit_data("hit1")
 	get_action = "hit1"
 	velocity.x = 0
@@ -245,7 +245,7 @@ func do_normalhit_1():
 
 
 func do_normalhit_2():
-	Interv = objattackDic["hit2"]["HitInterv"]
+	interv = objattackDic["hit2"]["HitInterv"]
 	get_action = "hit2"
 	super.get_hit_data("hit2")
 	velocity.x = 0
@@ -258,7 +258,7 @@ func do_normalhit_2():
 
 
 func do_normalhit_3():
-	Interv = objattackDic["hit3"]["HitInterv"]
+	interv = objattackDic["hit3"]["HitInterv"]
 	get_action = "hit3"
 	super.get_hit_data("hit3")
 	velocity.x = 0
@@ -271,7 +271,7 @@ func do_normalhit_3():
 
 
 func do_normalhit_4():
-	Interv = objattackDic["hit4"]["HitInterv"]
+	interv = objattackDic["hit4"]["HitInterv"]
 	get_action = "hit4"
 	super.get_hit_data("hit4")
 	velocity.x = 0
@@ -284,7 +284,7 @@ func do_normalhit_4():
 
 
 func do_normalhit_5():
-	Interv = objattackDic["hit3"]["HitInterv"]
+	interv = objattackDic["hit3"]["HitInterv"]
 	get_action = "hit5"
 	super.get_hit_data("hit3")
 	is_can_move_attack_in_sky()
@@ -422,7 +422,7 @@ func _prepare_ygth_awaken_action() -> bool:
 	var action := Animation.new()
 	action.length = 0.6
 	_add_ygth_value_track(
-		action, NodePath("Action/RoleBody:frame"), [0.0, 0.1, 0.2, 0.3, 0.4], [120, 121, 122, 123, 124]
+		action, NodePath("Action/role_body:frame"), [0.0, 0.1, 0.2, 0.3, 0.4], [120, 121, 122, 123, 124]
 	)
 	_add_ygth_value_track(
 		action, NodePath("Action/RoleEquipment:frame"), [0.0, 0.1, 0.2, 0.3, 0.4], [120, 121, 122, 123, 124]
@@ -605,7 +605,7 @@ func _prepare_ltjz_action() -> bool:
 
 	for track_index in range(action.get_track_count() - 1, -1, -1):
 		var path := str(action.track_get_path(track_index))
-		if path != "Action/RoleBody:frame" and path != "Action/RoleEquipment:frame":
+		if path != "Action/role_body:frame" and path != "Action/RoleEquipment:frame":
 			action.remove_track(track_index)
 	library.add_animation(ACTION_NAME, action)
 	return true
@@ -672,19 +672,19 @@ func remove_yspeed():
 
 
 func skill_move():
-	self.CanMoveWhenUseSkill = true
+	self.can_move_when_use_skill = true
 
 
 func skill_move_over():
-	self.CanMoveWhenUseSkill = false
+	self.can_move_when_use_skill = false
 
 
 func role_5_skill_bt():
-	self.Role5Bt = true
+	self.role5_bt = true
 
 
 func role_5_skill_bt_over():
-	self.Role5Bt = false
+	self.role5_bt = false
 
 
 func tween_to_top():
@@ -693,11 +693,11 @@ func tween_to_top():
 
 
 func in_the_sky():
-	InSky = true
+	in_sky = true
 
 
 func no_in_the_sky():
-	InSky = false
+	in_sky = false
 
 
 func changecxq_hit():
@@ -791,10 +791,10 @@ func add_music(idx: int):
 
 
 func _prepare_hit_reaction() -> void:
-	self.CanMoveWhenUseSkill = false
-	InSky = false
-	self.Role5Bt = false
-	IsInSky = false
+	self.can_move_when_use_skill = false
+	in_sky = false
+	self.role5_bt = false
+	is_in_sky = false
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:

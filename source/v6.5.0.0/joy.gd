@@ -5,7 +5,7 @@ const REST_POS := Vector2(-25, -25)
 
 var finger_index: int = -1
 var drag_offset: Vector2 = Vector2.ZERO
-var isSet: bool = false
+var is_set: bool = false
 var _mouse_dragging: bool = false
 @onready var rest_pos: Vector2 = REST_POS
 
@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if isSet:
+	if is_set:
 		return
 
 	var mouse_button := event as InputEventMouseButton

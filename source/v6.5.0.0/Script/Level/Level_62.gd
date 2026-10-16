@@ -54,7 +54,7 @@ const LEVEL_62_MONSTER_DATA := {
 }
 
 var _background_stream: StreamedPngEffect
-@onready var _background_animation := get_node_or_null("BackGround/floor_2/bg12_1") as AnimatedSprite2D
+@onready var _background_animation := get_node_or_null("back_ground/floor_2/bg12_1") as AnimatedSprite2D
 
 
 func _ready() -> void:

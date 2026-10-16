@@ -25,7 +25,7 @@ var _prewarm_requested := false
 
 
 func _ready() -> void:
-	IsSuperArmor = true
+	super_armor_active = true
 	NoGrav = true
 	_runtime_config = _resolve_runtime_config()
 	if not _runtime_config.is_empty():

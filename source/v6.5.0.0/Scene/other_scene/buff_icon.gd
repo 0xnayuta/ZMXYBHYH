@@ -7,11 +7,11 @@ extends TextureRect
 var BuffTime: float
 var BuffInfo
 var BuffName: String = ""
-var FatherBuff: Node = null
-var TotalTimes: int = 1
-var LastHurt: float = 0.0
-var DataList = {}
-var Parent
+var father_buff: Node = null
+var total_times: int = 1
+var last_hurt: float = 0.0
+var data_list = {}
+var parent_node
 var _last_icon_name: String = ""
 var _buff_count_elapsed: float = 0.0
 var _cached_buff_count: int = 0
@@ -32,17 +32,17 @@ func start_duration(seconds: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var PParent = Global.get_parent_(self, 2)
-	if Parent != null:
-		if PParent != null and PParent.get("GetObj") != null:
-			Parent = PParent.get("GetObj")
+	var p_parent = Global.get_parent_(self, 2)
+	if parent_node != null:
+		if p_parent != null and p_parent.get("GetObj") != null:
+			parent_node = p_parent.get("GetObj")
 		else:
-			Parent = RoleProp.SourcePlayer
+			parent_node = RoleProp.source_player
 	else:
-		Parent = RoleProp.SourcePlayer
-	if DataList == {}:
+		parent_node = RoleProp.source_player
+	if data_list == {}:
 		return
-	var icon_name := str(DataList["Name"])
+	var icon_name := str(data_list["Name"])
 	BuffName = icon_name
 	if _last_icon_name != icon_name:
 		_last_icon_name = icon_name
@@ -53,15 +53,15 @@ func _physics_process(_delta: float) -> void:
 			icon_texture = Global.get_cached_texture("res://Art/ItemIcon/xydxq.png")
 		texture = icon_texture
 		buff_bar.texture_progress = icon_texture
-	if DataList["AddTime"] > 0:
-		BuffTime = DataList["AddTime"]
+	if data_list["AddTime"] > 0:
+		BuffTime = data_list["AddTime"]
 	if buff_bar.size != self.size:
 		buff_bar.size = self.size
 	_buff_count_elapsed += _delta
 	if _buff_count_elapsed >= 0.2:
 		_buff_count_elapsed = 0.0
-		if DataList.has("HaveCount"):
-			_cached_buff_count = int(DataList["HaveCount"])
+		if data_list.has("HaveCount"):
+			_cached_buff_count = int(data_list["HaveCount"])
 		else:
 			_cached_buff_count = get_buff_count()
 	var count_text := str(_cached_buff_count) if _cached_buff_count > 1 else ""
@@ -92,16 +92,16 @@ func _update_hover_popup() -> void:
 
 
 func _show_buff_info() -> void:
-	if DataList == {}:
+	if data_list == {}:
 		return
 	if BuffInfo == null or not is_instance_valid(BuffInfo):
 		BuffInfo = Global.add_buffinfor(
-			Global.get_ui_popup_layer(), Global.screen_popup_position(Vector2(18, 22)), DataList
+			Global.get_ui_popup_layer(), Global.screen_popup_position(Vector2(18, 22)), data_list
 		)
 		if BuffInfo == null:
 			return
-		BuffInfo.Parent = self
-		BuffInfo.LastHurt = DataList.get("value", 0.0)
+		BuffInfo.parent_node = self
+		BuffInfo.last_hurt = data_list.get("value", 0.0)
 		BuffInfo.z_index = 4095
 		BuffInfo.top_level = false
 	else:
@@ -123,14 +123,14 @@ func _on_mouse_exited() -> void:
 
 
 func get_buff_count():
-	var Count: int = 0
-	if Parent != null and Parent.get("buff") != null:
-		var buff_parent: Node = Parent.buff
+	var count: int = 0
+	if parent_node != null and parent_node.get("buff") != null:
+		var buff_parent: Node = parent_node.buff
 		var buff_child_count: int = buff_parent.get_child_count()
 		var buff_child_index := 0
 		while buff_child_index < buff_child_count:
 			var i = buff_parent.get_child(buff_child_index)
 			buff_child_index += 1
-			if i.BuffInfo["Name"] == DataList["Name"]:
-				Count += 1
-	return Count
+			if i.BuffInfo["Name"] == data_list["Name"]:
+				count += 1
+	return count

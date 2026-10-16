@@ -44,7 +44,7 @@ var zhenyao_tower_page: Node = null
 
 
 func _ready() -> void:
-	Global.Windows_ = _ui_parent()
+	Global.windows = _ui_parent()
 	_update_player_head()
 	_update_player_level()
 	_fit_to_fullscreen()
@@ -119,7 +119,7 @@ func _set_if_has_property(target: Object, property_name: StringName, value: Vari
 
 
 func _current_preview_player() -> Variant:
-	var player: Variant = RoleProp.SourcePlayer
+	var player: Variant = RoleProp.source_player
 	return player if is_instance_valid(player) else null
 
 

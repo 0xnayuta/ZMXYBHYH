@@ -3,34 +3,34 @@ extends TextureRect
 @onready var pic: Button = $Pic
 @onready var jt: Sprite2D = $jt
 
-var NotShow: bool
-var LocNum: int
-var ZhenFaType: String
-var RealName: String
-var Father
+var not_show: bool
+var loc_num: int
+var zhen_fa_type: String
+var real_name: String
+var father
 
 
 func _physics_process(delta: float) -> void:
-	if Father != null:
-		ZhenFaType = Father.CurrentZhenFaName
-		match ZhenFaType:
+	if father != null:
+		zhen_fa_type = father.current_zhen_fa_name
+		match zhen_fa_type:
 			"slz":
-				RealName = "森罗阵"
+				real_name = "森罗阵"
 			"lpz":
-				RealName = "落魄阵"
+				real_name = "落魄阵"
 			"tsz":
-				RealName = "腾蛇阵"
+				real_name = "腾蛇阵"
 			"tqz":
-				RealName = "太清阵"
-		var item_name = PlayerData.player_data[RealName][str(LocNum)]["InName"]
+				real_name = "太清阵"
+		var item_name = PlayerData.player_data[real_name][str(loc_num)]["InName"]
 		pic.set_button_icon(load_(item_name))
 		pic.qh_level = 0
 		pic.wx = []
-		pic.EQ_prop = AE.AllEquipment_[item_name]
-		var cur_level = PlayerData.player_data[RealName][str(LocNum)]["Level"]
-		locandlevel.text = str(LocNum) + "号位 Lv:" + str(cur_level)
-		if not NotShow:
-			if Father.CurrentNum == LocNum:
+		pic.EQ_prop = AE.all_equipment[item_name]
+		var cur_level = PlayerData.player_data[real_name][str(loc_num)]["Level"]
+		locandlevel.text = str(loc_num) + "号位 Lv:" + str(cur_level)
+		if not not_show:
+			if father.current_num == loc_num:
 				jt.visible = true
 			else:
 				jt.visible = false
@@ -44,4 +44,4 @@ func load_(name_):
 
 
 func _on_button_pressed() -> void:
-	Father.CurrentNum = int(LocNum)
+	father.current_num = int(loc_num)

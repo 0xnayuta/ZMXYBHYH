@@ -209,8 +209,8 @@ const HEAVEN_SOUL_CRYSTAL_MONSTER_IDS := {
 @onready var mybg: TextureRect = $ColorRect/TextureRect/Mybg
 @onready var fall: Label = $ColorRect/TextureRect/Fall
 @onready var pj: Label = $ColorRect/TextureRect/pj
-@onready var speedtext: Label = $ColorRect/TextureRect/Speed/speedtext
-@onready var counttext: Label = $ColorRect/TextureRect/Count/counttext
+@onready var speedtext: Label = $ColorRect/TextureRect/speed/speedtext
+@onready var counttext: Label = $ColorRect/TextureRect/count/counttext
 @onready var diffbutton: TextureButton = $ColorRect/TextureRect/diffbutton
 @onready var difftext: Label = $ColorRect/TextureRect/diffbutton/difftext
 @onready var diffvalue: Label = $ColorRect/TextureRect/diffbutton/diffvalue
@@ -219,7 +219,7 @@ const HEAVEN_SOUL_CRYSTAL_MONSTER_IDS := {
 @onready var color_rect_2: ColorRect = $ColorRect2
 @onready var level_down: Label = $ColorRect/TextureRect/Level/LevelDown
 
-var FontColorList = {
+var font_color_list = {
 	"font_colorList": ["4c4c4c", "818181", "00ff00", "0095ff", "ba2cff", "ff9d2e"],
 }
 var PjList = {
@@ -2021,20 +2021,20 @@ var LevelInfo = {
 
 var LevelName: String
 var Num: int
-var TargetStagePath: String
+var target_stage_path: String
 var _fall_refresh_pending := false
 var _monster_touch_active := false
 var _monster_touch_last_x: float = 0.0
-var Time_: float
-var Is_set: bool
+var time: float
+var is_set: bool
 
 
 func _popup_parent() -> Node:
 	var parent_node := get_parent()
 	if parent_node != null and is_instance_valid(parent_node) and not parent_node.is_queued_for_deletion():
 		return parent_node
-	if Global.Windows_ != null and is_instance_valid(Global.Windows_) and not Global.Windows_.is_queued_for_deletion():
-		return Global.Windows_
+	if Global.windows != null and is_instance_valid(Global.windows) and not Global.windows.is_queued_for_deletion():
+		return Global.windows
 	var current_scene := get_tree().current_scene
 	if current_scene != null and is_instance_valid(current_scene):
 		return current_scene
@@ -2049,7 +2049,7 @@ func _open_special_level_popup(target_path: String) -> void:
 	elif target_path == "兜率宫":
 		popup = Global.add_dsg_choose(parent_node)
 	if popup != null:
-		popup.SourcePopup = self
+		popup.source_popup = self
 	process_mode = Node.PROCESS_MODE_DISABLED
 	visible = false
 	queue_free()
@@ -2064,7 +2064,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if TargetStagePath not in ["res://Scene/level/level_bxgh.tscn", "res://Scene/level/level_esbxx.tscn"]:
+	if target_stage_path not in ["res://Scene/level/level_bxgh.tscn", "res://Scene/level/level_esbxx.tscn"]:
 		return
 	if monster_scroll == null or not is_instance_valid(monster_scroll) or not monster_scroll.is_visible_in_tree():
 		return
@@ -2102,7 +2102,7 @@ func _layout_for_viewport() -> void:
 func _get_level_info() -> Dictionary:
 	var info := _get_base_level_info()
 	var stages := {50: 2, 53: 3, 56: 4, 59: 5, 63: 6, 66: 7, 69: 8, 72: 9}
-	var stage := int(TargetStagePath.get_file().get_basename().trim_prefix("Level_"))
+	var stage := int(target_stage_path.get_file().get_basename().trim_prefix("Level_"))
 	var tier := int(stages.get(stage, 0))
 	if tier == 0:
 		tier = int({"九华山麓": 2, "普陀山脚": 3, "峨眉山道": 4, "五台山口": 5}.get(str(info.get("LevelName", "")), 0))
@@ -2136,7 +2136,7 @@ func _get_level_info() -> Dictionary:
 
 
 func _get_base_level_info() -> Dictionary:
-	if TargetStagePath == "res://Scene/level/level_63.tscn":
+	if target_stage_path == "res://Scene/level/level_63.tscn":
 		var east_jinshacun := (LevelInfo["金沙村"] as Dictionary).duplicate(true) if LevelInfo.has("金沙村") else {}
 		east_jinshacun["LevelName"] = "金沙村"
 		east_jinshacun["MonsterList"] = [
@@ -2148,7 +2148,7 @@ func _get_base_level_info() -> Dictionary:
 		east_jinshacun["LevelFall"] = ["469000011"]
 		east_jinshacun["LevelFallProbability"] = {"469000011": 10}
 		return east_jinshacun
-	if TargetStagePath == "res://Scene/level/level_64.tscn":
+	if target_stage_path == "res://Scene/level/level_64.tscn":
 		var east_baixianyuan := (LevelInfo["百仙园"] as Dictionary).duplicate(true) if LevelInfo.has("百仙园") else {}
 		east_baixianyuan["LevelName"] = "百仙园"
 		east_baixianyuan["MonsterList"] = [
@@ -2167,7 +2167,7 @@ func _get_base_level_info() -> Dictionary:
 		east_baixianyuan["LevelFall"] = ["2_jns"]
 		east_baixianyuan["LevelFallProbability"] = {"2_jns": 20}
 		return east_baixianyuan
-	if TargetStagePath == "res://Scene/level/level_65.tscn":
+	if target_stage_path == "res://Scene/level/level_65.tscn":
 		var east_aolaiguo := (LevelInfo["傲来国"] as Dictionary).duplicate(true) if LevelInfo.has("傲来国") else {}
 		east_aolaiguo["LevelName"] = "傲来国"
 		east_aolaiguo["MonsterList"] = [
@@ -2184,7 +2184,7 @@ func _get_base_level_info() -> Dictionary:
 		if not east_aolaiguo.has("Level"):
 			east_aolaiguo["Level"] = 90
 		return east_aolaiguo
-	if TargetStagePath == "res://Scene/level/level_66.tscn":
+	if target_stage_path == "res://Scene/level/level_66.tscn":
 		var east_huaguoshan := (LevelInfo["花果山"] as Dictionary).duplicate(true)
 		east_huaguoshan["MonsterList"] = [
 			{"Name": "猴妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3159.tscn"},
@@ -2192,7 +2192,7 @@ func _get_base_level_info() -> Dictionary:
 			{"Name": "通臂白猿", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3161.tscn"},
 		]
 		return _clear_east_continent_drop_preview(east_huaguoshan)
-	if TargetStagePath == "res://Scene/level/level_67.tscn":
+	if target_stage_path == "res://Scene/level/level_67.tscn":
 		var east_shuiliandong := (LevelInfo["水帘洞"] as Dictionary).duplicate(true)
 		east_shuiliandong["MonsterList"] = [
 			{"Name": "猴妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3159.tscn"},
@@ -2200,7 +2200,7 @@ func _get_base_level_info() -> Dictionary:
 			{"Name": "六耳猕猴", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3179.tscn"},
 		]
 		return _clear_east_continent_drop_preview(east_shuiliandong)
-	if TargetStagePath == "res://Scene/level/level_68.tscn":
+	if target_stage_path == "res://Scene/level/level_68.tscn":
 		var east_taohuagu := (LevelInfo["桃花源"] as Dictionary).duplicate(true)
 		east_taohuagu["LevelName"] = "桃花谷"
 		east_taohuagu["MonsterList"] = [
@@ -2208,7 +2208,7 @@ func _get_base_level_info() -> Dictionary:
 			{"Name": "雨之祖巫", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3182.tscn"},
 		]
 		return _clear_east_continent_drop_preview(east_taohuagu)
-	var target_stage_text := TargetStagePath.get_file().get_basename().trim_prefix("Level_")
+	var target_stage_text := target_stage_path.get_file().get_basename().trim_prefix("Level_")
 	if target_stage_text.is_valid_int():
 		var target_stage := int(target_stage_text)
 		if target_stage >= 76 and target_stage <= 85:
@@ -2262,7 +2262,7 @@ func _physics_process(delta: float) -> void:
 		0.075:
 			speedtext.text = "×16"
 	counttext.text = "×" + str(int(MainSet.set_data.get("CreateMonsterCount", 1)))
-	if not Is_set:
+	if not is_set:
 		var info := _get_level_info()
 		level_down.text = str(info.get("Level", 0))
 		pj.text = str(info.get("LevelName", LevelName)) + "历史最高评价："
@@ -2279,12 +2279,12 @@ func _physics_process(delta: float) -> void:
 		diffvalue.text = ["普通", "困难", "地狱", "噩梦"][clampi(saved_diff, 0, 3)]
 		difftext.text = "挑战难度:"
 
-		Is_set = true
+		is_set = true
 
 
 func set_pj_font_color():
 	my_pj.text = PjList["PjList"][Num]
-	my_pj.add_theme_color_override("font_color", FontColorList["font_colorList"][Num])
+	my_pj.add_theme_color_override("font_color", font_color_list["font_colorList"][Num])
 
 
 func add_level_fall_item() -> void:
@@ -2300,7 +2300,7 @@ func _rebuild_level_fall_items() -> void:
 		fall_list.remove_child(child)
 		child.queue_free()
 	var level_info := _get_level_info()
-	var InfoDic: Array = _get_level_fall_items(level_info)
+	var info_dic: Array = _get_level_fall_items(level_info)
 	var fall_pro = level_info.get("fall_pro", 0)
 	var item_probability: Dictionary = _get_level_fall_probabilities(level_info)
 	var fixed_probability := (
@@ -2312,7 +2312,7 @@ func _rebuild_level_fall_items() -> void:
 	var default_pro_txt = ""
 	if fall_pro > 0:
 		default_pro_txt = _get_fall_pro_text(fall_pro)
-	for i in InfoDic:
+	for i in info_dic:
 		var pro_txt = default_pro_txt
 		if item_probability.has(i):
 			pro_txt = (
@@ -2320,7 +2320,7 @@ func _rebuild_level_fall_items() -> void:
 				if fixed_probability
 				else _get_fall_pro_text(int(item_probability[i]))
 			)
-		var box = Global.add_level_fall_box(fall_list, true, true, i, 0, [], AE.AllEquipment_[i])
+		var box = Global.add_level_fall_box(fall_list, true, true, i, 0, [], AE.all_equipment[i])
 		box.set_button_icon(load_(i))
 		box.set_meta("fall_item_name", i)
 		if pro_txt != "":
@@ -2346,23 +2346,23 @@ func _get_level_fall_items(level_info: Dictionary) -> Array:
 		return _get_underworld_nightmare_soul_items(level_info)
 	if _is_human_nightmare_level():
 		return _get_human_nightmare_soul_items(level_info)
-	if TargetStagePath == "res://Scene/level/level_stz.tscn":
-		var selected_id := int(Global.SelectedThreePrinceId)
+	if target_stage_path == "res://Scene/level/level_stz.tscn":
+		var selected_id := int(Global.selected_three_prince_id)
 		var items := (THREE_PRINCE_DROP_ITEMS.get(selected_id, THREE_PRINCE_DROP_ITEMS[0]) as Array).duplicate()
 		if int(MainSet.set_data.get("Difficult", 0)) == BaseMonster.NIGHTMARE_DIFFICULTY:
 			for index in range(items.size()):
 				items[index] = ThreePrinceBoss.NIGHTMARE_EQUIPMENT_REPLACEMENTS.get(items[index], items[index])
 		return items
-	if TargetStagePath == "res://Scene/level/level_bxgh.tscn":
+	if target_stage_path == "res://Scene/level/level_bxgh.tscn":
 		return (_get_eight_immortal_fall_preview().get("items", []) as Array).duplicate()
-	if TargetStagePath == "res://Scene/level/level_esbxx.tscn":
+	if target_stage_path == "res://Scene/level/level_esbxx.tscn":
 		return (_get_constellation_fall_preview().get("items", []) as Array).duplicate()
 	return (level_info.get("LevelFall", []) as Array).duplicate()
 
 
 func _get_level_fall_probabilities(level_info: Dictionary) -> Dictionary:
 	if (
-		TargetStagePath == "res://Scene/level/level_stz.tscn"
+		target_stage_path == "res://Scene/level/level_stz.tscn"
 		and int(MainSet.set_data.get("Difficult", 0)) == BaseMonster.NIGHTMARE_DIFFICULTY
 	):
 		var probabilities := {}
@@ -2385,9 +2385,9 @@ func _get_level_fall_probabilities(level_info: Dictionary) -> Dictionary:
 		for item_id in _get_human_nightmare_soul_items(level_info):
 			probabilities[item_id] = 25
 		return probabilities
-	if TargetStagePath == "res://Scene/level/level_bxgh.tscn":
+	if target_stage_path == "res://Scene/level/level_bxgh.tscn":
 		return (_get_eight_immortal_fall_preview().get("probabilities", {}) as Dictionary).duplicate()
-	if TargetStagePath == "res://Scene/level/level_esbxx.tscn":
+	if target_stage_path == "res://Scene/level/level_esbxx.tscn":
 		return (_get_constellation_fall_preview().get("probabilities", {}) as Dictionary).duplicate()
 	return (level_info.get("LevelFallProbability", {}) as Dictionary).duplicate()
 
@@ -2395,21 +2395,21 @@ func _get_level_fall_probabilities(level_info: Dictionary) -> Dictionary:
 func _is_human_nightmare_level() -> bool:
 	return (
 		int(MainSet.set_data.get("Difficult", 0)) == BaseMonster.NIGHTMARE_DIFFICULTY
-		and TargetStagePath in HUMAN_NIGHTMARE_LEVEL_PATHS
+		and target_stage_path in HUMAN_NIGHTMARE_LEVEL_PATHS
 	)
 
 
 func _is_underworld_nightmare_level() -> bool:
 	return (
 		int(MainSet.set_data.get("Difficult", 0)) == BaseMonster.NIGHTMARE_DIFFICULTY
-		and TargetStagePath in UNDERWORLD_NIGHTMARE_LEVEL_PATHS
+		and target_stage_path in UNDERWORLD_NIGHTMARE_LEVEL_PATHS
 	)
 
 
 func _is_heaven_nightmare_level() -> bool:
 	return (
 		int(MainSet.set_data.get("Difficult", 0)) == BaseMonster.NIGHTMARE_DIFFICULTY
-		and TargetStagePath in HEAVEN_NIGHTMARE_LEVEL_PATHS
+		and target_stage_path in HEAVEN_NIGHTMARE_LEVEL_PATHS
 	)
 
 
@@ -2423,7 +2423,7 @@ func _get_heaven_nightmare_soul_items(level_info: Dictionary) -> Array:
 		if monster_id <= 0:
 			continue
 		var item_id := BaseMonster.HEAVEN_SOUL_CRYSTAL_ITEM_PREFIX + str(monster_id)
-		if AE.AllEquipment_.has(item_id) and item_id not in items:
+		if AE.all_equipment.has(item_id) and item_id not in items:
 			items.append(item_id)
 	return items
 
@@ -2438,7 +2438,7 @@ func _get_underworld_nightmare_soul_items(level_info: Dictionary) -> Array:
 		if monster_id <= 0:
 			continue
 		var item_id := BaseMonster.UNDERWORLD_SOUL_CRYSTAL_ITEM_PREFIX + str(monster_id)
-		if AE.AllEquipment_.has(item_id) and item_id not in items:
+		if AE.all_equipment.has(item_id) and item_id not in items:
 			items.append(item_id)
 	return items
 
@@ -2453,14 +2453,14 @@ func _get_human_nightmare_soul_items(level_info: Dictionary) -> Array:
 		if monster_id <= 0:
 			continue
 		var item_id := BaseMonster.HUMAN_SOUL_CRYSTAL_ITEM_PREFIX + str(monster_id)
-		if AE.AllEquipment_.has(item_id) and item_id not in items:
+		if AE.all_equipment.has(item_id) and item_id not in items:
 			items.append(item_id)
 	return items
 
 
 func _get_eight_immortal_fall_preview() -> Dictionary:
 	var result := {"items": [], "probabilities": {}}
-	var selected_id := int(Global.SelectedEightImmortalId)
+	var selected_id := int(Global.selected_eight_immortal_id)
 	if selected_id not in EIGHT_IMMORTAL_IDS:
 		return result
 	var config := _get_level_monster_config("", selected_id, 1)
@@ -2471,7 +2471,7 @@ func _get_eight_immortal_fall_preview() -> Dictionary:
 			if not drop is Dictionary:
 				continue
 			var item_id := str(drop.get("name", ""))
-			if item_id == "" or not AE.AllEquipment_.has(item_id):
+			if item_id == "" or not AE.all_equipment.has(item_id):
 				continue
 			if item_id not in result["items"]:
 				result["items"].append(item_id)
@@ -2482,7 +2482,7 @@ func _get_eight_immortal_fall_preview() -> Dictionary:
 
 func _get_constellation_fall_preview() -> Dictionary:
 	var result := {"items": [], "probabilities": {}}
-	var selected_level := int(Global.SelectedConstellationLevel)
+	var selected_level := int(Global.selected_constellation_level)
 	if selected_level not in range(1, 15):
 		return result
 	var config := _get_level_monster_config("", 47100 + selected_level, 1)
@@ -2493,7 +2493,7 @@ func _get_constellation_fall_preview() -> Dictionary:
 			if not drop is Dictionary:
 				continue
 			var item_id := str(drop.get("name", ""))
-			if item_id == "" or not AE.AllEquipment_.has(item_id):
+			if item_id == "" or not AE.all_equipment.has(item_id):
 				continue
 			if item_id not in result["items"]:
 				result["items"].append(item_id)
@@ -2551,8 +2551,8 @@ func _sync_hell_extra_fall_display():
 		box.queue_free()
 
 	if int(MainSet.set_data.get("Difficult", 0)) == 2:
-		if existing_qhsbx == null and AE.AllEquipment_.has("qhsbx"):
-			var qhsbx_box = Global.add_level_fall_box(fall_list, true, true, "qhsbx", 0, [], AE.AllEquipment_["qhsbx"])
+		if existing_qhsbx == null and AE.all_equipment.has("qhsbx"):
+			var qhsbx_box = Global.add_level_fall_box(fall_list, true, true, "qhsbx", 0, [], AE.all_equipment["qhsbx"])
 			qhsbx_box.set_button_icon(load_("qhsbx"))
 			qhsbx_box.set_meta("fall_item_name", "qhsbx")
 			qhsbx_box.set_meta("hell_qhsbx", true)
@@ -2573,7 +2573,7 @@ func _sync_hell_extra_fall_display():
 
 func _refresh_fall_pro_display():
 	var level_info := _get_level_info()
-	var InfoDic = level_info.get("LevelFall", [])
+	var info_dic = level_info.get("LevelFall", [])
 	var base_pro = level_info.get("fall_pro", 0)
 	var item_probability: Dictionary = _get_level_fall_probabilities(level_info)
 	var fixed_probability := (
@@ -2600,18 +2600,18 @@ func _refresh_fall_pro_display():
 
 func add_monster_head():
 	var level_info := _get_level_info()
-	var InfoDic = level_info.get("MonsterList", [])
-	for i in InfoDic:
+	var info_dic = level_info.get("MonsterList", [])
+	for i in info_dic:
 		var head = Global.add_monster_head(monster_list, i["Name"], i["IsBoss"], str(i.get("ScenePath", "")))
 		if head != null:
-			head.LevelPath = TargetStagePath
+			head.level_path = target_stage_path
 			var constellation_level := int(i.get("SelectConstellationLevel", 0))
 			var preview_tier := 0
 			if constellation_level in range(1, 15):
 				var stored_best := PlayerData.get_constellation_highest_defeated_tier(constellation_level)
-				var legacy_best := clampi(int(Global.ConstellationBestTier.get(str(constellation_level), 0)), 0, 10)
+				var legacy_best := clampi(int(Global.constellation_best_tier.get(str(constellation_level), 0)), 0, 10)
 				preview_tier = clampi(maxi(stored_best, legacy_best) + 1, 1, 10)
-			head.LevelMonsterConfig = _get_level_monster_config(
+			head.level_monster_config = _get_level_monster_config(
 				str(i.get("ScenePath", "")), int(i.get("ConfigId", 0)), preview_tier
 			)
 			head.set_meta("hide_independent_drops", bool(i.get("HideIndependentDrops", false)))
@@ -2633,7 +2633,7 @@ func add_monster_head():
 func _get_level_monster_config(
 	monster_scene_path: String, explicit_monster_id: int = 0, constellation_tier: int = 0
 ) -> Dictionary:
-	if not TargetStagePath.begins_with("res://Scene/level/Level_"):
+	if not target_stage_path.begins_with("res://Scene/level/Level_"):
 		return {}
 	var monster_id := explicit_monster_id
 	if monster_id <= 0:
@@ -2644,7 +2644,7 @@ func _get_level_monster_config(
 		if not monster_id_text.is_valid_int():
 			return {}
 		monster_id = int(monster_id_text)
-	var level_script_path := TargetStagePath.replace("res://Scene/level/", "res://Script/level/").get_basename() + ".gd"
+	var level_script_path := target_stage_path.replace("res://Scene/level/", "res://Script/level/").get_basename() + ".gd"
 	if not ResourceLoader.exists(level_script_path):
 		return {}
 	var level_script = load(level_script_path)
@@ -2655,7 +2655,7 @@ func _get_level_monster_config(
 		if level_provider != null:
 			level_provider.free()
 		return {}
-	var target_stage_text := TargetStagePath.get_file().get_basename().trim_prefix("Level_")
+	var target_stage_text := target_stage_path.get_file().get_basename().trim_prefix("Level_")
 	if target_stage_text.is_valid_int() and int(target_stage_text) in range(69, 76):
 		level_provider.set("stage_number", int(target_stage_text))
 	if constellation_tier > 0:
@@ -2669,7 +2669,7 @@ func _on_three_prince_head_selected(head: Node) -> void:
 	var select_id := int(head.get_meta("three_prince_id", 0))
 	if select_id not in [4401, 4402, 4403]:
 		return
-	Global.SelectedThreePrinceId = select_id
+	Global.selected_three_prince_id = select_id
 	for child in monster_list.get_children():
 		if child.has_method("set_selected"):
 			child.set_selected(child == head)
@@ -2685,7 +2685,7 @@ func _on_eight_immortal_head_selected(head: Node) -> void:
 	var select_id := int(head.get_meta("eight_immortal_id", 0))
 	if select_id not in EIGHT_IMMORTAL_IDS:
 		return
-	Global.SelectedEightImmortalId = select_id
+	Global.selected_eight_immortal_id = select_id
 	for child in monster_list.get_children():
 		if child.has_method("set_selected"):
 			child.set_selected(child == head)
@@ -2701,7 +2701,7 @@ func _on_constellation_head_selected(head: Node) -> void:
 	var selected_level := int(head.get_meta("constellation_level", 0))
 	if selected_level not in range(1, 15):
 		return
-	Global.SelectedConstellationLevel = selected_level
+	Global.selected_constellation_level = selected_level
 	for child in monster_list.get_children():
 		if child.has_method("set_selected"):
 			child.set_selected(child == head)
@@ -2715,8 +2715,8 @@ func _on_constellation_head_selected(head: Node) -> void:
 
 func load_(name_):
 	var item_id := str(name_)
-	if AE.AllEquipment_.has(item_id):
-		var data_icon_path := str(AE.AllEquipment_[item_id].get("图标", ""))
+	if AE.all_equipment.has(item_id):
+		var data_icon_path := str(AE.all_equipment[item_id].get("图标", ""))
 		if data_icon_path != "" and ResourceLoader.exists(data_icon_path):
 			return load(data_icon_path)
 	var icon_path := "res://Art/BackPack/AllItems/" + item_id + ".png"
@@ -2733,52 +2733,52 @@ func load_2(name_):
 func _get_nightmare_entry_block_message() -> String:
 	if int(MainSet.set_data.get("Difficult", 0)) != BaseMonster.NIGHTMARE_DIFFICULTY:
 		return ""
-	if TargetStagePath == "res://Scene/level/level_stz.tscn":
+	if target_stage_path == "res://Scene/level/level_stz.tscn":
 		return ""
-	if TargetStagePath in HUMAN_NIGHTMARE_LEVEL_PATHS:
+	if target_stage_path in HUMAN_NIGHTMARE_LEVEL_PATHS:
 		var cleared_biyou_palace := int(PlayerData.player_data.get("通天教主", 0)) == 1
 		return "" if cleared_biyou_palace else "通关碧游宫开放此难度"
-	if TargetStagePath in UNDERWORLD_NIGHTMARE_LEVEL_PATHS:
+	if target_stage_path in UNDERWORLD_NIGHTMARE_LEVEL_PATHS:
 		var cleared_south_continent := int(PlayerData.player_data.get("冥海", 0)) == 1
 		return "" if cleared_south_continent else "通关南瞻部洲开放此难度"
-	if TargetStagePath in HEAVEN_NIGHTMARE_LEVEL_PATHS:
+	if target_stage_path in HEAVEN_NIGHTMARE_LEVEL_PATHS:
 		var cleared_underworld_nightmare := bool(PlayerData.player_data.get("地府噩梦", false))
 		return "" if cleared_underworld_nightmare else "通关地府噩梦开放此难度"
 	return "当前副本暂未开放此难度"
 
 
 func _on_challenge_pressed() -> void:
-	if TargetStagePath != "":
+	if target_stage_path != "":
 		var nightmare_block_message := _get_nightmare_entry_block_message()
 		if nightmare_block_message != "":
 			Global.add_message_show(_popup_parent(), nightmare_block_message, 1.5, Vector2(470, 300))
 			return
 		if (
-			TargetStagePath == "res://Scene/level/level_stz.tscn"
-			and Global.SelectedThreePrinceId not in [4401, 4402, 4403]
+			target_stage_path == "res://Scene/level/level_stz.tscn"
+			and Global.selected_three_prince_id not in [4401, 4402, 4403]
 		):
 			Global.add_message_show(_popup_parent(), "请选择要挑战的太子！", 1.5, Vector2(470, 300))
 			return
 		if (
-			TargetStagePath == "res://Scene/level/level_esbxx.tscn"
-			and Global.SelectedConstellationLevel not in range(1, 15)
+			target_stage_path == "res://Scene/level/level_esbxx.tscn"
+			and Global.selected_constellation_level not in range(1, 15)
 		):
 			Global.add_message_show(_popup_parent(), "请选择要挑战的星宿！", 1.5, Vector2(470, 300))
 			return
 		if (
-			TargetStagePath == "res://Scene/level/level_bxgh.tscn"
-			and Global.SelectedEightImmortalId not in EIGHT_IMMORTAL_IDS
+			target_stage_path == "res://Scene/level/level_bxgh.tscn"
+			and Global.selected_eight_immortal_id not in EIGHT_IMMORTAL_IDS
 		):
 			Global.add_message_show(_popup_parent(), "请选择要挑战的八仙 Boss！", 1.5, Vector2(470, 300))
 			return
-		if TargetStagePath == "res://Scene/level/level_llbt.tscn":
-			_open_special_level_popup(TargetStagePath)
+		if target_stage_path == "res://Scene/level/level_llbt.tscn":
+			_open_special_level_popup(target_stage_path)
 			return
-		elif TargetStagePath == "兜率宫":
-			_open_special_level_popup(TargetStagePath)
+		elif target_stage_path == "兜率宫":
+			_open_special_level_popup(target_stage_path)
 			return
 		if (
-			TargetStagePath
+			target_stage_path
 			in [
 				"res://Scene/level/level_stz.tscn",
 				"res://Scene/level/level_tzsijian.tscn",
@@ -2786,20 +2786,20 @@ func _on_challenge_pressed() -> void:
 				"res://Scene/level/level_esbxx.tscn"
 			]
 		):
-			if TargetStagePath == "res://Scene/level/level_esbxx.tscn":
+			if target_stage_path == "res://Scene/level/level_esbxx.tscn":
 				four_swords_mode_dialog.get_node("BG/Title").text = "28星宿模式"
 			else:
 				four_swords_mode_dialog.get_node("BG/Title").text = "副本模式"
 			four_swords_mode_dialog.visible = true
 			return
-		Global.ThreePrinceEndlessMode = false
-		Global.FourSwordsEndlessMode = false
-		Global.SSSLendlessMode = false
-		Global.ConstellationEndlessMode = false
+		Global.three_prince_endless_mode = false
+		Global.four_swords_endless_mode = false
+		Global.sss_lendless_mode = false
+		Global.constellation_endless_mode = false
 		Global.cleanup_transient_ui()
-		Global.change_scene(TargetStagePath)
+		Global.change_scene(target_stage_path)
 	else:
-		Global.add_message_show(Global.Windows_, "获取关卡信息时出现错误，请手动更换关卡！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "获取关卡信息时出现错误，请手动更换关卡！！", 1.5, Vector2(470, 300))
 
 
 func _on_boss_self_select_check_box_toggled(_toggled_on: bool) -> void:
@@ -2808,7 +2808,7 @@ func _on_boss_self_select_check_box_toggled(_toggled_on: bool) -> void:
 
 func _on_close_pressed() -> void:
 	if (
-		TargetStagePath
+		target_stage_path
 		in [
 			"res://Scene/level/level_stz.tscn",
 			"res://Scene/level/level_tzsijian.tscn",
@@ -2816,16 +2816,16 @@ func _on_close_pressed() -> void:
 			"res://Scene/level/level_esbxx.tscn"
 		]
 	):
-		Global.ThreePrinceEndlessMode = false
-		Global.FourSwordsEndlessMode = false
-		Global.SSSLendlessMode = false
-		Global.ConstellationEndlessMode = false
+		Global.three_prince_endless_mode = false
+		Global.four_swords_endless_mode = false
+		Global.sss_lendless_mode = false
+		Global.constellation_endless_mode = false
 	self.queue_free()
 
 
 func _enter_four_swords_mode(endless_mode: bool) -> void:
 	if (
-		TargetStagePath
+		target_stage_path
 		not in [
 			"res://Scene/level/level_stz.tscn",
 			"res://Scene/level/level_tzsijian.tscn",
@@ -2834,13 +2834,13 @@ func _enter_four_swords_mode(endless_mode: bool) -> void:
 		]
 	):
 		return
-	Global.ThreePrinceEndlessMode = TargetStagePath == "res://Scene/level/level_stz.tscn" and endless_mode
-	Global.FourSwordsEndlessMode = TargetStagePath == "res://Scene/level/level_tzsijian.tscn" and endless_mode
-	Global.SSSLendlessMode = TargetStagePath == "res://Scene/level/level_sssl.tscn" and endless_mode
-	Global.ConstellationEndlessMode = TargetStagePath == "res://Scene/level/level_esbxx.tscn" and endless_mode
+	Global.three_prince_endless_mode = target_stage_path == "res://Scene/level/level_stz.tscn" and endless_mode
+	Global.four_swords_endless_mode = target_stage_path == "res://Scene/level/level_tzsijian.tscn" and endless_mode
+	Global.sss_lendless_mode = target_stage_path == "res://Scene/level/level_sssl.tscn" and endless_mode
+	Global.constellation_endless_mode = target_stage_path == "res://Scene/level/level_esbxx.tscn" and endless_mode
 	four_swords_mode_dialog.visible = false
 	Global.cleanup_transient_ui()
-	Global.change_scene(TargetStagePath)
+	Global.change_scene(target_stage_path)
 
 
 func _on_four_swords_mode_close_pressed() -> void:

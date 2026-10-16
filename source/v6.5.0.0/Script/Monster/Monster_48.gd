@@ -1,7 +1,7 @@
 extends BaseMonster
 class_name Monster48
-var ChangeBody: bool = false
-var ChangeDirCount: int = 60
+var change_body_flag: bool = false
+var change_dir_count: int = 60
 
 
 func monster_48():
@@ -74,8 +74,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	if ChangeBody:
-		self.CannotAttract = true
+	if change_body_flag:
+		self.cannot_attract = true
 
 
 func ai_think():
@@ -85,7 +85,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if not ChangeBody:
+			if not change_body_flag:
 				$BaseDamageBox/HurtBox.set_collision_mask_value(12, true)
 				$BaseDamageBox/HurtBox.set_collision_mask_value(7, true)
 				self.def = 150
@@ -144,7 +144,7 @@ func attack_target():
 	else:
 		move_left()
 	hit_name = "hit1"
-	if not ChangeBody:
+	if not change_body_flag:
 		velocity.x = 0
 	is_attacking = true
 	mr_player.play("hit1")
@@ -156,7 +156,7 @@ func change_body():
 	velocity.x = 0
 	mr_player.play("changeBody")
 	await mr_player.animation_finished
-	ChangeBody = true
+	change_body_flag = true
 
 
 func do_hit_2():
@@ -172,7 +172,7 @@ func move_left():
 	base_damage_box.scale.x = 1
 	monster_dir.scale.x = 1
 	velocity.x = -speed * 10
-	if not ChangeBody:
+	if not change_body_flag:
 		mr_player.play("walk_1")
 	else:
 		mr_player.play("walk_2")
@@ -182,7 +182,7 @@ func move_right():
 	base_damage_box.scale.x = -1
 	monster_dir.scale.x = -1
 	velocity.x = speed * 10
-	if not ChangeBody:
+	if not change_body_flag:
 		mr_player.play("walk_1")
 	else:
 		mr_player.play("walk_2")
@@ -192,7 +192,7 @@ func _on_hit_box_area_entered(_area: Area2D) -> Node2D:
 	var buff_target = super._on_hit_box_area_entered(_area)
 
 	if hit_name == "fszy" or hit_name == "hit1":
-		if ChangeBody:
+		if change_body_flag:
 			if hit_name == "fszy":
 				cure_hp(objattackDic[hit_name]["power"] * randi_range(1, 2) + int((SHp - Hp) * 0.02))
 			else:

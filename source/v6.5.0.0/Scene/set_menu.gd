@@ -59,7 +59,7 @@ func _on_continue_game_pressed() -> void:
 
 func _on_continue_game_2_pressed() -> void:
 	tree.paused = false
-	if Global.CurrentLevel == "镇妖塔":
+	if Global.current_level == "镇妖塔":
 		Global.change_scene("res://Scene/main_menu/map_0.tscn")
 		return
 	var target_map := "res://Scene/main_menu/map_1.tscn"
@@ -155,11 +155,11 @@ func _on_set_key_pressed() -> void:
 	if not _use_old_touch_hud():
 		return
 	var node = set_key_tscn.instantiate()
-	node.isSet = true
+	node.is_set = true
 	var role_info = get_tree().get_first_node_in_group("RoleInformation")
 	if role_info != null and role_info.get("Control_") != null:
 		role_info.Control_.add_child(node)
-		role_info.isStop = true
+		role_info.is_stop = true
 	else:
 		get_tree().root.add_child(node)
 	queue_free()

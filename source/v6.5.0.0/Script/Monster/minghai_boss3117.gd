@@ -36,7 +36,7 @@ var _dash_time_left := 0.0
 
 
 func _ready() -> void:
-	IsSuperArmor = true
+	super_armor_active = true
 	_runtime_config = _resolve_runtime_config()
 	if not _runtime_config.is_empty():
 		_configure_boss(_runtime_config)

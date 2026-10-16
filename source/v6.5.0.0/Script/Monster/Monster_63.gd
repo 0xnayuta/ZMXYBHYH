@@ -1,12 +1,12 @@
 extends BaseMonster
 var DeathCount: int = 0
-var Hurtcount: int = 0
-var Should_FS: bool = false
+var hurtcount: int = 0
+var should_fs: bool = false
 var _fs_queued: bool = false
-var Is_Fs = false
-var FSList = []
-var ReduceCount: int = 0
-var TotalHit: int = 0
+var is_fs = false
+var fs_list = []
+var reduce_count: int = 0
+var accumulated_hit: int = 0
 
 
 func monster_63():
@@ -76,30 +76,30 @@ func _ready() -> void:
 	Skill_2_CD = 0
 	Skill_3_CD = 0
 	Skill_4_CD = 15
-	Should_FS = false
+	should_fs = false
 
 
 func ai_think():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
-	ReduceCount += 1
+	reduce_count += 1
 
-	if ReduceCount % 120 == 0:
-		if Hurtcount > 0:
-			Hurtcount -= 1
-		if TotalHit > 0:
-			TotalHit -= 1
+	if reduce_count % 120 == 0:
+		if hurtcount > 0:
+			hurtcount -= 1
+		if accumulated_hit > 0:
+			accumulated_hit -= 1
 
-	if not Is_Fs and TotalHit >= randi_range(4, 8):
+	if not is_fs and accumulated_hit >= randi_range(4, 8):
 		if get_Player != null:
-			get_Player.effect_reducehp(int(TotalHit * randi_range(10, 15)), "real")
-			cure_hp((SHp - Hp) * TotalHit * 0.001)
-			TotalHit = 0
+			get_Player.effect_reducehp(int(accumulated_hit * randi_range(10, 15)), "real")
+			cure_hp((SHp - Hp) * accumulated_hit * 0.001)
+			accumulated_hit = 0
 
-	if Should_FS:
+	if should_fs:
 		mr_player.play("hit3")
 		await mr_player.animation_finished
-		Should_FS = false
+		should_fs = false
 		stop_move()
 		return
 
@@ -184,16 +184,16 @@ func move_player_to_boss(movetime: float = 0.0):
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	super._on_hurt_box_area_entered(area)
-	Hurtcount += 1
+	hurtcount += 1
 
-	if not Is_Fs:
-		TotalHit += 1
+	if not is_fs:
+		accumulated_hit += 1
 
-	if not Is_Fs and get_parent().get_children().size() < 5:
-		if Hurtcount >= 40:
+	if not is_fs and get_parent().get_children().size() < 5:
+		if hurtcount >= 40:
 			if randi_range(0, 100) <= 15:
-				Hurtcount = 0
-				Should_FS = true
+				hurtcount = 0
+				should_fs = true
 
 
 func call_fs():
@@ -213,44 +213,44 @@ func _call_fs_deferred() -> void:
 		return
 	_fs_queued = false
 	if get_parent().get_children().size() >= 6:
-		Should_FS = false
+		should_fs = false
 		return
-	var FS = Global.create_monster(63, get_parent(), position)
-	if FS == null:
-		Should_FS = false
+	var fs = Global.create_monster(63, get_parent(), position)
+	if fs == null:
+		should_fs = false
 		return
 
-	await FS.ready
+	await fs.ready
 
-	FS.Should_FS = false
-	FS.Is_Fs = true
-	FS.is_boss = false
-	FS.fall_list.clear()
-	FS.fall_stone.clear()
+	fs.should_fs = false
+	fs.is_fs = true
+	fs.is_boss = false
+	fs.fall_list.clear()
+	fs.fall_stone.clear()
 
-	if FS.mr_player:
-		FS.mr_player.stop()
+	if fs.mr_player:
+		fs.mr_player.stop()
 
-	FS.stop_move()
-	FS.modulate = Color(0.5, 0.5, 0.5)
+	fs.stop_move()
+	fs.modulate = Color(0.5, 0.5, 0.5)
 
-	FS.SHp = int(self.SHp * 0.5)
-	FS.Hp = FS.SHp
-	FS.def = int(self.def * 0.5)
-	FS.mdef = int(self.mdef * 0.5)
-	FS.crit = int(self.crit * 0.5)
-	FS.miss = int(self.miss * 0.5)
-	FS.lucky = int(self.lucky * 0.5)
-	FS.ar = int(self.ar * 0.5)
-	FS.sp = int(self.sp * 0.5)
-	FS.speed = int(self.speed * 0.5)
+	fs.SHp = int(self.SHp * 0.5)
+	fs.Hp = fs.SHp
+	fs.def = int(self.def * 0.5)
+	fs.mdef = int(self.mdef * 0.5)
+	fs.crit = int(self.crit * 0.5)
+	fs.miss = int(self.miss * 0.5)
+	fs.lucky = int(self.lucky * 0.5)
+	fs.ar = int(self.ar * 0.5)
+	fs.sp = int(self.sp * 0.5)
+	fs.speed = int(self.speed * 0.5)
 
 	for attack_key in self.objattackDic:
-		if attack_key in FS.objattackDic:
+		if attack_key in fs.objattackDic:
 			var original_power = self.objattackDic[attack_key]["power"]
-			FS.objattackDic[attack_key]["power"] = int(original_power * 0.5)
+			fs.objattackDic[attack_key]["power"] = int(original_power * 0.5)
 
-	Should_FS = false
+	should_fs = false
 
 
 func call_bullet_2():
@@ -273,13 +273,13 @@ func call_bullet_2():
 
 
 func _on_death_timeout() -> void:
-	if Is_Fs:
+	if is_fs:
 		self.Hp = -990
 
 
 func _on_hit_box_area_exited(_area: Area2D) -> void:
-	if not Is_Fs:
-		TotalHit += 1
+	if not is_fs:
+		accumulated_hit += 1
 
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理

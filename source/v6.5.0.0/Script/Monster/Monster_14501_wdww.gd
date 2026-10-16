@@ -1,13 +1,13 @@
 extends CharacterBody2D
 class_name BossXieShaSengWdww
-var MyTarget: BaseHero
+var my_target: BaseHero
 @onready var mr_player: AnimationPlayer = $mr_player
 @onready var boss_xie_sha_seng_wdww: CharacterBody2D = $"."
 @onready var monster_dir: Node2D = $MonsterDir
 var entity: BaseMonster
 var speed = 200
-var currHp = 2000
-var maxHp = 2000
+var curr_hp = 2000
+var max_hp = 2000
 var gravity = 980
 
 
@@ -18,14 +18,14 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 
-	if currHp <= 0:
+	if curr_hp <= 0:
 		mr_player.play("death")
 		return
-	if MyTarget == null:
-		MyTarget = Global.get_player
+	if my_target == null:
+		my_target = Global.get_player
 		pass
 	else:
-		if self.position.x >= MyTarget.position.x:
+		if self.position.x >= my_target.position.x:
 			move_left()
 		else:
 			move_right()
@@ -37,23 +37,23 @@ func ai_think():
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	Global.TotalHurtCount += 1
-	var Target = area.get_parent().get_parent()
-	var MonsterTarget: BaseMonster
-	MonsterTarget = entity
-	if Target == null or MonsterTarget == null:
+	Global.total_hurt_count += 1
+	var target = area.get_parent().get_parent()
+	var monster_target: BaseMonster
+	monster_target = entity
+	if target == null or monster_target == null:
 		return
-	if Target.objattackDic.size() == 0:
+	if target.objattackDic.size() == 0:
 		return
-	if MonsterTarget is Monster47:
-		Global.PlayerBeHitCount += 1
-	var last_hit = Global.get_player.get_monster_last_hurt(MonsterTarget, Target)
+	if monster_target is Monster47:
+		Global.player_be_hit_count += 1
+	var last_hit = Global.get_player.get_monster_last_hurt(monster_target, target)
 
 	if Global.get_player is Role3Hero and RoleProp.is_ws_state:
 		last_hit = int(last_hit * 0.7)
-	if MonsterTarget != null:
-		MonsterTarget.total_hit += last_hit
-	Global.TotalRoleHurt += int(last_hit)
+	if monster_target != null:
+		monster_target.total_hit += last_hit
+	Global.total_role_hurt += int(last_hit)
 
 	if Global.get_player is Role1Hero:
 		Global.add_sound(self, "res://Music/Hero/49_Role1_beAttack.mp3")
@@ -62,7 +62,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	else:
 		Global.add_sound(self, "res://Music/Hero/68_Role3_beAttack.mp3")
 		Global.add_mr_hurt(Global.get_player.pz, Vector2(5, -20))
-		if not Global.get_player.IsTMc:
+		if not Global.get_player.is_t_mc:
 			Global.get_player.CurrentProtect += randi_range(3, 7)
 	if Global.get_player is Role3Hero:
 		if randi_range(0, 100) <= 4 + PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] * 0.5:
@@ -75,15 +75,15 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		if Global.get_player.is_miss or RoleProp.is_ws_state:
 			Global.get_player.is_be_attacking = false
 		else:
-			Global.get_player.be_hit_back(MonsterTarget, Target)
+			Global.get_player.be_hit_back(monster_target, target)
 			Global.get_player.state_behit()
 	elif Global.get_player is Role3Hero:
-		if Global.get_player.is_miss or Global.get_player.Is_sdBuff or Global.get_player.IsTMc:
+		if Global.get_player.is_miss or Global.get_player.is_sd_buff or Global.get_player.is_t_mc:
 			Global.get_player.is_be_attacking = false
 		else:
-			Global.get_player.be_hit_back(MonsterTarget, Target)
+			Global.get_player.be_hit_back(monster_target, target)
 			Global.get_player.state_behit()
-	Global.get_player.reduce_hp(last_hit, MonsterTarget, Target)
+	Global.get_player.reduce_hp(last_hit, monster_target, target)
 
 
 func move_left():

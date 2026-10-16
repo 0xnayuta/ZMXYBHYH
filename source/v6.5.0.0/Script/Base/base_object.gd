@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name BaseObject
 
-var IsReverseMove: bool = false
-var ReverseMoveSpeedMultiplier: float = 1.0
+var is_reverse_move: bool = false
+var reverse_move_speed_multiplier: float = 1.0
 
 var NoDeBuff: bool = false
 
@@ -22,8 +22,8 @@ var Hp: int
 var is_crit: bool
 var is_miss: bool
 var is_ice: bool
-var is_DeadLink: bool
-var is_EyeFix: bool
+var is_dead_link: bool
+var is_eye_fix: bool
 
 
 func spawn_ws_effect(visual_node: Node, parent_node: Node) -> void:

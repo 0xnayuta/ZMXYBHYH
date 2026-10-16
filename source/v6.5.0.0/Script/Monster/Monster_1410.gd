@@ -193,7 +193,7 @@ func _ready() -> void:
 	Skill_2_CD = 10
 	Skill_3_CD = 22
 	Skill_4_CD = 20
-	Skill_5_CD = 50
+	skill_5_cd = 50
 
 	instance_count += 1
 
@@ -326,7 +326,7 @@ func do_hit_5():
 		return
 	super.to_hero()
 	var cd_base = LIGHT_ORB_LIFE_SECONDS + LIGHT_ORB_COOLDOWN_AFTER_END_SECONDS
-	Skill_5_CD = int(cd_base * (1.3 if is_weakened_clone else 1.0))
+	skill_5_cd = int(cd_base * (1.3 if is_weakened_clone else 1.0))
 	next_light_orb_cast_msec = Time.get_ticks_msec() + cd_base * 1000
 	hit_name = "hit5"
 	velocity.x = 0
@@ -339,7 +339,7 @@ func do_hit_5():
 
 
 func _can_cast_light_orb() -> bool:
-	return Skill_5_CD <= 0 and Time.get_ticks_msec() >= next_light_orb_cast_msec
+	return skill_5_cd <= 0 and Time.get_ticks_msec() >= next_light_orb_cast_msec
 
 
 func call_bullet_1():
@@ -367,7 +367,7 @@ func call_bullet_1():
 				self.objattackDic["hit1"]
 			)
 		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
-		bullet_node.MyFather = self
+		bullet_node.my_father = self
 		if i < bullet_count - 1:
 			await get_tree().create_timer(0.2).timeout
 

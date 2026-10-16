@@ -1,6 +1,6 @@
 extends BaseMonster
-var CurrentStage: int = 0
-var IsRelif: bool
+var current_stage: int = 0
+var is_relif: bool
 
 
 func monster_79():
@@ -139,15 +139,15 @@ func do_hit_3():
 
 
 func destroy():
-	CurrentStage += 1
-	if CurrentStage >= 3:
+	current_stage += 1
+	if current_stage >= 3:
 		set_meta("counts_as_alive_for_stage_clear", false)
 		settle_death_drops()
 		await mr_player.animation_finished
 		self.queue_free()
 		return
 	var tween = create_tween()
-	match CurrentStage:
+	match current_stage:
 		1:
 			tween.tween_property(self, "scale", Vector2(1.5, 1.5), 1)
 			await get_tree().create_timer(0.8, false).timeout
@@ -239,18 +239,18 @@ func destroy():
 
 
 func state_death():
-	if CurrentStage < 2:
+	if current_stage < 2:
 		set_meta("counts_as_alive_for_stage_clear", true)
 	super.state_death()
 
 
 func is_alive_for_stage_clear() -> bool:
-	return CurrentStage < 2 or bool(get_meta("counts_as_alive_for_stage_clear", false))
+	return current_stage < 2 or bool(get_meta("counts_as_alive_for_stage_clear", false))
 
 
 func state_hurt():
 	is_jgz = false
-	if CurrentStage >= 2:
+	if current_stage >= 2:
 		is_be_attacking = false
 		return
 	super.state_hurt()

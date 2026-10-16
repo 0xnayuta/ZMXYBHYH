@@ -2,7 +2,7 @@ extends TextureRect
 @onready var items: Button = $Items
 @onready var title: Label = $ScrollContainer/title
 
-var TotalNum: int
+var total_num: int
 var ItemName: String
 
 
@@ -14,21 +14,21 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	items.EQ_prop = AE.AllEquipment_[ItemName]
+	items.EQ_prop = AE.all_equipment[ItemName]
 	items.wx = []
 	items.set_button_icon(load_(ItemName))
-	if TotalNum <= 1:
-		TotalNum = 1
-	var item_name = AE.AllEquipment_[ItemName][DataKeys.NAME]
-	match AE.AllEquipment_[ItemName][DataKeys.TYPE]:
+	if total_num <= 1:
+		total_num = 1
+	var item_name = AE.all_equipment[ItemName][DataKeys.NAME]
+	match AE.all_equipment[ItemName][DataKeys.TYPE]:
 		"道具", "消耗品":
-			if TotalNum == null:
+			if total_num == null:
 				items.total_number = 1
 			else:
-				items.total_number = TotalNum
+				items.total_number = total_num
 		"武器", "防具", "饰品", "神骨", "法宝", "时装", "头衔", "翅膀":
 			items.total_number = 0
-	title.text = str(item_name) + " * " + str(TotalNum)
+	title.text = str(item_name) + " * " + str(total_num)
 	set_physics_process(false)
 
 

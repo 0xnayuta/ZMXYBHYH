@@ -36,7 +36,7 @@ const MAP_LEVEL_NAMES := {
 }
 const LAST_OPEN_LEVEL := 74
 
-var MaxPage: int = 7
+var max_page: int = 7
 var skill_target
 var _left_aligned_button_positions := {}
 var _right_aligned_button_right_edges := {}
@@ -107,41 +107,41 @@ func _ready() -> void:
 	if not get_viewport().size_changed.is_connected(_fit_to_fullscreen):
 		get_viewport().size_changed.connect(_fit_to_fullscreen)
 
-	Global.Windows_ = _ui_parent()
-	Global.LLBTLevel = 1
-	Global.LLBTBOSSMS = false
-	Global.LLBTCGMS = false
-	Global.LLBTWXMS = false
+	Global.windows = _ui_parent()
+	Global.llbt_level = 1
+	Global.llbtbossms = false
+	Global.llbtcgms = false
+	Global.llbtwxms = false
 	RoleProp.set_full_hp()
 	RoleProp.set_full_mp()
-	RoleProp.CurrentHp = RoleProp.roleprop.Hp
-	RoleProp.CurrentMp = RoleProp.roleprop.Mp
+	RoleProp.current_hp = RoleProp.roleprop.Hp
+	RoleProp.current_mp = RoleProp.roleprop.Mp
 
-	if int(MainSet.set_data.get("CurrentLevelPage", 0)) < MaxPage:
-		MainSet.set_data["CurrentLevelPage"] = MaxPage
+	if int(MainSet.set_data.get("CurrentLevelPage", 0)) < max_page:
+		MainSet.set_data["CurrentLevelPage"] = max_page
 		MemoryClass.main_bc()
 
-	if MainMusic.MyMainMusic == null:
+	if MainMusic.my_main_music == null:
 		MainMusic.add_music()
-	Global.CurrentLevel = ""
-	if not Global.IsFrist:
-		Global.add_message_show(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
-		Global.IsFrist = true
-	Global.PlayerBeHitCount = 0
-	Global.LastLevelPath = ""
-	Global.FB_CD = 0
+	Global.current_level = ""
+	if not Global.is_frist:
+		Global.add_message_show(Global.windows, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
+		Global.is_frist = true
+	Global.player_be_hit_count = 0
+	Global.last_level_path = ""
+	Global.fb_cd = 0
 	get_tree().paused = false
-	PlayerData.player_data["Map_num"] = MaxPage
+	PlayerData.player_data["Map_num"] = max_page
 
-	Global.is_Mpo = false
+	Global.is_mpo = false
 	Global.is_ice = false
 	Global.is_poision = false
-	Global.is_Fire = false
+	Global.is_fire = false
 	Global.is_speed_down = false
 	Global.is_stun = false
-	Global.is_Bleed = false
-	Global.is_EyeFix = false
-	Global.is_DeadLink = false
+	Global.is_bleed = false
+	Global.is_eye_fix = false
+	Global.is_dead_link = false
 	RoleProp.ws_value = 0
 
 	if not Global.cd_path.is_empty():

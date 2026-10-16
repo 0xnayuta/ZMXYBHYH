@@ -145,7 +145,7 @@ func _activate_timed_skills() -> void:
 
 
 func _activate_owner_skills() -> void:
-	var hero: Node = RoleProp.SourcePlayer as Node
+	var hero: Node = RoleProp.source_player as Node
 	var buff_parent: Node = hero.get("buff") as Node if hero != null and is_instance_valid(hero) else null
 	if buff_parent == null:
 		return

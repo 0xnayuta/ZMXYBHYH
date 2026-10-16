@@ -2,8 +2,8 @@ extends BaseMagicWeapon
 class_name CloudSword
 var MonsterList: Array = []
 var _monster_refresh_elapsed: float = 0.0
-var Target: BaseMonster
-var IsNoTarget: bool
+var target: BaseMonster
+var is_no_target: bool
 var _hit_data := {
 	"power": 0,
 	"hurtBack": [0, -1],
@@ -31,27 +31,27 @@ func _physics_process(delta: float) -> void:
 	if _monster_refresh_elapsed >= 0.1 or MonsterList.is_empty():
 		_monster_refresh_elapsed = 0.0
 		MonsterList = _get_active_monster_snapshot()
-	self.FB_Level = PlayerData.get_most_level("qyj") + 1
-	needMp = 80 + self.FB_Level * 5
-	var BasicHit
-	BasicHit = self.FB_Level * 0.07
+	self.fb_level = PlayerData.get_most_level("qyj") + 1
+	need_mp = 80 + self.fb_level * 5
+	var basic_hit
+	basic_hit = self.fb_level * 0.07
 	var add_effect: Dictionary = _hit_data["addeffect"]
 	if PlayerData.check_have_wx("qyj", "木"):
-		BasicHit = self.FB_Level * 0.1
-		_hit_data["power"] = 100 + int(RoleProp.roleprop.power * BasicHit)
-		add_effect["value"] = 0.09 + (0.01 * FB_Level)
+		basic_hit = self.fb_level * 0.1
+		_hit_data["power"] = 100 + int(RoleProp.roleprop.power * basic_hit)
+		add_effect["value"] = 0.09 + (0.01 * fb_level)
 	else:
-		BasicHit = self.FB_Level * 0.05
-		_hit_data["power"] = 50 + int(RoleProp.roleprop.power * BasicHit)
-		add_effect["value"] = 0.04 + (0.01 * FB_Level)
+		basic_hit = self.fb_level * 0.05
+		_hit_data["power"] = 50 + int(RoleProp.roleprop.power * basic_hit)
+		add_effect["value"] = 0.04 + (0.01 * fb_level)
 	super._physics_process(delta)
 	if not is_use:
 		mg_player.play("wait")
 
 
 func show_skill():
-	Target = get_monster()
-	if Target == null:
+	target = get_monster()
+	if target == null:
 		use_over2()
 		return
 	mg_player.play("hit")
@@ -62,21 +62,21 @@ func show_skill():
 func use_over():
 	self.usecd = 15
 	is_use = false
-	Global.FB_CD = 1
+	Global.fb_cd = 1
 	skill_cd.start(self.usecd)
 
 
 func use_over2():
 	self.usecd = 0
 	is_use = false
-	Global.FB_CD = 1
-	RoleProp.roleprop.Mp += needMp
+	Global.fb_cd = 1
+	RoleProp.roleprop.Mp += need_mp
 	skill_cd.start(0.001)
 
 
 func get_monster():
-	var MaxHp = 0
-	var TT: BaseMonster
+	var max_hp = 0
+	var tt: BaseMonster
 	if MonsterList.size() <= 0:
 		return null
 	for i in MonsterList:
@@ -84,16 +84,16 @@ func get_monster():
 			if not i.NoTarget:
 				if i is BaseMonster:
 					if not i is Monster138:
-						if i.Hp >= MaxHp:
-							TT = i
-							MaxHp = i.Hp
-	return TT
+						if i.Hp >= max_hp:
+							tt = i
+							max_hp = i.Hp
+	return tt
 
 
 func add_sword():
-	if Target != null:
+	if target != null:
 		Global.add_weapon_bullet(
-			$Bullet, Target.position + Vector2(0, 30), "CloudSwordBullet", get_attack_snapshot(), mg_action.flip_h, 100
+			$Bullet, target.position + Vector2(0, 30), "CloudSwordBullet", get_attack_snapshot(), mg_action.flip_h, 100
 		)
 
 # ==============================================================================

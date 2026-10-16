@@ -50,29 +50,29 @@ const GAME4_LEVEL_CONFIG_SCRIPT_PATH_BY_MONSTER := {
 }
 
 var is_cc = false
-var IsSet: bool
+var is_set: bool
 var _game4_level_config_providers: Dictionary = {}
 
 
 func _ready() -> void:
-	Global.CurrentLevel = ""
+	Global.current_level = ""
 	Global.add_bgm(self, "res://Music/level/szzw.mp3")
 
 	self.level_stage = 1
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [500],
 		"stage_2": [500],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [500],
 		"stage_2": [500],
 		"stage_3": [],
@@ -109,15 +109,15 @@ func _exit_tree() -> void:
 
 func _physics_process(delta: float) -> void:
 	role_information.gogo.visible = false
-	if not IsSet:
-		for u in Global.LHHJBossList:
-			var i = Global.LHHJBossList[u]
+	if not is_set:
+		for u in Global.lhhj_boss_list:
+			var i = Global.lhhj_boss_list[u]
 			var Monster
-			var Id = i["Num"]
-			var Local = Vector2(1100, 400)
-			if Id == 33 or Id == 24 or Id == 56:
-				Local = Vector2(700, 390)
-			Monster = Global.create_monster(i["Num"], monster, Local)
+			var id = i["Num"]
+			var local = Vector2(1100, 400)
+			if id == 33 or id == 24 or id == 56:
+				local = Vector2(700, 390)
+			Monster = Global.create_monster(i["Num"], monster, local)
 			if Monster == null:
 				continue
 			if i["Name"] != null and str(i["Name"]) != "":
@@ -163,7 +163,7 @@ func _physics_process(delta: float) -> void:
 				for z in Monster.objattackDic:
 					if Monster.objattackDic[z].has("power"):
 						Monster.objattackDic[z]["power"] = i["power"]
-		IsSet = true
+		is_set = true
 	if not is_cc:
 		if Role_.position.x >= 600:
 			create_control.wait_time = 3

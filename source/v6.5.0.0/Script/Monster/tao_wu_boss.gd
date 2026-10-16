@@ -46,7 +46,7 @@ func _ready() -> void:
 
 func _configure_taowu() -> void:
 	is_boss = true
-	CannotAttract = true
+	cannot_attract = true
 	set_meta("allow_role_special_control", true)
 	my_mr_name = "梼杌"
 	attack_in = 250

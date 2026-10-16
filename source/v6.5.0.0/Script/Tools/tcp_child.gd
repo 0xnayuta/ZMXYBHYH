@@ -2,10 +2,10 @@ extends Control
 
 @onready var img: TextureRect = $img
 
-var tcpChild: StreamPeerTCP
+var tcp_child: StreamPeerTCP
 
-var getTime: float = 0
-var KEY: Dictionary = {
+var get_time: float = 0
+var key_map: Dictionary = {
 	"87": "Exit1",
 	"65": "move_left1",
 	"83": "down1",
@@ -24,27 +24,27 @@ var KEY: Dictionary = {
 
 func _ready() -> void:
 	pass
-	tcpChild = StreamPeerTCP.new()
-	tcpChild.big_endian = true
-	if tcpChild.connect_to_host("127.0.0.1", 8889) != OK:
+	tcp_child = StreamPeerTCP.new()
+	tcp_child.big_endian = true
+	if tcp_child.connect_to_host("127.0.0.1", 8889) != OK:
 		get_tree().quit()
 
 
 func _physics_process(delta) -> void:
-	if tcpChild == null:
+	if tcp_child == null:
 		return
-	getTime += delta
-	if getTime >= 0.01:
-		getTime = 0
-		tcpChild.poll()
-		if tcpChild.get_status() != StreamPeerTCP.STATUS_NONE && tcpChild.get_available_bytes() >= 16:
-			var dataList: PackedByteArray = tcpChild.get_data(8)[1]
-			var dataLen: int = dataList.decode_u32(0)
-			var sendLen: int = dataList.decode_u32(4)
-			if dataLen != 0:
-				var data: PackedByteArray = tcpChild.get_data(sendLen)[1]
-				if data != null && data.size() == sendLen:
-					call_deferred("set_texture", data.decompress(dataLen, 3))
+	get_time += delta
+	if get_time >= 0.01:
+		get_time = 0
+		tcp_child.poll()
+		if tcp_child.get_status() != StreamPeerTCP.STATUS_NONE && tcp_child.get_available_bytes() >= 16:
+			var data_list: PackedByteArray = tcp_child.get_data(8)[1]
+			var data_len: int = data_list.decode_u32(0)
+			var send_len: int = data_list.decode_u32(4)
+			if data_len != 0:
+				var data: PackedByteArray = tcp_child.get_data(send_len)[1]
+				if data != null && data.size() == send_len:
+					call_deferred("set_texture", data.decompress(data_len, 3))
 			else:
 				get_tree().quit()
 
@@ -58,19 +58,19 @@ func set_texture(data: PackedByteArray) -> void:
 
 
 func _on_tree_exited():
-	tcpChild.disconnect_from_host()
+	tcp_child.disconnect_from_host()
 
 
 func _input(event: InputEvent):
 	if event is InputEventKey:
 		var key: String = str(event.keycode)
-		if KEY.has(key):
+		if key_map.has(key):
 			var data: PackedByteArray = []
 			data.resize(5)
 			if event.pressed:
 				data[0] = 1
 			else:
 				data[0] = 2
-			data.append_array((KEY[key] as String).to_utf8_buffer())
+			data.append_array((key_map[key] as String).to_utf8_buffer())
 			data.encode_u32(1, data.size() - 5)
-			tcpChild.put_data(data)
+			tcp_child.put_data(data)

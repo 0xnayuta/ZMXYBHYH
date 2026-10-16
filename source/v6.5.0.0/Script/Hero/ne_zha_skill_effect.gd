@@ -40,7 +40,7 @@ func configure(
 	Player = source
 	effect_animation = animation_name
 	HitDic = hit_data.duplicate(true)
-	Direction = facing_right
+	direction = facing_right
 	life_seconds = duration
 	hit_interval = interval
 	max_hit_pulses = maxi(1, hit_pulses)
@@ -91,17 +91,17 @@ func _physics_process(delta: float) -> void:
 			+ Vector2(orbit_radii.x * cos(orbit_angle), orbit_radii.y * sin(orbit_angle))
 		)
 		_update_orbit_layer(orbit_angle)
-		orbit_angle += orbit_speed * delta * (1.0 if Direction else -1.0)
-		if Direction and orbit_angle >= TAU:
+		orbit_angle += orbit_speed * delta * (1.0 if direction else -1.0)
+		if direction and orbit_angle >= TAU:
 			orbit_angle -= TAU
-		elif not Direction and orbit_angle <= -TAU:
+		elif not direction and orbit_angle <= -TAU:
 			orbit_angle += TAU
 	elif is_instance_valid(follow_target):
 		if follow_target_facing and follow_target is BaseHero:
-			Direction = follow_target.PlayerDir
+			direction = follow_target.PlayerDir
 			middle.scale.x = _facing_scale()
 		global_position = (
-			follow_target.global_position + Vector2(follow_offset.x if Direction else -follow_offset.x, follow_offset.y)
+			follow_target.global_position + Vector2(follow_offset.x if direction else -follow_offset.x, follow_offset.y)
 		)
 	elif follow_target != null:
 		follow_target = null
@@ -149,15 +149,15 @@ func _on_effect_animation_finished() -> void:
 
 func _facing_scale() -> float:
 	if mirror_like_player:
-		return -1.0 if Direction else 1.0
-	return 1.0 if Direction else -1.0
+		return -1.0 if direction else 1.0
+	return 1.0 if direction else -1.0
 
 
 func _update_orbit_layer(angle: float) -> void:
 	if not is_instance_valid(orbit_target):
 		return
 	var behind_target := false
-	if Direction:
+	if direction:
 		behind_target = angle > PI and angle < TAU
 	else:
 		behind_target = angle < 0.0 and angle >= -PI

@@ -4,24 +4,24 @@ class_name Level17
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "忘川河"
-	Global.PlayerBeHitCount = 0
+	Global.current_level = "忘川河"
+	Global.player_be_hit_count = 0
 	Global.add_bgm(self, "res://Music/level/9_bg3.mp3")
 	self.level_stage = 1
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [],
 		"stage_2": [],
 		"stage_3": [],
@@ -30,7 +30,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	text_2.text = str(Global.PlayerBeHitCount)
+	text_2.text = str(Global.player_be_hit_count)
 	super._physics_process(delta)
 	if current_stage >= 1:
 		if current_stage < 4:

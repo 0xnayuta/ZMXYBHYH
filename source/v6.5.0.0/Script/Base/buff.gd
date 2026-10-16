@@ -48,5 +48,4 @@ func _on_mouse_exited() -> void:
 func load_(name_):
 	if name_ == "mp_poision":
 		name_ = "poision"
-	var __ = Global.get_cached_texture("res://Art/AddEffect/Buff_icon/" + str(name_) + ".png")
-	return __
+	return Global.get_cached_texture("res://Art/AddEffect/Buff_icon/" + str(name_) + ".png")

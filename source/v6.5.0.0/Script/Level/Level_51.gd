@@ -395,7 +395,7 @@ func get_level_monster_config(monster_id: int) -> Dictionary:
 
 func _preload_level_resources() -> void:
 	await super._preload_level_resources()
-	await _prewarm_stage_runtime(Monster_group.get("stage_1", []))
+	await _prewarm_stage_runtime(monster_group.get("stage_1", []))
 
 
 func _preload_stage_resources(monster_ids: Array) -> void:

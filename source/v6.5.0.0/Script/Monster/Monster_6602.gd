@@ -1,6 +1,6 @@
 extends BaseMonster
 var DeathCount: int = 0
-var XYcount: int = 0
+var x_ycount: int = 0
 
 
 func monster_6602():
@@ -57,10 +57,10 @@ func _physics_process(delta: float) -> void:
 		if Hp > 0:
 			mr_player.play("wait")
 			DeathCount += 1
-			XYcount += 1
+			x_ycount += 1
 			if DeathCount % 60 == 0:
 				role_reduce_prop()
-			if XYcount % 180 == 0:
+			if x_ycount % 180 == 0:
 				move_playerto_boss(null, 0.3)
 				(
 					Global
@@ -87,10 +87,10 @@ func ai_think():
 		if Hp > 0:
 			mr_player.play("wait")
 			DeathCount += 1
-			XYcount += 1
+			x_ycount += 1
 			if DeathCount % 60 == 0:
 				role_reduce_prop()
-			if XYcount % 180 == 0:
+			if x_ycount % 180 == 0:
 				move_playerto_boss(null, 0.3)
 				(
 					Global

@@ -103,8 +103,7 @@ func _spawn_spine_visual() -> bool:
 	var state: Variant = _spine.get_animation_state()
 	if state == null:
 		await get_tree().process_frame
-		if _spine != null and is_instance_valid(_spine):
-			state = _spine.get_animation_state()
+		if _spine != null and is_instance_valid(_spine): state = _spine.get_animation_state()
 	if state == null:
 		_spine.queue_free()
 		_spine = null
@@ -285,7 +284,7 @@ func _apply_hit(target: BaseMonster) -> void:
 	var old_hit_data: Dictionary = owner_player.HitDic
 	var old_target: Variant = target.get_target
 	var old_miss: int = target.miss
-	var old_source_player: Variant = RoleProp.SourcePlayer
+	var old_source_player: Variant = RoleProp.source_player
 	var old_tszzs: float = owner_player.tszzs
 
 	var awakening_hit_data := hit_data.duplicate(true)
@@ -297,8 +296,8 @@ func _apply_hit(target: BaseMonster) -> void:
 
 	target.miss = 0
 
-	RoleProp.SourcePlayer = owner_player
-	if owner_player.Istsz:
+	RoleProp.source_player = owner_player
+	if owner_player.istsz:
 		var tsz_level := int(PlayerData.player_data["腾蛇阵"]["Level"])
 		owner_player.tszzs = tsz_level * 0.015
 	else:
@@ -312,29 +311,29 @@ func _apply_hit(target: BaseMonster) -> void:
 			* RoleProp.ws_up_power
 			* target.jgz_bl
 			* target.zznh_bl
-			* target.HurtBl
+			* target.hurt_bl
 			* (1.0 + target.lpzzs)
 			* (1.0 + owner_player.tszzs)
 			* damage_scale
 		)
 	)
-	target.GetHurt = damage
+	target.hurt_received = damage
 	target.cure_ws_value()
 	target.hurt_reduce_hp(damage, owner_player)
 	if damage > 0:
 		target.add_lj(damage)
-		Global.TotalRoleHit += damage
+		Global.total_role_hit += damage
 		if str(hit_data.get("attackKind", "")) == "magic":
-			Global.TotalMagHit += damage
+			Global.total_mag_hit += damage
 		Global.add_sound(target, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 		if not target.is_miss and not target.is_boss_protecting():
-			target.HurtSpecialEffect = Global.add_mr_hurt(target.pz, Vector2.ZERO)
+			target.hurt_special_effect = Global.add_mr_hurt(target.pz, Vector2.ZERO)
 		target.role5_bullet(damage, owner_player)
 	target.get_target = old_target
 	target.miss = old_miss
 	owner_player.HitDic = old_hit_data
 	owner_player.tszzs = old_tszzs
-	RoleProp.SourcePlayer = old_source_player
+	RoleProp.source_player = old_source_player
 
 
 static func preload_effect_data() -> bool:

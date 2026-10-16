@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 func show_skill():
 	var level = PlayerData.get_most_level("dhqf") + 1
 	level = clamp(level, 0, 10)
-	needMp = 20 + level * 6
+	need_mp = 20 + level * 6
 
 	var percent = 0.1 + level * 0.02
 	var max_hp = RoleProp.roleprop.SHp
@@ -78,7 +78,7 @@ func _on_def_timer_timeout():
 
 
 func use_over():
-	Global.FB_CD = 1
+	Global.fb_cd = 1
 	is_use = false
 	skill_cd.start(usecd)
 

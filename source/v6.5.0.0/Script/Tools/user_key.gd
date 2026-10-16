@@ -1,22 +1,22 @@
 extends TouchScreenButton
 
-@onready var TextKey: Label = $Key
+@onready var text_key: Label = $Key
 @onready var pic_box: TextureProgressBar = $PicBox
 @onready var time_text: Label = $TimeText
 
 var res_: String = ""
 var curSize: float = 50.0
-var SkillName: String = ""
-var MaxTime: float = 0.0
-var CanRest: bool = true
-var Text: String = ""
-var isSet: bool = false
-var isNoClick: bool = false
-var isClick: bool = false
+var skill_name: String = ""
+var max_time: float = 0.0
+var can_rest: bool = true
+var text_str: String = ""
+var is_set: bool = false
+var is_no_click: bool = false
+var is_click: bool = false
 var size_: Vector2 = Vector2(70, 70)
 var offset_: Vector2 = Vector2.ZERO
-var setKey
-var curLevel
+var set_key
+var cur_level
 var touch_scale: float = 1.0
 var _mouse_pressed: bool = false
 var _action_down: bool = false
@@ -30,13 +30,13 @@ var mount_skill_slot: int = -1
 
 
 func _ready() -> void:
-	TextKey.text = Text
-	curLevel = _find_level()
+	text_key.text = text_str
+	cur_level = _find_level()
 	_ensure_ws_effect()
 
 
 func _input(event: InputEvent) -> void:
-	if isSet or isNoClick and not _mouse_pressed:
+	if is_set or is_no_click and not _mouse_pressed:
 		return
 
 	var mouse_button := event as InputEventMouseButton
@@ -52,16 +52,16 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if curLevel == null or not is_instance_valid(curLevel):
-		curLevel = _find_level()
+	if cur_level == null or not is_instance_valid(cur_level):
+		cur_level = _find_level()
 
 	_update_cooldown(delta)
 	_update_ws_effect()
 
-	if isClick:
+	if is_click:
 		position = get_global_mouse_position() - offset_
 
-	if texture_normal != null and not isNoClick:
+	if texture_normal != null and not is_no_click:
 		var side: float = min(size_.x, size_.y)
 		if side <= 0:
 			side = curSize
@@ -182,7 +182,7 @@ func _looks_like_level(node) -> bool:
 
 
 func _update_cooldown(delta: float) -> void:
-	if isSet:
+	if is_set:
 		time_text.visible = false
 		pic_box.visible = false
 		return
@@ -217,9 +217,9 @@ func _update_skill_cooldown(delta: float) -> void:
 		_show_cooldown(0.0, 0.0)
 		return
 	var raw_value: float = 0.0
-	var skill_key := _real_skill_key(SkillName)
-	if curLevel != null and curLevel.get("Role_") != null:
-		var cd_list = curLevel.get("Role_").get("Role1SkillInter")
+	var skill_key := _real_skill_key(skill_name)
+	if cur_level != null and cur_level.get("Role_") != null:
+		var cd_list = cur_level.get("Role_").get("Role1SkillInter")
 		if cd_list is Dictionary and cd_list.has(skill_key):
 			raw_value = max(float(cd_list[skill_key]), 0.0)
 	if raw_value > 0.0 and _last_raw_skill_cd <= 0.0:
@@ -285,17 +285,17 @@ func _format_cooldown_text(value: float) -> String:
 
 
 func _is_magic_weapon_key() -> bool:
-	return _action_name() == "MagicWeapon" or Text == "H"
+	return _action_name() == "MagicWeapon" or text_str == "H"
 
 
 func _is_main_sword_array_key() -> bool:
-	return _action_name() == "MDS" or Text == "P"
+	return _action_name() == "MDS" or text_str == "P"
 
 
 func _current_player():
-	if curLevel != null and curLevel.get("Role_") != null:
-		return curLevel.get("Role_")
-	return RoleProp.SourcePlayer
+	if cur_level != null and cur_level.get("Role_") != null:
+		return cur_level.get("Role_")
+	return RoleProp.source_player
 
 
 func _current_mount_runtime() -> Node:
@@ -358,24 +358,24 @@ func _update_ws_effect() -> void:
 		return
 	var max_ws_value: float = max(float(RoleProp.max_ws_value), 1.0)
 	var current_ws_value: float = float(RoleProp.ws_value)
-	var is_full: bool = current_ws_value >= max_ws_value and not bool(RoleProp.is_ws_state) and not isSet
+	var is_full: bool = current_ws_value >= max_ws_value and not bool(RoleProp.is_ws_state) and not is_set
 	_ws_effect.visible = is_full
 
 
 func _on_button_button_down() -> void:
-	if isSet:
+	if is_set:
 		offset_ = get_global_mouse_position() - position
-		isClick = true
+		is_click = true
 
 
 func _on_button_button_up() -> void:
-	if isSet:
-		isClick = false
+	if is_set:
+		is_click = false
 
 
 func _on_button_pressed() -> void:
-	if setKey:
-		setKey.curNode = self
+	if set_key:
+		set_key.cur_node = self
 
 
 func _on_pressed() -> void:
@@ -390,25 +390,25 @@ func _on_released() -> void:
 func _press_button() -> void:
 	if not _can_press():
 		return
-	if not isNoClick:
+	if not is_no_click:
 		scale *= 1.1
-		isNoClick = true
+		is_no_click = true
 	if not _action_down:
 		_press_action()
 		_action_down = true
 
 
 func _release_button() -> void:
-	if isNoClick:
+	if is_no_click:
 		scale /= 1.1
-		isNoClick = false
+		is_no_click = false
 	if _action_down:
 		_release_action()
 		_action_down = false
 
 
 func _can_press() -> bool:
-	return not isSet and not _action_name().is_empty()
+	return not is_set and not _action_name().is_empty()
 
 
 func _contains_global_point(point: Vector2) -> bool:

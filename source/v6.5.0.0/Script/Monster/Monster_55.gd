@@ -1,13 +1,13 @@
 extends BaseMonster
 class_name Monster55
 @onready var zlw_special_effect: Node2D = $MonsterDir/ZLWSpecialEffect
-var Boss_3: Monster56
-var MaxRound: int = 6
-var CurrentRound: int = 6:
+var boss_3: Monster56
+var max_round: int = 6
+var current_round: int = 6:
 	set(value):
-		CurrentRound = value
-		zlw_special_effect.CurrentCount = CurrentRound
-var RoundList: Array = []
+		current_round = value
+		zlw_special_effect.current_count = current_round
+var round_list: Array = []
 
 
 func monster_55():
@@ -179,37 +179,37 @@ func ai_think():
 
 func state_hurt():
 	set_round_speed(1)
-	zlw_special_effect.State = false
+	zlw_special_effect.state = false
 	super.state_hurt()
 
 
 func stop_move():
 	set_round_speed(1)
-	zlw_special_effect.State = false
+	zlw_special_effect.state = false
 	super.stop_move()
 
 
 func move_left():
 	set_round_speed(1)
-	zlw_special_effect.State = true
+	zlw_special_effect.state = true
 	super.move_left()
 
 
 func move_right():
 	set_round_speed(1)
-	zlw_special_effect.State = true
+	zlw_special_effect.state = true
 	super.move_right()
 
 
 func state_death():
 	set_round_speed(1)
-	zlw_special_effect.State = false
+	zlw_special_effect.state = false
 	super.state_death()
 
 
 func do_hit_1():
 	super.to_hero()
-	zlw_special_effect.State = true
+	zlw_special_effect.state = true
 	Skill_1_CD = 1
 	hit_name = "wqml"
 	velocity.x = 0
@@ -222,7 +222,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	zlw_special_effect.State = false
+	zlw_special_effect.state = false
 	Skill_2_CD = 15
 	velocity.x = 0
 	hit_name = "zlls"
@@ -235,7 +235,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	zlw_special_effect.State = false
+	zlw_special_effect.state = false
 	Skill_3_CD = 17
 	velocity.x = 0
 	hit_name = "dylh"
@@ -258,7 +258,7 @@ func normal_state():
 
 
 func set_round_speed(value):
-	zlw_special_effect.Speed = value
+	zlw_special_effect.speed = value
 
 
 func setposition():
@@ -271,25 +271,25 @@ func setposition():
 func call_round():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
-	if CurrentRound > 0:
+	if current_round > 0:
 		tween.set_parallel(false)
-		var Round = Global.add_bullet("Monster55Bullet", bullet, false, 1, pp, "wqml", self.objattackDic["wqml"])
-		RoundList.push_back(Round)
-		Round.IsThrow = true
-		tween.tween_property(Round, "position", setposition(), 1.5)
-		CurrentRound -= 1
+		var round_num = Global.add_bullet("Monster55Bullet", bullet, false, 1, pp, "wqml", self.objattackDic["wqml"])
+		round_list.push_back(round_num)
+		round_num.is_throw = true
+		tween.tween_property(round_num, "position", setposition(), 1.5)
+		current_round -= 1
 		await get_tree().create_timer(1.5, false).timeout
-		Round.IsThrow = false
+		round_num.is_throw = false
 	else:
 		tween.set_parallel(true)
-		for i in RoundList:
+		for i in round_list:
 			tween.tween_property(i, "position", pp, 1)
-			i.IsThrow = true
+			i.is_throw = true
 		await get_tree().create_timer(1.2, false).timeout
-		for i in RoundList:
+		for i in round_list:
 			i.queue_free()
-		RoundList.clear()
-		CurrentRound = MaxRound
+		round_list.clear()
+		current_round = max_round
 
 
 func call_bullet():
@@ -331,13 +331,13 @@ func call_round_2():
 
 func call_monster():
 	if get_parent().get_parent() is Level21:
-		if Boss_3 == null:
-			Boss_3 = Global.create_monster(56, get_parent(), Vector2(1450, 320)) as Monster56
-			var BaseLevel_ = get_parent().get_parent() as BaseLevel
+		if boss_3 == null:
+			boss_3 = Global.create_monster(56, get_parent(), Vector2(1450, 320)) as Monster56
+			var base_level = get_parent().get_parent() as BaseLevel
 	elif get_parent().get_parent() is LevelZLDHDGQ:
-		if Boss_3 == null:
-			Boss_3 = Global.create_monster(56, get_parent(), Vector2(470, 320)) as Monster56
-			var BaseLevel_ = get_parent().get_parent() as BaseLevel
+		if boss_3 == null:
+			boss_3 = Global.create_monster(56, get_parent(), Vector2(470, 320)) as Monster56
+			var base_level = get_parent().get_parent() as BaseLevel
 
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理

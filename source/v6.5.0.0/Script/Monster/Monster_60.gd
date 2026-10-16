@@ -1,6 +1,6 @@
 extends BaseMonster
-var Is_Top: bool = false
-var Is_Drop: bool = false
+var is_top: bool = false
+var is_drop: bool = false
 var has_summoned_war_god_xingtian: bool = false
 var death_sequence_started: bool = false
 const DEATH_SEQUENCE_FALLBACK_SECONDS := 1.5
@@ -96,15 +96,15 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	if Is_Top:
-		self.CannotAttract = true
+	if is_top:
+		self.cannot_attract = true
 	else:
-		self.CannotAttract = false
+		self.cannot_attract = false
 
 
 func ai_think():
-	if Is_Top:
-		if not Is_Drop:
+	if is_top:
+		if not is_drop:
 			velocity.y = -10
 			if RoleProp.get_nearest_monster_target_position(global_position).x - position.x > 0:
 				velocity.x = 200
@@ -200,57 +200,57 @@ func do_hit_3():
 func go_top():
 	if _movement_command_is_blocked():
 		return
-	Is_Drop = false
-	Is_Top = true
-	var Tween_ = create_control_movement_tween()
-	Tween_.tween_property(self, "position", Vector2(self.position.x, -800), 1)
+	is_drop = false
+	is_top = true
+	var tween = create_control_movement_tween()
+	tween.tween_property(self, "position", Vector2(self.position.x, -800), 1)
 
 
 func drop():
-	Is_Drop = true
+	is_drop = true
 	if _movement_command_is_blocked():
-		Is_Drop = false
-		Is_Top = false
+		is_drop = false
+		is_top = false
 		velocity = Vector2.ZERO
 		return
 	var Shallow = Global.add_special_effect(
 		self.bullet, Vector2(self.position.x, 500), "Shallow", Vector2(1, 1), false, 1
 	)
 	Shallow.scale = Vector2(0.4, 0.4)
-	var Tween_ = get_tree().create_tween()
-	Tween_.tween_property(Shallow, "scale", Vector2(2, 2), 0.6)
+	var tween = get_tree().create_tween()
+	tween.tween_property(Shallow, "scale", Vector2(2, 2), 0.6)
 	await get_tree().create_timer(0.6, false).timeout
 	Shallow.queue_free()
 	velocity.y += 2000
 	velocity.x = 0
 	mr_player.play("sfjm_2")
 	await mr_player.animation_finished
-	Is_Top = false
+	is_top = false
 
 
 func call_sfjm_fire():
-	var FirePosition1 = [
+	var fire_position1 = [
 		Vector2(self.position.x - 80, self.position.y + 30), Vector2(self.position.x + 80, self.position.y + 30)
 	]
-	var FirePosition2 = [
+	var fire_position2 = [
 		Vector2(self.position.x - 160, self.position.y + 30), Vector2(self.position.x + 160, self.position.y + 30)
 	]
-	var FirePosition3 = [
+	var fire_position3 = [
 		Vector2(self.position.x - 240, self.position.y + 30), Vector2(self.position.x + 240, self.position.y + 30)
 	]
 	for i in range(2):
 		Global.add_bullet(
-			"Monster42Bullet", self.bullet, false, 1.3, FirePosition1[i], "sfjm", self.objattackDic["sfjm"]
+			"Monster42Bullet", self.bullet, false, 1.3, fire_position1[i], "sfjm", self.objattackDic["sfjm"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
 		Global.add_bullet(
-			"Monster42Bullet", self.bullet, false, 1.3, FirePosition2[i], "sfjm", self.objattackDic["sfjm"]
+			"Monster42Bullet", self.bullet, false, 1.3, fire_position2[i], "sfjm", self.objattackDic["sfjm"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
 		Global.add_bullet(
-			"Monster42Bullet", self.bullet, false, 1.3, FirePosition3[i], "sfjm", self.objattackDic["sfjm"]
+			"Monster42Bullet", self.bullet, false, 1.3, fire_position3[i], "sfjm", self.objattackDic["sfjm"]
 		)
 
 
@@ -263,9 +263,9 @@ func delay_call():
 		set_meta("counts_as_alive_for_stage_clear", false)
 		return
 	level_node.create_control.stop()
-	level_node.Monster_group["stage_1"].push_back(42)
-	level_node.Monster_position_x["stage_1"].push_back(position.x)
-	level_node.Monster_position_y["stage_1"].push_back(position.y)
+	level_node.monster_group["stage_1"].push_back(42)
+	level_node.monster_position_x["stage_1"].push_back(position.x)
+	level_node.monster_position_y["stage_1"].push_back(position.y)
 	set_meta("counts_as_alive_for_stage_clear", false)
 	level_node.create_control.start(5)
 
@@ -295,12 +295,12 @@ func is_alive_for_stage_clear() -> bool:
 
 func call_hands():
 	var bullet_spawn_positions = []
-	var OtherPo = []
+	var other_po = []
 	if MonsterDirection:
-		OtherPo = [Vector2(37, 55), Vector2(67, 45), Vector2(27, 25)]
+		other_po = [Vector2(37, 55), Vector2(67, 45), Vector2(27, 25)]
 		bullet_spawn_positions = [Vector2(37, -35), Vector2(67, -65), Vector2(27, -5)]
 	else:
-		OtherPo = [Vector2(-37, 55), Vector2(-67, 45), Vector2(-27, 25)]
+		other_po = [Vector2(-37, 55), Vector2(-67, 45), Vector2(-27, 25)]
 		bullet_spawn_positions = [Vector2(-37, -35), Vector2(-67, -65), Vector2(-27, -5)]
 	for i in bullet_spawn_positions:
 		Global.add_bullet(
@@ -308,5 +308,5 @@ func call_hands():
 		)
 		await get_tree().create_timer(0.06, false).timeout
 	await get_tree().create_timer(0.06, false).timeout
-	for i in OtherPo:
+	for i in other_po:
 		Global.add_bullet("Monster60Bullet", self, MonsterDirection, 1.35, i, "mykl", self.objattackDic["mykl"])

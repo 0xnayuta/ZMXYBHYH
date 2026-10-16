@@ -16,11 +16,11 @@ var smb_ready_for_second_press: bool = false
 var tjgl_effect: Node2D = null
 @onready var shield_bar: ProgressBar = $ShieldBar
 @onready var hurt_box = $base_damagebox/HurtBox/HurtBox
-var Interv: int
-var ShallowList: Array
+var interv: int
+var shallow_list: Array
 var jhsj_1
 var jhsj_2
-var SGQ
+var sgq
 var smpox
 var myhc
 
@@ -46,8 +46,8 @@ func _prewarm_role2_skill_effects() -> void:
 
 
 func role_2_handler():
-	RoleProp.Role1SXBJ = 0
-	RoleProp.Role1SXxx = 0
+	RoleProp.role1_sxbj = 0
+	RoleProp.role1_s_xxx = 0
 	var level_1 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能1"][DataKeys.LEVEL] + 1
 	var level_2 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能2"][DataKeys.LEVEL] + 1
 	var level_3 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能3"][DataKeys.LEVEL] + 1
@@ -129,10 +129,10 @@ func role_2_handler():
 
 
 func _physics_process(delta: float) -> void:
-	if SMB1 != null:
-		smpox = SMB1.position
+	if smb1 != null:
+		smpox = smb1.position
 	else:
-		IsUseSMB = false
+		is_use_smb = false
 		smb_ready_for_second_press = false
 
 	if shield_bar:
@@ -146,9 +146,9 @@ func _physics_process(delta: float) -> void:
 		shield_effect = null
 	_update_tjgl_shield_timer()
 
-	if self.IsInSky:
+	if self.is_in_sky:
 		self.gravity = 0
-		if IsUseSMB:
+		if is_use_smb:
 			velocity.y = -160
 		else:
 			velocity.y = 0
@@ -164,11 +164,11 @@ func _physics_process(delta: float) -> void:
 			and Input.is_action_pressed("normalhit")
 			and not is_be_attacking
 			and not is_using_skills
-			and Interv <= 0
+			and interv <= 0
 		):
 			do_normalhit_1()
 
-		if SMB1 != null:
+		if smb1 != null:
 			var smb_action_pressed = _is_smb_action_pressed()
 			if not smb_action_pressed:
 				smb_ready_for_second_press = true
@@ -199,7 +199,7 @@ func _is_smb_action_just_pressed() -> bool:
 
 
 func do_normalhit_1():
-	Interv = objattackDic["hit1"]["HitInterv"]
+	interv = objattackDic["hit1"]["HitInterv"]
 	super.get_hit_data("hit1")
 	get_action = "hit1"
 	is_can_move_attack_in_sky()
@@ -232,9 +232,9 @@ func skill_xbz():
 	is_using_skills = true
 	super.get_hit_data("xbz")
 	is_attacking = true
-	if MyShallow != null:
-		MyShallow.SkillName = "tjgl"
-		MyShallow.ShouldUseSkill = true
+	if my_shallow != null:
+		my_shallow.skill_name = "tjgl"
+		my_shallow.should_use_skill = true
 	role_action_player.play("xbz")
 	await role_action_player.animation_finished
 	turn_to_wait()
@@ -265,9 +265,9 @@ func skill_jhsj():
 	is_attacking = true
 	if _is_skill_awakened("jhsj") and _is_skill_awaken_enabled("jhsj"):
 		_spawn_jhsj_awaken_effect()
-	if MyShallow != null:
-		MyShallow.SkillName = "jhsj"
-		MyShallow.ShouldUseSkill = true
+	if my_shallow != null:
+		my_shallow.skill_name = "jhsj"
+		my_shallow.should_use_skill = true
 	role_action_player.play("jhsj")
 	await role_action_player.animation_finished
 	turn_to_wait()
@@ -282,9 +282,9 @@ func skill_tjgl():
 	is_using_skills = true
 	super.get_hit_data("tjgl")
 	is_attacking = true
-	if MyShallow != null:
-		MyShallow.SkillName = "xbz"
-		MyShallow.ShouldUseSkill = true
+	if my_shallow != null:
+		my_shallow.skill_name = "xbz"
+		my_shallow.should_use_skill = true
 	role_action_player.play("tjgl")
 	await role_action_player.animation_finished
 	turn_to_wait()
@@ -333,7 +333,7 @@ func skill_jgz():
 
 
 func skill_smb():
-	IsUseSMB = true
+	is_use_smb = true
 	smb_ready_for_second_press = false
 	self.Role1SkillInter["smb"] = 1.2
 	velocity.x = 0
@@ -349,7 +349,7 @@ func skill_smb():
 
 
 func skill_smb2():
-	IsUseSMB = false
+	is_use_smb = false
 	smb_ready_for_second_press = false
 	self.Role1SkillInter["smb"] = 1.2
 	velocity.x = 0
@@ -366,7 +366,7 @@ func skill_smb2():
 
 
 func skill_by():
-	IsUseSMB = false
+	is_use_smb = false
 	self.Role1SkillInter["by"] = 6.0
 	velocity.x = 0
 	get_action = "by"
@@ -529,18 +529,18 @@ func add_sgq():
 		bullet_pos = Vector2(35, -20)
 	else:
 		bullet_pos = Vector2(-35, -20)
-	if SGQ == null:
-		SGQ = Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
-		SGQ.scale = Vector2(2, 2)
+	if sgq == null:
+		sgq = Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
+		sgq.scale = Vector2(2, 2)
 	else:
-		SGQ.queue_free()
-		SGQ = Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
-		SGQ.scale = Vector2(2, 2)
+		sgq.queue_free()
+		sgq = Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
+		sgq.scale = Vector2(2, 2)
 
 
 func add_xbz():
 	var bullet_spawn_positions = [Vector2(-80, -15)]
-	var ScaleList = [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1.5, 1.5)]
+	var scale_list = [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1.5, 1.5)]
 	if !PlayerDir:
 		bullet_spawn_positions = [Vector2(-80, -15), Vector2(-175, -20), Vector2(-275, -25)]
 	else:
@@ -549,15 +549,15 @@ func add_xbz():
 		var xbz = Global.add_role_bullet(
 			self.Bullet, bullet_spawn_positions[i] + position, PlayerDir, "Role2Bullet3", objattackDic["xbz"]
 		)
-		xbz.scale = ScaleList[i]
+		xbz.scale = scale_list[i]
 		await get_tree().create_timer(0.2, false).timeout
 
 
 func add_smb_1():
 	if !PlayerDir:
-		SMB1 = Global.add_smb_effect(self.Bullet, position + Vector2(-100, 25), PlayerDir)
+		smb1 = Global.add_smb_effect(self.Bullet, position + Vector2(-100, 25), PlayerDir)
 	else:
-		SMB1 = Global.add_smb_effect(self.Bullet, position + Vector2(100, 25), PlayerDir)
+		smb1 = Global.add_smb_effect(self.Bullet, position + Vector2(100, 25), PlayerDir)
 
 
 func add_zfjg():
@@ -576,26 +576,26 @@ func _spawn_smb_awaken_extra_bursts(origin: Vector2, direction: bool) -> void:
 	var extra_count := 2 if roll < 0.2 else (1 if roll < 0.7 else 0)
 	for burst_index in range(extra_count):
 		await get_tree().create_timer(0.18 * float(burst_index + 1), false).timeout
-		if not is_instance_valid(self) or IsDeath:
+		if not is_instance_valid(self) or is_death:
 			return
 		Global.add_role_bullet(self.Bullet, origin + Vector2(0, -180), direction, "Role2Bullet4", objattackDic["smb"])
 
 
 func add_shallow():
-	if MyShallow == null:
-		MyShallow = Global.add_role2_shallow(self.Bullet, position, PlayerDir)
-		MyShallow.my_owner = self
+	if my_shallow == null:
+		my_shallow = Global.add_role2_shallow(self.Bullet, position, PlayerDir)
+		my_shallow.my_owner = self
 	else:
-		if not MyShallow.ShouldUseSkill:
-			position = MyShallow.position
-			MyShallow.queue_free()
+		if not my_shallow.should_use_skill:
+			position = my_shallow.position
+			my_shallow.queue_free()
 
 
 func self_cure():
 	var level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
-	var TotalValue = int(RoleProp.roleprop.SHp * 0.2 + level * 0.02)
-	CureValue = 0.6 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) + 1
-	var Value = int(TotalValue * CureHpValue)
+	var total_value = int(RoleProp.roleprop.SHp * 0.2 + level * 0.02)
+	cure_value = 0.6 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) + 1
+	var Value = int(total_value * cure_hp_value)
 	cure_hp(Value)
 
 
@@ -694,7 +694,7 @@ func add_jhsj_2():
 
 
 func _on_normal_hit_reduce_timeout() -> void:
-	Interv -= 1
+	interv -= 1
 
 
 func add_music(num):
@@ -735,19 +735,19 @@ func _prepare_hit_reaction() -> void:
 	if jhsj_2 != null:
 		jhsj_2.queue_free()
 
-	IsUseSMB = false
-	if SMB1 != null:
-		SMB1.ShouldDeath = true
+	is_use_smb = false
+	if smb1 != null:
+		smb1.should_death = true
 
 
 func reset_smb():
-	IsUseSMB = false
+	is_use_smb = false
 	smb_ready_for_second_press = false
 
 
 func emove_smb1():
-	if SMB1 != null:
-		SMB1.queue_free()
+	if smb1 != null:
+		smb1.queue_free()
 	pass
 
 

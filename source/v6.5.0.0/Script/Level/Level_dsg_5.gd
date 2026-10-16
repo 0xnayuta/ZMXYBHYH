@@ -6,10 +6,10 @@ extends BaseLevel
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "兜率宫5"
+	Global.current_level = "兜率宫5"
 	Global.add_bgm(self, "res://Music/level/12_bg7.mp3")
 	self.level_stage = 35
-	Monster_group = {
+	monster_group = {
 		"stage_1":
 		[
 			104,
@@ -111,7 +111,7 @@ func _ready() -> void:
 		],
 		"stage_4": [114],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1":
 		[
 			150,
@@ -213,7 +213,7 @@ func _ready() -> void:
 		],
 		"stage_4": [4500],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			420,

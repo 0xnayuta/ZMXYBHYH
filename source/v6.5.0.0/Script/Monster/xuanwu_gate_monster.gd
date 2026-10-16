@@ -432,8 +432,8 @@ func state_death() -> void:
 	is_be_attacking = false
 	is_attacking = false
 	_skill_busy = false
-	IsSuperArmor = false
-	CannotAttract = false
+	super_armor_active = false
+	cannot_attract = false
 	NoGrav = true
 	velocity = Vector2.ZERO
 	super.state_death()
@@ -517,8 +517,8 @@ func _start_attack(attack_name: StringName) -> void:
 	is_attacking = true
 	_skill_busy = true
 	if is_boss:
-		IsSuperArmor = true
-		CannotAttract = true
+		super_armor_active = true
+		cannot_attract = true
 	if monster_kind == 3005 and attack_name == &"hit2":
 		await _run_boss_skill_2(serial)
 		return
@@ -533,8 +533,8 @@ func _finish_attack() -> void:
 	_disable_attack_box()
 	is_attacking = false
 	_skill_busy = false
-	IsSuperArmor = false
-	CannotAttract = false
+	super_armor_active = false
+	cannot_attract = false
 	_next_attack_msec = Time.get_ticks_msec() + (650 if monster_kind != 3005 else 900)
 	stop_move()
 

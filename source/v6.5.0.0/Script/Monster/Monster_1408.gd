@@ -98,7 +98,7 @@ func _ready() -> void:
 	Skill_2_CD = 15
 	Skill_3_CD = 10
 	Skill_4_CD = 20
-	Skill_5_CD = 30
+	skill_5_cd = 30
 
 
 func ai_think():
@@ -118,7 +118,7 @@ func ai_think():
 					do_hit_3()
 				if Skill_4_CD <= 0:
 					do_hit_4()
-				if Skill_5_CD <= 0:
+				if skill_5_cd <= 0:
 					do_hit_5()
 			else:
 				stop_move()
@@ -130,7 +130,7 @@ func ai_think():
 					do_hit_3()
 				if Skill_4_CD <= 0:
 					do_hit_4()
-				if Skill_5_CD <= 0:
+				if skill_5_cd <= 0:
 					do_hit_5()
 
 
@@ -192,10 +192,10 @@ func do_hit_4():
 
 
 func do_hit_5():
-	if Skill_5_CD > 0 or is_attacking:
+	if skill_5_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_5_CD = randi_range(25, 30)
+	skill_5_cd = randi_range(25, 30)
 	hit_name = "hit5"
 	velocity.x = 0
 	is_attacking = true
@@ -228,7 +228,7 @@ func call_parasitic_larva():
 		larva.name = "ParasiticLarva"
 		larva.SHp = hp_value
 		larva.Hp = larva.SHp
-		larva.MyTarget = target
+		larva.my_target = target
 
 		var life_timer = Timer.new()
 		life_timer.wait_time = 30.0
@@ -246,10 +246,10 @@ func call_parasitic_larva():
 
 
 func call_bullet_2():
-	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 380)
+	var po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 380)
 	await get_tree().create_timer(0.3, false).timeout
 	var ly = Global.call_chase_bullet(
-		self.bullet, "Monster1408Bullet2", 150, 5.0, false, Po, "hit2", self.objattackDic["hit2"]
+		self.bullet, "Monster1408Bullet2", 150, 5.0, false, po, "hit2", self.objattackDic["hit2"]
 	)
 	ly.scale = Vector2(1.5, 1.5)
 

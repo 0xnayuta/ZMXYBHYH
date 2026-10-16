@@ -74,7 +74,7 @@ func initialize_monster_properties():
 
 	SHp = int(RoleProp.roleprop.SHp)
 	Hp = SHp
-	is_Fly = true
+	is_fly = true
 	def = int(RoleProp.roleprop.Def)
 	mdef = int(RoleProp.roleprop.Mdef)
 	crit = int(RoleProp.roleprop.Crit)
@@ -175,7 +175,7 @@ func ai_think():
 
 
 func do_hit_1():
-	if is_attacking or is_be_attacking or ShouldInSky:
+	if is_attacking or is_be_attacking or should_in_sky:
 		return
 
 	if current_target == null or position.distance_to(current_target.position) > 175:
@@ -192,7 +192,7 @@ func do_hit_1():
 
 
 func do_hit_2():
-	if is_attacking or is_be_attacking or ShouldInSky:
+	if is_attacking or is_be_attacking or should_in_sky:
 		return
 
 	if current_target == null or position.distance_to(current_target.position) > 350:
@@ -208,7 +208,7 @@ func do_hit_2():
 
 
 func do_hit_3():
-	if is_attacking or is_be_attacking or ShouldInSky:
+	if is_attacking or is_be_attacking or should_in_sky:
 		return
 
 	if current_target == null or position.distance_to(current_target.position) > 600:

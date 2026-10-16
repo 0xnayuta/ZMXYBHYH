@@ -213,19 +213,19 @@ const HEAVEN_SOUL_CRYSTAL_MONSTER_IDS := {
 @onready var monster_name: Button = $MonsterName
 @onready var boss: Label = $Boss
 
-var MonsterInfo: Node = null
-var HoverAttrPanel: Control = null
-var LevelMonsterConfig: Dictionary = {}
+var monster_info: Node = null
+var hover_attr_panel: Control = null
+var level_monster_config: Dictionary = {}
 var IsBoss: bool = true
 var MonsterName: String = "dxx"
-var MonsterScenePath: String = ""
-var LevelPath: String = ""
-var IsSet: bool
-var IsSelectable: bool = false
-var IsSelected: bool = false
+var monster_scene_path: String = ""
+var level_path: String = ""
+var is_set: bool
+var is_selectable: bool = false
+var is_selected: bool = false
 var _selection_frame: Panel = null
 var _hover_exit_grace_frames := 0
-var MonsterNameList = {
+var monster_name_list = {
 	"3159": "猴妖",
 	"3160": "银杏精",
 	"3161": "通臂白猿",
@@ -454,18 +454,18 @@ func _ready() -> void:
 
 
 func set_selectable(value: bool) -> void:
-	IsSelectable = value
+	is_selectable = value
 	_apply_selectable_cursor()
 
 
 func _apply_selectable_cursor() -> void:
-	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if IsSelectable else Control.CURSOR_ARROW
+	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if is_selectable else Control.CURSOR_ARROW
 	if hot_area != null:
 		hot_area.mouse_default_cursor_shape = mouse_default_cursor_shape
 
 
 func set_selected(value: bool) -> void:
-	IsSelected = value
+	is_selected = value
 	if _selection_frame == null:
 		_selection_frame = Panel.new()
 		_selection_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -482,11 +482,11 @@ func set_selected(value: bool) -> void:
 
 
 func get_display_name() -> String:
-	return str(MonsterNameList.get(MonsterName, MonsterName))
+	return str(monster_name_list.get(MonsterName, MonsterName))
 
 
 func _on_selection_gui_input(event: InputEvent) -> void:
-	if not IsSelectable:
+	if not is_selectable:
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		selection_requested.emit(self)
@@ -497,10 +497,10 @@ func _on_selection_gui_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not IsSet:
-		var configured_name := str(LevelMonsterConfig.get("name", ""))
+	if not is_set:
+		var configured_name := str(level_monster_config.get("name", ""))
 		monster_name.text = (
-			configured_name if not configured_name.is_empty() else MonsterNameList.get(MonsterName, MonsterName)
+			configured_name if not configured_name.is_empty() else monster_name_list.get(MonsterName, MonsterName)
 		)
 		if IsBoss:
 			boss.visible = true
@@ -509,13 +509,13 @@ func _physics_process(delta: float) -> void:
 		pic.texture = load_(MonsterName)
 		_fit_head_icon()
 		_setup_north_idle_preview()
-		IsSet = true
+		is_set = true
 
 
 func _setup_north_idle_preview() -> void:
-	if not MonsterScenePath.begins_with("res://Scene/monster/Monster_"):
+	if not monster_scene_path.begins_with("res://Scene/monster/Monster_"):
 		return
-	var id := MonsterScenePath.get_file().get_basename().trim_prefix("Monster_").to_int()
+	var id := monster_scene_path.get_file().get_basename().trim_prefix("Monster_").to_int()
 	var manifest_path := NorthOriginalData.manifest(id)
 	if manifest_path.is_empty():
 		return
@@ -538,7 +538,7 @@ func _setup_north_idle_preview() -> void:
 
 
 func load_(name_):
-	var head_path := "res://Art/Monster/MonsterHead/" + str(name_) + ".png"
+	var head_path := "res://Art/Monster/monster_head/" + str(name_) + ".png"
 	if ResourceLoader.exists(head_path):
 		return load(head_path)
 	var fallback_path := str(MONSTER_HEAD_FALLBACKS.get(str(name_), ""))
@@ -610,7 +610,7 @@ func _on_monster_hover_exited() -> void:
 
 
 func _process(_delta: float) -> void:
-	if HoverAttrPanel == null or not is_instance_valid(HoverAttrPanel):
+	if hover_attr_panel == null or not is_instance_valid(hover_attr_panel):
 		return
 	if get_global_rect().has_point(get_viewport().get_mouse_position()):
 		_hover_exit_grace_frames = 2
@@ -622,31 +622,31 @@ func _process(_delta: float) -> void:
 
 
 func _hide_monster_attr_panel() -> void:
-	if HoverAttrPanel != null and is_instance_valid(HoverAttrPanel):
+	if hover_attr_panel != null and is_instance_valid(hover_attr_panel):
 		Global.clear_hover_popup()
-	HoverAttrPanel = null
+	hover_attr_panel = null
 	_hover_exit_grace_frames = 0
 
 
 func _show_monster_attr_panel() -> void:
 	_hide_monster_attr_panel()
 	var parent_node = Global.get_ui_popup_layer()
-	HoverAttrPanel = _create_monster_attr_panel()
+	hover_attr_panel = _create_monster_attr_panel()
 	_hover_exit_grace_frames = 2
-	HoverAttrPanel.position = Global.screen_popup_position(Vector2(18, 18))
-	parent_node.add_child(HoverAttrPanel)
-	Global.register_hover_popup(HoverAttrPanel)
-	HoverAttrPanel.z_index = 4096
+	hover_attr_panel.position = Global.screen_popup_position(Vector2(18, 18))
+	parent_node.add_child(hover_attr_panel)
+	Global.register_hover_popup(hover_attr_panel)
+	hover_attr_panel.z_index = 4096
 	call_deferred("_fit_hover_panel_to_screen")
 
 
 func _fit_hover_panel_to_screen() -> void:
-	if HoverAttrPanel == null or not is_instance_valid(HoverAttrPanel):
+	if hover_attr_panel == null or not is_instance_valid(hover_attr_panel):
 		return
 	var viewport_size = get_viewport().get_visible_rect().size
-	var panel_size = HoverAttrPanel.size
+	var panel_size = hover_attr_panel.size
 	if panel_size.x <= 0 or panel_size.y <= 0:
-		panel_size = HoverAttrPanel.get_combined_minimum_size()
+		panel_size = hover_attr_panel.get_combined_minimum_size()
 	var pos = Global.screen_popup_position(Vector2(18, 18))
 	if pos.x + panel_size.x > viewport_size.x - 8:
 		pos.x = viewport_size.x - panel_size.x - 8
@@ -656,7 +656,7 @@ func _fit_hover_panel_to_screen() -> void:
 		pos.x = 8
 	if pos.y < 8:
 		pos.y = 8
-	HoverAttrPanel.position = pos
+	hover_attr_panel.position = pos
 
 
 func _create_monster_attr_panel() -> Control:
@@ -683,9 +683,9 @@ func _create_monster_attr_panel() -> Control:
 	list.add_theme_constant_override("separation", 3)
 	margin.add_child(list)
 
-	var display_name := str(MonsterNameList.get(MonsterName, MonsterName))
-	if not LevelMonsterConfig.is_empty() and str(LevelMonsterConfig.get("name", "")) != "":
-		display_name = str(LevelMonsterConfig["name"])
+	var display_name := str(monster_name_list.get(MonsterName, MonsterName))
+	if not level_monster_config.is_empty() and str(level_monster_config.get("name", "")) != "":
+		display_name = str(level_monster_config["name"])
 	_add_attr_label(list, display_name, 18, "ffb347")
 	if IsBoss:
 		_add_attr_label(list, "Boss", 14, "ff6b00")
@@ -724,7 +724,7 @@ func _create_monster_attr_panel() -> Control:
 		]
 	elif (
 		int(MainSet.set_data.get("Difficult", 0)) == BaseMonster.NIGHTMARE_DIFFICULTY
-		and BaseMonster.is_underworld_nightmare_path(LevelPath)
+		and BaseMonster.is_underworld_nightmare_path(level_path)
 	):
 		data["掉落"] = []
 		var underworld_monster_id := int(UNDERWORLD_SOUL_CRYSTAL_MONSTER_IDS.get(MonsterName, 0))
@@ -741,7 +741,7 @@ func _create_monster_attr_panel() -> Control:
 			]
 	elif (
 		int(MainSet.set_data.get("Difficult", 0)) == BaseMonster.NIGHTMARE_DIFFICULTY
-		and BaseMonster.is_heaven_nightmare_path(LevelPath)
+		and BaseMonster.is_heaven_nightmare_path(level_path)
 	):
 		data["掉落"] = []
 		var heaven_monster_id := int(HEAVEN_SOUL_CRYSTAL_MONSTER_IDS.get(MonsterName, 0))
@@ -764,12 +764,12 @@ func _create_monster_attr_panel() -> Control:
 	diff = clampi(diff, 0, MonsterAttrData.DIFFICULTY_MULTIPLIERS.size() - 1)
 	var mult: float = float(MonsterAttrData.DIFFICULTY_MULTIPLIERS[diff])
 	var advanced_nightmare_path := (
-		BaseMonster.is_underworld_nightmare_path(LevelPath) or BaseMonster.uses_heaven_nightmare_attributes(LevelPath)
+		BaseMonster.is_underworld_nightmare_path(level_path) or BaseMonster.uses_heaven_nightmare_attributes(level_path)
 	)
 	var order = _monster_attr_order()
 	for key in order:
 		if data.has(key):
-			var value = _get_difficulty_value(key, _resolve_attr_value(data[key]), mult, diff, LevelPath)
+			var value = _get_difficulty_value(key, _resolve_attr_value(data[key]), mult, diff, level_path)
 			var label_name := "攻击" if key == "基础攻击" else str(key)
 			var value_text := _format_attr_value(value)
 			if key in ["伤害", "免伤"] and (typeof(value) == TYPE_INT or typeof(value) == TYPE_FLOAT):
@@ -778,14 +778,14 @@ func _create_monster_attr_panel() -> Control:
 	if diff == BaseMonster.NIGHTMARE_DIFFICULTY and not data.has("伤害"):
 		var nightmare_damage_text := (
 			"100%"
-			if BaseMonster.uses_heaven_nightmare_attributes(LevelPath)
+			if BaseMonster.uses_heaven_nightmare_attributes(level_path)
 			else "60%" if advanced_nightmare_path else "30%"
 		)
 		_add_attr_label(list, "伤害：" + nightmare_damage_text, 14, "ffffff")
 	if diff == BaseMonster.NIGHTMARE_DIFFICULTY and not data.has("免伤"):
 		var nightmare_reduction_text := (
 			"100%"
-			if BaseMonster.uses_heaven_nightmare_attributes(LevelPath)
+			if BaseMonster.uses_heaven_nightmare_attributes(level_path)
 			else "60%" if advanced_nightmare_path else "30%"
 		)
 		_add_attr_label(list, "免伤：" + nightmare_reduction_text, 14, "ffffff")
@@ -796,7 +796,7 @@ func _create_monster_attr_panel() -> Control:
 			if not attack.has("power"):
 				continue
 			var attack_mult: float = 1.0 if bool(attack.get("difficulty_scaled", false)) else mult
-			var power = _get_difficulty_value("攻击", _resolve_attr_value(attack["power"]), attack_mult, diff, LevelPath)
+			var power = _get_difficulty_value("攻击", _resolve_attr_value(attack["power"]), attack_mult, diff, level_path)
 			var kind = ""
 			if attack.has("kind") and str(attack["kind"]) != "":
 				kind = " / " + str(attack["kind"])
@@ -812,8 +812,8 @@ func _create_monster_attr_panel() -> Control:
 			if item_id == "":
 				continue
 			var item_name := item_id
-			if AE.AllEquipment_.has(item_id):
-				item_name = str(AE.AllEquipment_[item_id].get(DataKeys.NAME, item_id))
+			if AE.all_equipment.has(item_id):
+				item_name = str(AE.all_equipment[item_id].get(DataKeys.NAME, item_id))
 			var chance := _get_drop_chance_text(
 				float(drop.get("chance", 0.0)), diff, bool(drop.get("fixed_chance", false))
 			)
@@ -856,11 +856,11 @@ func _monster_attr_order() -> Array:
 
 
 func _get_scene_attr_data() -> Dictionary:
-	if MonsterScenePath == "":
+	if monster_scene_path == "":
 		return _get_level_config_attr_data()
-	if not ResourceLoader.exists(MonsterScenePath):
+	if not ResourceLoader.exists(monster_scene_path):
 		return {}
-	var packed := load(MonsterScenePath) as PackedScene
+	var packed := load(monster_scene_path) as PackedScene
 	if packed == null:
 		return {}
 	var monster := packed.instantiate()
@@ -868,8 +868,8 @@ func _get_scene_attr_data() -> Dictionary:
 		return {}
 	var skip_runtime_configuration := false
 	if _has_object_property(monster, "_runtime_config"):
-		if not LevelMonsterConfig.is_empty() and LevelMonsterConfig.has("name"):
-			monster.set("_runtime_config", LevelMonsterConfig.duplicate(true))
+		if not level_monster_config.is_empty() and level_monster_config.has("name"):
+			monster.set("_runtime_config", level_monster_config.duplicate(true))
 		else:
 			skip_runtime_configuration = true
 		var runtime_config: Variant = monster.get("_runtime_config")
@@ -940,9 +940,9 @@ func _get_scene_attr_data() -> Dictionary:
 		keys[16]: _read_monster_value(monster, "attackRange", 0),
 		keys[17]: _read_monster_value(monster, "attackDesire", 0),
 	}
-	if LevelMonsterConfig.has("damage_bonus"):
+	if level_monster_config.has("damage_bonus"):
 		data["伤害"] = _read_monster_value(monster, "damage_bonus", 0.0)
-	if LevelMonsterConfig.has("damage_reduction"):
+	if level_monster_config.has("damage_reduction"):
 		data["免伤"] = _read_monster_value(monster, "damage_reduction", 0.0)
 	if monster.has_method("monster_info_base_attack"):
 		data.erase("攻击间隔")
@@ -970,9 +970,9 @@ func _get_scene_attr_data() -> Dictionary:
 	var independent_drops = _read_monster_value(monster, "independent_fall_list", [])
 	if (
 		(not independent_drops is Array or independent_drops.is_empty())
-		and LevelMonsterConfig.has("independent_drop_list")
+		and level_monster_config.has("independent_drop_list")
 	):
-		independent_drops = LevelMonsterConfig.get("independent_drop_list", [])
+		independent_drops = level_monster_config.get("independent_drop_list", [])
 	if independent_drops is Array:
 		for drop in independent_drops:
 			if drop is Dictionary and str(drop.get("name", "")) != "":
@@ -998,7 +998,7 @@ func _get_scene_attr_data() -> Dictionary:
 
 
 func _get_level_config_attr_data() -> Dictionary:
-	if LevelMonsterConfig.is_empty():
+	if level_monster_config.is_empty():
 		return {}
 	var config_keys := {
 		"等级": "level",
@@ -1022,11 +1022,11 @@ func _get_level_config_attr_data() -> Dictionary:
 	var data := {}
 	for label_name: String in config_keys:
 		var config_name: String = config_keys[label_name]
-		if LevelMonsterConfig.has(config_name):
-			data[label_name] = LevelMonsterConfig[config_name]
+		if level_monster_config.has(config_name):
+			data[label_name] = level_monster_config[config_name]
 
 	var attacks: Array = []
-	var attack_config: Variant = LevelMonsterConfig.get("attacks", {})
+	var attack_config: Variant = level_monster_config.get("attacks", {})
 	if attack_config is Dictionary:
 		for attack_name: String in attack_config:
 			var attack: Variant = attack_config[attack_name]
@@ -1047,8 +1047,8 @@ func _get_level_config_attr_data() -> Dictionary:
 
 	var drops: Array = []
 	for drop_group_value in [
-		LevelMonsterConfig.get("drop_list", []),
-		LevelMonsterConfig.get("independent_drop_list", []),
+		level_monster_config.get("drop_list", []),
+		level_monster_config.get("independent_drop_list", []),
 	]:
 		if not drop_group_value is Array:
 			continue
@@ -1064,7 +1064,7 @@ func _get_level_config_attr_data() -> Dictionary:
 						"value": minimum_value,
 						"min_value": minimum_value,
 						"max_value": int(drop.get("max_value", minimum_value)),
-						"chance": float(drop.get("chance", float(LevelMonsterConfig.get("drop_rate", 0.0)) / 100.0)),
+						"chance": float(drop.get("chance", float(level_monster_config.get("drop_rate", 0.0)) / 100.0)),
 						"direct_to_pet_backpack": bool(drop.get("direct_to_pet_backpack", false)),
 					}
 				)
@@ -1110,7 +1110,7 @@ func _resolve_attr_value(value):
 			return 1950000
 		"int(2100000 * hp_multiplier)":
 			return 2100000
-		"int(350 * Bl)":
+		"int(350 * bl)":
 			return 350
 		"hd":
 			return "技能变量"
@@ -1124,7 +1124,7 @@ func _resolve_attr_value(value):
 		return "随受击次数变化"
 	if expr in ["128 + BeHitCount * 25", "333 + BeHitCount * 20"]:
 		return "随受击次数变化"
-	if expr.find("Global.LLBTLevel") >= 0:
+	if expr.find("Global.llbt_level") >= 0:
 		return _resolve_llbt_value(expr)
 	if expr.find("RoleProp.roleprop.SHp") >= 0:
 		return _resolve_role_number_expr(expr, float(RoleProp.roleprop.SHp), "RoleProp.roleprop.SHp")
@@ -1136,18 +1136,18 @@ func _resolve_attr_value(value):
 
 
 func _resolve_llbt_value(expr: String):
-	var level = float(Global.LLBTLevel)
-	if expr == "8000 + Global.LLBTLevel * 350":
+	var level = float(Global.llbt_level)
+	if expr == "8000 + Global.llbt_level * 350":
 		return int(8000 + level * 350)
-	if expr == "7000 + Global.LLBTLevel * 400":
+	if expr == "7000 + Global.llbt_level * 400":
 		return int(7000 + level * 400)
-	if expr == "9000 + Global.LLBTLevel * 500":
+	if expr == "9000 + Global.llbt_level * 500":
 		return int(9000 + level * 500)
-	if expr == "270 + Global.LLBTLevel * 10":
+	if expr == "270 + Global.llbt_level * 10":
 		return int(270 + level * 10)
-	if expr == "350 + Global.LLBTLevel * 5":
+	if expr == "350 + Global.llbt_level * 5":
 		return int(350 + level * 5)
-	if expr == "330 + Global.LLBTLevel * 6":
+	if expr == "330 + Global.llbt_level * 6":
 		return int(330 + level * 6)
 	return "随玲珑宝塔层数变化"
 
@@ -1257,7 +1257,7 @@ func _get_drop_chance_text(base_chance: float, difficulty_index: int, fixed_chan
 		else base_chance * float(multipliers[clampi(difficulty_index, 0, multipliers.size() - 1)])
 	)
 	chance = clampf(chance, 0.0, 1.0)
-	if RoleProp.SourcePlayer != null and RoleProp.SourcePlayer.IsDoubleFallPro:
+	if RoleProp.source_player != null and RoleProp.source_player.is_double_fall_pro:
 		chance = clampf(chance * 2.0, 0.0, 1.0)
 	return str(snapped(chance * 100.0, 0.1)) + "%"
 

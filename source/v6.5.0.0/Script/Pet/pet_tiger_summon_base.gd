@@ -105,7 +105,7 @@ func _ready() -> void:
 func _initialize_summon_base() -> void:
 	randomize()
 	ran_num = randi_range(0, 100)
-	RndiCount = randi_range(0, 100)
+	rndi_count = randi_range(0, 100)
 	if has_node("CalmHit"):
 		$CalmHit.start(1.0)
 	if not has_node("Buff"):
@@ -334,7 +334,7 @@ func setup_skills() -> void:
 
 
 func try_use_skills() -> void:
-	if ShouldInSky or bhaoyi_running or not is_instance_valid(current_target):
+	if should_in_sky or bhaoyi_running or not is_instance_valid(current_target):
 		return
 	var distance: float = abs(position.x - current_target.position.x)
 	if tiger_stage >= 4 and Skill_4_CD <= 0:

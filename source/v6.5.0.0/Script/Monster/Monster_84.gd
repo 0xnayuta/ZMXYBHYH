@@ -216,22 +216,22 @@ func add_fire():
 
 
 func call_sfjm_fire():
-	var FirePosition1 = [Vector2(self.position.x - 80, 440), Vector2(self.position.x + 80, 440)]
-	var FirePosition2 = [Vector2(self.position.x - 200, 440), Vector2(self.position.x + 200, 440)]
-	var FirePosition3 = [Vector2(self.position.x - 320, 440), Vector2(self.position.x + 320, 440)]
+	var fire_position1 = [Vector2(self.position.x - 80, 440), Vector2(self.position.x + 80, 440)]
+	var fire_position2 = [Vector2(self.position.x - 200, 440), Vector2(self.position.x + 200, 440)]
+	var fire_position3 = [Vector2(self.position.x - 320, 440), Vector2(self.position.x + 320, 440)]
 	for i in range(2):
 		Global.add_bullet(
-			"Monster42Bullet", self.bullet, false, 1.3, FirePosition1[i], "hit3", self.objattackDic["hit3"]
+			"Monster42Bullet", self.bullet, false, 1.3, fire_position1[i], "hit3", self.objattackDic["hit3"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
 		Global.add_bullet(
-			"Monster42Bullet", self.bullet, false, 1.3, FirePosition2[i], "hit3", self.objattackDic["hit3"]
+			"Monster42Bullet", self.bullet, false, 1.3, fire_position2[i], "hit3", self.objattackDic["hit3"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
 		Global.add_bullet(
-			"Monster42Bullet", self.bullet, false, 1.3, FirePosition3[i], "hit3", self.objattackDic["hit3"]
+			"Monster42Bullet", self.bullet, false, 1.3, fire_position3[i], "hit3", self.objattackDic["hit3"]
 		)
 
 

@@ -1,11 +1,11 @@
 extends Node2D
 
-var Speed: int = 50
-var MaxPosition_x: int = 300
-var Direction: int = 1
-var PD: bool = true
+var speed: int = 50
+var max_position_x: int = 300
+var direction: int = 1
+var pd: bool = true
 var currentposition: Vector2
-var Catch: bool = false
+var catch: bool = false
 var Player: BaseHero
 var is_set: bool = false
 
@@ -22,16 +22,16 @@ func _physics_process(_delta: float) -> void:
 	if not is_set:
 		currentposition = position
 		is_set = true
-	self.position.x += Direction * Speed
-	if PD:
-		if position.x >= MaxPosition_x:
+	self.position.x += direction * speed
+	if pd:
+		if position.x >= max_position_x:
 			position = currentposition
 	else:
-		if position.x <= MaxPosition_x:
+		if position.x <= max_position_x:
 			position = currentposition
-	if Catch:
+	if catch:
 		if Player != null:
-			Player.position.x += Direction * Speed
+			Player.position.x += direction * speed
 
 
 func set_texture(texture: Texture2D) -> void:
@@ -42,10 +42,10 @@ func set_texture(texture: Texture2D) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	Catch = true
+	catch = true
 	if body is BaseHero:
 		Player = body
 
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:
-	Catch = false
+	catch = false

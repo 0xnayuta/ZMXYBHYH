@@ -1361,7 +1361,7 @@ func _ready() -> void:
 		_hit_box_base_position = hit_box.position
 	_build_animations()
 	super._ready()
-	if is_Fly and monster_kind not in [3119, 3198, 3200, 3201, 3309]:
+	if is_fly and monster_kind not in [3119, 3198, 3200, 3201, 3309]:
 		_fixed_flight_y = global_position.y if monster_kind == 3323 else position.y
 		_fixed_flight_height_ready = true
 	if monster_kind in [3136, 3182]:
@@ -1528,8 +1528,8 @@ func _configure_monster() -> void:
 	damage_bonus = float(_config.get("damage_bonus", 0.0))
 	damage_reduction = float(_config.get("damage_reduction", 0.0))
 
-	is_Fly = bool(_config.get("is_flying", false))
-	NoGrav = monster_kind in [3136, 3182] or is_Fly
+	is_fly = bool(_config.get("is_flying", false))
+	NoGrav = monster_kind in [3136, 3182] or is_fly
 	if NoGrav:
 		velocity.y = 0.0
 	boss_max_protect = float(_config.get("max_protect", 250.0 if is_boss else 100.0))
@@ -2083,7 +2083,7 @@ func ai_think() -> void:
 	if monster_kind in [3136, 3182]:
 		_stationary_boss_intelligence()
 		return
-	if monster_kind in [3119, 3198, 3200, 3201, 3309] and is_Fly:
+	if monster_kind in [3119, 3198, 3200, 3201, 3309] and is_fly:
 		_monster_3119_intelligence()
 		return
 	if death() or is_attacking or _special_attack_active or RoleProp == null:
@@ -2151,9 +2151,9 @@ func _official_in_skill_scope(target_position: Vector2, scope: Array) -> bool:
 
 func _target_hurt_rect(fallback_position: Vector2) -> Rect2:
 	var fallback := Rect2(fallback_position + Vector2(-20.0, -54.0), Vector2(40.0, 98.0))
-	if RoleProp == null or not RoleProp.SourcePlayer is Node2D:
+	if RoleProp == null or not RoleProp.source_player is Node2D:
 		return fallback
-	var target := RoleProp.SourcePlayer as Node2D
+	var target := RoleProp.source_player as Node2D
 	if not is_instance_valid(target) or not target.is_inside_tree():
 		return fallback
 	if target.global_position.distance_squared_to(fallback_position) > 4.0:
@@ -2405,8 +2405,8 @@ func _late_effect_target_data() -> Dictionary:
 		target_value as Vector2 if has_target else global_position + Vector2(100.0 if MonsterDirection else -100.0, 0.0)
 	)
 	var target_node: Node2D = null
-	if has_target and RoleProp != null and RoleProp.SourcePlayer is Node2D:
-		var source_player := RoleProp.SourcePlayer as Node2D
+	if has_target and RoleProp != null and RoleProp.source_player is Node2D:
+		var source_player := RoleProp.source_player as Node2D
 		if (
 			is_instance_valid(source_player)
 			and source_player.is_inside_tree()
@@ -2805,7 +2805,7 @@ func _spawn_3182_tracking_needle_after(delay_seconds: float, serial: int) -> voi
 	await get_tree().create_timer(delay_seconds, false).timeout
 	if not _3182_attack_is_current(serial):
 		return
-	var target := RoleProp.SourcePlayer as Node2D
+	var target := RoleProp.source_player as Node2D
 	if target == null or not is_instance_valid(target):
 		return
 	var direction := 1.0 if MonsterDirection else -1.0
@@ -2939,8 +2939,8 @@ func _run_3182_rain(rain_serial: int) -> void:
 		await get_tree().create_timer(2.0, false).timeout
 		if not is_instance_valid(self) or death() or rain_serial != _3182_rain_serial:
 			return
-		var player := RoleProp.SourcePlayer as BaseHero
-		if player != null and is_instance_valid(player) and not player.IsDeath:
+		var player := RoleProp.source_player as BaseHero
+		if player != null and is_instance_valid(player) and not player.is_death:
 			var rain_damage := maxi(1, roundi(float(RoleProp.roleprop.SHp) * 0.01) + 142)
 			player.effect_reducehp(rain_damage, "real")
 		cure_hp(maxi(1, roundi(float(SHp) * 0.018)))

@@ -160,12 +160,12 @@ func _set_riding(enabled: bool) -> void:
 func process_mounted_control(_delta: float) -> bool:
 	if not bool(PlayerData.player_data.get(PlayerData.MOUNT_RIDING_KEY, false)):
 		return false
-	if hero == null or not is_instance_valid(hero) or hero.IsDeath:
+	if hero == null or not is_instance_valid(hero) or hero.is_death:
 		return true
 
 	hero.is_using_skills = false
 	var direction := Input.get_axis("move_left", "move_right")
-	if hero.IsReverseMove:
+	if hero.is_reverse_move:
 		direction = -direction
 	if direction > 0.0:
 		hero.action.scale.x = -1.0
@@ -178,14 +178,14 @@ func process_mounted_control(_delta: float) -> bool:
 	var speed_multiplier := RIDE_SPEED_MULTIPLIER * _get_active_skill_speed_multiplier()
 	if direction != 0.0:
 		hero.velocity.x = (
-			direction * hero.walk_speed * RoleProp.ws_up_power * hero.ReverseMoveSpeedMultiplier * speed_multiplier
+			direction * hero.walk_speed * RoleProp.ws_up_power * hero.reverse_move_speed_multiplier * speed_multiplier
 		)
 	else:
 		hero.velocity.x = move_toward(
-			hero.velocity.x, 0.0, hero.walk_speed * RoleProp.ws_up_power * hero.ReverseMoveSpeedMultiplier
+			hero.velocity.x, 0.0, hero.walk_speed * RoleProp.ws_up_power * hero.reverse_move_speed_multiplier
 		)
 	_apply_active_skill_movement(_delta)
-	if Input.is_action_just_pressed("jump") and not hero.is_Bound_to_the_ground:
+	if Input.is_action_just_pressed("jump") and not hero.is_bound_to_the_ground:
 		hero.jump()
 	if Input.is_action_just_pressed("normalhit") and _normal_attack_cooldown <= 0.0:
 		_normal_attack_cooldown = 0.5
@@ -217,12 +217,12 @@ func _process(delta: float) -> void:
 	var riding := bool(PlayerData.player_data.get(PlayerData.MOUNT_RIDING_KEY, false))
 	if mount_visual != null and is_instance_valid(mount_visual):
 		mount_visual.scale.x = 1.0 if bool(hero.PlayerDir) else -1.0
-		mount_visual.visible = riding and not active_mount.is_empty() and not hero.IsDeath
+		mount_visual.visible = riding and not active_mount.is_empty() and not hero.is_death
 		if riding:
 			_update_mount_locomotion()
 	if mount_overlay_visual != null and is_instance_valid(mount_overlay_visual):
 		mount_overlay_visual.scale.x = 1.0 if bool(hero.PlayerDir) else -1.0
-		mount_overlay_visual.visible = riding and _current_mount_id == "1002800" and not hero.IsDeath
+		mount_overlay_visual.visible = riding and _current_mount_id == "1002800" and not hero.is_death
 	if active_mount.is_empty():
 		return
 	if riding:
@@ -421,9 +421,9 @@ func _refresh_rider_pose() -> void:
 		body_texture = rider_textures.get("body") as Texture2D
 		body_front_texture = rider_textures.get("body_front") as Texture2D
 	else:
-		body_texture = hero.RoleBody.texture
-		horizontal_frames = hero.RoleBody.hframes
-		vertical_frames = hero.RoleBody.vframes
+		body_texture = hero.role_body.texture
+		horizontal_frames = hero.role_body.hframes
+		vertical_frames = hero.role_body.vframes
 	mount_visual.set_rider_pose(
 		pose_scene,
 		pose_path,

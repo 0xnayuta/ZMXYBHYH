@@ -1,38 +1,38 @@
 extends Button
 
 @onready var pd: Label = $pd
-var RealName
-var zhenfaName: String
-var Father
+var real_name
+var zhenfa_name: String
+var father
 var _last_icon_name: String = ""
 
 
 func _physics_process(delta: float) -> void:
-	if zhenfaName != _last_icon_name:
-		_last_icon_name = zhenfaName
+	if zhenfa_name != _last_icon_name:
+		_last_icon_name = zhenfa_name
 		self.set_button_icon(
-			Global.get_cached_texture("res://Art/TwentyEightConstellations/" + str(zhenfaName) + ".png")
+			Global.get_cached_texture("res://Art/TwentyEightConstellations/" + str(zhenfa_name) + ".png")
 		)
 
 
 func _on_pressed() -> void:
-	match zhenfaName:
+	match zhenfa_name:
 		"slz":
-			RealName = "森罗阵"
+			real_name = "森罗阵"
 		"lpz":
-			RealName = "落魄阵"
+			real_name = "落魄阵"
 		"tsz":
-			RealName = "腾蛇阵"
+			real_name = "腾蛇阵"
 		"tqz":
-			RealName = "太清阵"
-	var List = PlayerData.player_data[RealName]
+			real_name = "太清阵"
+	var list = PlayerData.player_data[real_name]
 	var Num: int = 0
-	for i in List:
-		if typeof(List[i]) == TYPE_DICTIONARY:
+	for i in list:
+		if typeof(list[i]) == TYPE_DICTIONARY:
 			Num += 1
-	if Father != null:
-		Father.CurrentZhenFaName = zhenfaName
-		if Father.CurrentNum > Num:
-			Father.CurrentNum = 1
-		Father.on_change_name()
-		Father.add_zhenyan_button()
+	if father != null:
+		father.current_zhen_fa_name = zhenfa_name
+		if father.current_num > Num:
+			father.current_num = 1
+		father.on_change_name()
+		father.add_zhenyan_button()

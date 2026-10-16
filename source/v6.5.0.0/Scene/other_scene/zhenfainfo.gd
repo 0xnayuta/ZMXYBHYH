@@ -5,25 +5,25 @@ extends Node2D
 @onready var text_4: Label = $VBoxContainer/text_4
 @onready var zhen_fa_level: Label = $BG/ZhenFaLevel
 @onready var add_prop: Label = $VBoxContainer2/AddProp
-@onready var skill_info: Label = $VBoxContainer2/SkillInfo
-var Father
-var ZhenFaType: String
-var RealName: String
+@onready var skill_info: Label = $VBoxContainer2/skill_info
+var father
+var zhen_fa_type: String
+var real_name: String
 
 
 func _physics_process(delta: float) -> void:
-	if Father != null:
-		ZhenFaType = Father.CurrentZhenFaName
-		match ZhenFaType:
+	if father != null:
+		zhen_fa_type = father.current_zhen_fa_name
+		match zhen_fa_type:
 			"slz":
-				RealName = "森罗阵"
+				real_name = "森罗阵"
 			"lpz":
-				RealName = "落魄阵"
+				real_name = "落魄阵"
 			"tsz":
-				RealName = "腾蛇阵"
+				real_name = "腾蛇阵"
 			"tqz":
-				RealName = "太清阵"
-		zhen_fa_level.text = "阵法等级：Lv." + str(PlayerData.player_data[RealName]["Level"])
+				real_name = "太清阵"
+		zhen_fa_level.text = "阵法等级：Lv." + str(PlayerData.player_data[real_name]["Level"])
 		set_prop_text()
 		set_add_prop_text()
 		set_skill_info()
@@ -31,8 +31,8 @@ func _physics_process(delta: float) -> void:
 
 
 func set_add_prop_text():
-	var cur_level = PlayerData.player_data[RealName]["Level"]
-	match RealName:
+	var cur_level = PlayerData.player_data[real_name]["Level"]
+	match real_name:
 		"森罗阵":
 			add_prop.text = "附加属性：最终伤害减少" + str(cur_level) + "%"
 		"落魄阵":
@@ -44,8 +44,8 @@ func set_add_prop_text():
 
 
 func set_skill_info():
-	var cur_level = PlayerData.player_data[RealName]["Level"]
-	match RealName:
+	var cur_level = PlayerData.player_data[real_name]["Level"]
+	match real_name:
 		"森罗阵":
 			skill_info.text = "森罗阵Lv." + str(cur_level) + "：使用后立刻获得森罗加护（自身受伤减少" + str(cur_level * 2) + "%，效果持续10秒）。"
 		"落魄阵":
@@ -65,14 +65,14 @@ func set_skill_info():
 
 
 func set_prop_text():
-	var List = PlayerData.player_data[RealName]
-	for i in List:
-		if typeof(List[i]) == TYPE_DICTIONARY:
-			var Prop = int(List[i]["Level"] * RoleProp.ZhenFaProps[RealName][i]["Value"])
-			var PropType = RoleProp.ZhenFaProps[RealName][i]["Type"]
-			var TargetText = get_node("PropText/text_" + str(i))
+	var list = PlayerData.player_data[real_name]
+	for i in list:
+		if typeof(list[i]) == TYPE_DICTIONARY:
+			var Prop = int(list[i]["Level"] * RoleProp.zhen_fa_props[real_name][i]["Value"])
+			var prop_type = RoleProp.zhen_fa_props[real_name][i]["Type"]
+			var target_text = get_node("PropText/text_" + str(i))
 			if Prop > 0:
-				TargetText.visible = true
-				TargetText.text = i + "号位Lv." + str(List[i]["Level"]) + "：" + str(PropType) + "+" + str(Prop)
+				target_text.visible = true
+				target_text.text = i + "号位Lv." + str(list[i]["Level"]) + "：" + str(prop_type) + "+" + str(Prop)
 			else:
-				TargetText.visible = false
+				target_text.visible = false

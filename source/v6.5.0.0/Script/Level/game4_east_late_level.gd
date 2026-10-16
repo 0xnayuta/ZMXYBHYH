@@ -98,8 +98,8 @@ func _build_level_runtime() -> void:
 
 
 func _create_imported_background(data: Dictionary) -> void:
-	var fixed_parent := get_node_or_null("BackGround/End") as Node2D
-	var scrolling_parent := get_node_or_null("BackGround/floor_2") as Node2D
+	var fixed_parent := get_node_or_null("back_ground/End") as Node2D
+	var scrolling_parent := get_node_or_null("back_ground/floor_2") as Node2D
 	if fixed_parent == null or scrolling_parent == null:
 		return
 	var map_name := str(data["map"])
@@ -284,8 +284,8 @@ func _create_screen_walls() -> void:
 func _apply_spawn_facing(created: BaseMonster, face: float) -> void:
 	super._apply_spawn_facing(created, face)
 	if not _source_terrain.is_empty() and is_instance_valid(created):
-		created.set_collision_mask_value(21, not created.is_Fly)
-		if stage_number == 73 and not created.is_Fly:
+		created.set_collision_mask_value(21, not created.is_fly)
+		if stage_number == 73 and not created.is_fly:
 			created.floor_max_angle = deg_to_rad(80.0)
 			created.floor_snap_length = 18.0
 			created.floor_constant_speed = true

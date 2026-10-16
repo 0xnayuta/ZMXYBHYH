@@ -161,7 +161,7 @@ func _configure_monster() -> void:
 	prince_kind = clampi(prince_kind, 0, PRINCE_CONFIGS.size() - 1)
 	_config = PRINCE_CONFIGS[prince_kind]
 	is_boss = true
-	CannotAttract = true
+	cannot_attract = true
 	set_meta("allow_role_special_control", true)
 	my_mr_name = str(_config.get("name", "三太子"))
 	var role_level := 50
@@ -648,8 +648,8 @@ func _spawn_aimed_effect(
 ) -> void:
 	var start_position := global_position + _resolve_source_offset(local_offset)
 	var target_position := start_position + Vector2((1.0 if _faces_right() else -1.0) * 500.0, 0.0)
-	if RoleProp.SourcePlayer != null and is_instance_valid(RoleProp.SourcePlayer):
-		target_position = RoleProp.SourcePlayer.global_position + Vector2(0.0, -55.0)
+	if RoleProp.source_player != null and is_instance_valid(RoleProp.source_player):
+		target_position = RoleProp.source_player.global_position + Vector2(0.0, -55.0)
 	var aim_direction := start_position.direction_to(target_position)
 	if aim_direction == Vector2.ZERO:
 		aim_direction = Vector2(1.0 if _faces_right() else -1.0, 0.0)
@@ -708,14 +708,14 @@ func _start_guard(
 	var generation := _guard_generation
 	_guard_active = true
 	_guard_mode = guard_mode
-	IsSuperArmor = guard_mode == &"fortify"
-	HurtBl = damage_multiplier
+	super_armor_active = guard_mode == &"fortify"
+	hurt_bl = damage_multiplier
 	await get_tree().create_timer(duration, true).timeout
 	if is_instance_valid(self) and generation == _guard_generation:
 		_guard_active = false
 		_guard_mode = &""
-		IsSuperArmor = false
-		HurtBl = 1.0
+		super_armor_active = false
+		hurt_bl = 1.0
 
 
 func _spawn_muzha_clone() -> void:
@@ -757,9 +757,9 @@ func _faces_right() -> bool:
 
 
 func _has_incoming_role_projectile() -> bool:
-	if RoleProp.SourcePlayer == null or not is_instance_valid(RoleProp.SourcePlayer):
+	if RoleProp.source_player == null or not is_instance_valid(RoleProp.source_player):
 		return false
-	var bullet_root: Node = RoleProp.SourcePlayer.get_node_or_null("Bullet")
+	var bullet_root: Node = RoleProp.source_player.get_node_or_null("Bullet")
 	if bullet_root == null:
 		return false
 	return _has_nearby_projectile_recursive(bullet_root)

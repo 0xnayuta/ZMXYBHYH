@@ -15,25 +15,25 @@ var trap_sky_10
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "蝙蝠窟"
+	Global.current_level = "蝙蝠窟"
 	bgm_node = Global.add_bgm(self, "res://Music/level/7_bg2.mp3")
 	add_trap_sky()
 	set_trap_floor()
 	self.level_stage = 4
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [7, 7, 7, 7, 7, 7, 7, 7, 7],
 		"stage_2": [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
 		"stage_3": [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
 		"stage_4": [7, 7, 7, 7, 7, 8],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [700, 700, 700, 700, 700, 700, 700, 700, 700],
 		"stage_2": [2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000],
 		"stage_3": [3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000],
 		"stage_4": [4500, 4500, 4500, 4500, 4500, 4350],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [300, 300, 300, 300, 300, 300, 300, 300, 300],
 		"stage_2": [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
 		"stage_3": [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],

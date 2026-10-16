@@ -3,7 +3,7 @@ extends Control
 @onready var tab_bar: TabBar = $MarginContainer/VBoxContainer/TabBar
 @onready var current_page_text: Label = $ChangePage/CurrentPageText
 @onready var title: Label = $MarginContainer/VBoxContainer/title
-@onready var PlSell = $MarginContainer/VBoxContainer/HBoxContainer/pl_sell
+@onready var pl_sell = $MarginContainer/VBoxContainer/HBoxContainer/pl_sell
 @onready var pet_backpack_button: TextureButton = $MarginContainer/VBoxContainer/HBoxContainer/pet_backpack
 @onready var timer: Timer = $Timer
 @onready var sort_button: Button = $SortButton
@@ -15,11 +15,11 @@ const LDL_EQUIPPED_SLOT_TYPES := ["武器", "防具", "饰品", "神骨", "法�
 var current_fl = 0
 var current_page = 1
 var max_page: int = 20
-var pl_sell
+var sell_panel
 var is_in_ldl
 var message
-var ChooseList = []
-var ChooseMs: bool
+var choose_list = []
+var choose_ms: bool
 var pet_item_id_cache: Dictionary = {}
 
 
@@ -31,22 +31,22 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	sort_button.disabled = Global.is_in_ldl or ChooseMs or is_instance_valid(pl_sell)
+	sort_button.disabled = Global.is_in_ldl or choose_ms or is_instance_valid(sell_panel)
 	if not PlayerData.player_data["ieho"]:
 		if PlayerData.check_have_zb("xczg")[0]:
 			PlayerData.player_data["ieho"] = true
 	var show_pet_backpack: bool = Global.is_in_ldl == true and str(MLdl.loc_) in ["强化", "镶嵌"]
 	pet_backpack_button.visible = show_pet_backpack
-	PlSell.visible = not show_pet_backpack
+	pl_sell.visible = not show_pet_backpack
 	if current_fl == 3 and not show_pet_backpack:
 		current_fl = 0
 		current_page = 1
 	_update_max_page()
 	current_page_text.text = str(current_page) + "/" + str(max_page)
 	if Global.is_in_ldl:
-		PlSell.disabled = true
+		pl_sell.disabled = true
 	else:
-		PlSell.disabled = false
+		pl_sell.disabled = false
 	coin_number.text = str(PlayerData.get_soul())
 
 
@@ -83,11 +83,11 @@ func _pet_item_id(item: Dictionary) -> String:
 	for source in [item, data]:
 		for key in ["物品ID", "ID", "id"]:
 			var candidate := str(source.get(key, "")).strip_edges()
-			if AE.AllEquipment_.has(candidate):
+			if AE.all_equipment.has(candidate):
 				return candidate
 		for key in ["图标", "图标路径", "icon", "Icon"]:
 			var candidate := str(source.get(key, "")).get_file().get_basename()
-			if AE.AllEquipment_.has(candidate):
+			if AE.all_equipment.has(candidate):
 				return candidate
 	var stored_name := (
 		str(
@@ -97,12 +97,12 @@ func _pet_item_id(item: Dictionary) -> String:
 		)
 		. strip_edges()
 	)
-	if AE.AllEquipment_.has(stored_name):
+	if AE.all_equipment.has(stored_name):
 		return stored_name
 	if pet_item_id_cache.has(stored_name):
 		return str(pet_item_id_cache[stored_name])
-	for item_id in AE.AllEquipment_:
-		if str(AE.AllEquipment_[item_id].get(DataKeys.NAME, "")) == stored_name:
+	for item_id in AE.all_equipment:
+		if str(AE.all_equipment[item_id].get(DataKeys.NAME, "")) == stored_name:
 			pet_item_id_cache[stored_name] = str(item_id)
 			return str(item_id)
 	var fallback := stored_name if stored_name != "" else "宠物装备"
@@ -162,9 +162,9 @@ func _get_ldl_equipment_entries() -> Array:
 		if not (equipped_item is Dictionary):
 			continue
 		var item_name := str((equipped_item as Dictionary).get(DataKeys.NAME, ""))
-		if item_name == "" or not AE.AllEquipment_.has(item_name):
+		if item_name == "" or not AE.all_equipment.has(item_name):
 			continue
-		if ldl_type_filter != "" and str(AE.AllEquipment_[item_name].get(DataKeys.TYPE, "")) != ldl_type_filter:
+		if ldl_type_filter != "" and str(AE.all_equipment[item_name].get(DataKeys.TYPE, "")) != ldl_type_filter:
 			continue
 		(
 			entries
@@ -194,8 +194,8 @@ func _get_ldl_equipment_entries() -> Array:
 					if (
 						ldl_type_filter != ""
 						and (
-							not AE.AllEquipment_.has(item_name)
-							or str(AE.AllEquipment_[item_name].get(DataKeys.TYPE, "")) != ldl_type_filter
+							not AE.all_equipment.has(item_name)
+							or str(AE.all_equipment[item_name].get(DataKeys.TYPE, "")) != ldl_type_filter
 						)
 					):
 						continue
@@ -224,10 +224,10 @@ func _set_ldl_equipment_box_data() -> void:
 		var entry: Dictionary = entries[entry_index]
 		var item: Dictionary = entry.get("item", {})
 		var item_name := str(item.get(DataKeys.NAME, ""))
-		if item_name == "" or not AE.AllEquipment_.has(item_name):
+		if item_name == "" or not AE.all_equipment.has(item_name):
 			continue
 		var item_data: Dictionary = item.get("Data", {}) if item.get("Data", {}) is Dictionary else {}
-		var item_type := str(AE.AllEquipment_[item_name].get(DataKeys.TYPE, ""))
+		var item_type := str(AE.all_equipment[item_name].get(DataKeys.TYPE, ""))
 		var wx_list: Variant = item.get(DataKeys.FIVE_ELEMENTS, []) if item_type == "法宝" else []
 		var box = target_box(x)
 		_set_box_item(box, item_name, int(item.get(DataKeys.ENHANCE_LEVEL, 0)), 0, item_data, wx_list)
@@ -259,7 +259,7 @@ func set_box_data():
 				target_box(x).qh_level = i.强化等级
 				target_box(x).EQ_prop = i.Data
 				target_box(x).item_locked = bool(i.Data.get("锁定", false))
-				if AE.AllEquipment_[i.名字][DataKeys.TYPE] == "法宝":
+				if AE.all_equipment[i.名字][DataKeys.TYPE] == "法宝":
 					target_box(x).wx = i.五行
 				else:
 					target_box(x).wx = []
@@ -341,7 +341,7 @@ func set_empty_box():
 
 func load_(name_):
 	var item_id := str(name_)
-	var item_data: Dictionary = AE.AllEquipment_.get(item_id, {})
+	var item_data: Dictionary = AE.all_equipment.get(item_id, {})
 	var data_icon_path := str(item_data.get("图标", ""))
 	if data_icon_path != "" and ResourceLoader.exists(data_icon_path):
 		return load(data_icon_path)
@@ -365,21 +365,21 @@ func _on_add_dj_pressed() -> void:
 
 
 func _on_bulk_sell_pressed() -> void:
-	if pl_sell == null:
-		pl_sell = Global.add_pl_sell(PlSell, Vector2(90, 0))
-		pl_sell.MainBack = self
-	elif pl_sell != null:
+	if sell_panel == null:
+		sell_panel = Global.add_pl_sell(pl_sell, Vector2(90, 0))
+		sell_panel.main_back = self
+	elif sell_panel != null:
 		remove_choose()
-		pl_sell.queue_free()
+		sell_panel.queue_free()
 
 
 func remove_choose():
-	ChooseMs = false
-	ChooseList.clear()
+	choose_ms = false
+	choose_list.clear()
 
 
 func _on_sort_pressed() -> void:
-	if Global.is_in_ldl or ChooseMs or is_instance_valid(pl_sell):
+	if Global.is_in_ldl or choose_ms or is_instance_valid(sell_panel):
 		return
 	if not PlayerData.organize_backpack():
 		return

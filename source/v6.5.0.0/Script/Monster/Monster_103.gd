@@ -1,5 +1,5 @@
 extends BaseMonster
-var MyChild: MonsterBullet
+var my_child: MonsterBullet
 
 
 func monster_103():
@@ -186,18 +186,18 @@ func call_bullet_1():
 
 
 func call_bullet_2():
-	var BoolList = [true, false]
-	for i in BoolList:
+	var bool_list = [true, false]
+	for i in bool_list:
 		Global.add_bullet(
 			"Monster103Bullet3", self.bullet, i, 2, Vector2(0, -50) + position, "hit2", self.objattackDic["hit2"]
 		)
 	await get_tree().create_timer(0.4, false).timeout
-	for i in BoolList:
+	for i in bool_list:
 		Global.add_bullet(
 			"Monster103Bullet3", self.bullet, i, 2, Vector2(0, -50) + position, "hit2", self.objattackDic["hit2"]
 		)
 	await get_tree().create_timer(0.4, false).timeout
-	for i in BoolList:
+	for i in bool_list:
 		Global.add_bullet(
 			"Monster103Bullet3", self.bullet, i, 2, Vector2(0, -50) + position, "hit2", self.objattackDic["hit2"]
 		)

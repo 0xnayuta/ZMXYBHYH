@@ -34,7 +34,7 @@ func _ready() -> void:
 
 func _configure_qiongqi() -> void:
 	is_boss = true
-	CannotAttract = true
+	cannot_attract = true
 	set_meta("allow_role_special_control", true)
 	my_mr_name = "穷奇"
 	attack_in = 200

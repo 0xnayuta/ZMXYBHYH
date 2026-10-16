@@ -3,7 +3,7 @@ var use_skill_2
 
 
 func monster_19():
-	self.is_Fly = true
+	self.is_fly = true
 	self.is_boss = false
 	self.my_mr_name = "鲨鱼"
 	self.attack_in = 10
@@ -116,7 +116,7 @@ func call_sylj():
 func have_target():
 	if is_quiescent:
 		return
-	if is_Fly:
+	if is_fly:
 		mr_player.play("Fly")
 		if RoleProp.get_nearest_monster_target_position(global_position).y > position.y + randi_range(125, 245):
 			velocity.y = speed * 8

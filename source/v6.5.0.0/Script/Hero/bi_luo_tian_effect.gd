@@ -185,11 +185,11 @@ func _apply_hit(target: BaseMonster) -> void:
 				target.monster_blood_bar = Global.add_monster_blood(
 					target, Vector2(-30, -90), target.Hp / float(target.SHp), target.Hp
 				)
-		Global.TotalRoleHit += damage
-		Global.TotalMagHit += damage
+		Global.total_role_hit += damage
+		Global.total_mag_hit += damage
 		Global.add_sound(target, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 		if not target.is_miss and not target.is_boss_protecting():
-			target.HurtSpecialEffect = Global.add_mr_hurt(target.pz, Vector2(0, 0))
+			target.hurt_special_effect = Global.add_mr_hurt(target.pz, Vector2(0, 0))
 		if not target.is_control_immune():
 			_apply_hit_stun(target)
 		if not target.is_boss_protecting():

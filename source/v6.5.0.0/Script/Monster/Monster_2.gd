@@ -5,8 +5,8 @@ func monster_2():
 	self.is_boss = false
 	self.my_mr_name = "妖猴"
 	self.attack_in = 60
-	self.RunHit = true
-	self.RunHitCount = 90
+	self.run_hit_active = true
+	self.run_hit_count = 90
 	self.level = 5
 	self.SHp = 90
 	self.Hp = self.SHp

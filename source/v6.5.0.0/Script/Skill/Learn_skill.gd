@@ -4,7 +4,7 @@ const SKILL_FORMULA_DATA = preload("res://Script/skill/skill_damage_formula_data
 const FORMULA_FONT = preload("res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf")
 @onready var front_bg: ColorRect = $bg/lh_pic/front_bg
 @onready var Title: Label = $bg/lh_pic/front_bg/Title
-@onready var Lh_value: Label = $bg/lh_pic/lh_value
+@onready var lh_value: Label = $bg/lh_pic/lh_value
 @onready var damage_description_button: Button = $bg/lh_pic/front_bg/damage_description
 
 var zd_sk
@@ -53,7 +53,7 @@ func _update_coin_value() -> void:
 	if coin_num == _last_coin_num:
 		return
 	_last_coin_num = coin_num
-	Lh_value.text = str(coin_num)
+	lh_value.text = str(coin_num)
 
 
 func _on_zd_skill_pressed() -> void:

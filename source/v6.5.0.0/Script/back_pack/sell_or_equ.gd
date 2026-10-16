@@ -16,7 +16,7 @@ var outside_click_enabled: bool = false
 
 @onready var infor = $VBoxContainer/infor
 @onready var lock_button: Button = $VBoxContainer/lock
-@onready var lock_text: Label = $VBoxContainer/lock/Text
+@onready var lock_text: Label = $VBoxContainer/lock/text_str
 
 
 func _ready() -> void:
@@ -161,7 +161,7 @@ func _on_equ_pressed() -> void:
 	var new_list = PlayerData.get_zb_data(page, number)
 	if not check_can_equipment(new_list[DataKeys.NAME]):
 		return
-	match AE.AllEquipment_[new_list[DataKeys.NAME]][DataKeys.TYPE]:
+	match AE.all_equipment[new_list[DataKeys.NAME]][DataKeys.TYPE]:
 		"武器":
 			PlayerData.remove_zb(page, number)
 			if PlayerData.player_data[DataKeys.WEAPON].size() != 0:
@@ -283,7 +283,7 @@ func _on_equ_pressed() -> void:
 				PlayerData.zl_zb()
 		"法宝":
 			PlayerData.remove_zb(page, number)
-			if Global.FB_CD <= 0:
+			if Global.fb_cd <= 0:
 				if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() != 0:
 					var mz = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
 					var ql = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL]
@@ -307,8 +307,8 @@ func _on_equ_pressed() -> void:
 				Global.add_message_show(parent, "当前法宝正在使用，无法更换！！", 1.5, Vector2(485, 240))
 	RoleProp.get_equ_last_pro()
 	RoleProp.get_last_prop()
-	if is_instance_valid(RoleProp.SourcePlayer):
-		RoleProp.SourcePlayer.on_eqchange()
+	if is_instance_valid(RoleProp.source_player):
+		RoleProp.source_player.on_eqchange()
 	MemoryClass.save_game(Global.cd_path)
 	queue_free()
 
@@ -328,9 +328,9 @@ func _on_sell_pressed() -> void:
 	if not EQ_prop.has(DataKeys.TYPE):
 		PlayerData.remove_zb(page, number)
 		return
-	var Lx = EQ_prop[DataKeys.TYPE]
+	var lx = EQ_prop[DataKeys.TYPE]
 	var pz = EQ_prop[DataKeys.QUALITY]
-	match Lx:
+	match lx:
 		"武器", "防具", "饰品":
 			if EQ_prop[DataKeys.GEM].size() == 0:
 				pass
@@ -346,14 +346,14 @@ func _on_sell_pressed() -> void:
 			"确定要卖出" + str(pz) + "品质的" + str(item_name) + "吗？（此装备已强化至+" + str(abc[DataKeys.ENHANCE_LEVEL]) + "。）"
 		)
 		return
-	if Lx == "法宝":
-		_show_sell_confirm("确定要卖出" + str(Lx) + str(item_name) + "吗？（此装备已强化至+" + str(abc[DataKeys.ENHANCE_LEVEL]) + "。）")
+	if lx == "法宝":
+		_show_sell_confirm("确定要卖出" + str(lx) + str(item_name) + "吗？（此装备已强化至+" + str(abc[DataKeys.ENHANCE_LEVEL]) + "。）")
 		return
 	if abc[DataKeys.ENHANCE_LEVEL] > 0:
-		_show_sell_confirm("确定要卖出" + str(Lx) + str(item_name) + "吗？（此装备已强化至+" + str(abc[DataKeys.ENHANCE_LEVEL]) + "。）")
+		_show_sell_confirm("确定要卖出" + str(lx) + str(item_name) + "吗？（此装备已强化至+" + str(abc[DataKeys.ENHANCE_LEVEL]) + "。）")
 		return
 
-	var get_value = AE.AllEquipment_[get_name_]["售价"]
+	var get_value = AE.all_equipment[get_name_]["售价"]
 	PlayerData.add_soul(get_value)
 	MemoryClass.save_game(Global.cd_path)
 	PlayerData.remove_zb(page, number)
@@ -405,7 +405,7 @@ func sell():
 		visible = true
 		_refresh_lock_button()
 		return
-	var get_value = AE.AllEquipment_[get_name_]["售价"]
+	var get_value = AE.all_equipment[get_name_]["售价"]
 	PlayerData.add_soul(get_value)
 	MemoryClass.save_game(Global.cd_path)
 	PlayerData.remove_zb(page, number)
@@ -435,37 +435,37 @@ func _on_panel_mouse_exited() -> void:
 
 
 func check_can_equipment(EquipmentName):
-	var RoleID: int = PlayerData.player_data["Myself"]
+	var role_id: int = PlayerData.player_data["Myself"]
 	var parent = Global.get_parent_(self, 3)
-	var EqBase = AE.AllEquipment_[EquipmentName]["所属"]
-	var Name_ = AE.AllEquipment_[EquipmentName][DataKeys.NAME] as String
-	var RoleBase: String
-	if EqBase == "通用":
+	var eq_base = AE.all_equipment[EquipmentName]["所属"]
+	var name_str = AE.all_equipment[EquipmentName][DataKeys.NAME] as String
+	var role_base: String
+	if eq_base == "通用":
 		return true
-	match RoleID:
+	match role_id:
 		1:
-			RoleBase = "悟空"
-			if EqBase == "悟空":
+			role_base = "悟空"
+			if eq_base == "悟空":
 				return true
 		2:
-			RoleBase = "唐僧"
-			if EqBase == "唐僧":
+			role_base = "唐僧"
+			if eq_base == "唐僧":
 				return true
 		3:
-			RoleBase = "八戒"
-			if EqBase == "八戒":
+			role_base = "八戒"
+			if eq_base == "八戒":
 				return true
 		4:
-			RoleBase = "沙僧"
-			if EqBase == "沙僧·铲" or EqBase == "沙僧·弓" or EqBase == "沙僧":
+			role_base = "沙僧"
+			if eq_base == "沙僧·铲" or eq_base == "沙僧·弓" or eq_base == "沙僧":
 				return true
 		5:
-			RoleBase = "白龙"
-			if EqBase == "白龙":
+			role_base = "白龙"
+			if eq_base == "白龙":
 				return true
 		6:
-			RoleBase = "哪吒"
-			if EqBase == "哪吒":
+			role_base = "哪吒"
+			if eq_base == "哪吒":
 				return true
-	Global.add_message_show(parent, Name_ + "属于" + EqBase + "，" + RoleBase + "无法穿戴！！", 1.5, Vector2(485, 240))
+	Global.add_message_show(parent, name_str + "属于" + eq_base + "，" + role_base + "无法穿戴！！", 1.5, Vector2(485, 240))
 	return false

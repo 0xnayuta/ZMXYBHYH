@@ -100,7 +100,7 @@ func _ready() -> void:
 			var point: Array = NorthOriginalData.sky_path()[i]
 			if float(point[0]) < ahead:
 				_sky_path.append(Vector2(float(point[0]) - maxf(ahead, 0), float(point[1])))
-	if is_Fly or int(_raw["model"]) in [3422, 3528]:
+	if is_fly or int(_raw["model"]) in [3422, 3528]:
 		NoGrav = true
 		collision_mask = 0
 	floor_max_angle = deg_to_rad(80)
@@ -153,7 +153,7 @@ func _physics_process(delta: float) -> void:
 	var moving_by_skill := Time.get_ticks_msec() < _body_motion_until
 	if moving_by_skill:
 		NoGrav = true
-	if NoGrav and not is_Fly:
+	if NoGrav and not is_fly:
 		velocity.y = 0
 	if Time.get_ticks_msec() < _body_motion_until:
 		velocity = _body_motion
@@ -172,7 +172,7 @@ func _physics_process(delta: float) -> void:
 	if _regen_clock >= 1:
 		_regen_clock -= 1
 		cure_hp(int(_raw.get("reHP", "0")))
-	if is_Fly:
+	if is_fly:
 		if _sky_path.is_empty():
 			_keep_in_view()
 		else:
@@ -188,7 +188,7 @@ func _physics_process(delta: float) -> void:
 		global_position = _tree.global_position + Vector2(0, -200)
 	elif _tree != null:
 		_tree = null
-		NoGrav = is_Fly
+		NoGrav = is_fly
 	var level := get_level_node()
 	if level is NorthContinentLevel and not level.in_void_space:
 		var room: Rect2 = level.source_battle_bounds()
@@ -270,7 +270,7 @@ func ai_think() -> void:
 	elif reachable.is_empty():
 		have_target()
 	else:
-		velocity = Vector2.ZERO if is_Fly else Vector2(0, velocity.y)
+		velocity = Vector2.ZERO if is_fly else Vector2(0, velocity.y)
 		mr_player.play(&"wait")
 
 
@@ -284,7 +284,7 @@ func have_target() -> void:
 		velocity = Vector2.ZERO
 		return
 	velocity.x = signf(target.x - global_position.x) * float(_raw["walkSpeed"]) * 3
-	if is_Fly:
+	if is_fly:
 		if Time.get_ticks_msec() >= _seek_refresh:
 			var scope := NorthOriginalData.numbers(
 				_skill_actions[_skill_actions.keys()[0]]["data"].get("skillScope", "0,50,0,50")
@@ -301,7 +301,7 @@ func have_target() -> void:
 		velocity = (
 			offset.normalized() * minf(float(_raw["walkSpeed"]) * 3, offset.length() / get_physics_process_delta_time())
 		)
-	mr_player.play(&"Fly" if is_Fly else &"walk")
+	mr_player.play(&"Fly" if is_fly else &"walk")
 
 
 func to_hero() -> void:
@@ -489,7 +489,7 @@ func _run_source_skill(action: StringName, generation: int) -> void:
 		var target := RoleProp.get_nearest_monster_target_position(global_position)
 		global_position.x = target.x
 		if model == 3400:
-			var hero := RoleProp.SourcePlayer as BaseHero
+			var hero := RoleProp.source_player as BaseHero
 			var target_feet := target.y + 39.0
 			var target_facing := 1.0
 			if is_instance_valid(hero) and hero.global_position.distance_squared_to(target) < 4.0:

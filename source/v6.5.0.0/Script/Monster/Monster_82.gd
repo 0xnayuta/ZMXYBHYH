@@ -2,10 +2,10 @@ extends BaseMonster
 
 
 func monster_82():
-	self.CHangeClamCount = 3
-	self.IsSmartMonster = true
-	self.SmartWaitCount = 60
-	self.SmartHitCount = 40
+	self.c_hange_clam_count = 3
+	self.is_smart_monster = true
+	self.smart_wait_count = 60
+	self.smart_hit_count = 40
 	self.is_boss = false
 	self.my_mr_name = "天兵·弓"
 	self.attack_in = 10
@@ -63,18 +63,18 @@ func _ready() -> void:
 
 
 func add_bullet():
-	var TargetPosition: Vector2
+	var target_position: Vector2
 	if MonsterDirection:
-		TargetPosition = Vector2(30, 5)
+		target_position = Vector2(30, 5)
 	else:
-		TargetPosition = Vector2(-30, 5)
-	var Arrow = Global.add_bullet(
+		target_position = Vector2(-30, 5)
+	var arrow = Global.add_bullet(
 		"Monster82Bullet",
 		self.bullet,
 		MonsterDirection,
 		1,
-		TargetPosition + position,
+		target_position + position,
 		"hit1",
 		self.objattackDic["hit1"]
 	)
-	Arrow.scale = Vector2(0.7, 0.7)
+	arrow.scale = Vector2(0.7, 0.7)

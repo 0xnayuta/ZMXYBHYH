@@ -1,6 +1,6 @@
 extends Control
 
-var isSet: bool = false
+var is_set: bool = false
 var touch_scale: float = 1.0
 var size_: Vector2 = Vector2(200, 200)
 var curSize: float = 200.0

@@ -1,10 +1,10 @@
 extends BaseMonster
 class_name Monster53
-var CheckCount: int = 0
+var check_count: int = 0
 
 
 func monster_53():
-	self.is_Fly = true
+	self.is_fly = true
 	self.is_boss = false
 	self.my_mr_name = "曼珠"
 	self.attack_in = 0
@@ -51,10 +51,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	if CheckCount % 60 == 0:
+	if check_count % 60 == 0:
 		if check_have_sh() and Hp > 0:
 			cure_hp(int(self.SHp * 0.03))
-	CheckCount += 1
+	check_count += 1
 
 
 func check_have_sh():

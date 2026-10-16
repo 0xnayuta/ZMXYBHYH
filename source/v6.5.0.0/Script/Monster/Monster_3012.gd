@@ -59,9 +59,9 @@ func _configure_axe() -> void:
 	fall_list = []
 	fall_stone = []
 	NoGrav = true
-	is_Fly = true
+	is_fly = true
 	has_target = true
-	CannotAttract = true
+	cannot_attract = true
 	NoTarget = false
 	hit_name = "hit1"
 	objattackDic = {

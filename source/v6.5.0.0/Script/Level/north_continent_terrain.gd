@@ -125,7 +125,7 @@ func _physics_process(delta: float) -> void:
 				if _portals[side].visible and _portals[side].overlaps_body(role):
 					_level.enter_maze_gate(side)
 					break
-	if _level.stage_number != 85 and rect.end.y >= _death_y and not role.IsDeath:
+	if _level.stage_number != 85 and rect.end.y >= _death_y and not role.is_death:
 		RoleProp.roleprop.Hp = 0
 	for enemy in _level.monster.get_children():
 		if enemy is BaseMonster:

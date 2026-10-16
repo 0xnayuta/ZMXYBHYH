@@ -5,93 +5,93 @@ const RecipeData = preload("res://Script/ldl/recipe_data.gd")
 @onready var page: Label = $BG/ChangePage/Page
 var message
 
-var PositonList = [Vector2(0, -10), Vector2(0, 45), Vector2(0, 100), Vector2(0, 155)]
+var positon_list = [Vector2(0, -10), Vector2(0, 45), Vector2(0, 100), Vector2(0, 155)]
 
-var ZBlIST = []
-var DJlIST = []
-var FBlIST = []
-var SZlIST = []
-var TotalList = []
+var z_bl_ist = []
+var d_jl_ist = []
+var f_bl_ist = []
+var s_zl_ist = []
+var total_list = []
 
-var L_zbList = {}
-var L_djList = {}
-var L_fbList = {}
-var L_szList = {}
-var L_totalList = {}
+var l_zb_list = {}
+var l_dj_list = {}
+var l_fb_list = {}
+var l_sz_list = {}
+var l_total_list = {}
 
-var TotalPage: int
-var ZBPage: int
-var DJPage: int
-var FBPage: int
-var SZPage: int
+var total_page: int
+var zb_page: int
+var dj_page: int
+var fb_page: int
+var sz_page: int
 
-var CurrentPage: int = 1:
+var current_page: int = 1:
 	set(vl):
-		CurrentPage = vl
+		current_page = vl
 		add_help_items()
 
-var MaxPage: int
+var max_page: int
 
-var CurrentType: int = 0:
+var current_type: int = 0:
 	set(vl):
-		CurrentType = vl
+		current_type = vl
 		on_current_type_change()
 
-var ItemList_ = []
+var item_list = []
 
 
 func _ready():
 	for recipe in RecipeData.RECIPES:
-		var type = AE.AllEquipment_[recipe["result"]][DataKeys.TYPE]
+		var type = AE.all_equipment[recipe["result"]][DataKeys.TYPE]
 		var display_recipe = {
 			"cl_1": recipe["materials"][0],
 			"cl_2": recipe["materials"][1],
 			"cl_3": recipe["materials"][2],
 			"scw": recipe["result"]
 		}
-		TotalList.append(display_recipe)
+		total_list.append(display_recipe)
 		match type:
 			"武器", "防具", "饰品", "头衔":
-				ZBlIST.append(display_recipe)
+				z_bl_ist.append(display_recipe)
 			"道具", "消耗品":
-				DJlIST.append(display_recipe)
+				d_jl_ist.append(display_recipe)
 			"法宝":
-				FBlIST.append(display_recipe)
+				f_bl_ist.append(display_recipe)
 			"时装":
-				SZlIST.append(display_recipe)
+				s_zl_ist.append(display_recipe)
 
 	build_page_dicts()
 
-	TotalPage = get_page(TotalList)
-	ZBPage = get_page(ZBlIST)
-	DJPage = get_page(DJlIST)
-	FBPage = get_page(FBlIST)
-	SZPage = get_page(SZlIST)
+	total_page = get_page(total_list)
+	zb_page = get_page(z_bl_ist)
+	dj_page = get_page(d_jl_ist)
+	fb_page = get_page(f_bl_ist)
+	sz_page = get_page(s_zl_ist)
 
 	add_help_items()
 
 
 func _physics_process(delta):
-	match CurrentType:
+	match current_type:
 		0:
-			MaxPage = TotalPage
+			max_page = total_page
 		1:
-			MaxPage = ZBPage
+			max_page = zb_page
 		2:
-			MaxPage = DJPage
+			max_page = dj_page
 		3:
-			MaxPage = FBPage
+			max_page = fb_page
 		4:
-			MaxPage = SZPage
-	page.text = str(CurrentPage) + "/" + str(MaxPage)
+			max_page = sz_page
+	page.text = str(current_page) + "/" + str(max_page)
 
 
 func build_page_dicts():
-	L_totalList = build_page_dict(TotalList)
-	L_zbList = build_page_dict(ZBlIST)
-	L_djList = build_page_dict(DJlIST)
-	L_fbList = build_page_dict(FBlIST)
-	L_szList = build_page_dict(SZlIST)
+	l_total_list = build_page_dict(total_list)
+	l_zb_list = build_page_dict(z_bl_ist)
+	l_dj_list = build_page_dict(d_jl_ist)
+	l_fb_list = build_page_dict(f_bl_ist)
+	l_sz_list = build_page_dict(s_zl_ist)
 
 
 func build_page_dict(list: Array) -> Dictionary:
@@ -110,7 +110,7 @@ func get_page(list: Array) -> int:
 
 
 func on_current_type_change():
-	CurrentPage = 1
+	current_page = 1
 	add_help_items()
 
 
@@ -118,58 +118,58 @@ func add_help_items():
 	remove_item()
 	var target_count = 0
 	var target_dict
-	match CurrentType:
+	match current_type:
 		0:
-			target_dict = L_totalList
+			target_dict = l_total_list
 		1:
-			target_dict = L_zbList
+			target_dict = l_zb_list
 		2:
-			target_dict = L_djList
+			target_dict = l_dj_list
 		3:
-			target_dict = L_fbList
+			target_dict = l_fb_list
 		4:
-			target_dict = L_szList
-	if target_dict.has("page" + str(CurrentPage)):
-		for recipe in target_dict["page" + str(CurrentPage)]:
-			ItemList_.append(Global.add_help_thing(self, PositonList[target_count], recipe))
+			target_dict = l_sz_list
+	if target_dict.has("page" + str(current_page)):
+		for recipe in target_dict["page" + str(current_page)]:
+			item_list.append(Global.add_help_thing(self, positon_list[target_count], recipe))
 			target_count += 1
 
 
 func remove_item():
-	for i in ItemList_:
+	for i in item_list:
 		if i != null:
 			i.queue_free()
-	ItemList_.clear()
+	item_list.clear()
 
 
 func _on_last_pressed():
-	if CurrentPage > 1:
-		CurrentPage -= 1
+	if current_page > 1:
+		current_page -= 1
 
 
 func _on_next_pressed():
-	if CurrentPage < MaxPage:
-		CurrentPage += 1
+	if current_page < max_page:
+		current_page += 1
 
 
 func _on_total_pressed():
-	CurrentType = 0
+	current_type = 0
 
 
 func _on_zb_pressed():
-	CurrentType = 1
+	current_type = 1
 
 
 func _on_dj_pressed():
-	CurrentType = 2
+	current_type = 2
 
 
 func _on_fb_pressed():
-	CurrentType = 3
+	current_type = 3
 
 
 func _on_sz_pressed():
-	CurrentType = 4
+	current_type = 4
 
 
 func _on_close_pressed():

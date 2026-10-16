@@ -38,10 +38,10 @@ func _on_hit_box_area_entered(area: Area2D, _extra = null) -> void:
 		if RoleProp.is_ws_state:
 			return
 		if target is Role3Hero:
-			if target.Is_sdBuff:
+			if target.is_sd_buff:
 				return
 		if target is Role3Hero:
-			if target.IsTMc:
+			if target.is_t_mc:
 				return
 		target.state_behit()
 		if randi_range(0, 100) < 50:

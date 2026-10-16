@@ -1,5 +1,5 @@
 extends BaseMonster
-var LevelBase
+var level_base
 var Stage = 1
 
 
@@ -53,8 +53,8 @@ func monster_94():
 
 
 func _ready() -> void:
-	LevelBase = get_parent().get_parent()
-	if LevelBase is Levelpty:
+	level_base = get_parent().get_parent()
+	if level_base is Levelpty:
 		Stage = 0
 	super._ready()
 	monster_94()

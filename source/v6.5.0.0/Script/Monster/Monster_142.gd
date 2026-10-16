@@ -1,7 +1,7 @@
 extends BaseMonster
 class_name Monster142
-var IsSky = false
-var RoundList = []
+var is_sky = false
+var round_list = []
 
 
 func monster_142():
@@ -100,12 +100,12 @@ func _ready() -> void:
 	Skill_2_CD = 5
 	Skill_3_CD = 7
 	Skill_4_CD = 9
-	Skill_5_CD = 11
+	skill_5_cd = 11
 
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	if IsSky == true:
+	if is_sky == true:
 		gravity = 0
 		velocity.y = 0
 	else:
@@ -127,7 +127,7 @@ func ai_think():
 					do_hit_1()
 				if Skill_3_CD <= 0:
 					do_hit_3()
-				if Skill_5_CD <= 0:
+				if skill_5_cd <= 0:
 					do_hit_5()
 			else:
 				stop_move()
@@ -137,7 +137,7 @@ func ai_think():
 					do_hit_3()
 				if Skill_4_CD <= 0:
 					do_hit_4()
-				if Skill_5_CD <= 0:
+				if skill_5_cd <= 0:
 					do_hit_5()
 
 
@@ -191,7 +191,7 @@ func do_hit_4():
 
 func do_hit_5():
 	super.to_hero()
-	Skill_5_CD = 20
+	skill_5_cd = 20
 	velocity.x = 0
 	hit_name = "hit5"
 	is_attacking = true
@@ -204,7 +204,7 @@ func do_hit_5():
 func tween_to_top():
 	if _movement_command_is_blocked():
 		return
-	ShouldInSky = true
+	should_in_sky = true
 	var tween = create_control_movement_tween()
 	tween.tween_property(self, "position", Vector2(0, -250) + position, 0.2)
 
@@ -212,21 +212,21 @@ func tween_to_top():
 func tween_to_top_2():
 	if _movement_command_is_blocked():
 		return
-	ShouldInSky = true
+	should_in_sky = true
 	var tween = create_control_movement_tween()
 	tween.tween_property(self, "position", Vector2(position.x, 100), 1)
 
 
 func drop():
-	ShouldInSky = false
+	should_in_sky = false
 
 
 func call_bullet_1():
-	var Round = Global.add_bullet(
+	var round_num = Global.add_bullet(
 		"Monster142Bullet1", self.bullet, false, 1, position, "hit1", self.objattackDic["hit1"]
 	)
 	var tween = create_tween()
-	tween.tween_property(Round, "position", RoleProp.SourcePlayer.position, 0.5)
+	tween.tween_property(round_num, "position", RoleProp.source_player.position, 0.5)
 
 
 func call_bullet_3():
@@ -246,18 +246,18 @@ func call_bullet_3():
 
 
 func call_bullet_4():
-	var MaxCount: int = 10
+	var max_count: int = 10
 	var target_count: int = 0
 	var tween = create_tween().set_parallel(true)
 	var bullet_spawn_positions = []
-	while target_count < MaxCount:
-		var NewRotation = 360 / MaxCount
-		NewRotation = NewRotation * target_count
-		var stabPosition = Vector2(
-			self.position.x + sin(float(NewRotation) * PI / 180) * 150,
-			self.position.y - 15 - cos(float(NewRotation) * PI / 180) * 150
+	while target_count < max_count:
+		var new_rotation = 360 / max_count
+		new_rotation = new_rotation * target_count
+		var stab_position = Vector2(
+			self.position.x + sin(float(new_rotation) * PI / 180) * 150,
+			self.position.y - 15 - cos(float(new_rotation) * PI / 180) * 150
 		)
-		bullet_spawn_positions.push_back(stabPosition)
+		bullet_spawn_positions.push_back(stab_position)
 		target_count += 1
 	if not MonsterDirection:
 		bullet_spawn_positions.reverse()
@@ -280,25 +280,25 @@ func call_bullet_5():
 		Vector2(500 + position.x, 450)
 	]
 	randomize()
-	var CountTime = bullet_spawn_positions.size() * 0.1
+	var count_time = bullet_spawn_positions.size() * 0.1
 	bullet_spawn_positions.shuffle()
 	for i in bullet_spawn_positions:
-		var Round = Global.add_bullet(
+		var round_num = Global.add_bullet(
 			"Monster55Bullet", self.bullet, false, 1, position, "hit5", self.objattackDic["hit5"]
 		)
-		RoundList.push_back(Round)
+		round_list.push_back(round_num)
 		var tween = create_tween()
-		tween.tween_property(Round, "position", i, 1)
+		tween.tween_property(round_num, "position", i, 1)
 		await get_tree().create_timer(0.1, false).timeout
 	await get_tree().create_timer(2, false).timeout
-	for i in RoundList:
+	for i in round_list:
 		if i != null:
 			var tween = create_tween()
 			tween.tween_property(i, "position", self.position, 1)
-	await get_tree().create_timer(CountTime, false).timeout
-	for i in RoundList:
+	await get_tree().create_timer(count_time, false).timeout
+	for i in round_list:
 		i.queue_free()
-	RoundList.clear()
+	round_list.clear()
 
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理

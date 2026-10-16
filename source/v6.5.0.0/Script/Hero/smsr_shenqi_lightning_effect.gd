@@ -276,27 +276,27 @@ func _apply_hit(target: BaseMonster) -> void:
 	owner_player.HitDic = hit_data
 	var damage := int(target.get_role_last_hurt(owner_player))
 	if damage > 0:
-		if RoleProp.SourcePlayer.Istsz:
+		if RoleProp.source_player.istsz:
 			var tsz_level := int(PlayerData.player_data["腾蛇阵"]["Level"])
-			RoleProp.SourcePlayer.tszzs = tsz_level * 0.015
+			RoleProp.source_player.tszzs = tsz_level * 0.015
 		else:
-			RoleProp.SourcePlayer.tszzs = 0.0
+			RoleProp.source_player.tszzs = 0.0
 		damage = int(
 			(
 				damage
 				* RoleProp.ws_up_power
 				* target.jgz_bl
 				* target.zznh_bl
-				* target.HurtBl
+				* target.hurt_bl
 				* (1.0 + target.lpzzs)
 				* (1.0 + owner_player.tszzs)
 				* target.llrdzs
 			)
 		)
-		target.GetHurt = damage
+		target.hurt_received = damage
 		target.hurt_reduce_hp(damage, owner_player)
 		target.add_lj(damage)
-		Global.TotalRoleHit += damage
-		Global.TotalMagHit += damage
+		Global.total_role_hit += damage
+		Global.total_mag_hit += damage
 		Global.add_sound(target, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 	owner_player.HitDic = old_hit_data

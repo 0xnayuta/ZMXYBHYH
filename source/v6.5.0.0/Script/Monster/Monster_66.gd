@@ -1,6 +1,6 @@
 extends BaseMonster
 @onready var death_: Timer = $Death
-var IsDrop = false
+var is_drop = false
 
 
 func monster_66():
@@ -119,18 +119,18 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 func to_top():
 	if _movement_command_is_blocked():
 		return
-	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 350)
+	var po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 350)
 	var tween = create_control_movement_tween()
-	tween.tween_property(self, "position", Po, 0.4)
+	tween.tween_property(self, "position", po, 0.4)
 
 
 func to_drop():
 	if _movement_command_is_blocked():
 		velocity.y = 0
-		IsDrop = false
+		is_drop = false
 		return
 	velocity.y += 900
 
 	await mr_player.animation_finished
 	is_attacking = false
-	IsDrop = false
+	is_drop = false

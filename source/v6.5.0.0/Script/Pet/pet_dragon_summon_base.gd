@@ -150,7 +150,7 @@ func _ready() -> void:
 func _initialize_summon_base() -> void:
 	randomize()
 	ran_num = randi_range(0, 100)
-	RndiCount = randi_range(0, 100)
+	rndi_count = randi_range(0, 100)
 	if has_node("CalmHit"):
 		$CalmHit.start(1.0)
 	if not has_node("Buff"):
@@ -499,7 +499,7 @@ func _consume_skill(skill_id: String) -> bool:
 
 
 func try_use_skills() -> void:
-	if ShouldInSky or is_aoyi or not is_instance_valid(current_target):
+	if should_in_sky or is_aoyi or not is_instance_valid(current_target):
 		return
 	var distance := global_position.distance_to(current_target.global_position)
 	if (

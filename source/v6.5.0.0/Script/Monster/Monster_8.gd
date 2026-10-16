@@ -5,13 +5,13 @@ var buff_icon
 @onready var rrd: CollisionShape2D = $Rd/rrd
 var has_hd = true
 
-var RD_node
+var rd_node
 var shader_material: ShaderMaterial
 
 
 func monster_8():
 	Skill_1_CD = 0
-	self.CannotAttract = true
+	self.cannot_attract = true
 	self.is_quiescent = true
 	self.is_boss = true
 	self.my_mr_name = "蝙蝠石像"
@@ -82,7 +82,7 @@ func _physics_process(delta):
 			if shader_material:
 				shader_material.set_shader_parameter("TINT_COLOR", Color(1, 1, 1, 1))
 
-	if RD_node != null:
+	if rd_node != null:
 		rrd.disabled = false
 	else:
 		rrd.disabled = true
@@ -125,11 +125,11 @@ func _on_create_rd_timeout():
 
 	var rd_pos = Vector2(po_x_list[randi_range(0, 3)], randi_range(-200, 50))
 
-	if RD_node:
-		RD_node.queue_free()
-		RD_node = null
+	if rd_node:
+		rd_node.queue_free()
+		rd_node = null
 
-	RD_node = Global.add_special_effect(self, rd_pos, "rd", Vector2(1, 1), false, 1)
+	rd_node = Global.add_special_effect(self, rd_pos, "rd", Vector2(1, 1), false, 1)
 	rd.position = rd_pos
 	rrd.disabled = false
 

@@ -61,7 +61,7 @@ const LEFT_ALIGNED_BUTTON_NAMES := [
 @onready var challenge_four_swords_panel: Control = get_node_or_null("ChallengeFourSwordsPanel")
 var is_chest_mode: bool = false
 
-var MaxPage: int = 3
+var max_page: int = 3
 var skill_target
 var my_music
 var zhuxian_sword_page: Node = null
@@ -195,30 +195,30 @@ func _ready():
 	MemoryClass.main_bc()
 	if PlayerData.has_method("ensure_special_dungeon_progress"):
 		PlayerData.ensure_special_dungeon_progress()
-	Global.LLBTLevel = 1
-	Global.LLBTBOSSMS = false
-	Global.LLBTCGMS = false
-	Global.LLBTWXMS = false
+	Global.llbt_level = 1
+	Global.llbtbossms = false
+	Global.llbtcgms = false
+	Global.llbtwxms = false
 	RoleProp.set_full_hp()
 	RoleProp.set_full_mp()
-	RoleProp.CurrentHp = RoleProp.roleprop.Hp
-	RoleProp.CurrentMp = RoleProp.roleprop.Mp
+	RoleProp.current_hp = RoleProp.roleprop.Hp
+	RoleProp.current_mp = RoleProp.roleprop.Mp
 	for i in range(11):
 		play_an(i)
-	if MainSet.set_data["CurrentLevelPage"] <= MaxPage:
-		MainSet.set_data["CurrentLevelPage"] = MaxPage
+	if MainSet.set_data["CurrentLevelPage"] <= max_page:
+		MainSet.set_data["CurrentLevelPage"] = max_page
 		MemoryClass.main_bc()
-	if MainMusic.MyMainMusic == null:
+	if MainMusic.my_main_music == null:
 		MainMusic.add_music()
-	Global.CurrentLevel = ""
-	if Global.Windows_ == null:
-		Global.Windows_ = _ui_parent()
-	if not Global.IsFrist:
-		Global.add_message_show(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
-		Global.IsFrist = true
-	Global.PlayerBeHitCount = 0
-	Global.LastLevelPath = ""
-	Global.FB_CD = 0
+	Global.current_level = ""
+	if Global.windows == null:
+		Global.windows = _ui_parent()
+	if not Global.is_frist:
+		Global.add_message_show(Global.windows, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
+		Global.is_frist = true
+	Global.player_be_hit_count = 0
+	Global.last_level_path = ""
+	Global.fb_cd = 0
 
 	get_tree().paused = false
 	PlayerData.player_data["Map_num"] = 3
@@ -234,15 +234,15 @@ func _sync_special_button_layer() -> void:
 			node.z_index = 0
 	if not Global.cd_path.is_empty() and Global.cd_path.contains("Ar_"):
 		MemoryClass.save_game(Global.cd_path)
-	Global.is_Mpo = false
+	Global.is_mpo = false
 	Global.is_ice = false
 	Global.is_poision = false
-	Global.is_Fire = false
+	Global.is_fire = false
 	Global.is_speed_down = false
 	Global.is_stun = false
-	Global.is_Bleed = false
-	Global.is_EyeFix = false
-	Global.is_DeadLink = false
+	Global.is_bleed = false
+	Global.is_eye_fix = false
+	Global.is_dead_link = false
 	RoleProp.ws_value = 0
 	MemoryClass.main_dq()
 
@@ -272,7 +272,7 @@ func _on_boss_treasure_toggled():
 	MemoryClass.main_bc()
 
 	var mode_text = "普通掉落模式" if not is_chest_mode else "宝箱掉落模式（Boss 将掉落自选宝箱）"
-	Global.add_message_show(Global.Windows_, mode_text, 1.5, Vector2(470, 300))
+	Global.add_message_show(Global.windows, mode_text, 1.5, Vector2(470, 300))
 
 
 func check_music():
@@ -416,7 +416,7 @@ func _on_level_30_pressed() -> void:
 
 
 func _on_level_stz_pressed() -> void:
-	Global.SelectedThreePrinceId = 0
+	Global.selected_three_prince_id = 0
 	Global.add_level_info(_ui_parent(), "挑战三太子", Vector2(0, 0), "res://Scene/level/level_stz.tscn")
 
 
@@ -456,7 +456,7 @@ func _on_ghg_pressed() -> void:
 
 
 func _on_bxgh_pressed() -> void:
-	Global.SelectedEightImmortalId = 0
+	Global.selected_eight_immortal_id = 0
 	Global.add_level_info(_ui_parent(), "八仙过海", Vector2(0, 0), "res://Scene/level/level_bxgh.tscn")
 
 

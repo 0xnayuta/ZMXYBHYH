@@ -1,17 +1,17 @@
 extends Node2D
 class_name BasicTask
-@onready var text: Label = $BG/ms/ScrollContainer/Text
+@onready var text: Label = $BG/ms/ScrollContainer/text_str
 @onready var task_list: VBoxContainer = $BG/ScrollContainer/TaskList
-@onready var reward_list: GridContainer = $BG/jl/ScrollContainer/RewardList
+@onready var reward_list: GridContainer = $BG/jl/ScrollContainer/reward_list
 @onready var lqjl: TextureButton = $BG/lqjl
 @onready var title: Label = $BG/ColorRect/Title
 @onready var num: Label = $BG/ColorRect/Title/Num
-var ActivityFinishNum: int = 0
-var DailyFinishNum: int = 0
-var TaskIsFinish: bool
-var CurrentTaskName: String
-var CurrentTaskType: int = 1
-var AllDailyList = {
+var activity_finish_num: int = 0
+var daily_finish_num: int = 0
+var task_is_finish: bool
+var current_task_name: String
+var current_task_type: int = 1
+var all_daily_list = {
 	"关注造梦青川":
 	{
 		"TaskName": "关注造梦青川",
@@ -29,7 +29,7 @@ var AllDailyList = {
 		"UnlimitedClaim": true,
 	},
 }
-var AllActivityList = {
+var all_activity_list = {
 	"新的旅途":
 	{
 		"TaskName": "新的旅途",
@@ -340,16 +340,16 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	match CurrentTaskType:
+	match current_task_type:
 		1:
 			title.text = "活动任务完成："
-			num.text = "（" + str(ActivityFinishNum) + "/" + str(AllActivityList.size()) + "）"
-			if CurrentTaskName == null or CurrentTaskName == "" or not AllActivityList.has(CurrentTaskName):
+			num.text = "（" + str(activity_finish_num) + "/" + str(all_activity_list.size()) + "）"
+			if current_task_name == null or current_task_name == "" or not all_activity_list.has(current_task_name):
 				_disable_claim_button()
 				return
 
-			if CurrentTaskName == "七魔尽伏":
-				var target = AllActivityList["七魔尽伏"]["TaskTarget"]
+			if current_task_name == "七魔尽伏":
+				var target = all_activity_list["七魔尽伏"]["TaskTarget"]
 				var completed = 0
 				var total = target.size()
 				for key in target.keys():
@@ -357,8 +357,8 @@ func _physics_process(delta: float) -> void:
 						completed += 1
 				text.text = "通关所有图一副本（已完成 {completed}/{total}）".format({"completed": completed, "total": total})
 
-			elif CurrentTaskName == "十殿肃清":
-				var target = AllActivityList["十殿肃清"]["TaskTarget"]
+			elif current_task_name == "十殿肃清":
+				var target = all_activity_list["十殿肃清"]["TaskTarget"]
 				var completed = 0
 				var total = target.size()
 				for key in target.keys():
@@ -366,10 +366,10 @@ func _physics_process(delta: float) -> void:
 						completed += 1
 				text.text = "通关所有图二副本（已完成 {completed}/{total}）".format({"completed": completed, "total": total})
 			else:
-				text.text = str(AllActivityList[CurrentTaskName]["TaskInfo"])
+				text.text = str(all_activity_list[current_task_name]["TaskInfo"])
 
-			if TaskIsFinish:
-				if not PlayerData.player_data.get(CurrentTaskName, false):
+			if task_is_finish:
+				if not PlayerData.player_data.get(current_task_name, false):
 					lqjl.disabled = false
 				else:
 					lqjl.disabled = true
@@ -377,24 +377,24 @@ func _physics_process(delta: float) -> void:
 				lqjl.disabled = true
 		2:
 			title.text = "日常任务完成："
-			num.text = "（" + str(DailyFinishNum) + "/" + str(AllDailyList.size()) + "）"
-			if CurrentTaskName == null or CurrentTaskName == "" or not AllDailyList.has(CurrentTaskName):
+			num.text = "（" + str(daily_finish_num) + "/" + str(all_daily_list.size()) + "）"
+			if current_task_name == null or current_task_name == "" or not all_daily_list.has(current_task_name):
 				_disable_claim_button()
 				return
-			text.text = str(AllDailyList[CurrentTaskName]["TaskInfo"])
-			lqjl.disabled = not TaskIsFinish
+			text.text = str(all_daily_list[current_task_name]["TaskInfo"])
+			lqjl.disabled = not task_is_finish
 
 
 func add_task_list():
-	match CurrentTaskType:
+	match current_task_type:
 		1:
 			remove_list()
-			for i in AllActivityList:
-				Global.add_task_title(task_list, AllActivityList[i]["TaskType"], AllActivityList[i]["TaskName"], self)
+			for i in all_activity_list:
+				Global.add_task_title(task_list, all_activity_list[i]["TaskType"], all_activity_list[i]["TaskName"], self)
 		2:
 			remove_list()
-			for i in AllDailyList:
-				Global.add_task_title(task_list, AllDailyList[i]["TaskType"], AllDailyList[i]["TaskName"], self)
+			for i in all_daily_list:
+				Global.add_task_title(task_list, all_daily_list[i]["TaskType"], all_daily_list[i]["TaskName"], self)
 
 
 func add_reward():
@@ -405,13 +405,13 @@ func add_reward():
 		return
 	for i in task_data["TaskReward"]:
 		var ItemName = i["Name"]
-		var TotalNum = i["Value"]
-		Global.add_task_reward(reward_list, ItemName, TotalNum)
+		var total_num = i["Value"]
+		Global.add_task_reward(reward_list, ItemName, total_num)
 
 
 func _clear_current_task_selection() -> void:
-	CurrentTaskName = ""
-	TaskIsFinish = false
+	current_task_name = ""
+	task_is_finish = false
 	text.text = ""
 	remove_reward()
 	_disable_claim_button()
@@ -428,8 +428,8 @@ func remove_reward():
 
 
 func remove_list():
-	ActivityFinishNum = 0
-	DailyFinishNum = 0
+	activity_finish_num = 0
+	daily_finish_num = 0
 	for i in task_list.get_children():
 		i.queue_free()
 
@@ -439,27 +439,27 @@ func _on_lqjl_pressed() -> void:
 	if task_data.is_empty():
 		_disable_claim_button()
 		return
-	if not TaskIsFinish:
+	if not task_is_finish:
 		_disable_claim_button()
 		return
-	if CurrentTaskType == 1 and PlayerData.player_data.get(CurrentTaskName, false):
+	if current_task_type == 1 and PlayerData.player_data.get(current_task_name, false):
 		_disable_claim_button()
 		return
 	if not task_data.get("UnlimitedClaim", false):
-		PlayerData.player_data[CurrentTaskName] = true
+		PlayerData.player_data[current_task_name] = true
 	var list = task_data["TaskReward"]
 	Global.add_reward_info(Global.get_parent_(self, 1), Vector2(0, 0), list, null, null)
 	MemoryClass.save_game(Global.cd_path)
 
 
 func _get_current_task_data() -> Dictionary:
-	match CurrentTaskType:
+	match current_task_type:
 		1:
-			if AllActivityList.has(CurrentTaskName):
-				return AllActivityList[CurrentTaskName]
+			if all_activity_list.has(current_task_name):
+				return all_activity_list[current_task_name]
 		2:
-			if AllDailyList.has(CurrentTaskName):
-				return AllDailyList[CurrentTaskName]
+			if all_daily_list.has(current_task_name):
+				return all_daily_list[current_task_name]
 	return {}
 
 
@@ -468,12 +468,12 @@ func _on_close_pressed() -> void:
 
 
 func _on_hd_task_pressed() -> void:
-	CurrentTaskType = 1
+	current_task_type = 1
 	_clear_current_task_selection()
 	add_task_list()
 
 
 func _on_rc_task_pressed() -> void:
-	CurrentTaskType = 2
+	current_task_type = 2
 	_clear_current_task_selection()
 	add_task_list()

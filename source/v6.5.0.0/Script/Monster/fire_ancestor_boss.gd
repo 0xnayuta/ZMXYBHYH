@@ -89,9 +89,9 @@ func _configure_boss() -> void:
 	is_boss = bool(config.get("is_boss", true))
 	boss_max_protect = float(config.get("max_protect", 100.0))
 	NoGrav = true
-	is_Fly = true
-	IsSuperArmor = true
-	CannotAttract = true
+	is_fly = true
+	super_armor_active = true
+	cannot_attract = true
 	objattackDic.clear()
 	var attacks: Dictionary = config.get("attacks", {})
 	for skill_index in range(1, 4):
@@ -383,9 +383,9 @@ func _physics_process(delta: float) -> void:
 	velocity = Vector2.ZERO
 	global_position = _fixed_global_position
 	NoGrav = true
-	is_Fly = true
-	IsSuperArmor = true
-	CannotAttract = true
+	is_fly = true
+	super_armor_active = true
+	cannot_attract = true
 	_enforce_source_state()
 
 

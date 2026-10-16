@@ -198,14 +198,14 @@ func call_arrow_1():
 	bullet_spawn_positions.shuffle()
 	for i in bullet_spawn_positions:
 		var desired_angle
-		var Arrow = Global.add_bullet(
+		var arrow = Global.add_bullet(
 			"Monster83Bullet", self.bullet, false, 2, i + position, "hit4", self.objattackDic["hit4"]
 		)
-		Arrow.scale = Vector2(0.7, 0.7)
-		Arrow.modulate = Color(1, 1, 1, 0)
-		Arrow.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+		arrow.scale = Vector2(0.7, 0.7)
+		arrow.modulate = Color(1, 1, 1, 0)
+		arrow.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 		var tween = get_tree().create_tween().set_parallel(true)
-		tween.tween_property(Arrow, "modulate", Color(1, 1, 1, 1), 1)
+		tween.tween_property(arrow, "modulate", Color(1, 1, 1, 1), 1)
 		await get_tree().create_timer(0.3, false).timeout
 
 
@@ -225,17 +225,17 @@ func call_arrow_2():
 	randomize()
 	bullet_spawn_positions.shuffle()
 	for i in bullet_spawn_positions:
-		var Arrow = Global.add_bullet(
+		var arrow = Global.add_bullet(
 			"Monster83Bullet", self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"]
 		)
-		Arrow.scale = Vector2(0.9, 0.9)
-		Arrow.modulate = Color(1, 1, 1, 0)
-		var po = Arrow.position - position
+		arrow.scale = Vector2(0.9, 0.9)
+		arrow.modulate = Color(1, 1, 1, 0)
+		var po = arrow.position - position
 		var tween = get_tree().create_tween().set_parallel(true)
 		if MonsterDirection:
 			desired_angle = -desired_angle
-		tween.tween_property(Arrow, "rotation", desired_angle, 1)
-		tween.tween_property(Arrow, "modulate", Color(1, 1, 1, 1), 1)
+		tween.tween_property(arrow, "rotation", desired_angle, 1)
+		tween.tween_property(arrow, "modulate", Color(1, 1, 1, 1), 1)
 		await get_tree().create_timer(randf_range(0.2, 0.4), false).timeout
 
 
@@ -269,11 +269,11 @@ func call_arrow_3():
 	randomize()
 	bullet_spawn_positions.shuffle()
 	for i in bullet_spawn_positions:
-		var Arrow = Global.add_bullet(
+		var arrow = Global.add_bullet(
 			"Monster83Bullet", self.bullet, false, 3.5, i + position, "hit3", self.objattackDic["hit3"]
 		)
-		Arrow.scale = Vector2(1, 1)
-		Arrow.rotation_degrees = 90
+		arrow.scale = Vector2(1, 1)
+		arrow.rotation_degrees = 90
 		await get_tree().create_timer(0.1, false).timeout
 
 # ==============================================================================

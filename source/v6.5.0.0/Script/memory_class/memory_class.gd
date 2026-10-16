@@ -1,8 +1,8 @@
 extends Node
 var Player = PlayerData.player_data
-var Initialized_Data = {}
-var Get_sj = {}
-var LimitTime = {
+var initialized_data = {}
+var get_sj = {}
+var limit_time = {
 	"year": 2024,
 	"month": 5,
 	"day": 9,
@@ -128,33 +128,33 @@ var _main_settings_loaded: bool = false
 
 
 func check_out_time():
-	var Dic = LimitTime
-	var MyDic = MainSet.set_data["MyTime"]
-	if MyDic == {}:
+	var dic = limit_time
+	var my_dic = MainSet.set_data["MyTime"]
+	if my_dic == {}:
 		return
-	if int(Dic["year"]) < int(MyDic["year"]):
+	if int(dic["year"]) < int(my_dic["year"]):
 		return true
-	elif int(Dic["year"]) > int(MyDic["year"]):
+	elif int(dic["year"]) > int(my_dic["year"]):
 		return false
 	else:
-		if int(Dic["month"]) < int(MyDic["month"]):
+		if int(dic["month"]) < int(my_dic["month"]):
 			return true
-		elif int(Dic["month"]) > int(MyDic["month"]):
+		elif int(dic["month"]) > int(my_dic["month"]):
 			return false
 		else:
-			if int(Dic["day"]) < int(MyDic["day"]):
+			if int(dic["day"]) < int(my_dic["day"]):
 				return true
-			elif int(Dic["day"]) > int(MyDic["day"]):
+			elif int(dic["day"]) > int(my_dic["day"]):
 				return false
 			else:
-				if int(Dic["hour"]) < int(MyDic["hour"]):
+				if int(dic["hour"]) < int(my_dic["hour"]):
 					return true
-				elif int(Dic["hour"]) > int(MyDic["hour"]):
+				elif int(dic["hour"]) > int(my_dic["hour"]):
 					return false
 				else:
-					if int(Dic["minute"]) < int(MyDic["minute"]):
+					if int(dic["minute"]) < int(my_dic["minute"]):
 						return true
-					elif int(Dic["minute"]) > int(MyDic["minute"]):
+					elif int(dic["minute"]) > int(my_dic["minute"]):
 						return false
 					else:
 						return true
@@ -162,7 +162,7 @@ func check_out_time():
 
 func load_game(路径) -> bool:
 	var path: String = str(路径)
-	var read_result: Dictionary = _read_encrypted_dictionary_compatible(path, Keys)
+	var read_result: Dictionary = _read_encrypted_dictionary_compatible(path, keys)
 	if not bool(read_result.get("ok", false)):
 		return false
 	var archive_data_value: Variant = read_result.get("data", {})
@@ -198,7 +198,7 @@ func load_game(路径) -> bool:
 
 
 func peek_archive_data(路径) -> Dictionary:
-	var read_result: Dictionary = _read_encrypted_dictionary_compatible(str(路径), Keys)
+	var read_result: Dictionary = _read_encrypted_dictionary_compatible(str(路径), keys)
 	var data_value: Variant = read_result.get("data", {})
 	return data_value if data_value is Dictionary else {}
 
@@ -212,7 +212,7 @@ func get_archive_level(路径) -> int:
 
 func read_archive_time(路径) -> String:
 	var archive_path: String = str(路径)
-	var read_result: Dictionary = _read_encrypted_dictionary_compatible(archive_path, Keys)
+	var read_result: Dictionary = _read_encrypted_dictionary_compatible(archive_path, keys)
 	var archive_data_value: Variant = read_result.get("data", {})
 	var recovered_from_backup: bool = bool(read_result.get("recovered_from_backup", false))
 	var has_archive_data: bool = archive_data_value is Dictionary and not (archive_data_value as Dictionary).is_empty()
@@ -234,7 +234,7 @@ func read_archive_time(路径) -> String:
 	return ""
 
 
-var Keys = "zmxybgyh" + OS.get_unique_id() + "v1.1"
+var keys = "zmxybgyh" + OS.get_unique_id() + "v1.1"
 
 
 func save_game(path: String) -> bool:
@@ -304,7 +304,7 @@ func main_dq():
 
 
 func _load_main_settings(path: String) -> void:
-	var read_result: Dictionary = _read_encrypted_dictionary_compatible(path, Keys2)
+	var read_result: Dictionary = _read_encrypted_dictionary_compatible(path, keys2)
 	if not bool(read_result.get("ok", false)):
 		return
 	var settings_value: Variant = read_result.get("data", {})
@@ -312,7 +312,7 @@ func _load_main_settings(path: String) -> void:
 		MainSet.set_data.merge(settings_value, true)
 
 
-var Keys2 = "zmxybgyh" + OS.get_unique_id() + "v1.1"
+var keys2 = "zmxybgyh" + OS.get_unique_id() + "v1.1"
 
 
 func main_bc() -> bool:
@@ -497,7 +497,7 @@ func _ensure_stable_key() -> String:
 	var existing_key: String = _load_stable_key()
 	if existing_key != "":
 		return existing_key
-	_stable_key = str(Keys)
+	_stable_key = str(keys)
 	var key_file: FileAccess = FileAccess.open(SAVE_KEY_PATH, FileAccess.WRITE)
 	if key_file != null:
 		key_file.store_string(_stable_key)
@@ -553,25 +553,25 @@ func get_cd_number():
 
 
 func remove_data():
-	Initialized_Data = PlayerData.Initialized_Data.duplicate(true)
+	initialized_data = PlayerData.initialized_data.duplicate(true)
 	remove_main_data(get_cd_number())
 
 	MemoryClass.main_bc()
 
 
 func remove_play_data():
-	Initialized_Data = PlayerData.Initialized_Data.duplicate(true)
+	initialized_data = PlayerData.initialized_data.duplicate(true)
 
 	Player.clear()
-	Player.merge(Initialized_Data.duplicate(true))
+	Player.merge(initialized_data.duplicate(true))
 	pass
 
 
 func remove():
-	Global.add_message_show(Global.Windows_, "数据不正常哦，拜拜啦~", 4, Vector2(485, 295))
+	Global.add_message_show(Global.windows, "数据不正常哦，拜拜啦~", 4, Vector2(485, 295))
 	remove_data()
 	MainSet.set_data["xg"] = true
-	safe_write_archive(str(Global.cd_path), Initialized_Data)
+	safe_write_archive(str(Global.cd_path), initialized_data)
 	MemoryClass.save_game(Global.cd_path)
 
 

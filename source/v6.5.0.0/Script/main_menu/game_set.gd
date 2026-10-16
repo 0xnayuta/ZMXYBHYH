@@ -15,11 +15,11 @@ const GAME_SET_DESIGN_SIZE := Vector2(942.0, 589.0)
 @onready var ornot: Button = $Bg/BGColor/VBoxContainer2/AutomaticallyPickUpItems2/Ornot
 @onready var open_close: Button = $Bg/BGColor/VBoxContainer2/LevelInfo/openClose
 @onready var show_close_2: Button = $Bg/BGColor/VBoxContainer/RoleEQ/ShowClose2
-@onready var show_close: Button = $Bg/BGColor/VBoxContainer2/RoleBody/ShowClose
+@onready var show_close: Button = $Bg/BGColor/VBoxContainer2/role_body/ShowClose
 @onready var frame_rate_option: OptionButton = $Bg/BGColor/VBoxContainer2/FrameRate/FrameRateOption
 
 var is_set = false
-var MusicIsChange = false
+var music_is_change = false
 var _last_setting_state_mask := -1
 
 
@@ -65,7 +65,7 @@ func _fix_setting_layout_rows() -> void:
 		[$Bg/BGColor/VBoxContainer2/AutomaticallyPickUpItems, Vector2(290, 30)],
 		[$Bg/BGColor/VBoxContainer2/AutomaticallyPickUpItems2, Vector2(290, 31)],
 		[$Bg/BGColor/VBoxContainer2/LevelInfo, Vector2(330, 31)],
-		[$Bg/BGColor/VBoxContainer2/RoleBody, Vector2(290, 31)],
+		[$Bg/BGColor/VBoxContainer2/role_body, Vector2(290, 31)],
 	]
 	for row in rows:
 		var label := row[0] as Label
@@ -255,25 +255,25 @@ func _on_damage_show_pressed() -> void:
 func _on_g_mzm_1_pressed() -> void:
 	MainSet.set_data["music"] = 1
 	MemoryClass.main_bc()
-	MusicIsChange = true
+	music_is_change = true
 
 
 func _on_g_mzm_2_pressed() -> void:
 	if MainSet.set_data["CurrentLevelPage"] >= 2:
 		MainSet.set_data["music"] = 2
 		MemoryClass.main_bc()
-		MusicIsChange = true
+		music_is_change = true
 	else:
-		Global.add_message_show(Global.Windows_, "到达二图解锁二图背景音乐", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "到达二图解锁二图背景音乐", 1.5, Vector2(470, 300))
 
 
 func _on_g_mzm_3_pressed() -> void:
 	if MainSet.set_data["CurrentLevelPage"] >= 3:
 		MainSet.set_data["music"] = 3
 		MemoryClass.main_bc()
-		MusicIsChange = true
+		music_is_change = true
 	else:
-		Global.add_message_show(Global.Windows_, "到达三图解锁三图背景音乐", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "到达三图解锁三图背景音乐", 1.5, Vector2(470, 300))
 
 
 func _on_gm_2_zm_1_pressed() -> void:
@@ -286,7 +286,7 @@ func _on_gm_2_zm_2_pressed() -> void:
 		MainSet.set_data["MainMenuBG"] = 2
 		MemoryClass.main_bc()
 	else:
-		Global.add_message_show(Global.Windows_, "到达二图解锁二图封面", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "到达二图解锁二图封面", 1.5, Vector2(470, 300))
 
 
 func _on_gm_2_zm_3_pressed() -> void:
@@ -294,7 +294,7 @@ func _on_gm_2_zm_3_pressed() -> void:
 		MainSet.set_data["MainMenuBG"] = 3
 		MemoryClass.main_bc()
 	else:
-		Global.add_message_show(Global.Windows_, "到达三图解锁三图封面", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "到达三图解锁三图封面", 1.5, Vector2(470, 300))
 
 
 func _on_yes_or_no_pressed() -> void:
@@ -325,9 +325,9 @@ func _on_g_mzm_4_pressed() -> void:
 	if MainSet.set_data["Music4"]:
 		MainSet.set_data["music"] = 4
 		MemoryClass.main_bc()
-		MusicIsChange = true
+		music_is_change = true
 	else:
-		Global.add_message_show(Global.Windows_, "还未开启四图音乐哦，快去游戏中寻找一下吧~", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "还未开启四图音乐哦，快去游戏中寻找一下吧~", 1.5, Vector2(470, 300))
 
 
 func _on_ornot_pressed() -> void:

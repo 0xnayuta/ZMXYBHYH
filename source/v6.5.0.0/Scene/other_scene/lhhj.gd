@@ -2,11 +2,11 @@ extends Node2D
 
 const FULLSCREEN_DESIGN_SIZE := Vector2(922.0, 564.0)
 const FULLSCREEN_CONTENT_CENTER := Vector2(461.0, 282.0)
-var TargetBoss: String
-@onready var boss_list: VBoxContainer = $BG/ColorRect/Text2/TotalList/BossList
+var target_boss: String
+@onready var boss_list: VBoxContainer = $BG/ColorRect/Text2/total_list/boss_list
 @onready var text_3: Label = $BG/ColorRect/Text3
-@onready var boss_list_1: VBoxContainer = $BG/ColorRect/Text/TotalList/BossList1
-var BossList = [
+@onready var boss_list_1: VBoxContainer = $BG/ColorRect/text_str/total_list/BossList1
+var boss_data = [
 	{"Name": "白骨精·改", "Num": 3201},
 	{"Name": "草木皆兵", "Num": 139},
 	{"Name": "猕猴王", "Num": 4},
@@ -67,7 +67,7 @@ var BossList = [
 	{"Name": "石墙", "Num": 3082},
 	{"Name": "通天教主(穷奇版)", "Num": 3117}
 ]
-var GhostList = [
+var ghost_list = [
 	{"Name": "红孩儿", "Num": 29},
 	{"Name": "白骨精", "Num": 32},
 	{"Name": "傀儡", "Num": 34},
@@ -87,7 +87,7 @@ var GhostList = [
 	{"Name": "五毒·都市王", "Num": 65},
 	{"Name": "五毒·平等王", "Num": 6601}
 ]
-var SkyList = [
+var sky_list = [
 	{"Name": "千里眼", "Num": 77},
 	{"Name": "顺风耳", "Num": 78},
 	{"Name": "猕猴王·通风", "Num": 96},
@@ -131,8 +131,8 @@ var SkyList = [
 
 
 func _physics_process(delta: float) -> void:
-	if TargetBoss != null and TargetBoss != "":
-		text_3.text = "设置" + str(TargetBoss) + "部分属性"
+	if target_boss != null and target_boss != "":
+		text_3.text = "设置" + str(target_boss) + "部分属性"
 	else:
 		text_3.text = "请选择Boss进行属性设置"
 
@@ -152,23 +152,23 @@ func _ready() -> void:
 	_fit_to_fullscreen()
 	if not get_viewport().size_changed.is_connected(_fit_to_fullscreen):
 		get_viewport().size_changed.connect(_fit_to_fullscreen)
-	Global.LHHJBossList.clear()
+	Global.lhhj_boss_list.clear()
 	add_total_list()
 
 
 func add_total_list():
 	if PlayerData.player_data["地府"]:
-		for i in GhostList:
-			BossList.push_back(i)
+		for i in ghost_list:
+			boss_data.push_back(i)
 	if PlayerData.player_data["天庭"]:
-		for i in SkyList:
-			BossList.push_back(i)
-	for i in BossList:
+		for i in sky_list:
+			boss_data.push_back(i)
+	for i in boss_data:
 		Global.addlistbutton(boss_list_1, i["Name"], self, i["Num"])
 
 
 func _on_challenge_pressed() -> void:
-	if Global.LHHJBossList.size() <= 0:
+	if Global.lhhj_boss_list.size() <= 0:
 		Global.add_message_show(get_parent(), "请至少添加一个boss！！", 1.5, Vector2(470, 300))
 		return
 	var scene_tree := get_tree()
@@ -180,10 +180,10 @@ func _on_challenge_pressed() -> void:
 
 
 func add_boss(Name, Num):
-	if Global.LHHJBossList.has(Name):
+	if Global.lhhj_boss_list.has(Name):
 		Global.add_message_show(get_parent(), "重复添加", 1.5, Vector2(470, 300))
 		return
-	Global.LHHJBossList[Name] = {
+	Global.lhhj_boss_list[Name] = {
 		"Num": Num,
 		"Name": "",
 		"Level": 0,
@@ -207,32 +207,32 @@ func add_boss(Name, Num):
 
 
 func show_prop():
-	if TargetBoss == null or TargetBoss == "":
+	if target_boss == null or target_boss == "":
 		return
-	if not Global.LHHJBossList.has(TargetBoss):
+	if not Global.lhhj_boss_list.has(target_boss):
 		return
 
 	var props_in_first = ["Name", "Level", "SHp", "def", "mdef", "crit", "miss", "power"]
 	var props_in_second = ["ebol", "lucky", "Critreduce", "Toughness", "ar", "sp", "speed", "self_rhp"]
 
 	for prop in props_in_first:
-		var node_path = "BG/ColorRect/Text3/TotalList/BossList/" + prop
+		var node_path = "BG/ColorRect/Text3/total_list/boss_list/" + prop
 		var target_node = get_node(node_path)
 		if target_node:
-			target_node.text = str(Global.LHHJBossList[TargetBoss][prop])
+			target_node.text = str(Global.lhhj_boss_list[target_boss][prop])
 
 	for prop in props_in_second:
-		var node_path = "BG/ColorRect/Text3/TotalList2/BossList/" + prop
+		var node_path = "BG/ColorRect/Text3/TotalList2/boss_list/" + prop
 		var target_node = get_node(node_path)
 		if target_node:
-			target_node.text = str(Global.LHHJBossList[TargetBoss][prop])
+			target_node.text = str(Global.lhhj_boss_list[target_boss][prop])
 
 
 func _on_remove_boss_pressed() -> void:
-	if TargetBoss != null:
-		if TargetBoss != "":
-			Global.LHHJBossList.erase(TargetBoss)
-			Global.add_message_show(get_parent(), "取消召唤" + str(TargetBoss) + "！！", 1.5, Vector2(470, 300))
+	if target_boss != null:
+		if target_boss != "":
+			Global.lhhj_boss_list.erase(target_boss)
+			Global.add_message_show(get_parent(), "取消召唤" + str(target_boss) + "！！", 1.5, Vector2(470, 300))
 		else:
 			Global.add_message_show(get_parent(), "请选择要清除的boss！", 1.5, Vector2(470, 300))
 			return
@@ -241,10 +241,10 @@ func _on_remove_boss_pressed() -> void:
 		return
 	for i in boss_list.get_children():
 		if i != null:
-			if i.selfName == TargetBoss:
+			if i.self_name == target_boss:
 				boss_list.remove_child(i)
 				i.queue_free()
-	TargetBoss = ""
+	target_boss = ""
 
 
 func _on_close_pressed() -> void:
@@ -252,34 +252,34 @@ func _on_close_pressed() -> void:
 
 
 func _on_remove_all_pressed() -> void:
-	Global.LHHJBossList.clear()
+	Global.lhhj_boss_list.clear()
 	for i in boss_list.get_children():
 		if i != null:
 			boss_list.remove_child(i)
 			i.queue_free()
-	TargetBoss = ""
+	target_boss = ""
 	Global.add_message_show(get_parent(), "目标召唤列表已全部清除！！", 1.5, Vector2(470, 300))
 
 
 func _on_remove_prop_pressed() -> void:
-	if TargetBoss == null:
+	if target_boss == null:
 		Global.add_message_show(get_parent(), "请选择要清除属性的boss！", 1.5, Vector2(470, 300))
 		return
-	if TargetBoss == "":
+	if target_boss == "":
 		Global.add_message_show(get_parent(), "请选择要清除属性的boss！", 1.5, Vector2(470, 300))
 		return
 
-	for i in Global.LHHJBossList[TargetBoss]:
+	for i in Global.lhhj_boss_list[target_boss]:
 		if i != "Num":
-			Global.LHHJBossList[TargetBoss][i] = 0
-	Global.add_message_show(get_parent(), str(TargetBoss) + "属性已重置为基础属性！！", 1.5, Vector2(470, 300))
+			Global.lhhj_boss_list[target_boss][i] = 0
+	Global.add_message_show(get_parent(), str(target_boss) + "属性已重置为基础属性！！", 1.5, Vector2(470, 300))
 
 
 func set_prop(TargetProp: String, Prop):
-	if TargetBoss == null:
+	if target_boss == null:
 		Global.add_message_show(get_parent(), "请选择要设置属性的boss！", 1.5, Vector2(470, 300))
 		return
-	if TargetBoss == "":
+	if target_boss == "":
 		Global.add_message_show(get_parent(), "请选择要设置属性的boss！", 1.5, Vector2(470, 300))
 		return
 	if TargetProp != "Name" and TargetProp != "ebol":
@@ -296,7 +296,7 @@ func set_prop(TargetProp: String, Prop):
 		if Prop < 0:
 			Global.add_message_show(get_parent(), "请输入大于或等于0的整数或小数！", 1.5, Vector2(470, 300))
 			return
-	Global.LHHJBossList[TargetBoss][TargetProp] = Prop
+	Global.lhhj_boss_list[target_boss][TargetProp] = Prop
 
 
 func _on_dj_text_changed(new_text: String) -> void:
@@ -458,7 +458,7 @@ func _on_help_pressed() -> void:
 
 
 func _on_add_all_pressed() -> void:
-	for i in BossList:
+	for i in boss_data:
 		add_boss(i["Name"], i["Num"])
 
 

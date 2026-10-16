@@ -1,11 +1,11 @@
 extends Node2D
 class_name BossInfo
-@onready var title: Label = $MarginContainer/TextList/Title
-@onready var text_list: VBoxContainer = $MarginContainer/TextList
+@onready var title: Label = $MarginContainer/text_list/Title
+@onready var text_list: VBoxContainer = $MarginContainer/text_list
 
 var MonsterName: String
 
-var MonsterSkillInfoList = {
+var monster_skill_info_list = {
 	"mhw":
 	{
 		"MonsterName": "猕猴王",
@@ -112,9 +112,9 @@ func _physics_process(delta: float) -> void:
 
 
 func add_info():
-	if MonsterSkillInfoList.has(MonsterName):
-		title.text = MonsterSkillInfoList[MonsterName]["MonsterName"] + str("Boss")
-		for i in MonsterSkillInfoList[MonsterName]["SkillList"]:
+	if monster_skill_info_list.has(MonsterName):
+		title.text = monster_skill_info_list[MonsterName]["MonsterName"] + str("Boss")
+		for i in monster_skill_info_list[MonsterName]["SkillList"]:
 			Global.add_font_(text_list, i, "res://Font/华康宋体W3.ttc", 17, "FFFFFF", 1, "FFFFFF")
 	else:
 		queue_free()

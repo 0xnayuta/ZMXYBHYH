@@ -3,7 +3,7 @@ class_name Synthesis
 
 const RecipeData = preload("res://Script/ldl/recipe_data.gd")
 
-var PropListName = [
+var prop_list_name = [
 	"SHp",
 	"SMp",
 	"power",
@@ -50,7 +50,7 @@ func remove_infomation():
 	for i in PlayerData.player_data["放入列表"]:
 		if PlayerData.player_data["放入列表"][i].size() != 0:
 			var new_list = PlayerData.player_data["放入列表"][i]
-			var get_tt = AE.AllEquipment_[new_list[0]][DataKeys.TYPE]
+			var get_tt = AE.all_equipment[new_list[0]][DataKeys.TYPE]
 			if get_tt == "武器" or get_tt == "防具" or get_tt == "饰品" or get_tt == "翅膀" or get_tt == "头衔" or get_tt == "时装":
 				PlayerData.add_zb(new_list[0], new_list[3], new_list[4])
 			elif get_tt == "道具" or get_tt == "消耗品":
@@ -66,28 +66,28 @@ func get_name_():
 	var name_2: String = ""
 	var name_3: String = ""
 	var List_1 = PlayerData.player_data["放入列表"]["物品1"]
-	var List_2 = PlayerData.player_data["放入列表"]["物品2"]
-	var List_3 = PlayerData.player_data["放入列表"]["物品3"]
+	var list_2 = PlayerData.player_data["放入列表"]["物品2"]
+	var list_3 = PlayerData.player_data["放入列表"]["物品3"]
 	if List_1.size() != 0:
 		name_1 = List_1[0]
-	if List_2.size() != 0:
-		name_2 = List_2[0]
-	if List_3.size() != 0:
-		name_3 = List_3[0]
+	if list_2.size() != 0:
+		name_2 = list_2[0]
+	if list_3.size() != 0:
+		name_3 = list_3[0]
 
-	if List_1.size() != 0 and List_2.size() != 0 and List_3.size() != 0:
+	if List_1.size() != 0 and list_2.size() != 0 and list_3.size() != 0:
 		var recipe_info = get_recipe(name_1, name_2, name_3)
 		if recipe_info[0]:
 			var result_item = recipe_info[1]
 
-			name_.text = str(AE.AllEquipment_[result_item][DataKeys.NAME])
+			name_.text = str(AE.all_equipment[result_item][DataKeys.NAME])
 			item_4.set_button_icon(load_(str(result_item)))
-			var lx = AE.AllEquipment_[result_item][DataKeys.TYPE]
+			var lx = AE.all_equipment[result_item][DataKeys.TYPE]
 			need_lh.text = str(recipe_info[2])
 
 			match lx:
 				"道具", "消耗品":
-					item_4.EQ_prop = AE.AllEquipment_[result_item]
+					item_4.EQ_prop = AE.all_equipment[result_item]
 				"法宝":
 					item_4.EQ_prop = get_fb_prop(result_item)
 				"武器", "饰品", "防具", "时装", "头衔", "翅膀":
@@ -98,7 +98,7 @@ func get_name_():
 							"dzjj", "huayan", "cjjj":
 								item_4.EQ_prop = get_equipment_prop(result_item)
 								return
-						item_4.EQ_prop = AE.AllEquipment_[result_item]
+						item_4.EQ_prop = AE.all_equipment[result_item]
 		else:
 			item_4.EQ_prop = {}
 			name_.text = ""
@@ -115,14 +115,14 @@ func _on_syn_pressed() -> void:
 	var name_2: String = ""
 	var name_3: String = ""
 	var List_1 = PlayerData.player_data["放入列表"]["物品1"]
-	var List_2 = PlayerData.player_data["放入列表"]["物品2"]
-	var List_3 = PlayerData.player_data["放入列表"]["物品3"]
+	var list_2 = PlayerData.player_data["放入列表"]["物品2"]
+	var list_3 = PlayerData.player_data["放入列表"]["物品3"]
 	if List_1.size() != 0:
 		name_1 = List_1[0]
-	if List_2.size() != 0:
-		name_2 = List_2[0]
-	if List_3.size() != 0:
-		name_3 = List_3[0]
+	if list_2.size() != 0:
+		name_2 = list_2[0]
+	if list_3.size() != 0:
+		name_3 = list_3[0]
 
 	var recipe_info = get_recipe(name_1, name_2, name_3)
 	if recipe_info[0]:
@@ -130,7 +130,7 @@ func _on_syn_pressed() -> void:
 		if PlayerData.get_soul() >= nn_lh:
 			PlayerData.spend_soul(nn_lh)
 			var item_ = recipe_info[1]
-			var get_tt = AE.AllEquipment_[item_][DataKeys.TYPE]
+			var get_tt = AE.all_equipment[item_][DataKeys.TYPE]
 
 			if get_tt == "武器" or get_tt == "防具" or get_tt == "饰品" or get_tt == "时装" or get_tt == "头衔" or get_tt == "翅膀":
 				PlayerData.add_zb(item_, 0, item_4.EQ_prop)
@@ -144,7 +144,7 @@ func _on_syn_pressed() -> void:
 			PlayerData.player_data["放入列表"]["物品3"].clear()
 			Global.add_message_show(
 				get_parent(),
-				"合成成功！获得：" + str(AE.AllEquipment_[item_][DataKeys.NAME]) + " * 1 !!",
+				"合成成功！获得：" + str(AE.all_equipment[item_][DataKeys.NAME]) + " * 1 !!",
 				1.5,
 				Vector2(15, -45)
 			)
@@ -161,42 +161,42 @@ func _on_help_pressed() -> void:
 
 func set_cailiao_pic():
 	var List_1 = PlayerData.player_data["放入列表"]["物品1"]
-	var List_2 = PlayerData.player_data["放入列表"]["物品2"]
-	var List_3 = PlayerData.player_data["放入列表"]["物品3"]
+	var list_2 = PlayerData.player_data["放入列表"]["物品2"]
+	var list_3 = PlayerData.player_data["放入列表"]["物品3"]
 	if List_1.size() == 0:
 		item_1.set_button_icon(load_("empty"))
 	else:
 		item_1.set_button_icon(load_(List_1[0]))
-	if List_2.size() == 0:
+	if list_2.size() == 0:
 		item_2.set_button_icon(load_("empty"))
 	else:
-		item_2.set_button_icon(load_(List_2[0]))
-	if List_3.size() == 0:
+		item_2.set_button_icon(load_(list_2[0]))
+	if list_3.size() == 0:
 		item_3.set_button_icon(load_("empty"))
 	else:
-		item_3.set_button_icon(load_(List_3[0]))
+		item_3.set_button_icon(load_(list_3[0]))
 	if List_1.size() > 3:
 		item_1.qh_level = int(List_1[3])
 		item_1.EQ_prop = List_1[4]
 	else:
 		item_1.qh_level = 0
 		item_1.EQ_prop = {}
-	if List_2.size() > 3:
-		item_2.qh_level = int(List_2[3])
-		item_2.EQ_prop = List_2[4]
+	if list_2.size() > 3:
+		item_2.qh_level = int(list_2[3])
+		item_2.EQ_prop = list_2[4]
 	else:
 		item_2.qh_level = 0
 		item_2.EQ_prop = {}
-	if List_3.size() > 3:
-		item_3.qh_level = int(List_3[3])
-		item_3.EQ_prop = List_3[4]
+	if list_3.size() > 3:
+		item_3.qh_level = int(list_3[3])
+		item_3.EQ_prop = list_3[4]
 	else:
 		item_3.qh_level = 0
 		item_3.EQ_prop = {}
 
 
 func load_(name1):
-	var item_data: Dictionary = AE.AllEquipment_.get(str(name1), {})
+	var item_data: Dictionary = AE.all_equipment.get(str(name1), {})
 	var icon_path := str(item_data.get("图标", ""))
 	if icon_path != "" and ResourceLoader.exists(icon_path):
 		return load(icon_path)
@@ -219,14 +219,14 @@ func get_xianjie_prop(result_item: String) -> Dictionary:
 				source_list = candidate
 				break
 
-	var result: Dictionary = AE.AllEquipment_[result_item].duplicate(true)
+	var result: Dictionary = AE.all_equipment[result_item].duplicate(true)
 	if source_list.size() < 5:
 		return result
 	var source_data_value: Variant = source_list[4]
 	var source_data: Dictionary = source_data_value if source_data_value is Dictionary else {}
 	var source_level := int(source_list[3])
 	var current_properties: Dictionary = AE.get_divine_forge_properties(source_name, source_level, source_data, true)
-	for property_name in PropListName:
+	for property_name in prop_list_name:
 		result[property_name] = current_properties.get(property_name, 0) * 2
 	result[DataKeys.GEM] = []
 	result.erase("神铸阶段")
@@ -250,71 +250,71 @@ func get_recipe(n_1: String, n_2: String, n_3: String) -> Array:
 
 func get_fb_prop(name1):
 	var List_1 = PlayerData.player_data["放入列表"]["物品1"]
-	var List_2 = PlayerData.player_data["放入列表"]["物品2"]
-	var List_3 = PlayerData.player_data["放入列表"]["物品3"]
+	var list_2 = PlayerData.player_data["放入列表"]["物品2"]
+	var list_3 = PlayerData.player_data["放入列表"]["物品3"]
 
 	var prop1_dict = {}
 	var prop2_dict = {}
 	var prop3_dict = {}
-	for attr in PropListName:
+	for attr in prop_list_name:
 		prop1_dict[attr] = 0
 		prop2_dict[attr] = 0
 		prop3_dict[attr] = 0
 
 	if List_1.size() >= 5:
 		var prop1 = AE.get_last_equ_pro(List_1[0], List_1[3], List_1[4])
-		for attr in PropListName:
+		for attr in prop_list_name:
 			prop1_dict[attr] = prop1.get(attr, 0) if prop1 and prop1.has(attr) else 0
-	if List_2.size() >= 5:
-		var prop2 = AE.get_last_equ_pro(List_2[0], List_2[3], List_2[4])
-		for attr in PropListName:
+	if list_2.size() >= 5:
+		var prop2 = AE.get_last_equ_pro(list_2[0], list_2[3], list_2[4])
+		for attr in prop_list_name:
 			prop2_dict[attr] = prop2.get(attr, 0) if prop2 and prop2.has(attr) else 0
-	if List_3.size() >= 5:
-		var prop3 = AE.get_last_equ_pro(List_3[0], List_3[3], List_3[4])
-		for attr in PropListName:
+	if list_3.size() >= 5:
+		var prop3 = AE.get_last_equ_pro(list_3[0], list_3[3], list_3[4])
+		for attr in prop_list_name:
 			prop3_dict[attr] = prop3.get(attr, 0) if prop3 and prop3.has(attr) else 0
 
-	var newList = {}
-	for attr in PropListName:
+	var new_list = {}
+	for attr in prop_list_name:
 		var avg_val = int((prop1_dict[attr] + prop2_dict[attr] + prop3_dict[attr]) / 3)
-		newList[attr] = avg_val
+		new_list[attr] = avg_val
 
-	var proplist = AE.AllEquipment_[name1].duplicate(true)
-	for i in newList:
+	var proplist = AE.all_equipment[name1].duplicate(true)
+	for i in new_list:
 		if proplist.has(i):
-			proplist[i] += newList[i]
+			proplist[i] += new_list[i]
 		else:
-			proplist[i] = newList[i]
+			proplist[i] = new_list[i]
 
 	return proplist
 
 
 func get_equipment_prop(name_1):
 	var List_1 = PlayerData.player_data["放入列表"]["物品1"]
-	var List_2 = PlayerData.player_data["放入列表"]["物品2"]
-	var List_3 = PlayerData.player_data["放入列表"]["物品3"]
-	var proplist = AE.AllEquipment_[name_1].duplicate(true)
-	var NamePropList = AE.PropListName
-	var PropOld = {}
+	var list_2 = PlayerData.player_data["放入列表"]["物品2"]
+	var list_3 = PlayerData.player_data["放入列表"]["物品3"]
+	var proplist = AE.all_equipment[name_1].duplicate(true)
+	var name_prop_list = AE.prop_list_name
+	var prop_old = {}
 
-	for i in NamePropList:
+	for i in name_prop_list:
 		var v1 = get_prop(List_1, i)
-		var v2 = get_prop(List_2, i)
-		var v3 = get_prop(List_3, i)
+		var v2 = get_prop(list_2, i)
+		var v3 = get_prop(list_3, i)
 		var sum = v1 + v2 + v3
 
 		if name_1 == "dzjj":
-			PropOld[i] = int(sum)
+			prop_old[i] = int(sum)
 		elif name_1 == "cjjj":
-			PropOld[i] = int(sum * 2.0)
+			prop_old[i] = int(sum * 2.0)
 		else:
-			PropOld[i] = int(sum * 3.0 / 4.0)
+			prop_old[i] = int(sum * 3.0 / 4.0)
 
-	for i in NamePropList:
+	for i in name_prop_list:
 		if proplist.has(i):
-			proplist[i] += PropOld[i]
+			proplist[i] += prop_old[i]
 		else:
-			proplist[i] = PropOld[i]
+			proplist[i] = prop_old[i]
 
 	return proplist
 
@@ -376,20 +376,20 @@ func get_same_type(Name_1, Name_2, Name_3, need: String):
 		return false
 	if Name_1 == Name_2 or Name_1 == Name_3 or Name_2 == Name_3:
 		return false
-	var T = AE.AllEquipment_
-	if not T[Name_1].has("FBTYPE") or not T[Name_2].has("FBTYPE") or not T[Name_3].has("FBTYPE"):
+	var t = AE.all_equipment
+	if not t[Name_1].has("FBTYPE") or not t[Name_2].has("FBTYPE") or not t[Name_3].has("FBTYPE"):
 		return false
 
-	if T[Name_1]["FBTYPE"] == need and T[Name_2]["FBTYPE"] == need and T[Name_3]["FBTYPE"] == need:
+	if t[Name_1]["FBTYPE"] == need and t[Name_2]["FBTYPE"] == need and t[Name_3]["FBTYPE"] == need:
 		return true
 	return false
 
 
-func get_prop(List, need):
-	var QHlevel: int
-	if AE.AllEquipment_[List[0]][DataKeys.TYPE] == "道具":
-		QHlevel = 0
+func get_prop(list, need):
+	var q_hlevel: int
+	if AE.all_equipment[list[0]][DataKeys.TYPE] == "道具":
+		q_hlevel = 0
 	else:
-		QHlevel = List[3]
-	var prop_data: Dictionary = AE.get_last_equ_pro(List[0], QHlevel, List[4])
+		q_hlevel = list[3]
+	var prop_data: Dictionary = AE.get_last_equ_pro(list[0], q_hlevel, list[4])
 	return prop_data[need] if prop_data.has(need) else 0

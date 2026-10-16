@@ -8,7 +8,7 @@ var Player: BaseHero
 var is_set = false
 var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
 var Shallow
-var FirstHyjj: bool = true
+var first_hyjj: bool = true
 
 
 func _physics_process(_delta: float) -> void:
@@ -44,10 +44,10 @@ func call_hyjj():
 
 
 func get_monster():
-	var AllMonsterList = Player.get_parent().get_parent().get_node("Monster").get_children()
-	if AllMonsterList.size() <= 0:
+	var all_monster_list = Player.get_parent().get_parent().get_node("Monster").get_children()
+	if all_monster_list.size() <= 0:
 		return null
-	for i in AllMonsterList:
+	for i in all_monster_list:
 		if i is BaseMonster:
 			if (
 				i.get_meta("pet_tiger_unit", false)
@@ -60,7 +60,7 @@ func get_monster():
 				continue
 
 			if i is Monster48:
-				if i.ChangeBody:
+				if i.change_body_flag:
 					continue
 			if i is Monster50:
 				if i.is_stop:
@@ -86,24 +86,24 @@ func _on_area_entered(_area: Area2D) -> void:
 	if name_ == "qsez" or name_ == "qsez_1":
 		var num = randi_range(0, 4)
 
-		if Player.ShallowList.size() < get_max_min_shallow_num()[0]:
+		if Player.shallow_list.size() < get_max_min_shallow_num()[0]:
 			for i in range(get_max_min_shallow_num()[0]):
-				if Player.ShallowList.size() > get_max_min_shallow_num()[1]:
+				if Player.shallow_list.size() > get_max_min_shallow_num()[1]:
 					return
 				Global.add_role1_shallow(Player.get_parent(), Player.position, Player.action.scale.x, num)
-		if Player.ShallowList.size() >= get_max_min_shallow_num()[1]:
+		if Player.shallow_list.size() >= get_max_min_shallow_num()[1]:
 			return
 		if randi_range(0, 100) < 45 + (PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1) * 3:
 			Global.add_role1_shallow(Player.get_parent(), Player.position + Vector2(0, -20), Player.action.scale.x, num)
 
 
 func get_max_min_shallow_num():
-	var GetLevel = int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL])
+	var get_level = int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL])
 
-	if GetLevel <= 2:
+	if get_level <= 2:
 		return [1, 5]
-	if GetLevel <= 5:
+	if get_level <= 5:
 		return [2, 6]
-	if GetLevel <= 8:
+	if get_level <= 8:
 		return [2, 8]
 	return [2, 12]

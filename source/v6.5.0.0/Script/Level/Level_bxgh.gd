@@ -291,30 +291,30 @@ var _boss_death_handled := false
 
 
 func _ready() -> void:
-	selected_boss_id = int(Global.SelectedEightImmortalId)
+	selected_boss_id = int(Global.selected_eight_immortal_id)
 	if selected_boss_id not in BOSS_ORDER:
 		selected_boss_id = BOSS_ORDER[0]
-	Monster_group = {
+	monster_group = {
 		"stage_1": [selected_boss_id],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [599],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [0],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
 	_align_boss_spawn_height()
-	Global.CurrentLevel = "八仙过海"
-	Global.GameOver = 1
+	Global.current_level = "八仙过海"
+	Global.game_over = 1
 	level_stage = 0
 	current_stage = 1
 	is_two_scene = false
@@ -356,7 +356,7 @@ func _align_boss_spawn_height() -> void:
 	if collision == null or collision.shape == null:
 		return
 	var boat_floor_y := collision.global_position.y - collision.shape.get_rect().size.y * 0.5
-	Monster_position_y["stage_1"][0] = boat_floor_y - _get_boss_floor_offset() - monster.global_position.y
+	monster_position_y["stage_1"][0] = boat_floor_y - _get_boss_floor_offset() - monster.global_position.y
 
 
 func _get_boss_floor_offset() -> float:
@@ -424,7 +424,7 @@ func set_through() -> void:
 
 
 func one_check_can_exit() -> bool:
-	return Monster_group["stage_1"].is_empty() and not _has_pending_boss_node()
+	return monster_group["stage_1"].is_empty() and not _has_pending_boss_node()
 
 
 func check_can_exit() -> bool:

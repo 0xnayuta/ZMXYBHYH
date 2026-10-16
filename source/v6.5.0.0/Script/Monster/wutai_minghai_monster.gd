@@ -160,8 +160,8 @@ func _configure_monster() -> void:
 	independent_fall_list = Array(config.get("independent_drop_list", [])).duplicate(true)
 	is_boss = bool(config["is_boss"])
 	boss_max_protect = float(config["max_protect"])
-	is_Fly = _model_id() == 3065
-	NoGrav = is_Fly
+	is_fly = _model_id() == 3065
+	NoGrav = is_fly
 	objattackDic.clear()
 	var attacks: Dictionary = config["attacks"]
 	for attack_name: String in attacks:
@@ -577,7 +577,7 @@ func state_hurt() -> void:
 func _finish_hurt_reaction(hurt_generation: int) -> void:
 	super._finish_hurt_reaction(hurt_generation)
 	velocity.x = 0.0
-	if is_Fly:
+	if is_fly:
 		velocity.y = 0.0
 
 
@@ -590,7 +590,7 @@ func state_death() -> void:
 	_finish_charge()
 	_disable_attack_box()
 	NoGrav = false
-	is_Fly = false
+	is_fly = false
 	velocity = Vector2.ZERO
 	if hurt_box != null:
 		hurt_box.set_deferred("disabled", true)

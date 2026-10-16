@@ -20,7 +20,7 @@ func _get_weapon_frames(equipment_id: String) -> SpriteFrames:
 func get_mount_rider_textures() -> Dictionary:
 	if _body_frames == null or _body_front_frames == null:
 		return {
-			"body": role_body.texture if is_instance_valid(role_body) else null,
+			"body": body_sprite.texture if is_instance_valid(body_sprite) else null,
 			"body_front": role_body_front.texture if is_instance_valid(role_body_front) else null,
 		}
 	var body_animation := _resolve_equipment_animation(_body_frames, MOUNT_RIDER_ANIMATION)
@@ -139,7 +139,7 @@ const STANDARD_HURT_ANIMATION_LENGTH := 0.45
 const STANDARD_HURT_PLAYBACK_SPEED := 2.0
 
 @onready var melee_shape: CollisionShape2D = $base_damagebox/HitBox/HitBox
-@onready var role_body: Sprite2D = $Action/RoleBody
+@onready var body_sprite: Sprite2D = $Action/body_sprite
 @onready var role_body_front: Sprite2D = $Action/RoleBodyFront
 
 var _lotus_enabled: bool = false
@@ -187,16 +187,16 @@ func _ready() -> void:
 	add_to_group("Player")
 	for skill_name in [SKILL_JIULONG, SKILL_DASH, SKILL_WHEEL, SKILL_LOTUS, SKILL_SPEAR]:
 		Role1SkillInter[skill_name] = 0.0
-		Role1SkillMaxInter[skill_name] = 0.0
+		role1_skill_max_inter[skill_name] = 0.0
 	Role1SkillInter[SKILL_YINYANG] = 0.0
-	Role1SkillMaxInter[SKILL_YINYANG] = 0.0
+	role1_skill_max_inter[SKILL_YINYANG] = 0.0
 	on_eqchange()
 	_refresh_attack_data()
 	role_action_player.play(&"wait")
 
 
 func ws_skill() -> bool:
-	if RoleProp.is_ws_state or IsDeath:
+	if RoleProp.is_ws_state or is_death:
 		return false
 
 	RoleProp.is_ws_state = true
@@ -324,7 +324,7 @@ func _build_body_animations() -> void:
 			Animation.LOOP_LINEAR if _body_frames.get_animation_loop(animation_name) else Animation.LOOP_NONE
 		)
 		var track := animation.add_track(Animation.TYPE_VALUE)
-		animation.track_set_path(track, NodePath("Action/RoleBody:texture"))
+		animation.track_set_path(track, NodePath("Action/role_body:texture"))
 		animation.value_track_set_update_mode(track, Animation.UPDATE_DISCRETE)
 		for frame_index in range(frame_count):
 			animation.track_insert_key(
@@ -381,7 +381,7 @@ func _set_equipment_textures_at(animation_name: StringName, position: float) -> 
 		int(floor(position * 30.0)), _body_front_frames.get_frame_count(body_front_animation_name) - 1
 	)
 	var weapon_frame := mini(int(floor(position * 30.0)), _weapon_frames.get_frame_count(weapon_animation_name) - 1)
-	role_body.texture = _body_frames.get_frame_texture(body_animation_name, maxi(body_frame, 0))
+	body_sprite.texture = _body_frames.get_frame_texture(body_animation_name, maxi(body_frame, 0))
 	role_body_front.texture = _body_front_frames.get_frame_texture(body_front_animation_name, maxi(front_frame, 0))
 	role_equipment.texture = _weapon_frames.get_frame_texture(weapon_animation_name, maxi(weapon_frame, 0))
 
@@ -495,7 +495,7 @@ func _play_melee(
 	get_hit_data(hit_key)
 	role_action_player.play(animation_name)
 	await _wait_frames(start_frame)
-	if not is_inside_tree() or IsDeath:
+	if not is_inside_tree() or is_death:
 		return
 	var effect := _spawn_effect(
 		effect_name, objattackDic[hit_key], -1.0, 0.0, 1, Vector2.ZERO, Vector2.ZERO, true, true
@@ -503,7 +503,7 @@ func _play_melee(
 	effect.follow_target = self
 	effect.bullet_player.animation_finished.connect(effect.queue_free, CONNECT_ONE_SHOT)
 	await role_action_player.animation_finished
-	if is_inside_tree() and not IsDeath:
+	if is_inside_tree() and not is_death:
 		hit_count = next_combo
 		is_attacking = false
 
@@ -588,7 +588,7 @@ func get_skill(skill_name):
 		return
 	if name == SKILL_LOTUS and _lotus_toggle_locked:
 		return
-	if is_silent or name == "" or is_using_skills or is_be_attacking or IsDeath:
+	if is_silent or name == "" or is_using_skills or is_be_attacking or is_death:
 		return
 	if not Role1SkillInter.has(name) or Role1SkillInter[name] > 0.0:
 		return
@@ -622,7 +622,7 @@ func _begin_skill(animation_name: StringName, hit_key: String) -> int:
 	_skill_interrupt_generation += 1
 	_jiulong_ground_recovery = false
 	velocity.x = 0.0
-	IsSuperArmor = true
+	super_armor_active = true
 	is_using_skills = true
 	is_attacking = true
 	get_action = hit_key
@@ -635,15 +635,15 @@ func _finish_skill(skill_generation: int = -1) -> void:
 		return
 	melee_shape.set_deferred("disabled", true)
 	_restore_enhanced_visuals()
-	role_body.visible = true
+	body_sprite.visible = true
 	_skill_motion_remaining = 0.0
 	_skill_motion_velocity = Vector2.ZERO
 	_spear_move_mode = SPEAR_MOVE_NONE
 	_enhanced_spear_target = null
 	_enhanced_direction_changed = false
 	velocity.x = 0.0
-	IsSuperArmor = false
-	if not IsDeath:
+	super_armor_active = false
+	if not is_death:
 		is_attacking = false
 		is_using_skills = false
 
@@ -651,7 +651,7 @@ func _finish_skill(skill_generation: int = -1) -> void:
 func _is_skill_execution_current(skill_generation: int, hit_key: String) -> bool:
 	return (
 		is_inside_tree()
-		and not IsDeath
+		and not is_death
 		and skill_generation == _skill_interrupt_generation
 		and is_using_skills
 		and get_action == hit_key
@@ -659,7 +659,7 @@ func _is_skill_execution_current(skill_generation: int, hit_key: String) -> bool
 
 
 func _cancel_skill_for_control() -> void:
-	if IsSuperArmor:
+	if super_armor_active:
 		return
 	if (
 		not is_using_skills
@@ -677,7 +677,7 @@ func _cancel_skill_for_control() -> void:
 
 
 func _skill_super_armor_active() -> bool:
-	return is_using_skills and not IsDeath
+	return is_using_skills and not is_death
 
 
 func _use_jiulong_fire() -> void:
@@ -686,17 +686,17 @@ func _use_jiulong_fire() -> void:
 	velocity.y = jump_power
 	_spawn_effect(&"effect1_2", objattackDic[SKILL_JIULONG], 0.4, 0.166, 3, Vector2.ZERO, Vector2.ZERO, true, true)
 	await _wait_frames(6)
-	if interrupt_generation != _skill_interrupt_generation or not is_inside_tree() or IsDeath:
+	if interrupt_generation != _skill_interrupt_generation or not is_inside_tree() or is_death:
 		return
 	velocity.y = -210.0
 	_start_skill_motion(Vector2(0.0, -210.0), 11.0 / 30.0)
 	await _wait_frames(11)
-	if interrupt_generation != _skill_interrupt_generation or not is_inside_tree() or IsDeath:
+	if interrupt_generation != _skill_interrupt_generation or not is_inside_tree() or is_death:
 		return
 	_jiulong_ground_recovery = true
 	is_attacking = false
 	is_using_skills = false
-	IsSuperArmor = false
+	super_armor_active = false
 	await _wait_frames(3)
 	if interrupt_generation == _skill_interrupt_generation:
 		_jiulong_ground_recovery = false
@@ -756,7 +756,7 @@ func _use_yin_yang_sword() -> void:
 func _process_yin_yang_sword(delta: float) -> void:
 	if not _yinyang_enabled:
 		return
-	if IsDeath:
+	if is_death:
 		_disable_yin_yang_sword()
 		return
 
@@ -817,7 +817,7 @@ func _spawn_delayed_yin_yang_sword(
 	sword_offset: Vector2, launch_offset: Vector2, trajectory_angle: float = 0.0
 ) -> void:
 	await get_tree().create_timer(YINYANG_SECOND_SWORD_DELAY).timeout
-	if not is_inside_tree() or IsDeath:
+	if not is_inside_tree() or is_death:
 		return
 	_spawn_yin_yang_launch(launch_offset, "launch_yang", false, trajectory_angle)
 	_spawn_yin_yang_sword(sword_offset, "yang", false, trajectory_angle)
@@ -872,7 +872,7 @@ func _disable_yin_yang_sword() -> void:
 	if is_instance_valid(_yinyang_toggle_effect):
 		_yinyang_toggle_effect.queue_free()
 		_yinyang_toggle_effect = null
-	if is_inside_tree() and not IsDeath:
+	if is_inside_tree() and not is_death:
 		_spawn_yinyang_aura("aura_toggle")
 	if is_using_skills and get_action == SKILL_YINYANG:
 		_finish_skill()
@@ -1066,7 +1066,7 @@ func _apply_spear_input() -> void:
 			if is_instance_valid(target) and not is_zero_approx(target.global_position.x - global_position.x):
 				_set_spear_facing(target.global_position.x >= global_position.x)
 	var direction := Input.get_axis("move_left", "move_right")
-	if IsReverseMove:
+	if is_reverse_move:
 		direction = -direction
 	if is_zero_approx(direction):
 		return
@@ -1079,7 +1079,7 @@ func _apply_spear_input() -> void:
 		if not can_turn:
 			return
 		_set_spear_facing(wants_right)
-	velocity.x = direction * walk_speed * RoleProp.ws_up_power * ReverseMoveSpeedMultiplier
+	velocity.x = direction * walk_speed * RoleProp.ws_up_power * reverse_move_speed_multiplier
 
 
 func _set_spear_facing(face_right: bool) -> void:
@@ -1240,8 +1240,8 @@ func _hide_enhanced_visuals() -> void:
 	if _enhanced_visual_hidden:
 		return
 	_enhanced_visual_state = {
-		"role_body_visible": role_body.visible,
-		"role_body_modulate": role_body.self_modulate,
+		"role_body_visible": body_sprite.visible,
+		"role_body_modulate": body_sprite.self_modulate,
 		"role_body_front_visible": role_body_front.visible,
 		"role_body_front_modulate": role_body_front.self_modulate,
 		"role_equipment_visible": role_equipment.visible,
@@ -1256,7 +1256,7 @@ func _hide_enhanced_visuals() -> void:
 
 
 func _apply_enhanced_visual_hidden() -> void:
-	role_body.visible = false
+	body_sprite.visible = false
 	role_body.self_modulate = Color(1, 1, 1, 0)
 	role_body_front.visible = false
 	role_body_front.self_modulate = Color(1, 1, 1, 0)

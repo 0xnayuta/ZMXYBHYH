@@ -1,12 +1,12 @@
 extends BaseMonster
 var should_death = false
-var WaitTime = [30, 80, 90, 120]
-var GetWWaitTime: int
+var wait_time = [30, 80, 90, 120]
+var get_w_wait_time: int
 
 
 func monster_35():
-	self.CannotAttract = true
-	self.is_Fly = true
+	self.cannot_attract = true
+	self.is_fly = true
 	self.is_boss = false
 	self.my_mr_name = "傀儡王左手"
 	self.attack_in = 10
@@ -164,7 +164,7 @@ func call_wling():
 
 
 func call_fl():
-	var NewList = [
+	var new_list = [
 		{"Ratation": 30, "Position": Vector2(-1200, -400)},
 		{"Ratation": 60, "Position": Vector2(-320, -900)},
 		{"Ratation": -20, "Position": Vector2(-1100, 900)},
@@ -172,8 +172,8 @@ func call_fl():
 		{"Ratation": 70, "Position": Vector2(-180, -900)},
 		{"Ratation": 20, "Position": Vector2(-900, -400)}
 	]
-	NewList.reverse()
-	for i in NewList:
+	new_list.reverse()
+	for i in new_list:
 		var fl = Global.add_bullet(
 			"Monster33Bullet2", self.bullet, false, 1, i["Position"] + position, "wl", self.objattackDic["wl"]
 		)
@@ -183,4 +183,4 @@ func call_fl():
 
 func _on_change_wait_time_timeout() -> void:
 	$ChangeWaitTime.start(randi_range(9, 12))
-	GetWWaitTime = WaitTime[randi_range(0, 3)]
+	get_w_wait_time = wait_time[randi_range(0, 3)]

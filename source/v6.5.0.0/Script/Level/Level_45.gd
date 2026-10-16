@@ -8,24 +8,24 @@ extends BaseLevel
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "绝境宫"
+	Global.current_level = "绝境宫"
 	Global.add_bgm(self, "res://Music/level/10_bg4.mp3")
 	self.level_stage = 47
-	Global.GameOver = 1
+	Global.game_over = 1
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [118, 118, 118, 118, 118, 118],
 		"stage_2": [118, 118, 118, 118, 118, 118],
 		"stage_3": [118, 118, 118, 118, 118, 118],
 		"stage_4": [215],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [350, 900, 450, 850, 550, 800],
 		"stage_2": [1750, 2200, 1850, 2150, 1950, 2100],
 		"stage_3": [2850, 3500, 3000, 3450, 3150, 3400],
 		"stage_4": [4300],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [300, 300, 300, 300, 300, 300],
 		"stage_2": [300, 300, 300, 300, 300, 300],
 		"stage_3": [300, 300, 300, 300, 300, 300],

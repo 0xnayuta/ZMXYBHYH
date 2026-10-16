@@ -151,22 +151,22 @@ func _ready() -> void:
 		bgm_stream.loop = true
 	Global.add_bgm(self, LEVEL_47_BGM_PATH)
 	_create_screen_walls()
-	Global.CurrentLevel = "玄武门"
+	Global.current_level = "玄武门"
 	level_stage = 47
-	Global.GameOver = 1
-	Monster_group = {
+	Global.game_over = 1
+	monster_group = {
 		"stage_1": [3003, 3003, 3003, 3003, 3003, 3003, 3003, 3003, 3001, 3001],
 		"stage_2": [3003, 3003, 3001, 3001, 3003, 3003, 3003, 3004, 3003, 3003, 3003],
 		"stage_3": [3003, 3003, 3003, 3004, 3001, 3001, 3003, 3003, 3003, 3001, 3001],
 		"stage_4": [3005],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [560, 590, 620, 650, 680, 710, 840, 880, 860, 910],
 		"stage_2": [1250, 1290, 1220, 1270, 1430, 1470, 1510, 1800, 1730, 1770, 1810],
 		"stage_3": [2130, 2170, 2210, 2690, 2660, 2720, 2100, 2140, 2180, 2680, 2740],
 		"stage_4": [3973],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [400, 400, 400, 400, 400, 400, 400, 400, 400, 400],
 		"stage_2": [400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400],
 		"stage_3": [400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400],

@@ -14,14 +14,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	self.FB_Level = PlayerData.get_most_level("zjhl")
-	needMp = 50 + self.FB_Level * 12
+	self.fb_level = PlayerData.get_most_level("zjhl")
+	need_mp = 50 + self.fb_level * 12
 	var Power: int
-	var playerPower = RoleProp.roleprop.power
+	var player_power = RoleProp.roleprop.power
 	if PlayerData.check_have_wx("zjhl", "木"):
-		Power = int(playerPower * randf_range(0.15, 0.2)) + int(playerPower * (randf_range(0.08, 0.1) * self.FB_Level))
+		Power = int(player_power * randf_range(0.15, 0.2)) + int(player_power * (randf_range(0.08, 0.1) * self.fb_level))
 	else:
-		Power = int(playerPower * randf_range(0.08, 0.1)) + int(playerPower * (randf_range(0.05, 0.07) * self.FB_Level))
+		Power = int(player_power * randf_range(0.08, 0.1)) + int(player_power * (randf_range(0.05, 0.07) * self.fb_level))
 	_hit_data["power"] = Power
 	_hit_data["WSValue"] = randi_range(15, 20)
 	var add_effect: Dictionary = _hit_data["addeffect"]
@@ -38,7 +38,7 @@ func show_skill():
 
 
 func use_over():
-	Global.FB_CD = 1
+	Global.fb_cd = 1
 	is_use = false
 	if PlayerData.check_have_wx("zjhl", "木"):
 		self.usecd = 12
@@ -50,10 +50,10 @@ func use_over():
 
 func cucurbit_fire():
 	var attack_data := get_attack_snapshot()
-	if self.SelfDir:
-		Global.add_weapon_bullet(self, Vector2(-30, 10), "PurpleGlodCucurbitBullet", attack_data, self.SelfDir, 10)
+	if self.self_dir:
+		Global.add_weapon_bullet(self, Vector2(-30, 10), "PurpleGlodCucurbitBullet", attack_data, self.self_dir, 10)
 	else:
-		Global.add_weapon_bullet(self, Vector2(-30, 10), "PurpleGlodCucurbitBullet", attack_data, !self.SelfDir, 10)
+		Global.add_weapon_bullet(self, Vector2(-30, 10), "PurpleGlodCucurbitBullet", attack_data, !self.self_dir, 10)
 
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理

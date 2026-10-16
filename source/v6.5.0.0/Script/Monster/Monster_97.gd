@@ -6,17 +6,17 @@ func monster_97():
 	self.my_mr_name = "巨盾护卫"
 	self.attack_in = 60
 	self.level = 40
-	self.SHp = 9000 + Global.LLBTLevel * 500
+	self.SHp = 9000 + Global.llbt_level * 500
 	self.Hp = self.SHp
-	self.def = 140 + Global.LLBTLevel * 2
-	self.mdef = 140 + Global.LLBTLevel * 2
-	self.crit = 0 + Global.LLBTLevel * 1.5
-	self.miss = 0 + Global.LLBTLevel * 1
-	self.lucky = 0 + Global.LLBTLevel * 3
-	self.Htarget = 0 + Global.LLBTLevel * 1.5
+	self.def = 140 + Global.llbt_level * 2
+	self.mdef = 140 + Global.llbt_level * 2
+	self.crit = 0 + Global.llbt_level * 1.5
+	self.miss = 0 + Global.llbt_level * 1
+	self.lucky = 0 + Global.llbt_level * 3
+	self.Htarget = 0 + Global.llbt_level * 1.5
 	self.Toughness = 0
-	self.ar = 6 + Global.LLBTLevel * 1
-	self.sp = 6 + Global.LLBTLevel * 1
+	self.ar = 6 + Global.llbt_level * 1
+	self.sp = 6 + Global.llbt_level * 1
 	self.Critreduce = 0
 	self.speed = 8
 	self.mysee = 500
@@ -24,10 +24,10 @@ func monster_97():
 	self.attackDesire = 100
 	self.behit_calmtime = 0
 	self.self_rhp = 0
-	self.add_exp = 60 + Global.LLBTLevel * 5
-	self.fall_coin = 70 + Global.LLBTLevel * 6
+	self.add_exp = 60 + Global.llbt_level * 5
+	self.fall_coin = 70 + Global.llbt_level * 6
 	self.objattackDic["hit1"] = {
-		"power": 330 + Global.LLBTLevel * 6,
+		"power": 330 + Global.llbt_level * 6,
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
 		"HitProtect": 10,

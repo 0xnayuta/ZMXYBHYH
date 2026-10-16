@@ -217,11 +217,11 @@ func call_bfx():
 	var bullet_spawn_positions = [
 		Vector2(-182, 65), Vector2(-91, 65), Vector2(0, 65), Vector2(91, 65), Vector2(182, 65)
 	]
-	var GetPo = []
+	var get_po = []
 	for i in bullet_spawn_positions:
-		GetPo.push_back(i + RoleProp.get_nearest_monster_target_position(global_position))
+		get_po.push_back(i + RoleProp.get_nearest_monster_target_position(global_position))
 	await get_tree().create_timer(1.6, false).timeout
-	for i in GetPo:
+	for i in get_po:
 		Global.add_bullet("Monster6Bullet3", self.bullet, false, 1, i, "qnbx", self.objattackDic["qnbx"])
 
 

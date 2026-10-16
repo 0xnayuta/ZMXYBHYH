@@ -20,8 +20,8 @@ var despawn_effect_enabled: bool = true
 var is_friendly: bool = true
 var MaxProtect: float = 100.0
 var CurrentProtect: float = 0.0
-var needProtect: bool = false
-var need_removeProtect: bool = false
+var need_protect: bool = false
+var need_remove_protect: bool = false
 var protect_hold_time: float = 0.0
 
 var current_target: BaseMonster = null
@@ -42,23 +42,23 @@ var Skill_1_CD: float = 0.0
 var Skill_2_CD: float = 0.0
 var Skill_3_CD: float = 0.0
 var Skill_4_CD: float = 0.0
-var Skill_5_CD: float = 0.0
-var Skill_6_CD: float = 0.0
+var skill_5_cd: float = 0.0
+var skill_6_cd: float = 0.0
 
-var RoundList = []
+var round_list = []
 
 var monster_blood_bar = null
 
-var ShouldInSky: bool = false
-var IsSky: bool = false
+var should_in_sky: bool = false
+var is_sky: bool = false
 var in_sky_timer: float = 0.0
 var max_sky_time: float = 10.0
 
 var count: int = 0
 var ran_num: int = 0
-var RndiCount: int = 0
+var rndi_count: int = 0
 
-var BaseLevel_: Node = null
+var base_level: Node = null
 var level_cache_valid: bool = false
 
 enum State {
@@ -96,20 +96,20 @@ var mysee: int = 500
 var attackRange: int = 160
 var attackDesire: int = 80
 
-var Islljy: bool = false
-var IsLpz: bool = false
+var islljy: bool = false
+var is_lpz: bool = false
 var lpzzs: float = 0.0
 var tqzbs: float = 0.0
 var llrdzs: float = 1.0
-var llrdCount: int = 0
+var llrd_count: int = 0
 var jgz_bl: float = 1.0
 var is_jgz: bool = false
 var is_stun: bool = false
 var is_sleep: bool = false
-var is_Immobilize: bool = false
-var is_speedDown: bool = false
-var IsScary: bool = false
-var IsSuperArmor: bool = false
+var is_immobilize: bool = false
+var is_speed_down: bool = false
+var is_scary: bool = false
+var super_armor_active: bool = false
 var IsIndestructible: bool = false
 var IsDefeReduce: bool = false
 var DefeReduce: float = 0.0
@@ -117,7 +117,7 @@ var BloodFix: bool = false
 var LifeManaLock: bool = false
 var is_quiescent: bool = false
 var is_death: bool = false
-var HurtBl: float = 1.0
+var hurt_bl: float = 1.0
 var hit_name: String = ""
 var MonsterDirection: bool = false
 var get_Player: Node = null
@@ -125,12 +125,12 @@ var hd: int = 0
 var max_hd: int = 0
 var is_bt: bool = false
 var total_hurt: int = 0
-var Therapeutic_effects: float = 0.0
+var therapeutic_effects: float = 0.0
 var lpzjs: float = 0.0
-var is_Fly: bool = false
+var is_fly: bool = false
 var iniSpeed: int = 10
 var NoGrav: bool = false
-var isGXP: bool = false
+var is_gxp: bool = false
 var _gxp_base_speed: int = 0
 var _gxp_serial: int = 0
 const GXP_DAMAGE_MULTIPLIER: float = 2.0
@@ -140,8 +140,8 @@ const GXP_AFTERIMAGE_INTERVAL: float = 0.12
 func turn_to_gxp(duration: int) -> void:
 	_gxp_serial += 1
 	var token := _gxp_serial
-	if not isGXP:
-		isGXP = true
+	if not is_gxp:
+		is_gxp = true
 		_gxp_base_speed = maxi(1, speed)
 		_spawn_gxp_afterimage(token)
 	speed = _gxp_base_speed * 2
@@ -150,11 +150,11 @@ func turn_to_gxp(duration: int) -> void:
 
 
 func get_gxp_damage_multiplier() -> float:
-	return GXP_DAMAGE_MULTIPLIER if isGXP else 1.0
+	return GXP_DAMAGE_MULTIPLIER if is_gxp else 1.0
 
 
 func _spawn_gxp_afterimage(token: int) -> void:
-	if token != _gxp_serial or not isGXP or not is_inside_tree() or Hp <= 0:
+	if token != _gxp_serial or not is_gxp or not is_inside_tree() or Hp <= 0:
 		return
 	if is_instance_valid(monster_dir):
 		var level_node := get_level_node()
@@ -166,15 +166,15 @@ func _spawn_gxp_afterimage(token: int) -> void:
 
 
 func _finish_gxp(token: int) -> void:
-	if token != _gxp_serial or not isGXP:
+	if token != _gxp_serial or not is_gxp:
 		return
 	cancel_gxp()
 
 
 func cancel_gxp() -> void:
-	if not isGXP:
+	if not is_gxp:
 		return
-	isGXP = false
+	is_gxp = false
 	speed = maxi(1, _gxp_base_speed)
 	iniSpeed = speed
 
@@ -193,7 +193,7 @@ func _get_gravity() -> float:
 func _ready() -> void:
 	randomize()
 	ran_num = randi_range(0, 100)
-	RndiCount = randi_range(0, 100)
+	rndi_count = randi_range(0, 100)
 	$CalmHit.start(1.0)
 
 	if not has_node("Buff"):
@@ -215,7 +215,7 @@ func _ready() -> void:
 
 
 func try_play_default_animation() -> void:
-	if is_Fly:
+	if is_fly:
 		if (
 			_play_animation_if_exists("Fly_wait")
 			or _play_animation_if_exists("fly_wait")
@@ -276,9 +276,9 @@ func _physics_process(delta: float) -> void:
 	check_add_buff()
 	update_timers(delta)
 
-	llrdzs = 1.3 if llrdCount > 0 else 1.0
-	if llrdCount > 0:
-		llrdCount -= 1
+	llrdzs = 1.3 if llrd_count > 0 else 1.0
+	if llrd_count > 0:
+		llrd_count -= 1
 
 	if target_search_timer >= target_search_interval:
 		search_for_targets()
@@ -299,7 +299,7 @@ func _physics_process(delta: float) -> void:
 
 	if death():
 		current_state = State.DEATH
-	elif ShouldInSky:
+	elif should_in_sky:
 		current_state = State.SKY
 	elif is_attacking:
 		current_state = State.ATTACK
@@ -324,10 +324,10 @@ func _physics_process(delta: float) -> void:
 		State.IDLE:
 			process_idle(delta)
 
-	if not death() and not ShouldInSky and not is_be_attacking and not is_attacking:
+	if not death() and not should_in_sky and not is_be_attacking and not is_attacking:
 		if not is_limit_buff():
 			ai_think()
-		elif IsScary:
+		elif is_scary:
 			when_scary()
 		else:
 			velocity.x = 0
@@ -338,7 +338,7 @@ func _physics_process(delta: float) -> void:
 	if MainSet.set_data.get("MonsterLittleBlood", false) and MainSet.set_data.get("NoShowMonsterBody", false):
 		little_blood_bar_control()
 
-	if not is_on_floor() and not is_Fly and not ShouldInSky:
+	if not is_on_floor() and not is_fly and not should_in_sky:
 		velocity.y -= gravity * delta
 
 	move_and_slide()
@@ -350,9 +350,9 @@ func rush() -> void:
 
 
 func handle_gravity_and_sky(_delta: float) -> void:
-	if IsSky or ShouldInSky or is_Fly:
+	if is_sky or should_in_sky or is_fly:
 		velocity.y = 0
-	if ShouldInSky:
+	if should_in_sky:
 		in_sky_timer += _delta
 		if in_sky_timer >= max_sky_time:
 			drop()
@@ -364,8 +364,8 @@ func update_timers(delta: float) -> void:
 	Skill_2_CD -= delta
 	Skill_3_CD -= delta
 	Skill_4_CD -= delta
-	Skill_5_CD -= delta
-	Skill_6_CD -= delta
+	skill_5_cd -= delta
+	skill_6_cd -= delta
 	target_search_timer += delta
 	return_timer += delta
 	if count % 60 == 0:
@@ -377,13 +377,13 @@ func update_animation_and_direction() -> void:
 		return
 
 	if velocity.x != 0:
-		if is_Fly:
+		if is_fly:
 			if not (_play_animation_if_exists("Fly") or _play_animation_if_exists("fly")):
 				mr_player.play("walk")
 		else:
 			mr_player.play("walk")
 	else:
-		if is_Fly:
+		if is_fly:
 			if not (_play_animation_if_exists("Fly_wait") or _play_animation_if_exists("fly_wait")):
 				mr_player.play("wait")
 		else:
@@ -403,17 +403,17 @@ func check_add_buff() -> void:
 	var not_ice = true
 	var not_stun = true
 	var not_sleep = true
-	var not_Immobilize = true
-	var not_speedDown = true
-	var not_Scary = true
-	var not_SuperArmor = true
-	var not_Indestructible = true
-	var not_DefeReduce = true
-	var not_BloodFix = true
-	var not_LifeManaLock = true
+	var not_immobilize = true
+	var not_speed_down = true
+	var not_scary = true
+	var not_super_armor = true
+	var not_indestructible = true
+	var not_defe_reduce = true
+	var not_blood_fix = true
+	var not_life_mana_lock = true
 	var not_lljy = true
 	var not_lpz = true
-	var not_NoDeBuff = true
+	var not_no_de_buff = true
 
 	var buff_child_count := buff.get_child_count()
 	var buff_child_index := 0
@@ -425,98 +425,98 @@ func check_add_buff() -> void:
 		var name = i.BuffInfo.get("Name", "")
 		match name:
 			"lljybuff":
-				Islljy = true
+				islljy = true
 				not_lljy = false
 			"NoDeBuff":
 				NoDeBuff = true
-				not_NoDeBuff = false
+				not_no_de_buff = false
 			"lpzbuff":
-				IsLpz = true
+				is_lpz = true
 				not_lpz = false
 			"Ice":
 				is_ice = true
 				not_ice = false
 			"Indestructible":
 				IsIndestructible = true
-				not_Indestructible = false
+				not_indestructible = false
 			"DefeReduce":
 				IsDefeReduce = true
-				not_DefeReduce = false
+				not_defe_reduce = false
 			"SuperArmor":
-				IsSuperArmor = true
-				not_SuperArmor = false
+				super_armor_active = true
+				not_super_armor = false
 			"DeadLink":
-				is_DeadLink = true
+				is_dead_link = true
 			"EyeFix":
-				is_EyeFix = true
+				is_eye_fix = true
 			"Immobilize":
-				is_Immobilize = true
-				not_Immobilize = false
+				is_immobilize = true
+				not_immobilize = false
 			"stun":
 				is_stun = true
 				not_stun = false
 			"speed_down":
-				is_speedDown = true
-				not_speedDown = false
+				is_speed_down = true
+				not_speed_down = false
 			"BloodFix":
 				BloodFix = true
-				not_BloodFix = false
+				not_blood_fix = false
 			"LifeManaLock":
 				LifeManaLock = true
-				not_LifeManaLock = false
+				not_life_mana_lock = false
 			"Scary":
-				IsScary = true
-				not_Scary = false
+				is_scary = true
+				not_scary = false
 
-	if not_NoDeBuff:
+	if not_no_de_buff:
 		NoDeBuff = false
 	if not_lljy:
-		Islljy = false
+		islljy = false
 	if not_lpz:
-		IsLpz = false
+		is_lpz = false
 		lpzjs = 0.0
-	if not_Indestructible:
+	if not_indestructible:
 		IsIndestructible = false
-	if not_DefeReduce:
+	if not_defe_reduce:
 		DefeReduce = 0.0
 		IsDefeReduce = false
-	if not_SuperArmor:
-		IsSuperArmor = false
-	if not_Scary:
-		IsScary = false
-	if not_BloodFix:
+	if not_super_armor:
+		super_armor_active = false
+	if not_scary:
+		is_scary = false
+	if not_blood_fix:
 		BloodFix = false
-	if not_LifeManaLock:
+	if not_life_mana_lock:
 		LifeManaLock = false
-	if not_Immobilize:
-		is_Immobilize = false
+	if not_immobilize:
+		is_immobilize = false
 	if not_ice:
 		is_ice = false
 	if not_stun:
 		is_stun = false
-	if not_speedDown:
-		is_speedDown = false
+	if not_speed_down:
+		is_speed_down = false
 		speed = iniSpeed
 
 	if buff_child_count == 0:
-		is_speedDown = false
+		is_speed_down = false
 		speed = iniSpeed
 		is_stun = false
 		is_ice = false
-		is_DeadLink = false
-		is_EyeFix = false
+		is_dead_link = false
+		is_eye_fix = false
 
 
 func can_set_gravity() -> bool:
-	return not NoGrav and not Islljy and not ShouldInSky
+	return not NoGrav and not islljy and not should_in_sky
 
 
 func is_limit_buff() -> bool:
-	return is_ice or is_stun or is_Immobilize or is_sleep or IsScary or Islljy
+	return is_ice or is_stun or is_immobilize or is_sleep or is_scary or islljy
 
 
 func is_super_armor() -> bool:
-	return IsSuperArmor or IsIndestructible or is_DeadLink
+	return super_armor_active or IsIndestructible or is_dead_link
 
 
 func when_scary() -> void:
@@ -699,7 +699,7 @@ func ai_think() -> void:
 
 
 func try_use_skills() -> void:
-	if ShouldInSky:
+	if should_in_sky:
 		return
 	if randi_range(0, 100) >= attackDesire:
 		return
@@ -711,9 +711,9 @@ func try_use_skills() -> void:
 		do_hit_3()
 	elif Skill_4_CD <= 0:
 		do_hit_4()
-	elif Skill_5_CD <= 0:
+	elif skill_5_cd <= 0:
 		do_hit_5()
-	elif Skill_6_CD <= 0:
+	elif skill_6_cd <= 0:
 		do_hit_6()
 
 
@@ -742,7 +742,7 @@ func move_down() -> void:
 
 
 func play_move_animation() -> void:
-	if is_Fly:
+	if is_fly:
 		if not (_play_animation_if_exists("Fly") or _play_animation_if_exists("fly")):
 			mr_player.play("walk")
 	else:
@@ -763,7 +763,7 @@ func to_monster() -> void:
 func normal_state() -> void:
 	if is_quiescent or is_be_attacking:
 		return
-	if is_Fly:
+	if is_fly:
 		if ran_num < 95:
 			if RoleProp.role_pos_y > position.y + randi_range(125, 245):
 				move_down()
@@ -782,7 +782,7 @@ func normal_state() -> void:
 func have_target() -> void:
 	if is_quiescent or is_be_attacking:
 		return
-	if is_Fly:
+	if is_fly:
 		if current_target.position.y > position.y + randi_range(125, 245):
 			move_down()
 		elif current_target.position.y < position.y + randi_range(15, 45):
@@ -799,7 +799,7 @@ func cannotchangestatewhenattorbeatt() -> bool:
 
 func stop_move() -> void:
 	velocity.x = 0
-	if is_Fly:
+	if is_fly:
 		if not (_play_animation_if_exists("Fly_wait") or _play_animation_if_exists("fly_wait")):
 			mr_player.play("wait")
 	else:
@@ -853,16 +853,16 @@ func return_to_player() -> void:
 func reset_attack_state() -> void:
 	is_be_attacking = false
 	is_attacking = false
-	if death() or ShouldInSky:
+	if death() or should_in_sky:
 		return
 	if velocity.x != 0:
-		if is_Fly:
+		if is_fly:
 			if not (_play_animation_if_exists("Fly") or _play_animation_if_exists("fly")):
 				mr_player.play("walk")
 		else:
 			mr_player.play("walk")
 	else:
-		if is_Fly:
+		if is_fly:
 			if not (_play_animation_if_exists("Fly_wait") or _play_animation_if_exists("fly_wait")):
 				mr_player.play("wait")
 		else:
@@ -906,7 +906,7 @@ func reduce_hp(value: int, _attacker = null) -> void:
 func cure_hp(value: int = 0) -> int:
 	if Hp <= 0 or BloodFix or LifeManaLock:
 		return 0
-	value = int(value * (1 + Therapeutic_effects))
+	value = int(value * (1 + therapeutic_effects))
 	if Hp + value >= SHp:
 		value = SHp - Hp
 	Hp += value
@@ -1105,10 +1105,10 @@ func _exit_tree() -> void:
 	_clear_visual_resources(self)
 	if monster_blood_bar:
 		monster_blood_bar.queue_free()
-	for i in RoundList:
+	for i in round_list:
 		if is_instance_valid(i):
 			i.queue_free()
-	RoundList.clear()
+	round_list.clear()
 
 
 func _clear_visual_resources(node: Node) -> void:
@@ -1128,17 +1128,17 @@ func _get_pet_protect_gain(_attacker: Node) -> int:
 
 
 func _pet_protect_active() -> bool:
-	return needProtect or CurrentProtect >= MaxProtect
+	return need_protect or CurrentProtect >= MaxProtect
 
 
 func _add_pet_protect(value: int) -> void:
-	if value <= 0 or Hp <= 0 or needProtect:
+	if value <= 0 or Hp <= 0 or need_protect:
 		return
 	CurrentProtect = clampf(CurrentProtect + float(value), 0.0, MaxProtect)
 	if CurrentProtect >= MaxProtect:
 		CurrentProtect = MaxProtect
-		needProtect = true
-		need_removeProtect = true
+		need_protect = true
+		need_remove_protect = true
 		protect_hold_time = randf_range(3.0, 4.0)
 		if hurt_box != null:
 			hurt_box.set_deferred("disabled", true)
@@ -1146,8 +1146,8 @@ func _add_pet_protect(value: int) -> void:
 
 
 func _clear_pet_protect() -> void:
-	needProtect = false
-	need_removeProtect = false
+	need_protect = false
+	need_remove_protect = false
 	protect_hold_time = 0.0
 	CurrentProtect = 0.0
 	if hurt_box != null:
@@ -1157,11 +1157,11 @@ func _clear_pet_protect() -> void:
 
 func _process_pet_protect(delta: float) -> void:
 	if CurrentProtect > 0.0:
-		if need_removeProtect:
+		if need_remove_protect:
 			CurrentProtect = max(0.0, CurrentProtect - 1.0)
 		else:
 			CurrentProtect = max(0.0, CurrentProtect - 0.05)
-	if needProtect:
+	if need_protect:
 		protect_hold_time -= delta
 		if protect_hold_time <= 0.0:
 			_clear_pet_protect()
@@ -1204,38 +1204,38 @@ func apply_defense_reduce_to_target(target: BaseMonster, duration: float = 20.0,
 
 
 func get_level_node() -> Node:
-	if level_cache_valid and is_instance_valid(BaseLevel_):
-		return BaseLevel_
+	if level_cache_valid and is_instance_valid(base_level):
+		return base_level
 	var tree = get_tree()
 	if not tree:
-		BaseLevel_ = self
+		base_level = self
 		level_cache_valid = true
-		return BaseLevel_
+		return base_level
 	var node = get_parent()
 	while node:
 		if node is BaseLevel:
-			BaseLevel_ = node
+			base_level = node
 			level_cache_valid = true
-			return BaseLevel_
+			return base_level
 		node = node.get_parent()
 	var base_levels = tree.get_nodes_in_group("BaseLevel")
 	if not base_levels.is_empty():
-		BaseLevel_ = base_levels[0]
+		base_level = base_levels[0]
 		level_cache_valid = true
-		return BaseLevel_
+		return base_level
 	var scene_root = tree.current_scene
 	if scene_root and scene_root.has_node("BaseLevel"):
-		BaseLevel_ = scene_root.get_node("BaseLevel")
+		base_level = scene_root.get_node("BaseLevel")
 		level_cache_valid = true
-		return BaseLevel_
+		return base_level
 	var all_nodes = tree.get_nodes_in_group("level_container")
 	if not all_nodes.is_empty():
-		BaseLevel_ = all_nodes[0]
+		base_level = all_nodes[0]
 		level_cache_valid = true
-		return BaseLevel_
-	BaseLevel_ = tree.current_scene if tree.current_scene else self
+		return base_level
+	base_level = tree.current_scene if tree.current_scene else self
 	level_cache_valid = true
-	return BaseLevel_
+	return base_level
 
 
 func invalidate_level_cache() -> void:
@@ -1282,19 +1282,19 @@ func set_summon_properties(summoner_node: Node, duration: float = 60.0) -> void:
 
 
 func tween_to_top() -> void:
-	ShouldInSky = true
+	should_in_sky = true
 	var tween = create_tween()
 	tween.tween_property(self, "position", Vector2(0, -250) + position, 0.2)
 
 
 func tween_to_top_2() -> void:
-	ShouldInSky = true
+	should_in_sky = true
 	var tween = create_tween()
 	tween.tween_property(self, "position", Vector2(position.x, 100), 1)
 
 
 func drop() -> void:
-	ShouldInSky = false
+	should_in_sky = false
 	in_sky_timer = 0.0
 
 
@@ -1326,11 +1326,11 @@ func get_attack_animations() -> Dictionary:
 
 
 func _on_calm_hit_timeout() -> void:
-	RndiCount = randi_range(0, 100)
+	rndi_count = randi_range(0, 100)
 
 
 func _on_remove_hurt_bl_timeout() -> void:
-	HurtBl = 1.0
+	hurt_bl = 1.0
 
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理

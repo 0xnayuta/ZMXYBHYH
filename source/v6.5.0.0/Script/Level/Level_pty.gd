@@ -8,11 +8,11 @@ class_name Levelpty
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "蟠桃园"
+	Global.current_level = "蟠桃园"
 	Global.add_bgm(self, "res://Music/level/BGM_Normal.mp3")
 	self.level_stage = 1
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [94, 94, 94, 94, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95],
 		"stage_2":
 		[
@@ -95,7 +95,7 @@ func _ready() -> void:
 		],
 		"stage_4": [96],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1":
 		[350, 800, 350, 800, 350, 800, 100, 1000, 100, 1000, 100, 1000, 100, 1000, 100, 1000, 100, 1000, 100, 1000],
 		"stage_2":
@@ -179,7 +179,7 @@ func _ready() -> void:
 		],
 		"stage_4": [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			420,

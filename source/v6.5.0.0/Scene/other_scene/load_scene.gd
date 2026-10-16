@@ -48,7 +48,7 @@ const EXTRA_PRELOAD_PATHS := [
 
 @onready var loading_bar: TextureProgressBar = $PanelContainer/loading_bar
 @onready var loading_text: Label = $PanelContainer/loading_bar/loading_text
-@onready var MessageTips: Label = $bg/Tips
+@onready var message_tips: Label = $bg/Tips
 
 var _load_started := false
 var _finishing := false
@@ -80,7 +80,7 @@ func _ready() -> void:
 		Global.target_scene = DEFAULT_TARGET_SCENE
 	loading_bar.value = 0.0
 	loading_text.text = "0%"
-	MessageTips.text = "Tips: " + str(tips_textlist[randi_range(0, tips_textlist.size() - 1)])
+	message_tips.text = "Tips: " + str(tips_textlist[randi_range(0, tips_textlist.size() - 1)])
 	_initialize_first_launch_integrity()
 	_begin_load_after_first_frame()
 
@@ -104,7 +104,7 @@ func _initialize_first_launch_integrity() -> void:
 func _show_integrity_failure() -> void:
 	loading_bar.value = 0.99
 	loading_text.text = "99%"
-	MessageTips.text = "资源加载失败，请重新安装。"
+	message_tips.text = "资源加载失败，请重新安装。"
 	_load_started = false
 
 
@@ -164,7 +164,7 @@ func _build_archive_preload_paths() -> Array[String]:
 	for extra_path in EXTRA_PRELOAD_PATHS:
 		_append_preload_path(unique, str(extra_path))
 	if str(Global.target_scene) == "res://Scene/level/level_esbxx.tscn":
-		var constellation_level := clampi(int(Global.SelectedConstellationLevel), 1, 14)
+		var constellation_level := clampi(int(Global.selected_constellation_level), 1, 14)
 		_append_preload_path(unique, "res://Art/Constellations/Background/%d.png" % constellation_level)
 	for role_path in Global.get_current_role_preload_paths():
 		_append_preload_path(unique, role_path)
@@ -600,7 +600,7 @@ func _target_script_monster_group() -> Dictionary:
 		return result
 	var source := file.get_as_text()
 	var group_regex := RegEx.new()
-	if group_regex.compile("Monster_group\\s*=\\s*\\{([\\s\\S]*?)\\n\\s*\\}") != OK:
+	if group_regex.compile("monster_group\\s*=\\s*\\{([\\s\\S]*?)\\n\\s*\\}") != OK:
 		return result
 	var stage_regex := RegEx.new()
 	if stage_regex.compile('"stage_([1-4])"\\s*:\\s*\\[([^\\]]*)\\]') != OK:
@@ -700,5 +700,5 @@ func _covered_change_to_packed_scene(packed_scene: PackedScene) -> void:
 
 func _on_tips_change_timeout() -> void:
 	randomize()
-	var Tips_count = randi_range(0, tips_textlist.size() - 1)
-	MessageTips.text = "Tips: " + str(tips_textlist[Tips_count])
+	var tips_count = randi_range(0, tips_textlist.size() - 1)
+	message_tips.text = "Tips: " + str(tips_textlist[tips_count])

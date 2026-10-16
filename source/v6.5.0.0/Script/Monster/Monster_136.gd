@@ -2,7 +2,7 @@ extends BaseMonster
 
 
 func monster_136():
-	self.is_Fly = true
+	self.is_fly = true
 	self.is_boss = false
 	self.my_mr_name = "持国傀儡"
 	self.attack_in = 90

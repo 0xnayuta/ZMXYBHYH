@@ -10,22 +10,22 @@ func _ready() -> void:
 	load("res://Scene/monster/monster_55.tscn")
 	load("res://Scene/monster/monster_36.tscn")
 	load("res://Scene/monster/monster_57.tscn")
-	Global.CurrentLevel = ""
+	Global.current_level = ""
 	self.level_stage = 1
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [57],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [850],
 		"stage_2": [],
 		"stage_3": [],
 		"stage_4": [],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1": [200],
 		"stage_2": [],
 		"stage_3": [],

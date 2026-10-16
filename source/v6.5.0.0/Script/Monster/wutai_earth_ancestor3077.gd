@@ -31,7 +31,7 @@ var _locked_tornado_position := Vector2.ZERO
 
 func _ready() -> void:
 	NoGrav = true
-	IsSuperArmor = true
+	super_armor_active = true
 	_runtime_config = _resolve_runtime_config()
 	if not _runtime_config.is_empty():
 		_configure_form(_runtime_config)

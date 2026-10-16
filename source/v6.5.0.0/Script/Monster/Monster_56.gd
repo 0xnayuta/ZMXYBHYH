@@ -1,9 +1,9 @@
 extends BaseMonster
 class_name Monster56
 @onready var zlw_special_effect_2: Node2D = $MonsterDir/zlwSpecialEffect_2
-var Boss_4
-var RoundList = []
-var RoundPosition = [
+var boss_4
+var round_list = []
+var round_position = [
 	Vector2(-390, 305),
 	Vector2(-280, 305),
 	Vector2(-170, 305),
@@ -13,7 +13,7 @@ var RoundPosition = [
 	Vector2(270, 305),
 	Vector2(380, 305)
 ]
-var RoundPosition_2 = [
+var round_position_2 = [
 	Vector2(-390, 305),
 	Vector2(-280, 305),
 	Vector2(-170, 305),
@@ -23,7 +23,7 @@ var RoundPosition_2 = [
 	Vector2(270, 305),
 	Vector2(380, 305)
 ]
-var JGPP = [
+var jgpp = [
 	Vector2(-370, 325),
 	Vector2(-255, 325),
 	Vector2(-140, 325),
@@ -33,12 +33,12 @@ var JGPP = [
 	Vector2(310, 325),
 	Vector2(425, 325)
 ]
-var IdxList = [0, 1, 2, 3, 4, 5, 6, 7]
-var CurrentRound: int = 8
-var Throw = true
-var isCall = false
+var idx_list = [0, 1, 2, 3, 4, 5, 6, 7]
+var current_round: int = 8
+var throw = true
+var is_call = false
 var throw_cout: int = 3
-var Call_stage = false
+var call_stage = false
 var add_shallow = false
 var addcount: int = 0
 var poweradd: float = 1
@@ -48,7 +48,7 @@ func monster_56():
 	if get_parent().get_parent() is LevelZLDHDGQ:
 		poweradd = 2
 		self.is_boss = true
-		self.CannotAttract = true
+		self.cannot_attract = true
 		self.my_mr_name = "转轮·真法"
 		self.attack_in = 0
 		self.level = 50
@@ -85,7 +85,7 @@ func monster_56():
 		]
 		return
 	self.is_boss = true
-	self.CannotAttract = true
+	self.cannot_attract = true
 	self.my_mr_name = "转轮·真法"
 	self.attack_in = 0
 	self.level = 30
@@ -140,8 +140,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if get_parent().get_parent() is LevelZLDHDGQ:
 		if Hp <= 0:
-			if Boss_4 == null:
-				Boss_4 = Global.create_monster(142, get_parent(), Vector2(750, 320)) as Monster142
+			if boss_4 == null:
+				boss_4 = Global.create_monster(142, get_parent(), Vector2(750, 320)) as Monster142
 	if is_on_floor():
 		velocity.y = 0
 	velocity.x = 0
@@ -149,12 +149,12 @@ func _physics_process(delta: float) -> void:
 
 
 func ai_think():
-	if not Call_stage:
+	if not call_stage:
 		var pp = get_parent().get_parent()
 		if not pp is Lhhj and not pp is LevelZLDHDGQ:
 			Global.add_z_lw_stage(pp, Vector2(815, 210), 1, 1, 2060, true)
 			Global.add_z_lw_stage(pp, Vector2(2100, 55), 1, -1, 860, false)
-		Call_stage = true
+		call_stage = true
 	if Hp <= SHp and Hp > SHp * 0.8:
 		throw_cout = 1
 		self.objattackDic["hit1"] = {"power": 200 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
@@ -185,13 +185,13 @@ func ai_think():
 				"CanAdd": false,
 			}
 		}
-	if CurrentRound <= 0:
-		Throw = false
+	if current_round <= 0:
+		throw = false
 	mr_player.play("wait")
 	if is_on_floor():
 		velocity.y = 0
 	velocity.x = 0
-	if Throw:
+	if throw:
 		if Skill_1_CD <= 0:
 			throw_round(throw_cout)
 	else:
@@ -200,67 +200,67 @@ func ai_think():
 
 
 func throw_round(value):
-	isCall = false
+	is_call = false
 	Skill_1_CD = randi_range(3, 5)
 	var i = 0
-	var IDxList = [0, 1, 2, 3, 4, 5, 6, 7]
+	var i_dx_list = [0, 1, 2, 3, 4, 5, 6, 7]
 	var tween = get_tree().create_tween().set_parallel(true)
 
 	for u in range(value):
-		if CurrentRound > 0:
-			var Round = Global.add_bullet(
+		if current_round > 0:
+			var round_num = Global.add_bullet(
 				"Monster55Bullet", bullet, false, 1, position, "hit1", self.objattackDic["hit1"]
 			)
-			RoundList.push_back(Round)
-			CurrentRound -= 1
+			round_list.push_back(round_num)
+			current_round -= 1
 
-	for idx in range(RoundList.size() - 1, -1, -1):
-		if not is_instance_valid(RoundList[idx]):
-			RoundList.remove_at(idx)
+	for idx in range(round_list.size() - 1, -1, -1):
+		if not is_instance_valid(round_list[idx]):
+			round_list.remove_at(idx)
 
-	for u in RoundList:
-		if IDxList.size() > 0:
-			var get_num = IDxList.pick_random()
-			var pp = RoundPosition[get_num] + position
-			u.IsThrow = true
+	for u in round_list:
+		if i_dx_list.size() > 0:
+			var get_num = i_dx_list.pick_random()
+			var pp = round_position[get_num] + position
+			u.is_throw = true
 			tween.tween_property(u, "position", pp, 2)
 
 			if u.is_throw_close:
 				u.is_throw_close.start(2)
-			IDxList.erase(get_num)
+			i_dx_list.erase(get_num)
 
-	zlw_special_effect_2.CurrentCount -= value
-	if zlw_special_effect_2.CurrentCount <= 0:
-		zlw_special_effect_2.CurrentCount = 0
+	zlw_special_effect_2.current_count -= value
+	if zlw_special_effect_2.current_count <= 0:
+		zlw_special_effect_2.current_count = 0
 
-	if CurrentRound <= 0:
-		CurrentRound = 0
+	if current_round <= 0:
+		current_round = 0
 
 
 func return_all_round():
 	Skill_1_CD = randi_range(3, 5)
-	IdxList = [0, 1, 2, 3, 4, 5, 6, 7]
+	idx_list = [0, 1, 2, 3, 4, 5, 6, 7]
 	var tween = get_tree().create_tween().set_parallel(true)
-	if RoundList.size() > 0:
-		for i in RoundList:
+	if round_list.size() > 0:
+		for i in round_list:
 			if i != null:
-				i.IsThrow = true
+				i.is_throw = true
 				tween.tween_property(i, "position", position, 1)
 
 	await get_tree().create_timer(1.2, false).timeout
-	for i in RoundList:
+	for i in round_list:
 		if i != null:
 			i.queue_free()
-	RoundList.clear()
-	if not isCall:
-		isCall = true
+	round_list.clear()
+	if not is_call:
+		is_call = true
 		call_jg(throw_cout)
-	CurrentRound = 8
-	zlw_special_effect_2.CurrentCount = 8
+	current_round = 8
+	zlw_special_effect_2.current_count = 8
 
 
 func call_jg(lx):
-	JGPP = [
+	jgpp = [
 		Vector2(-370, 325),
 		Vector2(-255, 325),
 		Vector2(-140, 325),
@@ -342,12 +342,12 @@ func call_jg(lx):
 				Global.add_bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
 				await get_tree().create_timer(0, false).timeout
 			await get_tree().create_timer(2, false).timeout
-			Throw = true
+			throw = true
 			return
 	for i in list:
 		Global.add_bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
 		await get_tree().create_timer(jg, false).timeout
-	Throw = true
+	throw = true
 	pass
 
 

@@ -43,6 +43,6 @@ func _ready() -> void:
 
 
 func _on_hit_box_area_exited(_area: Area2D) -> void:
-	var Xx = 5 * (1 - float(Hp) / float(SHp)) + randi_range(0, 1)
-	self.cure_hp(Xx * objattackDic["hit1"]["power"])
+	var xx = 5 * (1 - float(Hp) / float(SHp)) + randi_range(0, 1)
+	self.cure_hp(xx * objattackDic["hit1"]["power"])
 	super._on_hit_box_area_entered(_area)

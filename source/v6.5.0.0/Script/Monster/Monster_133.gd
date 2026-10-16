@@ -1,11 +1,11 @@
 extends BaseMonster
 class_name Monster133
-var MyParent: Monster132
+var my_parent: Monster132
 var DeathCount: int = 900
 
 
 func monster_133():
-	self.CannotAttract = true
+	self.cannot_attract = true
 	self.is_boss = false
 	self.NoTarget = true
 	self.my_mr_name = "天庭战神幻影"
@@ -49,13 +49,13 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if MyParent != null:
-		self.objattackDic["hit1"] = MyParent.objattackDic["hit1"]
+	if my_parent != null:
+		self.objattackDic["hit1"] = my_parent.objattackDic["hit1"]
 	else:
 		Hp = -10
 	super._physics_process(delta)
 	velocity = Vector2(0, 0)
-	ShouldInSky = true
+	should_in_sky = true
 	DeathCount -= 1
 	if DeathCount <= 0:
 		Hp = -10

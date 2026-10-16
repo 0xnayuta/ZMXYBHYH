@@ -1,13 +1,13 @@
 extends BaseMonster
 class_name Monster47
-var FishCount: int = 0
+var fish_count: int = 0
 var pp: Vector2
-var CanHit = false
+var can_hit = false
 
 
 func monster_47():
 	self.is_boss = false
-	self.CannotAttract = true
+	self.cannot_attract = true
 	self.my_mr_name = "鱼"
 	self.attack_in = 0
 	self.level = RoleProp.baseroleprop.Level
@@ -59,14 +59,14 @@ func _ready() -> void:
 	super._ready()
 	monster_47()
 	await get_tree().create_timer(4, false).timeout
-	CanHit = true
+	can_hit = true
 
 
 func ai_think():
-	if CanHit:
-		if FishCount > 0:
-			FishCount -= 1
-		if FishCount <= 0:
+	if can_hit:
+		if fish_count > 0:
+			fish_count -= 1
+		if fish_count <= 0:
 			call_fish()
 
 
@@ -82,4 +82,4 @@ func call_fish():
 			Global.add_bullet("Fish_1", bullet, false, 1, bullet_pos, hit_name_, self.objattackDic[hit_name_])
 		else:
 			Global.add_bullet("Fish_2", bullet, false, 1, bullet_pos, hit_name_, self.objattackDic[hit_name_])
-	FishCount = randi_range(80, 160)
+	fish_count = randi_range(80, 160)

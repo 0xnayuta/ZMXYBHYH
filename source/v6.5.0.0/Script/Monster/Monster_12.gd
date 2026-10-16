@@ -5,7 +5,7 @@ var relive_effect
 var is_set = false
 var is_rush = false
 var po: Vector2
-var CureCount: int = 0
+var cure_count: int = 0
 var _skill_4_generation: int = 0
 var velocity_: Vector2:
 	set(val):
@@ -14,7 +14,7 @@ var velocity_: Vector2:
 
 
 func monster_12():
-	self.is_Fly = false
+	self.is_fly = false
 	self.is_boss = true
 	self.my_mr_name = "鹏魔王"
 	self.attack_in = 120
@@ -105,7 +105,7 @@ func interrupt_movement_for_control() -> void:
 
 
 func ai_think():
-	if is_Fly:
+	if is_fly:
 		self.attackRange = 300
 	else:
 		self.attackRange = 85
@@ -114,7 +114,7 @@ func ai_think():
 		mr_ani.rotation = 0
 	if is_eggs:
 		return
-	if Global.is_Fire:
+	if Global.is_fire:
 		self.self_rhp = 200
 	else:
 		self.self_rhp = 0
@@ -126,7 +126,7 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
 				have_target()
-				match is_Fly:
+				match is_fly:
 					true:
 						if Skill_2_CD <= 0:
 							use_skill_4()
@@ -140,7 +140,7 @@ func ai_think():
 							if Skill_1_CD <= 0:
 								do_hit_2()
 			else:
-				match is_Fly:
+				match is_fly:
 					true:
 						if Skill_2_CD <= 0:
 							use_skill_4()
@@ -307,11 +307,11 @@ func state_hurt():
 
 func _physics_process(delta: float) -> void:
 	if super.check_player_have_debuff("Fire"):
-		if CureCount % 60 == 0:
+		if cure_count % 60 == 0:
 			cure_hp(150)
-		CureCount += 1
+		cure_count += 1
 	if not is_set:
-		if not is_Fly:
+		if not is_fly:
 			$Change_zt.wait_time = randi_range(8, 10)
 			$Change_zt.start()
 		else:
@@ -347,7 +347,7 @@ func check_eggs():
 		self.mdef = 80
 		ai_think()
 	else:
-		is_Fly = false
+		is_fly = false
 		velocity.x = 0
 		self.def = 200
 		self.mdef = 200
@@ -386,10 +386,10 @@ func _on_create_timeout() -> void:
 
 
 func _on_change_zt_timeout() -> void:
-	if is_Fly:
-		is_Fly = false
+	if is_fly:
+		is_fly = false
 	else:
-		is_Fly = true
+		is_fly = true
 	is_set = false
 
 
@@ -400,7 +400,7 @@ func _on_hn__timeout() -> void:
 func have_target():
 	if is_quiescent:
 		return
-	if is_Fly:
+	if is_fly:
 		if RoleProp.get_nearest_monster_target_position(global_position).y > position.y + 500:
 			move_down()
 		elif RoleProp.get_nearest_monster_target_position(global_position).y < position.y + 240:

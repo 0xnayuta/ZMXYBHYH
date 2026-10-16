@@ -131,8 +131,8 @@ func _configure_boss() -> void:
 	is_boss = bool(config["is_boss"])
 	boss_max_protect = float(config["max_protect"])
 	NoGrav = true
-	is_Fly = true
-	CannotAttract = true
+	is_fly = true
+	cannot_attract = true
 	objattackDic.clear()
 	var attacks: Dictionary = config["attacks"]
 	for attack_name: String in attacks:
@@ -476,8 +476,8 @@ func _enforce_fixed_state() -> void:
 	if _fixed_position != Vector2.ZERO:
 		position = _fixed_position
 	NoGrav = true
-	is_Fly = true
-	CannotAttract = true
+	is_fly = true
+	cannot_attract = true
 	monster_dir.scale.x = 1.0
 	base_damage_box.scale.x = 1.0
 

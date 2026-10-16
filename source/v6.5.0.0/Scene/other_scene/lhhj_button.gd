@@ -1,13 +1,13 @@
 extends Button
-var selfName: String
-var Father
+var self_name: String
+var father
 
 
 func _physics_process(delta: float) -> void:
-	text = str(selfName)
+	text = str(self_name)
 	set_physics_process(false)
 
 
 func _on_pressed() -> void:
-	Father.TargetBoss = selfName
-	Father.show_prop()
+	father.target_boss = self_name
+	father.show_prop()

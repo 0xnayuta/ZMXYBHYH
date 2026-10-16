@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var LdlClass = preload("res://Script/ldl/ldl.gd")
+@onready var ldl_class = preload("res://Script/ldl/ldl.gd")
 
 @onready var message_text: Label = $background/infomation/message_text
 @onready var hp: Label = $background/infomation/hp
@@ -27,8 +27,8 @@ extends Node2D
 @onready var fb: Button = $background/infomation/equ_/VBoxContainer/fb
 @onready var zdl: Label = $background/Zdlnc/zdl
 @onready var name_1: LineEdit = $background/Zdlnc/name
-@onready var Role_body = $background/RoleBody
-@onready var Role_Eq = $background/RoleEquipment
+@onready var role_body = $background/role_body
+@onready var role_eq = $background/RoleEquipment
 @onready var number_1: TextureRect = $background/infomation/leve_background/Level_Show/Number_1
 @onready var number_2: TextureRect = $background/infomation/leve_background/Level_Show/Number_2
 @onready var tx: Button = $background/infomation/tx
@@ -36,8 +36,8 @@ extends Node2D
 @onready var cb: Button = $background/infomation/cb
 @onready var wing_show: Label = $background/infomation/WingsShow/WingShow
 @onready var head_show: Label = $background/infomation/HeadShow/HeadShow
-@onready var WingsShowButton: Button = $background/infomation/WingsShow
-@onready var HeadShowButton: Button = $background/infomation/HeadShow
+@onready var wings_show_button: Button = $background/infomation/WingsShow
+@onready var head_show_button: Button = $background/infomation/HeadShow
 
 var add_equ_box
 var back_pack_jm
@@ -87,8 +87,8 @@ func _physics_process(_delta: float) -> void:
 	if _props_refresh_timer >= 0.1:
 		_props_refresh_timer = 0.0
 		set_backpack_properies()
-	if Global.BoxCount > 0:
-		Global.BoxCount -= 1
+	if Global.box_count > 0:
+		Global.box_count -= 1
 
 
 func get_level():
@@ -545,116 +545,116 @@ func _on_name_text_changed(new_text: String) -> void:
 
 
 func set_role_wings():
-	var WingsList = PlayerData.player_data[DataKeys.WINGS]
-	if WingsList.size() <= 0:
+	var wings_list = PlayerData.player_data[DataKeys.WINGS]
+	if wings_list.size() <= 0:
 		wings.visible = false
 		wings.play("empty")
 		return
-	var get_WingsName = WingsList[0][DataKeys.NAME]
-	wings.play(get_WingsName)
+	var get_wings_name = wings_list[0][DataKeys.NAME]
+	wings.play(get_wings_name)
 	return
 
 
 func on_eqchange():
-	var WQ: String
-	var Fj: String
+	var wq: String
+	var fj: String
 
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON] == "":
 		if PlayerData.player_data[DataKeys.WEAPON].size() == 0:
-			WQ = "Empty"
+			wq = "Empty"
 		else:
-			WQ = str(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME])
+			wq = str(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME])
 	else:
-		WQ = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON])
-	change_eq(WQ)
+		wq = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON])
+	change_eq(wq)
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR] == "":
 		if PlayerData.player_data[DataKeys.FASHION].size() == 0:
 			if PlayerData.player_data[DataKeys.ARMOR].size() == 0:
-				Fj = "Empty"
+				fj = "Empty"
 			else:
-				Fj = str(PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME])
+				fj = str(PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME])
 		else:
-			Fj = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
+			fj = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
 	else:
-		Fj = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR])
-	Fj = Global.get_clean_name(Fj)
-	change_body(Fj)
-	var WingsList
+		fj = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR])
+	fj = Global.get_clean_name(fj)
+	change_body(fj)
+	var wings_list
 
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
 		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
 			wings.visible = false
-			WingsList = "empty"
+			wings_list = "empty"
 		else:
 			wings.visible = true
-			WingsList = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
+			wings_list = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 	else:
 		wings.visible = true
-		WingsList = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
-	$background/Wings.play(WingsList)
+		wings_list = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
+	$background/Wings.play(wings_list)
 
 
 func change_body(name_):
-	Role_body.texture = Global.load_role1_body(name_)
+	role_body.texture = Global.load_role1_body(name_)
 
 
 func change_eq(name_):
-	Role_Eq.texture = Global.load_role1_eq(name_)
+	role_eq.texture = Global.load_role1_eq(name_)
 
 
 func init_show_wing_tx_button():
 	if PlayerData.player_data["翅膀显示"]:
-		WingsShowButton.set_button_icon(load("res://Art/BackPack/IsChoose.png"))
+		wings_show_button.set_button_icon(load("res://Art/BackPack/is_choose.png"))
 		wing_show.text = "显示"
 	else:
 		wing_show.text = "不显示"
-		WingsShowButton.set_button_icon(load("res://Art/BackPack/NoChoose.png"))
+		wings_show_button.set_button_icon(load("res://Art/BackPack/NoChoose.png"))
 	if PlayerData.player_data["头衔显示"]:
 		head_show.text = "显示"
-		HeadShowButton.set_button_icon(load("res://Art/BackPack/IsChoose.png"))
+		head_show_button.set_button_icon(load("res://Art/BackPack/is_choose.png"))
 	else:
 		head_show.text = "不显示"
-		HeadShowButton.set_button_icon(load("res://Art/BackPack/NoChoose.png"))
+		head_show_button.set_button_icon(load("res://Art/BackPack/NoChoose.png"))
 
 
 func _on_wings_show_pressed() -> void:
 	if PlayerData.player_data["翅膀显示"]:
 		PlayerData.player_data["翅膀显示"] = false
 		MemoryClass.save_game(Global.cd_path)
-		WingsShowButton.set_button_icon(load("res://Art/BackPack/NoChoose.png"))
+		wings_show_button.set_button_icon(load("res://Art/BackPack/NoChoose.png"))
 		wing_show.text = "不显示"
 	else:
 		PlayerData.player_data["翅膀显示"] = true
 		MemoryClass.save_game(Global.cd_path)
 		wing_show.text = "显示"
-		WingsShowButton.set_button_icon(load("res://Art/BackPack/IsChoose.png"))
+		wings_show_button.set_button_icon(load("res://Art/BackPack/is_choose.png"))
 
 
 func _on_head_show_pressed() -> void:
 	if PlayerData.player_data["头衔显示"]:
-		HeadShowButton.set_button_icon(load("res://Art/BackPack/NoChoose.png"))
+		head_show_button.set_button_icon(load("res://Art/BackPack/NoChoose.png"))
 		PlayerData.player_data["头衔显示"] = false
 		MemoryClass.save_game(Global.cd_path)
 		head_show.text = "不显示"
 
 	else:
-		HeadShowButton.set_button_icon(load("res://Art/BackPack/IsChoose.png"))
+		head_show_button.set_button_icon(load("res://Art/BackPack/is_choose.png"))
 		PlayerData.player_data["头衔显示"] = true
 		MemoryClass.save_game(Global.cd_path)
 		head_show.text = "显示"
 
 
 func set_wings_offset():
-	var CurrentWingsName: String
+	var current_wings_name: String
 
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
 		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
-			CurrentWingsName = "empty"
+			current_wings_name = "empty"
 		else:
-			CurrentWingsName = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
+			current_wings_name = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 	else:
-		CurrentWingsName = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
-	match CurrentWingsName:
+		current_wings_name = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
+	match current_wings_name:
 		"xtzy", "ttzy":
 			wings.offset = Vector2(0, 0)
 			wings.scale = Vector2(1.6, 1.6)

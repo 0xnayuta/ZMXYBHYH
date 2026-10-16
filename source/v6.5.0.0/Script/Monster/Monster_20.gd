@@ -1,7 +1,7 @@
 extends BaseMonster
 class_name Monster20
 
-var is_firstLowHp = false
+var is_first_low_hp = false
 var my_shark
 
 
@@ -108,13 +108,13 @@ func ai_think():
 		if my_shark != null:
 			my_shark.Hp = -100
 			my_shark.state = my_shark.State.Death
-	if not is_firstLowHp:
+	if not is_first_low_hp:
 		if low_hp():
 			if self.MonsterDirection:
 				my_shark = Global.create_monster(19, get_parent(), Vector2(self.position.x, self.position.y - 30))
 			else:
 				my_shark = Global.create_monster(19, get_parent(), Vector2(self.position.x, self.position.y - 30))
-			is_firstLowHp = true
+			is_first_low_hp = true
 
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -145,7 +145,7 @@ func ai_think():
 func attack_target():
 	have_target()
 	hit_name = "hit1"
-	if not is_Fly:
+	if not is_fly:
 		velocity.x = 0
 	is_attacking = true
 	if not low_hp():

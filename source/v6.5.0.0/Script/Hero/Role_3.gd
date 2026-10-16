@@ -15,10 +15,10 @@ const SD_AWAKEN_MP_INTERVAL := 5.0
 const SKILL_INPUT_ACTIONS := [&"slz", &"lys", &"lyfb", &"hmz", &"hytj"]
 @onready var hurt_box = $base_damagebox/HurtBox/HurtBox
 @onready var role3_special_effect: AnimatedSprite2D = $Action/SpecialEffect
-var Interv: int
-var My_SD: Array[RoleSpecialEffect] = []
-var SYZQ = []
-var SYzq
+var interv: int
+var my_sd: Array[RoleSpecialEffect] = []
+var syzq = []
+var s_yzq
 @onready var tmczx: Node2D = $TMCZX
 var _special_effect_stream: StreamedPngEffect
 var _special_effect_action: StringName = &""
@@ -55,8 +55,8 @@ func _is_auto_battle_skill_active(skill_id: String) -> bool:
 
 
 func role_3():
-	RoleProp.Role1SXBJ = 0
-	RoleProp.Role1SXxx = 0
+	RoleProp.role1_sxbj = 0
+	RoleProp.role1_s_xxx = 0
 
 	if not is_in_group("Player"):
 		add_to_group("Player")
@@ -172,12 +172,12 @@ func role_3():
 
 
 func _physics_process(delta: float) -> void:
-	if My_SD.size() > 3:
-		if My_SD[0] != null:
-			My_SD[0].queue_free()
-		My_SD.remove_at(0)
+	if my_sd.size() > 3:
+		if my_sd[0] != null:
+			my_sd[0].queue_free()
+		my_sd.remove_at(0)
 
-	if self.IsTMc:
+	if self.is_t_mc:
 		velocity.x = 0
 		if is_on_floor():
 			velocity.y = 0
@@ -185,7 +185,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if _sd_toggle_locked and not _is_any_skill_action_pressed():
 		_sd_toggle_locked = false
-	if _sd_awaken_enabled and (IsDeath or not _is_sd_awaken_active()):
+	if _sd_awaken_enabled and (is_death or not _is_sd_awaken_active()):
 		_disable_sd_awaken()
 	_process_sd_awaken(delta)
 	_process_dgq_spikes(delta)
@@ -196,7 +196,7 @@ func _physics_process(delta: float) -> void:
 			and Input.is_action_pressed("normalhit")
 			and not is_be_attacking
 			and not is_using_skills
-			and Interv <= 0
+			and interv <= 0
 		):
 			match hit_count:
 				0:
@@ -244,7 +244,7 @@ func _replace_special_effect_stream(action: StringName) -> void:
 
 
 func do_normalhit_1():
-	Interv = objattackDic["hit1"]["HitInterv"]
+	interv = objattackDic["hit1"]["HitInterv"]
 	super.get_hit_data("hit1")
 	get_action = "hit1"
 	is_attacking = true
@@ -257,7 +257,7 @@ func do_normalhit_1():
 
 
 func do_normalhit_2():
-	Interv = objattackDic["hit2"]["HitInterv"]
+	interv = objattackDic["hit2"]["HitInterv"]
 	get_action = "hit2"
 	super.get_hit_data("hit2")
 	is_can_move_attack_in_sky()
@@ -271,7 +271,7 @@ func do_normalhit_2():
 
 
 func do_normalhit_3():
-	Interv = objattackDic["hit3"]["HitInterv"]
+	interv = objattackDic["hit3"]["HitInterv"]
 	get_action = "hit3"
 	super.get_hit_data("hit3")
 	velocity.x = 0
@@ -385,7 +385,7 @@ func skill_dgq():
 
 
 func skill_tmc():
-	self.IsTMc = true
+	self.is_t_mc = true
 	self.Role1SkillInter["tmc"] = 2.4
 	velocity.x = 0
 	get_action = "tmc"
@@ -468,7 +468,7 @@ func _prepare_bdqk_action() -> bool:
 	var action := source.duplicate(true) as Animation
 	for track_index in range(action.get_track_count() - 1, -1, -1):
 		var path := str(action.track_get_path(track_index))
-		if path != "Action/RoleBody:frame" and path != "Action/RoleEquipment:frame":
+		if path != "Action/role_body:frame" and path != "Action/RoleEquipment:frame":
 			action.remove_track(track_index)
 	_trim_bdqk_action(action)
 	library.add_animation(ACTION_NAME, action)
@@ -480,7 +480,7 @@ func _trim_bdqk_action(action: Animation) -> void:
 
 
 func _on_inter_timeout() -> void:
-	Interv -= 1
+	interv -= 1
 
 
 func add_music(idx):
@@ -543,9 +543,9 @@ func add_zznh():
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	var Target = area.get_parent().get_parent()
-	if Target is BaseMonster:
-		if _is_summon_or_pet_target(Target):
+	var target = area.get_parent().get_parent()
+	if target is BaseMonster:
+		if _is_summon_or_pet_target(target):
 			return
 		if PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] <= 0:
 			return
@@ -561,7 +561,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		else:
 			return
 		if HitDic.has("addeffect"):
-			Global.add_buff(Target.buff, HitDic["addeffect"])
+			Global.add_buff(target.buff, HitDic["addeffect"])
 
 
 func call_syzq():
@@ -575,7 +575,7 @@ func call_syzq():
 
 func add_ssp():
 	var bullet_spawn_positions = []
-	var ScaleList = [Vector2(1, 1), Vector2(1.6, 1.6), Vector2(2, 2), Vector2(2.5, 2.5)]
+	var scale_list = [Vector2(1, 1), Vector2(1.6, 1.6), Vector2(2, 2), Vector2(2.5, 2.5)]
 	if !PlayerDir:
 		bullet_spawn_positions = [Vector2(-70, 15), Vector2(-160, 10), Vector2(-270, 0), Vector2(-400, -10)]
 	else:
@@ -584,25 +584,25 @@ func add_ssp():
 		var xbz = Global.add_role_bullet(
 			self.Bullet, bullet_spawn_positions[i] + position, PlayerDir, "Role3Bullet2", objattackDic["ssp"]
 		)
-		xbz.scale = ScaleList[i]
+		xbz.scale = scale_list[i]
 		await get_tree().create_timer(0.2, false).timeout
 
 
 func add_tmc():
-	var MaxCount: int = 10
+	var max_count: int = 10
 	if RoleProp.is_ws_state:
-		MaxCount = 20
+		max_count = 20
 	var target_count: int = 0
 	var tween = create_tween().set_parallel(true)
-	while target_count < MaxCount:
-		var NewRotation = 360 / MaxCount
-		NewRotation = NewRotation * target_count
-		var stabPosition = Vector2(
-			self.position.x + sin(float(NewRotation) * PI / 180) * 100,
-			self.position.y - 15 - cos(float(NewRotation) * PI / 180) * 100
+	while target_count < max_count:
+		var new_rotation = 360 / max_count
+		new_rotation = new_rotation * target_count
+		var stab_position = Vector2(
+			self.position.x + sin(float(new_rotation) * PI / 180) * 100,
+			self.position.y - 15 - cos(float(new_rotation) * PI / 180) * 100
 		)
-		var stab = Global.add_role_bullet(self.Bullet, stabPosition, false, "Role3Bullet3", objattackDic["tmc"])
-		stab.rotation_degrees = NewRotation - 90
+		var stab = Global.add_role_bullet(self.Bullet, stab_position, false, "Role3Bullet3", objattackDic["tmc"])
+		stab.rotation_degrees = new_rotation - 90
 		stab.modulate = Color(1, 1, 1, 0)
 		tween.tween_property(stab, "modulate", Color(1, 1, 1, 1), 0.6)
 		target_count += 1
@@ -636,13 +636,13 @@ func rush():
 
 
 func removetmc():
-	self.IsTMc = false
+	self.is_t_mc = false
 
 
 func _disable_sd_awaken() -> void:
 	_sd_awaken_enabled = false
 	_sd_awaken_mp_elapsed = 0.0
-	Is_sdBuff = false
+	is_sd_buff = false
 	if _sd_awaken_effect != null and is_instance_valid(_sd_awaken_effect):
 		_sd_awaken_effect.queue_free()
 	_sd_awaken_effect = null

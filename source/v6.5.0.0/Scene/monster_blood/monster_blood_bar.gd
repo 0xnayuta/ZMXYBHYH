@@ -9,10 +9,10 @@ var bar_value: float
 var bar_text: int
 var can_show: bool
 var _last_applied_bar_value := INF
-var Blood:
+var blood:
 	set(va):
-		Blood = va
-		on_hp_change(Blood)
+		blood = va
+		on_hp_change(blood)
 
 
 func _ready() -> void:
@@ -30,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 			self.modulate = Color.WHITE
 	if not is_equal_approx(_last_applied_bar_value, bar_value):
 		blood_bar.value = bar_value
-		Blood = bar_value
+		blood = bar_value
 		_last_applied_bar_value = bar_value
 	if blood_text.text != "":
 		blood_text.text = ""

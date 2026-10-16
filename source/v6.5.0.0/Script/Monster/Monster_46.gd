@@ -1,6 +1,6 @@
 extends BaseMonster
-var Curecount: int = 0
-var DeBuffList = [
+var curecount: int = 0
+var de_buff_list = [
 	{
 		"Name": "stun",
 		"AddTime": 2,
@@ -43,7 +43,7 @@ var DeBuffList = [
 func monster_46():
 	self.is_bt = true
 	self.is_boss = true
-	self.CannotAttract = true
+	self.cannot_attract = true
 	self.my_mr_name = "鬼门·地狱"
 	self.attack_in = 0
 	self.level = 90
@@ -79,7 +79,7 @@ func monster_46():
 func _ready() -> void:
 	super._ready()
 	monster_46()
-	Curecount = 0
+	curecount = 0
 
 
 func _physics_process(delta: float) -> void:
@@ -93,11 +93,11 @@ func ai_think():
 	velocity.x = 0
 	if is_on_floor():
 		velocity.y = 0
-	if Curecount % 60 == 0:
+	if curecount % 60 == 0:
 		role_reduce_hp()
-	if Curecount % 600 == 0:
+	if curecount % 600 == 0:
 		role_add_de_buff()
-	Curecount += 1
+	curecount += 1
 
 
 func role_reduce_hp():
@@ -106,4 +106,4 @@ func role_reduce_hp():
 
 
 func role_add_de_buff():
-	Global.add_buff(get_Player.buff, DeBuffList[randi_range(0, 3)])
+	Global.add_buff(get_Player.buff, de_buff_list[randi_range(0, 3)])

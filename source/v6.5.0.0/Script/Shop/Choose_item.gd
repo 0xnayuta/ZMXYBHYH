@@ -1,5 +1,5 @@
 extends Node2D
-@onready var Item_List = $BG/ItemList
+@onready var item_list = $BG/ItemList
 var list_ = []
 var current_choose: int = -1
 var is_set = false
@@ -15,7 +15,7 @@ func _physics_process(_delta: float) -> void:
 
 func add_item_():
 	for i in list_.size():
-		Item_List.add_item(get_item_name(i), load_(get_item(i)), true)
+		item_list.add_item(get_item_name(i), load_(get_item(i)), true)
 
 
 func get_item(idx):
@@ -27,8 +27,8 @@ func get_item(idx):
 func get_item_name(idx):
 	var name__
 	name__ = list_[idx][DataKeys.NAME]
-	var name_text = AE.AllEquipment_[name__][DataKeys.NAME]
-	var lx = AE.AllEquipment_[name__][DataKeys.TYPE]
+	var name_text = AE.all_equipment[name__][DataKeys.NAME]
+	var lx = AE.all_equipment[name__][DataKeys.TYPE]
 	var get_num = get_item_num(idx)
 	var wxx = get_wx_text(idx)
 
@@ -92,7 +92,7 @@ func _on_qd_pressed() -> void:
 	if current_choose >= 0:
 		var names
 		names = list_[current_choose][DataKeys.NAME]
-		var lx = AE.AllEquipment_[names][DataKeys.TYPE]
+		var lx = AE.all_equipment[names][DataKeys.TYPE]
 		var get_num = get_item_num(current_choose)
 		var get_wx_ = get_wx(current_choose)
 		var list = [{"Name": names, "Value": get_num, "Prop": {}, "WX": Global.get_wx(0), "StrengthValue": 0}]

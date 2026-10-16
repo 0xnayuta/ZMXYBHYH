@@ -4,7 +4,7 @@ extends Node2D
 @onready var cl_3: Button = $cl_3
 @onready var scw: Button = $scw
 
-var ItemInfo = {
+var item_info = {
 	"cl_1": "",
 	"cl_2": "",
 	"cl_3": "",
@@ -36,14 +36,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	cl_1.set_button_icon(load_(ItemInfo["cl_1"]))
-	cl_2.set_button_icon(load_(ItemInfo["cl_2"]))
-	cl_3.set_button_icon(load_(ItemInfo["cl_3"]))
-	scw.set_button_icon(load_(ItemInfo["scw"]))
-	cl_1.EQ_prop = AE.AllEquipment_[ItemInfo["cl_1"]]
-	cl_2.EQ_prop = AE.AllEquipment_[ItemInfo["cl_2"]]
-	cl_3.EQ_prop = AE.AllEquipment_[ItemInfo["cl_3"]]
-	scw.EQ_prop = AE.AllEquipment_[ItemInfo["scw"]]
+	cl_1.set_button_icon(load_(item_info["cl_1"]))
+	cl_2.set_button_icon(load_(item_info["cl_2"]))
+	cl_3.set_button_icon(load_(item_info["cl_3"]))
+	scw.set_button_icon(load_(item_info["scw"]))
+	cl_1.EQ_prop = AE.all_equipment[item_info["cl_1"]]
+	cl_2.EQ_prop = AE.all_equipment[item_info["cl_2"]]
+	cl_3.EQ_prop = AE.all_equipment[item_info["cl_3"]]
+	scw.EQ_prop = AE.all_equipment[item_info["scw"]]
 	set_physics_process(false)
 
 

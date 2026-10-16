@@ -1,6 +1,6 @@
 extends Node2D
-var GetPlayer: BaseHero
-var AddCount: int = 0
+var get_player: BaseHero
+var add_count: int = 0
 @onready var pler: AnimationPlayer = $Pler
 
 
@@ -10,16 +10,16 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
-	if GetPlayer != null:
-		GetPlayer.velocity.x = 0
-		GetPlayer.velocity.y = 0
+	if get_player != null:
+		get_player.velocity.x = 0
+		get_player.velocity.y = 0
 
-	if AddCount % 30 == 0:
-		if GetPlayer != null:
+	if add_count % 30 == 0:
+		if get_player != null:
 			(
 				Global
 				. add_buff(
-					GetPlayer.buff,
+					get_player.buff,
 					{
 						"Name": "speed_down",
 						"AddTime": 2,
@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 			(
 				Global
 				. add_buff(
-					GetPlayer.buff,
+					get_player.buff,
 					{
 						"Name": "silent",
 						"AddTime": 2,
@@ -45,12 +45,12 @@ func _physics_process(delta: float) -> void:
 					}
 				)
 			)
-	AddCount += 1
+	add_count += 1
 
 
 func _on_check_body_entered(body: Node2D) -> void:
 	if body is BaseHero:
-		GetPlayer = body
+		get_player = body
 
 		(
 			Global
@@ -84,7 +84,7 @@ func _on_check_body_entered(body: Node2D) -> void:
 
 
 func _on_check_body_exited(body: Node2D) -> void:
-	GetPlayer = null
+	get_player = null
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:

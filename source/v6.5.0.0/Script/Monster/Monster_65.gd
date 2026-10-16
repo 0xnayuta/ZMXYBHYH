@@ -2,9 +2,9 @@ extends BaseMonster
 class_name Monster65
 const BODY_ATLAS_MANIFEST := "res://Art/Monster/Monster_65/atlas/manifest.json"
 
-var Is_Top = false
-var Is_Drop = false
-var ZZList: Array[BaseMonster] = []
+var is_top = false
+var is_drop = false
+var zz_list: Array[BaseMonster] = []
 var _body_stream: StreamedPngEffect
 var _body_action: StringName = &""
 
@@ -131,8 +131,8 @@ func _replace_body_stream(action: StringName) -> void:
 
 
 func ai_think():
-	if Is_Top:
-		if not Is_Drop:
+	if is_top:
+		if not is_drop:
 			velocity.y = -5
 		return
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -174,23 +174,23 @@ func return_body():
 
 
 func await_t_otop():
-	Is_Top = true
-	Is_Drop = false
+	is_top = true
+	is_drop = false
 	self.position = Vector2(self.position.x, 0)
 	return_body()
 
 
 func fall():
 	velocity.y += 800
-	Is_Top = true
-	Is_Drop = true
+	is_top = true
+	is_drop = true
 	self.position = Vector2(self.position.x, self.position.y)
 
 
 func return_normal():
 	return_body()
-	Is_Top = false
-	Is_Drop = false
+	is_top = false
+	is_drop = false
 
 
 func do_hit_1():

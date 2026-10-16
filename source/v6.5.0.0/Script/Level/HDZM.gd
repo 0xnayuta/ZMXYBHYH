@@ -1,13 +1,13 @@
 extends Node2D
 @onready var csm: Sprite2D = $Hdzm/csm
-var Parent
+var parent_node
 
 
 func _physics_process(delta: float) -> void:
-	if Parent != null:
-		if Parent is Map3:
+	if parent_node != null:
+		if parent_node is Map3:
 			csm.texture = load("res://Art/Game_3/OtherMapButton/jjtj_.png")
-		elif Parent is Map4:
+		elif parent_node is Map4:
 			csm.texture = load("res://Art/Game_3/OtherMapButton/hdtt.png")
 
 
@@ -28,9 +28,9 @@ func _on_ttzstz_pressed() -> void:
 
 
 func _on_csm_pressed() -> void:
-	if Parent == null:
+	if parent_node == null:
 		return
-	if Parent is Map3:
+	if parent_node is Map3:
 		if PlayerData.player_data[DataKeys.PLAYER_LEVEL] < 50:
 			Global.add_message_show(get_parent(), "需要角色等级大于等于50级！", 1.5, Vector2(470, 300))
 		elif PlayerData.get_item_data("ttlp") == 0:
@@ -43,7 +43,7 @@ func _on_csm_pressed() -> void:
 				Global.add_choose_text(self, Vector2(0, 0), "后面关卡可能非常难，需要极高的耐心和技术，确定继续挑战吗？（截教部分关卡无法使用修成正果头衔！）", 0)
 			else:
 				get_tree().change_scene_to_file("res://Scene/main_menu/map_4.tscn")
-	elif Parent is Map4:
+	elif parent_node is Map4:
 		get_tree().change_scene_to_file("res://Scene/main_menu/map_3.tscn")
 
 

@@ -17,11 +17,11 @@ var max_times = 6
 
 
 func _ready() -> void:
-	Global.CurrentLevel = "判官府"
+	Global.current_level = "判官府"
 	Global.add_bgm(self, "res://Music/level/4_bg2.mp3")
 	self.level_stage = 15
 	super._ready()
-	Monster_group = {
+	monster_group = {
 		"stage_1": [39, 40, 39, 40, 39, 40, 39, 40, 39, 40, 39, 40, 39, 40, 39, 40, 39, 40, 39, 40],
 		"stage_2":
 		[
@@ -95,7 +95,7 @@ func _ready() -> void:
 		],
 		"stage_4": [41],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1": [50, 1000, 50, 1000, 50, 1000, 50, 1000, 50, 1000, 50, 1000, 50, 1000, 50, 1000, 50, 1000, 50, 1000],
 		"stage_2":
 		[
@@ -175,7 +175,7 @@ func _ready() -> void:
 		],
 		"stage_4": [4550],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			450,

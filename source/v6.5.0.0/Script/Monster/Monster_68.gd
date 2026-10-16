@@ -1,11 +1,11 @@
 extends BaseMonster
 class_name Monster68
-var Is_Stick = false
+var is_stick = false
 var target_offset: Vector2
-var StickCount: int = 0
-var MaxStickCount: int = randi_range(6, 8)
-var CurrentStickCount: int = 0
-var Myfather: Monster67
+var stick_count: int = 0
+var max_stick_count: int = randi_range(6, 8)
+var current_stick_count: int = 0
+var myfather: Monster67
 
 
 func monster_67():
@@ -50,17 +50,17 @@ func _ready() -> void:
 
 
 func ai_think():
-	if Myfather == null:
-		Myfather = Global.create_monster(67, get_parent(), position)
-	if Is_Stick:
-		StickCount += 1
+	if myfather == null:
+		myfather = Global.create_monster(67, get_parent(), position)
+	if is_stick:
+		stick_count += 1
 		$BaseDamageBox/HurtBox/HurtBox.disabled = true
 		self.position = RoleProp.get_nearest_monster_target_position(global_position) + target_offset
-		ShouldInSky = true
-		if StickCount % 60 == 0 and StickCount != 0:
-			CurrentStickCount += 1
-			if Myfather != null:
-				Myfather.cure_hp(randi_range(1000, 1600))
+		should_in_sky = true
+		if stick_count % 60 == 0 and stick_count != 0:
+			current_stick_count += 1
+			if myfather != null:
+				myfather.cure_hp(randi_range(1000, 1600))
 			if get_Player != null:
 				get_Player.effect_reducehp(objattackDic["hit1"]["power"], objattackDic["hit1"]["attackKind"])
 				(
@@ -77,11 +77,11 @@ func ai_think():
 						}
 					)
 				)
-		if CurrentStickCount > MaxStickCount:
-			CurrentStickCount = 0
-			Is_Stick = false
+		if current_stick_count > max_stick_count:
+			current_stick_count = 0
+			is_stick = false
 		return
-	ShouldInSky = false
+	should_in_sky = false
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
 		if has_target == false:
 			normal_state()
@@ -111,5 +111,5 @@ func attack_target():
 
 
 func _on_hit_box_area_exited(_area: Area2D) -> void:
-	Is_Stick = true
+	is_stick = true
 	super._on_hit_box_area_entered(_area)

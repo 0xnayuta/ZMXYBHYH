@@ -8,27 +8,27 @@ extends Node2D
 
 @onready var all_times: Label = $ShopBg/AllTimes
 @onready var all_lh: Label = $ShopBg/AllLH
-var ChildList1 = []
-var ChildList2 = []
+var child_list1 = []
+var child_list2 = []
 
 
 func _ready() -> void:
-	ChildList1 = [item_1, item_2, item_3, item_4, item_5]
-	ChildList2 = [item_2, item_3, item_4, item_5]
-	item_1.MyFather = self
-	item_2.MyFather = self
-	item_3.MyFather = self
-	item_4.MyFather = self
-	item_5.MyFather = self
-	item_1.MyNum = 1
+	child_list1 = [item_1, item_2, item_3, item_4, item_5]
+	child_list2 = [item_2, item_3, item_4, item_5]
+	item_1.my_father = self
+	item_2.my_father = self
+	item_3.my_father = self
+	item_4.my_father = self
+	item_5.my_father = self
+	item_1.my_num = 1
 	item_1.open()
-	item_2.MyNum = 2
+	item_2.my_num = 2
 	item_2.close()
-	item_3.MyNum = 3
+	item_3.my_num = 3
 	item_3.close()
-	item_4.MyNum = 4
+	item_4.my_num = 4
 	item_4.close()
-	item_5.MyNum = 5
+	item_5.my_num = 5
 	item_5.close()
 
 

@@ -66,7 +66,7 @@ func _configure_sword_boss() -> void:
 
 func _apply_sword_boss_stats() -> void:
 	is_boss = true
-	CannotAttract = true
+	cannot_attract = true
 	set_meta("allow_role_special_control", true)
 	my_mr_name = sword_name
 	var role_level := 65
@@ -462,7 +462,7 @@ func fall_items() -> void:
 
 	if int(MainSet.set_data.get("Difficult", 0)) == 2:
 		var hell_box_fall_pro := 0.2
-		if RoleProp.SourcePlayer != null and RoleProp.SourcePlayer.IsDoubleFallPro:
+		if RoleProp.source_player != null and RoleProp.source_player.is_double_fall_pro:
 			hell_box_fall_pro *= 2.0
 		hell_box_fall_pro = clampf(hell_box_fall_pro, 0.0, 1.0)
 		if randf_range(0, 1) <= hell_box_fall_pro:
@@ -473,6 +473,6 @@ func _scaled_sword_drop_chance(base_chance: float) -> float:
 	var difficult := clampi(int(MainSet.set_data.get("Difficult", 0)), 0, 2)
 	var multipliers := [1.0, 2.0, 3.0]
 	var chance := base_chance * float(multipliers[difficult])
-	if RoleProp.SourcePlayer != null and RoleProp.SourcePlayer.IsDoubleFallPro:
+	if RoleProp.source_player != null and RoleProp.source_player.is_double_fall_pro:
 		chance *= 2.0
 	return clampf(chance, 0.0, 1.0)

@@ -57,8 +57,7 @@ func _ready() -> void:
 	var state: Variant = _spine.get_animation_state()
 	if state == null:
 		await get_tree().process_frame
-		if _spine != null and is_instance_valid(_spine):
-			state = _spine.get_animation_state()
+		if _spine != null and is_instance_valid(_spine): state = _spine.get_animation_state()
 	if state != null:
 		state.set_animation("skill08_1", false, 0)
 	_run_hits()
@@ -179,21 +178,21 @@ func _apply_target_damage(node: BaseMonster) -> void:
 			* RoleProp.ws_up_power
 			* node.jgz_bl
 			* node.zznh_bl
-			* node.HurtBl
+			* node.hurt_bl
 			* (1.0 + node.lpzzs)
 			* (1.0 + owner_player.tszzs)
 			* node.llrdzs
 		)
 	)
 	if damage > 0:
-		node.GetHurt = damage
+		node.hurt_received = damage
 		node.hurt_reduce_hp(damage, owner_player)
 		node.add_lj(damage)
-		Global.TotalRoleHit += damage
-		Global.TotalMagHit += damage
+		Global.total_role_hit += damage
+		Global.total_mag_hit += damage
 		Global.add_sound(node, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 		if not node.is_miss and not node.is_boss_protecting():
-			node.HurtSpecialEffect = Global.add_mr_hurt(node.pz, Vector2.ZERO)
+			node.hurt_special_effect = Global.add_mr_hurt(node.pz, Vector2.ZERO)
 		if not node.is_control_immune():
 			_apply_hit_stun(node)
 		node.role5_bullet(damage, owner_player)

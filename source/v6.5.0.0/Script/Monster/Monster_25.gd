@@ -9,8 +9,8 @@ var state_ = move
 
 
 func monster_25():
-	self.CannotAttract = true
-	self.is_Fly = true
+	self.cannot_attract = true
+	self.is_fly = true
 	self.is_boss = false
 	self.my_mr_name = "鬼手"
 	self.attack_in = 10

@@ -9,8 +9,8 @@ extends BaseLevel
 @onready var tp: Area2D = $Tp
 @onready var ycgk: Sprite2D = $BackGround/floor_2/ycgk
 
-var HurtCount: int = 0
-var IsPlay: bool = false
+var hurt_count: int = 0
+var is_play: bool = false
 var animation_played: bool = false
 var can_through: bool = false
 
@@ -36,7 +36,7 @@ func _ready() -> void:
 	load("res://Scene/monster/monster_120.tscn")
 	load("res://Scene/monster/monster_122.tscn")
 
-	Global.CurrentLevel = "蓬莱岛"
+	Global.current_level = "蓬莱岛"
 	Global.add_bgm(self, "res://Music/level/34_bg5.mp3")
 	self.level_stage = 43
 	super._ready()
@@ -51,7 +51,7 @@ func _ready() -> void:
 	if not tp.is_connected("body_exited", Callable(self, "_on_tp_body_exited")):
 		tp.connect("body_exited", Callable(self, "_on_tp_body_exited"))
 
-	Monster_group = {
+	monster_group = {
 		"stage_1":
 		[
 			118,
@@ -127,7 +127,7 @@ func _ready() -> void:
 		],
 		"stage_4": [1408],
 	}
-	Monster_position_x = {
+	monster_position_x = {
 		"stage_1":
 		[
 			100,
@@ -232,7 +232,7 @@ func _ready() -> void:
 		],
 		"stage_4": [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500],
 	}
-	Monster_position_y = {
+	monster_position_y = {
 		"stage_1":
 		[
 			420,
@@ -383,10 +383,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if HurtCount >= 5 and not animation_played:
-		if not IsPlay:
+	if hurt_count >= 5 and not animation_played:
+		if not is_play:
 			_trigger_hidden_animation()
-			IsPlay = true
+			is_play = true
 
 	super._physics_process(delta)
 
@@ -430,7 +430,7 @@ func _trigger_hidden_animation():
 
 func _on_check_area_entered(area: Area2D) -> void:
 	if not $Check/check.disabled:
-		HurtCount += 1
+		hurt_count += 1
 		Global.add_mr_hurt($Check, Vector2(0, 0))
 
 

@@ -3,15 +3,15 @@ extends Node2D
 @onready var zhenfaicon: TextureRect = $BG/zhenfaicon
 @onready var zhen_fa_button_list: VBoxContainer = $BG/ZhenFaButton/ZhenFaButtonList
 @onready var get_need: Label = $BG/GetNeed
-@onready var UseButton: Button = $BG/Use
+@onready var use_button: Button = $BG/Use
 @onready var cur_name: Label = $BG/CurrentEq/CurName
 @onready var bg: Sprite2D = $BG
-var Infomation
-var CurrentZhenFaName: String = "slz"
-var CurrentUseType: String = "阵法详情"
-var CurrentNum: int = 1
+var infomation
+var current_zhen_fa_name: String = "slz"
+var current_use_type: String = "阵法详情"
+var current_num: int = 1
 var _last_use_button_state: Variant = null
-var CurrentZFList = {
+var current_zf_list = {
 	"slz": {"FangFa": "北方星宿1~3位掉落"},
 	"lpz": {"FangFa": "北方星宿4~6位掉落"},
 	"tsz": {"FangFa": "北方星宿第7位，南方星宿1~3掉落"},
@@ -20,8 +20,8 @@ var CurrentZFList = {
 
 
 func _ready() -> void:
-	var Pd = str(PlayerData.player_data["已佩戴阵法"])
-	match Pd:
+	var pd = str(PlayerData.player_data["已佩戴阵法"])
+	match pd:
 		"slz":
 			cur_name.text = "森罗阵"
 		"lpz":
@@ -43,37 +43,37 @@ func _physics_process(delta: float) -> void:
 
 
 func _refresh_use_button_icon() -> void:
-	var is_equipped: bool = PlayerData.player_data["已佩戴阵法"] == CurrentZhenFaName
+	var is_equipped: bool = PlayerData.player_data["已佩戴阵法"] == current_zhen_fa_name
 	if is_equipped == _last_use_button_state:
 		return
 	_last_use_button_state = is_equipped
 	var icon_name := "43" if is_equipped else "42"
-	UseButton.set_button_icon(Global.get_cached_texture("res://Art/TwentyEightConstellations/" + icon_name + ".png"))
+	use_button.set_button_icon(Global.get_cached_texture("res://Art/TwentyEightConstellations/" + icon_name + ".png"))
 
 
 func add_zhenyan_button():
-	var PostionList = [Vector2(120, 25), Vector2(210, 185), Vector2(40, 185)]
-	match CurrentZhenFaName:
+	var postion_list = [Vector2(120, 25), Vector2(210, 185), Vector2(40, 185)]
+	match current_zhen_fa_name:
 		"slz", "lpz":
-			PostionList = [Vector2(120, 25), Vector2(210, 185), Vector2(40, 185)]
+			postion_list = [Vector2(120, 25), Vector2(210, 185), Vector2(40, 185)]
 		"tsz", "tqz":
-			PostionList = [Vector2(125, 25), Vector2(225, 125), Vector2(125, 210), Vector2(20, 125)]
+			postion_list = [Vector2(125, 25), Vector2(225, 125), Vector2(125, 210), Vector2(20, 125)]
 	for i in zhenfaicon.get_children():
 		if i != null:
 			zhenfaicon.remove_child(i)
 			i.queue_free()
 	var Num: int = 1
-	for i in PostionList:
+	for i in postion_list:
 		Global.addzhenyanbutton(zhenfaicon, i, Num, self)
 		Num += 1
 
 
 func set_zhenfa_basic_info():
 	zhenfaicon.texture = Global.get_cached_texture(
-		"res://Art/TwentyEightConstellations/" + str(CurrentZhenFaName) + ".png"
+		"res://Art/TwentyEightConstellations/" + str(current_zhen_fa_name) + ".png"
 	)
-	get_need.text = "获得方式：" + str(CurrentZFList[CurrentZhenFaName]["FangFa"])
-	match CurrentZhenFaName:
+	get_need.text = "获得方式：" + str(current_zf_list[current_zhen_fa_name]["FangFa"])
+	match current_zhen_fa_name:
 		"slz":
 			zhenfaname.text = "森罗阵"
 			zhenfaname.add_theme_color_override("font_color", "8a00ff")
@@ -90,24 +90,24 @@ func set_zhenfa_basic_info():
 
 
 func add_total_zhenfa_button():
-	for i in CurrentZFList:
+	for i in current_zf_list:
 		Global.add_zhenfalxbutton(zhen_fa_button_list, i, self)
 
 
 func set_right_info():
-	match CurrentUseType:
+	match current_use_type:
 		"阵法详情":
-			if Infomation != null:
-				Infomation.queue_free()
-			Infomation = Global.add_zhen_fa_info(bg, Vector2(70, -120), self)
+			if infomation != null:
+				infomation.queue_free()
+			infomation = Global.add_zhen_fa_info(bg, Vector2(70, -120), self)
 		"阵眼升级":
-			if Infomation != null:
-				Infomation.queue_free()
-			Infomation = Global.add_zhen_yan_cure_level(bg, Vector2(70, -120), self)
+			if infomation != null:
+				infomation.queue_free()
+			infomation = Global.add_zhen_yan_cure_level(bg, Vector2(70, -120), self)
 		"阵法突破":
-			if Infomation != null:
-				Infomation.queue_free()
-			Infomation = Global.add_zhen_fa_tu_po(bg, Vector2(70, -120), self)
+			if infomation != null:
+				infomation.queue_free()
+			infomation = Global.add_zhen_fa_tu_po(bg, Vector2(70, -120), self)
 
 
 func on_change_name():
@@ -120,45 +120,45 @@ func _on_close_pressed() -> void:
 
 
 func _on_zfxq_pressed() -> void:
-	CurrentUseType = "阵法详情"
+	current_use_type = "阵法详情"
 	set_right_info()
 
 
 func _on_zysj_pressed() -> void:
-	CurrentUseType = "阵眼升级"
+	current_use_type = "阵眼升级"
 	set_right_info()
 
 
 func _on_zftp_pressed() -> void:
-	CurrentUseType = "阵法突破"
+	current_use_type = "阵法突破"
 	set_right_info()
 
 
 func _on_use_pressed() -> void:
-	var Name_
-	match CurrentZhenFaName:
+	var name_str
+	match current_zhen_fa_name:
 		"slz":
-			Name_ = "森罗阵"
+			name_str = "森罗阵"
 		"lpz":
-			Name_ = "落魄阵"
+			name_str = "落魄阵"
 		"tsz":
-			Name_ = "腾蛇阵"
+			name_str = "腾蛇阵"
 		"tqz":
-			Name_ = "太清阵"
+			name_str = "太清阵"
 		"":
-			Name_ = ""
-	if PlayerData.player_data["已佩戴阵法"] == CurrentZhenFaName:
+			name_str = ""
+	if PlayerData.player_data["已佩戴阵法"] == current_zhen_fa_name:
 		PlayerData.player_data["已佩戴阵法"] = ""
-		Global.add_message_show(Global.Windows_, "取消佩戴" + str(Name_) + "！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.windows, "取消佩戴" + str(name_str) + "！！", 1.5, Vector2(500, 305))
 	else:
-		if PlayerData.player_data[Name_]["Level"] > 0:
-			PlayerData.player_data["已佩戴阵法"] = CurrentZhenFaName
-			Global.add_message_show(Global.Windows_, "佩戴" + str(Name_) + "！！", 1.5, Vector2(500, 305))
+		if PlayerData.player_data[name_str]["Level"] > 0:
+			PlayerData.player_data["已佩戴阵法"] = current_zhen_fa_name
+			Global.add_message_show(Global.windows, "佩戴" + str(name_str) + "！！", 1.5, Vector2(500, 305))
 		else:
-			Global.add_message_show(Global.Windows_, str(Name_) + "等级不足，无法激活！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.windows, str(name_str) + "等级不足，无法激活！！", 1.5, Vector2(500, 305))
 			return
-	var Pd = str(PlayerData.player_data["已佩戴阵法"])
-	match Pd:
+	var pd = str(PlayerData.player_data["已佩戴阵法"])
+	match pd:
 		"slz":
 			cur_name.text = "森罗阵"
 		"lpz":

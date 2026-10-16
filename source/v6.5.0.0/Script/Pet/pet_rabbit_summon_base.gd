@@ -253,10 +253,10 @@ func do_rabbit_ice() -> void:
 	Skill_3_CD = RABBIT_SKILL_CDS[SKILL_BS] * pet_skill_cooldown_multiplier
 	hit_name = "hit3"
 	_start_turtle_action("hit2")
-	_rabbit_ice_was_fly = is_Fly
+	_rabbit_ice_was_fly = is_fly
 	_rabbit_ice_forced_fly = true
 	_rabbit_ice_start_y = global_position.y
-	is_Fly = true
+	is_fly = true
 
 
 func do_rabbit_aoyi() -> void:
@@ -289,8 +289,8 @@ func _process_rabbit_buffs(delta: float) -> void:
 func _heal_rabbit_aoyi_player() -> void:
 	if not is_instance_valid(player_reference):
 		_find_pet_turtle_player_reference()
-	if not is_instance_valid(player_reference) and RoleProp.SourcePlayer is BaseHero:
-		player_reference = RoleProp.SourcePlayer as BaseHero
+	if not is_instance_valid(player_reference) and RoleProp.source_player is BaseHero:
+		player_reference = RoleProp.source_player as BaseHero
 	if not is_instance_valid(player_reference):
 		return
 	var heal_multiplier := PET_SKILL_PROGRESSION.damage_multiplier(
@@ -377,7 +377,7 @@ func _restore_rabbit_ice_gravity() -> void:
 	if not _rabbit_ice_forced_fly:
 		return
 	_rabbit_ice_forced_fly = false
-	is_Fly = _rabbit_ice_was_fly
+	is_fly = _rabbit_ice_was_fly
 	velocity.y = 0.0
 
 

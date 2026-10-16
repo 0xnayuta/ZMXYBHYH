@@ -1,5 +1,5 @@
 extends BaseMonster
-var CureBl: float = 1
+var cure_bl: float = 1
 
 
 func monster_120():

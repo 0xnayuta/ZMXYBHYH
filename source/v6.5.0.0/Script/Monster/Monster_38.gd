@@ -2,9 +2,9 @@ extends BaseMonster
 
 
 func monster_38():
-	self.is_Fly = true
+	self.is_fly = true
 	self.is_boss = false
-	self.CannotAttract = true
+	self.cannot_attract = true
 	self.my_mr_name = "巫毒娃娃"
 	self.attack_in = 15
 	self.level = 99

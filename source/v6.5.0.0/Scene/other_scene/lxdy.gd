@@ -4,7 +4,7 @@ class_name Lxdy
 const FULLSCREEN_DESIGN_SIZE := Vector2(984.0, 508.0)
 const FULLSCREEN_CONTENT_CENTER := Vector2(492.0, 254.0)
 
-var TargetMap: String
+var target_map: String
 
 
 func _fit_to_fullscreen() -> void:

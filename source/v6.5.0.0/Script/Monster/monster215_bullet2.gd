@@ -31,7 +31,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	ThrowCount += 1
+	throw_count += 1
 	get_prop()
 	_sync_hit_box()
 

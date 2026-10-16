@@ -6,7 +6,7 @@ var rolehitbakc_y
 var monsterhitbakc_x
 var monsterhitbakc_y
 var player_hit_text
-var Mg_hit: int
-var Mg_hit_lx: String
-var Mghitbakc_x
-var Mghitbakc_y
+var mg_hit: int
+var mg_hit_lx: String
+var mghitbakc_x
+var mghitbakc_y

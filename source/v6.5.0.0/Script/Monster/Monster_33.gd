@@ -11,7 +11,7 @@ var should_empty = false
 
 func monster_33():
 	self.is_bt = true
-	self.CannotAttract = true
+	self.cannot_attract = true
 	self.is_boss = true
 	self.my_mr_name = "傀儡王"
 	self.attack_in = 0

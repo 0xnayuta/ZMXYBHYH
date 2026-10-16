@@ -30,7 +30,7 @@ var _icon_cache: Dictionary = {}
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	catalog.initialize(AE.AllEquipment_)
+	catalog.initialize(AE.all_equipment)
 	category = CATEGORIES[clampi(int(PlayerData.player_data.get("Myself", 1)), 1, 6) - 1]
 	_build_ui()
 	_layout_panel()

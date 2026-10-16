@@ -358,8 +358,7 @@ func _ready() -> void:
 	var state: Variant = _spine.get_animation_state()
 	if state == null:
 		await get_tree().process_frame
-		if _spine != null and is_instance_valid(_spine):
-			state = _spine.get_animation_state()
+		if _spine != null and is_instance_valid(_spine): state = _spine.get_animation_state()
 	if state == null:
 		_spawn_fallback_visual()
 		_collision_running = true
@@ -550,14 +549,14 @@ func _apply_hit(target: BaseMonster) -> void:
 
 	var old_hit_data: Dictionary = source_player.HitDic
 	var old_target: Variant = target.get_target
-	var old_source_player: Variant = RoleProp.SourcePlayer
+	var old_source_player: Variant = RoleProp.source_player
 	var old_tszzs: float = source_player.tszzs
 	source_player.HitDic = hit_data
 	target.get_target = source_player
 	target.has_target = true
 
-	RoleProp.SourcePlayer = source_player
-	if source_player.Istsz:
+	RoleProp.source_player = source_player
+	if source_player.istsz:
 		var tsz_level := int(PlayerData.player_data["腾蛇阵"]["Level"])
 		source_player.tszzs = tsz_level * 0.015
 	else:
@@ -574,25 +573,25 @@ func _apply_hit(target: BaseMonster) -> void:
 			* RoleProp.ws_up_power
 			* target.jgz_bl
 			* target.zznh_bl
-			* target.HurtBl
+			* target.hurt_bl
 			* (1.0 + target.lpzzs)
 			* (1.0 + source_player.tszzs)
 			* damage_scale
 		)
 	)
-	target.GetHurt = damage
+	target.hurt_received = damage
 	target.cure_ws_value()
 	if damage > 0:
 		target.hurt_reduce_hp(damage, owner_player)
 		if target is Monster138:
 			target.transfer_linked_damage(damage)
 		target.add_lj(damage)
-		Global.TotalRoleHit += damage
+		Global.total_role_hit += damage
 		if str(hit_data.get("attackKind", "")) == "magic":
-			Global.TotalMagHit += damage
+			Global.total_mag_hit += damage
 		Global.add_sound(target, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 		if not target.is_miss and not target.is_boss_protecting():
-			target.HurtSpecialEffect = Global.add_mr_hurt(target.pz, Vector2(0, 0))
+			target.hurt_special_effect = Global.add_mr_hurt(target.pz, Vector2(0, 0))
 		if not target.is_control_immune():
 			_apply_hit_stun(target)
 		if not target.is_boss_protecting():
@@ -603,7 +602,7 @@ func _apply_hit(target: BaseMonster) -> void:
 	target.get_target = old_target
 	source_player.HitDic = old_hit_data
 	source_player.tszzs = old_tszzs
-	RoleProp.SourcePlayer = old_source_player
+	RoleProp.source_player = old_source_player
 
 
 func _apply_hit_stun(target: BaseMonster) -> void:

@@ -88,9 +88,9 @@ func _get_target_name(index: int) -> String:
 	if index < 0 or index >= target_keys.size():
 		return ""
 	var item_name: String = target_keys[index]
-	if not AE.AllEquipment_.has(item_name):
+	if not AE.all_equipment.has(item_name):
 		return item_name
-	var item_data: Dictionary = AE.AllEquipment_[item_name]
+	var item_data: Dictionary = AE.all_equipment[item_name]
 	var keys: Array = item_data.keys()
 	if keys.size() > 0:
 		return str(item_data[keys[0]])
@@ -179,7 +179,7 @@ func update_icons(target: String):
 	item_1.tooltip_text = material_names[0] if material_names[0] != "" else "无"
 	item_2.tooltip_text = material_names[1] if material_names[1] != "" else "无"
 	item_3.tooltip_text = material_names[2] if material_names[2] != "" else "无"
-	item_4.tooltip_text = AE.AllEquipment_[target][DataKeys.NAME] if AE.AllEquipment_.has(target) else target
+	item_4.tooltip_text = AE.all_equipment[target][DataKeys.NAME] if AE.all_equipment.has(target) else target
 
 
 func get_item_count(item_name: String) -> int:
@@ -228,14 +228,14 @@ func perform_onekey_synthesis(target_dan_name: String, times: int):
 
 	for mat in materials_needed:
 		if not PlayerData.remove_item(mat, materials_needed[mat]):
-			Global.add_message_show(Global.Windows_, "材料不足，扣除失败！", 1.5, Vector2(470, 300))
+			Global.add_message_show(Global.windows, "材料不足，扣除失败！", 1.5, Vector2(470, 300))
 			return
 
 	PlayerData.add_dj(target_dan_name, times)
 	MemoryClass.save_game(Global.cd_path)
 	Global.add_message_show(
-		Global.Windows_,
-		"一键合成成功！获得 " + AE.AllEquipment_[target_dan_name][DataKeys.NAME] + " x" + str(times),
+		Global.windows,
+		"一键合成成功！获得 " + AE.all_equipment[target_dan_name][DataKeys.NAME] + " x" + str(times),
 		1.5,
 		Vector2(470, 300)
 	)
@@ -271,7 +271,7 @@ func _on_target_dan_selected(index: int):
 func _on_onekey_syn_pressed():
 	var idx: int = selected_target_index
 	if idx < 0:
-		Global.add_message_show(Global.Windows_, "请选择目标丹药！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "请选择目标丹药！", 1.5, Vector2(470, 300))
 		return
 
 	var target = target_keys[idx]
@@ -288,10 +288,10 @@ func _on_onekey_syn_pressed():
 	var max_times = get_max_synthesis(target, stock)
 
 	if times <= 0:
-		Global.add_message_show(Global.Windows_, "次数必须大于0！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "次数必须大于0！", 1.5, Vector2(470, 300))
 		return
 	if times > max_times:
-		Global.add_message_show(Global.Windows_, "材料不足，最多合成 " + str(max_times) + " 次", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.windows, "材料不足，最多合成 " + str(max_times) + " 次", 1.5, Vector2(470, 300))
 		times = max_times
 		spin_box.value = times
 

@@ -5,17 +5,17 @@ class_name BaseMagicWeapon
 @onready var skill_cd: Timer = $SkillCD
 @onready var hitbox: CollisionShape2D = $HitBox/HitBox
 @onready var hit_box: Area2D = $HitBox
-var FB_Level: int
+var fb_level: int
 var objattackDic = {}
 var set_count: int = 0
-var needMp = 20
+var need_mp = 20
 var is_use = false
 var is_canuse = true
-var Skill_CD: int
+var cd_remain: int
 var usecd: float
 var Player: BaseHero
 var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
-var SelfDir: bool
+var self_dir: bool
 
 
 func set_magic_weapon_player(hero) -> void:
@@ -31,15 +31,15 @@ func get_attack_snapshot(attack_name: String = "hit1") -> Dictionary:
 
 func _physics_process(_delta: float) -> void:
 	if not skill_cd.is_stopped():
-		if Global.MgCdPic != null:
-			Global.MgCdPic.MaxTime = usecd
+		if Global.mg_cd_pic != null:
+			Global.mg_cd_pic.max_time = usecd
 	if scale.x == -1:
-		SelfDir = true
+		self_dir = true
 	elif scale.x == 1:
-		SelfDir = false
+		self_dir = false
 
 	if not self is Mirror and not self is GhostDoll:
-		if Global.FB_CD > 0:
+		if Global.fb_cd > 0:
 			self.visible = false
 		else:
 			visible = true
@@ -52,7 +52,7 @@ func _physics_process(_delta: float) -> void:
 
 			if is_use:
 				is_canuse = false
-	elif Skill_CD > 0:
+	elif cd_remain > 0:
 		is_canuse = false
 	set_count += 1
 	if set_count % 30 == 0 and not is_use:
@@ -61,12 +61,12 @@ func _physics_process(_delta: float) -> void:
 
 func use_skill():
 	if enough_mp():
-		RoleProp.roleprop.Mp -= needMp
+		RoleProp.roleprop.Mp -= need_mp
 		show_skill()
 
 
 func enough_mp():
-	return RoleProp.roleprop.Mp > needMp
+	return RoleProp.roleprop.Mp > need_mp
 
 
 func show_skill():
@@ -74,17 +74,17 @@ func show_skill():
 
 
 func fix_hero():
-	var get_Roleposition = Vector2(RoleProp.role_pos_x, RoleProp.role_pos_y)
+	var get_roleposition = Vector2(RoleProp.role_pos_x, RoleProp.role_pos_y)
 	var newposition: Vector2
-	if RoleProp.Directon:
+	if RoleProp.directon:
 		scale.x = -1
 
-		SelfDir = true
-		newposition = get_Roleposition - Vector2(100, 180)
+		self_dir = true
+		newposition = get_roleposition - Vector2(100, 180)
 	else:
-		SelfDir = false
+		self_dir = false
 		scale.x = 1
-		newposition = get_Roleposition - Vector2(-100, 180)
+		newposition = get_roleposition - Vector2(-100, 180)
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", newposition, 0.5)
 
@@ -94,7 +94,7 @@ func use_over():
 
 
 func _on_skill_cd_timeout() -> void:
-	Global.FB_CD = -10
+	Global.fb_cd = -10
 	is_canuse = true
 	skill_cd.stop()
 

@@ -662,11 +662,11 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	var incoming_kind := _get_incoming_attack_kind(area)
 	var incoming_attacker := _get_incoming_attacker(area)
 	var hp_before := Hp
-	var previous_hurt_multiplier := HurtBl
+	var previous_hurt_multiplier := hurt_bl
 	if _boss_guard_active and incoming_kind == "magic":
-		HurtBl *= BOSS_GUARD_MAGIC_DAMAGE_MULTIPLIER
+		hurt_bl *= BOSS_GUARD_MAGIC_DAMAGE_MULTIPLIER
 	super._on_hurt_box_area_entered(area)
-	HurtBl = previous_hurt_multiplier
+	hurt_bl = previous_hurt_multiplier
 	var received_damage := maxi(hp_before - Hp, 0)
 	if not _boss_guard_active or received_damage <= 0:
 		return
@@ -675,11 +675,11 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 func resolve_friendly_damage(base_damage: int, attack_kind: String, attacker: Node = null) -> int:
 	_pending_friendly_attacker_ref = weakref(attacker) if attacker != null and is_instance_valid(attacker) else null
-	var previous_hurt_multiplier := HurtBl
+	var previous_hurt_multiplier := hurt_bl
 	if _boss_guard_active and attack_kind == "magic":
-		HurtBl *= BOSS_GUARD_MAGIC_DAMAGE_MULTIPLIER
+		hurt_bl *= BOSS_GUARD_MAGIC_DAMAGE_MULTIPLIER
 	var resolved_damage := super.resolve_friendly_damage(base_damage, attack_kind, attacker)
-	HurtBl = previous_hurt_multiplier
+	hurt_bl = previous_hurt_multiplier
 	if resolved_damage <= 0:
 		_pending_friendly_attacker_ref = null
 	return resolved_damage

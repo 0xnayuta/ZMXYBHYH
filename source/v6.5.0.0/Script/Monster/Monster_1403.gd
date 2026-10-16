@@ -1,9 +1,9 @@
 extends BaseMonster
 
-var ShouldFly: bool
-var IsCall: bool
-var OnsetEatblood: bool
-var RemoveBlood: bool
+var should_fly: bool
+var is_call: bool
+var onset_eatblood: bool
+var remove_blood: bool
 
 var alternate_side: bool = false
 var hit3_stage: int = 0
@@ -231,7 +231,7 @@ func do_hit_3():
 
 
 func check_player_has_speed_down() -> bool:
-	var player = RoleProp.SourcePlayer
+	var player = RoleProp.source_player
 	if player == null:
 		return false
 
@@ -247,7 +247,7 @@ func check_player_has_speed_down() -> bool:
 
 
 func apply_real_stun(stun_time: float):
-	var player = RoleProp.SourcePlayer
+	var player = RoleProp.source_player
 	if player == null:
 		return
 	if player.buff == null:

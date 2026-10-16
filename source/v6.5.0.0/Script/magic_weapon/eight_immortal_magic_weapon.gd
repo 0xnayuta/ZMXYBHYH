@@ -83,8 +83,8 @@ func _build_effect_frames() -> SpriteFrames:
 
 
 func _physics_process(delta: float) -> void:
-	FB_Level = PlayerData.get_most_level(weapon_id) + 1
-	needMp = skill_cost
+	fb_level = PlayerData.get_most_level(weapon_id) + 1
+	need_mp = skill_cost
 	super._physics_process(delta)
 	_process_swords(delta)
 	_process_fan(delta)
@@ -206,7 +206,7 @@ func _use_dragon_sword() -> void:
 func _dragon_sword_spawn_position() -> Vector2:
 	if Player == null or not is_instance_valid(Player):
 		return global_position
-	var role_body := Player.get_node_or_null("Action/RoleBody") as Sprite2D
+	var role_body := Player.get_node_or_null("Action/role_body") as Sprite2D
 	if role_body != null:
 		return role_body.global_position + role_body.offset
 	var action := Player.get_node_or_null("Action") as Node2D
@@ -235,7 +235,7 @@ func _use_yaowang_bottle() -> void:
 	if Player == null or RoleProp.roleprop == null:
 		return
 	var missing := maxi(0, int(RoleProp.roleprop.SHp) - int(RoleProp.roleprop.Hp))
-	Player.cure_hp(FB_Level * 100 + int(float(missing) * 0.15))
+	Player.cure_hp(fb_level * 100 + int(float(missing) * 0.15))
 	var wait_time := 10.0 if _has_wood() else 20.0
 	_spawn_effect_for_duration(wait_time)
 
@@ -322,14 +322,14 @@ func _heal_flower_tick(token: int, remaining: float) -> void:
 	if token != _flower_serial:
 		return
 	if Player != null and is_instance_valid(Player):
-		Player.cure_hp(FB_Level * 2)
+		Player.cure_hp(fb_level * 2)
 		if Player.has_method("cure_mp"):
-			Player.cure_mp(FB_Level)
+			Player.cure_mp(fb_level)
 	var pet := _active_pet()
 	if pet != null and pet.has_method("cure_hp"):
-		pet.cure_hp(FB_Level * 2)
+		pet.cure_hp(fb_level * 2)
 	if pet != null and "Mp" in pet and "SMp" in pet:
-		pet.Mp = mini(int(pet.SMp), int(pet.Mp) + FB_Level)
+		pet.Mp = mini(int(pet.SMp), int(pet.Mp) + fb_level)
 	if remaining > 1.0:
 		get_tree().create_timer(1.0).timeout.connect(_heal_flower_tick.bind(token, remaining - 1.0), CONNECT_ONE_SHOT)
 
@@ -384,7 +384,7 @@ func _use_miaolian() -> void:
 				break
 	if target_pet.is_empty():
 		return
-	var percent := float(FB_Level * 5 + (25 if _has_wood() else 0)) / 100.0
+	var percent := float(fb_level * 5 + (25 if _has_wood() else 0)) / 100.0
 	target_pet[DataKeys.HP] = maxi(1, int(float(target_pet.get("生命上限", 1)) * percent))
 	target_pet[DataKeys.DEPLOYED] = true
 	PlayerData.player_data["出战宠物"] = str(target_pet.get(DataKeys.ALT_NAME, ""))
@@ -527,12 +527,12 @@ func _on_effect_finished(token: int) -> void:
 func use_over() -> void:
 	is_use = false
 	if weapon_id == "yyzlj":
-		Global.FB_CD = -10
+		Global.fb_cd = -10
 		usecd = DRAGON_SWORD_COOLDOWN
 		is_canuse = false
 		skill_cd.start(DRAGON_SWORD_COOLDOWN)
 		return
-	Global.FB_CD = 1
+	Global.fb_cd = 1
 	usecd = maxf(skill_cooldown, 0.1)
 	skill_cd.start(usecd)
 

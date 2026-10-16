@@ -28,13 +28,13 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	ThrowCount += 1
+	throw_count += 1
 	_elapsed += delta
 	get_prop()
 	if _pulse_index < PULSE_TIMES.size() and _elapsed >= float(PULSE_TIMES[_pulse_index]):
 		_fire_hit_pulse()
 		_pulse_index += 1
-	if ThrowCount > int(1.25 * 60.0):
+	if throw_count > int(1.25 * 60.0):
 		queue_free()
 
 

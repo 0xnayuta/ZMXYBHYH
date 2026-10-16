@@ -1,10 +1,10 @@
 extends BaseMonster
-var MyChild: MonsterBullet
-var Count: int = 0
+var my_child: MonsterBullet
+var tick_count: int = 0
 
 
 func monster_101():
-	self.is_Fly = true
+	self.is_fly = true
 	self.is_boss = true
 	self.my_mr_name = "雷震子"
 	self.attack_in = 60
@@ -111,12 +111,12 @@ func _ready() -> void:
 
 
 func ai_think():
-	if MyChild != null:
-		Count += 1
-		if Count >= 900:
-			MyChild.queue_free()
+	if my_child != null:
+		tick_count += 1
+		if tick_count >= 900:
+			my_child.queue_free()
 	else:
-		Count = 0
+		tick_count = 0
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
@@ -125,7 +125,7 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
 				have_target()
-				if MyChild == null and Skill_1_CD <= 0:
+				if my_child == null and Skill_1_CD <= 0:
 					do_hit_1()
 				if Skill_3_CD <= 0:
 					do_hit_3()
@@ -140,9 +140,9 @@ func ai_think():
 					do_hit_3()
 				elif Skill_2_CD <= 0:
 					do_hit_2()
-				elif MyChild == null and Skill_1_CD <= 0:
+				elif my_child == null and Skill_1_CD <= 0:
 					do_hit_1()
-				if count % 60 == 0:
+				if tick_count % 60 == 0:
 					if randi_range(0, 100) < attackDesire:
 						attack_target()
 
@@ -184,7 +184,7 @@ func do_hit_3():
 
 
 func call_bullet_1():
-	var positionList = [
+	var position_list = [
 		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x - 420, 500),
 		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x - 280, 500),
 		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x - 140, 500),
@@ -193,7 +193,7 @@ func call_bullet_1():
 		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + 280, 500),
 		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + 420, 500)
 	]
-	for i in positionList:
+	for i in position_list:
 		Global.add_bullet("Monster101Bullet", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 
 
@@ -211,8 +211,8 @@ func call_bullet_2():
 
 
 func call_bullet_3():
-	if MyChild == null:
-		MyChild = Global.add_bullet(
+	if my_child == null:
+		my_child = Global.add_bullet(
 			"Monster101Bullet2", self.bullet, false, 1, position, "hit2", self.objattackDic["hit2"]
 		)
 

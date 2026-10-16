@@ -87,7 +87,7 @@ func do_hit_1():
 func ai_think():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
-	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt() and not is_Immobilize:
+	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt() and not is_immobilize:
 		if has_target == false:
 			normal_state()
 		else:
@@ -105,8 +105,8 @@ func ai_think():
 
 
 func monster_cure_hp():
-	var BaseLevel_ = get_parent().get_parent() as BaseLevel
-	for i in BaseLevel_.monster.get_children():
+	var base_level = get_parent().get_parent() as BaseLevel
+	for i in base_level.monster.get_children():
 		if i != null:
 			if i is BaseMonster:
 				Global.add_special_effect(i, Vector2(0, -45), "Monster111Bullet", Vector2(1, 1), false, 1)

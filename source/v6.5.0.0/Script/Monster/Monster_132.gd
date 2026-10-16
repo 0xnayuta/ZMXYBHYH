@@ -1,10 +1,10 @@
 extends BaseMonster
 class_name Monster132
 
-var IsStrength: bool
-var RelifTimes: int = 0
-var ShouldRelive: bool = false
-var CreateCount: int = randi_range(600, 720)
+var is_strength: bool
+var relif_times: int = 0
+var should_relive: bool = false
+var create_count: int = randi_range(600, 720)
 var is_resurrecting: bool = false
 var resurrection_completed: bool = false
 var custom_death_handled: bool = false
@@ -88,7 +88,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			gravity = 0
 
-		if not is_on_floor() and not is_Fly:
+		if not is_on_floor() and not is_fly:
 			velocity.y -= gravity * delta
 		move_and_slide()
 		return
@@ -96,12 +96,12 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 	if Hp > 0 and not is_resurrecting and not resurrection_completed:
-		CreateCount -= 1
-		if CreateCount <= 0:
+		create_count -= 1
+		if create_count <= 0:
 			var Shallow = Global.create_monster(133, get_parent(), position) as Monster133
 			if Shallow:
-				Shallow.MyParent = self
-				CreateCount = randi_range(600, 720)
+				Shallow.my_parent = self
+				create_count = randi_range(600, 720)
 
 
 func _process(delta: float) -> void:
@@ -111,10 +111,10 @@ func _process(delta: float) -> void:
 
 
 func death() -> bool:
-	if is_resurrecting or resurrection_completed or ShouldRelive:
+	if is_resurrecting or resurrection_completed or should_relive:
 		return false
 
-	if RelifTimes < 9 and Hp <= 0:
+	if relif_times < 9 and Hp <= 0:
 		return true
 
 	if Hp <= 0:
@@ -127,7 +127,7 @@ func handle_custom_death():
 	velocity = Vector2.ZERO
 	is_attacking = false
 
-	if RelifTimes < 9:
+	if relif_times < 9:
 		start_resurrection()
 	else:
 		final_death()
@@ -135,7 +135,7 @@ func handle_custom_death():
 
 func start_resurrection():
 	is_resurrecting = true
-	ShouldRelive = true
+	should_relive = true
 	set_meta("counts_as_alive_for_stage_clear", true)
 
 	if hit_box:
@@ -146,7 +146,7 @@ func start_resurrection():
 	if mr_player.is_playing():
 		mr_player.stop()
 
-	RelifTimes += 1
+	relif_times += 1
 
 	if has_node("MonsterDir/mr_ani"):
 		var mr_ani = $MonsterDir/mr_ani
@@ -201,7 +201,7 @@ func perform_resurrection():
 	fall_pro += 0.08
 	fall_stone_pro += 0.08
 
-	ShouldRelive = false
+	should_relive = false
 	is_resurrecting = false
 	resurrection_completed = true
 	is_death = false
@@ -288,7 +288,7 @@ func final_death():
 
 
 func state_death():
-	if RelifTimes < 9:
+	if relif_times < 9:
 		set_meta("counts_as_alive_for_stage_clear", true)
 		if not custom_death_handled and not is_resurrecting and not resurrection_completed:
 			custom_death_handled = true
@@ -301,16 +301,16 @@ func state_death():
 
 func is_alive_for_stage_clear() -> bool:
 	return (
-		RelifTimes < 9
+		relif_times < 9
 		or is_resurrecting
 		or resurrection_completed
-		or ShouldRelive
+		or should_relive
 		or bool(get_meta("counts_as_alive_for_stage_clear", false))
 	)
 
 
 func ai_think():
-	if is_resurrecting or resurrection_completed or ShouldRelive:
+	if is_resurrecting or resurrection_completed or should_relive:
 		return
 
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -390,18 +390,18 @@ func call_bullet():
 	if is_resurrecting or resurrection_completed:
 		return
 
-	var MaxCount: int = 15
+	var max_count: int = 15
 	var target_count: int = 0
 
-	while target_count < MaxCount:
-		var NewRotation = 360.0 / MaxCount * target_count
-		var rad = deg_to_rad(NewRotation)
-		var stabPosition = Vector2(self.position.x + sin(rad) * 300, self.position.y - 15 - cos(rad) * 300)
-		var Arrow = Global.add_bullet(
-			"Monster132Bullet", self.bullet, false, 1, stabPosition, "hit2", self.objattackDic["hit2"]
+	while target_count < max_count:
+		var new_rotation = 360.0 / max_count * target_count
+		var rad = deg_to_rad(new_rotation)
+		var stab_position = Vector2(self.position.x + sin(rad) * 300, self.position.y - 15 - cos(rad) * 300)
+		var arrow = Global.add_bullet(
+			"Monster132Bullet", self.bullet, false, 1, stab_position, "hit2", self.objattackDic["hit2"]
 		)
-		if Arrow:
-			Arrow.rotation_degrees = NewRotation - 90
+		if arrow:
+			arrow.rotation_degrees = new_rotation - 90
 
 		await get_tree().create_timer(0.05, false).timeout
 		target_count += 1
@@ -413,28 +413,28 @@ func _on_hurt_box_area_entered(area: Area2D):
 
 	super._on_hurt_box_area_entered(area)
 
-	var Bl: float = 0.02 + RelifTimes * 0.01
-	if IsStrength:
+	var bl: float = 0.02 + relif_times * 0.01
+	if is_strength:
 		Global.add_buff(
-			RoleProp.SourcePlayer.buff,
+			RoleProp.source_player.buff,
 			{
 				"Name": "Fire",
 				"AddTime": 5,
 				"ReduceInterval": 1,
-				"value": int(RoleProp.roleprop.SHp * Bl),
+				"value": int(RoleProp.roleprop.SHp * bl),
 				"AttackKind": "real",
 				"CanAdd": true,
 				"CanRemove": false
 			}
 		)
-		IsStrength = false
+		is_strength = false
 
 
 func strength_self():
 	if is_resurrecting or resurrection_completed:
 		return
 
-	IsStrength = false
+	is_strength = false
 	if objattackDic.size() != 0:
 		for i in objattackDic:
 			if objattackDic[i].has("power"):
@@ -449,7 +449,7 @@ func on_strength():
 	if is_resurrecting or resurrection_completed:
 		return
 
-	IsStrength = true
+	is_strength = true
 
 
 func _exit_tree():

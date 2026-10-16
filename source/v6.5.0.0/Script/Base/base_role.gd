@@ -39,17 +39,17 @@ var pet_exp_bar: TextureProgressBar
 var pet_exp_text: Label
 var pet_protect_bar: TextureProgressBar
 var pet_skill_box: HBoxContainer
-@onready var magicIcon: HBoxContainer = $role_menu/magicIcon
+@onready var magic_icon: HBoxContainer = $role_menu/magic_icon
 
-var SkillTscn: PackedScene = preload("res://Scene/other_scene/skill_icon.tscn")
-var MagicTscn: PackedScene = preload("res://Scene/magic_weapon/magic_weapon_skill_cd.tscn")
-var BuffTscn: PackedScene = preload("res://Scene/other_scene/buff_icon.tscn")
+var skill_tscn: PackedScene = preload("res://Scene/other_scene/skill_icon.tscn")
+var magic_tscn: PackedScene = preload("res://Scene/magic_weapon/magic_weapon_skill_cd.tscn")
+var buff_tscn: PackedScene = preload("res://Scene/other_scene/buff_icon.tscn")
 const STATUS_ICON_SIZE := Vector2(32, 32)
 const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/pet/pet_life_bonus_runtime.gd")
 const PET_LEARNED_ACTIVE_SKILL_ICONS := {"嗜血狂爆": "sxkb", "法术能量": "fsnl"}
 
 var Player
-var magicCD
+var magic_cd
 var buff_icons: Dictionary = {}
 var _last_skill_bindings: Dictionary = {}
 var _last_skill_levels: Dictionary = {}
@@ -68,12 +68,12 @@ var _pet_lookup_cooldown := 0.0
 
 func _ready() -> void:
 	if Player == null:
-		Player = RoleProp.SourcePlayer
+		Player = RoleProp.source_player
 	_set_role_head()
 	_load_skill_icons()
 	_load_buff_icons()
-	if magicCD != null:
-		Global.MgCdPic = magicCD
+	if magic_cd != null:
+		Global.mg_cd_pic = magic_cd
 	_bind_pet_panel_nodes()
 	_set_pet_values()
 
@@ -81,7 +81,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	_pet_lookup_cooldown = maxf(0.0, _pet_lookup_cooldown - _delta)
 	if Player == null:
-		Player = RoleProp.SourcePlayer
+		Player = RoleProp.source_player
 	if Player == null:
 		_set_pet_values()
 		return
@@ -111,7 +111,7 @@ func _set_role_head() -> void:
 
 func _load_skill_icons() -> void:
 	for key_name in ["Y", "U", "I", "O", "L"]:
-		var icon = SkillTscn.instantiate()
+		var icon = skill_tscn.instantiate()
 		icon.name = key_name
 		SkillBox.add_child(icon)
 
@@ -125,13 +125,13 @@ func _load_skill_icons() -> void:
 			slot.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			slot.clip_contents = true
 
-	magicCD = MagicTscn.instantiate()
-	magicCD.name = "H"
-	magicIcon.add_child(magicCD)
+	magic_cd = magic_tscn.instantiate()
+	magic_cd.name = "H"
+	magic_icon.add_child(magic_cd)
 
 
 func _load_buff_icons() -> void:
-	for buff_name in Global.AllBuffList:
+	for buff_name in Global.all_buff_list:
 		_ensure_buff_icon(str(buff_name))
 
 
@@ -152,10 +152,10 @@ func _ensure_buff_icon(buff_name: String):
 			buff_icon = existing_icon
 			break
 	if buff_icon == null:
-		buff_icon = BuffTscn.instantiate()
+		buff_icon = buff_tscn.instantiate()
 		buff_icon.name = buff_name
 		buff_box.add_child(buff_icon)
-	buff_icon.Parent = Player
+	buff_icon.parent_node = Player
 	buff_icon.custom_minimum_size = STATUS_ICON_SIZE
 	buff_icon.size = STATUS_ICON_SIZE
 	buff_icon.scale = Vector2.ONE
@@ -171,8 +171,8 @@ func _update_buff_icon(icon, buff, buff_obj: Dictionary, stack_count: int = 1) -
 		return
 	var buff_info: Dictionary = _make_buff_info(buff_obj)
 	buff_info["HaveCount"] = stack_count
-	icon.Parent = Player
-	icon.DataList = buff_info
+	icon.parent_node = Player
+	icon.data_list = buff_info
 	if not icon.visible:
 		icon.visible = true
 	if not bool(buff.get("IsCheck")):
@@ -190,7 +190,7 @@ func _set_values() -> void:
 	var max_protect: float = max(float(Player.MaxProtect), 1.0)
 
 	nature_recovery_hp.text = (
-		"+" + str(float(RoleProp.roleprop.R_hp)) + "/s * " + str(Player.CureValue)
+		"+" + str(float(RoleProp.roleprop.R_hp)) + "/s * " + str(Player.cure_value)
 		if RoleProp.roleprop.Hp < RoleProp.roleprop.SHp and RoleProp.roleprop.R_hp > 0
 		else ""
 	)
@@ -1116,7 +1116,7 @@ func _sync_role_skill_slot_icons(skill_keys: Variant) -> void:
 				icon.queue_free()
 			continue
 		if icon == null:
-			icon = SkillTscn.instantiate() as TextureRect
+			icon = skill_tscn.instantiate() as TextureRect
 			icon.name = key_name
 			slot.add_child(icon)
 			icon.size = Vector2(45, 45)
@@ -1143,7 +1143,7 @@ func _set_skill_pic_for_icons(icons: Array, skill_keys: Variant, mount_runtime: 
 	for icon in icons:
 		var key_name: String = str(icon.name)
 		var skill_name: String = str(skill_keys.get(key_name, "")) if skill_keys is Dictionary else ""
-		icon.SkillName = skill_name if skill_name != "" else "Empty"
+		icon.skill_name = skill_name if skill_name != "" else "Empty"
 		icon.mount_skill_slot = key_names.find(key_name) if mount_runtime != null and skill_name != "" else -1
 		if icon.has_method("set_mp_display"):
 			icon.set_mp_display(0 if mount_runtime != null else _get_skill_mp(skill_name))
@@ -1168,15 +1168,15 @@ func _get_skill_mp(skill_name: String) -> int:
 
 
 func _set_magic_weapon_pic() -> void:
-	if magicCD == null:
+	if magic_cd == null:
 		return
 	var magic_name: String = str(PlayerData.player_data.get("实战法宝", ""))
 	if _magic_name_initialized and magic_name == _last_magic_name:
 		return
 	_magic_name_initialized = true
 	_last_magic_name = magic_name
-	magicCD.visible = magic_name != ""
-	magicCD.SkillName = magic_name
+	magic_cd.visible = magic_name != ""
+	magic_cd.skill_name = magic_name
 
 
 func _set_buff_icon_info() -> void:

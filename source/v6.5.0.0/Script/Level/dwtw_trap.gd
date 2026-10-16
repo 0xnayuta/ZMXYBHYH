@@ -4,24 +4,24 @@ extends Node2D
 
 var hit_name
 var get_name_
-var IsHit: bool
+var is_hit: bool
 var is_play
 var total_hit = 0
 var objattackDic = {}
 var Player
-var HitCount: int = 0
+var hit_count: int = 0
 
 
 func _physics_process(delta: float) -> void:
-	var Parent = get_parent().get_parent()
-	Player = Parent.Role_
-	if not IsHit:
-		HitCount = 0
+	var parent_node = get_parent().get_parent()
+	Player = parent_node.Role_
+	if not is_hit:
+		hit_count = 0
 		animation_player.play("wait")
 	else:
-		if HitCount % 240 == 0:
+		if hit_count % 240 == 0:
 			animation_player.play("hit")
-		HitCount += 1
+		hit_count += 1
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
@@ -51,10 +51,10 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		if RoleProp.is_ws_state:
 			return
 		if target is Role3Hero:
-			if target.Is_sdBuff:
+			if target.is_sd_buff:
 				return
 		if target is Role3Hero:
-			if target.IsTMc:
+			if target.is_t_mc:
 				return
 		target.state_behit()
 		if randi_range(0, 100) < 50:
@@ -64,8 +64,8 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 
 
 func _on_check_area_entered(area: Area2D) -> void:
-	IsHit = true
+	is_hit = true
 
 
 func _on_check_area_exited(area: Area2D) -> void:
-	IsHit = false
+	is_hit = false

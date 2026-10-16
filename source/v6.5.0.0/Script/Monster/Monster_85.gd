@@ -1,9 +1,8 @@
 extends BaseMonster
 class_name Monster85
 @onready var special_effect_1: AnimatedSprite2D = $MonsterDir/SpecialEffect1
-var TotalHit: int
-var IsHD: bool
-var HitCount: int = 0
+var is_hd: bool
+var combo_count: int = 0
 
 
 func monster_85():
@@ -161,14 +160,14 @@ func _physics_process(delta: float) -> void:
 		special_effect_1.visible = true
 	else:
 		special_effect_1.visible = false
-	if HitCount >= 6:
-		IsHD = true
+	if combo_count >= 6:
+		is_hd = true
 		special_effect_1.visible = true
-		HitCount = 0
-	if IsHD:
+		combo_count = 0
+	if is_hd:
 		get_hd(SHp * 0.05, 0, 0.3)
 		$ChangeHDtoSELF.start(8)
-		IsHD = false
+		is_hd = false
 
 
 func ai_think():
@@ -247,37 +246,37 @@ func tween_to_top():
 
 
 func call_ltwj():
-	var FirePosition1 = [Vector2(self.position.x - 80, 240), Vector2(self.position.x + 80, 240)]
-	var FirePosition2 = [Vector2(self.position.x - 200, 240), Vector2(self.position.x + 200, 240)]
-	var FirePosition3 = [Vector2(self.position.x - 320, 240), Vector2(self.position.x + 320, 240)]
+	var fire_position1 = [Vector2(self.position.x - 80, 240), Vector2(self.position.x + 80, 240)]
+	var fire_position2 = [Vector2(self.position.x - 200, 240), Vector2(self.position.x + 200, 240)]
+	var fire_position3 = [Vector2(self.position.x - 320, 240), Vector2(self.position.x + 320, 240)]
 	for i in range(2):
 		Global.add_bullet(
-			"Monster85Bullet1", self.bullet, false, 1.3, FirePosition1[i], "hit3", self.objattackDic["hit3"]
+			"Monster85Bullet1", self.bullet, false, 1.3, fire_position1[i], "hit3", self.objattackDic["hit3"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
 		Global.add_bullet(
-			"Monster85Bullet1", self.bullet, false, 1.3, FirePosition2[i], "hit3", self.objattackDic["hit3"]
+			"Monster85Bullet1", self.bullet, false, 1.3, fire_position2[i], "hit3", self.objattackDic["hit3"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
 		Global.add_bullet(
-			"Monster85Bullet1", self.bullet, false, 1.3, FirePosition3[i], "hit3", self.objattackDic["hit3"]
+			"Monster85Bullet1", self.bullet, false, 1.3, fire_position3[i], "hit3", self.objattackDic["hit3"]
 		)
 
 
 func add_bullet():
-	var TargetPosition: Vector2
+	var target_position: Vector2
 	if MonsterDirection:
-		TargetPosition = Vector2(55, 5)
+		target_position = Vector2(55, 5)
 	else:
-		TargetPosition = Vector2(-55, 5)
-	var Arrow = Global.add_bullet(
+		target_position = Vector2(-55, 5)
+	var arrow = Global.add_bullet(
 		"Monster85Bullet3",
 		self.bullet,
 		MonsterDirection,
 		1,
-		TargetPosition + position,
+		target_position + position,
 		"hit1",
 		self.objattackDic["hit1"]
 	)
@@ -296,7 +295,7 @@ func add_sd():
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 	var buff_target = super._on_hit_box_area_entered(area)
 
-	HitCount += 1
+	combo_count += 1
 
 	return buff_target
 

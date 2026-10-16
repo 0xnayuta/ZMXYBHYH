@@ -1,6 +1,6 @@
 extends BaseMonster
 class_name Monster51
-var CheckCount: int = 0
+var check_count: int = 0
 
 
 func monster_51():
@@ -50,10 +50,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	if CheckCount % 60 == 0:
+	if check_count % 60 == 0:
 		if check_have_mz() and Hp > 0:
 			cure_hp(int(self.SHp * 0.03))
-	CheckCount += 1
+	check_count += 1
 
 
 func check_have_mz():

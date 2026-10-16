@@ -371,8 +371,8 @@ func _start_attack(attack_name: StringName) -> void:
 	is_attacking = true
 	_skill_busy = true
 	if monster_kind == 3006:
-		IsSuperArmor = true
-		CannotAttract = true
+		super_armor_active = true
+		cannot_attract = true
 		await _run_boss_skill(attack_name, serial)
 		return
 	mr_player.play(attack_name)
@@ -448,8 +448,8 @@ func _finish_attack() -> void:
 	_disable_attack_box()
 	is_attacking = false
 	_skill_busy = false
-	IsSuperArmor = false
-	CannotAttract = false
+	super_armor_active = false
+	cannot_attract = false
 	_next_attack_msec = Time.get_ticks_msec() + int(_runtime_config["cooldown"])
 	stop_move()
 
@@ -504,8 +504,8 @@ func state_death() -> void:
 	is_be_attacking = false
 	is_attacking = false
 	_skill_busy = false
-	IsSuperArmor = false
-	CannotAttract = false
+	super_armor_active = false
+	cannot_attract = false
 	NoGrav = true
 	velocity = Vector2.ZERO
 	super.state_death()

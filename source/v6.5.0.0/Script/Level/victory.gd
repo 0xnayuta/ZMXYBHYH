@@ -5,7 +5,7 @@ extends Node2D
 @onready var use_time: Label = $GameUseTime3/UseTIME
 @onready var hp_text: Label = $PlayerLastHp/Hp_text
 @onready var most_lj_text: Label = $MostLj/MostLj_text
-var Last_Time
+var last_time
 const VICTORY_DESIGN_SIZE := Vector2(940.0, 590.0)
 const PING_JIA_TEXTURE_SIZE := Vector2(93.0, 75.0)
 const PING_JIA_FINAL_SCALE := 2.5
@@ -28,40 +28,40 @@ func _ready() -> void:
 	Global.remove_all_buff()
 	Global.add_bgm(self, "res://Music/level/13_Game_Victory.mp3")
 	get_tree().paused = false
-	Global.LevelEndTime = ""
-	Global.LevelEndTime = Time.get_datetime_string_from_system(false, true) as String
-	var num_1 = int(Global.LevelEndTime.split(" ")[1].split(":")[0]) * 3600
-	var num_2 = int(Global.LevelEndTime.split(" ")[1].split(":")[1]) * 60
-	var num_3 = int(Global.LevelEndTime.split(" ")[1].split(":")[2])
-	var num_4 = int(Global.LevelBeginTime.split(" ")[1].split(":")[0]) * 3600
-	var num_5 = int(Global.LevelBeginTime.split(" ")[1].split(":")[1]) * 60
-	var num_6 = int(Global.LevelBeginTime.split(" ")[1].split(":")[2])
-	var LastNum = (num_1 + num_2 + num_3) - (num_4 + num_5 + num_6)
+	Global.level_end_time = ""
+	Global.level_end_time = Time.get_datetime_string_from_system(false, true) as String
+	var num_1 = int(Global.level_end_time.split(" ")[1].split(":")[0]) * 3600
+	var num_2 = int(Global.level_end_time.split(" ")[1].split(":")[1]) * 60
+	var num_3 = int(Global.level_end_time.split(" ")[1].split(":")[2])
+	var num_4 = int(Global.level_begin_time.split(" ")[1].split(":")[0]) * 3600
+	var num_5 = int(Global.level_begin_time.split(" ")[1].split(":")[1]) * 60
+	var num_6 = int(Global.level_begin_time.split(" ")[1].split(":")[2])
+	var last_num = (num_1 + num_2 + num_3) - (num_4 + num_5 + num_6)
 
-	Last_Time = get_lasttime(LastNum)
-	if Global.CurrentLevel == "火焰山":
+	last_time = get_lasttime(last_num)
+	if Global.current_level == "火焰山":
 		if not MainSet.set_data["LevelHYS"]:
 			MainSet.set_data["LevelHYS"] = true
 			MemoryClass.main_bc()
-			Global.add_message_show(Global.Windows_, "恭喜通关火焰山，解锁角色“猪八戒”！！", 1.5, Vector2(470, 300))
-	begin_time.text = "开始时间：" + Global.LevelBeginTime
-	end_time.text = "结束时间：" + Global.LevelEndTime
+			Global.add_message_show(Global.windows, "恭喜通关火焰山，解锁角色“猪八戒”！！", 1.5, Vector2(470, 300))
+	begin_time.text = "开始时间：" + Global.level_begin_time
+	end_time.text = "结束时间：" + Global.level_end_time
 	use_time.text = (
-		"过关用时：" + str(Last_Time["小时"]) + " 小时 " + str(Last_Time["分钟"]) + " 分钟 " + str(Last_Time["秒"]) + " 秒 "
+		"过关用时：" + str(last_time["小时"]) + " 小时 " + str(last_time["分钟"]) + " 分钟 " + str(last_time["秒"]) + " 秒 "
 	)
 	hp_text.text = "剩余状态：" + str(snapped(float(RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) * 100, 0.01)) + "%"
-	most_lj_text.text = "最高连击：" + str(Global.MostLianji)
+	most_lj_text.text = "最高连击：" + str(Global.most_lianji)
 	if not MainSet.set_data["Music4"]:
 		if randf_range(0, 1) <= 0.05:
 			if p_dpj() >= 4:
 				MainSet.set_data["Music4"] = true
 				MemoryClass.main_bc()
-				Global.add_message_show(Global.Windows_, "触发彩蛋，恭喜开启图四音乐！！！", 1.5, Vector2(470, 300))
-	if Global.CurrentLevel != "":
-		var PJ = p_dpj()
-		if PlayerData.player_data["关卡评价"].has(Global.CurrentLevel):
-			if PJ >= PlayerData.player_data["关卡评价"][Global.CurrentLevel]:
-				PlayerData.player_data["关卡评价"][Global.CurrentLevel] = PJ
+				Global.add_message_show(Global.windows, "触发彩蛋，恭喜开启图四音乐！！！", 1.5, Vector2(470, 300))
+	if Global.current_level != "":
+		var pj = p_dpj()
+		if PlayerData.player_data["关卡评价"].has(Global.current_level):
+			if pj >= PlayerData.player_data["关卡评价"][Global.current_level]:
+				PlayerData.player_data["关卡评价"][Global.current_level] = pj
 	_save_completed_level()
 	grades_s_how.play("Show")
 	if MainSet.is_auto_battle_enabled() and bool(MainSet.set_data.get("AutoBattleRetry", false)):
@@ -80,7 +80,7 @@ func _save_completed_level() -> bool:
 
 func _on_return_map_pressed() -> void:
 	RoleProp.ws_value = 0
-	if Global.CurrentLevel == "镇妖塔":
+	if Global.current_level == "镇妖塔":
 		Global.change_scene("res://Scene/main_menu/map_0.tscn")
 		MemoryClass.save_game(Global.cd_path)
 		return
@@ -130,13 +130,13 @@ func _on_return_map_pressed() -> void:
 
 
 func get_lasttime(Num):
-	var Hour = floor(Num / 3600)
-	var Minute = floor(Num % 3600 / 60)
-	var Second = Num - Hour * 3600 - Minute * 60
+	var hour = floor(Num / 3600)
+	var minute = floor(Num % 3600 / 60)
+	var second = Num - hour * 3600 - minute * 60
 	return {
-		"小时": Hour,
-		"分钟": Minute,
-		"秒": Second,
+		"小时": hour,
+		"分钟": minute,
+		"秒": second,
 	}
 
 
@@ -150,22 +150,22 @@ var _is_rechallenging := false
 func _reset_role_state_for_rechallenge() -> void:
 	RoleProp.set_full_hp()
 	RoleProp.set_full_mp()
-	RoleProp.CurrentHp = int(RoleProp.roleprop.Hp)
-	RoleProp.CurrentMp = int(RoleProp.roleprop.Mp)
+	RoleProp.current_hp = int(RoleProp.roleprop.Hp)
+	RoleProp.current_mp = int(RoleProp.roleprop.Mp)
 	RoleProp.ws_value = 0
 	RoleProp.is_ws_state = false
-	Global.is_DeadLink = false
+	Global.is_dead_link = false
 
 
 func _on_rechallenge_pressed() -> void:
 	if _is_rechallenging:
 		return
-	if Global.LastLevelPath == "":
-		Global.add_message_show(Global.Windows_, "获取关卡信息时出现错误，请手动更换关卡！！", 1.5, Vector2(470, 300))
+	if Global.last_level_path == "":
+		Global.add_message_show(Global.windows, "获取关卡信息时出现错误，请手动更换关卡！！", 1.5, Vector2(470, 300))
 		return
 	_is_rechallenging = true
 	_reset_role_state_for_rechallenge()
-	Global.change_scene(Global.LastLevelPath)
+	Global.change_scene(Global.last_level_path)
 
 
 func _auto_rechallenge() -> void:
@@ -175,71 +175,71 @@ func _auto_rechallenge() -> void:
 
 
 func p_dpj():
-	var CurrentZT = int(snapped(float(RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) * 100, 0.01))
-	if Last_Time["分钟"] <= 2 and Global.TotalHurtCount == 0 and CurrentZT >= 95:
+	var current_zt = int(snapped(float(RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) * 100, 0.01))
+	if last_time["分钟"] <= 2 and Global.total_hurt_count == 0 and current_zt >= 95:
 		return 5
 	else:
-		match int(Last_Time["分钟"]):
+		match int(last_time["分钟"]):
 			0:
-				if CurrentZT <= 100 and CurrentZT >= 85:
+				if current_zt <= 100 and current_zt >= 85:
 					return 4
-				elif CurrentZT < 85 and CurrentZT >= 75:
+				elif current_zt < 85 and current_zt >= 75:
 					return 3
-				elif CurrentZT < 75 and CurrentZT >= 65:
+				elif current_zt < 75 and current_zt >= 65:
 					return 2
 				else:
 					return 1
 			1:
-				if CurrentZT <= 100 and CurrentZT >= 85:
+				if current_zt <= 100 and current_zt >= 85:
 					return 4
-				elif CurrentZT < 85 and CurrentZT >= 75:
+				elif current_zt < 85 and current_zt >= 75:
 					return 3
-				elif CurrentZT < 75 and CurrentZT >= 65:
+				elif current_zt < 75 and current_zt >= 65:
 					return 2
 				else:
 					return 1
 			2:
-				if CurrentZT <= 100 and CurrentZT >= 85:
+				if current_zt <= 100 and current_zt >= 85:
 					return 4
-				elif CurrentZT < 85 and CurrentZT >= 75:
+				elif current_zt < 85 and current_zt >= 75:
 					return 3
-				elif CurrentZT < 75 and CurrentZT >= 65:
+				elif current_zt < 75 and current_zt >= 65:
 					return 2
 				else:
 					return 1
 			3:
-				if CurrentZT <= 100 and CurrentZT >= 85:
+				if current_zt <= 100 and current_zt >= 85:
 					return 4
-				elif CurrentZT < 85 and CurrentZT >= 75:
+				elif current_zt < 85 and current_zt >= 75:
 					return 3
-				elif CurrentZT < 75 and CurrentZT >= 65:
+				elif current_zt < 75 and current_zt >= 65:
 					return 2
 				else:
 					return 1
 			4:
-				if CurrentZT <= 100 and CurrentZT >= 85:
+				if current_zt <= 100 and current_zt >= 85:
 					return 3
-				elif CurrentZT < 85 and CurrentZT >= 75:
+				elif current_zt < 85 and current_zt >= 75:
 					return 2
-				elif CurrentZT < 75 and CurrentZT >= 65:
+				elif current_zt < 75 and current_zt >= 65:
 					return 2
 				else:
 					return 1
 			5:
-				if CurrentZT <= 100 and CurrentZT >= 85:
+				if current_zt <= 100 and current_zt >= 85:
 					return 2
-				elif CurrentZT < 85 and CurrentZT >= 75:
+				elif current_zt < 85 and current_zt >= 75:
 					return 2
-				elif CurrentZT < 75 and CurrentZT >= 65:
+				elif current_zt < 75 and current_zt >= 65:
 					return 1
 				else:
 					return 1
 			6:
-				if CurrentZT <= 100 and CurrentZT >= 85:
+				if current_zt <= 100 and current_zt >= 85:
 					return 2
-				elif CurrentZT < 85 and CurrentZT >= 75:
+				elif current_zt < 85 and current_zt >= 75:
 					return 1
-				elif CurrentZT < 75 and CurrentZT >= 65:
+				elif current_zt < 75 and current_zt >= 65:
 					return 1
 				else:
 					return 1

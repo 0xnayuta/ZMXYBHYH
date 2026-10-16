@@ -2,12 +2,12 @@ extends Node2D
 
 enum ColorType { WHITE, YELLOW, BLUE, RED }
 
-var Idle = true
+var idle = true
 var Value: int
 var color_type: ColorType = ColorType.WHITE
 
 @onready var check: CollisionShape2D = $Check/Check
-var Speed: float = 0
+var speed: float = 0
 var tween
 
 
@@ -24,7 +24,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if Idle:
+	if idle:
 		tween = create_tween().set_parallel(true)
 		match color_type:
 			ColorType.WHITE:
@@ -37,14 +37,14 @@ func _physics_process(delta: float) -> void:
 				tween.tween_property(self, "modulate", Color(1, 0.2, 0.2, 1), 1.5)
 		tween.tween_property(self, "position", position + Vector2(0, -randi_range(20, 40)), 0.4)
 		await get_tree().create_timer(0.6, false).timeout
-		Idle = false
+		idle = false
 
-	if not Idle:
-		self.position += Global.get_position_between(self, RoleProp.SourcePlayer) * Speed * 0.5
+	if not idle:
+		self.position += Global.get_position_between(self, RoleProp.source_player) * speed * 0.5
 		check.disabled = false
-		Speed += 0.2
-		if Speed >= 20:
-			Speed = 20
+		speed += 0.2
+		if speed >= 20:
+			speed = 20
 
 
 func _on_check_body_entered(body: Node2D) -> void:
