@@ -10,3 +10,6 @@
 
 # style(git): 建立 .gitattributes 与 .editorconfig 规范并全盘统一 LF 行尾
 cf7fe7b3ec3c8d5d8d065fb87d54ad65ed132c1a
+
+# style(code): 全量 734 个 GDScript 依照官方风格指南统一自动格式化
+38f078044cd1d05e5974f71a28b0f35f2c01aee2
