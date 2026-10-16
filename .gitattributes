@@ -26,6 +26,7 @@
 .gitattributes text eol=lf
 .gitignore text eol=lf
 .editorconfig text eol=lf
+.git-blame-ignore-revs text eol=lf
 
 # 4. 二进制资源文件（严禁任何文本/换行符转换）
 *.png binary
