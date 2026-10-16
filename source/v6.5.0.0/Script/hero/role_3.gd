@@ -468,7 +468,7 @@ func _prepare_bdqk_action() -> bool:
 	var action := source.duplicate(true) as Animation
 	for track_index in range(action.get_track_count() - 1, -1, -1):
 		var path := str(action.track_get_path(track_index))
-		if path != "Action/role_body:frame" and path != "Action/RoleEquipment:frame":
+		if path != "Action/RoleBody:frame" and path != "Action/RoleEquipment:frame":
 			action.remove_track(track_index)
 	_trim_bdqk_action(action)
 	library.add_animation(ACTION_NAME, action)

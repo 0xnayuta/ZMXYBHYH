@@ -206,7 +206,7 @@ func _use_dragon_sword() -> void:
 func _dragon_sword_spawn_position() -> Vector2:
 	if Player == null or not is_instance_valid(Player):
 		return global_position
-	var role_body := Player.get_node_or_null("Action/role_body") as Sprite2D
+	var role_body := Player.get_node_or_null("Action/RoleBody") as Sprite2D
 	if role_body != null:
 		return role_body.global_position + role_body.offset
 	var action := Player.get_node_or_null("Action") as Node2D

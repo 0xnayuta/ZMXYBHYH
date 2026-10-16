@@ -135,7 +135,7 @@ func _get_player_visible_foot_global_position() -> Variant:
 	if ground_position != null:
 		return ground_position
 	var visible_bottom: Variant = null
-	for node_path in ["Action/role_body", "Action/RoleEquipment", "Action/RoleBodyFront"]:
+	for node_path in ["Action/RoleBody", "Action/RoleEquipment", "Action/RoleBodyFront"]:
 		var sprite := Player.get_node_or_null(node_path) as Sprite2D
 		if sprite == null or not sprite.visible or sprite.texture == null:
 			continue

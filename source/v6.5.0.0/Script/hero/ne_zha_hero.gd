@@ -324,7 +324,7 @@ func _build_body_animations() -> void:
 			Animation.LOOP_LINEAR if _body_frames.get_animation_loop(animation_name) else Animation.LOOP_NONE
 		)
 		var track := animation.add_track(Animation.TYPE_VALUE)
-		animation.track_set_path(track, NodePath("Action/role_body:texture"))
+		animation.track_set_path(track, NodePath("Action/RoleBody:texture"))
 		animation.value_track_set_update_mode(track, Animation.UPDATE_DISCRETE)
 		for frame_index in range(frame_count):
 			animation.track_insert_key(

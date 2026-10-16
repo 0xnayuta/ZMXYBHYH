@@ -3262,7 +3262,7 @@ func configure_backpack_role_preview(page: Node, player: Variant = null) -> void
 		return
 	var valid_player: Variant = player if is_instance_valid(player) else null
 	var role_id := _role_id_from_runtime_node(valid_player)
-	var role_body := page.get_node_or_null("background/role_body") as Sprite2D
+	var role_body := page.get_node_or_null("background/RoleBody") as Sprite2D
 	var role_equipment := page.get_node_or_null("background/RoleEquipment") as Sprite2D
 	if role_body != null:
 		role_body.texture = (

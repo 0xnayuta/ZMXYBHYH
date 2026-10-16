@@ -422,7 +422,7 @@ func _prepare_ygth_awaken_action() -> bool:
     var action := Animation.new()
     action.length = 0.6
     _add_ygth_value_track(
-        action, NodePath("Action/role_body:frame"), [0.0, 0.1, 0.2, 0.3, 0.4], [120, 121, 122, 123, 124]
+        action, NodePath("Action/RoleBody:frame"), [0.0, 0.1, 0.2, 0.3, 0.4], [120, 121, 122, 123, 124]
     )
     _add_ygth_value_track(
         action, NodePath("Action/RoleEquipment:frame"), [0.0, 0.1, 0.2, 0.3, 0.4], [120, 121, 122, 123, 124]
@@ -605,7 +605,7 @@ func _prepare_ltjz_action() -> bool:
 
     for track_index in range(action.get_track_count() - 1, -1, -1):
         var path := str(action.track_get_path(track_index))
-        if path != "Action/role_body:frame" and path != "Action/RoleEquipment:frame":
+        if path != "Action/RoleBody:frame" and path != "Action/RoleEquipment:frame":
             action.remove_track(track_index)
     library.add_animation(ACTION_NAME, action)
     return true

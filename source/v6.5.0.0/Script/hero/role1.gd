@@ -58,7 +58,7 @@ func _prepare_gsrs_zz_action() -> bool:
 
 	var animation := gsrs_source.duplicate(true) as Animation
 	var character_prefixes := [
-		"Action/role_body:",
+		"Action/RoleBody:",
 		"Action/RoleEquipment:",
 		"Action/Wings:",
 	]
@@ -588,7 +588,7 @@ func _prepare_hyjj_pose_animation() -> bool:
 	for track_index in range(pose.get_track_count() - 1, -1, -1):
 		var track_path := String(pose.track_get_path(track_index))
 		if not (
-			track_path.begins_with("Action/role_body:")
+			track_path.begins_with("Action/RoleBody:")
 			or track_path.begins_with("Action/RoleEquipment:")
 			or track_path.begins_with("Action/Wings:")
 		):

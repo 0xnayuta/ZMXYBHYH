@@ -604,14 +604,14 @@ func change_eq(name_):
 
 func init_show_wing_tx_button():
 	if PlayerData.player_data["翅膀显示"]:
-		wings_show_button.set_button_icon(load("res://Art/BackPack/is_choose.png"))
+		wings_show_button.set_button_icon(load("res://Art/BackPack/IsChoose.png"))
 		wing_show.text = "显示"
 	else:
 		wing_show.text = "不显示"
 		wings_show_button.set_button_icon(load("res://Art/BackPack/NoChoose.png"))
 	if PlayerData.player_data["头衔显示"]:
 		head_show.text = "显示"
-		head_show_button.set_button_icon(load("res://Art/BackPack/is_choose.png"))
+		head_show_button.set_button_icon(load("res://Art/BackPack/IsChoose.png"))
 	else:
 		head_show.text = "不显示"
 		head_show_button.set_button_icon(load("res://Art/BackPack/NoChoose.png"))
@@ -627,7 +627,7 @@ func _on_wings_show_pressed() -> void:
 		PlayerData.player_data["翅膀显示"] = true
 		MemoryClass.save_game(Global.cd_path)
 		wing_show.text = "显示"
-		wings_show_button.set_button_icon(load("res://Art/BackPack/is_choose.png"))
+		wings_show_button.set_button_icon(load("res://Art/BackPack/IsChoose.png"))
 
 
 func _on_head_show_pressed() -> void:
@@ -638,7 +638,7 @@ func _on_head_show_pressed() -> void:
 		head_show.text = "不显示"
 
 	else:
-		head_show_button.set_button_icon(load("res://Art/BackPack/is_choose.png"))
+		head_show_button.set_button_icon(load("res://Art/BackPack/IsChoose.png"))
 		PlayerData.player_data["头衔显示"] = true
 		MemoryClass.save_game(Global.cd_path)
 		head_show.text = "显示"

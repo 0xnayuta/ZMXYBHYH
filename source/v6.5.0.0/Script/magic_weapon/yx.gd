@@ -50,7 +50,7 @@ func show_skill():
 			}
 		)
 
-		var role_body = Player.get_node_or_null("Action/role_body")
+		var role_body = Player.get_node_or_null("Action/RoleBody")
 		var role_equipment = Player.get_node_or_null("Action/RoleEquipment")
 
 		if role_body and role_equipment:
