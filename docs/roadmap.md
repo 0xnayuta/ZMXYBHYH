@@ -354,3 +354,237 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 
 **规模**：1130 场景文件（+74,868 / −30,274 行，场景总大小 14 MB）+ 44 处引用修复 + 905 项路径大小写修正。
 
+---
+
+## Phase 8: 命名契约诊断与 Phase 5-7 遗留损伤修复 (Contract Diagnostics & Legacy Damage Repair) [规划中 · Planned]
+
+### 8.1 阶段定位与目标
+
+- **定位**：Phase 5-7 的标识符收敛（尤其 B5a `993a392b6`）在"改代码"的同时未能同步"字符串契约"——节点路径、资源路径、属性名、字典键。已实测确认的运行时断裂样本包括：`get_node("../role_body")` vs 场景真名 `RoleBody`（大小写敏感）、`load("…/is_choose.png")` vs 磁盘真名 `IsChoose.png`（文件名本身多了下划线）、`basic_monment_info.show_text` 由 `String` 被改为 `Label` 节点引用但调用方仍按字符串契约赋值。**本阶段先修地基、再谈扩张**：建立"代码字面量 ↔ 资产/场景/契约真源"的双向校验，把同类损伤一次性清零，并为 Phase 9/10 提供唯一执行入口。
+- **核心目标**：
+  1. 交付字面量契约扫描器 `scripts/contract_scan.py`（五类契约 100% 覆盖、可复跑、可入 CI）；
+  2. Phase 5-7 遗留的字面量失配**归零**；
+  3. 交付原子路径迁移引擎 `scripts/rename_path.py`（Phase 10 的唯一合法入口）；
+  4. 命名规范校验作为**第 5 维度**接入 `scripts/check_all.py`。
+
+### 8.2 实施子阶段规划（四步走）
+
+#### 1. Phase 8-1: 字面量契约全量扫描器交付 (Contract Scanner)
+- **核心任务**：
+  1. **资源路径契约**：提取全部 `.gd/.tscn/.tres/.import/project.godot` 的 `res://` 字面量，与磁盘真值做**逐段大小写精确**比对（Windows 文件系统大小写不敏感会掩盖断裂，必须用 `os.listdir` 逐段核对真实名称）；
+  2. **节点路径契约**：提取 `get_node("…")` / `get_node_or_null("…")` / `NodePath("…")` / `$Path` 字面量，与对应 `.tscn` 节点树比对（含 `parent=` 相对路径、场景继承链与 `ExtResource` 实例化子树）；
+  3. **属性/方法/信号名契约**：提取 `set("X")` / `get("X")` / `has_method("X")` / `call("X")` / `connect("X")` / `emit_signal("X")` 中的字符串，与目标脚本声明比对；
+  4. **动画轨道契约**：提取全部 `.tscn` 的 `AnimationPlayer` 方法轨道 / 属性轨道路径，与脚本函数与属性比对（复用 B2 建立的轨道方法名白名单机制）；
+  5. **字典键契约**：提取 `["中文键"]` 字面量，与 `DataKeys.gd` 常量表比对，输出未收敛清单。
+- **验收指标**：
+  - 五类扫描全部实现，输出 `docs/contract_audit.md`（人读）+ JSON（机读）；
+  - 874 脚本 + 1,131 场景全量扫描耗时 ≤ 30 秒；
+  - 误报白名单机制可用（运行时动态拼接、合法的运行时 `get_node` 等）。
+
+#### 2. Phase 8-2: Phase 5-7 遗留损伤系统修复 (Legacy Damage Repair)
+- **核心任务**：
+  1. 依据 8-1 报告，按"**资源路径 → 节点路径 → 属性/方法名 → 动画轨道 → 字典键**"顺序逐类修复；
+  2. 已知样本回归确认（本轮已修）：`role_body` → `RoleBody`（11 处，跨 7 个文件）、`is_choose.png` → `IsChoose.png`（4 处）、`moon_palace_clothes_effect.sync()` 空 body 守卫、`basic_monment_info.show_text` 契约恢复；
+  3. 每类修复独立原子提交，提交信息须写明"**误伤来源提交 + 失配样本 + 修复文件数**"。
+- **验收指标**：
+  - 五类契约失配**全部归零**（白名单除外）；
+  - `health_check.py` 0 Parse Error；实机（花果山全流程 + 背包 + 商城）0 ERROR 0 WARNING。
+
+#### 3. Phase 8-3: 原子路径迁移引擎 `scripts/rename_path.py` (Rename Engine)
+- **核心任务**：
+  1. **引擎能力**：`git mv` 目录/文件（保留历史）→ 全量字面量替换（含**动态拼接前缀**，实测样本如 `"res://Art/BackPack/AllItems/" + name_`、`"res://Art/ItemIcon/" + str(name_)`）→ `.import` 的 `source_file` 与 `path` 重写 → `.uid` 跟随 → 触发重新导入 → 门禁校验；
+  2. **幂等与可回滚**：`--dry-run` 输出完整变更清单；任一步失败自动 `git checkout` 回滚；
+  3. **大小写安全**：统一经由临时名两步 `git mv`（Windows `core.ignorecase` 陷阱，7.5 专项已验证该手法）；
+  4. **UID 锚定保护**：利用全项目 866 处 `uid://` 引用在路径变更后自动跟随的特性降低 `.tscn` 断裂风险；对仅以 `path` 引用（无 uid）的条目逐条复核。
+- **验收指标**：工具交付并在 3 个最小试点目录完成实测——`Art/zhuxianjianzhen`（64 引用）、`Art/AllNumber`（58）、`Art/Main_menu`（62）；0 断裂引用、门禁全绿、实机资源加载正常。
+
+#### 4. Phase 8-4: 命名规范门禁维度上线 (Naming Gate)
+- **核心任务**：
+  1. `scripts/check_all.py` 增加第 5 维度"命名规范校验"：
+     - 目录/文件名 `snake_case` + 例外白名单（资源 ID 目录、Flash/TexturePacker 机器导出结构）；
+     - 代码内 `func`（snake）/ `var`（snake）/ `const`（UPPER_SNAKE）/ `signal`（snake）/ `class_name`（Pascal）五类分类校验；
+  2. **递减式基线**：把当前残留量录入基线表，允许存量、**拦截新增**，随 Phase 9/10 逐阶段收紧至 0。
+- **验收指标**：门禁 5 维度全 PASS；`python scripts/check_all.py` 一键复现。
+
+### 8.3 执行边界与红线
+
+- ⚠️ **先诊断后施工**：8-1 扫描器未交付前，严禁手工批量改路径或改字面量；
+- ⚠️ **单类原子提交**：8-2 每类契约（如"资源路径"）独立提交，严禁混合多类；
+- ⚠️ **门禁不可逾越**：每次改动后必须 `check_all.py` + 实机冒烟 0 ERROR 0 WARNING；
+- ⚠️ **白名单只减不增**：例外条目必须有书面理由（机器导出结构 / 第三方约定），新增需评审并登记。
+
+### 8.4 验收内容与指标
+
+1. `contract_scan.py` 交付，五类契约报告可复跑（`docs/contract_audit.md`）；
+2. Phase 5-7 遗留字面量失配**归零**；
+3. `rename_path.py` 交付 + 3 个试点目录规范化完成；
+4. `check_all.py` 第 5 维度上线，5 维全 PASS。
+
+---
+
+## Phase 9: 代码内命名彻底收尾 (In-Code Naming Finalization) [规划中 · Planned]
+
+### 9.1 阶段定位与目标
+
+- **定位**：实测基线——函数 10,323/10,325 合规（99.98%）、信号 34/34（100%）、`class_name` 236/236（100%）、常量 2,332 个 UPPER_SNAKE 合规；**残余全部集中在变量层与极少函数**。本阶段把这最后一段存量清零，达成"**代码内命名 100%**"。
+- **核心目标**：`camelCase 变量 50 处` + `PascalCase 变量 309 处` + `非 snake 函数 2 处` + `Scene 文件命名例外 49 处` 全部治理。
+
+### 9.2 实施子阶段规划（四步走）
+
+#### 1. Phase 9-1: camelCase 变量治理（50 处，由基类到派生）
+- **残留清单（实测）**：`objattackDic`（8 个脚本）、`attackRange`（3）、`attackDesire`（2）、`iniSpeed`（2）、`get_Player`（2）、`_28_ui`（`Global.gd`）、`east_continent_monster.gd` 的 `_31xx_*` 数字段系列等。
+- **分批策略**：
+  1. `Script/base/`（`base_monster` / `base_object` / `base_magic_weapon` / `summon_base_monster`）——基类改名影响全部派生类，优先且最谨慎；
+  2. `Script/bullet/`（`chase_bullet` / `fly_bullet`）+ `Script/level/` 陷阱族（4 个 trap 脚本）；
+  3. `Script/monster/`（`east_continent_monster` 数字段系列）+ `Script/hero/role_6.gd`。
+- **验收指标**：50 处归零；派生类同名成员覆盖同步；字符串访问面（`get/set`）与动画轨道同步。
+
+#### 2. Phase 9-2: PascalCase 变量治理（309 处）
+- **残留特征（实测）**：
+  1. `Global.gd` 的"场景预制体缓存句柄"（`BasicArButton` / `Aura_` / `BuffIcon_` / `DamageNumber` / `LevelInfo` / `Stage` / `TaskReward` / `MysteryShop` / `ReturnBackMap` / `List_` 等，约 30 处）——被全工程以 `.X` 属性访问，**影响面最广**；
+  2. `DataKeys`（`Global.gd:2` 契约表句柄）、`DuplicateTextureAliases`；
+  3. 场景脚本局部（`HitDic` / `Value` / `BuffTime` / `Skill_learn` 等）。
+- **分批策略**：`Global.gd` → `Scene/other_scene/*` → 其余脚本；每批同步三类访问面：直接属性访问、字符串访问（`get/set/has`）、注释文档。
+- **验收指标**：309 处归零；`health_check.py` 0 Parse Error；实机冒烟 0 ERROR 0 WARNING。
+
+#### 3. Phase 9-3: 残余非 snake 函数治理（2 处）
+- **清单**：`Script/monster/east_continent_monster.gd` 的 `_3182_attack_is_current`、`_3120_screen_bounds`（数字前缀段破坏 snake 结构）。
+- **验收指标**：规范为语义化 `snake_case`（如 `_attack_3182_is_current`），调用点 100% 同步。
+
+#### 4. Phase 9-4: `Scene/` 文件命名例外收敛（49 处）
+- **清单**：48 个纯数字场景名（`Scene/mount/rider_adjustments/role{1..6}/<坐骑ID>.tscn`）+ 1 个连字符场景（`Scene/hero/role_1/hmz_effect/special_effect_bullet-1.tscn`）。
+- **策略**：
+  1. 连字符场景直接改名 `special_effect_bullet_1.tscn`，引用点同步；
+  2. 数字 ID 场景：由 8-1 扫描器判定"是否被运行时动态拼接引用"——若是则**保留为白名单**（资源 ID 语义）并书面登记；若否，统一为 `<语义>_<id>.tscn`。
+- **验收指标**：例外清单收敛至白名单规模（若有）且**逐条书面登记**；1,131 场景 0 断裂引用。
+
+### 9.3 执行边界与红线
+
+- ⚠️ **跨脚本同步**：变量改名必须同步"属性访问 / 字符串访问 / 注释"，漏一处即静默失效（B5a 的教训）；
+- ⚠️ **继承族防护**：基类成员改名需检查全部派生类同名覆盖；
+- ⚠️ **规模上限**：每批改名 ≤ 50 处，禁止跨批合并提交；
+- ⚠️ **门禁不可逾越**：每批 `check_all.py` + 实机冒烟 0 ERROR 0 WARNING。
+
+### 9.4 验收内容与指标
+
+1. 代码内命名**100% 合规**：`func` 全 snake、`var` 全 snake、`const` 全 UPPER_SNAKE、`signal` 全 snake、`class_name` 全 Pascal；
+2. `Scene/` 文件命名例外 ≤ 白名单条目（逐条书面登记）；
+3. `health_check.py` 874 脚本 0 Parse Error；
+4. 实机（花果山全流程 + 背包 + 商城 + 坐骑）0 ERROR 0 WARNING。
+
+---
+
+## Phase 10: 资产目录彻底规范化 (Full Asset Directory Standardization) [规划中 · Planned]
+
+### 10.1 阶段定位与目标
+
+- **定位**：这是 Phase 5-7 **确实遗漏**的战场——`Script/`（23）、`Scene/`（44）、`addons/`（5）目录已 100% snake_case，但 `Art/`（2,283 个目录，920 个非规范）与 `Music/`（7 个目录，6 个 Pascal）从未纳入规范化视野。本阶段按"**由整体到局部、由低引用到高引用**"分四批收敛。
+- **基线数据（实测）**：
+
+| 范围 | 规模 | 现状 | 引用代价（`res://` 命中） |
+| :--- | :--- | :--- | :--- |
+| `Music/` | 7 目录 | Pascal 6 / snake 1 | **531 处**（`Hero` 356 / `level` 125 / `MonsterHurt` 26 / `MainSceneMusic` 24） |
+| `Art/` 二级业务目录 | ~39 | Pascal 多数（`Monster` / `Level` / `HeroPicture` / `Pet` / `Game_3` / `MagicWeapon` / `BackPack` / `AddEffect` / `Game_4` / `Mount` …） | **3,000+ 处**（`Monster` 1,733 / `Level` 838 / `HeroPicture` 667 / `Pet` 631 / `Game_3` 365 …） |
+| `Art/` 三级及深层 | 2,244 | Pascal 563 / camel 87 / 纯数字 229 / Flash 导出 86 / 中文 10 / 其他 31 | 以目录为粒度逐批评估 |
+
+### 10.2 实施子阶段规划（四步走）
+
+#### 1. Phase 10-1: `Music/` 全量收敛（6 目录 / 531 引用）
+- **核心任务**：`Hero` → `hero`、`MainSceneMusic` → `main_scene_music`、`MonsterHurt` → `monster_hurt`、`Hero/Role3~5` → `hero/role_3~5`；同步 531 处引用（含动态拼接前缀）。
+- **验收指标**：`Music/` 100% snake；0 断裂引用；音频加载实测无异常（战斗音效 / 背景音乐抽样）。
+
+#### 2. Phase 10-2: `Art/` 顶层二级目录分批收敛（~39 个）
+- **核心任务**：按引用量**升序**分批（先 `zhuxianjianzhen` 64 / `AllNumber` 58 / `Main_menu` 62 等小目标，后 `Monster` 1,733 / `Level` 838 等大目标），每批 1~3 个目录；统一经 `rename_path.py`，逐目录原子提交。
+- **验收指标**：二级目录 100% snake；每批门禁全绿 + 实机冒烟。
+
+#### 3. Phase 10-3: `Art/` 三级及深层目录收敛（分级推进，由易到难）
+- **推进顺序**：
+  1. **业务语义 Pascal 目录**（`HeroPicture/Role1`、`Monster/Monster12`、`Game_3/LevelButtonIcon` 等）→ `role_1` / `monster_12` / `level_button_icon`；
+  2. **camelCase 目录**（87 个，`fbIcon` / `skillIcon` / `jumpDown` / `aoyiSkill` …）→ snake；
+  3. **中文目录**（10 个，`Game_4/东胜神州`、`BackPack/AllItems/新建文件夹` …）→ 拼音/英文（跨平台 ZIP、热更新与 CI 友好性要求）；
+  4. **纯数字 ID 目录**（229 个）→ 评估"白名单"或"加语义前缀"（依据 8-1 报告是否被动态拼接）；
+  5. **Flash/TexturePacker 机器导出结构**（`DefineSprite_*` 72 / `symbolClass` 11 / `*-assets` 3）→ **白名单冻结**（改名会破坏 `.sprites`/atlas 内部引用与导出工具链）。
+- **验收指标**：可规范目录 100% 收敛；白名单条目逐条登记（含理由与评审记录）。
+
+#### 4. Phase 10-4: 白名单冻结与新生资产规范门禁
+- **核心任务**：
+  1. 白名单落库 `docs/naming_whitelist.md`，由 8-4 门禁读取；
+  2. **新资产强制规范**：门禁拦截新增非规范目录/文件；`AGENTS.md` 增补"新建资产命名规则"章节；
+  3. **导入缓存重建验证**：目录改名后触发全量重新导入，确认 `.ctex` 等缓存 0 残留失效项（`godot --headless --import` 复核）。
+- **验收指标**：白名单外的非规范目录/文件 **0 个**；新生资产命名 100% 合规（门禁负向测试拦截成功）。
+
+### 10.3 执行边界与红线
+
+- ⚠️ **单目录原子提交**：一次提交只动一个目录（大目录可拆"改名 + 引用同步"两步，但必须连续提交且不得夹带其它改动）；
+- ⚠️ **UID 复核**：无 `uid` 仅靠 `path` 引用的条目必须逐条复核（由 8-1 报告提供清单）；
+- ⚠️ **美术管线保护**：`DefineSprite_*` / `symbolClass` / `*-assets` / `.sprites` 同族结构**严禁改名**；
+- ⚠️ **实机回归不可省**：每个目录批次必须实机加载对应资源（关卡 / 怪物 / 特效 / 音频），严禁仅凭静态检查通过。
+
+### 10.4 验收内容与指标
+
+1. `Art/` + `Music/` 目录命名合规率 **100%**（白名单除外）；
+2. 白名单条目逐条书面登记（理由 + 评审）；
+3. 1,242 场景 0 断裂引用；`.import` 缓存 0 失效；
+4. 跨平台：Linux/macOS 大小写敏感环境下资源定位 0 失败。
+
+---
+
+## Phase 11: 命名标准化终局验收与规范固化 (Final Acceptance & Standard Codification) [规划中 · Planned]
+
+### 11.1 阶段定位与目标
+
+- **定位**：全工程命名标准化的收口阶段，把"达标状态"固化为"可持续状态"。
+- **核心目标**：全量合规审计 + 规范文档固化 + 门禁常态化 + 跨平台终局回归。
+
+### 11.2 实施子阶段规划（四步走）
+
+#### 1. Phase 11-1: 全工程命名合规终审 (Final Naming Audit)
+- **核心任务**：一次性输出四张审计表——目录命名、文件命名、代码内命名（func/var/const/signal/class_name）、白名单条目；全部结论须由 `contract_scan.py` + 门禁脚本**机读产出**，禁止人工估算。
+- **验收指标**：四张表合规率 100%（白名单除外），审计报告入 `docs/`。
+
+#### 2. Phase 11-2: 规范文档固化 (Standard Codification)
+- **核心任务**：新建 `docs/naming_standard.md`（目录/文件/代码五类命名的正例反例 + 白名单 + 迁移流程），并在 `AGENTS.md` 增补"命名规范"与"新建资产规则"章节。
+- **验收指标**：文档通过"新人冷启动"演练——仅凭文档即可独立完成一次目录改名 + 门禁校验。
+
+#### 3. Phase 11-3: 门禁常态化 (Gate Permanence)
+- **核心任务**：`check_all.py` 五维度（LF 行尾 + gdformat + gdlint + 引擎编译 + 命名规范）作为发布前置；预留 CI 接入点。
+- **验收指标**：门禁 5 维全 PASS，且对"故意注入的非规范样本"能稳定拦截（**负向测试**）。
+
+#### 4. Phase 11-4: 跨平台终局回归 (Cross-Platform Final Regression)
+- **核心任务**：Linux（大小写敏感）环境克隆 + 全量扫描 + headless 启动 + `level_test_runner.py` 关卡冒烟；确认 0 断裂、0 错误。
+- **验收指标**：跨平台 0 引用断裂；实机 0 ERROR 0 WARNING。
+
+### 11.3 执行边界与红线
+
+- ⚠️ **机读优先**：所有合规率结论必须来自脚本输出，严禁人工统计；
+- ⚠️ **负向测试必做**：门禁必须证明"能拦住坏样本"，否则视为未交付；
+- ⚠️ **零功能变更**：本阶段不含任何业务改动，仅审计、文档与门禁。
+
+### 11.4 验收内容与指标
+
+1. 命名合规率 **100%**（`Art/` `Music/` `Script/` `Scene/` `addons/` + 代码五类）；
+2. `docs/naming_standard.md` 交付 + `AGENTS.md` 更新；
+3. 门禁 5 维 + 负向拦截实测通过；
+4. 跨平台（Linux/macOS）0 断裂、实机 0 ERROR 0 WARNING。
+
+---
+
+## 阶段依赖与执行顺序总览（Phase 8 → 11）
+
+```mermaid
+flowchart LR
+    P8["Phase 8 · 契约诊断与地基修复<br/>扫描器 + 迁移引擎 + 门禁第 5 维"] --> P9
+    P9["Phase 9 · 代码内命名收尾<br/>50 camel + 309 Pascal + 2 函数 + 49 场景文件"] --> P10
+    P10["Phase 10 · 资产目录规范化<br/>Music 6 → Art 顶层 39 → Art 深层分级"] --> P11
+    P11["Phase 11 · 终局验收与固化<br/>合规审计 + 规范文档 + 跨平台回归"]
+    P8 -.->|"contract_scan.py 报告驱动"| P9
+    P8 -.->|"rename_path.py 唯一入口"| P10
+```
+
+**关键约束链（不可逆序）**：
+1. Phase 8 的扫描器与迁移引擎是 Phase 9/10 的**唯一执行入口**——禁止手工批量改名（Phase 5-7 的误伤正源于缺少此约束）；
+2. Phase 9 必须先于 Phase 10——代码内改名会小幅扰动 `res://` 引用面，先固化代码侧可避免资产改名时混淆变量；
+3. Phase 10 内部严格按"`Music/` → `Art/` 顶层 → `Art/` 深层"与"低引用 → 高引用"推进；
+4. 每个子阶段均以"`check_all.py` 五维门禁 + 实机冒烟 0 ERROR 0 WARNING + 原子提交"为最小闭环；
+5. 任何阶段发现新的字面量契约类型，先补入 8-1 扫描器，再继续施工。
+
