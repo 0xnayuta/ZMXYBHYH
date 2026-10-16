@@ -253,12 +253,12 @@ func do_hit_4():
 	is_attacking = false
 
 
-func RndSkill():
+func rnd_skill():
 	Num = randi_range(0, 3)
 	special_effect.frame = Num
 
 
-func ChangeSkill():
+func change_skill():
 	Skill_1_CD = randi_range(12, 14)
 	match Num:
 		0:
@@ -271,12 +271,12 @@ func ChangeSkill():
 			do_hit_4()
 
 
-func CallMUbei():
+func call_m_ubei():
 	if MUbei == null:
 		MUbei = Global.create_monster(6602, get_parent(), Vector2(490, 260))
 
 
-func CallWGWbULLET():
+func call_wg_wb_ullet():
 	for i in range(randi_range(4, 6)):
 		var bullet_pos = Vector2(self.position.x, self.position.y) + Vector2(0, randi_range(-180, 80))
 		var bullet_ = Global.add_bullet(
@@ -285,7 +285,7 @@ func CallWGWbULLET():
 		await get_tree().create_timer(0.1, false).timeout
 
 
-func CallTSWBullet():
+func call_tsw_bullet():
 	var PP = self.position
 	var bullet_spawn_positions = [
 		Vector2(-180, 0) + PP, Vector2(0, 0) + PP, Vector2(180, 0) + PP, Vector2(-360, 0) + PP, Vector2(360, 0) + PP
@@ -299,7 +299,7 @@ func CallTSWBullet():
 			bullet_.scale = Vector2(1.5, 1.5)
 
 
-func CallBCWBullet():
+func call_bcw_bullet():
 	var PoSITION
 	if MonsterDirection:
 		PoSITION = self.position + Vector2(200, -30)
@@ -312,7 +312,7 @@ func CallBCWBullet():
 		bullet_instance.scale = Vector2(1.5, 1.5)
 
 
-func CallDSWBullet():
+func call_dsw_bullet():
 	var PoSITION
 	if MonsterDirection:
 		PoSITION = self.position + Vector2(300, -50)
@@ -350,7 +350,7 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 	return super._on_hit_box_area_entered(area)
 
 
-func CallBJ():
+func call_bj():
 	var P = self.position
 	var base_offsets = [
 		Vector2(-70, 50),
@@ -388,10 +388,6 @@ func CallBJ():
 			"Monster_61Bullet", self.bullet, MonsterDirection, 1, final_pos, "skill_3", self.objattackDic["skill_3"]
 		)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet4():
-	return call_bullet_4()

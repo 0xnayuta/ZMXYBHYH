@@ -451,7 +451,7 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallBullet2"
+"method": &"call_bullet_2"
 }]
 }
 
@@ -515,7 +515,7 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallBullet3"
+"method": &"call_bullet_3"
 }]
 }
 
@@ -580,7 +580,7 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallBullet1"
+"method": &"call_bullet_1"
 }]
 }
 
@@ -661,7 +661,7 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"MovePlayer"
+"method": &"move_player"
 }]
 }
 tracks/6/type = "method"

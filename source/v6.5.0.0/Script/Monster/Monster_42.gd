@@ -170,7 +170,7 @@ func normal_state():
 		move_right()
 
 
-func call_sfjmFire():
+func call_sfjm_fire():
 	var FirePosition = [
 		Vector2(self.position.x - 180, self.position.y - 20),
 		Vector2(self.position.x - 360, self.position.y - 20),

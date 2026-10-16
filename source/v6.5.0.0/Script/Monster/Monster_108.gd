@@ -153,7 +153,7 @@ func do_hit_3():
 	stop_move()
 
 
-func TweenToPalyer():
+func tween_to_player():
 	if _movement_command_is_blocked() or get_Player == null:
 		return
 	var tween = create_control_movement_tween()
@@ -167,7 +167,7 @@ func tween_to_top():
 	tween.tween_property(self, "position", Vector2(position.x, -100), 0.4)
 
 
-func ToDrop():
+func to_drop():
 	if _movement_command_is_blocked():
 		velocity.y = 0
 		return
@@ -177,7 +177,7 @@ func ToDrop():
 	pass
 
 
-func NoCombo():
+func no_combo():
 	ShouldInSky = false
 
 
@@ -227,7 +227,7 @@ func call_bullet_2():
 	Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
-func CheckPlayer():
+func check_player():
 	if not is_instance_valid(Global.get_player) or RoleProp == null or not has_method("move_playerto_boss"):
 		print("CheckPlayer：依赖节点无效/无位移方法，跳过")
 		return
@@ -246,20 +246,6 @@ func CheckPlayer():
 			if MonsterDirection:
 				move_playerto_boss(buff_target, 0.5)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func TweenToTop():
-	return tween_to_top()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet1():
-	return await call_bullet_1()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet2():
-	return call_bullet_2()

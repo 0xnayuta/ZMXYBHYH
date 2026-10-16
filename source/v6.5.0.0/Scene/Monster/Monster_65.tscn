@@ -914,10 +914,10 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"Fall"
+"method": &"fall"
 }, {
 "args": [],
-"method": &"ReturnNormal"
+"method": &"return_normal"
 }]
 }
 tracks/9/type = "value"
@@ -1044,10 +1044,10 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"Fall"
+"method": &"fall"
 }, {
 "args": [],
-"method": &"ReturnNormal"
+"method": &"return_normal"
 }]
 }
 
@@ -1274,7 +1274,7 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallWang"
+"method": &"call_wang"
 }]
 }
 
@@ -1451,7 +1451,7 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"AwaitTOtop"
+"method": &"await_t_otop"
 }]
 }
 tracks/9/type = "value"
@@ -1752,7 +1752,7 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallZZ"
+"method": &"call_zz"
 }]
 }
 

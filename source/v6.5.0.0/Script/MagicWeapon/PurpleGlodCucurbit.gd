@@ -48,7 +48,7 @@ func use_over():
 		skill_cd.start(1)
 
 
-func CucurbitFire():
+func cucurbit_fire():
 	var attack_data := get_attack_snapshot()
 	if self.SelfDir:
 		Global.add_weapon_bullet(self, Vector2(-30, 10), "PurpleGlodCucurbitBullet", attack_data, self.SelfDir, 10)

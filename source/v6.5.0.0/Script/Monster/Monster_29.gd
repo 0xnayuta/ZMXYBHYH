@@ -170,7 +170,7 @@ func normal_state():
 		move_right()
 
 
-func CallLXHJQ():
+func call_lxhjq():
 	var Po: Vector2
 	if MonsterDirection:
 		Po = Vector2(90, -15) + position

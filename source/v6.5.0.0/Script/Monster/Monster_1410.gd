@@ -372,7 +372,7 @@ func call_bullet_1():
 			await get_tree().create_timer(0.2).timeout
 
 
-func MovePlayer2():
+func move_player_2():
 	if not get_Player:
 		return
 	var offset = 150
@@ -450,10 +450,6 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		return
 	super._on_hurt_box_area_entered(area)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet1():
-	return await call_bullet_1()

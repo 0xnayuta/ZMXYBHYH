@@ -246,7 +246,7 @@ func PDpj():
 	return 1
 
 
-func ADDpj():
+func add_pj():
 	var ping_jia_size := PING_JIA_TEXTURE_SIZE * PING_JIA_FINAL_SCALE
 
 	Global.add_pj(self, Vector2(65, 65), PDpj())

@@ -164,11 +164,11 @@ func use_over():
 	self.visible = false
 
 
-func reduceTimes():
+func reduce_times():
 	HitTimes -= 1
 
 
-func GhostBullet_1():
+func ghost_bullet_1():
 	var Gh_1
 	var attack_data := get_attack_snapshot()
 	if self.SelfDir:
@@ -177,7 +177,7 @@ func GhostBullet_1():
 		Gh_1 = Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_1", attack_data, !self.SelfDir, 100)
 
 
-func GhostBullet_2():
+func ghost_bullet_2():
 	var attack_data := get_attack_snapshot()
 	if self.SelfDir:
 		Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_2", attack_data, self.SelfDir, 100)
@@ -185,7 +185,7 @@ func GhostBullet_2():
 		Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_2", attack_data, !self.SelfDir, 100)
 
 
-func GhostBullet_3():
+func ghost_bullet_3():
 	var attack_data := get_attack_snapshot()
 	if self.SelfDir:
 		Global.add_weapon_bullet(self, Vector2(-60, 30), "GhostDollBullet_3", attack_data, !self.SelfDir, 100)

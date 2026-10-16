@@ -209,7 +209,7 @@ func tween_to_top():
 	tween.tween_property(self, "position", Vector2(0, -250) + position, 0.2)
 
 
-func TweenToTop2():
+func tween_to_top_2():
 	if _movement_command_is_blocked():
 		return
 	ShouldInSky = true
@@ -300,30 +300,6 @@ func call_bullet_5():
 		i.queue_free()
 	RoundList.clear()
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func TweenToTop():
-	return tween_to_top()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet1():
-	return call_bullet_1()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet3():
-	return call_bullet_3()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet4():
-	return await call_bullet_4()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet5():
-	return await call_bullet_5()

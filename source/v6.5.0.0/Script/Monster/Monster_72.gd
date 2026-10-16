@@ -126,7 +126,7 @@ func do_hit_2():
 	stop_move()
 
 
-func CallMonsterBullet():
+func call_monster_bullet():
 	var BulletName = "Monster72Bullet"
 	var bullet_pos
 	var bullet_spawn_positions = [Vector2(0, 0), Vector2(0, -75), Vector2(0, 75)]
@@ -135,7 +135,7 @@ func CallMonsterBullet():
 		await get_tree().create_timer(0.3, false).timeout
 
 
-func StrengthObj():
+func strength_obj():
 	self.cure_hp(SHp * 0.15)
 	for i in self.objattackDic:
 		if self.objattackDic[i].has("power"):
@@ -153,7 +153,7 @@ func StrengthObj():
 		MyFather.ar += 5
 
 
-func CallMonster():
+func call_monster():
 	if not IsCall:
 		var Self = Global.create_monster(72, get_parent(), position)
 		Self.SHp = SHp * 1.5

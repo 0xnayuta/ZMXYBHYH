@@ -211,10 +211,10 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"TweenToTop"
+"method": &"tween_to_top"
 }, {
 "args": [],
-"method": &"addBullet"
+"method": &"add_bullet"
 }]
 }
 tracks/3/type = "value"

@@ -143,7 +143,7 @@ func do_hit_2():
 	stop_move()
 
 
-func Call_ZZZY():
+func call_zzzy():
 	var BulletName = "Monster59Bullet_1"
 	var bullet_pos
 	if MonsterDirection:
@@ -154,7 +154,7 @@ func Call_ZZZY():
 		Global.add_bullet(BulletName, self.bullet, false, 1, bullet_pos, "zzzy", self.objattackDic["zzzy"])
 
 
-func CallZZHY():
+func call_zzhy():
 	var target_count = 3 + int(RoleBeHitCount / 3)
 	for i in range(target_count):
 		var bullet_pos = Vector2(

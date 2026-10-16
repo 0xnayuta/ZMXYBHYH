@@ -362,7 +362,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			Global.add_buff(Target.buff, HitDic["addeffect"])
 
 
-func ADDMusic(num):
+func add_music(num):
 	match num:
 		1:
 			Global.add_sound(self, "res://Music/Hero/58_Role2_hit1.mp3")
@@ -455,7 +455,7 @@ func _get_monster_from_hit_area(area: Area2D) -> BaseMonster:
 	return null
 
 
-func FaceToBoss():
+func face_to_boss():
 	var MrList = []
 	var desired_angle := rotation
 	if Player is BaseHero:
@@ -522,7 +522,7 @@ func _on_hit_box_body_exited(body: Node2D) -> void:
 				IsCanCure = false
 
 
-func AddslzBuff():
+func add_slz_buff():
 	Global.add_buff(
 		RoleProp.SourcePlayer.buff,
 		{
@@ -537,7 +537,7 @@ func AddslzBuff():
 	)
 
 
-func AddtszBuff():
+func add_tsz_buff():
 	Global.add_buff(
 		RoleProp.SourcePlayer.buff,
 		{
@@ -552,7 +552,7 @@ func AddtszBuff():
 	)
 
 
-func ADDTQZBuff():
+func add_tqz_buff():
 	if not IsCanCure:
 		return
 	Global.RemoveAllBuff()
@@ -583,7 +583,7 @@ func TQZCure():
 			CureCount = 0
 
 
-func TLLZQueue():
+func tllz_queue():
 	if queue_timer.is_stopped():
 		queue_timer.start(10)
 

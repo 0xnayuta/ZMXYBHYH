@@ -197,7 +197,7 @@ func call_pp():
 		Global.add_special_effect(self, Vector2(-150, 30), "Poisionpp", Vector2(2, 2), false, 1)
 
 
-func CallYSYB():
+func call_ysyb():
 	var bullet_spawn_positions = [Vector2(0, 90), Vector2(-120, -20), Vector2(120, -20)]
 	for i in bullet_spawn_positions:
 		Global.add_bullet(

@@ -226,8 +226,8 @@ func perform_resurrection():
 		special_effect.scale.x = 1
 
 		if special_effect is AnimatedSprite2D and special_effect.sprite_frames:
-			if special_effect.sprite_frames.has_animation("Relive"):
-				special_effect.play("Relive")
+			if special_effect.sprite_frames.has_animation("relive"):
+				special_effect.play("relive")
 			elif special_effect.sprite_frames.has_animation("relive"):
 				special_effect.play("relive")
 
@@ -430,7 +430,7 @@ func _on_hurt_box_area_entered(area: Area2D):
 		IsStrength = false
 
 
-func StrengthSelf():
+func strength_self():
 	if is_resurrecting or resurrection_completed:
 		return
 
@@ -445,7 +445,7 @@ func StrengthSelf():
 		await get_tree().create_timer(0.2, false).timeout
 
 
-func OnStrength():
+func on_strength():
 	if is_resurrecting or resurrection_completed:
 		return
 
@@ -457,15 +457,6 @@ func _exit_tree():
 	if death_timer and death_timer.timeout.is_connected(_on_resurrection_animation_complete):
 		death_timer.timeout.disconnect(_on_resurrection_animation_complete)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func TweenToTop():
-	return tween_to_top()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet():
-	return await call_bullet()

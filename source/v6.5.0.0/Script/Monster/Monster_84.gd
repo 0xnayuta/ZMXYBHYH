@@ -211,11 +211,11 @@ func tween_to_top():
 	pass
 
 
-func ADDFire():
+func add_fire():
 	Global.add_bullet("Monster84Bullet3", self, false, 1, Vector2(0, 0), "hit6", self.objattackDic["hit6"])
 
 
-func call_sfjmFire():
+func call_sfjm_fire():
 	var FirePosition1 = [Vector2(self.position.x - 80, 440), Vector2(self.position.x + 80, 440)]
 	var FirePosition2 = [Vector2(self.position.x - 200, 440), Vector2(self.position.x + 200, 440)]
 	var FirePosition3 = [Vector2(self.position.x - 320, 440), Vector2(self.position.x + 320, 440)]
@@ -235,7 +235,7 @@ func call_sfjmFire():
 		)
 
 
-func CallHL():
+func call_hl():
 	var bullet_pos: Vector2
 	if MonsterDirection:
 		bullet_pos = Vector2(250, -35)
@@ -247,7 +247,7 @@ func CallHL():
 	hl.scale = Vector2(0.88, 0.88)
 
 
-func CallFL():
+func call_fl():
 	var bullet_pos: Vector2
 	if MonsterDirection:
 		bullet_pos = Vector2(40, -30)
@@ -258,10 +258,6 @@ func CallFL():
 	)
 	fl.scale = Vector2(0.7, 0.7)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func TweenToTop():
-	return tween_to_top()

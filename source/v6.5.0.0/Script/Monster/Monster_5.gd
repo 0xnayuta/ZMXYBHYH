@@ -106,7 +106,7 @@ func do_hit_2():
 	is_attacking = false
 
 
-func CallYYZL():
+func call_yyzl():
 	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 500)
 	await get_tree().create_timer(1, false).timeout
 	MonsterBullet.wait_for_monster5_stream_images()

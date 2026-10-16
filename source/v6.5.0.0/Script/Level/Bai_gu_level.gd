@@ -38,7 +38,7 @@ func show_message():
 	$Hurt_box/Hurt_.disabled = false
 
 
-func show_and_hideInfo():
+func show_and_hide_info():
 	is_set = true
 	CheckArea.disabled = false
 	$BaiGu.visible = true

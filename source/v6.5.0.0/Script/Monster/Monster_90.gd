@@ -50,7 +50,7 @@ func _ready() -> void:
 	monster_90()
 
 
-func ADDBullet():
+func add_bullet():
 	var bullet_pos: Vector2
 	if MonsterDirection:
 		bullet_pos = Vector2(50, 5)

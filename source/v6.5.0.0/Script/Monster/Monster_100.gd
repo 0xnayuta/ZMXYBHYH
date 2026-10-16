@@ -132,7 +132,7 @@ func do_hit_2():
 	stop_move()
 
 
-func MovePlayer():
+func move_player():
 	self.position = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 410)
 	self.position.x = RoleProp.get_nearest_monster_target_position(global_position).x
 

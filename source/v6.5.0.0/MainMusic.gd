@@ -7,7 +7,7 @@ func RemoveMusic():
 		MyMainMusic.queue_free()
 
 
-func ADDMusic():
+func add_music():
 	if MainSet.set_data["music"] == 1:
 		if MyMainMusic != null:
 			MyMainMusic.queue_free()

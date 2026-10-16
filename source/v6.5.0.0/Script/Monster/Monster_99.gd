@@ -63,10 +63,6 @@ func call_bullet():
 		)
 	bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet():
-	return call_bullet()

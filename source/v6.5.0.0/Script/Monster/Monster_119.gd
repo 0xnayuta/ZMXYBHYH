@@ -119,7 +119,7 @@ func do_hit_3():
 	is_attacking = false
 
 
-func StrengthSelf():
+func strength_self():
 	for i in objattackDic:
 		if objattackDic[i].has("power"):
 			objattackDic[i].power *= 1.2

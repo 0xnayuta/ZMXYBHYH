@@ -57,7 +57,7 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallHit1Bullet"
+"method": &"call_hit_1_bullet"
 }]
 }
 tracks/1/type = "value"
@@ -99,7 +99,7 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallHyBullet"
+"method": &"call_hy_bullet"
 }]
 }
 tracks/1/type = "value"
@@ -141,7 +141,7 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallSxhzHit"
+"method": &"call_sxhz_hit"
 }]
 }
 tracks/1/type = "value"
@@ -183,7 +183,7 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallHsqjBullet"
+"method": &"call_hsqj_bullet"
 }]
 }
 tracks/1/type = "value"
@@ -225,7 +225,7 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallBhaoyiHit"
+"method": &"call_bhaoyi_hit"
 }]
 }
 tracks/1/type = "value"
@@ -267,7 +267,7 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallBhaoyiHit"
+"method": &"call_bhaoyi_hit"
 }]
 }
 tracks/1/type = "value"

@@ -479,7 +479,7 @@ func shovel_wdzt():
 	is_using_skills = false
 
 
-func AddShovelEffect1():
+func add_shovel_effect_1():
 	var bullet_pos = Vector2()
 	if PlayerDir:
 		bullet_pos = Vector2(35, 0)
@@ -494,7 +494,7 @@ func ADDMBYJ():
 	Global.add_role4_bullet(self.Bullet, self, position)
 
 
-func CallWDWW():
+func call_wdww():
 	var bullet_pos: Vector2
 	if PlayerDir:
 		bullet_pos = Vector2(30, -30)
@@ -517,7 +517,7 @@ func CallWDWW():
 	WDWW.set_linked_targets(targets)
 
 
-func CallJDZ():
+func call_jdz():
 	if get_action == "bylt" or get_action == "cmly":
 		return
 	if JDZ != null:
@@ -532,7 +532,7 @@ func CallJDZ():
 			level.add_child(effect)
 
 
-func AddWDZT():
+func add_wdzt():
 	for i in buff.get_children():
 		if i != null:
 			if i.BuffInfo["Name"] == "PoisionBody":
@@ -689,7 +689,7 @@ func _is_valid_role4_skill_target(target: Node) -> bool:
 	return true
 
 
-func ADDMusic(num: int):
+func add_music(num: int):
 	match int(num):
 		1:
 			Global.add_sound(self, "res://Music/Hero/Role4/ShovelHit1.mp3")
@@ -735,25 +735,25 @@ func _on_nor_mal_hit_interv_timeout() -> void:
 	Interv -= 1
 
 
-func ToTop():
+func to_top():
 	if PlayerDir:
 		velocity = Vector2(-750, -800)
 	else:
 		velocity = Vector2(750, -800)
 
 
-func RemoveSpeed():
+func remove_speed():
 	velocity = Vector2(0, 0)
 
 
-func Rush():
+func rush():
 	if PlayerDir:
 		velocity.x = 600
 	else:
 		velocity.x = -600
 
 
-func FlyTop():
+func fly_top():
 	if tkj_awaken_mode == 1:
 		velocity.y = 0.0
 		return
@@ -764,7 +764,7 @@ func FlyTop():
 	velocity.y = -600
 
 
-func ToTop2():
+func to_top_2():
 	IsFly = true
 	if PlayerDir:
 		velocity = Vector2(0, -1800)
@@ -845,7 +845,7 @@ func _prepare_hit_reaction() -> void:
 	IsFly = false
 
 
-func Fall():
+func fall():
 	IsFly = false
 
 

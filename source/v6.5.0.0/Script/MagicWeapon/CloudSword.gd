@@ -90,7 +90,7 @@ func GetMonster():
 	return TT
 
 
-func AddSword():
+func add_sword():
 	if Target != null:
 		Global.add_weapon_bullet(
 			$Bullet, Target.position + Vector2(0, 30), "CloudSwordBullet", get_attack_snapshot(), mg_action.flip_h, 100

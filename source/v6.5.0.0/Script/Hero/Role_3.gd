@@ -520,7 +520,7 @@ func add_music(idx):
 			pass
 
 
-func AddSD():
+func add_sd():
 	if _is_sd_awaken_active():
 		_sd_awaken_enabled = true
 		_sd_awaken_mp_elapsed = 0.0
@@ -533,7 +533,7 @@ func AddSD():
 	Global.add_role_special_effect(self, Vector2(0, 0), false, "sd")
 
 
-func AddZZNH():
+func add_zznh():
 	var skill_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
 	var effect = Global.add_role_special_effect(
 		self, Vector2(30, -30) if PlayerDir else Vector2(-30, -30), false, "zznh"
@@ -564,7 +564,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			Global.add_buff(Target.buff, HitDic["addeffect"])
 
 
-func CallSYZQ():
+func call_syzq():
 	var pp
 	if PlayerDir:
 		pp = Vector2(64, -70) + position
@@ -573,7 +573,7 @@ func CallSYZQ():
 	Global.add_role_bullet(self.Bullet, pp, PlayerDir, "Role3Bullet1", objattackDic["syzq"])
 
 
-func AddSSP():
+func add_ssp():
 	var bullet_spawn_positions = []
 	var ScaleList = [Vector2(1, 1), Vector2(1.6, 1.6), Vector2(2, 2), Vector2(2.5, 2.5)]
 	if !PlayerDir:
@@ -588,7 +588,7 @@ func AddSSP():
 		await get_tree().create_timer(0.2, false).timeout
 
 
-func AddTMC():
+func add_tmc():
 	var MaxCount: int = 10
 	if RoleProp.is_ws_state:
 		MaxCount = 20
@@ -627,7 +627,7 @@ func _spawn_dgq_spike() -> void:
 	_dgq_spike_angle = fmod(_dgq_spike_angle + DGQ_SPIKE_ANGLE_STEP, 360.0)
 
 
-func Rush():
+func rush():
 	var roll_speed: float = DGQ_ROLL_SPEED if _is_dgq_awaken_active() else DGQ_NORMAL_ROLL_SPEED
 	if PlayerDir:
 		velocity.x += roll_speed

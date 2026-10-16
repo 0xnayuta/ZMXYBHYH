@@ -1142,7 +1142,7 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallZZHY"
+"method": &"call_zzhy"
 }]
 }
 
@@ -1243,22 +1243,22 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
-"method": &"Call_ZZZY"
+"method": &"call_zzzy"
 }, {
 "args": [],
-"method": &"Call_ZZZY"
+"method": &"call_zzzy"
 }, {
 "args": [],
-"method": &"Call_ZZZY"
+"method": &"call_zzzy"
 }, {
 "args": [],
-"method": &"Call_ZZZY"
+"method": &"call_zzzy"
 }, {
 "args": [],
-"method": &"Call_ZZZY"
+"method": &"call_zzzy"
 }, {
 "args": [],
-"method": &"Call_ZZZY"
+"method": &"call_zzzy"
 }]
 }
 

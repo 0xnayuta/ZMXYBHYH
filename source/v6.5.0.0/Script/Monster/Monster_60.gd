@@ -197,7 +197,7 @@ func do_hit_3():
 	stop_move()
 
 
-func GoTop():
+func go_top():
 	if _movement_command_is_blocked():
 		return
 	Is_Drop = false
@@ -206,7 +206,7 @@ func GoTop():
 	Tween_.tween_property(self, "position", Vector2(self.position.x, -800), 1)
 
 
-func Drop():
+func drop():
 	Is_Drop = true
 	if _movement_command_is_blocked():
 		Is_Drop = false
@@ -228,7 +228,7 @@ func Drop():
 	Is_Top = false
 
 
-func call_sfjmFire():
+func call_sfjm_fire():
 	var FirePosition1 = [
 		Vector2(self.position.x - 80, self.position.y + 30), Vector2(self.position.x + 80, self.position.y + 30)
 	]
@@ -254,7 +254,7 @@ func call_sfjmFire():
 		)
 
 
-func DelayCall():
+func delay_call():
 	if has_summoned_war_god_xingtian:
 		return
 	has_summoned_war_god_xingtian = true
@@ -284,7 +284,7 @@ func _finish_death_sequence_after_timeout() -> void:
 	await get_tree().create_timer(DEATH_SEQUENCE_FALLBACK_SECONDS, false).timeout
 	if not is_instance_valid(self) or is_queued_for_deletion():
 		return
-	DelayCall()
+	delay_call()
 	set_meta("counts_as_alive_for_stage_clear", false)
 	queue_free()
 
@@ -293,7 +293,7 @@ func is_alive_for_stage_clear() -> bool:
 	return Hp <= 0 and not has_summoned_war_god_xingtian
 
 
-func CallHands():
+func call_hands():
 	var bullet_spawn_positions = []
 	var OtherPo = []
 	if MonsterDirection:

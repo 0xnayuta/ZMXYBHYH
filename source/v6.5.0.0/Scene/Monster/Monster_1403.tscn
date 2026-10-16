@@ -1171,7 +1171,7 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"MovePlayer1"
+"method": &"move_player_1"
 }, {
 "args": [],
 "method": &"to_hero"
@@ -1325,7 +1325,7 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"MovePlayer2"
+"method": &"move_player_2"
 }, {
 "args": [],
 "method": &"to_hero"
@@ -1479,7 +1479,7 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"MovePlayer2"
+"method": &"move_player_2"
 }, {
 "args": [],
 "method": &"to_hero"
@@ -1633,7 +1633,7 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"MovePlayer2"
+"method": &"move_player_2"
 }, {
 "args": [],
 "method": &"to_hero"

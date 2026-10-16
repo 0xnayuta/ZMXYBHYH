@@ -1089,5 +1089,5 @@ func _on_remove_w_timeout() -> void:
 	WIsPress = false
 
 
-func removeSpeed():
+func remove_speed():
 	velocity.x = 0

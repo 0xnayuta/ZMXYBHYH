@@ -125,7 +125,7 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CucurbitFire"
+"method": &"cucurbit_fire"
 }]
 }
 tracks/4/type = "value"

@@ -8223,7 +8223,7 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"removeSpeed"
+"method": &"remove_speed"
 }]
 }
 tracks/15/type = "value"
@@ -8715,7 +8715,7 @@ tracks/8/keys = {
 "method": &"add_music"
 }, {
 "args": [],
-"method": &"removeSpeed"
+"method": &"remove_speed"
 }]
 }
 tracks/9/type = "value"
@@ -11473,7 +11473,7 @@ tracks/15/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"removeSpeed"
+"method": &"remove_speed"
 }]
 }
 tracks/16/type = "value"

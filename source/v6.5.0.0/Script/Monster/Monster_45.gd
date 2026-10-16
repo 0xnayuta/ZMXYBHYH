@@ -55,11 +55,11 @@ func ai_think():
 	if is_on_floor():
 		velocity.y = 0
 	if Curecount % 120 == 0:
-		MonsterCureHp()
+		monster_cure_hp()
 	Curecount += 1
 
 
-func MonsterCureHp():
+func monster_cure_hp():
 	var BaseLevel_ = get_parent().get_parent() as BaseLevel
 	for i in BaseLevel_.monster.get_children():
 		if i != null:

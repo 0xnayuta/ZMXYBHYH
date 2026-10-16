@@ -885,7 +885,7 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallBullet2"
+"method": &"call_bullet_2"
 }]
 }
 
@@ -1006,7 +1006,7 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
-"method": &"TweenToPalyer"
+"method": &"tween_to_player"
 }, {
 "args": [],
 "method": &"to_hero"
@@ -1030,7 +1030,7 @@ tracks/8/keys = {
 "method": &"to_hero"
 }, {
 "args": [],
-"method": &"TweenToPalyer"
+"method": &"tween_to_player"
 }, {
 "args": [],
 "method": &"to_hero"
@@ -1054,7 +1054,7 @@ tracks/8/keys = {
 "method": &"to_hero"
 }, {
 "args": [],
-"method": &"TweenToPalyer"
+"method": &"tween_to_player"
 }, {
 "args": [],
 "method": &"to_hero"
@@ -1089,7 +1089,7 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"NoCombo"
+"method": &"no_combo"
 }]
 }
 
@@ -1133,10 +1133,10 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"TweenToTop"
+"method": &"tween_to_top"
 }, {
 "args": [],
-"method": &"ToDrop"
+"method": &"to_drop"
 }]
 }
 tracks/3/type = "value"
@@ -1288,7 +1288,7 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallBullet1"
+"method": &"call_bullet_1"
 }]
 }
 tracks/5/type = "method"
@@ -1302,16 +1302,16 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [],
-"method": &"CheckPlayer"
+"method": &"check_player"
 }, {
 "args": [],
-"method": &"CheckPlayer"
+"method": &"check_player"
 }, {
 "args": [],
-"method": &"CheckPlayer"
+"method": &"check_player"
 }, {
 "args": [],
-"method": &"CheckPlayer"
+"method": &"check_player"
 }]
 }
 

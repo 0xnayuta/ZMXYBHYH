@@ -182,7 +182,7 @@ func tween_to_top():
 	pass
 
 
-func CallArrow1():
+func call_arrow_1():
 	if get_Player == null:
 		return
 	var bullet_spawn_positions = [
@@ -209,7 +209,7 @@ func CallArrow1():
 		await get_tree().create_timer(0.3, false).timeout
 
 
-func CallArrow2():
+func call_arrow_2():
 	if get_Player == null:
 		return
 	var desired_angle = 90
@@ -239,7 +239,7 @@ func CallArrow2():
 		await get_tree().create_timer(randf_range(0.2, 0.4), false).timeout
 
 
-func CallArrow3():
+func call_arrow_3():
 	if get_Player == null:
 		return
 	var bullet_spawn_positions = [
@@ -276,10 +276,6 @@ func CallArrow3():
 		Arrow.rotation_degrees = 90
 		await get_tree().create_timer(0.1, false).timeout
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func TweenToTop():
-	return tween_to_top()

@@ -129,5 +129,5 @@ func _save_pet_backpack_pickup() -> void:
 		MemoryClass.save_game(save_path)
 
 
-func Pick():
+func pick():
 	IsPick = true

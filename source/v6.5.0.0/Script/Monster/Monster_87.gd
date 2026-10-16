@@ -49,7 +49,7 @@ func _ready() -> void:
 	monster_87()
 
 
-func ADDBullet():
+func add_bullet():
 	var bullet_spawn_positions = []
 	if MonsterDirection:
 		bullet_spawn_positions = [

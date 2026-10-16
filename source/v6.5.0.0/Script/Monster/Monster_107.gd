@@ -193,20 +193,11 @@ func call_bullet_2():
 		await get_tree().create_timer(0.1, false).timeout
 
 
-func CureHp():
+func repeat_cure_hp():
 	for i in range(5, 8):
 		cure_hp(int(SHp * randf_range(0.02, 0.03)))
 		await get_tree().create_timer(0.1, false).timeout
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet1():
-	return call_bullet_1()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet2():
-	return await call_bullet_2()

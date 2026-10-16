@@ -329,7 +329,7 @@ func state_hurt(attacker: Node) -> void:
 	super.state_hurt(attacker)
 
 
-func CallBullet_1() -> void:
+func call_bullet_1() -> void:
 	for i in range(8):
 		var pos = Vector2(position.x + randi_range(-450, 500), -300)
 		var bullet_instance = Global.add_bullet(
@@ -369,7 +369,7 @@ func call_bullet_alt2() -> void:
 		setup_bullet_collision(bullet_instance)
 
 
-func CallBullet_3() -> void:
+func call_bullet_3() -> void:
 	var x_offsets = [-300, -200, -100, 0, 100, 200, 300]
 	for offset_x in x_offsets:
 		var pos = Vector2(position.x + offset_x, 370)
@@ -378,7 +378,7 @@ func CallBullet_3() -> void:
 			setup_bullet_collision(bullet_instance)
 
 
-func CallBullet_4() -> void:
+func call_bullet_4() -> void:
 	var bullet1 = Global.add_bullet(
 		"Monster141Bullet1", bullet, false, 1, Vector2(position.x - 1000, 450), "hit4", objattackDic["hit4"]
 	)
@@ -395,5 +395,5 @@ func CallBullet_4() -> void:
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
 ## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet_2() -> void:
+func call_bullet_2() -> void:
 	call_bullet_alt2()

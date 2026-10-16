@@ -218,7 +218,7 @@ func state_hurt():
 		is_be_attacking = false
 
 
-func CallBullet_1():
+func call_bullet_1():
 	for i in range(8):
 		var Bullet
 		var bullet_pos = Vector2(position.x + randi_range(-450, 500), -300)
@@ -249,7 +249,7 @@ func call_bullet_alt2():
 	bb.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
-func CallBullet_3():
+func call_bullet_3():
 	var bullet_spawn_positions = [
 		Vector2(-300 + position.x, 370),
 		Vector2(-200 + position.x, 370),
@@ -263,7 +263,7 @@ func CallBullet_3():
 		Global.add_bullet("Monster22Fire", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
 
 
-func CallBullet_4():
+func call_bullet_4():
 	Global.add_bullet(
 		"Monster141Bullet1", self.bullet, false, 1, Vector2(position.x - 1000, 450), "hit4", self.objattackDic["hit4"]
 	)
@@ -276,5 +276,5 @@ func CallBullet_4():
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
 ## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet_2():
+func call_bullet_2():
 	return call_bullet_alt2()

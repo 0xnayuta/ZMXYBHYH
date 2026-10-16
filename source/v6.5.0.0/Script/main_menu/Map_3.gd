@@ -209,7 +209,7 @@ func _ready():
 		MainSet.set_data["CurrentLevelPage"] = MaxPage
 		MemoryClass.main_bc()
 	if MainMusic.MyMainMusic == null:
-		MainMusic.ADDMusic()
+		MainMusic.add_music()
 	Global.CurrentLevel = ""
 	if Global.Windows_ == null:
 		Global.Windows_ = _ui_parent()

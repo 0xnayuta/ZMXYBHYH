@@ -62,7 +62,7 @@ func _ready() -> void:
 	monster_82()
 
 
-func ADDBullet():
+func add_bullet():
 	var TargetPosition: Vector2
 	if MonsterDirection:
 		TargetPosition = Vector2(30, 5)

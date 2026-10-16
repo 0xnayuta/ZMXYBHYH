@@ -214,25 +214,6 @@ func call_bullet_4():
 			self.objattackDic["hit3"]
 		)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet1():
-	return call_bullet_1()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet2():
-	return await call_bullet_2()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet3():
-	return call_bullet_3()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet4():
-	return call_bullet_4()

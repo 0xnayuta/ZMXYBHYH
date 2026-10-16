@@ -111,7 +111,7 @@ func _ready() -> void:
 		MemoryClass.main_bc()
 
 	if MainMusic.MyMainMusic == null:
-		MainMusic.ADDMusic()
+		MainMusic.add_music()
 	Global.CurrentLevel = ""
 	if not Global.IsFrist:
 		Global.add_message_show(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))

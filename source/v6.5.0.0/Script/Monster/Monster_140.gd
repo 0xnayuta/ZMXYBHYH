@@ -236,7 +236,7 @@ func do_hit_5():
 	stop_move()
 
 
-func MoveToTopAndFacePlayer():
+func move_to_top_and_face_player():
 	if _movement_command_is_blocked() or get_Player == null:
 		return
 	velocity.y = 0
@@ -270,15 +270,15 @@ func NotMovePlayer():
 		velocity.x = -2500
 
 
-func RemoveSpeedx():
+func remove_speedx():
 	velocity.x = 0
 
 
-func Drop():
+func drop():
 	ShouldInSky = false
 
 
-func CallBullet_1():
+func call_bullet_1():
 	var bb
 	if self.MonsterDirection:
 		bb = Global.add_bullet(
@@ -310,7 +310,7 @@ func call_bullet_alt2():
 	Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
-func CallBullet_3():
+func call_bullet_3():
 	for i in range(12):
 		var Bullet
 		var bullet_pos = Vector2(position.x + randi_range(-450, 500), -300)
@@ -321,7 +321,7 @@ func CallBullet_3():
 		await get_tree().create_timer(0.3, false).timeout
 
 
-func CallBullet_4():
+func call_bullet_4():
 	var bullet_spawn_positions = [
 		Vector2(-500 + position.x, 500),
 		Vector2(-400 + position.x, 500),
@@ -338,13 +338,13 @@ func CallBullet_4():
 		Global.add_bullet("Monster140Bullet4", self.bullet, false, 1, i, "hit5", self.objattackDic["hit5"])
 
 
-func ToSky():
+func to_sky():
 	velocity.y = 0
 	ShouldInSky = true
 	velocity.y = 0
 
 
-func CheckPlayer():
+func check_player():
 	if self.position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
 		if Global.get_player.PlayerDir:
 			if not MonsterDirection:
@@ -405,7 +405,7 @@ func hurt_reduce_hp(value, target):
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
 ## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet_2():
+func call_bullet_2():
 	return call_bullet_alt2()
 
 

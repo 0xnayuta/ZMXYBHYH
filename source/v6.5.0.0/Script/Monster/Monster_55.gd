@@ -178,31 +178,31 @@ func ai_think():
 
 
 func state_hurt():
-	Set_RoundSpeed(1)
+	set_round_speed(1)
 	zlw_special_effect.State = false
 	super.state_hurt()
 
 
 func stop_move():
-	Set_RoundSpeed(1)
+	set_round_speed(1)
 	zlw_special_effect.State = false
 	super.stop_move()
 
 
 func move_left():
-	Set_RoundSpeed(1)
+	set_round_speed(1)
 	zlw_special_effect.State = true
 	super.move_left()
 
 
 func move_right():
-	Set_RoundSpeed(1)
+	set_round_speed(1)
 	zlw_special_effect.State = true
 	super.move_right()
 
 
 func state_death():
-	Set_RoundSpeed(1)
+	set_round_speed(1)
 	zlw_special_effect.State = false
 	super.state_death()
 
@@ -257,7 +257,7 @@ func normal_state():
 		move_right()
 
 
-func Set_RoundSpeed(value):
+func set_round_speed(value):
 	zlw_special_effect.Speed = value
 
 
@@ -268,7 +268,7 @@ func setposition():
 	)
 
 
-func CallRound():
+func call_round():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
 	if CurrentRound > 0:
@@ -313,7 +313,7 @@ func call_bullet():
 		zz_2.z_index = -1
 
 
-func CallRound_():
+func call_round_2():
 	Global.call_fly_bullet(
 		self.bullet, "Monster55Bullet", 1, Vector2(position.x, position.y), 6500, 400, "dyml", self.objattackDic["dyml"]
 	)
@@ -329,7 +329,7 @@ func CallRound_():
 	)
 
 
-func CallMonster():
+func call_monster():
 	if get_parent().get_parent() is Level21:
 		if Boss_3 == null:
 			Boss_3 = Global.create_monster(56, get_parent(), Vector2(1450, 320)) as Monster56
@@ -339,10 +339,6 @@ func CallMonster():
 			Boss_3 = Global.create_monster(56, get_parent(), Vector2(470, 320)) as Monster56
 			var BaseLevel_ = get_parent().get_parent() as BaseLevel
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet():
-	return call_bullet()

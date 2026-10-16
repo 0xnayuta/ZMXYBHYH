@@ -503,7 +503,7 @@ func _exit_tree():
 	bingyu_effects.clear()
 
 
-func AddNormalHitEffect():
+func add_normal_hit_effect():
 	var bullet_pos = Vector2()
 	if PlayerDir:
 		bullet_pos = Vector2(10, 15)
@@ -512,7 +512,7 @@ func AddNormalHitEffect():
 	Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet1", objattackDic["hit1"])
 
 
-func AddBLb():
+func add_blb():
 	if get_action == "by":
 		return
 	var bullet_pos = Vector2()
@@ -523,7 +523,7 @@ func AddBLb():
 	Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet2", objattackDic["blb"])
 
 
-func Addsgq():
+func add_sgq():
 	var bullet_pos = Vector2()
 	if PlayerDir:
 		bullet_pos = Vector2(35, -20)
@@ -538,7 +538,7 @@ func Addsgq():
 		SGQ.scale = Vector2(2, 2)
 
 
-func AddXBZ():
+func add_xbz():
 	var bullet_spawn_positions = [Vector2(-80, -15)]
 	var ScaleList = [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1.5, 1.5)]
 	if !PlayerDir:
@@ -553,19 +553,19 @@ func AddXBZ():
 		await get_tree().create_timer(0.2, false).timeout
 
 
-func AddSMb_1():
+func add_smb_1():
 	if !PlayerDir:
 		SMB1 = Global.add_smb_effect(self.Bullet, position + Vector2(-100, 25), PlayerDir)
 	else:
 		SMB1 = Global.add_smb_effect(self.Bullet, position + Vector2(100, 25), PlayerDir)
 
 
-func Addzfjg():
+func add_zfjg():
 	Global.add_role_special_effect(self.Bullet, position + Vector2(0, 0), false, "zfjg_zh")
 	_summon_zhw()
 
 
-func AddSMb_2():
+func add_smb_2():
 	Global.add_role_bullet(self.Bullet, smpox + Vector2(0, -180), PlayerDir, "Role2Bullet4", objattackDic["smb"])
 	if _is_skill_awakened("smb") and _is_skill_awaken_enabled("smb"):
 		_spawn_smb_awaken_extra_bursts(smpox, PlayerDir)
@@ -581,7 +581,7 @@ func _spawn_smb_awaken_extra_bursts(origin: Vector2, direction: bool) -> void:
 		Global.add_role_bullet(self.Bullet, origin + Vector2(0, -180), direction, "Role2Bullet4", objattackDic["smb"])
 
 
-func AddShallow():
+func add_shallow():
 	if MyShallow == null:
 		MyShallow = Global.add_role2_shallow(self.Bullet, position, PlayerDir)
 		MyShallow.my_owner = self
@@ -599,14 +599,14 @@ func SelfCure():
 	cure_hp(Value)
 
 
-func AddTJGL():
+func add_tjgl():
 	if get_action == "by":
 		return
 	tjgl_effect = Global.add_role_special_effect(self.Bullet, position + Vector2(0, -35), false, "tjgl")
 	tjgl_effect.show_behind_parent = true
 
 
-func AddMYHC():
+func add_myhc():
 	if myhc != null:
 		myhc.queue_free()
 		myhc = Global.add_role_special_effect(self, Vector2(0, -30), false, "myhc")
@@ -614,7 +614,7 @@ func AddMYHC():
 		myhc = Global.add_role_special_effect(self, Vector2(0, -30), false, "myhc")
 
 
-func AddJGZ():
+func add_jgz():
 	var effect
 	if !PlayerDir:
 		effect = Global.add_role_special_effect(self.Bullet, position + Vector2(-300, 0), false, "jgz")
@@ -626,7 +626,7 @@ func AddJGZ():
 		effect.skill_level = skill_level
 
 
-func AddJHSJ():
+func add_jhsj():
 	if !PlayerDir:
 		jhsj_1 = Global.add_role_special_effect(self, Vector2(-20, -15), PlayerDir, "jhsj")
 	else:
@@ -687,7 +687,7 @@ func _spawn_jhsj_awaken_effect() -> void:
 	get_parent().add_child(effect)
 
 
-func AddJHSJ2():
+func add_jhsj_2():
 	var bullet_pos = Vector2.ZERO
 	jhsj_2 = Global.add_role_bullet(self, bullet_pos, PlayerDir, "Role2Bullet6", objattackDic["jhsj"])
 	jhsj_2.show_behind_parent = true
@@ -697,7 +697,7 @@ func _on_normal_hit_reduce_timeout() -> void:
 	Interv -= 1
 
 
-func ADDMusic(num):
+func add_music(num):
 	match num:
 		1:
 			Global.add_sound(self, "res://Music/Hero/58_Role2_hit1.mp3")
@@ -721,7 +721,7 @@ func ADDMusic(num):
 			Global.add_sound(self, "res://Music/Hero/75_Role2_dead.mp3")
 
 
-func AddShake(power, time, inter):
+func add_shake(power, time, inter):
 	var baselevel = get_parent().get_parent() as BaseLevel
 	baselevel.shake_(power, time, inter)
 
@@ -740,12 +740,12 @@ func _prepare_hit_reaction() -> void:
 		SMB1.ShouldDeath = true
 
 
-func ResetSMB():
+func reset_smb():
 	IsUseSMB = false
 	smb_ready_for_second_press = false
 
 
-func EmoveSMB1():
+func emove_smb1():
 	if SMB1 != null:
 		SMB1.queue_free()
 	pass

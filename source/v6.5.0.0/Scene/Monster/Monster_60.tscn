@@ -1472,7 +1472,7 @@ tracks/6/keys = {
 "method": &"fall_stone_"
 }, {
 "args": [],
-"method": &"DelayCall"
+"method": &"delay_call"
 }, {
 "args": [],
 "method": &"queue_free"
@@ -1822,7 +1822,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallHands"
+"method": &"call_hands"
 }]
 }
 
@@ -1947,10 +1947,10 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"GoTop"
+"method": &"go_top"
 }, {
 "args": [],
-"method": &"Drop"
+"method": &"drop"
 }]
 }
 
@@ -2039,7 +2039,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"call_sfjmFire"
+"method": &"call_sfjm_fire"
 }]
 }
 

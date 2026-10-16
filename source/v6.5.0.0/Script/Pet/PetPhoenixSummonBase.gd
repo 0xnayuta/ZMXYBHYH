@@ -789,13 +789,13 @@ func state_hurt(attacker: Node) -> void:
 		reset_attack_state()
 
 
-func CallHit1Bullet() -> void:
+func call_hit_1_bullet() -> void:
 	_add_phoenix_bullet(
 		"PetPhoenix1Bullet1", position + _front_offset(75, -30), "hit1", objattackDic["hit1"], Vector2(155, 90)
 	)
 
 
-func CallHyBullet() -> void:
+func call_hy_bullet() -> void:
 	if _phoenix_nirvana_active:
 		_show_phoenix_nirvana_start_effect()
 		return
@@ -804,7 +804,7 @@ func CallHyBullet() -> void:
 	)
 
 
-func CallSxhzHit() -> void:
+func call_sxhz_hit() -> void:
 	_add_phoenix_bullet(
 		"PetPhoenix2Bullet3",
 		position + _front_offset(130, -30),
@@ -848,11 +848,11 @@ func CallSxhzHit() -> void:
 		)
 
 
-func CallHsqjBullet() -> void:
+func call_hsqj_bullet() -> void:
 	_spawn_phoenix_ground_fire(3, _phoenix_current_hit4_damage_times())
 
 
-func CallBhaoyiHit() -> void:
+func call_bhaoyi_hit() -> void:
 	if hit_name == "hit5":
 		_add_phoenix_bullet("PetPhoenix4Bullet5", position, "hit5", objattackDic["hit5"], Vector2(420, 170), true)
 	elif hit_name == "hit6":
@@ -862,15 +862,15 @@ func CallBhaoyiHit() -> void:
 func _spawn_phoenix_fallback(attack_name: String) -> void:
 	match attack_name:
 		"hit1":
-			CallHit1Bullet()
+			call_hit_1_bullet()
 		"hit2":
-			CallHyBullet()
+			call_hy_bullet()
 		"hit3":
-			CallSxhzHit()
+			call_sxhz_hit()
 		"hit4":
-			CallHsqjBullet()
+			call_hsqj_bullet()
 		"hit5", "hit6":
-			CallBhaoyiHit()
+			call_bhaoyi_hit()
 
 
 func _phoenix_current_hit4_damage_times() -> int:

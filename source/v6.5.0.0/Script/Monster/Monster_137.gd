@@ -104,7 +104,7 @@ func do_hit_1():
 	stop_move()
 
 
-func Call():
+func call_summon():
 	Global.create_monster(136, get_parent(), RoleProp.get_nearest_monster_target_position(global_position))
 	var bullet_spawn_positions = [
 		RoleProp.get_nearest_monster_target_position(global_position) + Vector2(-100, -100),

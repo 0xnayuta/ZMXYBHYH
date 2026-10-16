@@ -235,16 +235,16 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
 "args": [8],
-"method": &"ADDMusic"
+"method": &"add_music"
 }, {
 "args": [8],
-"method": &"ADDMusic"
+"method": &"add_music"
 }, {
 "args": [8],
-"method": &"ADDMusic"
+"method": &"add_music"
 }, {
 "args": [8],
-"method": &"ADDMusic"
+"method": &"add_music"
 }, {
 "args": [],
 "method": &"queue_free"
@@ -261,7 +261,7 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"TLLZQueue"
+"method": &"tllz_queue"
 }]
 }
 tracks/12/type = "value"

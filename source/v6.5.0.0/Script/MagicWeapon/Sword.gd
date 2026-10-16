@@ -39,7 +39,7 @@ func use_over():
 	skill_cd.start(15)
 
 
-func addSword():
+func add_sword():
 	var attack_data := get_attack_snapshot()
 	Global.add_weapon_bullet($Bullet, Vector2(self.position.x, 0), "SwordBullet", attack_data, mg_action.flip_h, bl)
 	Global.add_weapon_bullet(

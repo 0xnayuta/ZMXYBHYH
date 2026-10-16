@@ -116,7 +116,7 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 	return result
 
 
-func ToToP():
+func to_top():
 	if _movement_command_is_blocked():
 		return
 	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 350)
@@ -124,7 +124,7 @@ func ToToP():
 	tween.tween_property(self, "position", Po, 0.4)
 
 
-func ToDrop():
+func to_drop():
 	if _movement_command_is_blocked():
 		velocity.y = 0
 		IsDrop = false

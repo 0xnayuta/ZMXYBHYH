@@ -3013,10 +3013,10 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"Rush"
+"method": &"rush"
 }, {
 "args": [],
-"method": &"RemoveSpeed"
+"method": &"remove_speed"
 }]
 }
 tracks/10/type = "method"
@@ -3030,7 +3030,7 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [8],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/11/type = "value"
@@ -3182,7 +3182,7 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [9],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/8/type = "method"
@@ -3568,7 +3568,7 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [1],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/10/type = "value"
@@ -3706,7 +3706,7 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"AddArrowHitEffect1"
+"method": &"add_arrow_hit_effect_1"
 }]
 }
 tracks/6/type = "method"
@@ -3720,7 +3720,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [4],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/7/type = "value"
@@ -3863,7 +3863,7 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [2],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/10/type = "value"
@@ -4001,16 +4001,16 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [5],
-"method": &"ADDMusic"
+"method": &"add_music"
 }, {
 "args": [0],
-"method": &"AddArrowHitEffect2"
+"method": &"add_arrow_hit_effect_2"
 }, {
 "args": [1],
-"method": &"AddArrowHitEffect2"
+"method": &"add_arrow_hit_effect_2"
 }, {
 "args": [2],
-"method": &"AddArrowHitEffect2"
+"method": &"add_arrow_hit_effect_2"
 }]
 }
 
@@ -4142,7 +4142,7 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [3],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/10/type = "value"
@@ -4423,7 +4423,7 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [15],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/4/type = "method"
@@ -4437,7 +4437,7 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallJDZ"
+"method": &"call_jdz"
 }]
 }
 tracks/5/type = "value"
@@ -4842,7 +4842,7 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [16],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/6/type = "value"
@@ -5041,7 +5041,7 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [10],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/6/type = "method"
@@ -5055,7 +5055,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"AddShovelEffect1"
+"method": &"add_shovel_effect_1"
 }]
 }
 tracks/7/type = "value"
@@ -5212,7 +5212,7 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"AddArrowMMWSpecialEffect"
+"method": &"add_arrow_mmw_special_effect"
 }]
 }
 tracks/8/type = "method"
@@ -5226,7 +5226,7 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [11],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/9/type = "method"
@@ -5240,13 +5240,13 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
-"method": &"ToTop2"
+"method": &"to_top_2"
 }, {
 "args": [],
-"method": &"RemoveSpeed"
+"method": &"remove_speed"
 }, {
 "args": [],
-"method": &"Fall"
+"method": &"fall"
 }]
 }
 tracks/10/type = "value"
@@ -5389,7 +5389,7 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [6],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/10/type = "value"
@@ -5618,31 +5618,31 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
-"method": &"ToTop"
+"method": &"to_top"
 }, {
 "args": [],
-"method": &"RemoveSpeed"
+"method": &"remove_speed"
 }, {
 "args": [],
-"method": &"RemoveSpeed"
+"method": &"remove_speed"
 }, {
 "args": [],
-"method": &"RemoveSpeed"
+"method": &"remove_speed"
 }, {
 "args": [],
-"method": &"RemoveSpeed"
+"method": &"remove_speed"
 }, {
 "args": [],
-"method": &"RemoveSpeed"
+"method": &"remove_speed"
 }, {
 "args": [],
-"method": &"RemoveSpeed"
+"method": &"remove_speed"
 }, {
 "args": [],
-"method": &"RemoveSpeed"
+"method": &"remove_speed"
 }, {
 "args": [],
-"method": &"RemoveSpeed"
+"method": &"remove_speed"
 }]
 }
 tracks/10/type = "method"
@@ -5656,7 +5656,7 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [7],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/11/type = "value"
@@ -5926,7 +5926,7 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"FlyTop"
+"method": &"fly_top"
 }]
 }
 tracks/10/type = "value"
@@ -6041,7 +6041,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [14],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/7/type = "method"
@@ -6055,13 +6055,13 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
-"method": &"ToTop2"
+"method": &"to_top_2"
 }, {
 "args": [],
-"method": &"RemoveSpeed"
+"method": &"remove_speed"
 }, {
 "args": [],
-"method": &"Fall"
+"method": &"fall"
 }]
 }
 tracks/8/type = "method"
@@ -6075,7 +6075,7 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"ADDArrowTKJEffect"
+"method": &"add_arrow_tkj_effect"
 }]
 }
 tracks/9/type = "value"
@@ -6291,7 +6291,7 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [18],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/5/type = "value"
@@ -6331,7 +6331,7 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallWDWW"
+"method": &"call_wdww"
 }]
 }
 tracks/8/type = "value"
@@ -6518,7 +6518,7 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallWDWW"
+"method": &"call_wdww"
 }]
 }
 tracks/9/type = "method"
@@ -6532,7 +6532,7 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [18],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/10/type = "value"
@@ -6658,7 +6658,7 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [19],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/6/type = "method"
@@ -6672,7 +6672,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"AddWDZT"
+"method": &"add_wdzt"
 }]
 }
 tracks/7/type = "value"
@@ -6862,7 +6862,7 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [12],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 tracks/11/type = "value"
@@ -6987,7 +6987,7 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"AddArrowZQSpecialEffect"
+"method": &"add_arrow_zq_special_effect"
 }]
 }
 tracks/6/type = "method"
@@ -7001,7 +7001,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [13],
-"method": &"ADDMusic"
+"method": &"add_music"
 }]
 }
 

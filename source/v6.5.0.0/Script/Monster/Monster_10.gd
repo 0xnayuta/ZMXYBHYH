@@ -108,7 +108,7 @@ func do_hit_2():
 	is_attacking = false
 
 
-func call_Knife():
+func call_knife():
 	if self.MonsterDirection:
 		Global.add_bullet(
 			"Knife",

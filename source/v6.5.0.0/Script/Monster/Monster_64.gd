@@ -288,7 +288,7 @@ func do_hit_7():
 		stop_move()
 
 
-func MoveSelfToPlayer():
+func move_self_to_player():
 	self.position = RoleProp.get_nearest_monster_target_position(global_position)
 
 
@@ -382,7 +382,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		self.GetHurt = 0
 
 
-func ToToP():
+func to_top():
 	if _movement_command_is_blocked():
 		return
 	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, -30)
@@ -390,7 +390,7 @@ func ToToP():
 	tween.tween_property(self, "position", Po, 0.4)
 
 
-func ToDrop():
+func to_drop():
 	if _movement_command_is_blocked():
 		velocity.y = 0
 		IsDrop = false
@@ -425,10 +425,6 @@ func call_bullet():
 func _on_change_timer_timeout() -> void:
 	pass
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet():
-	return call_bullet()

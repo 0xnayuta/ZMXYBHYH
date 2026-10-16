@@ -406,7 +406,7 @@ func do_hit_1() -> void:
 	velocity.x = 0
 	hit_name = "hit1"
 	to_monster()
-	_play_attack_animation("hit1", Callable(self, "CallHit1Bullet"))
+	_play_attack_animation("hit1", Callable(self, "call_hit_1_bullet"))
 
 
 func do_hy() -> void:
@@ -417,7 +417,7 @@ func do_hy() -> void:
 	hit_name = SKILL_HY
 	Skill_1_CD = randf_range(5.0, 7.0) * pet_skill_cooldown_multiplier
 	to_monster()
-	_play_attack_animation("hit2", Callable(self, "CallHyBullet"))
+	_play_attack_animation("hit2", Callable(self, "call_hy_bullet"))
 
 
 func do_sxhz() -> void:
@@ -428,9 +428,9 @@ func do_sxhz() -> void:
 	hit_name = SKILL_SXHZ
 	Skill_2_CD = randf_range(8.0, 11.0) * pet_skill_cooldown_multiplier
 	to_monster()
-	await _play_attack_animation("hit3_1", Callable(self, "CallSxhzHit"))
+	await _play_attack_animation("hit3_1", Callable(self, "call_sxhz_hit"))
 	is_attacking = true
-	await _play_attack_animation("hit3_2", Callable(self, "CallSxhzHit"))
+	await _play_attack_animation("hit3_2", Callable(self, "call_sxhz_hit"))
 	if not is_queued_for_deletion() and Hp > 0:
 		cure_hp(max(1, int(SHp * 0.025)))
 	is_attacking = false
@@ -444,7 +444,7 @@ func do_hsqj() -> void:
 	hit_name = SKILL_HSQJ
 	Skill_3_CD = randf_range(10.0, 13.0) * pet_skill_cooldown_multiplier
 	to_monster()
-	_play_attack_animation("hit4", Callable(self, "CallHsqjBullet"))
+	_play_attack_animation("hit4", Callable(self, "call_hsqj_bullet"))
 
 
 func do_bhaoyi() -> void:
@@ -458,11 +458,11 @@ func do_bhaoyi() -> void:
 	velocity.x = 0
 	is_attacking = true
 	_to_target_side()
-	await _play_attack_animation("hit4", Callable(self, "CallHsqjBullet"))
+	await _play_attack_animation("hit4", Callable(self, "call_hsqj_bullet"))
 	await get_tree().create_timer(0.12, false).timeout
 	is_attacking = true
 	_to_target_side()
-	await _play_attack_animation("hit4", Callable(self, "CallHsqjBullet"))
+	await _play_attack_animation("hit4", Callable(self, "call_hsqj_bullet"))
 	Skill_1_CD = randf_range(5.0, 7.0) * pet_skill_cooldown_multiplier
 	Skill_2_CD = randf_range(8.0, 11.0) * pet_skill_cooldown_multiplier
 	Skill_3_CD = randf_range(10.0, 13.0) * pet_skill_cooldown_multiplier
@@ -505,7 +505,7 @@ func _play_attack_animation(animation_name: String, fallback_call: Callable) -> 
 		_play_tiger_model_animation("wait")
 
 
-func CallHit1Bullet() -> void:
+func call_hit_1_bullet() -> void:
 	_sync_attack_facing()
 	var bullet_name := "PetTiger1Bullet1" if tiger_stage == 1 else "PetTiger2Bullet1"
 	var offset := Vector2(60.0, -25.0)
@@ -516,7 +516,7 @@ func CallHit1Bullet() -> void:
 	_add_tiger_bullet(bullet_name, position + _front_offset(offset.x, offset.y), "hit1", objattackDic["hit1"])
 
 
-func CallHyBullet() -> void:
+func call_hy_bullet() -> void:
 	_sync_attack_facing()
 	var offset := Vector2(150.0, -75.0)
 	if tiger_stage >= 2:
@@ -526,7 +526,7 @@ func CallHyBullet() -> void:
 	)
 
 
-func CallSxhzHit() -> void:
+func call_sxhz_hit() -> void:
 	_sync_attack_facing()
 	var first_y := -45.0 if tiger_stage == 2 else -65.0
 	_add_tiger_bullet(
@@ -537,7 +537,7 @@ func CallSxhzHit() -> void:
 	)
 
 
-func CallHsqjBullet() -> void:
+func call_hsqj_bullet() -> void:
 	_sync_attack_facing()
 	var attack_key := SKILL_BHAOYI if bhaoyi_running else SKILL_HSQJ
 	var mark = _add_tiger_bullet(

@@ -215,7 +215,7 @@ func attack_target() -> void:
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
-	_play_attack_animation("hit1", Callable(self, "CallHit1Bullet"))
+	_play_attack_animation("hit1", Callable(self, "call_hit_1_bullet"))
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
@@ -227,7 +227,7 @@ func do_hy() -> void:
 	hit_name = SKILL_HY
 	velocity.x = 0
 	is_attacking = true
-	_play_attack_animation("hit2", Callable(self, "CallHyBullet"))
+	_play_attack_animation("hit2", Callable(self, "call_hy_bullet"))
 	await mr_player.animation_finished
 	is_attacking = false
 
@@ -238,9 +238,9 @@ func do_sxhz() -> void:
 	hit_name = SKILL_SXHZ
 	velocity.x = 0
 	is_attacking = true
-	_play_attack_animation("hit3_1", Callable(self, "CallSxhzHit"))
+	_play_attack_animation("hit3_1", Callable(self, "call_sxhz_hit"))
 	await mr_player.animation_finished
-	_play_attack_animation("hit3_2", Callable(self, "CallSxhzHit"))
+	_play_attack_animation("hit3_2", Callable(self, "call_sxhz_hit"))
 	await mr_player.animation_finished
 	cure_hp(max(1, int(SHp * 0.025)))
 	is_attacking = false
@@ -252,7 +252,7 @@ func do_hsqj() -> void:
 	hit_name = SKILL_HSQJ
 	velocity.x = 0
 	is_attacking = true
-	_play_attack_animation("hit4", Callable(self, "CallHsqjBullet"))
+	_play_attack_animation("hit4", Callable(self, "call_hsqj_bullet"))
 	await mr_player.animation_finished
 	is_attacking = false
 
@@ -266,11 +266,11 @@ func do_bhaoyi() -> void:
 	velocity.x = 0
 	is_attacking = true
 	_to_target_side()
-	_play_attack_animation("hit4", Callable(self, "CallHsqjBullet"))
+	_play_attack_animation("hit4", Callable(self, "call_hsqj_bullet"))
 	await mr_player.animation_finished
 	await get_tree().create_timer(0.12, false).timeout
 	_to_target_side()
-	_play_attack_animation("hit4", Callable(self, "CallHsqjBullet"))
+	_play_attack_animation("hit4", Callable(self, "call_hsqj_bullet"))
 	await mr_player.animation_finished
 	Skill_4_CD = randi_range(20, 26)
 	is_attacking = false
@@ -308,7 +308,7 @@ func _play_attack_animation(animation_name: String, fallback_call: Callable) -> 
 	await _wait_tiger_model_animation(animation_name)
 
 
-func CallHit1Bullet() -> void:
+func call_hit_1_bullet() -> void:
 	var offset: Vector2 = _front_offset(
 		_stage_value(60.0, 120.0, 130.0, 130.0), _stage_value(-25.0, -80.0, -70.0, -70.0)
 	)
@@ -316,14 +316,14 @@ func CallHit1Bullet() -> void:
 	Global.add_bullet(bullet_name, bullet, MonsterDirection, 1.0, position + offset, "hit1", objattackDic["hit1"])
 
 
-func CallHyBullet() -> void:
+func call_hy_bullet() -> void:
 	var offset: Vector2 = _front_offset(_stage_value(150.0, 190.0, 190.0, 190.0), -80.0)
 	Global.add_bullet(
 		"PetTiger1Bullet2", bullet, MonsterDirection, 1.0, position + offset, SKILL_HY, objattackDic[SKILL_HY]
 	)
 
 
-func CallSxhzHit() -> void:
+func call_sxhz_hit() -> void:
 	var main_offset: Vector2 = _front_offset(50.0, _stage_value(-45.0, -45.0, -45.0, -65.0))
 	var air_stun_offset: Vector2 = _front_offset(200.0, -200.0)
 	var air_stun_position := position + air_stun_offset
@@ -342,7 +342,7 @@ func CallSxhzHit() -> void:
 	_apply_sxhz_air_stun(air_stun_position)
 
 
-func CallHsqjBullet() -> void:
+func call_hsqj_bullet() -> void:
 	var disabled_offset: Vector2 = _front_offset(85.0, -130.0)
 	var hit_offset: Vector2 = _front_offset(105.0, -2.0)
 	var mark_position := position + disabled_offset
@@ -431,7 +431,7 @@ func _keep_sxhz_target_in_air(target: Node, air_stun_position: Vector2, stun_tim
 		target.remove_meta("pet_tiger_sxhz_air_stun_token")
 
 
-func CallBhaoyiHit() -> void:
+func call_bhaoyi_hit() -> void:
 	var dic: Dictionary = objattackDic[SKILL_BHAOYI].duplicate(true)
 	dic["power"] = int(dic["power"] * 1.3)
 	var offset: Vector2 = _front_offset(130.0, -70.0)

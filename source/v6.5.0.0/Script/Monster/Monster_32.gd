@@ -305,7 +305,7 @@ func add_eye_fix():
 	)
 
 
-func ISBounds():
+func mark_bounds():
 	is_bounds = true
 
 

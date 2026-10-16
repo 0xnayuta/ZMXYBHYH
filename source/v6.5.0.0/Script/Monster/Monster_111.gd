@@ -104,7 +104,7 @@ func ai_think():
 						attack_target()
 
 
-func MonsterCureHp():
+func monster_cure_hp():
 	var BaseLevel_ = get_parent().get_parent() as BaseLevel
 	for i in BaseLevel_.monster.get_children():
 		if i != null:
@@ -115,10 +115,6 @@ func MonsterCureHp():
 					i.hd += i.SHp * 0.35
 					i.max_hd = i.hd
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet1():
-	return call_bullet_1()

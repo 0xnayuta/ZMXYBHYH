@@ -2697,7 +2697,7 @@ func _on_remove_hurt_bl_timeout() -> void:
 	HurtBl = 1
 
 
-func ADDMonsterDeathEffect():
+func add_monster_death_effect():
 	Global.add_special_effect(self, Vector2(0, 0), "MonsterDeath", Vector2(1, 1), false, 1)
 
 

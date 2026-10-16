@@ -1861,19 +1861,19 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
 "args": [],
-"method": &"BloodFix_"
+"method": &"blood_fix"
 }, {
 "args": [],
-"method": &"BloodFix_"
+"method": &"blood_fix"
 }, {
 "args": [],
-"method": &"BloodFix_"
+"method": &"blood_fix"
 }, {
 "args": [],
-"method": &"BloodFix_"
+"method": &"blood_fix"
 }, {
 "args": [],
-"method": &"BloodFix_"
+"method": &"blood_fix"
 }]
 }
 
@@ -1962,7 +1962,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"ADDBullet"
+"method": &"add_bullet"
 }]
 }
 tracks/7/type = "method"

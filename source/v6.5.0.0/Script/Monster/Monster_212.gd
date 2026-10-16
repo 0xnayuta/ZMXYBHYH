@@ -117,16 +117,16 @@ func _build_body_animations() -> void:
 	_add_death_method(death_animation)
 	library.add_animation(&"death", death_animation)
 	var hit_animation := _make_action(&"hit1", false, 0.45)
-	_add_method_key(hit_animation, 0.16, &"CallBullet1")
+	_add_method_key(hit_animation, 0.16, &"call_bullet_1")
 	library.add_animation(&"hit1", hit_animation)
 	var hit2_animation := _make_action(&"hit2", false, 0.45)
-	_add_method_key(hit2_animation, 0.16, &"CallBullet2")
+	_add_method_key(hit2_animation, 0.16, &"call_bullet_2")
 	library.add_animation(&"hit2", hit2_animation)
 	var hit3_animation := _make_action(&"hit3", false, 0.45)
-	_add_method_key(hit3_animation, 0.16, &"CallBullet3")
+	_add_method_key(hit3_animation, 0.16, &"call_bullet_3")
 	library.add_animation(&"hit3", hit3_animation)
 	var hit4_animation := _make_action(&"hit4", false, 0.45)
-	_add_method_key(hit4_animation, 0.16, &"CallBullet4")
+	_add_method_key(hit4_animation, 0.16, &"call_bullet_4")
 	library.add_animation(&"hit4", hit4_animation)
 	mr_player.add_animation_library(&"", library)
 
@@ -336,25 +336,6 @@ func _move_little_blood_bar_to_head() -> void:
 	if monster_blood_bar != null:
 		monster_blood_bar.position = LITTLE_BLOOD_OFFSET
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet1() -> void:
-	call_bullet_1()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet2() -> void:
-	await call_bullet_2()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet3() -> void:
-	call_bullet_3()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet4() -> void:
-	await call_bullet_4()

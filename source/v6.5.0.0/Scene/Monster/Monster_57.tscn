@@ -855,7 +855,7 @@ tracks/3/keys = {
 "method": &"fall_stone_"
 }, {
 "args": [],
-"method": &"CallMonster"
+"method": &"call_monster"
 }, {
 "args": [],
 "method": &"queue_free"
@@ -971,7 +971,7 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallRound"
+"method": &"call_round"
 }]
 }
 tracks/4/type = "value"
@@ -1072,7 +1072,7 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"normalBullet"
+"method": &"normal_bullet"
 }]
 }
 tracks/4/type = "value"

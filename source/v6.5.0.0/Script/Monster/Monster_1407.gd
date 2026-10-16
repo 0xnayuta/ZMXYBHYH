@@ -336,7 +336,7 @@ func call_bullet_5():
 		Count = 0
 
 
-func MovePlayer2():
+func move_player_2():
 	if not get_Player:
 		return
 
@@ -355,25 +355,6 @@ func MovePlayer2():
 
 	alternate_side = not alternate_side
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet1():
-	return await call_bullet_1()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet3():
-	return call_bullet_3()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet4():
-	return await call_bullet_4()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet5():
-	return call_bullet_5()

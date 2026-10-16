@@ -2553,7 +2553,7 @@ func _prepare_bullet_animation_material(animation_name: String) -> void:
 		return
 
 
-func CallMonster56Bullet():
+func call_monster_56_bullet():
 	state = remove
 	bullet_player.speed_scale = 1.8
 	_prepare_bullet_animation_material("Monster56Bullet")
@@ -2566,7 +2566,7 @@ func shake(strength, times, interv):
 	baselevel.shake_(strength, times, interv)
 
 
-func Monster70Bullet2():
+func monster_70_bullet_2():
 	if get_parent().get_parent() is BaseMonster:
 		var po = Vector2()
 		if not dir:
@@ -2575,7 +2575,7 @@ func Monster70Bullet2():
 			po = Vector2(168, 140)
 		if ShowMonster71:
 			Global.add_bullet(
-				"Monster70Bullet2", get_parent().get_parent().bullet, dir, 1, po + position, hit_name, objattackDic
+				"monster_70_bullet_2", get_parent().get_parent().bullet, dir, 1, po + position, hit_name, objattackDic
 			)
 
 
@@ -2584,7 +2584,7 @@ func MovePlayerToself():
 	tween.tween_property(RoleProp.SourcePlayer, "position", position, 0.6)
 
 
-func TweenToPlayer():
+func tween_to_player():
 	await get_tree().create_timer(0.2, false).timeout
 	var desired_angle
 	desired_angle = position.angle_to_point(RoleProp.SourcePlayer.position)
@@ -2592,7 +2592,7 @@ func TweenToPlayer():
 	tween.tween_property(self, "rotation", desired_angle, 0.2)
 
 
-func CallMonster114Bullet():
+func call_monster_114_bullet():
 	var Bullet = Global.add_bullet(
 		"Monster114Bullet2",
 		get_parent().get_parent().bullet,
@@ -2624,7 +2624,7 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 					body.Skill_1_CD = 0
 
 
-func CallMonster137Bullet2():
+func call_monster_137_bullet_2():
 	var Bullet = Global.add_bullet(
 		"Monster137Bullet2",
 		get_parent().get_parent().bullet,
@@ -2636,7 +2636,7 @@ func CallMonster137Bullet2():
 	)
 
 
-func LookAtPlayer():
+func look_at_player():
 	if has_meta("is_summon_bullet") and get_meta("is_summon_bullet") == true:
 		var tree = get_tree()
 		if tree:
@@ -2673,11 +2673,11 @@ func LookAtPlayer():
 	self.look_at(RoleProp.SourcePlayer.position)
 
 
-func CanCuree():
+func can_curee():
 	CanCure = true
 
 
-func AddRoundShallow():
+func add_round_shallow():
 	if IsThrow:
 		var effect_scene := load("res://Scene/Hero/Role_1/WS_Effect.tscn") as PackedScene
 		if effect_scene == null:

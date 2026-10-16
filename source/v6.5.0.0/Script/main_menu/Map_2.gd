@@ -180,7 +180,7 @@ func _ready():
 	RoleProp.ws_value = 0
 	MemoryClass.main_dq()
 	if MainMusic.MyMainMusic == null:
-		MainMusic.ADDMusic()
+		MainMusic.add_music()
 	check_pass_level()
 
 

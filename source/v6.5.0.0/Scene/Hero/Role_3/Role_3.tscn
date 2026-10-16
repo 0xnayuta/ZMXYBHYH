@@ -2906,7 +2906,7 @@ tracks/11/keys = {
 "method": &"add_music"
 }, {
 "args": [],
-"method": &"Rush"
+"method": &"rush"
 }]
 }
 tracks/12/type = "value"
@@ -4934,7 +4934,7 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"AddSD"
+"method": &"add_sd"
 }]
 }
 tracks/10/type = "method"
@@ -5110,7 +5110,7 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"AddSSP"
+"method": &"add_ssp"
 }]
 }
 tracks/11/type = "method"
@@ -5277,7 +5277,7 @@ tracks/9/keys = {
 "method": &"add_music"
 }, {
 "args": [],
-"method": &"CallSYZQ"
+"method": &"call_syzq"
 }]
 }
 tracks/10/type = "value"
@@ -5692,7 +5692,7 @@ tracks/12/keys = {
 "method": &"add_music"
 }, {
 "args": [],
-"method": &"AddTMC"
+"method": &"add_tmc"
 }, {
 "args": [],
 "method": &"removetmc"
@@ -6122,7 +6122,7 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"AddZZNH"
+"method": &"add_zznh"
 }]
 }
 tracks/6/type = "method"

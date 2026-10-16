@@ -172,7 +172,7 @@ func do_hit_2():
 	is_attacking = false
 
 
-func call_Bullet_1():
+func call_bullet_1():
 	if self.MonsterDirection:
 		var po = Vector2(self.position.x + 40, self.position.y + 20)
 		Global.add_bullet(
@@ -204,7 +204,7 @@ func call_Bullet_1():
 		)
 
 
-func call_Bullet_2():
+func call_bullet_2():
 	if self.MonsterDirection:
 		Global.call_fly_bullet(
 			self.bullet,

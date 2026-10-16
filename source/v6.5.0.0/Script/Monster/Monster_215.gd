@@ -112,10 +112,10 @@ func _build_animations() -> void:
 	_add_method_key(death_animation, death_animation.length - 0.001, &"settle_death_drops_and_free")
 	library.add_animation(&"death", death_animation)
 	var hit1_animation := _make_action(&"hit1", false)
-	_add_method_key(hit1_animation, 0.2, &"CallBullet1")
+	_add_method_key(hit1_animation, 0.2, &"call_bullet_1")
 	library.add_animation(&"hit1", hit1_animation)
 	var hit2_animation := _make_action(&"hit2", false)
-	_add_method_key(hit2_animation, 0.2, &"CallBullet2")
+	_add_method_key(hit2_animation, 0.2, &"call_bullet_2")
 	library.add_animation(&"hit2", hit2_animation)
 	mr_player.add_animation_library(&"", library)
 
@@ -248,15 +248,6 @@ func _move_little_blood_bar_to_head() -> void:
 	if monster_blood_bar != null:
 		monster_blood_bar.position = LITTLE_BLOOD_OFFSET
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet1() -> void:
-	call_bullet_1()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet2() -> void:
-	call_bullet_2()

@@ -191,7 +191,7 @@ func do_hit_4():
 	stop_move()
 
 
-func ADDBullet():
+func add_bullet():
 	var bullet_spawn_positions = [Vector2()]
 	var Position2: Vector2
 	var Tween_ = create_tween().set_parallel(true)
@@ -215,7 +215,7 @@ func ADDBullet():
 	Line2.scale.y = 2.2
 
 
-func BloodFix_():
+func blood_fix():
 	if self.position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
 		if Global.get_player.PlayerDir:
 			if not MonsterDirection:

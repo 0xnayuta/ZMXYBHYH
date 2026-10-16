@@ -266,7 +266,7 @@ func call_ltwj():
 		)
 
 
-func ADDBullet():
+func add_bullet():
 	var TargetPosition: Vector2
 	if MonsterDirection:
 		TargetPosition = Vector2(55, 5)
@@ -283,7 +283,7 @@ func ADDBullet():
 	)
 
 
-func ADDsd():
+func add_sd():
 	var bullet_spawn_positions = [
 		Vector2(-380, -45), Vector2(-190, -45), Vector2(0, -45), Vector2(190, -45), Vector2(380, -45)
 	]
@@ -305,10 +305,6 @@ func _on_change_h_dto_self_timeout() -> void:
 	if hd > 0:
 		ChangeHdCureHp(1.2)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func TweenToTop():
-	return tween_to_top()

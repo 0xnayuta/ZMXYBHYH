@@ -182,7 +182,7 @@ func ai_think():
 					stop_move()
 
 
-func ADDBullet():
+func add_bullet():
 	Global.add_bullet(
 		"Monster88Bullet2",
 		self.bullet,
@@ -233,10 +233,6 @@ func _on_remove_hd_and_cure_timeout() -> void:
 		ChangeHdCureHp(1)
 	gethd.start(8)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet3():
-	return call_bullet_3()

@@ -767,7 +767,7 @@ tracks/4/keys = {
 "method": &"fall_stone_"
 }, {
 "args": [],
-"method": &"CallBullet1"
+"method": &"call_bullet_1"
 }, {
 "args": [],
 "method": &"queue_free"

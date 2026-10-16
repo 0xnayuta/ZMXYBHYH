@@ -132,7 +132,7 @@ func strength():
 				MyBrother.objattackDic[i]["power"] *= 1.05
 
 
-func AddChild2():
+func add_child_2():
 	var po: Vector2
 	if MonsterDirection:
 		po = Vector2(60, 5)

@@ -36,12 +36,12 @@ func use_over():
 	skill_cd.start(15)
 
 
-func Cure():
+func cure():
 	if Player != null:
 		Player.cure_hp(objattackDic["hit1"]["power"])
 
 
-func ADDSuperArmor():
+func add_super_armor():
 	IsCure = true
 	(
 		Global

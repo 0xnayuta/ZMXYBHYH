@@ -2715,7 +2715,7 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"AddRole3CureEffect"
+"method": &"add_role_3_cure_effect"
 }, {
 "args": [],
 "method": &"free"
@@ -2810,7 +2810,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"Role3RemoveBuff"
+"method": &"role_3_remove_buff"
 }, {
 "args": [],
 "method": &"free"
@@ -2983,7 +2983,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"TJGLCure"
+"method": &"tjgl_cure"
 }, {
 "args": [],
 "method": &"free"
@@ -3554,7 +3554,7 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"MoveMonsterToPlayer"
+"method": &"move_monster_to_player"
 }, {
 "args": [],
 "method": &"free"

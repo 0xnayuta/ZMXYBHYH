@@ -105,7 +105,7 @@ func do_hit_2():
 	is_attacking = false
 
 
-func CallRound():
+func call_round():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
 	Round = Global.add_bullet("Monster76Bullet2", bullet, false, 1, pp, "hit2", self.objattackDic["hit2"])
@@ -130,7 +130,7 @@ func setposition():
 	)
 
 
-func CallKnife():
+func call_knife():
 	var po: Vector2
 	if MonsterDirection:
 		po = Vector2(70, -20)

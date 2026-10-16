@@ -232,7 +232,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"Role3RemoveBuff"
+"method": &"role_3_remove_buff"
 }, {
 "args": [],
 "method": &"free"

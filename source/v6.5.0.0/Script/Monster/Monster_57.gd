@@ -270,7 +270,7 @@ func ChangeProperies():
 		RoundThrowCOUNT = 5
 
 
-func CallRound():
+func call_round():
 	var RoundPositionList = []
 	var tween = get_tree().create_tween().set_parallel(true)
 	for i in range(RoundThrowCOUNT):
@@ -287,7 +287,7 @@ func CallRound():
 	RoundList.clear()
 
 
-func normalBullet():
+func normal_bullet():
 	var Bullet
 	var BulletName: String
 	var Hit_name: String
@@ -330,7 +330,7 @@ func normalBullet():
 	Bullet.scale = Vector2(0.5, 0.5)
 
 
-func CallMonster():
+func call_monster():
 	if get_parent().get_parent() is Level21:
 		if Boss_2 == null:
 			Boss_2 = Global.create_monster(55, get_parent(), Vector2(1450, 320)) as Monster55

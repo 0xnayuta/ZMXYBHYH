@@ -18,14 +18,14 @@ func _ready() -> void:
 		await get_tree().create_timer(3, false).timeout
 		Over_Player.play("XY_1OVER")
 		await Over_Player.animation_finished
-		ChangeTomap()
+		change_tomap()
 	elif Global.GameOver == 2:
 		Global.add_bgm(self, "res://Music/level/2_bg4.mp3")
 		Over_Player.play("Over_1")
 
 
 func _on_tiaoguo_pressed() -> void:
-	ChangeTomap()
+	change_tomap()
 
 
 func _on_beisu_pressed() -> void:
@@ -39,5 +39,5 @@ func _on_bg_1_pressed() -> void:
 	Over_Player.play("Over_2")
 
 
-func ChangeTomap():
+func change_tomap():
 	Global.change_scene("res://Scene/Level/victory.tscn")

@@ -740,7 +740,7 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallBullet_2"
+"method": &"call_bullet_2"
 }]
 }
 
@@ -805,7 +805,7 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallBullet_3"
+"method": &"call_bullet_3"
 }]
 }
 
@@ -910,7 +910,7 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallBullet_4"
+"method": &"call_bullet_4"
 }]
 }
 
@@ -1000,7 +1000,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallBullet_1"
+"method": &"call_bullet_1"
 }]
 }
 

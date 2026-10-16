@@ -134,10 +134,10 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _on_animation_player_animation_finished(anim_name: String):
 	if anim_name == "tjgl":
-		TJGLCure()
+		tjgl_cure()
 
 
-func TJGLCure():
+func tjgl_cure():
 	var player = get_parent().get_parent() as BaseHero
 
 	var real_player = player
@@ -239,7 +239,7 @@ func _is_inside_jgz_rect(monster: BaseMonster, center: Vector2) -> bool:
 	return absf(delta.x) <= JGZ_HALF_SIZE.x and absf(delta.y) <= JGZ_HALF_SIZE.y
 
 
-func AddRole3CureEffect():
+func add_role_3_cure_effect():
 	var Player = get_parent()
 	Player.My_SD.push_back(Global.add_role_special_effect(Player, Vector2(0, -20), false, "sd2"))
 
@@ -249,7 +249,7 @@ func AddRole2CureEffect():
 	Player.My_SD.push_back(Global.add_role_special_effect(Player, Vector2(0, -20), false, "tjgl"))
 
 
-func MoveMonsterToPlayer():
+func move_monster_to_player():
 	var Player = get_parent()
 	var MList = Player.get_parent().get_parent().monster.get_children()
 	var valid_monsters = []
@@ -290,7 +290,7 @@ func Role3SdCure():
 		Player.cure_hp(CureValue)
 
 
-func Role3RemoveBuff():
+func role_3_remove_buff():
 	if bool(get_meta("persistent_sd", false)):
 		wiilQueue = false
 		return

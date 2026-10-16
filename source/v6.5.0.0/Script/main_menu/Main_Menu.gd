@@ -74,7 +74,7 @@ func _ready() -> void:
 	RoleProp.ws_value = 0
 	MemoryClass.main_dq()
 	if MainMusic.MyMainMusic == null:
-		MainMusic.ADDMusic()
+		MainMusic.add_music()
 	if MainSet.set_data["FristGame"]:
 		Global.add_game_need_know(_menu_content_parent(), Vector2(0, 0))
 		pass
@@ -123,11 +123,11 @@ func _physics_process(_delta: float) -> void:
 	if music_menu_open:
 		if music_jm != null:
 			if music_jm.is_change:
-				MainMusic.ADDMusic()
+				MainMusic.add_music()
 				music_jm.is_change = false
 	if GameSet_ != null:
 		if GameSet_.MusicIsChange:
-			MainMusic.ADDMusic()
+			MainMusic.add_music()
 			GameSet_.MusicIsChange = false
 
 

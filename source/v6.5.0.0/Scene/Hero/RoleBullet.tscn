@@ -7812,7 +7812,7 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [6],
-"method": &"ADDMusic"
+"method": &"add_music"
 }, {
 "args": [],
 "method": &"free"
@@ -7919,7 +7919,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [7],
-"method": &"ADDMusic"
+"method": &"add_music"
 }, {
 "args": [],
 "method": &"free"
@@ -9285,7 +9285,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"FaceToBoss"
+"method": &"face_to_boss"
 }, {
 "args": [],
 "method": &"free"
@@ -10860,16 +10860,16 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
 "args": [8],
-"method": &"ADDMusic"
+"method": &"add_music"
 }, {
 "args": [8],
-"method": &"ADDMusic"
+"method": &"add_music"
 }, {
 "args": [8],
-"method": &"ADDMusic"
+"method": &"add_music"
 }, {
 "args": [8],
-"method": &"ADDMusic"
+"method": &"add_music"
 }, {
 "args": [],
 "method": &"queue_free"
@@ -10886,7 +10886,7 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"TLLZQueue"
+"method": &"tllz_queue"
 }]
 }
 tracks/12/type = "value"
@@ -11379,7 +11379,7 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"AddslzBuff"
+"method": &"add_slz_buff"
 }]
 }
 tracks/13/type = "method"
@@ -11737,37 +11737,37 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
-"method": &"ADDTQZBuff"
+"method": &"add_tqz_buff"
 }, {
 "args": [],
-"method": &"ADDTQZBuff"
+"method": &"add_tqz_buff"
 }, {
 "args": [],
-"method": &"ADDTQZBuff"
+"method": &"add_tqz_buff"
 }, {
 "args": [],
-"method": &"ADDTQZBuff"
+"method": &"add_tqz_buff"
 }, {
 "args": [],
-"method": &"ADDTQZBuff"
+"method": &"add_tqz_buff"
 }, {
 "args": [],
-"method": &"ADDTQZBuff"
+"method": &"add_tqz_buff"
 }, {
 "args": [],
-"method": &"ADDTQZBuff"
+"method": &"add_tqz_buff"
 }, {
 "args": [],
-"method": &"ADDTQZBuff"
+"method": &"add_tqz_buff"
 }, {
 "args": [],
-"method": &"ADDTQZBuff"
+"method": &"add_tqz_buff"
 }, {
 "args": [],
-"method": &"ADDTQZBuff"
+"method": &"add_tqz_buff"
 }, {
 "args": [],
-"method": &"ADDTQZBuff"
+"method": &"add_tqz_buff"
 }]
 }
 tracks/13/type = "value"
@@ -11944,7 +11944,7 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"AddtszBuff"
+"method": &"add_tsz_buff"
 }, {
 "args": [],
 "method": &"queue_free"

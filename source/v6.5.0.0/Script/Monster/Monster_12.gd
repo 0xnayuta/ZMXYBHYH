@@ -219,7 +219,7 @@ func do_hit_4():
 	is_attacking = false
 
 
-func call_Fire():
+func call_fire():
 	if self.MonsterDirection == false:
 		var posi = Vector2(self.position.x - 180, self.position.y)
 		var aa = Global.add_bullet(
@@ -250,7 +250,7 @@ func call_Fire():
 		cc.set_rotation_degrees(-30)
 
 
-func call_Fire_fly():
+func call_fire_fly():
 	if self.MonsterDirection == false:
 		var posi = Vector2(self.position.x - 210, self.position.y + 150)
 		var aa = Global.add_bullet(

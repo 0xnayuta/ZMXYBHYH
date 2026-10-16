@@ -446,15 +446,15 @@ func _prepare_ygth_awaken_action() -> bool:
 		[0.286045, 0.286045, 0.286045, -0.542254],
 		Animation.UPDATE_CONTINUOUS
 	)
-	_add_ygth_method_key(action, 0.0, &"Role5SkillBt")
-	_add_ygth_method_key(action, 0.0, &"RemoveYspeed")
-	_add_ygth_method_key(action, 0.0, &"InTheSky")
+	_add_ygth_method_key(action, 0.0, &"role_5_skill_bt")
+	_add_ygth_method_key(action, 0.0, &"remove_yspeed")
+	_add_ygth_method_key(action, 0.0, &"in_the_sky")
 	_add_ygth_method_key(action, 0.0, &"add_music", [16])
 	_add_ygth_method_key(action, 0.05, &"CallYGTHAwakenBullet")
 	_add_ygth_method_key(action, 0.2, &"CallYGTHAwakenBullet")
 	_add_ygth_method_key(action, 0.35, &"CallYGTHAwakenBullet")
-	_add_ygth_method_key(action, 0.59, &"Role5SkillBtOver")
-	_add_ygth_method_key(action, 0.59, &"NoInTheSky")
+	_add_ygth_method_key(action, 0.59, &"role_5_skill_bt_over")
+	_add_ygth_method_key(action, 0.59, &"no_in_the_sky")
 	library.add_animation(YGTH_AWAKEN_ACTION, action)
 	return true
 
@@ -611,7 +611,7 @@ func _prepare_ltjz_action() -> bool:
 	return true
 
 
-func SlqFly():
+func slq_fly():
 	velocity.x = 0
 	velocity.y = 0
 	var bullet_pos = Vector2()
@@ -624,66 +624,66 @@ func SlqFly():
 	velocity.y = -600
 
 
-func RemoveXspeed():
+func remove_xspeed():
 	velocity.x = 0
 
 
-func RoleRush():
+func role_rush():
 	if PlayerDir:
 		velocity.x = 800
 	else:
 		velocity.x = -800
 
 
-func RoleRush2():
+func role_rush_2():
 	if PlayerDir:
 		velocity.x = 90
 	else:
 		velocity.x = -90
 
 
-func RoleRush4():
+func role_rush_4():
 	if PlayerDir:
 		velocity.x = 600
 	else:
 		velocity.x = -600
 
 
-func RoleRush3():
+func role_rush_3():
 	if PlayerDir:
 		velocity.x = 1500
 	else:
 		velocity.x = -1500
 
 
-func RoleRush5():
+func role_rush_5():
 	if PlayerDir:
 		velocity.x = 2000
 	else:
 		velocity.x = -2000
 
 
-func UpDownSpeed():
+func up_down_speed():
 	velocity.y = 2000
 
 
-func RemoveYspeed():
+func remove_yspeed():
 	velocity.y = 0
 
 
-func SkillMove():
+func skill_move():
 	self.CanMoveWhenUseSkill = true
 
 
-func SkillMoveOver():
+func skill_move_over():
 	self.CanMoveWhenUseSkill = false
 
 
-func Role5SkillBt():
+func role_5_skill_bt():
 	self.Role5Bt = true
 
 
-func Role5SkillBtOver():
+func role_5_skill_bt_over():
 	self.Role5Bt = false
 
 
@@ -692,19 +692,19 @@ func tween_to_top():
 	tween.tween_property(self, "position", Vector2(self.position.x, self.position.y - 200), 0.1)
 
 
-func InTheSky():
+func in_the_sky():
 	InSky = true
 
 
-func NoInTheSky():
+func no_in_the_sky():
 	InSky = false
 
 
-func ChangecxqHit():
+func changecxq_hit():
 	super.get_hit_data("cxq_2")
 
 
-func ChangexyqHit():
+func changexyq_hit():
 	super.get_hit_data("xyq_1")
 
 
@@ -805,30 +805,6 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				if Monster is BaseMonster and not _is_summon_or_pet_target(Monster):
 					Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func TweenToTop():
-	return tween_to_top()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet2():
-	return call_bullet_2()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet3():
-	return call_bullet_3()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet4():
-	return call_bullet_4()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet5():
-	return call_bullet_5()

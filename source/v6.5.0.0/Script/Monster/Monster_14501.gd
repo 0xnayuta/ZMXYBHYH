@@ -308,7 +308,7 @@ func call_attack3_bullet():
 			sprite.flip_h = not dir
 
 
-func CallWDWW():
+func call_wdww():
 	var bullet_pos: Vector2
 	if direction >= 0:
 		bullet_pos = Vector2(30, -30)

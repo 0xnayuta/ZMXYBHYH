@@ -1206,7 +1206,7 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"CallFL"
+"method": &"call_fl"
 }, {
 "args": [],
 "method": &"movetoplayer"
@@ -1286,7 +1286,7 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"TweenToTop"
+"method": &"tween_to_top"
 }]
 }
 tracks/6/type = "method"
@@ -1300,10 +1300,10 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"ADDFire"
+"method": &"add_fire"
 }, {
 "args": [],
-"method": &"call_sfjmFire"
+"method": &"call_sfjm_fire"
 }]
 }
 
@@ -1445,7 +1445,7 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallHL"
+"method": &"call_hl"
 }]
 }
 

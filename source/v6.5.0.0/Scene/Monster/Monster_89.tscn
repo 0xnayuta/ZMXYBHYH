@@ -1269,7 +1269,7 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"ADDBullet"
+"method": &"add_bullet"
 }]
 }
 
@@ -1434,7 +1434,7 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"CallBullet3"
+"method": &"call_bullet_3"
 }]
 }
 

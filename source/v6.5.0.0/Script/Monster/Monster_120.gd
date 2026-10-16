@@ -78,7 +78,7 @@ func ai_think():
 				if count % 90 == 0:
 					if randi_range(0, 100) < attackDesire:
 						attack_target()
-						CallBullet1()
+						call_bullet_1()
 			else:
 				if Skill_1_CD <= 0:
 					do_hit_2()
@@ -86,7 +86,7 @@ func ai_think():
 					var rad = randi_range(0, 100)
 					if rad <= attackDesire:
 						attack_target()
-						CallBullet1()
+						call_bullet_1()
 				else:
 					stop_move()
 
@@ -97,7 +97,7 @@ func do_hit_2():
 	velocity.x = 0
 	is_attacking = true
 	mr_player.play("hit2")
-	CallBullet2()
+	call_bullet_2()
 	await mr_player.animation_finished
 	is_attacking = false
 
@@ -126,15 +126,6 @@ func call_bullet_2():
 		self.objattackDic["hit2"]
 	)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet1():
-	return call_bullet_1()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet2():
-	return call_bullet_2()

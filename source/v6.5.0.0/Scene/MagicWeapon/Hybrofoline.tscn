@@ -1684,34 +1684,34 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
-"method": &"Cure"
+"method": &"cure"
 }, {
 "args": [],
-"method": &"Cure"
+"method": &"cure"
 }, {
 "args": [],
-"method": &"Cure"
+"method": &"cure"
 }, {
 "args": [],
-"method": &"Cure"
+"method": &"cure"
 }, {
 "args": [],
-"method": &"Cure"
+"method": &"cure"
 }, {
 "args": [],
-"method": &"Cure"
+"method": &"cure"
 }, {
 "args": [],
-"method": &"Cure"
+"method": &"cure"
 }, {
 "args": [],
-"method": &"Cure"
+"method": &"cure"
 }, {
 "args": [],
-"method": &"Cure"
+"method": &"cure"
 }, {
 "args": [],
-"method": &"Cure"
+"method": &"cure"
 }]
 }
 tracks/9/type = "method"
@@ -1725,7 +1725,7 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"ADDSuperArmor"
+"method": &"add_super_armor"
 }]
 }
 tracks/10/type = "value"

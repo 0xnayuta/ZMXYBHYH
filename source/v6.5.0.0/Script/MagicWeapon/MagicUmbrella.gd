@@ -51,7 +51,7 @@ func use_over():
 	skill_cd.start(3)
 
 
-func addBullet():
+func add_bullet():
 	var attack_data := get_attack_snapshot()
 	for i in range(21):
 		var stab = Global.add_weapon_bullet(
@@ -84,8 +84,3 @@ func ShowSkill():
 ## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
 func Useover():
 	return use_over()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func TweenToTop():
-	return tween_to_top()

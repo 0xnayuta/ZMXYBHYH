@@ -213,7 +213,7 @@ func call_m6_bullet():
 			sprite.flip_v = dir
 
 
-func CallBFX():
+func call_bfx():
 	var bullet_spawn_positions = [
 		Vector2(-182, 65), Vector2(-91, 65), Vector2(0, 65), Vector2(91, 65), Vector2(182, 65)
 	]

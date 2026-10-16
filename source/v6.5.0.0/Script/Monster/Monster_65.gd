@@ -173,21 +173,21 @@ func ReturnBody():
 	mr_ani.position = Vector2(0, 0)
 
 
-func AwaitTOtop():
+func await_t_otop():
 	Is_Top = true
 	Is_Drop = false
 	self.position = Vector2(self.position.x, 0)
 	ReturnBody()
 
 
-func Fall():
+func fall():
 	velocity.y += 800
 	Is_Top = true
 	Is_Drop = true
 	self.position = Vector2(self.position.x, self.position.y)
 
 
-func ReturnNormal():
+func return_normal():
 	ReturnBody()
 	Is_Top = false
 	Is_Drop = false
@@ -267,13 +267,13 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		)
 
 
-func CallWang():
+func call_wang():
 	if MonsterDirection:
 		Global.add_monster65_bullet(self.bullet, position + Vector2(240, -55))
 	else:
 		Global.add_monster65_bullet(self.bullet, position + Vector2(-240, -55))
 
 
-func CallZZ():
+func call_zz():
 	for i in range(randi_range(2, 4)):
 		Global.create_monster(66, get_parent(), position + Vector2(randi_range(-200, 200), 0))

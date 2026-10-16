@@ -1899,13 +1899,13 @@ tracks/8/keys = {
 "method": &"to_hero"
 }, {
 "args": [],
-"method": &"ToToP"
+"method": &"to_top"
 }, {
 "args": [],
-"method": &"ToDrop"
+"method": &"to_drop"
 }, {
 "args": [],
-"method": &"CallBullet"
+"method": &"call_bullet"
 }]
 }
 tracks/9/type = "method"
@@ -2198,7 +2198,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"MoveSelfToPlayer"
+"method": &"move_self_to_player"
 }]
 }
 tracks/7/type = "method"

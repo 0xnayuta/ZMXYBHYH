@@ -378,7 +378,7 @@ tracks/16/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"ChangeTomap"
+"method": &"change_tomap"
 }]
 }
 

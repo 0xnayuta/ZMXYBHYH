@@ -280,7 +280,7 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"CallMonster137Bullet2"
+"method": &"call_monster_137_bullet_2"
 }, {
 "args": [],
 "method": &"queue_free"

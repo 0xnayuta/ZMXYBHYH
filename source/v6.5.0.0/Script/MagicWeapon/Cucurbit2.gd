@@ -30,7 +30,7 @@ func use_over():
 	skill_cd.start(5)
 
 
-func MoveMonsterAndAddBuff():
+func move_monster_and_add_buff():
 	var LevelFather = Player.get_parent().get_parent()
 	if not LevelFather is BaseLevel:
 		return

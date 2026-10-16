@@ -217,7 +217,7 @@ func ai_think():
 					stop_move()
 
 
-func ToToP():
+func to_top():
 	if _movement_command_is_blocked():
 		return
 	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 100)
@@ -229,7 +229,7 @@ func ToToP():
 	tween.tween_property(self, "position", Po, 0.5)
 
 
-func ToDrop():
+func to_drop():
 	if _movement_command_is_blocked():
 		velocity = Vector2.ZERO
 		return
@@ -244,7 +244,7 @@ func removeve():
 	velocity.x = 0
 
 
-func ADDBullet2():
+func add_bullet_2():
 	var bullet_spawn_positions
 	if MonsterDirection:
 		bullet_spawn_positions = Vector2(25, -30)
@@ -263,7 +263,7 @@ func ADDBullet2():
 		await get_tree().create_timer(0.1, false).timeout
 
 
-func AddBullet():
+func add_bullet():
 	var bullet_spawn_positions = []
 	if MonsterDirection:
 		bullet_spawn_positions = [Vector2(100, 75), Vector2(180, 75), Vector2(260, 75), Vector2(340, 75)]
@@ -278,7 +278,7 @@ func AddBullet():
 	pass
 
 
-func CallSelf():
+func call_self():
 	if Fs == null:
 		Fs = Global.create_monster(91, get_parent(), position)
 		Fs.IsFs = true

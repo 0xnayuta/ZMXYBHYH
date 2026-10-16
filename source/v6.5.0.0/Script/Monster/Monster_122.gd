@@ -95,7 +95,7 @@ func do_hit_2():
 	velocity.x = 0
 	is_attacking = true
 	mr_player.play("hit2")
-	CallBullet2()
+	call_bullet_2()
 	await mr_player.animation_finished
 	is_attacking = false
 
@@ -111,10 +111,6 @@ func call_bullet_2():
 		self.objattackDic["hit2"]
 	)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet2():
-	return call_bullet_2()

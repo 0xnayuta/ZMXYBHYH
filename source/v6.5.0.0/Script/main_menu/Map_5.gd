@@ -167,7 +167,7 @@ func _ready() -> void:
 		MemoryClass.main_bc()
 
 	if MainMusic.MyMainMusic == null:
-		MainMusic.ADDMusic()
+		MainMusic.add_music()
 	Global.CurrentLevel = ""
 
 	if not Global.IsFrist:

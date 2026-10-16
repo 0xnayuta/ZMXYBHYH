@@ -32,7 +32,7 @@ func use_over():
 	skill_cd.start(30)
 
 
-func ADDSuperArmor():
+func add_super_armor():
 	(
 		Global
 		. add_buff(

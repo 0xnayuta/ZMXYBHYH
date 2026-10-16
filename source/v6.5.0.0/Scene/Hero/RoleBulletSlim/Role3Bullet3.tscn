@@ -256,7 +256,7 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"FaceToBoss"
+"method": &"face_to_boss"
 }, {
 "args": [],
 "method": &"free"

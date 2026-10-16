@@ -95,7 +95,7 @@ func do_hit_2():
 	is_attacking = false
 
 
-func CallRound():
+func call_round():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
 	Round = Global.add_bullet("Monster58Bullet", bullet, false, 1, pp, "dmghr", self.objattackDic["dmghr"])

@@ -105,7 +105,7 @@ func ai_think():
 					stop_move()
 
 
-func ADDMonsterBullet():
+func add_monster_bullet():
 	Global.add_bullet(
 		"Monster88Bullet",
 		self.bullet,

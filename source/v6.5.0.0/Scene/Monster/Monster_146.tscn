@@ -854,22 +854,22 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
-"method": &"CallBullet_2"
+"method": &"call_bullet_2"
 }, {
 "args": [],
-"method": &"CallBullet_2"
+"method": &"call_bullet_2"
 }, {
 "args": [],
-"method": &"CallBullet_2"
+"method": &"call_bullet_2"
 }, {
 "args": [],
-"method": &"CallBullet_2"
+"method": &"call_bullet_2"
 }, {
 "args": [],
-"method": &"CallBullet_2"
+"method": &"call_bullet_2"
 }, {
 "args": [],
-"method": &"CallBullet_2"
+"method": &"call_bullet_2"
 }]
 }
 

@@ -152,7 +152,7 @@ func call_wling():
 		Global.create_monster(list[randi_range(0, 4)], get_parent(), Vector2(self.position.x, self.position.y + 100))
 
 
-func CallFL():
+func call_fl():
 	return
 	var NewList = [
 		{"Ratation": 30, "Position": Vector2(0, 0)},

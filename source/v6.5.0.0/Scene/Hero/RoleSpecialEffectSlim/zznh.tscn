@@ -216,7 +216,7 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"MoveMonsterToPlayer"
+"method": &"move_monster_to_player"
 }, {
 "args": [],
 "method": &"free"

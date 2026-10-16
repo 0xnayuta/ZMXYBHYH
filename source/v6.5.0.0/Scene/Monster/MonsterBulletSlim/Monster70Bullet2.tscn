@@ -96,7 +96,7 @@ animations = [{
 "texture": SubResource("2585")
 }],
 "loop": 0,
-"name": &"Monster70Bullet2",
+"name": &"monster_70_bullet_2",
 "speed": 10.0
 }]
 
@@ -256,7 +256,7 @@ tracks/11/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kq0q5"]
 _data = {
-&"Monster70Bullet2": SubResource("Animation_0pg4t")
+&"monster_70_bullet_2": SubResource("Animation_0pg4t")
 }
 
 [resource]

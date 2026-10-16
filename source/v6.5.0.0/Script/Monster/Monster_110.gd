@@ -148,7 +148,7 @@ func do_hit_2():
 	stop_move()
 
 
-func CallAex():
+func call_aex():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
 	Aex = Global.add_bullet("Monster110Bullet", bullet, false, 1, pp, "hit2", self.objattackDic["hit2"])
@@ -184,9 +184,9 @@ func call_gc():
 		await get_tree().create_timer(0.2, false).timeout
 
 
-func Begin():
+func begin():
 	IsRush = true
 
 
-func End():
+func end():
 	IsRush = false

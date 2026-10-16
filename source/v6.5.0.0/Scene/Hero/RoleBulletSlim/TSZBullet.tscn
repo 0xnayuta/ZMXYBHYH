@@ -310,7 +310,7 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"AddtszBuff"
+"method": &"add_tsz_buff"
 }, {
 "args": [],
 "method": &"queue_free"

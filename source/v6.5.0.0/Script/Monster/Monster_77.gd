@@ -130,7 +130,7 @@ func do_hit_2():
 	is_attacking = false
 
 
-func AddChild1():
+func add_child_1():
 	var Rotation
 	var Rotation2
 	var po: Vector2
@@ -165,7 +165,7 @@ func AddChild1():
 		await get_tree().create_timer(0.5, false).timeout
 
 
-func AddChild2():
+func add_child_2():
 	var po: Vector2
 	if MonsterDirection:
 		po = Vector2(50, 0)

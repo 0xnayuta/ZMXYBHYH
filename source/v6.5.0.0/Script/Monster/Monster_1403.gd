@@ -267,7 +267,7 @@ func apply_real_stun(stun_time: float):
 	Global.add_buff(player.buff, stun_effect)
 
 
-func MovePlayer1():
+func move_player_1():
 	if not get_Player:
 		return
 	var offset = 330
@@ -283,7 +283,7 @@ func MovePlayer1():
 		)
 
 
-func MovePlayer2():
+func move_player_2():
 	if not get_Player:
 		return
 

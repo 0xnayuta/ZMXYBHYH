@@ -314,7 +314,7 @@ func _handle_death_events():
 	settle_death_drops()
 	set_gxp()
 	set_exp()
-	ADDMonsterDeathEffect()
+	add_monster_death_effect()
 
 
 # ==============================================================================
@@ -326,5 +326,5 @@ func HurtReduceHp(value, target):
 
 
 ## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func CallBullet_2():
+func call_bullet_2():
 	return call_bullet_alt2()

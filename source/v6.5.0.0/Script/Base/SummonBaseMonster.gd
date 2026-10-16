@@ -1287,7 +1287,7 @@ func tween_to_top() -> void:
 	tween.tween_property(self, "position", Vector2(0, -250) + position, 0.2)
 
 
-func TweenToTop2() -> void:
+func tween_to_top_2() -> void:
 	ShouldInSky = true
 	var tween = create_tween()
 	tween.tween_property(self, "position", Vector2(position.x, 100), 1)
@@ -1332,10 +1332,6 @@ func _on_calm_hit_timeout() -> void:
 func _on_remove_hurt_bl_timeout() -> void:
 	HurtBl = 1.0
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func TweenToTop() -> void:
-	tween_to_top()

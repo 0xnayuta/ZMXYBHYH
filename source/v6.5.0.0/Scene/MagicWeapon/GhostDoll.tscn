@@ -450,16 +450,16 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [],
-"method": &"GhostBullet_1"
+"method": &"ghost_bullet_1"
 }, {
 "args": [],
-"method": &"GhostBullet_2"
+"method": &"ghost_bullet_2"
 }, {
 "args": [],
-"method": &"GhostBullet_3"
+"method": &"ghost_bullet_3"
 }, {
 "args": [],
-"method": &"reduceTimes"
+"method": &"reduce_times"
 }]
 }
 
