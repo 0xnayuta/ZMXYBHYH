@@ -1,6 +1,7 @@
 extends Node
 
 const MOUNT_CATALOG := preload("res://Script/Mount/MountCatalog.gd")
+const DataKeys := preload("res://Script/Base/DataKeys.gd")
 const SOUL_MIN: int = 0
 const SOUL_MAX: int = 99999999999
 
@@ -4710,3 +4711,34 @@ func CheckSameIniBuff(Need):
 ## [兼容代理] 保持旧接口兼容
 func CheckPass(Local):
 	return check_pass(Local)
+
+
+# ==============================================================================
+# Phase 6-4: DataKeys 强类型契约安全访问器
+# ==============================================================================
+
+
+## 获取玩家当前等级 (强类型契约)
+func get_player_level() -> int:
+	return int(player_data.get(DataKeys.PLAYER_LEVEL, 1))
+
+
+## 获取玩家金币数 (强类型契约)
+func get_coin_num() -> int:
+	return int(player_data.get("coin_num", 0))
+
+
+## 获取玩家当前生命值上限 (契约)
+func get_player_max_hp() -> int:
+	return int(player_data.get(DataKeys.Attr.MAX_HP, 0))
+
+
+## 获取玩家当前魔法值上限 (契约)
+func get_player_max_mp() -> int:
+	return int(player_data.get(DataKeys.Attr.MAX_MP, 0))
+
+
+## 获取指定装备容器列表 (强类型契约)
+func get_container_list(container_name: String) -> Array:
+	var list_val: Variant = player_data.get(container_name, [])
+	return list_val as Array if list_val is Array else []

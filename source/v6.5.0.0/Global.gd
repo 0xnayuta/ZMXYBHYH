@@ -184,8 +184,8 @@ const MAGIC_WEAPON_SCENE_PATHS := {
 	"yyb": "res://Scene/MagicWeapon/EightImmortal_yyb.tscn",
 	"hehua": "res://Scene/MagicWeapon/EightImmortal_hehua.tscn",
 }
-const HIT_TEXT_PATH := "res://Scene/hittest/HitText.tscn"
-const DAMAGE_TEXT_PATH := "res://Scene/hittest/DamageText.tscn"
+const HIT_TEXT_PATH := "res://Scene/Hittext/HitText.tscn"
+const DAMAGE_TEXT_PATH := "res://Scene/Hittext/DamageText.tscn"
 const MONSTER_BLOOD_PATH := "res://Scene/MonsterBlood/monster_blood_bar.tscn"
 const BOSS_BLOOD_PATH := "res://Scene/MonsterBlood/BossBlood.tscn"
 const MONSTER_BE_HIT_PATH := "res://Scene/MonsterDamage/monster_be_hit.tscn"
@@ -193,8 +193,8 @@ const SPECIAL_AFFECT_SLIM_DIR := "res://Scene/Base/SpecialAffectSlim"
 const ROLE_BE_HIT_EFFECT_PATH := "res://Scene/Base/RoleBeHitEffect.tscn"
 const AURA_PATH := "res://Scene/other_scene/Auras.tscn"
 const BUFF_ICON_PATH := "res://Scene/other_scene/BuffIcon.tscn"
-const DAMAGE_NUMBER_PATH := "res://Scene/hittest/DamageNumber.tscn"
-const MISS_EFFECT_PATH := "res://Scene/hittest/miss_effect.tscn"
+const DAMAGE_NUMBER_PATH := "res://Scene/Hittext/DamageNumber.tscn"
+const MISS_EFFECT_PATH := "res://Scene/Hittext/miss_effect.tscn"
 const COMBO_PATH := "res://Scene/show_text/combo.tscn"
 const COMBO_NUM_PATH := "res://Scene/show_text/combo_num.tscn"
 const LIJI_PATH := "res://Scene/show_text/liji.tscn"
