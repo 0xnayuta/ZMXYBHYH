@@ -180,7 +180,7 @@ func _on_buttonlist_mouse_exited() -> void:
 	ShowBox = false
 
 
-func HurtReduceHp(value, target):
+func hurt_reduce_hp(value, target):
 	IsAttacking = true
 	var skip_mds_combo: bool = (
 		target is BaseBuff and str(target.BuffInfo.get("Name", "")) == "Voodoo" and _is_mds_awaken_active()
@@ -255,3 +255,11 @@ func _on_remove_all_hurt_timeout() -> void:
 
 func _on_every_second_timeout() -> void:
 	EveryHurt = 0
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func HurtReduceHp(value, target):
+	return hurt_reduce_hp(value, target)

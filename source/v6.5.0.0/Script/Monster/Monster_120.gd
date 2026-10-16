@@ -102,7 +102,7 @@ func do_hit_2():
 	is_attacking = false
 
 
-func CallBullet1():
+func call_bullet_1():
 	var Bullets
 	if self.MonsterDirection:
 		Bullets = Global.add_bullet(
@@ -115,7 +115,7 @@ func CallBullet1():
 	Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
-func CallBullet2():
+func call_bullet_2():
 	Global.add_bullet(
 		"Monster120Bullet2",
 		self.bullet,
@@ -125,3 +125,16 @@ func CallBullet2():
 		"hit2",
 		self.objattackDic["hit2"]
 	)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return call_bullet_1()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return call_bullet_2()

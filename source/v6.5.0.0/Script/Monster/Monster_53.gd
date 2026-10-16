@@ -65,7 +65,7 @@ func check_have_sh():
 	return false
 
 
-func CallBullet():
+func call_bullet():
 	for i in range(randi_range(3, 5)):
 		Bullet = Global.CallChaseBullet(
 			self.bullet,
@@ -78,3 +78,11 @@ func CallBullet():
 			self.objattackDic["hit1"]
 		)
 		await get_tree().create_timer(0.3).timeout
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet():
+	return await call_bullet()

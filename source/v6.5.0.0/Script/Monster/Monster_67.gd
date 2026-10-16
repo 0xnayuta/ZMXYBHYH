@@ -135,7 +135,7 @@ func _on_hit_box_area_exited(_area: Area2D) -> void:
 	super._on_hit_box_area_entered(_area)
 
 
-func CallBullet():
+func call_bullet():
 	var PositionList = []
 	if randi_range(0, 100) < 30:
 		if not MonsterDirection:
@@ -191,3 +191,11 @@ func CallBullet():
 func CallSZ():
 	var SZ = Global.create_monster(68, get_parent(), position) as Monster68
 	SZ.Myfather = self
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet():
+	return await call_bullet()

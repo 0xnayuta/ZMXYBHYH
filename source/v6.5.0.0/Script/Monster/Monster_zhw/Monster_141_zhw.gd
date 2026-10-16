@@ -350,7 +350,7 @@ func CallBullet_1() -> void:
 			await tree.create_timer(0.5, false).timeout
 
 
-func CallBullet_2() -> void:
+func call_bullet_alt2() -> void:
 	if not is_instance_valid(current_target):
 		return
 	if position.distance_to(current_target.position) < attackRange:
@@ -389,3 +389,11 @@ func CallBullet_4() -> void:
 		setup_bullet_collision(bullet1)
 	if bullet2:
 		setup_bullet_collision(bullet2)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet_2() -> void:
+	call_bullet_alt2()

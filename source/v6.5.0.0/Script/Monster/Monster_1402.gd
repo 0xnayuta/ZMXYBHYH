@@ -213,7 +213,7 @@ func do_hit_3():
 	stop_move()
 
 
-func CallBullet2():
+func call_bullet_2():
 	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 300)
 	await get_tree().create_timer(0.5, false).timeout
 
@@ -223,7 +223,7 @@ func CallBullet2():
 	ly.scale = Vector2(1.2, 1.2)
 
 
-func CallBullet3():
+func call_bullet_3():
 	var Po = Vector2(self.position.x, 300)
 	await get_tree().create_timer(2, false).timeout
 
@@ -251,3 +251,16 @@ func _exit_tree() -> void:
 			monster.Hp = 1
 			monster.queue_free()
 	summoned_monsters.clear()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return await call_bullet_2()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet3():
+	return await call_bullet_3()

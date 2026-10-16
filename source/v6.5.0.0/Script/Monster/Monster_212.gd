@@ -279,14 +279,14 @@ func _use_hit_4() -> void:
 	stop_move()
 
 
-func CallBullet1() -> void:
+func call_bullet_1() -> void:
 	var offset := Vector2(58, -72) if MonsterDirection else Vector2(-58, -72)
 	Global.add_bullet(
 		"Monster212Bullet1", bullet, MonsterDirection, 1.0, position + offset, "hit1", objattackDic["hit1"]
 	)
 
 
-func CallBullet2() -> void:
+func call_bullet_2() -> void:
 	_spawn_bullet2_at_role()
 	await get_tree().create_timer(0.32).timeout
 	if not is_instance_valid(self) or death():
@@ -302,14 +302,14 @@ func _spawn_bullet2_at_role() -> void:
 	Global.add_bullet("Monster212Bullet2", bullet, MonsterDirection, 1.0, target_pos, "hit2", objattackDic["hit2"])
 
 
-func CallBullet3() -> void:
+func call_bullet_3() -> void:
 	var offset := Vector2(650, -136) if MonsterDirection else Vector2(-650, -136)
 	Global.add_bullet(
 		"Monster212Bullet3", bullet, MonsterDirection, 1.0, position + offset, "hit3", objattackDic["hit3"]
 	)
 
 
-func CallBullet4() -> void:
+func call_bullet_4() -> void:
 	for index in range(3):
 		if index > 0:
 			await get_tree().create_timer(0.55, false).timeout
@@ -335,3 +335,26 @@ func _show_pet_hit_blood_bar() -> void:
 func _move_little_blood_bar_to_head() -> void:
 	if monster_blood_bar != null:
 		monster_blood_bar.position = LITTLE_BLOOD_OFFSET
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1() -> void:
+	call_bullet_1()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2() -> void:
+	await call_bullet_2()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet3() -> void:
+	call_bullet_3()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet4() -> void:
+	await call_bullet_4()

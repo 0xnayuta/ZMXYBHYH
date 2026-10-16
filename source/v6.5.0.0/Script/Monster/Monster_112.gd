@@ -142,7 +142,7 @@ func do_hit_2():
 	stop_move()
 
 
-func CallBullet1():
+func call_bullet_1():
 	if self.MonsterDirection:
 		Global.add_bullet(
 			"Monster112Bullet1",
@@ -165,7 +165,7 @@ func CallBullet1():
 		)
 
 
-func CallBullet2():
+func call_bullet_2():
 	if self.MonsterDirection:
 		Global.add_bullet(
 			"Monster112Bullet2",
@@ -188,7 +188,7 @@ func CallBullet2():
 		)
 
 
-func CallBullet3():
+func call_bullet_3():
 	var PositionList1 = [Vector2(position.x + 150, 0), Vector2(position.x + 0, 100), Vector2(position.x - 150, 0)]
 	var PositionList2 = [Vector2(position.x + 300, 100), Vector2(position.x - 300, 100)]
 	var PositionList3 = [Vector2(position.x + 450, 200), Vector2(position.x - 450, 200)]
@@ -205,3 +205,21 @@ func CallBullet3():
 	for i in PositionList4:
 		Global.add_bullet("Monster112Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 	await get_tree().create_timer(0.2, false).timeout
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return call_bullet_1()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return call_bullet_2()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet3():
+	return await call_bullet_3()

@@ -233,7 +233,7 @@ func CallBullet_1():
 		await get_tree().create_timer(0.5, false).timeout
 
 
-func CallBullet_2():
+func call_bullet_alt2():
 	var Dis = int(Global.GetDisBetweem(self, RoleProp.SourcePlayer))
 	if Dis < attackRange:
 		return
@@ -270,3 +270,11 @@ func CallBullet_4():
 	Global.add_bullet(
 		"Monster141Bullet1", self.bullet, true, 1, Vector2(position.x + 1000, 450), "hit4", self.objattackDic["hit4"]
 	)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet_2():
+	return call_bullet_alt2()

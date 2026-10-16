@@ -253,7 +253,7 @@ func _call_fs_deferred() -> void:
 	Should_FS = false
 
 
-func CallBullet2():
+func call_bullet_2():
 	var bullet_pos
 	for i in range(randi_range(6, 10)):
 		if MonsterDirection:
@@ -280,3 +280,11 @@ func _on_death_timeout() -> void:
 func _on_hit_box_area_exited(_area: Area2D) -> void:
 	if not Is_Fs:
 		TotalHit += 1
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return await call_bullet_2()

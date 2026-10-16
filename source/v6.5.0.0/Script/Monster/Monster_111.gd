@@ -48,7 +48,7 @@ func _ready() -> void:
 	monster_109()
 
 
-func CallBullet1():
+func call_bullet_1():
 	var Bullets
 	if self.MonsterDirection:
 		Bullets = Global.add_bullet(
@@ -114,3 +114,11 @@ func MonsterCureHp():
 				if i.Hp >= i.SHp:
 					i.hd += i.SHp * 0.35
 					i.max_hd = i.hd
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return call_bullet_1()

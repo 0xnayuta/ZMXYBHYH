@@ -168,7 +168,7 @@ func AddLine():
 		Global.AddLine(self, self, "Blue")
 
 
-func CallBullet1():
+func call_bullet_1():
 	var PositionList = []
 	if self.MonsterDirection:
 		PositionList = [Vector2(55, 0), Vector2(25, -45), Vector2(25, 45)]
@@ -180,7 +180,7 @@ func CallBullet1():
 		)
 
 
-func CallBullet2():
+func call_bullet_2():
 	var PositionList = []
 	if self.MonsterDirection:
 		PositionList = [Vector2(0, 0), Vector2(-75, 45), Vector2(50, 45), Vector2(-75, -105), Vector2(75, 25)]
@@ -197,3 +197,16 @@ func CureHp():
 	for i in range(5, 8):
 		cure_hp(int(SHp * randf_range(0.02, 0.03)))
 		await get_tree().create_timer(0.1, false).timeout
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return call_bullet_1()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return await call_bullet_2()

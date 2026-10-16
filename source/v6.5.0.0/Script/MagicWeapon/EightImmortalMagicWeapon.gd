@@ -100,7 +100,7 @@ func _physics_process(delta: float) -> void:
 		mg_action.play("wait")
 
 
-func ShowSkill() -> void:
+func show_skill() -> void:
 	match weapon_id:
 		"yyzlj":
 			_use_dragon_sword()
@@ -520,7 +520,7 @@ func _on_effect_finished(token: int) -> void:
 		_effect = null
 
 
-func Useover() -> void:
+func use_over() -> void:
 	is_use = false
 	if weapon_id == "yyzlj":
 		Global.FB_CD = -10
@@ -552,3 +552,16 @@ func _exit_tree() -> void:
 		if is_instance_valid(fan_entity):
 			fan_entity.queue_free()
 	_fan_entities.clear()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func ShowSkill() -> void:
+	await show_skill()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func Useover() -> void:
+	use_over()

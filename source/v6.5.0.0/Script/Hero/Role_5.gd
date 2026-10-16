@@ -687,7 +687,7 @@ func Role5SkillBtOver():
 	self.Role5Bt = false
 
 
-func TweenToTop():
+func tween_to_top():
 	var tween = create_tween()
 	tween.tween_property(self, "position", Vector2(self.position.x, self.position.y - 200), 0.1)
 
@@ -708,7 +708,7 @@ func ChangexyqHit():
 	super.get_hit_data("xyq_1")
 
 
-func CallBullet2():
+func call_bullet_2():
 	var bullet_pos: Vector2
 	if PlayerDir:
 		bullet_pos = Vector2(260, 180)
@@ -718,18 +718,18 @@ func CallBullet2():
 	llrd.scale = Vector2(1.5, 1.5)
 
 
-func CallBullet3():
+func call_bullet_3():
 	var lljy = Global.addRoleBullet_(self.Bullet, position, PlayerDir, "Role5Bullet3", objattackDic["lljy"])
 
 
-func CallBullet4():
+func call_bullet_4():
 	if tllz != null:
 		tllz.queue_free()
 	tllz = Global.addRoleBullet_(self.Bullet, position - Vector2(0, 20), false, "Role5Bullet4", objattackDic["tllz"])
 	tllz.scale = Vector2(1.4, 1.4)
 
 
-func CallBullet5():
+func call_bullet_5():
 	Global.addRoleBullet_(self.Bullet, position, !PlayerDir, "Role5Bullet5", objattackDic["ygth"])
 
 
@@ -804,3 +804,31 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			if Monster != null:
 				if Monster is BaseMonster and not _is_summon_or_pet_target(Monster):
 					Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func TweenToTop():
+	return tween_to_top()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return call_bullet_2()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet3():
+	return call_bullet_3()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet4():
+	return call_bullet_4()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet5():
+	return call_bullet_5()

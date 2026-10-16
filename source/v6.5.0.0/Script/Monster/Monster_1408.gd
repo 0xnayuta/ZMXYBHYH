@@ -245,7 +245,7 @@ func CallParasiticLarva():
 		)
 
 
-func CallBullet2():
+func call_bullet_2():
 	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 380)
 	await get_tree().create_timer(0.3, false).timeout
 	var ly = Global.CallChaseBullet(
@@ -313,3 +313,11 @@ func state_death():
 			$DeathCount.start()
 	else:
 		super.state_death()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return await call_bullet_2()

@@ -342,7 +342,7 @@ func _can_cast_light_orb() -> bool:
 	return Skill_5_CD <= 0 and Time.get_ticks_msec() >= next_light_orb_cast_msec
 
 
-func CallBullet1():
+func call_bullet_1():
 	var bullet_count = randi_range(1, 3)
 	for i in range(bullet_count):
 		var Bullets
@@ -449,3 +449,11 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		print("本体无敌，免疫伤害")
 		return
 	super._on_hurt_box_area_entered(area)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return await call_bullet_1()

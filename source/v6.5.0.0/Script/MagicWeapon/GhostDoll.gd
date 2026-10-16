@@ -68,7 +68,7 @@ func change_dir():
 				scale.x = -1
 
 
-func ShowSkill():
+func show_skill():
 	var a_1
 	var Monster: BaseMonster = null
 	var a_2 = 0
@@ -150,7 +150,7 @@ func get_target():
 			FollowTarget = Monster
 
 
-func Useover():
+func use_over():
 	FollowTarget = null
 	HitTimes = 0
 	isBegin = false
@@ -204,3 +204,16 @@ func free() -> void:
 func _on_skill_cd_timeout() -> void:
 	super._on_skill_cd_timeout()
 	self.visible = true
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func ShowSkill():
+	return await show_skill()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func Useover():
+	return use_over()

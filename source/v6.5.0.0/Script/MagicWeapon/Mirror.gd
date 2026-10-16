@@ -257,7 +257,7 @@ func _physics_process(delta: float) -> void:
 	_update_stream_sprite(delta)
 
 
-func ShowSkill():
+func show_skill():
 	if _monster_snapshot_version < 0:
 		MonsterList = _get_active_monster_snapshot()
 	IsFollow = true
@@ -295,7 +295,7 @@ func ShowSkill():
 	IsShowSkill = false
 
 
-func Useover():
+func use_over():
 	IsFollow = false
 	IsShowSkill = false
 	isBegin = false
@@ -419,3 +419,16 @@ func _show_stream_frame(frame_index: int) -> void:
 	_stream_sprite.texture = texture
 	var frame_offset: Vector2 = STREAM_FRAME_OFFSETS[frame_index]
 	_stream_sprite.position = mg_action.position + frame_offset * mg_action.scale
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func ShowSkill():
+	return show_skill()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func Useover():
+	return use_over()

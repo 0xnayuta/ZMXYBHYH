@@ -475,7 +475,7 @@ func _resolve_lethal_head() -> void:
 		_sacrifice_head()
 
 
-func HurtReduceHp(value, target):
+func hurt_reduce_hp(value, target):
 	var result = super.HurtReduceHp(value, target)
 	_resolve_lethal_head()
 	return result
@@ -554,3 +554,11 @@ func _exit_tree() -> void:
 	for head in _heads:
 		if head != null and is_instance_valid(head):
 			head.clear_texture()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func HurtReduceHp(value, target):
+	return hurt_reduce_hp(value, target)

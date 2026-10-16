@@ -291,7 +291,7 @@ func CallBullet_1():
 	bb.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
-func CallBullet_2():
+func call_bullet_alt2():
 	var Bullet
 	var dir = self.MonsterDirection
 	if dir:
@@ -394,8 +394,21 @@ func reduce_hp(value: int):
 	super.reduce_hp(value)
 
 
-func HurtReduceHp(value, target):
+func hurt_reduce_hp(value, target):
 	if Sword_ != null or FireRound != null:
 		if value > 0:
 			value *= 0.5
 	return super.HurtReduceHp(value, target)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet_2():
+	return call_bullet_alt2()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func HurtReduceHp(value, target):
+	return hurt_reduce_hp(value, target)

@@ -196,7 +196,7 @@ func _use_attack(action: StringName) -> void:
 	stop_move()
 
 
-func CallBullet1() -> void:
+func call_bullet_1() -> void:
 	_sync_attack_power(&"hit1")
 	var offset := Vector2(65, -55) if MonsterDirection else Vector2(-65, -55)
 	Global.add_bullet(
@@ -204,7 +204,7 @@ func CallBullet1() -> void:
 	)
 
 
-func CallBullet2() -> void:
+func call_bullet_2() -> void:
 	_sync_attack_power(&"hit2")
 	var direction_sign := 1.0 if MonsterDirection else -1.0
 	for offset in [Vector2(150, 0), Vector2(170, -30), Vector2(150, -65)]:
@@ -247,3 +247,16 @@ func _show_pet_hit_blood_bar() -> void:
 func _move_little_blood_bar_to_head() -> void:
 	if monster_blood_bar != null:
 		monster_blood_bar.position = LITTLE_BLOOD_OFFSET
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1() -> void:
+	call_bullet_1()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2() -> void:
+	call_bullet_2()

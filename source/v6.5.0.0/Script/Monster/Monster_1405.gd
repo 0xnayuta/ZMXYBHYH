@@ -191,7 +191,7 @@ func do_hit_4():
 	stop_move()
 
 
-func CallBullet2():
+func call_bullet_2():
 	var PositionList1 = [Vector2(position.x, position.y - 200)]
 	var PositionList2 = [Vector2(position.x - 200, position.y - 200), Vector2(position.x + 200, position.y - 200)]
 
@@ -214,7 +214,7 @@ func CallBullet2():
 			bullet.look_at(player.position)
 
 
-func CallBullet3():
+func call_bullet_3():
 	var PositionList1 = [Vector2(position.x, position.y - 20), Vector2(position.x, position.y + 20)]
 	var PositionList2 = [Vector2(position.x, position.y - 40), Vector2(position.x, position.y + 40)]
 	var PositionList3 = [Vector2(position.x, position.y - 60), Vector2(position.x, position.y + 60)]
@@ -269,3 +269,16 @@ func ADDFire():
 	}
 
 	Global.add_buff(player.buff, stun_effect)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return await call_bullet_2()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet3():
+	return await call_bullet_3()

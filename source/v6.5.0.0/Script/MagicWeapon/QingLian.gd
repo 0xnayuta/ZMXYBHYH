@@ -264,7 +264,7 @@ func _get_alpha_threshold_rect(image: Image, alpha_threshold: int) -> Rect2i:
 	return Rect2i(min_x, min_y, max_x - min_x + 1, max_y - min_y + 1)
 
 
-func ShowSkill() -> void:
+func show_skill() -> void:
 	if Player == null or not is_instance_valid(Player):
 		Useover()
 		return
@@ -338,7 +338,7 @@ func _clear_skill_effect() -> void:
 	aura_effect.z_index = -2
 
 
-func Useover() -> void:
+func use_over() -> void:
 	mg_action.visible = false
 	is_use = false
 	Global.FB_CD = 1
@@ -346,3 +346,16 @@ func Useover() -> void:
 	if PlayerData.check_have_wx("dzyl", "木"):
 		usecd *= 0.8
 	skill_cd.start(usecd)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func ShowSkill() -> void:
+	await show_skill()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func Useover() -> void:
+	use_over()

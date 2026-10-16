@@ -2068,7 +2068,7 @@ func receive_reflected_damage(base_damage: int, attack_kind: String, penetration
 	return reduce_pet_hp(resolved_damage, damage_kind)
 
 
-func HurtReduceHp(value, target):
+func hurt_reduce_hp(value, target):
 	if death() or is_death or is_spawn_damage_protected():
 		return 0
 	var skip_mds_combo: bool = (
@@ -3479,3 +3479,11 @@ func _deferred_play_hurt_animation():
 # 向后兼容别名 (Flash AS2 历史接口)
 func Monster_Intelligence() -> void:
 	ai_think()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func HurtReduceHp(value, target):
+	return hurt_reduce_hp(value, target)

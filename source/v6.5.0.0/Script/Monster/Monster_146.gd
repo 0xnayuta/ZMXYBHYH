@@ -181,7 +181,7 @@ func _end_moonlight():
 		modulate.a = 1.0
 
 
-func HurtReduceHp(value, target):
+func hurt_reduce_hp(value, target):
 	if is_phantom:
 		return super.HurtReduceHp(value, target)
 
@@ -253,7 +253,7 @@ func _perform_hit3_damage():
 	pass
 
 
-func CallBullet_2():
+func call_bullet_alt2():
 	var attack_config = objattackDic.get("hit2", {})
 	if not attack_config or not self.bullet:
 		return
@@ -315,3 +315,16 @@ func _handle_death_events():
 	set_gxp()
 	set_exp()
 	ADDMonsterDeathEffect()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func HurtReduceHp(value, target):
+	return hurt_reduce_hp(value, target)
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet_2():
+	return call_bullet_alt2()

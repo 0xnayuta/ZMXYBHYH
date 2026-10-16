@@ -35,7 +35,7 @@ func UseSkill() -> void:
 	ShowSkill()
 
 
-func ShowSkill() -> void:
+func show_skill() -> void:
 	_summon_guanyin()
 	mg_action.play("hit")
 	usecd = SUMMON_COOLDOWN
@@ -107,3 +107,11 @@ func _on_guanyin_tree_exited(exited_summon: Node) -> void:
 
 func _exit_tree() -> void:
 	_clear_current_summon()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func ShowSkill() -> void:
+	show_skill()

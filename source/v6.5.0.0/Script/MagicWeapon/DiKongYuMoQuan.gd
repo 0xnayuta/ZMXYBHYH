@@ -80,7 +80,7 @@ func get_field_duration() -> float:
 	return BASE_FIELD_DURATION + LEVEL_DURATION_BONUS * float(_get_official_level())
 
 
-func ShowSkill() -> void:
+func show_skill() -> void:
 	if Player == null or not is_instance_valid(Player):
 		Useover()
 		return
@@ -216,7 +216,7 @@ func _clear_field_effects() -> void:
 	cast_flash.visible = false
 
 
-func Useover() -> void:
+func use_over() -> void:
 	_effect_token += 1
 	_clear_field_effects()
 	mg_action.visible = false
@@ -232,3 +232,16 @@ func _exit_tree() -> void:
 	_effect_token += 1
 	_field_active = false
 	_set_player_protected(false)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func ShowSkill() -> void:
+	await show_skill()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func Useover() -> void:
+	use_over()

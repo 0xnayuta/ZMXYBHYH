@@ -69,7 +69,7 @@ func EnoughMp():
 	return RoleProp.roleprop.Mp > needMp
 
 
-func ShowSkill():
+func show_skill():
 	pass
 
 
@@ -89,7 +89,7 @@ func FixHero():
 	tween.tween_property(self, "position", newposition, 0.5)
 
 
-func Useover():
+func use_over():
 	is_use = false
 
 
@@ -97,3 +97,16 @@ func _on_skill_cd_timeout() -> void:
 	Global.FB_CD = -10
 	is_canuse = true
 	skill_cd.stop()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func ShowSkill():
+	return show_skill()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func Useover():
+	return use_over()

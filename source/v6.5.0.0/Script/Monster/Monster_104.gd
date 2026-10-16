@@ -73,7 +73,7 @@ func _ready() -> void:
 	monster_104()
 
 
-func CallBullet1():
+func call_bullet_1():
 	var Bullets
 	if self.MonsterDirection:
 		Bullets = Global.add_bullet(
@@ -100,3 +100,11 @@ func CallBullet1():
 func state_death():
 	hit_name = "hit2"
 	super.state_death()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return call_bullet_1()

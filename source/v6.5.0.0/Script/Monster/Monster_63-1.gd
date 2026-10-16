@@ -250,7 +250,7 @@ func move_player_to_boss(movetime: float = 0.0):
 		elapsed_time += get_process_delta_time()
 
 
-func CallBullet2():
+func call_bullet_2():
 	var offset_values = [10, 20, 30, 40, 50, 60]
 	var bullet_spacing = 0.2
 	var wave_count = 6
@@ -310,3 +310,11 @@ func _run_combo_milestone_skill() -> void:
 	if instance_count >= MAX_SUMMON_COUNT or Skill_3_CD > 0 or is_attacking:
 		return
 	do_hit_3()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return await call_bullet_2()

@@ -237,7 +237,7 @@ func do_hit_3():
 	stop_move()
 
 
-func TweenToTop():
+func tween_to_top():
 	if _movement_command_is_blocked():
 		return
 	var tween = create_control_movement_tween()
@@ -302,3 +302,11 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 func _on_change_h_dto_self_timeout() -> void:
 	if hd > 0:
 		ChangeHdCureHp(1.2)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func TweenToTop():
+	return tween_to_top()

@@ -325,7 +325,7 @@ func CallDSWBullet():
 		bullet_instance.scale = Vector2(1.5, 1.5)
 
 
-func CallBullet4():
+func call_bullet_4():
 	var PoSITION
 	if MonsterDirection:
 		PoSITION = self.position + Vector2(300, 0)
@@ -387,3 +387,11 @@ func CallBJ():
 		Global.add_bullet(
 			"Monster_61Bullet", self.bullet, MonsterDirection, 1, final_pos, "skill_3", self.objattackDic["skill_3"]
 		)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet4():
+	return call_bullet_4()

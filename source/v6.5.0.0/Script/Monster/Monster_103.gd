@@ -159,7 +159,7 @@ func do_hit_3():
 	stop_move()
 
 
-func CallBullet1():
+func call_bullet_1():
 	if self.MonsterDirection:
 		Global.CallFlyBullet(
 			self.bullet,
@@ -185,7 +185,7 @@ func CallBullet1():
 		fz.get_node("AnimatedSprite2D").flip_h = true
 
 
-func CallBullet2():
+func call_bullet_2():
 	var BoolList = [true, false]
 	for i in BoolList:
 		Global.add_bullet(
@@ -204,7 +204,7 @@ func CallBullet2():
 	await get_tree().create_timer(0.4, false).timeout
 
 
-func CallBullet3():
+func call_bullet_3():
 	await get_tree().create_timer(4, false).timeout
 	var po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 70)
 	await get_tree().create_timer(0.2, false).timeout
@@ -227,3 +227,21 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 	var buff_target = super._on_hit_box_area_entered(area)
 
 	return buff_target
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return call_bullet_1()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return await call_bullet_2()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet3():
+	return await call_bullet_3()

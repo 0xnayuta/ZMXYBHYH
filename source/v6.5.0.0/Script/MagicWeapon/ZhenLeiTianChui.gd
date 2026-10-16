@@ -67,7 +67,7 @@ func _get_weapon_level() -> int:
 	return clampi(PlayerData.get_mostLevel(WEAPON_ID), 1, 10)
 
 
-func ShowSkill() -> void:
+func show_skill() -> void:
 	var casting_hero := _get_casting_hero()
 	if casting_hero == null:
 		Useover()
@@ -199,7 +199,7 @@ func _clear_effects() -> void:
 	cast_flash.visible = false
 
 
-func Useover() -> void:
+func use_over() -> void:
 	_cast_token += 1
 	_clear_effects()
 	mg_action.visible = false
@@ -213,3 +213,16 @@ func Useover() -> void:
 
 func _exit_tree() -> void:
 	_cast_token += 1
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func ShowSkill() -> void:
+	await show_skill()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func Useover() -> void:
+	use_over()

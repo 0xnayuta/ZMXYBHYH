@@ -201,7 +201,7 @@ func do_hit_5():
 	stop_move()
 
 
-func TweenToTop():
+func tween_to_top():
 	if _movement_command_is_blocked():
 		return
 	ShouldInSky = true
@@ -221,7 +221,7 @@ func drop():
 	ShouldInSky = false
 
 
-func CallBullet1():
+func call_bullet_1():
 	var Round = Global.add_bullet(
 		"Monster142Bullet1", self.bullet, false, 1, position, "hit1", self.objattackDic["hit1"]
 	)
@@ -229,7 +229,7 @@ func CallBullet1():
 	tween.tween_property(Round, "position", RoleProp.SourcePlayer.position, 0.5)
 
 
-func CallBullet3():
+func call_bullet_3():
 	var PositionList = [
 		Vector2(-400 + position.x, 470),
 		Vector2(-300 + position.x, 470),
@@ -245,7 +245,7 @@ func CallBullet3():
 		Global.add_bullet("Monster56Bullet", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 
 
-func CallBullet4():
+func call_bullet_4():
 	var MaxCount: int = 10
 	var Num: int = 0
 	var tween = create_tween().set_parallel(true)
@@ -266,7 +266,7 @@ func CallBullet4():
 		await get_tree().create_timer(0.2, false).timeout
 
 
-func CallBullet5():
+func call_bullet_5():
 	var PositionList = [
 		Vector2(-400 + position.x, 450),
 		Vector2(-300 + position.x, 450),
@@ -299,3 +299,31 @@ func CallBullet5():
 	for i in RoundList:
 		i.queue_free()
 	RoundList.clear()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func TweenToTop():
+	return tween_to_top()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return call_bullet_1()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet3():
+	return call_bullet_3()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet4():
+	return await call_bullet_4()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet5():
+	return await call_bullet_5()

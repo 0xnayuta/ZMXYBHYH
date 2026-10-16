@@ -47,7 +47,7 @@ func _ready() -> void:
 	monster_54()
 
 
-func CallBullet():
+func call_bullet():
 	if self.MonsterDirection:
 		Global.add_bullet(
 			"Monster54Bullet",
@@ -68,3 +68,11 @@ func CallBullet():
 			"hit1",
 			self.objattackDic["hit1"]
 		)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet():
+	return call_bullet()

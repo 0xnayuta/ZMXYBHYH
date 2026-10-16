@@ -37,13 +37,13 @@ func _physics_process(delta: float) -> void:
 		mg_player.play("wait")
 
 
-func ShowSkill():
+func show_skill():
 	mg_player.play("hit")
 	await mg_player.animation_finished
 	Useover()
 
 
-func Useover():
+func use_over():
 	Global.FB_CD = 1
 	is_use = false
 	skill_cd.start(3)
@@ -64,8 +64,26 @@ func addBullet():
 		stab.scale = Vector2(2, 2)
 
 
-func TweenToTop():
+func tween_to_top():
 	var Po = self.position
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", Player.position + Vector2(0, -400), 0.8)
 	pass
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func ShowSkill():
+	return await show_skill()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func Useover():
+	return use_over()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func TweenToTop():
+	return tween_to_top()

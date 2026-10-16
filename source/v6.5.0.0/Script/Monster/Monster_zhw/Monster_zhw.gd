@@ -301,7 +301,7 @@ func do_hit_5():
 	stop_move()
 
 
-func CallBullet1():
+func call_bullet_1():
 	if not current_target or not is_instance_valid(current_target):
 		return
 	var Round = Global.add_bullet(
@@ -312,7 +312,7 @@ func CallBullet1():
 	tween.tween_property(Round, "position", current_target.position, 0.5)
 
 
-func CallBullet3():
+func call_bullet_3():
 	var PositionList = [
 		Vector2(-400 + position.x, 490),
 		Vector2(-300 + position.x, 490),
@@ -329,7 +329,7 @@ func CallBullet3():
 		setup_bullet_collision(bullet)
 
 
-func CallBullet4():
+func call_bullet_4():
 	var MaxCount: int = 10
 	var Num: int = 0
 	var PositionList = []
@@ -350,7 +350,7 @@ func CallBullet4():
 		await get_tree().create_timer(0.2, false).timeout
 
 
-func CallBullet5():
+func call_bullet_5():
 	var PositionList = [
 		Vector2(-400 + position.x, 450),
 		Vector2(-300 + position.x, 450),
@@ -385,3 +385,26 @@ func CallBullet5():
 		if is_instance_valid(i):
 			i.queue_free()
 	RoundList.clear()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return call_bullet_1()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet3():
+	return call_bullet_3()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet4():
+	return await call_bullet_4()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet5():
+	return await call_bullet_5()

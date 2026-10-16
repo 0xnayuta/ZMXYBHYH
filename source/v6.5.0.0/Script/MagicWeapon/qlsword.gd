@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 		_update_floor_position(delta)
 
 
-func ShowSkill():
+func show_skill():
 	mg_player.play("hit")
 
 	await mg_player.animation_finished
@@ -259,7 +259,7 @@ func _remove_floor():
 	is_player_on_floor = false
 
 
-func Useover():
+func use_over():
 	var cd_time = _get_floor_duration()
 
 	self.usecd = cd_time
@@ -303,3 +303,16 @@ func _exit_tree():
 		floor_timer.timeout.disconnect(_on_floor_timeout)
 	if follow_timer.timeout.is_connected(_on_follow_timeout):
 		follow_timer.timeout.disconnect(_on_follow_timeout)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func ShowSkill():
+	return await show_skill()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func Useover():
+	return use_over()

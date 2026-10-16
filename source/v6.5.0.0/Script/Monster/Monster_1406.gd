@@ -252,7 +252,7 @@ func _start_silent_check_coroutine():
 	is_checking_silent = false
 
 
-func CallBullet1():
+func call_bullet_1():
 	for i in range(3):
 		if i > 0:
 			await get_tree().create_timer(0.3).timeout
@@ -264,7 +264,7 @@ func CallBullet1():
 		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
-func CallBullet2():
+func call_bullet_2():
 	for i in range(10):
 		var is_left = i % 2 == 0
 		var x_offset = randi_range(50, 400)
@@ -277,7 +277,7 @@ func CallBullet2():
 			await get_tree().create_timer(0.2, false).timeout
 
 
-func CallBullet3():
+func call_bullet_3():
 	var PositionList1 = [Vector2(position.x, position.y)]
 
 	for i in PositionList1:
@@ -357,3 +357,21 @@ func MovePlayer():
 		RoleProp.get_nearest_monster_target_position(global_position).x,
 		RoleProp.get_nearest_monster_target_position(global_position).y
 	)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return await call_bullet_1()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return await call_bullet_2()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet3():
+	return await call_bullet_3()

@@ -160,7 +160,7 @@ func TweenToPalyer():
 	tween.tween_property(self, "position", RoleProp.get_nearest_monster_target_position(global_position), 0.2)
 
 
-func TweenToTop():
+func tween_to_top():
 	if _movement_command_is_blocked():
 		return
 	var tween = create_control_movement_tween()
@@ -192,7 +192,7 @@ func movetoplayer():
 	self.position.x = RoleProp.get_nearest_monster_target_position(global_position).x
 
 
-func CallBullet1():
+func call_bullet_1():
 	var PositionList = [{}]
 	if self.MonsterDirection:
 		PositionList = [
@@ -214,7 +214,7 @@ func CallBullet1():
 		await get_tree().create_timer(0.1, false).timeout
 
 
-func CallBullet2():
+func call_bullet_2():
 	var Bullet
 	if self.MonsterDirection:
 		Bullet = Global.add_bullet(
@@ -245,3 +245,21 @@ func CheckPlayer():
 		if not Global.get_player.PlayerDir:
 			if MonsterDirection:
 				move_playerto_boss(buff_target, 0.5)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func TweenToTop():
+	return tween_to_top()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return await call_bullet_1()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return call_bullet_2()

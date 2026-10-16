@@ -35,13 +35,13 @@ func _physics_process(delta: float) -> void:
 		mg_player.play("wait")
 
 
-func ShowSkill():
+func show_skill():
 	mg_player.play("hit")
 	await mg_player.animation_finished
 	Useover()
 
 
-func Useover():
+func use_over():
 	Global.FB_CD = 1
 	self.usecd = 6
 	is_use = false
@@ -57,3 +57,16 @@ func addFire():
 	Global.addWeaponBullet_(
 		$Bullet, Vector2(self.position.x + 230, 250), "CucurFire_2", attack_data, mg_action.flip_h, 100
 	)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func ShowSkill():
+	return await show_skill()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func Useover():
+	return use_over()

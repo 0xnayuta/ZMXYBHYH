@@ -213,7 +213,7 @@ func do_hit_3():
 	stop_move()
 
 
-func CallBullet2():
+func call_bullet_2():
 	var wave_offsets = [
 		[Vector2(0, -20), Vector2(0, 20)],
 		[Vector2(0, -40), Vector2(0, 40)],
@@ -327,3 +327,11 @@ func state_death():
 		return
 
 	super.state_death()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return await call_bullet_2()

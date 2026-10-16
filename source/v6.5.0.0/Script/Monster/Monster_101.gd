@@ -183,7 +183,7 @@ func do_hit_3():
 	stop_move()
 
 
-func CallBullet1():
+func call_bullet_1():
 	var positionList = [
 		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x - 420, 500),
 		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x - 280, 500),
@@ -197,7 +197,7 @@ func CallBullet1():
 		Global.add_bullet("Monster101Bullet", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 
 
-func CallBullet2():
+func call_bullet_2():
 	var Bullets
 	if self.MonsterDirection:
 		Bullets = Global.add_bullet(
@@ -210,7 +210,7 @@ func CallBullet2():
 	Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
-func CallBullet3():
+func call_bullet_3():
 	if MyChild == null:
 		MyChild = Global.add_bullet(
 			"Monster101Bullet2", self.bullet, false, 1, position, "hit2", self.objattackDic["hit2"]
@@ -222,3 +222,21 @@ func MovePlayer():
 		RoleProp.get_nearest_monster_target_position(global_position).x,
 		RoleProp.get_nearest_monster_target_position(global_position).y
 	)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return call_bullet_1()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return call_bullet_2()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet3():
+	return call_bullet_3()

@@ -73,7 +73,7 @@ func do_hit_1():
 	stop_move()
 
 
-func CallBullet():
+func call_bullet():
 	var Bullet
 	Bullet = Global.add_bullet(
 		"Monster116Bullet", self.bullet, false, 2.5, Vector2(0, 0) + position, "hit1", self.objattackDic["hit1"]
@@ -90,3 +90,11 @@ func MonsterCureHp():
 				if i.Hp >= i.SHp:
 					i.hd += i.SHp * 0.05
 					i.max_hd = i.hd
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet():
+	return call_bullet()

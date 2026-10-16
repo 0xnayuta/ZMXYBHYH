@@ -292,7 +292,7 @@ func CallRound():
 		CurrentRound = MaxRound
 
 
-func CallBullet():
+func call_bullet():
 	var pp
 	var pp_1
 	var zz_1
@@ -338,3 +338,11 @@ func CallMonster():
 		if Boss_3 == null:
 			Boss_3 = Global.create_monster(56, get_parent(), Vector2(470, 320)) as Monster56
 			var BaseLevel_ = get_parent().get_parent() as BaseLevel
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet():
+	return call_bullet()

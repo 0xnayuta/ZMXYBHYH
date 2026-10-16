@@ -216,7 +216,7 @@ func add_nlls():
 	)
 
 
-func CallBullet():
+func call_bullet():
 	var Bullet_
 	var BulletName: String
 	var Hit_name: String
@@ -287,3 +287,11 @@ func call_fly_bullet():
 		Global.CallFlyBullet(
 			bullet, "Monster49Bulet", 1, Vector2(position.x, position.y + 30), 2500, 900, "hit1", objattackDic["hit1"]
 		)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet():
+	return call_bullet()

@@ -1277,7 +1277,7 @@ func set_summon_properties(summoner_node: Node, duration: float = 60.0) -> void:
 		level = int(PlayerData.player_data.get("玩家等级", level))
 
 
-func TweenToTop() -> void:
+func tween_to_top() -> void:
 	ShouldInSky = true
 	var tween = create_tween()
 	tween.tween_property(self, "position", Vector2(0, -250) + position, 0.2)
@@ -1332,3 +1332,11 @@ func _on_remove_hurt_bl_timeout() -> void:
 # 向后兼容别名 (Flash AS2 历史接口)
 func Monster_Intelligence() -> void:
 	ai_think()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func TweenToTop() -> void:
+	tween_to_top()

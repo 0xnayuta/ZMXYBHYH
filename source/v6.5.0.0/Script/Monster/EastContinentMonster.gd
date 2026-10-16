@@ -1447,7 +1447,7 @@ func reduce_hp(value: int):
 	return super.reduce_hp(value)
 
 
-func HurtReduceHp(value, target):
+func hurt_reduce_hp(value, target):
 	if (
 		monster_kind == 3179 and (_3179_fire_dash_invincible or _3179_fire_slash_invincible)
 		or monster_kind == 3323 and _3323_skill3_invincible
@@ -3682,3 +3682,11 @@ func settle_death_drops_and_free() -> void:
 		queue_free()
 		return
 	super.settle_death_drops_and_free()
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func HurtReduceHp(value, target):
+	return hurt_reduce_hp(value, target)

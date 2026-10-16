@@ -167,7 +167,7 @@ func add_nlls():
 	)
 
 
-func CallBullet():
+func call_bullet():
 	var Bullet_
 	if MonsterDirection:
 		Bullet_ = Global.CallChaseBullet(
@@ -236,3 +236,11 @@ func LocalLevel():
 		if pp.mm == null:
 			pp.can_notpass = true
 			pp.ck_hero.disabled = true
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet():
+	return call_bullet()

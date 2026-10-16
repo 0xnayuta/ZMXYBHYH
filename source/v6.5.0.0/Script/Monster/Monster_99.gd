@@ -50,7 +50,7 @@ func _ready() -> void:
 	monster_99()
 
 
-func CallBullet():
+func call_bullet():
 	var Bullets
 
 	if self.MonsterDirection:
@@ -62,3 +62,11 @@ func CallBullet():
 			"Monster99Bullet", self.bullet, false, 1, Vector2(-40, 20) + position, "hit1", self.objattackDic["hit1"]
 		)
 	Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet():
+	return call_bullet()

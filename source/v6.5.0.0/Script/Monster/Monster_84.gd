@@ -202,7 +202,7 @@ func do_hit_3():
 	stop_move()
 
 
-func TweenToTop():
+func tween_to_top():
 	if _movement_command_is_blocked():
 		return
 	var tween = create_control_movement_tween()
@@ -257,3 +257,11 @@ func CallFL():
 		"Monster84Bullet1", self.bullet, MonsterDirection, 1, bullet_pos + position, "hit5", self.objattackDic["hit5"]
 	)
 	fl.scale = Vector2(0.7, 0.7)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func TweenToTop():
+	return tween_to_top()

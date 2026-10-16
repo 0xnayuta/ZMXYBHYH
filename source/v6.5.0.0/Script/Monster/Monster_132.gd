@@ -377,7 +377,7 @@ func do_hit_2():
 	stop_move()
 
 
-func TweenToTop():
+func tween_to_top():
 	if is_resurrecting or resurrection_completed or _movement_command_is_blocked():
 		return
 
@@ -386,7 +386,7 @@ func TweenToTop():
 	velocity = Vector2(0, 0)
 
 
-func CallBullet():
+func call_bullet():
 	if is_resurrecting or resurrection_completed:
 		return
 
@@ -456,3 +456,16 @@ func _exit_tree():
 	super._exit_tree()
 	if death_timer and death_timer.timeout.is_connected(_on_resurrection_animation_complete):
 		death_timer.timeout.disconnect(_on_resurrection_animation_complete)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func TweenToTop():
+	return tween_to_top()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet():
+	return await call_bullet()

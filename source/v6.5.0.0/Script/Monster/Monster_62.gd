@@ -98,7 +98,7 @@ func do_hit_1():
 	stop_move()
 
 
-func CallBullet1():
+func call_bullet_1():
 	var po: Vector2
 	if MonsterDirection:
 		po = Vector2(50, -40)
@@ -114,3 +114,11 @@ func state_hurt():
 
 	velocity.x = 0
 	velocity.y = 0
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return call_bullet_1()

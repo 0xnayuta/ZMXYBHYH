@@ -209,7 +209,7 @@ func _summon_monster_62():
 		summoned.direction = self.direction
 
 
-func CallBullet1():
+func call_bullet_1():
 	var po: Vector2
 	if MonsterDirection:
 		po = Vector2(50, 50)
@@ -220,7 +220,7 @@ func CallBullet1():
 	)
 
 
-func CallBullet2():
+func call_bullet_2():
 	var base_dir = MonsterDirection
 	var forward_dist = 200
 	var base_offset = Vector2(forward_dist, 0) if base_dir else Vector2(-forward_dist, 0)
@@ -248,7 +248,7 @@ func CallBullet2():
 			bullet.rotation = rad
 
 
-func CallBullet3():
+func call_bullet_3():
 	var po: Vector2
 	if MonsterDirection:
 		po = Vector2(300, 0)
@@ -257,3 +257,21 @@ func CallBullet3():
 	var child = Global.add_bullet(
 		"Monster61Bullet3", bullet, MonsterDirection, 1, position + po, "hit4", self.objattackDic["hit4"]
 	)
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return call_bullet_1()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet2():
+	return call_bullet_2()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet3():
+	return call_bullet_3()

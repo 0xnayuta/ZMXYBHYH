@@ -1,6 +1,6 @@
 # ZMXYBHYH 全工程资产拓扑与死代码审计报告 (Phase 1)
 
-> 生成时间: 2026-10-16 19:21:44  
+> 生成时间: 2026-10-16 20:04:52  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
 > 引擎环境: `Godot 4.7.2 Headless`
 
@@ -65,7 +65,7 @@
 | 17 | `res://Script/Monster/Monster_3201.gd` | 3,007 | 历史遗留孤立脚本 |
 | 18 | `res://Script/Monster/Monster_61-1.gd` | 20 | 历史遗留孤立脚本 |
 | 19 | `res://Script/Monster/Monster_62-1.gd` | 20 | 历史遗留孤立脚本 |
-| 20 | `res://Script/Monster/Monster_63-1.gd` | 7,602 | 历史遗留孤立脚本 |
+| 20 | `res://Script/Monster/Monster_63-1.gd` | 7,954 | 历史遗留孤立脚本 |
 | 21 | `res://Script/Monster/Monster_70.gd` | 20 | 历史遗留孤立脚本 |
 | 22 | `res://Script/Monster/Monster_71.gd` | 20 | 历史遗留孤立脚本 |
 | 23 | `res://Script/Monster/SandKingSkills.gd` | 3,547 | 历史遗留孤立脚本 |

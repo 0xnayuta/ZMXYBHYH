@@ -290,7 +290,7 @@ func do_hit_5():
 	stop_move()
 
 
-func CallBullet1():
+func call_bullet_1():
 	for i in range(3):
 		if i > 0:
 			await get_tree().create_timer(0.3).timeout
@@ -300,7 +300,7 @@ func CallBullet1():
 		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
-func CallBullet3():
+func call_bullet_3():
 	for i in range(1):
 		var Bullets = Global.add_bullet(
 			"Monster1407Bullet3", self.bullet, false, 1.5, position, "hit3", self.objattackDic["hit3"]
@@ -308,7 +308,7 @@ func CallBullet3():
 		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
-func CallBullet4():
+func call_bullet_4():
 	for i in range(5):
 		var is_left = i % 2 == 0
 		var x_offset = randi_range(0, 200)
@@ -328,7 +328,7 @@ func CallBullet4():
 			await get_tree().create_timer(0.5, false).timeout
 
 
-func CallBullet5():
+func call_bullet_5():
 	if MyChild == null:
 		MyChild = Global.add_bullet(
 			"Monster1407Bullet5", self.bullet, false, 1, Vector2(500, -270), "hit5", self.objattackDic["hit5"]
@@ -354,3 +354,26 @@ func MovePlayer2():
 		)
 
 	alternate_side = not alternate_side
+
+
+# ==============================================================================
+# Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
+# ==============================================================================
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet1():
+	return await call_bullet_1()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet3():
+	return call_bullet_3()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet4():
+	return await call_bullet_4()
+
+
+## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
+func CallBullet5():
+	return call_bullet_5()
