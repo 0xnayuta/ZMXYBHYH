@@ -2681,34 +2681,40 @@ func add_fb(name_, qh_level, wx, Data_) -> bool:
 		data = (AE.AllEquipment_[equipment_id] as Dictionary).duplicate(true)
 	player_data["装备列表"]["页码" + str(page_number)].push_back({"名字": equipment_id, "强化等级": qh_level, "五行": wx, "Data": data})
 	return true
-func remove_zb(page, local):
+func remove_zb(page: int, local: int) -> Dictionary:
 	if page <= 0:
-		return
-
-
-	if local >= player_data["装备列表"]["页码" + str(page)].size():
-		return
-	var name_ = player_data["装备列表"]["页码" + str(page)][local]["名字"]
+		return {}
+	var page_key: String = "页码" + str(page)
+	var pages: Variant = player_data.get("装备列表", {})
+	if not pages is Dictionary or not pages.has(page_key):
+		return {}
+	var page_items: Variant = pages.get(page_key, [])
+	if not page_items is Array or local >= page_items.size():
+		return {}
+	var item: Dictionary = page_items[local]
+	var name_ = item.get("名字", "")
 	record_acquired_equipment(str(name_))
-	var qh_level = player_data["装备列表"]["页码" + str(page)][local]["强化等级"]
-	var Data = player_data["装备列表"]["页码" + str(page)][local]["Data"]
-	var wx = []
-	if player_data["装备列表"]["页码" + str(page)][local].has("五行"):
-		wx = player_data["装备列表"]["页码" + str(page)][local]["五行"]
-	var list = {"名字": name_, "强化等级": qh_level, "五行": wx, "Data": Data}
-	player_data["装备列表"]["页码" + str(page)].remove_at(local)
-	return list
-func GetzbData(page, local):
-	if local >= player_data["装备列表"]["页码" + str(page)].size():
-		return
-	var name_ = player_data["装备列表"]["页码" + str(page)][local]["名字"]
-	var qh_level = player_data["装备列表"]["页码" + str(page)][local]["强化等级"]
-	var Data = player_data["装备列表"]["页码" + str(page)][local]["Data"]
-	var wx = []
-	if player_data["装备列表"]["页码" + str(page)][local].has("五行"):
-		wx = player_data["装备列表"]["页码" + str(page)][local]["五行"]
-	var list = {"名字": name_, "强化等级": qh_level, "五行": wx, "Data": Data}
-	return list
+	var qh_level = item.get("强化等级", 0)
+	var Data = item.get("Data", {})
+	var wx = item.get("五行", [])
+	var result_item: Dictionary = {"名字": name_, "强化等级": qh_level, "五行": wx, "Data": Data}
+	page_items.remove_at(local)
+	return result_item
+
+func GetzbData(page: int, local: int) -> Dictionary:
+	var page_key: String = "页码" + str(page)
+	var pages: Variant = player_data.get("装备列表", {})
+	if not pages is Dictionary or not pages.has(page_key):
+		return {}
+	var page_items: Variant = pages.get(page_key, [])
+	if not page_items is Array or local >= page_items.size():
+		return {}
+	var item: Dictionary = page_items[local]
+	var name_ = item.get("名字", "")
+	var qh_level = item.get("强化等级", 0)
+	var Data = item.get("Data", {})
+	var wx = item.get("五行", [])
+	return {"名字": name_, "强化等级": qh_level, "五行": wx, "Data": Data}
 func organize_backpack() -> bool:
 	var organized: Dictionary = {}
 	for list_key in ["装备列表", "道具列表", "消耗品列表"]:
@@ -2826,64 +2832,31 @@ func ChekEqzb(Type, need_):
 		var name_ = list[0]["名字"]
 		return str(name_) == str(need_)
 	return false
-func check_zb(need_):
-	var list = []
-	var get_infor = []
-	for i in range(player_data["装备列表"].size()):
-		var u = i + 1
-		for z in player_data["装备列表"]["页码" + str(u)]:
-			list.push_back(z)
-	if player_data["武器"].size() != 0:
-		list.push_back(player_data["武器"][0])
-	if player_data["防具"].size() != 0:
-		list.push_back(player_data["防具"][0])
-	if player_data["饰品"].size() != 0:
-		list.push_back(player_data["饰品"][0])
-	if ensure_shengu_slot().size() != 0:
-		list.push_back(ensure_shengu_slot()[0])
-	if player_data["法宝"].size() != 0:
-		list.push_back(player_data["法宝"][0])
-	if player_data["时装"].size() != 0:
-		list.push_back(player_data["时装"][0])
-	if player_data["头衔"].size() != 0:
-		list.push_back(player_data["头衔"][0])
-	if player_data["翅膀"].size() != 0:
-		list.push_back(player_data["翅膀"][0])
-	for i in list:
-		var name_ = i["名字"]
-		if str(name_) == str(need_):
-			get_infor.push_back({"data": i})
+func check_zb(need_: String) -> Array:
+	var list: Array = []
+	var get_infor: Array = []
+	var zb_pages: Variant = player_data.get("装备列表", {})
+	if zb_pages is Dictionary:
+		for i in range(zb_pages.size()):
+			var page_items: Variant = zb_pages.get("页码" + str(i + 1), [])
+			if page_items is Array:
+				for z in page_items:
+					list.push_back(z)
+	for slot_name in ["武器", "防具", "饰品", "法宝", "时装", "头衔", "翅膀"]:
+		var slot_items: Variant = player_data.get(slot_name, [])
+		if slot_items is Array and slot_items.size() > 0:
+			list.push_back(slot_items[0])
+	var shengu: Array = ensure_shengu_slot()
+	if shengu.size() > 0:
+		list.push_back(shengu[0])
+	for item in list:
+		if item is Dictionary and str(item.get("名字", "")) == need_:
+			get_infor.push_back({"data": item})
 	return get_infor
-func checkHaveZB(need_):
-	var list = []
-	var get_infor = []
-	for i in range(player_data["装备列表"].size()):
-		var u = i + 1
-		for z in player_data["装备列表"]["页码" + str(u)]:
-			list.push_back(z)
-	if player_data["武器"].size() != 0:
-		list.push_back(player_data["武器"][0])
-	if player_data["防具"].size() != 0:
-		list.push_back(player_data["防具"][0])
-	if player_data["饰品"].size() != 0:
-		list.push_back(player_data["饰品"][0])
-	if ensure_shengu_slot().size() != 0:
-		list.push_back(ensure_shengu_slot()[0])
-	if player_data["法宝"].size() != 0:
-		list.push_back(player_data["法宝"][0])
-	if player_data["时装"].size() != 0:
-		list.push_back(player_data["时装"][0])
-	if player_data["头衔"].size() != 0:
-		list.push_back(player_data["头衔"][0])
-	if player_data["翅膀"].size() != 0:
-		list.push_back(player_data["翅膀"][0])
-	var num: int = 0
-	for i in list:
-		var name_ = i["名字"]
-		if str(name_) == str(need_):
-			num += 1
-	if num > 0:
-		return [true, num]
+func checkHaveZB(need_: String) -> Array:
+	var found: Array = check_zb(need_)
+	if found.size() > 0:
+		return [true, found.size()]
 	return [false, 0]
 func CheckHaveWX(need_, wx):
 	var list = check_zb(need_)

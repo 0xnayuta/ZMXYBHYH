@@ -724,7 +724,7 @@ func can_show_sword_hit_effect() -> bool:
 		return false
 	_sword_hit_effect_count += 1
 	return true
-func _load_scene(path: String):
+func _load_scene(path: String) -> PackedScene:
 	if _permanent_small_ui_scene_cache.has(path):
 		var permanent_scene: Variant = _permanent_small_ui_scene_cache[path]
 		if _is_valid_packed_scene(permanent_scene):
