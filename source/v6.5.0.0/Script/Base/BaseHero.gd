@@ -4136,3 +4136,436 @@ func SetWingsOffset():
 
 func ResetSanXianHuTi():
 	IsSanXianHuTiUsed = false
+
+
+# ==============================================================================
+# Phase 6-3: 现代 GDScript 规范 snake_case 双轨兼容函数入口
+# ==============================================================================
+## [现代规范接口 (Phase 6-3)]
+func fabao_jiasu() -> void:
+	fabaoJiasu()
+
+
+## [现代规范接口 (Phase 6-3)]
+func reset_fabao_jiasu() -> void:
+	resetFabaoJiasu()
+
+
+## [现代规范接口 (Phase 6-3)]
+func null_szfb_case():
+	return NullSZFBCase()
+
+
+## [现代规范接口 (Phase 6-3)]
+func on_szfb_change():
+	return on_SZFBChange()
+
+
+## [现代规范接口 (Phase 6-3)]
+func check_remove_or_add_fb():
+	return CheckRemoveOrAddFB()
+
+
+## [现代规范接口 (Phase 6-3)]
+func use_fb():
+	return useFB()
+
+
+## [现代规范接口 (Phase 6-3)]
+func ws_skill() -> bool:
+	return WSSkill()
+
+
+## [现代规范接口 (Phase 6-3)]
+func process_san_xian_hu_ti_effect():
+	return ProcessSanXianHuTiEffect()
+
+
+## [现代规范接口 (Phase 6-3)]
+func can_normal_control():
+	return CanNormalControl()
+
+
+## [现代规范接口 (Phase 6-3)]
+func noarmal_control():
+	return NoarmalControl()
+
+
+## [现代规范接口 (Phase 6-3)]
+func nor_mal_move():
+	return NorMalMove()
+
+
+## [现代规范接口 (Phase 6-3)]
+func no_limit_buff():
+	return NoLimitBuff()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_blb():
+	return Skill_Blb()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_tjgl():
+	return Skill_Tjgl()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_xbz():
+	return Skill_XBZ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_shy():
+	return Skill_SHY()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_smb():
+	return Skill_SMB()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_smb2():
+	return Skill_SMB2()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_by():
+	return Skill_BY()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_sgq():
+	return Skill_SGQ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_myhc():
+	return Skill_MYHC()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_jgz():
+	return Skill_JGZ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_jhsj():
+	return Skill_JHSJ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_sd():
+	return Skill_SD()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_zznh():
+	return Skill_ZZNH()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_ssp():
+	return Skill_SSP()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_jsp():
+	return Skill_JSP()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_dgq():
+	return Skill_DGQ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_xgq():
+	return Skill_XGQ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_syzq():
+	return Skill_SYZQ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_dj():
+	return Skill_DJ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_tmc2():
+	return Skill_TMC2()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_tmc():
+	return Skill_TMC()
+
+
+## [现代规范接口 (Phase 6-3)]
+func skill_bdqk():
+	return Skill_BDQK()
+
+
+## [现代规范接口 (Phase 6-3)]
+func shovel_qlj():
+	return ShovelQLJ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func shovel_dcj():
+	return ShovelDCJ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func shovel_tkj():
+	return ShovelTKJ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func shovel_mmw():
+	return ShovelMMW()
+
+
+## [现代规范接口 (Phase 6-3)]
+func shovel_zq():
+	return ShovelZQ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func shovel_wdww():
+	return ShovelWDWW()
+
+
+## [现代规范接口 (Phase 6-3)]
+func shovel_mbyj():
+	return ShovelMBYJ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func shovel_jdz():
+	return ShovelJDZ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func shovel_wdzt():
+	return ShovelWDZT()
+
+
+## [现代规范接口 (Phase 6-3)]
+func use_slq():
+	return UseSLQ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func use_cxq():
+	return UseCXQ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func use_blq():
+	return UseBLQ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func use_xyq():
+	return UseXYQ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func use_llrd():
+	return UseLLRD()
+
+
+## [现代规范接口 (Phase 6-3)]
+func use_lljy():
+	return UseLLJY()
+
+
+## [现代规范接口 (Phase 6-3)]
+func use_tllz():
+	return UseTLLZ()
+
+
+## [现代规范接口 (Phase 6-3)]
+func use_ygth():
+	return UseYGTH()
+
+
+## [现代规范接口 (Phase 6-3)]
+func use_fhf():
+	return UseFHF()
+
+
+## [现代规范接口 (Phase 6-3)]
+func check_canuse_some_skill():
+	return checkCanuseSomeSkill()
+
+
+## [现代规范接口 (Phase 6-3)]
+func get_monster_last_hurt(target_boss, target_obj):
+	return get_Monster_last_hurt(target_boss, target_obj)
+
+
+## [现代规范接口 (Phase 6-3)]
+func level_suppression(target):
+	return Level_suppression(target)
+
+
+## [现代规范接口 (Phase 6-3)]
+func cure_mp(value: int = 0):
+	return cure_Mp(value)
+
+
+## [现代规范接口 (Phase 6-3)]
+func reduce_mp(value: int = 0):
+	return reduce_Mp(value)
+
+
+## [现代规范接口 (Phase 6-3)]
+func cure_hp(value: int = 0):
+	return cure_Hp(value)
+
+
+## [现代规范接口 (Phase 6-3)]
+func f_bcure_hp(value: int):
+	return FBcureHp(value)
+
+
+## [现代规范接口 (Phase 6-3)]
+func get_skill_level(num):
+	return get_SkillLevel(num)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_magic_weapon():
+	return addMagicWeapon()
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_ws_effect():
+	return add_WSEffect()
+
+
+## [现代规范接口 (Phase 6-3)]
+func self_protect():
+	return selfProtect()
+
+
+## [现代规范接口 (Phase 6-3)]
+func on_eqchange():
+	return onEqchange()
+
+
+## [现代规范接口 (Phase 6-3)]
+func change_body(name1):
+	return ChangeBody(name1)
+
+
+## [现代规范接口 (Phase 6-3)]
+func change_eq(name1):
+	return ChangeEq(name1)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_special_effect_clothes(EqName, ClothesName):
+	return AddSpecialEffectClothes(EqName, ClothesName)
+
+
+## [现代规范接口 (Phase 6-3)]
+func check_monster(get_tt):
+	return checkMonster(get_tt)
+
+
+## [现代规范接口 (Phase 6-3)]
+func get_real_target(get_tt):
+	return get_RealTarget(get_tt)
+
+
+## [现代规范接口 (Phase 6-3)]
+func check_add_buff():
+	return CheckAddBuff()
+
+
+## [现代规范接口 (Phase 6-3)]
+func improve_self_recovery_when_idle():
+	return ImproveSelfRecoveryWhenIdle()
+
+
+## [现代规范接口 (Phase 6-3)]
+func reset_insky():
+	return ResetInsky()
+
+
+## [现代规范接口 (Phase 6-3)]
+func set_insky():
+	return SetInsky()
+
+
+## [现代规范接口 (Phase 6-3)]
+func addsmsr_shenqi_lightning_round() -> void:
+	ADDSMSRShenqiLightningRound()
+
+
+## [现代规范接口 (Phase 6-3)]
+func addsmsr_effect():
+	return ADDSMSREffect()
+
+
+## [现代规范接口 (Phase 6-3)]
+func addzlw_effect():
+	return ADDZLWEffect()
+
+
+## [现代规范接口 (Phase 6-3)]
+func startzlw_shenqi_effect():
+	return STARTZLWShenqiEffect()
+
+
+## [现代规范接口 (Phase 6-3)]
+func addzlw_shenqi_wheel_effect():
+	return ADDZLWShenqiWheelEffect()
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_ttzs_effect():
+	return ADDTtzsEffect()
+
+
+## [现代规范接口 (Phase 6-3)]
+func addnmw_effect():
+	return ADDNMWEffect()
+
+
+## [现代规范接口 (Phase 6-3)]
+func set_sz_value():
+	return SetSZValue()
+
+
+## [现代规范接口 (Phase 6-3)]
+func when_scary():
+	return WhenScary()
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_tx():
+	return AddTx()
+
+
+## [现代规范接口 (Phase 6-3)]
+func use_zhen_fa():
+	return UseZhenFa()
+
+
+## [现代规范接口 (Phase 6-3)]
+func set_wings_offset():
+	return SetWingsOffset()
+
+
+## [现代规范接口 (Phase 6-3)]
+func reset_san_xian_hu_ti():
+	return ResetSanXianHuTi()

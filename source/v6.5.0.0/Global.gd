@@ -5798,3 +5798,526 @@ func AddBasicPellet_(parent, position):
 ## [兼容代理] 保持旧接口兼容
 func CheckWD(OBJ):
 	return check_wd(OBJ)
+
+
+# ==============================================================================
+# Phase 6-3: 现代 GDScript 规范 snake_case 双轨兼容函数入口
+# ==============================================================================
+## [现代规范接口 (Phase 6-3)]
+func add_star(parent, Type):
+	return AddStar(parent, Type)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_role_button(parent, MyName, MyFather):
+	return AddRoleButton(parent, MyName, MyFather)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_basic_ar_button(parent, Num):
+	return AddBasicArButton(parent, Num)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_zhen_fa_help(parent, position):
+	return AddZhenFaHelp(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_zhen_fa_tu_po(parent, position, Father):
+	return AddZhenFaTuPo(parent, position, Father)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_zhen_yan_cure_level(parent, position, Father):
+	return AddZhenYanCureLevel(parent, position, Father)
+
+
+## [现代规范接口 (Phase 6-3)]
+func addzhenyanbutton(parent, position, LocNum, Father):
+	return Addzhenyanbutton(parent, position, LocNum, Father)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_28_ui(parent, position):
+	return Add_28Ui(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_zhen_fa_ui(parent, position):
+	return AddZhenFaUi(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_zhen_fa_info(parent, position, Father):
+	return AddZhenFaInfo(parent, position, Father)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_zhenfalxbutton(parent, zhenfaName, Father):
+	return AddZhenfalxbutton(parent, zhenfaName, Father)
+
+
+## [现代规范接口 (Phase 6-3)]
+func addhdgqmap(parent, position):
+	return Addhdgqmap(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_monster141_aura(parent, position_, TargetMonster):
+	return AddMonster141Aura(parent, position_, TargetMonster)
+
+
+## [现代规范接口 (Phase 6-3)]
+func addlhhjhelp(parent, position):
+	return Addlhhjhelp(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func addlistbutton(parent, selfName, Father, Num):
+	return Addlistbutton(parent, selfName, Father, Num)
+
+
+## [现代规范接口 (Phase 6-3)]
+func addlhhj(parent, position):
+	return Addlhhj(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func addlhhjbutton(parent, selfName, Father):
+	return Addlhhjbutton(parent, selfName, Father)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_some_monster_help(parent, position):
+	return AddSomeMonsterHelp(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_mosaic_help(parent, position):
+	return AddMosaicHelp(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_letter_for_player(parent, position):
+	return AddLetterForPlayer(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_cure_times_box(parent, position):
+	return AddCureTimesBox(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_mystery_shop(parent, position):
+	return AddMysteryShop(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_trans_box(parent, name_, Transmogrified_):
+	return AddTransBox(parent, name_, Transmogrified_)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_role4_bullet(parent, Player, position: Vector2):
+	return AddRole4Bullet(parent, Player, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_line(parent, Monster, Type):
+	return AddLine(parent, Monster, Type)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_dsg_choose(parent):
+	return AddDsgChoose(parent)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_hdzm(parent, Parent):
+	return AddHDZM(parent, Parent)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_lsh(parent, Parent):
+	return AddLSH(parent, Parent)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_lxdy(parent, Parent):
+	return AddLXDY(parent, Parent)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_monster_info(parent, MonsterName, position):
+	return AddMonsterInfo(parent, MonsterName, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_basic_monment_info(parent, ShowText, position):
+	return AddBasicMonmentInfo(parent, ShowText, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_forge_help(parent, position):
+	return AddForgeHelp(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_forge_box(parent, Name, Num):
+	return AddForgeBox(parent, Name, Num)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_forges(parent, position):
+	return AddForges(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func addllbt_challenge(parent, position):
+	return AddllbtChallenge(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_font_(parent, ShowText, Font_, FontSize, FontColor, OutLineSize, OutLineColor):
+	return ADDFont_(parent, ShowText, Font_, FontSize, FontColor, OutLineSize, OutLineColor)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_task_reward(parent, ItemName, TotalNum):
+	return AddTaskReward(parent, ItemName, TotalNum)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_task_title(parent, TaskType, TaskName, MyFather):
+	return AddTaskTitle(parent, TaskType, TaskName, MyFather)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_reward_box(parent, item_id, Num):
+	return AddRewardBox(parent, item_id, Num)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_decompose_help(parent, position):
+	return Add_Decompose_Help(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_decompose_(parent, position):
+	return Add_Decompose_(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_stage(parent, Obj, position):
+	return AddStage(parent, Obj, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_boss_blood_(parent, Obj):
+	return AddBossBlood_(parent, Obj)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_hc_help(parent, position):
+	return AddHc_Help(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_help_thing(parent, position, ItemInfo):
+	return AddHelpThing(parent, position, ItemInfo)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_pj(parent, position, Num):
+	return AddPj(parent, position, Num)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_monster_head(parent, Name, IsBoss, ScenePath := ""):
+	return AddMonsterHead(parent, Name, IsBoss, ScenePath)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_level_fall_box(parent, Inldl, Inhhgz, Name, qh_level, wx, EqProp):
+	return AddLevelFallBox(parent, Inldl, Inhhgz, Name, qh_level, wx, EqProp)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_item_box(parent, Inldl, Inhhgz, Name, qh_level, num, wx, EqProp):
+	return AddItemBox(parent, Inldl, Inhhgz, Name, qh_level, num, wx, EqProp)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_game_need_know(parent, position):
+	return addGameNeedKnow(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_role_magic_need(parent, position, name_, Old, New):
+	return addRoleMagicNeed(parent, position, name_, Old, New)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_new_bullet(parent, position, Dir, name_, Dic):
+	return addNewBullet(parent, position, Dir, name_, Dic)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_smb_effect(parent, position, Dir):
+	return addSMBEffect(parent, position, Dir)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_role2_shallow(parent, position, Dir):
+	return addRole2Shallow(parent, position, Dir)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_choose_player(parent, position_):
+	return AddChoosePlayer(parent, position_)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_monster65_bullet(parent, position_):
+	return AddMonster65Bullet(parent, position_)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_aura(parent, position_, Value, color_type = 0):
+	return AddAura(parent, position_, Value, color_type)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_buffinfor(parent, position_, Data):
+	return AddBuffinfor(parent, position_, Data)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_buff_icon(parent, Data):
+	return AddBuffIcon(parent, Data)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_after_level_end(parent, position):
+	return addAfterLevelEnd(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_combo(parent, ComboNum_, position):
+	return addCombo(parent, ComboNum_, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_combo_num(parent, ComboNum_):
+	return addComboNum(parent, ComboNum_)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_z_lw_stage(parent, position, Speed, Dir, Max, PD):
+	return addZLw_stage(parent, position, Speed, Dir, Max, PD)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_h_hjm(parent, position):
+	return addHHjm(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_change_clothes_jm(parent, position, name_, Transmogrified_):
+	return addChangeClothesJm(parent, position, name_, Transmogrified_)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_miss_effect(parent, position):
+	return addMissEffect(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_damage_number(parent, value, Type, is_crit, tar):
+	return addDamageNumber(parent, value, Type, is_crit, tar)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_role1_shallow(parent, position, dir, int_action):
+	return addRole1Shallow(parent, position, dir, int_action)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_role_bullet_1(parent, position, name_, Dic):
+	return addRoleBullet_1(parent, position, name_, Dic)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_skill_key_set(parent, position, name_):
+	return addSkillKeySet(parent, position, name_)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_mosaic_(parent, position):
+	return Add_Mosaic_(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_magic_help(parent, position):
+	return addMagicHelp(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_use_magic_weapon(parent, position):
+	return addUseMagicWeapon(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_skill_select(parent, position, name_):
+	return addSkillSelect(parent, position, name_)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_magic_weapon(parent, name_, position):
+	return addMagicWeapon(parent, name_, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_ws_effect(parent):
+	return add_WS_Effect(parent)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_s_y_n_help(parent, position):
+	return add_s_y_nHelp(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_synthesis(parent, position):
+	return add_Synthesis(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_lj(parent, position_):
+	return add_LJ(parent, position_)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_main_backpack(parent, position):
+	return add_mainBackpack(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_camera(parent, position, right):
+	return add_Camera(parent, position, right)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_role_bullet_1_safe(parent, position, name_, Dic):
+	return addRoleBullet_1_safe(parent, position, name_, Dic)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_bullet_safe(bullet_name, parent, direction, show_speed, position, hit_name_, list):
+	return addBullet_safe(bullet_name, parent, direction, show_speed, position, hit_name_, list)
+
+
+## [现代规范接口 (Phase 6-3)]
+func get_position_between(Ob_1, Ob_2):
+	return GetPositionBetween(Ob_1, Ob_2)
+
+
+## [现代规范接口 (Phase 6-3)]
+func get_dis_betweem(Ob_1, Ob_2):
+	return GetDisBetweem(Ob_1, Ob_2)
+
+
+## [现代规范接口 (Phase 6-3)]
+func load_role1_body(name_):
+	return LoadRole1Body(name_)
+
+
+## [现代规范接口 (Phase 6-3)]
+func load_role1_eq(name_):
+	return LoadRole1EQ(name_)
+
+
+## [现代规范接口 (Phase 6-3)]
+func check_dir_between_two_obj(Player, Monster):
+	return CheckDirBetweenTwoObj(Player, Monster)
+
+
+## [现代规范接口 (Phase 6-3)]
+func remove_all_buff():
+	return removeAllBuff()
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_all_item_num(List, Num, NumRange):
+	return ADDAllItemNum(List, Num, NumRange)
+
+
+## [现代规范接口 (Phase 6-3)]
+func get_all_item_num(List, Num, NumRange):
+	return GetAllItemNum(List, Num, NumRange)
+
+
+## [现代规范接口 (Phase 6-3)]
+func remove_a_all_buff():
+	return RemoveAAllBuff()
+
+
+## [现代规范接口 (Phase 6-3)]
+func on_fresh():
+	return OnFresh()
+
+
+## [现代规范接口 (Phase 6-3)]
+func remove_wd(OBJ):
+	return RemoveWD(OBJ)
+
+
+## [现代规范接口 (Phase 6-3)]
+func get_clean_name(item_name_str: String):
+	return GetName(item_name_str)
+
+
+## [现代规范接口 (Phase 6-3)]
+func normal_face_player(OBJ, dir, Player):
+	return NormalFacePlayer(OBJ, dir, Player)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_sound_(parent, target_, priority: int = 0):
+	return addSound_(parent, target_, priority)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_bgm_(parent, target_):
+	return addBGM_(parent, target_)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_role_bullet_(parent, position, Dir, name_, Dic):
+	return addRoleBullet_(parent, position, Dir, name_, Dic)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_weapon_bullet_(parent, position, name_, List, dir, Rand):
+	return addWeaponBullet_(parent, position, name_, List, dir, Rand)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_role_special_effect_(parent, position, Dir, name_):
+	return addRoleSpecialEffect_(parent, position, Dir, name_)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_basic_task_(parent, position):
+	return AddBasicTask_(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_game_set_(parent, position):
+	return Add_GameSet_(parent, position)
+
+
+## [现代规范接口 (Phase 6-3)]
+func add_basic_pellet_(parent, position):
+	return AddBasicPellet_(parent, position)
