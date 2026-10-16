@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-tools/health_check.py
+scripts/health_check.py
 
 全工程全量资源引用拓扑、GDScript 语法健康度与死代码审计门禁工具。
 用于 Phase 1 构建无损自动化安全网，防范重构中的“误杀”与动态加载引用断裂。
@@ -434,7 +434,7 @@ func _scan(path: String, out: Array):
         # 后续行动指南
         md.append("## 五、对 Phase 2 重构行动的指导约束\n")
         md.append("1. **下线限制**：Phase 2 仅允许下线本报告第四节列出的纯真死代码，严禁触碰第三节受保护的隐式活跃脚本；")
-        md.append("2. **原子化验证**：每次删除或重构后，必须重新运行 `python tools/health_check.py`，确认 `broken_scene_refs` 维持为 0。")
+        md.append("2. **原子化验证**：每次删除或重构后，必须重新运行 `python scripts/health_check.py`，确认 `broken_scene_refs` 维持为 0。")
 
         with open(self.report_path, "w", encoding="utf-8") as f:
             f.write("\n".join(md))

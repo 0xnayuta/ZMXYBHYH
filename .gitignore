@@ -18,17 +18,18 @@
 # 逆向中间产物与解密沙盒
 # ==========================================
 /extracted/
-/tools/analysis_*/
-/tools/analysis/
-/tools/converted_scenes/
-/tools/test_out/
+/scripts/legacy/analysis_*/
+/scripts/legacy/analysis/
+/scripts/legacy/converted_scenes/
+/scripts/test_out/
 *.tmp
 *.bin
 
 # ==========================================
-# 外部独立逆向工具（建议通过文档/脚本外置下载）
+# 外部独立逆向工具与本地私有逆向文档（保留本地，不入库）
 # ==========================================
-/tools/gdre/
+/scripts/legacy/gdre/
+/docs/*解密*.md
 
 # ==========================================
 # Godot 4+ 核心项目缓存与构建目录 (遵循官方标准)

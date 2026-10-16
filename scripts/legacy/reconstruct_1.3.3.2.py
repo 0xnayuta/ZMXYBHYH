@@ -1,7 +1,7 @@
 import os, sys, subprocess, time, io, struct, zstandard
 from PIL import Image
 
-gdre_exe = r"G:\source\repos\ZMXYBHYH\tools\gdre\gdre_tools.exe"
+gdre_exe = r"G:\source\repos\ZMXYBHYH\scripts\legacy\gdre\gdre_tools.exe"
 target_dir = r"G:\source\repos\ZMXYBHYH\extracted\1.3.3.2"
 
 def decompile_all_gdcs():

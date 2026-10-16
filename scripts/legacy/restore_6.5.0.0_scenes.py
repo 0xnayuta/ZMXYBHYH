@@ -3,8 +3,8 @@ import os, sys, shutil, subprocess, time
 ROOT = r"G:\source\repos\ZMXYBHYH"
 EXT_DIR = os.path.join(ROOT, r"extracted\6.5.0.0")
 SRC_DIR = os.path.join(ROOT, r"source\v6.5.0.0")
-GDRE_EXE = os.path.join(ROOT, r"tools\gdre\gdre_tools.exe")
-TMP_OUT = os.path.join(ROOT, r"tools\converted_scenes")
+GDRE_EXE = os.path.join(ROOT, r"scripts\legacy\gdre\gdre_tools.exe")
+TMP_OUT = os.path.join(ROOT, r"scripts\legacy\converted_scenes")
 
 def restore_scenes_and_resources():
     print("==================================================")

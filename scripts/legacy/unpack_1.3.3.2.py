@@ -56,6 +56,12 @@ def unpack_1332(exe_path, out_dir):
     print(f"解包完成！总耗时: {t1-t0:.2f} 秒，成功提取 {extracted_count:,} 个文件，共 {total_bytes/1e6:.1f} MB。")
 
 if __name__ == "__main__":
-    exe = r"G:\source\repos\ZMXYBHYH\binaries\1.3.3.2\八荒湮隳1.3.3.2.exe"
-    out = r"G:\source\repos\ZMXYBHYH\extracted\1.3.3.2"
-    unpack_1332(exe, out)
+    import argparse
+    parser = argparse.ArgumentParser(description="ZMXYBHYH 1.3.3.2 离线资源提取工具")
+    parser.add_argument("--exe", default=os.environ.get("GAME_EXE_13", r"binaries/1.3.3.2/八荒湮隳1.3.3.2.exe"), help="输入可执行文件路径")
+    parser.add_argument("--out", default=os.environ.get("EXTRACT_OUT_13", r"extracted/1.3.3.2"), help="输出目录路径")
+    args = parser.parse_args()
+    if not os.path.exists(args.exe):
+        print(f"[!] 错误: 输入目标不存在 ({args.exe})，请使用 --exe 指定有效路径")
+        exit(1)
+    unpack_1332(args.exe, args.out)

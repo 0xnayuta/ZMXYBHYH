@@ -83,12 +83,12 @@ def main():
     if args.fix:
         ok, elapsed, out = run_step(
             "行尾自动清洗 (normalize_eol.py)",
-            [sys.executable, "tools/normalize_eol.py", "source/v6.5.0.0"]
+            [sys.executable, "scripts/normalize_eol.py", "source/v6.5.0.0"]
         )
     else:
         ok, elapsed, out = run_step(
             "行尾合规性扫描 (normalize_eol.py --dry-run)",
-            [sys.executable, "tools/normalize_eol.py", "source/v6.5.0.0", "--dry-run"]
+            [sys.executable, "scripts/normalize_eol.py", "source/v6.5.0.0", "--dry-run"]
         )
     
     # 判定依据: 输出中发现并清洗 CRLF 文件数是否为 0
@@ -98,7 +98,7 @@ def main():
         results.append(("1. 跨平台行尾 LF 归一化", True, elapsed, ""))
     else:
         print(f" -> {RED}[FAIL]{RESET} 检测到未对齐的 CRLF 文件！({elapsed:.2f}s)")
-        results.append(("1. 跨平台行尾 LF 归一化", False, elapsed, "存在 CRLF 换行符，请运行 python tools/normalize_eol.py 修复"))
+        results.append(("1. 跨平台行尾 LF 归一化", False, elapsed, "存在 CRLF 换行符，请运行 python scripts/normalize_eol.py 修复"))
 
     # --------------------------------------------------------------------------
     # 维度 2: 代码格式规范校验 (gdformat Check)
@@ -107,13 +107,13 @@ def main():
     if args.fix:
         ok, elapsed, out = run_step(
             "代码自动格式化 (format_all.py)",
-            [sys.executable, "tools/format_all.py", "source/v6.5.0.0"]
+            [sys.executable, "scripts/format_all.py", "source/v6.5.0.0"]
         )
         format_passed = ok
     else:
         ok, elapsed, out = run_step(
             "代码格式门禁校验 (format_all.py --check)",
-            [sys.executable, "tools/format_all.py", "source/v6.5.0.0", "--check"]
+            [sys.executable, "scripts/format_all.py", "source/v6.5.0.0", "--check"]
         )
         format_passed = ok and ("所有代码完全符合代码格式规范" in out)
 
@@ -122,7 +122,7 @@ def main():
         results.append(("2. GDScript 代码格式化规范", True, elapsed, ""))
     else:
         print(f" -> {RED}[FAIL]{RESET} 存在未对齐官方排版的脚本！({elapsed:.2f}s)")
-        results.append(("2. GDScript 代码格式化规范", False, elapsed, "存在未格式化脚本，请运行 python tools/format_all.py 修复"))
+        results.append(("2. GDScript 代码格式化规范", False, elapsed, "存在未格式化脚本，请运行 python scripts/format_all.py 修复"))
 
     # --------------------------------------------------------------------------
     # 维度 3: 静态代码异味与语法树审查 (gdlint Check)
@@ -162,7 +162,7 @@ def main():
         print(f"\n{BOLD}[维度 4/4] Godot 4 引擎编译级深度体检 (health_check.py){RESET}")
         ok, elapsed, out = run_step(
             "全盘场景依赖与 874 脚本编译扫描",
-            [sys.executable, "tools/health_check.py"]
+            [sys.executable, "scripts/health_check.py"]
         )
         engine_passed = ok and ("0 严重编译错误" in out or "0 Parse Error" in out) and ("0 处断裂引用" in out)
         if engine_passed:

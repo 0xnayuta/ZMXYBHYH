@@ -61,7 +61,7 @@ flowchart TD
 - **核心目标**：在不改动任何业务逻辑的前提下，实现一键 5 秒内全量扫描 874 个脚本与 1,242 个场景的引用健康状态；彻底分清哪些是真死代码，哪些是动态调用的假孤岛，杜绝重构中的“误杀”。
 
 ### 1.2 计划内容
-1. **编写全工程自动化体检工具链**（`tools/health_check.py`）：
+1. **编写全工程自动化体检工具链**（`scripts/health_check.py`）：
    - 基于 Godot 4.7.2 Headless 模式与静态 AST 分析，能够脱离 GUI 快速预编译并检查全量脚本；
    - 检查所有场景的 `ext_resource` 路径有效性，捕获潜在悬空引用；
 2. **构建全量符号与依赖逆向拓扑矩阵**：
@@ -74,11 +74,11 @@ flowchart TD
 
 ### 1.3 执行边界与红线
 - ⚠️ **只读审计原则**：本阶段**严禁删除或修改任何业务脚本与场景文件**；
-- ⚠️ **工具链隔离**：所有脚本必须保存在 `tools/` 目录下，严禁污染 `source/v6.5.0.0/` 的游戏运行环境；
+- ⚠️ **工具链隔离**：所有脚本必须保存在 `scripts/` 目录下，严禁污染 `source/v6.5.0.0/` 的游戏运行环境；
 - ⚠️ **零干扰**：体检工具必须保证幂等性与纯内存检查，不得残留任何临时垃圾文件。
 
 ### 1.4 验收内容与指标
-1. `tools/health_check.py` 能够在 **5 秒内** 完成全工程静态与无头编译健康扫描，并输出结构化检查报告；
+1. `scripts/health_check.py` 能够在 **5 秒内** 完成全工程静态与无头编译健康扫描，并输出结构化检查报告；
 2. 产出明确的死代码与假孤岛分类报告，作为 Phase 2 安全瘦身的唯一依据；
 3. 全工程运行时继续保持 **0 错误、0 警告**。
 
@@ -126,7 +126,7 @@ flowchart TD
 3. **花果山全流程贯通**：Stage 1~4 全部战斗阶段与守关怪、Boss 大猩猩对决 100% 跑通，顺畅衔接至 `victory.tscn` 胜利结算面板；
 4. **关键缺陷彻底清零**：修复 `BaseHero.gd` 宠物连结与霸体击退元数据空指针、修复 `BaseMonster.gd` 离树与销毁时 `body->get_space() is null` 物理空间报错、优化 `victory.gd` 测试态警告；
 5. **实机 0 错误 0 警告**：整场战斗全生命周期实测日志维持绝对的 **0 ERROR、0 WARNING**；
-6. **生产级测试夹具交付**：构建 `tools/level_test_runner.py`，支持无敌+秒杀沙盒隔离与 3 倍速极速回归。
+6. **生产级测试夹具交付**：构建 `scripts/level_test_runner.py`，支持无敌+秒杀沙盒隔离与 3 倍速极速回归。
 
 ---
 
@@ -142,16 +142,16 @@ flowchart TD
    - 根目录建立 `.editorconfig`，声明 UTF-8、LF、Tab 缩进（indent_size=4）与行尾空白清理；
    - 批量清洗全盘 1,096 个 CRLF 场景文件与 4 个 CRLF 脚本，达成全工程 100% 纯净 LF。
 2. **Phase 4.2: 格式化流水线研发与历史穿透保护 (Toolchain & Blame Protection)**
-   - 编写工程级格式化脚本 `tools/format_all.py`（基于 `uv tool run --from gdtoolkit gdformat`）；
+   - 编写工程级格式化脚本 `scripts/format_all.py`（基于 `uv tool run --from gdtoolkit gdformat`）；
    - 配置行宽 `--line-length 120`，适配复杂游戏数据表；
    - 建立 `.git-blame-ignore-revs` 机制，配置 Git 历史责任穿透，保证全量格式化不污染 `git blame`。
 3. **Phase 4.3: 734 个 GDScript 全量格式化与双重门禁验收 (The Big Format)**
    - 分批次（核心单例 -> 基础架构 -> 外围业务与怪物）安全执行 `gdformat`；
-   - 每批次严格执行双重门禁：`tools/health_check.py` 静态编译 0 Parse/Load Error + `tools/level_test_runner.py` 实机战斗 0 ERROR/WARNING；
+   - 每批次严格执行双重门禁：`scripts/health_check.py` 静态编译 0 Parse/Load Error + `scripts/level_test_runner.py` 实机战斗 0 ERROR/WARNING；
    - 提交原子格式化 Commit 并将 Hash 登记入 `.git-blame-ignore-revs`。
 4. **Phase 4.4: 静态质量 Lint 规则定制与一键 CI 门禁整合 (Linter & CI Pipeline)**
    - 定制专属 `.gdlintrc`，收紧无用空白、缩进混用、无用 pass 与定义顺序，放宽历史数据长行限制；
-   - 构建统一质量体检入口 `tools/check_all.py`，串联格式、风格、编译与实机回归，形成发布门禁。
+   - 构建统一质量体检入口 `scripts/check_all.py`，串联格式、风格、编译与实机回归，形成发布门禁。
 
 ### 1.3 执行边界与红线
 - ⚠️ **无损语义原则**：格式化与行尾转换必须严格保持代码语义与节点层级 100% 不变，严禁顺带做无测试覆盖的业务逻辑重构；
@@ -159,10 +159,10 @@ flowchart TD
 - ⚠️ **历史溯源保护**：格式化提交必须立即登记进 `.git-blame-ignore-revs`，严禁破坏团队代码溯源能力。
 
 ### 1.4 验收落地与实测指标
-1. **全盘文本 LF 100% 达成**：通过 `.gitattributes` 与 `tools/normalize_eol.py`，全盘 1,096 个场景、275 个 JSON 与全部源码彻底统一为纯净 LF（0 CRLF 残留）；
-2. **734 个 GDScript 100% 规范化**：通过 `tools/format_all.py` (gdformat 4.5.0) 全量格式化，并建立自动 LF 保护，幂等性测试 100% 通过；
+1. **全盘文本 LF 100% 达成**：通过 `.gitattributes` 与 `scripts/normalize_eol.py`，全盘 1,096 个场景、275 个 JSON 与全部源码彻底统一为纯净 LF（0 CRLF 残留）；
+2. **734 个 GDScript 100% 规范化**：通过 `scripts/format_all.py` (gdformat 4.5.0) 全量格式化，并建立自动 LF 保护，幂等性测试 100% 通过；
 3. **Git Blame 历史穿透固化**：在 `.git-blame-ignore-revs` 成功登记巨型重构提交，实测 `git blame` 成功穿透格式化改动直达历史作者；
-4. **一键质量总指挥门禁交付**：构建 `tools/check_all.py`，一键串联“行尾 LF + gdformat + gdlint + 引擎静态编译”，实测四大维度全部 **PASS**；
+4. **一键质量总指挥门禁交付**：构建 `scripts/check_all.py`，一键串联“行尾 LF + gdformat + gdlint + 引擎静态编译”，实测四大维度全部 **PASS**；
 5. **实机战斗 0 错误 0 警告**：全流程花果山 Stage 1~4 及胜利结算实测日志维持绝对的 **0 ERROR、0 WARNING**。
 ---
 

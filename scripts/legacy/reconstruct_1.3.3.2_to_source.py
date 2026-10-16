@@ -5,7 +5,7 @@ ROOT = r"G:\source\repos\ZMXYBHYH"
 EXE_13 = os.path.join(ROOT, r"binaries\1.3.3.2\八荒湮隳1.3.3.2.exe")
 EXT_13 = os.path.join(ROOT, r"extracted\1.3.3.2")
 SRC_13 = os.path.join(ROOT, r"source\v1.3.3.2")
-GDRE_EXE = os.path.join(ROOT, r"tools\gdre\gdre_tools.exe")
+GDRE_EXE = os.path.join(ROOT, r"scripts\legacy\gdre\gdre_tools.exe")
 
 def step1_reset_extracted():
     print("==================================================")
@@ -175,6 +175,6 @@ def step2_reconstruct_to_source():
 
 if __name__ == "__main__":
     # 动态把 unpack 函数注入
-    sys.path.append(os.path.join(ROOT, "tools"))
+    sys.path.append(os.path.join(ROOT, "scripts", "legacy"))
     step1_reset_extracted()
     step2_reconstruct_to_source()

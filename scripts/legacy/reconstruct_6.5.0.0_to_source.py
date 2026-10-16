@@ -4,7 +4,7 @@ from PIL import Image
 ROOT = r"G:\source\repos\ZMXYBHYH"
 EXT_65 = os.path.join(ROOT, r"extracted\6.5.0.0")
 SRC_65 = os.path.join(ROOT, r"source\v6.5.0.0")
-GDRE_EXE = os.path.join(ROOT, r"tools\gdre\gdre_tools.exe")
+GDRE_EXE = os.path.join(ROOT, r"scripts\legacy\gdre\gdre_tools.exe")
 
 def step1_reconstruct_scripts_and_skeleton():
     print("==================================================")

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-tools/level_test_runner.py
+scripts/level_test_runner.py
 
 生产级关卡全自动极速冒烟测试夹具 (Level Test Runner)。
 专为 Phase 3 关卡战斗闭环设计，具备以下核心能力：
