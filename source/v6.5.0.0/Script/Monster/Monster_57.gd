@@ -201,7 +201,7 @@ func _ready() -> void:
 	monster_57()
 
 
-func Monster_Intelligence():
+func ai_think():
 	ChangeProperies()
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -291,7 +291,7 @@ func normalBullet():
 	var Bullet
 	var BulletName: String
 	var Hit_name: String
-	var Position = Vector2(self.position.x, self.position.y + 15)
+	var bullet_pos = Vector2(self.position.x, self.position.y + 15)
 	var RndNum = randi_range(0, 100)
 	if RndNum <= 100 and RndNum >= 75:
 		BulletName = "Monster57Bullet"
@@ -307,11 +307,25 @@ func normalBullet():
 		Hit_name = "hit1_3"
 	if MonsterDirection:
 		Bullet = Global.CallChaseBullet(
-			self.bullet, BulletName, RoundSpeed, RoundChaseTime, false, Position, Hit_name, self.objattackDic[Hit_name]
+			self.bullet,
+			BulletName,
+			RoundSpeed,
+			RoundChaseTime,
+			false,
+			bullet_pos,
+			Hit_name,
+			self.objattackDic[Hit_name]
 		)
 	else:
 		Bullet = Global.CallChaseBullet(
-			self.bullet, BulletName, RoundSpeed, RoundChaseTime, false, Position, Hit_name, self.objattackDic[Hit_name]
+			self.bullet,
+			BulletName,
+			RoundSpeed,
+			RoundChaseTime,
+			false,
+			bullet_pos,
+			Hit_name,
+			self.objattackDic[Hit_name]
 		)
 	Bullet.scale = Vector2(0.5, 0.5)
 

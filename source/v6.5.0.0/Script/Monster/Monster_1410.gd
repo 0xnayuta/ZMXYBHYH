@@ -213,7 +213,7 @@ func _on_buff_child_entered(child: Node):
 			has_been_controlled = true
 
 
-func Monster_Intelligence():
+func ai_think():
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
 		if has_target == false:
 			normal_state()

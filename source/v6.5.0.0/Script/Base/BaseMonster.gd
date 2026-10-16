@@ -550,7 +550,7 @@ func _physics_process(delta: float) -> void:
 	if MainSet.set_data["MonsterLittleBlood"] and MainSet.set_data["NoShowMonsterBody"]:
 		little_blood_bar_control()
 	if self.Hp > 0 and not IsLimitBuff() and not _hurt_reaction_active and _should_run_ai_this_frame():
-		Monster_Intelligence()
+		ai_think()
 	if IsMovementLockedByControl():
 		interrupt_movement_for_control()
 	elif IsScary:
@@ -858,7 +858,7 @@ func _remove_pet_tiger_sxhz_stun_buff() -> void:
 			child.queue_free()
 
 
-func Monster_Intelligence():
+func ai_think():
 	var role_position_x = RoleProp.get_nearest_monster_target_position(global_position).x
 	if role_position_x == null:
 		return
@@ -3474,3 +3474,8 @@ func _deferred_play_hurt_animation():
 	if mr_player.is_playing():
 		mr_player.stop()
 	mr_player.play("hurt")
+
+
+# 向后兼容别名 (Flash AS2 历史接口)
+func Monster_Intelligence() -> void:
+	ai_think()

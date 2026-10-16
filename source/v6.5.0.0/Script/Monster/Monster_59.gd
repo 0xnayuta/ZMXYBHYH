@@ -90,7 +90,7 @@ func _ready() -> void:
 	monster_59(RoleBeHitCount)
 
 
-func Monster_Intelligence():
+func ai_think():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
@@ -145,22 +145,22 @@ func do_hit_2():
 
 func Call_ZZZY():
 	var BulletName = "Monster59Bullet_1"
-	var Position
+	var bullet_pos
 	if MonsterDirection:
-		Position = Vector2(420, randi_range(-130, 130)) + self.position
-		Global.add_bullet(BulletName, self.bullet, true, 1, Position, "zzzy", self.objattackDic["zzzy"])
+		bullet_pos = Vector2(420, randi_range(-130, 130)) + self.position
+		Global.add_bullet(BulletName, self.bullet, true, 1, bullet_pos, "zzzy", self.objattackDic["zzzy"])
 	else:
-		Position = Vector2(-420, randi_range(-130, 130)) + self.position
-		Global.add_bullet(BulletName, self.bullet, false, 1, Position, "zzzy", self.objattackDic["zzzy"])
+		bullet_pos = Vector2(-420, randi_range(-130, 130)) + self.position
+		Global.add_bullet(BulletName, self.bullet, false, 1, bullet_pos, "zzzy", self.objattackDic["zzzy"])
 
 
 func CallZZHY():
 	var Num = 3 + int(RoleBeHitCount / 3)
 	for i in range(Num):
-		var Position = Vector2(
+		var bullet_pos = Vector2(
 			RoleProp.get_nearest_monster_target_position(global_position).x + randi_range(-140, 140), 500
 		)
-		Global.add_bullet("Monster59Bullet_2", self.bullet, false, 1, Position, "zmhy", self.objattackDic["zmhy"])
+		Global.add_bullet("Monster59Bullet_2", self.bullet, false, 1, bullet_pos, "zmhy", self.objattackDic["zmhy"])
 
 
 func state_hurt():

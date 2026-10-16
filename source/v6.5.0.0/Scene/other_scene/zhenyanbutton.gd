@@ -22,11 +22,11 @@ func _physics_process(delta: float) -> void:
 				RealName = "腾蛇阵"
 			"tqz":
 				RealName = "太清阵"
-		var Name = PlayerData.player_data[RealName][str(LocNum)]["InName"]
-		pic.set_button_icon(load_(Name))
+		var item_name = PlayerData.player_data[RealName][str(LocNum)]["InName"]
+		pic.set_button_icon(load_(item_name))
 		pic.qh_level = 0
 		pic.wx = []
-		pic.EQ_prop = AE.AllEquipment_[Name]
+		pic.EQ_prop = AE.AllEquipment_[item_name]
 		var Level = PlayerData.player_data[RealName][str(LocNum)]["Level"]
 		locandlevel.text = str(LocNum) + "号位 Lv:" + str(Level)
 		if not NotShow:

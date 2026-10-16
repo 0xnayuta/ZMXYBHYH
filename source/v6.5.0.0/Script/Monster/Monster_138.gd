@@ -104,7 +104,7 @@ func _physics_process(delta: float) -> void:
 			move_right()
 
 
-func Monster_Intelligence():
+func ai_think():
 	pass
 
 

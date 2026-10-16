@@ -570,7 +570,7 @@ func _tick_hit13() -> void:
 		_spawn_shadow_near_boss()
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	var target_position := RoleProp.get_nearest_monster_target_position(global_position)
 	var distance := absf(target_position.x - global_position.x)
 	if distance < mysee:

@@ -504,37 +504,37 @@ func _exit_tree():
 
 
 func AddNormalHitEffect():
-	var Position = Vector2()
+	var bullet_pos = Vector2()
 	if PlayerDir:
-		Position = Vector2(10, 15)
+		bullet_pos = Vector2(10, 15)
 	else:
-		Position = Vector2(-10, 15)
-	Global.addRoleBullet_(self.Bullet, Position + position, PlayerDir, "Role2Bullet1", objattackDic["hit1"])
+		bullet_pos = Vector2(-10, 15)
+	Global.addRoleBullet_(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet1", objattackDic["hit1"])
 
 
 func AddBLb():
 	if get_action == "by":
 		return
-	var Position = Vector2()
+	var bullet_pos = Vector2()
 	if PlayerDir:
-		Position = Vector2(15, 0)
+		bullet_pos = Vector2(15, 0)
 	else:
-		Position = Vector2(-15, 0)
-	Global.addRoleBullet_(self.Bullet, Position + position, PlayerDir, "Role2Bullet2", objattackDic["blb"])
+		bullet_pos = Vector2(-15, 0)
+	Global.addRoleBullet_(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet2", objattackDic["blb"])
 
 
 func Addsgq():
-	var Position = Vector2()
+	var bullet_pos = Vector2()
 	if PlayerDir:
-		Position = Vector2(35, -20)
+		bullet_pos = Vector2(35, -20)
 	else:
-		Position = Vector2(-35, -20)
+		bullet_pos = Vector2(-35, -20)
 	if SGQ == null:
-		SGQ = Global.addRoleBullet_(self.Bullet, Position + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
+		SGQ = Global.addRoleBullet_(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
 		SGQ.scale = Vector2(2, 2)
 	else:
 		SGQ.queue_free()
-		SGQ = Global.addRoleBullet_(self.Bullet, Position + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
+		SGQ = Global.addRoleBullet_(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
 		SGQ.scale = Vector2(2, 2)
 
 
@@ -688,8 +688,8 @@ func _spawn_jhsj_awaken_effect() -> void:
 
 
 func AddJHSJ2():
-	var Position = Vector2.ZERO
-	jhsj_2 = Global.addRoleBullet_(self, Position, PlayerDir, "Role2Bullet6", objattackDic["jhsj"])
+	var bullet_pos = Vector2.ZERO
+	jhsj_2 = Global.addRoleBullet_(self, bullet_pos, PlayerDir, "Role2Bullet6", objattackDic["jhsj"])
 	jhsj_2.show_behind_parent = true
 
 

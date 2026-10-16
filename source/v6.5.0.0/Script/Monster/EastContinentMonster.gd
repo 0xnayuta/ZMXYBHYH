@@ -2079,7 +2079,7 @@ func _pick_3182_attack() -> StringName:
 	return &""
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if monster_kind in [3136, 3182]:
 		_stationary_boss_intelligence()
 		return

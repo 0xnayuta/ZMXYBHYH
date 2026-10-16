@@ -187,7 +187,7 @@ func _add_method_key(animation: Animation, time: float, method_name: StringName)
 	animation.track_insert_key(method_track, minf(time, animation.length - 0.001), {"method": method_name, "args": []})
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if IsLimitBuff():
 		_skill_busy = false
 		velocity.x = 0

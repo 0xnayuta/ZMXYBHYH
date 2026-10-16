@@ -108,14 +108,14 @@ func BsFj(Name_):
 		return
 	var NameList = str(Name_).split("_")
 	var Level = NameList[1]
-	var Name = NameList[0]
+	var item_name = NameList[0]
 	if Base != "宝石":
 		return
 	if int(Level) <= 1:
 		return
 	NormalItems[Name_] = {"Value": [], "Need": 100}
 	for i in range(3):
-		NormalItems[Name_]["Value"].push_back({"name": str(Name) + "_" + str(int(Level) - 1), "num": 1})
+		NormalItems[Name_]["Value"].push_back({"name": str(item_name) + "_" + str(int(Level) - 1), "num": 1})
 
 
 func ChangeItemList():
@@ -281,9 +281,9 @@ func fj():
 				else:
 					PlayerData.spend_soul(NeedLh)
 					for i in NormalItems[Name_]["Value"]:
-						var Name = i["name"]
+						var item_name = i["name"]
 						var Num = i["num"]
-						list.push_back({"Name": Name, "Value": Num, "Prop": [], "WX": [], "StrengthValue": 0})
+						list.push_back({"Name": item_name, "Value": Num, "Prop": [], "WX": [], "StrengthValue": 0})
 					Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), list, null, null)
 					PlayerData.player_data["分解列表"].clear()
 					Global.add_message_show(Global.Windows_, "分解成功！！", 1.5, Vector2(500, 305))

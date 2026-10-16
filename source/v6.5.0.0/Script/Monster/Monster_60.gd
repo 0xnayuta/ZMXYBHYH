@@ -102,7 +102,7 @@ func _physics_process(delta: float) -> void:
 		self.CannotAttract = false
 
 
-func Monster_Intelligence():
+func ai_think():
 	if Is_Top:
 		if not Is_Drop:
 			velocity.y = -10

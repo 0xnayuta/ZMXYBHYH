@@ -291,7 +291,7 @@ func _skill_2_in_range(horizontal_distance: float, target_position: Vector2) -> 
 	)
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if _death_started or death() or _skill_busy:
 		return
 	if RoleProp.get_nearest_monster_target_position(global_position).x == null:

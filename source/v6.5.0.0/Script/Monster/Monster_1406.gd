@@ -119,7 +119,7 @@ func _physics_process(delta: float) -> void:
 		ADDHelp()
 
 
-func Monster_Intelligence():
+func ai_think():
 	if MyChild != null:
 		Count += 1
 		if Count >= 900:

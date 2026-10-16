@@ -262,7 +262,7 @@ static func _frame_paths(folder: String, count: int) -> Array[String]:
 	return paths
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	velocity = Vector2.ZERO
 	if (
 		_busy

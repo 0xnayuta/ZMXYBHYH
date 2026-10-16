@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 		Hp = -10
 
 
-func Monster_Intelligence():
+func ai_think():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not cannotchangestatewhenattorbeatt():

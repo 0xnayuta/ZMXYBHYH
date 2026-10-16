@@ -407,8 +407,8 @@ func SetCurrentPageTypeItems():
 		for item in TotalItemList:
 			if _is_shop_item_visible(item):
 				var item_id := _shop_item_id(item)
-				var Name = str(AE.AllEquipment_[item_id].get("名字", item_id)).to_lower()
-				if keyword in Name:
+				var item_name = str(AE.AllEquipment_[item_id].get("名字", item_id)).to_lower()
+				if keyword in item_name:
 					GetTargetList.append(item)
 	else:
 		for item in TotalItemList:

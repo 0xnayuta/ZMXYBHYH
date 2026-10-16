@@ -204,7 +204,7 @@ func process_idle(_delta: float) -> void:
 	pass
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if not is_instance_valid(current_target) or current_target.Hp <= 0:
 		current_target = null
 		has_target = false

@@ -332,15 +332,15 @@ func _on_sell_pressed() -> void:
 				return
 	var abc = PlayerData.get_zb_data(page, number)
 
-	var Name = PlayerData.get_zb_data(page, number)["Data"]["名字"]
+	var item_name = PlayerData.get_zb_data(page, number)["Data"]["名字"]
 	if pz == "传说" or pz == "玄冥" or pz == "魂器" or pz == "神器" or pz == "邪灵":
-		_show_sell_confirm("确定要卖出" + str(pz) + "品质的" + str(Name) + "吗？（此装备已强化至+" + str(abc["强化等级"]) + "。）")
+		_show_sell_confirm("确定要卖出" + str(pz) + "品质的" + str(item_name) + "吗？（此装备已强化至+" + str(abc["强化等级"]) + "。）")
 		return
 	if Lx == "法宝":
-		_show_sell_confirm("确定要卖出" + str(Lx) + str(Name) + "吗？（此装备已强化至+" + str(abc["强化等级"]) + "。）")
+		_show_sell_confirm("确定要卖出" + str(Lx) + str(item_name) + "吗？（此装备已强化至+" + str(abc["强化等级"]) + "。）")
 		return
 	if abc["强化等级"] > 0:
-		_show_sell_confirm("确定要卖出" + str(Lx) + str(Name) + "吗？（此装备已强化至+" + str(abc["强化等级"]) + "。）")
+		_show_sell_confirm("确定要卖出" + str(Lx) + str(item_name) + "吗？（此装备已强化至+" + str(abc["强化等级"]) + "。）")
 		return
 
 	var get_value = AE.AllEquipment_[get_name_]["售价"]

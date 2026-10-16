@@ -125,7 +125,7 @@ func _on_death_count_timeout():
 	pass
 
 
-func Monster_Intelligence():
+func ai_think():
 	pass
 
 

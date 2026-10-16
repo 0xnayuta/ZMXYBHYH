@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	items.set_button_icon(load_(ItemName))
 	if TotalNum <= 1:
 		TotalNum = 1
-	var Name = AE.AllEquipment_[ItemName]["名字"]
+	var item_name = AE.AllEquipment_[ItemName]["名字"]
 	match AE.AllEquipment_[ItemName]["类型"]:
 		"道具", "消耗品":
 			if TotalNum == null:
@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 				items.total_number = TotalNum
 		"武器", "防具", "饰品", "神骨", "法宝", "时装", "头衔", "翅膀":
 			items.total_number = 0
-	title.text = str(Name) + " * " + str(TotalNum)
+	title.text = str(item_name) + " * " + str(TotalNum)
 	set_physics_process(false)
 
 

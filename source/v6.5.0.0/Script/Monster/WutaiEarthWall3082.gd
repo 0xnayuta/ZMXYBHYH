@@ -180,7 +180,7 @@ func _apply_direction() -> void:
 	base_damage_box.scale.x = 1.0
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if not _configured or death():
 		velocity = Vector2.ZERO
 		return

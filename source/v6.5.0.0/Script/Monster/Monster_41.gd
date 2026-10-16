@@ -71,7 +71,7 @@ func _ready() -> void:
 	Skill_2_CD = 0
 
 
-func Monster_Intelligence():
+func ai_think():
 	count_ += 1
 	if is_speed_up:
 		self.speed = 100

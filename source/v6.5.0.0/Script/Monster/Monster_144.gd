@@ -54,7 +54,7 @@ func _ready() -> void:
 	monster_144()
 
 
-func Monster_Intelligence():
+func ai_think():
 	if qb():
 		if qbtimer.is_stopped():
 			qbtimer.start(3)

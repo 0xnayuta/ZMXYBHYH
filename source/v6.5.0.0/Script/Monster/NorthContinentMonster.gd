@@ -242,7 +242,7 @@ func _apply_role_damage_vs_reduction(value: int) -> int:
 	return int(damage * (1.0 - _snow_guard_ratio)) if Time.get_ticks_msec() < _snow_guard_until else damage
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if (
 		death()
 		or is_attacking

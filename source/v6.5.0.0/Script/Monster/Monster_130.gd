@@ -162,7 +162,7 @@ func _make_state_animation(state_name: StringName, duration: float, loops: bool)
 	return animation
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if (
 		_skill_busy
 		or Hp <= 0

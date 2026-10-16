@@ -131,7 +131,7 @@ func _ready() -> void:
 	has_summoned_next = false
 
 
-func Monster_Intelligence():
+func ai_think():
 	var wdww_call_chance: float = 0.3
 	var wdww_cooldown: float = 8.0
 	var wdww_timer: float = 0.0
@@ -308,11 +308,11 @@ func call_attack3_bullet():
 
 
 func CallWDWW():
-	var Position: Vector2
+	var bullet_pos: Vector2
 	if direction >= 0:
-		Position = Vector2(30, -30)
+		bullet_pos = Vector2(30, -30)
 	else:
-		Position = Vector2(-30, -30)
+		bullet_pos = Vector2(-30, -30)
 	var scene = preload("res://Scene/Monster/Monster_14501_wdww.tscn")
 
 	if not ResourceLoader.exists("res://Scene/Monster/Monster_14501_wdww.tscn"):
@@ -320,7 +320,7 @@ func CallWDWW():
 		return
 	wdww = Global.instance_scene(scene, get_parent())
 	wdww.entity = self
-	wdww.position = Position
+	wdww.position = bullet_pos
 
 	await get_tree().create_timer(10.0).timeout
 	if is_instance_valid(wdww) and wdww != null:

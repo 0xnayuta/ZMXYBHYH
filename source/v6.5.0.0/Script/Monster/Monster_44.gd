@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 
 
-func Monster_Intelligence():
+func ai_think():
 	if Curecount % 60 == 0:
 		MonsterCall()
 	Curecount += 1

@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 
-func Monster_Intelligence():
+func ai_think():
 	if IsRush:
 		if CreateCount % 60 == 0:
 			AddShallow()

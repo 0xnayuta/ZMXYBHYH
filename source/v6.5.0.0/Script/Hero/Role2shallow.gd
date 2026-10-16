@@ -133,9 +133,9 @@ func AddXBZ():
 
 
 func AddJHSJ2():
-	var Position = Vector2()
-	Position = Vector2(0, -10)
-	var jhsj_2 = Global.addRoleBullet_(self, Position, false, "Role2Bullet6", objattackDic["jhsj"])
+	var bullet_pos = Vector2()
+	bullet_pos = Vector2(0, -10)
+	var jhsj_2 = Global.addRoleBullet_(self, bullet_pos, false, "Role2Bullet6", objattackDic["jhsj"])
 	jhsj_2.show_behind_parent = true
 
 

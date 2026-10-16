@@ -480,14 +480,14 @@ func ShovelWDZT():
 
 
 func AddShovelEffect1():
-	var Position = Vector2()
+	var bullet_pos = Vector2()
 	if PlayerDir:
-		Position = Vector2(35, 0)
+		bullet_pos = Vector2(35, 0)
 	else:
-		Position = Vector2(-35, 0)
-	Global.addRoleBullet_(self.Bullet, Position + position, !PlayerDir, "Role4Bullet3", objattackDic["mmw"])
+		bullet_pos = Vector2(-35, 0)
+	Global.addRoleBullet_(self.Bullet, bullet_pos + position, !PlayerDir, "Role4Bullet3", objattackDic["mmw"])
 	if _is_skill_awakened("mmw") and _is_skill_awaken_enabled("mmw"):
-		Global.addRoleBullet_(self.Bullet, Position + position, PlayerDir, "Role4Bullet3", objattackDic["mmw"])
+		Global.addRoleBullet_(self.Bullet, bullet_pos + position, PlayerDir, "Role4Bullet3", objattackDic["mmw"])
 
 
 func ADDMBYJ():
@@ -495,11 +495,11 @@ func ADDMBYJ():
 
 
 func CallWDWW():
-	var Position: Vector2
+	var bullet_pos: Vector2
 	if PlayerDir:
-		Position = Vector2(30, -30)
+		bullet_pos = Vector2(30, -30)
 	else:
-		Position = Vector2(-30, -30)
+		bullet_pos = Vector2(-30, -30)
 	if WDWW != null:
 		WDWW.queue_free()
 	var target_limit := (
@@ -509,7 +509,7 @@ func CallWDWW():
 	if targets.is_empty():
 		return
 	var Target: BaseMonster = targets[0]
-	WDWW = Global.create_monster(138, get_parent().get_parent().monster, position + Position) as Monster138
+	WDWW = Global.create_monster(138, get_parent().get_parent().monster, position + bullet_pos) as Monster138
 	if WDWW == null:
 		return
 	WDWW.SHp = Target.SHp * (0.25 + PlayerData.player_data["技能学习"]["技能9"]["等级"] * 0.02)

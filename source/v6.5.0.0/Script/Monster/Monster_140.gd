@@ -135,7 +135,7 @@ func _physics_process(delta: float) -> void:
 		ebol = 1
 
 
-func Monster_Intelligence():
+func ai_think():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
@@ -313,9 +313,9 @@ func CallBullet_2():
 func CallBullet_3():
 	for i in range(12):
 		var Bullet
-		var Position = Vector2(position.x + randi_range(-450, 500), -300)
+		var bullet_pos = Vector2(position.x + randi_range(-450, 500), -300)
 		Bullet = Global.add_bullet(
-			"Monster140Bullet3", self.bullet, false, 0.58, Position, "hit4", self.objattackDic["hit4"]
+			"Monster140Bullet3", self.bullet, false, 0.58, bullet_pos, "hit4", self.objattackDic["hit4"]
 		)
 		Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 		await get_tree().create_timer(0.3, false).timeout

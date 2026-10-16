@@ -308,14 +308,14 @@ func _onPressWhenDZ():
 		return
 	var Type := str(item_data.get("类型", ""))
 	var Have := str(item_data.get("所属", ""))
-	var Name := str(item_data.get("名字", ""))
-	if Type == "" or Have == "" or Name == "":
+	var item_name := str(item_data.get("名字", ""))
+	if Type == "" or Have == "" or item_name == "":
 		Global.add_message_show(Global.get_parent_(self, 7), "物品数据异常，无法参与打造！", 1.5, Vector2(500, 305))
 		return
 	var parent_ = Global.get_parent_(self, 7)
 	if not is_in_ldl_gz:
 		if Type != "道具":
-			Global.add_message_show(parent_, str(Name) + "不可以参与打造！", 1.5, Vector2(500, 305))
+			Global.add_message_show(parent_, str(item_name) + "不可以参与打造！", 1.5, Vector2(500, 305))
 			return
 		if Global.Forge_.zzs.get_children().size() <= 0:
 			if Have != "制作书":

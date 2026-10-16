@@ -88,7 +88,7 @@ func _ready() -> void:
 	wing.set_frame_and_progress(0, true)
 
 
-func Monster_Intelligence():
+func ai_think():
 	if self.current_ < 3:
 		wing.set_frame_and_progress(self.current_, true)
 	if not self.is_bounds:

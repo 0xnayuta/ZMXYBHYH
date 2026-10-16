@@ -93,7 +93,7 @@ func _ready() -> void:
 	Skill_2_CD = randi_range(4, 6)
 
 
-func Monster_Intelligence():
+func ai_think():
 	if IsRush:
 		if MonsterDirection:
 			velocity.x = 600

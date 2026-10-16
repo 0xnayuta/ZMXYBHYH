@@ -71,7 +71,7 @@ func _ready() -> void:
 	monster_72()
 
 
-func Monster_Intelligence():
+func ai_think():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
@@ -128,7 +128,7 @@ func do_hit_2():
 
 func CallMonsterBullet():
 	var BulletName = "Monster72Bullet"
-	var Position
+	var bullet_pos
 	var PositionList = [Vector2(0, 0), Vector2(0, -75), Vector2(0, 75)]
 	for i in PositionList:
 		Global.add_bullet(BulletName, self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"])

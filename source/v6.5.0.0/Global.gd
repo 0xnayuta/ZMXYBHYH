@@ -3481,11 +3481,12 @@ func add_reward_info(parent, position, List, UseItemName, UseNum):
 	return target
 
 
-func AddRewardBox(parent, Name, Num):
+func AddRewardBox(parent, item_id, Num):
 	if not RewardBox:
 		RewardBox = _load_scene("res://Scene/other_scene/reward_box_2.tscn")
 	var target = instance_scene(RewardBox, parent)
-	target.Name = Name
+	target.item_id = item_id
+	target.Name = item_id
 	target.Num = Num
 	return target
 
@@ -5525,8 +5526,8 @@ func ADDAllItemNum(List, Num, NumRange):
 	for i in List:
 		Dic[i] = {"Name": i, "Num": 0}
 	for i in range(Num):
-		var Name = List[randi_range(0, List.size() - 1)]
-		Dic[Name]["Num"] += NumRange
+		var item_name = List[randi_range(0, List.size() - 1)]
+		Dic[item_name]["Num"] += NumRange
 	var List_ = []
 	for i in Dic:
 		if int(Dic[i]["Num"]) == 0:
@@ -5545,8 +5546,8 @@ func GetAllItemNum(List, Num, NumRange):
 	for i in List:
 		Dic[i] = {"Name": i, "Num": 0}
 	for i in range(Num):
-		var Name = List[randi_range(0, List.size() - 1)]
-		Dic[Name]["Num"] += NumRange
+		var item_name = List[randi_range(0, List.size() - 1)]
+		Dic[item_name]["Num"] += NumRange
 	var List_ = []
 	for i in Dic:
 		if int(Dic[i]["Num"]) == 0:
@@ -5554,9 +5555,9 @@ func GetAllItemNum(List, Num, NumRange):
 	for i in List_:
 		Dic.erase(i)
 	for i in Dic:
-		var Name = i
+		var item_name = i
 		var Num_ = Dic[i]["Num"]
-		Dic[i] = {"Name": Name, "Value": Num_, "Prop": {}, "WX": [], "StrengthValue": 0}
+		Dic[i] = {"Name": item_name, "Value": Num_, "Prop": {}, "WX": [], "StrengthValue": 0}
 	var ll = []
 	for i in Dic:
 		ll.push_back(Dic[i])

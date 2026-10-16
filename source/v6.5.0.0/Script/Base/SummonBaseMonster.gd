@@ -326,7 +326,7 @@ func _physics_process(delta: float) -> void:
 
 	if not death() and not ShouldInSky and not is_be_attacking and not is_attacking:
 		if not is_limit_buff():
-			Monster_Intelligence()
+			ai_think()
 		elif IsScary:
 			when_scary()
 		else:
@@ -673,7 +673,7 @@ func _collect_targets_recursive(node: Node) -> void:
 		_collect_targets_recursive(child)
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if not is_instance_valid(current_target) or current_target.Hp <= 0:
 		current_target = null
 		stop_move()
@@ -1327,3 +1327,8 @@ func _on_calm_hit_timeout() -> void:
 
 func _on_remove_hurt_bl_timeout() -> void:
 	HurtBl = 1.0
+
+
+# 向后兼容别名 (Flash AS2 历史接口)
+func Monster_Intelligence() -> void:
+	ai_think()

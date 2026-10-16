@@ -85,7 +85,7 @@ func _ready() -> void:
 	Skill_3_CD = randi_range(15, 20)
 
 
-func Monster_Intelligence():
+func ai_think():
 	if is_attacking or is_using_skills or is_be_attacking:
 		return
 

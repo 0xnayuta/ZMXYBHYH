@@ -84,7 +84,7 @@ func _ready() -> void:
 	Skill_3_CD = 7
 
 
-func Monster_Intelligence():
+func ai_think():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
@@ -155,9 +155,9 @@ func CallBullet2():
 	var sp = 0.5 + Rolelevel * 0.01
 	for i in range(5):
 		var Bullet
-		var Position = Vector2(position.x + randi_range(-450, 500), -800)
+		var bullet_pos = Vector2(position.x + randi_range(-450, 500), -800)
 		Bullet = Global.add_bullet(
-			"Monster145Bullet2", self.bullet, false, sp, Position, "hit2", self.objattackDic["hit2"]
+			"Monster145Bullet2", self.bullet, false, sp, bullet_pos, "hit2", self.objattackDic["hit2"]
 		)
 		Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 		await get_tree().create_timer(0.5, false).timeout

@@ -2,8 +2,14 @@ extends TextureRect
 @onready var items: Button = $Items
 @onready var name_: Label = $Name
 
-var Name
+var item_id
 var Num
+
+var Name:
+	get:
+		return item_id
+	set(v):
+		item_id = v
 
 
 func _ready() -> void:
@@ -11,13 +17,13 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	items.set_button_icon(load_(Name))
+	items.set_button_icon(load_(item_id))
 	if Num == null:
 		items.total_number = 1
 	else:
 		items.total_number = Num
-	name_.text = AE.AllEquipment_[Name]["名字"]
-	var color = AE.AllEquipment_[Name]["颜色"]
+	name_.text = AE.AllEquipment_[item_id]["名字"]
+	var color = AE.AllEquipment_[item_id]["颜色"]
 	name_.add_theme_color_override("font_color", color)
 	name_.add_theme_color_override("font_outline_color", color)
 	set_physics_process(false)

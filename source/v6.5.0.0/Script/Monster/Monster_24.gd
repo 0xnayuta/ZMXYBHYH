@@ -134,7 +134,7 @@ func _physics_process(delta: float) -> void:
 				boos_4 = Global.create_monster(141, get_parent(), Vector2(700, 430))
 
 
-func Monster_Intelligence():
+func ai_think():
 	hit_name = "Fire"
 	if not is_set:
 		hide_heart()

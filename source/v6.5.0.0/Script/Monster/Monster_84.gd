@@ -136,7 +136,7 @@ func _ready() -> void:
 	monster_84()
 
 
-func Monster_Intelligence():
+func ai_think():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
@@ -236,24 +236,24 @@ func call_sfjmFire():
 
 
 func CallHL():
-	var Position: Vector2
+	var bullet_pos: Vector2
 	if MonsterDirection:
-		Position = Vector2(250, -35)
+		bullet_pos = Vector2(250, -35)
 	else:
-		Position = Vector2(-250, -35)
+		bullet_pos = Vector2(-250, -35)
 	var hl = Global.add_bullet(
-		"Monster84Bullet2", self.bullet, MonsterDirection, 1, Position + position, "hit4", self.objattackDic["hit4"]
+		"Monster84Bullet2", self.bullet, MonsterDirection, 1, bullet_pos + position, "hit4", self.objattackDic["hit4"]
 	)
 	hl.scale = Vector2(0.88, 0.88)
 
 
 func CallFL():
-	var Position: Vector2
+	var bullet_pos: Vector2
 	if MonsterDirection:
-		Position = Vector2(40, -30)
+		bullet_pos = Vector2(40, -30)
 	else:
-		Position = Vector2(-40, -30)
+		bullet_pos = Vector2(-40, -30)
 	var fl = Global.add_bullet(
-		"Monster84Bullet1", self.bullet, MonsterDirection, 1, Position + position, "hit5", self.objattackDic["hit5"]
+		"Monster84Bullet1", self.bullet, MonsterDirection, 1, bullet_pos + position, "hit5", self.objattackDic["hit5"]
 	)
 	fl.scale = Vector2(0.7, 0.7)

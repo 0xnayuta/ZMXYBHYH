@@ -137,7 +137,7 @@ func _ready() -> void:
 	Skill_5_CD = 25
 
 
-func Monster_Intelligence():
+func ai_think():
 	if MyChild != null:
 		Count += 1
 		if Count >= 900:

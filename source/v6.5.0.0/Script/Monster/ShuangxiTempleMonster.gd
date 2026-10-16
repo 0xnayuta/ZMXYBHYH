@@ -373,7 +373,7 @@ static func _build_frames_for_kind(kind: int) -> SpriteFrames:
 	return frames
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if _busy or death() or RoleProp.get_nearest_monster_target_position(global_position).x == null:
 		return
 	var distance := absf(float(RoleProp.get_nearest_monster_target_position(global_position).x) - position.x)

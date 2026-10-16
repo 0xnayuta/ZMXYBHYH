@@ -302,7 +302,7 @@ func _run_appearance() -> void:
 		_skill_ready_msec[skill_index] = now
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if (
 		not _appearance_complete
 		or _busy

@@ -89,7 +89,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 
 
-func Monster_Intelligence():
+func ai_think():
 	velocity.x = 0
 	if is_on_floor():
 		velocity.y = 0

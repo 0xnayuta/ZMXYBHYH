@@ -201,9 +201,9 @@ func RefreshName():
 	if ItemName == "" or not AE.AllEquipment_.has(ItemName):
 		RemoveNameAndNeed()
 		return
-	var Name = AE.AllEquipment_[ItemName]["名字"]
+	var item_name = AE.AllEquipment_[ItemName]["名字"]
 	var Color_ = AE.AllEquipment_[ItemName]["颜色"]
-	item_name.text = str(Name)
+	item_name.text = str(item_name)
 	item_name.add_theme_color_override("font_color", Color_)
 
 
@@ -218,13 +218,13 @@ func ADDBZPIC():
 	for idx in range(bz_list.size()):
 		var jewel_value: Variant = bz_list[idx]
 		var jewel: Dictionary = jewel_value if jewel_value is Dictionary else {}
-		var Name := str(jewel.get("名字", ""))
+		var item_name := str(jewel.get("名字", ""))
 		var data_value: Variant = jewel.get("Data", {})
 		var Data: Dictionary = data_value if data_value is Dictionary else {}
-		var ItemBox := _add_forge_item_box(bs_box, str(Name), 0, 1, [], Data, true, false)
+		var ItemBox := _add_forge_item_box(bs_box, str(item_name), 0, 1, [], Data, true, false)
 		if ItemBox == null or not is_instance_valid(ItemBox):
 			continue
-		var icon_path := "res://Art/BackPack/AllItems/%s.png" % str(Name)
+		var icon_path := "res://Art/BackPack/AllItems/%s.png" % str(item_name)
 		ItemBox.set("icon", ResourceLoader.load(icon_path) as Texture2D if ResourceLoader.exists(icon_path) else null)
 		ItemBox.ForgeBZID = idx
 		ItemBox.is_in_ldl_gz = true
@@ -270,9 +270,9 @@ func remove_infomation():
 		if not jewel_value is Dictionary:
 			continue
 		var jewel: Dictionary = jewel_value
-		var Name := str(jewel.get("名字", ""))
-		if Name != "" and AE.AllEquipment_.has(Name):
-			PlayerData.add_dj(Name, 1)
+		var item_name := str(jewel.get("名字", ""))
+		if item_name != "" and AE.AllEquipment_.has(item_name):
+			PlayerData.add_dj(item_name, 1)
 	bz_list.clear()
 	MemoryClass.保存游戏(Global.cd_path)
 

@@ -103,7 +103,7 @@ func _physics_process(delta: float) -> void:
 			my_shark.state = my_shark.State.Death
 
 
-func Monster_Intelligence():
+func ai_think():
 	if self.Hp <= 0:
 		if my_shark != null:
 			my_shark.Hp = -100

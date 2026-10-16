@@ -223,7 +223,7 @@ func is_alive_for_stage_clear() -> bool:
 	return not _transition_spawned
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	velocity = Vector2.ZERO
 
 

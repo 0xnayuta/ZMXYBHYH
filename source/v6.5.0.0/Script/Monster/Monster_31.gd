@@ -112,7 +112,7 @@ func _physics_process(delta: float) -> void:
 	get_death()
 
 
-func Monster_Intelligence():
+func ai_think():
 	get_death()
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true

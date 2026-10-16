@@ -136,7 +136,7 @@ func setup_skills():
 	Skill_3_CD = 3
 
 
-func Monster_Intelligence():
+func ai_think():
 	if current_target == null or not is_instance_valid(current_target) or current_target.Hp <= 0:
 		current_target = null
 		has_target = false

@@ -734,7 +734,7 @@ func _asset_root() -> String:
 	return ASSET_ROOT.path_join(str(source_id))
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	var target_position_value: Variant = _active_target_global_position()
 	if _busy or death() or target_position_value == null:
 		return

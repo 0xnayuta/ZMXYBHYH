@@ -83,7 +83,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 
-func Monster_Intelligence():
+func ai_think():
 	velocity.x = 0
 	velocity.y = 0
 	if Hp > 0:

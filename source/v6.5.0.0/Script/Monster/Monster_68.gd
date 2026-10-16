@@ -1,7 +1,7 @@
 extends BaseMonster
 class_name Monster68
 var Is_Stick = false
-var Position: Vector2
+var target_offset: Vector2
 var StickCount: int = 0
 var MaxStickCount: int = randi_range(6, 8)
 var CurrentStickCount: int = 0
@@ -43,19 +43,19 @@ func monster_67():
 
 
 func _ready() -> void:
-	Position = Vector2(randi_range(-10, 10), randi_range(-15, 15))
+	target_offset = Vector2(randi_range(-10, 10), randi_range(-15, 15))
 	super._ready()
 	monster_67()
 	Skill_1_CD = 0
 
 
-func Monster_Intelligence():
+func ai_think():
 	if Myfather == null:
 		Myfather = Global.create_monster(67, get_parent(), position)
 	if Is_Stick:
 		StickCount += 1
 		$BaseDamageBox/HurtBox/HurtBox.disabled = true
-		self.position = RoleProp.get_nearest_monster_target_position(global_position) + Position
+		self.position = RoleProp.get_nearest_monster_target_position(global_position) + target_offset
 		ShouldInSky = true
 		if StickCount % 60 == 0 and StickCount != 0:
 			CurrentStickCount += 1

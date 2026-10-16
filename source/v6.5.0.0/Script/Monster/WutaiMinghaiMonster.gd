@@ -328,7 +328,7 @@ static func _get_frames_for_model(model: int) -> SpriteFrames:
 	return frames
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if (
 		_busy
 		or death()

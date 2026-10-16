@@ -69,7 +69,7 @@ func _ready() -> void:
 	Skill_1_CD = 0
 
 
-func Monster_Intelligence():
+func ai_think():
 	get_monster_76()
 	if MyBrother != null:
 		self.def = 600

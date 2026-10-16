@@ -79,7 +79,7 @@ func _ready() -> void:
 	Should_FS = false
 
 
-func Monster_Intelligence():
+func ai_think():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	ReduceCount += 1
@@ -254,18 +254,18 @@ func _call_fs_deferred() -> void:
 
 
 func CallBullet2():
-	var Position
+	var bullet_pos
 	for i in range(randi_range(6, 10)):
 		if MonsterDirection:
-			Position = Vector2(-100, randi_range(-65, 35))
+			bullet_pos = Vector2(-100, randi_range(-65, 35))
 		else:
-			Position = Vector2(100, randi_range(-65, 35))
+			bullet_pos = Vector2(100, randi_range(-65, 35))
 		Global.add_bullet(
 			"Monster63Bullet1",
 			self.bullet,
 			!MonsterDirection,
 			1,
-			Position + position,
+			bullet_pos + position,
 			"hit2",
 			self.objattackDic["hit2"]
 		)

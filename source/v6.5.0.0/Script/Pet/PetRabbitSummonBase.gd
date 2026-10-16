@@ -187,7 +187,7 @@ func try_use_skills() -> void:
 		do_rabbit_jifeng()
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if is_attacking or is_be_attacking:
 		return
 	if not is_instance_valid(current_target) or current_target.Hp <= 0:

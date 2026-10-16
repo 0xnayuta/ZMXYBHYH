@@ -55,7 +55,7 @@ func _ready() -> void:
 	Skill_1_CD = 5
 
 
-func Monster_Intelligence():
+func ai_think():
 	var role_position_x = RoleProp.get_nearest_monster_target_position(global_position).x
 	if role_position_x == null:
 		has_target = false

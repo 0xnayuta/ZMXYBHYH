@@ -409,7 +409,7 @@ func _body_animation_offset(state_name: StringName) -> Vector2:
 	return _body_registration_offset()
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if _skill_busy or Time.get_ticks_msec() < _attack_recovery_until_msec or Hp <= 0 or RoleProp.SourcePlayer == null:
 		return
 	var target := RoleProp.SourcePlayer as Node2D

@@ -119,7 +119,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2(FLY_SPEED * _fly_direction, 0.0)
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if removed or death():
 		return
 	_update_flight_direction()

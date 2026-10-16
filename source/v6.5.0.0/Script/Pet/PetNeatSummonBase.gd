@@ -138,7 +138,7 @@ func _can_use_neat_skill(skill_id: String) -> bool:
 	return _has_neat_skill(skill_id) and Mp >= _skill_cost_neat(skill_id)
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if is_attacking or is_be_attacking:
 		return
 	if not is_instance_valid(current_target) or current_target.Hp <= 0:

@@ -118,7 +118,7 @@ func _ready() -> void:
 	Skill_4_CD = 0
 
 
-func Monster_Intelligence():
+func ai_think():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
@@ -278,9 +278,9 @@ func CallMUbei():
 
 func CallWGWbULLET():
 	for i in range(randi_range(4, 6)):
-		var Position = Vector2(self.position.x, self.position.y) + Vector2(0, randi_range(-180, 80))
+		var bullet_pos = Vector2(self.position.x, self.position.y) + Vector2(0, randi_range(-180, 80))
 		var bullet_ = Global.add_bullet(
-			"Monster61WGW", self.bullet, MonsterDirection, 1, Position, "skill_1_4", self.objattackDic["skill_1_4"]
+			"Monster61WGW", self.bullet, MonsterDirection, 1, bullet_pos, "skill_1_4", self.objattackDic["skill_1_4"]
 		)
 		await get_tree().create_timer(0.1, false).timeout
 
@@ -291,9 +291,9 @@ func CallTSWBullet():
 		Vector2(-180, 0) + PP, Vector2(0, 0) + PP, Vector2(180, 0) + PP, Vector2(-360, 0) + PP, Vector2(360, 0) + PP
 	]
 	for i in range(5):
-		var Position = PositionList[i]
+		var bullet_pos = PositionList[i]
 		var bullet_ = Global.add_bullet(
-			"Monster61TSw", self.bullet, MonsterDirection, 1.7, Position, "skill_1_3", self.objattackDic["skill_1_3"]
+			"Monster61TSw", self.bullet, MonsterDirection, 1.7, bullet_pos, "skill_1_3", self.objattackDic["skill_1_3"]
 		)
 		if bullet_:
 			bullet_.scale = Vector2(1.5, 1.5)

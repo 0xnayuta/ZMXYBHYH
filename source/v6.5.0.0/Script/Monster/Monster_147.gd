@@ -110,7 +110,7 @@ func _ready() -> void:
 	Skill_3_CD = randi_range(8, 13)
 
 
-func Monster_Intelligence():
+func ai_think():
 	if MyChild != null:
 		Count += 1
 		if Count >= 900:

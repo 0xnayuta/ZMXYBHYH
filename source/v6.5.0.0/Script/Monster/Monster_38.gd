@@ -54,7 +54,7 @@ func _ready() -> void:
 	monster_38()
 
 
-func Monster_Intelligence():
+func ai_think():
 	if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
 		if count % 180 == 0:
 			attack_target()

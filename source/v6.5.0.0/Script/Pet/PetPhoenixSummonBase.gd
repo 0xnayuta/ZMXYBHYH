@@ -352,7 +352,7 @@ func _attack_dic(power: int, hurt_back: Array, kind: String, protect: int) -> Di
 	return {"power": power, "hurtBack": hurt_back, "attackKind": kind, "HitProtect": protect}
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if _attack_lock or is_attacking:
 		return
 	if not is_instance_valid(current_target) or current_target.Hp <= 0:

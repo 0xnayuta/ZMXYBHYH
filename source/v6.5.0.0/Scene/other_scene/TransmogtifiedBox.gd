@@ -48,16 +48,18 @@ func _on_change_pressed() -> void:
 	var Lx = AE.AllEquipment_[SelfName_]["类型"]
 	if Lx == "时装":
 		Lx = "防具"
-	var Name = AE.AllEquipment_[SelfName_]["名字"]
+	var item_name = AE.AllEquipment_[SelfName_]["名字"]
 	if cdorxx.text == "穿戴":
 		if AlreadyHave(SelfName_):
 			PlayerData.player_data["幻化列表"][Lx] = SelfName_
-			Global.add_message_show(Global.Windows_, str(Lx) + "幻化为：" + str(Name) + "！！", 1.5, Vector2(470, 295))
+			Global.add_message_show(Global.Windows_, str(Lx) + "幻化为：" + str(item_name) + "！！", 1.5, Vector2(470, 295))
 		else:
-			Global.add_message_show(Global.Windows_, "您还未获得过" + str(Name) + "！！", 1.5, Vector2(470, 295))
+			Global.add_message_show(Global.Windows_, "您还未获得过" + str(item_name) + "！！", 1.5, Vector2(470, 295))
 	elif cdorxx.text == "卸下":
 		PlayerData.player_data["幻化列表"][Lx] = ""
-		Global.add_message_show(Global.Windows_, "取消" + str(Lx) + ":" + str(Name) + "的幻化！！", 1.5, Vector2(470, 295))
+		Global.add_message_show(
+			Global.Windows_, "取消" + str(Lx) + ":" + str(item_name) + "的幻化！！", 1.5, Vector2(470, 295)
+		)
 	Transmogrified_.onEqchange()
 	if is_instance_valid(RoleProp.SourcePlayer) and RoleProp.SourcePlayer.has_method("onEqchange"):
 		RoleProp.SourcePlayer.onEqchange()

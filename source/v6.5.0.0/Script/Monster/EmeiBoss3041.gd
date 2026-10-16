@@ -188,7 +188,7 @@ func _play_body_action(action_name: StringName) -> void:
 	_body_stream = stream
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if _busy or death() or RoleProp.get_nearest_monster_target_position(global_position).x == null:
 		return
 	var distance := absf(float(RoleProp.get_nearest_monster_target_position(global_position).x) - position.x)

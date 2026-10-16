@@ -288,7 +288,7 @@ func _play_frames(animation_name: StringName) -> void:
 	mr_ani.play(animation_name)
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if _busy or _dead_started or death():
 		return
 	var now_msec := Time.get_ticks_msec()

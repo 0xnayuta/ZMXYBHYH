@@ -98,7 +98,7 @@ func _physics_process(delta: float) -> void:
 		Stop()
 
 
-func Monster_Intelligence():
+func ai_think():
 	if is_BeCall:
 		velocity.x = 0
 		self.modulate = Color(1, 1, 1, 0.0)

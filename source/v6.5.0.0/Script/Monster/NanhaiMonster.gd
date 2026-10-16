@@ -479,7 +479,7 @@ static func _get_frames_for_model(model: int) -> SpriteFrames:
 	return frames
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if _busy or death() or RoleProp.get_nearest_monster_target_position(global_position).x == null:
 		return
 	var target_x := float(RoleProp.get_nearest_monster_target_position(global_position).x)

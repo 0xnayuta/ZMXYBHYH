@@ -146,7 +146,7 @@ func _add_method_key(animation: Animation, time: float, method_name: StringName)
 	)
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if IsLimitBuff():
 		_skill_busy = false
 		velocity.x = 0

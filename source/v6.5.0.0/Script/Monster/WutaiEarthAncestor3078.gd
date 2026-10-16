@@ -252,7 +252,7 @@ func _create_stream(folder: String, count: int, offset: Vector2, looped: bool, a
 	return stream
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	velocity = Vector2.ZERO
 	if (
 		_busy

@@ -221,7 +221,7 @@ func _attack_entry(attack_name: StringName) -> Dictionary:
 	return {}
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if _configured and not death():
 		velocity = Vector2(speed * 10.0 * _move_direction, 0.0)
 

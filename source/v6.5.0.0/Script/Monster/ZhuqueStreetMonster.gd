@@ -310,7 +310,7 @@ func _visual_offset(animation_name: StringName) -> Vector2:
 	return offset
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if _skill_busy or cannotchangestatewhenattorbeatt() or death():
 		return
 	if RoleProp.get_nearest_monster_target_position(global_position).x == null:

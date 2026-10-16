@@ -98,7 +98,7 @@ func _physics_process(delta: float) -> void:
 			$right.start()
 
 
-func Monster_Intelligence():
+func ai_think():
 	if not is_set:
 		if hand_1 == null:
 			var position_left = Vector2(self.position.x - 115, self.position.y - 45)

@@ -309,7 +309,7 @@ func is_alive_for_stage_clear() -> bool:
 	)
 
 
-func Monster_Intelligence():
+func ai_think():
 	if is_resurrecting or resurrection_completed or ShouldRelive:
 		return
 

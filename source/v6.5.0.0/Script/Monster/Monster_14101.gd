@@ -125,7 +125,7 @@ func _physics_process(delta: float) -> void:
 		bullet.scale = Vector2(2, 2)
 
 
-func Monster_Intelligence():
+func ai_think():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
@@ -221,9 +221,9 @@ func state_hurt():
 func CallBullet_1():
 	for i in range(8):
 		var Bullet
-		var Position = Vector2(position.x + randi_range(-450, 500), -300)
+		var bullet_pos = Vector2(position.x + randi_range(-450, 500), -300)
 		Bullet = Global.add_bullet(
-			"Monster141Bullet3", self.bullet, false, 0.15, Position, "hit3", self.objattackDic["hit3"]
+			"Monster141Bullet3", self.bullet, false, 0.15, bullet_pos, "hit3", self.objattackDic["hit3"]
 		)
 		var lasthp = (float(SHp) - float(Hp)) / float(SHp)
 		var scalevalue = float(1 + lasthp)

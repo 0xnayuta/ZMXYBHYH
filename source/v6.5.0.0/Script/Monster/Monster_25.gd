@@ -55,7 +55,7 @@ func _ready() -> void:
 	hit_name = "hit1"
 
 
-func Monster_Intelligence():
+func ai_think():
 	if not is_set:
 		monster_25()
 		is_set = true

@@ -418,7 +418,7 @@ func _add_death_method(animation: Animation) -> void:
 	)
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	var role_x_value = RoleProp.get_nearest_monster_target_position(global_position).x
 	if role_x_value == null:
 		return

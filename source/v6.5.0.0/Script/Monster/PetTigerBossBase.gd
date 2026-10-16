@@ -178,7 +178,7 @@ func _attack_dic(power: int, hurt_back: Array, kind: String, protect: int) -> Di
 	}
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if RoleProp.get_nearest_monster_target_position(global_position).x == null:
 		normal_state()
 		return

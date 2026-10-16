@@ -104,7 +104,7 @@ func interrupt_movement_for_control() -> void:
 	velocity_ = Vector2.ZERO
 
 
-func Monster_Intelligence():
+func ai_think():
 	if is_Fly:
 		self.attackRange = 300
 	else:
@@ -345,7 +345,7 @@ func check_eggs():
 	if not is_eggs:
 		self.def = 80
 		self.mdef = 80
-		Monster_Intelligence()
+		ai_think()
 	else:
 		is_Fly = false
 		velocity.x = 0

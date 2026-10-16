@@ -148,7 +148,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 
-func Monster_Intelligence():
+func ai_think():
 	if not Call_stage:
 		var pp = get_parent().get_parent()
 		if not pp is Lhhj and not pp is LevelZLDHDGQ:

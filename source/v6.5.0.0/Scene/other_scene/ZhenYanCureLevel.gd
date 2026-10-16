@@ -49,11 +49,11 @@ func SetLevelInfo():
 
 func SetNeedAndLhInfo():
 	var Level = int(PlayerData.player_data[RealName][str(Father.CurrentNum)]["Level"])
-	var Name = PlayerData.player_data[RealName][str(Father.CurrentNum)]["InName"]
+	var item_name = PlayerData.player_data[RealName][str(Father.CurrentNum)]["InName"]
 	var MaterialNeedValue = int(Level / 5) + 1
 	var NeedLh = int(Level / 5) * 1000 + 1000
-	var CurrentNum = int(PlayerData.get_item_data(Name))
-	need_num.text = str(PlayerData.get_item_data(Name)) + "/" + str(MaterialNeedValue)
+	var CurrentNum = int(PlayerData.get_item_data(item_name))
+	need_num.text = str(PlayerData.get_item_data(item_name)) + "/" + str(MaterialNeedValue)
 	if CurrentNum >= MaterialNeedValue:
 		need_num.add_theme_color_override("font_color", "00ff00")
 	else:
@@ -72,10 +72,10 @@ func SetBoxInfo():
 
 func _on_cure_level_pressed() -> void:
 	var Level = int(PlayerData.player_data[RealName][str(Father.CurrentNum)]["Level"])
-	var Name = PlayerData.player_data[RealName][str(Father.CurrentNum)]["InName"]
+	var item_name = PlayerData.player_data[RealName][str(Father.CurrentNum)]["InName"]
 	var MaterialNeedValue = int(Level / 5) + 1
 	var NeedLh = int(Level / 5) * 1000 + 1000
-	var CurrentNum := int(PlayerData.get_item_data(Name))
+	var CurrentNum := int(PlayerData.get_item_data(item_name))
 	if Level >= 50:
 		Global.add_message_show(Global.Windows_, "已满级！！", 1.5, Vector2(500, 305))
 		return
@@ -86,6 +86,6 @@ func _on_cure_level_pressed() -> void:
 		Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
 		return
 	PlayerData.spend_soul(NeedLh)
-	PlayerData.remove_dj(Name, PlayerData.get_dj_page(Name), MaterialNeedValue)
+	PlayerData.remove_dj(item_name, PlayerData.get_dj_page(item_name), MaterialNeedValue)
 	PlayerData.player_data[RealName][str(Father.CurrentNum)]["Level"] += 1
 	Global.add_message_show(Global.Windows_, "升级成功！！", 1.5, Vector2(500, 305))

@@ -145,7 +145,7 @@ func _on_rd_area_entered(area):
 	$reset_hd.start()
 
 
-func Monster_Intelligence():
+func ai_think():
 	if Skill_1_CD <= 0:
 		use_Skill_1()
 

@@ -134,7 +134,7 @@ func _physics_process(delta: float) -> void:
 	little_blood_bar_control()
 
 	if not death() and not is_attacking:
-		Monster_Intelligence()
+		ai_think()
 
 	if not death():
 		if is_attacking:
@@ -218,7 +218,7 @@ func search_for_targets():
 		move_direction = 0
 
 
-func Monster_Intelligence():
+func ai_think():
 	if not current_target or not is_instance_valid(current_target):
 		idle_behavior()
 		return
@@ -449,3 +449,8 @@ func reset_attack_state():
 			mr_player.play("walk")
 		else:
 			mr_player.play("wait")
+
+
+# 向后兼容别名 (Flash AS2 历史接口)
+func Monster_Intelligence() -> void:
+	ai_think()

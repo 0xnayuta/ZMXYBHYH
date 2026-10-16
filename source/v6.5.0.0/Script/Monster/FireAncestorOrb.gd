@@ -221,7 +221,7 @@ func _play_frames(action_name: StringName) -> void:
 	mr_ani.play(action_name)
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	pass
 
 

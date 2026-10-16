@@ -213,7 +213,7 @@ func _run_appearance() -> void:
 	mr_player.play(&"wait")
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	_enforce_source_state()
 	if (
 		not _appearance_complete

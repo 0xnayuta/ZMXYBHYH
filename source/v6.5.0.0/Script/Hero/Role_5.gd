@@ -614,12 +614,12 @@ func _prepare_ltjz_action() -> bool:
 func SlqFly():
 	velocity.x = 0
 	velocity.y = 0
-	var Position = Vector2()
+	var bullet_pos = Vector2()
 	if PlayerDir:
-		Position = Vector2(100, -150)
+		bullet_pos = Vector2(100, -150)
 	else:
-		Position = Vector2(-100, -150)
-	var slq = Global.addRoleBullet_(self.Bullet, Position + position, PlayerDir, "Role5Bullet1", objattackDic["slq"])
+		bullet_pos = Vector2(-100, -150)
+	var slq = Global.addRoleBullet_(self.Bullet, bullet_pos + position, PlayerDir, "Role5Bullet1", objattackDic["slq"])
 	slq.scale = Vector2(1.4, 1.6)
 	velocity.y = -600
 
@@ -709,12 +709,12 @@ func ChangexyqHit():
 
 
 func CallBullet2():
-	var Position: Vector2
+	var bullet_pos: Vector2
 	if PlayerDir:
-		Position = Vector2(260, 180)
+		bullet_pos = Vector2(260, 180)
 	else:
-		Position = Vector2(-260, 180)
-	var llrd = Global.addRoleBullet_(self.Bullet, Position + position, false, "Role5Bullet2", objattackDic["llrd"])
+		bullet_pos = Vector2(-260, 180)
+	var llrd = Global.addRoleBullet_(self.Bullet, bullet_pos + position, false, "Role5Bullet2", objattackDic["llrd"])
 	llrd.scale = Vector2(1.5, 1.5)
 
 

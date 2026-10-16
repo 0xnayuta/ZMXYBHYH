@@ -122,7 +122,7 @@ func _ready() -> void:
 	Skill_4_CD = 0
 
 
-func Monster_Intelligence():
+func ai_think():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 

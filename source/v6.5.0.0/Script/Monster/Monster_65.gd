@@ -130,7 +130,7 @@ func _replace_body_stream(action: StringName) -> void:
 	_body_stream = stream
 
 
-func Monster_Intelligence():
+func ai_think():
 	if Is_Top:
 		if not Is_Drop:
 			velocity.y = -5

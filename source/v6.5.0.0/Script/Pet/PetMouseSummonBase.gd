@@ -166,7 +166,7 @@ func _can_use_mouse_skill(skill_id: String) -> bool:
 	return _has_skill(skill_id) and Mp >= _skill_cost(skill_id)
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if is_attacking or is_be_attacking:
 		return
 	if not is_instance_valid(current_target) or current_target.Hp <= 0:

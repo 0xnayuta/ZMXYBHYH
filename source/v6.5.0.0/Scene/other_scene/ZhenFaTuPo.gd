@@ -32,12 +32,12 @@ func _physics_process(delta: float) -> void:
 
 
 func SetItemPic():
-	var Name = "zftps"
+	var item_name = "zftps"
 	item.is_in_hhgz = true
-	item.set_button_icon(load_(Name))
+	item.set_button_icon(load_(item_name))
 	item.qh_level = 0
 	item.wx = []
-	item.EQ_prop = AE.AllEquipment_[Name]
+	item.EQ_prop = AE.AllEquipment_[item_name]
 
 
 func load_(name_):
@@ -128,11 +128,11 @@ func SetSkillInfo():
 
 func SetNeedAndLhInfo():
 	var Level = PlayerData.player_data[RealName]["Level"]
-	var Name = "zftps"
+	var item_name = "zftps"
 	var MaterialNeedValue = int(Level) * 10 + 10
 	var NeedLh = int(Level) * 10000 + 1000
-	var CurrentNum = int(PlayerData.get_item_data(Name))
-	need.text = str(PlayerData.get_item_data(Name)) + "/" + str(MaterialNeedValue)
+	var CurrentNum = int(PlayerData.get_item_data(item_name))
+	need.text = str(PlayerData.get_item_data(item_name)) + "/" + str(MaterialNeedValue)
 	if CurrentNum >= MaterialNeedValue:
 		need.add_theme_color_override("font_color", "00ff00")
 	else:
@@ -153,10 +153,10 @@ func CheckFullLevel():
 
 func _on_tupo_pressed() -> void:
 	var Level = PlayerData.player_data[RealName]["Level"]
-	var Name = "zftps"
+	var item_name = "zftps"
 	var MaterialNeedValue = int(Level) * 10 + 10
 	var NeedLh = int(Level) * 10000 + 1000
-	var CurrentNum := int(PlayerData.get_item_data(Name))
+	var CurrentNum := int(PlayerData.get_item_data(item_name))
 	if Level >= 10:
 		Global.add_message_show(Global.Windows_, "阵法已满级！！", 1.5, Vector2(500, 305))
 		return
@@ -170,6 +170,6 @@ func _on_tupo_pressed() -> void:
 		Global.add_message_show(Global.Windows_, "还有阵法未达到指定要求！！", 1.5, Vector2(500, 305))
 		return
 	PlayerData.spend_soul(NeedLh)
-	PlayerData.remove_dj(Name, PlayerData.get_dj_page(Name), MaterialNeedValue)
+	PlayerData.remove_dj(item_name, PlayerData.get_dj_page(item_name), MaterialNeedValue)
 	PlayerData.player_data[RealName]["Level"] += 1
 	Global.add_message_show(Global.Windows_, "阵法突破成功！！", 1.5, Vector2(500, 305))

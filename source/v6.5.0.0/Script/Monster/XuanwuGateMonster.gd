@@ -469,7 +469,7 @@ func _disable_death_collisions() -> void:
 	set_deferred("collision_mask", 0)
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if _skill_busy or cannotchangestatewhenattorbeatt() or death():
 		return
 	if RoleProp.get_nearest_monster_target_position(global_position).x == null:

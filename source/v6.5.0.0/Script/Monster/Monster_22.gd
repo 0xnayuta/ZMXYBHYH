@@ -109,7 +109,7 @@ func _physics_process(delta: float) -> void:
 				boss_2 = Global.create_monster(23, get_parent(), Vector2(self.position.x, 330))
 
 
-func Monster_Intelligence():
+func ai_think():
 	hit_name = "hit1"
 	if Hp > 0:
 		if moving_left:

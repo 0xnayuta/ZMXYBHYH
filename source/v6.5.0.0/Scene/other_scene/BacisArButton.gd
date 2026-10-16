@@ -1,7 +1,7 @@
 extends TextureButton
 
 @onready var my_num: Label = $MyNum
-@onready var Name: Label = $InfoBox/Name
+@onready var name_label: Label = $InfoBox/Name
 @onready var level_and_role: Label = $InfoBox/LevelAndRole
 @onready var time: Label = $InfoBox/Time
 
@@ -18,7 +18,7 @@ func SetNormalInfo() -> void:
 	var archive_data: Dictionary = MemoryClass.提前数据(_archive_path(MyNum))
 	var role_id: int = int(archive_data.get("Myself", 0))
 	if role_id < 1 or role_id > 6:
-		Name.text = ""
+		name_label.text = ""
 		time.text = ""
 		level_and_role.text = "空存档"
 		return
@@ -31,7 +31,7 @@ func SetNormalInfo() -> void:
 			MemoryClass.repair_archive_time(MyNum, archive_time)
 	var archive_name: String = str(metadata.get("name", ""))
 	time.text = archive_time
-	Name.text = "名字：" + archive_name if archive_name != "" else ""
+	name_label.text = "名字：" + archive_name if archive_name != "" else ""
 	level_and_role.text = "Lv：" + str(MemoryClass.得到数据(_archive_path(MyNum))) + "    " + _role_name(role_id)
 
 

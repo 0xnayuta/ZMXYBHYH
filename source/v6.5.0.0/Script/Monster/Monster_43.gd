@@ -102,7 +102,7 @@ func do_hit_4():
 	is_attacking = false
 
 
-func Monster_Intelligence():
+func ai_think():
 	if Hp < SHp * 0.8:
 		if not firstdoor:
 			do_hit_3()

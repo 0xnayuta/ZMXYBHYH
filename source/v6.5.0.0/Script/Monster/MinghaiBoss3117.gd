@@ -174,7 +174,7 @@ func _play_body_action(action_name: StringName) -> void:
 	_body_stream = stream
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if (
 		_busy
 		or death()

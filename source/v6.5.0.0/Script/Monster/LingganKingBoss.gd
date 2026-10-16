@@ -249,7 +249,7 @@ static func _append_last_stream_frame(stream: StreamedPngEffect) -> void:
 	stream.frame_margins.append(stream.frame_margins.back())
 
 
-func Monster_Intelligence() -> void:
+func ai_think() -> void:
 	if _busy or death() or RoleProp.get_nearest_monster_target_position(global_position).x == null:
 		return
 	var distance := absf(float(RoleProp.get_nearest_monster_target_position(global_position).x) - position.x)

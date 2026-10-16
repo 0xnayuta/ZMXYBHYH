@@ -98,7 +98,7 @@ func _ready() -> void:
 	Skill_4_CD = 0
 
 
-func Monster_Intelligence():
+func ai_think():
 	if Dog == null and not CallDog:
 		Dog = Global.create_monster(72, get_parent(), position)
 		Dog.SHp = 70000

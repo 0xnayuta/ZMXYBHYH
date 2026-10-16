@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
 		self.CannotAttract = true
 
 
-func Monster_Intelligence():
+func ai_think():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
@@ -94,7 +94,7 @@ func Monster_Intelligence():
 				if float(Hp) / float(SHp) <= 0.7:
 					ChangeBody_()
 				elif not is_be_attacking:
-					super.Monster_Intelligence()
+					super.ai_think()
 			else:
 				$BaseDamageBox/HurtBox.set_collision_mask_value(12, false)
 				$BaseDamageBox/HurtBox.set_collision_mask_value(7, false)
