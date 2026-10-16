@@ -183,7 +183,7 @@ func _ready() -> void:
 	get_tree().paused = false
 	PlayerData.player_data["Map_num"] = 4
 	PlayerData.player_data["HeavenMap_num"] = 4
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 	Global.is_Mpo = false
 	Global.is_ice = false
 	Global.is_poision = false
@@ -272,7 +272,7 @@ func _on_hdzm_pressed() -> void:
 
 
 func _on_memory_class_pressed() -> void:
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 	Global.add_message_show(get_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
 
 

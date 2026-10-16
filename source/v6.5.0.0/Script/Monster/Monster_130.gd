@@ -398,4 +398,4 @@ func _try_unlock_pet_rabbit() -> void:
 	if not PlayerData.has_method("unlock_pet_rabbit") or not PlayerData.unlock_pet_rabbit():
 		return
 	Global.add_message_show(Global.Windows_, "击败嫦娥，成功解锁宠物月兔！", 2.0, Vector2(500, 305))
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)

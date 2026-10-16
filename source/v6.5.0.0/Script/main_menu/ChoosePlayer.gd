@@ -195,11 +195,11 @@ func _on_qued_pressed() -> void:
 		return
 
 	PlayerData.player_data["Myself"] = current_choose
-	if not MemoryClass.保存游戏(Global.cd_path):
+	if not MemoryClass.save_game(Global.cd_path):
 		Global.add_message_show(self, "存档保存失败，请重试", 1.5, Vector2(470, 340))
 		return
 	await Global.begin_archive_session()
-	Global.userGlobal.gotoMap()
+	Global.change_scene("res://Scene/main_menu/Map_0.tscn")
 
 
 func _update_archive_time() -> void:

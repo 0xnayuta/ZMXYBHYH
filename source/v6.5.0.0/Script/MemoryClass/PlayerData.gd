@@ -4695,11 +4695,6 @@ func check_pass(Local):
 
 
 ## [兼容代理] 保持旧接口兼容
-func GetzbData(page: int, local: int):
-	return get_zb_data(page, local)
-
-
-## [兼容代理] 保持旧接口兼容
 func ChekEqzb(Type, need_):
 	return check_eq_zb(Type, need_)
 
@@ -4710,18 +4705,8 @@ func checkHaveZB(need_: String):
 
 
 ## [兼容代理] 保持旧接口兼容
-func CheckHaveWX(need_, wx):
-	return check_have_wx(need_, wx)
-
-
-## [兼容代理] 保持旧接口兼容
 func GetAllItem():
 	return get_all_item()
-
-
-## [兼容代理] 保持旧接口兼容
-func CheckWXNUM():
-	return check_wx_num()
 
 
 ## [兼容代理] 保持旧接口兼容
@@ -4732,16 +4717,6 @@ func get_mostLevel(need_):
 ## [兼容代理] 保持旧接口兼容
 func CheckCanUsePage(Target):
 	return check_can_use_page(Target)
-
-
-## [兼容代理] 保持旧接口兼容
-func CheckFashionClothes(NeedName: String):
-	return check_fashion_clothes(NeedName)
-
-
-## [兼容代理] 保持旧接口兼容
-func CheckNextDay():
-	return check_next_day()
 
 
 ## [兼容代理] 保持旧接口兼容

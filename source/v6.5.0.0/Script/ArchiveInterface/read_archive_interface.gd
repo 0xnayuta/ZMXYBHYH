@@ -280,7 +280,7 @@ func _prepare_cloud_upload_zip() -> Dictionary:
 		var archive_data: Dictionary = archive["data"]
 		if str(archive_data.get(CLOUD_SAVE_UID_KEY, "")).strip_edges().is_empty():
 			archive_data[CLOUD_SAVE_UID_KEY] = cloud_user_id
-			if not MemoryClass.安全写入存档(str(archive["path"]), archive_data):
+			if not MemoryClass.safe_write_archive(str(archive["path"]), archive_data):
 				return {
 					"ok": false,
 					"message": "存档%d绑定账号失败，请重试" % int(archive["number"]),
@@ -342,7 +342,7 @@ func _collect_local_cloud_archives() -> Array[Dictionary]:
 		if match_result == null:
 			continue
 		var archive_path := "user://" + file_name
-		var archive_data: Dictionary = MemoryClass.提前数据(archive_path)
+		var archive_data: Dictionary = MemoryClass.peek_archive_data(archive_path)
 		var role_id := int(archive_data.get("Myself", 0))
 		if role_id < 1 or role_id > 6:
 			continue
@@ -584,7 +584,7 @@ func _import_cloud_save_zip(path: String) -> Dictionary:
 	var largest_archive_number := 0
 	for archive in imported_archives:
 		var target_path := "user://" + str(archive["name"])
-		if not MemoryClass.安全写入存档(target_path, archive["data"]):
+		if not MemoryClass.safe_write_archive(target_path, archive["data"]):
 			return {"ok": false, "message": "存档%d写入失败，请重试" % int(archive["number"])}
 		imported_count += 1
 		largest_archive_number = maxi(largest_archive_number, int(archive["number"]))
@@ -654,7 +654,7 @@ func _on_delete_pressed() -> void:
 func remove_data_():
 	remove_data()
 	var archive_path: String = "user://MyAr_" + cd_number.text + ".json"
-	if not MemoryClass.安全写入存档(archive_path, Initialized_Data):
+	if not MemoryClass.safe_write_archive(archive_path, Initialized_Data):
 		Global.add_message_show(self, "存档重置失败，请重试", 1.5, Vector2(470, 300))
 		return
 	AddAr()

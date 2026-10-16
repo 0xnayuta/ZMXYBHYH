@@ -80,7 +80,7 @@ func _on_return_map_pressed() -> void:
 	Global.is_DeadLink = false
 	if Global.CurrentLevel == "镇妖塔":
 		Global.change_scene("res://Scene/main_menu/Map_0.tscn")
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 		return
 	match int(PlayerData.player_data["Map_num"]):
 		1:
@@ -109,7 +109,7 @@ func _on_return_map_pressed() -> void:
 				Global.change_scene("res://Scene/main_menu/Map_9.tscn")
 		_:
 			Global.change_scene("res://Scene/main_menu/Map_0.tscn")
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 var _is_rechallenging := false
@@ -144,13 +144,13 @@ func load_(name_):
 func _on_js_pressed() -> void:
 	text.text = str(textlist4[randi_range(0, textlist4.size() - 1)])
 	PlayerData.add_zb("xczg", 0, {})
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 	player.play("dh_2")
 
 
 func _on_yjjj_pressed() -> void:
 	PlayerData.player_data["zyforever"] = true
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 	text.text = str(textlist3[randi_range(0, textlist3.size() - 1)])
 	player.play("dh_3")
 

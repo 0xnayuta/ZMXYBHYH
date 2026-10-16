@@ -148,7 +148,7 @@ func _ready() -> void:
 	RoleProp.ws_value = 0
 
 	if not Global.cd_path.is_empty():
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 	MemoryClass.main_dq()
 	_update_level_progression()
 
@@ -224,7 +224,7 @@ func _on_map_level_pressed(level_number: int) -> void:
 
 func _on_memory_class_pressed() -> void:
 	if not Global.cd_path.is_empty():
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 	Global.add_message_show(_ui_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
 
 

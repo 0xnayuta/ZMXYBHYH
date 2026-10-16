@@ -166,7 +166,7 @@ func _on_qh__pressed() -> void:
 			Global.add_message_show(get_parent(), "灵魂不足！无法强化！！", 1.5, Vector2(15, -45))
 	else:
 		Global.add_message_show(get_parent(), "强化石数量不足！！", 1.5, Vector2(15, -45))
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _get_selected_equipment(position_index: int) -> Variant:
@@ -272,4 +272,4 @@ func remove_infomation():
 	MLdl.qh_list["来源"] = "装备背包"
 	MLdl.qh_list["穿戴栏"] = ""
 	MLdl.qh_list["Data"] = {}
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)

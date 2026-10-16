@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 	AddItemToBackPack()
 	if UseItemName != null and UseNum != null:
 		_remove_used_item(UseItemName, UseNum)
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 	set_process(false)
 
 
@@ -73,7 +73,7 @@ func AddItemToBackPack():
 				PlayerData.add_dj(ItemName, Value)
 			"消耗品":
 				PlayerData.add_xhp(ItemName, Value)
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _on_close_pressed() -> void:

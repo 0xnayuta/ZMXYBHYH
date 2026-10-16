@@ -274,7 +274,7 @@ func remove_infomation():
 		if item_name != "" and AE.AllEquipment_.has(item_name):
 			PlayerData.add_dj(item_name, 1)
 	bz_list.clear()
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func RemoveAllBspic():
@@ -611,7 +611,7 @@ func _on_froge_pressed() -> void:
 		_restore_forge_state(snapshot, book_name, book_level, book_props)
 		Global.add_message_show(Global.Windows_, "打造失败，材料未扣除！！", 1.5, Vector2(500, 305))
 		return
-	if not MemoryClass.保存游戏(Global.cd_path):
+	if not MemoryClass.save_game(Global.cd_path):
 		_restore_forge_state(snapshot, book_name, book_level, book_props)
 		Global.add_message_show(Global.Windows_, "存档保存失败，本次打造已撤销！！", 1.5, Vector2(500, 305))
 		return

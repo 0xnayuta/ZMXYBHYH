@@ -296,7 +296,7 @@ func _onPressWhenSynthesis():
 			elif get_tt == "法宝":
 				return
 			PlayerData.player_data["放入列表"]["物品" + str(num)].clear()
-			MemoryClass.保存游戏(Global.cd_path)
+			MemoryClass.save_game(Global.cd_path)
 			return
 
 
@@ -592,7 +592,7 @@ func _on_pressed() -> void:
 					_onPressWhenfj()
 				"打造":
 					_onPressWhenDZ()
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _on_mouse_entered() -> void:

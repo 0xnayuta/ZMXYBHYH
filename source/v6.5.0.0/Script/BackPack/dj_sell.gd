@@ -93,7 +93,7 @@ func _on_lock_pressed() -> void:
 	if item.is_empty():
 		return
 	item["锁定"] = not bool(item.get("锁定", false))
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 	_refresh_lock_button()
 
 
@@ -131,7 +131,7 @@ func _on_sell_pressed() -> void:
 					Vector2(480, 280)
 				)
 			PlayerData.zl_dj()
-			MemoryClass.保存游戏(Global.cd_path)
+			MemoryClass.save_game(Global.cd_path)
 			queue_free()
 		"消耗品":
 			var get_list = PlayerData.remove_xhp(my_name, my_page, be_number)
@@ -145,7 +145,7 @@ func _on_sell_pressed() -> void:
 					Vector2(480, 280)
 				)
 			PlayerData.zl_xhp()
-			MemoryClass.保存游戏(Global.cd_path)
+			MemoryClass.save_game(Global.cd_path)
 			queue_free()
 
 
@@ -849,7 +849,7 @@ func use_xhp():
 			Global.add_message_show(
 				parent, "使用" + str(be_number) + "个小灵魂药水获得" + str(be_number * 15) + "w灵魂。", 1.5, Vector2(450, 300)
 			)
-			MemoryClass.保存游戏(Global.cd_path)
+			MemoryClass.save_game(Global.cd_path)
 			queue_free()
 		"dlhys":
 			var parent = get_parent().get_parent().get_parent()
@@ -858,7 +858,7 @@ func use_xhp():
 			Global.add_message_show(
 				parent, "使用" + str(be_number) + "个大灵魂药水获得" + str(be_number * 60) + "w灵魂。", 1.5, Vector2(450, 300)
 			)
-			MemoryClass.保存游戏(Global.cd_path)
+			MemoryClass.save_game(Global.cd_path)
 			queue_free()
 
 		"djyys":
@@ -947,5 +947,5 @@ func use_xhp():
 			if level_up_count > 0:
 				msg += " 连续升级: " + str(level_up_count) + "级！"
 			Global.add_message_show(parent, msg, 3.0, Vector2(450, 300))
-			MemoryClass.保存游戏(Global.cd_path)
+			MemoryClass.save_game(Global.cd_path)
 			queue_free()

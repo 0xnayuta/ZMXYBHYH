@@ -35,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_czzn_pressed() -> void:
-	Global.userGlobal.AddSomeMonsterHelp(self, Vector2(0, 0))
+	Global.AddSomeMonsterHelp(self, Vector2(0, 0))
 	return
 
 

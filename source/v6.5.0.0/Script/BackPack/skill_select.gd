@@ -131,6 +131,6 @@ func _on_choose_pressed() -> void:
 	if Global.FB_CD <= 0:
 		PlayerData.player_data["实战法宝"] = wp_name
 		Global.should_change = true
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 	else:
 		Global.add_message_show(get_parent().get_parent(), "当前法宝正在使用，无法更换！", 1.5, Vector2(0, 0))

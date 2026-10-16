@@ -79,5 +79,5 @@ func _on_change_pressed() -> void:
 	for i in Transmogrified_.List:
 		if i != null:
 			i.set_physics_process(true)
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 	set_physics_process(true)

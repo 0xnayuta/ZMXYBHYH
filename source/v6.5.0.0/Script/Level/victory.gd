@@ -72,7 +72,7 @@ func _save_completed_level() -> bool:
 	var archive_path := str(Global.cd_path).strip_edges()
 	if archive_path == "":
 		return false
-	var saved := MemoryClass.保存游戏(archive_path)
+	var saved := MemoryClass.save_game(archive_path)
 	if not saved:
 		push_warning("通关自动保存失败：%s" % archive_path)
 	return saved
@@ -82,7 +82,7 @@ func _on_return_map_pressed() -> void:
 	RoleProp.ws_value = 0
 	if Global.CurrentLevel == "镇妖塔":
 		Global.change_scene("res://Scene/main_menu/Map_0.tscn")
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 		return
 	match int(PlayerData.player_data["Map_num"]):
 		1:
@@ -126,7 +126,7 @@ func _on_return_map_pressed() -> void:
 				Global.change_scene("res://Scene/main_menu/Map_9.tscn")
 		_:
 			Global.change_scene("res://Scene/main_menu/Map_1.tscn")
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func get_lasttime(Num):

@@ -715,7 +715,7 @@ func RefreshInfor():
 	set_skill_Level()
 	set_Skill_LH()
 	set_skill_mp_cost()
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func Skill10XZ(Level):
@@ -1049,7 +1049,7 @@ func _on_hmz_version_selected(id: int):
 		return
 
 	PlayerData.player_data[data_key] = id
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 	current_variant[skill_internal] = id
 

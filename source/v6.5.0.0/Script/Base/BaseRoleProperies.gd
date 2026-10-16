@@ -1366,7 +1366,7 @@ func cure_level():
 	PlayerData.player_data.玩家等级 = baseroleprop.Level
 	baseroleprop.exp = 0
 	PlayerData.player_data.玩家当前经验 = 0
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 	set_basic_prop()
 
 
@@ -1443,36 +1443,6 @@ func get_BsSzProperies():
 ## [兼容代理] 保持旧接口兼容
 func get_BsTxProperies():
 	return get_bs_tx_properties()
-
-
-## [兼容代理] 保持旧接口兼容
-func removeWqBs():
-	return remove_wq_bs()
-
-
-## [兼容代理] 保持旧接口兼容
-func removeFjBs():
-	return remove_fj_bs()
-
-
-## [兼容代理] 保持旧接口兼容
-func removeSpBs():
-	return remove_sp_bs()
-
-
-## [兼容代理] 保持旧接口兼容
-func removeCbBs():
-	return remove_cb_bs()
-
-
-## [兼容代理] 保持旧接口兼容
-func removeSzBs():
-	return remove_sz_bs()
-
-
-## [兼容代理] 保持旧接口兼容
-func removeTxBs():
-	return remove_tx_bs()
 
 
 ## [兼容代理] 保持旧接口兼容

@@ -43,7 +43,7 @@ func _on_hddy_body_entered(body: Node2D) -> void:
 	if body is BaseHero:
 		if PlayerData.get_item_data("bsz") > 0:
 			PlayerData.remove_dj("bsz", PlayerData.get_dj_page("bsz"), 1)
-			MemoryClass.保存游戏(Global.cd_path)
+			MemoryClass.save_game(Global.cd_path)
 			Global.change_scene("res://Scene/Level/Level_hddy.tscn")
 		else:
 			RoleProp.roleprop.Hp = -100

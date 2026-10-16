@@ -83,7 +83,7 @@ func _on_dh_pressed() -> void:
 		PlayerData.remove_dj("smlp", PlayerData.get_dj_page("smlp"), lpTimes)
 		PlayerData.spend_soul(Lhdhvalue * lhTimes)
 		PlayerData.player_data["购买次数"] += TotalTimes
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 		Global.add_message_show(Global.Windows_, "成功兑换" + str(TotalTimes) + "次购买次数！！", 1.5, Vector2(470, 300))
 	else:
 		Global.add_message_show(Global.Windows_, "兑换次数为0！！", 1.5, Vector2(470, 300))

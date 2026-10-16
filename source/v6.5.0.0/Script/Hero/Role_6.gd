@@ -449,8 +449,3 @@ func reset_attack_state():
 			mr_player.play("walk")
 		else:
 			mr_player.play("wait")
-
-
-# 向后兼容别名 (Flash AS2 历史接口)
-func Monster_Intelligence() -> void:
-	ai_think()

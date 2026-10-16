@@ -1999,12 +1999,12 @@ func get_Monster_last_hurt(target_boss, target_obj):
 		Hurt = Hurt * bl
 		is_crit = true
 	if lx == "physics":
-		var 减伤率 = snapped(last_def / float(last_def + 250), 0.001)
-		Hurt = int(Hurt * (1 - 减伤率))
+		var damage_reduction_rate = snapped(last_def / float(last_def + 250), 0.001)
+		Hurt = int(Hurt * (1 - damage_reduction_rate))
 		Global.TotalPhyHurt += Hurt
 	elif lx == "magic":
-		var 减伤率 = snapped(last_mdef / float(last_mdef + 250), 0.001)
-		Hurt = int(Hurt * (1 - 减伤率))
+		var damage_reduction_rate = snapped(last_mdef / float(last_mdef + 250), 0.001)
+		Hurt = int(Hurt * (1 - damage_reduction_rate))
 		Global.TotalMagHurt += Hurt
 	elif lx == "real":
 		Global.TotalRealHurt += Hurt

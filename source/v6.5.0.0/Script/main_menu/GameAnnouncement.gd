@@ -1141,7 +1141,7 @@ func _save_secret_progress() -> void:
 	if str(Global.cd_path).is_empty():
 		MemoryClass.main_bc()
 		return
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _show_secret_status(message: String) -> void:
@@ -1154,7 +1154,7 @@ func ADDTextInfo():
 	if VerisionsName == "" or VerisionsName == null:
 		return
 	for i in TextList[VerisionsName]:
-		var item_label = Global.userGlobal.ADDFont_(text_list, i, "res://Font/华康宋体W3.ttc", 17, "FFFFFF", 2, "FFFFFF")
+		var item_label = Global.ADDFont_(text_list, i, "res://Font/华康宋体W3.ttc", 17, "FFFFFF", 2, "FFFFFF")
 		if item_label is Label:
 			item_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 			item_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP

@@ -7,9 +7,9 @@ var Text_2 = "第二系列----《十殿阎罗篇》终了\n\n\n\n\n\n\n浩劫之
 
 
 func _ready() -> void:
-	if Global.userGlobal.GameOver == 1:
+	if Global.GameOver == 1:
 		Over_text.text = Text_1
-		Global.userGlobal.add_bgm(self, "res://Music/level/10_bg4.mp3")
+		Global.add_bgm(self, "res://Music/level/10_bg4.mp3")
 		Over_Player.play("first_")
 		await get_tree().create_timer(3, false).timeout
 		Over_Player.play("second_")
@@ -19,8 +19,8 @@ func _ready() -> void:
 		Over_Player.play("XY_1OVER")
 		await Over_Player.animation_finished
 		ChangeTomap()
-	elif Global.userGlobal.GameOver == 2:
-		Global.userGlobal.add_bgm(self, "res://Music/level/2_bg4.mp3")
+	elif Global.GameOver == 2:
+		Global.add_bgm(self, "res://Music/level/2_bg4.mp3")
 		Over_Player.play("Over_1")
 
 

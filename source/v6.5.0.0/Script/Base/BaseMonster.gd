@@ -1531,7 +1531,7 @@ func _save_direct_pet_backpack_drop() -> void:
 	var save_path := str(Global.cd_path)
 	if save_path != "" and save_path.contains("Ar_") and FileAccess.file_exists(save_path):
 		if not MemoryClass.request_background_save(save_path):
-			MemoryClass.保存游戏(save_path)
+			MemoryClass.save_game(save_path)
 
 
 func fall_medicine():
@@ -1890,11 +1890,11 @@ func get_Role_last_hurt(target):
 
 	match HurtLx:
 		"physics":
-			var 减伤率 = snapped(LastDef / float(LastDef + 100), 0.001)
-			Hurt = int(Hurt * (1 - 减伤率))
+			var damage_reduction_rate = snapped(LastDef / float(LastDef + 100), 0.001)
+			Hurt = int(Hurt * (1 - damage_reduction_rate))
 		"magic":
-			var 减伤率 = snapped(LastMdef / float(LastMdef + 100), 0.001)
-			Hurt = int(Hurt * (1 - 减伤率))
+			var damage_reduction_rate = snapped(LastMdef / float(LastMdef + 100), 0.001)
+			Hurt = int(Hurt * (1 - damage_reduction_rate))
 	if IsIndestructible:
 		if Hurt >= Hp:
 			return 0
@@ -3482,11 +3482,6 @@ func _deferred_play_hurt_animation():
 	if mr_player.is_playing():
 		mr_player.stop()
 	mr_player.play("hurt")
-
-
-# 向后兼容别名 (Flash AS2 历史接口)
-func Monster_Intelligence() -> void:
-	ai_think()
 
 
 # ==============================================================================

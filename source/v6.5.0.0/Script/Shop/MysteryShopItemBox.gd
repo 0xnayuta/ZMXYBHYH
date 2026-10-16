@@ -172,7 +172,7 @@ func _on_purchase_pressed() -> void:
 			PlayerData.add_xhp(NewList["Name"], NewList["Value"])
 	Global.add_message_show(Global.Windows_, "购买成功", 1.5, Vector2(520, 340))
 	OpenAndCloseBox()
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func OpenAndCloseBox():

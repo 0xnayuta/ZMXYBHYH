@@ -160,7 +160,7 @@ func CheckOutTime():
 						return true
 
 
-func 读取游戏(路径) -> bool:
+func load_game(路径) -> bool:
 	var path: String = str(路径)
 	var read_result: Dictionary = _read_encrypted_dictionary_compatible(path, Keys)
 	if not bool(read_result.get("ok", false)):
@@ -197,20 +197,20 @@ func 读取游戏(路径) -> bool:
 	return true
 
 
-func 提前数据(路径) -> Dictionary:
+func peek_archive_data(路径) -> Dictionary:
 	var read_result: Dictionary = _read_encrypted_dictionary_compatible(str(路径), Keys)
 	var data_value: Variant = read_result.get("data", {})
 	return data_value if data_value is Dictionary else {}
 
 
-func 得到数据(路径) -> int:
-	var archive_data: Dictionary = 提前数据(路径)
+func get_archive_level(路径) -> int:
+	var archive_data: Dictionary = peek_archive_data(路径)
 	if not archive_data.has(DataKeys.PLAYER_LEVEL):
 		return 1
 	return clampi(int(archive_data[DataKeys.PLAYER_LEVEL]), 1, int(PlayerData.PLAYER_MAX_LEVEL))
 
 
-func 读取存档时间(路径) -> String:
+func read_archive_time(路径) -> String:
 	var archive_path: String = str(路径)
 	var read_result: Dictionary = _read_encrypted_dictionary_compatible(archive_path, Keys)
 	var archive_data_value: Variant = read_result.get("data", {})
@@ -237,7 +237,7 @@ func 读取存档时间(路径) -> String:
 var Keys = "zmxybgyh" + OS.get_unique_id() + "v1.1"
 
 
-func 保存游戏(path: String) -> bool:
+func save_game(path: String) -> bool:
 	flush_pending_saves()
 	var archive_path: String = str(path)
 	var archive_number: int = _archive_number_from_path(archive_path)
@@ -246,7 +246,7 @@ func 保存游戏(path: String) -> bool:
 	var save_data := _prepare_player_save_data()
 	if save_data.is_empty():
 		return false
-	if not 安全写入存档(archive_path, save_data):
+	if not safe_write_archive(archive_path, save_data):
 		return false
 	_failed_background_saves.erase(archive_path)
 	_set_archive_time(archive_number, str(save_data[ARCHIVE_TIME_KEY]))
@@ -321,7 +321,7 @@ func main_bc() -> bool:
 	return _atomic_write_encrypted_dictionary(MAIN_SETTINGS_PATH, persisted_settings, _ensure_stable_key())
 
 
-func 安全写入存档(path: String, data: Dictionary) -> bool:
+func safe_write_archive(path: String, data: Dictionary) -> bool:
 	flush_pending_saves()
 	var success := _atomic_write_encrypted_dictionary(path, data, _ensure_stable_key())
 	if success:
@@ -571,8 +571,8 @@ func Remove():
 	Global.add_message_show(Global.Windows_, "数据不正常哦，拜拜啦~", 4, Vector2(485, 295))
 	remove_data()
 	MainSet.set_data["xg"] = true
-	安全写入存档(str(Global.cd_path), Initialized_Data)
-	MemoryClass.保存游戏(Global.cd_path)
+	safe_write_archive(str(Global.cd_path), Initialized_Data)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func RemoveMainData(Num: int):

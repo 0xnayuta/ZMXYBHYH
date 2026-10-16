@@ -358,7 +358,7 @@ func _apply_role_prop() -> void:
 func _save_if_possible() -> void:
 	var save_path := str(Global.cd_path)
 	if save_path != "" and save_path.contains("Ar_"):
-		MemoryClass.保存游戏(save_path)
+		MemoryClass.save_game(save_path)
 	else:
 		MemoryClass.main_bc()
 

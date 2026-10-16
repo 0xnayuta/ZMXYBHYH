@@ -109,7 +109,7 @@ func _on_passive_button_up(button: BaseButton) -> void:
 func _upgrade_passive_for_hold(skill_name: String) -> bool:
 	var upgraded := up_level(skill_name)
 	if upgraded:
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 	return upgraded
 
 
@@ -234,7 +234,7 @@ func _on_one_key_upgrade_pressed() -> void:
 		Global.add_moment_text(get_parent(), Vector2.ZERO, "灵魂不足或已达当前等级上限", 1)
 		return
 	if Global.cd_path != null and not str(Global.cd_path).is_empty():
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 	Global.add_moment_text(get_parent(), Vector2.ZERO, "一键升级完成，共提升%d级" % upgraded_count, 1)
 
 
@@ -261,7 +261,7 @@ func _on_up_1_pressed() -> void:
 		_passive_suppress_click_skill = ""
 		return
 	up_level("热血")
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _on_up_2_pressed() -> void:
@@ -269,7 +269,7 @@ func _on_up_2_pressed() -> void:
 		_passive_suppress_click_skill = ""
 		return
 	up_level("魔泉")
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _on_up_3_pressed() -> void:
@@ -277,7 +277,7 @@ func _on_up_3_pressed() -> void:
 		_passive_suppress_click_skill = ""
 		return
 	up_level("狂暴")
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _on_up_4_pressed() -> void:
@@ -285,7 +285,7 @@ func _on_up_4_pressed() -> void:
 		_passive_suppress_click_skill = ""
 		return
 	up_level("永恒")
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _on_up_5_pressed() -> void:
@@ -293,7 +293,7 @@ func _on_up_5_pressed() -> void:
 		_passive_suppress_click_skill = ""
 		return
 	up_level("辉煌")
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _on_up_6_pressed() -> void:
@@ -301,7 +301,7 @@ func _on_up_6_pressed() -> void:
 		_passive_suppress_click_skill = ""
 		return
 	up_level("敏锐")
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _on_up_7_pressed() -> void:
@@ -309,4 +309,4 @@ func _on_up_7_pressed() -> void:
 		_passive_suppress_click_skill = ""
 		return
 	up_level("收益")
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)

@@ -199,8 +199,6 @@ func _toggle_magic(role_) -> void:
 
 
 func _resolve_level():
-	if Global.userGlobal != null and Global.userGlobal.CurLevel != null:
-		return Global.userGlobal.CurLevel
 	var p := get_parent()
 	while p != null:
 		if p.get("Role_") != null or p.get("role_information") != null:

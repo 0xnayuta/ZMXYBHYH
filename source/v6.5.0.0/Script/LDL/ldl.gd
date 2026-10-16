@@ -93,14 +93,14 @@ func add_qh_jm():
 	MLdl.loc_ = "强化"
 	if Strength_ == null:
 		Strength_ = Global.add_strength(bg_2, Vector2(-315, -205))
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 		Strength_.remove_infomation()
 
 
 func remove_qh_jm():
 	if Strength_ != null:
 		Strength_.remove_infomation()
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 		Strength_.queue_free()
 
 
@@ -113,7 +113,7 @@ func add_hc_jm():
 func remove_hc_jm():
 	if Synthesis_ != null:
 		Synthesis_.remove_infomation()
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 		Synthesis_.queue_free()
 
 
@@ -126,7 +126,7 @@ func add_xq_jm():
 func remove_xq_jm():
 	if Mosaic_ != null:
 		Mosaic_.remove_infomation()
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 		Mosaic_.queue_free()
 
 
@@ -163,7 +163,7 @@ func add_fj_jm():
 func remove_fj_jm():
 	if Decompose_ != null:
 		Decompose_.remove_infomation()
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 		Decompose_.queue_free()
 
 
@@ -188,7 +188,7 @@ func add_dz_jm():
 func remove_dz_jm():
 	if Forge_ != null:
 		Forge_.remove_infomation()
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 		Forge_.queue_free()
 
 
@@ -261,7 +261,7 @@ func remove_cg_jm() -> void:
 func remove_sz_jm() -> void:
 	if is_instance_valid(DivineForge_):
 		DivineForge_.remove_infomation()
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 		DivineForge_.queue_free()
 	DivineForge_ = null
 

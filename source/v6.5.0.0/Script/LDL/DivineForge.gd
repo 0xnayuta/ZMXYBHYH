@@ -124,7 +124,7 @@ func _on_sz_pressed() -> void:
 			RoleProp.SourcePlayer.onEqchange()
 	_show_message("神铸成功！")
 	_refresh_backpack()
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _get_selected_slot() -> Dictionary:

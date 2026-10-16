@@ -50,7 +50,7 @@ func _on_csm_pressed() -> void:
 func challenge():
 	PlayerData.player_data["FristJiejiao"] = false
 	get_tree().change_scene_to_file("res://Scene/main_menu/Map_4.tscn")
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _on_hdgq_pressed() -> void:

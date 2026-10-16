@@ -126,7 +126,7 @@ func PickUpItems(body):
 func _save_pet_backpack_pickup() -> void:
 	var save_path := str(Global.cd_path)
 	if save_path != "" and save_path.contains("Ar_") and FileAccess.file_exists(save_path):
-		MemoryClass.保存游戏(save_path)
+		MemoryClass.save_game(save_path)
 
 
 func Pick():

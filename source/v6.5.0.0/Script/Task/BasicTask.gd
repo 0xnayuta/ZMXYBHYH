@@ -449,7 +449,7 @@ func _on_lqjl_pressed() -> void:
 		PlayerData.player_data[CurrentTaskName] = true
 	var list = task_data["TaskReward"]
 	Global.AddRewardInfo(Global.get_parent_(self, 1), Vector2(0, 0), list, null, null)
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _get_current_task_data() -> Dictionary:

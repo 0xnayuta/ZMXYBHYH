@@ -15,7 +15,7 @@ func _physics_process(_delta: float) -> void:
 
 func SetNormalInfo() -> void:
 	my_num.text = str(MyNum)
-	var archive_data: Dictionary = MemoryClass.提前数据(_archive_path(MyNum))
+	var archive_data: Dictionary = MemoryClass.peek_archive_data(_archive_path(MyNum))
 	var role_id: int = int(archive_data.get("Myself", 0))
 	if role_id < 1 or role_id > 6:
 		name_label.text = ""
@@ -26,13 +26,15 @@ func SetNormalInfo() -> void:
 	var metadata: Dictionary = _archive_metadata(MyNum)
 	var archive_time: String = str(metadata.get("time", ""))
 	if archive_time.strip_edges() == "":
-		archive_time = MemoryClass.读取存档时间(_archive_path(MyNum))
+		archive_time = MemoryClass.read_archive_time(_archive_path(MyNum))
 		if archive_time != "":
 			MemoryClass.repair_archive_time(MyNum, archive_time)
 	var archive_name: String = str(metadata.get("name", ""))
 	time.text = archive_time
 	name_label.text = "名字：" + archive_name if archive_name != "" else ""
-	level_and_role.text = "Lv：" + str(MemoryClass.得到数据(_archive_path(MyNum))) + "    " + _role_name(role_id)
+	level_and_role.text = (
+		"Lv：" + str(MemoryClass.get_archive_level(_archive_path(MyNum))) + "    " + _role_name(role_id)
+	)
 
 
 func _archive_path(archive_number: int) -> String:
@@ -51,10 +53,6 @@ func _archive_metadata(archive_number: int) -> Dictionary:
 	var other_archives: Dictionary = other_archives_value as Dictionary
 	var metadata_value: Variant = other_archives.get(str(archive_number), {})
 	return metadata_value as Dictionary if metadata_value is Dictionary else {}
-
-
-func GeTroleNmae(cd_num) -> String:
-	return _role_name(int(MemoryClass.提前数据(_archive_path(int(cd_num))).get("Myself", 0)))
 
 
 func _role_name(role_id: int) -> String:
@@ -76,7 +74,7 @@ func _role_name(role_id: int) -> String:
 
 func _on_pressed() -> void:
 	Global.cd_path = "user://MyAr_" + str(MyNum) + ".json"
-	if not MemoryClass.读取游戏(Global.cd_path):
+	if not MemoryClass.load_game(Global.cd_path):
 		return
 	if PlayerData.player_data.has("FileValue"):
 		if float(PlayerData.player_data["FileValue"]) <= float(Global.FileNum):

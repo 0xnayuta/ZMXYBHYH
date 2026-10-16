@@ -179,7 +179,7 @@ func _on_confirm_pressed() -> void:
 	enabled_data[skill_id] = true
 	PlayerData.player_data["技能觉醒启用"] = enabled_data
 	if str(Global.cd_path) != "":
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 	_refresh_awaken_state()
 	var skill_display_name := (
 		"雷霆劫阵"
@@ -312,4 +312,4 @@ func _on_awaken_enabled_toggled(enabled: bool) -> void:
 	enabled_data[skill_id] = enabled
 	PlayerData.player_data["技能觉醒启用"] = enabled_data
 	if str(Global.cd_path) != "":
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)

@@ -7,7 +7,6 @@ signal sound_settings_changed
 const TARGET_MAX_FPS := 150
 const SHOW_DEBUG_PERF_OVERLAY := true
 const DuplicateTextureAliases = preload("res://Script/Monster/DuplicateTextureAliases.gd")
-const OldUserGlobalAdapterScript = preload("res://Script/Compat/OldUserGlobalAdapter.gd")
 const WUSHUANG_HUOYAN_EFFECT_SCRIPT = preload("res://Script/Hero/WuShuangHuoYanJinJingEffect.gd")
 const BING_YU_EFFECT_SCRIPT = preload("res://Script/Hero/BingYuEffect.gd")
 const BA_DI_QIAN_KUN_EFFECT_SCRIPT = preload("res://Script/Hero/BaDiQianKunEffect.gd")
@@ -40,8 +39,6 @@ const MONSTER_CONTROL_BUFF_NAMES := [
 	"lljybuff",
 	"ReverseMove",
 ]
-
-var userGlobal = OldUserGlobalAdapterScript.new()
 
 var cloud_save_user_id := ""
 var cloud_save_access_token := ""
@@ -5683,11 +5680,6 @@ func AddMessageShow(Parent, NeedText: String, Time_: float, Position: Vector2):
 
 
 ## [兼容代理] 保持旧接口兼容
-func add_Bullet(bullet_name: String, parent, direction: bool, show_speed, position, hit_name_, list):
-	return add_bullet(bullet_name, parent, direction, show_speed, position, hit_name_, list)
-
-
-## [兼容代理] 保持旧接口兼容
 func addSound_(parent, target_, priority: int = 0):
 	return add_sound(parent, target_, priority)
 
@@ -5698,23 +5690,8 @@ func addBGM_(parent, target_):
 
 
 ## [兼容代理] 保持旧接口兼容
-func add_Trap(parent, position_, name_):
-	return add_trap(parent, position_, name_)
-
-
-## [兼容代理] 保持旧接口兼容
-func add_SpecialEffect(parent, position_, name_, scale_, direction, speed_):
-	return add_special_effect(parent, position_, name_, scale_, direction, speed_)
-
-
-## [兼容代理] 保持旧接口兼容
 func AddBuff(parent, BuffInfo):
 	return add_buff(parent, BuffInfo)
-
-
-## [兼容代理] 保持旧接口兼容
-func Create_Monster(M_id: int, parent, position_: Vector2):
-	return create_monster(M_id, parent, position_)
 
 
 ## [兼容代理] 保持旧接口兼容
@@ -5775,11 +5752,6 @@ func AddBasicTask_(parent, position):
 ## [兼容代理] 保持旧接口兼容
 func add_SHOP(parent, position):
 	return add_shop(parent, position)
-
-
-## [兼容代理] 保持旧接口兼容
-func add_SpecialEffectBullet(parent, position_, scale_, name_, dir):
-	return add_special_effect_bullet(parent, position_, scale_, name_, dir)
 
 
 ## [兼容代理] 保持旧接口兼容

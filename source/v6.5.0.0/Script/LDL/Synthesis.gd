@@ -58,7 +58,7 @@ func remove_infomation():
 	PlayerData.player_data["放入列表"]["物品1"].clear()
 	PlayerData.player_data["放入列表"]["物品2"].clear()
 	PlayerData.player_data["放入列表"]["物品3"].clear()
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func get_name_():
@@ -152,7 +152,7 @@ func _on_syn_pressed() -> void:
 			Global.add_message_show(get_parent(), "灵魂不足！！！", 1.5, Vector2(15, -45))
 	else:
 		Global.add_message_show(get_parent(), "合成公式错误！", 1.5, Vector2(15, -45))
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _on_help_pressed() -> void:

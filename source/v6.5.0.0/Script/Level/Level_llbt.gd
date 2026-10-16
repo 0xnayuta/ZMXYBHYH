@@ -228,7 +228,7 @@ func _save_auto_battle_progress() -> bool:
 	if archive_path == "":
 		push_warning("自动战斗保存失败：当前存档路径为空")
 		return false
-	var saved := MemoryClass.保存游戏(archive_path)
+	var saved := MemoryClass.save_game(archive_path)
 	if not saved:
 		push_warning("自动战斗保存失败：%s" % archive_path)
 	return saved

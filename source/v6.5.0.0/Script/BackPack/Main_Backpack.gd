@@ -364,7 +364,7 @@ func _on_add_dj_pressed() -> void:
 	PlayerData.add_dj("qhs_1", 2)
 
 
-func _on_批量出售_pressed() -> void:
+func _on_bulk_sell_pressed() -> void:
 	if pl_sell == null:
 		pl_sell = Global.add_pl_sell(PlSell, Vector2(90, 0))
 		pl_sell.MainBack = self
@@ -386,7 +386,7 @@ func _on_sort_pressed() -> void:
 	RemoveChoose()
 	current_page = 1
 	set_box_data()
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _on_zb_pressed() -> void:

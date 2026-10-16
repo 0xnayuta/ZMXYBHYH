@@ -153,13 +153,13 @@ func _on_up_level_pressed() -> void:
 		if PlayerData.get_soul() >= get_need_lh():
 			PlayerData.spend_soul(get_need_lh())
 			PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL] += 1
-			MemoryClass.保存游戏(Global.cd_path)
+			MemoryClass.save_game(Global.cd_path)
 		else:
 			Global.add_message_show(self, "灵魂不足！！", 1.5, Vector2(0, 0))
-			MemoryClass.保存游戏(Global.cd_path)
+			MemoryClass.save_game(Global.cd_path)
 	else:
 		Global.add_message_show(self, "法宝已经满级了！", 1.5, Vector2(0, 0))
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 
 
 func set_skill_info(weapon_name: String = "") -> void:

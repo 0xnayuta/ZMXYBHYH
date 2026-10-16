@@ -226,7 +226,7 @@ func _on_pressed() -> void:
 	RoleProp.get_last_prop()
 	if is_instance_valid(RoleProp.SourcePlayer):
 		RoleProp.SourcePlayer.onEqchange()
-	MemoryClass.保存游戏(Global.cd_path)
+	MemoryClass.save_game(Global.cd_path)
 
 
 func _on_mouse_entered() -> void:

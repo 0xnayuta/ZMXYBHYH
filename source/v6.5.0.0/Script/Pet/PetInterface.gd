@@ -2661,7 +2661,7 @@ func _upgrade_pet_passive(skill_name: String) -> bool:
 	_refresh_current_pet()
 	_refresh_pet_passive_panel(pet)
 	if Global.cd_path != null and str(Global.cd_path) != "":
-		MemoryClass.保存游戏(Global.cd_path)
+		MemoryClass.save_game(Global.cd_path)
 	return true
 
 
@@ -3929,7 +3929,7 @@ func _pet_item_base_stat(item: Dictionary, key: String) -> int:
 func _save_pet_changes() -> void:
 	var save_path := str(Global.cd_path)
 	if save_path != "" and save_path.contains("Ar_") and FileAccess.file_exists(save_path):
-		MemoryClass.保存游戏(save_path)
+		MemoryClass.save_game(save_path)
 
 
 func _refresh_strength() -> void:
