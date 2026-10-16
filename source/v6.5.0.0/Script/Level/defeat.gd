@@ -1,35 +1,36 @@
 extends Node2D
-@onready var box_1: Button = $text / box_1
+@onready var box_1: Button = $text/box_1
 @onready var text: Label = $text
 @onready var player: AnimationPlayer = $player
 var lq: bool = false
 var textlist = [
-	"挑战失败了？放弃吧，接受我的黑暗力量，这样你才能更强！", 
-	"不是吧，不是吧，这都打不过，我可以给你无穷的力量，接受我吧！", 
-	"坚持正义有用吗？你看，这么多人都已经接受我的黑暗力量了，你再努力可能像我一样强大吗？！", 
-	"接受我的力量吧，我可以让你天下无敌！！", 
+	"挑战失败了？放弃吧，接受我的黑暗力量，这样你才能更强！",
+	"不是吧，不是吧，这都打不过，我可以给你无穷的力量，接受我吧！",
+	"坚持正义有用吗？你看，这么多人都已经接受我的黑暗力量了，你再努力可能像我一样强大吗？！",
+	"接受我的力量吧，我可以让你天下无敌！！",
 ]
 var textlist2 = [
-	"没关系的，你迟早会需要我，哈哈哈哈！", 
-	"哦？你可不要后悔哦！", 
-	"好吧好吧，我会等着你的~", 
-	"没有人可以拒绝我的力量，你也不可能！！马上，你就会选择我，哈哈哈哈！！！", 
-	"不不不，你需要的，也许下一次，你就会接受我。", 
-	"嗯？坚守正义吗？哈哈哈哈！！！正义给你带来了什么呢？不要搞笑了，好吗？", 
-	"假惺惺的，你真的是正义吗？", 
-	"没有我，你不可能通关的，好好想想哦！~", 
-	"哦吼？呵呵！~", 
-	"装模做样，不敢永远拒绝吗？那还装什么呢？接受我吧！", 
+	"没关系的，你迟早会需要我，哈哈哈哈！",
+	"哦？你可不要后悔哦！",
+	"好吧好吧，我会等着你的~",
+	"没有人可以拒绝我的力量，你也不可能！！马上，你就会选择我，哈哈哈哈！！！",
+	"不不不，你需要的，也许下一次，你就会接受我。",
+	"嗯？坚守正义吗？哈哈哈哈！！！正义给你带来了什么呢？不要搞笑了，好吗？",
+	"假惺惺的，你真的是正义吗？",
+	"没有我，你不可能通关的，好好想想哦！~",
+	"哦吼？呵呵！~",
+	"装模做样，不敢永远拒绝吗？那还装什么呢？接受我吧！",
 ]
 var textlist3 = [
-	"好吧，好吧，看来你还是有点骨气的，祝你好运喽~", 
-	"？你真的敢！？下个存档再见喽！~", 
-	"躲得了一时，躲不了一世，你迟早会接受我，无论什么原因！", 
+	"好吧，好吧，看来你还是有点骨气的，祝你好运喽~",
+	"？你真的敢！？下个存档再见喽！~",
+	"躲得了一时，躲不了一世，你迟早会接受我，无论什么原因！",
 ]
-const DEFEAT_DESIGN_SIZE: = Vector2(940.0, 590.0)
+const DEFEAT_DESIGN_SIZE := Vector2(940.0, 590.0)
 
-func _fit_to_window() -> void :
-	var viewport_size: = get_viewport().get_visible_rect().size
+
+func _fit_to_window() -> void:
+	var viewport_size := get_viewport().get_visible_rect().size
 	if viewport_size.x <= 0.0 or viewport_size.y <= 0.0:
 		return
 	var fit_scale = min(viewport_size.x / DEFEAT_DESIGN_SIZE.x, viewport_size.y / DEFEAT_DESIGN_SIZE.y)
@@ -37,15 +38,17 @@ func _fit_to_window() -> void :
 	scale = Vector2(fit_scale, fit_scale)
 	position = (viewport_size - content_size) * 0.5
 
+
 var textlist4 = [
-	"没错，没错，就是这样，我们是无敌的！！", 
-	"明智的选择，让我们来教训一下这些弱小的东西吧！！", 
-	"哈哈哈哈，我就知道你会接受我，我们是一类人，不是吗？", 
-	"对了，太对了，我来助你平定八荒！", 
-	"力量是属于强者的，而你，就是强者！", 
+	"没错，没错，就是这样，我们是无敌的！！",
+	"明智的选择，让我们来教训一下这些弱小的东西吧！！",
+	"哈哈哈哈，我就知道你会接受我，我们是一类人，不是吗？",
+	"对了，太对了，我来助你平定八荒！",
+	"力量是属于强者的，而你，就是强者！",
 ]
 
-func _ready() -> void :
+
+func _ready() -> void:
 	_fit_to_window()
 	if not get_viewport().size_changed.is_connected(_fit_to_window):
 		get_viewport().size_changed.connect(_fit_to_window)
@@ -65,11 +68,14 @@ func _ready() -> void :
 	if MainSet.is_auto_battle_enabled() and bool(MainSet.set_data.get("AutoBattleRetry", false)):
 		call_deferred("_auto_rechallenge")
 
-func _auto_rechallenge() -> void :
+
+func _auto_rechallenge() -> void:
 	await get_tree().create_timer(1.0).timeout
 	if is_inside_tree() and not _is_rechallenging:
 		_on_re_challenge_pressed()
-func _on_return_map_pressed() -> void :
+
+
+func _on_return_map_pressed() -> void:
 	RoleProp.ws_value = 0
 	Global.is_DeadLink = false
 	if Global.CurrentLevel == "镇妖塔":
@@ -106,9 +112,10 @@ func _on_return_map_pressed() -> void :
 	MemoryClass.保存游戏(Global.cd_path)
 
 
-var _is_rechallenging: = false
+var _is_rechallenging := false
 
-func _reset_role_state_for_rechallenge() -> void :
+
+func _reset_role_state_for_rechallenge() -> void:
 	RoleProp.set_full_Hp()
 	RoleProp.set_full_Mp()
 	RoleProp.CurrentHp = int(RoleProp.roleprop.Hp)
@@ -116,7 +123,9 @@ func _reset_role_state_for_rechallenge() -> void :
 	RoleProp.ws_value = 0
 	RoleProp.is_ws_state = false
 	Global.is_DeadLink = false
-func _on_re_challenge_pressed() -> void :
+
+
+func _on_re_challenge_pressed() -> void:
 	if _is_rechallenging:
 		return
 	if Global.LastLevelPath == "":
@@ -125,29 +134,33 @@ func _on_re_challenge_pressed() -> void :
 	_is_rechallenging = true
 	_reset_role_state_for_rechallenge()
 	Global.change_scene(Global.LastLevelPath)
+
+
 func load_(name_):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
 	return abc
 
 
-func _on_js_pressed() -> void :
+func _on_js_pressed() -> void:
 	text.text = str(textlist4[randi_range(0, textlist4.size() - 1)])
 	PlayerData.add_zb("xczg", 0, {})
 	MemoryClass.保存游戏(Global.cd_path)
 	player.play("dh_2")
-func _on_yjjj_pressed() -> void :
+
+
+func _on_yjjj_pressed() -> void:
 	PlayerData.player_data["zyforever"] = true
 	MemoryClass.保存游戏(Global.cd_path)
 	text.text = str(textlist3[randi_range(0, textlist3.size() - 1)])
 	player.play("dh_3")
 
 
-func _on_jj_pressed() -> void :
+func _on_jj_pressed() -> void:
 	text.text = str(textlist2[randi_range(0, textlist2.size() - 1)])
 	player.play("dh_2")
 
 
-func _on_lqjl_pressed() -> void :
+func _on_lqjl_pressed() -> void:
 	if lq:
 		return
 	PlayerData.add_dj("bsd_5", 1)
@@ -159,6 +172,7 @@ func _on_lqjl_pressed() -> void :
 	PlayerData.add_dj("qhs_1", 8)
 	lq = true
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	if get_viewport().size_changed.is_connected(_fit_to_window):
 		get_viewport().size_changed.disconnect(_fit_to_window)

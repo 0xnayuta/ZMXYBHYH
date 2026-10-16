@@ -1,325 +1,5 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 extends BaseMonster
 class_name Monster1409
-
 
 static var instance_count: int = 0
 
@@ -334,7 +14,6 @@ func init_monster(is_boss_flag: bool):
 	self.my_mr_name = "千年蜈蚣"
 	self.attack_in = 130
 	self.level = 59
-
 
 	var hp_multiplier = 1.0 if is_boss_flag else 0.5
 	self.SHp = int(1950000 * hp_multiplier)
@@ -357,76 +36,77 @@ func init_monster(is_boss_flag: bool):
 	self.behit_calmtime = 0.05
 	self.self_rhp = 0
 
-
 	self.add_exp = 6000 if is_boss_flag else 3000
 	self.fall_coin = 2500 if is_boss_flag else 1250
 	self.ebol = 0
 
 	self.objattackDic["hit1"] = {
-		"power": 1200, 
-		"hurtBack": [-10, -12], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
+		"power": 1200,
+		"hurtBack": [-10, -12],
+		"attackKind": "physics",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 1000, 
-		"hurtBack": [-20, -10], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 3, 
-			"ReduceInterval": 0.61, 
-			"value": 0.5, 
-			"AttackKind": "magic", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 1000,
+		"hurtBack": [-20, -10],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 3,
+			"ReduceInterval": 0.61,
+			"value": 0.5,
+			"AttackKind": "magic",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit3"] = {
-		"power": 1500, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "Immobilize", 
-			"AddTime": 2, 
-			"ReduceInterval": 0, 
-			"value": 1, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false, 
+		"power": 1500,
+		"hurtBack": [-8, -12],
+		"attackKind": "physics",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "Immobilize",
+			"AddTime": 2,
+			"ReduceInterval": 0,
+			"value": 1,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanRemove": false,
 		}
 	}
 
 	self.objattackDic["hit5"] = {
-		"power": 1800, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "Immobilize", 
-			"AddTime": 2, 
-			"ReduceInterval": 0, 
-			"value": 1, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false, 
+		"power": 1800,
+		"hurtBack": [0, 0],
+		"attackKind": "real",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "Immobilize",
+			"AddTime": 2,
+			"ReduceInterval": 0,
+			"value": 1,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanRemove": false,
 		}
 	}
-
 
 	if is_boss_flag:
 		self.fall_pro = 0.5
 		self.fall_list = [
-			{"name": "ttsl2", "value": 1}, 
-			{"name": "shenhuo_2", "value": 1}, 
+			{"name": "ttsl2", "value": 1},
+			{"name": "shenhuo_2", "value": 1},
 		]
 		self.fall_stone_pro = 0
 		self.fall_stone = [
-			{"name": "sichou", "value": randi_range(1, 2)}, 
-			{"name": "xuantie", "value": randi_range(1, 2)}, 
-			{"name": "tanmu", "value": randi_range(1, 2)}, 
+			{"name": "sichou", "value": randi_range(1, 2)},
+			{"name": "xuantie", "value": randi_range(1, 2)},
+			{"name": "tanmu", "value": randi_range(1, 2)},
 		]
 	else:
 		self.fall_pro = 0.0
@@ -434,10 +114,10 @@ func init_monster(is_boss_flag: bool):
 		self.fall_stone_pro = 0
 		self.fall_stone.clear()
 
-func _ready() -> void :
 
+func _ready() -> void:
 	var is_clone = has_meta("is_clone") and get_meta("is_clone")
-	init_monster( not is_clone)
+	init_monster(not is_clone)
 
 	super._ready()
 
@@ -447,17 +127,17 @@ func _ready() -> void :
 	Skill_4_CD = 20
 	Skill_5_CD = 30
 
-
 	instance_count += 1
-
 
 	if buff:
 		buff.connect("child_entered_tree", Callable(self, "_on_buff_child_entered"))
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	super._exit_tree()
 
 	instance_count -= 1
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -468,21 +148,33 @@ func Monster_Intelligence():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
 				have_target()
-				if Skill_1_CD <= 0: do_hit_1()
-				if Skill_2_CD <= 0: do_hit_2()
-				if Skill_3_CD <= 0: do_hit_3()
-				if Skill_4_CD <= 0: do_hit_4()
-				if Skill_5_CD <= 0: do_hit_5()
+				if Skill_1_CD <= 0:
+					do_hit_1()
+				if Skill_2_CD <= 0:
+					do_hit_2()
+				if Skill_3_CD <= 0:
+					do_hit_3()
+				if Skill_4_CD <= 0:
+					do_hit_4()
+				if Skill_5_CD <= 0:
+					do_hit_5()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0: do_hit_1()
-				if Skill_2_CD <= 0: do_hit_2()
-				if Skill_3_CD <= 0: do_hit_3()
-				if Skill_4_CD <= 0: do_hit_4()
-				if Skill_5_CD <= 0: do_hit_5()
+				if Skill_1_CD <= 0:
+					do_hit_1()
+				if Skill_2_CD <= 0:
+					do_hit_2()
+				if Skill_3_CD <= 0:
+					do_hit_3()
+				if Skill_4_CD <= 0:
+					do_hit_4()
+				if Skill_5_CD <= 0:
+					do_hit_5()
+
 
 func do_hit_1():
-	if Skill_1_CD > 0 or is_attacking: return
+	if Skill_1_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_1_CD = 2
 	hit_name = "hit1"
@@ -493,8 +185,10 @@ func do_hit_1():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_2():
-	if Skill_2_CD > 0 or is_attacking: return
+	if Skill_2_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_2_CD = randi_range(20, 30)
 	hit_name = "hit2"
@@ -505,8 +199,10 @@ func do_hit_2():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_3():
-	if Skill_3_CD > 0 or is_attacking: return
+	if Skill_3_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_3_CD = randi_range(25, 30)
 	hit_name = "hit3"
@@ -517,12 +213,12 @@ func do_hit_3():
 	is_attacking = false
 	stop_move()
 
-func CallBullet2():
 
+func CallBullet2():
 	var wave_offsets = [
-		[Vector2(0, -20), Vector2(0, 20)], 
-		[Vector2(0, -40), Vector2(0, 40)], 
-		[Vector2(0, -60), Vector2(0, 60)], 
+		[Vector2(0, -20), Vector2(0, 20)],
+		[Vector2(0, -40), Vector2(0, 40)],
+		[Vector2(0, -60), Vector2(0, 60)],
 	]
 
 	var player = get_Player if get_Player else null
@@ -535,7 +231,9 @@ func CallBullet2():
 
 		for offset in wave_offsets[wave_idx]:
 			var bullet_pos = position + offset
-			var bullet_instance = Global.add_Bullet("Monster1409Bullet2", self.bullet, false, 1, bullet_pos, "hit2", attack_data)
+			var bullet_instance = Global.add_Bullet(
+				"Monster1409Bullet2", self.bullet, false, 1, bullet_pos, "hit2", attack_data
+			)
 			if bullet_instance and player:
 				var horizontal_target = Vector2(player.position.x, bullet_instance.position.y)
 				bullet_instance.look_at(horizontal_target)
@@ -543,18 +241,24 @@ func CallBullet2():
 		await get_tree().create_timer(0.3, false).timeout
 		multiplier *= 1.3
 
+
 func MovePlayer2():
 	if not get_Player:
 		return
 
 	var offset = 150
 	if alternate_side:
-		self.position = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + offset, RoleProp.get_nearest_monster_target_position(global_position).y)
+		self.position = Vector2(
+			RoleProp.get_nearest_monster_target_position(global_position).x + offset,
+			RoleProp.get_nearest_monster_target_position(global_position).y
+		)
 	else:
-		self.position = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x - offset, RoleProp.get_nearest_monster_target_position(global_position).y)
+		self.position = Vector2(
+			RoleProp.get_nearest_monster_target_position(global_position).x - offset,
+			RoleProp.get_nearest_monster_target_position(global_position).y
+		)
 
 	alternate_side = not alternate_side
-
 
 
 func _on_buff_child_entered(child: Node):
@@ -562,6 +266,7 @@ func _on_buff_child_entered(child: Node):
 		var buff_name = child.BuffInfo.get("Name", "")
 		if buff_name in ["stun", "Ice", "Immobilize"]:
 			has_been_controlled = true
+
 
 func revive_and_summon():
 	is_reviving = true
@@ -580,7 +285,6 @@ func revive_and_summon():
 		state_death()
 		return
 
-
 	self.Hp = self.SHp
 	self.is_death = false
 	has_been_controlled = false
@@ -596,7 +300,6 @@ func revive_and_summon():
 	elif mr_player and mr_player.has_animation("wait"):
 		mr_player.play("wait")
 
-
 	if instance_count < 4:
 		var scene_path = scene_file_path
 		if scene_path:
@@ -607,6 +310,7 @@ func revive_and_summon():
 			get_parent().add_child(new_monster)
 
 	is_reviving = false
+
 
 func state_death():
 	if is_reviving:

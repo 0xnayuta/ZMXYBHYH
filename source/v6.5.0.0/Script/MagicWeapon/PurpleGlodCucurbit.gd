@@ -1,25 +1,19 @@
 extends BaseMagicWeapon
 class_name PurpleGlodCucurbit
-var _hit_data: = {
-	"power": 0, 
-	"hurtBack": [0, 0], 
-	"attackKind": "physics", 
-	"WSValue": 0, 
-	"addeffect": {
-		"Name": "Fire", 
-		"AddTime": 5, 
-		"ReduceInterval": 1, 
-		"value": 0, 
-		"AttackKind": "real", 
-		"CanAdd": true
-	}
+var _hit_data := {
+	"power": 0,
+	"hurtBack": [0, 0],
+	"attackKind": "physics",
+	"WSValue": 0,
+	"addeffect": {"Name": "Fire", "AddTime": 5, "ReduceInterval": 1, "value": 0, "AttackKind": "real", "CanAdd": true}
 }
 
-func _ready() -> void :
+
+func _ready() -> void:
 	objattackDic["hit1"] = _hit_data
 
-func _physics_process(delta: float) -> void :
 
+func _physics_process(delta: float) -> void:
 	self.FB_Level = PlayerData.get_mostLevel("zjhl")
 	needMp = 50 + self.FB_Level * 12
 	var Power: int
@@ -36,10 +30,13 @@ func _physics_process(delta: float) -> void :
 	if not is_use:
 		mg_player.play("wait")
 
+
 func ShowSkill():
 	mg_player.play("hit")
 	await mg_player.animation_finished
 	Useover()
+
+
 func Useover():
 	Global.FB_CD = 1
 	is_use = false
@@ -49,8 +46,10 @@ func Useover():
 	else:
 		self.usecd = 1
 		skill_cd.start(1)
+
+
 func CucurbitFire():
-	var attack_data: = get_attack_snapshot()
+	var attack_data := get_attack_snapshot()
 	if self.SelfDir:
 		Global.addWeaponBullet_(self, Vector2(-30, 10), "PurpleGlodCucurbitBullet", attack_data, self.SelfDir, 10)
 	else:

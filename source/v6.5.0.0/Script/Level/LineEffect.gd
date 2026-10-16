@@ -5,11 +5,11 @@ var Player: BaseHero
 var Monster: BaseMonster
 var ReduceCount: int
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	Player = RoleProp.SourcePlayer
 	if Player != null:
 		points[1] = Player.position
-
 
 	ReduceCount += 1
 	if ReduceCount % 60 == 0:

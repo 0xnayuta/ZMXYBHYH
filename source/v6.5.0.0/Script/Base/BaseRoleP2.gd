@@ -1,14 +1,16 @@
 extends "res://Script/Base/BaseRole.gd"
 
-@onready var touch_screen_button = $role_menu / grey / TouchScreenButton
+@onready var touch_screen_button = $role_menu/grey/TouchScreenButton
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	if not OS.has_feature("android"):
 		touch_screen_button.queue_free()
 	grey.position = menu.position + Vector2(85, 85)
 
-func _load_skill_icons() -> void :
+
+func _load_skill_icons() -> void:
 	magicCD = MagicTscn.instantiate()
 	magicCD.name = "7"
 	magicIcon.add_child(magicCD)

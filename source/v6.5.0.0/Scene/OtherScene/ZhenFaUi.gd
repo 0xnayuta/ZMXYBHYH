@@ -1,10 +1,10 @@
 extends Node2D
-@onready var zhenfaname: Label = $BG / zhenfaname
-@onready var zhenfaicon: TextureRect = $BG / zhenfaicon
-@onready var zhen_fa_button_list: VBoxContainer = $BG / ZhenFaButton / ZhenFaButtonList
-@onready var get_need: Label = $BG / GetNeed
-@onready var UseButton: Button = $BG / Use
-@onready var cur_name: Label = $BG / CurrentEq / CurName
+@onready var zhenfaname: Label = $BG/zhenfaname
+@onready var zhenfaicon: TextureRect = $BG/zhenfaicon
+@onready var zhen_fa_button_list: VBoxContainer = $BG/ZhenFaButton/ZhenFaButtonList
+@onready var get_need: Label = $BG/GetNeed
+@onready var UseButton: Button = $BG/Use
+@onready var cur_name: Label = $BG/CurrentEq/CurName
 @onready var bg: Sprite2D = $BG
 var Infomation
 var CurrentZhenFaName: String = "slz"
@@ -12,12 +12,14 @@ var CurrentUseType: String = "阵法详情"
 var CurrentNum: int = 1
 var _last_use_button_state: Variant = null
 var CurrentZFList = {
-	"slz": {"FangFa": "北方星宿1~3位掉落"}, 
-	"lpz": {"FangFa": "北方星宿4~6位掉落"}, 
-	"tsz": {"FangFa": "北方星宿第7位，南方星宿1~3掉落"}, 
+	"slz": {"FangFa": "北方星宿1~3位掉落"},
+	"lpz": {"FangFa": "北方星宿4~6位掉落"},
+	"tsz": {"FangFa": "北方星宿第7位，南方星宿1~3掉落"},
 	"tqz": {"FangFa": "南方星宿4~7位掉落"}
 }
-func _ready() -> void :
+
+
+func _ready() -> void:
 	var Pd = str(PlayerData.player_data["已佩戴阵法"])
 	match Pd:
 		"slz":
@@ -34,16 +36,20 @@ func _ready() -> void :
 	SetZhenfaBasicInfo()
 	SetRightInfo()
 	AddZhenyanButton()
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	_refresh_use_button_icon()
 
-func _refresh_use_button_icon() -> void :
+
+func _refresh_use_button_icon() -> void:
 	var is_equipped: bool = PlayerData.player_data["已佩戴阵法"] == CurrentZhenFaName
 	if is_equipped == _last_use_button_state:
 		return
 	_last_use_button_state = is_equipped
-	var icon_name: = "43" if is_equipped else "42"
+	var icon_name := "43" if is_equipped else "42"
 	UseButton.set_button_icon(Global.get_cached_texture("res://Art/TwentyEightConstellations/" + icon_name + ".png"))
+
 
 func AddZhenyanButton():
 	var PostionList = [Vector2(120, 25), Vector2(210, 185), Vector2(40, 185)]
@@ -60,8 +66,12 @@ func AddZhenyanButton():
 	for i in PostionList:
 		Global.Addzhenyanbutton(zhenfaicon, i, Num, self)
 		Num += 1
+
+
 func SetZhenfaBasicInfo():
-	zhenfaicon.texture = Global.get_cached_texture("res://Art/TwentyEightConstellations/" + str(CurrentZhenFaName) + ".png")
+	zhenfaicon.texture = Global.get_cached_texture(
+		"res://Art/TwentyEightConstellations/" + str(CurrentZhenFaName) + ".png"
+	)
 	get_need.text = "获得方式：" + str(CurrentZFList[CurrentZhenFaName]["FangFa"])
 	match CurrentZhenFaName:
 		"slz":
@@ -77,9 +87,13 @@ func SetZhenfaBasicInfo():
 			zhenfaname.text = "太清阵"
 			zhenfaname.add_theme_color_override("font_color", "ff8d00")
 	_refresh_use_button_icon()
+
+
 func AddTotalZhenfaButton():
 	for i in CurrentZFList:
 		Global.AddZhenfalxbutton(zhen_fa_button_list, i, self)
+
+
 func SetRightInfo():
 	match CurrentUseType:
 		"阵法详情":
@@ -94,30 +108,33 @@ func SetRightInfo():
 			if Infomation != null:
 				Infomation.queue_free()
 			Infomation = Global.AddZhenFaTuPo(bg, Vector2(70, -120), self)
-func OnChangeName():
 
+
+func OnChangeName():
 	SetZhenfaBasicInfo()
 	SetRightInfo()
 
 
-func _on_close_pressed() -> void :
+func _on_close_pressed() -> void:
 	queue_free()
 
 
-func _on_zfxq_pressed() -> void :
+func _on_zfxq_pressed() -> void:
 	CurrentUseType = "阵法详情"
 	SetRightInfo()
 
-func _on_zysj_pressed() -> void :
+
+func _on_zysj_pressed() -> void:
 	CurrentUseType = "阵眼升级"
 	SetRightInfo()
 
-func _on_zftp_pressed() -> void :
+
+func _on_zftp_pressed() -> void:
 	CurrentUseType = "阵法突破"
 	SetRightInfo()
 
 
-func _on_use_pressed() -> void :
+func _on_use_pressed() -> void:
 	var Name_
 	match CurrentZhenFaName:
 		"slz":
@@ -134,8 +151,6 @@ func _on_use_pressed() -> void :
 		PlayerData.player_data["已佩戴阵法"] = ""
 		Global.AddMessageShow(Global.Windows_, "取消佩戴" + str(Name_) + "！！", 1.5, Vector2(500, 305))
 	else:
-
-
 		if PlayerData.player_data[Name_]["Level"] > 0:
 			PlayerData.player_data["已佩戴阵法"] = CurrentZhenFaName
 			Global.AddMessageShow(Global.Windows_, "佩戴" + str(Name_) + "！！", 1.5, Vector2(500, 305))
@@ -156,5 +171,5 @@ func _on_use_pressed() -> void :
 			cur_name.text = ""
 
 
-func _on_button_pressed() -> void :
+func _on_button_pressed() -> void:
 	Global.AddZhenFaHelp(self, Vector2(0, 0))

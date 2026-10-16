@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster88
+
+
 func monster_88():
 	self.is_boss = false
 	self.my_mr_name = "牛妖"
@@ -26,52 +28,45 @@ func monster_88():
 	self.add_exp = 150
 	self.fall_coin = 110
 	self.objattackDic["hit1"] = {
-		"power": 150, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 150,
+		"hurtBack": [-8, -12],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 200, 
-		"hurtBack": [-1, -1], 
-		"attackKind": "physics", 
-		"HitProtect": 20, 
-		"addeffect": {
-			"Name": "Immobilize", 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 200,
+		"hurtBack": [-1, -1],
+		"attackKind": "physics",
+		"HitProtect": 20,
+		"addeffect":
+		{
+			"Name": "Immobilize",
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.fall_pro = 0.3
 	self.fall_list = [
-		{
-			"name": "sichou", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "xuantie", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "tanmu", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "sichou", "value": randi_range(1, 2)},
+		{"name": "xuantie", "value": randi_range(1, 2)},
+		{"name": "tanmu", "value": randi_range(1, 2)},
 	]
 	self.fall_stone_pro = 0.1
 	self.fall_stone = [
-		{
-			"name": "smlp", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "smlp", "value": randi_range(1, 2)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_88()
 	Skill_1_CD = randi_range(5, 8)
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(8, 12)
@@ -82,6 +77,7 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -109,5 +105,14 @@ func Monster_Intelligence():
 				else:
 					stop_move()
 
+
 func ADDMonsterBullet():
-	Global.add_Bullet("Monster88Bullet", self.bullet, MonsterDirection, 1, Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 470), "hit2", self.objattackDic["hit2"])
+	Global.add_Bullet(
+		"Monster88Bullet",
+		self.bullet,
+		MonsterDirection,
+		1,
+		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 470),
+		"hit2",
+		self.objattackDic["hit2"]
+	)

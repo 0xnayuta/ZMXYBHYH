@@ -1,9 +1,9 @@
 extends Node2D
 
-@onready var item_name: Label = $BG / name_
-@onready var lh_need: Label = $BG / lh_value
-@onready var need_num = $BG / num_ / num_kj / num_
-@onready var items: Button = $BG / bgg / Items
+@onready var item_name: Label = $BG/name_
+@onready var lh_need: Label = $BG/lh_value
+@onready var need_num = $BG/num_/num_kj/num_
+@onready var items: Button = $BG/bgg/Items
 
 const MAX_SHOP_BUY_NUM: int = 9999
 
@@ -13,10 +13,12 @@ var item_name_: String
 var choose_jm
 var need_lh: int
 
-func _ready() -> void :
+
+func _ready() -> void:
 	items.is_in_shop = true
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	items.is_in_shop = true
 	if not need_num.has_focus():
 		if total_num <= 1:
@@ -31,33 +33,39 @@ func _physics_process(_delta: float) -> void :
 		items.EQ_prop = AE.AllEquipment_[item_name_]
 	lh_need.text = str(_effective_price())
 
+
 func _effective_price() -> int:
 	if Global.is_hidden_feature_enabled(Global.HIDDEN_FEATURE_FREE_SHOP):
 		return 0
 	return maxi(0, need_lh)
 
-func _set_total_num(value: int) -> void :
+
+func _set_total_num(value: int) -> void:
 	total_num = clampi(value, 1, MAX_SHOP_BUY_NUM)
 	if need_num != null and need_num.text != str(total_num):
 		need_num.text = str(total_num)
 
+
 func _get_safe_buy_num() -> int:
 	return clampi(total_num, 1, MAX_SHOP_BUY_NUM)
 
+
 func _get_safe_total_cost(buy_num: int) -> int:
-	var unit_price: = _effective_price()
+	var unit_price := _effective_price()
 	if unit_price <= 0:
 		return 0
 	return unit_price * buy_num
 
+
 func _can_pay_for_count(buy_num: int) -> bool:
 	if buy_num <= 0:
 		return false
-	var unit_price: = _effective_price()
+	var unit_price := _effective_price()
 	if unit_price <= 0:
 		return true
 	var coin_num: int = PlayerData.get_soul()
 	return buy_num <= int(coin_num / unit_price)
+
 
 func _get_backpack_list_name(item_type: String) -> String:
 	match item_type:
@@ -72,35 +80,47 @@ func _get_backpack_list_name(item_type: String) -> String:
 		_:
 			return "装备列表"
 
+
 func _get_free_item_capacity(item_type: String, list_name: String) -> int:
 	if item_type == "宠物装备":
 		return maxi(0, 40 - PlayerData.ensure_shared_pet_backpack().size())
 	return int(PlayerData.CheckCanUsePage(list_name))
 
-func _on_cure_num_pressed() -> void :
+
+func _on_cure_num_pressed() -> void:
 	_set_total_num(total_num + 1)
 
-func _on_reduce_num_pressed() -> void :
+
+func _on_reduce_num_pressed() -> void:
 	_set_total_num(total_num - 1)
 
-func _on_num__text_changed(new_text: String) -> void :
-	var clean_text: = new_text.strip_edges()
+
+func _on_num__text_changed(new_text: String) -> void:
+	var clean_text := new_text.strip_edges()
 	if clean_text == "":
 		return
 	total_num = clampi(int(clean_text), 1, MAX_SHOP_BUY_NUM)
 
-func _on_num__editing_toggled(toggled_on: bool) -> void :
+
+func _on_num__editing_toggled(toggled_on: bool) -> void:
 	if not toggled_on:
 		_set_total_num(total_num)
 
-func _on_goumai_pressed() -> void :
+
+func _on_goumai_pressed() -> void:
 	var parent_ = Global.get_parent_(self, 3)
-	var buy_num: = _get_safe_buy_num()
+	var buy_num := _get_safe_buy_num()
 	if not _can_pay_for_count(buy_num):
 		Global.AddMessageShow(parent_, "灵魂不足！", 1.5, Vector2(485, 295))
 		return
 	Signals.ConnectChooseBoxSignal(self, "GM")
-	choose_jm = Global.add_choose_text(parent_, Vector2(0, 0), "确定花费" + str(_get_safe_total_cost(buy_num)) + "灵魂购买" + str(buy_num) + "个" + str(item_name.text) + "吗？", 0)
+	choose_jm = Global.add_choose_text(
+		parent_,
+		Vector2(0, 0),
+		"确定花费" + str(_get_safe_total_cost(buy_num)) + "灵魂购买" + str(buy_num) + "个" + str(item_name.text) + "吗？",
+		0
+	)
+
 
 func add_item_toplayer(times):
 	var parent_ = Global.get_parent_(self, 3)
@@ -108,17 +128,17 @@ func add_item_toplayer(times):
 		Global.AddMessageShow(parent_, "商品信息错误！", 1.5, Vector2(485, 295))
 		return
 
-	var buy_num: = clampi(int(times), 1, MAX_SHOP_BUY_NUM)
+	var buy_num := clampi(int(times), 1, MAX_SHOP_BUY_NUM)
 	_set_total_num(buy_num)
 	var item_data: Dictionary = AE.AllEquipment_[item_name_]
 	var lx = str(item_data.get("类型", ""))
-	var cklb: = _get_backpack_list_name(lx)
+	var cklb := _get_backpack_list_name(lx)
 
 	if not _can_pay_for_count(buy_num):
 		Global.AddMessageShow(parent_, "灵魂不足！", 1.5, Vector2(485, 295))
 		return
 
-	var free_page_count: = _get_free_item_capacity(lx, cklb)
+	var free_page_count := _get_free_item_capacity(lx, cklb)
 	if free_page_count == 0:
 		Global.AddMessageShow(parent_, "背包已满！", 1.5, Vector2(485, 295))
 		return
@@ -147,8 +167,10 @@ func add_item_toplayer(times):
 
 	Global.AddMessageShow(parent_, "购买成功！", 1.5, Vector2(485, 295))
 
+
 func load_(name_):
 	return load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
+
 
 func GM():
 	add_item_toplayer(total_num)

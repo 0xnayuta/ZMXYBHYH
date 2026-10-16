@@ -1,30 +1,31 @@
 extends BaseLevel
 
-@onready var stop_1: CollisionShape2D = $wall / stop1
-@onready var stop_2: CollisionShape2D = $wall / stop2
-@onready var stop_5: CollisionShape2D = $wall / stop5
+@onready var stop_1: CollisionShape2D = $wall/stop1
+@onready var stop_2: CollisionShape2D = $wall/stop2
+@onready var stop_5: CollisionShape2D = $wall/stop5
 
-const LEVEL_RIGHT: = 4700
-const END_WALL_THICKNESS: = 600.0
-const SSSL_BOSS_BODY_FRAMES: = {
-	150: ["res://Art/Monster/QiongQi/Monster42FramesCenteredCropped", 42], 
-	151: ["res://Art/Monster/TaoWu/Monster47FramesCenteredCropped", 48], 
-	152: ["res://Art/Monster/HunDun/Monster60FramesCenteredCropped", 42], 
-	153: ["res://Art/Monster/TaoTie/Monster115FramesCenteredCropped", 42], 
+const LEVEL_RIGHT := 4700
+const END_WALL_THICKNESS := 600.0
+const SSSL_BOSS_BODY_FRAMES := {
+	150: ["res://Art/Monster/QiongQi/Monster42FramesCenteredCropped", 42],
+	151: ["res://Art/Monster/TaoWu/Monster47FramesCenteredCropped", 48],
+	152: ["res://Art/Monster/HunDun/Monster60FramesCenteredCropped", 42],
+	153: ["res://Art/Monster/TaoTie/Monster115FramesCenteredCropped", 42],
 }
-const SSSL_BOSS_IDS: = [150, 151, 152, 153]
-const ENDLESS_BOSS_POSITION: = Vector2(780, 340)
+const SSSL_BOSS_IDS := [150, 151, 152, 153]
+const ENDLESS_BOSS_POSITION := Vector2(780, 340)
 var _preloaded_sssl_stages: Dictionary = {}
 var _sssl_preloading_stage: int = 0
 var _stage_walls: Array[CollisionShape2D] = []
-var _endless_boss_index: = 0
-var _endless_restart_pending: = false
+var _endless_boss_index := 0
+var _endless_restart_pending := false
 
-func _ready() -> void :
+
+func _ready() -> void:
 	_create_stage_walls()
 	if stop_2 != null:
 		stop_2.position.x = LEVEL_RIGHT + END_WALL_THICKNESS * 0.5
-		var end_wall_shape: = RectangleShape2D.new()
+		var end_wall_shape := RectangleShape2D.new()
 		end_wall_shape.size = Vector2(END_WALL_THICKNESS, 1786)
 		stop_2.shape = end_wall_shape
 		stop_2.disabled = false
@@ -34,35 +35,36 @@ func _ready() -> void :
 		Monster_position_y = {"stage_1": [ENDLESS_BOSS_POSITION.y], "stage_2": [], "stage_3": [], "stage_4": []}
 	else:
 		Monster_group = {
-			"stage_1": [150], 
-			"stage_2": [151], 
-			"stage_3": [152], 
-			"stage_4": [153], 
+			"stage_1": [150],
+			"stage_2": [151],
+			"stage_3": [152],
+			"stage_4": [153],
 		}
 		Monster_position_x = {
-			"stage_1": [780], 
-			"stage_2": [2200], 
-			"stage_3": [3600], 
-			"stage_4": [4400], 
+			"stage_1": [780],
+			"stage_2": [2200],
+			"stage_3": [3600],
+			"stage_4": [4400],
 		}
 		Monster_position_y = {
-			"stage_1": [340], 
-			"stage_2": [340], 
-			"stage_3": [340], 
-			"stage_4": [340], 
+			"stage_1": [340],
+			"stage_2": [340],
+			"stage_3": [340],
+			"stage_4": [340],
 		}
 	Global.CurrentLevel = "神兽森林"
 	Global.addBGM_(self, "res://Music/level/music_emsd.mp3")
 	self.level_stage = 45
 	super._ready()
 
-func _create_stage_walls() -> void :
-	var wall_node: = get_node_or_null("wall") as StaticBody2D
+
+func _create_stage_walls() -> void:
+	var wall_node := get_node_or_null("wall") as StaticBody2D
 	if wall_node == null:
 		return
 	for wall_index in range(2):
-		var stage_wall: = CollisionShape2D.new()
-		var wall_shape: = RectangleShape2D.new()
+		var stage_wall := CollisionShape2D.new()
+		var wall_shape := RectangleShape2D.new()
 		wall_shape.size = Vector2(17, 1786)
 		stage_wall.name = "stage_wall_" + str(wall_index + 2)
 		stage_wall.position = Vector2(2300 if wall_index == 0 else 3600, -406)
@@ -71,16 +73,19 @@ func _create_stage_walls() -> void :
 		wall_node.add_child(stage_wall)
 		_stage_walls.append(stage_wall)
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	Global.SSSLendlessMode = false
 
-func _update_stage_walls() -> void :
+
+func _update_stage_walls() -> void:
 	for wall_index in range(_stage_walls.size()):
-		var stage_wall: = _stage_walls[wall_index]
+		var stage_wall := _stage_walls[wall_index]
 		if is_instance_valid(stage_wall):
 			stage_wall.disabled = current_stage != wall_index + 2 or check_can_pass()
 
-func _preload_level_resources() -> void :
+
+func _preload_level_resources() -> void:
 	if Global.SSSLendlessMode:
 		await Global.preload_level_monster_scenes(SSSL_BOSS_IDS)
 		for stage in range(1, 5):
@@ -91,29 +96,32 @@ func _preload_level_resources() -> void :
 		await _preload_sssl_boss_body_frames(150)
 		_preloaded_sssl_stages[1] = true
 
-func _preload_sssl_boss_body_frames(monster_id: int) -> void :
+
+func _preload_sssl_boss_body_frames(monster_id: int) -> void:
 	if not SSSL_BOSS_BODY_FRAMES.has(monster_id):
 		return
 	var config: Array = SSSL_BOSS_BODY_FRAMES[monster_id]
-	var frame_root: = str(config[0])
-	var frame_count: = int(config[1])
+	var frame_root := str(config[0])
+	var frame_count := int(config[1])
 	var frame_paths: Array = []
 	for frame_index in range(1, frame_count + 1):
 		frame_paths.append(frame_root.path_join(str(frame_index) + ".png"))
 	await Global.preload_level_texture_paths(frame_paths, 4 if OS.has_feature("mobile") else 6)
 
-func _preload_sssl_stage(stage: int) -> void :
+
+func _preload_sssl_stage(stage: int) -> void:
 	if stage < 1 or stage > 4 or _preloaded_sssl_stages.has(stage):
 		return
 	if _sssl_preloading_stage == stage:
 		return
 	_sssl_preloading_stage = stage
-	var monster_id: = 149 + stage
+	var monster_id := 149 + stage
 	await Global.preload_level_monster_scenes([monster_id])
 	await _preload_sssl_boss_body_frames(monster_id)
 	_preloaded_sssl_stages[stage] = true
 	if _sssl_preloading_stage == stage:
 		_sssl_preloading_stage = 0
+
 
 func _is_sssl_stage_ready(stage: int) -> bool:
 	if stage < 1 or stage > 4:
@@ -124,6 +132,7 @@ func _is_sssl_stage_ready(stage: int) -> bool:
 		call_deferred("_preload_sssl_stage", stage)
 	return false
 
+
 func level_create_monster(stage):
 	super.level_create_monster(stage)
 	if mr != null and is_instance_valid(mr) and mr is BaseMonster:
@@ -132,7 +141,8 @@ func level_create_monster(stage):
 		if stage > 1:
 			Global.AddMessageShow(self, str(mr.my_mr_name) + " 出现", 1.2, Vector2(470, 300))
 
-func _on_create_control_timeout() -> void :
+
+func _on_create_control_timeout() -> void:
 	if Role_ == null:
 		return
 	if Global.SSSLendlessMode:
@@ -157,7 +167,8 @@ func _on_create_control_timeout() -> void :
 	if current_stage >= 1 and current_stage <= 4 and check_can_create(current_stage):
 		level_create_monster(current_stage)
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if Global.SSSLendlessMode:
 		_set_endless_camera_limits()
@@ -168,6 +179,7 @@ func _physics_process(delta: float) -> void :
 		RoleProp.role_pos_y = Role_.position.y
 	if role_information != null and role_information.gogo != null:
 		role_information.gogo.visible = current_stage >= 1 and current_stage < 4 and check_can_pass()
+
 
 func set_through():
 	if Global.SSSLendlessMode:
@@ -190,20 +202,23 @@ func set_through():
 			my_camera.max_right = LEVEL_RIGHT
 		stop_5.disabled = false
 
+
 func check_can_pass():
 	if Global.SSSLendlessMode:
 		return Monster_group.get("stage_1", []).is_empty() and _get_alive_stage_monster_count() == 0
 	if current_stage < 1 or current_stage > 4:
 		return false
-	var stage_key: = "stage_%d" % current_stage
+	var stage_key := "stage_%d" % current_stage
 	if not Monster_group.has(stage_key) or Monster_group[stage_key].size() > 0:
 		return false
 	return _get_alive_stage_monster_count() == 0
+
 
 func check_can_exit():
 	if Global.SSSLendlessMode:
 		return false
 	return current_stage == 4 and check_can_pass()
+
 
 func one_check_can_exit():
 	if Global.SSSLendlessMode:
@@ -213,7 +228,8 @@ func one_check_can_exit():
 		return false
 	return check_can_exit()
 
-func _set_endless_camera_limits() -> void :
+
+func _set_endless_camera_limits() -> void:
 	if my_camera == null:
 		return
 	my_camera.limit_smoothed = false
@@ -221,7 +237,8 @@ func _set_endless_camera_limits() -> void :
 	my_camera.max_left = 0
 	my_camera.max_right = 1200
 
-func _queue_next_endless_boss() -> void :
+
+func _queue_next_endless_boss() -> void:
 	if not is_inside_tree() or not Global.SSSLendlessMode:
 		_endless_restart_pending = false
 		return
@@ -233,7 +250,7 @@ func _queue_next_endless_boss() -> void :
 	Monster_group["stage_1"].clear()
 	Monster_position_x["stage_1"].clear()
 	Monster_position_y["stage_1"].clear()
-	var spawn_count: = clampi(int(MainSet.set_data.get("CreateMonsterCount", 1)), 1, 5)
+	var spawn_count := clampi(int(MainSet.set_data.get("CreateMonsterCount", 1)), 1, 5)
 	for _index in range(spawn_count):
 		Monster_group["stage_1"].append(SSSL_BOSS_IDS[_endless_boss_index])
 		Monster_position_x["stage_1"].append(ENDLESS_BOSS_POSITION.x)

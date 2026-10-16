@@ -10,6 +10,7 @@ var resurrection_completed: bool = false
 var custom_death_handled: bool = false
 var death_timer: Timer
 
+
 func monster_132():
 	self.is_boss = true
 	self.my_mr_name = "天庭战神"
@@ -37,40 +38,38 @@ func monster_132():
 	self.fall_coin = 155
 
 	self.objattackDic["hit1"] = {
-		"power": 200, 
-		"hurtBack": [-4, -7], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 200,
+		"hurtBack": [-4, -7],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 
 	self.objattackDic["hit2"] = {
-		"power": 200, 
-		"hurtBack": [-5, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 0, 
-		"addeffect": {
-			"Name": "DefeReduce", 
-			"AddTime": 5, 
-			"ReduceInterval": 0, 
-			"value": 1, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false, 
-			"CanAdd": false, 
+		"power": 200,
+		"hurtBack": [-5, -1],
+		"attackKind": "magic",
+		"HitProtect": 0,
+		"addeffect":
+		{
+			"Name": "DefeReduce",
+			"AddTime": 5,
+			"ReduceInterval": 0,
+			"value": 1,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanRemove": false,
+			"CanAdd": false,
 		}
 	}
 
 	self.fall_pro = 0.05
-	self.fall_list = [
-		{"name": "canglongjiezzs", "value": 1}
-	]
+	self.fall_list = [{"name": "canglongjiezzs", "value": 1}]
 
 	self.fall_stone_pro = 0.05
-	self.fall_stone = [
-		{"name": "canglonglingpo", "value": randi_range(1, 2)}
-	]
+	self.fall_stone = [{"name": "canglonglingpo", "value": randi_range(1, 2)}]
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_132()
 	Skill_1_CD = randi_range(3, 5)
@@ -81,7 +80,8 @@ func _ready() -> void :
 	death_timer.one_shot = true
 	add_child(death_timer)
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	if is_resurrecting or resurrection_completed:
 		if CanSetGra():
 			gravity = -980
@@ -103,10 +103,12 @@ func _physics_process(delta: float) -> void :
 				Shallow.MyParent = self
 				CreateCount = randi_range(600, 720)
 
-func _process(delta: float) -> void :
+
+func _process(delta: float) -> void:
 	if Hp <= 0 and not custom_death_handled and not is_resurrecting and not resurrection_completed:
 		custom_death_handled = true
 		handle_custom_death()
+
 
 func death() -> bool:
 	if is_resurrecting or resurrection_completed or ShouldRelive:
@@ -120,6 +122,7 @@ func death() -> bool:
 
 	return false
 
+
 func handle_custom_death():
 	velocity = Vector2.ZERO
 	is_attacking = false
@@ -128,6 +131,7 @@ func handle_custom_death():
 		start_resurrection()
 	else:
 		final_death()
+
 
 func start_resurrection():
 	is_resurrecting = true
@@ -145,7 +149,7 @@ func start_resurrection():
 	RelifTimes += 1
 
 	if has_node("MonsterDir/mr_ani"):
-		var mr_ani = $MonsterDir / mr_ani
+		var mr_ani = $MonsterDir/mr_ani
 		if mr_ani.sprite_frames and mr_ani.sprite_frames.has_animation("death1"):
 			mr_ani.animation = "death1"
 			mr_ani.frame = 0
@@ -174,8 +178,10 @@ func start_resurrection():
 	await get_tree().create_timer(0.5).timeout
 	perform_resurrection()
 
+
 func _on_resurrection_animation_complete():
 	perform_resurrection()
+
 
 func perform_resurrection():
 	SHp = int(SHp * 1.2)
@@ -213,7 +219,7 @@ func perform_resurrection():
 		hurt_box.disabled = false
 
 	if has_node("MonsterDir/SpecialEffect"):
-		var special_effect = $MonsterDir / SpecialEffect
+		var special_effect = $MonsterDir/SpecialEffect
 
 		special_effect.position = Vector2.ZERO
 
@@ -230,12 +236,13 @@ func perform_resurrection():
 	await get_tree().create_timer(1.0).timeout
 	resurrection_completed = false
 
+
 func resume_idle_animation():
 	if mr_player.is_playing():
 		mr_player.stop()
 
 	if has_node("MonsterDir/mr_ani"):
-		var mr_ani = $MonsterDir / mr_ani
+		var mr_ani = $MonsterDir/mr_ani
 		if mr_ani.is_playing():
 			mr_ani.stop()
 
@@ -244,7 +251,7 @@ func resume_idle_animation():
 	elif mr_player.has_animation("idle"):
 		mr_player.play("idle")
 	elif has_node("MonsterDir/mr_ani"):
-		var mr_ani = $MonsterDir / mr_ani
+		var mr_ani = $MonsterDir/mr_ani
 		if mr_ani.sprite_frames:
 			if mr_ani.sprite_frames.has_animation("wait"):
 				mr_ani.animation = "wait"
@@ -253,6 +260,7 @@ func resume_idle_animation():
 				mr_ani.animation = "idle"
 				mr_ani.play()
 
+
 func final_death():
 	is_death = true
 	set_meta("counts_as_alive_for_stage_clear", false)
@@ -260,7 +268,7 @@ func final_death():
 	if mr_player.has_animation("death"):
 		mr_player.play("death")
 	elif has_node("MonsterDir/mr_ani"):
-		var mr_ani = $MonsterDir / mr_ani
+		var mr_ani = $MonsterDir/mr_ani
 		if mr_ani.sprite_frames and mr_ani.sprite_frames.has_animation("death"):
 			mr_ani.animation = "death"
 			mr_ani.play()
@@ -278,6 +286,7 @@ func final_death():
 	if is_instance_valid(self):
 		queue_free()
 
+
 func state_death():
 	if RelifTimes < 9:
 		set_meta("counts_as_alive_for_stage_clear", true)
@@ -289,8 +298,16 @@ func state_death():
 		custom_death_handled = true
 		final_death()
 
+
 func is_alive_for_stage_clear() -> bool:
-	return RelifTimes < 9 or is_resurrecting or resurrection_completed or ShouldRelive or bool(get_meta("counts_as_alive_for_stage_clear", false))
+	return (
+		RelifTimes < 9
+		or is_resurrecting
+		or resurrection_completed
+		or ShouldRelive
+		or bool(get_meta("counts_as_alive_for_stage_clear", false))
+	)
+
 
 func Monster_Intelligence():
 	if is_resurrecting or resurrection_completed or ShouldRelive:
@@ -319,6 +336,7 @@ func Monster_Intelligence():
 					if randi_range(0, 100) < attackDesire:
 						attack_target()
 
+
 func check_hp():
 	if is_resurrecting or resurrection_completed:
 		return
@@ -327,6 +345,7 @@ func check_hp():
 		Hp = SHp
 	if Hp <= 0 and not custom_death_handled:
 		Hp = 0
+
 
 func do_hit_1():
 	if is_resurrecting or resurrection_completed:
@@ -342,6 +361,7 @@ func do_hit_1():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_2():
 	if is_resurrecting or resurrection_completed:
 		return
@@ -356,6 +376,7 @@ func do_hit_2():
 	is_attacking = false
 	stop_move()
 
+
 func TweenToTop():
 	if is_resurrecting or resurrection_completed or _movement_command_is_blocked():
 		return
@@ -363,6 +384,7 @@ func TweenToTop():
 	var tween = create_control_movement_tween()
 	tween.tween_property(self, "position", Vector2(0, -250) + position, 2)
 	velocity = Vector2(0, 0)
+
 
 func CallBullet():
 	if is_resurrecting or resurrection_completed:
@@ -374,24 +396,16 @@ func CallBullet():
 	while Num < MaxCount:
 		var NewRotation = 360.0 / MaxCount * Num
 		var rad = deg_to_rad(NewRotation)
-		var stabPosition = Vector2(
-			self.position.x + sin(rad) * 300, 
-			self.position.y - 15 - cos(rad) * 300
-		)
+		var stabPosition = Vector2(self.position.x + sin(rad) * 300, self.position.y - 15 - cos(rad) * 300)
 		var Arrow = Global.add_Bullet(
-			"Monster132Bullet", 
-			self.bullet, 
-			false, 
-			1, 
-			stabPosition, 
-			"hit2", 
-			self.objattackDic["hit2"]
+			"Monster132Bullet", self.bullet, false, 1, stabPosition, "hit2", self.objattackDic["hit2"]
 		)
 		if Arrow:
 			Arrow.rotation_degrees = NewRotation - 90
 
 		await get_tree().create_timer(0.05, false).timeout
 		Num += 1
+
 
 func _on_hurt_box_area_entered(area: Area2D):
 	if is_resurrecting or resurrection_completed:
@@ -401,16 +415,20 @@ func _on_hurt_box_area_entered(area: Area2D):
 
 	var Bl: float = 0.02 + RelifTimes * 0.01
 	if IsStrength:
-		Global.AddBuff(RoleProp.SourcePlayer.buff, {
-			"Name": "Fire", 
-			"AddTime": 5, 
-			"ReduceInterval": 1, 
-			"value": int(RoleProp.roleprop.SHp * Bl), 
-			"AttackKind": "real", 
-			"CanAdd": true, 
-			"CanRemove": false
-		})
+		Global.AddBuff(
+			RoleProp.SourcePlayer.buff,
+			{
+				"Name": "Fire",
+				"AddTime": 5,
+				"ReduceInterval": 1,
+				"value": int(RoleProp.roleprop.SHp * Bl),
+				"AttackKind": "real",
+				"CanAdd": true,
+				"CanRemove": false
+			}
+		)
 		IsStrength = false
+
 
 func StrengthSelf():
 	if is_resurrecting or resurrection_completed:
@@ -426,11 +444,13 @@ func StrengthSelf():
 		cure_hp(int(SHp * randf_range(0.01, 0.02)))
 		await get_tree().create_timer(0.2, false).timeout
 
+
 func OnStrength():
 	if is_resurrecting or resurrection_completed:
 		return
 
 	IsStrength = true
+
 
 func _exit_tree():
 	super._exit_tree()

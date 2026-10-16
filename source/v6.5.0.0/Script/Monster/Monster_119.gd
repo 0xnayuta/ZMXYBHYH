@@ -2,6 +2,8 @@ extends BaseMonster
 class_name Monster119
 
 var CureBl: float = 1
+
+
 func monster_119():
 	self.is_Fly = false
 	self.is_boss = false
@@ -29,42 +31,44 @@ func monster_119():
 	self.add_exp = 100
 	self.fall_coin = 30
 	self.objattackDic["hit1"] = {
-		"power": 500, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics", 
-		"HitProtect": 15, 
+		"power": 500,
+		"hurtBack": [-4, -9],
+		"attackKind": "physics",
+		"HitProtect": 15,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 800, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 2, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"CanAdd": false, 
-			"CanRemove": false, 
-			"AttackKind": "", 
+		"power": 800,
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 2,
+			"ReduceInterval": 0,
+			"value": 0,
+			"CanAdd": false,
+			"CanRemove": false,
+			"AttackKind": "",
 		}
 	}
-
-
-
-
 
 	self.fall_pro = 0.5
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_119()
 	Skill_1_CD = 6
 	Skill_2_CD = 8
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
+
 
 func Monster_Intelligence():
 	if is_death:
@@ -94,6 +98,8 @@ func Monster_Intelligence():
 						attack_target()
 				else:
 					stop_move()
+
+
 func do_hit_2():
 	Skill_1_CD = 6
 	hit_name = "hit2"
@@ -102,6 +108,8 @@ func do_hit_2():
 	mr_player.play("hit2")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func do_hit_3():
 	Skill_2_CD = 8
 	velocity.x = 0
@@ -110,6 +118,8 @@ func do_hit_3():
 	mr_player.play("hit1")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func StrengthSelf():
 	for i in objattackDic:
 		if objattackDic[i].has("power"):
@@ -117,7 +127,9 @@ func StrengthSelf():
 	CureBl += 0.5
 	def += 10
 	mdef += 10
-func _on_hit_box_area_exited(_area: Area2D) -> void :
+
+
+func _on_hit_box_area_exited(_area: Area2D) -> void:
 	super._on_hit_box_area_entered(_area)
 	if hit_name == "hit2":
 		cure_hp(SHp * 0.1 * CureBl)

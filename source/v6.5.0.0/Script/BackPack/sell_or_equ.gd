@@ -5,9 +5,6 @@ var number: int = 0
 var EQ_prop = {}
 var jm
 
-
-
-
 var pet_owner: Node = null
 var pet_source: Variant = null
 var pet_index: int = -1
@@ -17,10 +14,12 @@ var is_pet_action: bool = false
 var source_box: Node = null
 var outside_click_enabled: bool = false
 
-@onready var infor = $VBoxContainer / infor
-@onready var lock_button: Button = $VBoxContainer / lock
-@onready var lock_text: Label = $VBoxContainer / lock / Text
-func _ready() -> void :
+@onready var infor = $VBoxContainer/infor
+@onready var lock_button: Button = $VBoxContainer/lock
+@onready var lock_text: Label = $VBoxContainer/lock/Text
+
+
+func _ready() -> void:
 	infor.text = "第" + str(page) + "页" + "第" + str(number + 1) + "格"
 	call_deferred("_refresh_lock_button")
 	call_deferred("_enable_outside_click")
@@ -30,13 +29,15 @@ func _ready() -> void :
 		return
 	_refresh_lock_button()
 
-func _enable_outside_click() -> void :
+
+func _enable_outside_click() -> void:
 	outside_click_enabled = true
 
-func _input(event: InputEvent) -> void :
+
+func _input(event: InputEvent) -> void:
 	if not outside_click_enabled or not is_visible_in_tree():
 		return
-	var click_position: = Vector2.ZERO
+	var click_position := Vector2.ZERO
 	if event is InputEventMouseButton:
 		if not event.pressed or event.button_index != MOUSE_BUTTON_LEFT:
 			return
@@ -50,9 +51,11 @@ func _input(event: InputEvent) -> void :
 	if not _control_has_point($Panel, click_position) and not _control_has_point($VBoxContainer, click_position):
 		queue_free()
 
+
 func _control_has_point(control: Control, screen_position: Vector2) -> bool:
-	var local_position: = control.get_global_transform_with_canvas().affine_inverse() * screen_position
+	var local_position := control.get_global_transform_with_canvas().affine_inverse() * screen_position
 	return Rect2(Vector2.ZERO, control.size).has_point(local_position)
+
 
 func _get_inventory_entry() -> Dictionary:
 	if page <= 0 or number < 0:
@@ -66,27 +69,30 @@ func _get_inventory_entry() -> Dictionary:
 	var item: Variant = (items as Array)[number]
 	return item as Dictionary if item is Dictionary else {}
 
+
 func _is_locked() -> bool:
-	var item: = _get_inventory_entry()
+	var item := _get_inventory_entry()
 	var data: Variant = item.get("Data", {})
 	return data is Dictionary and bool((data as Dictionary).get("锁定", false))
 
-func _refresh_lock_button() -> void :
+
+func _refresh_lock_button() -> void:
 	if lock_button == null:
 		return
 	lock_button.visible = not is_pet_action
 	if is_pet_action:
 		return
-	var locked: = _is_locked()
+	var locked := _is_locked()
 	lock_text.text = "解 锁" if locked else "锁 定"
 	lock_button.tooltip_text = "解锁后才能出售" if locked else "锁定物品，禁止出售"
 	if source_box != null and is_instance_valid(source_box):
 		source_box.item_locked = locked
 
-func _on_lock_pressed() -> void :
+
+func _on_lock_pressed() -> void:
 	if is_pet_action:
 		return
-	var item: = _get_inventory_entry()
+	var item := _get_inventory_entry()
 	var data: Variant = item.get("Data", {})
 	if not data is Dictionary:
 		return
@@ -95,7 +101,8 @@ func _on_lock_pressed() -> void :
 	MemoryClass.保存游戏(Global.cd_path)
 	_refresh_lock_button()
 
-func setup_pet_action(owner: Node, source: Variant, index: int, slot_type: String, action_label: String = "装备") -> void :
+
+func setup_pet_action(owner: Node, source: Variant, index: int, slot_type: String, action_label: String = "装备") -> void:
 	pet_owner = owner
 	pet_source = source
 	pet_index = index
@@ -112,26 +119,29 @@ func setup_pet_action(owner: Node, source: Variant, index: int, slot_type: Strin
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	if infor != null:
 		infor.text = "第1页第%d格" % (number + 1) if index >= 0 else "已装备"
-	var action_button: = get_node_or_null("VBoxContainer/equ") as Button
+	var action_button := get_node_or_null("VBoxContainer/equ") as Button
 	if action_button != null:
 		var can_equip: bool = not owner.has_method("can_equip_pet_item") or owner.call("can_equip_pet_item") == true
 		action_button.disabled = index >= 0 and not can_equip
 		action_button.tooltip_text = "请先选择宠物" if action_button.disabled else action_label
 
+
 func _pet_item_name(source: Variant) -> String:
 	if source is Dictionary:
-		var item: = source as Dictionary
+		var item := source as Dictionary
 		return str(item.get("名字", item.get("名称", "宠物装备")))
 	return str(source)
+
 
 func _pet_item_data(source: Variant) -> Dictionary:
 	if not (source is Dictionary):
 		return {}
-	var item: = source as Dictionary
+	var item := source as Dictionary
 	var data: Variant = item.get("Data", {})
 	if data is Dictionary and not (data as Dictionary).is_empty():
 		return (data as Dictionary).duplicate(true)
 	return item.duplicate(true)
+
 
 func _call_pet_action(method_name: String) -> bool:
 	if not is_pet_action or pet_owner == null or not is_instance_valid(pet_owner):
@@ -142,7 +152,8 @@ func _call_pet_action(method_name: String) -> bool:
 
 	return result == null or result == true
 
-func _on_equ_pressed() -> void :
+
+func _on_equ_pressed() -> void:
 	if is_pet_action:
 		if _call_pet_action("pet_equip_from_popup"):
 			queue_free()
@@ -202,11 +213,7 @@ func _on_equ_pressed() -> void :
 				equipped_shengu.clear()
 				equipped_shengu.push_back(new_list)
 				PlayerData.zl_zb()
-				PlayerData.add_zb(
-					str(old_item.get("名字", "")), 
-					int(old_item.get("强化等级", 0)), 
-					old_item.get("Data", {})
-				)
+				PlayerData.add_zb(str(old_item.get("名字", "")), int(old_item.get("强化等级", 0)), old_item.get("Data", {}))
 			else:
 				equipped_shengu.push_back(new_list)
 				PlayerData.zl_zb()
@@ -232,11 +239,7 @@ func _on_equ_pressed() -> void :
 				equipped_avatar_frames.clear()
 				equipped_avatar_frames.push_back(new_list)
 				PlayerData.zl_zb()
-				PlayerData.add_zb(
-					str(old_item.get("名字", "")), 
-					int(old_item.get("强化等级", 0)), 
-					old_item.get("Data", {})
-				)
+				PlayerData.add_zb(str(old_item.get("名字", "")), int(old_item.get("强化等级", 0)), old_item.get("Data", {}))
 			else:
 				equipped_avatar_frames.clear()
 				equipped_avatar_frames.push_back(new_list)
@@ -302,7 +305,7 @@ func _on_equ_pressed() -> void :
 	queue_free()
 
 
-func _on_sell_pressed() -> void :
+func _on_sell_pressed() -> void:
 	if is_pet_action:
 		if _call_pet_action("pet_sell_from_popup"):
 			queue_free()
@@ -347,34 +350,36 @@ func _on_sell_pressed() -> void :
 	PlayerData.zl_zb()
 	queue_free()
 
-func _show_sell_confirm(confirm_text: String) -> void :
+
+func _show_sell_confirm(confirm_text: String) -> void:
 	self.visible = false
 	Signals.ConnectChooseBoxSignal(self, "sell")
 	jm = Global.add_choose_text(Global.get_ui_popup_layer(), Vector2.ZERO, confirm_text, 0)
 	if jm == null:
 		return
-	var popup: = jm as Control
+	var popup := jm as Control
 	if popup == null:
 		return
 	popup.process_mode = Node.PROCESS_MODE_ALWAYS
-	var overlay: = popup.get_node_or_null("TextureRect") as ColorRect
+	var overlay := popup.get_node_or_null("TextureRect") as ColorRect
 	if overlay == null:
 		return
 	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	overlay.color = Color.TRANSPARENT
 	call_deferred("_center_sell_confirm_popup", popup)
 
-func _center_sell_confirm_popup(popup: Control) -> void :
+
+func _center_sell_confirm_popup(popup: Control) -> void:
 	if popup == null or not is_instance_valid(popup):
 		return
 	await get_tree().process_frame
-	var overlay: = popup.get_node_or_null("TextureRect") as ColorRect
+	var overlay := popup.get_node_or_null("TextureRect") as ColorRect
 	if overlay == null:
 		return
-	var dialog: = overlay.get_node_or_null("bg") as Control
+	var dialog := overlay.get_node_or_null("bg") as Control
 	if dialog == null:
 		return
-	var dialog_size: = dialog.size
+	var dialog_size := dialog.size
 	dialog.anchor_left = 0.0
 	dialog.anchor_top = 0.0
 	dialog.anchor_right = 0.0
@@ -383,6 +388,8 @@ func _center_sell_confirm_popup(popup: Control) -> void :
 	dialog.offset_top = (overlay.size.y - dialog_size.y) * 0.5
 	dialog.offset_right = dialog.offset_left + dialog_size.x
 	dialog.offset_bottom = dialog.offset_top + dialog_size.y
+
+
 func sell():
 	if _is_locked():
 		visible = true
@@ -393,26 +400,29 @@ func sell():
 	MemoryClass.保存游戏(Global.cd_path)
 	PlayerData.remove_zb(page, number)
 	PlayerData.zl_zb()
+
+
 func get_number():
 	var number_ = int(str(get_parent().name).split("_")[1]) - 1
 	return number_
+
+
 func load_(name_):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
 	return abc
 
 
-func _on_mouse_exited() -> void :
+func _on_mouse_exited() -> void:
 	pass
 
 
-
-func _on_v_box_container_mouse_exited() -> void :
+func _on_v_box_container_mouse_exited() -> void:
 	pass
 
 
-
-func _on_panel_mouse_exited() -> void :
+func _on_panel_mouse_exited() -> void:
 	pass
+
 
 func CheckCanEquipment(EquipmentName):
 	var RoleID: int = PlayerData.player_data["Myself"]

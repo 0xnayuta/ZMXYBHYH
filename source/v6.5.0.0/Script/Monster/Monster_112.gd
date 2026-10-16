@@ -1,6 +1,8 @@
 extends BaseMonster
 class_name Monster112
 var blink_count: int = randi_range(80, 120)
+
+
 func monster_112():
 	self.is_boss = true
 	self.my_mr_name = "太白金星"
@@ -27,59 +29,42 @@ func monster_112():
 	self.add_exp = 300
 	self.fall_coin = 335
 	self.objattackDic["hit1"] = {
-		"power": 500, 
-		"hurtBack": [-5, -9], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 500,
+		"hurtBack": [-5, -9],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 1500, 
-		"hurtBack": [-2, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "Immobilize", 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 1500,
+		"hurtBack": [-2, -1],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "Immobilize",
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit3"] = {
-		"power": 1500, 
-		"hurtBack": [-2, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 1500,
+		"hurtBack": [-2, -1],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "qlgzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "plzzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "ylfzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "jlczzs", 
-			"value": 1
-		}, 
-		{
-			"name": "tlqzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "230007004zzs", 
-			"value": 1
-		}, 
+		{"name": "qlgzzs", "value": 1},
+		{"name": "plzzzs", "value": 1},
+		{"name": "ylfzzs", "value": 1},
+		{"name": "jlczzs", "value": 1},
+		{"name": "tlqzzs", "value": 1},
+		{"name": "230007004zzs", "value": 1},
 	]
 
 	enable_treasure_box = true
@@ -88,18 +73,24 @@ func monster_112():
 	update_fall_mode()
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_112()
 	Skill_1_CD = randi_range(4, 7)
 	Skill_2_CD = randi_range(6, 8)
 	Skill_3_CD = randi_range(10, 15)
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	blink_count -= 1
 	if blink_count <= 0:
 		movetoplayer()
 		blink_count = randi_range(80, 120)
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -126,6 +117,8 @@ func Monster_Intelligence():
 				if count % 60 == 0:
 					if randi_range(0, 100) < attackDesire:
 						attack_target()
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(7, 10)
@@ -136,6 +129,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = randi_range(6, 8)
@@ -146,16 +141,54 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func CallBullet1():
 	if self.MonsterDirection:
-		Global.add_Bullet("Monster112Bullet1", self.bullet, MonsterDirection, 1, Vector2(25, 0) + position, "hit2", self.objattackDic["hit2"])
+		Global.add_Bullet(
+			"Monster112Bullet1",
+			self.bullet,
+			MonsterDirection,
+			1,
+			Vector2(25, 0) + position,
+			"hit2",
+			self.objattackDic["hit2"]
+		)
 	else:
-		Global.add_Bullet("Monster112Bullet1", self.bullet, MonsterDirection, 1, Vector2(-25, 0) + position, "hit2", self.objattackDic["hit2"])
+		Global.add_Bullet(
+			"Monster112Bullet1",
+			self.bullet,
+			MonsterDirection,
+			1,
+			Vector2(-25, 0) + position,
+			"hit2",
+			self.objattackDic["hit2"]
+		)
+
+
 func CallBullet2():
 	if self.MonsterDirection:
-		Global.add_Bullet("Monster112Bullet2", self.bullet, MonsterDirection, 1, Vector2(70, 0) + position, "hit1", self.objattackDic["hit1"])
+		Global.add_Bullet(
+			"Monster112Bullet2",
+			self.bullet,
+			MonsterDirection,
+			1,
+			Vector2(70, 0) + position,
+			"hit1",
+			self.objattackDic["hit1"]
+		)
 	else:
-		Global.add_Bullet("Monster112Bullet2", self.bullet, MonsterDirection, 1, Vector2(-70, 0) + position, "hit1", self.objattackDic["hit1"])
+		Global.add_Bullet(
+			"Monster112Bullet2",
+			self.bullet,
+			MonsterDirection,
+			1,
+			Vector2(-70, 0) + position,
+			"hit1",
+			self.objattackDic["hit1"]
+		)
+
+
 func CallBullet3():
 	var PositionList1 = [Vector2(position.x + 150, 0), Vector2(position.x + 0, 100), Vector2(position.x - 150, 0)]
 	var PositionList2 = [Vector2(position.x + 300, 100), Vector2(position.x - 300, 100)]

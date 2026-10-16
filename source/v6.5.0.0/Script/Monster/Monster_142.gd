@@ -2,6 +2,8 @@ extends BaseMonster
 class_name Monster142
 var IsSky = false
 var RoundList = []
+
+
 func monster_142():
 	self.rush_speed = 400
 	self.is_boss = true
@@ -30,74 +32,68 @@ func monster_142():
 	self.fall_coin = 500
 	self.ebol = 0
 	self.objattackDic["hit1"] = {
-		"power": 500, 
-		"hurtBack": [-1, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 0, 
+		"power": 500,
+		"hurtBack": [-1, -1],
+		"attackKind": "magic",
+		"HitProtect": 0,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 1500, 
-		"hurtBack": [-1, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 0, 
+		"power": 1500,
+		"hurtBack": [-1, -1],
+		"attackKind": "magic",
+		"HitProtect": 0,
 	}
 	self.objattackDic["hit3"] = {
-		"power": 650, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real", 
-		"HitProtect": 0, 
-		"addeffect": {
-			"Name": "DefeReduce", 
-			"AddTime": 20, 
-			"ReduceInterval": 0, 
-			"value": 1, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false, 
+		"power": 650,
+		"hurtBack": [0, 0],
+		"attackKind": "real",
+		"HitProtect": 0,
+		"addeffect":
+		{
+			"Name": "DefeReduce",
+			"AddTime": 20,
+			"ReduceInterval": 0,
+			"value": 1,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanRemove": false,
 		}
 	}
 	self.objattackDic["hit4"] = {
-		"power": 600, 
-		"hurtBack": [0, 0], 
-		"attackKind": "physics", 
-		"HitProtect": 0, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 5, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false, 
+		"power": 600,
+		"hurtBack": [0, 0],
+		"attackKind": "physics",
+		"HitProtect": 0,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 5,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanRemove": false,
 		}
 	}
 	self.objattackDic["hit5"] = {
-		"power": 1500, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
-		"HitProtect": 0, 
+		"power": 1500,
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
+		"HitProtect": 0,
 	}
 	self.objattackDic["hit6"] = {
-		"power": 600, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real", 
-		"HitProtect": 0, 
+		"power": 600,
+		"hurtBack": [0, 0],
+		"attackKind": "real",
+		"HitProtect": 0,
 	}
 	self.fall_pro = 0.5
-	self.fall_list = [
-		{
-			"name": "zlwdahsp3", 
-			"value": 1
-		}
-	]
+	self.fall_list = [{"name": "zlwdahsp3", "value": 1}]
 	self.fall_stone_pro = 0.2
-	self.fall_stone = [
-		{
-			"name": "zlwdahzzs", 
-			"value": 1
-		}
-	]
-func _ready() -> void :
+	self.fall_stone = [{"name": "zlwdahzzs", "value": 1}]
+
+
+func _ready() -> void:
 	super._ready()
 	monster_142()
 	Skill_1_CD = 2
@@ -105,13 +101,17 @@ func _ready() -> void :
 	Skill_3_CD = 7
 	Skill_4_CD = 9
 	Skill_5_CD = 11
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if IsSky == true:
 		gravity = 0
 		velocity.y = 0
 	else:
 		gravity = -980.0
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -140,6 +140,7 @@ func Monster_Intelligence():
 				if Skill_5_CD <= 0:
 					do_hit_5()
 
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = 2
@@ -150,6 +151,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = 15
@@ -160,6 +163,8 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_3():
 	super.to_hero()
 	Skill_3_CD = 17
@@ -170,6 +175,8 @@ func do_hit_3():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_4():
 	super.to_hero()
 	Skill_4_CD = 13
@@ -180,6 +187,8 @@ func do_hit_4():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_5():
 	super.to_hero()
 	Skill_5_CD = 20
@@ -190,31 +199,52 @@ func do_hit_5():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func TweenToTop():
 	if _movement_command_is_blocked():
 		return
 	ShouldInSky = true
 	var tween = create_control_movement_tween()
 	tween.tween_property(self, "position", Vector2(0, -250) + position, 0.2)
+
+
 func TweenToTop2():
 	if _movement_command_is_blocked():
 		return
 	ShouldInSky = true
 	var tween = create_control_movement_tween()
 	tween.tween_property(self, "position", Vector2(position.x, 100), 1)
+
+
 func drop():
 	ShouldInSky = false
+
+
 func CallBullet1():
-	var Round = Global.add_Bullet("Monster142Bullet1", self.bullet, false, 1, position, "hit1", self.objattackDic["hit1"])
+	var Round = Global.add_Bullet(
+		"Monster142Bullet1", self.bullet, false, 1, position, "hit1", self.objattackDic["hit1"]
+	)
 	var tween = create_tween()
 	tween.tween_property(Round, "position", RoleProp.SourcePlayer.position, 0.5)
+
+
 func CallBullet3():
-	var PositionList = [Vector2(-400 + position.x, 470), 
-	Vector2(-300 + position.x, 470), Vector2(-200 + position.x, 470), 
-	Vector2(-100 + position.x, 470), Vector2(position.x, 470), Vector2(100 + position.x, 470), 
-	Vector2(200 + position.x, 470), Vector2(300 + position.x, 470), Vector2(400 + position.x, 470)]
+	var PositionList = [
+		Vector2(-400 + position.x, 470),
+		Vector2(-300 + position.x, 470),
+		Vector2(-200 + position.x, 470),
+		Vector2(-100 + position.x, 470),
+		Vector2(position.x, 470),
+		Vector2(100 + position.x, 470),
+		Vector2(200 + position.x, 470),
+		Vector2(300 + position.x, 470),
+		Vector2(400 + position.x, 470)
+	]
 	for i in PositionList:
 		Global.add_Bullet("Monster56Bullet", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
+
+
 func CallBullet4():
 	var MaxCount: int = 10
 	var Num: int = 0
@@ -223,7 +253,10 @@ func CallBullet4():
 	while Num < MaxCount:
 		var NewRotation = 360 / MaxCount
 		NewRotation = NewRotation * Num
-		var stabPosition = Vector2(self.position.x + sin(float(NewRotation) * PI / 180) * 150, self.position.y - 15 - cos(float(NewRotation) * PI / 180) * 150)
+		var stabPosition = Vector2(
+			self.position.x + sin(float(NewRotation) * PI / 180) * 150,
+			self.position.y - 15 - cos(float(NewRotation) * PI / 180) * 150
+		)
 		PositionList.push_back(stabPosition)
 		Num += 1
 	if not MonsterDirection:
@@ -231,16 +264,28 @@ func CallBullet4():
 	for i in PositionList:
 		var stab = Global.add_Bullet("Monster142Bullet2", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
 		await get_tree().create_timer(0.2, false).timeout
+
+
 func CallBullet5():
-	var PositionList = [Vector2(-400 + position.x, 450), 
-	Vector2(-300 + position.x, 450), Vector2(-200 + position.x, 450), 
-	Vector2(-100 + position.x, 450), Vector2(position.x, 450), Vector2(100 + position.x, 450), 
-	Vector2(200 + position.x, 450), Vector2(300 + position.x, 450), Vector2(400 + position.x, 450), Vector2(500 + position.x, 450)]
+	var PositionList = [
+		Vector2(-400 + position.x, 450),
+		Vector2(-300 + position.x, 450),
+		Vector2(-200 + position.x, 450),
+		Vector2(-100 + position.x, 450),
+		Vector2(position.x, 450),
+		Vector2(100 + position.x, 450),
+		Vector2(200 + position.x, 450),
+		Vector2(300 + position.x, 450),
+		Vector2(400 + position.x, 450),
+		Vector2(500 + position.x, 450)
+	]
 	randomize()
 	var CountTime = PositionList.size() * 0.1
 	PositionList.shuffle()
 	for i in PositionList:
-		var Round = Global.add_Bullet("Monster55Bullet", self.bullet, false, 1, position, "hit5", self.objattackDic["hit5"])
+		var Round = Global.add_Bullet(
+			"Monster55Bullet", self.bullet, false, 1, position, "hit5", self.objattackDic["hit5"]
+		)
 		RoundList.push_back(Round)
 		var tween = create_tween()
 		tween.tween_property(Round, "position", i, 1)

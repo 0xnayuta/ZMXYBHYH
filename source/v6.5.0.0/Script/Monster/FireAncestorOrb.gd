@@ -1,36 +1,37 @@
 extends BaseMonster
 class_name FireAncestorOrb
 
-const ROOT: = "res://Art/Monster/SwfPng/3056"
-const SOURCE_FPS: = 30.0
-const SOURCE_LIFETIME: = 72.0
-const DAMAGE_INTERVAL: = 0.5
-const SOURCE_FRAME_HOLD: = 4
-const FRAME_PADDING: = 1
-const SWF_MATTE_ALPHA_MAX: = 2.5 / 255.0
-const SWF_MATTE_RGB_MAX: = 0.5 / 255.0
-const ACTIONS: = {
-	&"wait": ["idle", 1, true], 
-	&"walk": ["walk", 32, true], 
-	&"hurt": ["idle", 1, true], 
-	&"death": ["dead", 1, false], 
-	&"hit1": ["attack1", 32, true], 
+const ROOT := "res://Art/Monster/SwfPng/3056"
+const SOURCE_FPS := 30.0
+const SOURCE_LIFETIME := 72.0
+const DAMAGE_INTERVAL := 0.5
+const SOURCE_FRAME_HOLD := 4
+const FRAME_PADDING := 1
+const SWF_MATTE_ALPHA_MAX := 2.5 / 255.0
+const SWF_MATTE_RGB_MAX := 0.5 / 255.0
+const ACTIONS := {
+	&"wait": ["idle", 1, true],
+	&"walk": ["walk", 32, true],
+	&"hurt": ["idle", 1, true],
+	&"death": ["dead", 1, false],
+	&"hit1": ["attack1", 32, true],
 }
 
 static var _frames_cache: SpriteFrames
 static var _prepared_texture_cache: Dictionary = {}
 static var _premultiplied_material: CanvasItemMaterial
 
-@export var monster_kind: = 3056
+@export var monster_kind := 3056
 
 var _runtime_config: Dictionary = {}
-var _elapsed: = 0.0
-var _damage_elapsed: = 0.0
-var _damage_enabled: = false
-var _reenable_damage_next_frame: = false
-var _death_started: = false
+var _elapsed := 0.0
+var _damage_elapsed := 0.0
+var _damage_enabled := false
+var _reenable_damage_next_frame := false
+var _death_started := false
 
-func _ready() -> void :
+
+func _ready() -> void:
 	_runtime_config = _resolve_runtime_config()
 	_configure_monster()
 	_build_animations()
@@ -40,8 +41,9 @@ func _ready() -> void :
 	mr_player.play(&"hit1")
 	_set_damage_enabled(true)
 
+
 func _resolve_runtime_config() -> Dictionary:
-	var level_node: = get_level_node()
+	var level_node := get_level_node()
 	if level_node != null and level_node.has_method("get_level_monster_config"):
 		var config: Variant = level_node.call("get_level_monster_config", monster_kind)
 		if config is Dictionary and not config.is_empty():
@@ -49,8 +51,9 @@ func _resolve_runtime_config() -> Dictionary:
 	push_error("FireAncestorOrb requires level monster config entry 3056")
 	return {}
 
-func _configure_monster() -> void :
-	var config: = _runtime_config
+
+func _configure_monster() -> void:
+	var config := _runtime_config
 	my_mr_name = str(config.get("name", "Fire Ancestor Orb"))
 	level = int(config.get("level", 1))
 	attack_in = int(config.get("attack", 1))
@@ -83,28 +86,33 @@ func _configure_monster() -> void :
 	var attacks: Dictionary = config.get("attacks", {})
 	var attack: Dictionary = attacks.get("hit1", {})
 	objattackDic["hit1"] = {
-		"power": roundi(float(attack_in) * float(attack.get("multiplier", 0.5))), 
-		"hurtBack": Array(attack.get("hurt_back", [0.0, 0.0])).duplicate(), 
-		"attackKind": str(attack.get("kind", "physics")), 
-		"HitProtect": int(attack.get("protect", 0)), 
+		"power": roundi(float(attack_in) * float(attack.get("multiplier", 0.5))),
+		"hurtBack": Array(attack.get("hurt_back", [0.0, 0.0])).duplicate(),
+		"attackKind": str(attack.get("kind", "physics")),
+		"HitProtect": int(attack.get("protect", 0)),
 	}
+
 
 func monster_info_base_attack() -> int:
 	return int(_runtime_config.get("attack", attack_in))
 
+
 func monster_info_attack_values_include_difficulty() -> bool:
 	return false
+
 
 func is_control_immune() -> bool:
 	return true
 
-static func prewarm_frames() -> void :
+
+static func prewarm_frames() -> void:
 	_get_frames()
-	var tree: = Engine.get_main_loop() as SceneTree
+	var tree := Engine.get_main_loop() as SceneTree
 	if tree != null:
 		await tree.process_frame
 
-func _build_animations() -> void :
+
+func _build_animations() -> void:
 	mr_ani.sprite_frames = _get_frames()
 	mr_ani.material = _get_premultiplied_material()
 	mr_ani.centered = true
@@ -112,10 +120,10 @@ func _build_animations() -> void :
 	mr_ani.flip_h = false
 	if mr_player.has_animation_library(&""):
 		mr_player.remove_animation_library(&"")
-	var library: = AnimationLibrary.new()
+	var library := AnimationLibrary.new()
 	for action_name: StringName in ACTIONS:
 		var action_data: Array = ACTIONS[action_name]
-		var animation: = Animation.new()
+		var animation := Animation.new()
 		animation.length = maxf(float(action_data[1]) / SOURCE_FPS, 0.05)
 		animation.loop_mode = Animation.LOOP_LINEAR if bool(action_data[2]) else Animation.LOOP_NONE
 		_add_method_key(animation, 0.0, &"_play_frames", [action_name])
@@ -124,10 +132,11 @@ func _build_animations() -> void :
 		library.add_animation(action_name, animation)
 	mr_player.add_animation_library(&"", library)
 
+
 static func _get_frames() -> SpriteFrames:
 	if _frames_cache != null:
 		return _frames_cache
-	var frames: = SpriteFrames.new()
+	var frames := SpriteFrames.new()
 	frames.remove_animation(&"default")
 	for action_name: StringName in ACTIONS:
 		var action_data: Array = ACTIONS[action_name]
@@ -135,53 +144,53 @@ static func _get_frames() -> SpriteFrames:
 		frames.set_animation_loop(action_name, bool(action_data[2]))
 		frames.set_animation_speed(action_name, SOURCE_FPS)
 		for frame_index in range(1, int(action_data[1]) + 1):
-			var texture: = _get_prepared_texture(str(action_data[0]), frame_index)
+			var texture := _get_prepared_texture(str(action_data[0]), frame_index)
 			if texture != null:
 				frames.add_frame(action_name, texture)
 	_frames_cache = frames
 	return frames
 
+
 static func _get_prepared_texture(folder: String, frame_index: int) -> Texture2D:
-	var source_folder: = folder
-	var source_frame: = frame_index
+	var source_folder := folder
+	var source_frame := frame_index
 
 	if folder == "attack1" or folder == "walk":
 		source_folder = "attack1"
 		source_frame = 1 + int(float(frame_index - 1) / SOURCE_FRAME_HOLD) * SOURCE_FRAME_HOLD
-	var source_path: = ROOT.path_join(source_folder).path_join(str(source_frame) + ".png")
+	var source_path := ROOT.path_join(source_folder).path_join(str(source_frame) + ".png")
 	if _prepared_texture_cache.has(source_path):
 		return _prepared_texture_cache[source_path] as Texture2D
 	var source_texture: Texture2D = Global.get_cached_texture(source_path)
 	if source_texture == null:
 		return null
-	var source_image: = source_texture.get_image()
+	var source_image := source_texture.get_image()
 	if source_image == null or source_image.is_empty():
 		push_error("FireAncestorOrb cannot read frame image: " + source_path)
 		return null
 	if source_image.get_format() != Image.FORMAT_RGBA8:
 		source_image.convert(Image.FORMAT_RGBA8)
 	_remove_swf_matte(source_image)
-	var padded_image: = Image.create(
-		source_image.get_width() + FRAME_PADDING * 2, 
-		source_image.get_height() + FRAME_PADDING * 2, 
-		false, 
+	var padded_image := Image.create(
+		source_image.get_width() + FRAME_PADDING * 2,
+		source_image.get_height() + FRAME_PADDING * 2,
+		false,
 		Image.FORMAT_RGBA8
 	)
 	padded_image.fill(Color.TRANSPARENT)
 	padded_image.blit_rect(
-		source_image, 
-		Rect2i(Vector2i.ZERO, source_image.get_size()), 
-		Vector2i(FRAME_PADDING, FRAME_PADDING)
+		source_image, Rect2i(Vector2i.ZERO, source_image.get_size()), Vector2i(FRAME_PADDING, FRAME_PADDING)
 	)
 	padded_image.premultiply_alpha()
-	var prepared_texture: = ImageTexture.create_from_image(padded_image)
+	var prepared_texture := ImageTexture.create_from_image(padded_image)
 	_prepared_texture_cache[source_path] = prepared_texture
 	return prepared_texture
 
-static func _remove_swf_matte(image: Image) -> void :
+
+static func _remove_swf_matte(image: Image) -> void:
 	for y in range(image.get_height()):
 		for x in range(image.get_width()):
-			var pixel: = image.get_pixel(x, y)
+			var pixel := image.get_pixel(x, y)
 			if (
 				pixel.a > 0.0
 				and pixel.a <= SWF_MATTE_ALPHA_MAX
@@ -191,31 +200,34 @@ static func _remove_swf_matte(image: Image) -> void :
 			):
 				image.set_pixel(x, y, Color.TRANSPARENT)
 
+
 static func _get_premultiplied_material() -> CanvasItemMaterial:
 	if _premultiplied_material == null:
 		_premultiplied_material = CanvasItemMaterial.new()
 		_premultiplied_material.blend_mode = CanvasItemMaterial.BLEND_MODE_PREMULT_ALPHA
 	return _premultiplied_material
 
-func _add_method_key(animation: Animation, time: float, method_name: StringName, args: Array = []) -> void :
-	var track: = animation.add_track(Animation.TYPE_METHOD)
+
+func _add_method_key(animation: Animation, time: float, method_name: StringName, args: Array = []) -> void:
+	var track := animation.add_track(Animation.TYPE_METHOD)
 	animation.track_set_path(track, NodePath("."))
 	animation.track_insert_key(
-		track, 
-		clampf(time, 0.0, maxf(animation.length - 0.001, 0.0)), 
-		{"method": method_name, "args": args}
+		track, clampf(time, 0.0, maxf(animation.length - 0.001, 0.0)), {"method": method_name, "args": args}
 	)
 
-func _play_frames(action_name: StringName) -> void :
+
+func _play_frames(action_name: StringName) -> void:
 	mr_ani.visible = true
 	mr_ani.play(action_name)
 
-func Monster_Intelligence() -> void :
+
+func Monster_Intelligence() -> void:
 	pass
 
-func _physics_process(delta: float) -> void :
-	var source_target_x: = global_position.x
-	var source_move_speed: = 0.0
+
+func _physics_process(delta: float) -> void:
+	var source_target_x := global_position.x
+	var source_move_speed := 0.0
 	if not death():
 		if _reenable_damage_next_frame:
 			_reenable_damage_next_frame = false
@@ -226,7 +238,7 @@ func _physics_process(delta: float) -> void :
 			_damage_elapsed -= DAMAGE_INTERVAL
 			_set_damage_enabled(false)
 			_reenable_damage_next_frame = true
-		source_move_speed = - speed * 10.0
+		source_move_speed = -speed * 10.0
 		source_target_x += source_move_speed * delta
 		velocity.x = 0.0
 	super._physics_process(delta)
@@ -240,7 +252,8 @@ func _physics_process(delta: float) -> void :
 	if not death() and _elapsed >= SOURCE_LIFETIME:
 		Hp = 0
 
-func _set_damage_enabled(enabled: bool) -> void :
+
+func _set_damage_enabled(enabled: bool) -> void:
 	if hit_box == null or (enabled and death()):
 		return
 	_damage_enabled = enabled
@@ -249,13 +262,16 @@ func _set_damage_enabled(enabled: bool) -> void :
 	else:
 		hit_box.set_deferred("disabled", false)
 
-func state_hurt() -> void :
+
+func state_hurt() -> void:
 	pass
 
-func _interrupt_attack_state_on_hit() -> void :
+
+func _interrupt_attack_state_on_hit() -> void:
 	pass
 
-func state_death() -> void :
+
+func state_death() -> void:
 	if _death_started:
 		return
 	_death_started = true

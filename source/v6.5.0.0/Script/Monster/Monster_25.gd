@@ -3,16 +3,12 @@ class_name Monster25
 var is_can_attack
 var dir = 1
 var is_can_move
-enum {
-	move, 
-	hit, 
-	return_, 
-	stop_, 
-	death_
-}
+enum { move, hit, return_, stop_, death_ }
 var is_set
 var rr_an = randi_range(0, 100)
 var state_ = move
+
+
 func monster_25():
 	self.CannotAttract = true
 	self.is_Fly = true
@@ -41,26 +37,20 @@ func monster_25():
 	self.add_exp = 20
 	self.fall_coin = 4
 	if get_parent().get_parent() is LevelNMGHDGQ:
-		self.objattackDic["hit1"] = {
-			"power": 800, 
-			"hurtBack": [-4, -9], 
-			"attackKind": "physics"
-		}
+		self.objattackDic["hit1"] = {"power": 800, "hurtBack": [-4, -9], "attackKind": "physics"}
 		self.fall_pro = 0.0
 		self.fall_list = []
 		self.fall_stone_pro = 0.0
 		self.fall_stone = []
 		return
-	self.objattackDic["hit1"] = {
-		"power": 300, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics"
-	}
+	self.objattackDic["hit1"] = {"power": 300, "hurtBack": [-4, -9], "attackKind": "physics"}
 	self.fall_pro = 0.0
 	self.fall_list = []
 	self.fall_stone_pro = 0.0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_25()
 	hit_name = "hit1"
@@ -96,6 +86,8 @@ func Monster_Intelligence():
 							move_left()
 						else:
 							move_right()
+
+
 func normal_state():
 	if is_quiescent:
 		return
@@ -112,6 +104,8 @@ func normal_state():
 			stop_move()
 		else:
 			move_right()
+
+
 func have_target():
 	if is_quiescent:
 		return
@@ -119,19 +113,27 @@ func have_target():
 		move_right()
 	elif RoleProp.get_nearest_monster_target_position(global_position).x < position.x - randi_range(25, 85):
 		move_left()
+
+
 func move_left():
 	base_damage_box.scale.x = 1
-	velocity.x = - speed * 10
+	velocity.x = -speed * 10
 	mr_player.play("Hands")
+
+
 func move_right():
 	base_damage_box.scale.x = -1
 	velocity.x = speed * 10
 	mr_player.play("Hands")
+
+
 func move_up():
 	is_attacking = true
 	mr_player.play("fanhui")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func move_down():
 	hit_name = "hit1"
 	velocity.x = 0
@@ -140,12 +142,16 @@ func move_down():
 	await mr_player.animation_finished
 	is_attacking = false
 	move_up()
+
+
 func stop_move():
 	velocity.x = 0
 	mr_player.play("Hands")
 
-func _on_change_dir_timeout() -> void :
+
+func _on_change_dir_timeout() -> void:
 	rr_an = randi_range(0, 100)
+
 
 func reduce_hp(value: int):
 	return

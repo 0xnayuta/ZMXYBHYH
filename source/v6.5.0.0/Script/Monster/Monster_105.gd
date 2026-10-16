@@ -28,40 +28,56 @@ func monster_105():
 	self.add_exp = 220
 	self.fall_coin = 220
 	self.objattackDic["hit1"] = {
-		"power": 120, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "poision", 
-			"AddTime": 5, 
-			"ReduceInterval": 1, 
-			"value": 30, 
-			"AttackKind": "magic", 
-			"CanAdd": false, 
-			"DeBuff": true, 
-		}, 
+		"power": 120,
+		"hurtBack": [-8, -12],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "poision",
+			"AddTime": 5,
+			"ReduceInterval": 1,
+			"value": 30,
+			"AttackKind": "magic",
+			"CanAdd": false,
+			"DeBuff": true,
+		},
 	}
 	self.fall_pro = 0.3
 	self.fall_list = [
-		{
-			"name": "xianmao", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "xianmao", "value": randi_range(1, 2)},
 	]
 	self.fall_stone_pro = 0.28
 	self.fall_stone = [
-		{
-			"name": "ziyanyujin", 
-			"value": randi_range(1, 5)
-		}, 
+		{"name": "ziyanyujin", "value": randi_range(1, 5)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_105()
 
+
 func call_dd():
 	if self.MonsterDirection:
-		Global.CallChaseBullet(self.bullet, "Monster37Bullet", 220, 3, true, Vector2(self.position.x + 70, self.position.y), "hit1", self.objattackDic["hit1"])
+		Global.CallChaseBullet(
+			self.bullet,
+			"Monster37Bullet",
+			220,
+			3,
+			true,
+			Vector2(self.position.x + 70, self.position.y),
+			"hit1",
+			self.objattackDic["hit1"]
+		)
 	else:
-		Global.CallChaseBullet(self.bullet, "Monster37Bullet", 220, 3, true, Vector2(self.position.x - 70, self.position.y), "hit1", self.objattackDic["hit1"])
+		Global.CallChaseBullet(
+			self.bullet,
+			"Monster37Bullet",
+			220,
+			3,
+			true,
+			Vector2(self.position.x - 70, self.position.y),
+			"hit1",
+			self.objattackDic["hit1"]
+		)

@@ -1,6 +1,7 @@
 extends Node
 @onready var http_request: HTTPRequest = $HTTPRequest
 
+
 func _on_body_received(request, body):
 	var time_str = body.get_string_from_utf8()
 	if time_str == "":
@@ -15,26 +16,31 @@ func _on_body_received(request, body):
 		print("无法获取时间！！")
 		return null
 	return TImeUnix
+
+
 func CheckTime():
 	var error = http_request.request("http://quan.suning.com/getSysTime.do")
 	if error != OK:
 		push_error("在HTTP请求中发生了一个错误。")
 
-func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void :
+
+func _on_http_request_request_completed(
+	result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray
+) -> void:
 	return
 	if _on_body_received(result, body) != null:
 		var abc = str(_on_body_received(result, body)).split()
 		var DataList = {
-			"year": str(abc[0] + abc[1] + abc[2] + abc[3]), 
-			"month": str(abc[4] + abc[5]), 
-			"day": str(abc[6] + abc[7]), 
-			"hour": str(abc[8] + abc[9]), 
-			"minute": str(abc[10] + abc[11]), 
-			"second": str(abc[12] + abc[13]), 
+			"year": str(abc[0] + abc[1] + abc[2] + abc[3]),
+			"month": str(abc[4] + abc[5]),
+			"day": str(abc[6] + abc[7]),
+			"hour": str(abc[8] + abc[9]),
+			"minute": str(abc[10] + abc[11]),
+			"second": str(abc[12] + abc[13]),
 		}
 
-func RefreshTime(DataList):
 
+func RefreshTime(DataList):
 	var Dic = DataList
 	var MyDic = MainSet.set_data["MyTime"]
 	if MyDic == {}:

@@ -1,15 +1,16 @@
 extends MonsterBullet
 
-const FRAME_DIR: = "res://Art/Monster/Game3Monster/Monster_215/DefineSprite_50_Monster215Bullet1"
-const FRAME_COUNT: = 18
-const SOURCE_FPS: = 30.0
+const FRAME_DIR := "res://Art/Monster/Game3Monster/Monster_215/DefineSprite_50_Monster215Bullet1"
+const FRAME_COUNT := 18
+const SOURCE_FPS := 30.0
 
-const FRAME_SIZE: = Vector2(160, 164)
-const SOURCE_ORIGIN: = Vector2(54, 79)
+const FRAME_SIZE := Vector2(160, 164)
+const SOURCE_ORIGIN := Vector2(54, 79)
 
 static var _frames_cache: SpriteFrames
 
-func _ready() -> void :
+
+func _ready() -> void:
 	set_meta("is_monster_bullet", true)
 	get_prop()
 	bullet_ani.sprite_frames = _get_frames()
@@ -22,20 +23,22 @@ func _ready() -> void :
 	queue_timer.timeout.connect(_on_queue_timer_timeout)
 	queue_timer.start(0.65)
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	ThrowCount += 1
 	get_prop()
+
 
 static func _get_frames() -> SpriteFrames:
 	if _frames_cache != null:
 		return _frames_cache
-	var frames: = SpriteFrames.new()
+	var frames := SpriteFrames.new()
 	frames.remove_animation(&"default")
 	frames.add_animation(&"Monster215Bullet1")
 	frames.set_animation_loop(&"Monster215Bullet1", false)
 	frames.set_animation_speed(&"Monster215Bullet1", SOURCE_FPS)
 	for index in range(1, FRAME_COUNT + 1):
-		var texture: = Global.get_cached_texture(FRAME_DIR.path_join(str(index) + ".png"))
+		var texture := Global.get_cached_texture(FRAME_DIR.path_join(str(index) + ".png"))
 		if texture != null:
 			frames.add_frame(&"Monster215Bullet1", texture)
 	_frames_cache = frames

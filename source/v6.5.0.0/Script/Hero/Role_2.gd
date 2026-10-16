@@ -1,7 +1,7 @@
 extends BaseHero
 class_name role2
 
-const JHSJ_AWAKEN_EFFECT: = preload("res://Scene/Hero/RoleSpecialEffectSlim/JHSJAwakenEffect.tscn")
+const JHSJ_AWAKEN_EFFECT := preload("res://Scene/Hero/RoleSpecialEffectSlim/JHSJAwakenEffect.tscn")
 
 var zhw_list: Array = []
 var current_zhw_summon: Node2D = null
@@ -13,11 +13,9 @@ var bingyu_effects: Array[Node2D] = []
 var smb_hold_timer: float = 0.0
 var smb_ready_for_second_press: bool = false
 
-
-
 var tjgl_effect: Node2D = null
 @onready var shield_bar: ProgressBar = $ShieldBar
-@onready var hurt_box = $base_damagebox / HurtBox / HurtBox
+@onready var hurt_box = $base_damagebox/HurtBox/HurtBox
 var Interv: int
 var ShallowList: Array
 var jhsj_1
@@ -27,7 +25,7 @@ var smpox
 var myhc
 
 
-func _ready() -> void :
+func _ready() -> void:
 	super._ready()
 	super.onEqchange()
 	Role_2()
@@ -39,7 +37,7 @@ func _ready() -> void :
 	call_deferred("_prewarm_role2_skill_effects")
 
 
-func _prewarm_role2_skill_effects() -> void :
+func _prewarm_role2_skill_effects() -> void:
 	if ClassDB.class_exists("SpineSprite"):
 		JHSJAwakenEffect.preload_effect_data()
 	if Global._equipped_role_skill_names().has("zfjg"):
@@ -62,92 +60,75 @@ func Role_2():
 	var level_10 = PlayerData.player_data["技能学习"]["技能10"]["等级"]
 	var level_11 = PlayerData.player_data["技能学习"]["技能11"]["等级"]
 	self.objattackDic["hit1"] = {
-		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1), 
-		"hurtBack": [4, -6], 
-		"attackKind": "magic", 
-		"HitInterv": 1, 
+		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1),
+		"hurtBack": [4, -6],
+		"attackKind": "magic",
+		"HitInterv": 1,
 		"WSValue": randi_range(2, 4)
 	}
 	self.objattackDic["blb"] = {
-		"power": RoleProp.roleprop.power * (1.0 + (level_1 * 0.05)), 
-		"hurtBack": [25, -10], 
-		"attackKind": "magic", 
+		"power": RoleProp.roleprop.power * (1.0 + (level_1 * 0.05)),
+		"hurtBack": [25, -10],
+		"attackKind": "magic",
 		"WSValue": randi_range(15, 18)
 	}
 	self.objattackDic["xbz"] = {
-		"power": RoleProp.roleprop.power * (0.75 + (level_2 * 0.075)), 
-		"hurtBack": [8, -13], 
-		"attackKind": "magic", 
-		"WSValue": randi_range(10, 12), 
-		"addeffect": {
-			"Name": "Ice", 
-			"AddTime": 1 + level_10 * 0.1, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": RoleProp.roleprop.power * (0.75 + (level_2 * 0.075)),
+		"hurtBack": [8, -13],
+		"attackKind": "magic",
+		"WSValue": randi_range(10, 12),
+		"addeffect":
+		{
+			"Name": "Ice",
+			"AddTime": 1 + level_10 * 0.1,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
 			"DeBuff": true
 		}
 	}
-	self.objattackDic["shy"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic"
-	}
-	self.objattackDic["tjgl"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic"
-	}
-	self.objattackDic["jgz"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic"
-	}
+	self.objattackDic["shy"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
+	self.objattackDic["tjgl"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
+	self.objattackDic["jgz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
 	self.objattackDic["smb"] = {
-		"power": RoleProp.roleprop.power * (6.0 + level_5 * 2.2) + RoleProp.roleprop.SMp * (0.4 + level_5 * 0.3), 
-		"hurtBack": [3, -8], 
-		"attackKind": "magic", 
-		"WSValue": randi_range(35, 45), 
-		"addeffect": {
-			"Name": "Ice", 
-			"AddTime": 2 + level_10 * 0.1, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": RoleProp.roleprop.power * (6.0 + level_5 * 2.2) + RoleProp.roleprop.SMp * (0.4 + level_5 * 0.3),
+		"hurtBack": [3, -8],
+		"attackKind": "magic",
+		"WSValue": randi_range(35, 45),
+		"addeffect":
+		{
+			"Name": "Ice",
+			"AddTime": 2 + level_10 * 0.1,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
 			"DeBuff": true
 		}
 	}
 	self.objattackDic["sgq"] = {
-		"power": RoleProp.roleprop.power * (0.15 + (level_6 * 0.02)), 
-		"hurtBack": [3, -8], 
-		"attackKind": "magic", 
-		"WSValue": 1, 
+		"power": RoleProp.roleprop.power * (0.15 + (level_6 * 0.02)),
+		"hurtBack": [3, -8],
+		"attackKind": "magic",
+		"WSValue": 1,
 	}
 	self.objattackDic["jhsj"] = {
-		"power": RoleProp.roleprop.power * (0.8 + (level_9 * 0.1)), 
-		"hurtBack": [3, -8], 
-		"attackKind": "magic", 
-		"WSValue": randi_range(10, 15), 
+		"power": RoleProp.roleprop.power * (0.8 + (level_9 * 0.1)),
+		"hurtBack": [3, -8],
+		"attackKind": "magic",
+		"WSValue": randi_range(10, 15),
 	}
-	self.objattackDic["myhc"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic"
-	}
+	self.objattackDic["myhc"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
 	self.objattackDic["by"] = {
-		"power": (RoleProp.roleprop.power * (2.0 + level_11 * 1.6) + RoleProp.roleprop.SMp * (0.13 + level_11 * 0.1)) * 0.32, 
-		"hurtBack": [1, -2], 
-		"attackKind": "magic", 
+		"power":
+		(RoleProp.roleprop.power * (2.0 + level_11 * 1.6) + RoleProp.roleprop.SMp * (0.13 + level_11 * 0.1)) * 0.32,
+		"hurtBack": [1, -2],
+		"attackKind": "magic",
 		"WSValue": 3
 	}
-	self.objattackDic["zfjg"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic"
-	}
+	self.objattackDic["zfjg"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
 
 
-func _physics_process(delta: float) -> void :
+func _physics_process(delta: float) -> void:
 	if SMB1 != null:
 		smpox = SMB1.position
 	else:
@@ -177,13 +158,15 @@ func _physics_process(delta: float) -> void :
 	Role_2()
 	super._physics_process(delta)
 
-
 	if NoLimitBuff():
-
-		if not is_riding_mount() and Input.is_action_pressed("normalhit") and not is_be_attacking and not is_using_skills and Interv <= 0:
+		if (
+			not is_riding_mount()
+			and Input.is_action_pressed("normalhit")
+			and not is_be_attacking
+			and not is_using_skills
+			and Interv <= 0
+		):
 			do_normalhit_1()
-
-
 
 		if SMB1 != null:
 			var smb_action_pressed = _is_smb_action_pressed()
@@ -193,33 +176,27 @@ func _physics_process(delta: float) -> void :
 				Skill_SMB2()
 
 
-
-
 func _is_smb_action_pressed() -> bool:
-	var action_map = {
-		"Y": "slz", 
-		"U": "lys", 
-		"I": "lyfb", 
-		"O": "hmz", 
-		"L": "hytj"
-	}
+	var action_map = {"Y": "slz", "U": "lys", "I": "lyfb", "O": "hmz", "L": "hytj"}
 	for key_id in action_map:
-		if PlayerData.player_data["技能学习"]["技能键位"].get(key_id, "") == "smb" and Input.is_action_pressed(action_map[key_id]):
+		if (
+			PlayerData.player_data["技能学习"]["技能键位"].get(key_id, "") == "smb"
+			and Input.is_action_pressed(action_map[key_id])
+		):
 			return true
 	return false
+
 
 func _is_smb_action_just_pressed() -> bool:
-	var action_map = {
-		"Y": "slz", 
-		"U": "lys", 
-		"I": "lyfb", 
-		"O": "hmz", 
-		"L": "hytj"
-	}
+	var action_map = {"Y": "slz", "U": "lys", "I": "lyfb", "O": "hmz", "L": "hytj"}
 	for key_id in action_map:
-		if PlayerData.player_data["技能学习"]["技能键位"].get(key_id, "") == "smb" and Input.is_action_just_pressed(action_map[key_id]):
+		if (
+			PlayerData.player_data["技能学习"]["技能键位"].get(key_id, "") == "smb"
+			and Input.is_action_just_pressed(action_map[key_id])
+		):
 			return true
 	return false
+
 
 func do_normalhit_1():
 	Interv = objattackDic["hit1"]["HitInterv"]
@@ -396,7 +373,7 @@ func Skill_BY():
 	is_using_skills = true
 	is_attacking = true
 	super.get_hit_data("by")
-	var effect: = BingYuEffect.new()
+	var effect := BingYuEffect.new()
 	effect.setup(self, objattackDic["by"])
 	get_tree().current_scene.add_child(effect)
 	bingyu_effects.append(effect)
@@ -408,21 +385,23 @@ func Skill_BY():
 	is_attacking = false
 	is_using_skills = false
 
-func _ensure_bingyu_action() -> void :
+
+func _ensure_bingyu_action() -> void:
 	var bingyu_action: Animation
 	if role_action_player.has_animation("by_action"):
 		bingyu_action = role_action_player.get_animation("by_action")
 	else:
-		var source_animation: = role_action_player.get_animation("tjgl")
+		var source_animation := role_action_player.get_animation("tjgl")
 		if source_animation == null:
 			return
 		bingyu_action = source_animation.duplicate(true) as Animation
-		var default_library: = role_action_player.get_animation_library("")
+		var default_library := role_action_player.get_animation_library("")
 		if default_library != null:
 			default_library.add_animation("by_action", bingyu_action)
 	_strip_bingyu_action_sound(bingyu_action)
 
-func _strip_bingyu_action_sound(animation: Animation) -> void :
+
+func _strip_bingyu_action_sound(animation: Animation) -> void:
 	if animation == null:
 		return
 	for track_index in range(animation.get_track_count() - 1, -1, -1):
@@ -436,8 +415,10 @@ func _strip_bingyu_action_sound(animation: Animation) -> void :
 			if method_data is Dictionary and str(method_data.get("method", "")).to_lower() == "addmusic":
 				animation.track_remove_key(track_index, key_index)
 
-func _on_bingyu_effect_exited(effect: Node) -> void :
+
+func _on_bingyu_effect_exited(effect: Node) -> void:
 	bingyu_effects.erase(effect)
+
 
 func Skill_Zfjg():
 	var cd_time = 5
@@ -459,7 +440,7 @@ func _summon_zhw():
 	if all_zhw.size() >= _get_zhw_summon_limit():
 		return
 
-	var summon_scene: = Global.load_scene_uncached("res://Scene/Monster/Monster_zhw/Monster_143_zhw.tscn")
+	var summon_scene := Global.load_scene_uncached("res://Scene/Monster/Monster_zhw/Monster_143_zhw.tscn")
 	if summon_scene == null:
 		return
 	var summon_instance = summon_scene.instantiate()
@@ -565,7 +546,9 @@ func AddXBZ():
 	else:
 		PositionList = [Vector2(80, -15), Vector2(175, -20), Vector2(275, -25)]
 	for i in PositionList.size():
-		var xbz = Global.addRoleBullet_(self.Bullet, PositionList[i] + position, PlayerDir, "Role2Bullet3", objattackDic["xbz"])
+		var xbz = Global.addRoleBullet_(
+			self.Bullet, PositionList[i] + position, PlayerDir, "Role2Bullet3", objattackDic["xbz"]
+		)
 		xbz.scale = ScaleList[i]
 		await get_tree().create_timer(0.2, false).timeout
 
@@ -581,14 +564,16 @@ func Addzfjg():
 	Global.addRoleSpecialEffect_(self.Bullet, position + Vector2(0, 0), false, "zfjg_zh")
 	_summon_zhw()
 
+
 func AddSMb_2():
 	Global.addRoleBullet_(self.Bullet, smpox + Vector2(0, -180), PlayerDir, "Role2Bullet4", objattackDic["smb"])
 	if _is_skill_awakened("smb") and _is_skill_awaken_enabled("smb"):
 		_spawn_smb_awaken_extra_bursts(smpox, PlayerDir)
 
-func _spawn_smb_awaken_extra_bursts(origin: Vector2, direction: bool) -> void :
-	var roll: = randf()
-	var extra_count: = 2 if roll < 0.2 else (1 if roll < 0.7 else 0)
+
+func _spawn_smb_awaken_extra_bursts(origin: Vector2, direction: bool) -> void:
+	var roll := randf()
+	var extra_count := 2 if roll < 0.2 else (1 if roll < 0.7 else 0)
 	for burst_index in range(extra_count):
 		await get_tree().create_timer(0.18 * float(burst_index + 1), false).timeout
 		if not is_instance_valid(self) or IsDeath:
@@ -609,7 +594,7 @@ func AddShallow():
 func SelfCure():
 	var level = PlayerData.player_data["技能学习"]["技能4"]["等级"] + 1
 	var TotalValue = int(RoleProp.roleprop.SHp * 0.2 + level * 0.02)
-	CureValue = 0.6 * float((RoleProp.roleprop.SHp - RoleProp.roleprop.Hp)) / float(RoleProp.roleprop.SHp) + 1
+	CureValue = 0.6 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) + 1
 	var Value = int(TotalValue * CureHpValue)
 	cure_Hp(Value)
 
@@ -652,6 +637,7 @@ func _is_skill_awakened(skill_id: String) -> bool:
 	var awaken_data: Variant = PlayerData.player_data.get("技能觉醒", {})
 	return awaken_data is Dictionary and bool(awaken_data.get(skill_id, false))
 
+
 func _is_skill_awaken_enabled(skill_id: String) -> bool:
 	var enabled_data: Variant = PlayerData.player_data.get("技能觉醒启用", {})
 	if not enabled_data is Dictionary:
@@ -669,7 +655,7 @@ func is_knockback_immune() -> bool:
 	return hd > 0 and _is_tjgl_awaken_active()
 
 
-func refresh_tjgl_shield_timer() -> void :
+func refresh_tjgl_shield_timer() -> void:
 	if shield_timer == null or hd <= 0:
 		return
 	if _is_tjgl_awaken_active():
@@ -678,7 +664,7 @@ func refresh_tjgl_shield_timer() -> void :
 		shield_timer.start(15.0)
 
 
-func _update_tjgl_shield_timer() -> void :
+func _update_tjgl_shield_timer() -> void:
 	if shield_timer == null or hd <= 0:
 		return
 	if _is_tjgl_awaken_active():
@@ -688,10 +674,10 @@ func _update_tjgl_shield_timer() -> void :
 		shield_timer.start(15.0)
 
 
-func _spawn_jhsj_awaken_effect() -> void :
+func _spawn_jhsj_awaken_effect() -> void:
 	if jhsj_awaken_effect != null and is_instance_valid(jhsj_awaken_effect):
 		jhsj_awaken_effect.queue_free()
-	var effect: = JHSJ_AWAKEN_EFFECT.instantiate()
+	var effect := JHSJ_AWAKEN_EFFECT.instantiate()
 	jhsj_awaken_effect = effect
 	var awaken_hit_data: Dictionary = objattackDic["jhsj"].duplicate(true)
 	var skill_level: int = int(get_SkillLevel(9))
@@ -707,7 +693,7 @@ func AddJHSJ2():
 	jhsj_2.show_behind_parent = true
 
 
-func _on_normal_hit_reduce_timeout() -> void :
+func _on_normal_hit_reduce_timeout() -> void:
 	Interv -= 1
 
 
@@ -740,7 +726,7 @@ func AddShake(power, time, inter):
 	baselevel.shake_(power, time, inter)
 
 
-func _prepare_hit_reaction() -> void :
+func _prepare_hit_reaction() -> void:
 	if tjgl_effect != null:
 		tjgl_effect.queue_free()
 		tjgl_effect = null
@@ -776,7 +762,6 @@ func _on_shield_timer_timeout():
 		shield_effect.queue_free()
 		shield_effect = null
 	hd = 0
-
 
 
 func get_zfjg_duration() -> float:

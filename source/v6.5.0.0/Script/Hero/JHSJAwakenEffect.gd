@@ -1,34 +1,36 @@
 extends Node2D
 class_name JHSJAwakenEffect
 
-const FALLBACK_EFFECT_SCENE_PATH: = "res://Scene/Hero/RoleSpecialEffectSlim/jhsj.tscn"
-const ATLAS_PATH: = "res://Art/HeroPicture/Role2/JHSJAwaken/runtime/HeroF_6030_skill.atlas"
-const SKELETON_PATH: = "res://Art/HeroPicture/Role2/JHSJAwaken/runtime/HeroF_6030_skill08_1.spine-json"
-const SPINE_SCALE: = Vector2(0.2, 0.2)
-const SPINE_DURATION: = 2.5
-const HIT_TIMES: = [0.25, 1.1]
-const MULTI_HIT_INTERVAL: = 0.12
-const HIT_HALF_SIZE: = Vector2(620.0, 520.0)
+const FALLBACK_EFFECT_SCENE_PATH := "res://Scene/Hero/RoleSpecialEffectSlim/jhsj.tscn"
+const ATLAS_PATH := "res://Art/HeroPicture/Role2/JHSJAwaken/runtime/HeroF_6030_skill.atlas"
+const SKELETON_PATH := "res://Art/HeroPicture/Role2/JHSJAwaken/runtime/HeroF_6030_skill08_1.spine-json"
+const SPINE_SCALE := Vector2(0.2, 0.2)
+const SPINE_DURATION := 2.5
+const HIT_TIMES := [0.25, 1.1]
+const MULTI_HIT_INTERVAL := 0.12
+const HIT_HALF_SIZE := Vector2(620.0, 520.0)
 
 var owner_player: Node = null
 var hit_data: Dictionary = {}
-var face_right: = true
+var face_right := true
 var _spine: Variant = null
 var _fallback_effect: Node = null
-var _hit_index: = 0
+var _hit_index := 0
 var _cached_targets: Array[BaseMonster] = []
 static var _shared_data: Variant = null
 static var _normal_material: CanvasItemMaterial
 static var _additive_material: CanvasItemMaterial
 static var _multiply_material: CanvasItemMaterial
-static var _load_failed: = false
+static var _load_failed := false
 
-func setup(player: Node, data: Dictionary, is_facing_right: bool) -> void :
+
+func setup(player: Node, data: Dictionary, is_facing_right: bool) -> void:
 	owner_player = player
 	hit_data = data.duplicate(true)
 	face_right = is_facing_right
 
-func _ready() -> void :
+
+func _ready() -> void:
 	if owner_player == null or not is_instance_valid(owner_player):
 		queue_free()
 		return
@@ -61,8 +63,9 @@ func _ready() -> void :
 		state.set_animation("skill08_1", false, 0)
 	_run_hits()
 
-func _spawn_fallback_visual() -> void :
-	var fallback_effect_scene: = load(FALLBACK_EFFECT_SCENE_PATH) as PackedScene
+
+func _spawn_fallback_visual() -> void:
+	var fallback_effect_scene := load(FALLBACK_EFFECT_SCENE_PATH) as PackedScene
 	if fallback_effect_scene == null:
 		return
 	_fallback_effect = fallback_effect_scene.instantiate()
@@ -73,14 +76,16 @@ func _spawn_fallback_visual() -> void :
 	_fallback_effect.z_index = 24
 	add_child(_fallback_effect)
 
-func _process(_delta: float) -> void :
+
+func _process(_delta: float) -> void:
 	if owner_player == null or not is_instance_valid(owner_player):
 		queue_free()
 		return
 	global_position = owner_player.global_position
 
-func _run_hits() -> void :
-	var previous_time: = 0.0
+
+func _run_hits() -> void:
+	var previous_time := 0.0
 	for hit_time in HIT_TIMES:
 		await get_tree().create_timer(hit_time - previous_time, false).timeout
 		if owner_player == null or not is_instance_valid(owner_player):
@@ -90,13 +95,14 @@ func _run_hits() -> void :
 	await get_tree().create_timer(maxf(0.0, SPINE_DURATION - HIT_TIMES[-1]), false).timeout
 	queue_free()
 
+
 static func preload_effect_data() -> bool:
 	if _shared_data != null:
 		return true
 	if not ClassDB.class_exists("SpineSkeletonDataResource") or not ClassDB.class_exists("SpineSprite"):
 		return false
-	var atlas: = load(ATLAS_PATH)
-	var skeleton_file: = load(SKELETON_PATH)
+	var atlas := load(ATLAS_PATH)
+	var skeleton_file := load(SKELETON_PATH)
 	if atlas == null or skeleton_file == null:
 		return false
 	var skeleton_data: Variant = ClassDB.instantiate("SpineSkeletonDataResource")
@@ -114,27 +120,30 @@ static func preload_effect_data() -> bool:
 	_multiply_material.blend_mode = CanvasItemMaterial.BLEND_MODE_MUL
 	return true
 
-static func clear_cached_data() -> void :
+
+static func clear_cached_data() -> void:
 	_shared_data = null
 	_normal_material = null
 	_additive_material = null
 	_multiply_material = null
 	_load_failed = false
 
-func _apply_area_damage() -> void :
+
+func _apply_area_damage() -> void:
 	if owner_player == null or not is_instance_valid(owner_player):
 		return
-	var direction: = 1.0 if face_right else -1.0
+	var direction := 1.0 if face_right else -1.0
 	var center: Vector2 = owner_player.global_position + Vector2(120.0 * direction, -120.0)
 	for hit_index in range(3):
 		_damage_area_after_delay(center, float(hit_index) * MULTI_HIT_INTERVAL)
 
-func _damage_area_after_delay(center: Vector2, delay: float) -> void :
+
+func _damage_area_after_delay(center: Vector2, delay: float) -> void:
 	if delay > 0.0:
 		await get_tree().create_timer(delay, false).timeout
 	if owner_player == null or not is_instance_valid(owner_player):
 		return
-	var hit_half_size: = HIT_HALF_SIZE
+	var hit_half_size := HIT_HALF_SIZE
 	for target in _cached_targets:
 		if target == null or not is_instance_valid(target):
 			continue
@@ -144,24 +153,38 @@ func _damage_area_after_delay(center: Vector2, delay: float) -> void :
 		if absf(offset.x) <= hit_half_size.x and absf(offset.y) <= hit_half_size.y:
 			_apply_target_damage(target)
 
-func _cache_targets() -> void :
-	var scene: = get_tree().current_scene
+
+func _cache_targets() -> void:
+	var scene := get_tree().current_scene
 	if scene != null:
 		_collect_targets(scene)
 
-func _collect_targets(node: Node) -> void :
+
+func _collect_targets(node: Node) -> void:
 	if node is BaseMonster:
 		_cached_targets.append(node as BaseMonster)
 	for child in node.get_children():
 		_collect_targets(child)
 
-func _apply_target_damage(node: BaseMonster) -> void :
+
+func _apply_target_damage(node: BaseMonster) -> void:
 	var old_hit_data: Dictionary = owner_player.HitDic
 	var old_miss: int = node.miss
 	owner_player.HitDic = hit_data
 
 	node.miss = 0
-	var damage: = int(float(node.get_Role_last_hurt(owner_player)) * RoleProp.ws_up_power * node.jgz_bl * node.zznh_bl * node.HurtBl * (1.0 + node.lpzzs) * (1.0 + owner_player.tszzs) * node.llrdzs)
+	var damage := int(
+		(
+			float(node.get_Role_last_hurt(owner_player))
+			* RoleProp.ws_up_power
+			* node.jgz_bl
+			* node.zznh_bl
+			* node.HurtBl
+			* (1.0 + node.lpzzs)
+			* (1.0 + owner_player.tszzs)
+			* node.llrdzs
+		)
+	)
 	if damage > 0:
 		node.GetHurt = damage
 		node.HurtReduceHp(damage, owner_player)
@@ -177,7 +200,8 @@ func _apply_target_damage(node: BaseMonster) -> void :
 	node.miss = old_miss
 	owner_player.HitDic = old_hit_data
 
-func _apply_hit_stun(target: BaseMonster) -> void :
+
+func _apply_hit_stun(target: BaseMonster) -> void:
 	if target == null or not is_instance_valid(target) or target.is_control_immune():
 		return
 	target.set_meta("jhsj_awaken_hit_stun_token", Time.get_ticks_msec())
@@ -187,7 +211,8 @@ func _apply_hit_stun(target: BaseMonster) -> void :
 		target.mr_player.play("hurt")
 	call_deferred("_release_hit_stun", target, int(target.get_meta("jhsj_awaken_hit_stun_token")))
 
-func _release_hit_stun(target: BaseMonster, token: int) -> void :
+
+func _release_hit_stun(target: BaseMonster, token: int) -> void:
 	await get_tree().create_timer(0.2, false).timeout
 	if target == null or not is_instance_valid(target):
 		return

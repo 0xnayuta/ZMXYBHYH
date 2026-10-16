@@ -1,19 +1,19 @@
 extends Node2D
 class_name Map2
 
-const MAP_DESIGN_SIZE: = Vector2(940.0, 590.0)
-const MAP_SHADOW_FADE: = 55.0
-const RIGHT_ALIGNED_BUTTON_NAMES: = [
-	"changetomain", 
-	"Activity", 
-	"Learn_skill", 
-	"LdL", 
-	"MemoryGame", 
-	"shop", 
-	"GameAn", 
-	"BossTreasureCheckBox", 
-	"next", 
-	"WorldMapButton", 
+const MAP_DESIGN_SIZE := Vector2(940.0, 590.0)
+const MAP_SHADOW_FADE := 55.0
+const RIGHT_ALIGNED_BUTTON_NAMES := [
+	"changetomain",
+	"Activity",
+	"Learn_skill",
+	"LdL",
+	"MemoryGame",
+	"shop",
+	"GameAn",
+	"BossTreasureCheckBox",
+	"next",
+	"WorldMapButton",
 ]
 @onready var level_11: TextureButton = $Level_11
 @onready var level_12: TextureButton = $Level_12
@@ -29,16 +29,16 @@ const RIGHT_ALIGNED_BUTTON_NAMES: = [
 @onready var level: AnimationPlayer = $level
 @onready var level_nmg: TextureButton = $Level_nmg
 
-
 @onready var boss_treasure_checkbox: TextureButton = $BossTreasureCheckBox
 var is_chest_mode: bool = false
 
 var MaxPage: int = 2
 var skill_target
 var my_music
-var _map_shadow_rects: = []
+var _map_shadow_rects := []
 var _map_shadow_shader: Shader
-var _right_aligned_button_right_edges: = {}
+var _right_aligned_button_right_edges := {}
+
 
 func _get_map_shadow_shader() -> Shader:
 	if _map_shadow_shader != null:
@@ -46,55 +46,10 @@ func _get_map_shadow_shader() -> Shader:
 	_map_shadow_shader = Shader.new()
 	_map_shadow_shader.code = "\nshader_type canvas_item;\nuniform int side = 0;\nuniform vec2 rect_size = vec2(1.0, 1.0);\nuniform float solid_px = 0.0;\nuniform float fade_px = 55.0;\nuniform float noise_strength_px = 10.0;\nuniform float noise_scale_px = 85.0;\nuniform float alpha_power = 1.45;\n\nfloat hash(vec2 p) {\n    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);\n}\n\nfloat noise(vec2 p) {\n    vec2 i = floor(p);\n    vec2 f = fract(p);\n    vec2 u = f * f * (3.0 - 2.0 * f);\n    float a = hash(i);\n    float b = hash(i + vec2(1.0, 0.0));\n    float c = hash(i + vec2(0.0, 1.0));\n    float d = hash(i + vec2(1.0, 1.0));\n    return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);\n}\n\nvoid fragment() {\n    vec2 px = UV * rect_size;\n    float inward_px = px.y;\n    float edge_axis_px = px.x;\n    if (side == 1) {\n        inward_px = rect_size.y - px.y;\n        edge_axis_px = px.x;\n    } else if (side == 2) {\n        inward_px = px.x;\n        edge_axis_px = px.y;\n    } else if (side == 3) {\n        inward_px = rect_size.x - px.x;\n        edge_axis_px = px.y;\n    }\n    float n1 = noise(vec2(edge_axis_px / noise_scale_px, 0.37));\n    float n2 = noise(vec2(edge_axis_px / (noise_scale_px * 0.43), 8.91));\n    float wobble_px = ((n1 * 0.72 + n2 * 0.28) - 0.5) * noise_strength_px;\n    float fade_t = clamp((inward_px - solid_px + wobble_px) / max(fade_px, 1.0), 0.0, 1.0);\n    fade_t = smoothstep(0.0, 1.0, fade_t);\n    float alpha = pow(1.0 - fade_t, alpha_power) * 0.68;\n    COLOR = vec4(0.0, 0.0, 0.0, alpha);\n}\n"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	return _map_shadow_shader
 
-func _cleanup_map_shadow_rects() -> void :
+
+func _cleanup_map_shadow_rects() -> void:
 	var names = ["MapShadowTop", "MapShadowBottom", "MapShadowLeft", "MapShadowRight"]
 	var p = get_parent()
 	if p != null:
@@ -106,27 +61,31 @@ func _cleanup_map_shadow_rects() -> void :
 			rect.queue_free()
 	_map_shadow_rects.clear()
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	_cleanup_map_shadow_rects()
 	Global.release_map_visual_resources(self)
-func _ensure_map_shadow_rects() -> void :
+
+
+func _ensure_map_shadow_rects() -> void:
 	if _map_shadow_rects.size() > 0:
 		return
 	_cleanup_map_shadow_rects()
 	for i in range(4):
-		var rect: = ColorRect.new()
+		var rect := ColorRect.new()
 		rect.name = ["MapShadowTop", "MapShadowBottom", "MapShadowLeft", "MapShadowRight"][i]
 		rect.color = Color.WHITE
 		rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		rect.z_index = 1000
-		var material: = ShaderMaterial.new()
+		var material := ShaderMaterial.new()
 		material.shader = _get_map_shadow_shader()
 		material.set_shader_parameter("side", i)
 		rect.material = material
 		get_parent().add_child(rect)
 		_map_shadow_rects.append(rect)
 
-func _set_shadow_rect(index: int, pos_: Vector2, size_: Vector2, solid_px_: float, fade_px_: float) -> void :
+
+func _set_shadow_rect(index: int, pos_: Vector2, size_: Vector2, solid_px_: float, fade_px_: float) -> void:
 	var rect: ColorRect = _map_shadow_rects[index]
 	rect.position = pos_
 	rect.size = Vector2(max(size_.x, 0.0), max(size_.y, 0.0))
@@ -136,13 +95,16 @@ func _set_shadow_rect(index: int, pos_: Vector2, size_: Vector2, solid_px_: floa
 		(rect.material as ShaderMaterial).set_shader_parameter("solid_px", max(solid_px_, 0.0))
 		(rect.material as ShaderMaterial).set_shader_parameter("fade_px", max(fade_px_, 1.0))
 
+
 func _ui_parent() -> Node:
 	var p = get_parent()
 	if p != null:
 		return p
 	return self
-func _fit_to_fullscreen() -> void :
-	var viewport_size: = get_viewport().get_visible_rect().size
+
+
+func _fit_to_fullscreen() -> void:
+	var viewport_size := get_viewport().get_visible_rect().size
 	if viewport_size.x <= 0.0 or viewport_size.y <= 0.0:
 		return
 	var fit_scale = min(viewport_size.x / MAP_DESIGN_SIZE.x, viewport_size.y / MAP_DESIGN_SIZE.y)
@@ -152,21 +114,23 @@ func _fit_to_fullscreen() -> void :
 	_align_right_side_buttons(fit_scale)
 	_cleanup_map_shadow_rects()
 
-func _align_right_side_buttons(fit_scale: float) -> void :
+
+func _align_right_side_buttons(fit_scale: float) -> void:
 	if fit_scale <= 0.0:
 		return
 	for button_name in RIGHT_ALIGNED_BUTTON_NAMES:
-		var button: = get_node_or_null(button_name) as Control
+		var button := get_node_or_null(button_name) as Control
 		if button == null:
 			continue
 		if not _right_aligned_button_right_edges.has(button_name):
 			_right_aligned_button_right_edges[button_name] = button.position.x + button.size.x
 		var original_right_edge: float = _right_aligned_button_right_edges[button_name]
-		var right_margin: = MAP_DESIGN_SIZE.x - original_right_edge
+		var right_margin := MAP_DESIGN_SIZE.x - original_right_edge
 		button.position = Vector2(
-			MAP_DESIGN_SIZE.x - button.size.x - right_margin + position.x / fit_scale, 
-			button.position.y
+			MAP_DESIGN_SIZE.x - button.size.x - right_margin + position.x / fit_scale, button.position.y
 		)
+
+
 func _ready():
 	_fit_to_fullscreen()
 	if not get_viewport().size_changed.is_connected(_fit_to_fullscreen):
@@ -179,10 +143,7 @@ func _ready():
 		MainSet.set_data["BossTreasureBoxMode"] = false
 		MemoryClass.main_bc()
 
-
 	update_button_texture()
-
-
 
 	Global.LLBTLevel = 1
 	Global.LLBTBOSSMS = false
@@ -223,9 +184,11 @@ func _ready():
 		MainMusic.ADDMusic()
 	check_pass_level()
 
-func update_button_texture():
 
-	var tex_path = "res://Art/Game_3/OtherMapButton/bxdl.png" if is_chest_mode else "res://Art/Game_3/OtherMapButton/sjdl.png"
+func update_button_texture():
+	var tex_path = (
+		"res://Art/Game_3/OtherMapButton/bxdl.png" if is_chest_mode else "res://Art/Game_3/OtherMapButton/sjdl.png"
+	)
 	var texture = load(tex_path)
 	if texture:
 		boss_treasure_checkbox.texture_normal = texture
@@ -235,31 +198,33 @@ func update_button_texture():
 	else:
 		print("错误：找不到纹理 ", tex_path)
 
-func _on_boss_treasure_toggled():
 
+func _on_boss_treasure_toggled():
 	is_chest_mode = !is_chest_mode
 
-
 	update_button_texture()
-
 
 	MainSet.set_data["BossTreasureBoxMode"] = is_chest_mode
 	MemoryClass.main_bc()
 
-
 	var mode_text = "普通掉落模式" if not is_chest_mode else "宝箱掉落模式（Boss 将掉落自选宝箱）"
 	Global.AddMessageShow(Global.Windows_, mode_text, 1.5, Vector2(470, 300))
 
-func _on_changetomain_pressed() -> void :
+
+func _on_changetomain_pressed() -> void:
 	Global.cleanup_transient_ui()
 	Global.change_scene("res://Scene/Main_menu/Map_0.tscn")
 
-func _on_ld_l_pressed() -> void :
+
+func _on_ld_l_pressed() -> void:
 	Global.add_ldl(_ui_parent(), Vector2(0, 0))
 
-func _on_memory_game_pressed() -> void :
+
+func _on_memory_game_pressed() -> void:
 	MemoryClass.保存游戏(Global.cd_path)
 	Global.AddMessageShow(get_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
+
+
 func check_music():
 	if MainSet.set_data["music"] == 1:
 		if my_music != null:
@@ -279,8 +244,8 @@ func check_music():
 			my_music.queue_free()
 		my_music = Global.addBGM_(self, "res://Music/MainSceneMusic/zmxy4bg.mp3")
 
-func check_pass_level():
 
+func check_pass_level():
 	if PlayerData.get_dj_page("mjlp") != 0 and PlayerData.player_data["地府"]:
 		if PlayerData.player_data.牛魔谷 == 1 and PlayerData.get_dj_page("mjlp") != 0 and PlayerData.player_data["地府"]:
 			level_11.disabled = false
@@ -334,71 +299,78 @@ func check_pass_level():
 		level_19.disabled = true
 		level_20.disabled = true
 		level_lxdy.disabled = true
-func _on_button_pressed() -> void :
+
+
+func _on_button_pressed() -> void:
 	Global.cleanup_transient_ui()
 	Global.change_scene("res://Scene/Main_menu/Map_1.tscn")
 
 
-func _on_level_11_pressed() -> void :
+func _on_level_11_pressed() -> void:
 	Global.AddLevelInfo(_ui_parent(), "鬼城", Vector2(0, 0), "res://Scene/Level/Level_11.tscn")
 
-func _on_level_12_pressed() -> void :
+
+func _on_level_12_pressed() -> void:
 	Global.AddLevelInfo(_ui_parent(), "无常巷", Vector2(0, 0), "res://Scene/Level/Level_12.tscn")
 
 
-func _on_level_13_pressed() -> void :
+func _on_level_13_pressed() -> void:
 	Global.AddLevelInfo(_ui_parent(), "鬼门关", Vector2(0, 0), "res://Scene/Level/Level_13.tscn")
 
 
-func _on_level_14_pressed() -> void :
+func _on_level_14_pressed() -> void:
 	Global.AddLevelInfo(_ui_parent(), "接引院", Vector2(0, 0), "res://Scene/Level/Level_14.tscn")
 
 
-func _on_level_15_pressed() -> void :
+func _on_level_15_pressed() -> void:
 	Global.AddLevelInfo(_ui_parent(), "判官府", Vector2(0, 0), "res://Scene/Level/Level_15.tscn")
 
 
-func _on_level_16_pressed() -> void :
+func _on_level_16_pressed() -> void:
 	Global.AddLevelInfo(_ui_parent(), "阎罗殿", Vector2(0, 0), "res://Scene/Level/Level_16.tscn")
 
-func _on_level_17_pressed() -> void :
+
+func _on_level_17_pressed() -> void:
 	Global.AddLevelInfo(_ui_parent(), "忘川河", Vector2(0, 0), "res://Scene/Level/Level_17.tscn")
 
 
-func _on_level_18_pressed() -> void :
+func _on_level_18_pressed() -> void:
 	Global.AddLevelInfo(_ui_parent(), "奈何桥", Vector2(0, 0), "res://Scene/Level/Level_18.tscn")
 
 
-func _on_level_19_pressed() -> void :
+func _on_level_19_pressed() -> void:
 	Global.AddLevelInfo(_ui_parent(), "望乡台", Vector2(0, 0), "res://Scene/Level/Level_19.tscn")
 
 
-func _on_level_20_pressed() -> void :
+func _on_level_20_pressed() -> void:
 	Global.AddLevelInfo(_ui_parent(), "转轮殿", Vector2(0, 0), "res://Scene/Level/Level_21.tscn")
 
 
-func _on_level_nmg_pressed() -> void :
+func _on_level_nmg_pressed() -> void:
 	Global.AddLevelInfo(_ui_parent(), "火焰山", Vector2(0, 0), "res://Scene/Level/Level_nmg.tscn")
 
-func _on_level_lxdy_pressed() -> void :
+
+func _on_level_lxdy_pressed() -> void:
 	Global.AddLXDY(_ui_parent(), _ui_parent())
 
-func _on_shop_pressed() -> void :
+
+func _on_shop_pressed() -> void:
 	Global.add_SHOP(_ui_parent(), Vector2(0, 0))
 
 
-func _on_activity_pressed() -> void :
+func _on_activity_pressed() -> void:
 	Global.AddBasicTask_(_ui_parent(), Vector2(0, 0))
 
-func _on_learn_skill_pressed() -> void :
+
+func _on_learn_skill_pressed() -> void:
 	if skill_target == null:
 		skill_target = Global.add_learn_skill(_ui_parent(), Vector2(0, 0))
 	else:
 		skill_target.queue_free()
 
+
 func PlayAn(Level):
 	match int(Level):
-
 		1:
 			if PlayerData.get_dj_page("mjlp"):
 				level_nmg.material = null
@@ -455,8 +427,9 @@ func PlayAn(Level):
 				level.play("level20")
 			else:
 				level_19.material = null
-func _on_changetott_pressed() -> void :
 
+
+func _on_changetott_pressed() -> void:
 	if PlayerData.CheckPass("天庭"):
 		Global.cleanup_transient_ui()
 		Global.change_scene("res://Scene/Main_menu/Map_3.tscn")
@@ -467,9 +440,9 @@ func _on_changetott_pressed() -> void :
 			Global.AddMessageShow(get_parent(), "需要通天令牌！！", 1.5, Vector2(470, 300))
 
 
-func _on_game_an_pressed() -> void :
+func _on_game_an_pressed() -> void:
 	Global.AddGameAnnouncement(_ui_parent(), Vector2(0, 0))
 
 
-func _on_level_lhhj_pressed() -> void :
+func _on_level_lhhj_pressed() -> void:
 	Global.Addlhhj(_ui_parent(), Vector2(0, 0))

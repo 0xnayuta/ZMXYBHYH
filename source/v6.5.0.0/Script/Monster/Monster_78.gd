@@ -1,6 +1,8 @@
 extends BaseMonster
 class_name Monster78
 var MyBrother
+
+
 func monster_78():
 	self.is_boss = true
 	self.my_mr_name = "顺风耳"
@@ -27,32 +29,27 @@ func monster_78():
 	self.add_exp = 0
 	self.fall_coin = 100
 	self.objattackDic["hit1"] = {
-		"power": 500, 
-		"hurtBack": [-7, -9], 
-		"attackKind": "physics", 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 5, 
-			"ReduceInterval": 0, 
-			"value": 0.5, 
-			"DeBuff": true, 
-			"AttackKind": "", 
-			"CanAdd": false, 
+		"power": 500,
+		"hurtBack": [-7, -9],
+		"attackKind": "physics",
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 5,
+			"ReduceInterval": 0,
+			"value": 0.5,
+			"DeBuff": true,
+			"AttackKind": "",
+			"CanAdd": false,
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "xhz", 
-			"value": 0
-		}, 
-		{
-			"name": "kys", 
-			"value": 0
-		}, 
+		{"name": "xhz", "value": 0},
+		{"name": "kys", "value": 0},
 	]
 	self.independent_fall_list = [
-		{"name": "231007001", "value": 0, "chance": 0.333}, 
+		{"name": "231007001", "value": 0, "chance": 0.333},
 	]
 
 	enable_treasure_box = true
@@ -63,15 +60,15 @@ func monster_78():
 		self.independent_fall_list.clear()
 	self.fall_stone_pro = 0.2
 	self.fall_stone = [
-		{
-			"name": "smlp", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "smlp", "value": randi_range(1, 2)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_78()
 	Skill_1_CD = 0
+
 
 func Monster_Intelligence():
 	get_monster_76()
@@ -108,6 +105,7 @@ func Monster_Intelligence():
 					else:
 						stop_move()
 
+
 func do_hit_2():
 	to_hero()
 	Skill_1_CD = 5
@@ -117,6 +115,8 @@ func do_hit_2():
 	mr_player.play("hit2")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func get_monster_76():
 	if self.is_boss:
 		var tta = get_parent().get_children()
@@ -124,16 +124,21 @@ func get_monster_76():
 			if i is Monster77:
 				MyBrother = i
 
+
 func strength():
 	if MyBrother != null:
 		MyBrother.cure_hp(SHp * 0.4)
 		for i in MyBrother.objattackDic:
 			if MyBrother.objattackDic[i].has("power"):
 				MyBrother.objattackDic[i]["power"] *= 1.05
+
+
 func AddChild2():
 	var po: Vector2
 	if MonsterDirection:
 		po = Vector2(60, 5)
 	else:
 		po = Vector2(-60, 5)
-	var child = Global.add_Bullet("Monster78Bullet", bullet, MonsterDirection, 2, position + po, "hit1", self.objattackDic["hit1"])
+	var child = Global.add_Bullet(
+		"Monster78Bullet", bullet, MonsterDirection, 2, position + po, "hit1", self.objattackDic["hit1"]
+	)

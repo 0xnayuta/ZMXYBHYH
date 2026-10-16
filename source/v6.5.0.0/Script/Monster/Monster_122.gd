@@ -1,6 +1,8 @@
 extends BaseMonster
 class_name Monster122
 var CureBl: float = 1
+
+
 func monster_120():
 	self.is_boss = false
 	self.my_mr_name = "妖风炼气师"
@@ -27,35 +29,41 @@ func monster_120():
 	self.add_exp = 100
 	self.fall_coin = 30
 	self.objattackDic["hit1"] = {
-		"power": 500, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics", 
-		"HitProtect": 15, 
+		"power": 500,
+		"hurtBack": [-4, -9],
+		"attackKind": "physics",
+		"HitProtect": 15,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 800, 
-		"hurtBack": [0, -50], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 5, 
-			"ReduceInterval": 0, 
-			"value": 0.4, 
-			"CanAdd": false, 
-			"CanRemove": false, 
-			"AttackKind": "", 
+		"power": 800,
+		"hurtBack": [0, -50],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 5,
+			"ReduceInterval": 0,
+			"value": 0.4,
+			"CanAdd": false,
+			"CanRemove": false,
+			"AttackKind": "",
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_120()
 	Skill_1_CD = 6
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -80,6 +88,8 @@ func Monster_Intelligence():
 						attack_target()
 				else:
 					stop_move()
+
+
 func do_hit_2():
 	Skill_1_CD = 3
 	hit_name = "hit2"
@@ -91,10 +101,13 @@ func do_hit_2():
 	is_attacking = false
 
 
-
-
-
-
-
 func CallBullet2():
-	Global.add_Bullet("Monster122Bullet2", self.bullet, false, 1.5, Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 500), "hit2", self.objattackDic["hit2"])
+	Global.add_Bullet(
+		"Monster122Bullet2",
+		self.bullet,
+		false,
+		1.5,
+		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 500),
+		"hit2",
+		self.objattackDic["hit2"]
+	)

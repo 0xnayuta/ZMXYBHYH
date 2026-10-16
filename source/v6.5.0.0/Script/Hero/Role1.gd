@@ -12,11 +12,10 @@ var hmz_cooldown_key: String = "hmz"
 var hmz_damage_level: int = 1
 var hmz_ws_damage_level: int = 1
 var use_hmz = false
-@onready var hurt_box = $base_damagebox / HurtBox / HurtBox
-@onready var lyfb_hit_shape: CollisionShape2D = $base_damagebox / HitBox / HitBox
-@onready var lyfb_original_effect: AnimatedSprite2D = $Action / SpecialEffect
+@onready var hurt_box = $base_damagebox/HurtBox/HurtBox
+@onready var lyfb_hit_shape: CollisionShape2D = $base_damagebox/HitBox/HitBox
+@onready var lyfb_original_effect: AnimatedSprite2D = $Action/SpecialEffect
 @onready var remove_w: Timer = $RemoveW
-
 
 var is_invincible = false
 
@@ -30,10 +29,12 @@ var Hyjj = []
 var Interv: int
 var ShallowList: Array
 var WIsPress: bool
-const GSRS_ZZ_ACTION: = &"gsrs_zz_action"
+const GSRS_ZZ_ACTION := &"gsrs_zz_action"
+
 
 func get_gsrs_defense_reduction(adjusted_skill_level: int) -> float:
 	return clampf(0.3 + (float(adjusted_skill_level) * 0.064), 0.0, 1.0)
+
 
 func _ready():
 	super._ready()
@@ -45,35 +46,34 @@ func _ready():
 	_prepare_hyjj_pose_animation()
 	_prepare_gsrs_zz_action()
 
+
 func _prepare_gsrs_zz_action() -> bool:
 	if role_action_player.has_animation(GSRS_ZZ_ACTION):
 		return true
-	var gsrs_source: = role_action_player.get_animation(&"gsrs")
-	var zz_source: = role_action_player.get_animation(&"zz")
-	var library: = role_action_player.get_animation_library(&"")
+	var gsrs_source := role_action_player.get_animation(&"gsrs")
+	var zz_source := role_action_player.get_animation(&"zz")
+	var library := role_action_player.get_animation_library(&"")
 	if gsrs_source == null or zz_source == null or library == null:
 		return false
 
-	var animation: = gsrs_source.duplicate(true) as Animation
-	var character_prefixes: = [
-		"Action/RoleBody:", 
-		"Action/RoleEquipment:", 
-		"Action/Wings:", 
+	var animation := gsrs_source.duplicate(true) as Animation
+	var character_prefixes := [
+		"Action/RoleBody:",
+		"Action/RoleEquipment:",
+		"Action/Wings:",
 	]
 
-
-
 	for track_index in range(animation.get_track_count() - 1, -1, -1):
-		var path: = String(animation.track_get_path(track_index))
+		var path := String(animation.track_get_path(track_index))
 		for prefix in character_prefixes:
 			if path.begins_with(prefix):
 				animation.remove_track(track_index)
 				break
 
-	var time_scale: = animation.length / zz_source.length
+	var time_scale := animation.length / zz_source.length
 	for source_index in range(zz_source.get_track_count()):
-		var source_path: = String(zz_source.track_get_path(source_index))
-		var is_character_track: = false
+		var source_path := String(zz_source.track_get_path(source_index))
+		var is_character_track := false
 		for prefix in character_prefixes:
 			if source_path.begins_with(prefix):
 				is_character_track = true
@@ -81,14 +81,14 @@ func _prepare_gsrs_zz_action() -> bool:
 		if not is_character_track:
 			continue
 
-		var target_index: = animation.add_track(zz_source.track_get_type(source_index))
+		var target_index := animation.add_track(zz_source.track_get_type(source_index))
 		animation.track_set_path(target_index, zz_source.track_get_path(source_index))
 		animation.track_set_interpolation_type(target_index, zz_source.track_get_interpolation_type(source_index))
 		for key_index in range(zz_source.track_get_key_count(source_index)):
 			animation.track_insert_key(
-				target_index, 
-				zz_source.track_get_key_time(source_index, key_index) * time_scale, 
-				zz_source.track_get_key_value(source_index, key_index), 
+				target_index,
+				zz_source.track_get_key_time(source_index, key_index) * time_scale,
+				zz_source.track_get_key_value(source_index, key_index),
 				zz_source.track_get_key_transition(source_index, key_index)
 			)
 
@@ -100,8 +100,10 @@ func _prepare_gsrs_zz_action() -> bool:
 func set_hmz_version(is_new: bool):
 	use_new_hmz = is_new
 
+
 func set_hmz_cooldown_key(skill_name: String):
 	hmz_cooldown_key = skill_name
+
 
 func set_hmz_damage_level(level_: int, skill_name: String = "hmz"):
 	if skill_name == "hmz_ws":
@@ -110,42 +112,45 @@ func set_hmz_damage_level(level_: int, skill_name: String = "hmz"):
 		hmz_damage_level = max(1, level_)
 	refresh_hmz_damage_data(hmz_ws_damage_level if skill_name == "hmz_ws" else hmz_damage_level)
 
+
 func refresh_hmz_damage_data(level_: int = -1):
 	if level_ < 1:
 		level_ = hmz_damage_level
 	var level_5 = level_
 	self.objattackDic["hmz_1"] = {
-		"power": RoleProp.roleprop.power * randf_range((1.02 + (level_5 * 0.15)), (1.1 + (level_5 * 0.15))) * 0.65, 
-		"hurtBack": [2, -6], 
-		"attackKind": "physics", 
+		"power": RoleProp.roleprop.power * randf_range(1.02 + (level_5 * 0.15), 1.1 + (level_5 * 0.15)) * 0.65,
+		"hurtBack": [2, -6],
+		"attackKind": "physics",
 		"WSValue": randi_range(6, 8)
 	}
 	self.objattackDic["hmz-1"] = {
-		"power": RoleProp.roleprop.power * randf_range((1.08 + (level_5 * 0.18)), (1.16 + (level_5 * 0.18))), 
-		"hurtBack": [2, -6], 
-		"attackKind": "physics", 
+		"power": RoleProp.roleprop.power * randf_range(1.08 + (level_5 * 0.18), 1.16 + (level_5 * 0.18)),
+		"hurtBack": [2, -6],
+		"attackKind": "physics",
 		"WSValue": randi_range(6, 8)
 	}
 	self.objattackDic["hmz_2"] = {
-		"power": RoleProp.roleprop.power * randf_range((1.02 + (level_5 * 0.15)), (1.1 + (level_5 * 0.15))), 
-		"hurtBack": [22, 18], 
-		"attackKind": "magic", 
+		"power": RoleProp.roleprop.power * randf_range(1.02 + (level_5 * 0.15), 1.1 + (level_5 * 0.15)),
+		"hurtBack": [22, 18],
+		"attackKind": "magic",
 		"WSValue": randi_range(6, 8)
 	}
 	self.objattackDic["hmz_3"] = {
-		"power": RoleProp.roleprop.power * randf_range((3.5 + (level_5 * 0.5)), (3.8 + (level_5 * 0.5))), 
-		"hurtBack": [3, -28], 
-		"attackKind": "magic", 
+		"power": RoleProp.roleprop.power * randf_range(3.5 + (level_5 * 0.5), 3.8 + (level_5 * 0.5)),
+		"hurtBack": [3, -28],
+		"attackKind": "magic",
 		"WSValue": randi_range(10, 15)
 	}
+
 
 func get_hmz_ws_hit_data(action_name: String = "hmz_3") -> Dictionary:
 	var skill_data: Variant = PlayerData.player_data.get("技能学习", {})
 	var ws_data: Variant = skill_data.get("技能12", {}) if skill_data is Dictionary else {}
-	var ws_level: = int(ws_data.get("等级", 0)) + 1 if ws_data is Dictionary else 1
+	var ws_level := int(ws_data.get("等级", 0)) + 1 if ws_data is Dictionary else 1
 	set_hmz_damage_level(ws_level, "hmz_ws")
 	var attack_data: Variant = objattackDic.get(action_name, {})
 	return attack_data.duplicate(true) if attack_data is Dictionary else {}
+
 
 func Role_1():
 	if not is_in_group("Player"):
@@ -171,114 +176,116 @@ func Role_1():
 		RoleProp.Role1SXBJ = 4 + (level_10 - 1) * 1.6
 		RoleProp.Role1SXxx = 0.03 + (level_10 - 1) * 0.003
 	self.objattackDic["hit1"] = {
-		"power": RoleProp.roleprop.power * randf_range(1, 1.2), 
-		"hurtBack": [2, 0], 
-		"attackKind": "physics", 
-		"HitInterv": 1, 
+		"power": RoleProp.roleprop.power * randf_range(1, 1.2),
+		"hurtBack": [2, 0],
+		"attackKind": "physics",
+		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
 	self.objattackDic["hit2"] = {
-		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1), 
-		"hurtBack": [2, 0], 
-		"attackKind": "physics", 
-		"HitInterv": 1, 
+		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1),
+		"hurtBack": [2, 0],
+		"attackKind": "physics",
+		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
 	self.objattackDic["hit3"] = {
-		"power": RoleProp.roleprop.power * randf_range(1, 1.2), 
-		"hurtBack": [2, 0], 
-		"attackKind": "physics", 
-		"HitInterv": 1, 
+		"power": RoleProp.roleprop.power * randf_range(1, 1.2),
+		"hurtBack": [2, 0],
+		"attackKind": "physics",
+		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
 	self.objattackDic["hit4"] = {
-		"power": RoleProp.roleprop.power * randf_range(1.2, 1.4), 
-		"hurtBack": [6, -5], 
-		"attackKind": "physics", 
-		"HitInterv": 2, 
+		"power": RoleProp.roleprop.power * randf_range(1.2, 1.4),
+		"hurtBack": [6, -5],
+		"attackKind": "physics",
+		"HitInterv": 2,
 		"WSValue": randi_range(3, 5)
 	}
 	self.objattackDic["slz"] = {
-		"power": RoleProp.roleprop.power * (2.5 + (level_1 * 0.12)), 
-		"hurtBack": [6.5, -42], 
-		"attackKind": "magic", 
+		"power": RoleProp.roleprop.power * (2.5 + (level_1 * 0.12)),
+		"hurtBack": [6.5, -42],
+		"attackKind": "magic",
 		"WSValue": randi_range(6, 8)
 	}
 	self.objattackDic["hytj"] = {
-		"power": RoleProp.roleprop.power * (0.25 + (level_2 * 0.02)), 
-		"hurtBack": [16, -6], 
-		"attackKind": "magic", 
+		"power": RoleProp.roleprop.power * (0.25 + (level_2 * 0.02)),
+		"hurtBack": [16, -6],
+		"attackKind": "magic",
 		"WSValue": randi_range(2, 4)
 	}
 	self.objattackDic["lys"] = {
-		"power": 35 + RoleProp.roleprop.power * (0.16 + (level_3 * 0.02)), 
-		"hurtBack": [1, 1], 
-		"attackKind": "magic", 
+		"power": 35 + RoleProp.roleprop.power * (0.16 + (level_3 * 0.02)),
+		"hurtBack": [1, 1],
+		"attackKind": "magic",
 		"WSValue": randi_range(15, 20)
 	}
 	self.objattackDic["lyfb"] = {
-		"power": RoleProp.roleprop.power * (0.7 + (level_4 * 0.2)), 
-		"hurtBack": [9, -5], 
-		"attackKind": "magic", 
+		"power": RoleProp.roleprop.power * (0.7 + (level_4 * 0.2)),
+		"hurtBack": [9, -5],
+		"attackKind": "magic",
 		"WSValue": randi_range(6, 8)
 	}
 
 	set_hmz_damage_level(level_5, "hmz")
 
 	self.objattackDic["zz"] = {
-		"power": RoleProp.roleprop.power * (4 + (level_6 * 0.5)), 
-		"hurtBack": [19, 0], 
-		"attackKind": "physics", 
+		"power": RoleProp.roleprop.power * (4 + (level_6 * 0.5)),
+		"hurtBack": [19, 0],
+		"attackKind": "physics",
 		"WSValue": randi_range(15, 18)
 	}
 	self.objattackDic["gsrs"] = {
-		"power": RoleProp.roleprop.power * (4 + (level_11 * 0.5)), 
-		"hurtBack": [3, 0], 
-		"attackKind": "physics", 
-		"addeffect": {
-			"Name": "DefeReduce", 
-			"AddTime": 8, 
-			"ReduceInterval": 0, 
-			"value": get_gsrs_defense_reduction(level_11), 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
-		}, 
+		"power": RoleProp.roleprop.power * (4 + (level_11 * 0.5)),
+		"hurtBack": [3, 0],
+		"attackKind": "physics",
+		"addeffect":
+		{
+			"Name": "DefeReduce",
+			"AddTime": 8,
+			"ReduceInterval": 0,
+			"value": get_gsrs_defense_reduction(level_11),
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
+		},
 		"WSValue": randi_range(15, 18)
-
 	}
 	self.objattackDic["qsez"] = {
-		"power": RoleProp.roleprop.power * (0.07 + (level_7 * 0.02)), 
-		"hurtBack": [1, 1], 
-		"attackKind": "physics", 
+		"power": RoleProp.roleprop.power * (0.07 + (level_7 * 0.02)),
+		"hurtBack": [1, 1],
+		"attackKind": "physics",
 		"WSValue": randi_range(8, 10)
 	}
 	self.objattackDic["jdy"] = {
-		"power": RoleProp.roleprop.power * (0.4 + (level_8 * 0.07)), 
-		"hurtBack": [35, 0], 
-		"attackKind": "magic", 
+		"power": RoleProp.roleprop.power * (0.4 + (level_8 * 0.07)),
+		"hurtBack": [35, 0],
+		"attackKind": "magic",
 		"WSValue": randi_range(8, 10)
 	}
 	self.objattackDic["jdy_2"] = {
-		"power": RoleProp.roleprop.power * (0.4 + (level_8 * 0.07)), 
-		"hurtBack": [0, -45], 
-		"attackKind": "magic", 
+		"power": RoleProp.roleprop.power * (0.4 + (level_8 * 0.07)),
+		"hurtBack": [0, -45],
+		"attackKind": "magic",
 		"WSValue": randi_range(8, 10)
 	}
 	self.objattackDic["hyjj"] = {
-		"power": RoleProp.roleprop.power * (0.5 + (level_9 * 0.15)), 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
+		"power": RoleProp.roleprop.power * (0.5 + (level_9 * 0.15)),
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
 		"WSValue": randi_range(8, 10)
 	}
 	var level_13 = PlayerData.player_data["技能学习"]["技能13"]["等级"] + 1
 	self.objattackDic["hyjj_ws"] = {
-		"power": RoleProp.roleprop.power * (0.6 + (level_13 * 0.12)), 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
+		"power": RoleProp.roleprop.power * (0.6 + (level_13 * 0.12)),
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
 		"WSValue": randi_range(3, 5)
 	}
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	Role_1()
 	Add_Shallow()
 	if use_hmz:
@@ -302,7 +309,13 @@ func _physics_process(delta: float) -> void :
 			remove_w.start(0.2)
 			WIsPress = true
 		if WIsPress:
-			if not is_riding_mount() and Input.is_action_pressed("normalhit") and not is_be_attacking and not is_using_skills and Interv <= 0:
+			if (
+				not is_riding_mount()
+				and Input.is_action_pressed("normalhit")
+				and not is_be_attacking
+				and not is_using_skills
+				and Interv <= 0
+			):
 				get_skill("slz")
 				return
 			elif Input.is_action_pressed("slz") and not is_be_attacking and not is_using_skills and Interv <= 0:
@@ -331,7 +344,13 @@ func _physics_process(delta: float) -> void :
 					get_skill("jdy2")
 					return
 		else:
-			if not is_riding_mount() and Input.is_action_pressed("normalhit") and not is_be_attacking and not is_using_skills and Interv <= 0:
+			if (
+				not is_riding_mount()
+				and Input.is_action_pressed("normalhit")
+				and not is_be_attacking
+				and not is_using_skills
+				and Interv <= 0
+			):
 				match hit_count:
 					0:
 						do_normalhit_1()
@@ -341,8 +360,12 @@ func _physics_process(delta: float) -> void :
 						do_normalhit_3()
 					3:
 						do_normalhit_4()
+
+
 func turn_to_wait():
 	super.turn_to_wait()
+
+
 func do_normalhit_1():
 	Interv = objattackDic["hit1"]["HitInterv"]
 	super.get_hit_data("hit1")
@@ -355,6 +378,8 @@ func do_normalhit_1():
 	hit_count = 1
 	is_attacking = false
 	return
+
+
 func do_normalhit_2():
 	Interv = objattackDic["hit2"]["HitInterv"]
 	get_action = "hit2"
@@ -366,6 +391,8 @@ func do_normalhit_2():
 	hit_count = 2
 	is_attacking = false
 	return
+
+
 func do_normalhit_3():
 	Interv = objattackDic["hit3"]["HitInterv"]
 	get_action = "hit3"
@@ -377,6 +404,8 @@ func do_normalhit_3():
 	hit_count = 3
 	is_attacking = false
 	return
+
+
 func do_normalhit_4():
 	Interv = objattackDic["hit4"]["HitInterv"]
 	get_action = "hit4"
@@ -388,6 +417,8 @@ func do_normalhit_4():
 	hit_count = 0
 	is_attacking = false
 	return
+
+
 func do_slz():
 	self.Role1SkillInter["slz"] = 2.4
 	get_action = "slz"
@@ -400,6 +431,8 @@ func do_slz():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func do_hytj():
 	self.Role1SkillInter["hytj"] = 3.6
 	velocity.x = 0
@@ -417,6 +450,8 @@ func do_hytj():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func do_lys():
 	self.Role1SkillInter["lys"] = 2.8
 	self.Role1SkillInter["hmz"] = 3.6
@@ -425,14 +460,15 @@ func do_lys():
 		velocity.x += 1000
 	else:
 		velocity.x -= 1000
-	var lys_awaken_up: = _is_skill_awakened("lys") and _is_skill_awaken_enabled("lys") and Input.is_action_pressed("Exit")
+	var lys_awaken_up := (
+		_is_skill_awakened("lys") and _is_skill_awaken_enabled("lys") and Input.is_action_pressed("Exit")
+	)
 	if lys_awaken_up:
 		velocity.x = 0
 		velocity.y = -1200
 
-
-		$Action / SpecialEffect.global_rotation = PI / 2.0
-		$base_damagebox / HitBox.global_rotation = PI / 2.0
+		$Action/SpecialEffect.global_rotation = PI / 2.0
+		$base_damagebox/HitBox.global_rotation = PI / 2.0
 	get_action = "lys"
 	is_using_skills = true
 	super.get_hit_data("lys")
@@ -441,11 +477,13 @@ func do_lys():
 	Global.addSound_(self, "res://Music/Hero/11_Role1_hit7.mp3")
 	await role_action_player.animation_finished
 	if lys_awaken_up:
-		$Action / SpecialEffect.rotation = 0.0
-		$base_damagebox / HitBox.rotation = 0.0
+		$Action/SpecialEffect.rotation = 0.0
+		$base_damagebox/HitBox.rotation = 0.0
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func do_lyfb():
 	self.Role1SkillInter["lyfb"] = 3.2
 	if is_on_floor():
@@ -454,11 +492,11 @@ func do_lyfb():
 	setShallowaction("lyfb")
 	is_using_skills = true
 	super.get_hit_data("lyfb")
-	var lyfb_awaken_active: = _is_skill_awakened("lyfb") and _is_skill_awaken_enabled("lyfb")
+	var lyfb_awaken_active := _is_skill_awakened("lyfb") and _is_skill_awaken_enabled("lyfb")
 	if lyfb_awaken_active:
 		lyfb_original_effect.visible = false
 		lyfb_hit_shape.set_deferred("disabled", true)
-		var awaken_effect: = LYFB_AWAKEN_EFFECT.instantiate()
+		var awaken_effect := LYFB_AWAKEN_EFFECT.instantiate()
 		awaken_effect.setup(self, PlayerDir, HitDic)
 		awaken_effect.position = position
 		get_parent().add_child(awaken_effect)
@@ -473,6 +511,8 @@ func do_lyfb():
 	is_attacking = false
 	is_using_skills = false
 	return
+
+
 func do_zz():
 	self.Role1SkillInter["zz"] = 1.2
 	velocity.x = 0
@@ -488,6 +528,8 @@ func do_zz():
 	is_attacking = false
 	is_using_skills = false
 	return
+
+
 func do_gsrs():
 	self.Role1SkillInter["gsrs"] = 1.2
 	velocity.x = 0
@@ -503,6 +545,8 @@ func do_gsrs():
 	is_attacking = false
 	is_using_skills = false
 	return
+
+
 func do_wushuang_huoyan_jinjing():
 	self.Role1SkillInter["hyjj_ws"] = 6.0
 	velocity = Vector2.ZERO
@@ -510,9 +554,9 @@ func do_wushuang_huoyan_jinjing():
 	is_using_skills = true
 	is_attacking = true
 	_play_hyjj_pose_only()
-	var effect: = WUSHUANG_HUOYAN_EFFECT.new()
+	var effect := WUSHUANG_HUOYAN_EFFECT.new()
 	effect.setup(self, PlayerDir, self.objattackDic["hyjj_ws"])
-	var level: = get_parent().get_parent()
+	var level := get_parent().get_parent()
 	if level != null:
 		level.add_child(effect)
 	else:
@@ -523,28 +567,35 @@ func do_wushuang_huoyan_jinjing():
 		is_attacking = false
 		is_using_skills = false
 
-func _play_hyjj_pose_only() -> void :
-	const POSE_ANIMATION: = &"hyjj_ws_pose"
+
+func _play_hyjj_pose_only() -> void:
+	const POSE_ANIMATION := &"hyjj_ws_pose"
 	if _prepare_hyjj_pose_animation():
 		role_action_player.play(POSE_ANIMATION)
 	else:
 		role_action_player.play(&"wait")
 
+
 func _prepare_hyjj_pose_animation() -> bool:
-	const POSE_ANIMATION: = &"hyjj_ws_pose"
+	const POSE_ANIMATION := &"hyjj_ws_pose"
 	if role_action_player.has_animation(POSE_ANIMATION):
 		return true
-	var source: = role_action_player.get_animation(&"hyjj")
-	var library: = role_action_player.get_animation_library(&"")
+	var source := role_action_player.get_animation(&"hyjj")
+	var library := role_action_player.get_animation_library(&"")
 	if source == null or library == null:
 		return false
-	var pose: = source.duplicate(true) as Animation
+	var pose := source.duplicate(true) as Animation
 	for track_index in range(pose.get_track_count() - 1, -1, -1):
-		var track_path: = String(pose.track_get_path(track_index))
-		if not (track_path.begins_with("Action/RoleBody:") or track_path.begins_with("Action/RoleEquipment:") or track_path.begins_with("Action/Wings:")):
+		var track_path := String(pose.track_get_path(track_index))
+		if not (
+			track_path.begins_with("Action/RoleBody:")
+			or track_path.begins_with("Action/RoleEquipment:")
+			or track_path.begins_with("Action/Wings:")
+		):
 			pose.remove_track(track_index)
 	library.add_animation(POSE_ANIMATION, pose)
 	return true
+
 
 func do_hyjj():
 	self.Role1SkillInter["hyjj"] = 4.8
@@ -559,6 +610,8 @@ func do_hyjj():
 	is_attacking = false
 	is_using_skills = false
 	return
+
+
 func do_jdy():
 	self.Role1SkillInter["jdy"] = 0
 	is_jdy = true
@@ -575,13 +628,13 @@ func do_jdy():
 	is_using_skills = false
 	await role_action_player.animation_finished
 
-
-
 	turn_to_wait()
 
 	is_attacking = false
 
 	return
+
+
 func do_jdy_2():
 	self.Role1SkillInter["jdy"] = 2.4
 	velocity.x = 0
@@ -599,6 +652,8 @@ func do_jdy_2():
 	is_attacking = false
 	is_using_skills = false
 	return
+
+
 func do_qsez():
 	self.Role1SkillInter["qsez"] = 4.8
 	velocity.x = 0
@@ -620,24 +675,17 @@ func do_qsez():
 	is_attacking = false
 	is_using_skills = false
 	return
+
+
 func do_hmz_pro():
 	if use_new_hmz:
 		pass
 		do_hmz_one()
 	else:
-
 		do_hmz_pro_old()
 
 
-
-
-
-
-
-
-
 func do_hmz_one():
-
 	RoleBody.self_modulate = Color(1, 1, 1, 0)
 	RoleEq.self_modulate = Color(1, 1, 1, 0)
 	wings.self_modulate = Color(1, 1, 1, 0)
@@ -660,33 +708,38 @@ func do_hmz_one():
 
 	var abc
 	if PlayerDir:
-		abc = Global.add_SpecialEffectBullet(self.Bullet, Vector2(position.x + FRONT_OFFSET, position.y - UP_OFFSET), Vector2(1.17, 1.17), "hmz_1", PlayerDir)
+		abc = Global.add_SpecialEffectBullet(
+			self.Bullet,
+			Vector2(position.x + FRONT_OFFSET, position.y - UP_OFFSET),
+			Vector2(1.17, 1.17),
+			"hmz_1",
+			PlayerDir
+		)
 	else:
-		abc = Global.add_SpecialEffectBullet(self.Bullet, Vector2(position.x - FRONT_OFFSET, position.y - UP_OFFSET), Vector2(1.17, 1.17), "hmz_1", PlayerDir)
+		abc = Global.add_SpecialEffectBullet(
+			self.Bullet,
+			Vector2(position.x - FRONT_OFFSET, position.y - UP_OFFSET),
+			Vector2(1.17, 1.17),
+			"hmz_1",
+			PlayerDir
+		)
 	abc.tt = self
 
-
 	self.position = abc.position
-
 
 	is_using_hmz = true
 	is_hmz_drop = false
 
-
 	if not is_inside_tree():
-
 		cleanup_hmz_state()
 		return
-
 
 	var timer = get_tree().create_timer(1.44, false)
 	await timer.timeout
 
-
 	if not is_inside_tree():
 		cleanup_hmz_state()
 		return
-
 
 	is_attacking = false
 	hurt_box.disabled = true
@@ -694,41 +747,31 @@ func do_hmz_one():
 	is_using_hmz = false
 	is_hmz_drop = true
 
-
 	velocity.y = 2000
-
 
 	var fall_frames = 0
 	while not is_on_floor():
-
 		if not is_inside_tree():
 			cleanup_hmz_state()
 			return
 
-
 		await get_tree().physics_frame
 		fall_frames += 1
 
-
 		if fall_frames > 300:
 			break
-
 
 	if not is_inside_tree():
 		cleanup_hmz_state()
 		return
 
-
 	is_hmz_drop = false
 	velocity.y = 0
-
 
 	var short_timer = get_tree().create_timer(0.05)
 	await short_timer.timeout
 
-
 	if not is_inside_tree():
-
 		return
 
 	do_hmz_two()
@@ -758,7 +801,6 @@ func do_hmz_two():
 	await get_tree().physics_frame
 	self.Role1SkillInter[hmz_cooldown_key] = 4.8
 
-
 	get_action = "hmz"
 	is_attacking = true
 	Global.addSound_(self, "res://Music/Hero/37_Role1_hit10_4.mp3")
@@ -786,21 +828,27 @@ func do_hmz_two():
 		sc_x = 1.5
 		sc_y = 2.2
 
-	var hmz_awaken_active: = _is_skill_awakened("hmz_ws")\
-	and _is_skill_awaken_enabled("hmz_ws")\
-	and (hmz_cooldown_key == "hmz_ws" or RoleProp.is_ws_state)
+	var hmz_awaken_active := (
+		_is_skill_awakened("hmz_ws")
+		and _is_skill_awaken_enabled("hmz_ws")
+		and (hmz_cooldown_key == "hmz_ws" or RoleProp.is_ws_state)
+	)
 	if hmz_awaken_active:
 		var effect_parent: Node = get_parent()
-		var awaken_effect: = HMZ_AWAKEN_EFFECT.instantiate()
+		var awaken_effect := HMZ_AWAKEN_EFFECT.instantiate()
 		awaken_effect.setup(self, PlayerDir, HitDic)
 		awaken_effect.position = position
 		effect_parent.add_child(awaken_effect)
 	else:
 		var abc
 		if PlayerDir:
-			abc = Global.add_SpecialEffectBullet(self.Bullet, Vector2(position.x + 0, position.y), Vector2(sc_x, sc_y), "hmz_2", PlayerDir)
+			abc = Global.add_SpecialEffectBullet(
+				self.Bullet, Vector2(position.x + 0, position.y), Vector2(sc_x, sc_y), "hmz_2", PlayerDir
+			)
 		else:
-			abc = Global.add_SpecialEffectBullet(self.Bullet, Vector2(position.x - 0, position.y), Vector2(sc_x, sc_y), "hmz_2", PlayerDir)
+			abc = Global.add_SpecialEffectBullet(
+				self.Bullet, Vector2(position.x - 0, position.y), Vector2(sc_x, sc_y), "hmz_2", PlayerDir
+			)
 		abc.tt = self
 
 	var baselevel = get_parent().get_parent() as BaseLevel
@@ -812,9 +860,11 @@ func do_hmz_two():
 
 	cleanup_hmz_state()
 
+
 func _is_skill_awakened(skill_id: String) -> bool:
 	var awaken_data: Variant = PlayerData.player_data.get("技能觉醒", {})
 	return awaken_data is Dictionary and bool(awaken_data.get(skill_id, false))
+
 
 func _is_skill_awaken_enabled(skill_id: String) -> bool:
 	var enabled_data: Variant = PlayerData.player_data.get("技能觉醒启用", {})
@@ -836,7 +886,9 @@ func do_hmz_pro_old():
 	var abc
 	var x = 0
 	if PlayerDir:
-		abc = Global.add_SpecialEffectBullet(self.Bullet, Vector2(position.x + 25, position.y - 80), Vector2(1.15, 1.15), "hmz_pro", !PlayerDir)
+		abc = Global.add_SpecialEffectBullet(
+			self.Bullet, Vector2(position.x + 25, position.y - 80), Vector2(1.15, 1.15), "hmz_pro", !PlayerDir
+		)
 		if position.x < abc.position.x + 70:
 			velocity.x = 470
 		else:
@@ -846,7 +898,9 @@ func do_hmz_pro_old():
 		else:
 			velocity.y = 0
 	else:
-		abc = Global.add_SpecialEffectBullet(self.Bullet, Vector2(position.x - 25, position.y - 80), Vector2(1.15, 1.15), "hmz_pro", !PlayerDir)
+		abc = Global.add_SpecialEffectBullet(
+			self.Bullet, Vector2(position.x - 25, position.y - 80), Vector2(1.15, 1.15), "hmz_pro", !PlayerDir
+		)
 		if position.x > abc.position.x - 70:
 			velocity.x = -470
 		else:
@@ -867,6 +921,7 @@ func do_hmz_pro_old():
 				return
 	do_hmz_one_old()
 
+
 func do_hmz_one_old():
 	velocity.x = 0
 	velocity.y = 0
@@ -878,12 +933,17 @@ func do_hmz_one_old():
 	role_action_player.play("hmz__")
 	var abc
 	if PlayerDir:
-		abc = Global.add_SpecialEffectBullet(self.Bullet, Vector2(position.x - 25, position.y + 45), Vector2(1.17, 1.17), "hmz-1", PlayerDir)
+		abc = Global.add_SpecialEffectBullet(
+			self.Bullet, Vector2(position.x - 25, position.y + 45), Vector2(1.17, 1.17), "hmz-1", PlayerDir
+		)
 	else:
-		abc = Global.add_SpecialEffectBullet(self.Bullet, Vector2(position.x + 25, position.y + 45), Vector2(1.17, 1.17), "hmz-1", PlayerDir)
+		abc = Global.add_SpecialEffectBullet(
+			self.Bullet, Vector2(position.x + 25, position.y + 45), Vector2(1.17, 1.17), "hmz-1", PlayerDir
+		)
 	abc.tt = self
 	await get_tree().create_timer(1.44, false).timeout
 	do_hmz_flush_old()
+
 
 func do_hmz_flush_old():
 	velocity.y = 0
@@ -896,19 +956,24 @@ func do_hmz_flush_old():
 	super.get_hit_data("hmz_2")
 	var abc
 	if PlayerDir == false:
-		velocity.x = - walk_speed * 2.7
+		velocity.x = -walk_speed * 2.7
 	else:
 		velocity.x = walk_speed * 2.7
 	if PlayerDir:
-		abc = Global.add_SpecialEffectBullet(self.Bullet, Vector2(position.x + 65, position.y + 90), Vector2(1.1, 1.1), "hmz_flush", !PlayerDir)
+		abc = Global.add_SpecialEffectBullet(
+			self.Bullet, Vector2(position.x + 65, position.y + 90), Vector2(1.1, 1.1), "hmz_flush", !PlayerDir
+		)
 	else:
-		abc = Global.add_SpecialEffectBullet(self.Bullet, Vector2(position.x - 65, position.y + 90), Vector2(1.1, 1.1), "hmz_flush", !PlayerDir)
+		abc = Global.add_SpecialEffectBullet(
+			self.Bullet, Vector2(position.x - 65, position.y + 90), Vector2(1.1, 1.1), "hmz_flush", !PlayerDir
+		)
 	abc.tt = self
 	role_action_player.play("hmz__")
 	await get_tree().create_timer(0.06, false).timeout
 	while velocity.y != 0:
 		await get_tree().create_timer(0.01, false).timeout
 	do_hmz_two_old()
+
 
 func do_hmz_two_old():
 	self.Role1SkillInter[hmz_cooldown_key] = 4.8
@@ -935,9 +1000,13 @@ func do_hmz_two_old():
 		sc_x = 1.5
 		sc_y = 2.2
 	if PlayerDir:
-		abc = Global.add_SpecialEffectBullet(self.Bullet, Vector2(position.x + 0, position.y), Vector2(sc_x, sc_y), "hmz-2", PlayerDir)
+		abc = Global.add_SpecialEffectBullet(
+			self.Bullet, Vector2(position.x + 0, position.y), Vector2(sc_x, sc_y), "hmz-2", PlayerDir
+		)
 	else:
-		abc = Global.add_SpecialEffectBullet(self.Bullet, Vector2(position.x - 0, position.y), Vector2(sc_x, sc_y), "hmz-2", PlayerDir)
+		abc = Global.add_SpecialEffectBullet(
+			self.Bullet, Vector2(position.x - 0, position.y), Vector2(sc_x, sc_y), "hmz-2", PlayerDir
+		)
 	abc.tt = self
 
 	var baselevel = get_parent().get_parent() as BaseLevel
@@ -952,23 +1021,19 @@ func do_hmz_two_old():
 	turn_to_wait()
 
 
-
-
-
-
-
-
-
-
-
 func state_behit():
 	super.state_behit()
+
+
 func fly():
 	is_in_sky = true
+
 
 func reset():
 	is_in_sky = false
 	gravity = -980.0
+
+
 func add_music(idx):
 	match idx:
 		0:
@@ -987,15 +1052,21 @@ func add_music(idx):
 			Global.addSound_(self, "res://Music/Hero/26_Role1_hit13_1.mp3")
 		7:
 			Global.addSound_(self, "res://Music/Hero/59_Role1_dead.mp3")
+
+
 func call_hyjj():
 	for i in Hyjj:
 		if i == null:
 			Hyjj.erase(i)
 	if Hyjj.size() < 3:
 		Hyjj.push_back(Global.addRoleBullet_1(self.Bullet, Vector2(100, 0), "hyjj", self.objattackDic["hyjj"]))
+
+
 func Add_Shallow():
 	var pp = self.get_parent()
 	ShallowList = pp.get_children()
+
+
 func setShallowaction(action_: String):
 	var power = self.objattackDic[action_]["power"] * (0.7 + (PlayerData.player_data["技能学习"]["技能7"]["等级"] + 1) * 0.03)
 	if ShallowList.size() != 0:
@@ -1007,11 +1078,13 @@ func setShallowaction(action_: String):
 					i.HitDic["power"] = power
 
 
-func _on_nor_mal_hit_interv_timeout() -> void :
+func _on_nor_mal_hit_interv_timeout() -> void:
 	Interv -= 1
 
 
-func _on_remove_w_timeout() -> void :
+func _on_remove_w_timeout() -> void:
 	WIsPress = false
+
+
 func removeSpeed():
 	velocity.x = 0

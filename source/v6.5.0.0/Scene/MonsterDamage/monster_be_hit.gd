@@ -4,8 +4,10 @@ extends Node2D
 
 var _recycled: bool = false
 
-func _ready() -> void :
+
+func _ready() -> void:
 	pass
+
 
 func do_():
 	_recycled = false
@@ -14,6 +16,7 @@ func do_():
 		animation_player.play("hurt_1")
 	else:
 		animation_player.play("hurt_2")
+
 
 func recycle():
 	if _recycled:
@@ -26,6 +29,7 @@ func recycle():
 		Global.recycle_mr_hurt(self)
 	else:
 		queue_free()
+
 
 func pass_():
 	recycle()

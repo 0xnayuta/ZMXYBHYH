@@ -12,6 +12,8 @@ var velocity_: Vector2:
 	set(val):
 		velocity_ = val
 		rotation = velocity_.angle()
+
+
 func monster_12():
 	self.is_Fly = false
 	self.is_boss = true
@@ -38,56 +40,45 @@ func monster_12():
 	self.self_rhp = 0
 	self.add_exp = 100
 	self.fall_coin = 30
-	self.objattackDic["hit1"] = {
-		"power": 70, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "real"
-	}
+	self.objattackDic["hit1"] = {"power": 70, "hurtBack": [-4, -9], "attackKind": "real"}
 	self.objattackDic["bshn"] = {
-		"power": 110, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real", 
-		"addeffect": {
-			"Name": "Fire", 
-			"AddTime": 4, 
-			"ReduceInterval": 1, 
-			"CanAdd": true, 
-			"DeBuff": true, 
-			"value": int(RoleProp.roleprop.SHp * 0.01), 
-			"AttackKind": "magic", 
+		"power": 110,
+		"hurtBack": [0, 0],
+		"attackKind": "real",
+		"addeffect":
+		{
+			"Name": "Fire",
+			"AddTime": 4,
+			"ReduceInterval": 1,
+			"CanAdd": true,
+			"DeBuff": true,
+			"value": int(RoleProp.roleprop.SHp * 0.01),
+			"AttackKind": "magic",
 		}
 	}
 	self.objattackDic["hydd"] = {
-		"power": 35, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "Fire", 
-			"AddTime": 4, 
-			"CanAdd": true, 
-			"DeBuff": true, 
-			"ReduceInterval": 1, 
-			"value": int(RoleProp.roleprop.SHp * 0.01), 
-			"AttackKind": "magic", 
+		"power": 35,
+		"hurtBack": [-4, -9],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "Fire",
+			"AddTime": 4,
+			"CanAdd": true,
+			"DeBuff": true,
+			"ReduceInterval": 1,
+			"value": int(RoleProp.roleprop.SHp * 0.01),
+			"AttackKind": "magic",
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-			{
-				"name": "jcjs", 
-				"value": 0
-			}, 
-			{
-				"name": "jcsz", 
-				"value": 0
-			}, 
-			{
-				"name": "jclj", 
-				"value": 0
-			}, 
-		]
+		{"name": "jcjs", "value": 0},
+		{"name": "jcsz", "value": 0},
+		{"name": "jclj", "value": 0},
+	]
 	self.independent_fall_list = [
-		{"name": "210007002", "value": 0, "chance": 0.25}, 
+		{"name": "210007002", "value": 0, "chance": 0.25},
 	]
 
 	enable_treasure_box = true
@@ -97,19 +88,22 @@ func monster_12():
 	if current_fall_mode == FallMode.TREASURE_BOX:
 		self.independent_fall_list.clear()
 	self.fall_stone_pro = 0
-	self.fall_stone = [
-	]
-func _ready() -> void :
+	self.fall_stone = []
+
+
+func _ready() -> void:
 	super._ready()
 	monster_12()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
 
-func interrupt_movement_for_control() -> void :
+
+func interrupt_movement_for_control() -> void:
 	super.interrupt_movement_for_control()
 	_skill_4_generation += 1
 	is_rush = false
 	velocity_ = Vector2.ZERO
+
 
 func Monster_Intelligence():
 	if is_Fly:
@@ -164,6 +158,7 @@ func Monster_Intelligence():
 						else:
 							stop_move()
 
+
 func do_hit_2():
 	Skill_1_CD = 2
 	hit_name = "hydd"
@@ -173,6 +168,7 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 
+
 func do_hit_3():
 	velocity.x = 0
 	hit_name = "hydd"
@@ -180,17 +176,26 @@ func do_hit_3():
 	mr_player.play("FlySkill")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func use_skill_4():
 	Skill_2_CD = 15
 	_skill_4_generation += 1
-	var skill_generation: = _skill_4_generation
-	var sspo = [Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + 100, - 200), Vector2(RoleProp.get_nearest_monster_target_position(global_position).x - 100, - 200), 
-	Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + 100, - 200), Vector2(RoleProp.get_nearest_monster_target_position(global_position).x - 100, -200)]
+	var skill_generation := _skill_4_generation
+	var sspo = [
+		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + 100, -200),
+		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x - 100, -200),
+		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + 100, -200),
+		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x - 100, -200)
+	]
 	for i in range(4):
 		if skill_generation != _skill_4_generation or _movement_command_is_blocked():
 			is_rush = false
 			return
-		po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, RoleProp.get_nearest_monster_target_position(global_position).y)
+		po = Vector2(
+			RoleProp.get_nearest_monster_target_position(global_position).x,
+			RoleProp.get_nearest_monster_target_position(global_position).y
+		)
 		var ppx = sspo[i].x
 		var ppy = sspo[i].y
 		if ppx <= 0:
@@ -203,6 +208,8 @@ func use_skill_4():
 			is_rush = false
 			return
 	is_rush = false
+
+
 func do_hit_4():
 	Skill_2_CD = 18
 	hit_name = "bshn"
@@ -212,53 +219,94 @@ func do_hit_4():
 	velocity.y = 0
 	is_attacking = false
 
+
 func call_Fire():
 	if self.MonsterDirection == false:
 		var posi = Vector2(self.position.x - 180, self.position.y)
-		var aa = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"])
-		var bb = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"])
-		var cc = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"])
+		var aa = Global.add_Bullet(
+			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"]
+		)
+		var bb = Global.add_Bullet(
+			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"]
+		)
+		var cc = Global.add_Bullet(
+			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"]
+		)
 		aa.set_rotation_degrees(-30)
 		bb.set_rotation_degrees(0)
 		cc.set_rotation_degrees(30)
 	else:
 		var posi = Vector2(self.position.x + 180, self.position.y)
-		var aa = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"])
-		var bb = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"])
-		var cc = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"])
+		var aa = Global.add_Bullet(
+			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"]
+		)
+		var bb = Global.add_Bullet(
+			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"]
+		)
+		var cc = Global.add_Bullet(
+			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"]
+		)
 		aa.set_rotation_degrees(30)
 		bb.set_rotation_degrees(0)
 		cc.set_rotation_degrees(-30)
+
+
 func call_Fire_fly():
 	if self.MonsterDirection == false:
 		var posi = Vector2(self.position.x - 210, self.position.y + 150)
-		var aa = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"])
-		var bb = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"])
-		var cc = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"])
+		var aa = Global.add_Bullet(
+			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"]
+		)
+		var bb = Global.add_Bullet(
+			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"]
+		)
+		var cc = Global.add_Bullet(
+			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"]
+		)
 		aa.set_rotation_degrees(-30)
 		bb.set_rotation_degrees(0)
 		cc.set_rotation_degrees(30)
 	else:
 		var posi = Vector2(self.position.x + 210, self.position.y + 150)
-		var aa = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"])
-		var bb = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"])
-		var cc = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"])
+		var aa = Global.add_Bullet(
+			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"]
+		)
+		var bb = Global.add_Bullet(
+			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"]
+		)
+		var cc = Global.add_Bullet(
+			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.objattackDic["hydd"]
+		)
 		aa.set_rotation_degrees(30)
 		bb.set_rotation_degrees(0)
 		cc.set_rotation_degrees(-30)
+
+
 func protect_Fire():
-	var po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + 90, RoleProp.get_nearest_monster_target_position(global_position).y + 120)
-	var aa = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, po, "hydd", self.objattackDic["hydd"])
-	var bb = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, po, "hydd", self.objattackDic["hydd"])
-	var cc = Global.add_Bullet("Monster12Bullet", self.bullet, self.MonsterDirection, 1, po, "hydd", self.objattackDic["hydd"])
+	var po = Vector2(
+		RoleProp.get_nearest_monster_target_position(global_position).x + 90,
+		RoleProp.get_nearest_monster_target_position(global_position).y + 120
+	)
+	var aa = Global.add_Bullet(
+		"Monster12Bullet", self.bullet, self.MonsterDirection, 1, po, "hydd", self.objattackDic["hydd"]
+	)
+	var bb = Global.add_Bullet(
+		"Monster12Bullet", self.bullet, self.MonsterDirection, 1, po, "hydd", self.objattackDic["hydd"]
+	)
+	var cc = Global.add_Bullet(
+		"Monster12Bullet", self.bullet, self.MonsterDirection, 1, po, "hydd", self.objattackDic["hydd"]
+	)
 	aa.set_rotation_degrees(30)
 	bb.set_rotation_degrees(0)
 	cc.set_rotation_degrees(-30)
+
+
 func state_hurt():
 	if not is_eggs:
 		super.state_hurt()
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	if super.CheckPlayerHaveDebuff("Fire"):
 		if CureCount % 60 == 0:
 			cure_hp(150)
@@ -280,6 +328,8 @@ func _physics_process(delta: float) -> void :
 		velocity_ = Vector2.ZERO
 	elif is_rush:
 		bshn(po, delta)
+
+
 func bshn(pp: Vector2, delta):
 	if _movement_command_is_blocked():
 		is_rush = false
@@ -290,6 +340,8 @@ func bshn(pp: Vector2, delta):
 	velocity_ = Vector2.RIGHT.rotated(cur_angle) * 1200
 	position += velocity_ * delta
 	do_hit_4()
+
+
 func check_eggs():
 	if not is_eggs:
 		self.def = 80
@@ -306,12 +358,16 @@ func check_eggs():
 			await mr_player.animation_finished
 			$Relive.wait_time = 7
 			$Relive.start()
+
+
 func relive_Effect():
 	if mr_ani.flip_h == false:
 		relive_effect = Global.add_SpecialEffect(self, Vector2(20, 0), "Relife", Vector2(1, 1), false, 1)
 	else:
 		relive_effect = Global.add_SpecialEffect(self, Vector2(-20, 0), "Relife", Vector2(1, 1), false, 1)
-func _on_relive_timeout() -> void :
+
+
+func _on_relive_timeout() -> void:
 	if Hp <= 0:
 		return
 	self.SHp = self.SHp * 1.5
@@ -325,12 +381,12 @@ func _on_relive_timeout() -> void :
 	is_play = false
 
 
-func _on_create_timeout() -> void :
+func _on_create_timeout() -> void:
 	if is_eggs:
 		protect_Fire()
 
 
-func _on_change_zt_timeout() -> void :
+func _on_change_zt_timeout() -> void:
 	if is_Fly:
 		is_Fly = false
 	else:
@@ -338,9 +394,10 @@ func _on_change_zt_timeout() -> void :
 	is_set = false
 
 
-
-func _on_hn__timeout() -> void :
+func _on_hn__timeout() -> void:
 	pass
+
+
 func have_target():
 	if is_quiescent:
 		return

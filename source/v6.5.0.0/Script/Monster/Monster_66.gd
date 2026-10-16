@@ -2,6 +2,8 @@ extends BaseMonster
 class_name Monster66
 @onready var death_: Timer = $Death
 var IsDrop = false
+
+
 func monster_66():
 	self.rush_speed = 600
 	self.is_boss = false
@@ -28,29 +30,36 @@ func monster_66():
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	Global.AddBuff(self.buff, {
-			"Name": "SuperArmor", 
-			"AddTime": 99999999999, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": false, 
-			"CanRemove": false, 
-		}, )
+	(
+		Global
+		. AddBuff(
+			self.buff,
+			{
+				"Name": "SuperArmor",
+				"AddTime": 99999999999,
+				"ReduceInterval": 0,
+				"value": 0,
+				"AttackKind": "",
+				"CanAdd": false,
+				"DeBuff": false,
+				"CanRemove": false,
+			},
+		)
+	)
 	self.objattackDic["hit1"] = {
-		"power": 400 + int(RoleProp.baseroleprop.Level * 8.6), 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics", 
-		"HitProtect": 25, 
-		"addeffect": {
-			"Name": "poision", 
-			"AddTime": 3, 
-			"ReduceInterval": 1, 
-			"DeBuff": true, 
-			"CanAdd": true, 
-			"value": 200, 
-			"AttackKind": "magic", 
+		"power": 400 + int(RoleProp.baseroleprop.Level * 8.6),
+		"hurtBack": [-4, -9],
+		"attackKind": "physics",
+		"HitProtect": 25,
+		"addeffect":
+		{
+			"Name": "poision",
+			"AddTime": 3,
+			"ReduceInterval": 1,
+			"DeBuff": true,
+			"CanAdd": true,
+			"value": 200,
+			"AttackKind": "magic",
 		}
 	}
 	self.fall_pro = 0
@@ -58,11 +67,13 @@ func monster_66():
 	self.fall_stone_pro = 0
 	self.fall_stone = []
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_66()
 
 	death_.start(randi_range(14, 20))
+
 
 func to_hero():
 	if RoleProp.get_nearest_monster_target_position(global_position).x > position.x:
@@ -71,6 +82,7 @@ func to_hero():
 	else:
 		base_damage_box.scale.x = 1
 		monster_dir.scale.x = 1
+
 
 func attack_target():
 	to_hero()
@@ -83,7 +95,7 @@ func attack_target():
 	stop_move()
 
 
-func _on_death_timeout() -> void :
+func _on_death_timeout() -> void:
 	stop_move()
 	is_attacking = true
 	hit_name = "hit1"
@@ -96,8 +108,6 @@ func _on_death_timeout() -> void :
 			break
 
 
-
-
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 	var result = super._on_hit_box_area_entered(area)
 
@@ -106,12 +116,15 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 			i.cure_hp(i.Hp * 0.01)
 	return result
 
+
 func ToToP():
 	if _movement_command_is_blocked():
 		return
 	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 350)
 	var tween = create_control_movement_tween()
 	tween.tween_property(self, "position", Po, 0.4)
+
+
 func ToDrop():
 	if _movement_command_is_blocked():
 		velocity.y = 0

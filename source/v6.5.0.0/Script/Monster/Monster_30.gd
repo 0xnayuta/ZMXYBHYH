@@ -3,7 +3,6 @@ class_name Monster30
 var brother: Monster31
 
 
-
 func monster_30(is_boss_):
 	self.my_mr_name = "黑无常"
 	if is_boss_:
@@ -30,29 +29,24 @@ func monster_30(is_boss_):
 		self.add_exp = 360
 		self.fall_coin = 200
 		self.objattackDic["hit1"] = {
-			"power": 338, 
-			"hurtBack": [-4, -8], 
-			"attackKind": "physics", 
-			"addeffect": {
-				"Name": "speed_down", 
-				"AddTime": 1.5, 
-				"CanAdd": false, 
-				"DeBuff": true, 
-				"ReduceInterval": 0, 
-				"value": 0.5, 
-				"AttackKind": "", 
+			"power": 338,
+			"hurtBack": [-4, -8],
+			"attackKind": "physics",
+			"addeffect":
+			{
+				"Name": "speed_down",
+				"AddTime": 1.5,
+				"CanAdd": false,
+				"DeBuff": true,
+				"ReduceInterval": 0,
+				"value": 0.5,
+				"AttackKind": "",
 			}
 		}
 		self.fall_pro = 0.5
 		self.fall_list = [
-			{
-				"name": "yhj", 
-				"value": 0
-			}, 
-			{
-				"name": "tsgl", 
-				"value": 0
-			}, 
+			{"name": "yhj", "value": 0},
+			{"name": "tsgl", "value": 0},
 		]
 
 		enable_treasure_box = true
@@ -85,32 +79,39 @@ func monster_30(is_boss_):
 		self.add_exp = 70
 		self.fall_coin = 27
 		self.objattackDic["hit1"] = {
-			"power": 288, 
-			"hurtBack": [-4, -8], 
-			"attackKind": "physics", 
-			"addeffect": {
-				"Name": "speed_down", 
-				"AddTime": 1.5, 
-				"CanAdd": false, 
-				"ReduceInterval": 0, 
-				"value": 0.5, 
-				"AttackKind": "", 
+			"power": 288,
+			"hurtBack": [-4, -8],
+			"attackKind": "physics",
+			"addeffect":
+			{
+				"Name": "speed_down",
+				"AddTime": 1.5,
+				"CanAdd": false,
+				"ReduceInterval": 0,
+				"value": 0.5,
+				"AttackKind": "",
 			}
 		}
 		self.fall_pro = 0.0
 		self.fall_list = []
 		self.fall_stone_pro = 0
 		self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	if get_parent().get_parent().name == "Level_12":
 		is_boss = true
 	else:
 		is_boss = false
 	monster_30(is_boss)
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	get_death()
+
+
 func Monster_Intelligence():
 	get_death()
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -127,6 +128,8 @@ func Monster_Intelligence():
 					attack_target()
 			else:
 				stop_move()
+
+
 func get_monster_31():
 	if self.is_boss:
 		var tta = get_parent().get_children()
@@ -134,6 +137,8 @@ func get_monster_31():
 			if i is Monster31:
 				brother = i
 	return brother
+
+
 func get_death():
 	get_monster_31()
 	if brother != null:
@@ -141,7 +146,8 @@ func get_death():
 			if get_monster_31().death():
 				$call_bai.start(4)
 
-func _on_call_bai_timeout() -> void :
+
+func _on_call_bai_timeout() -> void:
 	var par = get_parent()
 	var White = Global.Create_Monster(31, par, Vector2(self.position.x, self.position.y))
 	var BaseLevel_ = get_parent().get_parent() as BaseLevel

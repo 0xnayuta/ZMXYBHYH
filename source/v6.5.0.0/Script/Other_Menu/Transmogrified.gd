@@ -1,29 +1,29 @@
 extends Node2D
 class_name Transmogrified
-const XIANYU_WING_PATH_FORMAT: = "res://Art/HeroPicture/Wings/xyzy/role%d.tres"
-const HUAHAO_WING_FRAME_DIR: = "res://Art/HeroPicture/Wings/hhyq"
-@onready var bg_2: Sprite2D = $BG / BG2
-@onready var infor: Label = $BG / ChangePage / Infor
-@onready var role_body: Sprite2D = $BG / Player / RoleBody
-@onready var role_equipment: Sprite2D = $BG / Player / RoleEquipment
-@onready var role_body_front: Sprite2D = $BG / Player / RoleBodyFront
-@onready var wqq: Button = $BG / wqq
-@onready var wq: Label = $BG / wqq / wq
-@onready var fjj: Button = $BG / fjj
-@onready var fj_2: Label = $BG / fjj / fj2
-@onready var role: Label = $BG / Role
-@onready var wings: AnimatedSprite2D = $BG / Player / Wings
-@onready var cbb: Button = $BG / cbb
-@onready var cb: Label = $BG / cbb / cb
-@onready var box_list: GridContainer = $BG / BoxList
-@onready var tx: AnimatedSprite2D = $BG / Player / Tx
-@onready var collect_value: Label = $BG / CollectValue
-var _wing_base_position: = Vector2.ZERO
-var _wing_base_rotation: = 0.0
-var _wing_base_scale: = Vector2.ONE
-var _wing_base_transform_initialized: = false
+const XIANYU_WING_PATH_FORMAT := "res://Art/HeroPicture/Wings/xyzy/role%d.tres"
+const HUAHAO_WING_FRAME_DIR := "res://Art/HeroPicture/Wings/hhyq"
+@onready var bg_2: Sprite2D = $BG/BG2
+@onready var infor: Label = $BG/ChangePage/Infor
+@onready var role_body: Sprite2D = $BG/Player/RoleBody
+@onready var role_equipment: Sprite2D = $BG/Player/RoleEquipment
+@onready var role_body_front: Sprite2D = $BG/Player/RoleBodyFront
+@onready var wqq: Button = $BG/wqq
+@onready var wq: Label = $BG/wqq/wq
+@onready var fjj: Button = $BG/fjj
+@onready var fj_2: Label = $BG/fjj/fj2
+@onready var role: Label = $BG/Role
+@onready var wings: AnimatedSprite2D = $BG/Player/Wings
+@onready var cbb: Button = $BG/cbb
+@onready var cb: Label = $BG/cbb/cb
+@onready var box_list: GridContainer = $BG/BoxList
+@onready var tx: AnimatedSprite2D = $BG/Player/Tx
+@onready var collect_value: Label = $BG/CollectValue
+var _wing_base_position := Vector2.ZERO
+var _wing_base_rotation := 0.0
+var _wing_base_scale := Vector2.ONE
+var _wing_base_transform_initialized := false
 var _special_wing_track_states: Array[Dictionary] = []
-var _special_wing_tracks_disabled: = false
+var _special_wing_tracks_disabled := false
 
 var CurrentType: String = "全部":
 	set(vl):
@@ -33,73 +33,515 @@ var CurrentType: String = "全部":
 var PlayerId = int(PlayerData.player_data["Myself"])
 var currentpage: int = 1
 var maxpage: int = 4
-var _nezha_body_id: = "Empty"
-var _nezha_weapon_id: = "Empty"
-var _nezha_preview_elapsed: = 0.0
+var _nezha_body_id := "Empty"
+var _nezha_weapon_id := "Empty"
+var _nezha_preview_elapsed := 0.0
 
-const REMOVED_TRANSMOG_ITEM_IDS: = [
-	"wkjdyhwq", "wkjdyhyf", "tsjdyhwq", "tsjdyhyf", "bjjdyhwq", "bjjdyhyf", 
-	"ssjdyhwq", "ssjdyhyf", "bljdyhwq", "bljdyhyf", 
-	"putongsmsrsz", "youxiusmsrsz", "jingliangsmsrsz", "shishismsrsz", 
-	"xielingsmsrsz", "hunqismsrsz", "chuanshuosmsrsz"
+const REMOVED_TRANSMOG_ITEM_IDS := [
+	"wkjdyhwq",
+	"wkjdyhyf",
+	"tsjdyhwq",
+	"tsjdyhyf",
+	"bjjdyhwq",
+	"bjjdyhyf",
+	"ssjdyhwq",
+	"ssjdyhyf",
+	"bljdyhwq",
+	"bljdyhyf",
+	"putongsmsrsz",
+	"youxiusmsrsz",
+	"jingliangsmsrsz",
+	"shishismsrsz",
+	"xielingsmsrsz",
+	"hunqismsrsz",
+	"chuanshuosmsrsz"
 ]
+
 
 func _is_transmog_item_visible(item_id: String) -> bool:
 	return not REMOVED_TRANSMOG_ITEM_IDS.has(item_id)
 
+
 var RoleItemList = {
-	"悟空": ["wkjdyhwq", "ptxzg", "whg", "jcbj", "qld", "ryjgb", "gtq", "tsyj", "gwj", "qtz", "nyd", "qybd", "zjbtg", "th", "qlg", "qs", "lemhg", 
-	"wkjdyhyf", "ptxzf", "dsyj", "xwj", "yhj", "bsxj", "xhmj", "dszk", "kys", "zjqj", "ey", "qlj", "lemhz", 
-	"wkhzyf", "wklzyf", "wkbsz", "wkhwdg", "wkwdg", "wkmrz", 
-	"putongttzssz", "youxiuttzssz", "jingliangttzssz", "shishittzssz", "xielingttzssz", "hunqittzssz", "chuanshuottzssz", "shenqittzssz", 
-	"putongnmwsz", "youxiunmwsz", "jingliangnmwsz", "shishinmwsz", "xielingnmwsz", "hunqinmwsz", "chuanshuonmwsz", "shenqinmwsz", 
-	"putongzlwsz", "youxiuzlwsz", "jingliangzlwsz", "shishizlwsz", "xielingzlwsz", "hunqizlwsz", "chuanshuozlwsz", "shenqizlwsz", 
-	"putongsmsrsz", "youxiusmsrsz", "jingliangsmsrsz", "shishismsrsz", "xielingsmsrsz", "hunqismsrsz", "chuanshuosmsrsz", "shenqismsrsz", 
-	"xnsz", "slshj", "slshg", "cswkxyhb", "xyfjwk", "dz", "zxstj", "pftyj", "pftyg", "jjwq", "jjfj", "ysszg", "ysszj", "bthl", "zlwg", 
-	"zdplg", "zdlj", "wslej", "wsleg", "zqfjwk", "zqwqwk", "ygfjwk", "ygwqwk"
-	], 
-
-	"唐僧": ["ptsmz", "dsqz", "bhz", "jhcz", "bsyz", "xhxh", "lhz", "myz", "kyz", "hylz", "smz", "tc", "plz", "tsjdyhwq", "rc", "dmysz", "nbz", 
-	"tsjdyhyf", "ptjs", "bsp", "jcjs", "qlp", "lzp", "tsyp", "qcp", "jljs", "qyfp", "hljh", "cz", "plp", "dmyszh", "nbzh", 
-	"tshzyf", "tslzyf", "tsbsz", "tshowdg", "tshwdg", "tsmrz", 
-	"putongttzssz", "youxiuttzssz", "jingliangttzssz", "shishittzssz", "xielingttzssz", "hunqittzssz", "chuanshuottzssz", "shenqittzssz", 
-	"putongnmwsz", "youxiunmwsz", "jingliangnmwsz", "shishinmwsz", "xielingnmwsz", "hunqinmwsz", "chuanshuonmwsz", "shenqinmwsz", 
-	"putongzlwsz", "youxiuzlwsz", "jingliangzlwsz", "shishizlwsz", "xielingzlwsz", "hunqizlwsz", "chuanshuozlwsz", "shenqizlwsz", 
-	"putongsmsrsz", "youxiusmsrsz", "jingliangsmsrsz", "shishismsrsz", "xielingsmsrsz", "hunqismsrsz", "chuanshuosmsrsz", "shenqismsrsz", 
-	"zt", "sljs", "xyfjts", "slfmz", "cstsxyhb", "zqfjts", "zqwqts", "ygfjts", "ygwqts"], 
-
-	"八戒": ["bjjdyhwq", "ptdp", "jcjp", "wtp", "zhp", "jcdp", "gtb", "lcld", "ssc", "tpltp", "syc", "xhc", "zjksf", "tz", "ylf", "yt", "lgdwc", 
-	"bjjdyhyf", "ptcs", "dszy", "pxk", "jgj", "lcgy", "bszj", "xhymk", "tpzy", "hylk", "wsjg", "ry", "ylk", "lgdwz", 
-	"bjhzyf", "bjlzyf", "bjbsz", "bjhowdg", "bjhwdg", "bjmrz", 
-	"putongttzssz", "youxiuttzssz", "jingliangttzssz", "shishittzssz", "xielingttzssz", "hunqittzssz", "chuanshuottzssz", "shenqittzssz", 
-	"putongnmwsz", "youxiunmwsz", "jingliangnmwsz", "shishinmwsz", "xielingnmwsz", "hunqinmwsz", "chuanshuonmwsz", "shenqinmwsz", 
-	"putongzlwsz", "youxiuzlwsz", "jingliangzlwsz", "shishizlwsz", "xielingzlwsz", "hunqizlwsz", "chuanshuozlwsz", "shenqizlwsz", 
-	"putongsmsrsz", "youxiusmsrsz", "jingliangsmsrsz", "shishismsrsz", "xielingsmsrsz", "hunqismsrsz", "chuanshuosmsrsz", "shenqismsrsz", 
-	"jt", "sllyp", "slfk", "xyfjbj", "csbjxyhb", "zqfjbj", "zqwqbj", "ygfjbj", "ygwqbj"
-	], 
-
-	"沙僧": ["ssjdyhwq", "ptyyc", "jmc", "jcmc", "hdc", "jlxmc", "bsbc", "gtc", "xhxc", "jlfyc", "shyc", "kyc", "hylc", "zjxmc", "ts", "jlc", "ll", "mlhfg", 
-	"ssjdyhyf", "ptcp", "dshp", "bxp", "jmy", "lchp", "bap", "jlfyj", "xhp", "jllm", "yj", "jlj", "mlhfz", 
-	"sshzyf", "sslzyf", "ssbsz", "ssqb", "ssxsz", "ssmrz", 
-	"putongttzssz", "youxiuttzssz", "jingliangttzssz", "shishittzssz", "xielingttzssz", "hunqittzssz", "chuanshuottzssz", "shenqittzssz", 
-	"putongnmwsz", "youxiunmwsz", "jingliangnmwsz", "shishinmwsz", "xielingnmwsz", "hunqinmwsz", "chuanshuonmwsz", "shenqinmwsz", 
-	"putongzlwsz", "youxiuzlwsz", "jingliangzlwsz", "shishizlwsz", "xielingzlwsz", "hunqizlwsz", "chuanshuozlwsz", "shenqizlwsz", 
-	"putongsmsrsz", "youxiusmsrsz", "jingliangsmsrsz", "shishismsrsz", "xielingsmsrsz", "hunqismsrsz", "chuanshuosmsrsz", "shenqismsrsz", 
-	"js", "xyfjss", "csssxyhb", "zqfjss", "zqwqss", "ygfjss", "ygwqss"
-	], 
-	"白龙": ["bljdyhwq", "pttq", "dslq", "twq", "qthbq", "bshq", "mwq", "ylhq", "xyq", "qysq", "blmq", "tq", "tlq", "ld", "lxhjq", 
-	"bljdyhyf", "ptcf", "zhj", "jclj", "ttj", "ssj", "tsgp", "xhgp", "yljj", "xhj", "zjgp", "ze", "tlj", "hhez", "psdx", 
-	"blhzyf", "bllzyf", "blbsz", "blhowdg", "blhwdg", "blmrz", 
-	"putongttzssz", "youxiuttzssz", "jingliangttzssz", "shishittzssz", "xielingttzssz", "hunqittzssz", "chuanshuottzssz", "shenqittzssz", 
-	"putongnmwsz", "youxiunmwsz", "jingliangnmwsz", "shishinmwsz", "xielingnmwsz", "hunqinmwsz", "chuanshuonmwsz", "shenqinmwsz", 
-	"putongzlwsz", "youxiuzlwsz", "jingliangzlwsz", "shishizlwsz", "xielingzlwsz", "hunqizlwsz", "chuanshuozlwsz", "shenqizlwsz", 
-	"putongsmsrsz", "youxiusmsrsz", "jingliangsmsrsz", "shishismsrsz", "xielingsmsrsz", "hunqismsrsz", "chuanshuosmsrsz", "shenqismsrsz", 
-	"xyfjbl", "slhlq", "slcp", "tl", "csblxyhb", "zqfjbl", "zqwqbl", "ygfjbl", "ygwqbl"], 
-	"哪吒": ["nzhjq", "nzly", "210007001", "211007001", "210007002", "211007002", "220007001", "221007001", "220007002", "221007002", "230007001", "231007001", "230007002", "231007002", "230007003", "231007003", "230007004", "231007004", "240007001", "241007001", "240007002", "241007002", "240007003", "241007003", "240007004", "241007004", "240007005", "241007005", "341071301", "342071301", "zqfjnz", "zqwqnz", "ygfjnz", "ygwqnz"], 
-	"翅膀": ["xqzy", "bszy", "jmzy", "xtzy", "ttzy", "xmzy", "ryzy", "wyzy", "xyzy", "hhyq"], 
-	"头衔": ["zmcq", "htd", "ymqzq", "xczg", "sxyr", "xysc", "yyscj", "zyscj", "cmscj", "qpzscj", "ghjscj", "xzbwg", "hhyx", "sjzs", 
-	"ptsryx", "yxsryx", "jlsryx", "sssryx", "xlsryx"], 
+	"悟空":
+	[
+		"wkjdyhwq",
+		"ptxzg",
+		"whg",
+		"jcbj",
+		"qld",
+		"ryjgb",
+		"gtq",
+		"tsyj",
+		"gwj",
+		"qtz",
+		"nyd",
+		"qybd",
+		"zjbtg",
+		"th",
+		"qlg",
+		"qs",
+		"lemhg",
+		"wkjdyhyf",
+		"ptxzf",
+		"dsyj",
+		"xwj",
+		"yhj",
+		"bsxj",
+		"xhmj",
+		"dszk",
+		"kys",
+		"zjqj",
+		"ey",
+		"qlj",
+		"lemhz",
+		"wkhzyf",
+		"wklzyf",
+		"wkbsz",
+		"wkhwdg",
+		"wkwdg",
+		"wkmrz",
+		"putongttzssz",
+		"youxiuttzssz",
+		"jingliangttzssz",
+		"shishittzssz",
+		"xielingttzssz",
+		"hunqittzssz",
+		"chuanshuottzssz",
+		"shenqittzssz",
+		"putongnmwsz",
+		"youxiunmwsz",
+		"jingliangnmwsz",
+		"shishinmwsz",
+		"xielingnmwsz",
+		"hunqinmwsz",
+		"chuanshuonmwsz",
+		"shenqinmwsz",
+		"putongzlwsz",
+		"youxiuzlwsz",
+		"jingliangzlwsz",
+		"shishizlwsz",
+		"xielingzlwsz",
+		"hunqizlwsz",
+		"chuanshuozlwsz",
+		"shenqizlwsz",
+		"putongsmsrsz",
+		"youxiusmsrsz",
+		"jingliangsmsrsz",
+		"shishismsrsz",
+		"xielingsmsrsz",
+		"hunqismsrsz",
+		"chuanshuosmsrsz",
+		"shenqismsrsz",
+		"xnsz",
+		"slshj",
+		"slshg",
+		"cswkxyhb",
+		"xyfjwk",
+		"dz",
+		"zxstj",
+		"pftyj",
+		"pftyg",
+		"jjwq",
+		"jjfj",
+		"ysszg",
+		"ysszj",
+		"bthl",
+		"zlwg",
+		"zdplg",
+		"zdlj",
+		"wslej",
+		"wsleg",
+		"zqfjwk",
+		"zqwqwk",
+		"ygfjwk",
+		"ygwqwk"
+	],
+	"唐僧":
+	[
+		"ptsmz",
+		"dsqz",
+		"bhz",
+		"jhcz",
+		"bsyz",
+		"xhxh",
+		"lhz",
+		"myz",
+		"kyz",
+		"hylz",
+		"smz",
+		"tc",
+		"plz",
+		"tsjdyhwq",
+		"rc",
+		"dmysz",
+		"nbz",
+		"tsjdyhyf",
+		"ptjs",
+		"bsp",
+		"jcjs",
+		"qlp",
+		"lzp",
+		"tsyp",
+		"qcp",
+		"jljs",
+		"qyfp",
+		"hljh",
+		"cz",
+		"plp",
+		"dmyszh",
+		"nbzh",
+		"tshzyf",
+		"tslzyf",
+		"tsbsz",
+		"tshowdg",
+		"tshwdg",
+		"tsmrz",
+		"putongttzssz",
+		"youxiuttzssz",
+		"jingliangttzssz",
+		"shishittzssz",
+		"xielingttzssz",
+		"hunqittzssz",
+		"chuanshuottzssz",
+		"shenqittzssz",
+		"putongnmwsz",
+		"youxiunmwsz",
+		"jingliangnmwsz",
+		"shishinmwsz",
+		"xielingnmwsz",
+		"hunqinmwsz",
+		"chuanshuonmwsz",
+		"shenqinmwsz",
+		"putongzlwsz",
+		"youxiuzlwsz",
+		"jingliangzlwsz",
+		"shishizlwsz",
+		"xielingzlwsz",
+		"hunqizlwsz",
+		"chuanshuozlwsz",
+		"shenqizlwsz",
+		"putongsmsrsz",
+		"youxiusmsrsz",
+		"jingliangsmsrsz",
+		"shishismsrsz",
+		"xielingsmsrsz",
+		"hunqismsrsz",
+		"chuanshuosmsrsz",
+		"shenqismsrsz",
+		"zt",
+		"sljs",
+		"xyfjts",
+		"slfmz",
+		"cstsxyhb",
+		"zqfjts",
+		"zqwqts",
+		"ygfjts",
+		"ygwqts"
+	],
+	"八戒":
+	[
+		"bjjdyhwq",
+		"ptdp",
+		"jcjp",
+		"wtp",
+		"zhp",
+		"jcdp",
+		"gtb",
+		"lcld",
+		"ssc",
+		"tpltp",
+		"syc",
+		"xhc",
+		"zjksf",
+		"tz",
+		"ylf",
+		"yt",
+		"lgdwc",
+		"bjjdyhyf",
+		"ptcs",
+		"dszy",
+		"pxk",
+		"jgj",
+		"lcgy",
+		"bszj",
+		"xhymk",
+		"tpzy",
+		"hylk",
+		"wsjg",
+		"ry",
+		"ylk",
+		"lgdwz",
+		"bjhzyf",
+		"bjlzyf",
+		"bjbsz",
+		"bjhowdg",
+		"bjhwdg",
+		"bjmrz",
+		"putongttzssz",
+		"youxiuttzssz",
+		"jingliangttzssz",
+		"shishittzssz",
+		"xielingttzssz",
+		"hunqittzssz",
+		"chuanshuottzssz",
+		"shenqittzssz",
+		"putongnmwsz",
+		"youxiunmwsz",
+		"jingliangnmwsz",
+		"shishinmwsz",
+		"xielingnmwsz",
+		"hunqinmwsz",
+		"chuanshuonmwsz",
+		"shenqinmwsz",
+		"putongzlwsz",
+		"youxiuzlwsz",
+		"jingliangzlwsz",
+		"shishizlwsz",
+		"xielingzlwsz",
+		"hunqizlwsz",
+		"chuanshuozlwsz",
+		"shenqizlwsz",
+		"putongsmsrsz",
+		"youxiusmsrsz",
+		"jingliangsmsrsz",
+		"shishismsrsz",
+		"xielingsmsrsz",
+		"hunqismsrsz",
+		"chuanshuosmsrsz",
+		"shenqismsrsz",
+		"jt",
+		"sllyp",
+		"slfk",
+		"xyfjbj",
+		"csbjxyhb",
+		"zqfjbj",
+		"zqwqbj",
+		"ygfjbj",
+		"ygwqbj"
+	],
+	"沙僧":
+	[
+		"ssjdyhwq",
+		"ptyyc",
+		"jmc",
+		"jcmc",
+		"hdc",
+		"jlxmc",
+		"bsbc",
+		"gtc",
+		"xhxc",
+		"jlfyc",
+		"shyc",
+		"kyc",
+		"hylc",
+		"zjxmc",
+		"ts",
+		"jlc",
+		"ll",
+		"mlhfg",
+		"ssjdyhyf",
+		"ptcp",
+		"dshp",
+		"bxp",
+		"jmy",
+		"lchp",
+		"bap",
+		"jlfyj",
+		"xhp",
+		"jllm",
+		"yj",
+		"jlj",
+		"mlhfz",
+		"sshzyf",
+		"sslzyf",
+		"ssbsz",
+		"ssqb",
+		"ssxsz",
+		"ssmrz",
+		"putongttzssz",
+		"youxiuttzssz",
+		"jingliangttzssz",
+		"shishittzssz",
+		"xielingttzssz",
+		"hunqittzssz",
+		"chuanshuottzssz",
+		"shenqittzssz",
+		"putongnmwsz",
+		"youxiunmwsz",
+		"jingliangnmwsz",
+		"shishinmwsz",
+		"xielingnmwsz",
+		"hunqinmwsz",
+		"chuanshuonmwsz",
+		"shenqinmwsz",
+		"putongzlwsz",
+		"youxiuzlwsz",
+		"jingliangzlwsz",
+		"shishizlwsz",
+		"xielingzlwsz",
+		"hunqizlwsz",
+		"chuanshuozlwsz",
+		"shenqizlwsz",
+		"putongsmsrsz",
+		"youxiusmsrsz",
+		"jingliangsmsrsz",
+		"shishismsrsz",
+		"xielingsmsrsz",
+		"hunqismsrsz",
+		"chuanshuosmsrsz",
+		"shenqismsrsz",
+		"js",
+		"xyfjss",
+		"csssxyhb",
+		"zqfjss",
+		"zqwqss",
+		"ygfjss",
+		"ygwqss"
+	],
+	"白龙":
+	[
+		"bljdyhwq",
+		"pttq",
+		"dslq",
+		"twq",
+		"qthbq",
+		"bshq",
+		"mwq",
+		"ylhq",
+		"xyq",
+		"qysq",
+		"blmq",
+		"tq",
+		"tlq",
+		"ld",
+		"lxhjq",
+		"bljdyhyf",
+		"ptcf",
+		"zhj",
+		"jclj",
+		"ttj",
+		"ssj",
+		"tsgp",
+		"xhgp",
+		"yljj",
+		"xhj",
+		"zjgp",
+		"ze",
+		"tlj",
+		"hhez",
+		"psdx",
+		"blhzyf",
+		"bllzyf",
+		"blbsz",
+		"blhowdg",
+		"blhwdg",
+		"blmrz",
+		"putongttzssz",
+		"youxiuttzssz",
+		"jingliangttzssz",
+		"shishittzssz",
+		"xielingttzssz",
+		"hunqittzssz",
+		"chuanshuottzssz",
+		"shenqittzssz",
+		"putongnmwsz",
+		"youxiunmwsz",
+		"jingliangnmwsz",
+		"shishinmwsz",
+		"xielingnmwsz",
+		"hunqinmwsz",
+		"chuanshuonmwsz",
+		"shenqinmwsz",
+		"putongzlwsz",
+		"youxiuzlwsz",
+		"jingliangzlwsz",
+		"shishizlwsz",
+		"xielingzlwsz",
+		"hunqizlwsz",
+		"chuanshuozlwsz",
+		"shenqizlwsz",
+		"putongsmsrsz",
+		"youxiusmsrsz",
+		"jingliangsmsrsz",
+		"shishismsrsz",
+		"xielingsmsrsz",
+		"hunqismsrsz",
+		"chuanshuosmsrsz",
+		"shenqismsrsz",
+		"xyfjbl",
+		"slhlq",
+		"slcp",
+		"tl",
+		"csblxyhb",
+		"zqfjbl",
+		"zqwqbl",
+		"ygfjbl",
+		"ygwqbl"
+	],
+	"哪吒":
+	[
+		"nzhjq",
+		"nzly",
+		"210007001",
+		"211007001",
+		"210007002",
+		"211007002",
+		"220007001",
+		"221007001",
+		"220007002",
+		"221007002",
+		"230007001",
+		"231007001",
+		"230007002",
+		"231007002",
+		"230007003",
+		"231007003",
+		"230007004",
+		"231007004",
+		"240007001",
+		"241007001",
+		"240007002",
+		"241007002",
+		"240007003",
+		"241007003",
+		"240007004",
+		"241007004",
+		"240007005",
+		"241007005",
+		"341071301",
+		"342071301",
+		"zqfjnz",
+		"zqwqnz",
+		"ygfjnz",
+		"ygwqnz"
+	],
+	"翅膀": ["xqzy", "bszy", "jmzy", "xtzy", "ttzy", "xmzy", "ryzy", "wyzy", "xyzy", "hhyq"],
+	"头衔":
+	[
+		"zmcq",
+		"htd",
+		"ymqzq",
+		"xczg",
+		"sxyr",
+		"xysc",
+		"yyscj",
+		"zyscj",
+		"cmscj",
+		"qpzscj",
+		"ghjscj",
+		"xzbwg",
+		"hhyx",
+		"sjzs",
+		"ptsryx",
+		"yxsryx",
+		"jlsryx",
+		"sssryx",
+		"xlsryx"
+	],
 }
+
+
 func PushEqToList():
 	PlayerData.ensure_acquired_equipment_data()
 	var List = []
@@ -131,6 +573,8 @@ func PushEqToList():
 		if PlayerData.has_acquired_equipment(str(i)):
 			if not PlayerData.player_data["幻化拥有列表"].has(i):
 				PlayerData.player_data["幻化拥有列表"].push_back(i)
+
+
 func GetCurrentRoleList():
 	var OtherList = []
 	match int(PlayerData.player_data["Myself"]):
@@ -162,6 +606,8 @@ func GetCurrentRoleList():
 		if not _is_transmog_item_visible(str(OtherList[index])):
 			OtherList.remove_at(index)
 	return OtherList
+
+
 func GetCurrentTypeList():
 	var List = GetCurrentRoleList()
 	var NewList = []
@@ -171,12 +617,16 @@ func GetCurrentTypeList():
 		if AE.AllEquipment_.has(i) and AE.AllEquipment_[i]["类型"] == CurrentType:
 			NewList.push_back(i)
 	return NewList
+
+
 func GetCurrentMaxPage():
 	var CurrentList = GetCurrentTypeList()
 	if int(CurrentList.size()) % 6 == 0:
 		return int(CurrentList.size() / 6)
 	else:
 		return int(CurrentList.size() / 6) + 1
+
+
 func GetPageList():
 	var CurrentList = GetCurrentTypeList()
 	var PageDic = {}
@@ -196,6 +646,8 @@ func GetPageList():
 			PageNum += 1
 
 	return PageDic
+
+
 func GetFinishItemNum():
 	var Num: int = 0
 	var List = []
@@ -208,16 +660,19 @@ func GetFinishItemNum():
 		if _is_transmog_item_visible(str(i)) and AE.AllEquipment_.has(i) and AE.AllEquipment_[i]["类型"] == CurrentType:
 			List.push_back(i)
 	return List.size()
+
+
 func AddBox():
 	RemoveBox()
 	var Dic = GetPageList()
 	if Dic.size() > 0:
 		for i in Dic["Page_" + str(currentpage)]:
 			Global.AddTransBox(box_list, i, self)
+
+
 func RemoveBox():
 	for i in box_list.get_children():
 		i.queue_free()
-
 
 
 func set_box_():
@@ -279,7 +734,8 @@ func set_box_():
 		cbb.qh_level = 0
 		cbb.wx = []
 
-func _ready() -> void :
+
+func _ready() -> void:
 	PlayerId = int(PlayerData.player_data.get("Myself", 1))
 	if wings.sprite_frames != null:
 		wings.sprite_frames = wings.sprite_frames.duplicate(true)
@@ -292,24 +748,26 @@ func _ready() -> void :
 	maxpage = GetCurrentMaxPage()
 	match PlayerId:
 		1:
-			$BG / Player / Playerplay.play("Wait")
+			$BG/Player/Playerplay.play("Wait")
 			RoleItemList["头衔"].push_back("qtds")
 		2:
-			$BG / Player / Playerplay.play("Wait2")
+			$BG/Player/Playerplay.play("Wait2")
 			RoleItemList["头衔"].push_back("jcz")
 		3:
-			$BG / Player / Playerplay.play("Wait3")
+			$BG/Player/Playerplay.play("Wait3")
 			RoleItemList["头衔"].push_back("tpys")
 		4:
-			$BG / Player / Playerplay.play("wait4")
+			$BG/Player/Playerplay.play("wait4")
 			RoleItemList["头衔"].push_back("jldj")
 		5:
-			$BG / Player / Playerplay.play("wait5")
+			$BG/Player/Playerplay.play("wait5")
 			RoleItemList["头衔"].push_back("lwstz")
 	infor.text = str(currentpage) + "/" + str(maxpage)
 	onEqchange()
 	AddBox()
-func _physics_process(_delta: float) -> void :
+
+
+func _physics_process(_delta: float) -> void:
 	if PlayerId == 6:
 		_update_nezha_preview(_delta)
 	SetWingsOffset()
@@ -318,18 +776,24 @@ func _physics_process(_delta: float) -> void :
 	infor.text = str(currentpage) + "/" + str(maxpage)
 
 	collect_value.text = str(CurrentType) + "收集进度：(" + str(Num) + "/" + str(GetCurrentTypeList().size()) + ")"
-func _on_close_pressed() -> void :
+
+
+func _on_close_pressed() -> void:
 	queue_free()
 
 
-func _on_last_pressed() -> void :
+func _on_last_pressed() -> void:
 	if currentpage > 1:
 		currentpage -= 1
 		AddBox()
-func _on_next_pressed() -> void :
+
+
+func _on_next_pressed() -> void:
 	if currentpage < maxpage:
 		currentpage += 1
 		AddBox()
+
+
 func onEqchange():
 	var WQ: String
 	var Fj: String
@@ -377,8 +841,9 @@ func onEqchange():
 	ChangeTx()
 	set_box_()
 
-func _set_special_preview_tracks(disabled: bool) -> void :
-	var player_animation: AnimationPlayer = $BG / Player / Playerplay
+
+func _set_special_preview_tracks(disabled: bool) -> void:
+	var player_animation: AnimationPlayer = $BG/Player/Playerplay
 	if player_animation == null or disabled == _special_wing_tracks_disabled:
 		return
 	if disabled:
@@ -392,10 +857,21 @@ func _set_special_preview_tracks(disabled: bool) -> void :
 				if animation == null:
 					continue
 				for track_index in animation.get_track_count():
-					var path: = str(animation.track_get_path(track_index))
-					if not (path.ends_with("Wings:position") or path.ends_with("Wings:offset") or path.ends_with("Wings:rotation") or path.ends_with("Wings:flip_h")):
+					var path := str(animation.track_get_path(track_index))
+					if not (
+						path.ends_with("Wings:position")
+						or path.ends_with("Wings:offset")
+						or path.ends_with("Wings:rotation")
+						or path.ends_with("Wings:flip_h")
+					):
 						continue
-					_special_wing_track_states.append({"animation": animation, "track_index": track_index, "enabled": animation.track_is_enabled(track_index)})
+					_special_wing_track_states.append(
+						{
+							"animation": animation,
+							"track_index": track_index,
+							"enabled": animation.track_is_enabled(track_index)
+						}
+					)
 					animation.track_set_enabled(track_index, false)
 		_special_wing_tracks_disabled = true
 		return
@@ -405,27 +881,32 @@ func _set_special_preview_tracks(disabled: bool) -> void :
 			animation.track_set_enabled(int(state.get("track_index", -1)), bool(state.get("enabled", true)))
 	_special_wing_track_states.clear()
 	_special_wing_tracks_disabled = false
+
+
 func ChangeBody(name_):
 	preload("res://Script/Hero/MoonPalaceClothesEffect.gd").sync(role_body, str(name_))
 	if PlayerId == 6:
 		_nezha_body_id = str(name_)
 		return
 	role_body.texture = Global.LoadRole1Body(name_)
+
+
 func ChangeEq(name_):
 	if PlayerId == 6:
 		_nezha_weapon_id = str(name_)
 		return
 	role_equipment.texture = Global.LoadRole1EQ(name_)
 
-func _update_nezha_preview(delta: float) -> void :
-	var body_frames: = NeZhaEquipmentVisuals.get_body_frames(_nezha_body_id)
-	var body_front_frames: = NeZhaEquipmentVisuals.get_body_front_frames(_nezha_body_id)
-	var weapon_frames: = NeZhaEquipmentVisuals.get_weapon_frames(_nezha_weapon_id)
-	var frame_count: = body_frames.get_frame_count(&"wait")
+
+func _update_nezha_preview(delta: float) -> void:
+	var body_frames := NeZhaEquipmentVisuals.get_body_frames(_nezha_body_id)
+	var body_front_frames := NeZhaEquipmentVisuals.get_body_front_frames(_nezha_body_id)
+	var weapon_frames := NeZhaEquipmentVisuals.get_weapon_frames(_nezha_weapon_id)
+	var frame_count := body_frames.get_frame_count(&"wait")
 	if frame_count <= 0:
 		return
 	_nezha_preview_elapsed += delta
-	var frame_index: = int(_nezha_preview_elapsed * body_frames.get_animation_speed(&"wait")) % frame_count
+	var frame_index := int(_nezha_preview_elapsed * body_frames.get_animation_speed(&"wait")) % frame_count
 	role_body.hframes = 1
 	role_body.vframes = 1
 	role_body.frame = 0
@@ -444,15 +925,18 @@ func _update_nezha_preview(delta: float) -> void :
 	role_body_front.texture = body_front_frames.get_frame_texture(&"wait", frame_index)
 	role_body_front.scale = role_body.scale
 	role_body_front.offset = role_body.offset
+
+
 func load_(name_):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
 	return abc
 
-func _ensure_xianyu_wing_animation() -> void :
+
+func _ensure_xianyu_wing_animation() -> void:
 	if wings.sprite_frames == null:
 		return
 	PlayerId = int(PlayerData.player_data.get("Myself", 1))
-	var source_frames: = load(XIANYU_WING_PATH_FORMAT % clampi(PlayerId, 1, 6)) as SpriteFrames
+	var source_frames := load(XIANYU_WING_PATH_FORMAT % clampi(PlayerId, 1, 6)) as SpriteFrames
 	if source_frames == null or not source_frames.has_animation(&"xyzy"):
 		return
 	if wings.sprite_frames.has_animation(&"xyzy"):
@@ -462,46 +946,54 @@ func _ensure_xianyu_wing_animation() -> void :
 	wings.sprite_frames.set_animation_speed(&"xyzy", source_frames.get_animation_speed(&"xyzy"))
 	for frame_index in source_frames.get_frame_count(&"xyzy"):
 		wings.sprite_frames.add_frame(
-			&"xyzy", 
-			source_frames.get_frame_texture(&"xyzy", frame_index), 
+			&"xyzy",
+			source_frames.get_frame_texture(&"xyzy", frame_index),
 			source_frames.get_frame_duration(&"xyzy", frame_index)
 		)
 
-func _ensure_huahao_wing_animation() -> void :
+
+func _ensure_huahao_wing_animation() -> void:
 	if wings.sprite_frames == null or wings.sprite_frames.has_animation(&"hhyq"):
 		return
 	wings.sprite_frames.add_animation(&"hhyq")
 	wings.sprite_frames.set_animation_loop(&"hhyq", true)
 	wings.sprite_frames.set_animation_speed(&"hhyq", 30.0)
 	for frame_index in range(1, 41):
-		var texture: = load("%s/%d.png" % [HUAHAO_WING_FRAME_DIR, frame_index]) as Texture2D
+		var texture := load("%s/%d.png" % [HUAHAO_WING_FRAME_DIR, frame_index]) as Texture2D
 		if texture != null:
 			wings.sprite_frames.add_frame(&"hhyq", texture)
-func _ensure_title_preview_animations() -> void :
+
+
+func _ensure_title_preview_animations() -> void:
 	_ensure_title_preview_animation("zmcq", "res://Art/AllTX/zmcq.png")
 	_ensure_title_preview_animation("htd", "res://Art/AllTX/htd.png")
 	_ensure_title_preview_animation("ymqzq", "res://Art/AllTX/ymqzq.png")
 
-func _ensure_title_preview_animation(title_name: String, texture_path: String) -> void :
+
+func _ensure_title_preview_animation(title_name: String, texture_path: String) -> void:
 	if tx.sprite_frames.has_animation(StringName(title_name)):
 		return
-	var title_texture: = load(texture_path) as Texture2D
+	var title_texture := load(texture_path) as Texture2D
 	if title_texture == null:
 		return
-	var animation_name: = StringName(title_name)
+	var animation_name := StringName(title_name)
 	tx.sprite_frames.add_animation(animation_name)
 	tx.sprite_frames.set_animation_loop(animation_name, true)
 	tx.sprite_frames.set_animation_speed(animation_name, 15.0)
 	for row in range(4):
 		for column in range(4):
-			var frame_texture: = AtlasTexture.new()
+			var frame_texture := AtlasTexture.new()
 			frame_texture.atlas = title_texture
 			frame_texture.region = Rect2(column * 208, row * 124, 208, 124)
 			tx.sprite_frames.add_frame(animation_name, frame_texture)
-func _play_title_preview(title_name: String) -> void :
+
+
+func _play_title_preview(title_name: String) -> void:
 	tx.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	tx.scale = Vector2.ONE * (0.75 if title_name == "zmcq" else 0.85)
 	tx.play(title_name)
+
+
 func ChangeTx():
 	if PlayerData.player_data["幻化列表"]["头衔"] == "":
 		if PlayerData.player_data["头衔"].size() == 0:
@@ -512,24 +1004,30 @@ func ChangeTx():
 	else:
 		_play_title_preview(PlayerData.player_data["幻化列表"]["头衔"])
 
-func _on_total_pressed() -> void :
+
+func _on_total_pressed() -> void:
 	CurrentType = "全部"
 
-func _on_wq_pressed() -> void :
+
+func _on_wq_pressed() -> void:
 	CurrentType = "武器"
 
-func _on_fj_pressed() -> void :
+
+func _on_fj_pressed() -> void:
 	CurrentType = "防具"
 
-func _on_cb_pressed() -> void :
+
+func _on_cb_pressed() -> void:
 	CurrentType = "翅膀"
 
-func _on_sz_pressed() -> void :
+
+func _on_sz_pressed() -> void:
 	CurrentType = "时装"
 
 
-func _on_tx_pressed() -> void :
+func _on_tx_pressed() -> void:
 	CurrentType = "头衔"
+
 
 func SetWingsOffset():
 	var CurrentWingsName: String

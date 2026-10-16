@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster16
+
+
 func monster_16():
 	self.is_boss = false
 	self.my_mr_name = "鱼将军"
@@ -25,35 +27,34 @@ func monster_16():
 	self.self_rhp = 0
 	self.add_exp = 50
 	self.fall_coin = 13
-	self.objattackDic["hit1"] = {
-		"power": 30, 
-		"hurtBack": [-6, -5], 
-		"attackKind": "physics"
-	}
+	self.objattackDic["hit1"] = {"power": 30, "hurtBack": [-6, -5], "attackKind": "physics"}
 	self.objattackDic["xzfc"] = {
-		"power": 40, 
-		"hurtBack": [-6, -5], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 1, 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": 40,
+		"hurtBack": [-6, -5],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 1,
+			"CanAdd": false,
+			"DeBuff": true,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
 		}
 	}
 	self.fall_pro = 0.0
-	self.fall_list = [
-	]
+	self.fall_list = []
 	self.fall_stone_pro = 0
-	self.fall_stone = [
-	]
-func _ready() -> void :
+	self.fall_stone = []
+
+
+func _ready() -> void:
 	super._ready()
 	monster_16()
 	Skill_1_CD = 0
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -78,6 +79,7 @@ func Monster_Intelligence():
 						attack_target()
 					else:
 						stop_move()
+
 
 func do_hit_2():
 	Skill_1_CD = 5

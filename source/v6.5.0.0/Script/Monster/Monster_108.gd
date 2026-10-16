@@ -1,6 +1,8 @@
 extends BaseMonster
 class_name Monster108
 var IsCombo: bool
+
+
 func monster_108():
 	self.is_boss = true
 	self.my_mr_name = "金角大王"
@@ -27,65 +29,63 @@ func monster_108():
 	self.add_exp = 300
 	self.fall_coin = 335
 	self.objattackDic["hit1"] = {
-		"power": 500, 
-		"hurtBack": [-5, -9], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
+		"power": 500,
+		"hurtBack": [-5, -9],
+		"attackKind": "physics",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 520, 
-		"hurtBack": [-2, -1], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
+		"power": 520,
+		"hurtBack": [-2, -1],
+		"attackKind": "physics",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit3"] = {
-		"power": int(1000 + RoleProp.roleprop.SHp * 0.35), 
-		"hurtBack": [-6, -1], 
-		"attackKind": "real", 
-		"HitProtect": 5, 
+		"power": int(1000 + RoleProp.roleprop.SHp * 0.35),
+		"hurtBack": [-6, -1],
+		"attackKind": "real",
+		"HitProtect": 5,
 	}
 	self.objattackDic["hit4"] = {
-		"power": 450, 
-		"hurtBack": [-2, -9], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 5, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"CanRemove": false, 
+		"power": 450,
+		"hurtBack": [-2, -9],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 5,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
+			"CanRemove": false,
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "yjpyasp", 
-			"value": 1
-		}, 
+		{"name": "yjpyasp", "value": 1},
 	]
 	self.fall_stone_pro = 0.0
 	self.fall_stone = [
-		{
-			"name": "ziyanyujin", 
-			"value": randi_range(1, 5)
-		}, 
-				{
-			"name": "xianzhilu", 
-			"value": 1
-		}, 
+		{"name": "ziyanyujin", "value": randi_range(1, 5)},
+		{"name": "xianzhilu", "value": 1},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_108()
 	Skill_1_CD = randi_range(4, 7)
 	Skill_2_CD = randi_range(6, 8)
 	Skill_3_CD = randi_range(10, 15)
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -112,6 +112,8 @@ func Monster_Intelligence():
 				if count % 90 == 0:
 					if randi_range(0, 100) < attackDesire:
 						attack_target()
+
+
 func do_hit_1():
 	IsCombo = true
 	super.to_hero()
@@ -124,6 +126,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = 15
@@ -135,6 +139,8 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_3():
 	super.to_hero()
 	Skill_3_CD = 10
@@ -146,16 +152,22 @@ func do_hit_3():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func TweenToPalyer():
 	if _movement_command_is_blocked() or get_Player == null:
 		return
 	var tween = create_control_movement_tween()
 	tween.tween_property(self, "position", RoleProp.get_nearest_monster_target_position(global_position), 0.2)
+
+
 func TweenToTop():
 	if _movement_command_is_blocked():
 		return
 	var tween = create_control_movement_tween()
 	tween.tween_property(self, "position", Vector2(position.x, -100), 0.4)
+
+
 func ToDrop():
 	if _movement_command_is_blocked():
 		velocity.y = 0
@@ -164,58 +176,73 @@ func ToDrop():
 
 	velocity.y = 1600
 	pass
+
+
 func NoCombo():
 	ShouldInSky = false
-func _on_hurt_box_area_entered(area: Area2D) -> void :
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
 	ShouldInSky = false
 	super._on_hurt_box_area_entered(area)
+
+
 func movetoplayer():
 	if _movement_command_is_blocked() or get_Player == null:
 		return
 	self.position.x = RoleProp.get_nearest_monster_target_position(global_position).x
+
+
 func CallBullet1():
 	var PositionList = [{}]
 	if self.MonsterDirection:
-		PositionList = [{"position": Vector2(50, 0), "Scale": Vector2(0.5, 0.5)}, {"position": Vector2(90, 0), "Scale": Vector2(0.7, 0.7)}, 
-		{"position": Vector2(130, 0), "Scale": Vector2(1, 1)}]
+		PositionList = [
+			{"position": Vector2(50, 0), "Scale": Vector2(0.5, 0.5)},
+			{"position": Vector2(90, 0), "Scale": Vector2(0.7, 0.7)},
+			{"position": Vector2(130, 0), "Scale": Vector2(1, 1)}
+		]
 	else:
-		PositionList = [{"position": Vector2(-50, 0), "Scale": Vector2(0.5, 0.5)}, {"position": Vector2(-90, 0), "Scale": Vector2(0.7, 0.7)}, 
-		{"position": Vector2(-130, 0), "Scale": Vector2(1, 1)}]
+		PositionList = [
+			{"position": Vector2(-50, 0), "Scale": Vector2(0.5, 0.5)},
+			{"position": Vector2(-90, 0), "Scale": Vector2(0.7, 0.7)},
+			{"position": Vector2(-130, 0), "Scale": Vector2(1, 1)}
+		]
 	for i in PositionList:
-		var Bullet = Global.add_Bullet("Monster108Bullet2", self, MonsterDirection, 1, i["position"], "hit4", self.objattackDic["hit4"])
+		var Bullet = Global.add_Bullet(
+			"Monster108Bullet2", self, MonsterDirection, 1, i["position"], "hit4", self.objattackDic["hit4"]
+		)
 		Bullet.scale = i["Scale"]
 		await get_tree().create_timer(0.1, false).timeout
+
+
 func CallBullet2():
 	var Bullet
 	if self.MonsterDirection:
-		Bullet = Global.add_Bullet("Monster108Bullet1", self.bullet, false, 1, Vector2(100, 25) + position, "hit1", self.objattackDic["hit1"])
+		Bullet = Global.add_Bullet(
+			"Monster108Bullet1", self.bullet, false, 1, Vector2(100, 25) + position, "hit1", self.objattackDic["hit1"]
+		)
 	else:
-		Bullet = Global.add_Bullet("Monster108Bullet1", self.bullet, false, 1, Vector2(-100, 25) + position, "hit1", self.objattackDic["hit1"])
+		Bullet = Global.add_Bullet(
+			"Monster108Bullet1", self.bullet, false, 1, Vector2(-100, 25) + position, "hit1", self.objattackDic["hit1"]
+		)
 	Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))
-func CheckPlayer():
 
+
+func CheckPlayer():
 	if not is_instance_valid(Global.get_player) or RoleProp == null or not has_method("move_playerto_boss"):
 		print("CheckPlayer：依赖节点无效/无位移方法，跳过")
 		return
 
-
 	var buff_target: Node2D = null
-
-
-
-
 
 	if is_instance_valid(get_Player) and get_Player is Node2D:
 		buff_target = get_Player
 
-
 	if self.position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
 		if Global.get_player.PlayerDir:
 			if not MonsterDirection:
-
 				move_playerto_boss(buff_target, 0.5)
 	else:
 		if not Global.get_player.PlayerDir:
 			if MonsterDirection:
-
 				move_playerto_boss(buff_target, 0.5)

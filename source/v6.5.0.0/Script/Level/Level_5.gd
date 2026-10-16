@@ -1,10 +1,10 @@
 extends BaseLevel
-@onready var stop_1: CollisionShape2D = $wall / stop1
-@onready var stop_2: CollisionShape2D = $wall / stop2
-@onready var stop_3: CollisionShape2D = $wall / stop3
-@onready var stop_5: CollisionShape2D = $wall / stop5
+@onready var stop_1: CollisionShape2D = $wall/stop1
+@onready var stop_2: CollisionShape2D = $wall/stop2
+@onready var stop_3: CollisionShape2D = $wall/stop3
+@onready var stop_5: CollisionShape2D = $wall/stop5
 @onready var jg: Area2D = $jg
-@onready var pppz: CollisionShape2D = $jg / pppz
+@onready var pppz: CollisionShape2D = $jg/pppz
 @onready var wall: Sprite2D = $Wall
 var is_set = false
 var can_pass = false
@@ -30,7 +30,8 @@ var trap_sky_19
 var trap_sky_20
 var hit_count: int = 0
 
-func _ready() -> void :
+
+func _ready() -> void:
 	Global.CurrentLevel = "七星洞"
 	bgm_node = Global.addBGM_(self, "res://Music/level/7_bg2.mp3")
 
@@ -39,26 +40,70 @@ func _ready() -> void :
 	self.level_stage = 5
 	super._ready()
 	Monster_group = {
-		"stage_1": [7, 7, 7, 7, 9, 9, 9, 9, 9], 
-		"stage_2": [7, 7, 7, 9, 9, 9, 10, 10, 10, 7, 7, 7, 7, 7, 9, 9, 10, 10, 10], 
-		"stage_3": [9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 9, 9, 10, 10, 9, 9, 9, 10, 10, 9], 
-		"stage_4": [11], 
+		"stage_1": [7, 7, 7, 7, 9, 9, 9, 9, 9],
+		"stage_2": [7, 7, 7, 9, 9, 9, 10, 10, 10, 7, 7, 7, 7, 7, 9, 9, 10, 10, 10],
+		"stage_3": [9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 9, 9, 10, 10, 9, 9, 9, 10, 10, 9],
+		"stage_4": [11],
 	}
 	Monster_position_x = {
-		"stage_1": [750, 750, 750, 750, 750, 1000, 1000, 1000, 1000], 
-		"stage_2": [1650, 1650, 1650, 1850, 1850, 1850, 2100, 2100, 2100, 2100, 1500, 1500, 1500, 1500, 2100, 1500, 1500, 1500, 1500], 
-		"stage_3": [3350, 2750, 3350, 2750, 3000, 3000, 3000, 3000, 3400, 3400, 3400, 3100, 3100, 3100, 3200, 3400, 3100, 3100, 3100, 3200], 
-		"stage_4": [4550], 
+		"stage_1": [750, 750, 750, 750, 750, 1000, 1000, 1000, 1000],
+		"stage_2":
+		[
+			1650,
+			1650,
+			1650,
+			1850,
+			1850,
+			1850,
+			2100,
+			2100,
+			2100,
+			2100,
+			1500,
+			1500,
+			1500,
+			1500,
+			2100,
+			1500,
+			1500,
+			1500,
+			1500
+		],
+		"stage_3":
+		[
+			3350,
+			2750,
+			3350,
+			2750,
+			3000,
+			3000,
+			3000,
+			3000,
+			3400,
+			3400,
+			3400,
+			3100,
+			3100,
+			3100,
+			3200,
+			3400,
+			3100,
+			3100,
+			3100,
+			3200
+		],
+		"stage_4": [4550],
 	}
 	Monster_position_y = {
-		"stage_1": [300, 300, 300, 300, 300, 300, 300, 300, 300], 
-		"stage_2": [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300], 
-		"stage_3": [100, 100, 100, 100, 100, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300], 
-		"stage_4": [300], 
+		"stage_1": [300, 300, 300, 300, 300, 300, 300, 300, 300],
+		"stage_2": [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
+		"stage_3": [100, 100, 100, 100, 100, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
+		"stage_4": [300],
 	}
-func _physics_process(delta: float) -> void :
-	if not stop_3.disabled:
 
+
+func _physics_process(delta: float) -> void:
+	if not stop_3.disabled:
 		pppz.disabled = true
 	else:
 		if hit_count < 5:
@@ -71,7 +116,7 @@ func _physics_process(delta: float) -> void :
 		$wall2.play("wall")
 		await $wall2.animation_finished
 		$Wall.visible = false
-		$Wall / StaticBody2D / stage2.disabled = true
+		$Wall/StaticBody2D/stage2.disabled = true
 		can_pass = false
 		is_set = true
 	add_trap_sky()
@@ -81,6 +126,8 @@ func _physics_process(delta: float) -> void :
 			role_information.gogo.visible = true
 		else:
 			role_information.gogo.visible = false
+
+
 func set_through():
 	if current_stage == 1:
 		if check_can_pass():
@@ -95,7 +142,6 @@ func set_through():
 		my_camera.max_left = 3500
 		stop_5.disabled = false
 
-
 		if not bgm_changed_for_stage_4:
 			bgm_changed_for_stage_4 = true
 
@@ -103,9 +149,9 @@ func set_through():
 				bgm_node.queue_free()
 				bgm_node = null
 
-
-
 			bgm_node = Global.addBGM_(self, "res://Music/level/7_bg3.MP3")
+
+
 func set_trap_floor():
 	Global.add_Trap(self, Vector2(1100, 400), "Trap_2")
 	Global.add_Trap(self, Vector2(1150, 400), "Trap_2")
@@ -139,6 +185,8 @@ func set_trap_floor():
 	Global.add_Trap(self, Vector2(3750, 400), "Trap_2")
 	Global.add_Trap(self, Vector2(3800, 400), "Trap_2")
 	Global.add_Trap(self, Vector2(3850, 400), "Trap_2")
+
+
 func add_trap_sky():
 	if trap_sky_1 == null:
 		trap_sky_1 = Global.add_Trap(self, Vector2(3100, 270), "Trap_1")
@@ -156,7 +204,6 @@ func add_trap_sky():
 		trap_sky_7 = Global.add_Trap(self, Vector2(3400, 270), "Trap_1")
 	if trap_sky_8 == null:
 		trap_sky_8 = Global.add_Trap(self, Vector2(3450, 270), "Trap_1")
-
 
 	if trap_sky_10 == null:
 		trap_sky_10 = Global.add_Trap(self, Vector2(3550, 270), "Trap_1")
@@ -182,5 +229,5 @@ func add_trap_sky():
 		trap_sky_20 = Global.add_Trap(self, Vector2(2250, -100), "Trap_1")
 
 
-func _on_jg_area_entered(area: Area2D) -> void :
+func _on_jg_area_entered(area: Area2D) -> void:
 	hit_count += 1

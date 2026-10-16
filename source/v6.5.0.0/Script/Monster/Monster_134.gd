@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster134
+
+
 func monster_134():
 	self.rush_speed = 400
 	self.is_boss = true
@@ -27,70 +29,63 @@ func monster_134():
 	self.add_exp = 0
 	self.fall_coin = 0
 	self.objattackDic["hit1"] = {
-		"power": 400, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
+		"power": 400,
+		"hurtBack": [-8, -12],
+		"attackKind": "physics",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 350, 
-		"hurtBack": [-1, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 20, 
-		"addeffect": {
-			"Name": "silent", 
-			"AddTime": 5, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 350,
+		"hurtBack": [-1, -1],
+		"attackKind": "magic",
+		"HitProtect": 20,
+		"addeffect":
+		{
+			"Name": "silent",
+			"AddTime": 5,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit3"] = {
-		"power": 400, 
-		"hurtBack": [-1, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 5, 
-		"addeffect": {
-			"Name": "silent", 
-			"AddTime": 5, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 400,
+		"hurtBack": [-1, -1],
+		"attackKind": "magic",
+		"HitProtect": 5,
+		"addeffect":
+		{
+			"Name": "silent",
+			"AddTime": 5,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "mgzhzzs", 
-			"value": 1
-		}, 
+		{"name": "mgzhzzs", "value": 1},
 	]
 	self.fall_stone_pro = 1
 	self.fall_stone = [
-		{
-			"name": "sichou", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "xuantie", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "tanmu", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "sichou", "value": randi_range(1, 2)},
+		{"name": "xuantie", "value": randi_range(1, 2)},
+		{"name": "tanmu", "value": randi_range(1, 2)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_134()
 	Skill_1_CD = randi_range(3, 4)
 	Skill_2_CD = 10
 	Skill_3_CD = 5
 	Skill_4_CD = 0
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -119,6 +114,8 @@ func Monster_Intelligence():
 						stop_move()
 				else:
 					stop_move()
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(10, 12)
@@ -129,6 +126,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	do_hit_2()
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = randi_range(8, 12)
@@ -139,15 +138,42 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func CallBullet1():
 	if self.MonsterDirection:
-		Global.add_Bullet("Monster134Bullet", self.bullet, MonsterDirection, 1, Vector2(125, 50) + position, "hit2", self.objattackDic["hit2"])
+		Global.add_Bullet(
+			"Monster134Bullet",
+			self.bullet,
+			MonsterDirection,
+			1,
+			Vector2(125, 50) + position,
+			"hit2",
+			self.objattackDic["hit2"]
+		)
 	else:
-		Global.add_Bullet("Monster134Bullet", self.bullet, MonsterDirection, 1, Vector2(-125, 50) + position, "hit2", self.objattackDic["hit2"])
+		Global.add_Bullet(
+			"Monster134Bullet",
+			self.bullet,
+			MonsterDirection,
+			1,
+			Vector2(-125, 50) + position,
+			"hit2",
+			self.objattackDic["hit2"]
+		)
+
 
 func CallBullet2():
 	var PositionList = [{"position": Vector2(125, 50), "dir": true}, {"position": Vector2(-125, 50), "dir": false}]
-	for i in range((3)):
+	for i in range(3):
 		for u in PositionList:
-			Global.add_Bullet("Monster134Bullet", self.bullet, u["dir"], 1, u["position"] + position, "hit3", self.objattackDic["hit3"])
+			Global.add_Bullet(
+				"Monster134Bullet",
+				self.bullet,
+				u["dir"],
+				1,
+				u["position"] + position,
+				"hit3",
+				self.objattackDic["hit3"]
+			)
 		await get_tree().create_timer(0.2, false).timeout

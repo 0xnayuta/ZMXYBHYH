@@ -1,12 +1,13 @@
 extends TextureButton
 
 var level_index: int = 1
-var constellation_name: = ""
+var constellation_name := ""
 
-func configure(level: int, display_name: String, is_north: bool) -> void :
+
+func configure(level: int, display_name: String, is_north: bool) -> void:
 	level_index = clampi(level, 1, 14)
 	constellation_name = display_name
-	var icon: = load("res://Art/Constellations/Icons/%d.png" % level_index) as Texture2D
+	var icon := load("res://Art/Constellations/Icons/%d.png" % level_index) as Texture2D
 	texture_normal = icon
 	texture_pressed = icon
 	texture_hover = icon
@@ -16,7 +17,7 @@ func configure(level: int, display_name: String, is_north: bool) -> void :
 	custom_minimum_size = Vector2(120, 92)
 	tooltip_text = "%d  %s" % [level_index, constellation_name]
 	modulate = Color("9fc8ff") if is_north else Color("ffd19a")
-	var label: = Label.new()
+	var label := Label.new()
 	label.name = "Name"
 	label.text = "%02d  %s" % [level_index, constellation_name]
 	label.position = Vector2(0, 67)
@@ -27,6 +28,7 @@ func configure(level: int, display_name: String, is_north: bool) -> void :
 	label.add_theme_constant_override("outline_size", 4)
 	add_child(label)
 
-func _on_pressed() -> void :
+
+func _on_pressed() -> void:
 	Global.SelectedConstellationLevel = level_index
 	Global.change_scene("res://Scene/Level/Level_esbxx.tscn")

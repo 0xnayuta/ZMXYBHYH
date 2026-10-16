@@ -1,8 +1,8 @@
 extends Node2D
-const DIGIT_ADVANCE: = 20
+const DIGIT_ADVANCE := 20
 
 @onready var show_player: AnimationPlayer = $ShowPlayer
-@onready var number: HBoxContainer = $Midlle / Number
+@onready var number: HBoxContainer = $Midlle/Number
 
 var Number: int
 var Type: String
@@ -12,7 +12,8 @@ var target: BaseObject
 var _recycled: bool = false
 var _digit_nodes: Array[TextureRect] = []
 
-func setup(value, type_, crit: bool, tar) -> void :
+
+func setup(value, type_, crit: bool, tar) -> void:
 	Number = int(value)
 	Type = str(type_)
 	is_crit = crit
@@ -25,15 +26,16 @@ func setup(value, type_, crit: bool, tar) -> void :
 	number.add_theme_constant_override("separation", 0)
 	call_deferred("_start")
 
+
 func changeNumber():
 	if target != null and not is_instance_valid(target):
 		target = null
 	var loc_2 = str(Number)
 	var loc_1 = loc_2.split("")
-	var digit_index: = 0
-	var widest_texture: = 0
+	var digit_index := 0
+	var widest_texture := 0
 	for i in loc_1:
-		var digit: = _get_digit_node(digit_index)
+		var digit := _get_digit_node(digit_index)
 		if digit == null:
 			return
 		digit_index += 1
@@ -48,6 +50,7 @@ func changeNumber():
 	if widest_texture > 0:
 		number.add_theme_constant_override("separation", DIGIT_ADVANCE - widest_texture)
 
+
 func _get_digit_node(index: int) -> TextureRect:
 	if index < _digit_nodes.size():
 		return _digit_nodes[index]
@@ -58,16 +61,19 @@ func _get_digit_node(index: int) -> TextureRect:
 	_digit_nodes.append(digit)
 	return digit
 
-func _hide_digit_nodes() -> void :
+
+func _hide_digit_nodes() -> void:
 	for digit in _digit_nodes:
 		if digit != null and is_instance_valid(digit):
 			digit.visible = false
 			digit.target = null
 
-func _ready() -> void :
+
+func _ready() -> void:
 	pass
 
-func prepare_for_pool() -> void :
+
+func prepare_for_pool() -> void:
 	_recycled = true
 	visible = false
 	target = null
@@ -78,7 +84,8 @@ func prepare_for_pool() -> void :
 		_get_digit_node(digit_index)
 	_hide_digit_nodes()
 
-func _start() -> void :
+
+func _start() -> void:
 	if _recycled:
 		return
 	changeNumber()
@@ -91,7 +98,8 @@ func _start() -> void :
 		else:
 			show_player.play("physics")
 
-func recycle() -> void :
+
+func recycle() -> void:
 	if _recycled:
 		return
 	_recycled = true

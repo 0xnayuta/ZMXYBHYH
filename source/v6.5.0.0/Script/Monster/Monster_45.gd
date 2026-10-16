@@ -1,6 +1,8 @@
 extends BaseMonster
 class_name Monster45
 var Curecount: int = 0
+
+
 func monster_45():
 	self.is_bt = true
 	self.is_boss = true
@@ -28,29 +30,27 @@ func monster_45():
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real"
-	}
+	self.objattackDic["hit1"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "yll", 
-			"value": randi_range(1, 10)
-		}, 
+		{"name": "yll", "value": randi_range(1, 10)},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_45()
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	velocity.x = 0
 	if is_on_floor():
 		velocity.y = 0
+
+
 func Monster_Intelligence():
 	velocity.x = 0
 	if is_on_floor():
@@ -58,6 +58,8 @@ func Monster_Intelligence():
 	if Curecount % 120 == 0:
 		MonsterCureHp()
 	Curecount += 1
+
+
 func MonsterCureHp():
 	var BaseLevel_ = get_parent().get_parent() as BaseLevel
 	for i in BaseLevel_.monster.get_children():

@@ -4,6 +4,7 @@ class_name Monster20
 var is_firstLowHp = false
 var my_shark
 
+
 func monster_20():
 	self.is_boss = true
 	self.my_mr_name = "鲨魔王"
@@ -29,90 +30,80 @@ func monster_20():
 	self.self_rhp = 0
 	self.add_exp = 200
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {
-		"power": 225, 
-		"hurtBack": [-5, -9], 
-		"attackKind": "physics"
-	}
+	self.objattackDic["hit1"] = {"power": 225, "hurtBack": [-5, -9], "attackKind": "physics"}
 	self.objattackDic["sxks"] = {
-		"power": 245, 
-		"hurtBack": [-5, -15], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "Bleed", 
-			"AddTime": 5, 
-			"CanAdd": true, 
-			"DeBuff": true, 
-			"ReduceInterval": 0.5, 
-			"value": 20, 
-			"AttackKind": "real", 
+		"power": 245,
+		"hurtBack": [-5, -15],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "Bleed",
+			"AddTime": 5,
+			"CanAdd": true,
+			"DeBuff": true,
+			"ReduceInterval": 0.5,
+			"value": 20,
+			"AttackKind": "real",
 		}
 	}
 	self.objattackDic["sxks_2"] = {
-		"power": 155, 
-		"hurtBack": [-7, -15], 
-		"attackKind": "real", 
-		"addeffect": {
-			"Name": "Bleed", 
-			"AddTime": 5, 
-			"DeBuff": true, 
-			"CanAdd": true, 
-			"ReduceInterval": 0.5, 
-			"value": 20, 
-			"AttackKind": "real", 
+		"power": 155,
+		"hurtBack": [-7, -15],
+		"attackKind": "real",
+		"addeffect":
+		{
+			"Name": "Bleed",
+			"AddTime": 5,
+			"DeBuff": true,
+			"CanAdd": true,
+			"ReduceInterval": 0.5,
+			"value": 20,
+			"AttackKind": "real",
 		}
 	}
 	self.objattackDic["spzd"] = {
-		"power": 400, 
-		"hurtBack": [-15, -15], 
-		"attackKind": "real", 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 3, 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": 400,
+		"hurtBack": [-15, -15],
+		"attackKind": "real",
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 3,
+			"CanAdd": false,
+			"DeBuff": true,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
 		}
 	}
 
 	self.fall_pro = 0.5
-	self.fall_list = [
-		{
-			"name": "qlp", 
-			"value": 0
-		}, 
-		{
-			"name": "zqj", 
-			"value": 0
-		}, 
-		{
-			"name": "ttj", 
-			"value": 0
-		}
-	]
+	self.fall_list = [{"name": "qlp", "value": 0}, {"name": "zqj", "value": 0}, {"name": "ttj", "value": 0}]
 
 	enable_treasure_box = true
 	treasure_box_item = "smwbx"
 
 	update_fall_mode()
 	self.fall_stone_pro = 0
-	self.fall_stone = [
-	]
-func _ready() -> void :
+	self.fall_stone = []
+
+
+func _ready() -> void:
 	super._ready()
 	monster_20()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if self.Hp <= 0:
 		if my_shark != null:
 			my_shark.Hp = -100
 			my_shark.state = my_shark.State.Death
-func Monster_Intelligence():
 
+
+func Monster_Intelligence():
 	if self.Hp <= 0:
 		if my_shark != null:
 			my_shark.Hp = -100
@@ -124,9 +115,6 @@ func Monster_Intelligence():
 			else:
 				my_shark = Global.Create_Monster(19, get_parent(), Vector2(self.position.x, self.position.y - 30))
 			is_firstLowHp = true
-
-
-
 
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -152,6 +140,8 @@ func Monster_Intelligence():
 							attack_target()
 					else:
 						stop_move()
+
+
 func attack_target():
 	have_target()
 	hit_name = "hit1"
@@ -164,6 +154,8 @@ func attack_target():
 		mr_player.play("hit1_2")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func do_hit_2():
 	Skill_1_CD = 20
 	hit_name = "sxks"
@@ -176,6 +168,7 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 
+
 func do_hit_3():
 	Skill_2_CD = 15
 	velocity.x = 0
@@ -187,12 +180,22 @@ func do_hit_3():
 		mr_player.play("spzd_2")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func call_pp():
-	var first_position = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, RoleProp.get_nearest_monster_target_position(global_position).y - 110)
-	var par = Global.add_SpecialEffect(get_parent().get_parent(), Vector2(first_position), "Monster20Bullet_1", Vector2(1, 1), false, 1)
+	var first_position = Vector2(
+		RoleProp.get_nearest_monster_target_position(global_position).x,
+		RoleProp.get_nearest_monster_target_position(global_position).y - 110
+	)
+	var par = Global.add_SpecialEffect(
+		get_parent().get_parent(), Vector2(first_position), "Monster20Bullet_1", Vector2(1, 1), false, 1
+	)
 	var second_position = par.position + Vector2(0, 70)
 	await get_tree().create_timer(0.8, false).timeout
-	Global.add_Bullet("Monster20Bullet_1", self.bullet, self.MonsterDirection, 1, second_position, "spzd", self.objattackDic["spzd"])
+	Global.add_Bullet(
+		"Monster20Bullet_1", self.bullet, self.MonsterDirection, 1, second_position, "spzd", self.objattackDic["spzd"]
+	)
+
 
 func call_shark():
 	var bullet_name = "Monster_20Bullet"
@@ -202,10 +205,8 @@ func call_shark():
 	var attack_dic = objattackDic["sxks_2"]
 
 	if MonsterDirection:
-
 		var shark = Global.CallFlyBullet(bullet, bullet_name, 1, position_vec, 4000, speed_val, hit_name, attack_dic)
-		var shark_1 = Global.CallFlyBullet(bullet, bullet_name, 1, position_vec, 4000, - speed_val, hit_name, attack_dic)
-
+		var shark_1 = Global.CallFlyBullet(bullet, bullet_name, 1, position_vec, 4000, -speed_val, hit_name, attack_dic)
 
 		if shark:
 			var sprite = shark.get_node("AnimatedSprite2D")
@@ -216,8 +217,7 @@ func call_shark():
 			if sprite:
 				sprite.flip_h = true
 	else:
-
-		var shark = Global.CallFlyBullet(bullet, bullet_name, 1, position_vec, 4000, - speed_val, hit_name, attack_dic)
+		var shark = Global.CallFlyBullet(bullet, bullet_name, 1, position_vec, 4000, -speed_val, hit_name, attack_dic)
 		var shark_1 = Global.CallFlyBullet(bullet, bullet_name, 1, position_vec, 4000, speed_val, hit_name, attack_dic)
 
 		if shark:
@@ -229,16 +229,21 @@ func call_shark():
 			if sprite:
 				sprite.flip_h = false
 
+
 func Low_Hp():
 	return self.Hp <= self.SHp * 0.7
+
+
 func move_left():
 	monster_dir.scale.x = 1
 	base_damage_box.scale.x = 1
-	velocity.x = - speed * 10
+	velocity.x = -speed * 10
 	if not Low_Hp():
 		mr_player.play("walk_1")
 	else:
 		mr_player.play("walk_2")
+
+
 func move_right():
 	monster_dir.scale.x = -1
 	base_damage_box.scale.x = -1
@@ -247,6 +252,8 @@ func move_right():
 		mr_player.play("walk_1")
 	else:
 		mr_player.play("walk_2")
+
+
 func stop_move():
 	velocity.x = 0
 	if not Low_Hp():
@@ -254,6 +261,8 @@ func stop_move():
 	else:
 		mr_player.play("wait_2")
 	await mr_player.animation_finished
+
+
 func state_hurt():
 	if get_target.HitDic["hurtBack"][0] != 0 or get_target.HitDic["hurtBack"][1] != 0:
 		is_be_attacking = true
@@ -267,88 +276,87 @@ func state_hurt():
 			await mr_player.animation_finished
 			is_be_attacking = false
 
+
 func changeHit():
 	if not Low_Hp():
-		self.objattackDic["hit1"] = {
-			"power": 245, 
-			"hurtBack": [-5, -9], 
-			"attackKind": "real"
-		}
+		self.objattackDic["hit1"] = {"power": 245, "hurtBack": [-5, -9], "attackKind": "real"}
 		self.objattackDic["sxks"] = {
-			"power": 50, 
-			"hurtBack": [-5, -15], 
-			"attackKind": "magic", 
-			"addeffect": {
-				"Name": "Bleed", 
-				"AddTime": 4, 
-				"ReduceInterval": 0.5, 
-				"value": 15, 
-				"AttackKind": "real", 
+			"power": 50,
+			"hurtBack": [-5, -15],
+			"attackKind": "magic",
+			"addeffect":
+			{
+				"Name": "Bleed",
+				"AddTime": 4,
+				"ReduceInterval": 0.5,
+				"value": 15,
+				"AttackKind": "real",
 			}
 		}
 		self.objattackDic["sxks_2"] = {
-			"power": 70, 
-			"hurtBack": [-7, -15], 
-			"attackKind": "magic", 
-			"addeffect": {
-				"Name": "Bleed", 
-				"AddTime": 4, 
-				"ReduceInterval": 0.5, 
-				"value": 15, 
-				"AttackKind": "real", 
+			"power": 70,
+			"hurtBack": [-7, -15],
+			"attackKind": "magic",
+			"addeffect":
+			{
+				"Name": "Bleed",
+				"AddTime": 4,
+				"ReduceInterval": 0.5,
+				"value": 15,
+				"AttackKind": "real",
 			}
 		}
 		self.objattackDic["spzd"] = {
-			"power": 500, 
-			"hurtBack": [-15, -15], 
-			"attackKind": "real", 
-			"addeffect": {
-				"Name": "stun", 
-				"AddTime": 3, 
-				"ReduceInterval": 0, 
-				"value": 0, 
-				"AttackKind": "", 
+			"power": 500,
+			"hurtBack": [-15, -15],
+			"attackKind": "real",
+			"addeffect":
+			{
+				"Name": "stun",
+				"AddTime": 3,
+				"ReduceInterval": 0,
+				"value": 0,
+				"AttackKind": "",
 			}
 		}
 	else:
-		self.objattackDic["hit1"] = {
-			"power": 105, 
-			"hurtBack": [-5, -9], 
-			"attackKind": "physics"
-		}
+		self.objattackDic["hit1"] = {"power": 105, "hurtBack": [-5, -9], "attackKind": "physics"}
 		self.objattackDic["sxks"] = {
-			"power": 300, 
-			"hurtBack": [-5, -15], 
-			"attackKind": "magic", 
-			"addeffect": {
-				"Name": "Bleed", 
-				"AddTime": 4, 
-				"ReduceInterval": 0.5, 
-				"value": 10, 
-				"AttackKind": "real", 
+			"power": 300,
+			"hurtBack": [-5, -15],
+			"attackKind": "magic",
+			"addeffect":
+			{
+				"Name": "Bleed",
+				"AddTime": 4,
+				"ReduceInterval": 0.5,
+				"value": 10,
+				"AttackKind": "real",
 			}
 		}
 		self.objattackDic["sxks_2"] = {
-			"power": 300, 
-			"hurtBack": [-7, -15], 
-			"attackKind": "real", 
-			"addeffect": {
-				"Name": "Bleed", 
-				"AddTime": 4, 
-				"ReduceInterval": 0.5, 
-				"value": 10, 
-				"AttackKind": "real", 
+			"power": 300,
+			"hurtBack": [-7, -15],
+			"attackKind": "real",
+			"addeffect":
+			{
+				"Name": "Bleed",
+				"AddTime": 4,
+				"ReduceInterval": 0.5,
+				"value": 10,
+				"AttackKind": "real",
 			}
 		}
 		self.objattackDic["spzd"] = {
-			"power": 210, 
-			"hurtBack": [-15, -15], 
-			"attackKind": "magic", 
-			"addeffect": {
-				"Name": "stun", 
-				"AddTime": 3, 
-				"ReduceInterval": 0, 
-				"value": 0, 
-				"AttackKind": "", 
+			"power": 210,
+			"hurtBack": [-15, -15],
+			"attackKind": "magic",
+			"addeffect":
+			{
+				"Name": "stun",
+				"AddTime": 3,
+				"ReduceInterval": 0,
+				"value": 0,
+				"AttackKind": "",
 			}
 		}

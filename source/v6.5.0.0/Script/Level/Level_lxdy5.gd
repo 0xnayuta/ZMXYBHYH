@@ -1,33 +1,35 @@
 extends BaseLevel
-@onready var stop_1: CollisionShape2D = $wall / stop1
+@onready var stop_1: CollisionShape2D = $wall/stop1
 var is_cc = false
-func _ready() -> void :
+
+
+func _ready() -> void:
 	Global.CurrentLevel = ""
 	Global.addBGM_(self, "res://Music/level/4_bg2_2.mp3")
 	load("res://Scene/Monster/Monster_6601.tscn")
 	self.level_stage = 1
 	super._ready()
 	Monster_group = {
-		"stage_1": [6601], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [6601],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_x = {
-		"stage_1": [850], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [850],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_y = {
-		"stage_1": [200], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [200],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
-func _physics_process(delta: float) -> void :
 
 
+func _physics_process(delta: float) -> void:
 	if not is_cc:
 		if Role_.position.x >= 600:
 			create_control.wait_time = 3

@@ -9,16 +9,16 @@ var Catch: bool = false
 var Player: BaseHero
 var is_set: bool = false
 
-
 var platform_texture: Texture2D
 @onready var sprite: Sprite2D = $ZlwFloor
 
-func _ready() -> void :
 
+func _ready() -> void:
 	if platform_texture != null:
 		sprite.texture = platform_texture
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	if not is_set:
 		currentposition = position
 		is_set = true
@@ -33,16 +33,19 @@ func _physics_process(_delta: float) -> void :
 		if Player != null:
 			Player.position.x += Direction * Speed
 
-func set_texture(texture: Texture2D) -> void :
+
+func set_texture(texture: Texture2D) -> void:
 	"动态设置贴图"
 	if sprite != null:
 		sprite.texture = texture
 	platform_texture = texture
 
-func _on_area_2d_body_entered(body: Node2D) -> void :
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
 	Catch = true
 	if body is BaseHero:
 		Player = body
 
-func _on_area_2d_body_exited(_body: Node2D) -> void :
+
+func _on_area_2d_body_exited(_body: Node2D) -> void:
 	Catch = false

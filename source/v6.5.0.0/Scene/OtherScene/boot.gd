@@ -1,11 +1,13 @@
 extends CanvasLayer
 
-func _ready():
 
+func _ready():
 	bar.value = 0
 	ResourceLoader.load_threaded_request("res://Scene/Main_menu/Main_Menu.tscn")
 
+
 @onready var bar: ProgressBar = $ProgressBar
+
 
 func _process(delta):
 	var progress = []

@@ -4,22 +4,18 @@ var MonsterList: Array = []
 var _monster_refresh_elapsed: float = 0.0
 var Target: BaseMonster
 var IsNoTarget: bool
-var _hit_data: = {
-	"power": 0, 
-	"hurtBack": [0, -1], 
-	"attackKind": "magic", 
-	"addeffect": {
-		"Name": "DefeReduce", 
-		"AddTime": 5, 
-		"ReduceInterval": 0, 
-		"value": 0.0, 
-		"AttackKind": "", 
-		"DeBuff": true
-	}
+var _hit_data := {
+	"power": 0,
+	"hurtBack": [0, -1],
+	"attackKind": "magic",
+	"addeffect":
+	{"Name": "DefeReduce", "AddTime": 5, "ReduceInterval": 0, "value": 0.0, "AttackKind": "", "DeBuff": true}
 }
 
-func _ready() -> void :
+
+func _ready() -> void:
 	objattackDic["hit1"] = _hit_data
+
 
 func _get_active_monster_snapshot() -> Array:
 	var level: Node = Player.get_parent().get_parent() if Player != null and Player.get_parent() != null else null
@@ -29,8 +25,8 @@ func _get_active_monster_snapshot() -> Array:
 		return level.monster.get_children()
 	return []
 
-func _physics_process(delta: float) -> void :
 
+func _physics_process(delta: float) -> void:
 	_monster_refresh_elapsed += delta
 	if _monster_refresh_elapsed >= 0.1 or MonsterList.is_empty():
 		_monster_refresh_elapsed = 0.0
@@ -52,6 +48,7 @@ func _physics_process(delta: float) -> void :
 	if not is_use:
 		mg_player.play("wait")
 
+
 func ShowSkill():
 	Target = GetMonster()
 	if Target == null:
@@ -60,11 +57,14 @@ func ShowSkill():
 	mg_player.play("hit")
 	await mg_player.animation_finished
 	Useover()
+
+
 func Useover():
 	self.usecd = 15
 	is_use = false
 	Global.FB_CD = 1
 	skill_cd.start(self.usecd)
+
 
 func UseOver2():
 	self.usecd = 0
@@ -72,6 +72,8 @@ func UseOver2():
 	Global.FB_CD = 1
 	RoleProp.roleprop.Mp += needMp
 	skill_cd.start(0.001)
+
+
 func GetMonster():
 	var MaxHp = 0
 	var TT: BaseMonster
@@ -86,6 +88,10 @@ func GetMonster():
 							TT = i
 							MaxHp = i.Hp
 	return TT
+
+
 func AddSword():
 	if Target != null:
-		Global.addWeaponBullet_($Bullet, Target.position + Vector2(0, 30), "CloudSwordBullet", get_attack_snapshot(), mg_action.flip_h, 100)
+		Global.addWeaponBullet_(
+			$Bullet, Target.position + Vector2(0, 30), "CloudSwordBullet", get_attack_snapshot(), mg_action.flip_h, 100
+		)

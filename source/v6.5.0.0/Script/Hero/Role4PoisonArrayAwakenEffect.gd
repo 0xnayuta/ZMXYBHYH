@@ -1,23 +1,22 @@
 extends Node2D
 class_name Role4PoisonArrayAwakenEffect
 
-const ATLAS_PATH: = "res://Art/HeroPicture/Role4/CangMuLongYun/runtime/HeroF_6009_skill.atlas"
-const SKELETON_PATH: = "res://Art/HeroPicture/Role4/CangMuLongYun/runtime/HeroF_6009_skill.spine-json"
-const SPINE_SCALE: = Vector2(0.2, 0.2)
-const HIT_INTERVAL: = 0.2
-const WHIRLWIND_HIT_HALF_SIZE: = Vector2(180.0, 220.0)
-const WHIRLWIND_SLOT_NAMES: = [
-	"FX-longjuanfeng-ljf0_0", "FX-longjuanfeng-ljf0_1", 
-	"FX-longjuanfeng-ljf0_2", "FX-longjuanfeng-ljf0_3"
+const ATLAS_PATH := "res://Art/HeroPicture/Role4/CangMuLongYun/runtime/HeroF_6009_skill.atlas"
+const SKELETON_PATH := "res://Art/HeroPicture/Role4/CangMuLongYun/runtime/HeroF_6009_skill.spine-json"
+const SPINE_SCALE := Vector2(0.2, 0.2)
+const HIT_INTERVAL := 0.2
+const WHIRLWIND_HIT_HALF_SIZE := Vector2(180.0, 220.0)
+const WHIRLWIND_SLOT_NAMES := [
+	"FX-longjuanfeng-ljf0_0", "FX-longjuanfeng-ljf0_1", "FX-longjuanfeng-ljf0_2", "FX-longjuanfeng-ljf0_3"
 ]
 
 var owner_player: BaseHero = null
 var array_node: Node = null
 var hit_data: Dictionary = {}
-var face_right: = true
+var face_right := true
 var _spine: Variant = null
-var _elapsed: = 0.0
-var _hit_elapsed: = 0.0
+var _elapsed := 0.0
+var _hit_elapsed := 0.0
 var _cached_targets: Array[BaseMonster] = []
 var _whirlwind_slots: Array = []
 static var _shared_data: Variant = null
@@ -25,19 +24,22 @@ static var _normal_material: CanvasItemMaterial
 static var _additive_material: CanvasItemMaterial
 static var _multiply_material: CanvasItemMaterial
 
-static func clear_cached_data() -> void :
+
+static func clear_cached_data() -> void:
 	_shared_data = null
 	_normal_material = null
 	_additive_material = null
 	_multiply_material = null
 
-func setup(player: BaseHero, is_facing_right: bool, data: Dictionary, field: Node = null) -> void :
+
+func setup(player: BaseHero, is_facing_right: bool, data: Dictionary, field: Node = null) -> void:
 	owner_player = player
 	face_right = is_facing_right
 	hit_data = data.duplicate(true)
 	array_node = field
 
-func _ready() -> void :
+
+func _ready() -> void:
 	if owner_player == null or not is_instance_valid(owner_player):
 		queue_free()
 		return
@@ -46,7 +48,8 @@ func _ready() -> void :
 	if not _spawn_spine_visual():
 		queue_free()
 
-func _process(delta: float) -> void :
+
+func _process(delta: float) -> void:
 	if owner_player == null or not is_instance_valid(owner_player):
 		queue_free()
 		return
@@ -57,6 +60,7 @@ func _process(delta: float) -> void :
 		_apply_area_damage()
 	if array_node == null or not is_instance_valid(array_node) or array_node.is_queued_for_deletion():
 		queue_free()
+
 
 func _spawn_spine_visual() -> bool:
 	if not ClassDB.class_exists("SpineSkeletonDataResource") or not ClassDB.class_exists("SpineSprite"):
@@ -89,7 +93,8 @@ func _spawn_spine_visual() -> bool:
 	state.set_animation("skill03_3", true, 0)
 	return true
 
-func _cache_whirlwind_slots(skeleton: Variant) -> void :
+
+func _cache_whirlwind_slots(skeleton: Variant) -> void:
 	_whirlwind_slots.clear()
 	if skeleton == null or not skeleton.has_method("find_slot"):
 		return
@@ -98,11 +103,12 @@ func _cache_whirlwind_slots(skeleton: Variant) -> void :
 		if slot != null:
 			_whirlwind_slots.append(slot)
 
+
 static func _preload_spine_data() -> bool:
 	if _shared_data != null:
 		return true
-	var atlas: = load(ATLAS_PATH)
-	var skeleton_file: = load(SKELETON_PATH)
+	var atlas := load(ATLAS_PATH)
+	var skeleton_file := load(SKELETON_PATH)
 	if atlas == null or skeleton_file == null:
 		return false
 	var skeleton_data: Variant = ClassDB.instantiate("SpineSkeletonDataResource")
@@ -122,9 +128,10 @@ static func _preload_spine_data() -> bool:
 	_multiply_material.blend_mode = CanvasItemMaterial.BLEND_MODE_MUL
 	return true
 
-func _cache_targets() -> void :
+
+func _cache_targets() -> void:
 	_cached_targets.clear()
-	var level: = owner_player.get_parent().get_parent() if owner_player != null else null
+	var level := owner_player.get_parent().get_parent() if owner_player != null else null
 	var monsters: Node = level.get("monster") if level != null else null
 	if monsters == null:
 		return
@@ -132,7 +139,8 @@ func _cache_targets() -> void :
 		if child is BaseMonster:
 			_cached_targets.append(child as BaseMonster)
 
-func _apply_area_damage() -> void :
+
+func _apply_area_damage() -> void:
 	if hit_data.is_empty() or owner_player == null or not is_instance_valid(owner_player):
 		return
 	_cache_targets()
@@ -141,18 +149,19 @@ func _apply_area_damage() -> void :
 		return
 	if skeleton.has_method("update_world_transform"):
 		skeleton.update_world_transform(0)
-	var whirlwind_positions: = _get_active_whirlwind_positions()
+	var whirlwind_positions := _get_active_whirlwind_positions()
 	if whirlwind_positions.is_empty():
 		return
 	for target in _cached_targets:
 		if not _is_valid_target(target):
 			continue
-		var target_center: = target.global_position + Vector2(0.0, -70.0)
+		var target_center := target.global_position + Vector2(0.0, -70.0)
 		for whirlwind_position in whirlwind_positions:
-			var offset: = target_center - whirlwind_position
+			var offset := target_center - whirlwind_position
 			if absf(offset.x) <= WHIRLWIND_HIT_HALF_SIZE.x and absf(offset.y) <= WHIRLWIND_HIT_HALF_SIZE.y:
 				_apply_hit(target)
 				break
+
 
 func _get_active_whirlwind_positions() -> Array[Vector2]:
 	var positions: Array[Vector2] = []
@@ -172,10 +181,21 @@ func _get_active_whirlwind_positions() -> Array[Vector2]:
 			positions.append(bone.get_global_transform().origin)
 	return positions
 
-func _is_valid_target(target: BaseMonster) -> bool:
-	return target != null and is_instance_valid(target) and target.Hp > 0 and not target.is_death and not target.NoTarget and not target.is_boss_protecting() and not target.get_meta("pet_tiger_unit", false) and not target.get_meta("is_summon", false)
 
-func _apply_hit(target: BaseMonster) -> void :
+func _is_valid_target(target: BaseMonster) -> bool:
+	return (
+		target != null
+		and is_instance_valid(target)
+		and target.Hp > 0
+		and not target.is_death
+		and not target.NoTarget
+		and not target.is_boss_protecting()
+		and not target.get_meta("pet_tiger_unit", false)
+		and not target.get_meta("is_summon", false)
+	)
+
+
+func _apply_hit(target: BaseMonster) -> void:
 	var old_hit_data: Dictionary = owner_player.HitDic
 	var old_target: Variant = target.get_target
 	var old_source_player: Variant = RoleProp.SourcePlayer
@@ -183,10 +203,20 @@ func _apply_hit(target: BaseMonster) -> void :
 	target.get_target = owner_player
 	target.has_target = true
 	RoleProp.SourcePlayer = owner_player
-	var damage_scale: = float(target.llrdzs)
+	var damage_scale := float(target.llrdzs)
 	if is_nan(damage_scale) or is_inf(damage_scale) or damage_scale <= 0.0:
 		damage_scale = 1.0
-	var damage: = int(float(target.get_Role_last_hurt(owner_player)) * RoleProp.ws_up_power * target.jgz_bl * target.zznh_bl * target.HurtBl * (1.0 + target.lpzzs) * damage_scale)
+	var damage := int(
+		(
+			float(target.get_Role_last_hurt(owner_player))
+			* RoleProp.ws_up_power
+			* target.jgz_bl
+			* target.zznh_bl
+			* target.HurtBl
+			* (1.0 + target.lpzzs)
+			* damage_scale
+		)
+	)
 	if damage > 0:
 		target.GetHurt = damage
 		target.HurtReduceHp(damage, owner_player)
@@ -202,17 +232,21 @@ func _apply_hit(target: BaseMonster) -> void :
 	owner_player.HitDic = old_hit_data
 	RoleProp.SourcePlayer = old_source_player
 
-func _apply_voodoo_if_learned(target: BaseMonster) -> void :
+
+func _apply_voodoo_if_learned(target: BaseMonster) -> void:
 	if target == null or not is_instance_valid(target) or target.is_boss_protecting():
 		return
 	if int(PlayerData.player_data["技能学习"]["技能10"]["等级"]) <= 0 or Global.CheckWD(target) >= 7:
 		return
-	Global.AddBuff(target.buff, {
-		"Name": "Voodoo", 
-		"AddTime": 5, 
-		"ReduceInterval": 1, 
-		"value": int(RoleProp.roleprop.power * 0.1), 
-		"CanAdd": true, 
-		"AttackKind": "real", 
-		"DeBuff": true
-	})
+	Global.AddBuff(
+		target.buff,
+		{
+			"Name": "Voodoo",
+			"AddTime": 5,
+			"ReduceInterval": 1,
+			"value": int(RoleProp.roleprop.power * 0.1),
+			"CanAdd": true,
+			"AttackKind": "real",
+			"DeBuff": true
+		}
+	)

@@ -1,6 +1,7 @@
 extends BaseMonster
 class_name Monster42
 
+
 func Monster_42():
 	self.rush_speed = 900
 	self.is_boss = true
@@ -28,58 +29,56 @@ func Monster_42():
 	self.add_exp = 5000
 	self.fall_coin = 5000
 	self.objattackDic["hit1"] = {
-		"power": int(800 + RoleProp.roleprop.power), 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics", 
-		"HitProtect": 20, 
+		"power": int(800 + RoleProp.roleprop.power),
+		"hurtBack": [-4, -9],
+		"attackKind": "physics",
+		"HitProtect": 20,
 	}
 	self.objattackDic["mykl"] = {
-		"power": int(350 + RoleProp.roleprop.power * 0.35), 
-		"hurtBack": [-4, -12], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": int(350 + RoleProp.roleprop.power * 0.35),
+		"hurtBack": [-4, -12],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.objattackDic["xmhd"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
+		"power": 0,
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
 	}
 	self.objattackDic["sfjm"] = {
-		"power": int(800 + RoleProp.roleprop.power * 0.3), 
-		"hurtBack": [-4, -5], 
-		"attackKind": "magic", 
-		"HitProtect": 4, 
-		"addeffect": {
-			"Name": "stun", 
-			"DeBuff": true, 
-			"CanAdd": false, 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": int(800 + RoleProp.roleprop.power * 0.3),
+		"hurtBack": [-4, -5],
+		"attackKind": "magic",
+		"HitProtect": 4,
+		"addeffect":
+		{
+			"Name": "stun",
+			"DeBuff": true,
+			"CanAdd": false,
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
 		}
 	}
 
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "xtzy", 
-			"value": 0
-		}, 
+		{"name": "xtzy", "value": 0},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
 	Skill_3_CD = 0
 	Monster_42()
+
+
 func Monster_Intelligence():
-
-
-
-
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
@@ -121,9 +120,13 @@ func Monster_Intelligence():
 					have_target()
 			else:
 				have_target()
+
+
 func stop_move():
 	velocity.x = 0
 	mr_player.play("wait")
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = 6 + randi_range(0, 4)
@@ -133,6 +136,8 @@ func do_hit_1():
 	mr_player.play("xmhd")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = 15
@@ -143,6 +148,7 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 
+
 func do_hit_3():
 	super.to_hero()
 	Skill_3_CD = 20
@@ -152,6 +158,8 @@ func do_hit_3():
 	mr_player.play("sfjm")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func normal_state():
 	if is_be_attacking:
 		return
@@ -161,12 +169,20 @@ func normal_state():
 		move_left()
 	else:
 		move_right()
+
+
 func call_sfjmFire():
-	var FirePosition = [Vector2(self.position.x - 180, self.position.y - 20), Vector2(self.position.x - 360, self.position.y - 20), 
-	Vector2(self.position.x, self.position.y - 20), Vector2(self.position.x + 180, self.position.y - 20), 
-	Vector2(self.position.x + 360, self.position.y - 20)]
+	var FirePosition = [
+		Vector2(self.position.x - 180, self.position.y - 20),
+		Vector2(self.position.x - 360, self.position.y - 20),
+		Vector2(self.position.x, self.position.y - 20),
+		Vector2(self.position.x + 180, self.position.y - 20),
+		Vector2(self.position.x + 360, self.position.y - 20)
+	]
 	for i in range(5):
 		Global.add_Bullet("Monster42Bullet", self.bullet, false, 2, FirePosition[i], "sfjm", self.objattackDic["sfjm"])
+
+
 func call_xmhd():
 	if not self.MonsterDirection:
 		var hd = Global.add_SpecialEffect(self, Vector2(-50, -5), "Monster42Bullet_1", Vector2(0.5, 0.9), false, 0.9)
@@ -178,13 +194,21 @@ func call_xmhd():
 		var xw = Global.add_SpecialEffect(self, Vector2(50, -5), "Monster42Bullet_2", Vector2(0.5, 0.9), false, 0.9)
 		hd.set_rotation_degrees(20)
 		xw.set_rotation_degrees(20)
-	Global.AddBuff(get_Player.buff, {
-			"Name": "speed_down", 
-			"AddTime": 2, 
-			"ReduceInterval": 0, 
-			"value": 0.5, 
-			"AttackKind": "magic", 
-			"CanAdd": false, 
-		})
+	(
+		Global
+		. AddBuff(
+			get_Player.buff,
+			{
+				"Name": "speed_down",
+				"AddTime": 2,
+				"ReduceInterval": 0,
+				"value": 0.5,
+				"AttackKind": "magic",
+				"CanAdd": false,
+			}
+		)
+	)
+
+
 func no_rush():
 	velocity.x = 0

@@ -1,16 +1,19 @@
 extends TextureRect
 @onready var items: Button = $Items
-@onready var title: Label = $ScrollContainer / title
+@onready var title: Label = $ScrollContainer/title
 
 var TotalNum: int
 var ItemName: String
-func _ready() -> void :
 
+
+func _ready() -> void:
 	items.is_in_hhgz = true
 	items.is_in_ldl_gz = true
 
 	items.qh_level = 0
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	items.EQ_prop = AE.AllEquipment_[ItemName]
 	items.wx = []
 	items.set_button_icon(load_(ItemName))
@@ -27,6 +30,8 @@ func _physics_process(delta: float) -> void :
 			items.total_number = 0
 	title.text = str(Name) + " * " + str(TotalNum)
 	set_physics_process(false)
+
+
 func load_(name_):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
 	return abc

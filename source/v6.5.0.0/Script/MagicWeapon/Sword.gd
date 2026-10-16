@@ -1,24 +1,19 @@
 extends BaseMagicWeapon
 class_name Sword
 var bl = 30
-var _hit_data: = {
-	"power": 0, 
-	"hurtBack": [8, -5], 
-	"attackKind": "magic", 
-	"addeffect": {
-		"Name": "Ice", 
-		"AddTime": 0.0, 
-		"ReduceInterval": 0, 
-		"value": 0, 
-		"AttackKind": "", 
-		"DeBuff": true
-	}
+var _hit_data := {
+	"power": 0,
+	"hurtBack": [8, -5],
+	"attackKind": "magic",
+	"addeffect": {"Name": "Ice", "AddTime": 0.0, "ReduceInterval": 0, "value": 0, "AttackKind": "", "DeBuff": true}
 }
 
-func _ready() -> void :
+
+func _ready() -> void:
 	objattackDic["hit1"] = _hit_data
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	needMp = 30 + 10 * self.FB_Level
 	self.FB_Level = PlayerData.get_mostLevel("tsgj") + 1
 	var add_effect: Dictionary = _hit_data["addeffect"]
@@ -30,29 +25,50 @@ func _physics_process(delta: float) -> void :
 		add_effect["AddTime"] = 1 + 0.18 * self.FB_Level
 	super._physics_process(delta)
 
+
 func ShowSkill():
 	Global.FB_CD = 3
 	mg_player.play("hit")
 	await mg_player.animation_finished
 	Useover()
+
+
 func Useover():
 	is_use = false
 	self.usecd = 15
 	skill_cd.start(15)
+
+
 func addSword():
-	var attack_data: = get_attack_snapshot()
+	var attack_data := get_attack_snapshot()
 	Global.addWeaponBullet_($Bullet, Vector2(self.position.x, 0), "SwordBullet", attack_data, mg_action.flip_h, bl)
-	Global.addWeaponBullet_($Bullet, Vector2(self.position.x - 100, 0), "SwordBullet", attack_data, mg_action.flip_h, bl)
-	Global.addWeaponBullet_($Bullet, Vector2(self.position.x + 100, 0), "SwordBullet", attack_data, mg_action.flip_h, bl)
+	Global.addWeaponBullet_(
+		$Bullet, Vector2(self.position.x - 100, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
+	)
+	Global.addWeaponBullet_(
+		$Bullet, Vector2(self.position.x + 100, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
+	)
 	await get_tree().create_timer(0.1, false).timeout
 	attack_data = get_attack_snapshot()
-	Global.addWeaponBullet_($Bullet, Vector2(self.position.x - 200, 0), "SwordBullet", attack_data, mg_action.flip_h, bl)
-	Global.addWeaponBullet_($Bullet, Vector2(self.position.x + 200, 0), "SwordBullet", attack_data, mg_action.flip_h, bl)
+	Global.addWeaponBullet_(
+		$Bullet, Vector2(self.position.x - 200, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
+	)
+	Global.addWeaponBullet_(
+		$Bullet, Vector2(self.position.x + 200, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
+	)
 	await get_tree().create_timer(0.1, false).timeout
 	attack_data = get_attack_snapshot()
-	Global.addWeaponBullet_($Bullet, Vector2(self.position.x - 300, 0), "SwordBullet", attack_data, mg_action.flip_h, bl)
-	Global.addWeaponBullet_($Bullet, Vector2(self.position.x + 300, 0), "SwordBullet", attack_data, mg_action.flip_h, bl)
+	Global.addWeaponBullet_(
+		$Bullet, Vector2(self.position.x - 300, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
+	)
+	Global.addWeaponBullet_(
+		$Bullet, Vector2(self.position.x + 300, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
+	)
 	await get_tree().create_timer(0.1, false).timeout
 	attack_data = get_attack_snapshot()
-	Global.addWeaponBullet_($Bullet, Vector2(self.position.x - 400, 0), "SwordBullet", attack_data, mg_action.flip_h, bl)
-	Global.addWeaponBullet_($Bullet, Vector2(self.position.x + 400, 0), "SwordBullet", attack_data, mg_action.flip_h, bl)
+	Global.addWeaponBullet_(
+		$Bullet, Vector2(self.position.x - 400, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
+	)
+	Global.addWeaponBullet_(
+		$Bullet, Vector2(self.position.x + 400, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
+	)

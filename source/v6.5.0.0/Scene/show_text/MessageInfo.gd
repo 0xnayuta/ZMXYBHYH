@@ -6,7 +6,8 @@ var OutLineSize: int
 var OutLineColor: Color
 var FontSize: int
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	self.add_theme_color_override("font_color", FontColor)
 	self.add_theme_color_override("font_outline_color", OutLineColor)
 	self.add_theme_constant_override("outline_size", OutLineSize)

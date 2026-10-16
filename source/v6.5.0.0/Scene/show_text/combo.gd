@@ -1,21 +1,24 @@
 extends Node2D
 
-@onready var combo_box: HBoxContainer = $ComBoxFather / ComboBoxText
+@onready var combo_box: HBoxContainer = $ComBoxFather/ComboBoxText
 @onready var combo_player: AnimationPlayer = $ComboPlayer
 
 var ComboNum: int
 var _last_combo_num: int = -1
 var _digit_nodes: Array[Node] = []
 
-func _ready() -> void :
+
+func _ready() -> void:
 	set_physics_process(false)
 	_refresh_combo()
 
-func set_combo_num(value: int) -> void :
+
+func set_combo_num(value: int) -> void:
 	ComboNum = value
 	_refresh_combo()
 
-func _refresh_combo() -> void :
+
+func _refresh_combo() -> void:
 	if not is_inside_tree():
 		return
 	if ComboNum < 2:

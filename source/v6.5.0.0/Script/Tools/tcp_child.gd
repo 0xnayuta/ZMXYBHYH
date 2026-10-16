@@ -6,29 +6,31 @@ var tcpChild: StreamPeerTCP
 
 var getTime: float = 0
 var KEY: Dictionary = {
-	"87": "Exit1", 
-	"65": "move_left1", 
-	"83": "down1", 
-	"68": "move_right1", 
-	"74": "normalhit1", 
-	"75": "jump1", 
-	"32": "无双1", 
-	"72": "MagicWeapon1", 
-	"89": "slz1", 
-	"85": "lys1", 
-	"73": "lyfb1", 
-	"79": "hmz1", 
+	"87": "Exit1",
+	"65": "move_left1",
+	"83": "down1",
+	"68": "move_right1",
+	"74": "normalhit1",
+	"75": "jump1",
+	"32": "无双1",
+	"72": "MagicWeapon1",
+	"89": "slz1",
+	"85": "lys1",
+	"73": "lyfb1",
+	"79": "hmz1",
 	"76": "hytj1"
 }
 
-func _ready() -> void :
+
+func _ready() -> void:
 	pass
 	tcpChild = StreamPeerTCP.new()
 	tcpChild.big_endian = true
 	if tcpChild.connect_to_host("127.0.0.1", 8889) != OK:
 		get_tree().quit()
 
-func _physics_process(delta) -> void :
+
+func _physics_process(delta) -> void:
 	if tcpChild == null:
 		return
 	getTime += delta
@@ -46,19 +48,18 @@ func _physics_process(delta) -> void :
 			else:
 				get_tree().quit()
 
-func setTextuer(data: PackedByteArray) -> void :
+
+func setTextuer(data: PackedByteArray) -> void:
 	var img_: Image = Image.new()
 	img_.load_jpg_from_buffer(data)
-
-
-
-
 
 	var image_texture: ImageTexture = ImageTexture.create_from_image(img_)
 	img.texture = image_texture
 
+
 func _on_tree_exited():
 	tcpChild.disconnect_from_host()
+
 
 func _input(event: InputEvent):
 	if event is InputEventKey:

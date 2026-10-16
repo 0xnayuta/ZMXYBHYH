@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster27
+
+
 func monster_27():
 	self.rush_speed = 0
 	self.is_boss = false
@@ -27,25 +29,26 @@ func monster_27():
 	self.add_exp = 60
 	self.fall_coin = 22
 	self.objattackDic["hit1"] = {
-		"power": 255, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics", 
-		"addeffect": {
-			"Name": "poision", 
-			"AddTime": 4, 
-			"CanAdd": true, 
-			"DeBuff": true, 
-			"ReduceInterval": 1, 
-			"value": 80, 
-			"AttackKind": "magic", 
+		"power": 255,
+		"hurtBack": [-4, -9],
+		"attackKind": "physics",
+		"addeffect":
+		{
+			"Name": "poision",
+			"AddTime": 4,
+			"CanAdd": true,
+			"DeBuff": true,
+			"ReduceInterval": 1,
+			"value": 80,
+			"AttackKind": "magic",
 		}
 	}
 	self.fall_pro = 0.0
-	self.fall_list = [
-	]
+	self.fall_list = []
 	self.fall_stone_pro = 0
-	self.fall_stone = [
-	]
-func _ready() -> void :
+	self.fall_stone = []
+
+
+func _ready() -> void:
 	super._ready()
 	monster_27()

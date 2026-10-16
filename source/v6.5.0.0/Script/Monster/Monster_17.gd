@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster17
+
+
 func monster_17(is_boss):
 	self.rush_speed = 500
 	Skill_1_CD = 0
@@ -28,34 +30,31 @@ func monster_17(is_boss):
 		self.add_exp = 350
 		self.fall_coin = 200
 		self.objattackDic["hit1"] = {
-			"power": 155, 
-			"hurtBack": [-4, -9], 
-			"attackKind": "real", 
-			"addeffect": {
-				"Name": "Ice", 
-				"AddTime": 1.56, 
-				"DeBuff": true, 
-				"ReduceInterval": 0, 
-				"value": 0, 
-				"AttackKind": "", 
+			"power": 155,
+			"hurtBack": [-4, -9],
+			"attackKind": "real",
+			"addeffect":
+			{
+				"Name": "Ice",
+				"AddTime": 1.56,
+				"DeBuff": true,
+				"ReduceInterval": 0,
+				"value": 0,
+				"AttackKind": "",
 			}
 		}
 		self.objattackDic["xfj"] = {
-			"power": 185, 
-			"hurtBack": [-17, -15], 
-			"attackKind": "magic", 
-			"HitProtect": 8, 
+			"power": 185,
+			"hurtBack": [-17, -15],
+			"attackKind": "magic",
+			"HitProtect": 8,
 		}
 		self.fall_pro = 0.5
 		self.fall_list = [
-			{
-				"name": "xqzy", 
-				"value": 0
-			}, 
+			{"name": "xqzy", "value": 0},
 		]
 		self.fall_stone_pro = 0
-		self.fall_stone = [
-		]
+		self.fall_stone = []
 	else:
 		self.attack_in = 10
 		self.level = 23
@@ -79,29 +78,23 @@ func monster_17(is_boss):
 		self.self_rhp = 0
 		self.add_exp = 50
 		self.fall_coin = 15
-		self.objattackDic["hit1"] = {
-			"power": 100, 
-			"hurtBack": [-4, -9], 
-			"attackKind": "real"
-		}
-		self.objattackDic["xfj"] = {
-			"power": 35, 
-			"hurtBack": [-3, -15], 
-			"attackKind": "magic"
-		}
+		self.objattackDic["hit1"] = {"power": 100, "hurtBack": [-4, -9], "attackKind": "real"}
+		self.objattackDic["xfj"] = {"power": 35, "hurtBack": [-3, -15], "attackKind": "magic"}
 		self.fall_pro = 0.0
-		self.fall_list = [
-		]
+		self.fall_list = []
 		self.fall_stone_pro = 0
-		self.fall_stone = [
-		]
-func _ready() -> void :
+		self.fall_stone = []
+
+
+func _ready() -> void:
 	super._ready()
 	if get_parent().get_parent() is Level1 or get_parent().get_parent() is Level7:
 		is_boss = true
 	else:
 		is_boss = false
 	monster_17(is_boss)
+
+
 func do_hit_2():
 	if RoleProp.get_nearest_monster_target_position(global_position).x > position.x:
 		move_right()
@@ -114,13 +107,21 @@ func do_hit_2():
 	mr_player.play("xfj")
 	await mr_player.animation_finished
 	is_attacking = false
-	Global.AddBuff(buff, {
-			"Name": "stun", 
-			"AddTime": randi_range(3, 5), 
-			"ReduceInterval": 0.0, 
-			"value": 0, 
-			"AttackKind": "", 
-		})
+	(
+		Global
+		. AddBuff(
+			buff,
+			{
+				"Name": "stun",
+				"AddTime": randi_range(3, 5),
+				"ReduceInterval": 0.0,
+				"value": 0,
+				"AttackKind": "",
+			}
+		)
+	)
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true

@@ -1,29 +1,29 @@
 extends Node2D
 class_name mr_blood_bar
 @onready var blood_bar: TextureProgressBar = $blood_bar
-@onready var blood_text: Label = $blood_bar / blood_text
+@onready var blood_text: Label = $blood_bar/blood_text
 @onready var queue_free_timer: Timer = $queue_free_Timer
-@onready var blood_bar_2: TextureProgressBar = $blood_bar / blood_bar2
+@onready var blood_bar_2: TextureProgressBar = $blood_bar/blood_bar2
 
 var bar_value: float
 var bar_text: int
 var can_show: bool
-var _last_applied_bar_value: = INF
+var _last_applied_bar_value := INF
 var Blood:
 	set(va):
 		Blood = va
 		on_Hpchange(Blood)
-func _ready() -> void :
+
+
+func _ready() -> void:
 	if not MainSet.set_data["MonsterLittleBlood"] or not MainSet.set_data["NoShowMonsterBody"]:
 		self.queue_free()
-func _physics_process(_delta: float) -> void :
 
+
+func _physics_process(_delta: float) -> void:
 	if bar_text <= 0:
 		bar_text = 0
 	if can_show == false:
-
-
-
 		if not queue_free_timer.is_stopped():
 			queue_free_timer.stop()
 		if self.modulate != Color.WHITE:
@@ -36,17 +36,18 @@ func _physics_process(_delta: float) -> void :
 		blood_text.text = ""
 
 
-func _on_timer_timeout() -> void :
-
+func _on_timer_timeout() -> void:
 	var tween = create_tween()
 	tween.stop()
 	tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 2)
 	await tween.finished
 	queue_free()
+
+
 func on_Hpchange(vale):
 	if not MainSet.set_data["HpBarDelay"]:
-		$blood_bar / blood_bar2.value = 0
+		$blood_bar/blood_bar2.value = 0
 		return
 	var tween = create_tween()
 	tween.stop()
-	tween.tween_property($blood_bar / blood_bar2, "value", vale, 0.5)
+	tween.tween_property($blood_bar/blood_bar2, "value", vale, 0.5)

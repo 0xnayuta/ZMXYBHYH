@@ -1,48 +1,80 @@
 extends Game4ImportedLevel
 class_name Level62
 
-const MINGHAI_BACKGROUND_MANIFEST: = "res://Art/Level/Game4Level/RuntimeAtlas/Level62Background/manifest.json"
-const MINGHAI_BACKGROUND_SEAM_SHADER: = preload("res://Shader/MinghaiBackgroundSeam.gdshader")
-const MINGHAI_TRIGGER_X: = [0.0]
-const MINGHAI_BIRTH_POINTS: = [
-	{"point": 1, "stage": 1, "monster": 3117, "position": Vector2(666, 144), "total": 1, "interval": 1.0, "face": 1, "after_spawn": 0, "after_dead": 0}, 
+const MINGHAI_BACKGROUND_MANIFEST := "res://Art/Level/Game4Level/RuntimeAtlas/Level62Background/manifest.json"
+const MINGHAI_BACKGROUND_SEAM_SHADER := preload("res://Shader/MinghaiBackgroundSeam.gdshader")
+const MINGHAI_TRIGGER_X := [0.0]
+const MINGHAI_BIRTH_POINTS := [
+	{
+		"point": 1,
+		"stage": 1,
+		"monster": 3117,
+		"position": Vector2(666, 144),
+		"total": 1,
+		"interval": 1.0,
+		"face": 1,
+		"after_spawn": 0,
+		"after_dead": 0
+	},
 ]
 
-const LEVEL_62_MONSTER_DATA: = {
-	3117: {
-		"name": "通天教主(穷奇版)", "level": 90, 
-		"hp": 45000000, "attack": 44000, "def": 8600, "mdef": 8600, 
-		"crit": 700, "miss": 490, "hit": 500, 
-		"toughness": 0.0, "crit_reduce": 0, "armor_break": 8500, "magic_break": 8500, 
-		"speed": 10.0, "min_range": 0.0, "range": 180.0, "sight": 1200.0, "attack_desire": 100, 
-		"exp": 0, "coin": 0, "drop_rate": 0.0, "drop_list": [], 
-		"is_boss": true, "max_protect": 240.0, 
-		"attacks": {
-			"hit1": {"multiplier": 0.5, "hurt_back": [-5.0, -2.0], "kind": "physics", "protect": 6668}, 
-			"hit2": {"multiplier": 1.0, "hurt_back": [-3.0, -1.0], "kind": "magic", "protect": 6668}, 
-			"hit3": {"multiplier": 1.0, "hurt_back": [-4.0, -3.0], "kind": "magic", "protect": 6668}, 
-		}, 
-	}, 
+const LEVEL_62_MONSTER_DATA := {
+	3117:
+	{
+		"name": "通天教主(穷奇版)",
+		"level": 90,
+		"hp": 45000000,
+		"attack": 44000,
+		"def": 8600,
+		"mdef": 8600,
+		"crit": 700,
+		"miss": 490,
+		"hit": 500,
+		"toughness": 0.0,
+		"crit_reduce": 0,
+		"armor_break": 8500,
+		"magic_break": 8500,
+		"speed": 10.0,
+		"min_range": 0.0,
+		"range": 180.0,
+		"sight": 1200.0,
+		"attack_desire": 100,
+		"exp": 0,
+		"coin": 0,
+		"drop_rate": 0.0,
+		"drop_list": [],
+		"is_boss": true,
+		"max_protect": 240.0,
+		"attacks":
+		{
+			"hit1": {"multiplier": 0.5, "hurt_back": [-5.0, -2.0], "kind": "physics", "protect": 6668},
+			"hit2": {"multiplier": 1.0, "hurt_back": [-3.0, -1.0], "kind": "magic", "protect": 6668},
+			"hit3": {"multiplier": 1.0, "hurt_back": [-4.0, -3.0], "kind": "magic", "protect": 6668},
+		},
+	},
 }
 
 var _background_stream: StreamedPngEffect
-@onready var _background_animation: = get_node_or_null("BackGround/floor_2/bg12_1") as AnimatedSprite2D
+@onready var _background_animation := get_node_or_null("BackGround/floor_2/bg12_1") as AnimatedSprite2D
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	if Role_ != null:
 		Role_.position = Vector2(31, 446)
 		Role_.set_meta("disable_down_drop", true)
 	_setup_background_stream()
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	_sync_background_stream()
 
-func _setup_background_stream() -> void :
+
+func _setup_background_stream() -> void:
 	if _background_animation == null:
 		return
-	var stream: = StreamedPngEffect.new()
+	var stream := StreamedPngEffect.new()
 	stream.name = "BackgroundStream"
 	if not MonsterAtlasSequence.configure_stream(stream, MINGHAI_BACKGROUND_MANIFEST, "play"):
 		stream.free()
@@ -53,15 +85,16 @@ func _setup_background_stream() -> void :
 	stream.modulate = _background_animation.self_modulate
 	stream.texture_filter = _background_animation.texture_filter
 	_background_animation.add_child(stream)
-	var stream_sprite: = stream.get_child(0) as Sprite2D
+	var stream_sprite := stream.get_child(0) as Sprite2D
 	if stream_sprite != null:
-		var seam_material: = ShaderMaterial.new()
+		var seam_material := ShaderMaterial.new()
 		seam_material.shader = MINGHAI_BACKGROUND_SEAM_SHADER
 		stream_sprite.material = seam_material
 	_background_stream = stream
 	_sync_background_stream()
 
-func _sync_background_stream() -> void :
+
+func _sync_background_stream() -> void:
 	if _background_animation == null or _background_stream == null or not is_instance_valid(_background_stream):
 		return
 	_background_stream.position = _background_animation.offset
@@ -69,28 +102,36 @@ func _sync_background_stream() -> void :
 	_background_stream.flip_h = _background_animation.flip_h
 	_background_stream.show_frame(_background_animation.frame)
 
+
 func _stage_count() -> int:
 	return 1
+
 
 func _screen_starts() -> Array:
 	return [0.0]
 
+
 func _screen_rights() -> Array:
 	return [1200.0]
+
 
 func _stage_trigger_x() -> Array:
 	return MINGHAI_TRIGGER_X
 
+
 func _birth_points() -> Array:
 	return MINGHAI_BIRTH_POINTS
+
 
 func get_level_monster_config(monster_id: int) -> Dictionary:
 	var config: Variant = LEVEL_62_MONSTER_DATA.get(monster_id, {})
 	return (config as Dictionary).duplicate(true) if config is Dictionary else {}
 
+
 func _level_number() -> int:
 	return 62
 
-func _on_fall_death_body_entered(body: Node2D) -> void :
+
+func _on_fall_death_body_entered(body: Node2D) -> void:
 	if body == Role_:
 		RoleProp.roleprop.Hp = 0

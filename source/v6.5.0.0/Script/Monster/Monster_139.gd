@@ -11,21 +11,23 @@ var AttackingCount: int
 var AttackTime: int
 var EveryHurt: int
 @onready var remove_all_hurt: Timer = $RemoveAllHurt
-@onready var total_dam: Label = $HurtInfo / TotalDam
-@onready var total_dam_2: Label = $HurtInfo / TotalDam2
-@onready var total_dam_3: Label = $HurtInfo / TotalDam3
+@onready var total_dam: Label = $HurtInfo/TotalDam
+@onready var total_dam_2: Label = $HurtInfo/TotalDam2
+@onready var total_dam_3: Label = $HurtInfo/TotalDam3
 
 @onready var buttonlist: VBoxContainer = $buttonlist
-@onready var bt: Button = $buttonlist / bt
-@onready var bt_2: Button = $buttonlist / bt2
-@onready var bt_3: Button = $buttonlist / bt3
+@onready var bt: Button = $buttonlist/bt
+@onready var bt_2: Button = $buttonlist/bt2
+@onready var bt_3: Button = $buttonlist/bt3
 var ShowBoxCount: int = 0
 var _last_all_hurt: int = -1
 var _last_second_hurt: int = -1
 var _last_every_hurt: int = -1
-var _last_big_body: = not BigBody
-var _last_can_move: = not CanMove
-var _last_can_attack: = not CanAttack
+var _last_big_body := not BigBody
+var _last_can_move := not CanMove
+var _last_can_attack := not CanAttack
+
+
 func monster_139():
 	self.is_boss = true
 	self.my_mr_name = "草木皆兵"
@@ -52,19 +54,23 @@ func monster_139():
 	self.add_exp = 0
 	self.fall_coin = 0
 	self.objattackDic["hit1"] = {
-		"power": 1000, 
-		"hurtBack": [-3, -6], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
+		"power": 1000,
+		"hurtBack": [-3, -6],
+		"attackKind": "physics",
+		"HitProtect": 10,
 	}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_139()
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("假人攻击"):
 		if CanAttack:
 			CanAttack = false
@@ -90,7 +96,7 @@ func _physics_process(delta: float) -> void :
 			total_dam.text = "累计受到伤害：" + str(AllHurt)
 		else:
 			total_dam.text = ""
-	var current_second_hurt: = int(AllHurt) / int(AttackTime) if AttackTime > 0 and AllHurt > 0 else 0
+	var current_second_hurt := int(AllHurt) / int(AttackTime) if AttackTime > 0 and AllHurt > 0 else 0
 	if current_second_hurt != _last_second_hurt:
 		_last_second_hurt = current_second_hurt
 		SecondHurt = current_second_hurt
@@ -114,13 +120,9 @@ func _physics_process(delta: float) -> void :
 		_last_can_attack = CanAttack
 		bt_3.text = "当前可以攻击，快捷键：E" if CanAttack else "当前不可攻击，快捷键：E"
 
-
-
-
-
-
-
 	super._physics_process(delta)
+
+
 func Monster_Intelligence():
 	if CanMove:
 		if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -140,41 +142,50 @@ func Monster_Intelligence():
 	else:
 		if not is_be_attacking:
 			stop_move()
+
+
 func state_hurt():
 	is_jgz = false
 	if BigBody:
 		is_be_attacking = false
 		return
 	super.state_hurt()
-func _on_buttonlist_mouse_entered() -> void :
+
+
+func _on_buttonlist_mouse_entered() -> void:
 	ShowBox = true
 
 
-
-func _on_bt_pressed() -> void :
+func _on_bt_pressed() -> void:
 	if BigBody:
 		BigBody = false
 	else:
 		BigBody = true
 
 
-func _on_bt_2_pressed() -> void :
+func _on_bt_2_pressed() -> void:
 	if CanMove:
 		CanMove = false
 	else:
 		CanMove = true
 
 
-func _on_bt_3_pressed() -> void :
+func _on_bt_3_pressed() -> void:
 	if CanAttack:
 		CanAttack = false
 	else:
 		CanAttack = true
-func _on_buttonlist_mouse_exited() -> void :
+
+
+func _on_buttonlist_mouse_exited() -> void:
 	ShowBox = false
+
+
 func HurtReduceHp(value, target):
 	IsAttacking = true
-	var skip_mds_combo: bool = target is BaseBuff and str(target.BuffInfo.get("Name", "")) == "Voodoo" and _is_mds_awaken_active()
+	var skip_mds_combo: bool = (
+		target is BaseBuff and str(target.BuffInfo.get("Name", "")) == "Voodoo" and _is_mds_awaken_active()
+	)
 	if value > 0:
 		remove_all_hurt.start(4)
 	if Monster_18_protect():
@@ -205,6 +216,8 @@ func HurtReduceHp(value, target):
 	is_crit = false
 	is_miss = false
 	return int(last_value)
+
+
 func reduce_hp(value: int):
 	IsAttacking = true
 	if value > 0:
@@ -234,13 +247,12 @@ func reduce_hp(value: int):
 	is_miss = false
 
 
-
-func _on_remove_all_hurt_timeout() -> void :
+func _on_remove_all_hurt_timeout() -> void:
 	AllHurt = 0
 	AttackTime = 0
 	IsAttacking = false
 	AttackingCount = 0
 
 
-func _on_every_second_timeout() -> void :
+func _on_every_second_timeout() -> void:
 	EveryHurt = 0

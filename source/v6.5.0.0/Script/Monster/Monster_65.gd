@@ -1,12 +1,14 @@
 extends BaseMonster
 class_name Monster65
-const BODY_ATLAS_MANIFEST: = "res://Art/Monster/Monster_65/atlas/manifest.json"
+const BODY_ATLAS_MANIFEST := "res://Art/Monster/Monster_65/atlas/manifest.json"
 
 var Is_Top = false
 var Is_Drop = false
 var ZZList: Array[BaseMonster] = []
 var _body_stream: StreamedPngEffect
 var _body_action: StringName = &""
+
+
 func monster_65():
 	self.rush_speed = 600
 	self.is_boss = true
@@ -34,57 +36,53 @@ func monster_65():
 	self.add_exp = 200
 	self.fall_coin = 200
 	self.objattackDic["hit1"] = {
-		"power": 400 + int(RoleProp.baseroleprop.Level * 8.6), 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics", 
+		"power": 400 + int(RoleProp.baseroleprop.Level * 8.6),
+		"hurtBack": [-4, -9],
+		"attackKind": "physics",
 		"HitProtect": 10
 	}
-	self.objattackDic["zhzz"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "physics", 
-		"HitProtect": 10
-	}
+	self.objattackDic["zhzz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "physics", "HitProtect": 10}
 	self.objattackDic["hit2_1"] = {
-		"power": 400 + int(RoleProp.baseroleprop.Level * 8.5), 
-		"hurtBack": [0, 0], 
-		"attackKind": "physics", 
-		"HitProtect": 4, 
-		"addeffect": {
-			"Name": "Boundground", 
-			"AddTime": 4, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanAdd": false, 
+		"power": 400 + int(RoleProp.baseroleprop.Level * 8.5),
+		"hurtBack": [0, 0],
+		"attackKind": "physics",
+		"HitProtect": 4,
+		"addeffect":
+		{
+			"Name": "Boundground",
+			"AddTime": 4,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanAdd": false,
 		}
 	}
 	self.objattackDic["hit2_2"] = {
-		"power": 600 + int(RoleProp.baseroleprop.Level * 8.7), 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
-		"HitProtect": 25, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 600 + int(RoleProp.baseroleprop.Level * 8.7),
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
+		"HitProtect": 25,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.fall_pro = 0.15
 	self.fall_list = [
-		{
-			"name": "zzyj", 
-			"value": 1
-		}, 
+		{"name": "zzyj", "value": 1},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_65()
 	Skill_1_CD = 20
@@ -92,12 +90,14 @@ func _ready() -> void :
 	Skill_3_CD = 15
 	_sync_body_visual()
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	_sync_body_visual()
 
-func _sync_body_visual() -> void :
-	var action: = mr_ani.animation
+
+func _sync_body_visual() -> void:
+	var action := mr_ani.animation
 	if action != _body_action:
 		_replace_body_stream(action)
 	if _body_stream == null or not is_instance_valid(_body_stream):
@@ -107,13 +107,14 @@ func _sync_body_visual() -> void :
 	_body_stream.flip_h = mr_ani.flip_h
 	_body_stream.show_frame(mr_ani.frame)
 
-func _replace_body_stream(action: StringName) -> void :
+
+func _replace_body_stream(action: StringName) -> void:
 	if _body_stream != null and is_instance_valid(_body_stream):
 		_body_stream.clear_texture()
 		_body_stream.queue_free()
 	_body_stream = null
 	_body_action = action
-	var stream: = StreamedPngEffect.new()
+	var stream := StreamedPngEffect.new()
 	stream.name = "BodyStream"
 	if not MonsterAtlasSequence.configure_stream(stream, BODY_ATLAS_MANIFEST, str(action)):
 		stream.free()
@@ -127,6 +128,7 @@ func _replace_body_stream(action: StringName) -> void :
 	stream.texture_filter = mr_ani.texture_filter
 	mr_ani.add_child(stream)
 	_body_stream = stream
+
 
 func Monster_Intelligence():
 	if Is_Top:
@@ -145,7 +147,10 @@ func Monster_Intelligence():
 					do_hit_1()
 				if Skill_2_CD <= 0:
 					DoSkill_2_1()
-				if count % 60 == 0 and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 250:
+				if (
+					count % 60 == 0
+					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 250
+				):
 					attack_target()
 				if Skill_3_CD <= 0:
 					do_hit_3()
@@ -155,26 +160,39 @@ func Monster_Intelligence():
 					do_hit_1()
 				if Skill_2_CD <= 0:
 					DoSkill_2_1()
-				if count % 60 == 0 and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 250:
+				if (
+					count % 60 == 0
+					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 250
+				):
 					attack_target()
 				if Skill_3_CD <= 0:
 					do_hit_3()
+
+
 func ReturnBody():
 	mr_ani.position = Vector2(0, 0)
+
+
 func AwaitTOtop():
 	Is_Top = true
 	Is_Drop = false
 	self.position = Vector2(self.position.x, 0)
 	ReturnBody()
+
+
 func Fall():
 	velocity.y += 800
 	Is_Top = true
 	Is_Drop = true
 	self.position = Vector2(self.position.x, self.position.y)
+
+
 func ReturnNormal():
 	ReturnBody()
 	Is_Top = false
 	Is_Drop = false
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(30, 35)
@@ -184,6 +202,8 @@ func do_hit_1():
 	mr_player.play("zhzz")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func DoSkill_2_1():
 	super.to_hero()
 	Skill_2_CD = randi_range(15, 20)
@@ -195,6 +215,7 @@ func DoSkill_2_1():
 	is_attacking = false
 	await get_tree().create_timer(randi_range(0.5, 2), false).timeout
 	DoSkill_2_2()
+
 
 func DoSkill_2_2():
 	super.to_hero()
@@ -210,6 +231,7 @@ func DoSkill_2_2():
 	await mr_player.animation_finished
 	is_attacking = false
 
+
 func do_hit_3():
 	super.to_hero()
 	Skill_3_CD = randi_range(20, 30)
@@ -220,25 +242,38 @@ func do_hit_3():
 	await mr_player.animation_finished
 	is_attacking = false
 
+
 func MoveToPlayerLocal():
 	self.position = RoleProp.get_nearest_monster_target_position(global_position)
-func _on_hurt_box_area_entered(area: Area2D) -> void :
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
 	super._on_hurt_box_area_entered(area)
 	if randi_range(0, 100) < 5:
-		Global.AddBuff(get_Player.buff, {
-			"Name": "poision", 
-			"AddTime": 5, 
-			"ReduceInterval": 1, 
-			"value": 100, 
-			"AttackKind": "real", 
-			"DeBuff": true, 
-			"CanAdd": true, 
-		})
+		(
+			Global
+			. AddBuff(
+				get_Player.buff,
+				{
+					"Name": "poision",
+					"AddTime": 5,
+					"ReduceInterval": 1,
+					"value": 100,
+					"AttackKind": "real",
+					"DeBuff": true,
+					"CanAdd": true,
+				}
+			)
+		)
+
+
 func CallWang():
 	if MonsterDirection:
 		Global.AddMonster65Bullet(self.bullet, position + Vector2(240, -55))
 	else:
 		Global.AddMonster65Bullet(self.bullet, position + Vector2(-240, -55))
+
+
 func CallZZ():
 	for i in range(randi_range(2, 4)):
 		Global.Create_Monster(66, get_parent(), position + Vector2(randi_range(-200, 200), 0))

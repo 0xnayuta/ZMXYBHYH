@@ -2,19 +2,19 @@ extends BaseHero
 class_name role3
 const BA_DI_QIAN_KUN_EFFECT = preload("res://Script/Hero/BaDiQianKunEffect.gd")
 const STREAMING_ROLE_BULLET = preload("res://Script/Hero/StreamingRoleBullet.gd")
-const BDQK_ACTION_SPEED: = 1.4
-const BDQK_ACTION_LENGTH: = 0.7
-const SPECIAL_EFFECT_ATLAS_MANIFEST: = "res://Art/HeroPicture/Role3/RuntimeAtlas/Role3SpecialEffects/manifest.json"
-const STREAMED_SPECIAL_EFFECTS: = [&"Role3SpecialEffect1", &"Role3SpecialEffect16"]
-const DGQ_ROLL_SPEED: = 900.0
-const DGQ_NORMAL_ROLL_SPEED: = 600.0
-const DGQ_SPIKE_INTERVAL: = 0.12
-const DGQ_SPIKE_ANGLE_STEP: = 30.0
-const SD_SKILL_ID: = "sd"
-const SD_AWAKEN_MP_INTERVAL: = 5.0
-const SKILL_INPUT_ACTIONS: = [&"slz", &"lys", &"lyfb", &"hmz", &"hytj"]
-@onready var hurt_box = $base_damagebox / HurtBox / HurtBox
-@onready var role3_special_effect: AnimatedSprite2D = $Action / SpecialEffect
+const BDQK_ACTION_SPEED := 1.4
+const BDQK_ACTION_LENGTH := 0.7
+const SPECIAL_EFFECT_ATLAS_MANIFEST := "res://Art/HeroPicture/Role3/RuntimeAtlas/Role3SpecialEffects/manifest.json"
+const STREAMED_SPECIAL_EFFECTS := [&"Role3SpecialEffect1", &"Role3SpecialEffect16"]
+const DGQ_ROLL_SPEED := 900.0
+const DGQ_NORMAL_ROLL_SPEED := 600.0
+const DGQ_SPIKE_INTERVAL := 0.12
+const DGQ_SPIKE_ANGLE_STEP := 30.0
+const SD_SKILL_ID := "sd"
+const SD_AWAKEN_MP_INTERVAL := 5.0
+const SKILL_INPUT_ACTIONS := [&"slz", &"lys", &"lyfb", &"hmz", &"hytj"]
+@onready var hurt_box = $base_damagebox/HurtBox/HurtBox
+@onready var role3_special_effect: AnimatedSprite2D = $Action/SpecialEffect
 var Interv: int
 var My_SD: Array[RoleSpecialEffect] = []
 var SYZQ = []
@@ -22,14 +22,15 @@ var SYzq
 @onready var tmczx: Node2D = $TMCZX
 var _special_effect_stream: StreamedPngEffect
 var _special_effect_action: StringName = &""
-var _dgq_spike_elapsed: = 0.0
-var _dgq_spike_angle: = 0.0
-var _sd_awaken_enabled: = false
-var _sd_awaken_mp_elapsed: = 0.0
-var _sd_toggle_locked: = false
+var _dgq_spike_elapsed := 0.0
+var _dgq_spike_angle := 0.0
+var _sd_awaken_enabled := false
+var _sd_awaken_mp_elapsed := 0.0
+var _sd_toggle_locked := false
 var _sd_awaken_effect: RoleSpecialEffect = null
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	add_to_group("Player")
 	super.onEqchange()
@@ -37,6 +38,7 @@ func _ready() -> void :
 	_prepare_bdqk_action()
 	BA_DI_QIAN_KUN_EFFECT.prewarm_frames()
 	STREAMING_ROLE_BULLET.prewarm_bullet_frames("Role3Bullet2")
+
 
 func get_skill(skill_name):
 	if str(skill_name) == SD_SKILL_ID and _sd_toggle_locked:
@@ -47,8 +49,10 @@ func get_skill(skill_name):
 		return
 	super.get_skill(skill_name)
 
+
 func _is_auto_battle_skill_active(skill_id: String) -> bool:
 	return skill_id == SD_SKILL_ID and _sd_awaken_enabled
+
 
 func Role_3():
 	RoleProp.Role1SXBJ = 0
@@ -67,111 +71,107 @@ func Role_3():
 	var level_9 = PlayerData.player_data["技能学习"]["技能9"]["等级"] + 1
 	var level_10 = PlayerData.player_data["技能学习"]["技能10"]["等级"]
 	self.objattackDic["hit1"] = {
-		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1), 
-		"hurtBack": [3, -8], 
-		"attackKind": "physics", 
-		"HitInterv": 3, 
-		"WSValue": randi_range(5, 7), 
+		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1),
+		"hurtBack": [3, -8],
+		"attackKind": "physics",
+		"HitInterv": 3,
+		"WSValue": randi_range(5, 7),
 	}
 	self.objattackDic["hit2"] = {
-		"power": RoleProp.roleprop.power * randf_range(1, 1.2), 
-		"hurtBack": [3, -8], 
-		"attackKind": "physics", 
-		"HitInterv": 3, 
-		"WSValue": randi_range(5, 7), 
+		"power": RoleProp.roleprop.power * randf_range(1, 1.2),
+		"hurtBack": [3, -8],
+		"attackKind": "physics",
+		"HitInterv": 3,
+		"WSValue": randi_range(5, 7),
 	}
 	self.objattackDic["hit3"] = {
-		"power": RoleProp.roleprop.power * randf_range(1, 1.3), 
-		"hurtBack": [3, -8], 
-		"attackKind": "physics", 
-		"HitInterv": 3, 
-		"WSValue": randi_range(5, 7), 
+		"power": RoleProp.roleprop.power * randf_range(1, 1.3),
+		"hurtBack": [3, -8],
+		"attackKind": "physics",
+		"HitInterv": 3,
+		"WSValue": randi_range(5, 7),
 	}
-	self.objattackDic["sd"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": ""
-	}
-	self.objattackDic["zznh"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": ""
-	}
+	self.objattackDic["sd"] = {"power": 0, "hurtBack": [0, 0], "attackKind": ""}
+	self.objattackDic["zznh"] = {"power": 0, "hurtBack": [0, 0], "attackKind": ""}
 	self.objattackDic["dj"] = {
-		"power": RoleProp.roleprop.power * (3 + level_2 * 0.3), 
-		"hurtBack": [25, -20], 
-		"attackKind": "physics", 
-		"WSValue": randi_range(25, 30), 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 3 + level_10 * 0.1, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": RoleProp.roleprop.power * (3 + level_2 * 0.3),
+		"hurtBack": [25, -20],
+		"attackKind": "physics",
+		"WSValue": randi_range(25, 30),
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 3 + level_10 * 0.1,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
 			"DeBuff": true
 		}
 	}
 	self.objattackDic["jsp"] = {
-		"power": RoleProp.roleprop.power * (1.4 + level_7 * 0.1), 
-		"hurtBack": [4, -7], 
-		"attackKind": "physics", 
-		"WSValue": randi_range(5, 7), 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 0.5 + level_10 * 0.05, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": RoleProp.roleprop.power * (1.4 + level_7 * 0.1),
+		"hurtBack": [4, -7],
+		"attackKind": "physics",
+		"WSValue": randi_range(5, 7),
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 0.5 + level_10 * 0.05,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
 			"DeBuff": true
 		}
 	}
 	self.objattackDic["xgq"] = {
-		"power": RoleProp.roleprop.power * (1.1 + level_8 * 0.1), 
-		"hurtBack": [1, -7], 
-		"attackKind": "physics", 
-		"WSValue": randi_range(18, 22), 
+		"power": RoleProp.roleprop.power * (1.1 + level_8 * 0.1),
+		"hurtBack": [1, -7],
+		"attackKind": "physics",
+		"WSValue": randi_range(18, 22),
 	}
 	self.objattackDic["dgq"] = {
-		"power": RoleProp.roleprop.power * (1.1 + level_3 * 0.1), 
-		"hurtBack": [10, 0], 
-		"attackKind": "physics", 
-		"WSValue": randi_range(15, 20), 
-
+		"power": RoleProp.roleprop.power * (1.1 + level_3 * 0.1),
+		"hurtBack": [10, 0],
+		"attackKind": "physics",
+		"WSValue": randi_range(15, 20),
 	}
 	self.objattackDic["syzq"] = {
-		"power": RoleProp.roleprop.power * (2 + level_9 * 0.2), 
-		"hurtBack": [20, 0], 
-		"attackKind": "physics", 
-		"WSValue": 100, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 2 + level_10 * 0.1, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": RoleProp.roleprop.power * (2 + level_9 * 0.2),
+		"hurtBack": [20, 0],
+		"attackKind": "physics",
+		"WSValue": 100,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 2 + level_10 * 0.1,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
 			"DeBuff": true
 		}
 	}
 	self.objattackDic["ssp"] = {
-		"power": RoleProp.roleprop.SHp * (0.03 + level_1 * 0.05) + RoleProp.roleprop.power * (0.47 + level_1 * 0.05), 
-		"hurtBack": [15, -10], 
-		"attackKind": "physics", 
-		"WSValue": randi_range(15, 18), 
+		"power": RoleProp.roleprop.SHp * (0.03 + level_1 * 0.05) + RoleProp.roleprop.power * (0.47 + level_1 * 0.05),
+		"hurtBack": [15, -10],
+		"attackKind": "physics",
+		"WSValue": randi_range(15, 18),
 	}
 	self.objattackDic["tmc"] = {
-		"power": RoleProp.roleprop.SHp * (0.06 + 0.09 * level_5) + RoleProp.roleprop.power * (0.04 + 0.05 * level_5), 
-		"hurtBack": [0, -8], 
-		"attackKind": "magic", 
-		"WSValue": randi_range(5, 7), 
+		"power": RoleProp.roleprop.SHp * (0.06 + 0.09 * level_5) + RoleProp.roleprop.power * (0.04 + 0.05 * level_5),
+		"hurtBack": [0, -8],
+		"attackKind": "magic",
+		"WSValue": randi_range(5, 7),
 	}
 	var level_12 = PlayerData.player_data["技能学习"]["技能12"]["等级"] + 1
 	self.objattackDic["bdqk"] = {
-		"power": RoleProp.roleprop.SHp * (0.16 + level_12 * 0.04) + RoleProp.roleprop.power * (0.7 + level_12 * 0.14), 
-		"hurtBack": [22, -16], 
-		"attackKind": "physics", 
-		"WSValue": randi_range(18, 24), 
+		"power": RoleProp.roleprop.SHp * (0.16 + level_12 * 0.04) + RoleProp.roleprop.power * (0.7 + level_12 * 0.14),
+		"hurtBack": [22, -16],
+		"attackKind": "physics",
+		"WSValue": randi_range(18, 24),
 	}
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	if My_SD.size() > 3:
 		if My_SD[0] != null:
 			My_SD[0].queue_free()
@@ -191,7 +191,13 @@ func _physics_process(delta: float) -> void :
 	_process_dgq_spikes(delta)
 	_sync_special_effect_visual()
 	if NoLimitBuff():
-		if not is_riding_mount() and Input.is_action_pressed("normalhit") and not is_be_attacking and not is_using_skills and Interv <= 0:
+		if (
+			not is_riding_mount()
+			and Input.is_action_pressed("normalhit")
+			and not is_be_attacking
+			and not is_using_skills
+			and Interv <= 0
+		):
 			match hit_count:
 				0:
 					do_normalhit_1()
@@ -200,8 +206,9 @@ func _physics_process(delta: float) -> void :
 				2:
 					do_normalhit_3()
 
-func _sync_special_effect_visual() -> void :
-	var action: = role3_special_effect.animation
+
+func _sync_special_effect_visual() -> void:
+	var action := role3_special_effect.animation
 	if action != _special_effect_action:
 		_replace_special_effect_stream(action)
 	if _special_effect_stream == null or not is_instance_valid(_special_effect_stream):
@@ -211,7 +218,8 @@ func _sync_special_effect_visual() -> void :
 	_special_effect_stream.flip_h = role3_special_effect.flip_h
 	_special_effect_stream.show_frame(role3_special_effect.frame)
 
-func _replace_special_effect_stream(action: StringName) -> void :
+
+func _replace_special_effect_stream(action: StringName) -> void:
 	if _special_effect_stream != null and is_instance_valid(_special_effect_stream):
 		_special_effect_stream.clear_texture()
 		_special_effect_stream.queue_free()
@@ -219,7 +227,7 @@ func _replace_special_effect_stream(action: StringName) -> void :
 	_special_effect_action = action
 	if action not in STREAMED_SPECIAL_EFFECTS:
 		return
-	var stream: = StreamedPngEffect.new()
+	var stream := StreamedPngEffect.new()
 	stream.name = "Role3SpecialEffectStream"
 	if not MonsterAtlasSequence.configure_stream(stream, SPECIAL_EFFECT_ATLAS_MANIFEST, str(action)):
 		stream.free()
@@ -246,6 +254,8 @@ func do_normalhit_1():
 	hit_count = 1
 	is_attacking = false
 	return
+
+
 func do_normalhit_2():
 	Interv = objattackDic["hit2"]["HitInterv"]
 	get_action = "hit2"
@@ -258,6 +268,8 @@ func do_normalhit_2():
 	hit_count = 2
 	is_attacking = false
 	return
+
+
 func do_normalhit_3():
 	Interv = objattackDic["hit3"]["HitInterv"]
 	get_action = "hit3"
@@ -269,6 +281,8 @@ func do_normalhit_3():
 	hit_count = 0
 	is_attacking = false
 	return
+
+
 func Skill_SD():
 	self.Role1SkillInter["sd"] = 1.2
 
@@ -281,6 +295,8 @@ func Skill_SD():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func Skill_ZZNH():
 	self.Role1SkillInter["zznh"] = 2
 
@@ -293,6 +309,8 @@ func Skill_ZZNH():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func Skill_DJ():
 	self.Role1SkillInter["dj"] = 1.2
 	velocity.x = 0
@@ -305,6 +323,8 @@ func Skill_DJ():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func Skill_JSP():
 	self.Role1SkillInter["jsp"] = 6
 	velocity.x = 0
@@ -317,6 +337,8 @@ func Skill_JSP():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func Skill_SSP():
 	self.Role1SkillInter["ssp"] = 4.8
 	velocity.x = 0
@@ -329,6 +351,8 @@ func Skill_SSP():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func Skill_XGQ():
 	self.Role1SkillInter["xgq"] = 6
 	velocity.x = 0
@@ -341,8 +365,9 @@ func Skill_XGQ():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
-func Skill_DGQ():
 
+
+func Skill_DGQ():
 	self.Role1SkillInter["dgq"] = 4.2
 	velocity.x = 0
 	get_action = "dgq"
@@ -357,6 +382,8 @@ func Skill_DGQ():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func Skill_TMC():
 	self.IsTMc = true
 	self.Role1SkillInter["tmc"] = 2.4
@@ -370,8 +397,9 @@ func Skill_TMC():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
-func Skill_TMC2():
 
+
+func Skill_TMC2():
 	self.Role1SkillInter["tmc"] = 1.2
 	velocity.x = 0
 	get_action = "tmc"
@@ -383,6 +411,8 @@ func Skill_TMC2():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func Skill_SYZQ():
 	self.Role1SkillInter["syzq"] = 6
 	velocity.x = 0
@@ -395,6 +425,7 @@ func Skill_SYZQ():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
 
 func Skill_BDQK():
 	self.Role1SkillInter["bdqk"] = 3.0
@@ -413,42 +444,45 @@ func Skill_BDQK():
 	is_attacking = false
 	is_using_skills = false
 
-func _play_bdqk_action() -> void :
-	const ACTION_NAME: = &"bdqk_action"
+
+func _play_bdqk_action() -> void:
+	const ACTION_NAME := &"bdqk_action"
 	if _prepare_bdqk_action():
-
-
 		role_action_player.speed_scale = BDQK_ACTION_SPEED
 		role_action_player.play(ACTION_NAME)
 
+
 func _prepare_bdqk_action() -> bool:
-	const ACTION_NAME: = &"bdqk_action"
-	var library: = role_action_player.get_animation_library("")
+	const ACTION_NAME := &"bdqk_action"
+	var library := role_action_player.get_animation_library("")
 	if library == null:
 		return false
 	if library.has_animation(ACTION_NAME):
-		var existing_action: = library.get_animation(ACTION_NAME)
+		var existing_action := library.get_animation(ACTION_NAME)
 		if existing_action != null:
 			_trim_bdqk_action(existing_action)
 		return true
-	var source: = library.get_animation(&"ssp")
+	var source := library.get_animation(&"ssp")
 	if source == null:
 		return false
-	var action: = source.duplicate(true) as Animation
+	var action := source.duplicate(true) as Animation
 	for track_index in range(action.get_track_count() - 1, -1, -1):
-		var path: = str(action.track_get_path(track_index))
+		var path := str(action.track_get_path(track_index))
 		if path != "Action/RoleBody:frame" and path != "Action/RoleEquipment:frame":
 			action.remove_track(track_index)
 	_trim_bdqk_action(action)
 	library.add_animation(ACTION_NAME, action)
 	return true
 
-func _trim_bdqk_action(action: Animation) -> void :
 
+func _trim_bdqk_action(action: Animation) -> void:
 	action.length = BDQK_ACTION_LENGTH
 
-func _on_inter_timeout() -> void :
+
+func _on_inter_timeout() -> void:
 	Interv -= 1
+
+
 func add_music(idx):
 	match idx:
 		0:
@@ -484,6 +518,8 @@ func add_music(idx):
 		15:
 			Global.addSound_(self, "res://Music/Hero/Role3/Role3_skill_11.wav")
 			pass
+
+
 func AddSD():
 	if _is_sd_awaken_active():
 		_sd_awaken_enabled = true
@@ -497,7 +533,6 @@ func AddSD():
 	Global.addRoleSpecialEffect_(self, Vector2(0, 0), false, "sd")
 
 
-
 func AddZZNH():
 	var skill_level = PlayerData.player_data["技能学习"]["技能4"]["等级"] + 1
 	var effect = Global.addRoleSpecialEffect_(self, Vector2(30, -30) if PlayerDir else Vector2(-30, -30), false, "zznh")
@@ -505,11 +540,7 @@ func AddZZNH():
 	effect.zznh_defense_reduction = 0.5 if _is_skill_awakened("zznh") and _is_skill_awaken_enabled("zznh") else 0.0
 
 
-
-
-
-
-func _on_hit_box_area_entered(area: Area2D) -> void :
+func _on_hit_box_area_entered(area: Area2D) -> void:
 	var Target = area.get_parent().get_parent()
 	if Target is BaseMonster:
 		if _is_summon_or_pet_target(Target):
@@ -539,6 +570,7 @@ func CallSYZQ():
 		pp = Vector2(-64, -70) + position
 	Global.addRoleBullet_(self.Bullet, pp, PlayerDir, "Role3Bullet1", objattackDic["syzq"])
 
+
 func AddSSP():
 	var PositionList = []
 	var ScaleList = [Vector2(1, 1), Vector2(1.6, 1.6), Vector2(2, 2), Vector2(2.5, 2.5)]
@@ -547,9 +579,13 @@ func AddSSP():
 	else:
 		PositionList = [Vector2(70, 15), Vector2(160, 10), Vector2(270, 0), Vector2(400, -10)]
 	for i in PositionList.size():
-		var xbz = Global.addRoleBullet_(self.Bullet, PositionList[i] + position, PlayerDir, "Role3Bullet2", objattackDic["ssp"])
+		var xbz = Global.addRoleBullet_(
+			self.Bullet, PositionList[i] + position, PlayerDir, "Role3Bullet2", objattackDic["ssp"]
+		)
 		xbz.scale = ScaleList[i]
 		await get_tree().create_timer(0.2, false).timeout
+
+
 func AddTMC():
 	var MaxCount: int = 10
 	if RoleProp.is_ws_state:
@@ -559,7 +595,10 @@ func AddTMC():
 	while Num < MaxCount:
 		var NewRotation = 360 / MaxCount
 		NewRotation = NewRotation * Num
-		var stabPosition = Vector2(self.position.x + sin(float(NewRotation) * PI / 180) * 100, self.position.y - 15 - cos(float(NewRotation) * PI / 180) * 100)
+		var stabPosition = Vector2(
+			self.position.x + sin(float(NewRotation) * PI / 180) * 100,
+			self.position.y - 15 - cos(float(NewRotation) * PI / 180) * 100
+		)
 		var stab = Global.addRoleBullet_(self.Bullet, stabPosition, false, "Role3Bullet3", objattackDic["tmc"])
 		stab.rotation_degrees = NewRotation - 90
 		stab.modulate = Color(1, 1, 1, 0)
@@ -568,7 +607,8 @@ func AddTMC():
 
 	pass
 
-func _process_dgq_spikes(delta: float) -> void :
+
+func _process_dgq_spikes(delta: float) -> void:
 	if not _is_dgq_awaken_active() or get_action != "dgq" or not is_using_skills:
 		return
 	_dgq_spike_elapsed += delta
@@ -576,12 +616,14 @@ func _process_dgq_spikes(delta: float) -> void :
 		_dgq_spike_elapsed -= DGQ_SPIKE_INTERVAL
 		_spawn_dgq_spike()
 
-func _spawn_dgq_spike() -> void :
-	var spike_position: = position + Vector2(0.0, -15.0)
+
+func _spawn_dgq_spike() -> void:
+	var spike_position := position + Vector2(0.0, -15.0)
 	var spike: Node = Global.addRoleBullet_(self.Bullet, spike_position, false, "Role3Bullet3", objattackDic["tmc"])
 	if spike != null and is_instance_valid(spike):
 		spike.rotation_degrees = _dgq_spike_angle - 90.0
 	_dgq_spike_angle = fmod(_dgq_spike_angle + DGQ_SPIKE_ANGLE_STEP, 360.0)
+
 
 func Rush():
 	var roll_speed: float = DGQ_ROLL_SPEED if _is_dgq_awaken_active() else DGQ_NORMAL_ROLL_SPEED
@@ -590,10 +632,12 @@ func Rush():
 	else:
 		velocity.x -= roll_speed
 
+
 func removetmc():
 	self.IsTMc = false
 
-func _disable_sd_awaken() -> void :
+
+func _disable_sd_awaken() -> void:
 	_sd_awaken_enabled = false
 	_sd_awaken_mp_elapsed = 0.0
 	Is_sdBuff = false
@@ -601,24 +645,28 @@ func _disable_sd_awaken() -> void :
 		_sd_awaken_effect.queue_free()
 	_sd_awaken_effect = null
 
-func _process_sd_awaken(delta: float) -> void :
+
+func _process_sd_awaken(delta: float) -> void:
 	if not _sd_awaken_enabled:
 		return
 	_sd_awaken_mp_elapsed += delta
 	if _sd_awaken_mp_elapsed < SD_AWAKEN_MP_INTERVAL:
 		return
 	_sd_awaken_mp_elapsed -= SD_AWAKEN_MP_INTERVAL
-	var mp_cost: = int(get_need_mp(SD_SKILL_ID, false))
+	var mp_cost := int(get_need_mp(SD_SKILL_ID, false))
 	if RoleProp.roleprop.Mp < mp_cost:
 		_disable_sd_awaken()
 		return
 	reduce_Mp(mp_cost)
 
+
 func _is_sd_awaken_active() -> bool:
 	return _is_skill_awakened(SD_SKILL_ID) and _is_skill_awaken_enabled(SD_SKILL_ID)
 
+
 func _is_sd_control_reduction_active() -> bool:
 	return _sd_awaken_enabled and _is_sd_awaken_active()
+
 
 func _is_any_skill_action_pressed() -> bool:
 	for action_name in SKILL_INPUT_ACTIONS:
@@ -626,15 +674,18 @@ func _is_any_skill_action_pressed() -> bool:
 			return true
 	return false
 
+
 func _is_skill_awakened(skill_id: String) -> bool:
 	var awaken_data: Variant = PlayerData.player_data.get("技能觉醒", {})
 	return awaken_data is Dictionary and bool(awaken_data.get(skill_id, false))
+
 
 func _is_skill_awaken_enabled(skill_id: String) -> bool:
 	var enabled_data: Variant = PlayerData.player_data.get("技能觉醒启用", {})
 	if not enabled_data is Dictionary or not enabled_data.has(skill_id):
 		return true
 	return bool(enabled_data.get(skill_id, false))
+
 
 func _is_dgq_awaken_active() -> bool:
 	return _is_skill_awakened("dgq") and _is_skill_awaken_enabled("dgq")

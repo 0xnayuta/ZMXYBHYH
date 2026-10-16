@@ -36,7 +36,8 @@ var _travelled_distance: float = 0.0
 var _last_attack_cycle: int = -1
 var _monitor_reenable_at: float = -1.0
 
-func _ready() -> void :
+
+func _ready() -> void:
 	set_meta("is_monster_bullet", true)
 	MyFather = _find_owner_boss()
 	get_prop()
@@ -47,9 +48,9 @@ func _ready() -> void :
 	_apply_visual_transform()
 	bullet_ani.play(&"play")
 	bullet_ani.frame_changed.connect(_on_visual_frame_changed)
-	var shape: = CircleShape2D.new()
+	var shape := CircleShape2D.new()
 	shape.radius = maxf(hit_radius, 1.0)
-	var hit_shape: = get_node_or_null("middle/HitBox/Hit_Box") as CollisionShape2D
+	var hit_shape := get_node_or_null("middle/HitBox/Hit_Box") as CollisionShape2D
 	if hit_shape != null:
 		hit_shape.shape = shape
 		hit_shape.disabled = not damage_enabled
@@ -57,28 +58,28 @@ func _ready() -> void :
 	if hit_box != null:
 		hit_box.set_deferred("monitoring", false)
 
+
 static func _get_additive_material() -> CanvasItemMaterial:
 	if _additive_material == null:
 		_additive_material = CanvasItemMaterial.new()
 		_additive_material.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 	return _additive_material
 
-func _process(delta: float) -> void :
+
+func _process(delta: float) -> void:
 	_elapsed += delta
 	if follow_owner and MyFather != null and is_instance_valid(MyFather):
 		global_position = MyFather.global_position + follow_owner_offset
 
-
-		var owner_dir: = MyFather.get_node_or_null("MonsterDir") as Node2D
+		var owner_dir := MyFather.get_node_or_null("MonsterDir") as Node2D
 		dir = owner_dir != null and owner_dir.scale.x < 0.0
 		_apply_visual_transform()
 	elif track_target and RoleProp.SourcePlayer != null and is_instance_valid(RoleProp.SourcePlayer):
 		global_position = global_position.move_toward(
-			RoleProp.SourcePlayer.global_position + Vector2(0.0, -55.0), 
-			track_speed * delta
+			RoleProp.SourcePlayer.global_position + Vector2(0.0, -55.0), track_speed * delta
 		)
 	else:
-		var previous_position: = global_position
+		var previous_position := global_position
 		move_velocity += move_acceleration * delta
 		global_position += move_velocity * delta
 		_travelled_distance += previous_position.distance_to(global_position)
@@ -98,7 +99,8 @@ func _process(delta: float) -> void :
 	if _elapsed >= life_time:
 		queue_free()
 
-func _update_attack_interval(should_monitor: bool) -> void :
+
+func _update_attack_interval(should_monitor: bool) -> void:
 	if not should_monitor or attack_interval_frames <= 0 or hit_box == null:
 		return
 	var attack_elapsed: float = maxf(_elapsed - hit_delay, 0.0)
@@ -109,14 +111,12 @@ func _update_attack_interval(should_monitor: bool) -> void :
 	if cycle <= 0:
 		return
 
-
-
-
 	hit_box.set_deferred("monitoring", false)
 	_monitor_reenable_at = _elapsed + 1.0 / maxf(frame_fps, 1.0)
 
-func _build_effect_frames() -> void :
-	var frames: = SpriteFrames.new()
+
+func _build_effect_frames() -> void:
+	var frames := SpriteFrames.new()
 	if frames.has_animation(&"default"):
 		frames.remove_animation(&"default")
 	frames.add_animation(&"play")
@@ -124,9 +124,13 @@ func _build_effect_frames() -> void :
 	frames.set_animation_speed(&"play", frame_fps)
 	_frame_geometry.clear()
 	for frame_index in range(1, frame_count + 1):
-		var source_index: = frame_start_index + frame_index - 1
-		var path: = frame_path_format % source_index if not frame_path_format.is_empty() else frame_root.path_join(str(source_index) + ".png")
-		var texture: = Global.get_cached_texture(path)
+		var source_index := frame_start_index + frame_index - 1
+		var path := (
+			frame_path_format % source_index
+			if not frame_path_format.is_empty()
+			else frame_root.path_join(str(source_index) + ".png")
+		)
+		var texture := Global.get_cached_texture(path)
 		if texture != null:
 			frames.add_frame(&"play", texture)
 			_frame_geometry.append(_get_texture_geometry(path, texture))
@@ -135,38 +139,43 @@ func _build_effect_frames() -> void :
 		_frame_geometry.append({"used_rect": Rect2(), "texture_size": Vector2.ZERO})
 	bullet_ani.sprite_frames = frames
 
+
 func _get_texture_geometry(path: String, texture: Texture2D) -> Dictionary:
 	if _texture_geometry_cache.has(path):
 		return _texture_geometry_cache[path]
-	var used_rect: = Rect2()
-	var image: = texture.get_image()
+	var used_rect := Rect2()
+	var image := texture.get_image()
 	if image != null:
-		var image_rect: = image.get_used_rect()
+		var image_rect := image.get_used_rect()
 		used_rect = Rect2(Vector2(image_rect.position), Vector2(image_rect.size))
-	var geometry: = {
-		"used_rect": used_rect, 
-		"texture_size": texture.get_size(), 
+	var geometry := {
+		"used_rect": used_rect,
+		"texture_size": texture.get_size(),
 	}
 	_texture_geometry_cache[path] = geometry
 	return geometry
 
-func _on_visual_frame_changed() -> void :
+
+func _on_visual_frame_changed() -> void:
 	_sync_hit_shape_to_frame(true)
 
-func _effective_visual_offset() -> Vector2:
-	return Vector2( - visual_offset.x if dir else visual_offset.x, visual_offset.y)
 
-func _apply_visual_transform() -> void :
+func _effective_visual_offset() -> Vector2:
+	return Vector2(-visual_offset.x if dir else visual_offset.x, visual_offset.y)
+
+
+func _apply_visual_transform() -> void:
 	if bullet_ani == null:
 		return
 	bullet_ani.position = _effective_visual_offset()
 	bullet_ani.flip_h = dir
 
-func _sync_hit_shape_to_frame(force: bool = false) -> void :
+
+func _sync_hit_shape_to_frame(force: bool = false) -> void:
 	if bullet_ani == null:
 		return
-	var frame_index: = bullet_ani.frame
-	var flipped: = bullet_ani.flip_h
+	var frame_index := bullet_ani.frame
+	var flipped := bullet_ani.flip_h
 	if not force and frame_index == _last_collision_frame and flipped == _last_collision_flip:
 		return
 	_last_collision_frame = frame_index
@@ -180,13 +189,14 @@ func _sync_hit_shape_to_frame(force: bool = false) -> void :
 	if used_rect.size.x <= 0.0 or used_rect.size.y <= 0.0 or texture_size == Vector2.ZERO:
 		return
 	_frame_has_visual = true
-	var visual_center: = used_rect.position + used_rect.size * 0.5 - texture_size * 0.5
+	var visual_center := used_rect.position + used_rect.size * 0.5 - texture_size * 0.5
 	visual_center *= visual_scale
 	if flipped:
-		visual_center.x = - visual_center.x
-	var hit_shape: = get_node_or_null("middle/HitBox/Hit_Box") as CollisionShape2D
+		visual_center.x = -visual_center.x
+	var hit_shape := get_node_or_null("middle/HitBox/Hit_Box") as CollisionShape2D
 	if hit_shape != null:
 		hit_shape.position = _effective_visual_offset() + visual_center
+
 
 func _find_owner_boss() -> BaseMonster:
 	var node: Node = get_parent()

@@ -11,13 +11,10 @@ var is_Get = false
 @onready var role_action: Sprite2D = $RoleAction
 @onready var role_player: AnimationPlayer = $RolePlayer
 @onready var wait: Timer = $wait
-var HitDic = {
-	"power": 0, 
-	"hurtBack": [0, 0], 
-	"attackKind": "real"
-}
+var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	self.scale.x = direction
 	if not is_set:
 		role_action.set_frame(iniaction)
@@ -36,18 +33,24 @@ func do_hit_1():
 	is_attacking = true
 	role_player.play("zz")
 	await role_player.animation_finished
+
+
 func do_hit_2():
 	is_attacking = true
 	role_player.play("lyfb")
 	await role_player.animation_finished
+
+
 func do_hit_3():
 	is_attacking = true
 	role_player.play("hmz__")
 	await role_player.animation_finished
 
 
-func _on_wait_timeout() -> void :
+func _on_wait_timeout() -> void:
 	queue_free()
+
+
 func add_music(idx):
 	match idx:
 		0:

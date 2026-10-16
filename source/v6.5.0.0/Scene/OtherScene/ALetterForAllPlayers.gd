@@ -14,11 +14,11 @@ extends Node2D
 @onready var title_13: Label = $"509/Title13"
 @onready var page: Label = $Page
 
-
 var CurrentPage: int = 1
 var MaxPage: int = 4
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	page.text = str(CurrentPage) + "/" + str(MaxPage)
 	match int(CurrentPage):
 		1:
@@ -78,15 +78,16 @@ func _physics_process(delta: float) -> void :
 			title_12.visible = true
 			title_13.visible = true
 
-func _on_close_pressed() -> void :
+
+func _on_close_pressed() -> void:
 	queue_free()
 
 
-func _on_last_page_pressed() -> void :
+func _on_last_page_pressed() -> void:
 	if CurrentPage > 1:
 		CurrentPage -= 1
 
 
-func _on_next_page_pressed() -> void :
+func _on_next_page_pressed() -> void:
 	if CurrentPage < MaxPage:
 		CurrentPage += 1

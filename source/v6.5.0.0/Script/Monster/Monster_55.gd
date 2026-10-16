@@ -1,6 +1,6 @@
 extends BaseMonster
 class_name Monster55
-@onready var zlw_special_effect: Node2D = $MonsterDir / ZLWSpecialEffect
+@onready var zlw_special_effect: Node2D = $MonsterDir/ZLWSpecialEffect
 var Boss_3: Monster56
 var MaxRound: int = 6
 var CurrentRound: int = 6:
@@ -8,6 +8,8 @@ var CurrentRound: int = 6:
 		CurrentRound = value
 		zlw_special_effect.CurrentCount = CurrentRound
 var RoundList: Array = []
+
+
 func monster_55():
 	if get_parent().get_parent() is LevelZLDHDGQ:
 		self.is_boss = true
@@ -34,53 +36,41 @@ func monster_55():
 		self.self_rhp = 0
 		self.add_exp = 0
 		self.fall_coin = 10
-		self.objattackDic["wqml"] = {
-			"power": 700, 
-			"hurtBack": [-6, -1], 
-			"attackKind": "magic"
-		}
-		self.objattackDic["zlls"] = {
-			"power": 900, 
-			"hurtBack": [-8, -1], 
-			"attackKind": "magic"
-		}
+		self.objattackDic["wqml"] = {"power": 700, "hurtBack": [-6, -1], "attackKind": "magic"}
+		self.objattackDic["zlls"] = {"power": 900, "hurtBack": [-8, -1], "attackKind": "magic"}
 		self.objattackDic["dylh"] = {
-			"power": 2000, 
-			"hurtBack": [-1, -1], 
-			"attackKind": "magic", 
-			"addeffect": {
-				"Name": "stun", 
-				"AddTime": 3, 
-				"ReduceInterval": 0, 
-				"CanAdd": false, 
-				"DeBuff": true, 
-				"value": 0, 
-				"AttackKind": "", 
+			"power": 2000,
+			"hurtBack": [-1, -1],
+			"attackKind": "magic",
+			"addeffect":
+			{
+				"Name": "stun",
+				"AddTime": 3,
+				"ReduceInterval": 0,
+				"CanAdd": false,
+				"DeBuff": true,
+				"value": 0,
+				"AttackKind": "",
 			}
 		}
 		self.objattackDic["dyml"] = {
-			"power": 2077, 
-			"hurtBack": [-1, -1], 
-			"attackKind": "magic", 
-			"addeffect": {
-				"Name": "stun", 
-				"DeBuff": true, 
-				"AddTime": 3, 
-				"ReduceInterval": 0, 
-				"value": 0, 
-				"AttackKind": "", 
+			"power": 2077,
+			"hurtBack": [-1, -1],
+			"attackKind": "magic",
+			"addeffect":
+			{
+				"Name": "stun",
+				"DeBuff": true,
+				"AddTime": 3,
+				"ReduceInterval": 0,
+				"value": 0,
+				"AttackKind": "",
 			}
 		}
 		self.fall_pro = 0.5
 		self.fall_list = [
-			{
-				"name": "zlwdahsp1", 
-				"value": 2
-			}, 
-			{
-				"name": "zlwdahsp2", 
-				"value": 2
-			}, 
+			{"name": "zlwdahsp1", "value": 2},
+			{"name": "zlwdahsp2", "value": 2},
 		]
 		self.fall_stone_pro = 0
 		self.fall_stone = []
@@ -109,53 +99,51 @@ func monster_55():
 	self.self_rhp = 500
 	self.add_exp = 1000
 	self.fall_coin = 1000
-	self.objattackDic["wqml"] = {
-		"power": 205, 
-		"hurtBack": [-6, -1], 
-		"attackKind": "magic"
-	}
-	self.objattackDic["zlls"] = {
-		"power": 200, 
-		"hurtBack": [-8, -1], 
-		"attackKind": "magic"
-	}
+	self.objattackDic["wqml"] = {"power": 205, "hurtBack": [-6, -1], "attackKind": "magic"}
+	self.objattackDic["zlls"] = {"power": 200, "hurtBack": [-8, -1], "attackKind": "magic"}
 	self.objattackDic["dylh"] = {
-		"power": 600, 
-		"hurtBack": [-1, -1], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": 600,
+		"hurtBack": [-1, -1],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"CanAdd": false,
+			"DeBuff": true,
+			"value": 0,
+			"AttackKind": "",
 		}
 	}
 	self.objattackDic["dyml"] = {
-		"power": 577, 
-		"hurtBack": [-1, -1], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "stun", 
-			"DeBuff": true, 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": 577,
+		"hurtBack": [-1, -1],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "stun",
+			"DeBuff": true,
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
 		}
 	}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
 	Skill_3_CD = 0
 	monster_55()
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -188,26 +176,37 @@ func Monster_Intelligence():
 					else:
 						stop_move()
 
+
 func state_hurt():
 	Set_RoundSpeed(1)
 	zlw_special_effect.State = false
 	super.state_hurt()
+
+
 func stop_move():
 	Set_RoundSpeed(1)
 	zlw_special_effect.State = false
 	super.stop_move()
+
+
 func move_left():
 	Set_RoundSpeed(1)
 	zlw_special_effect.State = true
 	super.move_left()
+
+
 func move_right():
 	Set_RoundSpeed(1)
 	zlw_special_effect.State = true
 	super.move_right()
+
+
 func state_death():
 	Set_RoundSpeed(1)
 	zlw_special_effect.State = false
 	super.state_death()
+
+
 func do_hit_1():
 	super.to_hero()
 	zlw_special_effect.State = true
@@ -219,6 +218,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_2():
 	super.to_hero()
 	zlw_special_effect.State = false
@@ -230,6 +231,8 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_3():
 	super.to_hero()
 	zlw_special_effect.State = false
@@ -241,6 +244,8 @@ func do_hit_3():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func normal_state():
 	if is_be_attacking:
 		return
@@ -250,10 +255,19 @@ func normal_state():
 		move_left()
 	else:
 		move_right()
+
+
 func Set_RoundSpeed(value):
 	zlw_special_effect.Speed = value
+
+
 func setposition():
-	return Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, RoleProp.get_nearest_monster_target_position(global_position).y)
+	return Vector2(
+		RoleProp.get_nearest_monster_target_position(global_position).x,
+		RoleProp.get_nearest_monster_target_position(global_position).y
+	)
+
+
 func CallRound():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
@@ -277,6 +291,7 @@ func CallRound():
 		RoundList.clear()
 		CurrentRound = MaxRound
 
+
 func CallBullet():
 	var pp
 	var pp_1
@@ -297,9 +312,22 @@ func CallBullet():
 		zz_2 = Global.add_Bullet("Monster55Bullet_2", self, false, 1, pp_1, "zlls", self.objattackDic["zlls"])
 		zz_2.z_index = -1
 
+
 func CallRound_():
-	Global.CallFlyBullet(self.bullet, "Monster55Bullet", 1, Vector2(position.x, position.y), 6500, 400, "dyml", self.objattackDic["dyml"])
-	Global.CallFlyBullet(self.bullet, "Monster55Bullet", -1, Vector2(position.x, position.y), 6500, 400, "dyml", self.objattackDic["dyml"])
+	Global.CallFlyBullet(
+		self.bullet, "Monster55Bullet", 1, Vector2(position.x, position.y), 6500, 400, "dyml", self.objattackDic["dyml"]
+	)
+	Global.CallFlyBullet(
+		self.bullet,
+		"Monster55Bullet",
+		-1,
+		Vector2(position.x, position.y),
+		6500,
+		400,
+		"dyml",
+		self.objattackDic["dyml"]
+	)
+
 
 func CallMonster():
 	if get_parent().get_parent() is level21:

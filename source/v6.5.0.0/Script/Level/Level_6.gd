@@ -1,7 +1,7 @@
 extends BaseLevel
-@onready var stop_1: CollisionShape2D = $wall / stop1
-@onready var stop_2: CollisionShape2D = $wall / stop2
-@onready var stop_3: CollisionShape2D = $wall / stop3
+@onready var stop_1: CollisionShape2D = $wall/stop1
+@onready var stop_2: CollisionShape2D = $wall/stop2
+@onready var stop_3: CollisionShape2D = $wall/stop3
 var trap_sky_1
 var trap_sky_2
 var trap_sky_3
@@ -23,7 +23,8 @@ var trap_sky_18
 var trap_sky_19
 var trap_sky_20
 
-func _ready() -> void :
+
+func _ready() -> void:
 	Global.CurrentLevel = "迦楼罗之穴"
 	bgm_node = Global.addBGM_(self, "res://Music/level/7_bg2.mp3")
 	add_trap_sky()
@@ -31,24 +32,69 @@ func _ready() -> void :
 	self.level_stage = 6
 	super._ready()
 	Monster_group = {
-		"stage_1": [13, 13, 13, 13, 9, 9, 9, 9, 9], 
-		"stage_2": [13, 13, 13, 9, 9, 9, 10, 10, 10, 10, 10, 13, 13, 13, 10, 10, 13, 13, 13], 
-		"stage_3": [13, 13, 9, 9, 9, 10, 10, 10, 13, 13, 10, 10, 10, 10, 10, 13, 13, 13, 13, 13], 
-		"stage_4": [12], 
+		"stage_1": [13, 13, 13, 13, 9, 9, 9, 9, 9],
+		"stage_2": [13, 13, 13, 9, 9, 9, 10, 10, 10, 10, 10, 13, 13, 13, 10, 10, 13, 13, 13],
+		"stage_3": [13, 13, 9, 9, 9, 10, 10, 10, 13, 13, 10, 10, 10, 10, 10, 13, 13, 13, 13, 13],
+		"stage_4": [12],
 	}
 	Monster_position_x = {
-		"stage_1": [750, 750, 750, 750, 750, 1000, 1000, 1000, 1000], 
-		"stage_2": [1650, 1650, 1650, 1850, 1850, 1850, 2100, 2100, 2100, 2100, 1500, 1500, 1500, 1500, 2100, 1500, 1500, 1500, 1500], 
-		"stage_3": [3350, 2750, 3350, 2750, 3000, 3000, 3000, 3000, 3400, 3400, 3400, 3100, 3100, 3100, 3200, 3400, 3100, 3100, 3100, 3200], 
-		"stage_4": [4500], 
+		"stage_1": [750, 750, 750, 750, 750, 1000, 1000, 1000, 1000],
+		"stage_2":
+		[
+			1650,
+			1650,
+			1650,
+			1850,
+			1850,
+			1850,
+			2100,
+			2100,
+			2100,
+			2100,
+			1500,
+			1500,
+			1500,
+			1500,
+			2100,
+			1500,
+			1500,
+			1500,
+			1500
+		],
+		"stage_3":
+		[
+			3350,
+			2750,
+			3350,
+			2750,
+			3000,
+			3000,
+			3000,
+			3000,
+			3400,
+			3400,
+			3400,
+			3100,
+			3100,
+			3100,
+			3200,
+			3400,
+			3100,
+			3100,
+			3100,
+			3200
+		],
+		"stage_4": [4500],
 	}
 	Monster_position_y = {
-		"stage_1": [300, 300, 300, 300, 300, 300, 300, 300, 300], 
-		"stage_2": [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300], 
-		"stage_3": [100, 100, 100, 100, 100, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300], 
-		"stage_4": [200], 
+		"stage_1": [300, 300, 300, 300, 300, 300, 300, 300, 300],
+		"stage_2": [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
+		"stage_3": [100, 100, 100, 100, 100, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
+		"stage_4": [200],
 	}
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	add_trap_sky()
 	super._physics_process(delta)
 	if current_stage >= 1:
@@ -56,6 +102,8 @@ func _physics_process(delta: float) -> void :
 			role_information.gogo.visible = true
 		else:
 			role_information.gogo.visible = false
+
+
 func set_through():
 	if current_stage == 1:
 		if check_can_pass():
@@ -77,9 +125,8 @@ func set_through():
 				bgm_node.queue_free()
 				bgm_node = null
 
-
-
 			bgm_node = Global.addBGM_(self, "res://Music/level/7_bg3.mp3")
+
 
 func set_trap_floor():
 	Global.add_Trap(self, Vector2(1350, 400), "Trap_2")
@@ -98,21 +145,6 @@ func set_trap_floor():
 	Global.add_Trap(self, Vector2(3300, 400), "Trap_2")
 	Global.add_Trap(self, Vector2(3350, 400), "Trap_2")
 	Global.add_Trap(self, Vector2(3400, 400), "Trap_2")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 func add_trap_sky():

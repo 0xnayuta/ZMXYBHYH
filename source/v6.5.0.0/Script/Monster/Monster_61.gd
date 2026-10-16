@@ -1,13 +1,10 @@
 extends BaseMonster
 class_name Monster61
 
-
-
 var ShouldFly: bool
 var IsCall: bool
 var OnsetEatblood: bool
 var RemoveBlood: bool
-
 
 var max_summon_count: int = 5
 var current_summon_count: int = 0
@@ -42,59 +39,59 @@ func monster_61():
 	self.ebol = 0
 
 	self.objattackDic["hit1"] = {
-		"power": 300 + int(RoleProp.baseroleprop.Level * 9), 
-		"hurtBack": [-8, -12], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 300 + int(RoleProp.baseroleprop.Level * 9),
+		"hurtBack": [-8, -12],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 500 + int(RoleProp.baseroleprop.Level * 13), 
-		"hurtBack": [-6, -10], 
-		"attackKind": "real", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "MagicDrain", 
-			"AddTime": 3.0, 
-			"ReduceInterval": 1.0, 
-			"value": 0, 
-			"CanAdd": false, 
+		"power": 500 + int(RoleProp.baseroleprop.Level * 13),
+		"hurtBack": [-6, -10],
+		"attackKind": "real",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "MagicDrain",
+			"AddTime": 3.0,
+			"ReduceInterval": 1.0,
+			"value": 0,
+			"CanAdd": false,
 			"AttackKind": "control"
 		}
 	}
 
 	self.objattackDic["hit3"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
-		"HitProtect": 0, 
+		"power": 0,
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
+		"HitProtect": 0,
 	}
 
 	self.objattackDic["hit4"] = {
-		"power": 400 + int(RoleProp.baseroleprop.Level * 11), 
-		"hurtBack": [30, -10], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "poision", 
-			"AddTime": 3, 
-			"ReduceInterval": 1, 
-			"value": 400, 
-			"CanAdd": true, 
-			"AttackKind": "real", 
+		"power": 400 + int(RoleProp.baseroleprop.Level * 11),
+		"hurtBack": [30, -10],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "poision",
+			"AddTime": 3,
+			"ReduceInterval": 1,
+			"value": 400,
+			"CanAdd": true,
+			"AttackKind": "real",
 		}
 	}
 
 	self.fall_pro = 0.15
 	self.fall_list = [
-		{
-			"name": "szyj", 
-			"value": 1
-		}, 
+		{"name": "szyj", "value": 1},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_61()
 	Skill_1_CD = 2
@@ -134,7 +131,8 @@ func Monster_Intelligence():
 
 
 func do_hit_1():
-	if Skill_1_CD > 0 or is_attacking: return
+	if Skill_1_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_1_CD = 2
 	hit_name = "hit1"
@@ -144,6 +142,7 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
 
 func do_hit_2():
 	super.to_hero()
@@ -156,8 +155,10 @@ func do_hit_2():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_3():
-	if Skill_3_CD > 0 or is_attacking: return
+	if Skill_3_CD > 0 or is_attacking:
+		return
 	if get_current_summon_count() >= max_summon_count:
 		return
 	super.to_hero()
@@ -170,13 +171,13 @@ func do_hit_3():
 
 	var count_to_summon = randi_range(1, 3)
 	for i in range(count_to_summon):
-
 		if get_current_summon_count() >= max_summon_count:
 			break
 		_summon_monster_62()
 
 	is_attacking = false
 	stop_move()
+
 
 func do_hit_4():
 	super.to_hero()
@@ -200,6 +201,7 @@ func get_current_summon_count() -> int:
 			count += 1
 	return count
 
+
 func _summon_monster_62():
 	var offset_x = randf_range(-200.0, 500.0)
 	var summon_pos = Vector2(position.x + offset_x, position.y)
@@ -214,27 +216,17 @@ func CallBullet1():
 		po = Vector2(50, 50)
 	else:
 		po = Vector2(-50, 50)
-	var child = Global.add_Bullet("Monster61WGW", bullet, MonsterDirection, 1, position + po, "hit1", self.objattackDic["hit1"])
-
-
-
-
-
-
-
+	var child = Global.add_Bullet(
+		"Monster61WGW", bullet, MonsterDirection, 1, position + po, "hit1", self.objattackDic["hit1"]
+	)
 
 
 func CallBullet2():
 	var base_dir = MonsterDirection
 	var forward_dist = 200
-	var base_offset = Vector2(forward_dist, 0) if base_dir else Vector2( - forward_dist, 0)
+	var base_offset = Vector2(forward_dist, 0) if base_dir else Vector2(-forward_dist, 0)
 
-
-	var positions = [
-		Vector2(-60, 20), 
-		Vector2(0, 0), 
-		Vector2(50, -30)
-	]
+	var positions = [Vector2(-60, 20), Vector2(0, 0), Vector2(50, -30)]
 
 	var base_angles = [15, 0, -15]
 
@@ -242,26 +234,20 @@ func CallBullet2():
 		var pos_offset = positions[i]
 
 		if not base_dir:
-			pos_offset.x = - pos_offset.x
+			pos_offset.x = -pos_offset.x
 		var spawn_pos = position + base_offset + pos_offset
-
 
 		var angle = base_angles[i]
 		if not base_dir:
-			angle = - angle
+			angle = -angle
 		var rad = deg_to_rad(angle)
 
 		var bullet = Global.add_Bullet(
-			"Monster61Bullet2", 
-			get_parent(), 
-			base_dir, 
-			1.3, 
-			spawn_pos, 
-			"hit2", 
-			objattackDic["hit2"]
+			"Monster61Bullet2", get_parent(), base_dir, 1.3, spawn_pos, "hit2", objattackDic["hit2"]
 		)
 		if bullet:
 			bullet.rotation = rad
+
 
 func CallBullet3():
 	var po: Vector2
@@ -269,4 +255,6 @@ func CallBullet3():
 		po = Vector2(300, 0)
 	else:
 		po = Vector2(-300, 0)
-	var child = Global.add_Bullet("Monster61Bullet3", bullet, MonsterDirection, 1, position + po, "hit4", self.objattackDic["hit4"])
+	var child = Global.add_Bullet(
+		"Monster61Bullet3", bullet, MonsterDirection, 1, position + po, "hit4", self.objattackDic["hit4"]
+	)

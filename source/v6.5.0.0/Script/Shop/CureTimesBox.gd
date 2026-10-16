@@ -1,6 +1,6 @@
 extends TextureRect
-@onready var lpline: LineEdit = $LPDH / lpline
-@onready var lhline: LineEdit = $LHDH / lhline
+@onready var lpline: LineEdit = $LPDH/lpline
+@onready var lhline: LineEdit = $LHDH/lhline
 @onready var title_4: Label = $Title4
 @onready var title_5: Label = $Title5
 @onready var title_6: Label = $Title6
@@ -11,65 +11,69 @@ var TotalTimes: int = 0
 var Lhdhvalue: int = 50000
 const MAX_EXCHANGE_TIMES: int = 9999
 
+
 func _get_max_lh_times() -> int:
 	if Lhdhvalue <= 0:
 		return 0
 	return min(int(PlayerData.get_soul() / Lhdhvalue), MAX_EXCHANGE_TIMES)
 
-func _set_lp_times(value: int) -> void :
+
+func _set_lp_times(value: int) -> void:
 	lpTimes = clampi(value, 0, min(int(PlayerData.get_item_data("smlp")), MAX_EXCHANGE_TIMES))
 	if lpline != null and lpline.text != str(lpTimes):
 		lpline.text = str(lpTimes)
 
-func _set_lh_times(value: int) -> void :
+
+func _set_lh_times(value: int) -> void:
 	lhTimes = clampi(value, 0, _get_max_lh_times())
 	if lhline != null and lhline.text != str(lhTimes):
 		lhline.text = str(lhTimes)
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	TotalTimes = lhTimes + lpTimes
 	title_4.text = "令牌可兑换次数：" + str(lpTimes)
 	title_5.text = "灵魂可兑换次数：" + str(lhTimes)
 	title_6.text = "总次数：" + str(TotalTimes)
-func _on_lpline_text_changed(new_text: String) -> void :
-	var clean_text: = new_text.strip_edges()
+
+
+func _on_lpline_text_changed(new_text: String) -> void:
+	var clean_text := new_text.strip_edges()
 	if clean_text == "":
 		_set_lp_times(0)
 		return
 	_set_lp_times(int(clean_text))
 
 
-func _on_min_pressed() -> void :
+func _on_min_pressed() -> void:
 	_set_lp_times(1)
 
 
-func _on_max_pressed() -> void :
+func _on_max_pressed() -> void:
 	_set_lp_times(int(PlayerData.get_item_data("smlp")))
 
 
-func _on_lhline_text_changed(new_text: String) -> void :
-	var clean_text: = new_text.strip_edges()
+func _on_lhline_text_changed(new_text: String) -> void:
+	var clean_text := new_text.strip_edges()
 	if clean_text == "":
 		_set_lh_times(0)
 		return
 	_set_lh_times(int(clean_text))
 
 
-func _on_lhmin_pressed() -> void :
+func _on_lhmin_pressed() -> void:
 	_set_lh_times(1)
 
 
-func _on_lhmax_pressed() -> void :
+func _on_lhmax_pressed() -> void:
 	_set_lh_times(_get_max_lh_times())
 
 
-func _on_dh_pressed() -> void :
-
+func _on_dh_pressed() -> void:
 	_set_lp_times(lpTimes)
 	_set_lh_times(lhTimes)
 	TotalTimes = lhTimes + lpTimes
 	if TotalTimes > 0:
-
 		if int(PlayerData.get_item_data("smlp")) < lpTimes:
 			Global.AddMessageShow(Global.Windows_, "令牌不足！！", 1.5, Vector2(470, 300))
 			return
@@ -85,5 +89,5 @@ func _on_dh_pressed() -> void :
 		Global.AddMessageShow(Global.Windows_, "兑换次数为0！！", 1.5, Vector2(470, 300))
 
 
-func _on_close_pressed() -> void :
+func _on_close_pressed() -> void:
 	queue_free()

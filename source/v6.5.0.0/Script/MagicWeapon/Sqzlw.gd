@@ -12,7 +12,7 @@ var weapon_level: int = 1
 var summon_attribute_scale: float = 0.1
 
 
-func _ready() -> void :
+func _ready() -> void:
 	summon_timer = Timer.new()
 	summon_timer.one_shot = true
 	summon_timer.autostart = false
@@ -20,7 +20,7 @@ func _ready() -> void :
 	summon_timer.timeout.connect(_on_summon_timeout)
 
 
-func _physics_process(delta: float) -> void :
+func _physics_process(delta: float) -> void:
 	self.FB_Level = PlayerData.get_mostLevel("sqzlw") + 1
 	weapon_level = self.FB_Level
 
@@ -55,12 +55,11 @@ func Useover():
 
 
 func SummonZlw():
-
 	if Global.current_magic_summon and is_instance_valid(Global.current_magic_summon):
 		Global.current_magic_summon.queue_free()
 		Global.current_magic_summon = null
 
-	var summon_scene: = Global.load_scene_uncached("res://Scene/Monster/Monster_zhw/Monster_142_sqzlw.tscn")
+	var summon_scene := Global.load_scene_uncached("res://Scene/Monster/Monster_zhw/Monster_142_sqzlw.tscn")
 	if summon_scene == null:
 		return
 	var summon_instance = summon_scene.instantiate()

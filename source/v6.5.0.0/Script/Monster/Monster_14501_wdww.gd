@@ -10,10 +10,12 @@ var currHp = 2000
 var maxHp = 2000
 var gravity = 980
 
-func _ready() -> void :
 
+func _ready() -> void:
 	pass
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 
 	if currHp <= 0:
@@ -28,11 +30,13 @@ func _physics_process(delta: float) -> void :
 		else:
 			move_right()
 	move_and_slide()
+
+
 func Monster_Intelligence():
 	pass
-func _on_hurt_box_area_entered(area: Area2D) -> void :
 
 
+func _on_hurt_box_area_entered(area: Area2D) -> void:
 	Global.TotalHurtCount += 1
 	var Target = area.get_parent().get_parent()
 	var MonsterTarget: BaseMonster
@@ -82,12 +86,10 @@ func _on_hurt_box_area_entered(area: Area2D) -> void :
 	Global.get_player.reduce_hp(last_hit, MonsterTarget, Target)
 
 
-
-
 func move_left():
 	monster_dir.scale.x = 1
 
-	velocity.x = - speed
+	velocity.x = -speed
 	mr_player.play("walk")
 
 

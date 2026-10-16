@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster38
+
+
 func monster_38():
 	self.is_Fly = true
 	self.is_boss = false
@@ -28,28 +30,32 @@ func monster_38():
 	self.add_exp = 0
 	self.fall_coin = 0
 	self.objattackDic["hit1"] = {
-		"power": 99, 
-		"hurtBack": [-7, -9], 
-		"attackKind": "physics", 
-		"addeffect": {
-			"Name": "poision", 
-			"AddTime": 5, 
-			"ReduceInterval": 0.7, 
-			"value": 50, 
-			"CanAdd": true, 
-			"DeBuff": true, 
-			"AttackKind": "magic", 
+		"power": 99,
+		"hurtBack": [-7, -9],
+		"attackKind": "physics",
+		"addeffect":
+		{
+			"Name": "poision",
+			"AddTime": 5,
+			"ReduceInterval": 0.7,
+			"value": 50,
+			"CanAdd": true,
+			"DeBuff": true,
+			"AttackKind": "magic",
 		}
 	}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_38()
-func Monster_Intelligence():
 
+
+func Monster_Intelligence():
 	if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
 		if count % 180 == 0:
 			attack_target()
@@ -57,6 +63,8 @@ func Monster_Intelligence():
 			have_target()
 	else:
 		do_hit_2()
+
+
 func attack_target():
 	if RoleProp.get_nearest_monster_target_position(global_position).x > position.x:
 		move_right()
@@ -67,6 +75,8 @@ func attack_target():
 	mr_player.play("hit1")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func do_hit_2():
 	self.Hp = -10
 	self.is_death = true
@@ -76,13 +86,44 @@ func do_hit_2():
 	mr_player.play("death")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func call_dd():
 	if self.MonsterDirection:
-		Global.CallChaseBullet(self.bullet, "Monster37Bullet", 220, 3, true, Vector2(self.position.x, self.position.y), "hit1", self.objattackDic["hit1"])
+		Global.CallChaseBullet(
+			self.bullet,
+			"Monster37Bullet",
+			220,
+			3,
+			true,
+			Vector2(self.position.x, self.position.y),
+			"hit1",
+			self.objattackDic["hit1"]
+		)
 	else:
-		Global.CallChaseBullet(self.bullet, "Monster37Bullet", 220, 3, true, Vector2(self.position.x, self.position.y), "hit1", self.objattackDic["hit1"])
+		Global.CallChaseBullet(
+			self.bullet,
+			"Monster37Bullet",
+			220,
+			3,
+			true,
+			Vector2(self.position.x, self.position.y),
+			"hit1",
+			self.objattackDic["hit1"]
+		)
+
+
 func call_death():
-	Global.add_Bullet("Monster38Bullet", get_parent(), false, 1, Vector2(self.position.x, self.position.y), "hit1", self.objattackDic["hit1"])
+	Global.add_Bullet(
+		"Monster38Bullet",
+		get_parent(),
+		false,
+		1,
+		Vector2(self.position.x, self.position.y),
+		"hit1",
+		self.objattackDic["hit1"]
+	)
+
 
 func have_target():
 	velocity.y = 0
@@ -92,5 +133,5 @@ func have_target():
 		move_left()
 
 
-func _on_death_timeout() -> void :
+func _on_death_timeout() -> void:
 	self.Hp = -10

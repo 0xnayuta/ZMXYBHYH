@@ -2,7 +2,8 @@ extends BaseMonster
 class_name Monster89
 @onready var gethd: Timer = $GetHd
 @onready var remove_hd_and_cure: Timer = $RemoveHdAndCure
-@onready var special_effect_1: AnimatedSprite2D = $MonsterDir / SpecialEffect1
+@onready var special_effect_1: AnimatedSprite2D = $MonsterDir/SpecialEffect1
+
 
 func monster_89():
 	self.is_boss = true
@@ -30,72 +31,57 @@ func monster_89():
 	self.add_exp = 0
 	self.fall_coin = 300
 	self.objattackDic["hit1"] = {
-		"power": 400, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 400,
+		"hurtBack": [-8, -12],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 500, 
-		"hurtBack": [-1, -1], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
+		"power": 500,
+		"hurtBack": [-1, -1],
+		"attackKind": "physics",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit3"] = {
-		"power": 900, 
-		"hurtBack": [-1, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 5, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 900,
+		"hurtBack": [-1, -1],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 5,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit4"] = {
-		"power": hd, 
-		"hurtBack": [-30, -50], 
-		"attackKind": "real", 
-		"HitProtect": 50, 
+		"power": hd,
+		"hurtBack": [-30, -50],
+		"attackKind": "real",
+		"HitProtect": 50,
 	}
 
 	self.objattackDic["hit5"] = {
-		"power": 400, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 400,
+		"hurtBack": [-8, -12],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
-
 
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "zjksf", 
-			"value": 0
-		}, 
-		{
-			"name": "zjxmczzs", 
-			"value": 1
-		}, 
-		{
-			"name": "zjqj", 
-			"value": 0
-		}, 
-		{
-			"name": "hljhzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "zjgp", 
-			"value": 0
-		}, 
+		{"name": "zjksf", "value": 0},
+		{"name": "zjxmczzs", "value": 1},
+		{"name": "zjqj", "value": 0},
+		{"name": "hljhzzs", "value": 1},
+		{"name": "zjgp", "value": 0},
 	]
 	self.independent_fall_list = [
-		{"name": "230007002", "value": 0, "chance": 0.333}, 
+		{"name": "230007002", "value": 0, "chance": 0.333},
 	]
 
 	enable_treasure_box = true
@@ -106,15 +92,16 @@ func monster_89():
 		self.independent_fall_list.clear()
 	self.fall_stone_pro = 0.2
 	self.fall_stone = [
-		{
-			"name": "smlp", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "smlp", "value": randi_range(1, 2)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_89()
 	Skill_1_CD = randi_range(5, 8)
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(8, 12)
@@ -125,6 +112,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = randi_range(8, 12)
@@ -136,6 +125,7 @@ func do_hit_2():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_3():
 	super.to_hero()
 	Skill_3_CD = randi_range(10, 15)
@@ -146,12 +136,16 @@ func do_hit_3():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if hd > 0:
 		special_effect_1.visible = true
 	else:
 		special_effect_1.visible = false
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -187,42 +181,55 @@ func Monster_Intelligence():
 						stop_move()
 				else:
 					stop_move()
+
+
 func ADDBullet():
-	Global.add_Bullet("Monster88Bullet2", self.bullet, MonsterDirection, 1, Vector2(position.x, 470), "hit3", self.objattackDic["hit3"])
+	Global.add_Bullet(
+		"Monster88Bullet2",
+		self.bullet,
+		MonsterDirection,
+		1,
+		Vector2(position.x, 470),
+		"hit3",
+		self.objattackDic["hit3"]
+	)
 	await get_tree().create_timer(0.7, false).timeout
 	var PositionList = [[-180, 180], [-360, 360], [-540, 540]]
 	for i in PositionList:
 		for u in i:
-			Global.add_Bullet("Monster88Bullet2", self.bullet, MonsterDirection, 2, Vector2(u + position.x, 470), "hit3", self.objattackDic["hit3"])
+			Global.add_Bullet(
+				"Monster88Bullet2",
+				self.bullet,
+				MonsterDirection,
+				2,
+				Vector2(u + position.x, 470),
+				"hit3",
+				self.objattackDic["hit3"]
+			)
 		await get_tree().create_timer(0.2, false).timeout
+
 
 func CallBullet3():
 	for i in range(1):
-
-
 		var Bullets = Global.add_Bullet(
-			"Monster89Bullet3", 
-			self.bullet, 
-			false, 
-			1.5, 
-			position, 
-			"hit3", 
-			self.objattackDic["hit3"]
+			"Monster89Bullet3", self.bullet, false, 1.5, position, "hit3", self.objattackDic["hit3"]
 		)
 		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
-
-func _on_get_hd_timeout() -> void :
+func _on_get_hd_timeout() -> void:
 	var tween = create_tween()
 	special_effect_1.modulate = Color("ffff00")
 	tween.tween_property(special_effect_1, "modulate", Color("ff0000"), 8)
 	get_hd(SHp * 0.05, 0, 0.3)
 	remove_hd_and_cure.start(8)
 
-func _on_remove_hd_and_cure_timeout() -> void :
+
+func _on_remove_hd_and_cure_timeout() -> void:
 	if hd > 0:
 		self.objattackDic["hit4"]["power"] = int(hd)
-		Global.add_Bullet("Monster88Bullet3", self.bullet, MonsterDirection, 1, position, "hit4", self.objattackDic["hit4"])
+		Global.add_Bullet(
+			"Monster88Bullet3", self.bullet, MonsterDirection, 1, position, "hit4", self.objattackDic["hit4"]
+		)
 		ChangeHdCureHp(1)
 	gethd.start(8)

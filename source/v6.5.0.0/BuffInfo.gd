@@ -2,6 +2,7 @@ extends Node
 var BuffIce: BaseBuff
 var BuffList = []
 
+
 func CheckIceBuff():
 	if BuffIce == null:
 		for i in BuffList:

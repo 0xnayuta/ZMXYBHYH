@@ -3,7 +3,7 @@ class_name BaseMagicWeapon
 @onready var mg_action: AnimatedSprite2D = $MgAction
 @onready var mg_player: AnimationPlayer = $MgPlayer
 @onready var skill_cd: Timer = $SkillCD
-@onready var hitbox: CollisionShape2D = $HitBox / HitBox
+@onready var hitbox: CollisionShape2D = $HitBox/HitBox
 @onready var hit_box: Area2D = $HitBox
 var FB_Level: int
 var objattackDic = {}
@@ -14,15 +14,13 @@ var is_canuse = true
 var Skill_CD: int
 var usecd: float
 var Player: BaseHero
-var HitDic = {
-	"power": 0, 
-	"hurtBack": [0, 0], 
-	"attackKind": "real"
-}
+var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
 var SelfDir: bool
 
-func set_magic_weapon_player(hero) -> void :
+
+func set_magic_weapon_player(hero) -> void:
 	Player = hero
+
 
 func get_attack_snapshot(attack_name: String = "hit1") -> Dictionary:
 	var attack_data: Variant = objattackDic.get(attack_name)
@@ -30,7 +28,8 @@ func get_attack_snapshot(attack_name: String = "hit1") -> Dictionary:
 		return attack_data.duplicate(true)
 	return {}
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	if not skill_cd.is_stopped():
 		if Global.MgCdPic != null:
 			Global.MgCdPic.MaxTime = usecd
@@ -51,7 +50,6 @@ func _physics_process(_delta: float) -> void :
 		if is_canuse:
 			UseSkill()
 
-
 			if is_use:
 				is_canuse = false
 	elif Skill_CD > 0:
@@ -59,6 +57,8 @@ func _physics_process(_delta: float) -> void :
 	set_count += 1
 	if set_count % 30 == 0 and not is_use:
 		FixHero()
+
+
 func UseSkill():
 	if EnoughMp():
 		RoleProp.roleprop.Mp -= needMp
@@ -67,6 +67,7 @@ func UseSkill():
 
 func EnoughMp():
 	return RoleProp.roleprop.Mp > needMp
+
 
 func ShowSkill():
 	pass
@@ -81,7 +82,6 @@ func FixHero():
 		SelfDir = true
 		newposition = get_Roleposition - Vector2(100, 180)
 	else:
-
 		SelfDir = false
 		scale.x = 1
 		newposition = get_Roleposition - Vector2(-100, 180)
@@ -93,8 +93,7 @@ func Useover():
 	is_use = false
 
 
-
-func _on_skill_cd_timeout() -> void :
+func _on_skill_cd_timeout() -> void:
 	Global.FB_CD = -10
 	is_canuse = true
 	skill_cd.stop()

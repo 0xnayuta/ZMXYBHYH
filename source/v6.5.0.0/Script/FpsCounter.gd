@@ -1,12 +1,15 @@
 extends CanvasLayer
 
-func _enter_tree() -> void :
+
+func _enter_tree() -> void:
 	layer = 128
+
 
 var fps_label: Label
 var _elapsed: float = 0.0
 
-func _ready() -> void :
+
+func _ready() -> void:
 	fps_label = Label.new()
 	fps_label.name = "FpsCounter"
 	fps_label.add_theme_color_override("font_color", Color(0, 1, 0, 1))
@@ -16,7 +19,8 @@ func _ready() -> void :
 	fps_label.position = Vector2(5, 5)
 	add_child(fps_label)
 
-func _process(_delta: float) -> void :
+
+func _process(_delta: float) -> void:
 	_elapsed += _delta
 	if _elapsed < 0.25:
 		return

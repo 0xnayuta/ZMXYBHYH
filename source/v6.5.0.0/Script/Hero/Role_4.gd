@@ -3,32 +3,35 @@ class_name role4
 const BI_LUO_TIAN_EFFECT = preload("res://Script/Hero/BiLuoTianEffect.gd")
 const CANG_MU_LONG_YUN_EFFECT = preload("res://Script/Hero/CangMuLongYunEffect.gd")
 const ROLE4_POISON_ARRAY_AWAKEN_EFFECT = preload("res://Script/Hero/Role4PoisonArrayAwakenEffect.gd")
-const WDZT_SKILL_ID: = "wdzt"
-const WDZT_AWAKEN_MP_INTERVAL: = 5.0
-const WDWW_AWAKEN_TARGET_LIMIT: = 4
-const LHSQ_AWAKEN_BONUS_PER_STACK: = 0.2
-const LHSQ_AWAKEN_MAX_STACKS: = 5
-const LHSQ_AWAKEN_DURATION: = 10.0
-const SKILL_INPUT_ACTIONS: = [&"slz", &"lys", &"lyfb", &"hmz", &"hytj"]
+const WDZT_SKILL_ID := "wdzt"
+const WDZT_AWAKEN_MP_INTERVAL := 5.0
+const WDWW_AWAKEN_TARGET_LIMIT := 4
+const LHSQ_AWAKEN_BONUS_PER_STACK := 0.2
+const LHSQ_AWAKEN_MAX_STACKS := 5
+const LHSQ_AWAKEN_DURATION := 10.0
+const SKILL_INPUT_ACTIONS := [&"slz", &"lys", &"lyfb", &"hmz", &"hytj"]
 var WDWW: Monster138
-@onready var hurt_box = $base_damagebox / HurtBox / HurtBox
+@onready var hurt_box = $base_damagebox/HurtBox/HurtBox
 var Interv: int
 var IsFly: bool
 var JDZ
 var tkj_awaken_mode: int = 0
-var _wdzt_awaken_enabled: = false
-var _wdzt_awaken_mp_elapsed: = 0.0
-var _wdzt_toggle_locked: = false
+var _wdzt_awaken_enabled := false
+var _wdzt_awaken_mp_elapsed := 0.0
+var _wdzt_toggle_locked := false
 var lhsq_awaken_stacks: int = 0
 var lhsq_awaken_time_left: float = 0.0
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 
 	add_to_group("Player")
 	super.onEqchange()
 	Role_4()
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	temp_max_hp_bonus_rate = 0.0
 	temp_power_bonus_rate = 0.0
 	if RoleProp.SourcePlayer == self:
@@ -36,14 +39,16 @@ func _exit_tree() -> void :
 		RoleProp.check_Hp()
 	super._exit_tree()
 
+
 func WSSkill() -> bool:
 	if RoleProp.is_ws_state:
 		return false
 	RoleProp.is_ws_state = true
-	var activated: = super.WSSkill()
+	var activated := super.WSSkill()
 	if not activated:
 		RoleProp.is_ws_state = false
 	return activated
+
 
 func get_skill(skill_name):
 	if str(skill_name) == WDZT_SKILL_ID and _wdzt_toggle_locked:
@@ -54,8 +59,10 @@ func get_skill(skill_name):
 		return
 	super.get_skill(skill_name)
 
+
 func _is_auto_battle_skill_active(skill_id: String) -> bool:
 	return skill_id == WDZT_SKILL_ID and _wdzt_awaken_enabled
+
 
 func Role_4():
 	RoleProp.Role1SXBJ = 0
@@ -76,139 +83,148 @@ func Role_4():
 	var level_11 = max(1, int(PlayerData.player_data["技能学习"]["技能11"]["等级"]))
 	var level_12 = max(1, int(PlayerData.player_data["技能学习"]["技能12"]["等级"]))
 	self.objattackDic["hit1"] = {
-		"power": RoleProp.roleprop.power * randf_range(1, 1.2), 
-		"hurtBack": [2, 0], 
-		"attackKind": "physics", 
-		"HitInterv": 1, 
+		"power": RoleProp.roleprop.power * randf_range(1, 1.2),
+		"hurtBack": [2, 0],
+		"attackKind": "physics",
+		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
 	self.objattackDic["hit2"] = {
-		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1), 
-		"hurtBack": [2, 0], 
-		"attackKind": "physics", 
-		"HitInterv": 1, 
+		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1),
+		"hurtBack": [2, 0],
+		"attackKind": "physics",
+		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
 	self.objattackDic["hit3"] = {
-		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1), 
-		"hurtBack": [2, -2], 
-		"attackKind": "physics", 
-		"HitInterv": 1, 
+		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1),
+		"hurtBack": [2, -2],
+		"attackKind": "physics",
+		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
 	self.objattackDic["qlj"] = {
-		"power": RoleProp.roleprop.power * (2.5 + (level_1 * 0.4)), 
-		"hurtBack": [20, -8], 
-		"attackKind": "physics", 
+		"power": RoleProp.roleprop.power * (2.5 + (level_1 * 0.4)),
+		"hurtBack": [20, -8],
+		"attackKind": "physics",
 		"WSValue": randi_range(30, 34)
 	}
 	self.objattackDic["dcj"] = {
-		"power": RoleProp.roleprop.power * (0.6 + (level_2 * 0.3)), 
-		"hurtBack": [8, -6], 
-		"attackKind": "magic", 
+		"power": RoleProp.roleprop.power * (0.6 + (level_2 * 0.3)),
+		"hurtBack": [8, -6],
+		"attackKind": "magic",
 		"WSValue": randi_range(12, 15)
 	}
 	self.objattackDic["tkj"] = {
-		"power": 35 + RoleProp.roleprop.power * (3 + (level_4 * 0.5)), 
-		"hurtBack": [1, -45], 
-		"attackKind": "physics", 
+		"power": 35 + RoleProp.roleprop.power * (3 + (level_4 * 0.5)),
+		"hurtBack": [1, -45],
+		"attackKind": "physics",
 		"WSValue": randi_range(15, 20)
 	}
-	var mmw_attack: = {
-		"power": RoleProp.roleprop.power * (2 + (level_5 * 0.2)), 
-		"hurtBack": [-4, -2], 
-		"attackKind": "magic", 
+	var mmw_attack := {
+		"power": RoleProp.roleprop.power * (2 + (level_5 * 0.2)),
+		"hurtBack": [-4, -2],
+		"attackKind": "magic",
 		"WSValue": randi_range(10, 12)
 	}
-	if _is_skill_awakened("mmw") and _is_skill_awaken_enabled("mmw") and PlayerData.player_data["技能学习"]["技能10"]["等级"] > 0:
+	if (
+		_is_skill_awakened("mmw")
+		and _is_skill_awaken_enabled("mmw")
+		and PlayerData.player_data["技能学习"]["技能10"]["等级"] > 0
+	):
 		mmw_attack["addeffect"] = {
-			"Name": "Voodoo", 
-			"AddTime": 5, 
-			"ReduceInterval": 1, 
-			"value": int(RoleProp.roleprop.power * 0.1), 
-			"CanAdd": true, 
-			"AttackKind": "real", 
+			"Name": "Voodoo",
+			"AddTime": 5,
+			"ReduceInterval": 1,
+			"value": int(RoleProp.roleprop.power * 0.1),
+			"CanAdd": true,
+			"AttackKind": "real",
 			"DeBuff": true
 		}
 	self.objattackDic["mmw"] = mmw_attack
 	self.objattackDic["bylt"] = {
-		"power": RoleProp.roleprop.power * (1.8 + (level_11 - 1) * 0.25), 
-		"hurtBack": [2, -3], 
-		"attackKind": "magic", 
+		"power": RoleProp.roleprop.power * (1.8 + (level_11 - 1) * 0.25),
+		"hurtBack": [2, -3],
+		"attackKind": "magic",
 		"WSValue": 4
 	}
 	self.objattackDic["cmly"] = {
-		"power": RoleProp.roleprop.power * (1.8 + (level_12 - 1) * 0.25), 
-		"hurtBack": [2, -3], 
-		"attackKind": "magic", 
+		"power": RoleProp.roleprop.power * (1.8 + (level_12 - 1) * 0.25),
+		"hurtBack": [2, -3],
+		"attackKind": "magic",
 		"WSValue": 4
 	}
 	if PlayerData.player_data["技能学习"]["技能10"]["等级"] > 0:
 		self.objattackDic["jdz"] = {
-			"power": RoleProp.roleprop.power * (1.5 + (level_6 * 0.1)), 
-			"hurtBack": [0, 0], 
-			"attackKind": "magic", 
-			"WSValue": randi_range(6, 8), 
-			"addeffect": {
-				"Name": "Voodoo", 
-				"AddTime": 5, 
-				"ReduceInterval": 1, 
-				"value": int(RoleProp.roleprop.power * 0.1), 
-				"CanAdd": true, 
-				"AttackKind": "real", 
+			"power": RoleProp.roleprop.power * (1.5 + (level_6 * 0.1)),
+			"hurtBack": [0, 0],
+			"attackKind": "magic",
+			"WSValue": randi_range(6, 8),
+			"addeffect":
+			{
+				"Name": "Voodoo",
+				"AddTime": 5,
+				"ReduceInterval": 1,
+				"value": int(RoleProp.roleprop.power * 0.1),
+				"CanAdd": true,
+				"AttackKind": "real",
 				"DeBuff": true
 			}
 		}
 		self.objattackDic["zq"] = {
-			"power": RoleProp.roleprop.power * (0.7 + (level_8 * 0.2)), 
-			"hurtBack": [2, -6], 
-			"attackKind": "magic", 
-			"WSValue": randi_range(8, 10), 
-			"addeffect": {
-				"Name": "Voodoo", 
-				"AddTime": 5, 
-				"ReduceInterval": 1, 
-				"value": int(RoleProp.roleprop.power * 0.1), 
-				"CanAdd": true, 
-				"AttackKind": "real", 
+			"power": RoleProp.roleprop.power * (0.7 + (level_8 * 0.2)),
+			"hurtBack": [2, -6],
+			"attackKind": "magic",
+			"WSValue": randi_range(8, 10),
+			"addeffect":
+			{
+				"Name": "Voodoo",
+				"AddTime": 5,
+				"ReduceInterval": 1,
+				"value": int(RoleProp.roleprop.power * 0.1),
+				"CanAdd": true,
+				"AttackKind": "real",
 				"DeBuff": true
 			}
 		}
 		self.objattackDic["lhsq"] = {
-			"power": RoleProp.roleprop.power * (1.35 + (level_7 * 0.1)), 
-			"hurtBack": [-12, -6], 
-			"attackKind": "magic", 
-			"WSValue": randi_range(8, 10), 
-			"addeffect": {
-				"Name": "Voodoo", 
-				"AddTime": 5, 
-				"ReduceInterval": 1, 
-				"value": int(RoleProp.roleprop.power * 0.1), 
-				"CanAdd": true, 
-				"AttackKind": "real", 
+			"power": RoleProp.roleprop.power * (1.35 + (level_7 * 0.1)),
+			"hurtBack": [-12, -6],
+			"attackKind": "magic",
+			"WSValue": randi_range(8, 10),
+			"addeffect":
+			{
+				"Name": "Voodoo",
+				"AddTime": 5,
+				"ReduceInterval": 1,
+				"value": int(RoleProp.roleprop.power * 0.1),
+				"CanAdd": true,
+				"AttackKind": "real",
 				"DeBuff": true
 			}
 		}
 	else:
 		self.objattackDic["jdz"] = {
-				"power": RoleProp.roleprop.power * (1 + (level_6 * 0.1)), 
-				"hurtBack": [0, 0], 
-				"attackKind": "magic", 
-				"WSValue": randi_range(6, 8), 
-			}
+			"power": RoleProp.roleprop.power * (1 + (level_6 * 0.1)),
+			"hurtBack": [0, 0],
+			"attackKind": "magic",
+			"WSValue": randi_range(6, 8),
+		}
 		self.objattackDic["zq"] = {
-				"power": RoleProp.roleprop.power * (1 + (level_8 * 0.1)), 
-				"hurtBack": [2, -6], 
-				"attackKind": "magic", 
-				"WSValue": randi_range(8, 10), 
-			}
+			"power": RoleProp.roleprop.power * (1 + (level_8 * 0.1)),
+			"hurtBack": [2, -6],
+			"attackKind": "magic",
+			"WSValue": randi_range(8, 10),
+		}
 		self.objattackDic["lhsq"] = {
-				"power": RoleProp.roleprop.power * (1.35 + (level_7 * 0.1)), 
-				"hurtBack": [-12, -6], 
-				"attackKind": "magic", 
-				"WSValue": randi_range(8, 10), 
-			}
-func _physics_process(delta: float) -> void :
+			"power": RoleProp.roleprop.power * (1.35 + (level_7 * 0.1)),
+			"hurtBack": [-12, -6],
+			"attackKind": "magic",
+			"WSValue": randi_range(8, 10),
+		}
+
+
+func _physics_process(delta: float) -> void:
 	if IsFly:
 		gravity = 0
 	else:
@@ -220,7 +236,13 @@ func _physics_process(delta: float) -> void :
 	_process_wdzt_awaken(delta)
 	_process_lhsq_awaken(delta)
 	if NoLimitBuff():
-		if not is_riding_mount() and Input.is_action_pressed("normalhit") and not is_be_attacking and not is_using_skills and Interv <= 0:
+		if (
+			not is_riding_mount()
+			and Input.is_action_pressed("normalhit")
+			and not is_be_attacking
+			and not is_using_skills
+			and Interv <= 0
+		):
 			match hit_count:
 				0:
 					ShovelHit_1()
@@ -228,6 +250,7 @@ func _physics_process(delta: float) -> void :
 					ShovelHit_2()
 				2:
 					ShovelHit_3()
+
 
 func ShovelHit_1():
 	super.get_hit_data("hit1")
@@ -240,6 +263,8 @@ func ShovelHit_1():
 	hit_count = 1
 	is_attacking = false
 	return
+
+
 func ShovelHit_2():
 	super.get_hit_data("hit2")
 	get_action = "hit2"
@@ -251,6 +276,8 @@ func ShovelHit_2():
 	hit_count = 2
 	is_attacking = false
 	return
+
+
 func ShovelHit_3():
 	super.get_hit_data("hit3")
 	get_action = "hit3"
@@ -266,6 +293,7 @@ func ShovelHit_3():
 	is_attacking = false
 	return
 
+
 func ShovelQLJ():
 	self.Role1SkillInter["qlj"] = 4.8
 	velocity.x = 0
@@ -278,6 +306,7 @@ func ShovelQLJ():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
 
 func ShovelDCJ():
 	self.Role1SkillInter["dcj"] = 4.8
@@ -292,6 +321,7 @@ func ShovelDCJ():
 	is_attacking = false
 	is_using_skills = false
 
+
 func ShovelTKJ():
 	self.Role1SkillInter["tkj"] = 2.4
 	var tkj_awakened: bool = _is_skill_awakened("tkj") and _is_skill_awaken_enabled("tkj")
@@ -299,12 +329,12 @@ func ShovelTKJ():
 	if tkj_awaken_mode == 1:
 		velocity.x = 600.0 if PlayerDir else -600.0
 		velocity.y = 0.0
-		$Action / SpecialEffect1.global_rotation = - PI / 2.0
-		$base_damagebox / HitBox.global_rotation = - PI / 2.0
+		$Action/SpecialEffect1.global_rotation = -PI / 2.0
+		$base_damagebox/HitBox.global_rotation = -PI / 2.0
 	elif tkj_awaken_mode == 2:
 		velocity = Vector2(0.0, -600.0)
-		$Action / SpecialEffect1.rotation = 0.0
-		$base_damagebox / HitBox.rotation = 0.0
+		$Action/SpecialEffect1.rotation = 0.0
+		$base_damagebox/HitBox.rotation = 0.0
 	get_action = "tkj"
 	is_using_skills = true
 	super.get_hit_data("tkj")
@@ -316,12 +346,13 @@ func ShovelTKJ():
 	await role_action_player.animation_finished
 	if tkj_awaken_mode != 0:
 		velocity = Vector2.ZERO
-		$Action / SpecialEffect1.rotation = 0.0
-		$base_damagebox / HitBox.rotation = 0.0
+		$Action/SpecialEffect1.rotation = 0.0
+		$base_damagebox/HitBox.rotation = 0.0
 	tkj_awaken_mode = 0
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
 
 func ShovelMMW():
 	self.Role1SkillInter["mmw"] = 3
@@ -336,6 +367,7 @@ func ShovelMMW():
 	is_attacking = false
 	is_using_skills = false
 
+
 func ShovelZQ():
 	self.Role1SkillInter["zq"] = 4.8
 	velocity.x = 0
@@ -349,6 +381,7 @@ func ShovelZQ():
 	is_attacking = false
 	is_using_skills = false
 
+
 func ShovelWDWW():
 	self.Role1SkillInter["wdww"] = 4.8
 	if is_on_floor():
@@ -361,6 +394,8 @@ func ShovelWDWW():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func ShovelBYLT():
 	self.Role1SkillInter["bylt"] = 6.0
 	velocity.x = 0
@@ -377,9 +412,8 @@ func ShovelBYLT():
 	is_attacking = false
 	is_using_skills = false
 
+
 func ShovelCMLY():
-
-
 	self.Role1SkillInter["cmly"] = 3.0
 	velocity.x = 0
 	get_action = "cmly"
@@ -398,6 +432,7 @@ func ShovelCMLY():
 	is_attacking = false
 	is_using_skills = false
 
+
 func ShovelMBYJ():
 	self.Role1SkillInter["lhsq"] = 4.8
 	velocity.x = 0
@@ -410,6 +445,8 @@ func ShovelMBYJ():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func ShovelJDZ():
 	self.Role1SkillInter["jdz"] = 6
 	velocity.x = 0
@@ -422,6 +459,8 @@ func ShovelJDZ():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func ShovelWDZT():
 	self.Role1SkillInter["wdzt"] = 4
 	if is_on_floor():
@@ -438,6 +477,8 @@ func ShovelWDZT():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
+
 func AddShovelEffect1():
 	var Position = Vector2()
 	if PlayerDir:
@@ -447,8 +488,12 @@ func AddShovelEffect1():
 	Global.addRoleBullet_(self.Bullet, Position + position, !PlayerDir, "Role4Bullet3", objattackDic["mmw"])
 	if _is_skill_awakened("mmw") and _is_skill_awaken_enabled("mmw"):
 		Global.addRoleBullet_(self.Bullet, Position + position, PlayerDir, "Role4Bullet3", objattackDic["mmw"])
+
+
 func ADDMBYJ():
 	Global.AddRole4Bullet(self.Bullet, self, position)
+
+
 func CallWDWW():
 	var Position: Vector2
 	if PlayerDir:
@@ -457,8 +502,10 @@ func CallWDWW():
 		Position = Vector2(-30, -30)
 	if WDWW != null:
 		WDWW.queue_free()
-	var target_limit: = WDWW_AWAKEN_TARGET_LIMIT if _is_skill_awakened("wdww") and _is_skill_awaken_enabled("wdww") else 1
-	var targets: = _get_wdww_targets(target_limit)
+	var target_limit := (
+		WDWW_AWAKEN_TARGET_LIMIT if _is_skill_awakened("wdww") and _is_skill_awaken_enabled("wdww") else 1
+	)
+	var targets := _get_wdww_targets(target_limit)
 	if targets.is_empty():
 		return
 	var Target: BaseMonster = targets[0]
@@ -468,6 +515,8 @@ func CallWDWW():
 	WDWW.SHp = Target.SHp * (0.25 + PlayerData.player_data["技能学习"]["技能9"]["等级"] * 0.02)
 	WDWW.Hp = WDWW.SHp
 	WDWW.set_linked_targets(targets)
+
+
 func CallJDZ():
 	if get_action == "bylt" or get_action == "cmly":
 		return
@@ -478,26 +527,34 @@ func CallJDZ():
 		JDZ.start_auto_free(10)
 		if _is_skill_awakened("jdz") and _is_skill_awaken_enabled("jdz"):
 			var level = get_parent().get_parent()
-			var effect: = ROLE4_POISON_ARRAY_AWAKEN_EFFECT.new()
+			var effect := ROLE4_POISON_ARRAY_AWAKEN_EFFECT.new()
 			effect.setup(self, PlayerDir, objattackDic["jdz"], JDZ)
 			level.add_child(effect)
+
+
 func AddWDZT():
 	for i in buff.get_children():
 		if i != null:
 			if i.BuffInfo["Name"] == "PoisionBody":
 				i.queue_free()
-	Global.AddBuff(self.buff, {
-	"Name": "PoisionBody", 
-	"AddTime": 99999 if _wdzt_awaken_enabled and _is_wdzt_awaken_active() else 6, 
-	"ReduceInterval": 0, 
-	"value": 0, 
-	"CanAdd": false, 
-	"CanRemove": false, 
-	"AttackKind": "", 
+	(
+		Global
+		. AddBuff(
+			self.buff,
+			{
+				"Name": "PoisionBody",
+				"AddTime": 99999 if _wdzt_awaken_enabled and _is_wdzt_awaken_active() else 6,
+				"ReduceInterval": 0,
+				"value": 0,
+				"CanAdd": false,
+				"CanRemove": false,
+				"AttackKind": "",
+			}
+		)
+	)
 
-})
 
-func _process_wdzt_awaken(delta: float) -> void :
+func _process_wdzt_awaken(delta: float) -> void:
 	if not _wdzt_awaken_enabled:
 		return
 	if IsDeath or not _is_wdzt_awaken_active():
@@ -507,38 +564,46 @@ func _process_wdzt_awaken(delta: float) -> void :
 	if _wdzt_awaken_mp_elapsed < WDZT_AWAKEN_MP_INTERVAL:
 		return
 	_wdzt_awaken_mp_elapsed -= WDZT_AWAKEN_MP_INTERVAL
-	var mp_cost: = int(get_need_mp(WDZT_SKILL_ID, false))
+	var mp_cost := int(get_need_mp(WDZT_SKILL_ID, false))
 	if RoleProp.roleprop.Mp < mp_cost:
 		_disable_wdzt_awaken()
 		return
 	reduce_Mp(mp_cost)
 
-func _disable_wdzt_awaken() -> void :
+
+func _disable_wdzt_awaken() -> void:
 	if not _wdzt_awaken_enabled:
 		return
 	_wdzt_awaken_enabled = false
 	_wdzt_awaken_mp_elapsed = 0.0
 	for child in buff.get_children():
-		if child != null and child.get("BuffInfo") is Dictionary and str(child.BuffInfo.get("Name", "")) == "PoisionBody":
+		if (
+			child != null
+			and child.get("BuffInfo") is Dictionary
+			and str(child.BuffInfo.get("Name", "")) == "PoisionBody"
+		):
 			child.queue_free()
 	IsWDZT = false
+
 
 func _is_wdzt_awaken_active() -> bool:
 	return _is_skill_awakened(WDZT_SKILL_ID) and _is_skill_awaken_enabled(WDZT_SKILL_ID)
 
-func _add_lhsq_awaken_stack() -> void :
+
+func _add_lhsq_awaken_stack() -> void:
 	if not _is_lhsq_awaken_active():
 		return
 	lhsq_awaken_time_left = LHSQ_AWAKEN_DURATION
 	if lhsq_awaken_stacks >= LHSQ_AWAKEN_MAX_STACKS:
 		return
-	var old_max_hp: = int(RoleProp.roleprop.SHp)
+	var old_max_hp := int(RoleProp.roleprop.SHp)
 	lhsq_awaken_stacks += 1
 	_refresh_lhsq_awaken_stats()
 	RoleProp.roleprop.Hp += maxi(0, int(RoleProp.roleprop.SHp) - old_max_hp)
 	RoleProp.check_Hp()
 
-func _process_lhsq_awaken(delta: float) -> void :
+
+func _process_lhsq_awaken(delta: float) -> void:
 	if lhsq_awaken_stacks <= 0:
 		return
 	if IsDeath or not _is_lhsq_awaken_active():
@@ -548,13 +613,15 @@ func _process_lhsq_awaken(delta: float) -> void :
 	if lhsq_awaken_time_left <= 0.0:
 		_clear_lhsq_awaken_bonus()
 
-func _refresh_lhsq_awaken_stats() -> void :
-	var bonus_rate: = float(lhsq_awaken_stacks) * LHSQ_AWAKEN_BONUS_PER_STACK
+
+func _refresh_lhsq_awaken_stats() -> void:
+	var bonus_rate := float(lhsq_awaken_stacks) * LHSQ_AWAKEN_BONUS_PER_STACK
 	temp_max_hp_bonus_rate = bonus_rate
 	temp_power_bonus_rate = bonus_rate
 	RoleProp.get_last_prop()
 
-func _clear_lhsq_awaken_bonus() -> void :
+
+func _clear_lhsq_awaken_bonus() -> void:
 	lhsq_awaken_stacks = 0
 	lhsq_awaken_time_left = 0.0
 	temp_max_hp_bonus_rate = 0.0
@@ -562,17 +629,22 @@ func _clear_lhsq_awaken_bonus() -> void :
 	RoleProp.get_last_prop()
 	RoleProp.check_Hp()
 
+
 func _is_lhsq_awaken_active() -> bool:
 	return _is_skill_awakened("lhsq") and _is_skill_awaken_enabled("lhsq")
+
 
 func _is_any_skill_action_pressed() -> bool:
 	for action_name in SKILL_INPUT_ACTIONS:
 		if Input.is_action_pressed(action_name):
 			return true
 	return false
+
+
 func GetMonster():
-	var targets: = _get_wdww_targets(1)
+	var targets := _get_wdww_targets(1)
 	return targets[0] if not targets.is_empty() else null
+
 
 func _get_wdww_targets(limit: int) -> Array[BaseMonster]:
 	var targets: Array[BaseMonster] = []
@@ -586,8 +658,10 @@ func _get_wdww_targets(limit: int) -> Array[BaseMonster]:
 		targets.resize(limit)
 	return targets
 
+
 func _sort_wdww_targets_by_hp(left: BaseMonster, right: BaseMonster) -> bool:
 	return left.Hp > right.Hp
+
 
 func _is_valid_wdww_target(target: Node) -> bool:
 	if not _is_valid_role4_skill_target(target):
@@ -597,6 +671,7 @@ func _is_valid_wdww_target(target: Node) -> bool:
 	if target is Monster49 or target is Monster50:
 		return not target.is_stop
 	return true
+
 
 func _is_valid_role4_skill_target(target: Node) -> bool:
 	if target == null:
@@ -612,6 +687,8 @@ func _is_valid_role4_skill_target(target: Node) -> bool:
 	if target.get_meta("pet_tiger_unit", false) or target.get_meta("is_summon", false):
 		return false
 	return true
+
+
 func ADDMusic(num: int):
 	match int(num):
 		1:
@@ -652,21 +729,30 @@ func ADDMusic(num: int):
 			Global.addSound_(self, "res://Music/Hero/Role4/wdww.mp3")
 		19:
 			Global.addSound_(self, "res://Music/Hero/Role4/effect6_repeat.mp3")
-func _on_nor_mal_hit_interv_timeout() -> void :
+
+
+func _on_nor_mal_hit_interv_timeout() -> void:
 	Interv -= 1
+
+
 func ToTop():
 	if PlayerDir:
 		velocity = Vector2(-750, -800)
 	else:
 		velocity = Vector2(750, -800)
-func RemoveSpeed():
 
+
+func RemoveSpeed():
 	velocity = Vector2(0, 0)
+
+
 func Rush():
 	if PlayerDir:
 		velocity.x = 600
 	else:
 		velocity.x = -600
+
+
 func FlyTop():
 	if tkj_awaken_mode == 1:
 		velocity.y = 0.0
@@ -676,13 +762,17 @@ func FlyTop():
 		return
 	velocity.y = 0
 	velocity.y = -600
+
+
 func ToTop2():
 	IsFly = true
 	if PlayerDir:
 		velocity = Vector2(0, -1800)
 	else:
 		velocity = Vector2(0, -1800)
-func _on_hurt_box_area_entered(area: Area2D) -> void :
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if IsDeath or needProtect:
 		return
 	IsInSky = false
@@ -721,16 +811,19 @@ func _on_hurt_box_area_entered(area: Area2D) -> void :
 			Global.AddMonster141Aura(self.Bullet, self.position, MonsterTarget)
 		if self.IsWDZT:
 			if Global.CheckWD(MonsterTarget) < 7:
-				Global.AddBuff(MonsterTarget.buff, {
-				"Name": "Voodoo", 
-				"AddTime": 5, 
-				"ReduceInterval": 1, 
-				"value": int(RoleProp.roleprop.power * 0.1), 
-				"CanAdd": true, 
-				"CanRemove": false, 
-				"AttackKind": "real", 
-				"DeBuff": true
-			})
+				Global.AddBuff(
+					MonsterTarget.buff,
+					{
+						"Name": "Voodoo",
+						"AddTime": 5,
+						"ReduceInterval": 1,
+						"value": int(RoleProp.roleprop.power * 0.1),
+						"CanAdd": true,
+						"CanRemove": false,
+						"AttackKind": "real",
+						"DeBuff": true
+					}
+				)
 	Global.TotalRoleHurt += int(last_hit)
 	if not is_miss:
 		Global.addSound_(self, "res://Music/Hero/68_Role3_beAttack.mp3")
@@ -745,18 +838,24 @@ func _on_hurt_box_area_entered(area: Area2D) -> void :
 		state_behit()
 	reduce_hp(last_hit, MonsterTarget, Target)
 
-func _prepare_hit_reaction() -> void :
+
+func _prepare_hit_reaction() -> void:
 	IsFly = false
+
 
 func Fall():
 	IsFly = false
-func _on_hit_box_area_entered(area: Area2D) -> void :
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
 	if get_action == "lhsq":
 		var mm = area.get_parent().get_parent()
 		var CureValue: float = 1
-		CureValue += 0.3 * float((RoleProp.roleprop.SHp - RoleProp.roleprop.Hp)) / float(RoleProp.roleprop.SHp)
+		CureValue += 0.3 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp)
 		if mm is BaseMonster and not _is_summon_or_pet_target(mm):
-			var CurePower = objattackDic["lhsq"]["power"] * (0.2 + (PlayerData.player_data["技能学习"]["技能7"]["等级"]) * 0.03) * CureValue
+			var CurePower = (
+				objattackDic["lhsq"]["power"] * (0.2 + (PlayerData.player_data["技能学习"]["技能7"]["等级"]) * 0.03) * CureValue
+			)
 			cure_Hp(CurePower)
 			_add_lhsq_awaken_stack()
 	if objattackDic.has(get_action):
@@ -770,9 +869,11 @@ func _on_hit_box_area_entered(area: Area2D) -> void :
 					else:
 						Global.AddBuff(Monster.buff, objattackDic[get_action]["addeffect"])
 
+
 func _is_skill_awakened(skill_id: String) -> bool:
 	var awaken_data: Variant = PlayerData.player_data.get("技能觉醒", {})
 	return awaken_data is Dictionary and bool(awaken_data.get(skill_id, false))
+
 
 func _is_skill_awaken_enabled(skill_id: String) -> bool:
 	var enabled_data: Variant = PlayerData.player_data.get("技能觉醒启用", {})

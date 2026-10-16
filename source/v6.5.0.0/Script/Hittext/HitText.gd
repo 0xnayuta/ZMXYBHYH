@@ -1,16 +1,15 @@
 extends Label
 @onready var show_text_player: AnimationPlayer = $show_text_player
 @onready var hit_text: Label = $"."
-enum {
-	show, 
-	remove
-}
+enum { show, remove }
 var is_miss
 var is_crit
 var state = show
 var show_text: int
 var show_lx: String
-func _ready() -> void :
+
+
+func _ready() -> void:
 	if is_miss:
 		hit_text.text = "Miss"
 		show_text_player.play("miss")
@@ -28,6 +27,7 @@ func _ready() -> void :
 				else:
 					hit_text.text = str(show_text)
 	show_()
+
 
 func show_():
 	if show_lx == "physics":

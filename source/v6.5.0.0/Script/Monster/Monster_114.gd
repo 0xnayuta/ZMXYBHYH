@@ -1,6 +1,8 @@
 extends BaseMonster
 class_name Monster114
 var IsCombo: bool
+
+
 func monster_114():
 	self.is_boss = true
 	self.my_mr_name = "太上老君"
@@ -27,71 +29,75 @@ func monster_114():
 	self.add_exp = 300
 	self.fall_coin = 335
 	self.objattackDic["hit1"] = {
-		"power": 500, 
-		"hurtBack": [-5, -9], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 500,
+		"hurtBack": [-5, -9],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 700, 
-		"hurtBack": [-2, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "Immobilize", 
-			"AddTime": 5, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 700,
+		"hurtBack": [-2, -1],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "Immobilize",
+			"AddTime": 5,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit3"] = {
-		"power": 600, 
-		"hurtBack": [-2, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 0.3, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 600,
+		"hurtBack": [-2, -1],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 0.3,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit4"] = {
-		"power": 800, 
-		"hurtBack": [-2, -9], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "Fire", 
-			"AddTime": 5, 
-			"ReduceInterval": 1, 
-			"value": 80, 
-			"AttackKind": "magic", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 800,
+		"hurtBack": [-2, -9],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "Fire",
+			"AddTime": 5,
+			"ReduceInterval": 1,
+			"value": 80,
+			"AttackKind": "magic",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "doushuaiziyanzzs", 
-			"value": 1
-		}, 
+		{"name": "doushuaiziyanzzs", "value": 1},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_114()
 	Skill_1_CD = randi_range(4, 7)
 	Skill_2_CD = randi_range(6, 8)
 	Skill_3_CD = randi_range(10, 15)
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -117,6 +123,8 @@ func Monster_Intelligence():
 					do_hit_2()
 				if Skill_1_CD <= 0:
 					do_hit_1()
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(15, 18)
@@ -127,6 +135,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = randi_range(10, 12)
@@ -137,6 +147,8 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_3():
 	super.to_hero()
 	Skill_3_CD = randi_range(15, 17)
@@ -147,11 +159,19 @@ func do_hit_3():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func CallBullet():
 	if self.MonsterDirection:
-		Global.add_Bullet("Monster114Bullet1", self.bullet, false, 1, Vector2(65, 50) + position, "hit3", self.objattackDic["hit3"])
+		Global.add_Bullet(
+			"Monster114Bullet1", self.bullet, false, 1, Vector2(65, 50) + position, "hit3", self.objattackDic["hit3"]
+		)
 	else:
-		Global.add_Bullet("Monster114Bullet1", self.bullet, false, 1, Vector2(-65, 50) + position, "hit3", self.objattackDic["hit3"])
+		Global.add_Bullet(
+			"Monster114Bullet1", self.bullet, false, 1, Vector2(-65, 50) + position, "hit3", self.objattackDic["hit3"]
+		)
+
+
 func CallBullet2():
 	var PositionList1 = [Vector2(position.x + 150, 500), Vector2(position.x + 0, 500), Vector2(position.x - 150, 500)]
 	var PositionList2 = [Vector2(position.x + 300, 500), Vector2(position.x - 300, 500)]

@@ -9,6 +9,7 @@ var FSList = []
 var ReduceCount: int = 0
 var TotalHit: int = 0
 
+
 func monster_63():
 	self.is_boss = true
 	self.my_mr_name = "五毒·卞城王"
@@ -36,38 +37,40 @@ func monster_63():
 	self.fall_coin = 0
 
 	self.objattackDic["hit1"] = {
-		"power": 300 + int(RoleProp.baseroleprop.Level * 8), 
-		"hurtBack": [0, 0], 
-		"attackKind": "physics", 
+		"power": 300 + int(RoleProp.baseroleprop.Level * 8),
+		"hurtBack": [0, 0],
+		"attackKind": "physics",
 		"HitProtect": 6
 	}
 
 	self.objattackDic["hit2"] = {
-		"power": 100 + int(RoleProp.baseroleprop.Level * 12), 
-		"hurtBack": [-10, 0], 
-		"attackKind": "magic", 
-		"HitProtect": 4, 
-		"addeffect": {
-			"Name": "Boundground", 
-			"AddTime": 4, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 100 + int(RoleProp.baseroleprop.Level * 12),
+		"hurtBack": [-10, 0],
+		"attackKind": "magic",
+		"HitProtect": 4,
+		"addeffect":
+		{
+			"Name": "Boundground",
+			"AddTime": 4,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit4"] = {
-		"power": 100 + int(RoleProp.baseroleprop.Level * 10), 
-		"hurtBack": [20, -10], 
-		"attackKind": "magic", 
+		"power": 100 + int(RoleProp.baseroleprop.Level * 10),
+		"hurtBack": [20, -10],
+		"attackKind": "magic",
 	}
 	self.fall_pro = 0.15
 	self.fall_list = [{"name": "xzyj", "value": 1}]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_63()
 	Skill_1_CD = 10
@@ -75,6 +78,7 @@ func _ready() -> void :
 	Skill_3_CD = 0
 	Skill_4_CD = 15
 	Should_FS = false
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -86,7 +90,6 @@ func Monster_Intelligence():
 			Hurtcount -= 1
 		if TotalHit > 0:
 			TotalHit -= 1
-
 
 	if not Is_Fs and TotalHit >= randi_range(4, 8):
 		if get_Player != null:
@@ -123,6 +126,7 @@ func Monster_Intelligence():
 				else:
 					stop_move()
 
+
 func do_hit_1():
 	Skill_1_CD = randi_range(20, 30)
 	super.to_hero()
@@ -134,8 +138,10 @@ func do_hit_1():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_4():
-	if Skill_4_CD > 0 or is_attacking: return
+	if Skill_4_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_4_CD = randi_range(25, 30)
 	hit_name = "hit4"
@@ -145,6 +151,7 @@ func do_hit_4():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
 
 func move_player_to_boss(movetime: float = 0.0):
 	var player = get_Player
@@ -175,14 +182,13 @@ func move_player_to_boss(movetime: float = 0.0):
 
 		await get_tree().process_frame
 
-func _on_hurt_box_area_entered(area: Area2D) -> void :
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
 	super._on_hurt_box_area_entered(area)
 	Hurtcount += 1
 
-
 	if not Is_Fs:
 		TotalHit += 1
-
 
 	if not Is_Fs and get_parent().get_children().size() < 5:
 		if Hurtcount >= 40:
@@ -190,14 +196,16 @@ func _on_hurt_box_area_entered(area: Area2D) -> void :
 				Hurtcount = 0
 				Should_FS = true
 
+
 func CallFS():
 	if _fs_queued:
 		return
 	_fs_queued = true
 	call_deferred("_call_fs_deferred")
 
-func _call_fs_deferred() -> void :
-	var tree: = get_tree()
+
+func _call_fs_deferred() -> void:
+	var tree := get_tree()
 	if tree == null:
 		return
 	await tree.process_frame
@@ -245,6 +253,7 @@ func _call_fs_deferred() -> void :
 
 	Should_FS = false
 
+
 func CallBullet2():
 	var Position
 	for i in range(randi_range(6, 10)):
@@ -252,14 +261,23 @@ func CallBullet2():
 			Position = Vector2(-100, randi_range(-65, 35))
 		else:
 			Position = Vector2(100, randi_range(-65, 35))
-		Global.add_Bullet("Monster63Bullet1", self.bullet, !MonsterDirection, 1, Position + position, "hit2", self.objattackDic["hit2"])
+		Global.add_Bullet(
+			"Monster63Bullet1",
+			self.bullet,
+			!MonsterDirection,
+			1,
+			Position + position,
+			"hit2",
+			self.objattackDic["hit2"]
+		)
 		await get_tree().create_timer(0.1, false).timeout
 
-func _on_death_timeout() -> void :
+
+func _on_death_timeout() -> void:
 	if Is_Fs:
 		self.Hp = -990
 
-func _on_hit_box_area_exited(_area: Area2D) -> void :
 
+func _on_hit_box_area_exited(_area: Area2D) -> void:
 	if not Is_Fs:
 		TotalHit += 1

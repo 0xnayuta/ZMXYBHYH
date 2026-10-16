@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster92
+
+
 func monster_88():
 	self.is_boss = false
 	self.my_mr_name = "蜈蚣精"
@@ -26,43 +28,35 @@ func monster_88():
 	self.add_exp = 170
 	self.fall_coin = 120
 	self.objattackDic["hit1"] = {
-		"power": 300, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "magic", 
-		"HitProtect": 20, 
+		"power": 300,
+		"hurtBack": [-8, -12],
+		"attackKind": "magic",
+		"HitProtect": 20,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 200, 
-		"hurtBack": [-1, -1], 
-		"attackKind": "physics", 
-		"HitProtect": 1, 
+		"power": 200,
+		"hurtBack": [-1, -1],
+		"attackKind": "physics",
+		"HitProtect": 1,
 	}
 	self.fall_pro = 0.3
 	self.fall_list = [
-		{
-			"name": "sichou", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "xuantie", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "tanmu", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "sichou", "value": randi_range(1, 2)},
+		{"name": "xuantie", "value": randi_range(1, 2)},
+		{"name": "tanmu", "value": randi_range(1, 2)},
 	]
 	self.fall_stone_pro = 0.1
 	self.fall_stone = [
-		{
-			"name": "smlp", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "smlp", "value": randi_range(1, 2)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_88()
 	Skill_1_CD = randi_range(5, 8)
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(8, 12)
@@ -73,6 +67,7 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:

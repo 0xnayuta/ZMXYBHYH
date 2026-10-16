@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster116
+
+
 func monster_116():
 	self.is_Fly = true
 	self.is_boss = true
@@ -26,19 +28,19 @@ func monster_116():
 	self.self_rhp = 0
 	self.add_exp = 15
 	self.fall_coin = 4
-	self.objattackDic["hit1"] = {
-		"power": 400, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "real"
-	}
+	self.objattackDic["hit1"] = {"power": 400, "hurtBack": [-4, -9], "attackKind": "real"}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_116()
 	Skill_1_CD = 10
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -57,6 +59,8 @@ func Monster_Intelligence():
 				if count % 60 == 0:
 					if randi_range(0, 100) < attackDesire:
 						attack_target()
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = 10
@@ -67,10 +71,16 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func CallBullet():
 	var Bullet
-	Bullet = Global.add_Bullet("Monster116Bullet", self.bullet, false, 2.5, Vector2(0, 0) + position, "hit1", self.objattackDic["hit1"])
+	Bullet = Global.add_Bullet(
+		"Monster116Bullet", self.bullet, false, 2.5, Vector2(0, 0) + position, "hit1", self.objattackDic["hit1"]
+	)
 	Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+
+
 func MonsterCureHp():
 	var BaseLevel_ = get_parent().get_parent() as BaseLevel
 	for i in BaseLevel_.monster.get_children():

@@ -3,6 +3,8 @@ class_name Monster145
 var IsSky = false
 var RoundList = []
 var Rolelevel = RoleProp.baseroleprop.Level
+
+
 func monster_142():
 	self.rush_speed = 400
 	self.is_boss = true
@@ -31,58 +33,58 @@ func monster_142():
 	self.fall_coin = 1
 	self.ebol = 0
 	self.objattackDic["hit1"] = {
-		"power": 100 + int(RoleProp.baseroleprop.Level * 8), 
-		"hurtBack": [-8, -12], 
-		"attackKind": "magic", 
-		"HitProtect": 0, 
+		"power": 100 + int(RoleProp.baseroleprop.Level * 8),
+		"hurtBack": [-8, -12],
+		"attackKind": "magic",
+		"HitProtect": 0,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 300 + int(RoleProp.baseroleprop.Level * 12), 
-		"hurtBack": [-1, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 0, 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 5, 
-			"ReduceInterval": 1, 
-			"value": 0.4, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false, 
+		"power": 300 + int(RoleProp.baseroleprop.Level * 12),
+		"hurtBack": [-1, -1],
+		"attackKind": "magic",
+		"HitProtect": 0,
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 5,
+			"ReduceInterval": 1,
+			"value": 0.4,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanRemove": false,
 		}
 	}
 	self.objattackDic["hit3"] = {
-		"power": 500 + int(RoleProp.baseroleprop.Level * 15), 
-		"hurtBack": [0, 0], 
-		"attackKind": "real", 
-		"HitProtect": 0, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 6, 
-			"ReduceInterval": 0, 
-			"value": 1, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false, 
+		"power": 500 + int(RoleProp.baseroleprop.Level * 15),
+		"hurtBack": [0, 0],
+		"attackKind": "real",
+		"HitProtect": 0,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 6,
+			"ReduceInterval": 0,
+			"value": 1,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanRemove": false,
 		}
 	}
 
-
 	self.fall_pro = 1
-	self.fall_list = [
-		{
-			"name": "ptsryx", 
-			"value": 0
-		}
-	]
+	self.fall_list = [{"name": "ptsryx", "value": 0}]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_142()
 	Skill_1_CD = 2
 	Skill_2_CD = 5
 	Skill_3_CD = 7
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -109,6 +111,7 @@ func Monster_Intelligence():
 					if randi_range(0, 100) < attackDesire:
 						attack_target()
 
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = 15
@@ -119,6 +122,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = 20
@@ -129,37 +134,83 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func CallBullet1():
 	var bb
 	var sp = 1 + Rolelevel * 0.015
 	if self.MonsterDirection:
-		bb = Global.add_Bullet("Monster145Bullet1", self.bullet, false, sp, Vector2(20, 0) + position, "hit1", self.objattackDic["hit1"])
+		bb = Global.add_Bullet(
+			"Monster145Bullet1", self.bullet, false, sp, Vector2(20, 0) + position, "hit1", self.objattackDic["hit1"]
+		)
 	else:
-		bb = Global.add_Bullet("Monster145Bullet1", self.bullet, false, sp, Vector2(-20, 0) + position, "hit1", self.objattackDic["hit1"])
+		bb = Global.add_Bullet(
+			"Monster145Bullet1", self.bullet, false, sp, Vector2(-20, 0) + position, "hit1", self.objattackDic["hit1"]
+		)
 	bb.scale = Vector2(2, 2)
 	bb.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+
+
 func CallBullet2():
 	await get_tree().create_timer(2, false).timeout
 	var sp = 0.5 + Rolelevel * 0.01
 	for i in range(5):
 		var Bullet
 		var Position = Vector2(position.x + randi_range(-450, 500), -800)
-		Bullet = Global.add_Bullet("Monster145Bullet2", self.bullet, false, sp, Position, "hit2", self.objattackDic["hit2"])
+		Bullet = Global.add_Bullet(
+			"Monster145Bullet2", self.bullet, false, sp, Position, "hit2", self.objattackDic["hit2"]
+		)
 		Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 		await get_tree().create_timer(0.5, false).timeout
+
+
 func CallBullet3():
 	var sp = 1 + Rolelevel * 0.02
 	var bb
 	if self.MonsterDirection:
-		bb = Global.add_Bullet("Monster145Bullet2", self.bullet, !self.MonsterDirection, sp, Vector2(20, 0) + position, "hit2", self.objattackDic["hit2"])
+		bb = Global.add_Bullet(
+			"Monster145Bullet2",
+			self.bullet,
+			!self.MonsterDirection,
+			sp,
+			Vector2(20, 0) + position,
+			"hit2",
+			self.objattackDic["hit2"]
+		)
 		bb.rotation_degrees = -45
 	else:
-		bb = Global.add_Bullet("Monster145Bullet2", self.bullet, !self.MonsterDirection, sp, Vector2(-20, 0) + position, "hit2", self.objattackDic["hit2"])
+		bb = Global.add_Bullet(
+			"Monster145Bullet2",
+			self.bullet,
+			!self.MonsterDirection,
+			sp,
+			Vector2(-20, 0) + position,
+			"hit2",
+			self.objattackDic["hit2"]
+		)
 		bb.rotation_degrees = 45
+
+
 func CallBullet4():
 	var sp = 0.5 + Rolelevel * 0.01
 	var bb
 	if self.MonsterDirection:
-		bb = Global.add_Bullet("Monster145Bullet3", self.bullet, !self.MonsterDirection, sp, Vector2(20, 0) + position, "hit3", self.objattackDic["hit3"])
+		bb = Global.add_Bullet(
+			"Monster145Bullet3",
+			self.bullet,
+			!self.MonsterDirection,
+			sp,
+			Vector2(20, 0) + position,
+			"hit3",
+			self.objattackDic["hit3"]
+		)
 	else:
-		bb = Global.add_Bullet("Monster145Bullet3", self.bullet, !self.MonsterDirection, sp, Vector2(-20, 0) + position, "hit3", self.objattackDic["hit3"])
+		bb = Global.add_Bullet(
+			"Monster145Bullet3",
+			self.bullet,
+			!self.MonsterDirection,
+			sp,
+			Vector2(-20, 0) + position,
+			"hit3",
+			self.objattackDic["hit3"]
+		)

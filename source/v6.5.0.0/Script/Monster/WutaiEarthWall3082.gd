@@ -1,20 +1,20 @@
 extends BaseMonster
 class_name WutaiEarthWall3082
 
-const PROJECTILE_SCRIPT: = preload("res://Script/Monster/WutaiMinghaiProjectile.gd")
-const ROOT: = "res://Art/Monster/SwfPng/3082"
-const SOURCE_FPS: = 30.0
-const WALL_MOVE_DISTANCE: = 200.0
-const WALL_COLLISION_CENTER_Y: = 500.0
-const FIRST_ARROW_DELAY: = 0.1
-const ARROW_INTERVAL: = 1.0
-const ARROW_RELOAD_TIME: = 5.0
-const ARROW_Y_OFFSETS: = [-86.0, -180.0, -264.0, -354.0]
-const WALL_GROUND_SHIFT_Y: = 125.975
-const WALL_VISUAL_OFFSET: = Vector2(-1.1, -71.0)
-const WALL_PROJECTILE_HIT: = "wall_hit1"
+const PROJECTILE_SCRIPT := preload("res://Script/Monster/WutaiMinghaiProjectile.gd")
+const ROOT := "res://Art/Monster/SwfPng/3082"
+const SOURCE_FPS := 30.0
+const WALL_MOVE_DISTANCE := 200.0
+const WALL_COLLISION_CENTER_Y := 500.0
+const FIRST_ARROW_DELAY := 0.1
+const ARROW_INTERVAL := 1.0
+const ARROW_RELOAD_TIME := 5.0
+const ARROW_Y_OFFSETS := [-86.0, -180.0, -264.0, -354.0]
+const WALL_GROUND_SHIFT_Y := 125.975
+const WALL_VISUAL_OFFSET := Vector2(-1.1, -71.0)
+const WALL_PROJECTILE_HIT := "wall_hit1"
 
-@export var monster_kind: = 3082
+@export var monster_kind := 3082
 
 static var _frame_path_cache: Dictionary = {}
 
@@ -22,16 +22,17 @@ var _runtime_config: Dictionary = {}
 var _body_stream: StreamedPngEffect
 var _arrow_streams: Array[StreamedPngEffect] = []
 var _source_boss: BaseMonster
-var _move_direction: = 1.0
-var _spawn_x: = 0.0
-var _configured: = false
-var _shooting: = false
-var _volley_serial: = 0
-var _next_volley_msec: = 0
-var _projectile_speed: = 120.0
-var _projectile_lifetime: = 5.0
+var _move_direction := 1.0
+var _spawn_x := 0.0
+var _configured := false
+var _shooting := false
+var _volley_serial := 0
+var _next_volley_msec := 0
+var _projectile_speed := 120.0
+var _projectile_lifetime := 5.0
 
-func _ready() -> void :
+
+func _ready() -> void:
 	set_meta("is_summon", true)
 	NoGrav = true
 	IsSuperArmor = true
@@ -49,7 +50,8 @@ func _ready() -> void :
 	if _configured:
 		_apply_direction()
 
-func configure_earth_wall(source_boss: BaseMonster, direction: float) -> void :
+
+func configure_earth_wall(source_boss: BaseMonster, direction: float) -> void:
 	_source_boss = source_boss
 	_move_direction = signf(direction)
 	if is_zero_approx(_move_direction):
@@ -60,8 +62,9 @@ func configure_earth_wall(source_boss: BaseMonster, direction: float) -> void :
 	if is_node_ready():
 		_apply_direction()
 
+
 func _resolve_runtime_config() -> Dictionary:
-	var level_node: = get_level_node()
+	var level_node := get_level_node()
 	if level_node != null and level_node.has_method("get_level_monster_config"):
 		var config: Variant = level_node.call("get_level_monster_config", monster_kind)
 		if config is Dictionary and not config.is_empty():
@@ -69,7 +72,8 @@ func _resolve_runtime_config() -> Dictionary:
 	push_error("WutaiEarthWall3082 requires level monster config for 3082")
 	return {}
 
-func _configure_summon(config: Dictionary) -> void :
+
+func _configure_summon(config: Dictionary) -> void:
 	my_mr_name = str(config.get("name", "土之祖巫"))
 	level = int(config["level"])
 	attack_in = int(config["attack"])
@@ -102,45 +106,45 @@ func _configure_summon(config: Dictionary) -> void :
 	for attack_name: String in attacks:
 		var attack: Dictionary = attacks[attack_name]
 		objattackDic[attack_name] = {
-			"power": roundi(float(attack_in) * float(attack["multiplier"])), 
-			"hurtBack": Array(attack["hurt_back"]).duplicate(), 
-			"attackKind": str(attack["kind"]), 
-			"HitProtect": int(attack["protect"]), 
+			"power": roundi(float(attack_in) * float(attack["multiplier"])),
+			"hurtBack": Array(attack["hurt_back"]).duplicate(),
+			"attackKind": str(attack["kind"]),
+			"HitProtect": int(attack["protect"]),
 		}
 
-static func prewarm_frames() -> void :
+
+static func prewarm_frames() -> void:
 	await StreamedPngEffect.prewarm_effect_roots([ROOT], 2)
 
-static func prewarm_effects() -> void :
+
+static func prewarm_effects() -> void:
 	await prewarm_frames()
 
-func _build_animations() -> void :
+
+func _build_animations() -> void:
 	if mr_player.has_animation_library(&""):
 		mr_player.remove_animation_library(&"")
-	var animation: = Animation.new()
+	var animation := Animation.new()
 	animation.length = 15.0 / SOURCE_FPS
 	animation.loop_mode = Animation.LOOP_LINEAR
-	var track: = animation.add_track(Animation.TYPE_METHOD)
+	var track := animation.add_track(Animation.TYPE_METHOD)
 	animation.track_set_path(track, NodePath("."))
 	animation.track_insert_key(track, 0.0, {"method": &"_show_wall", "args": []})
-	var library: = AnimationLibrary.new()
+	var library := AnimationLibrary.new()
 	library.add_animation(&"wait", animation)
 	mr_player.add_animation_library(&"", library)
 
-func _show_wall() -> void :
+
+func _show_wall() -> void:
 	_clear_visuals()
 	_body_stream = _create_stream("wall", 15, WALL_VISUAL_OFFSET, true)
 	for y_offset in ARROW_Y_OFFSETS:
-		_arrow_streams.append(_create_stream(
-			"arrow", 
-			1, 
-			Vector2(77.0, float(y_offset) + WALL_GROUND_SHIFT_Y), 
-			true
-		))
+		_arrow_streams.append(_create_stream("arrow", 1, Vector2(77.0, float(y_offset) + WALL_GROUND_SHIFT_Y), true))
 	_apply_direction()
 
+
 func _create_stream(folder: String, count: int, offset: Vector2, looped: bool) -> StreamedPngEffect:
-	var stream: = StreamedPngEffect.new()
+	var stream := StreamedPngEffect.new()
 	stream.frame_paths = _frame_paths(folder, count)
 	stream.fps = SOURCE_FPS
 	stream.loop_animation = looped
@@ -150,8 +154,9 @@ func _create_stream(folder: String, count: int, offset: Vector2, looped: bool) -
 	monster_dir.add_child(stream)
 	return stream
 
+
 static func _frame_paths(folder: String, count: int) -> Array[String]:
-	var cache_key: = "%s|%d" % [folder, count]
+	var cache_key := "%s|%d" % [folder, count]
 	if _frame_path_cache.has(cache_key):
 		var cached: Array[String] = _frame_path_cache[cache_key]
 		return cached
@@ -161,49 +166,49 @@ static func _frame_paths(folder: String, count: int) -> Array[String]:
 	_frame_path_cache[cache_key] = paths
 	return paths
 
-func _apply_direction() -> void :
+
+func _apply_direction() -> void:
 	if _body_stream != null and is_instance_valid(_body_stream):
 		_body_stream.flip_h = _move_direction < 0.0
 		_body_stream.position.x = -1.1 * _move_direction
 	for index in range(_arrow_streams.size()):
-		var arrow: = _arrow_streams[index]
+		var arrow := _arrow_streams[index]
 		if arrow == null or not is_instance_valid(arrow):
 			continue
 		arrow.flip_h = _move_direction < 0.0
-		arrow.position = Vector2(
-			77.0 * _move_direction, 
-			float(ARROW_Y_OFFSETS[index]) + WALL_GROUND_SHIFT_Y
-		)
+		arrow.position = Vector2(77.0 * _move_direction, float(ARROW_Y_OFFSETS[index]) + WALL_GROUND_SHIFT_Y)
 	monster_dir.scale.x = 1.0
 	base_damage_box.scale.x = 1.0
 
-func Monster_Intelligence() -> void :
+
+func Monster_Intelligence() -> void:
 	if not _configured or death():
 		velocity = Vector2.ZERO
 		return
-	var target_x: = _spawn_x + WALL_MOVE_DISTANCE * _move_direction
-	var remaining: = (target_x - position.x) * _move_direction
+	var target_x := _spawn_x + WALL_MOVE_DISTANCE * _move_direction
+	var remaining := (target_x - position.x) * _move_direction
 	if remaining > 0.0:
 		velocity = Vector2(speed * 10.0 * _move_direction, 0.0)
 	else:
 		position.x = target_x
 		velocity = Vector2.ZERO
-	var now: = Time.get_ticks_msec()
+	var now := Time.get_ticks_msec()
 	if not _shooting and now >= _next_volley_msec:
 		_begin_arrow_volley()
 
-func _begin_arrow_volley() -> void :
+
+func _begin_arrow_volley() -> void:
 	if _shooting or death():
 		return
 	_shooting = true
 	_volley_serial += 1
-	var serial: = _volley_serial
+	var serial := _volley_serial
 	_next_volley_msec = Time.get_ticks_msec() + randi_range(6000, 12000)
 	await get_tree().create_timer(FIRST_ARROW_DELAY, false).timeout
 	for arrow_index in range(_arrow_streams.size()):
 		if not is_instance_valid(self) or death() or serial != _volley_serial:
 			return
-		var arrow: = _arrow_streams[arrow_index]
+		var arrow := _arrow_streams[arrow_index]
 		if arrow != null and is_instance_valid(arrow):
 			arrow.visible = false
 		_fire_arrow(arrow_index)
@@ -213,53 +218,63 @@ func _begin_arrow_volley() -> void :
 	if is_instance_valid(self) and serial == _volley_serial:
 		_shooting = false
 
-func _restore_arrow_later(arrow_index: int, serial: int) -> void :
+
+func _restore_arrow_later(arrow_index: int, serial: int) -> void:
 	await get_tree().create_timer(ARROW_RELOAD_TIME, false).timeout
 	if not is_instance_valid(self) or death() or serial != _volley_serial:
 		return
 	if arrow_index < 0 or arrow_index >= _arrow_streams.size():
 		return
-	var arrow: = _arrow_streams[arrow_index]
+	var arrow := _arrow_streams[arrow_index]
 	if arrow != null and is_instance_valid(arrow):
 		arrow.visible = true
 
-func _fire_arrow(arrow_index: int) -> void :
+
+func _fire_arrow(arrow_index: int) -> void:
 	if _source_boss == null or not is_instance_valid(_source_boss):
 		return
-	var attack_data: = _attack_entry(&"hit1")
+	var attack_data := _attack_entry(&"hit1")
 	if attack_data.is_empty():
 		return
 	_source_boss.objattackDic[WALL_PROJECTILE_HIT] = attack_data.duplicate(true)
-	var arrow: = PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
-	arrow.configure({
-		"owner": _source_boss, 
-		"position": global_position + Vector2(
-			77.0 * _move_direction, 
-			float(ARROW_Y_OFFSETS[arrow_index]) + WALL_GROUND_SHIFT_Y
-		), 
-		"right": _move_direction > 0.0, 
-		"hit_name": WALL_PROJECTILE_HIT, 
-		"attack_data": attack_data, 
-		"skill_name": "EarthAncestorStoneSpike", 
-		"frame_root": ROOT.path_join("arrow"), 
-		"frame_count": 1, 
-		"loop_visual": true, 
-		"velocity": Vector2(_projectile_speed * _move_direction, 0.0), 
-		"lifetime": _projectile_lifetime, 
-		"damage_duration": _projectile_lifetime, 
-		"max_hits": 1, 
-		"expire_on_hit": true, 
-	})
+	var arrow := PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
+	(
+		arrow
+		. configure(
+			{
+				"owner": _source_boss,
+				"position":
+				(
+					global_position
+					+ Vector2(77.0 * _move_direction, float(ARROW_Y_OFFSETS[arrow_index]) + WALL_GROUND_SHIFT_Y)
+				),
+				"right": _move_direction > 0.0,
+				"hit_name": WALL_PROJECTILE_HIT,
+				"attack_data": attack_data,
+				"skill_name": "EarthAncestorStoneSpike",
+				"frame_root": ROOT.path_join("arrow"),
+				"frame_count": 1,
+				"loop_visual": true,
+				"velocity": Vector2(_projectile_speed * _move_direction, 0.0),
+				"lifetime": _projectile_lifetime,
+				"damage_duration": _projectile_lifetime,
+				"max_hits": 1,
+				"expire_on_hit": true,
+			}
+		)
+	)
 	_source_boss.bullet.add_child(arrow)
 
+
 func _attack_entry(attack_name: StringName) -> Dictionary:
-	var key: = str(attack_name)
+	var key := str(attack_name)
 	if objattackDic.has(key):
 		return (objattackDic[key] as Dictionary).duplicate(true)
 	push_error("WutaiEarthWall3082 level config is missing attack %s" % key)
 	return {}
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	_sync_barrier_height()
 	if not _configured:
@@ -268,20 +283,25 @@ func _physics_process(delta: float) -> void :
 	if _source_boss == null or not is_instance_valid(_source_boss) or _source_boss.death():
 		queue_free()
 
-func _sync_barrier_height() -> void :
+
+func _sync_barrier_height() -> void:
 	if pz != null:
 		pz.position = Vector2(0.0, WALL_COLLISION_CENTER_Y - global_position.y)
+
 
 func is_control_immune() -> bool:
 	return true
 
-func state_hurt() -> void :
+
+func state_hurt() -> void:
 	pass
 
-func state_death() -> void :
+
+func state_death() -> void:
 	queue_free()
 
-func _clear_visuals() -> void :
+
+func _clear_visuals() -> void:
 	if _body_stream != null and is_instance_valid(_body_stream):
 		_body_stream.clear_texture()
 		_body_stream.queue_free()
@@ -292,6 +312,7 @@ func _clear_visuals() -> void :
 			arrow.queue_free()
 	_arrow_streams.clear()
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	_volley_serial += 1
 	_clear_visuals()

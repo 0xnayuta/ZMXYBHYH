@@ -3,6 +3,8 @@ class_name Monster109
 var IsShow: bool = true
 var ShowCount: int = randi_range(300, 480)
 var HideCount: int = randi_range(300, 480)
+
+
 func monster_109():
 	self.is_boss = false
 	self.my_mr_name = "隐匿童子"
@@ -29,31 +31,27 @@ func monster_109():
 	self.add_exp = 220
 	self.fall_coin = 220
 	self.objattackDic["hit1"] = {
-		"power": 500, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-
+		"power": 500,
+		"hurtBack": [-4, -9],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.fall_pro = 0.4
 	self.fall_list = [
-		{
-			"name": "shougong", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "shougong", "value": randi_range(1, 2)},
 	]
 	self.fall_stone_pro = 0.28
 	self.fall_stone = [
-		{
-			"name": "ziyanyujin", 
-			"value": randi_range(1, 5)
-		}, 
+		{"name": "ziyanyujin", "value": randi_range(1, 5)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_109()
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 	if IsShow:
@@ -72,29 +70,21 @@ func _physics_process(delta: float) -> void :
 			IsShow = true
 
 
-
-
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
-
 	var buff_target = super._on_hit_box_area_entered(area)
 
-
-
 	if is_instance_valid(buff_target) and buff_target.has_method("reduce_Mp"):
-
 		if RoleProp and RoleProp.roleprop:
 			var mp_reduce = int(RoleProp.roleprop.SMp * 0.05 + 30)
 			buff_target.reduce_Mp(mp_reduce)
 			print("对目标 %s 扣除蓝量：%d" % [buff_target.name, mp_reduce])
 
-
 	if not IsShow and is_instance_valid(buff_target):
-
 		var buff_node = null
 		var methods_to_try = [
-			func(): return buff_target.get_node("buff") if buff_target.has_node("buff") else null, 
-			func(): return buff_target.get_node("Buff") if buff_target.has_node("Buff") else null, 
-			func(): return buff_target.buff if buff_target.has_property("buff") else null, 
+			func(): return buff_target.get_node("buff") if buff_target.has_node("buff") else null,
+			func(): return buff_target.get_node("Buff") if buff_target.has_node("Buff") else null,
+			func(): return buff_target.buff if buff_target.has_property("buff") else null,
 			func(): return buff_target.Buff if buff_target.has_property("Buff") else null
 		]
 
@@ -103,27 +93,29 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 			if buff_node != null:
 				break
 
-
 		if buff_node != null:
-			Global.AddBuff(buff_node, {
-				"Name": "Scary", 
-				"AddTime": 3, 
-				"ReduceInterval": 0, 
-				"value": 0, 
-				"AttackKind": "", 
-				"CanAdd": false, 
-				"DeBuff": true, 
-			})
+			(
+				Global
+				. AddBuff(
+					buff_node,
+					{
+						"Name": "Scary",
+						"AddTime": 3,
+						"ReduceInterval": 0,
+						"value": 0,
+						"AttackKind": "",
+						"CanAdd": false,
+						"DeBuff": true,
+					}
+				)
+			)
 			print("对目标 %s 添加恐惧Buff，持续3秒" % buff_target.name)
 
+	return buff_target
 
 	return buff_target
 
 
-
-
-
-	return buff_target
-func _on_hurt_box_area_entered(area: Area2D) -> void :
+func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if IsShow:
 		super._on_hurt_box_area_entered(area)

@@ -12,15 +12,18 @@ var cur_level
 var bp_c: int = 0
 var _backpack_scene: PackedScene
 
-const BACKPACK_SCENE: = "res://Scene/BackPack/BackPack.tscn"
-const SET_MENU_SCENE: = "res://Scene/set_menu.tscn"
-const PET_INTERFACE_SCENE: = "res://Scene/Pet/PetInterface.tscn"
+const BACKPACK_SCENE := "res://Scene/BackPack/BackPack.tscn"
+const SET_MENU_SCENE := "res://Scene/set_menu.tscn"
+const PET_INTERFACE_SCENE := "res://Scene/Pet/PetInterface.tscn"
+
 
 func _viewport_center() -> Vector2:
 	return get_viewport().get_visible_rect().size * 0.5
 
-func _ready() -> void :
+
+func _ready() -> void:
 	cur_level = _resolve_level()
+
 
 func _get_backpack_scene() -> PackedScene:
 	if _backpack_scene != null:
@@ -28,13 +31,15 @@ func _get_backpack_scene() -> PackedScene:
 	_backpack_scene = Global.load_ui_scene(BACKPACK_SCENE)
 	return _backpack_scene
 
-func _input(event: InputEvent) -> void :
+
+func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.physical_keycode == KEY_B or event.keycode == KEY_B:
 			_toggle_pet()
 			get_viewport().set_input_as_handled()
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	_cleanup_targets()
 	bp_c = get_child_count()
 	if Input.is_action_just_pressed("backpack") and _main_role() != null:
@@ -58,6 +63,7 @@ func _physics_process(_delta: float) -> void :
 	elif get_tree().paused and _can_resume_level():
 		get_tree().paused = false
 
+
 func _main_role():
 	if is_instance_valid(cur_level):
 		var level_role: Variant = cur_level.get("Role_")
@@ -66,6 +72,7 @@ func _main_role():
 	var source_player: Variant = RoleProp.SourcePlayer
 	return source_player if is_instance_valid(source_player) else null
 
+
 func _second_role():
 	if is_instance_valid(cur_level):
 		var second_role: Variant = cur_level.get("RoleP2")
@@ -73,16 +80,19 @@ func _second_role():
 			return second_role
 	return null
 
-func _reset_mobile_timer() -> void :
+
+func _reset_mobile_timer() -> void:
 	if mobile != null and is_instance_valid(mobile):
 		mobile.setCd = 0
 
-func _on_backpack_pressed() -> void :
+
+func _on_backpack_pressed() -> void:
 	_reset_mobile_timer()
 	if _main_role() != null:
 		_toggle_backpack(_main_role())
 
-func _on_set_pressed() -> void :
+
+func _on_set_pressed() -> void:
 	_reset_mobile_timer()
 	_cleanup_targets()
 	if _is_alive(set_target):
@@ -101,21 +111,25 @@ func _on_set_pressed() -> void :
 	_track_target(set_target, "set")
 	add_child(set_target)
 
-func _on_skill_pressed() -> void :
+
+func _on_skill_pressed() -> void:
 	_reset_mobile_timer()
 	if _main_role() != null:
 		_toggle_skill(_main_role())
 
-func _on_magic_weapon_pressed() -> void :
+
+func _on_magic_weapon_pressed() -> void:
 	_reset_mobile_timer()
 	if _main_role() != null:
 		_toggle_magic(_main_role())
 
-func _on_pet_pressed() -> void :
+
+func _on_pet_pressed() -> void:
 	_reset_mobile_timer()
 	_toggle_pet()
 
-func _toggle_backpack(_role) -> void :
+
+func _toggle_backpack(_role) -> void:
 	_cleanup_targets()
 	if _is_alive(back_target):
 		_queue_target(back_target)
@@ -135,7 +149,8 @@ func _toggle_backpack(_role) -> void :
 	add_child(back_target)
 	back_target.position = _viewport_center()
 
-func _toggle_skill(role_) -> void :
+
+func _toggle_skill(role_) -> void:
 	_cleanup_targets()
 	if _is_alive(skill_target):
 		_queue_target(skill_target)
@@ -148,7 +163,8 @@ func _toggle_skill(role_) -> void :
 		_set_if_has_property(skill_target, "Player", role_)
 		_track_target(skill_target, "skill")
 
-func _toggle_pet() -> void :
+
+func _toggle_pet() -> void:
 	_cleanup_targets()
 	if _is_alive(pet_target):
 		_queue_target(pet_target)
@@ -165,7 +181,8 @@ func _toggle_pet() -> void :
 	add_child(pet_target)
 	pet_target.position = _viewport_center() - Vector2(326.5, 256.5)
 
-func _toggle_magic(role_) -> void :
+
+func _toggle_magic(role_) -> void:
 	if PlayerData.player_data.get("法宝", []).size() == 0:
 		Global.AddMessageShow(cur_level, "您还未装备法宝！！！", 1.5, Vector2(460, 255))
 		return
@@ -181,15 +198,17 @@ func _toggle_magic(role_) -> void :
 		_set_if_has_property(magic_weapon_target, "Player", role_)
 		_track_target(magic_weapon_target, "magic")
 
+
 func _resolve_level():
 	if Global.userGlobal != null and Global.userGlobal.CurLevel != null:
 		return Global.userGlobal.CurLevel
-	var p: = get_parent()
+	var p := get_parent()
 	while p != null:
 		if p.get("Role_") != null or p.get("role_information") != null:
 			return p
 		p = p.get_parent()
 	return null
+
 
 func _can_resume_level() -> bool:
 	if cur_level == null:
@@ -197,11 +216,20 @@ func _can_resume_level() -> bool:
 	var role_info = cur_level.get("role_information")
 	return role_info == null or not role_info.isStop
 
+
 func _has_open_child() -> bool:
 	_cleanup_targets()
-	return get_child_count() > 0 or _is_alive(back_target) or _is_alive(set_target) or _is_alive(skill_target) or _is_alive(magic_weapon_target) or _is_alive(pet_target)
+	return (
+		get_child_count() > 0
+		or _is_alive(back_target)
+		or _is_alive(set_target)
+		or _is_alive(skill_target)
+		or _is_alive(magic_weapon_target)
+		or _is_alive(pet_target)
+	)
 
-func _cleanup_targets() -> void :
+
+func _cleanup_targets() -> void:
 	if not _is_alive(back_target):
 		back_target = null
 	if not _is_alive(set_target):
@@ -213,20 +241,24 @@ func _cleanup_targets() -> void :
 	if not _is_alive(pet_target):
 		pet_target = null
 
+
 func _is_alive(node) -> bool:
 	return node != null and is_instance_valid(node) and not node.is_queued_for_deletion()
 
-func _queue_target(node) -> void :
+
+func _queue_target(node) -> void:
 	if _is_alive(node):
 		node.queue_free()
 
-func _track_target(node, slot: String) -> void :
+
+func _track_target(node, slot: String) -> void:
 	if node == null:
 		return
 	if not node.tree_exited.is_connected(_on_target_exited):
 		node.tree_exited.connect(_on_target_exited.bind(slot), CONNECT_ONE_SHOT)
 
-func _on_target_exited(slot: String) -> void :
+
+func _on_target_exited(slot: String) -> void:
 	match slot:
 		"backpack":
 			back_target = null
@@ -240,7 +272,8 @@ func _on_target_exited(slot: String) -> void :
 		"pet":
 			pet_target = null
 
-func _set_if_has_property(obj: Object, prop_name: String, value) -> void :
+
+func _set_if_has_property(obj: Object, prop_name: String, value) -> void:
 	if obj == null:
 		return
 	for prop in obj.get_property_list():

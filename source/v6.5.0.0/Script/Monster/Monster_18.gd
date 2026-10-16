@@ -4,6 +4,7 @@ var is_need_change = true
 var move_le = false
 var move_ri = false
 
+
 func monster_18():
 	self.is_boss = true
 	self.my_mr_name = "蛟魔王"
@@ -29,58 +30,42 @@ func monster_18():
 	self.self_rhp = 0
 	self.add_exp = 200
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {
-		"power": 165, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics"
-	}
+	self.objattackDic["hit1"] = {"power": 165, "hurtBack": [-4, -9], "attackKind": "physics"}
 	self.objattackDic["fhjl"] = {
-		"power": 228, 
-		"hurtBack": [-10, -5], 
-		"attackKind": "real", 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"DeBuff": true, 
-			"CanAdd": false, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": 228,
+		"hurtBack": [-10, -5],
+		"attackKind": "real",
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"DeBuff": true,
+			"CanAdd": false,
+			"value": 0,
+			"AttackKind": "",
 		}
-
 	}
 	self.objattackDic["dtsz"] = {
-		"power": 200, 
-		"hurtBack": [-22, -15], 
-		"attackKind": "real", 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"value": 0.4, 
-			"AttackKind": "", 
+		"power": 200,
+		"hurtBack": [-22, -15],
+		"attackKind": "real",
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"CanAdd": false,
+			"DeBuff": true,
+			"value": 0.4,
+			"AttackKind": "",
 		}
 	}
 
 	self.fall_pro = 0.5
-	self.fall_list = [
-		{
-			"name": "xwj", 
-			"value": 0
-		}, 
-		{
-			"name": "bxp", 
-			"value": 0
-		}, 
-		{
-			"name": "pxk", 
-			"value": 0
-		}
-	]
+	self.fall_list = [{"name": "xwj", "value": 0}, {"name": "bxp", "value": 0}, {"name": "pxk", "value": 0}]
 	self.independent_fall_list = [
-		{"name": "211007002", "value": 0, "chance": 0.25}, 
+		{"name": "211007002", "value": 0, "chance": 0.25},
 	]
 
 	enable_treasure_box = true
@@ -90,13 +75,15 @@ func monster_18():
 	if current_fall_mode == FallMode.TREASURE_BOX:
 		self.independent_fall_list.clear()
 	self.fall_stone_pro = 0
-	self.fall_stone = [
-	]
-func _ready() -> void :
+	self.fall_stone = []
+
+
+func _ready() -> void:
 	super._ready()
 	monster_18()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -123,6 +110,7 @@ func Monster_Intelligence():
 				else:
 					stop_move()
 
+
 func do_hit_2():
 	Skill_1_CD = 7
 	hit_name = "fhjl"
@@ -131,6 +119,8 @@ func do_hit_2():
 	mr_player.play("fhjl")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func do_hit_3():
 	Skill_2_CD = 15
 	velocity.x = 0
@@ -139,24 +129,62 @@ func do_hit_3():
 	mr_player.play("dtsz")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func call_fhjl():
 	if self.MonsterDirection:
-		Global.add_Bullet("Monster18Bullet_1", self.bullet, self.MonsterDirection, 1, Vector2(self.position.x + 80, self.position.y - 10), "fhjl", self.objattackDic["fhjl"])
+		Global.add_Bullet(
+			"Monster18Bullet_1",
+			self.bullet,
+			self.MonsterDirection,
+			1,
+			Vector2(self.position.x + 80, self.position.y - 10),
+			"fhjl",
+			self.objattackDic["fhjl"]
+		)
 	else:
-		Global.add_Bullet("Monster18Bullet_1", self.bullet, self.MonsterDirection, 1, Vector2(self.position.x - 80, self.position.y - 10), "fhjl", self.objattackDic["fhjl"])
+		Global.add_Bullet(
+			"Monster18Bullet_1",
+			self.bullet,
+			self.MonsterDirection,
+			1,
+			Vector2(self.position.x - 80, self.position.y - 10),
+			"fhjl",
+			self.objattackDic["fhjl"]
+		)
+
+
 func call_dtsz():
 	var PositionList = []
 	if self.MonsterDirection == false:
-		PositionList = [Vector2(self.position.x - 120, self.position.y - 250), Vector2(self.position.x - 270, self.position.y - 250), 
-		Vector2(self.position.x - 420, self.position.y - 250), Vector2(self.position.x - 570, self.position.y - 250), 
-		Vector2(self.position.x - 720, self.position.y - 250)]
+		PositionList = [
+			Vector2(self.position.x - 120, self.position.y - 250),
+			Vector2(self.position.x - 270, self.position.y - 250),
+			Vector2(self.position.x - 420, self.position.y - 250),
+			Vector2(self.position.x - 570, self.position.y - 250),
+			Vector2(self.position.x - 720, self.position.y - 250)
+		]
 	else:
-		PositionList = [Vector2(self.position.x + 120, self.position.y - 250), Vector2(self.position.x + 270, self.position.y - 250), 
-		Vector2(self.position.x + 420, self.position.y - 250), Vector2(self.position.x + 570, self.position.y - 250), 
-		Vector2(self.position.x + 720, self.position.y - 250)]
+		PositionList = [
+			Vector2(self.position.x + 120, self.position.y - 250),
+			Vector2(self.position.x + 270, self.position.y - 250),
+			Vector2(self.position.x + 420, self.position.y - 250),
+			Vector2(self.position.x + 570, self.position.y - 250),
+			Vector2(self.position.x + 720, self.position.y - 250)
+		]
 	for i in range(5):
-		Global.add_Bullet("Monster18Bullet_2", self.bullet, self.MonsterDirection, 1, PositionList[i], "dtsz", self.objattackDic["dtsz"])
+		Global.add_Bullet(
+			"Monster18Bullet_2",
+			self.bullet,
+			self.MonsterDirection,
+			1,
+			PositionList[i],
+			"dtsz",
+			self.objattackDic["dtsz"]
+		)
 		await get_tree().create_timer(0.32, false).timeout
+
+
 func whencandoHit3():
 	var pp = get_parent().get_parent()
 	if Skill_1_CD <= 0:
@@ -225,6 +253,7 @@ func whencandoHit3():
 			else:
 				move_left()
 			do_hit_3()
+
 
 func _on_change_dir_timeout(_extra = null):
 	is_need_change = true

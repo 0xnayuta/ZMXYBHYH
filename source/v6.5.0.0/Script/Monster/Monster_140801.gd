@@ -3,6 +3,7 @@ class_name Monster140801
 
 var MyTarget: BaseHero
 
+
 func monster_140801():
 	self.CannotAttract = true
 	self.is_boss = false
@@ -30,24 +31,26 @@ func monster_140801():
 	self.add_exp = 0
 	self.fall_coin = 0
 	self.objattackDic["hit1"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "", 
-		"HitProtect": 0, 
+		"power": 0,
+		"hurtBack": [0, 0],
+		"attackKind": "",
+		"HitProtect": 0,
 	}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_140801()
 
 	if has_node("DeathCount"):
 		$DeathCount.queue_free()
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	if Hp <= 0:
 		mr_player.play("death")
 		return
@@ -63,10 +66,12 @@ func _physics_process(delta: float) -> void :
 		else:
 			move_right()
 
+
 func state_death():
 	pass
 
-func _on_hurt_box_area_entered(area: Area2D) -> void :
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
 	is_jgz = false
 	has_target = true
 
@@ -115,17 +120,22 @@ func _on_hurt_box_area_entered(area: Area2D) -> void :
 
 	get_target = null
 
+
 func _on_death_count_timeout():
 	pass
+
 
 func Monster_Intelligence():
 	pass
 
+
 func ResetPro():
 	pass
 
+
 func cure_hp(value: int):
 	pass
+
 
 func WDHurt():
 	pass

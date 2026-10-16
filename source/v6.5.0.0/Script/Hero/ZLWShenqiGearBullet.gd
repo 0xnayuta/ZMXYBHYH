@@ -2,17 +2,13 @@ extends Node2D
 class_name ZLWShenqiGearBullet
 
 @onready var bullet_player: AnimationPlayer = $BulletPlayer
-@onready var bullet_ani: AnimatedSprite2D = $middle / BulletANI
+@onready var bullet_ani: AnimatedSprite2D = $middle/BulletANI
 @onready var middle: Node2D = $middle
-@onready var hit_box: Area2D = $middle / HitBox
-@onready var hit_shape: CollisionShape2D = $middle / HitBox / Hit_Box
+@onready var hit_box: Area2D = $middle/HitBox
+@onready var hit_shape: CollisionShape2D = $middle/HitBox/Hit_Box
 @onready var queue_timer: Timer = $queue_timer
 
-var HitDic = {
-	"power": 0, 
-	"hurtBack": [0, 0], 
-	"attackKind": "magic"
-}
+var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
 var follow_target: Node2D
 var initial_angle: float = 0.0
 var life_time: float = 3.0
@@ -25,9 +21,10 @@ var _orbit_angle: float = 0.0
 var hit_interval: float = 0.5
 var _hit_targets: Dictionary = {}
 var _overlap_poll_elapsed: float = 0.0
-const OVERLAP_POLL_INTERVAL: = 0.1
+const OVERLAP_POLL_INTERVAL := 0.1
 
-func _ready() -> void :
+
+func _ready() -> void:
 	if hit_box != null:
 		hit_box.collision_layer = 2
 		hit_box.collision_mask = 2064
@@ -50,12 +47,13 @@ func _ready() -> void :
 		bullet_ani.play()
 	if hit_shape != null:
 		hit_shape.position = Vector2.ZERO
-		var circle: = CircleShape2D.new()
+		var circle := CircleShape2D.new()
 		circle.radius = 115.0
 		hit_shape.shape = circle
 		hit_shape.disabled = false
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	if not RoleProp.is_ws_state:
 		queue_free()
 		return
@@ -77,26 +75,30 @@ func _physics_process(delta: float) -> void :
 		_overlap_poll_elapsed = 0.0
 		_process_overlapping_targets()
 
-func _on_hit_box_area_entered(area: Area2D) -> void :
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
 	_try_hit_area(area)
 
-func _process_overlapping_targets() -> void :
+
+func _process_overlapping_targets() -> void:
 	if hit_box == null:
 		return
 	for area in hit_box.get_overlapping_areas():
 		_try_hit_area(area)
 
-func _try_hit_area(area: Area2D) -> void :
+
+func _try_hit_area(area: Area2D) -> void:
 	var target = _find_monster_from_area(area)
 	if target == null:
 		return
 	_try_hurt_monster(target)
 
-func _try_hurt_monster(target: BaseMonster) -> void :
+
+func _try_hurt_monster(target: BaseMonster) -> void:
 	if target.is_boss_protecting():
 		return
 	var target_id = target.get_instance_id()
-	var now: = Time.get_ticks_msec()
+	var now := Time.get_ticks_msec()
 	var last_hit = int(_hit_targets.get(target_id, -1000000))
 	if now - last_hit < int(hit_interval * 1000.0):
 		return
@@ -107,6 +109,7 @@ func _try_hurt_monster(target: BaseMonster) -> void :
 	if HitDic.has("addeffect") and randi_range(1, 100) <= int(HitDic.get("stun_chance", 100)):
 		Global.AddBuff(target.buff, HitDic["addeffect"])
 
+
 func _find_monster_from_area(area: Area2D) -> BaseMonster:
 	var node: Node = area
 	while node != null:
@@ -115,10 +118,11 @@ func _find_monster_from_area(area: Area2D) -> BaseMonster:
 		node = node.get_parent()
 	return null
 
-func _hurt_monster(monster: BaseMonster) -> void :
+
+func _hurt_monster(monster: BaseMonster) -> void:
 	var hurt = int(HitDic.get("power", 0))
 	var attack_kind = str(HitDic.get("attackKind", "magic"))
-	var is_crit: = false
+	var is_crit := false
 	var crit_value = max(0, RoleProp.roleprop.Crit - monster.Critreduce)
 	var crit_rate = snapped(crit_value / float(crit_value + 100), 0.001)
 	if randf_range(0, 1) <= crit_rate:
@@ -150,10 +154,13 @@ func _hurt_monster(monster: BaseMonster) -> void :
 		Global.TotalRealHit += hurt
 	var level_node = monster.get_level_node()
 	if level_node != null:
-		Global.addDamageText(level_node, Vector2(monster.position.x - 20, monster.position.y - 240), hurt, attack_kind, is_crit, monster)
+		Global.addDamageText(
+			level_node, Vector2(monster.position.x - 20, monster.position.y - 240), hurt, attack_kind, is_crit, monster
+		)
 	if not monster.Monster_18_protect() and not monster.Monster102Protect() and not monster.is_control_immune():
 		monster.get_target = self
 		monster.state_hurt()
 
-func _on_queue_timer_timeout() -> void :
+
+func _on_queue_timer_timeout() -> void:
 	queue_free()

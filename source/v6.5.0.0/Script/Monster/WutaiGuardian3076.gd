@@ -1,48 +1,49 @@
 extends BaseMonster
 class_name WutaiGuardian3076
 
-const PROJECTILE_SCRIPT: = preload("res://Script/Monster/WutaiMinghaiProjectile.gd")
-const ROOT: = "res://Art/Monster/SwfPng/3076"
-const ATLAS_MANIFEST: = ROOT + "/atlas/manifest.json"
-const SOURCE_FPS: = 30.0
-const AI_DELAY_MSEC: = 2000
-const SKILL3_DURATION: = 0.667
-const SKILL3_HIT_BOX_SIZE: = Vector2(312.0, 306.0)
-const SKILL3_HIT_BOX_POSITION: = Vector2(-133.0, -127.0)
-const SKILL1_HIT_START_FRAME: = 21
-const SKILL1_HIT_END_FRAME: = 33
-const SKILL2_HIT_START_FRAME: = 11
-const SKILL2_HIT_END_FRAME: = 21
-const SKILL3_HIT_START_FRAME: = 22
-const SKILL3_HIT_END_FRAME: = 32
+const PROJECTILE_SCRIPT := preload("res://Script/Monster/WutaiMinghaiProjectile.gd")
+const ROOT := "res://Art/Monster/SwfPng/3076"
+const ATLAS_MANIFEST := ROOT + "/atlas/manifest.json"
+const SOURCE_FPS := 30.0
+const AI_DELAY_MSEC := 2000
+const SKILL3_DURATION := 0.667
+const SKILL3_HIT_BOX_SIZE := Vector2(312.0, 306.0)
+const SKILL3_HIT_BOX_POSITION := Vector2(-133.0, -127.0)
+const SKILL1_HIT_START_FRAME := 21
+const SKILL1_HIT_END_FRAME := 33
+const SKILL2_HIT_START_FRAME := 11
+const SKILL2_HIT_END_FRAME := 21
+const SKILL3_HIT_START_FRAME := 22
+const SKILL3_HIT_END_FRAME := 32
 
-const ACTIONS: = {
-	&"wait": {"folder": "wait", "frames": 30, "offset": Vector2(0.6, -101.4), "loop": true}, 
-	&"walk": {"folder": "walk", "frames": 24, "offset": Vector2(14.1, -102.45), "loop": true}, 
-	&"death": {"folder": "death", "frames": 50, "offset": Vector2(-78.15, -101.15), "loop": false}, 
-	&"skill1": {"folder": "effect1", "frames": 35, "offset": Vector2(-5.0, -148.95), "loop": false}, 
-	&"skill2": {"folder": "effect2", "frames": 102, "offset": Vector2(52.0, -98.65), "loop": false}, 
-	&"skill3": {"folder": "effect3", "frames": 35, "offset": Vector2(103.5, -128.1), "loop": false}, 
+const ACTIONS := {
+	&"wait": {"folder": "wait", "frames": 30, "offset": Vector2(0.6, -101.4), "loop": true},
+	&"walk": {"folder": "walk", "frames": 24, "offset": Vector2(14.1, -102.45), "loop": true},
+	&"death": {"folder": "death", "frames": 50, "offset": Vector2(-78.15, -101.15), "loop": false},
+	&"skill1": {"folder": "effect1", "frames": 35, "offset": Vector2(-5.0, -148.95), "loop": false},
+	&"skill2": {"folder": "effect2", "frames": 102, "offset": Vector2(52.0, -98.65), "loop": false},
+	&"skill3": {"folder": "effect3", "frames": 35, "offset": Vector2(103.5, -128.1), "loop": false},
 }
 
-@export var monster_kind: = 3076
+@export var monster_kind := 3076
 
 var _runtime_config: Dictionary = {}
 var _body_stream: StreamedPngEffect
-var _busy: = false
-var _death_started: = false
-var _attack_serial: = 0
-var _skill_order: = [1, 3, 2]
-var _skill_step: = 0
-var _skill_cycle_initialized: = false
-var _next_attack_msec: = 0
-var _skill_direction: = 1.0
+var _busy := false
+var _death_started := false
+var _attack_serial := 0
+var _skill_order := [1, 3, 2]
+var _skill_step := 0
+var _skill_cycle_initialized := false
+var _next_attack_msec := 0
+var _skill_direction := 1.0
 var _skill3_travel: WutaiMinghaiProjectile
-var _attack_hit_consumed: = false
+var _attack_hit_consumed := false
 
-func _ready() -> void :
+
+func _ready() -> void:
 	IsSuperArmor = true
-	var attack_area: = hit_box.get_parent() as Area2D if hit_box != null else null
+	var attack_area := hit_box.get_parent() as Area2D if hit_box != null else null
 	if attack_area != null:
 		attack_area.monitorable = false
 	_runtime_config = _resolve_runtime_config()
@@ -52,8 +53,9 @@ func _ready() -> void :
 	mr_ani.visible = false
 	super._ready()
 
+
 func _resolve_runtime_config() -> Dictionary:
-	var level_node: = get_level_node()
+	var level_node := get_level_node()
 	if level_node != null and level_node.has_method("get_level_monster_config"):
 		var config: Variant = level_node.call("get_level_monster_config", monster_kind)
 		if config is Dictionary and not config.is_empty():
@@ -61,7 +63,8 @@ func _resolve_runtime_config() -> Dictionary:
 	push_error("WutaiGuardian3076 requires level monster config for 3076")
 	return {}
 
-func _configure_guardian(config: Dictionary) -> void :
+
+func _configure_guardian(config: Dictionary) -> void:
 	my_mr_name = str(config.get("name", "五台守卫%d" % monster_kind))
 	level = int(config["level"])
 	attack_in = int(config["attack"])
@@ -92,43 +95,50 @@ func _configure_guardian(config: Dictionary) -> void :
 	for attack_name: String in attacks:
 		objattackDic[attack_name] = _attack_data(attacks[attack_name])
 
+
 func _attack_data(attack: Dictionary) -> Dictionary:
-	var data: = {
-		"power": roundi(float(attack_in) * float(attack["multiplier"])), 
-		"hurtBack": Array(attack["hurt_back"]).duplicate(), 
-		"attackKind": str(attack["kind"]), 
-		"HitProtect": int(attack["protect"]), 
+	var data := {
+		"power": roundi(float(attack_in) * float(attack["multiplier"])),
+		"hurtBack": Array(attack["hurt_back"]).duplicate(),
+		"attackKind": str(attack["kind"]),
+		"HitProtect": int(attack["protect"]),
 	}
 	var effect: Variant = attack.get("effect", {})
 	if effect is Dictionary and not effect.is_empty():
 		data["addeffect"] = (effect as Dictionary).duplicate(true)
 	return data
 
-func _configure_monster(config: Dictionary = {}) -> void :
+
+func _configure_monster(config: Dictionary = {}) -> void:
 	if config.is_empty():
 		config = _runtime_config
 	if not config.is_empty():
 		_configure_guardian(config)
 
+
 func monster_info_base_attack() -> int:
 	return int(_runtime_config.get("attack", attack_in))
+
 
 func monster_info_attack_values_include_difficulty() -> bool:
 	return false
 
-static func prewarm_frames() -> void :
+
+static func prewarm_frames() -> void:
 	await MonsterAtlasSequence.prewarm(ATLAS_MANIFEST, 2)
 
-static func prewarm_effects() -> void :
+
+static func prewarm_effects() -> void:
 	await MonsterAtlasSequence.prewarm(ATLAS_MANIFEST, 2)
 
-func _build_animations() -> void :
+
+func _build_animations() -> void:
 	if mr_player.has_animation_library(&""):
 		mr_player.remove_animation_library(&"")
-	var library: = AnimationLibrary.new()
+	var library := AnimationLibrary.new()
 	for action_name: StringName in ACTIONS:
 		var info: Dictionary = ACTIONS[action_name]
-		var animation: = _make_animation(action_name, int(info["frames"]), bool(info["loop"]))
+		var animation := _make_animation(action_name, int(info["frames"]), bool(info["loop"]))
 		match action_name:
 			&"skill1":
 				_add_method_key(animation, _source_frame_time(SKILL1_HIT_START_FRAME), &"_enable_attack_box")
@@ -145,29 +155,31 @@ func _build_animations() -> void :
 		library.add_animation(action_name, animation)
 	mr_player.add_animation_library(&"", library)
 
+
 func _source_frame_time(frame_number: int) -> float:
 	return float(maxi(frame_number - 1, 0)) / SOURCE_FPS
 
+
 func _make_animation(action_name: StringName, frame_count: int, looped: bool) -> Animation:
-	var animation: = Animation.new()
+	var animation := Animation.new()
 	animation.length = maxf(float(frame_count) / SOURCE_FPS, 0.05)
 	animation.loop_mode = Animation.LOOP_LINEAR if looped else Animation.LOOP_NONE
 	_add_method_key(animation, 0.0, &"_play_body_action", [action_name])
 	return animation
 
-func _add_method_key(animation: Animation, time: float, method_name: StringName, args: Array = []) -> void :
-	var track: = animation.add_track(Animation.TYPE_METHOD)
+
+func _add_method_key(animation: Animation, time: float, method_name: StringName, args: Array = []) -> void:
+	var track := animation.add_track(Animation.TYPE_METHOD)
 	animation.track_set_path(track, NodePath("."))
 	animation.track_insert_key(
-		track, 
-		clampf(time, 0.0, maxf(animation.length - 0.001, 0.0)), 
-		{"method": method_name, "args": args}
+		track, clampf(time, 0.0, maxf(animation.length - 0.001, 0.0)), {"method": method_name, "args": args}
 	)
 
-func _play_body_action(action_name: StringName) -> void :
+
+func _play_body_action(action_name: StringName) -> void:
 	_clear_body_stream()
 	var info: Dictionary = ACTIONS.get(action_name, ACTIONS[&"wait"])
-	var stream: = StreamedPngEffect.new()
+	var stream := StreamedPngEffect.new()
 	stream.name = "BodyStream"
 	if not MonsterAtlasSequence.configure_stream(stream, ATLAS_MANIFEST, str(info["folder"])):
 		stream.free()
@@ -179,10 +191,16 @@ func _play_body_action(action_name: StringName) -> void :
 	monster_dir.add_child(stream)
 	_body_stream = stream
 
-func Monster_Intelligence() -> void :
-	if _busy or death() or RoleProp.get_nearest_monster_target_position(global_position).x == null or _runtime_config.is_empty():
+
+func Monster_Intelligence() -> void:
+	if (
+		_busy
+		or death()
+		or RoleProp.get_nearest_monster_target_position(global_position).x == null
+		or _runtime_config.is_empty()
+	):
 		return
-	var distance: = absf(float(RoleProp.get_nearest_monster_target_position(global_position).x) - position.x)
+	var distance := absf(float(RoleProp.get_nearest_monster_target_position(global_position).x) - position.x)
 	has_target = distance <= float(mysee)
 	if not has_target:
 		stop_move()
@@ -191,11 +209,12 @@ func Monster_Intelligence() -> void :
 	if Time.get_ticks_msec() < _next_attack_msec:
 		stop_move()
 		return
-	var skill_index: = _current_cycle_skill()
+	var skill_index := _current_cycle_skill()
 	if not _skill_in_range(skill_index, distance):
 		_move_into_skill_range(skill_index, distance)
 		return
 	_start_skill(skill_index)
+
 
 func _current_cycle_skill() -> int:
 	if not _skill_cycle_initialized:
@@ -203,6 +222,7 @@ func _current_cycle_skill() -> int:
 		_skill_step = 0
 		_skill_cycle_initialized = true
 	return int(_skill_order[_skill_step])
+
 
 func _skill_in_range(skill_index: int, distance: float) -> bool:
 	match skill_index:
@@ -214,9 +234,10 @@ func _skill_in_range(skill_index: int, distance: float) -> bool:
 			return distance >= 100.0 and distance <= 600.0
 	return false
 
-func _start_skill(skill_index: int) -> void :
+
+func _start_skill(skill_index: int) -> void:
 	_attack_serial += 1
-	var serial: = _attack_serial
+	var serial := _attack_serial
 	_busy = true
 	is_attacking = true
 	velocity = Vector2.ZERO
@@ -239,10 +260,11 @@ func _start_skill(skill_index: int) -> void :
 	_next_attack_msec = Time.get_ticks_msec() + randi_range(AI_DELAY_MSEC, 4000)
 	mr_player.play(&"wait")
 
-func _configure_attack_box(skill_index: int) -> void :
+
+func _configure_attack_box(skill_index: int) -> void:
 	if hit_box == null:
 		return
-	var rectangle: = hit_box.shape as RectangleShape2D
+	var rectangle := hit_box.shape as RectangleShape2D
 	if rectangle == null:
 		rectangle = RectangleShape2D.new()
 		hit_box.shape = rectangle
@@ -256,109 +278,124 @@ func _configure_attack_box(skill_index: int) -> void :
 		rectangle.size = Vector2(195.0, 190.0)
 		hit_box.position = Vector2(-97.5, -95.0)
 
-func _start_skill3_travel() -> void :
+
+func _start_skill3_travel() -> void:
 	if death() or not _busy:
 		return
 	if _skill3_travel != null and is_instance_valid(_skill3_travel):
 		_skill3_travel.queue_free()
-	var target_x: = global_position.x + 100.0 * _skill_direction
+	var target_x := global_position.x + 100.0 * _skill_direction
 	if RoleProp.get_nearest_monster_target_position(global_position).x != null:
 		target_x = float(RoleProp.get_nearest_monster_target_position(global_position).x)
 		target_x += -100.0 if target_x > global_position.x else 100.0
-	_skill3_travel = _spawn_projectile({
-		"position": global_position, 
-		"right": _skill_direction > 0.0, 
-		"hit_name": "hit3", 
-		"attack_data": _attack_entry(&"hit3"), 
-		"skill_name": "WutaiGuardianLeap", 
-		"frame_root": ROOT.path_join("effect3_1"), 
-		"frame_count": 21, 
-		"loop_visual": false, 
-		"visual_offset": Vector2(-55.0, -111.8), 
-		"velocity": Vector2((target_x - global_position.x) / SKILL3_DURATION, -180.0), 
-		"acceleration": Vector2(0.0, 540.0), 
-		"collision_size": Vector2(2.0, 2.0), 
-		"collision_offset": Vector2.ZERO, 
-		"lifetime": SKILL3_DURATION, 
-		"damage_enabled": false, 
-		"finished_callback": Callable(self, "_finish_skill3_travel"), 
-	})
+	_skill3_travel = _spawn_projectile(
+		{
+			"position": global_position,
+			"right": _skill_direction > 0.0,
+			"hit_name": "hit3",
+			"attack_data": _attack_entry(&"hit3"),
+			"skill_name": "WutaiGuardianLeap",
+			"frame_root": ROOT.path_join("effect3_1"),
+			"frame_count": 21,
+			"loop_visual": false,
+			"visual_offset": Vector2(-55.0, -111.8),
+			"velocity": Vector2((target_x - global_position.x) / SKILL3_DURATION, -180.0),
+			"acceleration": Vector2(0.0, 540.0),
+			"collision_size": Vector2(2.0, 2.0),
+			"collision_offset": Vector2.ZERO,
+			"lifetime": SKILL3_DURATION,
+			"damage_enabled": false,
+			"finished_callback": Callable(self, "_finish_skill3_travel"),
+		}
+	)
 
-func _finish_skill3_travel(end_position: Vector2) -> void :
+
+func _finish_skill3_travel(end_position: Vector2) -> void:
 	_skill3_travel = null
 	if death():
 		return
 	global_position.x = end_position.x
 
+
 func _spawn_projectile(config: Dictionary) -> WutaiMinghaiProjectile:
-	var projectile: = PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
+	var projectile := PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
 	config["owner"] = self
 	config["atlas_manifest"] = ATLAS_MANIFEST
 	config["atlas_sequence"] = str(config.get("frame_root", "")).get_file()
-	config["damage_enabled"] = bool(config.get(
-		"damage_enabled", not (config["attack_data"] as Dictionary).is_empty()
-	))
+	config["damage_enabled"] = bool(config.get("damage_enabled", not (config["attack_data"] as Dictionary).is_empty()))
 	projectile.configure(config)
 	bullet.add_child(projectile)
 	return projectile
 
+
 func _attack_entry(attack_name: StringName) -> Dictionary:
-	var key: = str(attack_name)
+	var key := str(attack_name)
 	if objattackDic.has(key):
 		return (objattackDic[key] as Dictionary).duplicate(true)
 	push_error("WutaiGuardian3076 level config is missing attack %s" % attack_name)
 	return {}
 
-func _enable_attack_box() -> void :
+
+func _enable_attack_box() -> void:
 	if hit_box != null and not _attack_hit_consumed:
 		hit_box.set_deferred("disabled", false)
 
-func _disable_attack_box() -> void :
+
+func _disable_attack_box() -> void:
 	if hit_box != null:
 		hit_box.set_deferred("disabled", true)
 
-func _face_role() -> void :
+
+func _face_role() -> void:
 	if RoleProp.get_nearest_monster_target_position(global_position).x == null:
 		return
-	_skill_direction = 1.0 if float(RoleProp.get_nearest_monster_target_position(global_position).x) >= global_position.x else -1.0
+	_skill_direction = (
+		1.0 if float(RoleProp.get_nearest_monster_target_position(global_position).x) >= global_position.x else -1.0
+	)
 	monster_dir.scale.x = _skill_direction
-	base_damage_box.scale.x = - _skill_direction
+	base_damage_box.scale.x = -_skill_direction
 
-func _move_toward_role() -> void :
+
+func _move_toward_role() -> void:
 	_face_role()
 	velocity.x = speed * 10.0 * _skill_direction
 	mr_player.play(&"walk")
 
-func _move_into_skill_range(skill_index: int, distance: float) -> void :
+
+func _move_into_skill_range(skill_index: int, distance: float) -> void:
 	_face_role()
-	var move_direction: = _skill_direction
+	var move_direction := _skill_direction
 	if skill_index == 3 and distance < 100.0:
-		move_direction = - move_direction
+		move_direction = -move_direction
 	velocity.x = speed * 10.0 * move_direction
 	mr_player.play(&"walk")
+
 
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 	if _attack_hit_consumed:
 		return null
-	var hit_target: = super._on_hit_box_area_entered(area)
+	var hit_target := super._on_hit_box_area_entered(area)
 	if hit_target is BaseHero:
-		var attack_area: = hit_box.get_parent() as Area2D if hit_box != null else null
+		var attack_area := hit_box.get_parent() as Area2D if hit_box != null else null
 		if attack_area != null:
 			hit_target.call("_on_hurt_box_area_entered", attack_area)
 		_attack_hit_consumed = true
 		_disable_attack_box()
 	return hit_target
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if _skill3_travel != null and is_instance_valid(_skill3_travel) and not death():
 		global_position.x = _skill3_travel.global_position.x
 
-func _finish_hurt_reaction(hurt_generation: int) -> void :
+
+func _finish_hurt_reaction(hurt_generation: int) -> void:
 	super._finish_hurt_reaction(hurt_generation)
 	velocity.x = 0.0
 
-func state_death() -> void :
+
+func state_death() -> void:
 	if _death_started:
 		return
 	_death_started = true
@@ -374,11 +411,13 @@ func state_death() -> void :
 		hurt_box.set_deferred("disabled", true)
 	super.state_death()
 
-func _clear_body_stream() -> void :
+
+func _clear_body_stream() -> void:
 	if _body_stream != null and is_instance_valid(_body_stream):
 		_body_stream.clear_texture()
 		_body_stream.queue_free()
 	_body_stream = null
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	_clear_body_stream()

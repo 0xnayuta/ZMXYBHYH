@@ -1,8 +1,10 @@
 extends BaseLevel
 class_name LevelZLDHDGQ
-@onready var stop_1: CollisionShape2D = $wall / stop1
+@onready var stop_1: CollisionShape2D = $wall/stop1
 var is_cc = false
-func _ready() -> void :
+
+
+func _ready() -> void:
 	Global.addBGM_(self, "res://Music/level/2_bg4.mp3")
 	load("res://Scene/Monster/Monster_142.tscn")
 	load("res://Scene/Monster/Monster_55.tscn")
@@ -12,24 +14,26 @@ func _ready() -> void :
 	self.level_stage = 1
 	super._ready()
 	Monster_group = {
-		"stage_1": [57], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [57],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_x = {
-		"stage_1": [850], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [850],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_y = {
-		"stage_1": [200], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [200],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	if PlayerData.ChekEqzb("头衔", "xczg"):
 		Global.change_scene("res://Scene/Main_menu/Main_Menu.tscn")
 	if not is_cc:

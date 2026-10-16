@@ -1,24 +1,27 @@
 extends BaseMagicWeapon
 class_name Cucurbit
-var _hit_data: = {
-	"power": 0, 
-	"hurtBack": [5, -5], 
-	"attackKind": "physics", 
-	"addeffect": {
-		"Name": "Fire", 
-		"AddTime": 5, 
-		"ReduceInterval": 1, 
-		"value": 0, 
-		"AttackKind": "real", 
-		"CanAdd": true, 
+var _hit_data := {
+	"power": 0,
+	"hurtBack": [5, -5],
+	"attackKind": "physics",
+	"addeffect":
+	{
+		"Name": "Fire",
+		"AddTime": 5,
+		"ReduceInterval": 1,
+		"value": 0,
+		"AttackKind": "real",
+		"CanAdd": true,
 		"DeBuff": true
 	}
 }
 
-func _ready() -> void :
+
+func _ready() -> void:
 	objattackDic["hit1"] = _hit_data
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	needMp = 50
 	self.FB_Level = PlayerData.get_mostLevel("dshl") + 1
 	var add_effect: Dictionary = _hit_data["addeffect"]
@@ -31,18 +34,26 @@ func _physics_process(delta: float) -> void :
 	if not is_use:
 		mg_player.play("wait")
 
-func ShowSkill():
 
+func ShowSkill():
 	mg_player.play("hit")
 	await mg_player.animation_finished
 	Useover()
+
+
 func Useover():
 	Global.FB_CD = 1
 	self.usecd = 6
 	is_use = false
 	skill_cd.start(6)
+
+
 func addFire():
-	var attack_data: = get_attack_snapshot()
+	var attack_data := get_attack_snapshot()
 	Global.addWeaponBullet_($Bullet, Vector2(self.position.x, 250), "CucurFire_2", attack_data, mg_action.flip_h, 100)
-	Global.addWeaponBullet_($Bullet, Vector2(self.position.x - 230, 250), "CucurFire_2", attack_data, mg_action.flip_h, 100)
-	Global.addWeaponBullet_($Bullet, Vector2(self.position.x + 230, 250), "CucurFire_2", attack_data, mg_action.flip_h, 100)
+	Global.addWeaponBullet_(
+		$Bullet, Vector2(self.position.x - 230, 250), "CucurFire_2", attack_data, mg_action.flip_h, 100
+	)
+	Global.addWeaponBullet_(
+		$Bullet, Vector2(self.position.x + 230, 250), "CucurFire_2", attack_data, mg_action.flip_h, 100
+	)

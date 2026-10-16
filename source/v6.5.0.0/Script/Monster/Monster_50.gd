@@ -1,10 +1,7 @@
 extends BaseMonster
 class_name Monster50
 var is_stop: bool = false
-var CallMonsterList: Dictionary = {
-	"List_0": [18, 20, 23], 
-	"List_1": [37, 43, 41]
-}
+var CallMonsterList: Dictionary = {"List_0": [18, 20, 23], "List_1": [37, 43, 41]}
 var CallMonsterID: int = 0
 var CallMonster: BaseMonster
 var is_BeCall = false
@@ -35,57 +32,43 @@ func monster_50():
 	self.self_rhp = 0
 	self.add_exp = 500
 	self.fall_coin = 130
-	self.objattackDic["hit1"] = {
-		"power": 260, 
-		"hurtBack": [-8, -7], 
-		"attackKind": "magic"
-	}
+	self.objattackDic["hit1"] = {"power": 260, "hurtBack": [-8, -7], "attackKind": "magic"}
 	self.objattackDic["mffd_1"] = {
-		"power": int(RoleProp.roleprop.SHp * 0.05 + 100), 
-		"hurtBack": [-8, -5], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "Ice", 
-			"AddTime": 4, 
-			"ReduceInterval": 0, 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": int(RoleProp.roleprop.SHp * 0.05 + 100),
+		"hurtBack": [-8, -5],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "Ice",
+			"AddTime": 4,
+			"ReduceInterval": 0,
+			"CanAdd": false,
+			"DeBuff": true,
+			"value": 0,
+			"AttackKind": "",
 		}
 	}
 	self.objattackDic["mffd_2"] = {
-		"power": int(RoleProp.roleprop.SHp * 0.05 + 100), 
-		"hurtBack": [-8, -5], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "Fire", 
-			"AddTime": 2, 
-			"ReduceInterval": 0.5, 
-			"CanAdd": true, 
-			"DeBuff": true, 
-			"value": int(RoleProp.roleprop.SHp * 0.01), 
-			"AttackKind": "real", 
+		"power": int(RoleProp.roleprop.SHp * 0.05 + 100),
+		"hurtBack": [-8, -5],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "Fire",
+			"AddTime": 2,
+			"ReduceInterval": 0.5,
+			"CanAdd": true,
+			"DeBuff": true,
+			"value": int(RoleProp.roleprop.SHp * 0.01),
+			"AttackKind": "real",
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "xhgp", 
-			"value": 0
-		}, 
-		{
-			"name": "xhxh", 
-			"value": 0
-		}, 
-		{
-			"name": "xhymk", 
-			"value": 0
-		}, 
-		{
-			"name": "xhyk", 
-			"value": 0
-		}, 
+		{"name": "xhgp", "value": 0},
+		{"name": "xhxh", "value": 0},
+		{"name": "xhymk", "value": 0},
+		{"name": "xhyk", "value": 0},
 	]
 
 	enable_treasure_box = true
@@ -94,12 +77,16 @@ func monster_50():
 	update_fall_mode()
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_50()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if not is_stop:
 		CreateMonster()
@@ -109,11 +96,13 @@ func _physics_process(delta: float) -> void :
 		self.self_rhp = randi_range(150, 250)
 		CheckCallMonsterDeath()
 		Stop()
+
+
 func Monster_Intelligence():
 	if is_BeCall:
 		velocity.x = 0
 		self.modulate = Color(1, 1, 1, 0.0)
-		$BaseDamageBox / HurtBox / HurtBox.disabled = true
+		$BaseDamageBox/HurtBox/HurtBox.disabled = true
 		return
 	else:
 		if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -123,7 +112,10 @@ func Monster_Intelligence():
 				normal_state()
 			else:
 				if not is_stop:
-					if abs(self.position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+					if (
+						abs(self.position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
+						> attackRange
+					):
 						have_target()
 						if Skill_1_CD <= 0:
 							do_hit_2()
@@ -139,6 +131,8 @@ func Monster_Intelligence():
 								attack_target()
 							else:
 								stop_move()
+
+
 func do_hit_2():
 	Skill_1_CD = 12
 	hit_name = "nlls"
@@ -147,6 +141,8 @@ func do_hit_2():
 	mr_player.play("nlls")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func do_hit_3():
 	Skill_2_CD = 10
 	velocity.x = 0
@@ -154,18 +150,23 @@ func do_hit_3():
 	mr_player.play("mffd")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func Stop():
 	mr_player.play("wait")
-	$BaseDamageBox / HurtBox / HurtBox.disabled = true
+	$BaseDamageBox/HurtBox/HurtBox.disabled = true
 	self.modulate = Color(1, 1, 1, 0.5)
+
+
 func Move():
 	self.modulate = Color(1, 1, 1, 1)
-func CreateMonster():
 
+
+func CreateMonster():
 	if CallMonsterID == 0:
 		if Hp < SHp * 0.5:
 			self.modulate = Color(1, 1, 1, 0.5)
-			$BaseDamageBox / HurtBox / HurtBox.disabled = true
+			$BaseDamageBox/HurtBox/HurtBox.disabled = true
 			var Get_list = CallMonsterList["List_" + str(CallMonsterID)]
 			var MonsterID: int = Get_list[randi_range(0, Get_list.size() - 1)]
 			if CallMonster == null:
@@ -179,30 +180,42 @@ func CreateMonster():
 			is_stop = true
 			mr_player.play("wait")
 			self.modulate = Color(1, 1, 1, 0.5)
-			$BaseDamageBox / HurtBox / HurtBox.disabled = true
+			$BaseDamageBox/HurtBox/HurtBox.disabled = true
 			var Get_list = CallMonsterList["List_" + str(CallMonsterID)]
 			var MonsterID: int = Get_list[randi_range(0, Get_list.size() - 1)]
 			if CallMonster == null:
 				CallMonster = Global.Create_Monster(43, get_parent(), self.position)
 			StrenghBoss()
 			CallMonsterID = 2
+
+
 func CheckCallMonsterDeath():
 	if CallMonster != null:
 		if CallMonster.is_death:
 			is_stop = false
 			self.modulate = Color(1, 1, 1, 1)
-			$BaseDamageBox / HurtBox / HurtBox.disabled = false
+			$BaseDamageBox/HurtBox/HurtBox.disabled = false
 			CallMonster = null
+
+
 func add_nlls():
-	Global.AddBuff(get_Player.buff, {
-			"Name": "nlls", 
-			"AddTime": 6, 
-			"ReduceInterval": 0.01, 
-			"value": 1.2, 
-			"AttackKind": "magic", 
-			"CanAdd": true, 
-			"DeBuff": true, 
-		})
+	(
+		Global
+		. AddBuff(
+			get_Player.buff,
+			{
+				"Name": "nlls",
+				"AddTime": 6,
+				"ReduceInterval": 0.01,
+				"value": 1.2,
+				"AttackKind": "magic",
+				"CanAdd": true,
+				"DeBuff": true,
+			}
+		)
+	)
+
+
 func CallBullet():
 	var Bullet_
 	var BulletName: String
@@ -214,13 +227,32 @@ func CallBullet():
 		BulletName = "Monster49Bullet_2"
 		Hit_name = "mffd_2"
 	if MonsterDirection:
-		Bullet_ = Global.CallChaseBullet(self.bullet, BulletName, 330, 4, false, Vector2(self.position.x + 220, self.position.y - 180), Hit_name, self.objattackDic[Hit_name])
+		Bullet_ = Global.CallChaseBullet(
+			self.bullet,
+			BulletName,
+			330,
+			4,
+			false,
+			Vector2(self.position.x + 220, self.position.y - 180),
+			Hit_name,
+			self.objattackDic[Hit_name]
+		)
 	else:
-		Bullet_ = Global.CallChaseBullet(self.bullet, BulletName, 330, 4, false, Vector2(self.position.x - 220, self.position.y - 180), Hit_name, self.objattackDic[Hit_name])
+		Bullet_ = Global.CallChaseBullet(
+			self.bullet,
+			BulletName,
+			330,
+			4,
+			false,
+			Vector2(self.position.x - 220, self.position.y - 180),
+			Hit_name,
+			self.objattackDic[Hit_name]
+		)
 	Bullet_.scale = Vector2(2, 2)
+
+
 func StrenghBoss():
 	if CallMonster != null:
-
 		if CallMonster is Monster43:
 			CallMonster.SHp = SHp
 			CallMonster.my_mr_name = "邪·阎罗王"
@@ -241,16 +273,17 @@ func StrenghBoss():
 				if CallMonster.objattackDic[i].has("power"):
 					CallMonster.objattackDic[i]["power"] = randi_range(265, 330)
 
+
 func call_fly_bullet():
 	if MonsterDirection:
-		var pp = Global.CallFlyBullet(bullet, "Monster49Bulet", 1, 
-			Vector2(position.x, position.y + 30), 2500, -900, 
-			"hit1", objattackDic["hit1"])
+		var pp = Global.CallFlyBullet(
+			bullet, "Monster49Bulet", 1, Vector2(position.x, position.y + 30), 2500, -900, "hit1", objattackDic["hit1"]
+		)
 		if pp:
 			var sprite = pp.get_node("AnimatedSprite2D")
 			if sprite:
 				sprite.flip_h = true
 	else:
-		Global.CallFlyBullet(bullet, "Monster49Bulet", 1, 
-			Vector2(position.x, position.y + 30), 2500, 900, 
-			"hit1", objattackDic["hit1"])
+		Global.CallFlyBullet(
+			bullet, "Monster49Bulet", 1, Vector2(position.x, position.y + 30), 2500, 900, "hit1", objattackDic["hit1"]
+		)

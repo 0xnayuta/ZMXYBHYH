@@ -28,47 +28,40 @@ func monster_28(is_boss_):
 		self.add_exp = 200
 		self.fall_coin = 200
 		self.objattackDic["hit1"] = {
-			"power": 180, 
-			"hurtBack": [-6, -9], 
-			"attackKind": "physics", 
-			"addeffect": {
-				"Name": "Bleed", 
-				"AddTime": 2, 
-				"ReduceInterval": 0.5, 
-				"CanAdd": true, 
-				"DeBuff": true, 
-				"value": int(RoleProp.roleprop.SHp * 0.02), 
-				"AttackKind": "magic", 
+			"power": 180,
+			"hurtBack": [-6, -9],
+			"attackKind": "physics",
+			"addeffect":
+			{
+				"Name": "Bleed",
+				"AddTime": 2,
+				"ReduceInterval": 0.5,
+				"CanAdd": true,
+				"DeBuff": true,
+				"value": int(RoleProp.roleprop.SHp * 0.02),
+				"AttackKind": "magic",
 			}
 		}
 		self.objattackDic["hsg"] = {
-			"power": 90 + RoleProp.roleprop.SHp * 0.08, 
-			"hurtBack": [-4, -9], 
-			"attackKind": "physics", 
-			"addeffect": {
-				"Name": "Fire", 
-				"AddTime": 4, 
-				"ReduceInterval": 0.5, 
-				"CanAdd": true, 
-				"DeBuff": true, 
-				"value": int(RoleProp.roleprop.SHp * 0.02), 
-				"AttackKind": "magic", 
+			"power": 90 + RoleProp.roleprop.SHp * 0.08,
+			"hurtBack": [-4, -9],
+			"attackKind": "physics",
+			"addeffect":
+			{
+				"Name": "Fire",
+				"AddTime": 4,
+				"ReduceInterval": 0.5,
+				"CanAdd": true,
+				"DeBuff": true,
+				"value": int(RoleProp.roleprop.SHp * 0.02),
+				"AttackKind": "magic",
 			}
 		}
 
 		self.fall_pro = 0.5
-		self.fall_list = [
-			{
-				"name": "lzp", 
-				"value": 0
-			}, 
-			{
-				"name": "jmy", 
-				"value": 0
-			}
-		]
+		self.fall_list = [{"name": "lzp", "value": 0}, {"name": "jmy", "value": 0}]
 		self.independent_fall_list = [
-			{"name": "221007001", "value": 0, "chance": 0.333}, 
+			{"name": "221007001", "value": 0, "chance": 0.333},
 		]
 
 		enable_treasure_box = true
@@ -78,8 +71,7 @@ func monster_28(is_boss_):
 		if current_fall_mode == FallMode.TREASURE_BOX:
 			self.independent_fall_list.clear()
 		self.fall_stone_pro = 0
-		self.fall_stone = [
-		]
+		self.fall_stone = []
 	else:
 		self.attack_in = 10
 		self.level = 27
@@ -104,47 +96,50 @@ func monster_28(is_boss_):
 		self.add_exp = 60
 		self.fall_coin = 25
 		self.objattackDic["hit1"] = {
-			"power": 90, 
-			"hurtBack": [-6, -9], 
-			"attackKind": "physics", 
-			"addeffect": {
-				"Name": "Bleed", 
-				"AddTime": 1, 
-				"ReduceInterval": 0.5, 
-				"CanAdd": true, 
-				"DeBuff": true, 
-				"value": int(RoleProp.roleprop.SHp * 0.02), 
-				"AttackKind": "magic", 
+			"power": 90,
+			"hurtBack": [-6, -9],
+			"attackKind": "physics",
+			"addeffect":
+			{
+				"Name": "Bleed",
+				"AddTime": 1,
+				"ReduceInterval": 0.5,
+				"CanAdd": true,
+				"DeBuff": true,
+				"value": int(RoleProp.roleprop.SHp * 0.02),
+				"AttackKind": "magic",
 			}
 		}
 		self.objattackDic["hsg"] = {
-			"power": 40 + RoleProp.roleprop.SHp * 0.04, 
-			"hurtBack": [-4, -9], 
-			"attackKind": "physics", 
-			"addeffect": {
-				"Name": "Fire", 
-				"AddTime": 1, 
-				"ReduceInterval": 0.5, 
-				"CanAdd": true, 
-				"DeBuff": true, 
-				"value": int(RoleProp.roleprop.SHp * 0.02), 
-				"AttackKind": "magic", 
+			"power": 40 + RoleProp.roleprop.SHp * 0.04,
+			"hurtBack": [-4, -9],
+			"attackKind": "physics",
+			"addeffect":
+			{
+				"Name": "Fire",
+				"AddTime": 1,
+				"ReduceInterval": 0.5,
+				"CanAdd": true,
+				"DeBuff": true,
+				"value": int(RoleProp.roleprop.SHp * 0.02),
+				"AttackKind": "magic",
 			}
 		}
 		self.fall_pro = 0
-		self.fall_list = [
-
-		]
+		self.fall_list = []
 		self.fall_stone_pro = 0
-		self.fall_stone = [
-		]
-func _ready() -> void :
+		self.fall_stone = []
+
+
+func _ready() -> void:
 	super._ready()
 	if get_parent().get_parent().name == "Level_11":
 		is_boss = true
 	else:
 		is_boss = false
 	monster_28(is_boss)
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -166,6 +161,7 @@ func Monster_Intelligence():
 				else:
 					stop_move()
 
+
 func do_hit_2():
 	Skill_1_CD = 8
 	hit_name = "hsg"
@@ -174,18 +170,60 @@ func do_hit_2():
 	mr_player.play("hsg")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func call_Bullet_1():
 	if self.MonsterDirection:
 		var po = Vector2(self.position.x + 40, self.position.y + 20)
-		Global.add_Bullet("Monster28Bullet_2", self.bullet, self.MonsterDirection, 1, po, "hit1", self.objattackDic["hit1"])
+		Global.add_Bullet(
+			"Monster28Bullet_2", self.bullet, self.MonsterDirection, 1, po, "hit1", self.objattackDic["hit1"]
+		)
 		await get_tree().create_timer(0.3, false).timeout
-		Global.add_Bullet("Monster28Bullet_2", self.bullet, self.MonsterDirection, 1, po + Vector2(randi_range(40, 50), 0), "hit1", self.objattackDic["hit1"])
+		Global.add_Bullet(
+			"Monster28Bullet_2",
+			self.bullet,
+			self.MonsterDirection,
+			1,
+			po + Vector2(randi_range(40, 50), 0),
+			"hit1",
+			self.objattackDic["hit1"]
+		)
 	else:
 		var po = Vector2(self.position.x - 40, self.position.y + 20)
-		Global.add_Bullet("Monster28Bullet_2", self.bullet, self.MonsterDirection, 1, po, "hit1", self.objattackDic["hit1"])
-		Global.add_Bullet("Monster28Bullet_2", self.bullet, self.MonsterDirection, 1, po + Vector2(randi_range(-40, -50), 0), "hit1", self.objattackDic["hit1"])
+		Global.add_Bullet(
+			"Monster28Bullet_2", self.bullet, self.MonsterDirection, 1, po, "hit1", self.objattackDic["hit1"]
+		)
+		Global.add_Bullet(
+			"Monster28Bullet_2",
+			self.bullet,
+			self.MonsterDirection,
+			1,
+			po + Vector2(randi_range(-40, -50), 0),
+			"hit1",
+			self.objattackDic["hit1"]
+		)
+
+
 func call_Bullet_2():
 	if self.MonsterDirection:
-		Global.CallFlyBullet(self.bullet, "Monster28Bullet_1", 1, Vector2(position.x, position.y), 900, -200, "hsg", self.objattackDic["hsg"])
+		Global.CallFlyBullet(
+			self.bullet,
+			"Monster28Bullet_1",
+			1,
+			Vector2(position.x, position.y),
+			900,
+			-200,
+			"hsg",
+			self.objattackDic["hsg"]
+		)
 	else:
-		Global.CallFlyBullet(self.bullet, "Monster28Bullet_1", 1, Vector2(position.x, position.y), 900, 200, "hsg", self.objattackDic["hsg"])
+		Global.CallFlyBullet(
+			self.bullet,
+			"Monster28Bullet_1",
+			1,
+			Vector2(position.x, position.y),
+			900,
+			200,
+			"hsg",
+			self.objattackDic["hsg"]
+		)

@@ -1,6 +1,7 @@
 extends BaseMonster
 class_name Monster100
 
+
 func monster_100():
 	self.rush_speed = 600
 	self.is_boss = true
@@ -28,50 +29,39 @@ func monster_100():
 	self.add_exp = 120
 	self.fall_coin = 155
 	self.objattackDic["hit1"] = {
-		"power": 350, 
-		"hurtBack": [-4, -7], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 350,
+		"hurtBack": [-4, -7],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 350, 
-		"hurtBack": [-2, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 350,
+		"hurtBack": [-2, -1],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit3"] = {
-		"power": 400, 
-		"hurtBack": [-6, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 5, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 2, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 400,
+		"hurtBack": [-6, -1],
+		"attackKind": "magic",
+		"HitProtect": 5,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 2,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "eyzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "tzzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "yjzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "zezzs", 
-			"value": 1
-		}, 
+		{"name": "eyzzs", "value": 1},
+		{"name": "tzzzs", "value": 1},
+		{"name": "yjzzs", "value": 1},
+		{"name": "zezzs", "value": 1},
 	]
 
 	enable_treasure_box = true
@@ -80,23 +70,18 @@ func monster_100():
 	update_fall_mode()
 	self.fall_stone_pro = 0
 	self.fall_stone = [
-		{
-			"name": "sichou", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "xuantie", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "tanmu", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "sichou", "value": randi_range(1, 2)},
+		{"name": "xuantie", "value": randi_range(1, 2)},
+		{"name": "tanmu", "value": randi_range(1, 2)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_100()
 	Skill_1_CD = 0
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -122,6 +107,8 @@ func Monster_Intelligence():
 				if count % 60 == 0:
 					if randi_range(0, 100) < attackDesire:
 						attack_target()
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(8, 10)
@@ -132,6 +119,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = randi_range(11, 13)
@@ -142,11 +131,15 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func MovePlayer():
 	self.position = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 410)
 	self.position.x = RoleProp.get_nearest_monster_target_position(global_position).x
+
+
 func rush():
 	if self.MonsterDirection:
 		velocity.x = rush_speed
 	else:
-		velocity.x = - rush_speed
+		velocity.x = -rush_speed

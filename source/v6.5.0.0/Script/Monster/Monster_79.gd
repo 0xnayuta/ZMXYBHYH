@@ -2,6 +2,8 @@ extends BaseMonster
 class_name Monster79
 var CurrentStage: int = 0
 var IsRelif: bool
+
+
 func monster_79():
 	self.rush_speed = 600
 	self.is_boss = true
@@ -28,59 +30,47 @@ func monster_79():
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 100
-	self.objattackDic["hit1"] = {
-		"power": 200, 
-		"hurtBack": [-7, -9], 
-		"attackKind": "physics", 
-		"HitProtect": 10
-	}
+	self.objattackDic["hit1"] = {"power": 200, "hurtBack": [-7, -9], "attackKind": "physics", "HitProtect": 10}
 	self.objattackDic["hit2"] = {
-		"power": 300, 
-		"hurtBack": [-7, -15], 
-		"attackKind": "magic", 
-		"HitProtect": 25, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 1.5, 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": 300,
+		"hurtBack": [-7, -15],
+		"attackKind": "magic",
+		"HitProtect": 25,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 1.5,
+			"CanAdd": false,
+			"DeBuff": true,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
 		}
 	}
 	self.objattackDic["hit3"] = {
-		"power": 180, 
-		"hurtBack": [-16, -9], 
-		"attackKind": "magic", 
-		"HitProtect": 5, 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 1, 
-			"ReduceInterval": 0, 
-			"value": 0.2, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 180,
+		"hurtBack": [-16, -9],
+		"attackKind": "magic",
+		"HitProtect": 5,
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 1,
+			"ReduceInterval": 0,
+			"value": 0.2,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "xhc", 
-			"value": 0
-		}, 
-		{
-			"name": "xhp", 
-			"value": 0
-		}, 
-		{
-			"name": "xhj", 
-			"value": 0
-		}, 
+		{"name": "xhc", "value": 0},
+		{"name": "xhp", "value": 0},
+		{"name": "xhj", "value": 0},
 	]
 	self.independent_fall_list = [
-		{"name": "230007001", "value": 0, "chance": 0.333}, 
+		{"name": "230007001", "value": 0, "chance": 0.333},
 	]
 
 	enable_treasure_box = true
@@ -91,16 +81,16 @@ func monster_79():
 		self.independent_fall_list.clear()
 	self.fall_stone_pro = 0.2
 	self.fall_stone = [
-		{
-			"name": "smlp", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "smlp", "value": randi_range(1, 2)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_79()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -126,6 +116,7 @@ func Monster_Intelligence():
 					if randi_range(0, 100) <= attackDesire:
 						attack_target()
 
+
 func do_hit_2():
 	to_hero()
 	Skill_1_CD = 15
@@ -135,6 +126,8 @@ func do_hit_2():
 	mr_player.play("hit2")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func do_hit_3():
 	to_hero()
 	Skill_2_CD = 18
@@ -144,6 +137,8 @@ func do_hit_3():
 	mr_player.play("hit3")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func destroy():
 	CurrentStage += 1
 	if CurrentStage >= 3:
@@ -161,40 +156,37 @@ func destroy():
 			self.mdef = 180
 			self.SHp = 60000
 			self.speed = 12
-			self.objattackDic["hit1"] = {
-				"power": 300, 
-				"hurtBack": [-7, -9], 
-				"attackKind": "physics", 
-				"HitProtect": 10
-			}
+			self.objattackDic["hit1"] = {"power": 300, "hurtBack": [-7, -9], "attackKind": "physics", "HitProtect": 10}
 			self.objattackDic["hit2"] = {
-				"power": 400, 
-				"hurtBack": [-7, -15], 
-				"attackKind": "magic", 
-				"HitProtect": 25, 
-				"addeffect": {
-					"Name": "stun", 
-					"AddTime": 2, 
-					"ReduceInterval": 0, 
-					"value": 0, 
-					"AttackKind": "", 
-					"CanAdd": false, 
-					"DeBuff": true, 
+				"power": 400,
+				"hurtBack": [-7, -15],
+				"attackKind": "magic",
+				"HitProtect": 25,
+				"addeffect":
+				{
+					"Name": "stun",
+					"AddTime": 2,
+					"ReduceInterval": 0,
+					"value": 0,
+					"AttackKind": "",
+					"CanAdd": false,
+					"DeBuff": true,
 				}
 			}
 			self.objattackDic["hit3"] = {
-				"power": 270, 
-				"hurtBack": [-16, -9], 
-				"attackKind": "magic", 
-				"HitProtect": 5, 
-				"addeffect": {
-					"Name": "speed_down", 
-					"AddTime": 1, 
-					"ReduceInterval": 0, 
-					"value": 0.2, 
-					"AttackKind": "", 
-					"CanAdd": false, 
-					"DeBuff": true, 
+				"power": 270,
+				"hurtBack": [-16, -9],
+				"attackKind": "magic",
+				"HitProtect": 5,
+				"addeffect":
+				{
+					"Name": "speed_down",
+					"AddTime": 1,
+					"ReduceInterval": 0,
+					"value": 0.2,
+					"AttackKind": "",
+					"CanAdd": false,
+					"DeBuff": true,
 				}
 			}
 			set_fullHp()
@@ -208,40 +200,37 @@ func destroy():
 			self.mdef = 200
 			self.SHp = 70000
 			self.speed = 8
-			self.objattackDic["hit1"] = {
-				"power": 380, 
-				"hurtBack": [-7, -9], 
-				"attackKind": "physics", 
-				"HitProtect": 10
-			}
+			self.objattackDic["hit1"] = {"power": 380, "hurtBack": [-7, -9], "attackKind": "physics", "HitProtect": 10}
 			self.objattackDic["hit2"] = {
-				"power": 500, 
-				"hurtBack": [-7, -15], 
-				"attackKind": "magic", 
-				"HitProtect": 25, 
-				"addeffect": {
-					"Name": "stun", 
-					"AddTime": 3, 
-					"ReduceInterval": 0, 
-					"value": 0, 
-					"AttackKind": "", 
-					"CanAdd": false, 
-					"DeBuff": true, 
+				"power": 500,
+				"hurtBack": [-7, -15],
+				"attackKind": "magic",
+				"HitProtect": 25,
+				"addeffect":
+				{
+					"Name": "stun",
+					"AddTime": 3,
+					"ReduceInterval": 0,
+					"value": 0,
+					"AttackKind": "",
+					"CanAdd": false,
+					"DeBuff": true,
 				}
 			}
 			self.objattackDic["hit3"] = {
-				"power": 330, 
-				"hurtBack": [-16, -9], 
-				"attackKind": "magic", 
-				"HitProtect": 5, 
-				"addeffect": {
-					"Name": "speed_down", 
-					"AddTime": 2, 
-					"ReduceInterval": 0, 
-					"value": 0.5, 
-					"AttackKind": "", 
-					"CanAdd": false, 
-					"DeBuff": true, 
+				"power": 330,
+				"hurtBack": [-16, -9],
+				"attackKind": "magic",
+				"HitProtect": 5,
+				"addeffect":
+				{
+					"Name": "speed_down",
+					"AddTime": 2,
+					"ReduceInterval": 0,
+					"value": 0.5,
+					"AttackKind": "",
+					"CanAdd": false,
+					"DeBuff": true,
 				}
 			}
 			set_fullHp()
@@ -249,13 +238,16 @@ func destroy():
 			hurt_box.set_deferred("disabled", false)
 			set_meta("counts_as_alive_for_stage_clear", false)
 
+
 func state_death():
 	if CurrentStage < 2:
 		set_meta("counts_as_alive_for_stage_clear", true)
 	super.state_death()
 
+
 func is_alive_for_stage_clear() -> bool:
 	return CurrentStage < 2 or bool(get_meta("counts_as_alive_for_stage_clear", false))
+
 
 func state_hurt():
 	is_jgz = false

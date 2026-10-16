@@ -35,30 +35,25 @@ func monster_41():
 	self.add_exp = 200
 	self.fall_coin = 200
 	self.objattackDic["hit1"] = {
-		"power": 270, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "Fire", 
-			"CanAdd": true, 
-			"AddTime": 2, 
-			"DeBuff": true, 
-			"ReduceInterval": 1, 
-			"value": int(RoleProp.roleprop.SHp * 0.01), 
-			"AttackKind": "real", 
+		"power": 270,
+		"hurtBack": [-4, -9],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "Fire",
+			"CanAdd": true,
+			"AddTime": 2,
+			"DeBuff": true,
+			"ReduceInterval": 1,
+			"value": int(RoleProp.roleprop.SHp * 0.01),
+			"AttackKind": "real",
 		}
 	}
 
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "lcld", 
-			"value": 0
-		}, 
-		{
-			"name": "tsyp", 
-			"value": 0
-		}, 
+		{"name": "lcld", "value": 0},
+		{"name": "tsyp", "value": 0},
 	]
 
 	enable_treasure_box = true
@@ -67,12 +62,16 @@ func monster_41():
 	update_fall_mode()
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	get_parent_ = get_parent().get_parent()
 	monster_41()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
+
+
 func Monster_Intelligence():
 	count_ += 1
 	if is_speed_up:
@@ -93,15 +92,26 @@ func Monster_Intelligence():
 				if not is_need_run:
 					if Skill_1_CD <= 0:
 						do_hit_3()
-					elif abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) < 300 and not is_need_run:
-						if position.x > RoleProp.get_nearest_monster_target_position(global_position).x or self.position.x <= 3430:
+					elif (
+						abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) < 300
+						and not is_need_run
+					):
+						if (
+							position.x > RoleProp.get_nearest_monster_target_position(global_position).x
+							or self.position.x <= 3430
+						):
 							need_right = true
-						elif position.x <= RoleProp.get_nearest_monster_target_position(global_position).x or self.position.x >= 4500:
+						elif (
+							position.x <= RoleProp.get_nearest_monster_target_position(global_position).x
+							or self.position.x >= 4500
+						):
 							need_left = true
 						is_need_run = true
 						$Run.wait_time = 2
 						$Run.start()
-					elif abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+					elif (
+						abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange
+					):
 						have_target()
 					else:
 						if Skill_2_CD <= 0 and Skill_1_CD > 0:
@@ -118,8 +128,9 @@ func Monster_Intelligence():
 							move_left()
 						elif need_right:
 							move_right()
-func do_hit_2():
 
+
+func do_hit_2():
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -129,6 +140,8 @@ func do_hit_2():
 	if get_parent_ is level15:
 		get_parent_.add_ini()
 	is_attacking = false
+
+
 func do_hit_3():
 	Skill_1_CD = 22
 	hit_name = "hit1"
@@ -137,6 +150,8 @@ func do_hit_3():
 	mr_player.play("jx")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func do_hit_4():
 	super.to_hero()
 	Skill_2_CD = 5
@@ -146,15 +161,21 @@ func do_hit_4():
 	mr_player.play("hit1")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func call_speed_up():
 	is_speed_up = true
 	self.miss = 35
 	$SpeedUp.wait_time = randi_range(12, 16)
 	$SpeedUp.start()
-func _on_speed_up_timeout() -> void :
+
+
+func _on_speed_up_timeout() -> void:
 	self.miss = 25
 	is_speed_up = false
 	$SpeedUp.stop()
+
+
 func add_speed_up_specialbullet():
 	if self.MonsterDirection:
 		Global.add_SpecialEffect(self, Vector2(0, 55), "SpeedUp", Vector2(1, 1), true, 1)
@@ -162,27 +183,22 @@ func add_speed_up_specialbullet():
 		Global.add_SpecialEffect(self, Vector2(0, 55), "SpeedUp", Vector2(1, 1), true, 1)
 
 
-
-
-
-
 func call_fly_bullet():
 	if MonsterDirection:
-
-		Global.CallFlyBullet(bullet, "Monster41Bullet", 1, 
-			Vector2(position.x + 100, position.y), 800, -300, 
-			"hit1", objattackDic["hit1"])
+		Global.CallFlyBullet(
+			bullet, "Monster41Bullet", 1, Vector2(position.x + 100, position.y), 800, -300, "hit1", objattackDic["hit1"]
+		)
 	else:
-
-		var fz = Global.CallFlyBullet(bullet, "Monster41Bullet", 1, 
-			Vector2(position.x - 100, position.y), 800, 300, 
-			"hit1", objattackDic["hit1"])
+		var fz = Global.CallFlyBullet(
+			bullet, "Monster41Bullet", 1, Vector2(position.x - 100, position.y), 800, 300, "hit1", objattackDic["hit1"]
+		)
 		if fz:
 			var sprite = fz.get_node("AnimatedSprite2D")
 			if sprite:
 				sprite.flip_h = true
 
-func _on_run_timeout() -> void :
+
+func _on_run_timeout() -> void:
 	is_need_run = false
 	need_right = false
 	need_left = false

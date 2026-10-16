@@ -1,18 +1,21 @@
 extends BaseHero
 class_name role2shallow
 
-
 var my_owner: BaseHero = null
-@onready var hurt_box = $base_damagebox / HurtBox / HurtBox
+@onready var hurt_box = $base_damagebox/HurtBox/HurtBox
 var Interv: int
 var ShallowList: Array
 var Dir: bool
 var ShouldUseSkill: bool
 var SkillName: String
 var is_set: bool
-func _ready() -> void :
+
+
+func _ready() -> void:
 	walk_speed = 360
 	Role_2()
+
+
 func Role_2():
 	var level_1 = PlayerData.player_data["技能学习"]["技能1"]["等级"] + 1
 	var level_2 = PlayerData.player_data["技能学习"]["技能2"]["等级"] + 1
@@ -25,21 +28,18 @@ func Role_2():
 	var level_9 = PlayerData.player_data["技能学习"]["技能9"]["等级"] + 1
 	var level_10 = PlayerData.player_data["技能学习"]["技能10"]["等级"]
 	self.objattackDic["xbz"] = {
-		"power": RoleProp.roleprop.power * (0.55 + (level_2 * 0.055)), 
-		"hurtBack": [8, -13], 
-		"attackKind": "magic"
+		"power": RoleProp.roleprop.power * (0.55 + (level_2 * 0.055)), "hurtBack": [8, -13], "attackKind": "magic"
 	}
 	self.objattackDic["jhsj"] = {
-		"power": RoleProp.roleprop.power * (0.9 + (level_9 * 0.1)), 
-		"hurtBack": [3, -8], 
-		"attackKind": "magic"
+		"power": RoleProp.roleprop.power * (0.9 + (level_9 * 0.1)), "hurtBack": [3, -8], "attackKind": "magic"
 	}
-
 
 	walk_speed = 360 + (level_3 - 1) * (660 - 360) / 9.0
 	walk_speed = int(walk_speed)
-func _physics_process(delta: float) -> void :
-	$Action / EffectBody.visible = false
+
+
+func _physics_process(delta: float) -> void:
+	$Action/EffectBody.visible = false
 	if self.IsInSky:
 		self.gravity = 0
 		velocity.y = 0
@@ -56,13 +56,15 @@ func _physics_process(delta: float) -> void :
 			_play_locomotion_animation(&"run")
 		else:
 			$Action.scale.x = 1
-			velocity.x = - walk_speed
+			velocity.x = -walk_speed
 			_play_locomotion_animation(&"run")
 	else:
 		if not is_set:
 			UseSkill()
 			is_set = true
 	move_and_slide()
+
+
 func UseSkill():
 	match SkillName:
 		"xbz":
@@ -71,6 +73,8 @@ func UseSkill():
 			Skill_XBZ()
 		"jhsj":
 			Skill_JHSJ()
+
+
 func Skill_XBZ():
 	velocity.x = 0
 	get_action = "tjgl"
@@ -81,6 +85,8 @@ func Skill_XBZ():
 	await role_action_player.animation_finished
 	is_attacking = false
 	is_using_skills = false
+
+
 func Skill_Tjgl():
 	velocity.x = 0
 	get_action = "tjgl"
@@ -91,6 +97,7 @@ func Skill_Tjgl():
 	turn_to_wait()
 	is_attacking = false
 	is_using_skills = false
+
 
 func Skill_JHSJ():
 	velocity.x = 0
@@ -103,10 +110,13 @@ func Skill_JHSJ():
 	is_attacking = false
 	is_using_skills = false
 
+
 func AddTJGL():
 	var eff = Global.addRoleSpecialEffect_(self.Bullet, position + Vector2(0, -35), false, "tjgl")
 	if eff != null and my_owner != null:
 		eff.owner_player = my_owner
+
+
 func AddXBZ():
 	var PositionList = [Vector2(-80, -15)]
 	var ScaleList = [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1.5, 1.5)]
@@ -115,17 +125,24 @@ func AddXBZ():
 	else:
 		PositionList = [Vector2(80, -15), Vector2(175, -20), Vector2(275, -25)]
 	for i in PositionList.size():
-		var xbz = Global.addRoleBullet_(self.Bullet, PositionList[i] + position, Dir, "Role2Bullet3", objattackDic["xbz"])
+		var xbz = Global.addRoleBullet_(
+			self.Bullet, PositionList[i] + position, Dir, "Role2Bullet3", objattackDic["xbz"]
+		)
 		xbz.scale = ScaleList[i]
 		await get_tree().create_timer(0.2, false).timeout
+
+
 func AddJHSJ2():
 	var Position = Vector2()
 	Position = Vector2(0, -10)
 	var jhsj_2 = Global.addRoleBullet_(self, Position, false, "Role2Bullet6", objattackDic["jhsj"])
 	jhsj_2.show_behind_parent = true
 
-func _on_death___timeout() -> void :
+
+func _on_death___timeout() -> void:
 	if not ShouldUseSkill:
 		self.queue_free()
-func _on_spontaneous_recovery_timeout() -> void :
+
+
+func _on_spontaneous_recovery_timeout() -> void:
 	return

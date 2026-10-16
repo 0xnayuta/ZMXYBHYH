@@ -2,6 +2,8 @@ extends BaseMonster
 class_name Monster93
 var Dog: Monster72
 var CallDog: bool
+
+
 func monster_93():
 	self.rush_speed = 400
 	self.is_boss = true
@@ -29,74 +31,73 @@ func monster_93():
 	self.add_exp = 0
 	self.fall_coin = 500
 	self.objattackDic["hit1"] = {
-		"power": 500, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
+		"power": 500,
+		"hurtBack": [-8, -12],
+		"attackKind": "physics",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": int(RoleProp.roleprop.SHp * 0.3 + 1000), 
-		"hurtBack": [-1, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 20, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 5, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": int(RoleProp.roleprop.SHp * 0.3 + 1000),
+		"hurtBack": [-1, -1],
+		"attackKind": "magic",
+		"HitProtect": 20,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 5,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit3"] = {
-		"power": 400, 
-		"hurtBack": [-1, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 5, 
+		"power": 400,
+		"hurtBack": [-1, -1],
+		"attackKind": "magic",
+		"HitProtect": 5,
 	}
 	self.objattackDic["hit4"] = {
-		"power": 300, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "BloodFix", 
-			"AddTime": 20, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 300,
+		"hurtBack": [0, 0],
+		"attackKind": "real",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "BloodFix",
+			"AddTime": 20,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit5"] = {
-		"power": 300, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real", 
-		"HitProtect": 8, 
+		"power": 300,
+		"hurtBack": [0, 0],
+		"attackKind": "real",
+		"HitProtect": 8,
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "shsjt", 
-			"value": 0
-		}, 
+		{"name": "shsjt", "value": 0},
 	]
 	self.fall_stone_pro = 0.2
 	self.fall_stone = [
-		{
-			"name": "smlp", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "smlp", "value": randi_range(1, 2)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_93()
 	Skill_1_CD = randi_range(3, 4)
 	Skill_2_CD = 10
 	Skill_3_CD = 5
 	Skill_4_CD = 0
+
 
 func Monster_Intelligence():
 	if Dog == null and not CallDog:
@@ -141,6 +142,8 @@ func Monster_Intelligence():
 						stop_move()
 				else:
 					stop_move()
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(10, 12)
@@ -151,6 +154,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	do_hit_2()
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = randi_range(8, 12)
@@ -161,6 +166,8 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_3():
 	super.to_hero()
 	Skill_3_CD = randi_range(15, 18)
@@ -171,6 +178,8 @@ func do_hit_3():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_4():
 	super.to_hero()
 	Skill_4_CD = randi_range(10, 14)
@@ -181,6 +190,8 @@ func do_hit_4():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func ADDBullet():
 	var PositionList = [Vector2()]
 	var Position2: Vector2
@@ -192,13 +203,19 @@ func ADDBullet():
 		PositionList = [Vector2(10, -315), Vector2(-70, -70), Vector2(65, -70)]
 		Position2 = Vector2(10, -160)
 	for i in PositionList:
-		var Line = Global.add_Bullet("Monster93Bullet", self.bullet, MonsterDirection, 1.6, i + position, "hit5", self.objattackDic["hit5"])
+		var Line = Global.add_Bullet(
+			"Monster93Bullet", self.bullet, MonsterDirection, 1.6, i + position, "hit5", self.objattackDic["hit5"]
+		)
 		if MonsterDirection:
 			Tween_.tween_property(Line, "rotation_degrees", 45, 2)
 		else:
 			Tween_.tween_property(Line, "rotation_degrees", -45, 2)
-	var Line2 = Global.add_Bullet("Monster93Bullet", self.bullet, MonsterDirection, 1.6, Position2 + position, "hit5", self.objattackDic["hit5"])
+	var Line2 = Global.add_Bullet(
+		"Monster93Bullet", self.bullet, MonsterDirection, 1.6, Position2 + position, "hit5", self.objattackDic["hit5"]
+	)
 	Line2.scale.y = 2.2
+
+
 func BloodFix_():
 	if self.position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
 		if Global.get_player.PlayerDir:
@@ -208,13 +225,21 @@ func BloodFix_():
 		if not Global.get_player.PlayerDir:
 			if MonsterDirection:
 				ADDBloodFix()
+
+
 func ADDBloodFix():
-	Global.AddBuff(get_Player.buff, {
-			"Name": "BloodFix", 
-			"AddTime": 20, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
-		})
+	(
+		Global
+		. AddBuff(
+			get_Player.buff,
+			{
+				"Name": "BloodFix",
+				"AddTime": 20,
+				"ReduceInterval": 0,
+				"value": 0,
+				"AttackKind": "",
+				"CanAdd": false,
+				"DeBuff": true,
+			}
+		)
+	)

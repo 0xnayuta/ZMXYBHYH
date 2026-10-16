@@ -2,64 +2,316 @@ extends BaseLevel
 class_name LevelBXGH
 
 const BOSS_ORDER: Array[int] = [163, 175, 165, 166, 168, 169, 174, 164]
-const CAMERA_RIGHT_LIMIT: = 1200.0
+const CAMERA_RIGHT_LIMIT := 1200.0
 
-
-
-const LEVEL_BXGH_BOSS_DATA: = {
-	163: {"name": "魔·吕洞宾", "level": 65, "hp": 2400000, "attack": 60, "def": 560, "mdef": 560, "crit": 300, "miss": 100, "hit": 500, "toughness": 30.0, "crit_reduce": 15, "armor_break": 400, "magic_break": 400, "speed": 20.0, "sight": 1000, "range": 230, "attack_desire": 300, "behit_calmtime": 0.12, "exp": 4500, "coin": 2400, "drop_rate": 0.0, "drop_list": [], "is_boss": true, "max_protect": 100.0, "attacks": {"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8}, "hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8}, "hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}}}, 
-	164: {"name": "魔·铁拐李", "level": 65, "hp": 2400000, "attack": 60, "def": 560, "mdef": 560, "crit": 300, "miss": 100, "hit": 500, "toughness": 30.0, "crit_reduce": 15, "armor_break": 400, "magic_break": 400, "speed": 20.0, "sight": 1000, "range": 230, "attack_desire": 300, "behit_calmtime": 0.12, "exp": 4500, "coin": 2400, "drop_rate": 0.0, "drop_list": [], "is_boss": true, "max_protect": 100.0, "attacks": {"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8}, "hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8}, "hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}}}, 
-	165: {"name": "魔·韩湘子", "level": 65, "hp": 2400000, "attack": 60, "def": 560, "mdef": 560, "crit": 300, "miss": 100, "hit": 500, "toughness": 30.0, "crit_reduce": 15, "armor_break": 400, "magic_break": 400, "speed": 20.0, "sight": 1000, "range": 230, "attack_desire": 300, "behit_calmtime": 0.12, "exp": 4500, "coin": 2400, "drop_rate": 0.0, "drop_list": [], "is_boss": true, "max_protect": 100.0, "attacks": {"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8}, "hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8}, "hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}}}, 
-	166: {"name": "魔·汉钟离", "level": 65, "hp": 2400000, "attack": 60, "def": 560, "mdef": 560, "crit": 300, "miss": 100, "hit": 500, "toughness": 30.0, "crit_reduce": 15, "armor_break": 400, "magic_break": 400, "speed": 20.0, "sight": 1000, "range": 230, "attack_desire": 300, "behit_calmtime": 0.12, "exp": 4500, "coin": 2400, "drop_rate": 0.0, "drop_list": [], "is_boss": true, "max_protect": 100.0, "attacks": {"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8}, "hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8}, "hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}}}, 
-	168: {"name": "魔·张果老", "level": 65, "hp": 2400000, "attack": 60, "def": 560, "mdef": 560, "crit": 300, "miss": 100, "hit": 500, "toughness": 30.0, "crit_reduce": 15, "armor_break": 400, "magic_break": 400, "speed": 20.0, "sight": 1000, "range": 230, "attack_desire": 300, "behit_calmtime": 0.12, "exp": 4500, "coin": 2400, "drop_rate": 0.0, "drop_list": [], "is_boss": true, "max_protect": 100.0, "attacks": {"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8}, "hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8}, "hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}}}, 
-	169: {"name": "魔·蓝采和", "level": 65, "hp": 2400000, "attack": 60, "def": 560, "mdef": 560, "crit": 300, "miss": 100, "hit": 500, "toughness": 30.0, "crit_reduce": 15, "armor_break": 400, "magic_break": 400, "speed": 20.0, "sight": 1000, "range": 230, "attack_desire": 300, "behit_calmtime": 0.12, "exp": 4500, "coin": 2400, "drop_rate": 0.0, "drop_list": [], "is_boss": true, "max_protect": 100.0, "attacks": {"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8}, "hit2": {"power": 0, "hurt_back": [-10, -4], "kind": "magic", "protect": 8}, "hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}}}, 
-	174: {"name": "魔·曹国舅", "level": 65, "hp": 2400000, "attack": 60, "def": 560, "mdef": 560, "crit": 300, "miss": 100, "hit": 500, "toughness": 30.0, "crit_reduce": 15, "armor_break": 400, "magic_break": 400, "speed": 20.0, "sight": 1000, "range": 230, "attack_desire": 300, "behit_calmtime": 0.12, "exp": 4500, "coin": 2400, "drop_rate": 0.0, "drop_list": [], "is_boss": true, "max_protect": 100.0, "attacks": {"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8}, "hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8}, "hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}}}, 
-	175: {"name": "魔·何仙姑", "level": 65, "hp": 2400000, "attack": 60, "def": 560, "mdef": 560, "crit": 300, "miss": 100, "hit": 500, "toughness": 30.0, "crit_reduce": 15, "armor_break": 400, "magic_break": 400, "speed": 20.0, "sight": 1000, "range": 230, "attack_desire": 300, "behit_calmtime": 0.12, "exp": 4500, "coin": 2400, "drop_rate": 0.0, "drop_list": [], "is_boss": true, "max_protect": 100.0, "attacks": {"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8}, "hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8}, "hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}}}, 
+const LEVEL_BXGH_BOSS_DATA := {
+	163:
+	{
+		"name": "魔·吕洞宾",
+		"level": 65,
+		"hp": 2400000,
+		"attack": 60,
+		"def": 560,
+		"mdef": 560,
+		"crit": 300,
+		"miss": 100,
+		"hit": 500,
+		"toughness": 30.0,
+		"crit_reduce": 15,
+		"armor_break": 400,
+		"magic_break": 400,
+		"speed": 20.0,
+		"sight": 1000,
+		"range": 230,
+		"attack_desire": 300,
+		"behit_calmtime": 0.12,
+		"exp": 4500,
+		"coin": 2400,
+		"drop_rate": 0.0,
+		"drop_list": [],
+		"is_boss": true,
+		"max_protect": 100.0,
+		"attacks":
+		{
+			"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8},
+			"hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8},
+			"hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}
+		}
+	},
+	164:
+	{
+		"name": "魔·铁拐李",
+		"level": 65,
+		"hp": 2400000,
+		"attack": 60,
+		"def": 560,
+		"mdef": 560,
+		"crit": 300,
+		"miss": 100,
+		"hit": 500,
+		"toughness": 30.0,
+		"crit_reduce": 15,
+		"armor_break": 400,
+		"magic_break": 400,
+		"speed": 20.0,
+		"sight": 1000,
+		"range": 230,
+		"attack_desire": 300,
+		"behit_calmtime": 0.12,
+		"exp": 4500,
+		"coin": 2400,
+		"drop_rate": 0.0,
+		"drop_list": [],
+		"is_boss": true,
+		"max_protect": 100.0,
+		"attacks":
+		{
+			"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8},
+			"hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8},
+			"hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}
+		}
+	},
+	165:
+	{
+		"name": "魔·韩湘子",
+		"level": 65,
+		"hp": 2400000,
+		"attack": 60,
+		"def": 560,
+		"mdef": 560,
+		"crit": 300,
+		"miss": 100,
+		"hit": 500,
+		"toughness": 30.0,
+		"crit_reduce": 15,
+		"armor_break": 400,
+		"magic_break": 400,
+		"speed": 20.0,
+		"sight": 1000,
+		"range": 230,
+		"attack_desire": 300,
+		"behit_calmtime": 0.12,
+		"exp": 4500,
+		"coin": 2400,
+		"drop_rate": 0.0,
+		"drop_list": [],
+		"is_boss": true,
+		"max_protect": 100.0,
+		"attacks":
+		{
+			"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8},
+			"hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8},
+			"hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}
+		}
+	},
+	166:
+	{
+		"name": "魔·汉钟离",
+		"level": 65,
+		"hp": 2400000,
+		"attack": 60,
+		"def": 560,
+		"mdef": 560,
+		"crit": 300,
+		"miss": 100,
+		"hit": 500,
+		"toughness": 30.0,
+		"crit_reduce": 15,
+		"armor_break": 400,
+		"magic_break": 400,
+		"speed": 20.0,
+		"sight": 1000,
+		"range": 230,
+		"attack_desire": 300,
+		"behit_calmtime": 0.12,
+		"exp": 4500,
+		"coin": 2400,
+		"drop_rate": 0.0,
+		"drop_list": [],
+		"is_boss": true,
+		"max_protect": 100.0,
+		"attacks":
+		{
+			"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8},
+			"hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8},
+			"hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}
+		}
+	},
+	168:
+	{
+		"name": "魔·张果老",
+		"level": 65,
+		"hp": 2400000,
+		"attack": 60,
+		"def": 560,
+		"mdef": 560,
+		"crit": 300,
+		"miss": 100,
+		"hit": 500,
+		"toughness": 30.0,
+		"crit_reduce": 15,
+		"armor_break": 400,
+		"magic_break": 400,
+		"speed": 20.0,
+		"sight": 1000,
+		"range": 230,
+		"attack_desire": 300,
+		"behit_calmtime": 0.12,
+		"exp": 4500,
+		"coin": 2400,
+		"drop_rate": 0.0,
+		"drop_list": [],
+		"is_boss": true,
+		"max_protect": 100.0,
+		"attacks":
+		{
+			"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8},
+			"hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8},
+			"hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}
+		}
+	},
+	169:
+	{
+		"name": "魔·蓝采和",
+		"level": 65,
+		"hp": 2400000,
+		"attack": 60,
+		"def": 560,
+		"mdef": 560,
+		"crit": 300,
+		"miss": 100,
+		"hit": 500,
+		"toughness": 30.0,
+		"crit_reduce": 15,
+		"armor_break": 400,
+		"magic_break": 400,
+		"speed": 20.0,
+		"sight": 1000,
+		"range": 230,
+		"attack_desire": 300,
+		"behit_calmtime": 0.12,
+		"exp": 4500,
+		"coin": 2400,
+		"drop_rate": 0.0,
+		"drop_list": [],
+		"is_boss": true,
+		"max_protect": 100.0,
+		"attacks":
+		{
+			"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8},
+			"hit2": {"power": 0, "hurt_back": [-10, -4], "kind": "magic", "protect": 8},
+			"hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}
+		}
+	},
+	174:
+	{
+		"name": "魔·曹国舅",
+		"level": 65,
+		"hp": 2400000,
+		"attack": 60,
+		"def": 560,
+		"mdef": 560,
+		"crit": 300,
+		"miss": 100,
+		"hit": 500,
+		"toughness": 30.0,
+		"crit_reduce": 15,
+		"armor_break": 400,
+		"magic_break": 400,
+		"speed": 20.0,
+		"sight": 1000,
+		"range": 230,
+		"attack_desire": 300,
+		"behit_calmtime": 0.12,
+		"exp": 4500,
+		"coin": 2400,
+		"drop_rate": 0.0,
+		"drop_list": [],
+		"is_boss": true,
+		"max_protect": 100.0,
+		"attacks":
+		{
+			"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8},
+			"hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8},
+			"hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}
+		}
+	},
+	175:
+	{
+		"name": "魔·何仙姑",
+		"level": 65,
+		"hp": 2400000,
+		"attack": 60,
+		"def": 560,
+		"mdef": 560,
+		"crit": 300,
+		"miss": 100,
+		"hit": 500,
+		"toughness": 30.0,
+		"crit_reduce": 15,
+		"armor_break": 400,
+		"magic_break": 400,
+		"speed": 20.0,
+		"sight": 1000,
+		"range": 230,
+		"attack_desire": 300,
+		"behit_calmtime": 0.12,
+		"exp": 4500,
+		"coin": 2400,
+		"drop_rate": 0.0,
+		"drop_list": [],
+		"is_boss": true,
+		"max_protect": 100.0,
+		"attacks":
+		{
+			"hit1": {"power": 1200, "hurt_back": [-8, -2], "kind": "physics", "protect": 8},
+			"hit2": {"power": 1500, "hurt_back": [-10, -4], "kind": "magic", "protect": 8},
+			"hit3": {"power": 1800, "hurt_back": [-14, -6], "kind": "magic", "protect": 8}
+		}
+	},
 }
 
-const EIGHT_IMMORTAL_DROP_DATA: = {
-	163: [{"name": "yyzlj", "value": 0, "chance": 0.1}], 
-	175: [{"name": "hehua", "value": 0, "chance": 0.1}], 
-	165: [{"name": "zhyx", "value": 0, "chance": 0.1}], 
-	166: [{"name": "bjs", "value": 0, "chance": 0.1}], 
-	168: [{"name": "sxyg", "value": 0, "chance": 0.1}], 
-	169: [{"name": "dkhl", "value": 0, "chance": 0.1}], 
-	174: [{"name": "yyb", "value": 0, "chance": 0.1}], 
-	164: [{"name": "ywhl", "value": 0, "chance": 0.1}], 
+const EIGHT_IMMORTAL_DROP_DATA := {
+	163: [{"name": "yyzlj", "value": 0, "chance": 0.1}],
+	175: [{"name": "hehua", "value": 0, "chance": 0.1}],
+	165: [{"name": "zhyx", "value": 0, "chance": 0.1}],
+	166: [{"name": "bjs", "value": 0, "chance": 0.1}],
+	168: [{"name": "sxyg", "value": 0, "chance": 0.1}],
+	169: [{"name": "dkhl", "value": 0, "chance": 0.1}],
+	174: [{"name": "yyb", "value": 0, "chance": 0.1}],
+	164: [{"name": "ywhl", "value": 0, "chance": 0.1}],
 }
 
-@onready var left_wall: CollisionShape2D = $wall / left_wall
-@onready var right_wall: CollisionShape2D = $wall / right_wall
+@onready var left_wall: CollisionShape2D = $wall/left_wall
+@onready var right_wall: CollisionShape2D = $wall/right_wall
 @onready var stage_501_boat: LevelBXGHBoat = $stage501Boat
 
 var selected_boss_id: int = BOSS_ORDER[0]
 var _boss_node: BaseMonster
-var _boss_death_handled: = false
+var _boss_death_handled := false
 
 
-func _ready() -> void :
+func _ready() -> void:
 	selected_boss_id = int(Global.SelectedEightImmortalId)
 	if selected_boss_id not in BOSS_ORDER:
 		selected_boss_id = BOSS_ORDER[0]
 	Monster_group = {
-		"stage_1": [selected_boss_id], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [selected_boss_id],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_x = {
-
-
-		"stage_1": [599], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [599],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_y = {
-		"stage_1": [0], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [0],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	_align_boss_spawn_height()
 	Global.CurrentLevel = "八仙过海"
@@ -75,7 +327,7 @@ func _ready() -> void :
 	exit_2.disabled = true
 
 
-func _physics_process(delta: float) -> void :
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if my_camera != null:
 		my_camera.max_left = 0
@@ -86,42 +338,42 @@ func _physics_process(delta: float) -> void :
 		_handle_boss_death()
 
 
-func _preload_level_resources() -> void :
+func _preload_level_resources() -> void:
 	await Global.preload_level_monster_runtime_resources([selected_boss_id])
 
 
 func get_level_monster_config(monster_id: int) -> Dictionary:
 	var config: Variant = LEVEL_BXGH_BOSS_DATA.get(monster_id, {})
-	var result: = (config as Dictionary).duplicate(true) if config is Dictionary else {}
+	var result := (config as Dictionary).duplicate(true) if config is Dictionary else {}
 	if EIGHT_IMMORTAL_DROP_DATA.has(monster_id):
 		result["independent_drop_list"] = EIGHT_IMMORTAL_DROP_DATA[monster_id].duplicate(true)
 	return result
 
 
-func _align_boss_spawn_height() -> void :
+func _align_boss_spawn_height() -> void:
 	if stage_501_boat == null or monster == null:
 		return
-	var collision: = stage_501_boat.get_node_or_null("CollisionShape2D") as CollisionShape2D
+	var collision := stage_501_boat.get_node_or_null("CollisionShape2D") as CollisionShape2D
 	if collision == null or collision.shape == null:
 		return
-	var boat_floor_y: = collision.global_position.y - collision.shape.get_rect().size.y * 0.5
+	var boat_floor_y := collision.global_position.y - collision.shape.get_rect().size.y * 0.5
 	Monster_position_y["stage_1"][0] = boat_floor_y - _get_boss_floor_offset() - monster.global_position.y
 
 
 func _get_boss_floor_offset() -> float:
-	var boss_scene: = load("res://Scene/Monster/Monster_%d.tscn" % selected_boss_id) as PackedScene
+	var boss_scene := load("res://Scene/Monster/Monster_%d.tscn" % selected_boss_id) as PackedScene
 	if boss_scene == null:
 		return 0.0
-	var preview: = boss_scene.instantiate()
-	var pz_node: = preview.get_node_or_null("pz") as CollisionShape2D
-	var offset: = 0.0
+	var preview := boss_scene.instantiate()
+	var pz_node := preview.get_node_or_null("pz") as CollisionShape2D
+	var offset := 0.0
 	if pz_node != null and pz_node.shape != null:
 		offset = pz_node.position.y + pz_node.shape.get_rect().size.y * 0.5
 	preview.free()
 	return offset
 
 
-func _on_create_control_timeout() -> void :
+func _on_create_control_timeout() -> void:
 	if check_can_create(1):
 		level_create_monster(1)
 		_boss_node = mr as BaseMonster
@@ -143,31 +395,29 @@ func _boss_is_dead() -> bool:
 	return false
 
 
-func _handle_boss_death() -> void :
+func _handle_boss_death() -> void:
 	if _boss_death_handled:
 		return
 	_boss_death_handled = true
 	if stage_501_boat != null:
 		stage_501_boat.set_static()
 
-
-
 		if exit != null:
-			var configured_exit_y: = exit.global_position.y
+			var configured_exit_y := exit.global_position.y
 			exit.global_position = Vector2(stage_501_boat.global_position.x, configured_exit_y)
 			exit.visible = true
 		if exit_2 != null:
 			exit_2.disabled = false
 
 
-func _on_fall_death_body_entered(body: Node2D) -> void :
+func _on_fall_death_body_entered(body: Node2D) -> void:
 	if (body == Role_ or body is BaseHero) and RoleProp.roleprop != null:
 		RoleProp.roleprop.Hp = 0
 	elif body is BaseMonster and is_instance_valid(body):
 		(body as BaseMonster).Hp = 0
 
 
-func set_through() -> void :
+func set_through() -> void:
 	if left_wall != null:
 		left_wall.disabled = false
 	if right_wall != null:

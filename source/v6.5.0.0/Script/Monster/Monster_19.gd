@@ -1,6 +1,8 @@
 extends BaseMonster
 class_name Monster19
 var use_skill_2
+
+
 func monster_19():
 	self.is_Fly = true
 	self.is_boss = false
@@ -27,36 +29,24 @@ func monster_19():
 	self.self_rhp = 0
 	self.add_exp = 500
 	self.fall_coin = 200
-	self.objattackDic["slj"] = {
-		"power": 260, 
-		"hurtBack": [-4, -20], 
-		"attackKind": "real"
-	}
-	self.objattackDic["sytx"] = {
-		"power": 115, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics"
-	}
+	self.objattackDic["slj"] = {"power": 260, "hurtBack": [-4, -20], "attackKind": "real"}
+	self.objattackDic["sytx"] = {"power": 115, "hurtBack": [-4, -9], "attackKind": "physics"}
 	self.fall_pro = 0.5
 	self.fall_list = [
-			{
-				"name": "qhs_1", 
-				"value": 0
-			}, 
-			{
-				"name": "qhs_2", 
-				"value": 0
-			}, 
-		]
-	self.fall_stone_pro = 0
-	self.fall_stone = [
-
+		{"name": "qhs_1", "value": 0},
+		{"name": "qhs_2", "value": 0},
 	]
-func _ready() -> void :
+	self.fall_stone_pro = 0
+	self.fall_stone = []
+
+
+func _ready() -> void:
 	super._ready()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
 	monster_19()
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -64,7 +54,10 @@ func Monster_Intelligence():
 		if has_target == false:
 			normal_state()
 		else:
-			if Skill_1_CD <= 0 and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 350:
+			if (
+				Skill_1_CD <= 0
+				and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 350
+			):
 				do_hit_1()
 			elif Skill_2_CD <= 0:
 				do_hit_2()
@@ -79,6 +72,8 @@ func do_hit_1():
 	mr_player.play("slj")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func do_hit_2():
 	use_skill_2 = true
 	if self.MonsterDirection:
@@ -93,14 +88,32 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	use_skill_2 = false
+
+
 func call_ljf():
-	var par = Global.add_SpecialEffect(get_parent().get_parent(), Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, RoleProp.get_nearest_monster_target_position(global_position).y - 50), "Monster19Bullet", Vector2(1, 1), false, 1)
+	var par = Global.add_SpecialEffect(
+		get_parent().get_parent(),
+		Vector2(
+			RoleProp.get_nearest_monster_target_position(global_position).x,
+			RoleProp.get_nearest_monster_target_position(global_position).y - 50
+		),
+		"Monster19Bullet",
+		Vector2(1, 1),
+		false,
+		1
+	)
 	var xx = par.position + Vector2(0, 150)
 	await get_tree().create_timer(1.7, false).timeout
-	Global.add_Bullet("Monster19Bullet", self.bullet, self.MonsterDirection, 1, xx - Vector2(0, 125), "slj", self.objattackDic["slj"])
+	Global.add_Bullet(
+		"Monster19Bullet", self.bullet, self.MonsterDirection, 1, xx - Vector2(0, 125), "slj", self.objattackDic["slj"]
+	)
+
+
 func call_sylj():
 	var pp = self.position - Vector2(0, 20)
 	Global.add_Bullet("Monster19Bullet_1", self.bullet, self.MonsterDirection, 1, pp, "sytx", self.objattackDic["sytx"])
+
+
 func have_target():
 	if is_quiescent:
 		return
@@ -109,11 +122,13 @@ func have_target():
 		if RoleProp.get_nearest_monster_target_position(global_position).y > position.y + randi_range(125, 245):
 			velocity.y = speed * 8
 		elif RoleProp.get_nearest_monster_target_position(global_position).y < position.y + randi_range(35, 55):
-			velocity.y = - speed * 8
+			velocity.y = -speed * 8
 	if RoleProp.get_nearest_monster_target_position(global_position).x > position.x + randi_range(65, 85):
 		move_right()
 	elif RoleProp.get_nearest_monster_target_position(global_position).x < position.x - randi_range(65, 85):
 		move_left()
+
+
 func call_boom():
 	var pp = self.position - Vector2(0, 0)
 	Global.add_Bullet("Monster19Bullet_2", self.bullet, self.MonsterDirection, 1, pp, "slj", self.objattackDic["slj"])

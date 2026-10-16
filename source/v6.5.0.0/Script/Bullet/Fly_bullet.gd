@@ -31,11 +31,13 @@ var hurtBack
 var hit_name
 var total_hit = 0
 var is_get = false
-func _ready():
 
+
+func _ready():
 	set_meta("is_monster_bullet", true)
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	get_prop()
 	$AnimationPlayer.play(name_)
 	if not is_get:
@@ -43,7 +45,7 @@ func _physics_process(delta: float) -> void :
 		is_get = true
 
 	if direction_ == -1:
-		self.scale.x = - self.scale.x
+		self.scale.x = -self.scale.x
 	else:
 		self.scale.x = self.scale.x
 	velocity.x -= direction_ * speed_ * delta
@@ -55,9 +57,10 @@ func check_and_free():
 	position_2 = self.position.x
 	if abs(position_2 - position_1) >= distance:
 		self.queue_free()
-func _on_hit_area_area_entered(area: Area2D) -> void :
-	var target = area.get_parent().get_parent()
 
+
+func _on_hit_area_area_entered(area: Area2D) -> void:
+	var target = area.get_parent().get_parent()
 
 	if target is Boss_XieShaSeng_Wdww:
 		return
@@ -66,6 +69,8 @@ func _on_hit_area_area_entered(area: Area2D) -> void :
 
 	if name_ == "Monster14Bullet" or name_ == "Monster41Bullet":
 		queue_free()
+
+
 func get_prop():
 	var tt = get_parent().get_parent()
 	if tt is BaseMonster:

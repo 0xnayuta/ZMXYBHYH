@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster117
+
+
 func monster_117():
 	self.rush_speed = 800
 	self.is_Fly = true
@@ -27,24 +29,20 @@ func monster_117():
 	self.self_rhp = 0
 	self.add_exp = 15
 	self.fall_coin = 4
-	self.objattackDic["hit1"] = {
-		"power": 600, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "real"
-	}
-	self.objattackDic["hit2"] = {
-		"power": 500, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "real"
-	}
+	self.objattackDic["hit1"] = {"power": 600, "hurtBack": [-4, -9], "attackKind": "real"}
+	self.objattackDic["hit2"] = {"power": 500, "hurtBack": [-4, -9], "attackKind": "real"}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_117()
 	Skill_1_CD = 10
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -64,6 +62,8 @@ func Monster_Intelligence():
 				if count % 60 == 0:
 					if randi_range(0, 100) < attackDesire:
 						attack_target()
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = 10

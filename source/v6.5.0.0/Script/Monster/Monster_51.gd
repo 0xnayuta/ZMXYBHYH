@@ -1,6 +1,8 @@
 extends BaseMonster
 class_name Monster51
 var CheckCount: int = 0
+
+
 func monster_51():
 	self.is_boss = false
 	self.my_mr_name = "沙华"
@@ -27,33 +29,33 @@ func monster_51():
 	self.add_exp = 75
 	self.fall_coin = 40
 	self.objattackDic["hit1"] = {
-		"power": 150, 
-		"hurtBack": [-8, 0], 
-		"attackKind": "physics", 
+		"power": 150,
+		"hurtBack": [-8, 0],
+		"attackKind": "physics",
 	}
 
 	self.fall_pro = 0.05
 	self.fall_list = [
-		{
-			"name": "lssp", 
-			"value": 1
-		}, 
-		{
-			"name": "zshb", 
-			"value": 1
-		}, 
+		{"name": "lssp", "value": 1},
+		{"name": "zshb", "value": 1},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_51()
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if CheckCount % 60 == 0:
 		if check_have_mz() and Hp > 0:
 			cure_hp(int(self.SHp * 0.03))
 	CheckCount += 1
+
+
 func check_have_mz():
 	var pp = get_parent().get_parent() as BaseLevel
 	for i in pp.monster.get_children():

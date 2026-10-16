@@ -1,6 +1,8 @@
 extends BaseMonster
 class_name Monster_59
 var RoleBeHitCount = Global.PlayerBeHitCount
+
+
 func monster_59(BeHitCount):
 	self.is_boss = true
 	self.my_mr_name = "宋帝王"
@@ -27,63 +29,67 @@ func monster_59(BeHitCount):
 	self.add_exp = 100
 	self.fall_coin = 100
 	self.objattackDic["hit1"] = {
-		"power": 128 + BeHitCount * 25, 
-		"hurtBack": [-6, -1], 
-		"attackKind": "physics", 
-		"addeffect": {
-			"Name": "Bleed", 
-			"AddTime": 2 + BeHitCount * 0.5, 
-			"ReduceInterval": 0.5, 
-			"value": 15 + BeHitCount * 5, 
-			"AttackKind": "real", 
-			"DeBuff": true, 
-			"CanAdd": true, 
+		"power": 128 + BeHitCount * 25,
+		"hurtBack": [-6, -1],
+		"attackKind": "physics",
+		"addeffect":
+		{
+			"Name": "Bleed",
+			"AddTime": 2 + BeHitCount * 0.5,
+			"ReduceInterval": 0.5,
+			"value": 15 + BeHitCount * 5,
+			"AttackKind": "real",
+			"DeBuff": true,
+			"CanAdd": true,
 		}
 	}
 	self.objattackDic["zmhy"] = {
-		"power": 128 + BeHitCount * 25, 
-		"hurtBack": [0, -18], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "silent", 
-			"AddTime": 4 + BeHitCount * 0.3, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanAdd": false, 
+		"power": 128 + BeHitCount * 25,
+		"hurtBack": [0, -18],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "silent",
+			"AddTime": 4 + BeHitCount * 0.3,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanAdd": false,
 		}
 	}
 	self.objattackDic["zzzy"] = {
-		"power": 333 + BeHitCount * 20, 
-		"hurtBack": [-12, -1], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "Boundground", 
-			"AddTime": 3 + BeHitCount * 0.5, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"DeBuff": true, 
-			"AttackKind": "", 
-			"CanAdd": false, 
+		"power": 333 + BeHitCount * 20,
+		"hurtBack": [-12, -1],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "Boundground",
+			"AddTime": 3 + BeHitCount * 0.5,
+			"ReduceInterval": 0,
+			"value": 0,
+			"DeBuff": true,
+			"AttackKind": "",
+			"CanAdd": false,
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "wyzy", 
-			"value": 0
-		}, 
+		{"name": "wyzy", "value": 0},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
 	Skill_3_CD = 0
 	RoleBeHitCount = Global.PlayerBeHitCount
 	monster_59(RoleBeHitCount)
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -111,6 +117,8 @@ func Monster_Intelligence():
 							normal_state()
 					else:
 						stop_move()
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(14, 17)
@@ -121,6 +129,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = randi_range(10, 14)
@@ -131,6 +141,8 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func Call_ZZZY():
 	var BulletName = "Monster59Bullet_1"
 	var Position
@@ -141,11 +153,16 @@ func Call_ZZZY():
 		Position = Vector2(-420, randi_range(-130, 130)) + self.position
 		Global.add_Bullet(BulletName, self.bullet, false, 1, Position, "zzzy", self.objattackDic["zzzy"])
 
+
 func CallZZHY():
 	var Num = 3 + int(RoleBeHitCount / 3)
 	for i in range(Num):
-		var Position = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + randi_range(-140, 140), 500)
+		var Position = Vector2(
+			RoleProp.get_nearest_monster_target_position(global_position).x + randi_range(-140, 140), 500
+		)
 		Global.add_Bullet("Monster59Bullet_2", self.bullet, false, 1, Position, "zmhy", self.objattackDic["zmhy"])
+
+
 func state_hurt():
 	is_jgz = false
 	if RoleBeHitCount >= 13:

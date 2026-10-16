@@ -1,53 +1,94 @@
 extends TextureRect
-var _item_hover_inside: = false
+var _item_hover_inside := false
 @onready var ItemBox: Button = $ItemBox
 var _item_hover_popup
 @onready var ItemNum: Label = $Num
 @onready var NeedValue: Label = $Need
 @onready var PurchaseButton: Button = $Purchase
 var AllItemList = {
-	"Box_1": [{"Name": "xuantie", "Value": 5, "WX": [], "Level": 0, "Need": 500}, {"Name": "sichou", "Value": 5, "WX": [], "Level": 0, "Need": 500}, 
-	{"Name": "tanmu", "Value": 5, "WX": [], "Level": 0, "Need": 500}], 
-
-	"Box_2": [{"Name": "xuantie", "Value": 10, "WX": [], "Level": 0, "Need": 1000}, {"Name": "sichou", "Value": 5, "WX": [], "Level": 0, "Need": 1000}, 
-	{"Name": "tanmu", "Value": 10, "WX": [], "Level": 0, "Need": 1000}], 
-
-	"Box_3": [{"Name": "xuantie", "Value": 20, "WX": [], "Level": 0, "Need": 2000}, {"Name": "sichou", "Value": 20, "WX": [], "Level": 0, "Need": 2000}, 
-	{"Name": "tanmu", "Value": 20, "WX": [], "Level": 0, "Need": 2000}], 
-
-	"Box_4": [{"Name": "bsd_1", "Value": 1, "WX": [], "Level": 0, "Need": 50000}, {"Name": "bsd_2", "Value": 1, "WX": [], "Level": 0, "Need": 120000}, 
-	{"Name": "qhs_1", "Value": 1, "WX": [], "Level": 0, "Need": 3000}, {"Name": "qhs_2", "Value": 1, "WX": [], "Level": 0, "Need": 8000}, 
-	{"Name": "qhs_3", "Value": 1, "WX": [], "Level": 0, "Need": 22000}, {"Name": "qhs_4", "Value": 1, "WX": [], "Level": 0, "Need": 50000}, 
-	{"Name": "sms_1", "Value": 1, "WX": [], "Level": 0, "Need": 15000}, {"Name": "sms_2", "Value": 1, "WX": [], "Level": 0, "Need": 40000}
-	, {"Name": "fls_1", "Value": 1, "WX": [], "Level": 0, "Need": 20000}, {"Name": "fls_2", "Value": 1, "WX": [], "Level": 0, "Need": 54000}
-	, {"Name": "gjs_1", "Value": 1, "WX": [], "Level": 0, "Need": 18000}, {"Name": "gjs_2", "Value": 1, "WX": [], "Level": 0, "Need": 50000}
-	, {"Name": "wfs_1", "Value": 1, "WX": [], "Level": 0, "Need": 12000}, {"Name": "wfs_2", "Value": 1, "WX": [], "Level": 0, "Need": 32000}
-	, {"Name": "mfs_1", "Value": 1, "WX": [], "Level": 0, "Need": 12000}, {"Name": "mfs_2", "Value": 1, "WX": [], "Level": 0, "Need": 32000}
-	, {"Name": "hxs_1", "Value": 1, "WX": [], "Level": 0, "Need": 20000}, {"Name": "hxs_2", "Value": 1, "WX": [], "Level": 0, "Need": 54000}
-	, {"Name": "mpyj", "Value": 1, "WX": [], "Level": 0, "Need": 3000}, {"Name": "yll", "Value": 1, "WX": [], "Level": 0, "Need": 4000}
-	, {"Name": "renshen", "Value": 3, "WX": [], "Level": 0, "Need": 80000}, {"Name": "shougong", "Value": 3, "WX": [], "Level": 0, "Need": 80000}
-	, {"Name": "lingli", "Value": 3, "WX": [], "Level": 0, "Need": 80000}, {"Name": "liuhuang", "Value": 3, "WX": [], "Level": 0, "Need": 80000}
-	, {"Name": "leizong", "Value": 3, "WX": [], "Level": 0, "Need": 80000}, {"Name": "xianmao", "Value": 3, "WX": [], "Level": 0, "Need": 80000}
-	, {"Name": "dudan", "Value": 3, "WX": [], "Level": 0, "Need": 120000}, {"Name": "llzsp", "Value": 1, "WX": [], "Level": 0, "Need": 30000}, 
-	{"Name": "flzsp", "Value": 1, "WX": [], "Level": 0, "Need": 30000}, {"Name": "slzsp", "Value": 1, "WX": [], "Level": 0, "Need": 25000}, 
-	{"Name": "hlzsp", "Value": 1, "WX": [], "Level": 0, "Need": 20000}, {"Name": "tlzsp", "Value": 1, "WX": [], "Level": 0, "Need": 10000}
-	, {"Name": "rls", "Value": 1, "WX": [], "Level": 0, "Need": 20000}, {"Name": "bsz", "Value": 1, "WX": [], "Level": 0, "Need": 3000}], 
-
-	"Box_5": [{"Name": "bsd_5", "Value": 1, "WX": [], "Level": 0, "Need": 2200000}, {"Name": "bsd_4", "Value": 1, "WX": [], "Level": 0, "Need": 800000}
-	, {"Name": "bsd_3", "Value": 1, "WX": [], "Level": 0, "Need": 320000}, {"Name": "llzsp", "Value": 1, "WX": [], "Level": 0, "Need": 30000}, 
-	{"Name": "flzsp", "Value": 1, "WX": [], "Level": 0, "Need": 30000}, {"Name": "slzsp", "Value": 1, "WX": [], "Level": 0, "Need": 25000}, 
-	{"Name": "hlzsp", "Value": 1, "WX": [], "Level": 0, "Need": 20000}, {"Name": "tlzsp", "Value": 1, "WX": [], "Level": 0, "Need": 10000}, 
-	{"Name": "llz", "Value": 1, "WX": [], "Level": 0, "Need": 80000}, {"Name": "flz", "Value": 1, "WX": [], "Level": 0, "Need": 80000}, 
-	{"Name": "slz", "Value": 1, "WX": [], "Level": 0, "Need": 60000}, {"Name": "hlz", "Value": 1, "WX": [], "Level": 0, "Need": 50000}, 
-	{"Name": "tlz", "Value": 1, "WX": [], "Level": 0, "Need": 20000}, {"Name": "tss", "Value": 1, "WX": [], "Level": 0, "Need": 70000}, 
-	{"Name": "yhs", "Value": 1, "WX": [], "Level": 0, "Need": 70000}, {"Name": "putongnmwsz", "Value": 1, "WX": [], "Level": 0, "Need": 50000}, 
-	{"Name": "putongzlwsz", "Value": 1, "WX": [], "Level": 0, "Need": 50000}]
+	"Box_1":
+	[
+		{"Name": "xuantie", "Value": 5, "WX": [], "Level": 0, "Need": 500},
+		{"Name": "sichou", "Value": 5, "WX": [], "Level": 0, "Need": 500},
+		{"Name": "tanmu", "Value": 5, "WX": [], "Level": 0, "Need": 500}
+	],
+	"Box_2":
+	[
+		{"Name": "xuantie", "Value": 10, "WX": [], "Level": 0, "Need": 1000},
+		{"Name": "sichou", "Value": 5, "WX": [], "Level": 0, "Need": 1000},
+		{"Name": "tanmu", "Value": 10, "WX": [], "Level": 0, "Need": 1000}
+	],
+	"Box_3":
+	[
+		{"Name": "xuantie", "Value": 20, "WX": [], "Level": 0, "Need": 2000},
+		{"Name": "sichou", "Value": 20, "WX": [], "Level": 0, "Need": 2000},
+		{"Name": "tanmu", "Value": 20, "WX": [], "Level": 0, "Need": 2000}
+	],
+	"Box_4":
+	[
+		{"Name": "bsd_1", "Value": 1, "WX": [], "Level": 0, "Need": 50000},
+		{"Name": "bsd_2", "Value": 1, "WX": [], "Level": 0, "Need": 120000},
+		{"Name": "qhs_1", "Value": 1, "WX": [], "Level": 0, "Need": 3000},
+		{"Name": "qhs_2", "Value": 1, "WX": [], "Level": 0, "Need": 8000},
+		{"Name": "qhs_3", "Value": 1, "WX": [], "Level": 0, "Need": 22000},
+		{"Name": "qhs_4", "Value": 1, "WX": [], "Level": 0, "Need": 50000},
+		{"Name": "sms_1", "Value": 1, "WX": [], "Level": 0, "Need": 15000},
+		{"Name": "sms_2", "Value": 1, "WX": [], "Level": 0, "Need": 40000},
+		{"Name": "fls_1", "Value": 1, "WX": [], "Level": 0, "Need": 20000},
+		{"Name": "fls_2", "Value": 1, "WX": [], "Level": 0, "Need": 54000},
+		{"Name": "gjs_1", "Value": 1, "WX": [], "Level": 0, "Need": 18000},
+		{"Name": "gjs_2", "Value": 1, "WX": [], "Level": 0, "Need": 50000},
+		{"Name": "wfs_1", "Value": 1, "WX": [], "Level": 0, "Need": 12000},
+		{"Name": "wfs_2", "Value": 1, "WX": [], "Level": 0, "Need": 32000},
+		{"Name": "mfs_1", "Value": 1, "WX": [], "Level": 0, "Need": 12000},
+		{"Name": "mfs_2", "Value": 1, "WX": [], "Level": 0, "Need": 32000},
+		{"Name": "hxs_1", "Value": 1, "WX": [], "Level": 0, "Need": 20000},
+		{"Name": "hxs_2", "Value": 1, "WX": [], "Level": 0, "Need": 54000},
+		{"Name": "mpyj", "Value": 1, "WX": [], "Level": 0, "Need": 3000},
+		{"Name": "yll", "Value": 1, "WX": [], "Level": 0, "Need": 4000},
+		{"Name": "renshen", "Value": 3, "WX": [], "Level": 0, "Need": 80000},
+		{"Name": "shougong", "Value": 3, "WX": [], "Level": 0, "Need": 80000},
+		{"Name": "lingli", "Value": 3, "WX": [], "Level": 0, "Need": 80000},
+		{"Name": "liuhuang", "Value": 3, "WX": [], "Level": 0, "Need": 80000},
+		{"Name": "leizong", "Value": 3, "WX": [], "Level": 0, "Need": 80000},
+		{"Name": "xianmao", "Value": 3, "WX": [], "Level": 0, "Need": 80000},
+		{"Name": "dudan", "Value": 3, "WX": [], "Level": 0, "Need": 120000},
+		{"Name": "llzsp", "Value": 1, "WX": [], "Level": 0, "Need": 30000},
+		{"Name": "flzsp", "Value": 1, "WX": [], "Level": 0, "Need": 30000},
+		{"Name": "slzsp", "Value": 1, "WX": [], "Level": 0, "Need": 25000},
+		{"Name": "hlzsp", "Value": 1, "WX": [], "Level": 0, "Need": 20000},
+		{"Name": "tlzsp", "Value": 1, "WX": [], "Level": 0, "Need": 10000},
+		{"Name": "rls", "Value": 1, "WX": [], "Level": 0, "Need": 20000},
+		{"Name": "bsz", "Value": 1, "WX": [], "Level": 0, "Need": 3000}
+	],
+	"Box_5":
+	[
+		{"Name": "bsd_5", "Value": 1, "WX": [], "Level": 0, "Need": 2200000},
+		{"Name": "bsd_4", "Value": 1, "WX": [], "Level": 0, "Need": 800000},
+		{"Name": "bsd_3", "Value": 1, "WX": [], "Level": 0, "Need": 320000},
+		{"Name": "llzsp", "Value": 1, "WX": [], "Level": 0, "Need": 30000},
+		{"Name": "flzsp", "Value": 1, "WX": [], "Level": 0, "Need": 30000},
+		{"Name": "slzsp", "Value": 1, "WX": [], "Level": 0, "Need": 25000},
+		{"Name": "hlzsp", "Value": 1, "WX": [], "Level": 0, "Need": 20000},
+		{"Name": "tlzsp", "Value": 1, "WX": [], "Level": 0, "Need": 10000},
+		{"Name": "llz", "Value": 1, "WX": [], "Level": 0, "Need": 80000},
+		{"Name": "flz", "Value": 1, "WX": [], "Level": 0, "Need": 80000},
+		{"Name": "slz", "Value": 1, "WX": [], "Level": 0, "Need": 60000},
+		{"Name": "hlz", "Value": 1, "WX": [], "Level": 0, "Need": 50000},
+		{"Name": "tlz", "Value": 1, "WX": [], "Level": 0, "Need": 20000},
+		{"Name": "tss", "Value": 1, "WX": [], "Level": 0, "Need": 70000},
+		{"Name": "yhs", "Value": 1, "WX": [], "Level": 0, "Need": 70000},
+		{"Name": "putongnmwsz", "Value": 1, "WX": [], "Level": 0, "Need": 50000},
+		{"Name": "putongzlwsz", "Value": 1, "WX": [], "Level": 0, "Need": 50000}
+	]
 }
 var MyNum: int
 var NewList = {}
 var MyFather
 var IsOpen: bool
 @onready var mystery_shop_item_box: TextureRect = $"."
+
+
 func Open():
 	IsOpen = true
 	ItemBox.disabled = false
@@ -60,6 +101,8 @@ func Open():
 	self.SetBox()
 	ItemNum.text = str(AE.AllEquipment_[NewList["Name"]]["名字"]) + "×" + str(NewList["Value"])
 	NeedValue.text = str(NewList["Need"]) + "灵魂"
+
+
 func Close():
 	IsOpen = false
 	mystery_shop_item_box.texture = load("res://Art/Shop/CloseItemBox.png")
@@ -71,14 +114,21 @@ func Close():
 	NeedValue.visible = false
 	PurchaseButton.disabled = true
 	PurchaseButton.visible = false
-func _ready() -> void :
+
+
+func _ready() -> void:
 	BasicSet()
+
+
 func GetList():
 	return AllItemList["Box_" + str(MyNum)]
+
 
 func BasicSet():
 	ItemBox.is_in_ldl_gz = true
 	ItemBox.is_in_hhgz = true
+
+
 func SetBox():
 	var CurrentList = AllItemList["Box_" + str(MyNum)]
 	NewList = CurrentList[randi_range(0, CurrentList.size() - 1)]
@@ -96,7 +146,8 @@ func SetBox():
 	ItemBox.set_meta("item_name", NewList["Name"])
 	ItemBox.set_button_icon(load_(NewList["Name"]))
 
-func _on_purchase_pressed() -> void :
+
+func _on_purchase_pressed() -> void:
 	if PlayerData.player_data["购买次数"] <= 0:
 		Global.AddMessageShow(Global.Windows_, "购买次数不足！！", 1.5, Vector2(470, 300))
 		return
@@ -122,6 +173,8 @@ func _on_purchase_pressed() -> void :
 	Global.AddMessageShow(Global.Windows_, "购买成功", 1.5, Vector2(520, 340))
 	OpenAndCloseBox()
 	MemoryClass.保存游戏(Global.cd_path)
+
+
 func OpenAndCloseBox():
 	match int(MyNum):
 		1:
@@ -151,11 +204,14 @@ func OpenAndCloseBox():
 		5:
 			self.Close()
 			MyFather.item_1.Open()
+
+
 func load_(name_):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
 	return abc
 
-func _drive_item_hover(item_box) -> void :
+
+func _drive_item_hover(item_box) -> void:
 	if item_box == null or not is_instance_valid(item_box):
 		return
 	if not item_box.visible:
@@ -173,6 +229,7 @@ func _drive_item_hover(item_box) -> void :
 		_item_hover_inside = false
 		_hide_item_info()
 
+
 func _hover_popup_size(item_box) -> Vector2:
 	if item_box != null and is_instance_valid(item_box):
 		var eq_prop = item_box.EQ_prop
@@ -180,7 +237,8 @@ func _hover_popup_size(item_box) -> Vector2:
 			return Vector2(260, 560)
 	return Vector2(235, 240)
 
-func _show_item_info(item_box) -> void :
+
+func _show_item_info(item_box) -> void:
 	if item_box == null or not is_instance_valid(item_box):
 		return
 	if _item_hover_popup != null and is_instance_valid(_item_hover_popup):
@@ -194,7 +252,9 @@ func _show_item_info(item_box) -> void :
 	var popup_pos = Global.screen_popup_position()
 	var eq_prop = item_box.EQ_prop
 	if eq_prop != null and eq_prop.size() > 0 and item_box.item_menu_kind != "item":
-		_item_hover_popup = Global.add_equ_propeties_box(parent_node, popup_pos, item_name, item_box.qh_level, item_box.wx, eq_prop)
+		_item_hover_popup = Global.add_equ_propeties_box(
+			parent_node, popup_pos, item_name, item_box.qh_level, item_box.wx, eq_prop
+		)
 	else:
 		_item_hover_popup = Global.add_dj_infor(parent_node, popup_pos, item_name)
 	if _item_hover_popup != null:
@@ -203,6 +263,7 @@ func _show_item_info(item_box) -> void :
 		_item_hover_popup.z_index = 9999
 		_item_hover_popup.visible = true
 
-func _hide_item_info() -> void :
+
+func _hide_item_info() -> void:
 	Global.clear_hover_popup()
 	_item_hover_popup = null

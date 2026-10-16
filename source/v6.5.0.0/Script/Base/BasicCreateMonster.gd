@@ -9,12 +9,14 @@ var BaseLevel_: BaseLevel
 var CreateInter: float = 1.2
 var CanCreate: bool = false
 var CanChcek: bool
-func _physics_process(_delta: float) -> void :
+
+
+func _physics_process(_delta: float) -> void:
 	if MonsterIdList.is_empty() or MonsterPosition.is_empty():
 		set_physics_process(false)
 		create_monster.stop()
 		return
-	var monster_count: = BaseLevel_.monster.get_child_count()
+	var monster_count := BaseLevel_.monster.get_child_count()
 	if monster_count > 4 and monster_count < 6:
 		CanChcek = true
 	elif monster_count < 4:
@@ -26,6 +28,8 @@ func _physics_process(_delta: float) -> void :
 		if create_monster.is_stopped():
 			create_monster.start(CreateInter)
 		CanCreate = false
+
+
 func Check():
 	match Stage:
 		1:
@@ -45,11 +49,13 @@ func Check():
 				if i.Id > Id:
 					return
 	CanCreate = true
+
+
 func CreateMonster(Id: int, Po: Vector2):
 	Global.Create_Monster(Id, BaseLevel_.monster, Po)
 
 
-func _on_create_monster_timeout() -> void :
+func _on_create_monster_timeout() -> void:
 	if MonsterIdList.is_empty() or MonsterPosition.is_empty():
 		set_physics_process(false)
 		return

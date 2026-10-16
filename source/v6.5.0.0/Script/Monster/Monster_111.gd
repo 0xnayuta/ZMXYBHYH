@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster111
+
+
 func monster_109():
 	self.is_boss = false
 	self.my_mr_name = "人参童子"
@@ -26,35 +28,51 @@ func monster_109():
 	self.add_exp = 220
 	self.fall_coin = 220
 	self.objattackDic["hit1"] = {
-		"power": 500, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 500,
+		"hurtBack": [-4, -9],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.fall_pro = 0.3
 	self.fall_list = [
-		{
-			"name": "renshen", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "renshen", "value": randi_range(1, 2)},
 	]
 	self.fall_stone_pro = 0.28
 	self.fall_stone = [
-		{
-			"name": "ziyanyujin", 
-			"value": randi_range(1, 5)
-		}, 
+		{"name": "ziyanyujin", "value": randi_range(1, 5)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	Skill_1_CD = 0
 	monster_109()
+
+
 func CallBullet1():
 	var Bullets
 	if self.MonsterDirection:
-		Bullets = Global.add_Bullet("Monster111Bullet", self.bullet, MonsterDirection, 1, Vector2(40, 0) + position, "hit1", self.objattackDic["hit1"])
+		Bullets = Global.add_Bullet(
+			"Monster111Bullet",
+			self.bullet,
+			MonsterDirection,
+			1,
+			Vector2(40, 0) + position,
+			"hit1",
+			self.objattackDic["hit1"]
+		)
 	else:
-		Bullets = Global.add_Bullet("Monster111Bullet", self.bullet, MonsterDirection, 1, Vector2(40, 0) + position, "hit1", self.objattackDic["hit1"])
+		Bullets = Global.add_Bullet(
+			"Monster111Bullet",
+			self.bullet,
+			MonsterDirection,
+			1,
+			Vector2(40, 0) + position,
+			"hit1",
+			self.objattackDic["hit1"]
+		)
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(15, 18)
@@ -65,6 +83,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -83,6 +103,8 @@ func Monster_Intelligence():
 				if count % 60 == 0:
 					if randi_range(0, 100) < attackDesire:
 						attack_target()
+
+
 func MonsterCureHp():
 	var BaseLevel_ = get_parent().get_parent() as BaseLevel
 	for i in BaseLevel_.monster.get_children():

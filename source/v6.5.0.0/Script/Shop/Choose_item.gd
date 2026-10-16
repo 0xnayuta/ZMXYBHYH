@@ -1,22 +1,29 @@
 extends Node2D
-@onready var Item_List = $BG / ItemList
+@onready var Item_List = $BG/ItemList
 var list_ = []
 var current_choose: int = -1
 var is_set = false
 var name_: String
 var page_: int
-func _physics_process(_delta: float) -> void :
+
+
+func _physics_process(_delta: float) -> void:
 	if not is_set:
 		add_item_()
 		is_set = true
+
+
 func add_item_():
 	for i in list_.size():
 		Item_List.add_item(get_item_name(i), load_(get_item(i)), true)
+
 
 func get_item(idx):
 	var name__
 	name__ = list_[idx]["名字"]
 	return name__
+
+
 func get_item_name(idx):
 	var name__
 	name__ = list_[idx]["名字"]
@@ -44,6 +51,8 @@ func get_item_name(idx):
 			if get_num > 0:
 				name_text = name_text + " * " + str(get_num) + "个"
 	return name_text
+
+
 func get_wx_text(idx):
 	var get_xx
 	get_xx = list_[idx]["五行"]
@@ -55,24 +64,31 @@ func get_wx_text(idx):
 			for i in get_xx:
 				wx = wx + str(i)
 	return wx
+
+
 func get_wx(idx):
 	var get_wx_
 	get_wx_ = list_[idx]["五行"]
 	if get_wx_.size() == 0:
 		get_wx_ = get_wx_()
 	return get_wx_
+
+
 func get_item_num(idx):
 	var num_ = list_[idx]["num"]
 	return num_
+
+
 func load_(name__):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name__) + ".png")
 	return abc
 
-func _on_item_list_item_selected(index: int) -> void :
+
+func _on_item_list_item_selected(index: int) -> void:
 	current_choose = int(index)
 
 
-func _on_qd_pressed() -> void :
+func _on_qd_pressed() -> void:
 	if current_choose >= 0:
 		var names
 		names = list_[current_choose]["名字"]
@@ -82,8 +98,9 @@ func _on_qd_pressed() -> void :
 		var list = [{"Name": names, "Value": get_num, "Prop": {}, "WX": Global.get_wx(0), "StrengthValue": 0}]
 		Global.AddRewardInfo(Global.get_parent_(self, 1), Vector2(0, 0), list, name_, 1)
 
-
 	queue_free()
+
+
 func get_wx_():
 	randomize()
 	var wx = {"金": false, "木": false, "水": false, "火": false, "土": false}
@@ -128,9 +145,9 @@ func get_wx_():
 		return new_list
 
 
-func _on_qx_pressed() -> void :
+func _on_qx_pressed() -> void:
 	queue_free()
 
 
-func _on_close_pressed() -> void :
+func _on_close_pressed() -> void:
 	queue_free()

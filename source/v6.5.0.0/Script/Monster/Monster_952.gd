@@ -1,7 +1,8 @@
 extends "res://Script/Monster/SwordBossBase.gd"
 class_name Monster952
 
-func _configure_sword_boss() -> void :
+
+func _configure_sword_boss() -> void:
 	sword_name = "陷仙剑"
 	sword_root = "res://Art/Monster/Game3Monster/SwordBoss/xianxian"
 	sword_drop = "xxjp"

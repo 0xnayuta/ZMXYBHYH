@@ -5,10 +5,12 @@ signal Main_Init(index: int)
 
 var isInit: bool = true
 
+
 func CheckOutTime() -> bool:
 	return false
 
-func readData(index: int) -> void :
+
+func readData(index: int) -> void:
 	if index == 0:
 		MemoryClass.main_dq()
 		Main_Init.emit(int(MainSet.set_data.get("MainMenuBG", 1)))
@@ -18,7 +20,8 @@ func readData(index: int) -> void :
 	MemoryClass.读取游戏(Global.cd_path)
 	Global.userGlobal.gotoMap()
 
-func initData(data: Dictionary) -> void :
+
+func initData(data: Dictionary) -> void:
 	if data == null:
 		return
 
@@ -35,8 +38,9 @@ func initData(data: Dictionary) -> void :
 	保存游戏(Global.cd_path)
 	Global.userGlobal.gotoMap()
 
-func 保存游戏(index) -> void :
-	var path: = str(index)
+
+func 保存游戏(index) -> void:
+	var path := str(index)
 	if path == "" or path == "0":
 		MemoryClass.main_bc()
 		return
@@ -51,19 +55,23 @@ func 保存游戏(index) -> void :
 	else:
 		MemoryClass.main_bc()
 
-func RemoveMainData(num: int) -> void :
+
+func RemoveMainData(num: int) -> void:
 	MemoryClass.RemoveMainData(num)
+
 
 func _archive_path(index) -> String:
 	return "user://MyAr_%s.json" % str(index)
+
 
 func _archive_num(path: String) -> int:
 	if path.find("Ar_") == -1:
 		return 0
 	return int(path.split("Ar_")[1].split(".")[0])
 
-func _ensure_archive_meta(path: String) -> void :
-	var num: = _archive_num(path)
+
+func _ensure_archive_meta(path: String) -> void:
+	var num := _archive_num(path)
 	if num <= 0:
 		return
 
@@ -73,7 +81,7 @@ func _ensure_archive_meta(path: String) -> void :
 		if not MainSet.set_data.has("name" + str(num)):
 			MainSet.set_data["name" + str(num)] = ""
 	else:
-		var key: = str(num)
+		var key := str(num)
 		if not MainSet.set_data["其他存档"].has(key):
 			MainSet.set_data["其他存档"][key] = {"name": "", "time": ""}
 		MainSet.set_data["其他存档"][key]["time"] = time_text

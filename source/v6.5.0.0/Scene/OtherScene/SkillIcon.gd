@@ -1,5 +1,5 @@
 extends TextureRect
-const MOUNT_CATALOG: = preload("res://Script/Mount/MountCatalog.gd")
+const MOUNT_CATALOG := preload("res://Script/Mount/MountCatalog.gd")
 
 @onready var pic_box: TextureProgressBar = $PicBox
 @onready var time_text: Label = $TimeText
@@ -13,27 +13,25 @@ var mount_skill_slot: int = -1
 var _loaded_icon_path: String = ""
 var _open_effect_elapsed: float = 0.0
 
-
 var _mp_label: Label = null
 
 
 func get_icon_name(skill_name: String) -> String:
-
 	if _current_role_id() == 1 and skill_name == "hmz_ws":
 		return "hmz_ws"
-
 
 	return skill_name
 
 
 func get_real_skill_key(skill_name: String) -> String:
-
 	return skill_name
+
 
 func _current_role_id() -> int:
 	return int(PlayerData.player_data.get("Myself", 1))
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	_update_nezha_effects(delta)
 	if SkillName == null or SkillName == "" or SkillName == "Empty":
 		if _loaded_icon_path != "":
@@ -47,15 +45,19 @@ func _physics_process(delta: float) -> void :
 		return
 
 	if mount_skill_slot >= 0:
-		var mount_runtime: = _current_mount_runtime()
-		if mount_runtime != null and mount_runtime.has_method("is_riding_mount") and bool(mount_runtime.call("is_riding_mount")):
+		var mount_runtime := _current_mount_runtime()
+		if (
+			mount_runtime != null
+			and mount_runtime.has_method("is_riding_mount")
+			and bool(mount_runtime.call("is_riding_mount"))
+		):
 			var mount_skill: Dictionary = mount_runtime.call("get_mount_skill_for_slot", mount_skill_slot)
-			var mount_skill_id: = str(mount_skill.get("id", ""))
+			var mount_skill_id := str(mount_skill.get("id", ""))
 			_set_icon_path(MOUNT_CATALOG.get_icon_path(mount_skill_id))
 			last_time.stop()
 			CanRest = true
 			_show_mount_cooldown(
-				float(mount_runtime.call("get_mount_skill_cooldown", mount_skill_slot)), 
+				float(mount_runtime.call("get_mount_skill_cooldown", mount_skill_slot)),
 				float(mount_runtime.call("get_mount_skill_cooldown_total", mount_skill_slot))
 			)
 			return
@@ -93,7 +95,8 @@ func _physics_process(delta: float) -> void :
 				time_text.text = str(snapped(last_time.time_left, 0.1))
 			pic_box.value = last_time.time_left / float(MaxTime)
 
-func _set_icon_path(icon_path: String) -> void :
+
+func _set_icon_path(icon_path: String) -> void:
 	if icon_path == _loaded_icon_path:
 		return
 	_loaded_icon_path = icon_path
@@ -101,13 +104,15 @@ func _set_icon_path(icon_path: String) -> void :
 	texture = icon_texture
 	pic_box.texture_progress = icon_texture
 
-func _show_mount_cooldown(remaining_value: float, total_value: float) -> void :
-	var remaining: = maxf(0.0, remaining_value)
-	var total: = maxf(0.0, total_value)
+
+func _show_mount_cooldown(remaining_value: float, total_value: float) -> void:
+	var remaining := maxf(0.0, remaining_value)
+	var total := maxf(0.0, total_value)
 	pic_box.value = remaining / total if total > 0.0 else 0.0
 	time_text.visible = remaining > 0.0
 	if remaining > 0.0:
 		time_text.text = str(snapped(remaining, 1.0 if remaining > 1.0 else 0.1))
+
 
 func _current_mount_runtime() -> Node:
 	var player = RoleProp.SourcePlayer
@@ -115,22 +120,22 @@ func _current_mount_runtime() -> Node:
 		return null
 	return player.get_node_or_null("MountRuntime")
 
-func _update_nezha_effects(delta: float) -> void :
+
+func _update_nezha_effects(delta: float) -> void:
 	var source_player = RoleProp.SourcePlayer
-	var is_nezha: = _current_role_id() == 6 and source_player is NeZhaHero
-	var is_role4: = _current_role_id() == 4 and source_player is role4
-	var is_role3: = _current_role_id() == 3 and source_player is role3
+	var is_nezha := _current_role_id() == 6 and source_player is NeZhaHero
+	var is_role4 := _current_role_id() == 4 and source_player is role4
+	var is_role3 := _current_role_id() == 3 and source_player is role3
 	var icon_scale: float = maxf(absf(scale.x), 0.001)
-	var effect_scale: = Vector2.ONE / icon_scale if is_nezha or is_role4 else Vector2.ONE
+	var effect_scale := Vector2.ONE / icon_scale if is_nezha or is_role4 else Vector2.ONE
 	power_effect.scale = effect_scale
 	open_effect.scale = effect_scale
 	power_effect.visible = is_nezha and SkillName == NeZhaHero.SKILL_SPEAR
-	var is_open_skill: = false
+	var is_open_skill := false
 	if is_nezha:
 		is_open_skill = (
-			SkillName == NeZhaHero.SKILL_LOTUS and bool(source_player.get("_lotus_enabled"))
-		) or (
-			SkillName == NeZhaHero.SKILL_YINYANG and bool(source_player.get("_yinyang_enabled"))
+			(SkillName == NeZhaHero.SKILL_LOTUS and bool(source_player.get("_lotus_enabled")))
+			or (SkillName == NeZhaHero.SKILL_YINYANG and bool(source_player.get("_yinyang_enabled")))
 		)
 	elif is_role4:
 		is_open_skill = SkillName == "wdzt" and bool(source_player.get("_wdzt_awaken_enabled"))
@@ -145,6 +150,7 @@ func _update_nezha_effects(delta: float) -> void :
 	else:
 		_open_effect_elapsed = 0.0
 		open_effect.frame = 0
+
 
 func set_mp_display(mp_value: int):
 	"Called by Role_information.gd to set the mp cost label."
@@ -164,5 +170,5 @@ func set_mp_display(mp_value: int):
 	_mp_label.visible = mp_value > 0 and SkillName != "" and SkillName != "Empty"
 
 
-func _on_last_time_timeout() -> void :
+func _on_last_time_timeout() -> void:
 	CanRest = true

@@ -3,6 +3,8 @@ class_name Monster47
 var FishCount: int = 0
 var pp: Vector2
 var CanHit = false
+
+
 func monster_47():
 	self.is_boss = false
 	self.CannotAttract = true
@@ -30,39 +32,44 @@ func monster_47():
 	self.add_exp = 0
 	self.fall_coin = 0
 	self.objattackDic["hit1"] = {
-		"power": int(RoleProp.roleprop.SHp * 0.02) + 1, 
-		"hurtBack": [-15, -3], 
-		"attackKind": "real"
+		"power": int(RoleProp.roleprop.SHp * 0.02) + 1, "hurtBack": [-15, -3], "attackKind": "real"
 	}
 	self.objattackDic["hit2"] = {
-		"power": int(RoleProp.roleprop.SHp * 0.02) + 1, 
-		"hurtBack": [-15, -3], 
-		"attackKind": "real", 
-		"addeffect": {
-			"Name": "Bleed", 
-			"AddTime": 2, 
-			"ReduceInterval": 0.5, 
-			"CanAdd": true, 
-			"DeBuff": true, 
-			"value": int(RoleProp.roleprop.SHp * 0.005) + 1, 
-			"AttackKind": "real", 
+		"power": int(RoleProp.roleprop.SHp * 0.02) + 1,
+		"hurtBack": [-15, -3],
+		"attackKind": "real",
+		"addeffect":
+		{
+			"Name": "Bleed",
+			"AddTime": 2,
+			"ReduceInterval": 0.5,
+			"CanAdd": true,
+			"DeBuff": true,
+			"value": int(RoleProp.roleprop.SHp * 0.005) + 1,
+			"AttackKind": "real",
 		}
 	}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_47()
 	await get_tree().create_timer(4, false).timeout
 	CanHit = true
+
+
 func Monster_Intelligence():
 	if CanHit:
 		if FishCount > 0:
 			FishCount -= 1
 		if FishCount <= 0:
 			CallFish()
+
+
 func CallFish():
 	var hit_name_: String
 	if randi_range(0, 100) < 30:

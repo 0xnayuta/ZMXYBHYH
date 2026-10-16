@@ -1,8 +1,8 @@
 extends BaseLevel
 @onready var np: AnimationPlayer = $NP
 
-@onready var zzz: Node2D = $BackGround / End / Zp1 / zzz
-@onready var stop_1: CollisionShape2D = $wall / stop1
+@onready var zzz: Node2D = $BackGround/End/Zp1/zzz
+@onready var stop_1: CollisionShape2D = $wall/stop1
 var is_cc = false
 var ZZ_1: bool = false
 var ZZ_2: bool = false
@@ -18,33 +18,37 @@ var s_o = false
 var t_o = false
 var fo_o = false
 var fi_o = false
-func _ready() -> void :
+
+
+func _ready() -> void:
 	np.play("ini")
 	Global.CurrentLevel = "螺旋地狱"
 	Global.addBGM_(self, "res://Music/level/2_bg4.mp3")
 	self.level_stage = 1
 	super._ready()
 	Monster_group = {
-		"stage_1": [1], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [1],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_x = {
-		"stage_1": [-50000], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [-50000],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_y = {
-		"stage_1": [10000], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [10000],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	$exit.visible = false
-	$exit / exit2 / exit.disabled = true
+	$exit/exit2/exit.disabled = true
 	zzz.set_rotation_degrees(List_[ZZcount])
 	if Input.is_action_just_pressed("Exit"):
 		if Is_czdy:
@@ -104,23 +108,23 @@ func _physics_process(delta: float) -> void :
 			role_information.gogo.visible = false
 
 
-func _on_check_1_area_entered(area: Area2D) -> void :
-	Global.add_mr_hurt($BackGround / End / Check_1 / cc, Vector2(0, 0))
+func _on_check_1_area_entered(area: Area2D) -> void:
+	Global.add_mr_hurt($BackGround/End/Check_1/cc, Vector2(0, 0))
 	ZZ_1 = true
 	await get_tree().create_timer(1, false).timeout
 	ZZ_1 = false
-func _on_check_2_area_entered(area: Area2D) -> void :
-	Global.add_mr_hurt($BackGround / End / Check_2 / cc, Vector2(0, 0))
+
+
+func _on_check_2_area_entered(area: Area2D) -> void:
+	Global.add_mr_hurt($BackGround/End/Check_2/cc, Vector2(0, 0))
 	ZZ_2 = true
 	await get_tree().create_timer(1, false).timeout
 	ZZ_2 = false
 
 
-
-
-func _on_check_3_area_entered(area: Area2D) -> void :
-	Global.add_mr_hurt($BackGround / End / Zp1, Vector2(0, 0))
-	$BackGround / End / Zp1 / Check_3 / cc.disabled = true
+func _on_check_3_area_entered(area: Area2D) -> void:
+	Global.add_mr_hurt($BackGround/End/Zp1, Vector2(0, 0))
+	$BackGround/End/Zp1/Check_3/cc.disabled = true
 	$Timer2.start(2.5)
 	if ZZcount < 4:
 		ZZcount += 1
@@ -128,8 +132,7 @@ func _on_check_3_area_entered(area: Area2D) -> void :
 		ZZcount = 0
 
 
-
-func _on_area_2d_body_entered(body: Node2D) -> void :
+func _on_area_2d_body_entered(body: Node2D) -> void:
 	Is_szdy = true
 	Is_xzdy = false
 	Is_czdy = false
@@ -137,12 +140,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void :
 	Is_gzdy = false
 
 
-func _on_area_2d_body_exited(body: Node2D) -> void :
+func _on_area_2d_body_exited(body: Node2D) -> void:
 	Is_szdy = false
 
 
-
-func _on_area_2d_2_body_entered(body: Node2D) -> void :
+func _on_area_2d_2_body_entered(body: Node2D) -> void:
 	Is_szdy = false
 	Is_xzdy = true
 	Is_czdy = false
@@ -150,11 +152,11 @@ func _on_area_2d_2_body_entered(body: Node2D) -> void :
 	Is_gzdy = false
 
 
-func _on_area_2d_2_body_exited(body: Node2D) -> void :
+func _on_area_2d_2_body_exited(body: Node2D) -> void:
 	Is_xzdy = false
 
 
-func _on_area_2d_3_body_entered(body: Node2D) -> void :
+func _on_area_2d_3_body_entered(body: Node2D) -> void:
 	Is_szdy = false
 	Is_xzdy = false
 	Is_czdy = true
@@ -162,11 +164,11 @@ func _on_area_2d_3_body_entered(body: Node2D) -> void :
 	Is_gzdy = false
 
 
-func _on_area_2d_3_body_exited(body: Node2D) -> void :
+func _on_area_2d_3_body_exited(body: Node2D) -> void:
 	Is_czdy = false
 
 
-func _on_area_2d_4_body_entered(body: Node2D) -> void :
+func _on_area_2d_4_body_entered(body: Node2D) -> void:
 	Is_szdy = false
 	Is_xzdy = false
 	Is_czdy = false
@@ -174,19 +176,20 @@ func _on_area_2d_4_body_entered(body: Node2D) -> void :
 	Is_gzdy = false
 
 
-func _on_area_2d_4_body_exited(body: Node2D) -> void :
+func _on_area_2d_4_body_exited(body: Node2D) -> void:
 	Is_zzdy = false
+
 
 func Player_2():
 	np.play("dh_2")
 	pass
 
 
-func _on_timer_2_timeout() -> void :
-	$BackGround / End / Zp1 / Check_3 / cc.disabled = false
+func _on_timer_2_timeout() -> void:
+	$BackGround/End/Zp1/Check_3/cc.disabled = false
 
 
-func _on_area_2d_5_body_entered(body: Node2D) -> void :
+func _on_area_2d_5_body_entered(body: Node2D) -> void:
 	Is_szdy = false
 	Is_xzdy = false
 	Is_czdy = false
@@ -194,6 +197,5 @@ func _on_area_2d_5_body_entered(body: Node2D) -> void :
 	Is_gzdy = true
 
 
-
-func _on_area_2d_5_body_exited(body: Node2D) -> void :
+func _on_area_2d_5_body_exited(body: Node2D) -> void:
 	Is_gzdy = false

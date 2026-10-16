@@ -2,69 +2,70 @@ extends BaseMagicWeapon
 class_name QingLian
 
 const IDLE_FRAMES = [
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/1.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/2.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/3.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/4.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/5.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/6.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/7.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/8.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/9.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/10.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/11.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/12.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/13.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/14.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/15.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/16.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/17.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/18.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/19.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/20.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/21.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/22.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/23.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/24.png"), 
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/1.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/2.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/3.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/4.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/5.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/6.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/7.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/8.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/9.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/10.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/11.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/12.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/13.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/14.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/15.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/16.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/17.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/18.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/19.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/20.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/21.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/22.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/23.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/idle_frames/24.png"),
 ]
 const EFFECT_FRAMES = [
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/1.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/2.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/3.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/4.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/5.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/6.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/7.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/8.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/9.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/10.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/11.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/12.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/13.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/14.png"), 
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/1.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/2.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/3.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/4.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/5.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/6.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/7.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/8.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/9.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/10.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/11.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/12.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/13.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/14.png"),
 ]
 const AURA_FRAMES = [
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/1.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/2.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/3.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/4.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/5.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/6.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/7.png"), 
-	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/8.png"), 
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/1.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/2.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/3.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/4.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/5.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/6.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/7.png"),
+	preload("res://Art/MagicWeapon/MagicWeapon_QingLian/aura_frames/8.png"),
 ]
 @onready var special_effect: AnimatedSprite2D = $SpecialEffect
 @onready var aura_effect: AnimatedSprite2D = $AuraEffect
 
 var _previous_damage_reduction: float = 0.0
-var _damage_reduction_applied: = false
+var _damage_reduction_applied := false
 const ACTIVATION_DURATION: float = 14.0 / 30.0
 const BUFF_DURATION: float = 10.0
 const COOLDOWN_DURATION: float = 30.0
 var _effect_token: int = 0
 var _texture_bounds_cache: Dictionary = {}
 
-func _ready() -> void :
+
+func _ready() -> void:
 	FB_Level = clampi(PlayerData.get_mostLevel("dzyl"), 1, 10)
 	mg_action.sprite_frames = _build_frames("wait", IDLE_FRAMES, true, 12.0)
 	special_effect.sprite_frames = _build_frames("effect", EFFECT_FRAMES, false, 30.0)
@@ -73,7 +74,8 @@ func _ready() -> void :
 	special_effect.visible = false
 	aura_effect.visible = false
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	FB_Level = clampi(PlayerData.get_mostLevel("dzyl"), 1, 10)
 	needMp = 50
 	super._physics_process(delta)
@@ -85,13 +87,14 @@ func _physics_process(delta: float) -> void :
 	if aura_effect.visible or special_effect.visible:
 		_update_effect_positions()
 
-func _follow_hero_during_skill() -> void :
+
+func _follow_hero_during_skill() -> void:
 	if Player == null or not is_instance_valid(Player):
 		return
 
 	var role_x = RoleProp.role_pos_x
 	var role_y = RoleProp.role_pos_y
-	var hero_position: = Player.position
+	var hero_position := Player.position
 	if role_x != null and role_y != null:
 		hero_position = Vector2(float(role_x), float(role_y))
 
@@ -104,8 +107,9 @@ func _follow_hero_during_skill() -> void :
 		SelfDir = false
 		position = hero_position - Vector2(-100, 180)
 
+
 func _build_frames(animation_name: String, textures: Array, looped: bool, speed: float) -> SpriteFrames:
-	var frames: = SpriteFrames.new()
+	var frames := SpriteFrames.new()
 	frames.add_animation(animation_name)
 	frames.set_animation_loop(animation_name, looped)
 	frames.set_animation_speed(animation_name, speed)
@@ -113,14 +117,16 @@ func _build_frames(animation_name: String, textures: Array, looped: bool, speed:
 		frames.add_frame(animation_name, texture)
 	return frames
 
-func _update_effect_positions() -> void :
+
+func _update_effect_positions() -> void:
 	var foot_global_position: Variant = _get_player_visible_foot_global_position()
 	if foot_global_position != null and aura_effect.get_parent() == Player:
-		var frame_texture: = aura_effect.sprite_frames.get_frame_texture("effect", aura_effect.frame)
-		var frame_bottom_offset: = _get_sprite_visible_bottom_offset(aura_effect, frame_texture)
+		var frame_texture := aura_effect.sprite_frames.get_frame_texture("effect", aura_effect.frame)
+		var frame_bottom_offset := _get_sprite_visible_bottom_offset(aura_effect, frame_texture)
 		var foot_local_position: Vector2 = Player.to_local(foot_global_position)
 		aura_effect.position = foot_local_position - frame_bottom_offset
 	special_effect.position = Vector2(0, -75)
+
 
 func _get_player_visible_foot_global_position() -> Variant:
 	if Player == null or not is_instance_valid(Player):
@@ -130,7 +136,7 @@ func _get_player_visible_foot_global_position() -> Variant:
 		return ground_position
 	var visible_bottom: Variant = null
 	for node_path in ["Action/RoleBody", "Action/RoleEquipment", "Action/RoleBodyFront"]:
-		var sprite: = Player.get_node_or_null(node_path) as Sprite2D
+		var sprite := Player.get_node_or_null(node_path) as Sprite2D
 		if sprite == null or not sprite.visible or sprite.texture == null:
 			continue
 		var sprite_bottom: Variant = _get_sprite_visible_bottom_global_position(sprite)
@@ -138,77 +144,87 @@ func _get_player_visible_foot_global_position() -> Variant:
 			visible_bottom = sprite_bottom
 	return visible_bottom
 
+
 func _get_player_ground_global_position() -> Variant:
-	var ground_shape: = Player.get_node_or_null("pz") as CollisionShape2D
+	var ground_shape := Player.get_node_or_null("pz") as CollisionShape2D
 	if ground_shape == null or ground_shape.shape == null:
 		return null
 	var shape_rect: Rect2 = ground_shape.shape.get_rect()
 	return ground_shape.to_global(Vector2(0, shape_rect.end.y))
 
+
 func _get_sprite_visible_bottom_global_position(sprite: Sprite2D) -> Variant:
-	var texture_bounds: = _get_sprite_frame_bounds(sprite)
+	var texture_bounds := _get_sprite_frame_bounds(sprite)
 	if texture_bounds.is_empty():
 		return null
 	var used_rect: Rect2 = texture_bounds["used_rect"]
 	var canvas_origin: Vector2 = texture_bounds["canvas_origin"]
-	var draw_rect: = sprite.get_rect()
-	var bottom_local: = Vector2(
-		draw_rect.position.x + canvas_origin.x + used_rect.position.x + used_rect.size.x * 0.5, 
+	var draw_rect := sprite.get_rect()
+	var bottom_local := Vector2(
+		draw_rect.position.x + canvas_origin.x + used_rect.position.x + used_rect.size.x * 0.5,
 		draw_rect.position.y + canvas_origin.y + used_rect.position.y + used_rect.size.y
 	)
 	return sprite.to_global(bottom_local)
 
+
 func _get_sprite_frame_bounds(sprite: Sprite2D) -> Dictionary:
 	if sprite.texture is AtlasTexture:
 		return _get_texture_bounds(sprite.texture)
-	var texture: = sprite.texture
-	var cache_key: = "%s:%d:%d:%d" % [texture.get_instance_id(), sprite.hframes, sprite.vframes, sprite.frame]
+	var texture := sprite.texture
+	var cache_key := "%s:%d:%d:%d" % [texture.get_instance_id(), sprite.hframes, sprite.vframes, sprite.frame]
 	if _texture_bounds_cache.has(cache_key):
 		return _texture_bounds_cache[cache_key]
-	var image: = texture.get_image()
+	var image := texture.get_image()
 	if image == null:
 		return {}
-	var frame_width: = image.get_width() / sprite.hframes
-	var frame_height: = image.get_height() / sprite.vframes
-	var frame_column: = sprite.frame % sprite.hframes
-	var frame_row: = sprite.frame / sprite.hframes
-	var frame_image: = image.get_region(Rect2i(frame_column * frame_width, frame_row * frame_height, frame_width, frame_height))
-	var used_rect: = frame_image.get_used_rect()
+	var frame_width := image.get_width() / sprite.hframes
+	var frame_height := image.get_height() / sprite.vframes
+	var frame_column := sprite.frame % sprite.hframes
+	var frame_row := sprite.frame / sprite.hframes
+	var frame_image := image.get_region(
+		Rect2i(frame_column * frame_width, frame_row * frame_height, frame_width, frame_height)
+	)
+	var used_rect := frame_image.get_used_rect()
 	if used_rect.size == Vector2i.ZERO:
 		return {}
-	var bounds: = {
-		"used_rect": Rect2(used_rect), 
-		"canvas_size": Vector2(frame_width, frame_height), 
-		"canvas_origin": Vector2.ZERO, 
+	var bounds := {
+		"used_rect": Rect2(used_rect),
+		"canvas_size": Vector2(frame_width, frame_height),
+		"canvas_origin": Vector2.ZERO,
 	}
 	_texture_bounds_cache[cache_key] = bounds
 	return bounds
 
+
 func _get_sprite_visible_bottom_offset(sprite: Node2D, texture: Texture2D) -> Vector2:
 	if texture == null:
 		return Vector2.ZERO
-	var texture_bounds: = _get_texture_bounds(texture, 128)
+	var texture_bounds := _get_texture_bounds(texture, 128)
 	if texture_bounds.is_empty():
 		return Vector2.ZERO
 	var used_rect: Rect2 = texture_bounds["used_rect"]
 	var canvas_size: Vector2 = texture_bounds["canvas_size"]
 	var canvas_origin: Vector2 = texture_bounds["canvas_origin"]
 	var sprite_offset: Vector2 = sprite.get("offset")
-	var bottom_local: = sprite_offset + Vector2(
-		- canvas_size.x * 0.5 + canvas_origin.x + used_rect.position.x + used_rect.size.x * 0.5, 
-		- canvas_size.y * 0.5 + canvas_origin.y + used_rect.position.y + used_rect.size.y
+	var bottom_local := (
+		sprite_offset
+		+ Vector2(
+			-canvas_size.x * 0.5 + canvas_origin.x + used_rect.position.x + used_rect.size.x * 0.5,
+			-canvas_size.y * 0.5 + canvas_origin.y + used_rect.position.y + used_rect.size.y
+		)
 	)
 	return sprite.to_global(bottom_local) - sprite.global_position
 
+
 func _get_texture_bounds(texture: Texture2D, alpha_threshold: int = 1) -> Dictionary:
-	var cache_key: = "%d:%d" % [texture.get_instance_id(), alpha_threshold]
+	var cache_key := "%d:%d" % [texture.get_instance_id(), alpha_threshold]
 	if _texture_bounds_cache.has(cache_key):
 		return _texture_bounds_cache[cache_key]
 	var image: Image
-	var canvas_size: = texture.get_size()
-	var canvas_origin: = Vector2.ZERO
+	var canvas_size := texture.get_size()
+	var canvas_origin := Vector2.ZERO
 	if texture is AtlasTexture:
-		var atlas_texture: = texture as AtlasTexture
+		var atlas_texture := texture as AtlasTexture
 		if atlas_texture.atlas == null:
 			return {}
 		image = atlas_texture.atlas.get_image().get_region(Rect2i(atlas_texture.region))
@@ -218,22 +234,23 @@ func _get_texture_bounds(texture: Texture2D, alpha_threshold: int = 1) -> Dictio
 		image = texture.get_image()
 	if image == null:
 		return {}
-	var used_rect: = _get_alpha_threshold_rect(image, alpha_threshold)
+	var used_rect := _get_alpha_threshold_rect(image, alpha_threshold)
 	if used_rect.size == Vector2i.ZERO:
 		return {}
-	var bounds: = {
-		"used_rect": Rect2(used_rect), 
-		"canvas_size": canvas_size, 
-		"canvas_origin": canvas_origin, 
+	var bounds := {
+		"used_rect": Rect2(used_rect),
+		"canvas_size": canvas_size,
+		"canvas_origin": canvas_origin,
 	}
 	_texture_bounds_cache[cache_key] = bounds
 	return bounds
 
+
 func _get_alpha_threshold_rect(image: Image, alpha_threshold: int) -> Rect2i:
-	var min_x: = image.get_width()
-	var min_y: = image.get_height()
-	var max_x: = -1
-	var max_y: = -1
+	var min_x := image.get_width()
+	var min_y := image.get_height()
+	var max_x := -1
+	var max_y := -1
 	for y in range(image.get_height()):
 		for x in range(image.get_width()):
 			if image.get_pixel(x, y).a * 255.0 < float(alpha_threshold):
@@ -246,23 +263,30 @@ func _get_alpha_threshold_rect(image: Image, alpha_threshold: int) -> Rect2i:
 		return Rect2i()
 	return Rect2i(min_x, min_y, max_x - min_x + 1, max_y - min_y + 1)
 
-func ShowSkill() -> void :
+
+func ShowSkill() -> void:
 	if Player == null or not is_instance_valid(Player):
 		Useover()
 		return
 	_previous_damage_reduction = Player.wdsl_damage_reduction
 	Player.wdsl_damage_reduction += 0.5
 	_damage_reduction_applied = true
-	Global.AddBuff(Player.buff, {
-		"Name": "SuperArmor", 
-		"AddTime": BUFF_DURATION, 
-		"ReduceInterval": 0, 
-		"value": 0, 
-		"AttackKind": "", 
-		"CanRemove": false, 
-	})
+	(
+		Global
+		. AddBuff(
+			Player.buff,
+			{
+				"Name": "SuperArmor",
+				"AddTime": BUFF_DURATION,
+				"ReduceInterval": 0,
+				"value": 0,
+				"AttackKind": "",
+				"CanRemove": false,
+			}
+		)
+	)
 	_effect_token += 1
-	var effect_token: = _effect_token
+	var effect_token := _effect_token
 	mg_action.stop()
 	mg_action.visible = false
 	_show_skill_effect()
@@ -273,7 +297,8 @@ func ShowSkill() -> void :
 	if is_inside_tree() and effect_token == _effect_token:
 		_clear_skill_effect()
 
-func _show_skill_effect() -> void :
+
+func _show_skill_effect() -> void:
 	if Player == null or not is_instance_valid(Player):
 		return
 	if special_effect.get_parent() != Player:
@@ -294,7 +319,8 @@ func _show_skill_effect() -> void :
 	aura_effect.play("effect")
 	_update_effect_positions()
 
-func _clear_skill_effect() -> void :
+
+func _clear_skill_effect() -> void:
 	if _damage_reduction_applied and Player != null and is_instance_valid(Player):
 		Player.wdsl_damage_reduction = _previous_damage_reduction
 	_damage_reduction_applied = false
@@ -311,7 +337,8 @@ func _clear_skill_effect() -> void :
 	aura_effect.position = Vector2(0, 105)
 	aura_effect.z_index = -2
 
-func Useover() -> void :
+
+func Useover() -> void:
 	mg_action.visible = false
 	is_use = false
 	Global.FB_CD = 1

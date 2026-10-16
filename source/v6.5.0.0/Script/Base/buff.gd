@@ -1,19 +1,24 @@
 extends TextureRect
 var texture_ = "poision"
 var tt_
-var _last_texture_key: = ""
+var _last_texture_key := ""
 
-func _ready() -> void :
+
+func _ready() -> void:
 	_refresh_texture()
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	if _last_texture_key != texture_:
 		_refresh_texture()
 
-func _refresh_texture() -> void :
+
+func _refresh_texture() -> void:
 	_last_texture_key = texture_
 	set_texture(load_(texture_))
-func _on_mouse_entered() -> void :
+
+
+func _on_mouse_entered() -> void:
 	match texture_:
 		"poision":
 			tt_ = Global.add_BuffInfo(self, Vector2(35, 35), "中毒：受中毒效果影响，这个单位开始每秒扣除一定的生命值。")
@@ -34,7 +39,8 @@ func _on_mouse_entered() -> void :
 		"yxbuff":
 			tt_ = Global.add_BuffInfo(self, Vector2(35, 35), "入魔：提升攻击力、暴击率、幸运。")
 
-func _on_mouse_exited() -> void :
+
+func _on_mouse_exited() -> void:
 	if tt_ != null:
 		tt_.queue_free()
 

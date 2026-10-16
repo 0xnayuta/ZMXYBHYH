@@ -1,13 +1,10 @@
 extends BaseMonster
 class_name Monster62
 
-
-
 var ShouldFly: bool
 var IsCall: bool
 var OnsetEatblood: bool
 var RemoveBlood: bool
-
 
 
 func monster_62():
@@ -38,28 +35,23 @@ func monster_62():
 	self.ebol = 0
 
 	self.objattackDic["hit1"] = {
-		"power": 300, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 300,
+		"hurtBack": [-8, -12],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 
 	self.fall_pro = 0.5
-	self.fall_list = [
-
-
-
-
-	]
+	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_62()
 
 	Skill_1_CD = 0
-
 
 
 func Monster_Intelligence():
@@ -93,7 +85,8 @@ func Monster_Intelligence():
 
 
 func do_hit_1():
-	if Skill_1_CD > 0 or is_attacking: return
+	if Skill_1_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_1_CD = 3
 	hit_name = "hit1"
@@ -105,28 +98,18 @@ func do_hit_1():
 	stop_move()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 func CallBullet1():
 	var po: Vector2
 	if MonsterDirection:
 		po = Vector2(50, -40)
 	else:
 		po = Vector2(-50, -40)
-	var child = Global.add_Bullet("Monster62bull1", bullet, MonsterDirection, 2, position + po, "hit1", self.objattackDic["hit1"])
+	var child = Global.add_Bullet(
+		"Monster62bull1", bullet, MonsterDirection, 2, position + po, "hit1", self.objattackDic["hit1"]
+	)
+
 
 func state_hurt():
-
 	super.state_hurt()
 
 	velocity.x = 0

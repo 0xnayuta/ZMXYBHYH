@@ -2,7 +2,6 @@ extends BaseMonster
 class_name Monster4
 
 
-
 func monster_4():
 	self.is_boss = true
 	self.my_mr_name = "猕猴王"
@@ -28,56 +27,39 @@ func monster_4():
 	self.self_rhp = 0
 	self.add_exp = 50
 	self.fall_coin = 20
-	self.objattackDic["hit1"] = {
-		"power": 55, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics", 
-		"HitProtect": 8
-	}
+	self.objattackDic["hit1"] = {"power": 55, "hurtBack": [-4, -9], "attackKind": "physics", "HitProtect": 8}
 	self.objattackDic["tfhx"] = {
-		"power": 90, 
-		"hurtBack": [-20, -8], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 5, 
-			"ReduceInterval": 0, 
-			"value": 0.6, 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"AttackKind": "", 
+		"power": 90,
+		"hurtBack": [-20, -8],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 5,
+			"ReduceInterval": 0,
+			"value": 0.6,
+			"CanAdd": false,
+			"DeBuff": true,
+			"AttackKind": "",
 		}
 	}
 	self.objattackDic["jfkx"] = {
-		"power": 80, 
-		"hurtBack": [3, -18], 
-		"attackKind": "magic", 
-		"HitProtect": 18, 
+		"power": 80,
+		"hurtBack": [3, -18],
+		"attackKind": "magic",
+		"HitProtect": 18,
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "dszy", 
-			"value": 0
-		}, 
-		{
-			"name": "dslq", 
-			"value": 0
-		}, 
-		{
-			"name": "dshp", 
-			"value": 0
-		}, 
-		{
-			"name": "dslj", 
-			"value": 0
-		}
+		{"name": "dszy", "value": 0},
+		{"name": "dslq", "value": 0},
+		{"name": "dshp", "value": 0},
+		{"name": "dslj", "value": 0}
 	]
 	self.independent_fall_list = [
-		{"name": "210007001", "value": 0, "chance": 0.25}, 
+		{"name": "210007001", "value": 0, "chance": 0.25},
 	]
-
 
 	enable_treasure_box = true
 	treasure_box_item = "mhwbx"
@@ -86,13 +68,15 @@ func monster_4():
 	if current_fall_mode == FallMode.TREASURE_BOX:
 		self.independent_fall_list.clear()
 	self.fall_stone_pro = 0
-	self.fall_stone = [
-	]
-func _ready() -> void :
+	self.fall_stone = []
+
+
+func _ready() -> void:
 	super._ready()
 	monster_4()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -113,9 +97,15 @@ func Monster_Intelligence():
 					else:
 						stop_move()
 			else:
-				if Skill_1_CD <= 0 and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 350:
+				if (
+					Skill_1_CD <= 0
+					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 350
+				):
 					do_hit_2()
-				elif Skill_2_CD <= 0 and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 180:
+				elif (
+					Skill_2_CD <= 0
+					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 180
+				):
 					do_hit_3()
 				else:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
@@ -126,6 +116,8 @@ func Monster_Intelligence():
 								attack_target()
 						else:
 							stop_move()
+
+
 func do_hit_2():
 	Skill_1_CD = 8
 	hit_name = "tfhx"
@@ -134,6 +126,7 @@ func do_hit_2():
 	mr_player.play("tfhx")
 	await mr_player.animation_finished
 	is_attacking = false
+
 
 func do_hit_3():
 	Skill_2_CD = 11
@@ -145,6 +138,8 @@ func do_hit_3():
 	baselevel.shake_(25, 6, 0.02)
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func call_tfhx():
 	var tf
 	var dir = -1
@@ -158,4 +153,4 @@ func call_tfhx():
 	if self.MonsterDirection:
 		Global.CallFlyBullet(self.bullet, skill_name, dir, position_, distance, speed, name_, hit_dic)
 	else:
-		Global.CallFlyBullet(self.bullet, skill_name, dir, position_, distance, - speed, name_, hit_dic)
+		Global.CallFlyBullet(self.bullet, skill_name, dir, position_, distance, -speed, name_, hit_dic)

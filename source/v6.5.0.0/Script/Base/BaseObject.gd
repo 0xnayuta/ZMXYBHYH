@@ -4,9 +4,7 @@ class_name BaseObject
 var IsReverseMove: bool = false
 var ReverseMoveSpeedMultiplier: float = 1.0
 
-
 var NoDeBuff: bool = false
-
 
 var walk_speed: int = 240
 var run_speed: int
@@ -27,7 +25,8 @@ var is_ice: bool
 var is_DeadLink: bool
 var is_EyeFix: bool
 
-func spawn_ws_effect(visual_node: Node, parent_node: Node) -> void :
+
+func spawn_ws_effect(visual_node: Node, parent_node: Node) -> void:
 	if visual_node == null or not is_instance_valid(visual_node):
 		return
 	var ws_effect_scene = Global.preload_scene_path("res://Scene/Hero/Role_1/WS_Effect.tscn")
@@ -47,32 +46,47 @@ func spawn_ws_effect(visual_node: Node, parent_node: Node) -> void :
 		return
 	parent_node.add_child(ws_effect)
 
-func _physics_process(_delta: float) -> void :
 
+func _physics_process(_delta: float) -> void:
 	if Hp >= SHp:
 		Hp = SHp
 	if Hp <= 0:
 		Hp = 0
+
+
 func set_data():
-
-
 	gravity = -980.0
 	objattackDic = {}
 	jump_count = 0
 	jump_power = -540.0
+
+
 func get_hurt(hit_name):
 	var hurt = objattackDic[hit_name].power
 	return hurt
+
+
 func get_hurt_lx(hit_name):
 	var hurt_kind = objattackDic[hit_name].attackKind
 	return hurt_kind
+
 
 func CheckFashionAndAddFallPro():
 	if PlayerData.player_data["时装"].size() <= 0:
 		return 0.0
 	else:
-		if PlayerData.CheckFashionClothes("wklzyf") or PlayerData.CheckFashionClothes("tslzyf") or PlayerData.CheckFashionClothes("bjlzyf") or PlayerData.CheckFashionClothes("sslzyf"):
+		if (
+			PlayerData.CheckFashionClothes("wklzyf")
+			or PlayerData.CheckFashionClothes("tslzyf")
+			or PlayerData.CheckFashionClothes("bjlzyf")
+			or PlayerData.CheckFashionClothes("sslzyf")
+		):
 			return 0.05
-		if PlayerData.CheckFashionClothes("wkhzyf") or PlayerData.CheckFashionClothes("tshzyf") or PlayerData.CheckFashionClothes("bjhzyf") or PlayerData.CheckFashionClothes("sshzyf"):
+		if (
+			PlayerData.CheckFashionClothes("wkhzyf")
+			or PlayerData.CheckFashionClothes("tshzyf")
+			or PlayerData.CheckFashionClothes("bjhzyf")
+			or PlayerData.CheckFashionClothes("sshzyf")
+		):
 			return 0.08
 	return 0

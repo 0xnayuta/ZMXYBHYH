@@ -3,34 +3,34 @@ extends Node2D
 
 signal animation_finished(animation_name: String)
 
-const RUNTIME_ROOT: = "res://Art/Mount/Runtime/Mounts"
-const EFFECT_RUNTIME_ROOT: = "res://Art/Mount/Runtime/Effects"
-const RIDER_SLOT_ORIGINS: = {
-	"1002200": Vector2(-46.65, -51.15), 
-	"1002700": Vector2(-0.05, -0.1), 
-	"1003100": Vector2(-46.65, -51.15), 
-	"1003600": Vector2(-6.15, 30.2), 
-	"1004700": Vector2(-3.65, 33.8), 
+const RUNTIME_ROOT := "res://Art/Mount/Runtime/Mounts"
+const EFFECT_RUNTIME_ROOT := "res://Art/Mount/Runtime/Effects"
+const RIDER_SLOT_ORIGINS := {
+	"1002200": Vector2(-46.65, -51.15),
+	"1002700": Vector2(-0.05, -0.1),
+	"1003100": Vector2(-46.65, -51.15),
+	"1003600": Vector2(-6.15, 30.2),
+	"1004700": Vector2(-3.65, 33.8),
 }
-const STREAM_LOOKAHEAD_FRAMES: = 45
-const STREAM_READY_LIMIT: = 2
+const STREAM_LOOKAHEAD_FRAMES := 45
+const STREAM_READY_LIMIT := 2
 
 static var _manifest_cache: Dictionary = {}
-static var _stream_scope: = ""
-static var _stream_generation: = 0
+static var _stream_scope := ""
+static var _stream_generation := 0
 static var _stream_pending: Dictionary = {}
 static var _stream_ready: Dictionary = {}
 static var _stream_retained: Dictionary = {}
 static var _stream_queue: Array[Dictionary] = []
 static var _stream_last_used: Dictionary = {}
-static var _stream_clock: = 0
+static var _stream_clock := 0
 
-var mount_id: = ""
-var animation_name: = ""
-var frame_index: = 0
-var speed_scale: = 1.0
+var mount_id := ""
+var animation_name := ""
+var frame_index := 0
+var speed_scale := 1.0
 
-var _elapsed: = 0.0
+var _elapsed := 0.0
 var _animation_data: Dictionary = {}
 var _animation_cache: Dictionary = {}
 var _back_atlases: Array[Texture2D] = []
@@ -41,19 +41,26 @@ var _rider: Node2D
 var _rider_pose: Node2D
 var _rider_body: Sprite2D
 var _rider_body_front: Sprite2D
-var _rider_pose_source: = ""
-var _registration_anchor: = Vector2.ZERO
-var _has_registration_anchor: = false
-var _runtime_root: = RUNTIME_ROOT
-var _atlas_base_path: = ""
+var _rider_pose_source := ""
+var _registration_anchor := Vector2.ZERO
+var _has_registration_anchor := false
+var _runtime_root := RUNTIME_ROOT
+var _atlas_base_path := ""
 var _back_atlas_names: Array = []
 var _front_atlas_names: Array = []
-var async_texture_loading: = false
+var async_texture_loading := false
 
-func _ready() -> void :
+
+func _ready() -> void:
 	_ensure_sprites()
 
-func setup(active_mount_id: String, initial_animation: = "idle", runtime_root: = RUNTIME_ROOT, use_async_texture_loading: = false) -> bool:
+
+func setup(
+	active_mount_id: String,
+	initial_animation := "idle",
+	runtime_root := RUNTIME_ROOT,
+	use_async_texture_loading := false
+) -> bool:
 	_ensure_sprites()
 	async_texture_loading = use_async_texture_loading
 	_runtime_root = runtime_root
@@ -70,17 +77,17 @@ func setup(active_mount_id: String, initial_animation: = "idle", runtime_root: =
 	_atlas_base_path = ""
 	_registration_anchor = Vector2.ZERO
 
-
-
 	_has_registration_anchor = true
 	_load_animation("idle")
 	return play(initial_animation, true)
 
-func set_async_texture_loading(enabled: bool) -> void :
+
+func set_async_texture_loading(enabled: bool) -> void:
 	async_texture_loading = enabled
 
-static func prewarm_mount_assets(active_mount_id: String) -> void :
-	var scope: = str(active_mount_id)
+
+static func prewarm_mount_assets(active_mount_id: String) -> void:
+	var scope := str(active_mount_id)
 	if scope == "" or scope == _stream_scope:
 		return
 	_stream_scope = scope
@@ -91,7 +98,8 @@ static func prewarm_mount_assets(active_mount_id: String) -> void :
 	_stream_queue.clear()
 	_stream_last_used.clear()
 
-static func _queue_stream_path(path: String, retain: bool, priority: bool) -> void :
+
+static func _queue_stream_path(path: String, retain: bool, priority: bool) -> void:
 	if path == "" or _stream_pending.has(path) or _stream_ready.has(path):
 		if retain:
 			_stream_retained[path] = true
@@ -102,7 +110,7 @@ static func _queue_stream_path(path: String, retain: bool, priority: bool) -> vo
 				entry_value["retain"] = true
 				_stream_retained[path] = true
 			return
-	var entry: = {"path": path, "retain": retain, "generation": _stream_generation}
+	var entry := {"path": path, "retain": retain, "generation": _stream_generation}
 	if retain:
 		_stream_retained[path] = true
 	if priority:
@@ -110,26 +118,29 @@ static func _queue_stream_path(path: String, retain: bool, priority: bool) -> vo
 	else:
 		_stream_queue.append(entry)
 
-static func _pump_stream_requests() -> void :
+
+static func _pump_stream_requests() -> void:
 	_collect_stream_requests()
 
-
-	var pending_limit: = 2
+	var pending_limit := 2
 	while _stream_pending.size() < pending_limit and not _stream_queue.is_empty():
 		var entry: Dictionary = _stream_queue.pop_front()
-		var path: = str(entry.get("path", ""))
+		var path := str(entry.get("path", ""))
 		if path == "" or not ResourceLoader.exists(path):
 			continue
-		var cache_mode: = ResourceLoader.CACHE_MODE_REUSE if bool(entry.get("retain", false)) else ResourceLoader.CACHE_MODE_IGNORE
-		var request_error: = ResourceLoader.load_threaded_request(path, "Texture2D", false, cache_mode)
-		var status: = ResourceLoader.load_threaded_get_status(path)
+		var cache_mode := (
+			ResourceLoader.CACHE_MODE_REUSE if bool(entry.get("retain", false)) else ResourceLoader.CACHE_MODE_IGNORE
+		)
+		var request_error := ResourceLoader.load_threaded_request(path, "Texture2D", false, cache_mode)
+		var status := ResourceLoader.load_threaded_get_status(path)
 		if request_error == OK or status != ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
 			_stream_pending[path] = entry
 
-static func _collect_stream_requests() -> void :
+
+static func _collect_stream_requests() -> void:
 	for path_value in _stream_pending.keys():
-		var path: = str(path_value)
-		var status: = ResourceLoader.load_threaded_get_status(path)
+		var path := str(path_value)
+		var status := ResourceLoader.load_threaded_get_status(path)
 		if status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 			continue
 		var entry: Dictionary = _stream_pending[path]
@@ -142,28 +153,31 @@ static func _collect_stream_requests() -> void :
 			_touch_stream_path(path)
 	_prune_stream_ready()
 
+
 static func _take_stream_texture(path: String) -> Texture2D:
 	_pump_stream_requests()
-	var texture: = _stream_ready.get(path) as Texture2D
+	var texture := _stream_ready.get(path) as Texture2D
 	if texture != null:
 		_touch_stream_path(path)
 	return texture
 
-static func _touch_stream_path(path: String) -> void :
+
+static func _touch_stream_path(path: String) -> void:
 	_stream_clock += 1
 	_stream_last_used[path] = _stream_clock
 
-static func _prune_stream_ready() -> void :
+
+static func _prune_stream_ready() -> void:
 	var removable: Array[String] = []
 	for path_value in _stream_ready.keys():
-		var path: = str(path_value)
+		var path := str(path_value)
 		if not _stream_retained.has(path):
 			removable.append(path)
 	while removable.size() > STREAM_READY_LIMIT:
-		var oldest_path: = removable[0]
-		var oldest_tick: = int(_stream_last_used.get(oldest_path, 0))
+		var oldest_path := removable[0]
+		var oldest_tick := int(_stream_last_used.get(oldest_path, 0))
 		for path in removable:
-			var tick: = int(_stream_last_used.get(path, 0))
+			var tick := int(_stream_last_used.get(path, 0))
 			if tick < oldest_tick:
 				oldest_path = path
 				oldest_tick = tick
@@ -171,16 +185,19 @@ static func _prune_stream_ready() -> void :
 		_stream_last_used.erase(oldest_path)
 		removable.erase(oldest_path)
 
-static func _request_stream_texture(path: String) -> void :
+
+static func _request_stream_texture(path: String) -> void:
 	_queue_stream_path(path, false, true)
 	_pump_stream_requests()
+
 
 func has_animation(candidate: String) -> bool:
 	if mount_id == "" or candidate == "":
 		return false
 	return FileAccess.file_exists(_manifest_path(candidate))
 
-func play(candidate: String, restart: = false) -> bool:
+
+func play(candidate: String, restart := false) -> bool:
 	if candidate == "" or mount_id == "":
 		return false
 	if candidate == animation_name and not restart:
@@ -189,10 +206,10 @@ func play(candidate: String, restart: = false) -> bool:
 	if loaded.is_empty():
 		return false
 	if not _has_registration_anchor:
-		var fallback_bounds: = _frame_bounds(loaded, 0)
+		var fallback_bounds := _frame_bounds(loaded, 0)
 		if fallback_bounds.size.x > 0.0 and fallback_bounds.size.y > 0.0:
 			_registration_anchor = Vector2(
-				fallback_bounds.position.x + fallback_bounds.size.x * 0.5, 
+				fallback_bounds.position.x + fallback_bounds.size.x * 0.5,
 				fallback_bounds.position.y + fallback_bounds.size.y
 			)
 			_has_registration_anchor = true
@@ -213,19 +230,20 @@ func play(candidate: String, restart: = false) -> bool:
 	set_process(true)
 	return true
 
-func _process(delta: float) -> void :
+
+func _process(delta: float) -> void:
 	if _animation_data.is_empty():
 		return
 	var frames_value: Variant = _animation_data.get("frames", [])
 	if not (frames_value is Array) or frames_value.is_empty():
 		return
-	var fps: = maxf(1.0, float(_animation_data.get("fps", 30.0)))
+	var fps := maxf(1.0, float(_animation_data.get("fps", 30.0)))
 	if async_texture_loading:
 		_pump_stream_requests()
 		_request_lookahead_atlases(frame_index)
 	_elapsed += delta * maxf(speed_scale, 0.0)
-	var next_frame: = int(floor(_elapsed * fps))
-	var frame_count: = int(_animation_data.get("frame_count", frames_value.size()))
+	var next_frame := int(floor(_elapsed * fps))
+	var frame_count := int(_animation_data.get("frame_count", frames_value.size()))
 	if frame_count <= 0:
 		set_process(false)
 		return
@@ -244,7 +262,8 @@ func _process(delta: float) -> void :
 	set_process(false)
 	animation_finished.emit(animation_name)
 
-func _ensure_sprites() -> void :
+
+func _ensure_sprites() -> void:
 	if _back_sprite != null:
 		return
 	_back_sprite = Sprite2D.new()
@@ -265,10 +284,16 @@ func _ensure_sprites() -> void :
 	_front_sprite.z_index = 2
 	add_child(_front_sprite)
 
+
 func set_rider_pose(
-		pose_scene: PackedScene, pose_source: String, 
-		body_texture: Texture2D, body_front_texture: Texture2D, 
-		horizontal_frames: int, vertical_frames: int, pose_frame: int) -> void :
+	pose_scene: PackedScene,
+	pose_source: String,
+	body_texture: Texture2D,
+	body_front_texture: Texture2D,
+	horizontal_frames: int,
+	vertical_frames: int,
+	pose_frame: int
+) -> void:
 	_ensure_sprites()
 	if pose_scene == null:
 		clear_rider_pose()
@@ -282,13 +307,14 @@ func set_rider_pose(
 		_rider_body.texture = body_texture
 	_rider_body.hframes = maxi(1, horizontal_frames)
 	_rider_body.vframes = maxi(1, vertical_frames)
-	var max_frame: = maxi(0, horizontal_frames * vertical_frames - 1)
+	var max_frame := maxi(0, horizontal_frames * vertical_frames - 1)
 	_rider_body.frame = clampi(pose_frame, 0, max_frame)
 	if _rider_body_front != null and body_front_texture != null:
 		_rider_body_front.texture = body_front_texture
 	_apply_rider_frame()
 
-func clear_rider_pose() -> void :
+
+func clear_rider_pose() -> void:
 	if _rider == null:
 		return
 	_rider.visible = false
@@ -299,13 +325,14 @@ func clear_rider_pose() -> void :
 	_rider_body_front = null
 	_rider_pose_source = ""
 
-func _replace_rider_pose(pose_scene: PackedScene, pose_source: String) -> void :
+
+func _replace_rider_pose(pose_scene: PackedScene, pose_source: String) -> void:
 	if _rider_pose != null:
 		_rider_pose.free()
-	var adjustment: = pose_scene.instantiate() as Node2D
+	var adjustment := pose_scene.instantiate() as Node2D
 	if adjustment == null:
 		return
-	var pose: = adjustment.get_node_or_null("Pose") as Node2D
+	var pose := adjustment.get_node_or_null("Pose") as Node2D
 	if pose == null:
 		adjustment.free()
 		return
@@ -318,10 +345,11 @@ func _replace_rider_pose(pose_scene: PackedScene, pose_source: String) -> void :
 	_rider_body_front = pose.get_node_or_null("BodyFront") as Sprite2D
 	_rider_pose_source = pose_source
 
+
 func _load_animation(candidate: String) -> Dictionary:
 	if _animation_cache.has(candidate):
 		return _animation_cache[candidate]
-	var manifest_path: = _manifest_path(candidate)
+	var manifest_path := _manifest_path(candidate)
 	if not FileAccess.file_exists(manifest_path):
 		return {}
 	var data: Dictionary = _manifest_cache.get(manifest_path, {})
@@ -336,14 +364,15 @@ func _load_animation(candidate: String) -> Dictionary:
 	_animation_cache[candidate] = data
 	return data
 
-func _apply_frame() -> void :
+
+func _apply_frame() -> void:
 	var frames_value: Variant = _animation_data.get("frames", [])
 	if not (frames_value is Array) or frames_value.is_empty():
 		_back_sprite.visible = false
 		_front_sprite.visible = false
 		return
 	var frames: Array = frames_value
-	var safe_index: = clampi(frame_index, 0, frames.size() - 1)
+	var safe_index := clampi(frame_index, 0, frames.size() - 1)
 	var frame_value: Variant = frames[safe_index]
 	if not (frame_value is Dictionary):
 		return
@@ -352,7 +381,8 @@ func _apply_frame() -> void :
 	_apply_layer(_front_sprite, frame.get("front", null), _front_atlas_names, _front_atlases)
 	_apply_rider_frame(frame.get("ride", null))
 
-func _apply_rider_frame(ride_value: Variant = null) -> void :
+
+func _apply_rider_frame(ride_value: Variant = null) -> void:
 	if _rider == null or _rider_body == null or _rider_body.texture == null:
 		if _rider != null:
 			_rider.visible = false
@@ -367,17 +397,17 @@ func _apply_rider_frame(ride_value: Variant = null) -> void :
 		_rider.visible = false
 		return
 	var ride: Dictionary = ride_value
-	var rider_transform: = Transform2D(
-		Vector2(float(ride.get("a", 1.0)), float(ride.get("b", 0.0))), 
-		Vector2(float(ride.get("c", 0.0)), float(ride.get("d", 1.0))), 
+	var rider_transform := Transform2D(
+		Vector2(float(ride.get("a", 1.0)), float(ride.get("b", 0.0))),
+		Vector2(float(ride.get("c", 0.0)), float(ride.get("d", 1.0))),
 		Vector2(float(ride.get("tx", 0.0)), float(ride.get("ty", 0.0)))
 	)
 	var origin_value: Variant = ride.get("origin", null)
 	if origin_value is Dictionary:
 		var origin: Dictionary = origin_value
 		rider_transform *= Transform2D(
-			Vector2(float(origin.get("a", 1.0)), float(origin.get("b", 0.0))), 
-			Vector2(float(origin.get("c", 0.0)), float(origin.get("d", 1.0))), 
+			Vector2(float(origin.get("a", 1.0)), float(origin.get("b", 0.0))),
+			Vector2(float(origin.get("c", 0.0)), float(origin.get("d", 1.0))),
 			Vector2(float(origin.get("tx", 0.0)), float(origin.get("ty", 0.0)))
 		)
 	else:
@@ -386,23 +416,27 @@ func _apply_rider_frame(ride_value: Variant = null) -> void :
 	_rider.transform = rider_transform
 	_rider.visible = true
 
-func _request_lookahead_atlases(current_frame: int) -> void :
+
+func _request_lookahead_atlases(current_frame: int) -> void:
 	var frames_value: Variant = _animation_data.get("frames", [])
 	if not (frames_value is Array) or frames_value.is_empty():
 		return
 	var frames: Array = frames_value
-	var safe_frame: = clampi(current_frame, 0, frames.size() - 1)
+	var safe_frame := clampi(current_frame, 0, frames.size() - 1)
 	_request_layer_lookahead(frames, safe_frame, "back", _back_atlas_names, _back_atlases)
 	_request_layer_lookahead(frames, safe_frame, "front", _front_atlas_names, _front_atlases)
 
-func _request_layer_lookahead(frames: Array, safe_frame: int, layer_name: String, atlas_names: Array, atlases: Array[Texture2D]) -> void :
+
+func _request_layer_lookahead(
+	frames: Array, safe_frame: int, layer_name: String, atlas_names: Array, atlases: Array[Texture2D]
+) -> void:
 	var current_entry: Variant = (frames[safe_frame] as Dictionary).get(layer_name, null)
-	var current_page: = int(current_entry.get("page", -1)) if current_entry is Dictionary else -1
+	var current_page := int(current_entry.get("page", -1)) if current_entry is Dictionary else -1
 	for index in range(safe_frame, mini(frames.size(), safe_frame + STREAM_LOOKAHEAD_FRAMES + 1)):
 		var entry_value: Variant = (frames[index] as Dictionary).get(layer_name, null)
 		if not (entry_value is Dictionary):
 			continue
-		var page: = int(entry_value.get("page", -1))
+		var page := int(entry_value.get("page", -1))
 		if page < 0 or page >= atlas_names.size() or (index > safe_frame and page == current_page):
 			continue
 		if page < atlases.size() and atlases[page] != null:
@@ -413,16 +447,19 @@ func _request_layer_lookahead(frames: Array, safe_frame: int, layer_name: String
 		if page != current_page:
 			break
 
+
 func get_registration_anchor() -> Vector2:
 	return _registration_anchor
+
 
 func get_current_visual_bounds() -> Rect2:
 	if _animation_data.is_empty():
 		return Rect2()
-	var bounds: = _frame_bounds(_animation_data, frame_index)
+	var bounds := _frame_bounds(_animation_data, frame_index)
 	if bounds.size.x > 0.0 and bounds.size.y > 0.0:
 		bounds.position -= _registration_anchor
 	return bounds
+
 
 func get_animation_visual_bounds() -> Rect2:
 	if _animation_data.is_empty():
@@ -430,10 +467,10 @@ func get_animation_visual_bounds() -> Rect2:
 	var frames_value: Variant = _animation_data.get("frames", [])
 	if not (frames_value is Array) or frames_value.is_empty():
 		return Rect2()
-	var result: = Rect2()
-	var has_bounds: = false
+	var result := Rect2()
+	var has_bounds := false
 	for index in range(frames_value.size()):
-		var frame_bounds: = _frame_bounds(_animation_data, index)
+		var frame_bounds := _frame_bounds(_animation_data, index)
 		if frame_bounds.size.x <= 0.0 or frame_bounds.size.y <= 0.0:
 			continue
 		result = frame_bounds if not has_bounds else result.merge(frame_bounds)
@@ -442,21 +479,29 @@ func get_animation_visual_bounds() -> Rect2:
 		result.position -= _registration_anchor
 	return result if has_bounds else Rect2()
 
-func _apply_layer(sprite: Sprite2D, entry_value: Variant, atlas_names: Array, atlases: Array[Texture2D]) -> void :
+
+func _apply_layer(sprite: Sprite2D, entry_value: Variant, atlas_names: Array, atlases: Array[Texture2D]) -> void:
 	if not (entry_value is Dictionary):
 		sprite.visible = false
 		return
 	var entry: Dictionary = entry_value
-	var page: = int(entry.get("page", -1))
+	var page := int(entry.get("page", -1))
 	var region_value: Variant = entry.get("region", [])
 	var offset_value: Variant = entry.get("offset", [])
-	if page < 0 or page >= atlas_names.size() or not (region_value is Array) or region_value.size() < 4 or not (offset_value is Array) or offset_value.size() < 2:
+	if (
+		page < 0
+		or page >= atlas_names.size()
+		or not (region_value is Array)
+		or region_value.size() < 4
+		or not (offset_value is Array)
+		or offset_value.size() < 2
+	):
 		sprite.visible = false
 		return
 	if page >= atlases.size():
 		atlases.resize(atlas_names.size())
 	if atlases[page] == null:
-		var atlas_path: = _atlas_base_path.path_join(str(atlas_names[page]))
+		var atlas_path := _atlas_base_path.path_join(str(atlas_names[page]))
 		atlases[page] = _take_stream_texture(atlas_path)
 		if atlases[page] == null and async_texture_loading:
 			_request_stream_texture(atlas_path)
@@ -468,28 +513,28 @@ func _apply_layer(sprite: Sprite2D, entry_value: Variant, atlas_names: Array, at
 			sprite.visible = false
 			return
 
-
 	for index in range(atlases.size()):
 		if index != page:
 			atlases[index] = null
-	var region: = Rect2(float(region_value[0]), float(region_value[1]), float(region_value[2]), float(region_value[3]))
+	var region := Rect2(float(region_value[0]), float(region_value[1]), float(region_value[2]), float(region_value[3]))
 	sprite.texture = atlases[page]
 	sprite.region_rect = region
 	sprite.position = Vector2(float(offset_value[0]), float(offset_value[1])) + region.size * 0.5 - _registration_anchor
 	sprite.visible = sprite.texture != null
+
 
 func _frame_bounds(data: Dictionary, requested_frame: int) -> Rect2:
 	var frames_value: Variant = data.get("frames", [])
 	if not (frames_value is Array) or frames_value.is_empty():
 		return Rect2()
 	var frames: Array = frames_value
-	var safe_index: = clampi(requested_frame, 0, frames.size() - 1)
+	var safe_index := clampi(requested_frame, 0, frames.size() - 1)
 	var frame_value: Variant = frames[safe_index]
 	if not (frame_value is Dictionary):
 		return Rect2()
 	var frame: Dictionary = frame_value
-	var result: = Rect2()
-	var has_bounds: = false
+	var result := Rect2()
+	var has_bounds := false
 	for layer_name in ["back", "front"]:
 		var entry_value: Variant = frame.get(layer_name, null)
 		if not (entry_value is Dictionary):
@@ -497,17 +542,20 @@ func _frame_bounds(data: Dictionary, requested_frame: int) -> Rect2:
 		var entry: Dictionary = entry_value
 		var region_value: Variant = entry.get("region", [])
 		var offset_value: Variant = entry.get("offset", [])
-		if not (region_value is Array) or region_value.size() < 4 or not (offset_value is Array) or offset_value.size() < 2:
+		if (
+			not (region_value is Array)
+			or region_value.size() < 4
+			or not (offset_value is Array)
+			or offset_value.size() < 2
+		):
 			continue
-		var layer_bounds: = Rect2(
-			float(offset_value[0]), 
-			float(offset_value[1]), 
-			float(region_value[2]), 
-			float(region_value[3])
+		var layer_bounds := Rect2(
+			float(offset_value[0]), float(offset_value[1]), float(region_value[2]), float(region_value[3])
 		)
 		result = layer_bounds if not has_bounds else result.merge(layer_bounds)
 		has_bounds = true
 	return result if has_bounds else Rect2()
+
 
 func _manifest_path(candidate: String) -> String:
 	return "%s/%s/%s/manifest.json" % [_runtime_root, mount_id, candidate]

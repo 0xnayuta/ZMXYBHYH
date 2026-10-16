@@ -1,31 +1,28 @@
 extends Node2D
 class_name LyfbAwakenEffect
 
-const ATLAS_PATH: = "res://Art/HeroPicture/Role2/LYFBAwaken/runtime/HeroF_5012_skill.atlas"
-const SKELETON_PATH: = "res://Art/HeroPicture/Role2/LYFBAwaken/runtime/HeroF_5012_skill07-gray.spine-json"
-const RED_SKELETON_PATH: = "res://Art/HeroPicture/Role2/LYFBAwaken/runtime/HeroF_5012_skill07-red.spine-json"
-const FALLBACK_TEXTURE_PATH: = "res://Art/HeroPicture/Role2/LYFBAwaken/runtime/HeroF_5012_skill.png"
-const SPINE_SCALE: = Vector2(0.2, 0.2)
-const SPINE_DURATION: = 1.05
+const ATLAS_PATH := "res://Art/HeroPicture/Role2/LYFBAwaken/runtime/HeroF_5012_skill.atlas"
+const SKELETON_PATH := "res://Art/HeroPicture/Role2/LYFBAwaken/runtime/HeroF_5012_skill07-gray.spine-json"
+const RED_SKELETON_PATH := "res://Art/HeroPicture/Role2/LYFBAwaken/runtime/HeroF_5012_skill07-red.spine-json"
+const FALLBACK_TEXTURE_PATH := "res://Art/HeroPicture/Role2/LYFBAwaken/runtime/HeroF_5012_skill.png"
+const SPINE_SCALE := Vector2(0.2, 0.2)
+const SPINE_DURATION := 1.05
 
-
-
-const BLADE_HALF_SIZE: = Vector2(620.0, 520.0)
-
+const BLADE_HALF_SIZE := Vector2(620.0, 520.0)
 
 const BLADE_HITS: Array[Dictionary] = [
-	{"time": 0.0333, "bone": "xzf9"}, 
-	{"time": 0.0667, "bone": "xzf10"}, 
-	{"time": 0.2667, "bone": "xzf12"}, 
-	{"time": 0.2667, "bone": "xzf13"}, 
-	{"time": 0.3, "bone": "xzf14"}, 
-	{"time": 0.4, "bone": "xzf15"}, 
+	{"time": 0.0333, "bone": "xzf9"},
+	{"time": 0.0667, "bone": "xzf10"},
+	{"time": 0.2667, "bone": "xzf12"},
+	{"time": 0.2667, "bone": "xzf13"},
+	{"time": 0.3, "bone": "xzf14"},
+	{"time": 0.4, "bone": "xzf15"},
 	{"time": 0.4667, "bone": "xzf16"}
 ]
 
 var owner_player: Node2D
 var hit_data: Dictionary = {}
-var face_right: = true
+var face_right := true
 var _spine: Variant = null
 var _red_spine: Variant = null
 var _fallback_sprites: Array[AnimatedSprite2D] = []
@@ -36,13 +33,15 @@ static var _normal_material: CanvasItemMaterial
 static var _additive_material: CanvasItemMaterial
 static var _multiply_material: CanvasItemMaterial
 
-func setup(player: Node2D, is_facing_right: bool, data: Dictionary = {}) -> void :
+
+func setup(player: Node2D, is_facing_right: bool, data: Dictionary = {}) -> void:
 	owner_player = player
 	face_right = is_facing_right
 	hit_data = data.duplicate(true)
 	_hit_bones.clear()
 
-func _ready() -> void :
+
+func _ready() -> void:
 	if owner_player == null or not is_instance_valid(owner_player):
 		queue_free()
 		return
@@ -52,11 +51,13 @@ func _ready() -> void :
 	_run_hits()
 	_finish_after(SPINE_DURATION)
 
-func _process(_delta: float) -> void :
+
+func _process(_delta: float) -> void:
 	if owner_player == null or not is_instance_valid(owner_player):
 		queue_free()
 		return
 	global_position = owner_player.global_position
+
 
 func _spawn_spine_visual() -> bool:
 	if not ClassDB.class_exists("SpineSkeletonDataResource") or not ClassDB.class_exists("SpineSprite"):
@@ -112,54 +113,61 @@ func _spawn_spine_visual() -> bool:
 	_cache_hit_bones(_spine.get_skeleton())
 	return true
 
-func _spawn_fallback_visual() -> void :
 
-
-
-	var texture: = load(FALLBACK_TEXTURE_PATH) as Texture2D
+func _spawn_fallback_visual() -> void:
+	var texture := load(FALLBACK_TEXTURE_PATH) as Texture2D
 	if texture == null:
 		push_error("LyfbAwakenEffect: 无法加载兼容特效图集纹理: " + FALLBACK_TEXTURE_PATH)
 		return
 	scale.x = 1.0 if face_right else -1.0
 	z_index = 99
-	const FRAME_RECTS: = [
-		Rect2(503, 2005, 113, 38), Rect2(1878, 1976, 160, 67), 
-		Rect2(1783, 1839, 210, 71), Rect2(938, 1793, 220, 73), 
-		Rect2(512, 1724, 236, 78), Rect2(854, 1627, 230, 82), 
-		Rect2(1255, 1698, 238, 79), Rect2(1238, 1613, 218, 83), 
-		Rect2(750, 1722, 183, 80), Rect2(1838, 1758, 180, 79), 
-		Rect2(1160, 1791, 165, 75), Rect2(2, 1821, 167, 71), 
-		Rect2(1790, 1912, 169, 62), Rect2(167, 2022, 168, 21), 
-		Rect2(106, 2027, 59, 16), Rect2(2, 2030, 42, 13)
+	const FRAME_RECTS := [
+		Rect2(503, 2005, 113, 38),
+		Rect2(1878, 1976, 160, 67),
+		Rect2(1783, 1839, 210, 71),
+		Rect2(938, 1793, 220, 73),
+		Rect2(512, 1724, 236, 78),
+		Rect2(854, 1627, 230, 82),
+		Rect2(1255, 1698, 238, 79),
+		Rect2(1238, 1613, 218, 83),
+		Rect2(750, 1722, 183, 80),
+		Rect2(1838, 1758, 180, 79),
+		Rect2(1160, 1791, 165, 75),
+		Rect2(2, 1821, 167, 71),
+		Rect2(1790, 1912, 169, 62),
+		Rect2(167, 2022, 168, 21),
+		Rect2(106, 2027, 59, 16),
+		Rect2(2, 2030, 42, 13)
 	]
-	const BLADE_TRANSFORMS: = [
-		{"time": 0.0333, "position": Vector2(44.0, 32.6), "rotation": 8.71, "scale": Vector2(1.646, 1.646)}, 
-		{"time": 0.0667, "position": Vector2(47.0, 36.3), "rotation": 160.27, "scale": Vector2(1.582, 1.582)}, 
-		{"time": 0.2667, "position": Vector2(12.6, 27.5), "rotation": 9.89, "scale": Vector2(1.716, 1.716)}, 
-		{"time": 0.2667, "position": Vector2(60.4, 27.7), "rotation": 9.61, "scale": Vector2(1.788, 1.788)}, 
-		{"time": 0.3, "position": Vector2(7.6, 30.9), "rotation": -54.11, "scale": Vector2(-1.752, 1.752)}, 
-		{"time": 0.4, "position": Vector2(57.1, 46.2), "rotation": -137.02, "scale": Vector2(-1.662, 1.662)}, 
+	const BLADE_TRANSFORMS := [
+		{"time": 0.0333, "position": Vector2(44.0, 32.6), "rotation": 8.71, "scale": Vector2(1.646, 1.646)},
+		{"time": 0.0667, "position": Vector2(47.0, 36.3), "rotation": 160.27, "scale": Vector2(1.582, 1.582)},
+		{"time": 0.2667, "position": Vector2(12.6, 27.5), "rotation": 9.89, "scale": Vector2(1.716, 1.716)},
+		{"time": 0.2667, "position": Vector2(60.4, 27.7), "rotation": 9.61, "scale": Vector2(1.788, 1.788)},
+		{"time": 0.3, "position": Vector2(7.6, 30.9), "rotation": -54.11, "scale": Vector2(-1.752, 1.752)},
+		{"time": 0.4, "position": Vector2(57.1, 46.2), "rotation": -137.02, "scale": Vector2(-1.662, 1.662)},
 		{"time": 0.4667, "position": Vector2(6.8, 26.0), "rotation": -8.96, "scale": Vector2(-1.0, 1.0)}
 	]
 	for blade_data in BLADE_TRANSFORMS:
 		_spawn_fallback_blade_after(texture, FRAME_RECTS, blade_data)
 
-func _spawn_fallback_blade_after(texture: Texture2D, frame_rects: Array, blade_data: Dictionary) -> void :
-	var delay: = float(blade_data["time"])
+
+func _spawn_fallback_blade_after(texture: Texture2D, frame_rects: Array, blade_data: Dictionary) -> void:
+	var delay := float(blade_data["time"])
 	if delay > 0.0:
 		await get_tree().create_timer(delay, false).timeout
 	if not is_inside_tree():
 		return
-	var frames: = SpriteFrames.new()
+	var frames := SpriteFrames.new()
 	frames.add_animation("skill07")
 	frames.set_animation_speed("skill07", 30.0)
 	frames.set_animation_loop("skill07", false)
 	for frame_rect in frame_rects:
-		var atlas_texture: = AtlasTexture.new()
+		var atlas_texture := AtlasTexture.new()
 		atlas_texture.atlas = texture
 		atlas_texture.region = frame_rect
 		frames.add_frame("skill07", atlas_texture)
-	var sprite: = AnimatedSprite2D.new()
+	var sprite := AnimatedSprite2D.new()
 	sprite.sprite_frames = frames
 	sprite.animation = "skill07"
 	sprite.position = blade_data["position"]
@@ -172,16 +180,18 @@ func _spawn_fallback_blade_after(texture: Texture2D, frame_rects: Array, blade_d
 	_fallback_sprites.append(sprite)
 	sprite.play("skill07")
 
-func _finish_after(duration: float) -> void :
+
+func _finish_after(duration: float) -> void:
 	await get_tree().create_timer(duration, false).timeout
 	if is_inside_tree():
 		queue_free()
 
-func _run_hits() -> void :
-	var previous_time: = 0.0
+
+func _run_hits() -> void:
+	var previous_time := 0.0
 	for blade_hit in BLADE_HITS:
-		var hit_time: = float(blade_hit["time"])
-		var wait_time: = hit_time - previous_time
+		var hit_time := float(blade_hit["time"])
+		var wait_time := hit_time - previous_time
 		if wait_time > 0.0:
 			await get_tree().create_timer(wait_time, false).timeout
 		if owner_player == null or not is_instance_valid(owner_player):
@@ -189,15 +199,16 @@ func _run_hits() -> void :
 		_apply_blade_damage(str(blade_hit["bone"]))
 		previous_time = hit_time
 
-func _apply_blade_damage(bone_name: String) -> void :
+
+func _apply_blade_damage(bone_name: String) -> void:
 	if owner_player == null or not is_instance_valid(owner_player):
 		return
 	if hit_data.is_empty() and owner_player.HitDic is Dictionary:
 		hit_data = owner_player.HitDic.duplicate(true)
 	if hit_data.is_empty():
 		return
-	var hit_center: = _get_blade_global_position(bone_name)
-	var level: = _find_level_node()
+	var hit_center := _get_blade_global_position(bone_name)
+	var level := _find_level_node()
 	if level != null and level.has_method("has_active_monster_index") and level.has_active_monster_index():
 		for target in level.get_active_monsters():
 			_damage_target_if_in_range(target, hit_center)
@@ -207,9 +218,10 @@ func _apply_blade_damage(bone_name: String) -> void :
 		if monster_container != null:
 			_damage_recursive(monster_container, hit_center)
 			return
-	var scene: = get_tree().current_scene
+	var scene := get_tree().current_scene
 	if scene != null:
 		_damage_recursive(scene, hit_center)
+
 
 func _find_level_node() -> Node:
 	var node: Node = owner_player.get_parent() if owner_player != null else null
@@ -219,18 +231,20 @@ func _find_level_node() -> Node:
 		node = node.get_parent()
 	return get_tree().current_scene
 
-func _damage_target_if_in_range(target: Variant, hit_center: Vector2) -> void :
+
+func _damage_target_if_in_range(target: Variant, hit_center: Vector2) -> void:
 	if target == null or not is_instance_valid(target) or not (target is BaseMonster):
 		return
-	var monster: = target as BaseMonster
+	var monster := target as BaseMonster
 	if monster.Hp <= 0 or monster.NoTarget or monster.is_boss_protecting():
 		return
 	var offset: Vector2 = monster.global_position + Vector2(0.0, -70.0) - hit_center
 	if absf(offset.x) <= BLADE_HALF_SIZE.x and absf(offset.y) <= BLADE_HALF_SIZE.y:
 		_apply_hit(monster)
 
+
 func _get_blade_global_position(bone_name: String) -> Vector2:
-	var blade_position: = global_position
+	var blade_position := global_position
 	if _spine != null and is_instance_valid(_spine) and _spine.has_method("get_skeleton"):
 		var skeleton: Variant = _spine.get_skeleton()
 		if skeleton != null:
@@ -243,27 +257,29 @@ func _get_blade_global_position(bone_name: String) -> Vector2:
 				if skeleton.has_method("update_world_transform"):
 					skeleton.update_world_transform(0)
 
-
 				blade_position = bone.get_global_transform().origin
 	return blade_position
 
-func _cache_hit_bones(skeleton: Variant) -> void :
+
+func _cache_hit_bones(skeleton: Variant) -> void:
 	_hit_bones.clear()
 	if skeleton == null or not skeleton.has_method("find_bone"):
 		return
 	for blade_hit in BLADE_HITS:
-		var bone_name: = str(blade_hit["bone"])
+		var bone_name := str(blade_hit["bone"])
 		var bone: Variant = skeleton.find_bone(bone_name)
 		if bone != null:
 			_hit_bones[bone_name] = bone
 
-func _damage_recursive(node: Node, hit_center: Vector2) -> void :
+
+func _damage_recursive(node: Node, hit_center: Vector2) -> void:
 	if node is BaseMonster:
 		_damage_target_if_in_range(node, hit_center)
 	for child in node.get_children():
 		_damage_recursive(child, hit_center)
 
-func _apply_hit(target: BaseMonster) -> void :
+
+func _apply_hit(target: BaseMonster) -> void:
 	if target == null or not is_instance_valid(target) or target.Hp <= 0:
 		return
 	var old_hit_data: Dictionary = owner_player.HitDic
@@ -272,28 +288,36 @@ func _apply_hit(target: BaseMonster) -> void :
 	var old_source_player: Variant = RoleProp.SourcePlayer
 	var old_tszzs: float = owner_player.tszzs
 
-
-	var awakening_hit_data: = hit_data.duplicate(true)
-	var skill_level: = int(PlayerData.player_data["技能学习"]["技能4"]["等级"]) + 1
+	var awakening_hit_data := hit_data.duplicate(true)
+	var skill_level := int(PlayerData.player_data["技能学习"]["技能4"]["等级"]) + 1
 	awakening_hit_data["power"] = RoleProp.roleprop.power * (1.8 + skill_level * 0.25)
 	owner_player.HitDic = awakening_hit_data
 	target.get_target = owner_player
 	target.has_target = true
 
-
 	target.miss = 0
-
 
 	RoleProp.SourcePlayer = owner_player
 	if owner_player.Istsz:
-		var tsz_level: = int(PlayerData.player_data["腾蛇阵"]["Level"])
+		var tsz_level := int(PlayerData.player_data["腾蛇阵"]["Level"])
 		owner_player.tszzs = tsz_level * 0.015
 	else:
 		owner_player.tszzs = 0.0
-	var damage_scale: = float(target.llrdzs)
+	var damage_scale := float(target.llrdzs)
 	if is_nan(damage_scale) or is_inf(damage_scale) or damage_scale <= 0.0:
 		damage_scale = 1.0
-	var damage: = int(float(target.get_Role_last_hurt(owner_player)) * RoleProp.ws_up_power * target.jgz_bl * target.zznh_bl * target.HurtBl * (1.0 + target.lpzzs) * (1.0 + owner_player.tszzs) * damage_scale)
+	var damage := int(
+		(
+			float(target.get_Role_last_hurt(owner_player))
+			* RoleProp.ws_up_power
+			* target.jgz_bl
+			* target.zznh_bl
+			* target.HurtBl
+			* (1.0 + target.lpzzs)
+			* (1.0 + owner_player.tszzs)
+			* damage_scale
+		)
+	)
 	target.GetHurt = damage
 	target.cureWSValue()
 	target.HurtReduceHp(damage, owner_player)
@@ -312,11 +336,12 @@ func _apply_hit(target: BaseMonster) -> void :
 	owner_player.tszzs = old_tszzs
 	RoleProp.SourcePlayer = old_source_player
 
+
 static func preload_effect_data() -> bool:
 	if _shared_data != null:
 		return true
-	var atlas: = load(ATLAS_PATH)
-	var skeleton_file: = load(SKELETON_PATH)
+	var atlas := load(ATLAS_PATH)
+	var skeleton_file := load(SKELETON_PATH)
 	if atlas == null:
 		push_error("LyfbAwakenEffect: 无法加载 Spine atlas: " + ATLAS_PATH)
 		return false
@@ -333,7 +358,7 @@ static func preload_effect_data() -> bool:
 		push_error("LyfbAwakenEffect: Spine 骨骼数据解析失败: " + SKELETON_PATH)
 		return false
 	_shared_data = skeleton_data
-	var red_skeleton_file: = load(RED_SKELETON_PATH)
+	var red_skeleton_file := load(RED_SKELETON_PATH)
 	if red_skeleton_file != null:
 		var red_skeleton_data: Variant = ClassDB.instantiate("SpineSkeletonDataResource")
 		if red_skeleton_data != null:
@@ -350,12 +375,14 @@ static func preload_effect_data() -> bool:
 	_multiply_material.blend_mode = CanvasItemMaterial.BLEND_MODE_MUL
 	return true
 
-static func clear_cached_data() -> void :
+
+static func clear_cached_data() -> void:
 	_shared_data = null
 	_shared_red_data = null
 	_normal_material = null
 	_additive_material = null
 	_multiply_material = null
+
 
 static func _preload_spine_data() -> bool:
 	return preload_effect_data()

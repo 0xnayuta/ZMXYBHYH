@@ -2,7 +2,8 @@ extends Node
 
 var failures: Array[String] = []
 
-func _ready() -> void :
+
+func _ready() -> void:
 	var player_data_node = get_node("/root/PlayerData")
 	var passive_skill_node = get_node("/root/PaSkill")
 	var global_node = get_node("/root/Global")
@@ -11,7 +12,12 @@ func _ready() -> void :
 	player_data_node.player_data["玩家等级"] = 9
 	player_data_node.player_data["coin_num"] = 100000
 	player_data_node.player_data["被动技能"] = {
-		"热血": 0, "魔泉": 0, "狂暴": 0, "永恒": 0, "辉煌": 0, "敏锐": 0, 
+		"热血": 0,
+		"魔泉": 0,
+		"狂暴": 0,
+		"永恒": 0,
+		"辉煌": 0,
+		"敏锐": 0,
 	}
 
 	player_data_node.ensure_player_passive_skills()
@@ -28,7 +34,7 @@ func _ready() -> void :
 	_check(passive_table.has_node("HBoxContainer/Current_e/name_7"), "收益技能应显示当前效果")
 	_check(passive_table.has_node("HBoxContainer/Next_e/name_7"), "收益技能应显示下一级效果")
 	_check(passive_table.has_node("HBoxContainer/NeedLh/name_7"), "收益技能应显示升级灵魂消耗")
-	var upgrade_button: = passive_table.get_node("HBoxContainer/Up_level/up_7") as TextureButton
+	var upgrade_button := passive_table.get_node("HBoxContainer/Up_level/up_7") as TextureButton
 	_check(upgrade_button.pressed.is_connected(Callable(passive_table, "_on_up_7_pressed")), "收益升级按钮应连接升级处理")
 	_check((passive_table.get_node("HBoxContainer/Next_e/name_7") as Label).text == "杀怪灵魂获取 +5%", "0级时应预览下一级增加5%")
 
@@ -39,7 +45,7 @@ func _ready() -> void :
 
 	player_data_node.player_data["被动技能"]["收益"] = 3
 	_check(passive_skill_node.apply_soul_gain_bonus(101) == 116, "收益3级应增加15%并按现有整数规则取整")
-	var aura_parent: = Node2D.new()
+	var aura_parent := Node2D.new()
 	add_child(aura_parent)
 	var aura: Node = global_node.AddAura(aura_parent, Vector2.ZERO, 100)
 	_check(aura != null and int(aura.Value) == 115, "怪物灵魂掉落入口应应用收益倍率")
@@ -49,8 +55,8 @@ func _ready() -> void :
 	await get_tree().process_frame
 	await get_tree().process_frame
 	if DisplayServer.get_name() != "headless":
-		var screenshot_path: = OS.get_temp_dir().path_join("passive_income_verification.png")
-		var screenshot: = get_viewport().get_texture().get_image()
+		var screenshot_path := OS.get_temp_dir().path_join("passive_income_verification.png")
+		var screenshot := get_viewport().get_texture().get_image()
 		_check(screenshot != null and screenshot.save_png(screenshot_path) == OK, "人物被动技能页截图应可生成")
 		print("PASSIVE_INCOME_SCREENSHOT=" + screenshot_path)
 
@@ -63,7 +69,8 @@ func _ready() -> void :
 	player_data_node.player_data = original_player_data
 	call_deferred("_finish")
 
-func _finish() -> void :
+
+func _finish() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	if failures.is_empty():
@@ -75,6 +82,7 @@ func _finish() -> void :
 	print("PASSIVE_INCOME_VERIFICATION_FAILED=%d" % failures.size())
 	get_tree().quit(1)
 
-func _check(condition: bool, message: String) -> void :
+
+func _check(condition: bool, message: String) -> void:
 	if not condition:
 		failures.append(message)

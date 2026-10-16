@@ -1,36 +1,38 @@
 extends BaseMonster
 
-const BODY_FRAME_DIR: = "res://Art/Monster/QiongQi/Monster42FramesCenteredCropped"
-const BODY_FRAME_COUNT: = 42
-const BODY_FRAME_COLUMNS: = 6
-const SOURCE_FPS: = 24.0
-const EFFECT_ROOT: = "res://Art/Monster/QiongQi/Effects"
-const EFFECT_NAMES: = ["Bullet1", "Bullet2", "Bullet3"]
+const BODY_FRAME_DIR := "res://Art/Monster/QiongQi/Monster42FramesCenteredCropped"
+const BODY_FRAME_COUNT := 42
+const BODY_FRAME_COLUMNS := 6
+const SOURCE_FPS := 24.0
+const EFFECT_ROOT := "res://Art/Monster/QiongQi/Effects"
+const EFFECT_NAMES := ["Bullet1", "Bullet2", "Bullet3"]
 static var _effect_frames_cache: Dictionary = {}
-static var _effect_prewarm_started: = false
-const BODY_SPRITE_POSITION: = Vector2(-15, -81)
-const BUFF_GREEN_TEXTURE: = "res://Art/Monster/QiongQi/Effects/BuffGreen.png"
-const BUFF_BLUE_TEXTURE: = "res://Art/Monster/QiongQi/Effects/BuffBlue.png"
+static var _effect_prewarm_started := false
+const BODY_SPRITE_POSITION := Vector2(-15, -81)
+const BUFF_GREEN_TEXTURE := "res://Art/Monster/QiongQi/Effects/BuffGreen.png"
+const BUFF_BLUE_TEXTURE := "res://Art/Monster/QiongQi/Effects/BuffBlue.png"
 
 @export_category("Skill Position Tuning")
-@export var bullet1_height: = -102.0
-@export var bullet2_height: = -257.0
-@export var bullet3_height: = -37.0
+@export var bullet1_height := -102.0
+@export var bullet2_height := -257.0
+@export var bullet3_height := -37.0
 
-var _near_buff_cooldown: = 20
-var _skill_busy: = false
-var _aura_token: = 0
-var _aura_active: = false
+var _near_buff_cooldown := 20
+var _skill_busy := false
+var _aura_token := 0
+var _aura_active := false
 var _aura_visual: Sprite2D
 
-func _ready() -> void :
+
+func _ready() -> void:
 	_configure_qiongqi()
 	_build_original_animations()
 	super._ready()
 	Skill_1_CD = randi_range(10, 12)
 	Skill_2_CD = randi_range(5, 8)
 
-func _configure_qiongqi() -> void :
+
+func _configure_qiongqi() -> void:
 	is_boss = true
 	CannotAttract = true
 	set_meta("allow_role_special_control", true)
@@ -62,23 +64,18 @@ func _configure_qiongqi() -> void :
 	self.independent_fall_list = [{"name": "wuxingguo", "value": 1, "chance": 0.1}]
 	fall_stone_pro = 0.0
 	fall_stone = []
-	objattackDic["hit1"] = {
-		"power": 800, "hurtBack": [-6, -5], "attackKind": "physics", "HitProtect": 14
-	}
-	objattackDic["hit2"] = {
-		"power": 600, "hurtBack": [-5, 0], "attackKind": "magic", "HitProtect": 8
-	}
-	objattackDic["hit3"] = {
-		"power": 600, "hurtBack": [-15, 0], "attackKind": "magic", "HitProtect": 4
-	}
+	objattackDic["hit1"] = {"power": 800, "hurtBack": [-6, -5], "attackKind": "physics", "HitProtect": 14}
+	objattackDic["hit2"] = {"power": 600, "hurtBack": [-5, 0], "attackKind": "magic", "HitProtect": 8}
+	objattackDic["hit3"] = {"power": 600, "hurtBack": [-15, 0], "attackKind": "magic", "HitProtect": 4}
 
-func _build_original_animations() -> void :
-	var frames: = SpriteFrames.new()
+
+func _build_original_animations() -> void:
+	var frames := SpriteFrames.new()
 	frames.remove_animation(&"default")
 	frames.add_animation(&"atlas")
 	frames.set_animation_loop(&"atlas", false)
 	for index in range(1, BODY_FRAME_COUNT + 1):
-		var texture: = Global.get_cached_texture(BODY_FRAME_DIR.path_join(str(index) + ".png"))
+		var texture := Global.get_cached_texture(BODY_FRAME_DIR.path_join(str(index) + ".png"))
 		if texture != null:
 			frames.add_frame(&"atlas", texture)
 	if frames.get_frame_count(&"atlas") == 0:
@@ -88,70 +85,75 @@ func _build_original_animations() -> void :
 	mr_ani.centered = true
 	mr_ani.position = BODY_SPRITE_POSITION
 
-	var library: = AnimationLibrary.new()
+	var library := AnimationLibrary.new()
 	library.add_animation(&"wait", _make_action(0, [2, 2, 2, 3, 2, 4], true))
 	library.add_animation(&"walk", _make_action(1, [4, 4, 4, 4], true))
 	library.add_animation(&"hurt", _make_action(2, [8], false))
 
-	var death_animation: = _make_action(3, [2, 2, 2, 2, 10], false)
+	var death_animation := _make_action(3, [2, 2, 2, 2, 10], false)
 	_add_standard_death_methods(death_animation)
 	library.add_animation(&"death", death_animation)
 
-	var hit2_animation: = _make_action(4, [2, 2, 11, 2, 24], false, 0, &"_spawn_charge_effect")
+	var hit2_animation := _make_action(4, [2, 2, 11, 2, 24], false, 0, &"_spawn_charge_effect")
 	_add_method_key(hit2_animation, 17.0 / SOURCE_FPS, &"_begin_charge_dash")
 	_add_hitbox_window(hit2_animation, 4.0 / SOURCE_FPS, 34.0 / SOURCE_FPS)
 	library.add_animation(&"hit2", hit2_animation)
 
-	var hit3_animation: = _make_action(5, [2, 2, 10], false, 2, &"_on_ground_spell")
+	var hit3_animation := _make_action(5, [2, 2, 10], false, 2, &"_on_ground_spell")
 	_add_hitbox_window(hit3_animation, 4.0 / SOURCE_FPS, 11.0 / SOURCE_FPS)
 	library.add_animation(&"hit3", hit3_animation)
 
-	var hit1_animation: = _make_action(6, [2, 2, 2, 10], false, 3, &"_on_normal_strike")
+	var hit1_animation := _make_action(6, [2, 2, 2, 10], false, 3, &"_on_normal_strike")
 	_add_hitbox_window(hit1_animation, 5.0 / SOURCE_FPS, 12.0 / SOURCE_FPS)
 	library.add_animation(&"hit1", hit1_animation)
 
 	mr_player.add_animation_library(&"", library)
 
-func _make_action(row: int, holds: Array, looped: bool, method_frame: = -1, method_name: = &"") -> Animation:
-	var animation: = Animation.new()
+
+func _make_action(row: int, holds: Array, looped: bool, method_frame := -1, method_name := &"") -> Animation:
+	var animation := Animation.new()
 	animation.loop_mode = Animation.LOOP_LINEAR if looped else Animation.LOOP_NONE
-	var frame_track: = animation.add_track(Animation.TYPE_VALUE)
+	var frame_track := animation.add_track(Animation.TYPE_VALUE)
 	animation.track_set_path(frame_track, NodePath("MonsterDir/mr_ani:frame"))
 	animation.value_track_set_update_mode(frame_track, Animation.UPDATE_DISCRETE)
-	var time: = 0.0
+	var time := 0.0
 	for column in range(holds.size()):
 		animation.track_insert_key(frame_track, time, row * BODY_FRAME_COLUMNS + column)
 		time += float(holds[column]) / SOURCE_FPS
 	animation.length = max(time, 0.05)
 	if method_frame >= 0:
-		var method_track: = animation.add_track(Animation.TYPE_METHOD)
+		var method_track := animation.add_track(Animation.TYPE_METHOD)
 		animation.track_set_path(method_track, NodePath("."))
-		var method_time: = 0.0
+		var method_time := 0.0
 		for index in range(method_frame):
 			method_time += float(holds[index]) / SOURCE_FPS
 		animation.track_insert_key(method_track, method_time, {"method": method_name, "args": []})
 	return animation
 
-func _add_method_key(animation: Animation, time: float, method_name: StringName) -> void :
-	var method_track: = animation.add_track(Animation.TYPE_METHOD)
+
+func _add_method_key(animation: Animation, time: float, method_name: StringName) -> void:
+	var method_track := animation.add_track(Animation.TYPE_METHOD)
 	animation.track_set_path(method_track, NodePath("."))
 	animation.track_insert_key(method_track, minf(time, animation.length - 0.001), {"method": method_name, "args": []})
 
-func _add_hitbox_window(animation: Animation, start_time: float, end_time: float) -> void :
-	var hitbox_track: = animation.add_track(Animation.TYPE_VALUE)
+
+func _add_hitbox_window(animation: Animation, start_time: float, end_time: float) -> void:
+	var hitbox_track := animation.add_track(Animation.TYPE_VALUE)
 	animation.track_set_path(hitbox_track, NodePath("BaseDamageBox/HitBox/HitBox:disabled"))
 	animation.value_track_set_update_mode(hitbox_track, Animation.UPDATE_DISCRETE)
 	animation.track_insert_key(hitbox_track, 0.0, true)
 	animation.track_insert_key(hitbox_track, start_time, false)
 	animation.track_insert_key(hitbox_track, minf(end_time, animation.length - 0.001), true)
 
-func _add_standard_death_methods(animation: Animation) -> void :
-	var method_track: = animation.add_track(Animation.TYPE_METHOD)
+
+func _add_standard_death_methods(animation: Animation) -> void:
+	var method_track := animation.add_track(Animation.TYPE_METHOD)
 	animation.track_set_path(method_track, NodePath("."))
-	var finish_time: = animation.length - 0.001
+	var finish_time := animation.length - 0.001
 	animation.track_insert_key(method_track, finish_time, {"method": &"settle_death_drops_and_free", "args": []})
 
-func Monster_Intelligence() -> void :
+
+func Monster_Intelligence() -> void:
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if IsLimitBuff() or cannotchangestatewhenattorbeatt() or _skill_busy:
@@ -160,7 +162,7 @@ func Monster_Intelligence() -> void :
 		normal_state()
 		return
 	_apply_nearby_aura()
-	var distance: = absf(RoleProp.get_nearest_monster_target_position(global_position).x - position.x)
+	var distance := absf(RoleProp.get_nearest_monster_target_position(global_position).x - position.x)
 	if Skill_1_CD <= 0:
 		_use_charge_skill()
 	elif distance < 400.0 and Skill_2_CD <= 0:
@@ -171,7 +173,8 @@ func Monster_Intelligence() -> void :
 	else:
 		have_target()
 
-func _use_charge_skill() -> void :
+
+func _use_charge_skill() -> void:
 	_skill_busy = true
 	super.to_hero()
 	Skill_1_CD = randi_range(10, 12)
@@ -187,7 +190,8 @@ func _use_charge_skill() -> void :
 	_skill_busy = false
 	stop_move()
 
-func _use_ground_spell() -> void :
+
+func _use_ground_spell() -> void:
 	_skill_busy = true
 	super.to_hero()
 	Skill_2_CD = randi_range(5, 8)
@@ -202,29 +206,35 @@ func _use_ground_spell() -> void :
 	_skill_busy = false
 	stop_move()
 
-func _on_normal_strike() -> void :
-	var direction: = 1.0 if MonsterDirection else -1.0
+
+func _on_normal_strike() -> void:
+	var direction := 1.0 if MonsterDirection else -1.0
 	_spawn_effect("Bullet1", Vector2(direction * 190.0, bullet1_height))
 
-func _spawn_charge_effect() -> void :
-	var direction: = 1.0 if MonsterDirection else -1.0
+
+func _spawn_charge_effect() -> void:
+	var direction := 1.0 if MonsterDirection else -1.0
 	_spawn_effect("Bullet2", Vector2(direction * 150.0, bullet2_height), true)
 
-func _begin_charge_dash() -> void :
-	var direction: = 1.0 if MonsterDirection else -1.0
+
+func _begin_charge_dash() -> void:
+	var direction := 1.0 if MonsterDirection else -1.0
 	velocity.x = direction * 30.0 * SOURCE_FPS
 
-func _on_ground_spell() -> void :
-	var direction: = 1.0 if MonsterDirection else -1.0
+
+func _on_ground_spell() -> void:
+	var direction := 1.0 if MonsterDirection else -1.0
 	_spawn_effect("Bullet3", Vector2(direction * 150.0, bullet3_height))
 
+
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
-	var target: = super._on_hit_box_area_entered(area)
+	var target := super._on_hit_box_area_entered(area)
 	if hit_name == "hit2" and target is BaseHero:
 		target.effect_reducehp(maxi(1, int(RoleProp.roleprop.Hp / 6.0)), "real")
 	return target
 
-func _apply_nearby_aura() -> void :
+
+func _apply_nearby_aura() -> void:
 	if _near_buff_cooldown > 0:
 		_near_buff_cooldown -= 1
 		return
@@ -235,12 +245,13 @@ func _apply_nearby_aura() -> void :
 		return
 	_apply_original_aura(randf() <= 0.5)
 
-func _apply_original_aura(is_green: bool) -> void :
+
+func _apply_original_aura(is_green: bool) -> void:
 	if _aura_active:
 		return
 	_aura_active = true
 	_aura_token += 1
-	var token: = _aura_token
+	var token := _aura_token
 	_show_aura_visual(BUFF_GREEN_TEXTURE if is_green else BUFF_BLUE_TEXTURE)
 	if is_green:
 		get_Player.effect_reducehp(maxi(1, int(RoleProp.roleprop.SHp * 0.01)), "real")
@@ -249,7 +260,8 @@ func _apply_original_aura(is_green: bool) -> void :
 		_aura_active = false
 		_clear_aura_visual()
 
-func _show_aura_visual(texture_path: String) -> void :
+
+func _show_aura_visual(texture_path: String) -> void:
 	_clear_aura_visual()
 	if get_Player == null or not is_instance_valid(get_Player):
 		return
@@ -260,14 +272,16 @@ func _show_aura_visual(texture_path: String) -> void :
 	_aura_visual.z_index = 6
 	get_Player.add_child(_aura_visual)
 
-func _clear_aura_visual() -> void :
+
+func _clear_aura_visual() -> void:
 	if _aura_visual != null and is_instance_valid(_aura_visual):
 		_aura_visual.queue_free()
 	_aura_visual = null
 
-func _spawn_effect(folder: String, local_offset: Vector2, follow_boss: = false) -> void :
-	var effect: = StreamedPngEffect.new()
-	var source_paths: = _effect_frame_paths(folder)
+
+func _spawn_effect(folder: String, local_offset: Vector2, follow_boss := false) -> void:
+	var effect := StreamedPngEffect.new()
+	var source_paths := _effect_frame_paths(folder)
 	if not MonsterAtlasSequence.configure_stream_for_paths(effect, source_paths):
 		effect.frame_paths = source_paths
 	effect.fps = SOURCE_FPS
@@ -281,25 +295,28 @@ func _spawn_effect(folder: String, local_offset: Vector2, follow_boss: = false) 
 		effect.global_position = global_position + local_offset
 	effect.finished.connect(_free_effect_sprite.bind(effect))
 
-func _free_effect_sprite(effect: Node) -> void :
+
+func _free_effect_sprite(effect: Node) -> void:
 	if effect == null or not is_instance_valid(effect):
 		return
 	if effect.has_method("clear_texture"):
 		effect.call("clear_texture")
 	effect.queue_free()
 
+
 func _new_effect_frames() -> SpriteFrames:
-	var frames: = SpriteFrames.new()
+	var frames := SpriteFrames.new()
 	frames.remove_animation(&"default")
 	frames.add_animation(&"play")
 	frames.set_animation_loop(&"play", false)
 	frames.set_animation_speed(&"play", SOURCE_FPS)
 	return frames
 
+
 func _effect_file_names(effect_name: String) -> Array[String]:
 	var names: Array[String] = []
-	var directory_path: = EFFECT_ROOT + "/" + effect_name
-	var directory: = DirAccess.open(directory_path)
+	var directory_path := EFFECT_ROOT + "/" + effect_name
+	var directory := DirAccess.open(directory_path)
 	if directory != null:
 		for file_name in directory.get_files():
 			if file_name.ends_with(".png"):
@@ -309,20 +326,22 @@ func _effect_file_names(effect_name: String) -> Array[String]:
 			names.append(source_path.get_file())
 	if names.is_empty():
 		_append_numbered_effect_file_names(names, directory_path)
-	names.sort_custom( func(a: String, b: String): return a.naturalnocasecmp_to(b) < 0)
+	names.sort_custom(func(a: String, b: String): return a.naturalnocasecmp_to(b) < 0)
 	return names
+
 
 func _effect_frame_paths(effect_name: String) -> Array[String]:
 	var result: Array[String] = []
-	var directory_path: = EFFECT_ROOT + "/" + effect_name
+	var directory_path := EFFECT_ROOT + "/" + effect_name
 	for file_name in _effect_file_names(effect_name):
 		result.append(directory_path + "/" + file_name)
 	return result
 
-func _append_numbered_effect_file_names(names: Array[String], directory_path: String) -> void :
-	var missing_streak: = 0
+
+func _append_numbered_effect_file_names(names: Array[String], directory_path: String) -> void:
+	var missing_streak := 0
 	for index in range(601):
-		var file_name: = str(index) + ".png"
+		var file_name := str(index) + ".png"
 		if ResourceLoader.exists(directory_path + "/" + file_name):
 			names.append(file_name)
 			missing_streak = 0
@@ -331,13 +350,15 @@ func _append_numbered_effect_file_names(names: Array[String], directory_path: St
 			if missing_streak >= 30:
 				break
 
+
 func _load_effect_frames(effect_name: String) -> SpriteFrames:
-	var frames: = _new_effect_frames()
+	var frames := _new_effect_frames()
 	var directory_path: String = EFFECT_ROOT + "/" + effect_name
 	for file_name in _effect_file_names(effect_name):
-		var texture: = Global.get_cached_texture(directory_path + "/" + file_name)
+		var texture := Global.get_cached_texture(directory_path + "/" + file_name)
 		frames.add_frame(&"play", texture)
 	return frames
 
-func _prewarm_effect_frames() -> void :
+
+func _prewarm_effect_frames() -> void:
 	pass

@@ -3,6 +3,8 @@ class_name Monster1408
 
 var alternate_side: bool = false
 var is_reviving: bool = false
+
+
 func monster_1408():
 	self.rush_speed = 900
 	self.is_boss = true
@@ -32,62 +34,65 @@ func monster_1408():
 	self.ebol = 1.0
 
 	self.objattackDic["hit1"] = {
-		"power": 1000, 
-		"hurtBack": [-5, -12], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
+		"power": 1000,
+		"hurtBack": [-5, -12],
+		"attackKind": "physics",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 900, 
-		"hurtBack": [10, -10], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 3, 
-			"ReduceInterval": 0.61, 
-			"value": 0.5, 
-			"AttackKind": "magic", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 900,
+		"hurtBack": [10, -10],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 3,
+			"ReduceInterval": 0.61,
+			"value": 0.5,
+			"AttackKind": "magic",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit3"] = {
-		"power": 1500, 
-		"hurtBack": [-30, -12], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
+		"power": 1500,
+		"hurtBack": [-30, -12],
+		"attackKind": "physics",
+		"HitProtect": 10,
 	}
 
 	self.objattackDic["hit5"] = {
-		"power": 1800, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "Immobilize", 
-			"AddTime": 2, 
-			"ReduceInterval": 0, 
-			"value": 1, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false, 
+		"power": 1800,
+		"hurtBack": [0, 0],
+		"attackKind": "real",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "Immobilize",
+			"AddTime": 2,
+			"ReduceInterval": 0,
+			"value": 1,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanRemove": false,
 		}
 	}
 
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{"name": "ttsl1", "value": 1}, 
-		{"name": "shenhuo_1", "value": 1}, 
+		{"name": "ttsl1", "value": 1},
+		{"name": "shenhuo_1", "value": 1},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = [
-		{"name": "sichou", "value": randi_range(1, 2)}, 
-		{"name": "xuantie", "value": randi_range(1, 2)}, 
-		{"name": "tanmu", "value": randi_range(1, 2)}, 
+		{"name": "sichou", "value": randi_range(1, 2)},
+		{"name": "xuantie", "value": randi_range(1, 2)},
+		{"name": "tanmu", "value": randi_range(1, 2)},
 	]
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_1408()
 	Skill_1_CD = 2
@@ -95,6 +100,7 @@ func _ready() -> void :
 	Skill_3_CD = 10
 	Skill_4_CD = 20
 	Skill_5_CD = 30
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -105,21 +111,33 @@ func Monster_Intelligence():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
 				have_target()
-				if Skill_1_CD <= 0: do_hit_1()
-				if Skill_2_CD <= 0: do_hit_2()
-				if Skill_3_CD <= 0: do_hit_3()
-				if Skill_4_CD <= 0: do_hit_4()
-				if Skill_5_CD <= 0: do_hit_5()
+				if Skill_1_CD <= 0:
+					do_hit_1()
+				if Skill_2_CD <= 0:
+					do_hit_2()
+				if Skill_3_CD <= 0:
+					do_hit_3()
+				if Skill_4_CD <= 0:
+					do_hit_4()
+				if Skill_5_CD <= 0:
+					do_hit_5()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0: do_hit_1()
-				if Skill_2_CD <= 0: do_hit_2()
-				if Skill_3_CD <= 0: do_hit_3()
-				if Skill_4_CD <= 0: do_hit_4()
-				if Skill_5_CD <= 0: do_hit_5()
+				if Skill_1_CD <= 0:
+					do_hit_1()
+				if Skill_2_CD <= 0:
+					do_hit_2()
+				if Skill_3_CD <= 0:
+					do_hit_3()
+				if Skill_4_CD <= 0:
+					do_hit_4()
+				if Skill_5_CD <= 0:
+					do_hit_5()
+
 
 func do_hit_1():
-	if Skill_1_CD > 0 or is_attacking: return
+	if Skill_1_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_1_CD = 2
 	hit_name = "hit1"
@@ -130,8 +148,10 @@ func do_hit_1():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_2():
-	if Skill_2_CD > 0 or is_attacking: return
+	if Skill_2_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_2_CD = randi_range(20, 30)
 	hit_name = "hit2"
@@ -142,8 +162,10 @@ func do_hit_2():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_3():
-	if Skill_3_CD > 0 or is_attacking: return
+	if Skill_3_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_3_CD = randi_range(15, 20)
 	hit_name = "hit3"
@@ -154,8 +176,10 @@ func do_hit_3():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_4():
-	if Skill_4_CD > 0 or is_attacking: return
+	if Skill_4_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_4_CD = randi_range(35, 40)
 	hit_name = "hit4"
@@ -167,8 +191,10 @@ func do_hit_4():
 	CallParasiticLarva()
 	stop_move()
 
+
 func do_hit_5():
-	if Skill_5_CD > 0 or is_attacking: return
+	if Skill_5_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_5_CD = randi_range(25, 30)
 	hit_name = "hit5"
@@ -197,11 +223,7 @@ func CallParasiticLarva():
 			await get_tree().process_frame
 			break
 
-	var larva = Global.Create_Monster(
-		140801, 
-		monster_container, 
-		position + Vector2(0, -50)
-	) as Monster140801
+	var larva = Global.Create_Monster(140801, monster_container, position + Vector2(0, -50)) as Monster140801
 
 	if larva:
 		larva.name = "ParasiticLarva"
@@ -209,38 +231,29 @@ func CallParasiticLarva():
 		larva.Hp = larva.SHp
 		larva.MyTarget = target
 
-
-
 		var life_timer = Timer.new()
 		life_timer.wait_time = 30.0
 		life_timer.one_shot = true
 
-
 		larva.add_child(life_timer)
-
 
 		life_timer.start()
 
-
-		life_timer.timeout.connect( func():
-			if is_instance_valid(larva):
-				larva.queue_free()
+		life_timer.timeout.connect(
+			func():
+				if is_instance_valid(larva):
+					larva.queue_free()
 		)
+
 
 func CallBullet2():
 	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 380)
 	await get_tree().create_timer(0.3, false).timeout
 	var ly = Global.CallChaseBullet(
-		self.bullet, 
-		"Monster1408Bullet2", 
-		150, 
-		5.0, 
-		false, 
-		Po, 
-		"hit2", 
-		self.objattackDic["hit2"]
+		self.bullet, "Monster1408Bullet2", 150, 5.0, false, Po, "hit2", self.objattackDic["hit2"]
 	)
 	ly.scale = Vector2(1.5, 1.5)
+
 
 func MovePlayer2():
 	if not get_Player:
@@ -249,12 +262,15 @@ func MovePlayer2():
 	var offset = 150
 
 	if alternate_side:
-
-		self.position = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + offset, RoleProp.get_nearest_monster_target_position(global_position).y)
+		self.position = Vector2(
+			RoleProp.get_nearest_monster_target_position(global_position).x + offset,
+			RoleProp.get_nearest_monster_target_position(global_position).y
+		)
 	else:
-
-		self.position = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x - offset, RoleProp.get_nearest_monster_target_position(global_position).y)
-
+		self.position = Vector2(
+			RoleProp.get_nearest_monster_target_position(global_position).x - offset,
+			RoleProp.get_nearest_monster_target_position(global_position).y
+		)
 
 	alternate_side = not alternate_side
 
@@ -266,6 +282,7 @@ func has_parasitic_larva() -> bool:
 			return true
 	return false
 
+
 func state_death():
 	if is_reviving:
 		return
@@ -273,19 +290,15 @@ func state_death():
 	if has_parasitic_larva():
 		is_reviving = true
 
-
 		if has_node("DeathCount"):
 			$DeathCount.stop()
-
 
 		is_attacking = false
 		is_be_attacking = false
 		velocity.x = 0
 
-
 		if mr_player.has_animation("death"):
 			mr_player.play("death")
-
 
 		await get_tree().create_timer(3.0).timeout
 		Global.add_SpecialEffect(get_parent(), global_position, "Relife", Vector2(2, 2), false, 1)
@@ -294,13 +307,10 @@ func state_death():
 		self.is_death = false
 		is_reviving = false
 
-
 		if mr_player.has_animation("wait"):
 			mr_player.play("wait")
-
 
 		if has_node("DeathCount"):
 			$DeathCount.start()
 	else:
-
 		super.state_death()

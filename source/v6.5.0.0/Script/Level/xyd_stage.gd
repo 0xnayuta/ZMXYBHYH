@@ -10,6 +10,7 @@ signal player_exited(stage_index: int, body: Node2D)
 @onready var sprite: Sprite2D = $Sprite
 @onready var detection_area: Area2D = $DetectionArea
 
+
 func _ready():
 	if sprite_texture:
 		sprite.texture = sprite_texture
@@ -22,13 +23,16 @@ func _ready():
 	detection_area.collision_layer = 0
 	detection_area.collision_mask = 2
 
+
 func _on_detection_area_body_entered(body: Node2D):
 	if is_base_hero_or_child(body):
 		player_entered.emit(stage_index, body)
 
+
 func _on_detection_area_body_exited(body: Node2D):
 	if is_base_hero_or_child(body):
 		player_exited.emit(stage_index, body)
+
 
 func is_base_hero_or_child(body: Node2D) -> bool:
 	if "BaseHero" in body.name:
@@ -58,14 +62,17 @@ func is_base_hero_or_child(body: Node2D) -> bool:
 
 	return false
 
+
 func set_feedback_color(color: Color, duration: float = 0.5):
 	sprite.modulate = color
 	if duration > 0:
 		var timer = get_tree().create_timer(duration)
-		timer.timeout.connect( func(): sprite.modulate = Color.WHITE)
+		timer.timeout.connect(func(): sprite.modulate = Color.WHITE)
+
 
 func set_puzzle_correct():
 	set_feedback_color(Color(0.2, 1.0, 0.2, 1.0), 0.5)
+
 
 func set_puzzle_wrong():
 	set_feedback_color(Color(1.0, 0.2, 0.2, 1.0), 0.5)

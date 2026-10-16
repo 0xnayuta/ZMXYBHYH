@@ -3,14 +3,16 @@ class_name Monster138
 var MyTarget: BaseMonster
 var LinkedTargets: Array[BaseMonster] = []
 
-func set_linked_targets(targets: Array[BaseMonster]) -> void :
+
+func set_linked_targets(targets: Array[BaseMonster]) -> void:
 	LinkedTargets.clear()
 	for target in targets:
 		if target != null and is_instance_valid(target) and not LinkedTargets.has(target):
 			LinkedTargets.append(target)
 	MyTarget = LinkedTargets[0] if not LinkedTargets.is_empty() else null
 
-func transfer_linked_damage(damage: int) -> void :
+
+func transfer_linked_damage(damage: int) -> void:
 	if damage <= 0:
 		return
 	if LinkedTargets.is_empty():
@@ -19,11 +21,13 @@ func transfer_linked_damage(damage: int) -> void :
 	for target in LinkedTargets:
 		_transfer_damage_to_target(target, damage)
 
-func _transfer_damage_to_target(target: BaseMonster, damage: int) -> void :
+
+func _transfer_damage_to_target(target: BaseMonster, damage: int) -> void:
 	if target == null or not is_instance_valid(target) or target.Hp <= 0:
 		return
 	target.has_target = true
 	target.reduce_hp(damage)
+
 
 func _get_primary_target() -> BaseMonster:
 	if MyTarget != null and is_instance_valid(MyTarget) and MyTarget.Hp > 0:
@@ -34,6 +38,7 @@ func _get_primary_target() -> BaseMonster:
 			return target
 	MyTarget = null
 	return null
+
 
 func monster_138():
 	self.CannotAttract = true
@@ -67,25 +72,29 @@ func monster_138():
 	self.add_exp = 0
 	self.fall_coin = 0
 	self.objattackDic["hit1"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "", 
-		"HitProtect": 0, 
+		"power": 0,
+		"hurtBack": [0, 0],
+		"attackKind": "",
+		"HitProtect": 0,
 	}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_138()
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	if Hp <= 0:
 		mr_player.play("death")
 		return
 	super._physics_process(delta)
 	ResetPro()
-	var primary_target: = _get_primary_target()
+	var primary_target := _get_primary_target()
 	if primary_target == null:
 		self.Hp = -100
 	else:
@@ -93,9 +102,13 @@ func _physics_process(delta: float) -> void :
 			move_left()
 		else:
 			move_right()
+
+
 func Monster_Intelligence():
 	pass
-func _on_hurt_box_area_entered(area: Area2D) -> void :
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
 	is_jgz = false
 	has_target = true
 	if area is BaseRoleHitBox or area is RolehmzBullet:
@@ -137,18 +150,25 @@ func _on_hurt_box_area_entered(area: Area2D) -> void :
 		Global.addSound_(self, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 		HurtSpecialEffect = Global.add_mr_hurt(pz, Vector2(0, 0))
 	get_target = null
+
+
 func ResetPro():
-	var primary_target: = _get_primary_target()
+	var primary_target := _get_primary_target()
 	if primary_target != null:
 		self.Toughness = primary_target.Toughness
 		self.def = primary_target.def
 		self.mdef = primary_target.mdef
 		self.Critreduce = primary_target.Critreduce
 		self.miss = primary_target.miss
+
+
 func cure_hp(value: int):
 	pass
 
-func _on_death_count_timeout() -> void :
+
+func _on_death_count_timeout() -> void:
 	Hp = -100
+
+
 func WDHurt():
 	pass

@@ -4,7 +4,7 @@ class_name Level35
 const XYDSTAGE_SCENE = preload("res://Scene/Level/xyd_stage.tscn")
 
 var stage_nodes: Array[StageNode] = []
-@onready var yf_list_node = $CanvasLayer / ActivityButton / YFList
+@onready var yf_list_node = $CanvasLayer/ActivityButton/YFList
 
 var stage1_monster_killed_count: int = 0
 var assigned_image_indices: Array[int] = []
@@ -20,7 +20,8 @@ var image_sequence: Array[int] = []
 var puzzle_in_progress: bool = false
 var has_shown_start_hint: bool = false
 
-func _ready() -> void :
+
+func _ready() -> void:
 	load("res://Scene/Monster/Monster_123.tscn")
 	load("res://Scene/Monster/Monster_1404.tscn")
 	Global.CurrentLevel = "仙音岛"
@@ -34,30 +35,57 @@ func _ready() -> void :
 	init_puzzle()
 
 	Monster_group = {
-		"stage_1": [123, 123, 123, 123, 123, 123, 123], 
-		"stage_2": [1404], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [123, 123, 123, 123, 123, 123, 123],
+		"stage_2": [1404],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_x = {
-		"stage_1": [250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000], 
-		"stage_2": [1048], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1":
+		[250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000, 250, 1000],
+		"stage_2": [1048],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_y = {
-		"stage_1": [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300], 
-		"stage_2": [400], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1":
+		[
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300
+		],
+		"stage_2": [400],
+		"stage_3": [],
+		"stage_4": [],
 	}
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	my_camera.max_right = 1144
 	check_stage1_monster_kills()
 	update_puzzle_hint()
-
 
 	if current_stage >= 1:
 		if check_can_pass() and current_stage < 4:
@@ -66,18 +94,18 @@ func _physics_process(delta: float) -> void :
 			role_information.gogo.visible = false
 
 	if Role_ and not Role_.IsDeath and Role_.position.y > 700:
-
 		Role_.effect_reducehp(999999, "real")
+
 
 func create_xyd_stages():
 	var stage_data = [
-		{"pos": Vector2(0, 0), "texture": "res://Art/Level/Game3Level/Level_35/s1.png"}, 
-		{"pos": Vector2(160, 0), "texture": "res://Art/Level/Game3Level/Level_35/s2.png"}, 
-		{"pos": Vector2(320, 0), "texture": "res://Art/Level/Game3Level/Level_35/s3.png"}, 
-		{"pos": Vector2(480, 0), "texture": "res://Art/Level/Game3Level/Level_35/s4.png"}, 
-		{"pos": Vector2(640, 0), "texture": "res://Art/Level/Game3Level/Level_35/s5.png"}, 
-		{"pos": Vector2(800, 0), "texture": "res://Art/Level/Game3Level/Level_35/s6.png"}, 
-		{"pos": Vector2(960, 0), "texture": "res://Art/Level/Game3Level/Level_35/s7.png"}, 
+		{"pos": Vector2(0, 0), "texture": "res://Art/Level/Game3Level/Level_35/s1.png"},
+		{"pos": Vector2(160, 0), "texture": "res://Art/Level/Game3Level/Level_35/s2.png"},
+		{"pos": Vector2(320, 0), "texture": "res://Art/Level/Game3Level/Level_35/s3.png"},
+		{"pos": Vector2(480, 0), "texture": "res://Art/Level/Game3Level/Level_35/s4.png"},
+		{"pos": Vector2(640, 0), "texture": "res://Art/Level/Game3Level/Level_35/s5.png"},
+		{"pos": Vector2(800, 0), "texture": "res://Art/Level/Game3Level/Level_35/s6.png"},
+		{"pos": Vector2(960, 0), "texture": "res://Art/Level/Game3Level/Level_35/s7.png"},
 	]
 
 	var stage_parent = $Stage
@@ -101,11 +129,13 @@ func create_xyd_stages():
 		stage_parent.add_child(stage_instance)
 		stage_nodes.append(stage_instance)
 
+
 func connect_stage_signals():
 	for stage in stage_nodes:
 		if stage:
 			stage.player_entered.connect(_on_stage_player_entered)
 			stage.player_exited.connect(_on_stage_player_exited)
+
 
 func _on_stage_player_entered(stage_index: int, body: Node2D):
 	if not stage_index in current_stage_indices:
@@ -119,6 +149,7 @@ func _on_stage_player_entered(stage_index: int, body: Node2D):
 
 	handle_puzzle_stage(stage_index)
 
+
 func _on_stage_player_exited(stage_index: int, body: Node2D):
 	var idx = current_stage_indices.find(stage_index)
 	if idx != -1:
@@ -131,6 +162,7 @@ func _on_stage_player_exited(stage_index: int, body: Node2D):
 	if stage_node:
 		stage_node.set_feedback_color(Color(1.0, 0.8, 0.8, 1.0), 0.3)
 
+
 func init_puzzle():
 	puzzle_solved = false
 	current_puzzle_step = 0
@@ -138,6 +170,7 @@ func init_puzzle():
 	puzzle_in_progress = false
 
 	has_shown_start_hint = false
+
 
 func handle_puzzle_stage(stage_index: int):
 	if puzzle_solved or stage1_monster_killed_count < 7:
@@ -151,6 +184,7 @@ func handle_puzzle_stage(stage_index: int):
 	else:
 		on_wrong_stage()
 
+
 func start_puzzle():
 	if puzzle_in_progress:
 		return
@@ -160,11 +194,11 @@ func start_puzzle():
 	current_puzzle_step = 0
 	puzzle_in_progress = true
 
-
 	if not has_shown_start_hint:
 		show_puzzle_hint("请按照音符显示的顺序踩踏舞台", 1.0)
 
 		has_shown_start_hint = true
+
 
 func on_correct_stage(stage_index: int):
 	var stage_node = get_stage_node_by_index(stage_index)
@@ -176,6 +210,7 @@ func on_correct_stage(stage_index: int):
 
 	if current_puzzle_step >= 7:
 		on_puzzle_completed()
+
 
 func on_wrong_stage():
 	if current_stage_indices.size() > 0:
@@ -197,20 +232,25 @@ func on_puzzle_completed():
 	current_stage = 2
 	call_deferred("spawn_final_boss")
 
+
 func spawn_final_boss():
 	if Monster_group["stage_2"].size() > 0:
 		level_create_monster(2)
 
+
 func show_puzzle_hint(text: String, duration: float = 2.0):
 	Global.AddMessageShow(self, text, duration, Vector2(470, 300))
 
+
 func update_puzzle_hint():
 	pass
+
 
 func get_stage_node_by_index(index: int) -> StageNode:
 	if index >= 1 and index <= stage_nodes.size():
 		return stage_nodes[index - 1]
 	return null
+
 
 func check_stage1_monster_kills():
 	var current_monster_count = _get_alive_stage_monster_count()
@@ -230,6 +270,7 @@ func check_stage1_monster_kills():
 				show_puzzle_hint("7个音符已集齐！请按照音符顺序踩踏舞台", 1.0)
 				break
 
+
 func get_unique_random_image_num() -> int:
 	if pending_note_indices.size() == 0:
 		pending_note_indices = build_reachable_note_sequence()
@@ -238,6 +279,7 @@ func get_unique_random_image_num() -> int:
 	var selected_num = pending_note_indices.pop_front()
 	assigned_image_indices.append(selected_num)
 	return selected_num
+
 
 func build_reachable_note_sequence() -> Array[int]:
 	var start_nums: Array[int] = [1, 2, 3, 4, 5, 6, 7]
@@ -253,6 +295,7 @@ func build_reachable_note_sequence() -> Array[int]:
 			return path
 
 	return [1, 2, 3, 4, 5, 6, 7]
+
 
 func fill_reachable_note_sequence(path: Array[int], available_nums: Array[int]) -> bool:
 	if available_nums.size() == 0:
@@ -275,18 +318,26 @@ func fill_reachable_note_sequence(path: Array[int], available_nums: Array[int]) 
 
 	return false
 
-func _on_create_control_timeout() -> void :
+
+func _on_create_control_timeout() -> void:
 	super._on_create_control_timeout()
 
-	if current_stage == 2 and puzzle_solved and Monster_group["stage_2"].size() > 0 and _get_alive_stage_monster_count() == 0:
+	if (
+		current_stage == 2
+		and puzzle_solved
+		and Monster_group["stage_2"].size() > 0
+		and _get_alive_stage_monster_count() == 0
+	):
 		if check_can_create(2):
 			level_create_monster(2)
+
 
 func check_can_create(stage: int) -> bool:
 	var stage_key = "stage_" + str(stage)
 	if not Monster_group.has(stage_key):
 		return false
 	return _get_alive_stage_monster_count() < 6 and Monster_group[stage_key].size() > 0
+
 
 func reset_note_assignment():
 	stage1_monster_killed_count = 0

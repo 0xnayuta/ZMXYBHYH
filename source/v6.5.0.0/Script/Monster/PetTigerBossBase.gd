@@ -3,39 +3,72 @@ class_name PetTigerBossBase
 
 @export var tiger_stage: int = 1
 
-const SKILL_HY: = "hy"
-const SKILL_SXHZ: = "sxhz"
-const SKILL_HSQJ: = "hsqj"
-const SKILL_BHAOYI: = "bhaoyi"
-const TIGER_MODEL_FRAME_DIR: = "res://Art/Monster/PetTigerBoss/model/frames"
-const TIGER_FRAME_SPEED: = 10.0
-const TIGER_ACTIONS: = [
-	{}, 
+const SKILL_HY := "hy"
+const SKILL_SXHZ := "sxhz"
+const SKILL_HSQJ := "hsqj"
+const SKILL_BHAOYI := "bhaoyi"
+const TIGER_MODEL_FRAME_DIR := "res://Art/Monster/PetTigerBoss/model/frames"
+const TIGER_FRAME_SPEED := 10.0
+const TIGER_ACTIONS := [
+	{},
 	{
-		"wait": [0, 6, true], "walk": [0, 6, true], "hurt": [1, 1, false], "death": [2, 4, false], 
-		"hit1": [3, 4, false], "hit2": [4, 4, false], "hit3_1": [3, 4, false], "hit3_2": [4, 4, false], 
-		"hit4": [4, 4, false], "hit5": [3, 4, false], "hit6": [4, 4, false], 
-	}, 
+		"wait": [0, 6, true],
+		"walk": [0, 6, true],
+		"hurt": [1, 1, false],
+		"death": [2, 4, false],
+		"hit1": [3, 4, false],
+		"hit2": [4, 4, false],
+		"hit3_1": [3, 4, false],
+		"hit3_2": [4, 4, false],
+		"hit4": [4, 4, false],
+		"hit5": [3, 4, false],
+		"hit6": [4, 4, false],
+	},
 	{
-		"wait": [0, 6, true], "walk": [1, 4, true], "hurt": [2, 1, false], "death": [3, 5, false], 
-		"hit1": [4, 4, false], "hit2": [5, 3, false], "hit3_1": [6, 3, false], "hit3_2": [6, 3, false], 
-		"hit4": [5, 3, false], "hit5": [4, 4, false], "hit6": [5, 3, false], 
-	}, 
+		"wait": [0, 6, true],
+		"walk": [1, 4, true],
+		"hurt": [2, 1, false],
+		"death": [3, 5, false],
+		"hit1": [4, 4, false],
+		"hit2": [5, 3, false],
+		"hit3_1": [6, 3, false],
+		"hit3_2": [6, 3, false],
+		"hit4": [5, 3, false],
+		"hit5": [4, 4, false],
+		"hit6": [5, 3, false],
+	},
 	{
-		"wait": [0, 6, true], "walk": [1, 4, true], "hurt": [2, 1, false], "death": [3, 5, false], 
-		"hit1": [4, 4, false], "hit2": [5, 4, false], "hit3_1": [6, 3, false], "hit3_2": [6, 3, false], 
-		"hit4": [7, 5, false], "hit5": [4, 4, false], "hit6": [5, 4, false], 
-	}, 
+		"wait": [0, 6, true],
+		"walk": [1, 4, true],
+		"hurt": [2, 1, false],
+		"death": [3, 5, false],
+		"hit1": [4, 4, false],
+		"hit2": [5, 4, false],
+		"hit3_1": [6, 3, false],
+		"hit3_2": [6, 3, false],
+		"hit4": [7, 5, false],
+		"hit5": [4, 4, false],
+		"hit6": [5, 4, false],
+	},
 	{
-		"wait": [0, 6, true], "walk": [1, 4, true], "hurt": [2, 1, false], "death": [3, 5, false], 
-		"hit1": [4, 4, false], "hit2": [4, 4, false], "hit3_1": [5, 3, false], "hit3_2": [5, 3, false], 
-		"hit4": [6, 5, false], "hit5": [7, 3, false], "hit6": [8, 6, false], 
-	}, 
+		"wait": [0, 6, true],
+		"walk": [1, 4, true],
+		"hurt": [2, 1, false],
+		"death": [3, 5, false],
+		"hit1": [4, 4, false],
+		"hit2": [4, 4, false],
+		"hit3_1": [5, 3, false],
+		"hit3_2": [5, 3, false],
+		"hit4": [6, 5, false],
+		"hit5": [7, 3, false],
+		"hit6": [8, 6, false],
+	},
 ]
 
 var bhaoyi_running: bool = false
 
-func setup_pet_tiger(stage: int) -> void :
+
+func setup_pet_tiger(stage: int) -> void:
 	tiger_stage = clampi(stage, 1, 4)
 	var stage_bl: float = 1.0 + float(tiger_stage - 1) * 0.28
 	is_boss = true
@@ -73,7 +106,8 @@ func setup_pet_tiger(stage: int) -> void :
 	fall_stone_pro = 0.0
 	fall_stone = []
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	setup_pet_tiger(tiger_stage)
 	if hurt_box != null:
@@ -89,8 +123,8 @@ func _ready() -> void :
 	Skill_4_CD = randi_range(12, 18)
 
 
-func _setup_tiger_model_frames() -> void :
-	var frames: = SpriteFrames.new()
+func _setup_tiger_model_frames() -> void:
+	var frames := SpriteFrames.new()
 	var action_map: Dictionary = TIGER_ACTIONS[tiger_stage]
 	for action_name in action_map.keys():
 		var info: Array = action_map[action_name]
@@ -100,24 +134,27 @@ func _setup_tiger_model_frames() -> void :
 		frames.set_animation_loop(action_name, bool(info[2]))
 		frames.set_animation_speed(action_name, TIGER_FRAME_SPEED)
 		for col in range(frame_count):
-			var texture: = _load_tiger_frame_texture(row, col)
+			var texture := _load_tiger_frame_texture(row, col)
 			if texture != null:
 				frames.add_frame(action_name, texture)
 	mr_ani.sprite_frames = frames
 
+
 func _load_tiger_frame_texture(row: int, col: int) -> Texture2D:
-	var path: = "%s/stage%d/r%d_c%d.png" % [TIGER_MODEL_FRAME_DIR, tiger_stage, row, col]
-	var texture: = Global.get_cached_texture(path)
+	var path := "%s/stage%d/r%d_c%d.png" % [TIGER_MODEL_FRAME_DIR, tiger_stage, row, col]
+	var texture := Global.get_cached_texture(path)
 	if texture == null:
 		push_warning("Missing PetTiger frame: " + path)
 		return null
 	return texture
 
-func _play_tiger_model_animation(animation_name: String) -> void :
+
+func _play_tiger_model_animation(animation_name: String) -> void:
 	if mr_ani.sprite_frames != null and mr_ani.sprite_frames.has_animation(animation_name):
 		mr_ani.play(animation_name)
 
-func _wait_tiger_model_animation(animation_name: String) -> void :
+
+func _wait_tiger_model_animation(animation_name: String) -> void:
 	_play_tiger_model_animation(animation_name)
 	if mr_ani.sprite_frames == null or not mr_ani.sprite_frames.has_animation(animation_name):
 		await get_tree().create_timer(0.35, false).timeout
@@ -127,18 +164,21 @@ func _wait_tiger_model_animation(animation_name: String) -> void :
 		return
 	await mr_ani.animation_finished
 
-func _on_tiger_animation_started(animation_name: StringName) -> void :
+
+func _on_tiger_animation_started(animation_name: StringName) -> void:
 	_play_tiger_model_animation(String(animation_name))
+
 
 func _attack_dic(power: int, hurt_back: Array, kind: String, protect: int) -> Dictionary:
 	return {
-		"power": power, 
-		"hurtBack": hurt_back, 
-		"attackKind": kind, 
-		"HitProtect": protect, 
+		"power": power,
+		"hurtBack": hurt_back,
+		"attackKind": kind,
+		"HitProtect": protect,
 	}
 
-func Monster_Intelligence() -> void :
+
+func Monster_Intelligence() -> void:
 	if RoleProp.get_nearest_monster_target_position(global_position).x == null:
 		normal_state()
 		return
@@ -169,7 +209,8 @@ func Monster_Intelligence() -> void :
 		if count % 55 == 0 and randi_range(0, 100) < attackDesire:
 			attack_target()
 
-func attack_target() -> void :
+
+func attack_target() -> void:
 	to_hero()
 	hit_name = "hit1"
 	velocity.x = 0
@@ -179,7 +220,8 @@ func attack_target() -> void :
 	is_attacking = false
 	stop_move()
 
-func do_hy() -> void :
+
+func do_hy() -> void:
 	to_hero()
 	Skill_1_CD = randi_range(5, 7)
 	hit_name = SKILL_HY
@@ -189,7 +231,8 @@ func do_hy() -> void :
 	await mr_player.animation_finished
 	is_attacking = false
 
-func do_sxhz() -> void :
+
+func do_sxhz() -> void:
 	to_hero()
 	Skill_2_CD = randi_range(8, 11)
 	hit_name = SKILL_SXHZ
@@ -202,7 +245,8 @@ func do_sxhz() -> void :
 	cure_hp(max(1, int(SHp * 0.025)))
 	is_attacking = false
 
-func do_hsqj() -> void :
+
+func do_hsqj() -> void:
 	to_hero()
 	Skill_3_CD = randi_range(10, 13)
 	hit_name = SKILL_HSQJ
@@ -212,7 +256,8 @@ func do_hsqj() -> void :
 	await mr_player.animation_finished
 	is_attacking = false
 
-func do_bhaoyi() -> void :
+
+func do_bhaoyi() -> void:
 	if get_Player == null:
 		return
 	bhaoyi_running = true
@@ -231,7 +276,8 @@ func do_bhaoyi() -> void :
 	is_attacking = false
 	bhaoyi_running = false
 
-func _clear_tiger_skill_cooldowns() -> void :
+
+func _clear_tiger_skill_cooldowns() -> void:
 	Skill_1_CD = 0
 	Skill_2_CD = 0
 	Skill_3_CD = 0
@@ -241,17 +287,19 @@ func _clear_tiger_skill_cooldowns() -> void :
 	Skill_7_CD = 0
 	Skill_8_CD = 0
 
-func _to_target_side() -> void :
+
+func _to_target_side() -> void:
 	if get_Player == null:
 		return
-	var side: = -1
+	var side := -1
 	if randi_range(0, 1) == 1:
 		side = 1
 	position.x = RoleProp.get_nearest_monster_target_position(global_position).x + 70 * side
 	position.y = RoleProp.get_nearest_monster_target_position(global_position).y
 	to_hero()
 
-func _play_attack_animation(animation_name: String, fallback_call: Callable) -> void :
+
+func _play_attack_animation(animation_name: String, fallback_call: Callable) -> void:
 	_play_tiger_model_animation(animation_name)
 	if mr_player.has_animation(animation_name):
 		mr_player.play(animation_name)
@@ -259,56 +307,82 @@ func _play_attack_animation(animation_name: String, fallback_call: Callable) -> 
 		fallback_call.call()
 	await _wait_tiger_model_animation(animation_name)
 
-func CallHit1Bullet() -> void :
-	var offset: Vector2 = _front_offset(_stage_value(60.0, 120.0, 130.0, 130.0), _stage_value(-25.0, -80.0, -70.0, -70.0))
-	var bullet_name: = "PetTiger1Bullet1" if tiger_stage == 1 else "PetTiger2Bullet1"
+
+func CallHit1Bullet() -> void:
+	var offset: Vector2 = _front_offset(
+		_stage_value(60.0, 120.0, 130.0, 130.0), _stage_value(-25.0, -80.0, -70.0, -70.0)
+	)
+	var bullet_name := "PetTiger1Bullet1" if tiger_stage == 1 else "PetTiger2Bullet1"
 	Global.add_Bullet(bullet_name, bullet, MonsterDirection, 1.0, position + offset, "hit1", objattackDic["hit1"])
 
-func CallHyBullet() -> void :
-	var offset: Vector2 = _front_offset(_stage_value(150.0, 190.0, 190.0, 190.0), -80.0)
-	Global.add_Bullet("PetTiger1Bullet2", bullet, MonsterDirection, 1.0, position + offset, SKILL_HY, objattackDic[SKILL_HY])
 
-func CallSxhzHit() -> void :
+func CallHyBullet() -> void:
+	var offset: Vector2 = _front_offset(_stage_value(150.0, 190.0, 190.0, 190.0), -80.0)
+	Global.add_Bullet(
+		"PetTiger1Bullet2", bullet, MonsterDirection, 1.0, position + offset, SKILL_HY, objattackDic[SKILL_HY]
+	)
+
+
+func CallSxhzHit() -> void:
 	var main_offset: Vector2 = _front_offset(50.0, _stage_value(-45.0, -45.0, -45.0, -65.0))
 	var air_stun_offset: Vector2 = _front_offset(200.0, -200.0)
-	var air_stun_position: = position + air_stun_offset
-	Global.add_Bullet("PetTiger2Bullet3_1", bullet, MonsterDirection, 1.0, position + main_offset, SKILL_SXHZ, objattackDic[SKILL_SXHZ])
-	Global.add_Bullet("PetTiger2Bullet3_2", bullet, MonsterDirection, 1.0, air_stun_position, SKILL_SXHZ, objattackDic[SKILL_SXHZ])
+	var air_stun_position := position + air_stun_offset
+	Global.add_Bullet(
+		"PetTiger2Bullet3_1",
+		bullet,
+		MonsterDirection,
+		1.0,
+		position + main_offset,
+		SKILL_SXHZ,
+		objattackDic[SKILL_SXHZ]
+	)
+	Global.add_Bullet(
+		"PetTiger2Bullet3_2", bullet, MonsterDirection, 1.0, air_stun_position, SKILL_SXHZ, objattackDic[SKILL_SXHZ]
+	)
 	_apply_sxhz_air_stun(air_stun_position)
 
-func CallHsqjBullet() -> void :
+
+func CallHsqjBullet() -> void:
 	var disabled_offset: Vector2 = _front_offset(85.0, -130.0)
 	var hit_offset: Vector2 = _front_offset(105.0, -2.0)
-	var mark_position: = position + disabled_offset
-	var visual_bullet = Global.add_Bullet("PetTiger3Bullet4_1", bullet, MonsterDirection, 1.0, mark_position, SKILL_HSQJ, objattackDic[SKILL_HSQJ])
+	var mark_position := position + disabled_offset
+	var visual_bullet = Global.add_Bullet(
+		"PetTiger3Bullet4_1", bullet, MonsterDirection, 1.0, mark_position, SKILL_HSQJ, objattackDic[SKILL_HSQJ]
+	)
 	if visual_bullet != null:
 		visual_bullet.set_meta("pet_tiger_disabled", true)
-	Global.add_Bullet("PetTiger3Bullet4_2", bullet, MonsterDirection, 1.0, position + hit_offset, SKILL_HSQJ, objattackDic[SKILL_HSQJ])
+	Global.add_Bullet(
+		"PetTiger3Bullet4_2", bullet, MonsterDirection, 1.0, position + hit_offset, SKILL_HSQJ, objattackDic[SKILL_HSQJ]
+	)
 
-func _apply_sxhz_air_stun(air_stun_position: Vector2) -> void :
+
+func _apply_sxhz_air_stun(air_stun_position: Vector2) -> void:
 	var target: Node = get_Player
 	if target == null or not is_instance_valid(target):
 		return
 	if not (target is Node2D):
 		return
-	var stun_time: = 3.0
+	var stun_time := 3.0
 	if "buff" in target and target.buff != null:
-		Global.AddBuff(target.buff, {
-			"Name": "stun", 
-			"AddTime": stun_time, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false
-		})
-	var lock_token: = Time.get_ticks_msec()
+		Global.AddBuff(
+			target.buff,
+			{
+				"Name": "stun",
+				"AddTime": stun_time,
+				"ReduceInterval": 0,
+				"value": 0,
+				"AttackKind": "",
+				"DeBuff": true,
+				"CanRemove": false
+			}
+		)
+	var lock_token := Time.get_ticks_msec()
 	target.set_meta("pet_tiger_sxhz_air_stun_token", lock_token)
 	_keep_sxhz_target_in_air(target, air_stun_position, stun_time, lock_token)
 	_apply_sxhz_three_hit_lifesteal(target)
 
 
-func _apply_sxhz_three_hit_lifesteal(target: Node) -> void :
+func _apply_sxhz_three_hit_lifesteal(target: Node) -> void:
 	if target == null or not is_instance_valid(target):
 		return
 	if not target.has_method("effect_reducehp"):
@@ -316,47 +390,59 @@ func _apply_sxhz_three_hit_lifesteal(target: Node) -> void :
 	if not objattackDic.has(SKILL_SXHZ):
 		return
 	var hit_data: Dictionary = objattackDic[SKILL_SXHZ]
-	var attack_kind: = "physics"
+	var attack_kind := "physics"
 	if hit_data.has("attackKind"):
 		attack_kind = String(hit_data["attackKind"])
-	var base_power: = int(hit_data.get("power", 0))
+	var base_power := int(hit_data.get("power", 0))
 	if base_power <= 0:
 		return
 	for i in range(2):
 		if target == null or not is_instance_valid(target):
 			return
-		var multiplier: = 12 if i == 1 else 7
-		var damage: = base_power * multiplier
+		var multiplier := 12 if i == 1 else 7
+		var damage := base_power * multiplier
 		target.effect_reducehp(damage, attack_kind)
 		cure_hp(damage)
 		if i < 1:
 			await get_tree().create_timer(0.08, false).timeout
 
-func _keep_sxhz_target_in_air(target: Node, air_stun_position: Vector2, stun_time: float, lock_token: int) -> void :
-	var elapsed: = 0.0
+
+func _keep_sxhz_target_in_air(target: Node, air_stun_position: Vector2, stun_time: float, lock_token: int) -> void:
+	var elapsed := 0.0
 	while elapsed < stun_time:
 		if target == null or not is_instance_valid(target):
 			return
-		if not target.has_meta("pet_tiger_sxhz_air_stun_token") or int(target.get_meta("pet_tiger_sxhz_air_stun_token")) != lock_token:
+		if (
+			not target.has_meta("pet_tiger_sxhz_air_stun_token")
+			or int(target.get_meta("pet_tiger_sxhz_air_stun_token")) != lock_token
+		):
 			return
 		(target as Node2D).global_position = air_stun_position
 		if target is CharacterBody2D:
 			(target as CharacterBody2D).velocity = Vector2.ZERO
 		await get_tree().process_frame
 		elapsed += get_process_delta_time()
-	if target != null and is_instance_valid(target) and target.has_meta("pet_tiger_sxhz_air_stun_token") and int(target.get_meta("pet_tiger_sxhz_air_stun_token")) == lock_token:
+	if (
+		target != null
+		and is_instance_valid(target)
+		and target.has_meta("pet_tiger_sxhz_air_stun_token")
+		and int(target.get_meta("pet_tiger_sxhz_air_stun_token")) == lock_token
+	):
 		target.remove_meta("pet_tiger_sxhz_air_stun_token")
 
-func CallBhaoyiHit() -> void :
+
+func CallBhaoyiHit() -> void:
 	var dic: Dictionary = objattackDic[SKILL_BHAOYI].duplicate(true)
 	dic["power"] = int(dic["power"] * 1.3)
 	var offset: Vector2 = _front_offset(130.0, -70.0)
 	Global.add_Bullet("PetTiger2Bullet1", bullet, MonsterDirection, 1.25, position + offset, SKILL_BHAOYI, dic)
 
+
 func _front_offset(x: float, y: float) -> Vector2:
 	if MonsterDirection:
 		return Vector2(x, y)
-	return Vector2( - x, y)
+	return Vector2(-x, y)
+
 
 func _stage_value(stage1: float, stage2: float, stage3: float, stage4: float) -> float:
 	match tiger_stage:

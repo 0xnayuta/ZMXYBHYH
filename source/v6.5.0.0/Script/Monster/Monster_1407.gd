@@ -11,11 +11,10 @@ var has_summoned_1404: bool = false
 var has_applied_shield: bool = false
 var shield_value: int = 0
 
-
 var is_special_combo: bool = false
 
-func monster_1407():
 
+func monster_1407():
 	self.is_Fly = true
 	self.is_boss = true
 	self.my_mr_name = "琼霄娘娘"
@@ -47,87 +46,90 @@ func monster_1407():
 	self.has_summoned_1404 = false
 
 	self.objattackDic["hit1"] = {
-		"power": 850, 
-		"hurtBack": [-4, -7], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 850,
+		"hurtBack": [-4, -7],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 
 	self.objattackDic["hit2"] = {
-		"power": 900, 
-		"hurtBack": [0, -100], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 900,
+		"hurtBack": [0, -100],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2_1"] = {
-		"power": 860, 
-		"hurtBack": [-30, 0], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "lpzbuff", 
-			"AddTime": 10, 
-			"ReduceInterval": 0, 
-			"value": 0.2, 
-			"CanAdd": true, 
-			"CanRemove": false, 
-			"AttackKind": "", 
+		"power": 860,
+		"hurtBack": [-30, 0],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "lpzbuff",
+			"AddTime": 10,
+			"ReduceInterval": 0,
+			"value": 0.2,
+			"CanAdd": true,
+			"CanRemove": false,
+			"AttackKind": "",
 		}
 	}
 	self.objattackDic["hit3"] = {
-		"power": 950, 
-		"hurtBack": [-4, -7], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 3, 
-			"ReduceInterval": 0.61, 
-			"value": 0.3, 
-			"AttackKind": "magic", 
-			"CanAdd": true, 
-			"DeBuff": true, 
+		"power": 950,
+		"hurtBack": [-4, -7],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 3,
+			"ReduceInterval": 0.61,
+			"value": 0.3,
+			"AttackKind": "magic",
+			"CanAdd": true,
+			"DeBuff": true,
 		}
 	}
 
 	self.objattackDic["hit4"] = {
-		"power": 950, 
-		"hurtBack": [-4, -7], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "DefeReduce", 
-			"AddTime": 5, 
-			"ReduceInterval": 0, 
-			"value": 0.2, 
-			"AttackKind": "", 
-			"CanAdd": true, 
-			"DeBuff": true, 
-		}, 
+		"power": 950,
+		"hurtBack": [-4, -7],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "DefeReduce",
+			"AddTime": 5,
+			"ReduceInterval": 0,
+			"value": 0.2,
+			"AttackKind": "",
+			"CanAdd": true,
+			"DeBuff": true,
+		},
 	}
 
 	self.objattackDic["hit5"] = {
-		"power": 250, 
-		"hurtBack": [-2, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 250,
+		"hurtBack": [-2, -1],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 
 	self.fall_pro = 0.4
 	self.fall_list = [
-		{"name": "bxhyzzs", "value": 1}, 
+		{"name": "bxhyzzs", "value": 1},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = [
-		{"name": "sichou", "value": randi_range(1, 2)}, 
-		{"name": "xuantie", "value": randi_range(1, 2)}, 
-		{"name": "tanmu", "value": randi_range(1, 2)}, 
+		{"name": "sichou", "value": randi_range(1, 2)},
+		{"name": "xuantie", "value": randi_range(1, 2)},
+		{"name": "tanmu", "value": randi_range(1, 2)},
 	]
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_1407()
-
 
 	Skill_1_CD = 3
 	Skill_2_CD = 10
@@ -136,9 +138,7 @@ func _ready() -> void :
 	Skill_5_CD = 25
 
 
-
 func Monster_Intelligence():
-
 	if MyChild != null:
 		Count += 1
 		if Count >= 900:
@@ -158,9 +158,7 @@ func Monster_Intelligence():
 
 		var distance_to_player = abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
 
-
 		if distance_to_player < attackRange:
-
 			if Skill_2_CD <= 0:
 				do_hit_2_1()
 			elif Skill_1_CD <= 0:
@@ -174,7 +172,6 @@ func Monster_Intelligence():
 			else:
 				normal_state()
 		else:
-
 			have_target()
 			if Skill_3_CD <= 0:
 				do_hit_3()
@@ -187,14 +184,10 @@ func Monster_Intelligence():
 			elif Skill_5_CD <= 0:
 				do_hit_5()
 			else:
-
 				have_target()
 
 
-
-
 func do_hit_1():
-
 	if is_attacking or is_special_combo:
 		return
 
@@ -208,8 +201,8 @@ func do_hit_1():
 	is_attacking = false
 	stop_move()
 
-func do_hit_2_1():
 
+func do_hit_2_1():
 	if is_attacking or is_special_combo:
 		return
 
@@ -219,29 +212,23 @@ func do_hit_2_1():
 	velocity.x = 0
 	velocity.y = 0
 
-
 	is_attacking = true
 	is_special_combo = true
-
 
 	var attack_times = randi_range(2, 5)
 
 	for i in range(attack_times):
-
 		if is_ice or is_sleep or is_stun:
-
 			break
 
 		mr_player.play("hit2_1")
 		await mr_player.animation_finished
 
-
 	if not (is_ice or is_sleep or is_stun):
-
 		do_hit_2()
 
-
 	is_special_combo = false
+
 
 func do_hit_2():
 	super.to_hero()
@@ -254,8 +241,8 @@ func do_hit_2():
 	is_attacking = false
 	stop_move()
 
-func do_hit_3():
 
+func do_hit_3():
 	if is_attacking or is_special_combo:
 		return
 
@@ -265,20 +252,18 @@ func do_hit_3():
 	velocity.x = 0
 	velocity.y = 0
 
-
 	is_attacking = true
 	is_special_combo = true
 
 	mr_player.play("hit3")
 	await mr_player.animation_finished
 
-
 	is_attacking = false
 	is_special_combo = false
 	stop_move()
 
-func do_hit_4():
 
+func do_hit_4():
 	if is_attacking or is_special_combo:
 		return
 	super.to_hero()
@@ -291,8 +276,8 @@ func do_hit_4():
 	is_attacking = false
 	stop_move()
 
-func do_hit_5():
 
+func do_hit_5():
 	if is_attacking or is_special_combo:
 		return
 	super.to_hero()
@@ -305,52 +290,50 @@ func do_hit_5():
 	is_attacking = false
 	stop_move()
 
+
 func CallBullet1():
 	for i in range(3):
 		if i > 0:
 			await get_tree().create_timer(0.3).timeout
 		var Bullets = Global.add_Bullet(
-			"Monster1407Bullet1", 
-			self.bullet, 
-			false, 
-			1.5, 
-			position, 
-			"hit1", 
-			self.objattackDic["hit1"]
+			"Monster1407Bullet1", self.bullet, false, 1.5, position, "hit1", self.objattackDic["hit1"]
 		)
 		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+
 
 func CallBullet3():
 	for i in range(1):
-
-
 		var Bullets = Global.add_Bullet(
-			"Monster1407Bullet3", 
-			self.bullet, 
-			false, 
-			1.5, 
-			position, 
-			"hit3", 
-			self.objattackDic["hit3"]
+			"Monster1407Bullet3", self.bullet, false, 1.5, position, "hit3", self.objattackDic["hit3"]
 		)
 		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
+
 func CallBullet4():
 	for i in range(5):
-		var is_left = (i % 2 == 0)
+		var is_left = i % 2 == 0
 		var x_offset = randi_range(0, 200)
 		var spawn_position = Vector2(
-			RoleProp.get_nearest_monster_target_position(global_position).x - x_offset if is_left else position.x + x_offset, 
+			(
+				RoleProp.get_nearest_monster_target_position(global_position).x - x_offset
+				if is_left
+				else position.x + x_offset
+			),
 			RoleProp.get_nearest_monster_target_position(global_position).y - 100
 		)
 
-		var bullet = Global.add_Bullet("Monster1407Bullet4", self.bullet, false, 1, spawn_position, "hit4", self.objattackDic["hit4"])
+		var bullet = Global.add_Bullet(
+			"Monster1407Bullet4", self.bullet, false, 1, spawn_position, "hit4", self.objattackDic["hit4"]
+		)
 		if i < 9:
 			await get_tree().create_timer(0.5, false).timeout
 
+
 func CallBullet5():
 	if MyChild == null:
-		MyChild = Global.add_Bullet("Monster1407Bullet5", self.bullet, false, 1, Vector2(500, -270), "hit5", self.objattackDic["hit5"])
+		MyChild = Global.add_Bullet(
+			"Monster1407Bullet5", self.bullet, false, 1, Vector2(500, -270), "hit5", self.objattackDic["hit5"]
+		)
 		Count = 0
 
 
@@ -361,11 +344,14 @@ func MovePlayer2():
 	var offset = 100
 
 	if alternate_side:
-
-		self.position = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + offset, RoleProp.get_nearest_monster_target_position(global_position).y)
+		self.position = Vector2(
+			RoleProp.get_nearest_monster_target_position(global_position).x + offset,
+			RoleProp.get_nearest_monster_target_position(global_position).y
+		)
 	else:
-
-		self.position = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x - offset, RoleProp.get_nearest_monster_target_position(global_position).y)
-
+		self.position = Vector2(
+			RoleProp.get_nearest_monster_target_position(global_position).x - offset,
+			RoleProp.get_nearest_monster_target_position(global_position).y
+		)
 
 	alternate_side = not alternate_side

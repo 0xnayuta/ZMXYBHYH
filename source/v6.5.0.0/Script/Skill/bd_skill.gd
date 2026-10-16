@@ -1,56 +1,58 @@
 extends MarginContainer
-@onready var C_name_1 = $HBoxContainer / Current_e / name_1
-@onready var C_name_2 = $HBoxContainer / Current_e / name_2
-@onready var C_name_3 = $HBoxContainer / Current_e / name_3
-@onready var C_name_4 = $HBoxContainer / Current_e / name_4
-@onready var C_name_5 = $HBoxContainer / Current_e / name_5
-@onready var C_name_6 = $HBoxContainer / Current_e / name_6
-@onready var C_name_7 = $HBoxContainer / Current_e / name_7
-@onready var N_name_1 = $HBoxContainer / Next_e / name_1
-@onready var N_name_2 = $HBoxContainer / Next_e / name_2
-@onready var N_name_3 = $HBoxContainer / Next_e / name_3
-@onready var N_name_4 = $HBoxContainer / Next_e / name_4
-@onready var N_name_5 = $HBoxContainer / Next_e / name_5
-@onready var N_name_6 = $HBoxContainer / Next_e / name_6
-@onready var N_name_7 = $HBoxContainer / Next_e / name_7
-@onready var L_name_1 = $HBoxContainer / NeedLh / name_1
-@onready var L_name_2 = $HBoxContainer / NeedLh / name_2
-@onready var L_name_3 = $HBoxContainer / NeedLh / name_3
-@onready var L_name_4 = $HBoxContainer / NeedLh / name_4
-@onready var L_name_5 = $HBoxContainer / NeedLh / name_5
-@onready var L_name_6 = $HBoxContainer / NeedLh / name_6
-@onready var L_name_7 = $HBoxContainer / NeedLh / name_7
-@onready var one_key_upgrade_button: = $HBoxContainer / Up_level / OneKeyUpgradeButton as Button
+@onready var C_name_1 = $HBoxContainer/Current_e/name_1
+@onready var C_name_2 = $HBoxContainer/Current_e/name_2
+@onready var C_name_3 = $HBoxContainer/Current_e/name_3
+@onready var C_name_4 = $HBoxContainer/Current_e/name_4
+@onready var C_name_5 = $HBoxContainer/Current_e/name_5
+@onready var C_name_6 = $HBoxContainer/Current_e/name_6
+@onready var C_name_7 = $HBoxContainer/Current_e/name_7
+@onready var N_name_1 = $HBoxContainer/Next_e/name_1
+@onready var N_name_2 = $HBoxContainer/Next_e/name_2
+@onready var N_name_3 = $HBoxContainer/Next_e/name_3
+@onready var N_name_4 = $HBoxContainer/Next_e/name_4
+@onready var N_name_5 = $HBoxContainer/Next_e/name_5
+@onready var N_name_6 = $HBoxContainer/Next_e/name_6
+@onready var N_name_7 = $HBoxContainer/Next_e/name_7
+@onready var L_name_1 = $HBoxContainer/NeedLh/name_1
+@onready var L_name_2 = $HBoxContainer/NeedLh/name_2
+@onready var L_name_3 = $HBoxContainer/NeedLh/name_3
+@onready var L_name_4 = $HBoxContainer/NeedLh/name_4
+@onready var L_name_5 = $HBoxContainer/NeedLh/name_5
+@onready var L_name_6 = $HBoxContainer/NeedLh/name_6
+@onready var L_name_7 = $HBoxContainer/NeedLh/name_7
+@onready var one_key_upgrade_button := $HBoxContainer/Up_level/OneKeyUpgradeButton as Button
 
-const TABLE_ROW_HEIGHT: = 34.0
-const PASSIVE_SKILL_NAMES: = ["热血", "魔泉", "狂暴", "永恒", "辉煌", "敏锐", "收益"]
-const TABLE_COLUMN_WIDTHS: = {
-	"Skill_Name": 100.0, 
-	"Current_e": 210.0, 
-	"Next_e": 210.0, 
-	"NeedLh": 120.0, 
-	"Up_level": 120.0, 
+const TABLE_ROW_HEIGHT := 34.0
+const PASSIVE_SKILL_NAMES := ["热血", "魔泉", "狂暴", "永恒", "辉煌", "敏锐", "收益"]
+const TABLE_COLUMN_WIDTHS := {
+	"Skill_Name": 100.0,
+	"Current_e": 210.0,
+	"Next_e": 210.0,
+	"NeedLh": 120.0,
+	"Up_level": 120.0,
 }
-const PASSIVE_HOLD_DELAY: = 2.0
-const PASSIVE_REPEAT_INTERVAL: = 0.12
+const PASSIVE_HOLD_DELAY := 2.0
+const PASSIVE_REPEAT_INTERVAL := 0.12
 var _passive_hold_button: BaseButton = null
-var _passive_hold_skill: = ""
-var _passive_hold_elapsed: = 0.0
-var _passive_repeat_elapsed: = 0.0
-var _passive_repeating: = false
-var _passive_suppress_click_skill: = ""
+var _passive_hold_skill := ""
+var _passive_hold_elapsed := 0.0
+var _passive_repeat_elapsed := 0.0
+var _passive_repeating := false
+var _passive_suppress_click_skill := ""
 
-func _ready() -> void :
+
+func _ready() -> void:
 	PlayerData.ensure_player_passive_skills()
 	_apply_table_layout()
 	for index in range(1, 8):
-		var button: = get_node_or_null("HBoxContainer/Up_level/up_%d" % index) as BaseButton
+		var button := get_node_or_null("HBoxContainer/Up_level/up_%d" % index) as BaseButton
 		if button != null:
 			button.button_down.connect(_on_passive_button_down.bind(button, _passive_skill_name(index)))
 			button.button_up.connect(_on_passive_button_up.bind(button))
 	set_infor()
 
-func _process(delta: float) -> void :
+
+func _process(delta: float) -> void:
 	if _passive_hold_button == null:
 		return
 	if not is_instance_valid(_passive_hold_button):
@@ -76,10 +78,12 @@ func _process(delta: float) -> void :
 	if not _upgrade_passive_for_hold(_passive_hold_skill):
 		_on_passive_button_up(_passive_hold_button)
 
+
 func _passive_skill_name(index: int) -> String:
 	return PASSIVE_SKILL_NAMES[index - 1]
 
-func _on_passive_button_down(button: BaseButton, skill_name: String) -> void :
+
+func _on_passive_button_down(button: BaseButton, skill_name: String) -> void:
 	_passive_hold_button = button
 	_passive_hold_skill = skill_name
 	_passive_hold_elapsed = 0.0
@@ -87,11 +91,12 @@ func _on_passive_button_down(button: BaseButton, skill_name: String) -> void :
 	_passive_repeating = false
 	_passive_suppress_click_skill = ""
 
-func _on_passive_button_up(button: BaseButton) -> void :
+
+func _on_passive_button_up(button: BaseButton) -> void:
 	if button != _passive_hold_button:
 		return
-	var was_repeating: = _passive_repeating
-	var released_skill: = _passive_hold_skill
+	var was_repeating := _passive_repeating
+	var released_skill := _passive_hold_skill
 	_passive_hold_button = null
 	_passive_hold_skill = ""
 	_passive_hold_elapsed = 0.0
@@ -100,13 +105,15 @@ func _on_passive_button_up(button: BaseButton) -> void :
 	if was_repeating:
 		_passive_suppress_click_skill = released_skill
 
+
 func _upgrade_passive_for_hold(skill_name: String) -> bool:
-	var upgraded: = up_level(skill_name)
+	var upgraded := up_level(skill_name)
 	if upgraded:
 		MemoryClass.保存游戏(Global.cd_path)
 	return upgraded
 
-func _apply_table_layout() -> void :
+
+func _apply_table_layout() -> void:
 	$HBoxContainer.add_theme_constant_override("separation", 0)
 	for column_name in TABLE_COLUMN_WIDTHS.keys():
 		var column = $HBoxContainer.get_node(str(column_name))
@@ -117,9 +124,11 @@ func _apply_table_layout() -> void :
 				child.custom_minimum_size.y = TABLE_ROW_HEIGHT
 				child.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 
+
 func get_current_max_level() -> int:
 	var role_level = int(PlayerData.player_data.get("玩家等级", RoleProp.baseroleprop.get("Level", 1)))
 	return PaSkill.get_unlocked_level(role_level)
+
 
 func set_infor():
 	var target = PlayerData.player_data["被动技能"]
@@ -189,22 +198,24 @@ func set_infor():
 	L_name_6.text = str(PaSkill.get_lh("敏锐"))
 	L_name_7.text = str(PaSkill.get_lh("收益"))
 	if one_key_upgrade_button != null:
-		var max_level: = get_current_max_level()
-		one_key_upgrade_button.disabled = PASSIVE_SKILL_NAMES.all( func(skill_name): return int(target.get(skill_name, 0)) >= max_level)
+		var max_level := get_current_max_level()
+		one_key_upgrade_button.disabled = PASSIVE_SKILL_NAMES.all(
+			func(skill_name): return int(target.get(skill_name, 0)) >= max_level
+		)
 
 
 func _upgrade_all_passives() -> int:
 	PlayerData.ensure_player_passive_skills()
 	var target: Dictionary = PlayerData.player_data["被动技能"]
-	var max_level: = get_current_max_level()
-	var upgraded_count: = 0
+	var max_level := get_current_max_level()
+	var upgraded_count := 0
 	while true:
-		var upgraded_this_round: = false
+		var upgraded_this_round := false
 		for skill_name in PASSIVE_SKILL_NAMES:
-			var level: = int(target.get(skill_name, 0))
+			var level := int(target.get(skill_name, 0))
 			if level >= max_level:
 				continue
-			var cost: = int(PaSkill.get_lh(skill_name))
+			var cost := int(PaSkill.get_lh(skill_name))
 			if PlayerData.get_soul() < cost:
 				continue
 			PlayerData.spend_soul(cost)
@@ -216,8 +227,8 @@ func _upgrade_all_passives() -> int:
 	return upgraded_count
 
 
-func _on_one_key_upgrade_pressed() -> void :
-	var upgraded_count: = _upgrade_all_passives()
+func _on_one_key_upgrade_pressed() -> void:
+	var upgraded_count := _upgrade_all_passives()
 	set_infor()
 	if upgraded_count <= 0:
 		Global.add_moment_text(get_parent(), Vector2.ZERO, "灵魂不足或已达当前等级上限", 1)
@@ -225,6 +236,7 @@ func _on_one_key_upgrade_pressed() -> void :
 	if Global.cd_path != null and not str(Global.cd_path).is_empty():
 		MemoryClass.保存游戏(Global.cd_path)
 	Global.add_moment_text(get_parent(), Vector2.ZERO, "一键升级完成，共提升%d级" % upgraded_count, 1)
+
 
 func up_level(name_) -> bool:
 	PlayerData.ensure_player_passive_skills()
@@ -244,49 +256,55 @@ func up_level(name_) -> bool:
 	return false
 
 
-func _on_up_1_pressed() -> void :
+func _on_up_1_pressed() -> void:
 	if _passive_suppress_click_skill == "热血":
 		_passive_suppress_click_skill = ""
 		return
 	up_level("热血")
 	MemoryClass.保存游戏(Global.cd_path)
 
-func _on_up_2_pressed() -> void :
+
+func _on_up_2_pressed() -> void:
 	if _passive_suppress_click_skill == "魔泉":
 		_passive_suppress_click_skill = ""
 		return
 	up_level("魔泉")
 	MemoryClass.保存游戏(Global.cd_path)
 
-func _on_up_3_pressed() -> void :
+
+func _on_up_3_pressed() -> void:
 	if _passive_suppress_click_skill == "狂暴":
 		_passive_suppress_click_skill = ""
 		return
 	up_level("狂暴")
 	MemoryClass.保存游戏(Global.cd_path)
 
-func _on_up_4_pressed() -> void :
+
+func _on_up_4_pressed() -> void:
 	if _passive_suppress_click_skill == "永恒":
 		_passive_suppress_click_skill = ""
 		return
 	up_level("永恒")
 	MemoryClass.保存游戏(Global.cd_path)
 
-func _on_up_5_pressed() -> void :
+
+func _on_up_5_pressed() -> void:
 	if _passive_suppress_click_skill == "辉煌":
 		_passive_suppress_click_skill = ""
 		return
 	up_level("辉煌")
 	MemoryClass.保存游戏(Global.cd_path)
 
-func _on_up_6_pressed() -> void :
+
+func _on_up_6_pressed() -> void:
 	if _passive_suppress_click_skill == "敏锐":
 		_passive_suppress_click_skill = ""
 		return
 	up_level("敏锐")
 	MemoryClass.保存游戏(Global.cd_path)
 
-func _on_up_7_pressed() -> void :
+
+func _on_up_7_pressed() -> void:
 	if _passive_suppress_click_skill == "收益":
 		_passive_suppress_click_skill = ""
 		return

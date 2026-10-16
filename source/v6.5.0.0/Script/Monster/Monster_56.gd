@@ -1,14 +1,38 @@
 extends BaseMonster
 class_name Monster56
-@onready var zlw_special_effect_2: Node2D = $MonsterDir / zlwSpecialEffect_2
+@onready var zlw_special_effect_2: Node2D = $MonsterDir/zlwSpecialEffect_2
 var Boss_4
 var RoundList = []
-var RoundPosition = [Vector2(-390, 305), Vector2(-280, 305), Vector2(-170, 305), Vector2(-60, 305), 
-Vector2(50, 305), Vector2(160, 305), Vector2(270, 305), Vector2(380, 305)]
-var RoundPosition_2 = [Vector2(-390, 305), Vector2(-280, 305), Vector2(-170, 305), Vector2(-60, 305), 
-Vector2(50, 305), Vector2(160, 305), Vector2(270, 305), Vector2(380, 305)]
-var JGPP = [Vector2(-370, 325), Vector2(-255, 325), Vector2(-140, 325), Vector2(-25, 325), 
-Vector2(90, 325), Vector2(200, 325), Vector2(310, 325), Vector2(425, 325)]
+var RoundPosition = [
+	Vector2(-390, 305),
+	Vector2(-280, 305),
+	Vector2(-170, 305),
+	Vector2(-60, 305),
+	Vector2(50, 305),
+	Vector2(160, 305),
+	Vector2(270, 305),
+	Vector2(380, 305)
+]
+var RoundPosition_2 = [
+	Vector2(-390, 305),
+	Vector2(-280, 305),
+	Vector2(-170, 305),
+	Vector2(-60, 305),
+	Vector2(50, 305),
+	Vector2(160, 305),
+	Vector2(270, 305),
+	Vector2(380, 305)
+]
+var JGPP = [
+	Vector2(-370, 325),
+	Vector2(-255, 325),
+	Vector2(-140, 325),
+	Vector2(-25, 325),
+	Vector2(90, 325),
+	Vector2(200, 325),
+	Vector2(310, 325),
+	Vector2(425, 325)
+]
 var IdxList = [0, 1, 2, 3, 4, 5, 6, 7]
 var CurrentRound: int = 8
 var Throw = true
@@ -48,33 +72,16 @@ func monster_56():
 		self.self_rhp = 1000
 		self.add_exp = 0
 		self.fall_coin = 0
-		self.objattackDic["hit1"] = {
-			"power": 200 * poweradd, 
-			"hurtBack": [-1, 0], 
-			"attackKind": "magic"
-		}
-		self.objattackDic["hit2"] = {
-			"power": 200 * poweradd, 
-			"hurtBack": [-1, -25], 
-			"attackKind": "magic"
-		}
+		self.objattackDic["hit1"] = {"power": 200 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
+		self.objattackDic["hit2"] = {"power": 200 * poweradd, "hurtBack": [-1, -25], "attackKind": "magic"}
 		self.fall_pro = 0.5
 		self.fall_list = [
-			{
-				"name": "zlwdahsp1", 
-				"value": 3
-			}, 
-			{
-				"name": "zlwdahsp2", 
-				"value": 3
-			}, 
+			{"name": "zlwdahsp1", "value": 3},
+			{"name": "zlwdahsp2", "value": 3},
 		]
 		self.fall_stone_pro = 0.5
 		self.fall_stone = [
-			{
-				"name": "putongzlwsz", 
-				"value": 0
-			}, 
+			{"name": "putongzlwsz", "value": 0},
 		]
 		return
 	self.is_boss = true
@@ -102,39 +109,16 @@ func monster_56():
 	self.self_rhp = 1000
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
-		"power": 200 * poweradd, 
-		"hurtBack": [-1, 0], 
-		"attackKind": "magic"
-	}
-	self.objattackDic["hit2"] = {
-		"power": 200 * poweradd, 
-		"hurtBack": [-1, -25], 
-		"attackKind": "magic"
-	}
+	self.objattackDic["hit1"] = {"power": 200 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
+	self.objattackDic["hit2"] = {"power": 200 * poweradd, "hurtBack": [-1, -25], "attackKind": "magic"}
 
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "xyq", 
-			"value": 0
-		}, 
-		{
-			"name": "syc", 
-			"value": 0
-		}, 
-		{
-			"name": "nyd", 
-			"value": 0
-		}, 
-		{
-			"name": "myz", 
-			"value": 0
-		}, 
-		{
-			"name": "shyc", 
-			"value": 0
-		}
+		{"name": "xyq", "value": 0},
+		{"name": "syc", "value": 0},
+		{"name": "nyd", "value": 0},
+		{"name": "myz", "value": 0},
+		{"name": "shyc", "value": 0}
 	]
 
 	enable_treasure_box = true
@@ -143,20 +127,17 @@ func monster_56():
 	update_fall_mode()
 	self.fall_stone_pro = 0.6
 	self.fall_stone = [
-		{
-			"name": "ttlp2", 
-			"value": 1
-		}, 
+		{"name": "ttlp2", "value": 1},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	Skill_1_CD = 4
 	super._ready()
 	monster_56()
-func _physics_process(delta: float) -> void :
 
 
-
-
+func _physics_process(delta: float) -> void:
 	if get_parent().get_parent() is LevelZLDHDGQ:
 		if Hp <= 0:
 			if Boss_4 == null:
@@ -165,10 +146,10 @@ func _physics_process(delta: float) -> void :
 		velocity.y = 0
 	velocity.x = 0
 	super._physics_process(delta)
+
+
 func Monster_Intelligence():
-
 	if not Call_stage:
-
 		var pp = get_parent().get_parent()
 		if not pp is Lhhj and not pp is LevelZLDHDGQ:
 			Global.addZLw_stage(pp, Vector2(815, 210), 1, 1, 2060, true)
@@ -176,59 +157,32 @@ func Monster_Intelligence():
 		Call_stage = true
 	if Hp <= SHp and Hp > SHp * 0.8:
 		throw_cout = 1
-		self.objattackDic["hit1"] = {
-			"power": 200 * poweradd, 
-			"hurtBack": [-1, 0], 
-			"attackKind": "magic"
-		}
-		self.objattackDic["hit2"] = {
-			"power": 90 * poweradd, 
-			"hurtBack": [-1, -5], 
-			"attackKind": "magic"
-		}
+		self.objattackDic["hit1"] = {"power": 200 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
+		self.objattackDic["hit2"] = {"power": 90 * poweradd, "hurtBack": [-1, -5], "attackKind": "magic"}
 	if Hp <= SHp * 0.8 and Hp > SHp * 0.6:
 		throw_cout = 2
-		self.objattackDic["hit1"] = {
-			"power": 500 * poweradd, 
-			"hurtBack": [-1, 0], 
-			"attackKind": "magic"
-		}
-		self.objattackDic["hit2"] = {
-			"power": 300 * poweradd, 
-			"hurtBack": [-1, -10], 
-			"attackKind": "magic"
-		}
+		self.objattackDic["hit1"] = {"power": 500 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
+		self.objattackDic["hit2"] = {"power": 300 * poweradd, "hurtBack": [-1, -10], "attackKind": "magic"}
 	if Hp <= SHp * 0.6 and Hp > SHp * 0.4:
 		throw_cout = 3
-		self.objattackDic["hit1"] = {
-			"power": 900 * poweradd, 
-			"hurtBack": [-1, 0], 
-			"attackKind": "magic"
-		}
-		self.objattackDic["hit2"] = {
-			"power": 500 * poweradd, 
-			"hurtBack": [-1, -15], 
-			"attackKind": "magic"
-		}
+		self.objattackDic["hit1"] = {"power": 900 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
+		self.objattackDic["hit2"] = {"power": 500 * poweradd, "hurtBack": [-1, -15], "attackKind": "magic"}
 	if Hp <= SHp * 0.4:
 		throw_cout = 4
-		self.objattackDic["hit1"] = {
-			"power": 1500 * poweradd, 
-			"hurtBack": [-1, 0], 
-			"attackKind": "magic"
-		}
+		self.objattackDic["hit1"] = {"power": 1500 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
 		self.objattackDic["hit2"] = {
-			"power": 700 * poweradd, 
-			"hurtBack": [-1, -25], 
-			"attackKind": "magic", 
-			"addeffect": {
-				"Name": "speed_down", 
-				"AddTime": 3, 
-				"ReduceInterval": 0, 
-				"value": 0.45, 
-				"DeBuff": true, 
-				"AttackKind": "", 
-				"CanAdd": false, 
+			"power": 700 * poweradd,
+			"hurtBack": [-1, -25],
+			"attackKind": "magic",
+			"addeffect":
+			{
+				"Name": "speed_down",
+				"AddTime": 3,
+				"ReduceInterval": 0,
+				"value": 0.45,
+				"DeBuff": true,
+				"AttackKind": "",
+				"CanAdd": false,
 			}
 		}
 	if CurrentRound <= 0:
@@ -243,6 +197,8 @@ func Monster_Intelligence():
 	else:
 		if Skill_1_CD <= 0:
 			ReturnAllRound()
+
+
 func ThrowRound(value):
 	isCall = false
 	Skill_1_CD = randi_range(3, 5)
@@ -250,21 +206,17 @@ func ThrowRound(value):
 	var IDxList = [0, 1, 2, 3, 4, 5, 6, 7]
 	var tween = get_tree().create_tween().set_parallel(true)
 
-
 	for u in range(value):
 		if CurrentRound > 0:
 			var Round = Global.add_Bullet(
-				"Monster55Bullet", bullet, false, 1, position, 
-				"hit1", self.objattackDic["hit1"]
+				"Monster55Bullet", bullet, false, 1, position, "hit1", self.objattackDic["hit1"]
 			)
 			RoundList.push_back(Round)
 			CurrentRound -= 1
 
-
 	for idx in range(RoundList.size() - 1, -1, -1):
 		if not is_instance_valid(RoundList[idx]):
 			RoundList.remove_at(idx)
-
 
 	for u in RoundList:
 		if IDxList.size() > 0:
@@ -283,6 +235,7 @@ func ThrowRound(value):
 
 	if CurrentRound <= 0:
 		CurrentRound = 0
+
 
 func ReturnAllRound():
 	Skill_1_CD = randi_range(3, 5)
@@ -305,9 +258,18 @@ func ReturnAllRound():
 	CurrentRound = 8
 	zlw_special_effect_2.CurrentCount = 8
 
+
 func CallJG(lx):
-	JGPP = [Vector2(-370, 325), Vector2(-255, 325), Vector2(-140, 325), Vector2(-25, 325), 
-		Vector2(90, 325), Vector2(200, 325), Vector2(310, 325), Vector2(425, 325)]
+	JGPP = [
+		Vector2(-370, 325),
+		Vector2(-255, 325),
+		Vector2(-140, 325),
+		Vector2(-25, 325),
+		Vector2(90, 325),
+		Vector2(200, 325),
+		Vector2(310, 325),
+		Vector2(425, 325)
+	]
 	var list = []
 	var jg: float
 	match lx:
@@ -318,30 +280,64 @@ func CallJG(lx):
 			list = [Vector2(-370, 325), Vector2(-25, 325), Vector2(90, 325), Vector2(425, 325)]
 			jg = 0.02
 		3:
-			list = [Vector2(-370, 325), Vector2(-255, 325), Vector2(-25, 325), Vector2(90, 325), Vector2(310, 325), Vector2(425, 325)]
+			list = [
+				Vector2(-370, 325),
+				Vector2(-255, 325),
+				Vector2(-25, 325),
+				Vector2(90, 325),
+				Vector2(310, 325),
+				Vector2(425, 325)
+			]
 			jg = 0.02
 		4:
-			list = [Vector2(-255, 325), Vector2(-140, 325), Vector2(-25, 325), 
-				Vector2(90, 325), Vector2(200, 325), Vector2(310, 325), Vector2(425, 325)]
+			list = [
+				Vector2(-255, 325),
+				Vector2(-140, 325),
+				Vector2(-25, 325),
+				Vector2(90, 325),
+				Vector2(200, 325),
+				Vector2(310, 325),
+				Vector2(425, 325)
+			]
 			jg = 0.4
 			list.reverse()
 			for i in list:
 				Global.add_Bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
 				await get_tree().create_timer(jg, false).timeout
 			await get_tree().create_timer(1.8, false).timeout
-			list = [Vector2(-370, 325), Vector2(-255, 325), Vector2(-140, 325), Vector2(-25, 325), 
-				Vector2(90, 325), Vector2(200, 325), Vector2(310, 325)]
+			list = [
+				Vector2(-370, 325),
+				Vector2(-255, 325),
+				Vector2(-140, 325),
+				Vector2(-25, 325),
+				Vector2(90, 325),
+				Vector2(200, 325),
+				Vector2(310, 325)
+			]
 			for i in list:
 				Global.add_Bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
 				await get_tree().create_timer(jg, false).timeout
 			await get_tree().create_timer(1.8, false).timeout
-			list = [Vector2(-370, 325), Vector2(-255, 325), Vector2(-140, 325), Vector2(200, 325), Vector2(310, 325), Vector2(425, 325)]
+			list = [
+				Vector2(-370, 325),
+				Vector2(-255, 325),
+				Vector2(-140, 325),
+				Vector2(200, 325),
+				Vector2(310, 325),
+				Vector2(425, 325)
+			]
 			for i in list:
 				Global.add_Bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
 				await get_tree().create_timer(0, false).timeout
 			await get_tree().create_timer(1.8, false).timeout
-			list = [Vector2(-255, 325), Vector2(-140, 325), Vector2(-25, 325), 
-				Vector2(90, 325), Vector2(200, 325), Vector2(310, 325)]
+			list = [
+				Vector2(-255, 325),
+				Vector2(-140, 325),
+				Vector2(-25, 325),
+				Vector2(90, 325),
+				Vector2(200, 325),
+				Vector2(310, 325)
+			]
 			for i in list:
 				Global.add_Bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
 				await get_tree().create_timer(0, false).timeout
@@ -354,7 +350,15 @@ func CallJG(lx):
 	Throw = true
 	pass
 
-func Otherjg():
 
+func Otherjg():
 	for i in range(randi_range(3, throw_cout * 2)):
-		Global.add_Bullet("Monster56Bullet", bullet, false, 1, Vector2(randi_range(-370, 425), 325) + position, "hit2", self.objattackDic["hit2"])
+		Global.add_Bullet(
+			"Monster56Bullet",
+			bullet,
+			false,
+			1,
+			Vector2(randi_range(-370, 425), 325) + position,
+			"hit2",
+			self.objattackDic["hit2"]
+		)

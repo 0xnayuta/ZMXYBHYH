@@ -2,11 +2,10 @@ extends Node2D
 class_name MonsterBullet
 var _pet_tiger_hit_rect_shape: RectangleShape2D
 @onready var bullet_player: AnimationPlayer = $BulletPlayer
-@onready var bullet_ani: AnimatedSprite2D = $middle / BulletANI
-@onready var hit_box: Area2D = $middle / HitBox
+@onready var bullet_ani: AnimatedSprite2D = $middle/BulletANI
+@onready var hit_box: Area2D = $middle/HitBox
 @onready var queue_timer: Timer = $queue_timer
 @onready var is_throw_close: Timer = $IsThrowClose
-
 
 var bounce_velocity: Vector2 = Vector2.ZERO
 var is_exploding: bool = false
@@ -15,20 +14,17 @@ static var active_1410_bullets: Array[Node] = []
 
 var clone_spawned: bool = false
 
-enum {
-	do, 
-	remove
-}
-enum RuntimeKind{
-	NORMAL, 
-	MONSTER_5, 
-	PET_TIGER, 
-	PET_DRAGON, 
-	PET_PHOENIX, 
-	MONSTER_1410, 
-	MONSTER_90, 
-	MONSTER_101_2, 
-	MONSTER_1407_5, 
+enum { do, remove }
+enum RuntimeKind {
+	NORMAL,
+	MONSTER_5,
+	PET_TIGER,
+	PET_DRAGON,
+	PET_PHOENIX,
+	MONSTER_1410,
+	MONSTER_90,
+	MONSTER_101_2,
+	MONSTER_1407_5,
 }
 var CanCure: bool
 var IsThrow: bool
@@ -83,9 +79,10 @@ static var pet_tiger_timeline_cache: Dictionary = {}
 static var pet_phoenix_frames_cache: Dictionary = {}
 static var pet_phoenix_frame_used_rect_cache: Dictionary = {}
 static var monster5_stream_image_cache: Dictionary = {}
-static var _runtime_cache_generation: = 0
+static var _runtime_cache_generation := 0
 
-static func clear_runtime_resource_caches() -> void :
+
+static func clear_runtime_resource_caches() -> void:
 	_runtime_cache_generation += 1
 	pet_tiger_texture_cache.clear()
 	pet_dragon_texture_cache.clear()
@@ -95,80 +92,82 @@ static func clear_runtime_resource_caches() -> void :
 	pet_phoenix_frame_used_rect_cache.clear()
 	monster5_stream_image_cache.clear()
 
-const PET_TIGER_BULLET_FPS: = 24.0
-const PET_TIGER_EFFECT_DIR: = "res://Art/Monster/PetTigerBoss/effects"
-const PET_TIGER_SHAPE_EFFECT_DIR: = "res://Art/Monster/PetTigerBoss/effects/swf_shapes"
-const PET_DRAGON_EFFECT_DIR: = "res://Art/Pet/PetDragon/effects"
-const PET_PHOENIX_EFFECT_DIR: = "res://Art/Pet/PetPhoenix/effects"
-const PET_PHOENIX_EFFECT_FRAME_COUNTS: = {
-	"PetPhoenix1Bullet1": 15, 
-	"PetPhoenix1Bullet2_1": 25, 
-	"PetPhoenix1Bullet2_2": 30, 
-	"PetPhoenix2Bullet3": 30, 
-	"PetPhoenix3Bullet4": 50, 
-	"PetPhoenix4Bullet3_2": 18, 
-	"PetPhoenix4Bullet5": 22, 
-	"PetPhoenix4Bullet6": 16, 
+
+const PET_TIGER_BULLET_FPS := 24.0
+const PET_TIGER_EFFECT_DIR := "res://Art/Monster/PetTigerBoss/effects"
+const PET_TIGER_SHAPE_EFFECT_DIR := "res://Art/Monster/PetTigerBoss/effects/swf_shapes"
+const PET_DRAGON_EFFECT_DIR := "res://Art/Pet/PetDragon/effects"
+const PET_PHOENIX_EFFECT_DIR := "res://Art/Pet/PetPhoenix/effects"
+const PET_PHOENIX_EFFECT_FRAME_COUNTS := {
+	"PetPhoenix1Bullet1": 15,
+	"PetPhoenix1Bullet2_1": 25,
+	"PetPhoenix1Bullet2_2": 30,
+	"PetPhoenix2Bullet3": 30,
+	"PetPhoenix3Bullet4": 50,
+	"PetPhoenix4Bullet3_2": 18,
+	"PetPhoenix4Bullet5": 22,
+	"PetPhoenix4Bullet6": 16,
 }
-const PET_DRAGON_DASH_DAMAGE_INTERVAL_MS: = 120
-const PET_DRAGON_KNOCKBACK_LOCK_TIME: = 0.16
-const PET_DRAGON_ULTIMATE_DIR: = "res://Art/Pet/PetDragon/effects/PetDragonBullet4Cropped"
-const PET_DRAGON_ULTIMATE_OFFSETS: = [
-		Vector2(-6.5, 0.5), 
-	Vector2(-3.5, 0.5), 
-	Vector2(0.0, 0.5), 
-	Vector2(-0.5, 0.5), 
-	Vector2(-0.5, 0.5), 
-	Vector2(0.0, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-2.0, -0.5), 
-	Vector2(-1.0, -0.5), 
-	Vector2(-2.0, -0.5), 
-	Vector2(0.0, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-6.5, 0.5), 
-	Vector2(-3.5, 0.5), 
-	Vector2(0.0, 0.5), 
-	Vector2(-0.5, 0.5), 
-	Vector2(-0.5, 0.5), 
-	Vector2(0.0, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-2.0, -0.5), 
-	Vector2(-1.0, -0.5), 
-	Vector2(-2.0, -0.5), 
-	Vector2(0.0, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-6.5, 0.5), 
-	Vector2(-3.5, 0.5), 
-	Vector2(0.0, 0.5), 
-	Vector2(-0.5, 0.5), 
-	Vector2(-0.5, 0.5), 
-	Vector2(0.0, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-2.0, -0.5), 
-	Vector2(-1.0, -0.5), 
-	Vector2(-2.0, -0.5), 
-	Vector2(0.0, -0.5), 
-	Vector2(-0.5, -0.5), 
-	Vector2(-6.5, 0.5), 
-	Vector2(-3.5, 0.5), 
+const PET_DRAGON_DASH_DAMAGE_INTERVAL_MS := 120
+const PET_DRAGON_KNOCKBACK_LOCK_TIME := 0.16
+const PET_DRAGON_ULTIMATE_DIR := "res://Art/Pet/PetDragon/effects/PetDragonBullet4Cropped"
+const PET_DRAGON_ULTIMATE_OFFSETS := [
+	Vector2(-6.5, 0.5),
+	Vector2(-3.5, 0.5),
+	Vector2(0.0, 0.5),
+	Vector2(-0.5, 0.5),
+	Vector2(-0.5, 0.5),
+	Vector2(0.0, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-2.0, -0.5),
+	Vector2(-1.0, -0.5),
+	Vector2(-2.0, -0.5),
+	Vector2(0.0, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-6.5, 0.5),
+	Vector2(-3.5, 0.5),
+	Vector2(0.0, 0.5),
+	Vector2(-0.5, 0.5),
+	Vector2(-0.5, 0.5),
+	Vector2(0.0, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-2.0, -0.5),
+	Vector2(-1.0, -0.5),
+	Vector2(-2.0, -0.5),
+	Vector2(0.0, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-6.5, 0.5),
+	Vector2(-3.5, 0.5),
+	Vector2(0.0, 0.5),
+	Vector2(-0.5, 0.5),
+	Vector2(-0.5, 0.5),
+	Vector2(0.0, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-2.0, -0.5),
+	Vector2(-1.0, -0.5),
+	Vector2(-2.0, -0.5),
+	Vector2(0.0, -0.5),
+	Vector2(-0.5, -0.5),
+	Vector2(-6.5, 0.5),
+	Vector2(-3.5, 0.5),
 	Vector2(0.0, 0.5)
 ]
 
-static func warm_pet_dragon_ultimate_frames() -> void :
-	var generation: = _runtime_cache_generation
-	var tree: = Engine.get_main_loop() as SceneTree
+
+static func warm_pet_dragon_ultimate_frames() -> void:
+	var generation := _runtime_cache_generation
+	var tree := Engine.get_main_loop() as SceneTree
 	for frame_index in range(48):
-		var path: = "%s/%d.png" % [PET_DRAGON_ULTIMATE_DIR, frame_index + 1]
+		var path := "%s/%d.png" % [PET_DRAGON_ULTIMATE_DIR, frame_index + 1]
 		if not pet_dragon_texture_cache.has(path):
 			pet_dragon_texture_cache[path] = Global.get_cached_texture(path)
 		if tree != null:
@@ -176,36 +175,41 @@ static func warm_pet_dragon_ultimate_frames() -> void :
 			if generation != _runtime_cache_generation:
 				return
 
-const MONSTER5_BULLET_FPS: = 25.0
-const MONSTER5_BULLET_FRAME_COUNT: = 40
-const MONSTER5_BULLET_FRAME_SIZE: = Vector2(1219, 609)
-const MONSTER5_BULLET_DIR: = "res://Art/Monster/Monster5"
+
+const MONSTER5_BULLET_FPS := 25.0
+const MONSTER5_BULLET_FRAME_COUNT := 40
+const MONSTER5_BULLET_FRAME_SIZE := Vector2(1219, 609)
+const MONSTER5_BULLET_DIR := "res://Art/Monster/Monster5"
 const MONSTER5_BULLET_SHEETS: Array[Texture2D] = [
-	preload("res://Art/Monster/Monster5/SpecialEffect2-0.png"), 
-	preload("res://Art/Monster/Monster5/SpecialEffect2-1.png"), 
-	preload("res://Art/Monster/Monster5/SpecialEffect2-2.png"), 
-	preload("res://Art/Monster/Monster5/SpecialEffect2-3.png"), 
-	preload("res://Art/Monster/Monster5/SpecialEffect2-4.png"), 
-	preload("res://Art/Monster/Monster5/SpecialEffect2-5.png"), 
-	preload("res://Art/Monster/Monster5/SpecialEffect2-6.png"), 
-	preload("res://Art/Monster/Monster5/SpecialEffect2-7.png"), 
-	preload("res://Art/Monster/Monster5/SpecialEffect2-8.png"), 
-	preload("res://Art/Monster/Monster5/SpecialEffect2-9.png"), 
-	preload("res://Art/Monster/Monster5/SpecialEffect2-10.png"), 
-	preload("res://Art/Monster/Monster5/SpecialEffect2-11.png"), 
+	preload("res://Art/Monster/Monster5/SpecialEffect2-0.png"),
+	preload("res://Art/Monster/Monster5/SpecialEffect2-1.png"),
+	preload("res://Art/Monster/Monster5/SpecialEffect2-2.png"),
+	preload("res://Art/Monster/Monster5/SpecialEffect2-3.png"),
+	preload("res://Art/Monster/Monster5/SpecialEffect2-4.png"),
+	preload("res://Art/Monster/Monster5/SpecialEffect2-5.png"),
+	preload("res://Art/Monster/Monster5/SpecialEffect2-6.png"),
+	preload("res://Art/Monster/Monster5/SpecialEffect2-7.png"),
+	preload("res://Art/Monster/Monster5/SpecialEffect2-8.png"),
+	preload("res://Art/Monster/Monster5/SpecialEffect2-9.png"),
+	preload("res://Art/Monster/Monster5/SpecialEffect2-10.png"),
+	preload("res://Art/Monster/Monster5/SpecialEffect2-11.png"),
 ]
-const STREAMED_BULLET_MANIFESTS: = {
-	"Monster_61Bullet": ["res://Art/Monster/Monster_61-00/Skill_3Effect2/atlas/manifest.json", "Monster_61Bullet"], 
-	"Monster114Bullet3": ["res://Art/Monster/Game3_SpecialEffect/Monster_5/atlas/Monster114Bullet3/manifest.json", "Monster114Bullet3"], 
-	"Monster18Bullet_2": ["res://Art/Monster/Monster_18/Bullet/atlas/Monster18Bullet_2/manifest.json", "Monster18Bullet_2"], 
-	"Monster103Bullet1": ["res://Art/Monster/Game3_SpecialEffect/Monster_4/atlas/Monster103Bullet1/manifest.json", "Monster103Bullet1"], 
-	"Monster61Bullet3": ["res://Art/Monster/Monster_61/atlas/Monster61Bullet3/manifest.json", "Monster61bull3"], 
+const STREAMED_BULLET_MANIFESTS := {
+	"Monster_61Bullet": ["res://Art/Monster/Monster_61-00/Skill_3Effect2/atlas/manifest.json", "Monster_61Bullet"],
+	"Monster114Bullet3":
+	["res://Art/Monster/Game3_SpecialEffect/Monster_5/atlas/Monster114Bullet3/manifest.json", "Monster114Bullet3"],
+	"Monster18Bullet_2":
+	["res://Art/Monster/Monster_18/Bullet/atlas/Monster18Bullet_2/manifest.json", "Monster18Bullet_2"],
+	"Monster103Bullet1":
+	["res://Art/Monster/Game3_SpecialEffect/Monster_4/atlas/Monster103Bullet1/manifest.json", "Monster103Bullet1"],
+	"Monster61Bullet3": ["res://Art/Monster/Monster_61/atlas/Monster61Bullet3/manifest.json", "Monster61bull3"],
 }
 
 var pet_dragon_dash_damage_until: Dictionary = {}
 var pet_tiger_timeline: Array = []
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	if bullet_ani != null and is_instance_valid(bullet_ani):
 		bullet_ani.stop()
 		bullet_ani.sprite_frames = null
@@ -225,22 +229,25 @@ func _exit_tree() -> void :
 	if active_1410_bullets.has(self):
 		active_1410_bullets.erase(self)
 
-func _ensure_timer_signals() -> void :
+
+func _ensure_timer_signals() -> void:
 	if queue_timer != null and not queue_timer.timeout.is_connected(_on_queue_timer_timeout):
 		queue_timer.timeout.connect(_on_queue_timer_timeout)
 	if is_throw_close != null and not is_throw_close.timeout.is_connected(_on_is_throw_close_timeout):
 		is_throw_close.timeout.connect(_on_is_throw_close_timeout)
+
 
 func _get_cached_pet_tiger_timeline(name_: String) -> Array:
 	if not pet_tiger_timeline_cache.has(name_):
 		pet_tiger_timeline_cache[name_] = _pet_tiger_bullet_timeline(name_)
 	return pet_tiger_timeline_cache[name_] as Array
 
+
 func _get_cached_pet_bullet_frames(name_: String, frame_paths: Array[String], is_dragon: bool) -> SpriteFrames:
-	var cache_key: = ("dragon:" if is_dragon else "tiger:") + name_
+	var cache_key := ("dragon:" if is_dragon else "tiger:") + name_
 	if pet_bullet_frames_cache.has(cache_key):
 		return pet_bullet_frames_cache[cache_key] as SpriteFrames
-	var frames: = SpriteFrames.new()
+	var frames := SpriteFrames.new()
 	frames.add_animation(name_)
 	frames.set_animation_loop(name_, false)
 	frames.set_animation_speed(name_, PET_TIGER_BULLET_FPS)
@@ -255,17 +262,21 @@ func _get_cached_pet_bullet_frames(name_: String, frame_paths: Array[String], is
 	pet_bullet_frames_cache[cache_key] = frames
 	return frames
 
+
 func _repeat_tiger_bullet_frame(path_: String, count_: int) -> Array[String]:
 	var frames: Array[String] = []
 	for i in count_:
 		frames.append(path_)
 	return frames
 
+
 func _pet_tiger_png(id_: int, symbol_: String) -> String:
 	return "%s/id%d_%s.png" % [PET_TIGER_EFFECT_DIR, id_, symbol_]
 
+
 func _pet_tiger_shape_png(shape_id: int, bitmap_id: int) -> String:
 	return "%s/shape%d_bitmap%d.png" % [PET_TIGER_SHAPE_EFFECT_DIR, shape_id, bitmap_id]
+
 
 func _get_pet_tiger_texture(texture_path: String) -> Texture2D:
 	if texture_path.is_empty():
@@ -274,29 +285,33 @@ func _get_pet_tiger_texture(texture_path: String) -> Texture2D:
 		pet_tiger_texture_cache[texture_path] = Global.get_cached_texture(texture_path)
 	return pet_tiger_texture_cache[texture_path] as Texture2D
 
-static func warm_monster5_stream_images() -> void :
+
+static func warm_monster5_stream_images() -> void:
 	if _has_all_monster5_stream_images():
 		return
 	for sheet_index in range(12):
-		var path: = "%s/SpecialEffect2-%d.png" % [MONSTER5_BULLET_DIR, sheet_index]
-		var texture: = MONSTER5_BULLET_SHEETS[sheet_index]
+		var path := "%s/SpecialEffect2-%d.png" % [MONSTER5_BULLET_DIR, sheet_index]
+		var texture := MONSTER5_BULLET_SHEETS[sheet_index]
 		if texture != null:
 			monster5_stream_image_cache[path] = texture
 
+
 static func _has_all_monster5_stream_images() -> bool:
 	for sheet_index in range(12):
-		var path: = "%s/SpecialEffect2-%d.png" % [MONSTER5_BULLET_DIR, sheet_index]
+		var path := "%s/SpecialEffect2-%d.png" % [MONSTER5_BULLET_DIR, sheet_index]
 		if not monster5_stream_image_cache.has(path):
 			return false
 	return true
 
-static func wait_for_monster5_stream_images() -> void :
+
+static func wait_for_monster5_stream_images() -> void:
 	warm_monster5_stream_images()
 
-static func warm_pet_tiger_textures() -> void :
-	var ids: = [5, 9, 12, 15, 18, 21, 24, 27, 30, 35, 38, 43, 47, 50, 54, 58, 60, 62, 64, 66, 68, 70, 72, 77]
+
+static func warm_pet_tiger_textures() -> void:
+	var ids := [5, 9, 12, 15, 18, 21, 24, 27, 30, 35, 38, 43, 47, 50, 54, 58, 60, 62, 64, 66, 68, 70, 72, 77]
 	for id_ in ids:
-		var path: = ""
+		var path := ""
 		match id_:
 			5:
 				path = "%s/shape6_bitmap5.png" % PET_TIGER_SHAPE_EFFECT_DIR
@@ -355,6 +370,7 @@ static func _pet_dragon_png(name_: String, frame_: int) -> String:
 		frame_ = int(((frame_ - 1) % 10) / 2) * 2 + 1
 	return "%s/%s/%d.png" % [PET_DRAGON_EFFECT_DIR, name_, frame_]
 
+
 func _get_pet_dragon_texture(texture_path: String) -> Texture2D:
 	if texture_path.is_empty():
 		return null
@@ -362,8 +378,9 @@ func _get_pet_dragon_texture(texture_path: String) -> Texture2D:
 		pet_dragon_texture_cache[texture_path] = Global.get_cached_texture(texture_path)
 	return pet_dragon_texture_cache[texture_path] as Texture2D
 
-static func warm_pet_dragon_textures(stage: int = 4) -> void :
-	var generation: = _runtime_cache_generation
+
+static func warm_pet_dragon_textures(stage: int = 4) -> void:
+	var generation := _runtime_cache_generation
 	stage = clampi(stage, 1, 4)
 	var folders: Array[String] = [
 		"PetDragon1Bullet1" if stage == 1 else "PetDragon2Bullet1" if stage == 2 else "PetDragon3Bullet1"
@@ -372,17 +389,17 @@ static func warm_pet_dragon_textures(stage: int = 4) -> void :
 		folders.append("PetDragon2Bullet2")
 	if stage >= 3:
 		folders.append("PetDragon3Bullet3")
-	var tree: = Engine.get_main_loop() as SceneTree
+	var tree := Engine.get_main_loop() as SceneTree
 	for folder in folders:
-		var base: = PET_DRAGON_EFFECT_DIR.path_join(folder)
-		var warmed_paths: = {}
-		var source_paths: = MonsterAtlasSequence.source_file_paths(base)
+		var base := PET_DRAGON_EFFECT_DIR.path_join(folder)
+		var warmed_paths := {}
+		var source_paths := MonsterAtlasSequence.source_file_paths(base)
 		if source_paths.is_empty():
 			for png in DirAccess.get_files_at(base):
 				if png.ends_with(".png"):
 					source_paths.append(base.path_join(png))
 		for source_path in source_paths:
-			var path: = source_path
+			var path := source_path
 			if folder == "PetDragon2Bullet2":
 				path = _pet_dragon_png(folder, int(source_path.get_file().get_basename()))
 			if warmed_paths.has(path):
@@ -395,25 +412,27 @@ static func warm_pet_dragon_textures(stage: int = 4) -> void :
 				if generation != _runtime_cache_generation:
 					return
 
-static func warm_pet_dragon_dash_textures() -> void :
-	var warmed_paths: = {}
+
+static func warm_pet_dragon_dash_textures() -> void:
+	var warmed_paths := {}
 	for frame_index in range(1, 31):
-		var path: = _pet_dragon_png("PetDragon2Bullet2", frame_index)
+		var path := _pet_dragon_png("PetDragon2Bullet2", frame_index)
 		if warmed_paths.has(path):
 			continue
 		warmed_paths[path] = true
 		if not pet_dragon_texture_cache.has(path):
 			pet_dragon_texture_cache[path] = Global.get_cached_texture(path)
 
-static func _warm_png_folder(base: String) -> void :
-	var found_paths: = MonsterAtlasSequence.source_file_paths(base)
+
+static func _warm_png_folder(base: String) -> void:
+	var found_paths := MonsterAtlasSequence.source_file_paths(base)
 	for png in DirAccess.get_files_at(base):
 		if png.ends_with(".png"):
 			found_paths.append(base.path_join(png))
 	if found_paths.is_empty():
-		var missing_streak: = 0
+		var missing_streak := 0
 		for index in range(601):
-			var path: = base.path_join(str(index) + ".png")
+			var path := base.path_join(str(index) + ".png")
 			if ResourceLoader.exists(path):
 				found_paths.append(path)
 				missing_streak = 0
@@ -424,6 +443,7 @@ static func _warm_png_folder(base: String) -> void :
 	for path in found_paths:
 		if not pet_tiger_texture_cache.has(path):
 			pet_tiger_texture_cache[path] = Global.get_cached_texture(path)
+
 
 func _pet_tiger_png_by_id(id_: int) -> String:
 	match id_:
@@ -478,36 +498,91 @@ func _pet_tiger_png_by_id(id_: int) -> String:
 		_:
 			return ""
 
-func _pet_tiger_layer(id_: int, x_: float, y_: float, sx_: float = 1.0, sy_: float = 1.0, rot_: float = 0.0) -> Dictionary:
+
+func _pet_tiger_layer(
+	id_: int, x_: float, y_: float, sx_: float = 1.0, sy_: float = 1.0, rot_: float = 0.0
+) -> Dictionary:
 	return {"id": id_, "x": x_, "y": y_, "sx": sx_, "sy": sy_, "rot": rot_}
+
 
 func _pet_tiger_bullet_timeline(name_: String) -> Array:
 	match name_:
 		"PetTiger1Bullet1":
 			return [
-				[_pet_tiger_layer(54, 0.0, 0.0)], [_pet_tiger_layer(54, -5.55, 0.15)], [_pet_tiger_layer(54, -11.05, 0.3)], [_pet_tiger_layer(54, -16.6, 0.45)], [_pet_tiger_layer(54, -22.15, 0.55)], 
-				[_pet_tiger_layer(54, -27.65, 0.7)], [_pet_tiger_layer(54, -33.2, 0.85)], [_pet_tiger_layer(54, -39.45, 1.0)], [_pet_tiger_layer(54, -45.7, 1.15)], [_pet_tiger_layer(54, -51.95, 1.3)], 
-				[], [], [], [], []
+				[_pet_tiger_layer(54, 0.0, 0.0)],
+				[_pet_tiger_layer(54, -5.55, 0.15)],
+				[_pet_tiger_layer(54, -11.05, 0.3)],
+				[_pet_tiger_layer(54, -16.6, 0.45)],
+				[_pet_tiger_layer(54, -22.15, 0.55)],
+				[_pet_tiger_layer(54, -27.65, 0.7)],
+				[_pet_tiger_layer(54, -33.2, 0.85)],
+				[_pet_tiger_layer(54, -39.45, 1.0)],
+				[_pet_tiger_layer(54, -45.7, 1.15)],
+				[_pet_tiger_layer(54, -51.95, 1.3)],
+				[],
+				[],
+				[],
+				[],
+				[]
 			]
 		"PetTiger1Bullet2":
 			return [
-				[_pet_tiger_layer(47, 64.45, -24.35)], [_pet_tiger_layer(47, 64.45, -24.35)], [_pet_tiger_layer(47, 65.55, 31.45, 0.7638, 0.7638, 0.2618)], [_pet_tiger_layer(47, 65.55, 31.45, 0.7638, 0.7638, 0.2618)], 
-				[_pet_tiger_layer(47, 54.9, 34.55, 0.6576, 0.6576, 0.2618)], [_pet_tiger_layer(47, 54.9, 34.55, 0.6576, 0.6576, 0.2618)], 
-				[_pet_tiger_layer(47, 42.35, 38.95, 0.6576, 0.6576, 0.2618), _pet_tiger_layer(50, 41.6, 42.95)], [_pet_tiger_layer(47, 42.35, 38.95, 0.6576, 0.6576, 0.2618), _pet_tiger_layer(50, 41.6, 42.95)], 
-				[_pet_tiger_layer(50, 32.35, 50.25, 0.806, 0.806)], [_pet_tiger_layer(50, 32.35, 50.25, 0.806, 0.806)], [_pet_tiger_layer(50, 6.8, 51.95, 0.7661, 0.7661)], [_pet_tiger_layer(50, 6.8, 51.95, 0.7661, 0.7661)], 
-				[], [], [], [], [], [], [], []
+				[_pet_tiger_layer(47, 64.45, -24.35)],
+				[_pet_tiger_layer(47, 64.45, -24.35)],
+				[_pet_tiger_layer(47, 65.55, 31.45, 0.7638, 0.7638, 0.2618)],
+				[_pet_tiger_layer(47, 65.55, 31.45, 0.7638, 0.7638, 0.2618)],
+				[_pet_tiger_layer(47, 54.9, 34.55, 0.6576, 0.6576, 0.2618)],
+				[_pet_tiger_layer(47, 54.9, 34.55, 0.6576, 0.6576, 0.2618)],
+				[_pet_tiger_layer(47, 42.35, 38.95, 0.6576, 0.6576, 0.2618), _pet_tiger_layer(50, 41.6, 42.95)],
+				[_pet_tiger_layer(47, 42.35, 38.95, 0.6576, 0.6576, 0.2618), _pet_tiger_layer(50, 41.6, 42.95)],
+				[_pet_tiger_layer(50, 32.35, 50.25, 0.806, 0.806)],
+				[_pet_tiger_layer(50, 32.35, 50.25, 0.806, 0.806)],
+				[_pet_tiger_layer(50, 6.8, 51.95, 0.7661, 0.7661)],
+				[_pet_tiger_layer(50, 6.8, 51.95, 0.7661, 0.7661)],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[]
 			]
 		"PetTiger2Bullet1":
 			return [
-				[_pet_tiger_layer(43, 0.0, 0.0)], [_pet_tiger_layer(43, 0.0, 0.0)], [_pet_tiger_layer(43, -0.15, 19.05, 0.851, 0.851, 0.0867)], [_pet_tiger_layer(43, -0.15, 19.05, 0.851, 0.851, 0.0867)], 
-				[_pet_tiger_layer(43, 0.0, 37.1, 0.7256, 0.7256, 0.2868)], [_pet_tiger_layer(43, 0.0, 37.1, 0.7256, 0.7256, 0.2868)], [], [], [], []
+				[_pet_tiger_layer(43, 0.0, 0.0)],
+				[_pet_tiger_layer(43, 0.0, 0.0)],
+				[_pet_tiger_layer(43, -0.15, 19.05, 0.851, 0.851, 0.0867)],
+				[_pet_tiger_layer(43, -0.15, 19.05, 0.851, 0.851, 0.0867)],
+				[_pet_tiger_layer(43, 0.0, 37.1, 0.7256, 0.7256, 0.2868)],
+				[_pet_tiger_layer(43, 0.0, 37.1, 0.7256, 0.7256, 0.2868)],
+				[],
+				[],
+				[],
+				[]
 			]
 		"PetTiger2Bullet3_1":
 			return [
-				[_pet_tiger_layer(9, 1.75, 13.1, 0.72, 0.72)], [_pet_tiger_layer(12, 7.15, 6.05, 0.72, 0.72)], [_pet_tiger_layer(15, 1.75, 8.25, 0.72, 0.72)], [_pet_tiger_layer(18, 17.85, 5.55, 0.72, 0.72)], 
-				[_pet_tiger_layer(21, 9.05, -3.2, 0.72, 0.72)], [_pet_tiger_layer(24, 10.5, -2.45, 0.72, 0.72)], [_pet_tiger_layer(27, 2.7, -3.4, 0.72, 0.72)], [_pet_tiger_layer(30, -78.5, -44.0, 0.72, 0.72)], 
-				[_pet_tiger_layer(30, -80.0, -45.55, 0.72, 0.72)], [_pet_tiger_layer(35, -65.75, -77.2, 0.72, 0.72, -0.2618)], [_pet_tiger_layer(38, -90.35, -90.95, 0.72, 0.72, -0.1481)], [_pet_tiger_layer(38, -90.35, -90.95, 0.72, 0.72, -0.1481)], 
-				[], [], [], [], [], [], [], []
+				[_pet_tiger_layer(9, 1.75, 13.1, 0.72, 0.72)],
+				[_pet_tiger_layer(12, 7.15, 6.05, 0.72, 0.72)],
+				[_pet_tiger_layer(15, 1.75, 8.25, 0.72, 0.72)],
+				[_pet_tiger_layer(18, 17.85, 5.55, 0.72, 0.72)],
+				[_pet_tiger_layer(21, 9.05, -3.2, 0.72, 0.72)],
+				[_pet_tiger_layer(24, 10.5, -2.45, 0.72, 0.72)],
+				[_pet_tiger_layer(27, 2.7, -3.4, 0.72, 0.72)],
+				[_pet_tiger_layer(30, -78.5, -44.0, 0.72, 0.72)],
+				[_pet_tiger_layer(30, -80.0, -45.55, 0.72, 0.72)],
+				[_pet_tiger_layer(35, -65.75, -77.2, 0.72, 0.72, -0.2618)],
+				[_pet_tiger_layer(38, -90.35, -90.95, 0.72, 0.72, -0.1481)],
+				[_pet_tiger_layer(38, -90.35, -90.95, 0.72, 0.72, -0.1481)],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[]
 			]
 		"PetTiger2Bullet3_2":
 			var frames: Array = []
@@ -516,40 +591,129 @@ func _pet_tiger_bullet_timeline(name_: String) -> Array:
 			return frames
 		"PetTiger3Bullet4_1":
 			return [
-				[_pet_tiger_layer(77, 30.95, 154.5, -1.0, -1.0, 1.9951)], [_pet_tiger_layer(77, 30.95, 154.35, -0.9987, -0.9987, 1.9949)], [_pet_tiger_layer(77, 30.95, 154.35, -0.9987, -0.9987, 1.9949)], 
-				[_pet_tiger_layer(77, 30.95, 154.35, -0.9987, -0.9987, 1.9949)], [_pet_tiger_layer(77, 30.95, 154.35, -0.9987, -0.9987, 1.9949)], [_pet_tiger_layer(77, 30.95, 154.35, -0.9987, -0.9987, 1.9949)], 
-				[_pet_tiger_layer(77, 30.95, 154.5, -1.0, -1.0, 1.9951)], [_pet_tiger_layer(77, 30.95, 154.35, -0.9987, -0.9987, 1.9949)], [_pet_tiger_layer(77, 30.95, 154.5, -1.0, -1.0, 1.9951)], []
+				[_pet_tiger_layer(77, 30.95, 154.5, -1.0, -1.0, 1.9951)],
+				[_pet_tiger_layer(77, 30.95, 154.35, -0.9987, -0.9987, 1.9949)],
+				[_pet_tiger_layer(77, 30.95, 154.35, -0.9987, -0.9987, 1.9949)],
+				[_pet_tiger_layer(77, 30.95, 154.35, -0.9987, -0.9987, 1.9949)],
+				[_pet_tiger_layer(77, 30.95, 154.35, -0.9987, -0.9987, 1.9949)],
+				[_pet_tiger_layer(77, 30.95, 154.35, -0.9987, -0.9987, 1.9949)],
+				[_pet_tiger_layer(77, 30.95, 154.5, -1.0, -1.0, 1.9951)],
+				[_pet_tiger_layer(77, 30.95, 154.35, -0.9987, -0.9987, 1.9949)],
+				[_pet_tiger_layer(77, 30.95, 154.5, -1.0, -1.0, 1.9951)],
+				[]
 			]
 		"PetTiger3Bullet4_2":
 			return [
-				[_pet_tiger_layer(58, -15.6, -73.45)], [_pet_tiger_layer(58, -15.6, -73.45)], 
-				[_pet_tiger_layer(58, -15.6, -73.45), _pet_tiger_layer(58, -113.5, -73.55)], 
-				[_pet_tiger_layer(60, -15.6, -73.45), _pet_tiger_layer(60, -113.5, -73.55)], 
-				[_pet_tiger_layer(60, -15.6, -73.45), _pet_tiger_layer(60, -113.5, -73.55), _pet_tiger_layer(60, -211.1, -73.15)], 
-				[_pet_tiger_layer(62, -15.6, -73.45), _pet_tiger_layer(62, -113.5, -73.55), _pet_tiger_layer(62, -211.1, -73.15)], 
-				[_pet_tiger_layer(62, -15.6, -73.45), _pet_tiger_layer(62, -113.5, -73.55), _pet_tiger_layer(62, -211.1, -73.15), _pet_tiger_layer(62, -313.65, -73.55)], 
-				[_pet_tiger_layer(64, -15.6, -73.45), _pet_tiger_layer(64, -113.5, -73.55), _pet_tiger_layer(64, -211.1, -73.15), _pet_tiger_layer(64, -313.65, -73.55)], 
-				[_pet_tiger_layer(64, -15.6, -73.45), _pet_tiger_layer(64, -113.5, -73.55), _pet_tiger_layer(64, -211.1, -73.15), _pet_tiger_layer(64, -313.65, -73.55), _pet_tiger_layer(64, -426.75, -73.15)], 
-				[_pet_tiger_layer(66, -15.6, -73.45), _pet_tiger_layer(66, -113.5, -73.55), _pet_tiger_layer(66, -211.1, -73.15), _pet_tiger_layer(66, -313.65, -73.55), _pet_tiger_layer(66, -426.75, -73.15)], 
-				[_pet_tiger_layer(66, -15.6, -73.45), _pet_tiger_layer(66, -113.5, -73.55), _pet_tiger_layer(66, -211.1, -73.15), _pet_tiger_layer(66, -313.65, -73.55), _pet_tiger_layer(66, -426.75, -73.15)], 
-				[_pet_tiger_layer(68, -15.6, -73.45), _pet_tiger_layer(68, -113.5, -73.55), _pet_tiger_layer(68, -211.1, -73.15), _pet_tiger_layer(68, -313.65, -73.55), _pet_tiger_layer(68, -426.75, -73.15)], 
-				[_pet_tiger_layer(70, -15.6, -73.45), _pet_tiger_layer(70, -113.5, -73.55), _pet_tiger_layer(70, -211.1, -73.15), _pet_tiger_layer(70, -313.65, -73.55), _pet_tiger_layer(70, -426.75, -73.15)], 
-				[_pet_tiger_layer(72, -15.6, -73.45), _pet_tiger_layer(72, -113.5, -73.55), _pet_tiger_layer(72, -211.1, -73.15), _pet_tiger_layer(72, -313.65, -73.55), _pet_tiger_layer(72, -426.75, -73.15)], 
-				[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []
+				[_pet_tiger_layer(58, -15.6, -73.45)],
+				[_pet_tiger_layer(58, -15.6, -73.45)],
+				[_pet_tiger_layer(58, -15.6, -73.45), _pet_tiger_layer(58, -113.5, -73.55)],
+				[_pet_tiger_layer(60, -15.6, -73.45), _pet_tiger_layer(60, -113.5, -73.55)],
+				[
+					_pet_tiger_layer(60, -15.6, -73.45),
+					_pet_tiger_layer(60, -113.5, -73.55),
+					_pet_tiger_layer(60, -211.1, -73.15)
+				],
+				[
+					_pet_tiger_layer(62, -15.6, -73.45),
+					_pet_tiger_layer(62, -113.5, -73.55),
+					_pet_tiger_layer(62, -211.1, -73.15)
+				],
+				[
+					_pet_tiger_layer(62, -15.6, -73.45),
+					_pet_tiger_layer(62, -113.5, -73.55),
+					_pet_tiger_layer(62, -211.1, -73.15),
+					_pet_tiger_layer(62, -313.65, -73.55)
+				],
+				[
+					_pet_tiger_layer(64, -15.6, -73.45),
+					_pet_tiger_layer(64, -113.5, -73.55),
+					_pet_tiger_layer(64, -211.1, -73.15),
+					_pet_tiger_layer(64, -313.65, -73.55)
+				],
+				[
+					_pet_tiger_layer(64, -15.6, -73.45),
+					_pet_tiger_layer(64, -113.5, -73.55),
+					_pet_tiger_layer(64, -211.1, -73.15),
+					_pet_tiger_layer(64, -313.65, -73.55),
+					_pet_tiger_layer(64, -426.75, -73.15)
+				],
+				[
+					_pet_tiger_layer(66, -15.6, -73.45),
+					_pet_tiger_layer(66, -113.5, -73.55),
+					_pet_tiger_layer(66, -211.1, -73.15),
+					_pet_tiger_layer(66, -313.65, -73.55),
+					_pet_tiger_layer(66, -426.75, -73.15)
+				],
+				[
+					_pet_tiger_layer(66, -15.6, -73.45),
+					_pet_tiger_layer(66, -113.5, -73.55),
+					_pet_tiger_layer(66, -211.1, -73.15),
+					_pet_tiger_layer(66, -313.65, -73.55),
+					_pet_tiger_layer(66, -426.75, -73.15)
+				],
+				[
+					_pet_tiger_layer(68, -15.6, -73.45),
+					_pet_tiger_layer(68, -113.5, -73.55),
+					_pet_tiger_layer(68, -211.1, -73.15),
+					_pet_tiger_layer(68, -313.65, -73.55),
+					_pet_tiger_layer(68, -426.75, -73.15)
+				],
+				[
+					_pet_tiger_layer(70, -15.6, -73.45),
+					_pet_tiger_layer(70, -113.5, -73.55),
+					_pet_tiger_layer(70, -211.1, -73.15),
+					_pet_tiger_layer(70, -313.65, -73.55),
+					_pet_tiger_layer(70, -426.75, -73.15)
+				],
+				[
+					_pet_tiger_layer(72, -15.6, -73.45),
+					_pet_tiger_layer(72, -113.5, -73.55),
+					_pet_tiger_layer(72, -211.1, -73.15),
+					_pet_tiger_layer(72, -313.65, -73.55),
+					_pet_tiger_layer(72, -426.75, -73.15)
+				],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[],
+				[]
 			]
 		_:
 			return []
 
-func _ensure_pet_tiger_layers(count_: int) -> void :
+
+func _ensure_pet_tiger_layers(count_: int) -> void:
 	while pet_tiger_layer_sprites.size() < count_:
-		var sprite: = Sprite2D.new()
+		var sprite := Sprite2D.new()
 		sprite.centered = false
 		sprite.visible = false
 		middle.add_child(sprite)
 		pet_tiger_layer_sprites.append(sprite)
 
-func _update_pet_tiger_layers() -> void :
-	var timeline: = pet_tiger_timeline
+
+func _update_pet_tiger_layers() -> void:
+	var timeline := pet_tiger_timeline
 	if timeline.is_empty():
 		return
 	var frame_index: int = clampi(bullet_ani.frame, 0, timeline.size() - 1)
@@ -559,14 +723,14 @@ func _update_pet_tiger_layers() -> void :
 	var layers: Array = timeline[frame_index]
 	_ensure_pet_tiger_layers(layers.size())
 	var visual_rect: Rect2 = Rect2()
-	var has_visual_rect: = false
+	var has_visual_rect := false
 	for i in range(pet_tiger_layer_sprites.size()):
 		var sprite: Sprite2D = pet_tiger_layer_sprites[i]
 		if i >= layers.size():
 			sprite.visible = false
 			continue
 		var layer: Dictionary = layers[i]
-		var texture_path: = _pet_tiger_png_by_id(int(layer["id"]))
+		var texture_path := _pet_tiger_png_by_id(int(layer["id"]))
 		var texture: Texture2D = _get_pet_tiger_texture(texture_path)
 		sprite.texture = texture
 		sprite.position = Vector2(float(layer["x"]), float(layer["y"]))
@@ -579,11 +743,16 @@ func _update_pet_tiger_layers() -> void :
 			has_visual_rect = true
 	_update_pet_tiger_hit_shape_from_rect(visual_rect, has_visual_rect)
 
-func _pet_tiger_layer_rect(texture: Texture2D, layer_position: Vector2, layer_scale: Vector2, layer_rotation: float) -> Rect2:
-	var size: Vector2 = Vector2(float(texture.get_width()) * absf(layer_scale.x), float(texture.get_height()) * absf(layer_scale.y))
+
+func _pet_tiger_layer_rect(
+	texture: Texture2D, layer_position: Vector2, layer_scale: Vector2, layer_rotation: float
+) -> Rect2:
+	var size: Vector2 = Vector2(
+		float(texture.get_width()) * absf(layer_scale.x), float(texture.get_height()) * absf(layer_scale.y)
+	)
 	var points: Array[Vector2] = [Vector2.ZERO, Vector2(size.x, 0.0), Vector2(0.0, size.y), size]
 	var rect: Rect2 = Rect2()
-	var has_point: = false
+	var has_point := false
 	for point in points:
 		var transformed: Vector2 = layer_position + point.rotated(layer_rotation)
 		if not has_point:
@@ -593,7 +762,8 @@ func _pet_tiger_layer_rect(texture: Texture2D, layer_position: Vector2, layer_sc
 			rect = rect.expand(transformed)
 	return rect
 
-func _update_pet_tiger_hit_shape_from_rect(visual_rect: Rect2, has_visual_rect: bool) -> void :
+
+func _update_pet_tiger_hit_shape_from_rect(visual_rect: Rect2, has_visual_rect: bool) -> void:
 	var hit_shape: CollisionShape2D = hit_box.get_node_or_null("Hit_Box")
 	if hit_shape == null or not has_visual_rect:
 		return
@@ -607,12 +777,12 @@ func _update_pet_tiger_hit_shape_from_rect(visual_rect: Rect2, has_visual_rect: 
 	hit_shape.shape = shape
 	hit_shape.position = rect.position + rect.size * 0.5
 
+
 func _pet_tiger_blank_frames(count_: int) -> Array[String]:
 	return _repeat_tiger_bullet_frame("", count_)
 
+
 func _pet_tiger_bullet_frame_paths(name_: String) -> Array[String]:
-
-
 	match name_:
 		"PetTiger1Bullet1":
 			var frames_0: Array[String] = _repeat_tiger_bullet_frame(_pet_tiger_png_by_id(54), 10)
@@ -663,8 +833,8 @@ func _pet_tiger_bullet_frame_paths(name_: String) -> Array[String]:
 		_:
 			return []
 
-func _ready() -> void :
 
+func _ready() -> void:
 	_ensure_timer_signals()
 	set_meta("is_monster_bullet", true)
 	if skill_name == "Monster5Bullet":
@@ -685,7 +855,6 @@ func _ready() -> void :
 	hit_name = hit_name
 
 	if skill_name == "Monster1410Bullet1":
-
 		var speed_mag = 500
 		var direction = Vector2.RIGHT.rotated(rotation)
 		bounce_velocity = direction * speed_mag
@@ -698,7 +867,6 @@ func _ready() -> void :
 		queue_timer.start(10.0)
 		state = do
 
-
 		active_1410_bullets.append(self)
 
 		for bullet in active_1410_bullets:
@@ -708,7 +876,8 @@ func _ready() -> void :
 		tree_exited.connect(_on_1410_bullet_exited)
 		return
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	ThrowCount += 1
 	if skill_name.is_empty():
 		return
@@ -742,7 +911,6 @@ func _physics_process(_delta: float) -> void :
 		if position.y > 2000 or position.y < -1000 or position.x < -1000 or position.x > 8000:
 			destroy_with_explosion()
 		return
-
 
 	match state:
 		do:
@@ -781,7 +949,8 @@ func _physics_process(_delta: float) -> void :
 					var direction = (position - player.position).normalized()
 					player.position += direction * pull_strength
 
-func _refresh_runtime_kind() -> void :
+
+func _refresh_runtime_kind() -> void:
 	_runtime_skill_name = skill_name
 	match skill_name:
 		"Monster5Bullet":
@@ -804,9 +973,10 @@ func _refresh_runtime_kind() -> void :
 			else:
 				_runtime_kind = RuntimeKind.NORMAL
 
-func _setup_monster_atlas_stream() -> void :
+
+func _setup_monster_atlas_stream() -> void:
 	var stream_config: Array = STREAMED_BULLET_MANIFESTS[skill_name]
-	var stream: = StreamedPngEffect.new()
+	var stream := StreamedPngEffect.new()
 	stream.name = "MonsterAtlasStream"
 	if not MonsterAtlasSequence.configure_stream(stream, str(stream_config[0]), str(stream_config[1])):
 		stream.free()
@@ -820,7 +990,8 @@ func _setup_monster_atlas_stream() -> void :
 	monster_atlas_stream = stream
 	_sync_monster_atlas_visual()
 
-func _sync_monster_atlas_visual() -> void :
+
+func _sync_monster_atlas_visual() -> void:
 	if monster_atlas_stream == null or not is_instance_valid(monster_atlas_stream):
 		return
 	monster_atlas_stream.position = bullet_ani.offset
@@ -828,32 +999,52 @@ func _sync_monster_atlas_visual() -> void :
 	monster_atlas_stream.flip_h = bullet_ani.flip_h
 	monster_atlas_stream.show_frame(bullet_ani.frame)
 
+
 func _is_pet_tiger_bullet(name_: String) -> bool:
-	return name_ == "PetTiger1Bullet1" or name_ == "PetTiger1Bullet2" or name_ == "PetTiger2Bullet1" or name_ == "PetTiger2Bullet3_1" or name_ == "PetTiger2Bullet3_2" or name_ == "PetTiger3Bullet4_1" or name_ == "PetTiger3Bullet4_2"
+	return (
+		name_ == "PetTiger1Bullet1"
+		or name_ == "PetTiger1Bullet2"
+		or name_ == "PetTiger2Bullet1"
+		or name_ == "PetTiger2Bullet3_1"
+		or name_ == "PetTiger2Bullet3_2"
+		or name_ == "PetTiger3Bullet4_1"
+		or name_ == "PetTiger3Bullet4_2"
+	)
+
 
 func _is_pet_dragon_bullet(name_: String) -> bool:
-	return name_ == "PetDragon1Bullet1" or name_ == "PetDragon2Bullet1" or name_ == "PetDragon2Bullet2" or name_ == "PetDragon3Bullet1" or name_ == "PetDragon3Bullet3" or name_ == "PetDragonBullet4"
+	return (
+		name_ == "PetDragon1Bullet1"
+		or name_ == "PetDragon2Bullet1"
+		or name_ == "PetDragon2Bullet2"
+		or name_ == "PetDragon3Bullet1"
+		or name_ == "PetDragon3Bullet3"
+		or name_ == "PetDragonBullet4"
+	)
+
 
 func _is_pet_phoenix_bullet(name_: String) -> bool:
 	return name_.begins_with("PetPhoenix")
 
+
 static func _pet_phoenix_frame_paths(name_: String) -> Array[String]:
 	var result: Array[String] = []
-	var dir_path: = PET_PHOENIX_EFFECT_DIR.path_join(name_)
-	var frame_count: = int(PET_PHOENIX_EFFECT_FRAME_COUNTS.get(name_, 0))
+	var dir_path := PET_PHOENIX_EFFECT_DIR.path_join(name_)
+	var frame_count := int(PET_PHOENIX_EFFECT_FRAME_COUNTS.get(name_, 0))
 	for frame_index in range(1, frame_count + 1):
 		result.append(dir_path.path_join(str(frame_index) + ".png"))
 	return result
 
+
 static func _get_pet_phoenix_frames(name_: String) -> SpriteFrames:
 	if pet_phoenix_frames_cache.has(name_):
 		return pet_phoenix_frames_cache[name_] as SpriteFrames
-	var frames: = SpriteFrames.new()
+	var frames := SpriteFrames.new()
 	frames.add_animation(name_)
 	frames.set_animation_loop(name_, false)
 	frames.set_animation_speed(name_, PET_TIGER_BULLET_FPS)
 	for texture_path in _pet_phoenix_frame_paths(name_):
-		var texture: = Global.get_cached_texture(texture_path)
+		var texture := Global.get_cached_texture(texture_path)
 		if texture != null:
 			texture.get_rid()
 			frames.add_frame(name_, texture)
@@ -863,42 +1054,50 @@ static func _get_pet_phoenix_frames(name_: String) -> SpriteFrames:
 		push_error("Pet phoenix effect has no loadable frames: %s" % name_)
 	return frames
 
-static func warm_pet_phoenix_frames(stage: int) -> void :
+
+static func warm_pet_phoenix_frames(stage: int) -> void:
 	for effect_name in _pet_phoenix_effect_names(stage):
 		_get_pet_phoenix_frames(effect_name)
 
+
 static func _pet_phoenix_effect_names(stage: int) -> Array[String]:
 	var effect_names: Array[String] = [
-		"PetPhoenix1Bullet1", 
-		"PetPhoenix1Bullet2_1", 
-		"PetPhoenix1Bullet2_2", 
+		"PetPhoenix1Bullet1",
+		"PetPhoenix1Bullet2_1",
+		"PetPhoenix1Bullet2_2",
 	]
 	if stage >= 2:
 		effect_names.append("PetPhoenix2Bullet3")
 	if stage >= 3:
 		effect_names.append("PetPhoenix3Bullet4")
 	if stage >= 4:
-		effect_names.append_array([
-			"PetPhoenix4Bullet3_2", 
-			"PetPhoenix4Bullet5", 
-			"PetPhoenix4Bullet6", 
-		])
+		(
+			effect_names
+			. append_array(
+				[
+					"PetPhoenix4Bullet3_2",
+					"PetPhoenix4Bullet5",
+					"PetPhoenix4Bullet6",
+				]
+			)
+		)
 	return effect_names
 
-static func _prewarm_pet_bullet_instances(bullet_scene: PackedScene, effect_names: Array[String]) -> void :
+
+static func _prewarm_pet_bullet_instances(bullet_scene: PackedScene, effect_names: Array[String]) -> void:
 	if bullet_scene == null or effect_names.is_empty():
 		return
-	var tree: = Engine.get_main_loop() as SceneTree
+	var tree := Engine.get_main_loop() as SceneTree
 	if tree == null or tree.root == null:
 		return
-	var warm_root: = Node2D.new()
+	var warm_root := Node2D.new()
 	warm_root.name = "PetBulletPrewarm"
 	warm_root.process_mode = Node.PROCESS_MODE_DISABLED
 	warm_root.z_index = -4096
 	warm_root.position = tree.root.get_visible_rect().get_center()
 	tree.root.add_child(warm_root)
 	for effect_name in effect_names:
-		var instance: = bullet_scene.instantiate() as MonsterBullet
+		var instance := bullet_scene.instantiate() as MonsterBullet
 		if instance == null:
 			continue
 		instance.AttList = {"power": 0, "attackKind": "physical", "hurtBack": [0, 0]}
@@ -911,7 +1110,7 @@ static func _prewarm_pet_bullet_instances(bullet_scene: PackedScene, effect_name
 		instance.set_meta("pet_tiger_disabled", true)
 		instance.set_meta("pet_dragon_disabled", true)
 		instance.set_meta("pet_phoenix_disabled", true)
-		var warm_hit_box: = instance.get_node_or_null("middle/HitBox") as Area2D
+		var warm_hit_box := instance.get_node_or_null("middle/HitBox") as Area2D
 		if warm_hit_box != null:
 			warm_hit_box.collision_layer = 0
 			warm_hit_box.collision_mask = 0
@@ -923,16 +1122,18 @@ static func _prewarm_pet_bullet_instances(bullet_scene: PackedScene, effect_name
 	if is_instance_valid(warm_root):
 		warm_root.free()
 
+
 static func _pet_tiger_effect_names(stage: int) -> Array[String]:
 	var effect_names: Array[String] = [
-		"PetTiger1Bullet1" if stage <= 1 else "PetTiger2Bullet1", 
-		"PetTiger1Bullet2", 
+		"PetTiger1Bullet1" if stage <= 1 else "PetTiger2Bullet1",
+		"PetTiger1Bullet2",
 	]
 	if stage >= 2:
 		effect_names.append_array(["PetTiger2Bullet3_1", "PetTiger2Bullet3_2"])
 	if stage >= 3:
 		effect_names.append_array(["PetTiger3Bullet4_1", "PetTiger3Bullet4_2"])
 	return effect_names
+
 
 static func _pet_dragon_effect_names(stage: int) -> Array[String]:
 	stage = clampi(stage, 1, 4)
@@ -947,75 +1148,75 @@ static func _pet_dragon_effect_names(stage: int) -> Array[String]:
 		effect_names.append("PetDragonBullet4")
 	return effect_names
 
-static func prewarm_pet_tiger_runtime(stage: int, bullet_scene: PackedScene = null) -> void :
+
+static func prewarm_pet_tiger_runtime(stage: int, bullet_scene: PackedScene = null) -> void:
 	warm_pet_tiger_textures()
-	var effect_names: = _pet_tiger_effect_names(stage)
-	var helper: = MonsterBullet.new()
-	var tree: = Engine.get_main_loop() as SceneTree
+	var effect_names := _pet_tiger_effect_names(stage)
+	var helper := MonsterBullet.new()
+	var tree := Engine.get_main_loop() as SceneTree
 	for effect_name in effect_names:
 		helper._get_cached_pet_tiger_timeline(effect_name)
-		helper._get_cached_pet_bullet_frames(
-			effect_name, 
-			helper._pet_tiger_bullet_frame_paths(effect_name), 
-			false
-		)
+		helper._get_cached_pet_bullet_frames(effect_name, helper._pet_tiger_bullet_frame_paths(effect_name), false)
 		if tree != null:
 			await tree.process_frame
 	helper.free()
 	await _prewarm_pet_bullet_instances(bullet_scene, effect_names)
 
-static func prewarm_pet_dragon_runtime(stage: int, bullet_scene: PackedScene = null) -> void :
+
+static func prewarm_pet_dragon_runtime(stage: int, bullet_scene: PackedScene = null) -> void:
 	stage = clampi(stage, 1, 4)
 	await warm_pet_dragon_textures(stage)
 	if stage >= 4:
 		await warm_pet_dragon_ultimate_frames()
-	var effect_names: = _pet_dragon_effect_names(stage)
-	var helper: = MonsterBullet.new()
+	var effect_names := _pet_dragon_effect_names(stage)
+	var helper := MonsterBullet.new()
 	for effect_name in effect_names:
-		helper._get_cached_pet_bullet_frames(
-			effect_name, 
-			helper._pet_dragon_bullet_frame_paths(effect_name), 
-			true
-		)
+		helper._get_cached_pet_bullet_frames(effect_name, helper._pet_dragon_bullet_frame_paths(effect_name), true)
 	helper.free()
 	await _prewarm_pet_bullet_instances(bullet_scene, effect_names)
 
-static func prewarm_pet_phoenix_runtime(stage: int, bullet_scene: PackedScene = null) -> void :
+
+static func prewarm_pet_phoenix_runtime(stage: int, bullet_scene: PackedScene = null) -> void:
 	warm_pet_phoenix_frames(clampi(stage, 1, 4))
-	var tree: = Engine.get_main_loop() as SceneTree
+	var tree := Engine.get_main_loop() as SceneTree
 	if tree != null:
 		await tree.process_frame
 	await _prewarm_pet_bullet_instances(bullet_scene, _pet_phoenix_effect_names(stage))
 
-func _setup_pet_phoenix_hit_shape() -> void :
+
+func _setup_pet_phoenix_hit_shape() -> void:
 	var hit_shape: CollisionShape2D = hit_box.get_node_or_null("Hit_Box")
 	if hit_shape == null:
 		return
-	var shape: = RectangleShape2D.new()
+	var shape := RectangleShape2D.new()
 	shape.size = _pet_phoenix_hit_shape_size()
 	hit_shape.shape = shape
 	hit_shape.position = _pet_phoenix_hit_shape_offset()
+
 
 func _pet_phoenix_hit_shape_size() -> Vector2:
 	if _is_pet_phoenix_visual_sweep_bullet():
 		return Vector2(1, 1)
 	return get_meta("pet_phoenix_hit_size", Vector2(180, 100)) as Vector2
 
+
 func _pet_phoenix_hit_shape_offset() -> Vector2:
 	if _is_pet_phoenix_visual_sweep_bullet():
 		return Vector2.ZERO
 	return Vector2.ZERO
 
+
 func _is_pet_phoenix_visual_sweep_bullet() -> bool:
 	return skill_name == "PetPhoenix2Bullet3" or skill_name == "PetPhoenix4Bullet6"
 
-func _setup_pet_phoenix_bullet(name_: String) -> void :
+
+func _setup_pet_phoenix_bullet(name_: String) -> void:
 	if dir == false:
 		middle.scale.x = -1
 	else:
 		middle.scale.x = 1
 	_setup_pet_phoenix_hit_shape()
-	var frames: = _get_pet_phoenix_frames(name_)
+	var frames := _get_pet_phoenix_frames(name_)
 	var frame_count: int = frames.get_frame_count(name_)
 	if frame_count <= 0:
 		queue_free()
@@ -1033,7 +1234,8 @@ func _setup_pet_phoenix_bullet(name_: String) -> void :
 		queue_timer.start(float(frame_count) / PET_TIGER_BULLET_FPS + 0.02)
 	state = do
 
-func _physics_pet_phoenix_bullet(delta: float) -> void :
+
+func _physics_pet_phoenix_bullet(delta: float) -> void:
 	_sync_follow_pet_phoenix_bullet(delta)
 	if is_queued_for_deletion():
 		return
@@ -1047,7 +1249,7 @@ func _physics_pet_phoenix_bullet(delta: float) -> void :
 	else:
 		_apply_pet_phoenix_overlap_damage()
 	if bullet_ani.sprite_frames != null and bullet_ani.sprite_frames.has_animation(skill_name):
-		var last_frame: = bullet_ani.sprite_frames.get_frame_count(skill_name) - 1
+		var last_frame := bullet_ani.sprite_frames.get_frame_count(skill_name) - 1
 		if bullet_ani.frame >= last_frame:
 			if bool(get_meta("pet_phoenix_hold_last", false)):
 				bullet_ani.pause()
@@ -1055,7 +1257,8 @@ func _physics_pet_phoenix_bullet(delta: float) -> void :
 				return
 			hit_box.monitoring = false
 
-func _process_pet_phoenix_hold_last(delta: float) -> void :
+
+func _process_pet_phoenix_hold_last(delta: float) -> void:
 	if not bool(get_meta("pet_phoenix_hold_last", false)):
 		return
 	if bullet_ani == null or bullet_ani.sprite_frames == null:
@@ -1072,13 +1275,15 @@ func _process_pet_phoenix_hold_last(delta: float) -> void :
 		bullet_ani.pause()
 		bullet_ani.set_frame_and_progress(last_frame, 0.0)
 
-func _apply_pet_phoenix_overlap_damage() -> void :
+
+func _apply_pet_phoenix_overlap_damage() -> void:
 	if hit_box == null or bool(get_meta("pet_phoenix_disabled", false)):
 		return
 	var targets: Array[BaseMonster] = _collect_pet_phoenix_overlap_targets(null)
 	if targets.is_empty():
 		return
 	_apply_pet_phoenix_summon_targets(targets)
+
 
 func _collect_pet_phoenix_overlap_targets(primary_target: BaseMonster) -> Array[BaseMonster]:
 	var targets: Array[BaseMonster] = []
@@ -1094,16 +1299,20 @@ func _collect_pet_phoenix_overlap_targets(primary_target: BaseMonster) -> Array[
 		_collect_pet_phoenix_aoe_targets_near(global_position, radius, targets, seen, summon_owner)
 	return targets
 
+
 func _get_level_active_monster_candidates() -> Array:
-	var tree: = get_tree()
+	var tree := get_tree()
 	if tree == null:
 		return []
-	var scene: = tree.current_scene
+	var scene := tree.current_scene
 	if scene != null and scene.has_method("has_active_monster_index") and scene.has_active_monster_index():
 		return scene.get_active_monsters()
 	return tree.get_nodes_in_group("monsters")
 
-func _collect_pet_phoenix_aoe_targets_near(center: Vector2, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner: Node) -> void :
+
+func _collect_pet_phoenix_aoe_targets_near(
+	center: Vector2, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner: Node
+) -> void:
 	var tree: SceneTree = get_tree()
 	if tree == null:
 		return
@@ -1112,16 +1321,24 @@ func _collect_pet_phoenix_aoe_targets_near(center: Vector2, radius: float, targe
 		_try_add_pet_phoenix_aoe_target_near(node, center, radius, targets, seen, summon_owner)
 	var scene: Node = tree.current_scene
 	if group_nodes.is_empty() and scene != null and scene.has_node("Monster"):
-		_collect_pet_phoenix_aoe_targets_near_recursive(scene.get_node("Monster"), center, radius, targets, seen, summon_owner)
+		_collect_pet_phoenix_aoe_targets_near_recursive(
+			scene.get_node("Monster"), center, radius, targets, seen, summon_owner
+		)
 
-func _collect_pet_phoenix_aoe_targets_near_recursive(node: Node, center: Vector2, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner: Node) -> void :
+
+func _collect_pet_phoenix_aoe_targets_near_recursive(
+	node: Node, center: Vector2, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner: Node
+) -> void:
 	if node == null:
 		return
 	_try_add_pet_phoenix_aoe_target_near(node, center, radius, targets, seen, summon_owner)
 	for child in node.get_children():
 		_collect_pet_phoenix_aoe_targets_near_recursive(child, center, radius, targets, seen, summon_owner)
 
-func _try_add_pet_phoenix_aoe_target_near(node: Node, center: Vector2, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner: Node) -> void :
+
+func _try_add_pet_phoenix_aoe_target_near(
+	node: Node, center: Vector2, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner: Node
+) -> void:
 	if not (node is BaseMonster):
 		return
 	var monster: BaseMonster = node as BaseMonster
@@ -1135,7 +1352,8 @@ func _try_add_pet_phoenix_aoe_target_near(node: Node, center: Vector2, radius: f
 	targets.append(monster)
 	seen[instance_id] = true
 
-func _try_add_pet_phoenix_overlap_target(target: Node, targets: Array[BaseMonster], seen: Dictionary) -> void :
+
+func _try_add_pet_phoenix_overlap_target(target: Node, targets: Array[BaseMonster], seen: Dictionary) -> void:
 	if not (target is BaseMonster):
 		return
 	var monster: BaseMonster = target as BaseMonster
@@ -1148,7 +1366,8 @@ func _try_add_pet_phoenix_overlap_target(target: Node, targets: Array[BaseMonste
 	targets.append(monster)
 	seen[instance_id] = true
 
-func _apply_pet_phoenix_sweep_damage(hit_rect: Rect2) -> void :
+
+func _apply_pet_phoenix_sweep_damage(hit_rect: Rect2) -> void:
 	if not _is_pet_phoenix_visual_sweep_bullet() or bool(get_meta("pet_phoenix_disabled", false)):
 		return
 	if hit_rect.size.x <= 0.0 or hit_rect.size.y <= 0.0:
@@ -1164,8 +1383,9 @@ func _apply_pet_phoenix_sweep_damage(hit_rect: Rect2) -> void :
 		return
 	var hurt_back: Array = hit_data.get("hurtBack", [0, 0])
 	var summon_owner: Node = get_meta("summoner", null)
-	var attack_kind: = str(hit_data.get("attackKind", "physics"))
+	var attack_kind := str(hit_data.get("attackKind", "physics"))
 	_deal_pet_phoenix_damage_repeated(targets, damage, summon_owner, hurt_back, attack_kind)
+
 
 func _collect_pet_phoenix_sweep_targets(hit_rect: Rect2) -> Array[BaseMonster]:
 	var targets: Array[BaseMonster] = []
@@ -1180,17 +1400,25 @@ func _collect_pet_phoenix_sweep_targets(hit_rect: Rect2) -> Array[BaseMonster]:
 			_try_add_pet_phoenix_sweep_target(node, targets, seen, summon_owner, hit_rect)
 		var scene: Node = tree.current_scene
 		if group_nodes.is_empty() and scene != null and scene.has_node("Monster"):
-			_collect_pet_phoenix_sweep_targets_recursive(scene.get_node("Monster"), targets, seen, summon_owner, hit_rect)
+			_collect_pet_phoenix_sweep_targets_recursive(
+				scene.get_node("Monster"), targets, seen, summon_owner, hit_rect
+			)
 	return targets
 
-func _collect_pet_phoenix_sweep_targets_recursive(node: Node, targets: Array[BaseMonster], seen: Dictionary, summon_owner: Node, hit_rect: Rect2) -> void :
+
+func _collect_pet_phoenix_sweep_targets_recursive(
+	node: Node, targets: Array[BaseMonster], seen: Dictionary, summon_owner: Node, hit_rect: Rect2
+) -> void:
 	if node == null:
 		return
 	_try_add_pet_phoenix_sweep_target(node, targets, seen, summon_owner, hit_rect)
 	for child in node.get_children():
 		_collect_pet_phoenix_sweep_targets_recursive(child, targets, seen, summon_owner, hit_rect)
 
-func _try_add_pet_phoenix_sweep_target(node: Node, targets: Array[BaseMonster], seen: Dictionary, summon_owner: Node, hit_rect: Rect2) -> void :
+
+func _try_add_pet_phoenix_sweep_target(
+	node: Node, targets: Array[BaseMonster], seen: Dictionary, summon_owner: Node, hit_rect: Rect2
+) -> void:
 	if not (node is BaseMonster):
 		return
 	var monster: BaseMonster = node as BaseMonster
@@ -1206,95 +1434,102 @@ func _try_add_pet_phoenix_sweep_target(node: Node, targets: Array[BaseMonster], 
 	targets.append(monster)
 	seen[instance_id] = true
 
+
 func _pet_phoenix_has_hit_target(instance_id: int) -> bool:
 	if not _is_pet_phoenix_visual_sweep_bullet():
 		return false
 	var hit_targets: Dictionary = get_meta("pet_phoenix_hit_targets", {})
 	return hit_targets.has(instance_id)
 
-func _pet_phoenix_mark_hit_target(instance_id: int) -> void :
+
+func _pet_phoenix_mark_hit_target(instance_id: int) -> void:
 	if not _is_pet_phoenix_visual_sweep_bullet():
 		return
 	var hit_targets: Dictionary = get_meta("pet_phoenix_hit_targets", {})
 	hit_targets[instance_id] = true
 	set_meta("pet_phoenix_hit_targets", hit_targets)
 
+
 func _pet_phoenix_target_intersects_visual_rect(monster: BaseMonster, hit_rect: Rect2) -> bool:
 	if monster == null or hit_box == null:
 		return false
-	var hurt_shape: = monster.get_node_or_null("BaseDamageBox/HurtBox/HurtBox") as CollisionShape2D
+	var hurt_shape := monster.get_node_or_null("BaseDamageBox/HurtBox/HurtBox") as CollisionShape2D
 	if hurt_shape == null or hurt_shape.disabled or hurt_shape.shape == null:
 		return hit_rect.has_point(hit_box.to_local(monster.global_position))
 	var center: Vector2 = hit_box.to_local(hurt_shape.global_position)
-	var shape_size: = Vector2(36, 72)
+	var shape_size := Vector2(36, 72)
 	if hurt_shape.shape is RectangleShape2D:
 		shape_size = (hurt_shape.shape as RectangleShape2D).size
 	elif hurt_shape.shape is CircleShape2D:
-		var radius: = (hurt_shape.shape as CircleShape2D).radius
+		var radius := (hurt_shape.shape as CircleShape2D).radius
 		shape_size = Vector2(radius * 2.0, radius * 2.0)
 	elif hurt_shape.shape is CapsuleShape2D:
-		var capsule: = hurt_shape.shape as CapsuleShape2D
+		var capsule := hurt_shape.shape as CapsuleShape2D
 		shape_size = Vector2(capsule.radius * 2.0, capsule.height)
 	shape_size *= Vector2(absf(hurt_shape.global_scale.x), absf(hurt_shape.global_scale.y))
-	var target_rect: = Rect2(center - shape_size * 0.5, shape_size).grow(4.0)
+	var target_rect := Rect2(center - shape_size * 0.5, shape_size).grow(4.0)
 	return hit_rect.intersects(target_rect) or hit_rect.has_point(center)
 
-func _update_pet_phoenix_visual_hit_shape(rect: Rect2) -> void :
+
+func _update_pet_phoenix_visual_hit_shape(rect: Rect2) -> void:
 	if not _is_pet_phoenix_visual_sweep_bullet() or hit_box == null:
 		return
-	var hit_shape: = hit_box.get_node_or_null("Hit_Box") as CollisionShape2D
+	var hit_shape := hit_box.get_node_or_null("Hit_Box") as CollisionShape2D
 	if hit_shape == null:
 		return
 	if rect.size.x <= 0.0 or rect.size.y <= 0.0:
 		hit_shape.disabled = true
 		return
 	hit_shape.disabled = false
-	var shape: = hit_shape.shape as RectangleShape2D
+	var shape := hit_shape.shape as RectangleShape2D
 	if shape == null:
 		shape = RectangleShape2D.new()
 		hit_shape.shape = shape
 	shape.size = rect.size
 	hit_shape.position = rect.position + rect.size * 0.5
 
+
 func _pet_phoenix_current_visual_hit_rect() -> Rect2:
 	if bullet_ani == null or bullet_ani.sprite_frames == null:
 		return Rect2()
 	if not bullet_ani.sprite_frames.has_animation(skill_name):
 		return Rect2()
-	var frame_count: = bullet_ani.sprite_frames.get_frame_count(skill_name)
+	var frame_count := bullet_ani.sprite_frames.get_frame_count(skill_name)
 	if frame_count <= 0:
 		return Rect2()
 	var frame_index: int = clampi(bullet_ani.frame, 0, frame_count - 1)
-	var texture: = bullet_ani.sprite_frames.get_frame_texture(skill_name, frame_index)
+	var texture := bullet_ani.sprite_frames.get_frame_texture(skill_name, frame_index)
 	if texture == null:
 		return Rect2()
 	var used_rect: Rect2 = _pet_phoenix_texture_used_rect(skill_name, frame_index, texture)
 	if used_rect.size.x <= 0.0 or used_rect.size.y <= 0.0:
 		return Rect2()
-	var texture_size: = Vector2(float(texture.get_width()), float(texture.get_height()))
-	var top_left: = used_rect.position
+	var texture_size := Vector2(float(texture.get_width()), float(texture.get_height()))
+	var top_left := used_rect.position
 	if bullet_ani.centered:
 		top_left -= texture_size * 0.5
 	top_left = bullet_ani.position + top_left * bullet_ani.scale
-	var size: = used_rect.size * Vector2(absf(bullet_ani.scale.x), absf(bullet_ani.scale.y))
+	var size := used_rect.size * Vector2(absf(bullet_ani.scale.x), absf(bullet_ani.scale.y))
 	return Rect2(top_left, size)
 
+
 func _pet_phoenix_texture_used_rect(anim_name: String, frame_index: int, texture: Texture2D) -> Rect2:
-	var cache_key: = anim_name + ":" + str(frame_index)
+	var cache_key := anim_name + ":" + str(frame_index)
 	if pet_phoenix_frame_used_rect_cache.has(cache_key):
 		return pet_phoenix_frame_used_rect_cache[cache_key] as Rect2
-	var image: = texture.get_image()
+	var image := texture.get_image()
 	if image == null or image.is_empty():
 		pet_phoenix_frame_used_rect_cache[cache_key] = Rect2()
 		return Rect2()
-	var used_rect_i: = image.get_used_rect()
-	var used_rect: = Rect2(Vector2(used_rect_i.position), Vector2(used_rect_i.size))
+	var used_rect_i := image.get_used_rect()
+	var used_rect := Rect2(Vector2(used_rect_i.position), Vector2(used_rect_i.size))
 	pet_phoenix_frame_used_rect_cache[cache_key] = used_rect
 	return used_rect
 
-func _sync_follow_pet_phoenix_bullet(delta: float) -> void :
+
+func _sync_follow_pet_phoenix_bullet(delta: float) -> void:
 	if has_meta("pet_phoenix_lifetime"):
-		var left_time: = float(get_meta("pet_phoenix_lifetime", 0.0)) - delta
+		var left_time := float(get_meta("pet_phoenix_lifetime", 0.0)) - delta
 		if left_time <= 0.0:
 			queue_free()
 			return
@@ -1307,13 +1542,14 @@ func _sync_follow_pet_phoenix_bullet(delta: float) -> void :
 		return
 	var follow_offset: Vector2 = get_meta("pet_phoenix_follow_offset", Vector2.ZERO)
 	position = source.position + follow_offset
-	var source_faces_left: = bool(source.get("MonsterDirection"))
+	var source_faces_left := bool(source.get("MonsterDirection"))
 	if source_faces_left != dir:
 		dir = source_faces_left
 		if middle != null:
 			middle.scale.x = 1.0 if dir else -1.0
 
-func _apply_pet_phoenix_summon_hit(target: Node) -> void :
+
+func _apply_pet_phoenix_summon_hit(target: Node) -> void:
 	if _is_pet_phoenix_visual_sweep_bullet():
 		return
 	if not (target is BaseMonster):
@@ -1326,7 +1562,8 @@ func _apply_pet_phoenix_summon_hit(target: Node) -> void :
 	set_meta("pet_phoenix_primary_target", target)
 	call_deferred("_apply_pet_phoenix_pending_overlap_hit")
 
-func _apply_pet_phoenix_pending_overlap_hit() -> void :
+
+func _apply_pet_phoenix_pending_overlap_hit() -> void:
 	set_meta("pet_phoenix_pending_overlap_hit", false)
 	if get_meta("pet_phoenix_disabled", false):
 		return
@@ -1336,7 +1573,8 @@ func _apply_pet_phoenix_pending_overlap_hit() -> void :
 		return
 	_apply_pet_phoenix_summon_targets(targets)
 
-func _apply_pet_phoenix_summon_targets(targets: Array[BaseMonster]) -> void :
+
+func _apply_pet_phoenix_summon_targets(targets: Array[BaseMonster]) -> void:
 	if _is_pet_phoenix_visual_sweep_bullet():
 		return
 	if get_meta("pet_phoenix_disabled", false):
@@ -1345,16 +1583,19 @@ func _apply_pet_phoenix_summon_targets(targets: Array[BaseMonster]) -> void :
 		return
 	var hit_data: Dictionary = AttList
 	var summon_owner: Node = get_meta("summoner", null)
-	var damage: = int(hit_data.get("power", 0))
+	var damage := int(hit_data.get("power", 0))
 	if damage <= 0:
 		return
-	var attack_kind: = str(hit_data.get("attackKind", "physics"))
+	var attack_kind := str(hit_data.get("attackKind", "physics"))
 	var hurt_back: Array = hit_data.get("hurtBack", [0, 0])
 	_deal_pet_phoenix_damage_repeated(targets, damage, summon_owner, hurt_back, attack_kind)
 	set_meta("pet_phoenix_disabled", true)
 	hit_box.set_deferred("monitoring", false)
 
-func _deal_pet_phoenix_damage_repeated(targets: Array[BaseMonster], damage: int, summon_owner: Node, hurt_back: Array, attack_kind: String) -> void :
+
+func _deal_pet_phoenix_damage_repeated(
+	targets: Array[BaseMonster], damage: int, summon_owner: Node, hurt_back: Array, attack_kind: String
+) -> void:
 	var damage_times: int = max(1, int(get_meta("pet_phoenix_damage_times", 1)))
 	var damage_interval: float = maxf(0.0, float(get_meta("pet_phoenix_damage_interval", 0.14)))
 	for hit_index in range(damage_times):
@@ -1364,56 +1605,71 @@ func _deal_pet_phoenix_damage_repeated(targets: Array[BaseMonster], damage: int,
 				return
 		_deal_pet_phoenix_damage(targets, damage, summon_owner, hurt_back, attack_kind)
 
-func _deal_pet_phoenix_damage(targets: Array[BaseMonster], damage: int, summon_owner: Node, hurt_back: Array, attack_kind: String) -> void :
+
+func _deal_pet_phoenix_damage(
+	targets: Array[BaseMonster], damage: int, summon_owner: Node, hurt_back: Array, attack_kind: String
+) -> void:
 	for aoe_target in targets:
 		if not is_instance_valid(aoe_target) or aoe_target.Hp <= 0:
 			continue
 		if aoe_target.is_boss_protecting():
 			continue
-		var resolved_damage: = _pet_tiger_resolve_damage(aoe_target, damage, summon_owner, attack_kind)
+		var resolved_damage := _pet_tiger_resolve_damage(aoe_target, damage, summon_owner, attack_kind)
 		if resolved_damage <= 0:
 			continue
-		var hp_before_hit: = int(aoe_target.Hp)
+		var hp_before_hit := int(aoe_target.Hp)
 		aoe_target.reduce_pet_hp(resolved_damage, attack_kind)
-		var actual_damage: = maxi(0, hp_before_hit - int(aoe_target.Hp))
+		var actual_damage := maxi(0, hp_before_hit - int(aoe_target.Hp))
 		if actual_damage > 0:
 			_pet_phoenix_mark_hit_target(aoe_target.get_instance_id())
 			_apply_pet_summon_knockback(aoe_target, summon_owner, hurt_back)
 			if aoe_target.has_method("play_hit_effect"):
 				aoe_target.play_hit_effect(self)
 
+
 func _collect_pet_phoenix_aoe_targets(primary_target: BaseMonster) -> Array[BaseMonster]:
 	var targets: Array[BaseMonster] = []
-	var seen: = {}
+	var seen := {}
 	var hit_size: Vector2 = get_meta("pet_phoenix_hit_size", Vector2(180, 100))
-	var radius: = maxf(hit_size.x, hit_size.y) * 0.5
+	var radius := maxf(hit_size.x, hit_size.y) * 0.5
 	var summon_owner = get_meta("summoner", null)
-	var tree: = get_tree()
+	var tree := get_tree()
 	if tree != null:
-		var candidates: = _get_level_active_monster_candidates()
+		var candidates := _get_level_active_monster_candidates()
 		for node in candidates:
 			_try_add_pet_phoenix_aoe_target(node, radius, targets, seen, summon_owner)
-		var scene: = tree.current_scene
+		var scene := tree.current_scene
 		if candidates.is_empty() and scene != null and scene.has_node("Monster"):
 			_collect_pet_phoenix_aoe_targets_recursive(scene.get_node("Monster"), radius, targets, seen, summon_owner)
-	if is_instance_valid(primary_target) and primary_target != summon_owner and primary_target.Hp > 0 and not targets.has(primary_target):
+	if (
+		is_instance_valid(primary_target)
+		and primary_target != summon_owner
+		and primary_target.Hp > 0
+		and not targets.has(primary_target)
+	):
 		targets.append(primary_target)
 	return targets
 
-func _collect_pet_phoenix_aoe_targets_recursive(node: Node, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner) -> void :
+
+func _collect_pet_phoenix_aoe_targets_recursive(
+	node: Node, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner
+) -> void:
 	if node == null:
 		return
 	_try_add_pet_phoenix_aoe_target(node, radius, targets, seen, summon_owner)
 	for child in node.get_children():
 		_collect_pet_phoenix_aoe_targets_recursive(child, radius, targets, seen, summon_owner)
 
-func _try_add_pet_phoenix_aoe_target(node: Node, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner) -> void :
+
+func _try_add_pet_phoenix_aoe_target(
+	node: Node, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner
+) -> void:
 	if not (node is BaseMonster):
 		return
-	var monster: = node as BaseMonster
+	var monster := node as BaseMonster
 	if monster.Hp <= 0 or monster == summon_owner:
 		return
-	var instance_id: = monster.get_instance_id()
+	var instance_id := monster.get_instance_id()
 	if seen.has(instance_id):
 		return
 	if monster.global_position.distance_to(global_position) > radius:
@@ -1422,14 +1678,15 @@ func _try_add_pet_phoenix_aoe_target(node: Node, radius: float, targets: Array[B
 	seen[instance_id] = true
 
 
-func _setup_pet_dragon_hit_shape(name_: String) -> void :
+func _setup_pet_dragon_hit_shape(name_: String) -> void:
 	var hit_shape: CollisionShape2D = hit_box.get_node_or_null("Hit_Box")
 	if hit_shape == null:
 		return
-	var shape: = CircleShape2D.new()
+	var shape := CircleShape2D.new()
 	shape.radius = _pet_dragon_hit_radius(name_)
 	hit_shape.shape = shape
 	hit_shape.position = _pet_dragon_hit_offset(name_)
+
 
 func _pet_dragon_hit_radius(name_: String) -> float:
 	match name_:
@@ -1448,6 +1705,7 @@ func _pet_dragon_hit_radius(name_: String) -> float:
 		_:
 			return 60.0
 
+
 func _pet_dragon_hit_offset(name_: String) -> Vector2:
 	match name_:
 		"PetDragon3Bullet3":
@@ -1456,6 +1714,7 @@ func _pet_dragon_hit_offset(name_: String) -> Vector2:
 			return Vector2(0.0, -8.0)
 		_:
 			return Vector2.ZERO
+
 
 func _pet_dragon_aoe_radius(name_: String) -> float:
 	match name_:
@@ -1473,6 +1732,7 @@ func _pet_dragon_aoe_radius(name_: String) -> float:
 			return 190.0
 		_:
 			return max(90.0, _pet_dragon_hit_radius(name_) * 1.8)
+
 
 func _pet_dragon_bullet_frame_paths(name_: String) -> Array[String]:
 	match name_:
@@ -1497,12 +1757,11 @@ func _pet_dragon_bullet_frame_paths(name_: String) -> Array[String]:
 		_:
 			return []
 
-func _setup_pet_dragon_bullet(name_: String) -> void :
 
-
+func _setup_pet_dragon_bullet(name_: String) -> void:
 	_apply_pet_dragon_direction(dir)
 	_setup_pet_dragon_hit_shape(name_)
-	var frames: = _get_cached_pet_bullet_frames(name_, _pet_dragon_bullet_frame_paths(name_), true)
+	var frames := _get_cached_pet_bullet_frames(name_, _pet_dragon_bullet_frame_paths(name_), true)
 	bullet_ani.sprite_frames = frames
 	bullet_ani.animation = name_
 	bullet_ani.position = Vector2.ZERO
@@ -1515,14 +1774,19 @@ func _setup_pet_dragon_bullet(name_: String) -> void :
 	queue_timer.start(float(frames.get_frame_count(name_)) / PET_TIGER_BULLET_FPS + 0.02)
 	state = do
 
-func _update_pet_dragon_layers() -> void :
-	var frame_index: int = clampi(bullet_ani.frame, 0, max(0, bullet_ani.sprite_frames.get_frame_count(skill_name) - 1)) if bullet_ani.sprite_frames != null and bullet_ani.sprite_frames.has_animation(skill_name) else 0
+
+func _update_pet_dragon_layers() -> void:
+	var frame_index: int = (
+		clampi(bullet_ani.frame, 0, max(0, bullet_ani.sprite_frames.get_frame_count(skill_name) - 1))
+		if bullet_ani.sprite_frames != null and bullet_ani.sprite_frames.has_animation(skill_name)
+		else 0
+	)
 	if frame_index == pet_tiger_last_frame:
 		return
 	pet_tiger_last_frame = frame_index
 	var texture: Texture2D = null
 	if skill_name == "PetDragonBullet4":
-		var ultimate_path: = "%s/%d.png" % [PET_DRAGON_ULTIMATE_DIR, frame_index + 1]
+		var ultimate_path := "%s/%d.png" % [PET_DRAGON_ULTIMATE_DIR, frame_index + 1]
 		texture = _get_pet_dragon_texture(ultimate_path)
 	else:
 		texture = _get_pet_dragon_texture(_pet_dragon_png(skill_name, frame_index + 1))
@@ -1530,20 +1794,24 @@ func _update_pet_dragon_layers() -> void :
 		_ensure_pet_tiger_layers(1)
 		pet_tiger_layer_sprites[0].texture = texture
 		pet_tiger_layer_sprites[0].centered = true
-		var layer_position: Vector2 = PET_DRAGON_ULTIMATE_OFFSETS[frame_index] as Vector2 if skill_name == "PetDragonBullet4" else Vector2.ZERO
+		var layer_position: Vector2 = (
+			PET_DRAGON_ULTIMATE_OFFSETS[frame_index] as Vector2 if skill_name == "PetDragonBullet4" else Vector2.ZERO
+		)
 		if skill_name == "PetDragon1Bullet1":
-			layer_position.x = - float(texture.get_width()) * 0.5
+			layer_position.x = -float(texture.get_width()) * 0.5
 		if skill_name == "PetDragon3Bullet3":
-			layer_position.y = - float(texture.get_height()) * 0.5
+			layer_position.y = -float(texture.get_height()) * 0.5
 		pet_tiger_layer_sprites[0].position = layer_position
 		pet_tiger_layer_sprites[0].visible = true
 
-func _apply_pet_dragon_direction(face_left: bool) -> void :
+
+func _apply_pet_dragon_direction(face_left: bool) -> void:
 	dir = face_left
 	if middle != null:
 		middle.scale.x = 1.0 if face_left else -1.0
 
-func _sync_follow_pet_dragon_bullet() -> void :
+
+func _sync_follow_pet_dragon_bullet() -> void:
 	if skill_name != "PetDragon2Bullet2" and skill_name != "PetDragonBullet4":
 		return
 	var source = get_meta("summoner", null)
@@ -1553,53 +1821,69 @@ func _sync_follow_pet_dragon_bullet() -> void :
 
 	var follow_offset: Vector2 = get_meta("pet_dragon_follow_offset", Vector2.ZERO)
 	global_position = source.global_position + follow_offset
-	var source_faces_left: = bool(source.get("MonsterDirection"))
+	var source_faces_left := bool(source.get("MonsterDirection"))
 	if source_faces_left != dir:
 		_apply_pet_dragon_direction(source_faces_left)
 
-func _physics_pet_dragon_bullet(_delta: float) -> void :
+
+func _physics_pet_dragon_bullet(_delta: float) -> void:
 	_sync_follow_pet_dragon_bullet()
 	if is_queued_for_deletion():
 		return
 	get_prop()
 	_update_pet_dragon_layers()
 	if bullet_ani.sprite_frames != null and bullet_ani.sprite_frames.has_animation(skill_name):
-		var is_dash: = skill_name == "PetDragon2Bullet2"
-		hit_box.monitoring = not bool(get_meta("pet_dragon_disabled", false)) and (is_dash or not bool(get_meta("pet_dragon_damage_applied", false)))
+		var is_dash := skill_name == "PetDragon2Bullet2"
+		hit_box.monitoring = (
+			not bool(get_meta("pet_dragon_disabled", false))
+			and (is_dash or not bool(get_meta("pet_dragon_damage_applied", false)))
+		)
 		if is_dash:
 			_apply_pet_dragon_dash_overlap_damage()
 
+
 func _collect_pet_dragon_aoe_targets(primary_target: BaseMonster) -> Array[BaseMonster]:
 	var targets: Array[BaseMonster] = []
-	var radius: = _pet_dragon_aoe_radius(skill_name)
+	var radius := _pet_dragon_aoe_radius(skill_name)
 	var summon_owner = get_meta("summoner", null)
-	var tree: = get_tree()
+	var tree := get_tree()
 	if tree != null:
-		var seen: = {}
-		var candidates: = _get_level_active_monster_candidates()
+		var seen := {}
+		var candidates := _get_level_active_monster_candidates()
 		for node in candidates:
 			_try_add_pet_dragon_aoe_target(node, radius, targets, seen, summon_owner)
-		var scene: = tree.current_scene
+		var scene := tree.current_scene
 		if candidates.is_empty() and scene != null and scene.has_node("Monster"):
 			_collect_pet_dragon_aoe_targets_recursive(scene.get_node("Monster"), radius, targets, seen, summon_owner)
-	if is_instance_valid(primary_target) and primary_target != summon_owner and primary_target.Hp > 0 and not targets.has(primary_target):
+	if (
+		is_instance_valid(primary_target)
+		and primary_target != summon_owner
+		and primary_target.Hp > 0
+		and not targets.has(primary_target)
+	):
 		targets.append(primary_target)
 	return targets
 
-func _collect_pet_dragon_aoe_targets_recursive(node: Node, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner) -> void :
+
+func _collect_pet_dragon_aoe_targets_recursive(
+	node: Node, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner
+) -> void:
 	if node == null:
 		return
 	_try_add_pet_dragon_aoe_target(node, radius, targets, seen, summon_owner)
 	for child in node.get_children():
 		_collect_pet_dragon_aoe_targets_recursive(child, radius, targets, seen, summon_owner)
 
-func _try_add_pet_dragon_aoe_target(node: Node, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner) -> void :
+
+func _try_add_pet_dragon_aoe_target(
+	node: Node, radius: float, targets: Array[BaseMonster], seen: Dictionary, summon_owner
+) -> void:
 	if not (node is BaseMonster):
 		return
-	var monster: = node as BaseMonster
+	var monster := node as BaseMonster
 	if monster.Hp <= 0 or monster == summon_owner:
 		return
-	var instance_id: = monster.get_instance_id()
+	var instance_id := monster.get_instance_id()
 	if seen.has(instance_id):
 		return
 	if monster.global_position.distance_to(global_position) > radius:
@@ -1607,7 +1891,8 @@ func _try_add_pet_dragon_aoe_target(node: Node, radius: float, targets: Array[Ba
 	targets.append(monster)
 	seen[instance_id] = true
 
-func _apply_pet_dragon_summon_hit(target: Node) -> void :
+
+func _apply_pet_dragon_summon_hit(target: Node) -> void:
 	if not (target is BaseMonster):
 		return
 	var summon_owner = get_meta("summoner", null)
@@ -1616,86 +1901,114 @@ func _apply_pet_dragon_summon_hit(target: Node) -> void :
 	if get_meta("pet_dragon_disabled", false) or get_meta("pet_dragon_damage_applied", false):
 		return
 	var hit_data: Dictionary = AttList if typeof(AttList) == TYPE_DICTIONARY else {}
-	if hit_data.is_empty() and objattackDic != null and typeof(objattackDic) == TYPE_DICTIONARY and objattackDic.has(hit_name):
+	if (
+		hit_data.is_empty()
+		and objattackDic != null
+		and typeof(objattackDic) == TYPE_DICTIONARY
+		and objattackDic.has(hit_name)
+	):
 		hit_data = objattackDic[hit_name]
 	if hit_data.is_empty():
 		return
-	var damage: = int(hit_data.get("power", 0))
+	var damage := int(hit_data.get("power", 0))
 	if damage <= 0:
 		return
-	var attack_kind: = str(hit_data.get("attackKind", "physics"))
+	var attack_kind := str(hit_data.get("attackKind", "physics"))
 	var hurt_back: Array = hit_data.get("hurtBack", []) if hit_data.get("hurtBack", []) is Array else []
 	if skill_name == "PetDragon2Bullet2":
 		_apply_pet_dragon_dash_damage(target as BaseMonster, damage, summon_owner, hurt_back, attack_kind)
 		return
 	set_meta("pet_dragon_damage_applied", true)
 	hit_box.set_deferred("monitoring", false)
-	_deal_pet_dragon_damage(_collect_pet_dragon_aoe_targets(target as BaseMonster), damage, summon_owner, hurt_back if hit_name in ["hit1", "hit3"] else [], attack_kind)
+	_deal_pet_dragon_damage(
+		_collect_pet_dragon_aoe_targets(target as BaseMonster),
+		damage,
+		summon_owner,
+		hurt_back if hit_name in ["hit1", "hit3"] else [],
+		attack_kind
+	)
 
-func _apply_pet_dragon_dash_overlap_damage() -> void :
+
+func _apply_pet_dragon_dash_overlap_damage() -> void:
 	if hit_box == null:
 		return
 	for area in hit_box.get_overlapping_areas():
-		var target: = _pet_dragon_target_from_hurt_area(area)
+		var target := _pet_dragon_target_from_hurt_area(area)
 		if target != null:
 			_apply_pet_dragon_summon_hit(target)
+
 
 func _pet_dragon_target_from_hurt_area(area: Area2D) -> BaseMonster:
 	if area == null:
 		return null
-	var parent: = area.get_parent()
-	var target: = parent.get_parent() as BaseMonster if parent != null else null
+	var parent := area.get_parent()
+	var target := parent.get_parent() as BaseMonster if parent != null else null
 	return target
 
-func _apply_pet_dragon_dash_damage(target: BaseMonster, damage: int, summon_owner, hurt_back: Array, attack_kind: String) -> void :
+
+func _apply_pet_dragon_dash_damage(
+	target: BaseMonster, damage: int, summon_owner, hurt_back: Array, attack_kind: String
+) -> void:
 	if target == null or not is_instance_valid(target) or target.Hp <= 0:
 		return
-	var target_id: = target.get_instance_id()
-	var now: = Time.get_ticks_msec()
+	var target_id := target.get_instance_id()
+	var now := Time.get_ticks_msec()
 	if now < int(pet_dragon_dash_damage_until.get(target_id, 0)):
 		return
 	pet_dragon_dash_damage_until[target_id] = now + PET_DRAGON_DASH_DAMAGE_INTERVAL_MS
 	_deal_pet_dragon_damage([target], damage, summon_owner, hurt_back, attack_kind)
 
-func _deal_pet_dragon_damage(targets: Array, damage: int, summon_owner, hurt_back: Array, attack_kind: String) -> void :
+
+func _deal_pet_dragon_damage(targets: Array, damage: int, summon_owner, hurt_back: Array, attack_kind: String) -> void:
 	for aoe_target in targets:
 		if not is_instance_valid(aoe_target) or aoe_target.Hp <= 0:
 			continue
-		var resolved_damage: = _pet_tiger_resolve_damage(aoe_target, damage, summon_owner, attack_kind)
+		var resolved_damage := _pet_tiger_resolve_damage(aoe_target, damage, summon_owner, attack_kind)
 		if resolved_damage <= 0:
 			continue
-		var hp_before_hit: = int(aoe_target.Hp)
+		var hp_before_hit := int(aoe_target.Hp)
 		aoe_target.reduce_pet_hp(resolved_damage, attack_kind)
-		var actual_damage: = maxi(0, hp_before_hit - int(aoe_target.Hp))
+		var actual_damage := maxi(0, hp_before_hit - int(aoe_target.Hp))
 		if actual_damage > 0:
 			_apply_pet_summon_knockback(aoe_target, summon_owner, hurt_back)
-			if summon_owner != null and is_instance_valid(summon_owner) and summon_owner.has_method("record_pet_dragon_damage"):
+			if (
+				summon_owner != null
+				and is_instance_valid(summon_owner)
+				and summon_owner.has_method("record_pet_dragon_damage")
+			):
 				summon_owner.record_pet_dragon_damage(actual_damage)
 			if aoe_target.has_method("play_hit_effect"):
 				aoe_target.play_hit_effect(self)
 
-func _apply_pet_summon_knockback(target: BaseMonster, summon_owner, hurt_back: Array) -> void :
+
+func _apply_pet_summon_knockback(target: BaseMonster, summon_owner, hurt_back: Array) -> void:
 	if target == null or not is_instance_valid(target) or hurt_back.size() < 2:
 		return
 	if target.is_control_immune():
 		return
 	if int(hurt_back[0]) == 0 and int(hurt_back[1]) == 0:
 		return
-	var face_left: = bool(summon_owner.get("MonsterDirection")) if summon_owner != null and is_instance_valid(summon_owner) else false
+	var face_left := (
+		bool(summon_owner.get("MonsterDirection"))
+		if summon_owner != null and is_instance_valid(summon_owner)
+		else false
+	)
 	target.begin_friendly_knockback_lock(PET_DRAGON_KNOCKBACK_LOCK_TIME)
 	if face_left and target.has_method("attack_to_right"):
 		target.attack_to_right(hurt_back)
 	elif not face_left and target.has_method("attack_to_left"):
 		target.attack_to_left(hurt_back)
 
-func _setup_pet_tiger_hit_shape(name_: String) -> void :
+
+func _setup_pet_tiger_hit_shape(name_: String) -> void:
 	var hit_shape: CollisionShape2D = hit_box.get_node_or_null("Hit_Box")
 	if hit_shape == null:
 		return
-	var shape: = CircleShape2D.new()
+	var shape := CircleShape2D.new()
 	shape.radius = _pet_tiger_hit_radius(name_)
 	hit_shape.shape = shape
 	hit_shape.position = _pet_tiger_hit_offset(name_)
+
 
 func _pet_tiger_hit_radius(name_: String) -> float:
 	match name_:
@@ -1716,6 +2029,7 @@ func _pet_tiger_hit_radius(name_: String) -> float:
 		_:
 			return 60.0
 
+
 func _pet_tiger_hit_offset(name_: String) -> Vector2:
 	match name_:
 		"PetTiger2Bullet3_2":
@@ -1724,6 +2038,7 @@ func _pet_tiger_hit_offset(name_: String) -> Vector2:
 			return Vector2(0.0, -8.0)
 		_:
 			return Vector2.ZERO
+
 
 func _pet_tiger_aoe_radius(name_: String) -> float:
 	match name_:
@@ -1742,39 +2057,48 @@ func _pet_tiger_aoe_radius(name_: String) -> float:
 		_:
 			return max(90.0, _pet_tiger_hit_radius(name_) * 1.8)
 
+
 func _collect_pet_tiger_aoe_targets(primary_target: BaseMonster) -> Array:
 	var targets: Array = []
 	if primary_target == null or not is_instance_valid(primary_target):
 		return targets
-	var radius: = _pet_tiger_aoe_radius(skill_name)
-	var tree: = get_tree()
+	var radius := _pet_tiger_aoe_radius(skill_name)
+	var tree := get_tree()
 	if tree == null:
 		targets.append(primary_target)
 		return targets
-	var seen: = {}
-	var candidates: = _get_level_active_monster_candidates()
+	var seen := {}
+	var candidates := _get_level_active_monster_candidates()
 	for monster in candidates:
 		_try_add_pet_tiger_aoe_target(monster, primary_target, radius, targets, seen)
-	var current_scene: = tree.current_scene
+	var current_scene := tree.current_scene
 	if candidates.is_empty() and current_scene != null and current_scene.has_node("Monster"):
-		_collect_pet_tiger_aoe_targets_recursive(current_scene.get_node("Monster"), primary_target, radius, targets, seen)
+		_collect_pet_tiger_aoe_targets_recursive(
+			current_scene.get_node("Monster"), primary_target, radius, targets, seen
+		)
 	if not seen.has(primary_target.get_instance_id()):
 		targets.append(primary_target)
 	return targets
 
-func _collect_pet_tiger_aoe_targets_recursive(node: Node, primary_target: BaseMonster, radius: float, targets: Array, seen: Dictionary) -> void :
+
+func _collect_pet_tiger_aoe_targets_recursive(
+	node: Node, primary_target: BaseMonster, radius: float, targets: Array, seen: Dictionary
+) -> void:
 	if node == null:
 		return
 	_try_add_pet_tiger_aoe_target(node, primary_target, radius, targets, seen)
 	for child in node.get_children():
 		_collect_pet_tiger_aoe_targets_recursive(child, primary_target, radius, targets, seen)
 
-func _try_add_pet_tiger_aoe_target(node: Node, primary_target: BaseMonster, radius: float, targets: Array, seen: Dictionary) -> void :
+
+func _try_add_pet_tiger_aoe_target(
+	node: Node, primary_target: BaseMonster, radius: float, targets: Array, seen: Dictionary
+) -> void:
 	if not (node is BaseMonster):
 		return
 	if node.Hp <= 0:
 		return
-	var instance_id: = node.get_instance_id()
+	var instance_id := node.get_instance_id()
 	if seen.has(instance_id):
 		return
 	if node.global_position.distance_to(primary_target.global_position) > radius:
@@ -1782,7 +2106,8 @@ func _try_add_pet_tiger_aoe_target(node: Node, primary_target: BaseMonster, radi
 	targets.append(node)
 	seen[instance_id] = true
 
-func _setup_monster5_bullet() -> void :
+
+func _setup_monster5_bullet() -> void:
 	if dir == false:
 		middle.scale.x = 1
 	else:
@@ -1796,9 +2121,9 @@ func _setup_monster5_bullet() -> void :
 	monster5_stream_sprite.position = Vector2(0, -260)
 	monster5_stream_sprite.region_enabled = true
 	middle.add_child(monster5_stream_sprite)
-	var hit_shape: = $middle / HitBox / Hit_Box as CollisionShape2D
+	var hit_shape := $middle/HitBox/Hit_Box as CollisionShape2D
 	if hit_shape != null:
-		var rect_shape: = RectangleShape2D.new()
+		var rect_shape := RectangleShape2D.new()
 		rect_shape.size = Vector2(844, 541.001)
 		hit_shape.shape = rect_shape
 		hit_shape.position = Vector2(21, -248)
@@ -1810,16 +2135,18 @@ func _setup_monster5_bullet() -> void :
 	_update_monster5_stream_frame(0)
 	state = do
 
-func _physics_monster5_bullet(delta: float) -> void :
+
+func _physics_monster5_bullet(delta: float) -> void:
 	get_prop()
 	monster5_stream_time += delta * max(speed, 0.01)
-	var frame_index: = int(floor(monster5_stream_time * MONSTER5_BULLET_FPS))
+	var frame_index := int(floor(monster5_stream_time * MONSTER5_BULLET_FPS))
 	if frame_index >= MONSTER5_BULLET_FRAME_COUNT:
 		queue_free()
 		return
 	_update_monster5_stream_frame(frame_index)
 
-func _update_monster5_stream_frame(frame_index: int) -> void :
+
+func _update_monster5_stream_frame(frame_index: int) -> void:
 	if frame_index == monster5_stream_frame:
 		return
 	monster5_stream_frame = frame_index
@@ -1828,8 +2155,8 @@ func _update_monster5_stream_frame(frame_index: int) -> void :
 			monster5_stream_sprite.texture = null
 		monster5_stream_texture = null
 	else:
-		var sheet_index: = _monster5_stream_sheet_index(frame_index)
-		var row_index: = _monster5_stream_row_index(frame_index)
+		var sheet_index := _monster5_stream_sheet_index(frame_index)
+		var row_index := _monster5_stream_row_index(frame_index)
 		if _load_monster5_stream_sheet(sheet_index):
 			if monster5_stream_texture != monster5_stream_sheet:
 				monster5_stream_texture = monster5_stream_sheet
@@ -1837,21 +2164,25 @@ func _update_monster5_stream_frame(frame_index: int) -> void :
 				if monster5_stream_sprite != null:
 					monster5_stream_sprite.texture = monster5_stream_texture
 			if monster5_stream_sprite != null:
-				monster5_stream_sprite.region_rect = Rect2(Vector2(0, row_index * MONSTER5_BULLET_FRAME_SIZE.y), MONSTER5_BULLET_FRAME_SIZE)
-	var hit_shape: = $middle / HitBox / Hit_Box as CollisionShape2D
+				monster5_stream_sprite.region_rect = Rect2(
+					Vector2(0, row_index * MONSTER5_BULLET_FRAME_SIZE.y), MONSTER5_BULLET_FRAME_SIZE
+				)
+	var hit_shape := $middle/HitBox/Hit_Box as CollisionShape2D
 	if hit_shape != null:
 		hit_shape.disabled = frame_index < 10 or frame_index % 2 == 0
+
 
 func _load_monster5_stream_sheet(sheet_index: int) -> bool:
 	if monster5_stream_sheet_index == sheet_index and monster5_stream_sheet != null:
 		return true
 	monster5_stream_sheet_index = sheet_index
-	var path: = "%s/SpecialEffect2-%d.png" % [MONSTER5_BULLET_DIR, sheet_index]
+	var path := "%s/SpecialEffect2-%d.png" % [MONSTER5_BULLET_DIR, sheet_index]
 	if monster5_stream_image_cache.has(path):
 		monster5_stream_sheet = monster5_stream_image_cache[path] as Texture2D
 	else:
 		monster5_stream_sheet = null
 	return monster5_stream_sheet != null
+
 
 func _monster5_stream_sheet_index(frame_index: int) -> int:
 	if frame_index <= 5:
@@ -1861,6 +2192,7 @@ func _monster5_stream_sheet_index(frame_index: int) -> int:
 	if frame_index <= 37:
 		return 2 + int((frame_index - 11) / 3)
 	return 11
+
 
 func _monster5_stream_row_index(frame_index: int) -> int:
 	if frame_index <= 5:
@@ -1875,14 +2207,15 @@ func _monster5_stream_row_index(frame_index: int) -> int:
 		return int((frame_index - 11) % 3)
 	return 0
 
-func _setup_pet_tiger_bullet(name_: String) -> void :
+
+func _setup_pet_tiger_bullet(name_: String) -> void:
 	if dir == false:
 		middle.scale.x = -1
 	else:
 		middle.scale.x = 1
 	_setup_pet_tiger_hit_shape(name_)
 	pet_tiger_timeline = _get_cached_pet_tiger_timeline(name_)
-	var frames: = _get_cached_pet_bullet_frames(name_, _pet_tiger_bullet_frame_paths(name_), false)
+	var frames := _get_cached_pet_bullet_frames(name_, _pet_tiger_bullet_frame_paths(name_), false)
 	bullet_ani.sprite_frames = frames
 	bullet_ani.animation = name_
 	bullet_ani.position = Vector2.ZERO
@@ -1895,18 +2228,20 @@ func _setup_pet_tiger_bullet(name_: String) -> void :
 	queue_timer.start(float(frames.get_frame_count(name_)) / PET_TIGER_BULLET_FPS + 0.02)
 	state = do
 
-func _physics_pet_tiger_bullet(delta: float) -> void :
+
+func _physics_pet_tiger_bullet(delta: float) -> void:
 	get_prop()
 	_update_pet_tiger_layers()
 	if bullet_ani.sprite_frames != null and bullet_ani.sprite_frames.has_animation(skill_name):
-		var timeline: = pet_tiger_timeline
-		var has_visible_frame: = false
+		var timeline := pet_tiger_timeline
+		var has_visible_frame := false
 		if not timeline.is_empty():
 			var frame_index: int = clampi(bullet_ani.frame, 0, timeline.size() - 1)
 			has_visible_frame = not Array(timeline[frame_index]).is_empty()
 		hit_box.monitoring = has_visible_frame and not bool(get_meta("pet_tiger_disabled", false))
 	if ThrowCount > int(PET_TIGER_BULLET_FPS * 2.0):
 		queue_free()
+
 
 func do_action(name_):
 	if String(name_).is_empty():
@@ -1921,16 +2256,20 @@ func do_action(name_):
 	_prepare_bullet_animation_material(name_)
 	bullet_player.play(name_)
 
-
 	if name_ == "Monster1410Bullet1":
 		return
 
-	if name_ != "Monster55Bullet" or name_ != "Monster58Bullet" or name_ != "Monster101Bullet2" or name_ != "Monster100Bullet":
+	if (
+		name_ != "Monster55Bullet"
+		or name_ != "Monster58Bullet"
+		or name_ != "Monster101Bullet2"
+		or name_ != "Monster100Bullet"
+	):
 		await bullet_player.animation_finished
 		state = remove
 
 
-func _apply_pet_tiger_id60_six_hit(role: Node) -> void :
+func _apply_pet_tiger_id60_six_hit(role: Node) -> void:
 	if skill_name != "PetTiger3Bullet4_2" or hit_name != "hsqj":
 		return
 	if has_meta("pet_tiger_id60_six_hit_started"):
@@ -1939,7 +2278,7 @@ func _apply_pet_tiger_id60_six_hit(role: Node) -> void :
 		return
 	if not role.has_method("effect_reducehp"):
 		return
-	var owner: = MyFather
+	var owner := MyFather
 	if owner == null and get_parent() != null and get_parent().get_parent() is BaseMonster:
 		owner = get_parent().get_parent()
 	var hit_data = AttList
@@ -1947,10 +2286,10 @@ func _apply_pet_tiger_id60_six_hit(role: Node) -> void :
 		hit_data = owner.objattackDic[hit_name]
 	if typeof(hit_data) != TYPE_DICTIONARY or not hit_data.has("power"):
 		return
-	var attack_kind: = "magic"
+	var attack_kind := "magic"
 	if hit_data.has("attackKind"):
 		attack_kind = String(hit_data["attackKind"])
-	var damage_per_hit: = int(hit_data["power"])
+	var damage_per_hit := int(hit_data["power"])
 	if damage_per_hit <= 0:
 		return
 	set_meta("pet_tiger_id60_six_hit_started", true)
@@ -1962,13 +2301,17 @@ func _apply_pet_tiger_id60_six_hit(role: Node) -> void :
 		if i < 5:
 			await get_tree().create_timer(0.08, false).timeout
 
+
 func _pet_tiger_resolve_damage(target: BaseMonster, base_damage: int, summon_owner, attack_kind: String) -> int:
 	if target == null or base_damage <= 0:
 		return 0
-	var owner: Node = summon_owner as Node if typeof(summon_owner) == TYPE_OBJECT and is_instance_valid(summon_owner) else null
+	var owner: Node = (
+		summon_owner as Node if typeof(summon_owner) == TYPE_OBJECT and is_instance_valid(summon_owner) else null
+	)
 	return target.resolve_friendly_damage(base_damage, attack_kind, owner)
 
-func _apply_pet_tiger_summon_hit(target: Node) -> void :
+
+func _apply_pet_tiger_summon_hit(target: Node) -> void:
 	if not (target is BaseMonster):
 		return
 	if get_meta("pet_tiger_disabled", false):
@@ -1976,28 +2319,28 @@ func _apply_pet_tiger_summon_hit(target: Node) -> void :
 	if objattackDic == null or typeof(objattackDic) != TYPE_DICTIONARY or not objattackDic.has(hit_name):
 		return
 	var hit_data: Dictionary = objattackDic[hit_name]
-	var attack_kind: = str(hit_data.get("attackKind", "physics"))
+	var attack_kind := str(hit_data.get("attackKind", "physics"))
 	var summon_owner = get_meta("summoner", null)
-	var targets: = _collect_pet_tiger_aoe_targets(target)
+	var targets := _collect_pet_tiger_aoe_targets(target)
 	if skill_name == "PetTiger3Bullet4_2" and hit_name == "hsqj":
 		if get_meta("pet_tiger_summon_id60_started", false):
 			return
 		set_meta("pet_tiger_summon_id60_started", true)
-		var damage_per_hit: = int(hit_data.get("power", 0))
+		var damage_per_hit := int(hit_data.get("power", 0))
 		for i in range(6):
-			var has_live_target: = false
+			var has_live_target := false
 			for aoe_target in targets:
 				if not is_instance_valid(aoe_target) or aoe_target.Hp <= 0:
 					continue
 				if aoe_target.is_boss_protecting():
 					continue
 				has_live_target = true
-				var resolved_damage: = _pet_tiger_resolve_damage(aoe_target, damage_per_hit, summon_owner, attack_kind)
+				var resolved_damage := _pet_tiger_resolve_damage(aoe_target, damage_per_hit, summon_owner, attack_kind)
 				if resolved_damage <= 0:
 					continue
-				var hp_before_hit: = int(aoe_target.Hp)
+				var hp_before_hit := int(aoe_target.Hp)
 				aoe_target.reduce_pet_hp(resolved_damage, attack_kind)
-				var actual_damage: = maxi(0, hp_before_hit - int(aoe_target.Hp))
+				var actual_damage := maxi(0, hp_before_hit - int(aoe_target.Hp))
 				if actual_damage > 0:
 					_apply_pet_summon_knockback(aoe_target, summon_owner, hit_data.get("hurtBack", []))
 					if aoe_target.has_method("play_hit_effect"):
@@ -2007,9 +2350,9 @@ func _apply_pet_tiger_summon_hit(target: Node) -> void :
 			if i < 5:
 				await get_tree().create_timer(0.08, false).timeout
 		return
-	var damage: = int(hit_data.get("power", 0))
+	var damage := int(hit_data.get("power", 0))
 	if hit_name == "sxhz":
-		var hit_list: = [damage, damage * 7, damage * 12]
+		var hit_list := [damage, damage * 7, damage * 12]
 		for aoe_target in targets:
 			if not is_instance_valid(aoe_target) or aoe_target.Hp <= 0:
 				continue
@@ -2023,12 +2366,14 @@ func _apply_pet_tiger_summon_hit(target: Node) -> void :
 			for i in range(hit_list.size()):
 				if not is_instance_valid(aoe_target) or aoe_target.Hp <= 0:
 					break
-				var hit_damage: int = _pet_tiger_resolve_damage(aoe_target, max(1, int(hit_list[i])), summon_owner, attack_kind)
+				var hit_damage: int = _pet_tiger_resolve_damage(
+					aoe_target, max(1, int(hit_list[i])), summon_owner, attack_kind
+				)
 				if hit_damage <= 0:
 					continue
-				var hp_before_hit: = int(aoe_target.Hp)
+				var hp_before_hit := int(aoe_target.Hp)
 				aoe_target.reduce_pet_hp(hit_damage, attack_kind)
-				var actual_damage: = maxi(0, hp_before_hit - int(aoe_target.Hp))
+				var actual_damage := maxi(0, hp_before_hit - int(aoe_target.Hp))
 				if actual_damage > 0:
 					if aoe_target.has_method("play_hit_effect"):
 						aoe_target.play_hit_effect(self)
@@ -2040,18 +2385,19 @@ func _apply_pet_tiger_summon_hit(target: Node) -> void :
 	for aoe_target in targets:
 		if not is_instance_valid(aoe_target) or aoe_target.Hp <= 0:
 			continue
-		var resolved_damage: = _pet_tiger_resolve_damage(aoe_target, normal_damage, summon_owner, attack_kind)
+		var resolved_damage := _pet_tiger_resolve_damage(aoe_target, normal_damage, summon_owner, attack_kind)
 		if resolved_damage <= 0:
 			continue
-		var hp_before_hit: = int(aoe_target.Hp)
+		var hp_before_hit := int(aoe_target.Hp)
 		aoe_target.reduce_pet_hp(resolved_damage, attack_kind)
-		var actual_damage: = maxi(0, hp_before_hit - int(aoe_target.Hp))
+		var actual_damage := maxi(0, hp_before_hit - int(aoe_target.Hp))
 		if actual_damage > 0 and hit_name in ["hit1", "hy"]:
 			_apply_pet_summon_knockback(aoe_target, summon_owner, hit_data.get("hurtBack", []))
 		if actual_damage > 0 and aoe_target.has_method("play_hit_effect"):
 			aoe_target.play_hit_effect(self)
 
-func _hold_pet_tiger_sxhz_target(target: Node, duration: float) -> void :
+
+func _hold_pet_tiger_sxhz_target(target: Node, duration: float) -> void:
 	if target == null or not is_instance_valid(target):
 		return
 	if not (target is BaseMonster):
@@ -2074,42 +2420,47 @@ func _hold_pet_tiger_sxhz_target(target: Node, duration: float) -> void :
 		target.velocity = Vector2.ZERO
 	if target.has_node("mr"):
 		var player = target.get_node_or_null("mr")
-		if player != null and player.has_method("has_animation") and player.has_animation("hurt") and player.has_method("play"):
+		if (
+			player != null
+			and player.has_method("has_animation")
+			and player.has_animation("hurt")
+			and player.has_method("play")
+		):
 			player.play("hurt")
 	if target.has_node("Buff"):
 		var stun_effect = {
-			"Name": "stun", 
-			"AddTime": duration, 
-			"ReduceInterval": 1, 
-			"value": 0, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false, 
+			"Name": "stun",
+			"AddTime": duration,
+			"ReduceInterval": 1,
+			"value": 0,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanRemove": false,
 			"PetTigerSxhz": true
 		}
 		Global.AddBuff(target.get_node("Buff"), stun_effect)
 
 
-func _cure_pet_tiger_summoner(summon_owner, value: int) -> void :
+func _cure_pet_tiger_summoner(summon_owner, value: int) -> void:
 	if value <= 0:
 		return
 	if summon_owner != null and is_instance_valid(summon_owner) and summon_owner.has_method("cure_Hp"):
 		summon_owner.cure_Hp(value)
 
-func _on_hit_box_area_entered(area: Area2D) -> void :
-	var target = _get_hit_owner(area)
 
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	var target = _get_hit_owner(area)
 
 	if skill_name == "Monster1410Bullet1" and bullet_player.current_animation == "Monster1410Bullet1_1":
 		var role = _get_hit_owner(area)
 		if role == RoleProp.SourcePlayer or (role and role.is_in_group("players")):
 			var stun_effect = {
-				"Name": "stun", 
-				"AddTime": 2, 
-				"ReduceInterval": 0, 
-				"value": 0, 
-				"AttackKind": "", 
-				"DeBuff": true, 
+				"Name": "stun",
+				"AddTime": 2,
+				"ReduceInterval": 0,
+				"value": 0,
+				"AttackKind": "",
+				"DeBuff": true,
 				"CanRemove": false
 			}
 			Global.AddBuff(role.buff, stun_effect)
@@ -2117,7 +2468,6 @@ func _on_hit_box_area_entered(area: Area2D) -> void :
 			if not clone_spawned and MyFather and MyFather.has_method("spawn_clone"):
 				clone_spawned = true
 				MyFather.call_deferred("spawn_clone")
-
 
 	if get_parent().get_parent() is Monster85:
 		get_parent().get_parent().HitCount += 1
@@ -2139,8 +2489,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void :
 	if not ("buff" in role):
 		return
 
-
-	var applied_add_effect: = false
+	var applied_add_effect := false
 	if objattackDic != null and typeof(objattackDic) == TYPE_DICTIONARY:
 		if objattackDic.has(hit_name):
 			var hit_data = objattackDic[hit_name]
@@ -2154,19 +2503,23 @@ func _on_hit_box_area_entered(area: Area2D) -> void :
 					Global.AddBuff(role.buff, effect)
 				applied_add_effect = true
 	if skill_name == "Monster118Bullet2" and not applied_add_effect:
-		Global.AddBuff(role.buff, {
-			"Name": "poision", 
-			"AddTime": 5, 
-			"CanAdd": true, 
-			"DeBuff": true, 
-			"CanRemove": false, 
-			"ReduceInterval": 0, 
-			"value": 900, 
-			"AttackKind": "magic"
-		})
+		Global.AddBuff(
+			role.buff,
+			{
+				"Name": "poision",
+				"AddTime": 5,
+				"CanAdd": true,
+				"DeBuff": true,
+				"CanRemove": false,
+				"ReduceInterval": 0,
+				"value": 900,
+				"AttackKind": "magic"
+			}
+		)
 
 	if skill_name == "Monster90Bullet":
 		queue_free()
+
 
 func _get_hit_owner(area: Area2D) -> Node:
 	var node: Node = area
@@ -2175,13 +2528,16 @@ func _get_hit_owner(area: Area2D) -> Node:
 			return node
 		node = node.get_parent()
 	return null
+
+
 func get_prop():
 	self.objattackDic[hit_name] = AttList
 
-func _prepare_bullet_animation_material(animation_name: String) -> void :
+
+func _prepare_bullet_animation_material(animation_name: String) -> void:
 	if bullet_ani == null or bullet_player == null or not bullet_player.has_animation(animation_name):
 		return
-	var animation: = bullet_player.get_animation(animation_name)
+	var animation := bullet_player.get_animation(animation_name)
 	if animation == null:
 		return
 	for track_index in range(animation.get_track_count()):
@@ -2196,6 +2552,7 @@ func _prepare_bullet_animation_material(animation_name: String) -> void :
 			bullet_ani.material = material
 		return
 
+
 func CallMonster56Bullet():
 	state = remove
 	bullet_player.speed_scale = 1.8
@@ -2203,9 +2560,12 @@ func CallMonster56Bullet():
 	bullet_player.play("Monster56Bullet")
 	await bullet_player.animation_finished
 
+
 func shake(strength, times, interv):
 	var baselevel = get_parent().get_parent().get_parent().get_parent() as BaseLevel
 	baselevel.shake_(strength, times, interv)
+
+
 func Monster70Bullet2():
 	if get_parent().get_parent() is BaseMonster:
 		var po = Vector2()
@@ -2214,26 +2574,40 @@ func Monster70Bullet2():
 		else:
 			po = Vector2(168, 140)
 		if ShowMonster71:
-			Global.add_Bullet("Monster70Bullet2", get_parent().get_parent().bullet, dir, 1, po + position, hit_name, objattackDic)
+			Global.add_Bullet(
+				"Monster70Bullet2", get_parent().get_parent().bullet, dir, 1, po + position, hit_name, objattackDic
+			)
+
+
 func MovePlayerToself():
 	var tween = create_tween()
 	tween.tween_property(RoleProp.SourcePlayer, "position", position, 0.6)
+
+
 func TweenToPlayer():
 	await get_tree().create_timer(0.2, false).timeout
 	var desired_angle
 	desired_angle = position.angle_to_point(RoleProp.SourcePlayer.position)
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "rotation", desired_angle, 0.2)
+
+
 func CallMonster114Bullet():
-	var Bullet = Global.add_Bullet("Monster114Bullet2", get_parent().get_parent().bullet, false, 2, Vector2(9, -120) + position, hit_name, objattackDic)
+	var Bullet = Global.add_Bullet(
+		"Monster114Bullet2",
+		get_parent().get_parent().bullet,
+		false,
+		2,
+		Vector2(9, -120) + position,
+		hit_name,
+		objattackDic
+	)
 	Bullet.look_at(RoleProp.get_nearest_monster_target_position(Bullet.global_position))
 
 
-func _on_hit_box_body_entered(body: Node2D) -> void :
+func _on_hit_box_body_entered(body: Node2D) -> void:
 	if skill_name == "Monster1410Bullet1":
-
 		return
-
 
 	if skill_name == "Monster110Bullet":
 		if ThrowCount > 60:
@@ -2248,26 +2622,31 @@ func _on_hit_box_body_entered(body: Node2D) -> void :
 				if body is Monster142:
 					body.cure_hp(body.SHp * 0.1)
 					body.Skill_1_CD = 0
-func CallMonster137Bullet2():
-	var Bullet = Global.add_Bullet("Monster137Bullet2", get_parent().get_parent().bullet, false, 0.5, Vector2(self.position.x, 500), hit_name, objattackDic)
 
+
+func CallMonster137Bullet2():
+	var Bullet = Global.add_Bullet(
+		"Monster137Bullet2",
+		get_parent().get_parent().bullet,
+		false,
+		0.5,
+		Vector2(self.position.x, 500),
+		hit_name,
+		objattackDic
+	)
 
 
 func LookAtPlayer():
-
 	if has_meta("is_summon_bullet") and get_meta("is_summon_bullet") == true:
-
 		var tree = get_tree()
 		if tree:
 			var all_monsters = []
 			var monster_nodes: Array = _get_level_active_monster_candidates()
 
-
 			for monster in monster_nodes:
 				if monster and monster is BaseMonster:
 					if monster.Hp > 0:
 						all_monsters.append(monster)
-
 
 			if all_monsters.size() == 0:
 				var current_scene = tree.current_scene
@@ -2277,7 +2656,6 @@ func LookAtPlayer():
 						for child in monster_container.get_children():
 							if child and child is BaseMonster and child.Hp > 0:
 								all_monsters.append(child)
-
 
 			if all_monsters.size() > 0:
 				var closest_monster = null
@@ -2292,17 +2670,16 @@ func LookAtPlayer():
 					self.look_at(closest_monster.position)
 					return
 
-
 	self.look_at(RoleProp.SourcePlayer.position)
-
-
 
 
 func CanCuree():
 	CanCure = true
+
+
 func AddRoundShallow():
 	if IsThrow:
-		var effect_scene: = load("res://Scene/Hero/Role_1/WS_Effect.tscn") as PackedScene
+		var effect_scene := load("res://Scene/Hero/Role_1/WS_Effect.tscn") as PackedScene
 		if effect_scene == null:
 			return
 		var WS_Effect = effect_scene.instantiate()
@@ -2312,24 +2689,21 @@ func AddRoundShallow():
 		WS_Effect.set("position", get("position"))
 		get_parent().add_child(WS_Effect)
 
-func _on_queue_timer_timeout() -> void :
+
+func _on_queue_timer_timeout() -> void:
 	if skill_name == "Monster1410Bullet1":
 		destroy_with_explosion()
 	else:
 		queue_free()
 
 
-func _on_is_throw_close_timeout() -> void :
+func _on_is_throw_close_timeout() -> void:
 	IsThrow = false
-
-
-
 
 
 func move_with_reflection(velocity: Vector2, delta: float):
 	var space_state = get_world_2d().direct_space_state
 	var target_pos = position + velocity * delta
-
 
 	var query = PhysicsRayQueryParameters2D.new()
 	query.from = position
@@ -2340,22 +2714,17 @@ func move_with_reflection(velocity: Vector2, delta: float):
 	var result = space_state.intersect_ray(query)
 
 	if result:
-
 		var normal = result.normal
 		var hit_point = result.position
 
-
 		var new_velocity = velocity.bounce(normal)
-
 
 		position = hit_point
 
 		bounce_velocity = new_velocity
 
-
 		position += bounce_velocity.normalized() * 2
 	else:
-
 		position = target_pos
 
 
@@ -2367,20 +2736,7 @@ func destroy_with_explosion():
 	if active_1410_bullets.has(self):
 		active_1410_bullets.erase(self)
 
-
 	bounce_velocity = Vector2.ZERO
-
-
-
-
-
-
-
-
-
-
-
-
 
 	if bullet_player != null and bullet_player.has_animation("Monster1410Bullet1_1"):
 		_prepare_bullet_animation_material("Monster1410Bullet1_1")
@@ -2406,6 +2762,7 @@ func _on_1410_bullet_exited():
 	if idx != -1:
 		active_1410_bullets.remove_at(idx)
 
+
 static func get_active_1410_bullet_count() -> int:
 	for index in range(active_1410_bullets.size() - 1, -1, -1):
 		var bullet = active_1410_bullets[index]
@@ -2413,17 +2770,20 @@ static func get_active_1410_bullet_count() -> int:
 			active_1410_bullets.remove_at(index)
 	return active_1410_bullets.size()
 
-static func clear_all_1410_bullets() -> void :
+
+static func clear_all_1410_bullets() -> void:
 	var bullets_snapshot = active_1410_bullets.duplicate()
 	active_1410_bullets.clear()
 	for bullet in bullets_snapshot:
 		if is_instance_valid(bullet):
 			bullet.queue_free()
 
+
 static func explode_all_1410():
 	var bullets_snapshot = active_1410_bullets.duplicate()
 	for bullet in bullets_snapshot:
 		_handle_bullet_explode(bullet)
+
 
 static func _handle_bullet_explode(bullet):
 	if not is_instance_valid(bullet) or bullet.is_exploding:

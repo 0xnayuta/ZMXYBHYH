@@ -1,11 +1,11 @@
 extends Node2D
-const FULLSCREEN_DESIGN_SIZE: = Vector2(940, 590)
+const FULLSCREEN_DESIGN_SIZE := Vector2(940, 590)
 const SKILL_FORMULA_DATA = preload("res://Script/Skill/SkillDamageFormulaData.gd")
 const FORMULA_FONT = preload("res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf")
-@onready var front_bg: ColorRect = $bg / lh_pic / front_bg
-@onready var Title: Label = $bg / lh_pic / front_bg / Title
-@onready var Lh_value: Label = $bg / lh_pic / lh_value
-@onready var damage_description_button: Button = $bg / lh_pic / front_bg / damage_description
+@onready var front_bg: ColorRect = $bg/lh_pic/front_bg
+@onready var Title: Label = $bg/lh_pic/front_bg/Title
+@onready var Lh_value: Label = $bg/lh_pic/lh_value
+@onready var damage_description_button: Button = $bg/lh_pic/front_bg/damage_description
 
 var zd_sk
 var bd_sk
@@ -16,13 +16,15 @@ var _formula_overlay: ColorRect
 var _formula_panel: PanelContainer
 var _formula_list: VBoxContainer
 
-func _add_centered_bd_skill() -> void :
+
+func _add_centered_bd_skill() -> void:
 	bd_sk = Global.add_bd_skillscene(front_bg, Vector2.ZERO)
 	var table_width: float = bd_sk.size.x
 	bd_sk.position = Vector2((front_bg.size.x - table_width) * 0.5, 50.0)
 
-func _fit_to_fullscreen() -> void :
-	var viewport_size: = get_viewport().get_visible_rect().size
+
+func _fit_to_fullscreen() -> void:
+	var viewport_size := get_viewport().get_visible_rect().size
 	if viewport_size.x <= 0 or viewport_size.y <= 0:
 		return
 	var fit_scale = min(viewport_size.x / FULLSCREEN_DESIGN_SIZE.x, viewport_size.y / FULLSCREEN_DESIGN_SIZE.y)
@@ -30,7 +32,8 @@ func _fit_to_fullscreen() -> void :
 	scale = Vector2(fit_scale, fit_scale)
 	position = (viewport_size - page_size) * 0.5
 
-func _ready() -> void :
+
+func _ready() -> void:
 	_fit_to_fullscreen()
 	if not get_viewport().size_changed.is_connected(_fit_to_fullscreen):
 		get_viewport().size_changed.connect(_fit_to_fullscreen)
@@ -40,17 +43,20 @@ func _ready() -> void :
 	Title.text = "主动技能"
 	_update_coin_value()
 
-func _process(_delta: float) -> void :
+
+func _process(_delta: float) -> void:
 	_update_coin_value()
 
-func _update_coin_value() -> void :
+
+func _update_coin_value() -> void:
 	var coin_num: int = PlayerData.get_soul()
 	if coin_num == _last_coin_num:
 		return
 	_last_coin_num = coin_num
 	Lh_value.text = str(coin_num)
 
-func _on_zd_skill_pressed() -> void :
+
+func _on_zd_skill_pressed() -> void:
 	is_zd = true
 	is_bd = false
 	Title.text = "主动技能"
@@ -60,7 +66,9 @@ func _on_zd_skill_pressed() -> void :
 	if bd_sk != null:
 		bd_sk.queue_free()
 		bd_sk = null
-func _on_bd_skill_pressed() -> void :
+
+
+func _on_bd_skill_pressed() -> void:
 	is_zd = false
 	is_bd = true
 	Title.text = "被动技能"
@@ -73,11 +81,11 @@ func _on_bd_skill_pressed() -> void :
 		zd_sk = null
 
 
-func _on_close_pressed() -> void :
+func _on_close_pressed() -> void:
 	queue_free()
 
 
-func _on_damage_description_pressed() -> void :
+func _on_damage_description_pressed() -> void:
 	if not is_zd or zd_sk == null or not is_instance_valid(zd_sk):
 		return
 	if is_instance_valid(_formula_overlay):
@@ -86,7 +94,7 @@ func _on_damage_description_pressed() -> void :
 	_create_formula_overlay()
 
 
-func _create_formula_overlay() -> void :
+func _create_formula_overlay() -> void:
 	if is_instance_valid(zd_sk):
 		zd_sk.visible = false
 	if is_instance_valid(bd_sk):
@@ -111,16 +119,16 @@ func _create_formula_overlay() -> void :
 	_formula_panel.offset_right = -24.0
 	_formula_panel.offset_bottom = -18.0
 
-	var body: = VBoxContainer.new()
+	var body := VBoxContainer.new()
 	body.add_theme_constant_override("separation", 7)
 	_formula_panel.add_child(body)
 
-	var header: = HBoxContainer.new()
+	var header := HBoxContainer.new()
 	header.custom_minimum_size.y = 42.0
 	body.add_child(header)
 
-	var role_id: = clampi(int(PlayerData.player_data.get("Myself", 1)), 1, 6)
-	var heading: = Label.new()
+	var role_id := clampi(int(PlayerData.player_data.get("Myself", 1)), 1, 6)
+	var heading := Label.new()
 	heading.text = SKILL_FORMULA_DATA.get_role_name(role_id) + "技能伤害公式"
 	heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	heading.add_theme_font_override("font", FORMULA_FONT)
@@ -130,7 +138,7 @@ func _create_formula_overlay() -> void :
 	heading.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	header.add_child(heading)
 
-	var close_button: = Button.new()
+	var close_button := Button.new()
 	close_button.text = "×"
 	close_button.tooltip_text = "关闭"
 	close_button.custom_minimum_size = Vector2(52.0, 40.0)
@@ -142,11 +150,11 @@ func _create_formula_overlay() -> void :
 	close_button.pressed.connect(_close_formula_overlay)
 	header.add_child(close_button)
 
-	var divider: = HSeparator.new()
+	var divider := HSeparator.new()
 	divider.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	body.add_child(divider)
 
-	var scroll: = ScrollContainer.new()
+	var scroll := ScrollContainer.new()
 	scroll.name = "FormulaScroll"
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -156,7 +164,7 @@ func _create_formula_overlay() -> void :
 	scroll.follow_focus = true
 	body.add_child(scroll)
 
-	var margin: = MarginContainer.new()
+	var margin := MarginContainer.new()
 	margin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	margin.add_theme_constant_override("margin_right", 8)
 	margin.mouse_filter = Control.MOUSE_FILTER_PASS
@@ -170,52 +178,52 @@ func _create_formula_overlay() -> void :
 	_populate_formula_cards(role_id)
 
 
-func _populate_formula_cards(role_id: int) -> void :
+func _populate_formula_cards(role_id: int) -> void:
 	var role_key: String = zd_sk.get_role_key()
 	var skill_ids: Array = zd_sk.Skill_list.get(role_key, [])
 	var skill_names: Array = zd_sk.Skill_Name.get(role_key, [])
-	var levels: = {}
+	var levels := {}
 	for index in range(skill_ids.size()):
 		levels[str(skill_ids[index])] = int(zd_sk.get_skill_level_by_index(index))
 
 	for index in range(skill_ids.size()):
-		var skill_id: = str(skill_ids[index])
-		var skill_name: = str(skill_names[index]) if index < skill_names.size() else skill_id
-		var stored_level: = int(levels.get(skill_id, 0))
+		var skill_id := str(skill_ids[index])
+		var skill_name := str(skill_names[index]) if index < skill_names.size() else skill_id
+		var stored_level := int(levels.get(skill_id, 0))
 		var detail: Dictionary = SKILL_FORMULA_DATA.get_skill_detail(role_id, skill_id, stored_level, levels)
 		_formula_list.add_child(_make_formula_card(skill_id, skill_name, stored_level, detail))
 
 
 func _make_formula_card(skill_id: String, skill_name: String, stored_level: int, detail: Dictionary) -> PanelContainer:
-	var card: = PanelContainer.new()
+	var card := PanelContainer.new()
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	card.mouse_filter = Control.MOUSE_FILTER_PASS
 	card.add_theme_stylebox_override("panel", _make_card_style())
 
-	var row: = HBoxContainer.new()
+	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 12)
 	row.mouse_filter = Control.MOUSE_FILTER_PASS
 	card.add_child(row)
 
-	var icon: = TextureRect.new()
+	var icon := TextureRect.new()
 	icon.name = "SkillIcon"
 	icon.custom_minimum_size = Vector2(64.0, 64.0)
 	icon.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	icon.mouse_filter = Control.MOUSE_FILTER_PASS
-	var icon_path: = "res://Art/Skill/SkillIcon/" + skill_id + ".png"
+	var icon_path := "res://Art/Skill/SkillIcon/" + skill_id + ".png"
 	if ResourceLoader.exists(icon_path):
 		icon.texture = load(icon_path) as Texture2D
 	row.add_child(icon)
 
-	var content: = VBoxContainer.new()
+	var content := VBoxContainer.new()
 	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	content.add_theme_constant_override("separation", 3)
 	content.mouse_filter = Control.MOUSE_FILTER_PASS
 	row.add_child(content)
 
-	var title: = Label.new()
+	var title := Label.new()
 	title.text = "%s  Lv.%d  ·  %s" % [skill_name, stored_level, str(detail.get("kind", "技能效果"))]
 	title.add_theme_font_override("font", FORMULA_FONT)
 	title.add_theme_font_size_override("font_size", 21)
@@ -225,7 +233,7 @@ func _make_formula_card(skill_id: String, skill_name: String, stored_level: int,
 
 	var lines: Array = detail.get("lines", [])
 	for line_value in lines:
-		var line: = Label.new()
+		var line := Label.new()
 		line.text = str(line_value)
 		line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		line.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -238,7 +246,7 @@ func _make_formula_card(skill_id: String, skill_name: String, stored_level: int,
 
 
 func _make_panel_style() -> StyleBoxFlat:
-	var style: = StyleBoxFlat.new()
+	var style := StyleBoxFlat.new()
 	style.bg_color = Color(0.035, 0.055, 0.065, 0.98)
 	style.border_color = Color(0.62, 0.43, 0.16, 1.0)
 	style.set_border_width_all(2)
@@ -254,7 +262,7 @@ func _make_panel_style() -> StyleBoxFlat:
 
 
 func _make_card_style() -> StyleBoxFlat:
-	var style: = StyleBoxFlat.new()
+	var style := StyleBoxFlat.new()
 	style.bg_color = Color(0.075, 0.095, 0.105, 0.96)
 	style.border_color = Color(0.26, 0.31, 0.31, 1.0)
 	style.set_border_width_all(1)
@@ -269,19 +277,23 @@ func _make_card_style() -> StyleBoxFlat:
 	return style
 
 
-func _on_formula_overlay_gui_input(event: InputEvent) -> void :
-	var pressed_outside: = false
+func _on_formula_overlay_gui_input(event: InputEvent) -> void:
+	var pressed_outside := false
 	if event is InputEventMouseButton:
 		pressed_outside = event.button_index == MOUSE_BUTTON_LEFT and event.pressed
 	elif event is InputEventScreenTouch:
 		pressed_outside = event.pressed
 	var global_position: Vector2 = _formula_overlay.get_global_transform_with_canvas() * event.position
-	if pressed_outside and is_instance_valid(_formula_panel) and not _formula_panel.get_global_rect().has_point(global_position):
+	if (
+		pressed_outside
+		and is_instance_valid(_formula_panel)
+		and not _formula_panel.get_global_rect().has_point(global_position)
+	):
 		_close_formula_overlay()
 		get_viewport().set_input_as_handled()
 
 
-func _close_formula_overlay() -> void :
+func _close_formula_overlay() -> void:
 	if is_instance_valid(_formula_overlay):
 		_formula_overlay.queue_free()
 	if is_instance_valid(zd_sk):

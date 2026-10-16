@@ -3,21 +3,40 @@ class_name Synthesis
 
 const RecipeData = preload("res://Script/LDL/RecipeData.gd")
 
-var PropListName = ["SHp", "SMp", "power", "Def", "Mdef", "Crit", "Miss", "R_hp", "R_mp", "vampirism", "Lucky", "Toughness", "Htarget", "CritReduce", "ar", "sp"]
+var PropListName = [
+	"SHp",
+	"SMp",
+	"power",
+	"Def",
+	"Mdef",
+	"Crit",
+	"Miss",
+	"R_hp",
+	"R_mp",
+	"vampirism",
+	"Lucky",
+	"Toughness",
+	"Htarget",
+	"CritReduce",
+	"ar",
+	"sp"
+]
 
-@onready var item_1: Button = $cl_1 / item_1
-@onready var item_2: Button = $cl_2 / item_2
-@onready var item_3: Button = $cl_3 / item_3
-@onready var item_4: Button = $scw / item_4
-@onready var name_: Label = $infor / name_
-@onready var need_lh: Label = $infor / need_lh
+@onready var item_1: Button = $cl_1/item_1
+@onready var item_2: Button = $cl_2/item_2
+@onready var item_3: Button = $cl_3/item_3
+@onready var item_4: Button = $scw/item_4
+@onready var name_: Label = $infor/name_
+@onready var need_lh: Label = $infor/need_lh
 
-func _ready() -> void :
+
+func _ready() -> void:
 	item_1.is_in_ldl_gz = true
 	item_2.is_in_ldl_gz = true
 	item_3.is_in_ldl_gz = true
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	item_1.is_in_ldl_gz = true
 	item_2.is_in_ldl_gz = true
 	item_3.is_in_ldl_gz = true
@@ -25,6 +44,7 @@ func _physics_process(_delta: float) -> void :
 
 	set_cailiao_pic()
 	get_name_()
+
 
 func remove_infomation():
 	for i in PlayerData.player_data["放入列表"]:
@@ -39,6 +59,7 @@ func remove_infomation():
 	PlayerData.player_data["放入列表"]["物品2"].clear()
 	PlayerData.player_data["放入列表"]["物品3"].clear()
 	MemoryClass.保存游戏(Global.cd_path)
+
 
 func get_name_():
 	var name_1: String = ""
@@ -88,7 +109,8 @@ func get_name_():
 		need_lh.text = ""
 		item_4.set_button_icon(load_("empty"))
 
-func _on_syn_pressed() -> void :
+
+func _on_syn_pressed() -> void:
 	var name_1: String = ""
 	var name_2: String = ""
 	var name_3: String = ""
@@ -120,15 +142,19 @@ func _on_syn_pressed() -> void :
 			PlayerData.player_data["放入列表"]["物品1"].clear()
 			PlayerData.player_data["放入列表"]["物品2"].clear()
 			PlayerData.player_data["放入列表"]["物品3"].clear()
-			Global.AddMessageShow(get_parent(), "合成成功！获得：" + str(AE.AllEquipment_[item_]["名字"]) + " * 1 !!", 1.5, Vector2(15, -45))
+			Global.AddMessageShow(
+				get_parent(), "合成成功！获得：" + str(AE.AllEquipment_[item_]["名字"]) + " * 1 !!", 1.5, Vector2(15, -45)
+			)
 		else:
 			Global.AddMessageShow(get_parent(), "灵魂不足！！！", 1.5, Vector2(15, -45))
 	else:
 		Global.AddMessageShow(get_parent(), "合成公式错误！", 1.5, Vector2(15, -45))
 	MemoryClass.保存游戏(Global.cd_path)
 
-func _on_help_pressed() -> void :
+
+func _on_help_pressed() -> void:
 	Global.AddHc_Help(Global.get_parent_(self, 3), Vector2(455, 265))
+
 
 func set_cailiao_pic():
 	var List_1 = PlayerData.player_data["放入列表"]["物品1"]
@@ -165,20 +191,22 @@ func set_cailiao_pic():
 		item_3.qh_level = 0
 		item_3.EQ_prop = {}
 
+
 func load_(name1):
 	var item_data: Dictionary = AE.AllEquipment_.get(str(name1), {})
-	var icon_path: = str(item_data.get("图标", ""))
+	var icon_path := str(item_data.get("图标", ""))
 	if icon_path != "" and ResourceLoader.exists(icon_path):
 		return load(icon_path)
 	return load("res://Art/BackPack/AllItems/" + str(name1) + ".png")
 
+
 func get_xianjie_prop(result_item: String) -> Dictionary:
-	var source_by_result: = {
-		"cjxianjie": "cjshenj", 
-		"cdxianjie": "cdshenj", 
-		"zhxianjie": "zhshenj", 
+	var source_by_result := {
+		"cjxianjie": "cjshenj",
+		"cdxianjie": "cdshenj",
+		"zhxianjie": "zhshenj",
 	}
-	var source_name: = str(source_by_result.get(result_item, ""))
+	var source_name := str(source_by_result.get(result_item, ""))
 	var source_list: Array = []
 	for list_name in ["物品1", "物品2", "物品3"]:
 		var material_list: Variant = PlayerData.player_data["放入列表"].get(list_name, [])
@@ -193,21 +221,19 @@ func get_xianjie_prop(result_item: String) -> Dictionary:
 		return result
 	var source_data_value: Variant = source_list[4]
 	var source_data: Dictionary = source_data_value if source_data_value is Dictionary else {}
-	var source_level: = int(source_list[3])
-	var current_properties: Dictionary = AE.get_divine_forge_properties(
-		source_name, source_level, source_data, true
-	)
+	var source_level := int(source_list[3])
+	var current_properties: Dictionary = AE.get_divine_forge_properties(source_name, source_level, source_data, true)
 	for property_name in PropListName:
 		result[property_name] = current_properties.get(property_name, 0) * 2
 	result["宝石"] = []
 	result.erase("神铸阶段")
 	return result
 
+
 func get_recipe(n_1: String, n_2: String, n_3: String) -> Array:
 	var mats = [n_1, n_2, n_3]
 	mats.sort()
 	for recipe in RecipeData.RECIPES:
-
 		if recipe.has("use_same_type") and recipe["use_same_type"]:
 			if GetSameType(n_1, n_2, n_3, recipe["result"]):
 				return [true, recipe["result"], recipe["cost"]]
@@ -219,13 +245,10 @@ func get_recipe(n_1: String, n_2: String, n_3: String) -> Array:
 	return [false, "", 0]
 
 
-
 func get_fb_prop(name1):
-
 	var List_1 = PlayerData.player_data["放入列表"]["物品1"]
 	var List_2 = PlayerData.player_data["放入列表"]["物品2"]
 	var List_3 = PlayerData.player_data["放入列表"]["物品3"]
-
 
 	var prop1_dict = {}
 	var prop2_dict = {}
@@ -234,7 +257,6 @@ func get_fb_prop(name1):
 		prop1_dict[attr] = 0
 		prop2_dict[attr] = 0
 		prop3_dict[attr] = 0
-
 
 	if List_1.size() >= 5:
 		var prop1 = AE.get_last_equ_pro(List_1[0], List_1[3], List_1[4])
@@ -249,12 +271,10 @@ func get_fb_prop(name1):
 		for attr in PropListName:
 			prop3_dict[attr] = prop3.get(attr, 0) if prop3 and prop3.has(attr) else 0
 
-
 	var newList = {}
 	for attr in PropListName:
 		var avg_val = int((prop1_dict[attr] + prop2_dict[attr] + prop3_dict[attr]) / 3)
 		newList[attr] = avg_val
-
 
 	var proplist = AE.AllEquipment_[name1].duplicate(true)
 	for i in newList:
@@ -265,6 +285,7 @@ func get_fb_prop(name1):
 
 	return proplist
 
+
 func GetEquipmentProp(name_1):
 	var List_1 = PlayerData.player_data["放入列表"]["物品1"]
 	var List_2 = PlayerData.player_data["放入列表"]["物品2"]
@@ -272,7 +293,6 @@ func GetEquipmentProp(name_1):
 	var proplist = AE.AllEquipment_[name_1].duplicate(true)
 	var NamePropList = AE.PropListName
 	var PropOld = {}
-
 
 	for i in NamePropList:
 		var v1 = GetProp(List_1, i)
@@ -287,7 +307,6 @@ func GetEquipmentProp(name_1):
 		else:
 			PropOld[i] = int(sum * 3.0 / 4.0)
 
-
 	for i in NamePropList:
 		if proplist.has(i):
 			proplist[i] += PropOld[i]
@@ -295,6 +314,7 @@ func GetEquipmentProp(name_1):
 			proplist[i] = PropOld[i]
 
 	return proplist
+
 
 func get_wx():
 	randomize()
@@ -345,6 +365,7 @@ func check_same(_1, _2, _3, _4, _5, _6, need: String):
 		return true
 	return false
 
+
 func GetSameType(Name_1, Name_2, Name_3, need: String):
 	if Name_1 == null or Name_2 == null or Name_3 == null:
 		return false
@@ -359,6 +380,7 @@ func GetSameType(Name_1, Name_2, Name_3, need: String):
 	if T[Name_1]["FBTYPE"] == need and T[Name_2]["FBTYPE"] == need and T[Name_3]["FBTYPE"] == need:
 		return true
 	return false
+
 
 func GetProp(List, need):
 	var QHlevel: int

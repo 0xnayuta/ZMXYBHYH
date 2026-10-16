@@ -28,50 +28,43 @@ func monster_106():
 	self.add_exp = 220
 	self.fall_coin = 220
 	self.objattackDic["hit1"] = {
-		"power": 500, 
-		"hurtBack": [1, -2], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 1, 
-			"ReduceInterval": 1, 
-			"value": 0, 
-			"AttackKind": "magic", 
-			"CanAdd": false, 
-			"DeBuff": true, 
-		}, 
+		"power": 500,
+		"hurtBack": [1, -2],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 1,
+			"ReduceInterval": 1,
+			"value": 0,
+			"AttackKind": "magic",
+			"CanAdd": false,
+			"DeBuff": true,
+		},
 	}
 	self.fall_pro = 0.3
 	self.fall_list = [
-		{
-			"name": "lingli", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "lingli", "value": randi_range(1, 2)},
 	]
 	self.fall_stone_pro = 0.28
 	self.fall_stone = [
-		{
-			"name": "ziyanyujin", 
-			"value": randi_range(1, 5)
-		}, 
+		{"name": "ziyanyujin", "value": randi_range(1, 5)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_106()
-
 
 
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 	var buff_target = super._on_hit_box_area_entered(area)
 
-
 	var original_y = self.position.y
 	self.position.y = buff_target.position.y
 
-
 	move_playerto_boss(buff_target, 0.85)
-
 
 	self.position.y = original_y
 

@@ -1,19 +1,22 @@
 extends Node2D
 var Idle = true
 var Value: int
-@onready var chekc: CollisionShape2D = $Check / Chekc
+@onready var chekc: CollisionShape2D = $Check/Chekc
 
 var Speed: float = 0
 var tween
 var TargetMonster: Monster141
-func _ready() -> void :
+
+
+func _ready() -> void:
 	self.modulate = Color(1, 1, 1, 0)
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	if Idle:
 		tween = create_tween().set_parallel(true)
 		tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 1.5)
-		tween.tween_property(self, "position", position + Vector2(0, - randi_range(20, 40)), 0.4)
+		tween.tween_property(self, "position", position + Vector2(0, -randi_range(20, 40)), 0.4)
 		await get_tree().create_timer(0.6, false).timeout
 		Idle = false
 	if not Idle:
@@ -26,7 +29,7 @@ func _physics_process(delta: float) -> void :
 			Speed = 20
 
 
-func _on_check_body_entered(body: Node2D) -> void :
+func _on_check_body_entered(body: Node2D) -> void:
 	if body is Monster141:
 		var CureValue = int(body.SHp - body.Hp) * 0.03
 		body.cure_hp(CureValue)

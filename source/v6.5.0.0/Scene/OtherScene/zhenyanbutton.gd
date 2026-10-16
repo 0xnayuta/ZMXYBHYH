@@ -3,13 +3,14 @@ extends TextureRect
 @onready var pic: Button = $Pic
 @onready var jt: Sprite2D = $jt
 
-
 var NotShow: bool
 var LocNum: int
 var ZhenFaType: String
 var RealName: String
 var Father
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	if Father != null:
 		ZhenFaType = Father.CurrentZhenFaName
 		match ZhenFaType:
@@ -35,10 +36,12 @@ func _physics_process(delta: float) -> void :
 				jt.visible = false
 		else:
 			jt.visible = false
+
+
 func load_(name_):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
 	return abc
 
 
-func _on_button_pressed() -> void :
+func _on_button_pressed() -> void:
 	Father.CurrentNum = int(LocNum)

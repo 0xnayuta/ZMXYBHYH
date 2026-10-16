@@ -7,12 +7,16 @@ var title: String
 @onready var yxxq: MarginContainer = %yxxq
 @onready var yxgg: MarginContainer = %yxgg
 @onready var Title: Label = %title
-func _ready() -> void :
+
+
+func _ready() -> void:
 	show_czzn = true
 	show_yxxq = false
 	show_yxgg = false
 	Title.text = "操作指南"
-func _physics_process(_delta: float) -> void :
+
+
+func _physics_process(_delta: float) -> void:
 	if show_czzn:
 		Title.text = "操作指南"
 		czzn.visible = true
@@ -30,28 +34,18 @@ func _physics_process(_delta: float) -> void :
 		yxxq.visible = false
 
 
-func _on_czzn_pressed() -> void :
+func _on_czzn_pressed() -> void:
 	Global.userGlobal.AddSomeMonsterHelp(self, Vector2(0, 0))
 	return
 
 
-
-
-
-
-func _on_yxxq_pressed() -> void :
+func _on_yxxq_pressed() -> void:
 	return
 
 
-
-
-
-func _on_yxgg_pressed() -> void :
+func _on_yxgg_pressed() -> void:
 	return
 
 
-
-
-
-func _on_close_pressed() -> void :
+func _on_close_pressed() -> void:
 	queue_free()

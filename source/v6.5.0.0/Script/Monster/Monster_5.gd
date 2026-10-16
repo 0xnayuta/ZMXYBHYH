@@ -28,45 +28,34 @@ func monster_5():
 	self.add_exp = 80
 	self.fall_coin = 30
 	self.objattackDic["hit1"] = {
-		"power": 55, 
-		"hurtBack": [-8, -15], 
-		"attackKind": "physics", 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"value": 0.35, 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"AttackKind": "", 
-		}, 
-		"HitProtect": 8, 
+		"power": 55,
+		"hurtBack": [-8, -15],
+		"attackKind": "physics",
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"value": 0.35,
+			"CanAdd": false,
+			"DeBuff": true,
+			"AttackKind": "",
+		},
+		"HitProtect": 8,
 	}
 	self.objattackDic["yyzl"] = {
-		"power": 75, 
-		"hurtBack": [5, -15], 
-		"attackKind": "magic", 
-		"HitProtect": 18, 
+		"power": 75,
+		"hurtBack": [5, -15],
+		"attackKind": "magic",
+		"HitProtect": 18,
 	}
 
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "dsqz", 
-			"value": 0
-		}, 
-		{
-			"name": "dsyj", 
-			"value": 0
-		}, 
-		{
-			"name": "jmc", 
-			"value": 0
-		}, 
-		{
-			"name": "zhj", 
-			"value": 0
-		}, 
+		{"name": "dsqz", "value": 0},
+		{"name": "dsyj", "value": 0},
+		{"name": "jmc", "value": 0},
+		{"name": "zhj", "value": 0},
 	]
 
 	enable_treasure_box = true
@@ -74,14 +63,15 @@ func monster_5():
 
 	update_fall_mode()
 	self.fall_stone_pro = 0
-	self.fall_stone = [
+	self.fall_stone = []
 
-	]
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_5()
 	Skill_1_CD = 0
 	MonsterBullet.warm_monster5_stream_images()
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -104,6 +94,8 @@ func Monster_Intelligence():
 					attack_target()
 				else:
 					stop_move()
+
+
 func do_hit_2():
 	Skill_1_CD = 15
 	hit_name = "yyzl"
@@ -112,6 +104,8 @@ func do_hit_2():
 	mr_player.play("yyzl")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func CallYYZL():
 	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 500)
 	await get_tree().create_timer(1, false).timeout

@@ -1,6 +1,8 @@
 extends BaseMonster
 class_name Monster76
 var Round
+
+
 func monster_76():
 	self.is_boss = false
 	self.my_mr_name = "巫鹰"
@@ -27,50 +29,42 @@ func monster_76():
 	self.add_exp = 110
 	self.fall_coin = 70
 	self.objattackDic["hit1"] = {
-		"power": 200, 
-		"hurtBack": [-7, -9], 
-		"attackKind": "physics", 
+		"power": 200,
+		"hurtBack": [-7, -9],
+		"attackKind": "physics",
 	}
 	self.objattackDic["hit2"] = {
-		"power": 180, 
-		"hurtBack": [-7, -15], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 2, 
-			"ReduceInterval": 0, 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"value": 0.3, 
-			"AttackKind": "", 
+		"power": 180,
+		"hurtBack": [-7, -15],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 2,
+			"ReduceInterval": 0,
+			"CanAdd": false,
+			"DeBuff": true,
+			"value": 0.3,
+			"AttackKind": "",
 		}
 	}
 	self.fall_pro = 0.3
 	self.fall_list = [
-		{
-			"name": "sichou", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "xuantie", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "tanmu", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "sichou", "value": randi_range(1, 2)},
+		{"name": "xuantie", "value": randi_range(1, 2)},
+		{"name": "tanmu", "value": randi_range(1, 2)},
 	]
 	self.fall_stone_pro = 0.1
 	self.fall_stone = [
-		{
-			"name": "smlp", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "smlp", "value": randi_range(1, 2)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_76()
 	Skill_1_CD = 0
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -100,6 +94,7 @@ func Monster_Intelligence():
 					else:
 						stop_move()
 
+
 func do_hit_2():
 	to_hero()
 	Skill_1_CD = 8
@@ -109,6 +104,8 @@ func do_hit_2():
 	mr_player.play("hit2")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func CallRound():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
@@ -116,6 +113,8 @@ func CallRound():
 	tween.tween_property(Round, "position", setposition(), 0.5)
 	await get_tree().create_timer(2.5, false).timeout
 	return_()
+
+
 func return_():
 	if Round != null:
 		var tween = get_tree().create_tween()
@@ -123,8 +122,15 @@ func return_():
 		tween.tween_property(Round, "position", pp, 0.3)
 		await get_tree().create_timer(0.28, false).timeout
 		Round.queue_free()
+
+
 func setposition():
-	return Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, RoleProp.get_nearest_monster_target_position(global_position).y)
+	return Vector2(
+		RoleProp.get_nearest_monster_target_position(global_position).x,
+		RoleProp.get_nearest_monster_target_position(global_position).y
+	)
+
+
 func CallKnife():
 	var po: Vector2
 	if MonsterDirection:

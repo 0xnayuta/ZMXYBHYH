@@ -3,14 +3,12 @@ class_name zcld
 
 var is_zcld = true
 
-func _ready():
 
+func _ready():
 	FB_Level = PlayerData.get_mostLevel("zcld")
 
 
-
-func _physics_process(delta: float) -> void :
-
+func _physics_process(delta: float) -> void:
 	FB_Level = PlayerData.get_mostLevel("zcld")
 	super._physics_process(delta)
 	if not is_use:

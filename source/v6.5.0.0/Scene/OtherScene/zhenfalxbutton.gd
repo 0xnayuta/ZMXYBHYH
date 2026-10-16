@@ -5,12 +5,17 @@ var RealName
 var zhenfaName: String
 var Father
 var _last_icon_name: String = ""
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	if zhenfaName != _last_icon_name:
 		_last_icon_name = zhenfaName
-		self.set_button_icon(Global.get_cached_texture("res://Art/TwentyEightConstellations/" + str(zhenfaName) + ".png"))
+		self.set_button_icon(
+			Global.get_cached_texture("res://Art/TwentyEightConstellations/" + str(zhenfaName) + ".png")
+		)
 
-func _on_pressed() -> void :
+
+func _on_pressed() -> void:
 	match zhenfaName:
 		"slz":
 			RealName = "森罗阵"

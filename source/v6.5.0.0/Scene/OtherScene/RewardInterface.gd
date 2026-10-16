@@ -1,19 +1,23 @@
 extends Node2D
-@onready var item_list: GridContainer = $Wkbg / ScrollContainer / ItemList
-@onready var title: Label = $Wkbg / Title
+@onready var item_list: GridContainer = $Wkbg/ScrollContainer/ItemList
+@onready var title: Label = $Wkbg/Title
 @onready var pl: AnimationPlayer = $pl
 
 var UseItemName
 var UseNum
 var ItemList_ = []
 var ItemInfo = {"Name": "ryjgb", "Value": 4, "Prop": {}, "WX": [], "StrengthValue": 0}
-func _process(delta: float) -> void :
+
+
+func _process(delta: float) -> void:
 	AddItemToBackPack()
 	if UseItemName != null and UseNum != null:
 		_remove_used_item(UseItemName, UseNum)
 	MemoryClass.保存游戏(Global.cd_path)
 	set_process(false)
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	if UseItemName != null and UseNum != null:
 		title.text = "本次使用：" + str(AE.AllEquipment_[UseItemName]["名字"]) + " * " + str(UseNum)
 	else:
@@ -21,6 +25,8 @@ func _physics_process(delta: float) -> void :
 	pl.play("pl")
 	AddBox()
 	set_physics_process(false)
+
+
 func AddBox():
 	var tween = create_tween()
 	for i in ItemList_:
@@ -33,7 +39,9 @@ func AddBox():
 		var box = Global.AddRewardBox(item_list, ItemName, Value)
 		box.modulate = Color(1, 1, 1, 0)
 		tween.tween_property(box, "modulate", Color(1, 1, 1, 1), 0.2)
-func _remove_used_item(item_name, use_num) -> void :
+
+
+func _remove_used_item(item_name, use_num) -> void:
 	if not AE.AllEquipment_.has(item_name):
 		return
 	var item_type = AE.AllEquipment_[item_name]["类型"]
@@ -42,6 +50,7 @@ func _remove_used_item(item_name, use_num) -> void :
 			PlayerData.remove_dj(item_name, PlayerData.get_dj_page(item_name), use_num)
 		"消耗品":
 			PlayerData.remove_xhp(item_name, PlayerData.get_xhp_page(item_name), use_num)
+
 
 func AddItemToBackPack():
 	for i in ItemList_:
@@ -66,9 +75,6 @@ func AddItemToBackPack():
 				PlayerData.add_xhp(ItemName, Value)
 	MemoryClass.保存游戏(Global.cd_path)
 
-func _on_close_pressed() -> void :
 
-
-
-
+func _on_close_pressed() -> void:
 	queue_free()

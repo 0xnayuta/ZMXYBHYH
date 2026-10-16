@@ -6,6 +6,8 @@ var FireRound: Monster116
 var IsCall: bool
 var OnsetEatblood: bool
 var RemoveBlood: bool
+
+
 func monster_140():
 	self.rush_speed = 400
 
@@ -35,95 +37,82 @@ func monster_140():
 	self.fall_coin = 500
 	self.ebol = 0
 	self.objattackDic["hit1"] = {
-		"power": 500, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 500,
+		"hurtBack": [-8, -12],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 450, 
-		"hurtBack": [-1, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 5, 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"value": 0.5, 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"CanRemove": false, 
-			"AttackKind": "", 
-		}, 
+		"power": 450,
+		"hurtBack": [-1, -1],
+		"attackKind": "magic",
+		"HitProtect": 5,
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"value": 0.5,
+			"CanAdd": false,
+			"DeBuff": true,
+			"CanRemove": false,
+			"AttackKind": "",
+		},
 	}
 	self.objattackDic["hit3"] = {
-		"power": 550, 
-		"hurtBack": [-1, -1], 
-		"attackKind": "magic", 
-		"HitProtect": 9, 
+		"power": 550,
+		"hurtBack": [-1, -1],
+		"attackKind": "magic",
+		"HitProtect": 9,
 	}
 	self.objattackDic["hit4"] = {
-		"power": 800, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "Fire", 
-			"AddTime": 3, 
-			"ReduceInterval": 1, 
-			"value": int(RoleProp.roleprop.SHp * 0.02), 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"CanRemove": false, 
-			"AttackKind": "magic", 
-		}, 
+		"power": 800,
+		"hurtBack": [0, 0],
+		"attackKind": "real",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "Fire",
+			"AddTime": 3,
+			"ReduceInterval": 1,
+			"value": int(RoleProp.roleprop.SHp * 0.02),
+			"CanAdd": false,
+			"DeBuff": true,
+			"CanRemove": false,
+			"AttackKind": "magic",
+		},
 	}
 	self.objattackDic["hit5"] = {
-		"power": 800, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "DefeReduce", 
-			"AddTime": 10, 
-			"ReduceInterval": 0, 
-			"value": 0.3, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false, 
-			"CanAdd": false, 
+		"power": 800,
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "DefeReduce",
+			"AddTime": 10,
+			"ReduceInterval": 0,
+			"value": 0.3,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanRemove": false,
+			"CanAdd": false,
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "qszzs", 
-			"value": 1
-		}, 
-		{
-			"name": "ytzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "llzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "rczzs", 
-			"value": 1
-		}, 
-		{
-			"name": "ldzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "240007001zzs", 
-			"value": 1
-		}, 
+		{"name": "qszzs", "value": 1},
+		{"name": "ytzzs", "value": 1},
+		{"name": "llzzs", "value": 1},
+		{"name": "rczzs", "value": 1},
+		{"name": "ldzzs", "value": 1},
+		{"name": "240007001zzs", "value": 1},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_140()
 	Skill_1_CD = randi_range(3, 4)
@@ -131,11 +120,11 @@ func _ready() -> void :
 	Skill_3_CD = 5
 	Skill_4_CD = 12
 	Skill_5_CD = 15
-func _physics_process(delta: float) -> void :
 
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if not IsCall:
-
 		if Sword_ == null:
 			Sword_ = Global.Create_Monster(117, get_parent(), self.position)
 		if FireRound == null:
@@ -145,6 +134,8 @@ func _physics_process(delta: float) -> void :
 		ebol = 10
 	else:
 		ebol = 1
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -184,6 +175,8 @@ func Monster_Intelligence():
 				if count % 90 == 0:
 					if randi_range(0, 100) < attackDesire:
 						attack_target()
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = 10
@@ -194,6 +187,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = 24
@@ -204,6 +199,8 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_3():
 	super.to_hero()
 	Skill_3_CD = 20
@@ -214,6 +211,8 @@ func do_hit_3():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_4():
 	super.to_hero()
 	Skill_4_CD = 15
@@ -224,6 +223,8 @@ func do_hit_4():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_5():
 	super.to_hero()
 	Skill_5_CD = 14
@@ -234,6 +235,8 @@ func do_hit_5():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func MoveToTopAndFacePlayer():
 	if _movement_command_is_blocked() or get_Player == null:
 		return
@@ -243,9 +246,11 @@ func MoveToTopAndFacePlayer():
 	if position.y - 350 <= -100:
 		Po = Vector2(position.x, -100)
 	tween.tween_property(self, "position", Po, 0.2)
-	var TargetDegrees = - position.angle_to(RoleProp.get_nearest_monster_target_position(global_position))
+	var TargetDegrees = -position.angle_to(RoleProp.get_nearest_monster_target_position(global_position))
 	tween.tween_property(self, "rotation", TargetDegrees, 0.2)
 	ShouldInSky = true
+
+
 func tweentotop():
 	if _movement_command_is_blocked():
 		return
@@ -254,6 +259,8 @@ func tweentotop():
 	tween.tween_property(self, "position", Vector2(position.x, -100), 0.2)
 	velocity.y = 0
 	ShouldInSky = true
+
+
 func NotMovePlayer():
 	if _movement_command_is_blocked() or get_Player == null:
 		velocity.x = 0
@@ -262,33 +269,40 @@ func NotMovePlayer():
 		velocity.x = 2500
 	else:
 		velocity.x = -2500
+
+
 func RemoveSpeedx():
 	velocity.x = 0
+
+
 func Drop():
 	ShouldInSky = false
+
+
 func CallBullet_1():
 	var bb
 	if self.MonsterDirection:
-		bb = Global.add_Bullet("Monster140Bullet1", self.bullet, true, 2.5, Vector2(20, 0) + position, "hit1", self.objattackDic["hit1"])
+		bb = Global.add_Bullet(
+			"Monster140Bullet1", self.bullet, true, 2.5, Vector2(20, 0) + position, "hit1", self.objattackDic["hit1"]
+		)
 	else:
-		bb = Global.add_Bullet("Monster140Bullet1", self.bullet, true, 2.5, Vector2(-20, 0) + position, "hit1", self.objattackDic["hit1"])
+		bb = Global.add_Bullet(
+			"Monster140Bullet1", self.bullet, true, 2.5, Vector2(-20, 0) + position, "hit1", self.objattackDic["hit1"]
+		)
 	bb.look_at(RoleProp.get_nearest_monster_target_position(global_position))
-
-
-
-
-
-
-
 
 
 func CallBullet_2():
 	var Bullet
 	var dir = self.MonsterDirection
 	if dir:
-		Bullet = Global.add_Bullet("Monster140Bullet2", self.bullet, false, 0.3, Vector2(80, 0) + position, "hit2", self.objattackDic["hit2"])
+		Bullet = Global.add_Bullet(
+			"Monster140Bullet2", self.bullet, false, 0.3, Vector2(80, 0) + position, "hit2", self.objattackDic["hit2"]
+		)
 	else:
-		Bullet = Global.add_Bullet("Monster140Bullet2", self.bullet, false, 0.3, Vector2(-80, 0) + position, "hit2", self.objattackDic["hit2"])
+		Bullet = Global.add_Bullet(
+			"Monster140Bullet2", self.bullet, false, 0.3, Vector2(-80, 0) + position, "hit2", self.objattackDic["hit2"]
+		)
 
 	if Bullet:
 		var sprite = Bullet.bullet_ani
@@ -296,60 +310,90 @@ func CallBullet_2():
 			sprite.flip_v = dir
 	Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
+
 func CallBullet_3():
 	for i in range(12):
 		var Bullet
 		var Position = Vector2(position.x + randi_range(-450, 500), -300)
-		Bullet = Global.add_Bullet("Monster140Bullet3", self.bullet, false, 0.58, Position, "hit4", self.objattackDic["hit4"])
+		Bullet = Global.add_Bullet(
+			"Monster140Bullet3", self.bullet, false, 0.58, Position, "hit4", self.objattackDic["hit4"]
+		)
 		Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 		await get_tree().create_timer(0.3, false).timeout
+
+
 func CallBullet_4():
 	var PositionList = [
-		Vector2(-500 + position.x, 500), Vector2(-400 + position.x, 500), Vector2(-300 + position.x, 500), 
-		Vector2(-200 + position.x, 500), Vector2(-100 + position.x, 500), Vector2(100 + position.x, 500), 
-		Vector2(200 + position.x, 500), Vector2(300 + position.x, 500), Vector2(400 + position.x, 500), 
+		Vector2(-500 + position.x, 500),
+		Vector2(-400 + position.x, 500),
+		Vector2(-300 + position.x, 500),
+		Vector2(-200 + position.x, 500),
+		Vector2(-100 + position.x, 500),
+		Vector2(100 + position.x, 500),
+		Vector2(200 + position.x, 500),
+		Vector2(300 + position.x, 500),
+		Vector2(400 + position.x, 500),
 		Vector2(500 + position.x, 500)
 	]
 	for i in PositionList:
 		Global.add_Bullet("Monster140Bullet4", self.bullet, false, 1, i, "hit5", self.objattackDic["hit5"])
+
+
 func ToSky():
 	velocity.y = 0
 	ShouldInSky = true
 	velocity.y = 0
+
+
 func CheckPlayer():
 	if self.position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
 		if Global.get_player.PlayerDir:
 			if not MonsterDirection:
 				move_player_to_boss(0.5)
-				Global.AddBuff(get_Player.buff, {
-						"Name": "stun", 
-						"AddTime": 4, 
-						"ReduceInterval": 0, 
-						"value": 0, 
-						"AttackKind": "", 
-						"CanAdd": false, 
-						"CanRemove": false, 
-						"DeBuff": true, 
-					})
+				(
+					Global
+					. AddBuff(
+						get_Player.buff,
+						{
+							"Name": "stun",
+							"AddTime": 4,
+							"ReduceInterval": 0,
+							"value": 0,
+							"AttackKind": "",
+							"CanAdd": false,
+							"CanRemove": false,
+							"DeBuff": true,
+						}
+					)
+				)
 	else:
 		if not Global.get_player.PlayerDir:
 			if MonsterDirection:
 				move_player_to_boss(0.5)
-				Global.AddBuff(get_Player.buff, {
-						"Name": "stun", 
-						"AddTime": 4, 
-						"ReduceInterval": 0, 
-						"value": 0, 
-						"AttackKind": "", 
-						"CanAdd": false, 
-						"CanRemove": false, 
-						"DeBuff": true, 
-					})
+				(
+					Global
+					. AddBuff(
+						get_Player.buff,
+						{
+							"Name": "stun",
+							"AddTime": 4,
+							"ReduceInterval": 0,
+							"value": 0,
+							"AttackKind": "",
+							"CanAdd": false,
+							"CanRemove": false,
+							"DeBuff": true,
+						}
+					)
+				)
+
+
 func reduce_hp(value: int):
 	if Sword_ != null or FireRound != null:
 		if value > 0:
 			value *= 0.5
 	super.reduce_hp(value)
+
 
 func HurtReduceHp(value, target):
 	if Sword_ != null or FireRound != null:

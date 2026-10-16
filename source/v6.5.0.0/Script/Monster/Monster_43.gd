@@ -30,44 +30,31 @@ func monster_43():
 	self.self_rhp = 0
 	self.add_exp = 50
 	self.fall_coin = 13
-	self.objattackDic["hit1"] = {
-		"power": 220, 
-		"hurtBack": [-6, -5], 
-		"attackKind": "physics"
-	}
-	self.objattackDic["gwjq"] = {
-		"power": 170, 
-		"hurtBack": [-6, -5], 
-		"attackKind": "magic"
-	}
+	self.objattackDic["hit1"] = {"power": 220, "hurtBack": [-6, -5], "attackKind": "physics"}
+	self.objattackDic["gwjq"] = {"power": 170, "hurtBack": [-6, -5], "attackKind": "magic"}
 	self.objattackDic["csjq"] = {
-		"power": int(RoleProp.roleprop.SHp * 0.3), 
-		"hurtBack": [-6, -5], 
-		"attackKind": "physics", 
-		"addeffect": {
-			"Name": "stun", 
-			"DeBuff": true, 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"CanAdd": false, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": int(RoleProp.roleprop.SHp * 0.3),
+		"hurtBack": [-6, -5],
+		"attackKind": "physics",
+		"addeffect":
+		{
+			"Name": "stun",
+			"DeBuff": true,
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"CanAdd": false,
+			"value": 0,
+			"AttackKind": "",
 		}
 	}
 
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "fygwj", 
-			"value": 1
-		}, 
-		{
-			"name": "lchp", 
-			"value": 0
-		}, 
+		{"name": "fygwj", "value": 1},
+		{"name": "lchp", "value": 0},
 	]
 	self.independent_fall_list = [
-		{"name": "221007002", "value": 0, "chance": 0.333}, 
+		{"name": "221007002", "value": 0, "chance": 0.333},
 	]
 
 	enable_treasure_box = true
@@ -78,11 +65,15 @@ func monster_43():
 		self.independent_fall_list.clear()
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_43()
 	Skill_1_CD = 0
 	Skill_3_CD = 0
+
+
 func do_hit_2():
 	Skill_1_CD = 20
 	hit_name = "csjq"
@@ -91,12 +82,16 @@ func do_hit_2():
 	mr_player.play("csjq")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func do_hit_3():
 	velocity.x = 0
 	is_attacking = true
 	mr_player.play("sdgm")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func do_hit_4():
 	Skill_3_CD = 15
 	hit_name = "gwjq"
@@ -106,21 +101,43 @@ func do_hit_4():
 	await mr_player.animation_finished
 	is_attacking = false
 
+
 func Monster_Intelligence():
 	if Hp < SHp * 0.8:
 		if not firstdoor:
 			do_hit_3()
-			Global.Create_Monster(44, get_parent(), Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, RoleProp.get_nearest_monster_target_position(global_position).y - 100))
+			Global.Create_Monster(
+				44,
+				get_parent(),
+				Vector2(
+					RoleProp.get_nearest_monster_target_position(global_position).x,
+					RoleProp.get_nearest_monster_target_position(global_position).y - 100
+				)
+			)
 			firstdoor = true
 	if Hp < SHp * 0.6:
 		if not seconddoor:
 			do_hit_3()
-			Global.Create_Monster(45, get_parent(), Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, RoleProp.get_nearest_monster_target_position(global_position).y - 100))
+			Global.Create_Monster(
+				45,
+				get_parent(),
+				Vector2(
+					RoleProp.get_nearest_monster_target_position(global_position).x,
+					RoleProp.get_nearest_monster_target_position(global_position).y - 100
+				)
+			)
 			seconddoor = true
 	if Hp < SHp * 0.4:
 		if not thirddoor:
 			do_hit_3()
-			Global.Create_Monster(46, get_parent(), Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, RoleProp.get_nearest_monster_target_position(global_position).y - 100))
+			Global.Create_Monster(
+				46,
+				get_parent(),
+				Vector2(
+					RoleProp.get_nearest_monster_target_position(global_position).x,
+					RoleProp.get_nearest_monster_target_position(global_position).y - 100
+				)
+			)
 			thirddoor = true
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -145,6 +162,7 @@ func Monster_Intelligence():
 						attack_target()
 				else:
 					stop_move()
+
 
 func movetorolebehind():
 	if RoleProp.Directon:

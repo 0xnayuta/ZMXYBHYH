@@ -9,7 +9,6 @@ class_name ZLWRound2
 @onready var lz_8: AnimatedSprite2D = $LZ_8
 @onready var lz_7: AnimatedSprite2D = $LZ_7
 
-
 var CurrentCount: int = 8:
 	set(value):
 		CurrentCount = value
@@ -19,10 +18,13 @@ var Speed: float = 1:
 		Speed = value
 		Set_Speed()
 var LunziList: Array = []
-func _ready() -> void :
-	LunziList = [lz_1, lz_2, lz_3, lz_4, lz_5, lz_6, lz_7, lz_8]
-func _onroundChange():
 
+
+func _ready() -> void:
+	LunziList = [lz_1, lz_2, lz_3, lz_4, lz_5, lz_6, lz_7, lz_8]
+
+
+func _onroundChange():
 	if CurrentCount == 6:
 		lz_1.visible = true
 		lz_2.visible = true
@@ -104,6 +106,7 @@ func _onroundChange():
 		lz_6.visible = true
 		lz_7.visible = true
 		lz_8.visible = true
+
 
 func Set_Speed():
 	var num: int = 0

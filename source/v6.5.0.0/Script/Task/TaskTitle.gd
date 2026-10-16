@@ -6,12 +6,13 @@ var MyFather: BasicTask
 @onready var tilte: Label = $Tilte
 @onready var label: Label = $Label
 
-
 var TaskInfo: String
 var RewardList = []
 var NbName: String
 var Finish: bool
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	tilte.text = TaskName
 	if TaskType != "DailyTask" and PlayerData.player_data.get(TaskName, false):
 		label.text = "已领取"
@@ -33,6 +34,8 @@ func _physics_process(delta: float) -> void :
 		label.add_theme_color_override("font_color", "ff0000")
 		label.add_theme_color_override("font_outline_color", "ff0000")
 	set_physics_process(false)
+
+
 func CheckTaskFinish():
 	match TaskType:
 		"ActivityTask":
@@ -78,7 +81,6 @@ func CheckTaskFinish():
 				6:
 					var Target = MyFather.AllActivityList[TaskName]["TaskTarget"]
 					for key in Target.keys():
-
 						if PlayerData.player_data.get(key, -1) < Target[key]:
 							return false
 					return true
@@ -87,7 +89,9 @@ func CheckTaskFinish():
 		"DailyTask":
 			pass
 	return true
-func _on_pressed() -> void :
+
+
+func _on_pressed() -> void:
 	MyFather.TaskIsFinish = Finish
 	MyFather.CurrentTaskType = 2 if TaskType == "DailyTask" else 1
 	MyFather.CurrentTaskName = TaskName

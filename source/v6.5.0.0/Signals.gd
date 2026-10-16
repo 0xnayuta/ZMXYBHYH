@@ -1,6 +1,7 @@
 extends Node
 signal _on_Choose_pressed
 
+
 func ConnectChooseBoxSignal(Obj: Object, funcName: String):
 	for i in _on_Choose_pressed.get_connections():
 		var RemoveCallable = i["callable"]

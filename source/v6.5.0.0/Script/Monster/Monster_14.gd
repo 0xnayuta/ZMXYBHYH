@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster14
+
+
 func monster_14():
 	self.is_boss = false
 	self.my_mr_name = "虾兵"
@@ -25,22 +27,13 @@ func monster_14():
 	self.self_rhp = 0
 	self.add_exp = 35
 	self.fall_coin = 10
-	self.objattackDic["hit1"] = {
-		"power": 30, 
-		"hurtBack": [-3, -6], 
-		"attackKind": "physics"
-	}
-	self.objattackDic["slz"] = {
-		"power": 90, 
-		"hurtBack": [-6, -25], 
-		"attackKind": "physics"
-	}
+	self.objattackDic["hit1"] = {"power": 30, "hurtBack": [-3, -6], "attackKind": "physics"}
+	self.objattackDic["slz"] = {"power": 90, "hurtBack": [-6, -25], "attackKind": "physics"}
 	self.fall_pro = 0.0
-	self.fall_list = [
-	]
+	self.fall_list = []
 	self.fall_stone_pro = 0
-	self.fall_stone = [
-	]
+	self.fall_stone = []
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -54,16 +47,28 @@ func Monster_Intelligence():
 					if count % 90 == 0:
 						do_hit_1()
 					else:
-						if position.x > randi_range(15, 85) + RoleProp.get_nearest_monster_target_position(global_position).x:
+						if (
+							position.x
+							> randi_range(15, 85) + RoleProp.get_nearest_monster_target_position(global_position).x
+						):
 							move_right()
-						elif position.x < RoleProp.get_nearest_monster_target_position(global_position).x - randi_range(15, 85):
+						elif (
+							position.x
+							< RoleProp.get_nearest_monster_target_position(global_position).x - randi_range(15, 85)
+						):
 							move_left()
 				elif count % 120 == 0:
 					attack_target()
 				else:
-					if position.x > randi_range(15, 85) + RoleProp.get_nearest_monster_target_position(global_position).x:
+					if (
+						position.x
+						> randi_range(15, 85) + RoleProp.get_nearest_monster_target_position(global_position).x
+					):
 						move_right()
-					elif position.x < RoleProp.get_nearest_monster_target_position(global_position).x - randi_range(15, 85):
+					elif (
+						position.x
+						< RoleProp.get_nearest_monster_target_position(global_position).x - randi_range(15, 85)
+					):
 						move_left()
 			elif abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > 550:
 				if count % 120 == 0:
@@ -76,9 +81,12 @@ func Monster_Intelligence():
 				else:
 					stop_move()
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_14()
+
+
 func do_hit_1():
 	if RoleProp.get_nearest_monster_target_position(global_position).x > position.x:
 		move_right()
@@ -90,8 +98,28 @@ func do_hit_1():
 	mr_player.play("slz")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func call_fly_bullet():
 	if self.MonsterDirection:
-		Global.CallFlyBullet(self.bullet, "Monster14Bullet", -1, Vector2(position.x + 100, position.y), 1500, 600, "hit1", self.objattackDic["hit1"])
+		Global.CallFlyBullet(
+			self.bullet,
+			"Monster14Bullet",
+			-1,
+			Vector2(position.x + 100, position.y),
+			1500,
+			600,
+			"hit1",
+			self.objattackDic["hit1"]
+		)
 	else:
-		Global.CallFlyBullet(self.bullet, "Monster14Bullet", 1, Vector2(position.x - 100, position.y), 1500, 600, "hit1", self.objattackDic["hit1"])
+		Global.CallFlyBullet(
+			self.bullet,
+			"Monster14Bullet",
+			1,
+			Vector2(position.x - 100, position.y),
+			1500,
+			600,
+			"hit1",
+			self.objattackDic["hit1"]
+		)

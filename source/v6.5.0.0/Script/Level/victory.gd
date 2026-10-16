@@ -1,16 +1,18 @@
 extends Node2D
 @onready var grades_s_how: AnimationPlayer = $GradesSHow
-@onready var begin_time: Label = $GameUseTime / BeginTime
-@onready var end_time: Label = $GameUseTime2 / EndTime
-@onready var use_time: Label = $GameUseTime3 / UseTIME
-@onready var hp_text: Label = $PlayerLastHp / Hp_text
-@onready var most_lj_text: Label = $MostLj / MostLj_text
+@onready var begin_time: Label = $GameUseTime/BeginTime
+@onready var end_time: Label = $GameUseTime2/EndTime
+@onready var use_time: Label = $GameUseTime3/UseTIME
+@onready var hp_text: Label = $PlayerLastHp/Hp_text
+@onready var most_lj_text: Label = $MostLj/MostLj_text
 var Last_Time
-const VICTORY_DESIGN_SIZE: = Vector2(940.0, 590.0)
-const PING_JIA_TEXTURE_SIZE: = Vector2(93.0, 75.0)
-const PING_JIA_FINAL_SCALE: = 2.5
-func _fit_to_window() -> void :
-	var viewport_size: = get_viewport().get_visible_rect().size
+const VICTORY_DESIGN_SIZE := Vector2(940.0, 590.0)
+const PING_JIA_TEXTURE_SIZE := Vector2(93.0, 75.0)
+const PING_JIA_FINAL_SCALE := 2.5
+
+
+func _fit_to_window() -> void:
+	var viewport_size := get_viewport().get_visible_rect().size
 	if viewport_size.x <= 0.0 or viewport_size.y <= 0.0:
 		return
 	var fit_scale = min(viewport_size.x / VICTORY_DESIGN_SIZE.x, viewport_size.y / VICTORY_DESIGN_SIZE.y)
@@ -18,7 +20,8 @@ func _fit_to_window() -> void :
 	scale = Vector2(fit_scale, fit_scale)
 	position = (viewport_size - content_size) * 0.5
 
-func _ready() -> void :
+
+func _ready() -> void:
 	_fit_to_window()
 	if not get_viewport().size_changed.is_connected(_fit_to_window):
 		get_viewport().size_changed.connect(_fit_to_window)
@@ -43,7 +46,9 @@ func _ready() -> void :
 			Global.AddMessageShow(Global.Windows_, "恭喜通关火焰山，解锁角色“猪八戒”！！", 1.5, Vector2(470, 300))
 	begin_time.text = "开始时间：" + Global.LevelBeginTime
 	end_time.text = "结束时间：" + Global.LevelEndTime
-	use_time.text = "过关用时：" + str(Last_Time["小时"]) + " 小时 " + str(Last_Time["分钟"]) + " 分钟 " + str(Last_Time["秒"]) + " 秒 "
+	use_time.text = (
+		"过关用时：" + str(Last_Time["小时"]) + " 小时 " + str(Last_Time["分钟"]) + " 分钟 " + str(Last_Time["秒"]) + " 秒 "
+	)
 	hp_text.text = "剩余状态：" + str(snapped(float(RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) * 100, 0.01)) + "%"
 	most_lj_text.text = "最高连击：" + str(Global.MostLianji)
 	if not MainSet.set_data["Music4"]:
@@ -62,16 +67,18 @@ func _ready() -> void :
 	if MainSet.is_auto_battle_enabled() and bool(MainSet.set_data.get("AutoBattleRetry", false)):
 		call_deferred("_auto_rechallenge")
 
+
 func _save_completed_level() -> bool:
-	var archive_path: = str(Global.cd_path).strip_edges()
+	var archive_path := str(Global.cd_path).strip_edges()
 	if archive_path == "":
 		return false
-	var saved: = MemoryClass.保存游戏(archive_path)
+	var saved := MemoryClass.保存游戏(archive_path)
 	if not saved:
 		push_warning("通关自动保存失败：%s" % archive_path)
 	return saved
 
-func _on_return_map_pressed() -> void :
+
+func _on_return_map_pressed() -> void:
 	RoleProp.ws_value = 0
 	if Global.CurrentLevel == "镇妖塔":
 		Global.change_scene("res://Scene/Main_menu/Map_0.tscn")
@@ -120,27 +127,27 @@ func _on_return_map_pressed() -> void :
 		_:
 			Global.change_scene("res://Scene/Main_menu/Map_1.tscn")
 	MemoryClass.保存游戏(Global.cd_path)
+
+
 func get_lasttime(Num):
 	var Hour = floor(Num / 3600)
 	var Minute = floor(Num % 3600 / 60)
 	var Second = Num - Hour * 3600 - Minute * 60
 	return {
-		"小时": Hour, 
-		"分钟": Minute, 
-		"秒": Second, 
+		"小时": Hour,
+		"分钟": Minute,
+		"秒": Second,
 	}
 
 
-
-
-
-func _on_more_informaition_pressed() -> void :
+func _on_more_informaition_pressed() -> void:
 	Global.addAfterLevelEnd(self, Vector2(0, 0))
 
 
-var _is_rechallenging: = false
+var _is_rechallenging := false
 
-func _reset_role_state_for_rechallenge() -> void :
+
+func _reset_role_state_for_rechallenge() -> void:
 	RoleProp.set_full_Hp()
 	RoleProp.set_full_Mp()
 	RoleProp.CurrentHp = int(RoleProp.roleprop.Hp)
@@ -148,7 +155,9 @@ func _reset_role_state_for_rechallenge() -> void :
 	RoleProp.ws_value = 0
 	RoleProp.is_ws_state = false
 	Global.is_DeadLink = false
-func _on_rechallenge_pressed() -> void :
+
+
+func _on_rechallenge_pressed() -> void:
 	if _is_rechallenging:
 		return
 	if Global.LastLevelPath == "":
@@ -158,10 +167,13 @@ func _on_rechallenge_pressed() -> void :
 	_reset_role_state_for_rechallenge()
 	Global.change_scene(Global.LastLevelPath)
 
-func _auto_rechallenge() -> void :
+
+func _auto_rechallenge() -> void:
 	await get_tree().create_timer(1.0).timeout
 	if is_inside_tree() and not _is_rechallenging:
 		_on_rechallenge_pressed()
+
+
 func PDpj():
 	var CurrentZT = int(snapped(float(RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) * 100, 0.01))
 	if Last_Time["分钟"] <= 2 and Global.TotalHurtCount == 0 and CurrentZT >= 95:
@@ -232,11 +244,14 @@ func PDpj():
 				else:
 					return 1
 	return 1
+
+
 func ADDpj():
-	var ping_jia_size: = PING_JIA_TEXTURE_SIZE * PING_JIA_FINAL_SCALE
+	var ping_jia_size := PING_JIA_TEXTURE_SIZE * PING_JIA_FINAL_SCALE
 
 	Global.AddPj(self, Vector2(65, 65), PDpj())
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	if get_viewport().size_changed.is_connected(_fit_to_window):
 		get_viewport().size_changed.disconnect(_fit_to_window)

@@ -1,38 +1,39 @@
 extends BaseMonster
 class_name Monster215
 
-const FRAME_ROOT: = "res://Art/Monster/Game3Monster/Monster_215"
-const SOURCE_FPS: = 30.0
-const LITTLE_BLOOD_OFFSET: = Vector2(-30, -190)
+const FRAME_ROOT := "res://Art/Monster/Game3Monster/Monster_215"
+const SOURCE_FPS := 30.0
+const LITTLE_BLOOD_OFFSET := Vector2(-30, -190)
 
+const SKILL_1_COOLDOWN_SECONDS := 0.5
+const SKILL_2_COOLDOWN_SECONDS := 1.0
+const SKILL_1_POWER := 9000
+const SKILL_2_POWER := 12000
 
-const SKILL_1_COOLDOWN_SECONDS: = 0.5
-const SKILL_2_COOLDOWN_SECONDS: = 1.0
-const SKILL_1_POWER: = 9000
-const SKILL_2_POWER: = 12000
-
-const ANIMATION_DATA: = {
-	&"wait": ["DefineSprite_9", 6, [2, 2, 2, 3, 2, 4], true], 
-	&"walk": ["DefineSprite_14", 4, [4, 4, 4, 4], true], 
-	&"hurt": ["DefineSprite_16", 1, [8], false], 
-	&"death": ["DefineSprite_23", 6, [2, 2, 2, 2, 2, 8], false], 
-	&"hit1": ["DefineSprite_27", 3, [3, 3, 10], false], 
-	&"hit2": ["DefineSprite_32", 4, [3, 3, 3, 10], false], 
+const ANIMATION_DATA := {
+	&"wait": ["DefineSprite_9", 6, [2, 2, 2, 3, 2, 4], true],
+	&"walk": ["DefineSprite_14", 4, [4, 4, 4, 4], true],
+	&"hurt": ["DefineSprite_16", 1, [8], false],
+	&"death": ["DefineSprite_23", 6, [2, 2, 2, 2, 2, 8], false],
+	&"hit1": ["DefineSprite_27", 3, [3, 3, 10], false],
+	&"hit2": ["DefineSprite_32", 4, [3, 3, 3, 10], false],
 }
 
-var _skill_busy: = false
+var _skill_busy := false
 
 @onready var skill_1_cooldown: Timer = $Skill1Cooldown
 @onready var skill_2_cooldown: Timer = $Skill2Cooldown
 
-func _ready() -> void :
+
+func _ready() -> void:
 	_configure_boss()
 	_build_animations()
 	super._ready()
 	skill_1_cooldown.start(SKILL_1_COOLDOWN_SECONDS)
 	skill_2_cooldown.start(SKILL_2_COOLDOWN_SECONDS)
 
-func _configure_boss() -> void :
+
+func _configure_boss() -> void:
 	rush_speed = 180
 	is_boss = true
 	boss_max_protect = 240
@@ -54,7 +55,6 @@ func _configure_boss() -> void :
 	speed = 25
 	mysee = 1000
 
-
 	attackRange = 150
 	attackDesire = 100
 	behit_calmtime = 0
@@ -63,28 +63,29 @@ func _configure_boss() -> void :
 	fall_pro = 0.0
 	fall_list = []
 	self.independent_fall_list = [
-		{"name": "cswkxyhbzzs", "value": 1, "chance": 0.1}, 
-		{"name": "cstsxyhbzzs", "value": 1, "chance": 0.1}, 
-		{"name": "csbjxyhbzzs", "value": 1, "chance": 0.1}, 
-		{"name": "csssxyhbzzs", "value": 1, "chance": 0.1}, 
-		{"name": "csblxyhbzzs", "value": 1, "chance": 0.1}, 
-		{"name": "342071301zzs", "value": 1, "chance": 0.1}, 
+		{"name": "cswkxyhbzzs", "value": 1, "chance": 0.1},
+		{"name": "cstsxyhbzzs", "value": 1, "chance": 0.1},
+		{"name": "csbjxyhbzzs", "value": 1, "chance": 0.1},
+		{"name": "csssxyhbzzs", "value": 1, "chance": 0.1},
+		{"name": "csblxyhbzzs", "value": 1, "chance": 0.1},
+		{"name": "342071301zzs", "value": 1, "chance": 0.1},
 	]
 	objattackDic["hit1"] = {
-		"power": SKILL_1_POWER, 
-		"hurtBack": [-10, -5], 
-		"attackKind": "physics", 
-		"HitProtect": 99, 
+		"power": SKILL_1_POWER,
+		"hurtBack": [-10, -5],
+		"attackKind": "physics",
+		"HitProtect": 99,
 	}
 	objattackDic["hit2"] = {
-		"power": SKILL_2_POWER, 
-		"hurtBack": [-8, -2], 
-		"attackKind": "magic", 
-		"HitProtect": 99, 
+		"power": SKILL_2_POWER,
+		"hurtBack": [-8, -2],
+		"attackKind": "magic",
+		"HitProtect": 99,
 	}
 
-func _build_animations() -> void :
-	var frames: = SpriteFrames.new()
+
+func _build_animations() -> void:
+	var frames := SpriteFrames.new()
 	frames.remove_animation(&"default")
 	for anim_name: StringName in ANIMATION_DATA:
 		var data: Array = ANIMATION_DATA[anim_name]
@@ -93,8 +94,8 @@ func _build_animations() -> void :
 		frames.set_animation_speed(anim_name, SOURCE_FPS)
 		var durations: Array = data[2]
 		for index in range(1, int(data[1]) + 1):
-			var path: = FRAME_ROOT.path_join(str(data[0])).path_join(str(index) + ".png")
-			var texture: = Global.get_cached_texture(path)
+			var path := FRAME_ROOT.path_join(str(data[0])).path_join(str(index) + ".png")
+			var texture := Global.get_cached_texture(path)
 			if texture != null:
 				frames.add_frame(anim_name, texture, float(durations[index - 1]))
 	mr_ani.sprite_frames = frames
@@ -104,43 +105,49 @@ func _build_animations() -> void :
 
 	if mr_player.has_animation_library(&""):
 		mr_player.remove_animation_library(&"")
-	var library: = AnimationLibrary.new()
+	var library := AnimationLibrary.new()
 	library.add_animation(&"wait", _make_action(&"wait", true))
 	library.add_animation(&"walk", _make_action(&"walk", true))
 	library.add_animation(&"hurt", _make_action(&"hurt", false))
-	var death_animation: = _make_action(&"death", false)
+	var death_animation := _make_action(&"death", false)
 	_add_method_key(death_animation, death_animation.length - 0.001, &"settle_death_drops_and_free")
 	library.add_animation(&"death", death_animation)
-	var hit1_animation: = _make_action(&"hit1", false)
+	var hit1_animation := _make_action(&"hit1", false)
 	_add_method_key(hit1_animation, 0.2, &"CallBullet1")
 	library.add_animation(&"hit1", hit1_animation)
-	var hit2_animation: = _make_action(&"hit2", false)
+	var hit2_animation := _make_action(&"hit2", false)
 	_add_method_key(hit2_animation, 0.2, &"CallBullet2")
 	library.add_animation(&"hit2", hit2_animation)
 	mr_player.add_animation_library(&"", library)
 
+
 func _make_action(anim_name: StringName, looped: bool) -> Animation:
-	var animation: = Animation.new()
+	var animation := Animation.new()
 	animation.loop_mode = Animation.LOOP_LINEAR if looped else Animation.LOOP_NONE
-	var method_track: = animation.add_track(Animation.TYPE_METHOD)
+	var method_track := animation.add_track(Animation.TYPE_METHOD)
 	animation.track_set_path(method_track, NodePath("."))
 	animation.track_insert_key(method_track, 0.0, {"method": &"_play_sprite_animation", "args": [anim_name]})
 	var data: Array = ANIMATION_DATA[anim_name]
-	var duration: = 0.0
+	var duration := 0.0
 	for frame_duration in data[2]:
 		duration += float(frame_duration) / SOURCE_FPS
 	animation.length = maxf(duration, 0.05)
 	return animation
 
-func _play_sprite_animation(anim_name: StringName) -> void :
+
+func _play_sprite_animation(anim_name: StringName) -> void:
 	mr_ani.play(anim_name)
 
-func _add_method_key(animation: Animation, time: float, method_name: StringName) -> void :
-	var method_track: = animation.add_track(Animation.TYPE_METHOD)
-	animation.track_set_path(method_track, NodePath("."))
-	animation.track_insert_key(method_track, clampf(time, 0.0, animation.length - 0.001), {"method": method_name, "args": []})
 
-func Monster_Intelligence() -> void :
+func _add_method_key(animation: Animation, time: float, method_name: StringName) -> void:
+	var method_track := animation.add_track(Animation.TYPE_METHOD)
+	animation.track_set_path(method_track, NodePath("."))
+	animation.track_insert_key(
+		method_track, clampf(time, 0.0, animation.length - 0.001), {"method": method_name, "args": []}
+	)
+
+
+func Monster_Intelligence() -> void:
 	if IsLimitBuff():
 		_skill_busy = false
 		velocity.x = 0
@@ -153,7 +160,7 @@ func Monster_Intelligence() -> void :
 		has_target = false
 		stop_move()
 		return
-	var distance: = absf(float(role_position_x) - position.x)
+	var distance := absf(float(role_position_x) - position.x)
 	has_target = distance < mysee
 	if not has_target:
 		to_hero()
@@ -168,7 +175,8 @@ func Monster_Intelligence() -> void :
 	else:
 		stop_move()
 
-func _use_attack(action: StringName) -> void :
+
+func _use_attack(action: StringName) -> void:
 	if is_attacking:
 		return
 	to_hero()
@@ -188,27 +196,34 @@ func _use_attack(action: StringName) -> void :
 		skill_2_cooldown.start(SKILL_2_COOLDOWN_SECONDS)
 	stop_move()
 
-func CallBullet1() -> void :
+
+func CallBullet1() -> void:
 	_sync_attack_power(&"hit1")
-	var offset: = Vector2(65, -55) if MonsterDirection else Vector2(-65, -55)
-	Global.add_Bullet("Monster215Bullet1", bullet, MonsterDirection, 1.0, position + offset, "hit1", objattackDic["hit1"])
+	var offset := Vector2(65, -55) if MonsterDirection else Vector2(-65, -55)
+	Global.add_Bullet(
+		"Monster215Bullet1", bullet, MonsterDirection, 1.0, position + offset, "hit1", objattackDic["hit1"]
+	)
 
-func CallBullet2() -> void :
+
+func CallBullet2() -> void:
 	_sync_attack_power(&"hit2")
-	var direction_sign: = 1.0 if MonsterDirection else -1.0
+	var direction_sign := 1.0 if MonsterDirection else -1.0
 	for offset in [Vector2(150, 0), Vector2(170, -30), Vector2(150, -65)]:
-		var directed_offset: = Vector2(offset.x * direction_sign, offset.y)
-		Global.add_Bullet("Monster215Bullet2", bullet, MonsterDirection, 1.0, position + directed_offset, "hit2", objattackDic["hit2"])
+		var directed_offset := Vector2(offset.x * direction_sign, offset.y)
+		Global.add_Bullet(
+			"Monster215Bullet2", bullet, MonsterDirection, 1.0, position + directed_offset, "hit2", objattackDic["hit2"]
+		)
 
-func _sync_attack_power(action: StringName) -> void :
-	var action_key: = String(action)
+
+func _sync_attack_power(action: StringName) -> void:
+	var action_key := String(action)
 	if has_meta("tower_config"):
 		var tower_config: Dictionary = get_meta("tower_config", {})
 		objattackDic[action_key]["power"] = int(tower_config.get("attack", 0))
 		return
-	var base_power: = SKILL_1_POWER if action == &"hit1" else SKILL_2_POWER
-	var difficulty: = int(MainSet.set_data.get("Difficult", 0))
-	var multiplier: = 1.0
+	var base_power := SKILL_1_POWER if action == &"hit1" else SKILL_2_POWER
+	var difficulty := int(MainSet.set_data.get("Difficult", 0))
+	var multiplier := 1.0
 	if difficulty == 1:
 		multiplier = 2.0
 	elif difficulty == 2:
@@ -219,14 +234,17 @@ func _sync_attack_power(action: StringName) -> void :
 	if difficulty == BaseMonster.NIGHTMARE_DIFFICULTY:
 		objattackDic[action_key]["power"] += BaseMonster.NIGHTMARE_ATTACK_BONUS
 
+
 func little_blood_bar_control():
 	super.little_blood_bar_control()
 	_move_little_blood_bar_to_head()
 
-func _show_pet_hit_blood_bar() -> void :
+
+func _show_pet_hit_blood_bar() -> void:
 	super._show_pet_hit_blood_bar()
 	_move_little_blood_bar_to_head()
 
-func _move_little_blood_bar_to_head() -> void :
+
+func _move_little_blood_bar_to_head() -> void:
 	if monster_blood_bar != null:
 		monster_blood_bar.position = LITTLE_BLOOD_OFFSET

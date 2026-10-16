@@ -1,6 +1,6 @@
 extends "res://Script/Pet/PetInterface.gd"
 
-var equipment_bonus_call_count: = 0
+var equipment_bonus_call_count := 0
 
 
 func _pet_equipment_bonuses(pet: Dictionary) -> Dictionary:
@@ -8,9 +8,9 @@ func _pet_equipment_bonuses(pet: Dictionary) -> Dictionary:
 	return super._pet_equipment_bonuses(pet)
 
 
-func reset_equipment_bonus_call_count() -> void :
+func reset_equipment_bonus_call_count() -> void:
 	equipment_bonus_call_count = 0
 
 
-func _show_tip(_message: String) -> void :
+func _show_tip(_message: String) -> void:
 	pass

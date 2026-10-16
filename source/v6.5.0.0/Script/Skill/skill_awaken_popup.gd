@@ -2,23 +2,51 @@ extends Control
 
 @onready var skill_icon: TextureRect = $SkillIcon
 @onready var skill_name_label: Label = $SkillName
-var skill_id: = ""
+var skill_id := ""
 
-func _ready() -> void :
+
+func _ready() -> void:
 	$CloseButton.pressed.connect(_close)
 	$ConfirmButton.pressed.connect(_on_confirm_pressed)
 	$AwakenEnabled.toggled.connect(_on_awaken_enabled_toggled)
 	$Status.text = "觉醒效果"
 	$ConfirmButton.visible = true
 
-func configure(skill_name: String, icon: Texture2D, internal_skill_id: String) -> void :
+
+func configure(skill_name: String, icon: Texture2D, internal_skill_id: String) -> void:
 	skill_id = "jhsj" if internal_skill_id == "jhsj" or skill_name == "九环圣经" else internal_skill_id
 	$SkillName.text = skill_name
 	$SkillIcon.texture = icon
 	_refresh_awaken_state()
 
-func _refresh_awaken_state() -> void :
-	if skill_id != "jhsj" and skill_id != "smb" and skill_id != "zfjg" and skill_id != "tjgl" and skill_id != "nz_lblc" and skill_id != "nz_hlhs" and skill_id != "nz_yysj" and skill_id != "hmz_ws" and skill_id != "lyfb" and skill_id != "lys" and skill_id != "mds" and skill_id != "tkj" and skill_id != "wdzt" and skill_id != "mmw" and skill_id != "jdz" and skill_id != "wdww" and skill_id != "lhsq" and skill_id != "dgq" and skill_id != "sd" and skill_id != "zznh" and skill_id != "ltjz" and skill_id != "tllz" and skill_id != "fhf" and skill_id != "ygth":
+
+func _refresh_awaken_state() -> void:
+	if (
+		skill_id != "jhsj"
+		and skill_id != "smb"
+		and skill_id != "zfjg"
+		and skill_id != "tjgl"
+		and skill_id != "nz_lblc"
+		and skill_id != "nz_hlhs"
+		and skill_id != "nz_yysj"
+		and skill_id != "hmz_ws"
+		and skill_id != "lyfb"
+		and skill_id != "lys"
+		and skill_id != "mds"
+		and skill_id != "tkj"
+		and skill_id != "wdzt"
+		and skill_id != "mmw"
+		and skill_id != "jdz"
+		and skill_id != "wdww"
+		and skill_id != "lhsq"
+		and skill_id != "dgq"
+		and skill_id != "sd"
+		and skill_id != "zznh"
+		and skill_id != "ltjz"
+		and skill_id != "tllz"
+		and skill_id != "fhf"
+		and skill_id != "ygth"
+	):
 		$EffectDescription.text = "当前技能的觉醒效果暂未开放"
 		$Status.text = "觉醒效果"
 		$ConfirmButton.visible = true
@@ -28,9 +56,9 @@ func _refresh_awaken_state() -> void :
 		$AwakenEnabled.disabled = true
 		$AwakenEnabled.button_pressed = false
 		return
-	var awakened: = _is_skill_awakened(skill_id)
+	var awakened := _is_skill_awakened(skill_id)
 	$Status.text = "已觉醒" if awakened else "觉醒效果"
-	var effect_description: = ""
+	var effect_description := ""
 	if skill_id == "jhsj":
 		effect_description = "额外召唤光柱攻击"
 	elif skill_id == "smb":
@@ -87,9 +115,11 @@ func _refresh_awaken_state() -> void :
 	$AwakenEnabled.disabled = not awakened
 	$AwakenEnabled.button_pressed = _is_awaken_enabled(skill_id) if awakened else false
 
+
 func _is_skill_awakened(internal_skill_id: String) -> bool:
 	var awaken_data: Variant = PlayerData.player_data.get("技能觉醒", {})
 	return awaken_data is Dictionary and bool(awaken_data.get(internal_skill_id, false))
+
 
 func _is_awaken_enabled(internal_skill_id: String) -> bool:
 	var enabled_data: Variant = PlayerData.player_data.get("技能觉醒启用", {})
@@ -99,11 +129,38 @@ func _is_awaken_enabled(internal_skill_id: String) -> bool:
 		return true
 	return bool(enabled_data.get(internal_skill_id, false))
 
-func _close() -> void :
+
+func _close() -> void:
 	queue_free()
 
-func _on_confirm_pressed() -> void :
-	if skill_id != "jhsj" and skill_id != "smb" and skill_id != "zfjg" and skill_id != "tjgl" and skill_id != "nz_lblc" and skill_id != "nz_hlhs" and skill_id != "nz_yysj" and skill_id != "hmz_ws" and skill_id != "lyfb" and skill_id != "lys" and skill_id != "mds" and skill_id != "tkj" and skill_id != "wdzt" and skill_id != "mmw" and skill_id != "jdz" and skill_id != "wdww" and skill_id != "lhsq" and skill_id != "dgq" and skill_id != "sd" and skill_id != "zznh" and skill_id != "ltjz" and skill_id != "tllz" and skill_id != "fhf" and skill_id != "ygth":
+
+func _on_confirm_pressed() -> void:
+	if (
+		skill_id != "jhsj"
+		and skill_id != "smb"
+		and skill_id != "zfjg"
+		and skill_id != "tjgl"
+		and skill_id != "nz_lblc"
+		and skill_id != "nz_hlhs"
+		and skill_id != "nz_yysj"
+		and skill_id != "hmz_ws"
+		and skill_id != "lyfb"
+		and skill_id != "lys"
+		and skill_id != "mds"
+		and skill_id != "tkj"
+		and skill_id != "wdzt"
+		and skill_id != "mmw"
+		and skill_id != "jdz"
+		and skill_id != "wdww"
+		and skill_id != "lhsq"
+		and skill_id != "dgq"
+		and skill_id != "sd"
+		and skill_id != "zznh"
+		and skill_id != "ltjz"
+		and skill_id != "tllz"
+		and skill_id != "fhf"
+		and skill_id != "ygth"
+	):
 		Global.AddMessageShow(self, "当前技能觉醒暂未开启", 1.5, Vector2(470, 270))
 		return
 	if _is_skill_awakened(skill_id):
@@ -124,7 +181,71 @@ func _on_confirm_pressed() -> void :
 	if str(Global.cd_path) != "":
 		MemoryClass.保存游戏(Global.cd_path)
 	_refresh_awaken_state()
-	var skill_display_name: = "雷霆劫阵" if skill_id == "ltjz" else ("战争怒吼" if skill_id == "zznh" else ("万毒加护" if skill_id == "wdzt" else ("木魔舞" if skill_id == "mmw" else ("剧毒阵" if skill_id == "jdz" else ("地滚球" if skill_id == "dgq" else ("圣盾" if skill_id == "sd" else ("九环圣经" if skill_id == "jhsj" else ("水魔爆" if skill_id == "smb" else ("正法金刚" if skill_id == "zfjg" else ("六臂连刺" if skill_id == "nz_lblc" else ("阴阳神剑" if skill_id == "nz_yysj" else ("无双火魔斩" if skill_id == "hmz_ws" else ("烈焰风暴" if skill_id == "lyfb" else ("烈焰闪" if skill_id == "lys" else ("猛毒素" if skill_id == "mds" else ("腾空击" if skill_id == "tkj" else ("火莲化身")))))))))))))))))
+	var skill_display_name := (
+		"雷霆劫阵"
+		if skill_id == "ltjz"
+		else (
+			"战争怒吼"
+			if skill_id == "zznh"
+			else (
+				"万毒加护"
+				if skill_id == "wdzt"
+				else (
+					"木魔舞"
+					if skill_id == "mmw"
+					else (
+						"剧毒阵"
+						if skill_id == "jdz"
+						else (
+							"地滚球"
+							if skill_id == "dgq"
+							else (
+								"圣盾"
+								if skill_id == "sd"
+								else (
+									"九环圣经"
+									if skill_id == "jhsj"
+									else (
+										"水魔爆"
+										if skill_id == "smb"
+										else (
+											"正法金刚"
+											if skill_id == "zfjg"
+											else (
+												"六臂连刺"
+												if skill_id == "nz_lblc"
+												else (
+													"阴阳神剑"
+													if skill_id == "nz_yysj"
+													else (
+														"无双火魔斩"
+														if skill_id == "hmz_ws"
+														else (
+															"烈焰风暴"
+															if skill_id == "lyfb"
+															else (
+																"烈焰闪"
+																if skill_id == "lys"
+																else (
+																	"猛毒素"
+																	if skill_id == "mds"
+																	else ("腾空击" if skill_id == "tkj" else ("火莲化身"))
+																)
+															)
+														)
+													)
+												)
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				)
+			)
+		)
+	)
 	if skill_id == "tllz":
 		skill_display_name = "天龙雷阵"
 	elif skill_id == "fhf":
@@ -139,8 +260,9 @@ func _on_confirm_pressed() -> void :
 		skill_display_name = "天降甘露"
 	Global.AddMessageShow(self, skill_display_name + "觉醒成功", 1.5, Vector2(470, 270))
 
+
 func _count_awaken_stones() -> int:
-	var total: = 0
+	var total := 0
 	var pages: Variant = PlayerData.player_data.get("道具列表", {})
 	if not pages is Dictionary:
 		return 0
@@ -152,10 +274,11 @@ func _count_awaken_stones() -> int:
 				total += int(item.get("数量", 0))
 	return total
 
+
 func _consume_awaken_stones(amount: int) -> bool:
 	if _count_awaken_stones() < amount:
 		return false
-	var remaining: = amount
+	var remaining := amount
 	var pages: Variant = PlayerData.player_data.get("道具列表", {})
 	if not pages is Dictionary:
 		return false
@@ -171,14 +294,15 @@ func _consume_awaken_stones(amount: int) -> bool:
 			var item: Variant = page[index]
 			if not item is Dictionary or str(item.get("名字", "")) != "tjs":
 				continue
-			var taken: = mini(int(item.get("数量", 0)), remaining)
+			var taken := mini(int(item.get("数量", 0)), remaining)
 			item["数量"] = int(item.get("数量", 0)) - taken
 			remaining -= taken
 			if int(item.get("数量", 0)) <= 0:
 				page.remove_at(index)
 	return remaining == 0
 
-func _on_awaken_enabled_toggled(enabled: bool) -> void :
+
+func _on_awaken_enabled_toggled(enabled: bool) -> void:
 	if skill_id == "" or not _is_skill_awakened(skill_id):
 		return
 	var enabled_data: Dictionary = {}

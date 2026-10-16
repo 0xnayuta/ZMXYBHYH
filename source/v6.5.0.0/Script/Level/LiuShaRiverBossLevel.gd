@@ -1,42 +1,40 @@
 extends BaseLevel
 
-@export var boss_scene_id: = 13101
-@export var boss_spawn_y: = 200
+@export var boss_scene_id := 13101
+@export var boss_spawn_y := 200
 
-@onready var stop_1: CollisionShape2D = $wall / stop1
+@onready var stop_1: CollisionShape2D = $wall/stop1
 
-var is_cc: = false
+var is_cc := false
 
 
-func _ready() -> void :
+func _ready() -> void:
 	Global.CurrentLevel = ""
 	Global.addBGM_(self, "res://Music/level/BGM_Normal.mp3")
-	Global.load_level_monster_scene(
-		"res://Scene/Monster/Monster_%d.tscn" % boss_scene_id
-	)
+	Global.load_level_monster_scene("res://Scene/Monster/Monster_%d.tscn" % boss_scene_id)
 	level_stage = 1
 	super._ready()
 	Monster_group = {
-		"stage_1": [boss_scene_id], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [boss_scene_id],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_x = {
-		"stage_1": [850], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [850],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_y = {
-		"stage_1": [boss_spawn_y], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [boss_spawn_y],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 
 
-func _physics_process(delta: float) -> void :
+func _physics_process(delta: float) -> void:
 	if PlayerData.ChekEqzb("头衔", "xczg"):
 		Global.change_scene("res://Scene/Main_menu/Main_Menu.tscn")
 	if not is_cc:

@@ -4,9 +4,13 @@ extends TextureRect
 
 var Name
 var Num
-func _ready() -> void :
+
+
+func _ready() -> void:
 	items.HideProp = true
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	items.set_button_icon(load_(Name))
 	if Num == null:
 		items.total_number = 1
@@ -17,6 +21,8 @@ func _physics_process(delta: float) -> void :
 	name_.add_theme_color_override("font_color", color)
 	name_.add_theme_color_override("font_outline_color", color)
 	set_physics_process(false)
+
+
 func load_(name_):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
 	return abc

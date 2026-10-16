@@ -1,26 +1,28 @@
 extends Node2D
 
-const TABLE_WIDTH: = 760.0
-const HEADER_HEIGHT: = 40.0
-const ROW_HEIGHT: = 74.0
-const MAX_ROW_COUNT: = 13
-const COLUMN_X: = [0.0, 120.0, 232.0, 380.0, 486.0, TABLE_WIDTH]
+const TABLE_WIDTH := 760.0
+const HEADER_HEIGHT := 40.0
+const ROW_HEIGHT := 74.0
+const MAX_ROW_COUNT := 13
+const COLUMN_X := [0.0, 120.0, 232.0, 380.0, 486.0, TABLE_WIDTH]
 
-const HEADER_COLOR: = Color(0.0, 0.0, 0.0, 0.94)
-const BODY_COLOR: = Color(0.015, 0.07, 0.12, 0.38)
-const GRID_COLOR: = Color(0.0, 0.0, 0.0, 0.84)
+const HEADER_COLOR := Color(0.0, 0.0, 0.0, 0.94)
+const BODY_COLOR := Color(0.015, 0.07, 0.12, 0.38)
+const GRID_COLOR := Color(0.0, 0.0, 0.0, 0.84)
 
-func _ready() -> void :
+
+func _ready() -> void:
 	queue_redraw()
 
-func _draw() -> void :
-	var row_count: = _get_row_count()
+
+func _draw() -> void:
+	var row_count := _get_row_count()
 	var skill_page = get_parent().get_parent().get_parent()
 	var row_heights: Array = []
 	if skill_page and skill_page.has_method("get_skill_row_heights"):
 		row_heights = skill_page.get_skill_row_heights()
 	var row_boundaries: Array[float] = [HEADER_HEIGHT]
-	var table_height: = HEADER_HEIGHT
+	var table_height := HEADER_HEIGHT
 	for row_index in range(row_count):
 		table_height += float(row_heights[row_index]) if row_index < row_heights.size() else ROW_HEIGHT
 		row_boundaries.append(table_height)
@@ -32,6 +34,7 @@ func _draw() -> void :
 
 	for row_y in row_boundaries:
 		draw_line(Vector2(0.0, row_y), Vector2(TABLE_WIDTH, row_y), GRID_COLOR, 2.0)
+
 
 func _get_row_count() -> int:
 	var skill_page = get_parent().get_parent().get_parent()

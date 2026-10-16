@@ -5,10 +5,12 @@ var Is_set: bool
 var Is_set2: bool
 @onready var item_pic: Sprite2D = $item_pic
 @onready var remove_pl = $remove_player
-@onready var get_area: CollisionShape2D = $Area2D / get_area
+@onready var get_area: CollisionShape2D = $Area2D/get_area
 var IsPick: bool
 var Player: BaseHero
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	if not Is_set2:
 		set_pic(item_name)
 		if MainSet.set_data["AutomaticallyPickUpItems"]:
@@ -26,8 +28,8 @@ func _physics_process(delta: float) -> void :
 
 	move_and_slide()
 
-func set_pic(name_):
 
+func set_pic(name_):
 	var texture_path = "res://Art/ItemIcon/" + str(name_) + ".png"
 	var texture = load_soft(texture_path)
 
@@ -37,13 +39,12 @@ func set_pic(name_):
 
 	if not texture:
 		var item_data: Dictionary = AE.AllEquipment_.get(str(name_), {})
-		var custom_icon_path: = str(item_data.get("图标", ""))
+		var custom_icon_path := str(item_data.get("图标", ""))
 		if custom_icon_path != "":
 			texture = load_soft(custom_icon_path)
 
 	if not texture:
 		texture = load_soft("res://Art/ItemIcon/zxbx_3.png")
-
 
 	if item_pic:
 		item_pic.visible = true
@@ -56,7 +57,6 @@ func set_pic(name_):
 		item_pic.flip_v = false
 		item_pic.texture = texture
 
-
 	if item_name == "peach" or item_name == "Bble" or item_name == "radish":
 		await get_tree().create_timer(6).timeout
 		queue_free()
@@ -67,11 +67,15 @@ func load_soft(path: String) -> Texture2D:
 		return Global.get_cached_texture(path)
 	return null
 
+
 func AutomaticallyPickUpItems():
 	PickUpItems(Player)
 
-func _on_area_2d_body_entered(body: Node2D) -> void :
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
 	PickUpItems(body)
+
+
 func PickUpItems(body):
 	if MainSet.set_data["PickUpItemsMusic"]:
 		Global.addSound_(self, "res://Music/level/86_pickup.mp3")
@@ -80,8 +84,6 @@ func PickUpItems(body):
 		match get_type:
 			"武器", "防具", "饰品", "翅膀", "时装", "头衔":
 				if not PlayerData.CheckCanUsePage("装备列表") == 0:
-
-
 					PlayerData.add_zb(item_name, 0, {})
 				else:
 					return
@@ -102,7 +104,7 @@ func PickUpItems(body):
 					return
 			"宠物装备":
 				if PlayerData.has_method("add_pet_backpack_item"):
-					var added_count: = int(PlayerData.add_pet_backpack_item(item_name, max(1, num_)))
+					var added_count := int(PlayerData.add_pet_backpack_item(item_name, max(1, num_)))
 					if added_count <= 0:
 						return
 					_save_pet_backpack_pickup()
@@ -120,10 +122,12 @@ func PickUpItems(body):
 	IsPick = true
 	remove_pl.play("remove")
 
-func _save_pet_backpack_pickup() -> void :
-	var save_path: = str(Global.cd_path)
+
+func _save_pet_backpack_pickup() -> void:
+	var save_path := str(Global.cd_path)
 	if save_path != "" and save_path.contains("Ar_") and FileAccess.file_exists(save_path):
 		MemoryClass.保存游戏(save_path)
+
 
 func Pick():
 	IsPick = true

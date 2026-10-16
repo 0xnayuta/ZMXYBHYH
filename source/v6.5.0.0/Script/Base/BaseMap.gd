@@ -6,7 +6,8 @@ var MaxPage: int = 1
 var tree: SceneTree
 var userGlobal = Global.userGlobal
 
-func _ready() -> void :
+
+func _ready() -> void:
 	tree = get_tree()
 	userGlobal = Global.userGlobal
 	playerData = PlayerData
@@ -36,18 +37,21 @@ func _ready() -> void :
 	for i in range(11):
 		PlayAn(i)
 	check_pass_level()
-	_set_transition_overlay_visible( not OS.has_feature("windows"))
+	_set_transition_overlay_visible(not OS.has_feature("windows"))
 
-func PlayAn(_level: int) -> void :
+
+func PlayAn(_level: int) -> void:
 	pass
 
-func check_pass_level() -> void :
+
+func check_pass_level() -> void:
 	pass
 
-func _set_transition_overlay_visible(visible_state: bool) -> void :
-	var color_rect: = get_node_or_null("ColorRect")
+
+func _set_transition_overlay_visible(visible_state: bool) -> void:
+	var color_rect := get_node_or_null("ColorRect")
 	if color_rect != null:
 		color_rect.visible = visible_state
-	var color_rect_2: = get_node_or_null("ColorRect2")
+	var color_rect_2 := get_node_or_null("ColorRect2")
 	if color_rect_2 != null:
 		color_rect_2.visible = visible_state

@@ -1,13 +1,13 @@
 extends BaseLevel
 class_name level21
 var is_set: bool = false
-@onready var stop_1: CollisionShape2D = $wall / stop1
-@onready var stop_2: CollisionShape2D = $wall / stop2
+@onready var stop_1: CollisionShape2D = $wall/stop1
+@onready var stop_2: CollisionShape2D = $wall/stop2
 
-@onready var stop_5: CollisionShape2D = $wall / stop5
+@onready var stop_5: CollisionShape2D = $wall/stop5
 
 
-func _ready() -> void :
+func _ready() -> void:
 	load("res://Scene/Monster/Monster_55.tscn")
 	load("res://Scene/Monster/Monster_56.tscn")
 	load("res://Scene/Monster/Monster_57.tscn")
@@ -19,44 +19,191 @@ func _ready() -> void :
 	Global.GameOver = 2
 	super._ready()
 	Monster_group = {
-		"stage_1": [58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 
-		58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 
-		58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 
-		58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 
-		58, 58, 58, 58, 58, 58, 58, 58, 58, 58], 
-		"stage_2": [57], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1":
+		[
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58,
+			58
+		],
+		"stage_2": [57],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_x = {
-		"stage_1": [150, 900, 150, 900, 150, 900, 150, 900, 150, 900, 
-		150, 900, 150, 900, 150, 900, 150, 900, 150, 900, 
-		150, 900, 150, 900, 150, 900, 150, 900, 150, 900, 
-		150, 900, 150, 900, 150, 900, 150, 900, 150, 900, 
-		150, 900, 150, 900, 150, 900, 150, 900, 150, 900, ], 
-		"stage_2": [1700], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1":
+		[
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+			150,
+			900,
+		],
+		"stage_2": [1700],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_y = {
-		"stage_1": [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 
-		300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 
-		300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 
-		300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 
-		300, 300, 300, 300, 300, 300, 300, 300, 300, 300, ], 
-		"stage_2": [300], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1":
+		[
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+			300,
+		],
+		"stage_2": [300],
+		"stage_3": [],
+		"stage_4": [],
 	}
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if current_stage >= 1:
 		if check_can_pass() and current_stage < 2:
 			role_information.gogo.visible = true
 		else:
 			role_information.gogo.visible = false
-func set_through():
 
+
+func set_through():
 	if current_stage == 1:
 		if check_can_pass():
 			stop_1.disabled = true
@@ -69,10 +216,12 @@ func set_through():
 		stop_5.disabled = false
 		my_camera.max_right = 1900
 
+
 func one_check_can_exit():
 	if not super.one_check_can_exit():
 		return false
 	return not _has_pending_boss_form()
+
 
 func _has_pending_boss_form() -> bool:
 	if monster == null:

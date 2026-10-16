@@ -2,6 +2,8 @@ extends BaseMonster
 class_name Monster72
 var MyFather: BaseMonster
 var IsCall: bool
+
+
 func monster_72():
 	self.is_boss = true
 	self.my_mr_name = "哮天犬"
@@ -28,51 +30,47 @@ func monster_72():
 	self.add_exp = 0
 	self.fall_coin = 0
 	self.objattackDic["hit1"] = {
-		"power": 288, 
-		"hurtBack": [-7, -9], 
-		"attackKind": "magic", 
+		"power": 288,
+		"hurtBack": [-7, -9],
+		"attackKind": "magic",
 	}
 	self.objattackDic["hit2"] = {
-		"power": 300, 
-		"hurtBack": [-7, -9], 
-		"attackKind": "magic", 
+		"power": 300,
+		"hurtBack": [-7, -9],
+		"attackKind": "magic",
 	}
 	self.objattackDic["hit3"] = {
-		"power": 300, 
-		"hurtBack": [-7, -9], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "Bleed", 
-			"AddTime": 5, 
-			"CanAdd": true, 
-			"DeBuff": true, 
-			"ReduceInterval": 0.5, 
-			"value": 35, 
-			"AttackKind": "real", 
+		"power": 300,
+		"hurtBack": [-7, -9],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "Bleed",
+			"AddTime": 5,
+			"CanAdd": true,
+			"DeBuff": true,
+			"ReduceInterval": 0.5,
+			"value": 35,
+			"AttackKind": "real",
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "sichou", 
-			"value": randi_range(3, 5)
-		}, 
-		{
-			"name": "xuantie", 
-			"value": randi_range(3, 5)
-		}, 
-		{
-			"name": "tanmu", 
-			"value": randi_range(3, 5)
-		}, 
+		{"name": "sichou", "value": randi_range(3, 5)},
+		{"name": "xuantie", "value": randi_range(3, 5)},
+		{"name": "tanmu", "value": randi_range(3, 5)},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
 	monster_72()
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -102,6 +100,8 @@ func Monster_Intelligence():
 						stop_move()
 				else:
 					stop_move()
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(15, 18)
@@ -112,6 +112,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = randi_range(10, 12)
@@ -122,6 +124,8 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func CallMonsterBullet():
 	var BulletName = "Monster72Bullet"
 	var Position
@@ -129,6 +133,8 @@ func CallMonsterBullet():
 	for i in PositionList:
 		Global.add_Bullet(BulletName, self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"])
 		await get_tree().create_timer(0.3, false).timeout
+
+
 func StrengthObj():
 	self.cure_hp(SHp * 0.15)
 	for i in self.objattackDic:
@@ -145,6 +151,8 @@ func StrengthObj():
 		MyFather.crit += 5
 		MyFather.sp += 5
 		MyFather.ar += 5
+
+
 func CallMonster():
 	if not IsCall:
 		var Self = Global.Create_Monster(72, get_parent(), position)

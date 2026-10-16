@@ -1,47 +1,49 @@
 extends Node2D
 class_name BingYuEffect
 
-const DROP_COUNT: = 9
-const WAVE_COUNT: = 3
-const DROP_INTERVAL: = 0.03
-const WAVE_INTERVAL: = 0.08
-const SCREEN_HALF_WIDTH: = 700.0
+const DROP_COUNT := 9
+const WAVE_COUNT := 3
+const DROP_INTERVAL := 0.03
+const WAVE_INTERVAL := 0.08
+const SCREEN_HALF_WIDTH := 700.0
 
-const LANDING_EFFECT_Y: = 50
+const LANDING_EFFECT_Y := 50
 
-const ATLAS_PATH: = "res://Art/HeroPicture/Role2/BingYu/runtime/510040_attack_hit1.atlas"
-const SKELETON_PATH: = "res://Art/HeroPicture/Role2/BingYu/runtime/510040_attack_hit1.spine-json"
-const SPINE_FPS: = 30.0
-const SPINE_DURATION: = 1.8
-const SPINE_SCALE: = Vector2(0.5, 0.5)
-const NODE_SOURCE_SIZE: = Vector2(480.0, 442.0)
-const NODE_RANGE_SCALE: = 2.0
-const RAIN_DAMAGE_DELAY: = 1.0 / SPINE_FPS
-const LANDING_DAMAGE_DELAY: = 0.1
-const NODE_DAMAGE_HALF_SIZE: = NODE_SOURCE_SIZE * SPINE_SCALE * NODE_RANGE_SCALE * 0.5
+const ATLAS_PATH := "res://Art/HeroPicture/Role2/BingYu/runtime/510040_attack_hit1.atlas"
+const SKELETON_PATH := "res://Art/HeroPicture/Role2/BingYu/runtime/510040_attack_hit1.spine-json"
+const SPINE_FPS := 30.0
+const SPINE_DURATION := 1.8
+const SPINE_SCALE := Vector2(0.5, 0.5)
+const NODE_SOURCE_SIZE := Vector2(480.0, 442.0)
+const NODE_RANGE_SCALE := 2.0
+const RAIN_DAMAGE_DELAY := 1.0 / SPINE_FPS
+const LANDING_DAMAGE_DELAY := 0.1
+const NODE_DAMAGE_HALF_SIZE := NODE_SOURCE_SIZE * SPINE_SCALE * NODE_RANGE_SCALE * 0.5
 
-const RAIN_NODE_HALF_SIZE: = Vector2(66.0, 387.0) * SPINE_SCALE * NODE_RANGE_SCALE * 0.5
-const RAIN_NODE_OFFSET: = Vector2(-91.48, -645.94) * SPINE_SCALE
+const RAIN_NODE_HALF_SIZE := Vector2(66.0, 387.0) * SPINE_SCALE * NODE_RANGE_SCALE * 0.5
+const RAIN_NODE_OFFSET := Vector2(-91.48, -645.94) * SPINE_SCALE
 
-const FREEZE_CHANCE: = 0.25
-const FREEZE_DURATION: = 1.5
+const FREEZE_CHANCE := 0.25
+const FREEZE_DURATION := 1.5
 
 var owner_player: Node
 var hit_data: Dictionary = {}
-var _anchor_position: = Vector2.ZERO
+var _anchor_position := Vector2.ZERO
 var _active_effects: Array = []
 var _targets: Array[BaseMonster] = []
 static var _shared_data: Variant = null
 static var _normal_material: CanvasItemMaterial = null
 static var _additive_material: CanvasItemMaterial = null
 static var _multiply_material: CanvasItemMaterial = null
-static var _load_failed: = false
+static var _load_failed := false
 
-func setup(player: Node, data: Dictionary) -> void :
+
+func setup(player: Node, data: Dictionary) -> void:
 	owner_player = player
 	hit_data = data.duplicate(true)
 
-func _ready() -> void :
+
+func _ready() -> void:
 	if owner_player == null or not is_instance_valid(owner_player):
 		queue_free()
 		return
@@ -53,7 +55,8 @@ func _ready() -> void :
 	_cache_targets()
 	_run_rain()
 
-func _run_rain() -> void :
+
+func _run_rain() -> void:
 	for wave_index in range(WAVE_COUNT):
 		for index in range(DROP_COUNT):
 			_spawn_complete_spine_effect()
@@ -64,12 +67,13 @@ func _run_rain() -> void :
 	await get_tree().create_timer(SPINE_DURATION + 0.15, false).timeout
 	queue_free()
 
-func _spawn_complete_spine_effect() -> void :
-	var landing_x: = randf_range( - SCREEN_HALF_WIDTH, SCREEN_HALF_WIDTH)
+
+func _spawn_complete_spine_effect() -> void:
+	var landing_x := randf_range(-SCREEN_HALF_WIDTH, SCREEN_HALF_WIDTH)
 	var effect: Variant = ClassDB.instantiate("SpineSprite")
 	if effect == null:
 		return
-	var node_position: = Vector2(landing_x, LANDING_EFFECT_Y)
+	var node_position := Vector2(landing_x, LANDING_EFFECT_Y)
 	effect.position = node_position
 	effect.scale = SPINE_SCALE
 	effect.z_index = 18
@@ -82,11 +86,12 @@ func _spawn_complete_spine_effect() -> void :
 	_active_effects.append(effect)
 	_play_spine_effect(effect)
 	_free_effect_after_duration(effect)
-	var landing_global_position: = global_position + node_position
+	var landing_global_position := global_position + node_position
 	_damage_node_after_delay(landing_global_position + RAIN_NODE_OFFSET, RAIN_NODE_HALF_SIZE, RAIN_DAMAGE_DELAY)
 	_damage_node_after_delay(landing_global_position, NODE_DAMAGE_HALF_SIZE, LANDING_DAMAGE_DELAY)
 
-func _play_spine_effect(effect: Variant) -> void :
+
+func _play_spine_effect(effect: Variant) -> void:
 	if effect == null or not is_instance_valid(effect) or not effect.has_method("get_animation_state"):
 		return
 	var animation_state: Variant = effect.get_animation_state()
@@ -98,17 +103,21 @@ func _play_spine_effect(effect: Variant) -> void :
 	if animation_state != null:
 		animation_state.set_animation("play", false, 0)
 
-func _free_effect_after_duration(effect: Variant) -> void :
+
+func _free_effect_after_duration(effect: Variant) -> void:
 	await get_tree().create_timer(SPINE_DURATION, false).timeout
 	_active_effects.erase(effect)
 	if effect != null and is_instance_valid(effect):
 		effect.queue_free()
 
-static func prewarm_frames() -> void :
+
+static func prewarm_frames() -> void:
 	preload_effect_data()
 
-static func clear_cached_data() -> void :
+
+static func clear_cached_data() -> void:
 	_shared_data = null
+
 
 static func preload_effect_data() -> bool:
 	if _shared_data != null:
@@ -119,12 +128,12 @@ static func preload_effect_data() -> bool:
 		_load_failed = true
 		push_error("BingYuEffect: Spine GDExtension is not loaded")
 		return false
-	var atlas: = load(ATLAS_PATH)
+	var atlas := load(ATLAS_PATH)
 	if atlas == null:
 		_load_failed = true
 		push_error("BingYuEffect: 无法加载 Spine atlas: " + ATLAS_PATH)
 		return false
-	var skeleton_file: = load(SKELETON_PATH)
+	var skeleton_file := load(SKELETON_PATH)
 	if skeleton_file == null:
 		_load_failed = true
 		push_error("BingYuEffect: 无法加载 Spine skeleton: " + SKELETON_PATH)
@@ -146,28 +155,32 @@ static func preload_effect_data() -> bool:
 	_multiply_material.blend_mode = CanvasItemMaterial.BLEND_MODE_MUL
 	return true
 
-func _damage_node_after_delay(node_global_position: Vector2, half_size: Vector2, delay: float) -> void :
+
+func _damage_node_after_delay(node_global_position: Vector2, half_size: Vector2, delay: float) -> void:
 	await get_tree().create_timer(delay, false).timeout
 	if owner_player == null or not is_instance_valid(owner_player):
 		return
 	_damage_targets_at_node(node_global_position, half_size)
 
-func _damage_targets_at_node(node_global_position: Vector2, half_size: Vector2) -> void :
+
+func _damage_targets_at_node(node_global_position: Vector2, half_size: Vector2) -> void:
 	_cache_targets()
 	for target in _targets:
 		if _is_valid_target(target):
-			var target_center: = target.global_position + Vector2(0.0, -70.0)
-			var offset: = target_center - node_global_position
+			var target_center := target.global_position + Vector2(0.0, -70.0)
+			var offset := target_center - node_global_position
 			if absf(offset.x) <= half_size.x and absf(offset.y) <= half_size.y:
 				_apply_hit(target)
 
-func _cache_targets() -> void :
+
+func _cache_targets() -> void:
 	_targets.clear()
-	var level: = _find_level_node()
+	var level := _find_level_node()
 	if level != null and ("monster" in level) and level.monster != null:
 		_collect_targets(level.monster)
 
-func _collect_targets(node: Node) -> void :
+
+func _collect_targets(node: Node) -> void:
 	if node == null:
 		return
 	if _is_valid_target(node):
@@ -175,13 +188,15 @@ func _collect_targets(node: Node) -> void :
 	for child in node.get_children():
 		_collect_targets(child)
 
+
 func _find_level_node() -> Node:
-	var node: = owner_player.get_parent()
+	var node := owner_player.get_parent()
 	while node != null:
 		if node is BaseLevel:
 			return node
 		node = node.get_parent()
 	return get_tree().current_scene
+
 
 func _is_valid_target(target: Variant) -> bool:
 	if target == null or not is_instance_valid(target) or not (target is BaseMonster):
@@ -194,22 +209,36 @@ func _is_valid_target(target: Variant) -> bool:
 		return false
 	return true
 
-func _apply_hit(target: BaseMonster) -> void :
+
+func _apply_hit(target: BaseMonster) -> void:
 	var old_hit_data: Dictionary = owner_player.HitDic
 	owner_player.HitDic = hit_data
 	if RoleProp.SourcePlayer.Istsz:
-		var tsz_level: = int(PlayerData.player_data["腾蛇阵"]["Level"])
+		var tsz_level := int(PlayerData.player_data["腾蛇阵"]["Level"])
 		RoleProp.SourcePlayer.tszzs = tsz_level * 0.015
 	else:
 		RoleProp.SourcePlayer.tszzs = 0.0
-	var base_damage: = float(target.get_Role_last_hurt(owner_player))
-	var damage: = int(base_damage * RoleProp.ws_up_power * target.jgz_bl * target.zznh_bl * target.HurtBl * (1.0 + target.lpzzs) * (1.0 + owner_player.tszzs) * target.llrdzs)
+	var base_damage := float(target.get_Role_last_hurt(owner_player))
+	var damage := int(
+		(
+			base_damage
+			* RoleProp.ws_up_power
+			* target.jgz_bl
+			* target.zznh_bl
+			* target.HurtBl
+			* (1.0 + target.lpzzs)
+			* (1.0 + owner_player.tszzs)
+			* target.llrdzs
+		)
+	)
 	if damage > 0:
 		target.GetHurt = damage
 		target.HurtReduceHp(damage, owner_player)
 		if MainSet.set_data["MonsterLittleBlood"]:
 			if target.monster_blood_bar == null:
-				target.monster_blood_bar = Global.add_monster_blood(target, Vector2(-30, -90), target.Hp / float(target.SHp), target.Hp)
+				target.monster_blood_bar = Global.add_monster_blood(
+					target, Vector2(-30, -90), target.Hp / float(target.SHp), target.Hp
+				)
 		target.add_lj(damage)
 		Global.TotalRoleHit += damage
 		Global.TotalMagHit += damage
@@ -220,19 +249,23 @@ func _apply_hit(target: BaseMonster) -> void :
 			_apply_hit_stun(target)
 		target.Role5Bullet(damage, owner_player)
 		if not target.is_control_immune() and randf() < FREEZE_CHANCE:
-			Global.AddBuff(target.buff, {
-				"Name": "Ice", 
-				"AddTime": FREEZE_DURATION, 
-				"ReduceInterval": 0, 
-				"value": 0, 
-				"AttackKind": "", 
-				"DeBuff": true
-			})
+			Global.AddBuff(
+				target.buff,
+				{
+					"Name": "Ice",
+					"AddTime": FREEZE_DURATION,
+					"ReduceInterval": 0,
+					"value": 0,
+					"AttackKind": "",
+					"DeBuff": true
+				}
+			)
 		if not RoleProp.is_ws_state:
 			RoleProp.ws_value += int(hit_data.get("WSValue", 8))
 	owner_player.HitDic = old_hit_data
 
-func _apply_hit_stun(target: BaseMonster) -> void :
+
+func _apply_hit_stun(target: BaseMonster) -> void:
 	if target == null or not is_instance_valid(target) or target.is_control_immune():
 		return
 	target.set_meta("bingyu_hit_stun_token", Time.get_ticks_msec())
@@ -242,7 +275,8 @@ func _apply_hit_stun(target: BaseMonster) -> void :
 		target.mr_player.play("hurt")
 	call_deferred("_release_hit_stun", target, int(target.get_meta("bingyu_hit_stun_token")))
 
-func _release_hit_stun(target: BaseMonster, token: int) -> void :
+
+func _release_hit_stun(target: BaseMonster, token: int) -> void:
 	await get_tree().create_timer(0.2, false).timeout
 	if target == null or not is_instance_valid(target):
 		return

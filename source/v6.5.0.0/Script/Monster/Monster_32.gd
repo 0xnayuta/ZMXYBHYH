@@ -1,10 +1,10 @@
 extends BaseMonster
 class_name Monster32
 var get_hero: BaseHero
-@onready var wing: AnimatedSprite2D = $MonsterDir / Wing
-
+@onready var wing: AnimatedSprite2D = $MonsterDir/Wing
 
 @onready var mr_player_1: AnimationPlayer = $mr_player
+
 
 func monster_32():
 	current_ = 0
@@ -32,60 +32,43 @@ func monster_32():
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
-		"power": 350, 
-		"hurtBack": [-6, -9], 
-		"attackKind": "physics"
-	}
+	self.objattackDic["hit1"] = {"power": 350, "hurtBack": [-6, -9], "attackKind": "physics"}
 	self.objattackDic["dmzw"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "EyeFix", 
-			"AddTime": 5, 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": 0,
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "EyeFix",
+			"AddTime": 5,
+			"CanAdd": false,
+			"DeBuff": true,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
 		}
 	}
 	self.objattackDic["dmlhc"] = {
-		"power": 280, 
-		"hurtBack": [-6, -8], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "Bleed", 
-			"CanAdd": true, 
-			"AddTime": 2, 
-			"ReduceInterval": 0.5, 
-			"value": 5 + int(RoleProp.roleprop.SHp * 0.01), 
-			"AttackKind": "physics", 
+		"power": 280,
+		"hurtBack": [-6, -8],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "Bleed",
+			"CanAdd": true,
+			"AddTime": 2,
+			"ReduceInterval": 0.5,
+			"value": 5 + int(RoleProp.roleprop.SHp * 0.01),
+			"AttackKind": "physics",
 		}
 	}
 	self.fall_pro = 0.3
 	self.fall_list = [
-		{
-			"name": "bsxj", 
-			"value": 0
-		}, 
-		{
-			"name": "bszj", 
-			"value": 0
-		}, 
-		{
-			"name": "bsyz", 
-			"value": 0
-		}, 
-		{
-			"name": "bsbc", 
-			"value": 0
-		}, 
-		{
-			"name": "bshq", 
-			"value": 0
-		}, 
+		{"name": "bsxj", "value": 0},
+		{"name": "bszj", "value": 0},
+		{"name": "bsyz", "value": 0},
+		{"name": "bsbc", "value": 0},
+		{"name": "bshq", "value": 0},
 	]
 
 	enable_treasure_box = true
@@ -94,13 +77,16 @@ func monster_32():
 	self.fall_stone_pro = 0
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_32()
 	is_bounds = false
 	Skill_1_CD = 0
 	Skill_2_CD = 0
 	wing.set_frame_and_progress(0, true)
+
 
 func Monster_Intelligence():
 	if self.current_ < 3:
@@ -134,8 +120,8 @@ func Monster_Intelligence():
 func attack_target():
 	super.attack_target()
 
-func do_hit_2():
 
+func do_hit_2():
 	if self.current_ == 0:
 		Skill_1_CD = 16
 	elif self.current_ == 1:
@@ -151,6 +137,7 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 
+
 func do_hit_3():
 	if self.current_ == 0:
 		Skill_2_CD = 15
@@ -165,16 +152,22 @@ func do_hit_3():
 	await mr_player.animation_finished
 	is_attacking = false
 
+
 func turn_bounds():
 	await get_tree().create_timer(6.0).timeout
 	turn_relive()
 
+
 func turn_relive():
 	mr_player.play("relife")
-func _on_relive_timeout() -> void :
+
+
+func _on_relive_timeout() -> void:
 	turn_relive()
 	is_fall = false
 	$Relive.stop()
+
+
 func relive():
 	self.current_ += 1
 	match self.current_:
@@ -189,41 +182,27 @@ func relive():
 			self.crit = 10
 			self.attackDesire = 70
 			self.objattackDic["dmlhc"] = {
-				"power": 400, 
-				"hurtBack": [-12, -15], 
-				"attackKind": "magic", 
-				"addeffect": {
-					"Name": "Bleed", 
-					"AddTime": 2, 
-					"CanAdd": true, 
-					"DeBuff": true, 
-					"ReduceInterval": 1, 
-					"value": 5 + int(RoleProp.roleprop.SHp * 0.01), 
-					"AttackKind": "physics", 
+				"power": 400,
+				"hurtBack": [-12, -15],
+				"attackKind": "magic",
+				"addeffect":
+				{
+					"Name": "Bleed",
+					"AddTime": 2,
+					"CanAdd": true,
+					"DeBuff": true,
+					"ReduceInterval": 1,
+					"value": 5 + int(RoleProp.roleprop.SHp * 0.01),
+					"AttackKind": "physics",
 				}
 			}
 			self.fall_pro = 0.5
 			self.fall_list = [
-				{
-					"name": "bsxj", 
-					"value": 0
-				}, 
-				{
-					"name": "bszj", 
-					"value": 0
-				}, 
-				{
-					"name": "bsyz", 
-					"value": 0
-				}, 
-				{
-					"name": "bsbc", 
-					"value": 0
-				}, 
-				{
-					"name": "bshq", 
-					"value": 0
-				}, 
+				{"name": "bsxj", "value": 0},
+				{"name": "bszj", "value": 0},
+				{"name": "bsyz", "value": 0},
+				{"name": "bsbc", "value": 0},
+				{"name": "bshq", "value": 0},
 			]
 
 			treasure_box_item = "bgjbx1"
@@ -239,40 +218,35 @@ func relive():
 			self.crit = 10
 			self.attackDesire = 100
 			self.objattackDic["dmlhc"] = {
-				"power": 400, 
-				"hurtBack": [-12, -19], 
-				"attackKind": "magic", 
-				"addeffect": {
-					"Name": "Bleed", 
-					"AddTime": 2, 
-					"CanAdd": true, 
-					"DeBuff": true, 
-					"ReduceInterval": 0.5, 
-					"value": 5 + int(RoleProp.roleprop.SHp * 0.01), 
-					"AttackKind": "physics", 
+				"power": 400,
+				"hurtBack": [-12, -19],
+				"attackKind": "magic",
+				"addeffect":
+				{
+					"Name": "Bleed",
+					"AddTime": 2,
+					"CanAdd": true,
+					"DeBuff": true,
+					"ReduceInterval": 0.5,
+					"value": 5 + int(RoleProp.roleprop.SHp * 0.01),
+					"AttackKind": "physics",
 				}
 			}
 			self.fall_pro = 0.5
 			self.fall_list = [
-				{
-					"name": "csgs", 
-					"value": 0
-				}, 
+				{"name": "csgs", "value": 0},
 			]
 			self.fall_stone_pro = 0.3
 			self.fall_stone = [
-				{
-					"name": "bszy", 
-					"value": 0
-				}, 
+				{"name": "bszy", "value": 0},
 			]
 
 			treasure_box_item = "bgjbx2"
 			update_fall_mode()
 	self.is_bounds = false
 
-
 	is_set_ = false
+
 
 func call_gc():
 	var gc: MonsterBullet
@@ -282,7 +256,9 @@ func call_gc():
 	else:
 		PositionList = [Vector2(-40, 55), Vector2(-140, 55), Vector2(-240, 55), Vector2(-340, 55), Vector2(-440, 55)]
 	for i in PositionList:
-		gc = Global.add_Bullet("Monster32Bullet", self.bullet, MonsterDirection, 0.8, i + position, "dmlhc", self.objattackDic["dmlhc"])
+		gc = Global.add_Bullet(
+			"Monster32Bullet", self.bullet, MonsterDirection, 0.8, i + position, "dmlhc", self.objattackDic["dmlhc"]
+		)
 		match self.current_:
 			0:
 				gc.scale.x = 1
@@ -296,7 +272,6 @@ func call_gc():
 		await get_tree().create_timer(0.2, false).timeout
 
 
-
 func eye_fix():
 	if self.position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
 		if Global.get_player.PlayerDir:
@@ -306,19 +281,28 @@ func eye_fix():
 		if not Global.get_player.PlayerDir:
 			if MonsterDirection:
 				add_eye_fix()
+
+
 func add_eye_fix():
-	Global.AddBuff(get_Player.buff, {
-			"Name": "EyeFix", 
-			"AddTime": 5, 
-			"ReduceInterval": 0.0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanAdd": false, 
-		})
+	(
+		Global
+		. AddBuff(
+			get_Player.buff,
+			{
+				"Name": "EyeFix",
+				"AddTime": 5,
+				"ReduceInterval": 0.0,
+				"value": 0,
+				"AttackKind": "",
+				"DeBuff": true,
+				"CanAdd": false,
+			}
+		)
+	)
+
+
 func ISBounds():
 	is_bounds = true
-
 
 
 func state_death():
@@ -337,12 +321,8 @@ func state_death():
 
 				return
 		else:
-
 			pass
 	else:
-
-
-
 		settle_death_drops()
 		mr_player.play("death")
 		if not is_death:

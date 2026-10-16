@@ -3,19 +3,19 @@ var Player = PlayerData.player_data
 var Initialized_Data = {}
 var Get_sj = {}
 var LimitTime = {
-		"year": 2024, 
-		"month": 5, 
-		"day": 9, 
-		"hour": 13, 
-		"minute": 35, 
-		"second": 0, 
-	}
+	"year": 2024,
+	"month": 5,
+	"day": 9,
+	"hour": 13,
+	"minute": 35,
+	"second": 0,
+}
 var level
 const ARCHIVE_BACKUP_SUFFIX: String = ".bak"
 const ARCHIVE_TEMP_SUFFIX: String = ".tmp"
 const SAVE_KEY_PATH: String = "user://.save_key"
 const MAIN_SETTINGS_PATH: String = "user://MainGame.json"
-const ARCHIVE_CONTAINER_KEYS: = ["装备列表", "道具列表", "消耗品列表"]
+const ARCHIVE_CONTAINER_KEYS := ["装备列表", "道具列表", "消耗品列表"]
 const ARCHIVE_TIME_KEY: String = "存档时间"
 
 signal background_save_finished(path: String, success: bool)
@@ -23,20 +23,19 @@ var _save_thread: Thread
 var _active_save_job: Dictionary = {}
 var _pending_background_saves: Dictionary = {}
 var _failed_background_saves: Dictionary = {}
-var _save_flush_in_progress: = false
-
+var _save_flush_in_progress := false
 
 
 func request_background_save(path: String) -> bool:
 	if _archive_number_from_path(path) <= 0:
 		return false
-	var snapshot: = _prepare_player_save_data()
+	var snapshot := _prepare_player_save_data()
 	if snapshot.is_empty():
 		return false
-	var password: = _ensure_stable_key()
+	var password := _ensure_stable_key()
 	if password.is_empty():
 		return false
-	var job: = {"path": path, "data": snapshot, "password": password}
+	var job := {"path": path, "data": snapshot, "password": password}
 	_failed_background_saves.erase(path)
 
 	_pending_background_saves[path] = job
@@ -45,52 +44,56 @@ func request_background_save(path: String) -> bool:
 	_start_next_background_save()
 	return true
 
-static func _write_background_save(job: Dictionary) -> bool:
 
+static func _write_background_save(job: Dictionary) -> bool:
 	return _atomic_write_encrypted_dictionary(str(job["path"]), job["data"], str(job["password"]))
 
-func _start_next_background_save() -> void :
+
+func _start_next_background_save() -> void:
 	if _save_thread != null or _pending_background_saves.is_empty() or _save_flush_in_progress:
 		return
-	var path: = str(_pending_background_saves.keys()[0])
+	var path := str(_pending_background_saves.keys()[0])
 	_active_save_job = _pending_background_saves[path]
 	_pending_background_saves.erase(path)
 	_save_thread = Thread.new()
-	var error: = _save_thread.start(_write_background_save.bind(_active_save_job))
+	var error := _save_thread.start(_write_background_save.bind(_active_save_job))
 	if error != OK:
 		_save_thread = null
-		var failed_job: = _active_save_job
+		var failed_job := _active_save_job
 		_active_save_job = {}
 		_complete_background_save(failed_job, false)
 
-func _complete_background_save(job: Dictionary, success: bool) -> void :
-	var path: = str(job["path"])
+
+func _complete_background_save(job: Dictionary, success: bool) -> void:
+	var path := str(job["path"])
 	if success:
 		_failed_background_saves.erase(path)
 		if is_instance_valid(MainSet):
 			_set_archive_time(_archive_number_from_path(path), str(job["data"][ARCHIVE_TIME_KEY]))
-
 
 	elif not _pending_background_saves.has(path):
 		_failed_background_saves[path] = job
 		push_error("后台存档写入失败，已保留快照，退出/下次同步保存时重试：" + path)
 	background_save_finished.emit(path, success)
 
-func _collect_background_save() -> void :
+
+func _collect_background_save() -> void:
 	if _save_thread == null:
 		return
-	var success: = bool(_save_thread.wait_to_finish())
-	var job: = _active_save_job
+	var success := bool(_save_thread.wait_to_finish())
+	var job := _active_save_job
 	_save_thread = null
 	_active_save_job = {}
 	_complete_background_save(job, success)
 
-func _process(_delta: float) -> void :
+
+func _process(_delta: float) -> void:
 	if _save_thread != null and not _save_thread.is_alive():
 		_collect_background_save()
 	_start_next_background_save()
 	if _save_thread == null and _pending_background_saves.is_empty():
 		set_process(false)
+
 
 func flush_pending_saves() -> bool:
 	if _save_flush_in_progress:
@@ -98,7 +101,7 @@ func flush_pending_saves() -> bool:
 	_save_flush_in_progress = true
 	_collect_background_save()
 	while not _pending_background_saves.is_empty():
-		var path: = str(_pending_background_saves.keys()[0])
+		var path := str(_pending_background_saves.keys()[0])
 		var job: Dictionary = _pending_background_saves[path]
 		_pending_background_saves.erase(path)
 		_complete_background_save(job, _write_background_save(job))
@@ -109,15 +112,21 @@ func flush_pending_saves() -> bool:
 	_save_flush_in_progress = false
 	return _failed_background_saves.is_empty()
 
-func _notification(what: int) -> void :
+
+func _notification(what: int) -> void:
 	if what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_CLOSE_REQUEST:
 		flush_pending_saves()
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	flush_pending_saves()
+
+
 var _stable_key: String = ""
 var _stable_key_loaded: bool = false
 var _main_settings_loaded: bool = false
+
+
 func CheckOutTime():
 	var Dic = LimitTime
 	var MyDic = MainSet.set_data["MyTime"]
@@ -149,6 +158,8 @@ func CheckOutTime():
 						return false
 					else:
 						return true
+
+
 func 读取游戏(路径) -> bool:
 	var path: String = str(路径)
 	var read_result: Dictionary = _read_encrypted_dictionary_compatible(path, Keys)
@@ -184,16 +195,20 @@ func 读取游戏(路径) -> bool:
 	if PlayerData.has_method("ensure_shared_pet_backpack"):
 		PlayerData.ensure_shared_pet_backpack()
 	return true
+
+
 func 提前数据(路径) -> Dictionary:
 	var read_result: Dictionary = _read_encrypted_dictionary_compatible(str(路径), Keys)
 	var data_value: Variant = read_result.get("data", {})
 	return data_value if data_value is Dictionary else {}
+
 
 func 得到数据(路径) -> int:
 	var archive_data: Dictionary = 提前数据(路径)
 	if not archive_data.has("玩家等级"):
 		return 1
 	return clampi(int(archive_data["玩家等级"]), 1, int(PlayerData.PLAYER_MAX_LEVEL))
+
 
 func 读取存档时间(路径) -> String:
 	var archive_path: String = str(路径)
@@ -218,7 +233,9 @@ func 读取存档时间(路径) -> String:
 			return Time.get_datetime_string_from_unix_time(backup_modified_time, true)
 	return ""
 
+
 var Keys = "zmxybgyh" + OS.get_unique_id() + "v1.1"
+
 
 func 保存游戏(path: String) -> bool:
 	flush_pending_saves()
@@ -226,7 +243,7 @@ func 保存游戏(path: String) -> bool:
 	var archive_number: int = _archive_number_from_path(archive_path)
 	if archive_number <= 0:
 		return false
-	var save_data: = _prepare_player_save_data()
+	var save_data := _prepare_player_save_data()
 	if save_data.is_empty():
 		return false
 	if not 安全写入存档(archive_path, save_data):
@@ -236,6 +253,7 @@ func 保存游戏(path: String) -> bool:
 	if not main_bc():
 		push_warning("存档列表元数据写入失败，将从玩家存档时间恢复")
 	return true
+
 
 func _prepare_player_save_data() -> Dictionary:
 	if not _is_valid_player_archive_data(PlayerData.player_data):
@@ -274,17 +292,18 @@ func _prepare_player_save_data() -> Dictionary:
 	save_data[ARCHIVE_TIME_KEY] = get_time()
 	return save_data
 
+
 func main_dq():
 	if not _main_settings_loaded:
 		_load_main_settings(MAIN_SETTINGS_PATH)
-
 
 		_main_settings_loaded = true
 
 	if MainSet.has_method("apply_frame_rate"):
 		MainSet.apply_frame_rate()
 
-func _load_main_settings(path: String) -> void :
+
+func _load_main_settings(path: String) -> void:
 	var read_result: Dictionary = _read_encrypted_dictionary_compatible(path, Keys2)
 	if not bool(read_result.get("ok", false)):
 		return
@@ -292,18 +311,23 @@ func _load_main_settings(path: String) -> void :
 	if settings_value is Dictionary:
 		MainSet.set_data.merge(settings_value, true)
 
+
 var Keys2 = "zmxybgyh" + OS.get_unique_id() + "v1.1"
+
+
 func main_bc() -> bool:
 	var persisted_settings: Dictionary = MainSet.set_data.duplicate(true)
 	persisted_settings.erase("AutoBattleEnabled")
 	return _atomic_write_encrypted_dictionary(MAIN_SETTINGS_PATH, persisted_settings, _ensure_stable_key())
 
+
 func 安全写入存档(path: String, data: Dictionary) -> bool:
 	flush_pending_saves()
-	var success: = _atomic_write_encrypted_dictionary(path, data, _ensure_stable_key())
+	var success := _atomic_write_encrypted_dictionary(path, data, _ensure_stable_key())
 	if success:
 		_failed_background_saves.erase(path)
 	return success
+
 
 func _is_valid_player_archive_data(data: Dictionary) -> bool:
 	if data.is_empty() or not data.has("玩家等级") or not data.has("Myself"):
@@ -317,6 +341,7 @@ func _is_valid_player_archive_data(data: Dictionary) -> bool:
 		if not first_page_value is Array:
 			return false
 	return true
+
 
 static func _read_encrypted_dictionary(path: String, password: String) -> Dictionary:
 	var result: Dictionary = {"ok": false, "missing": false, "data": {}}
@@ -355,6 +380,7 @@ static func _read_encrypted_dictionary(path: String, password: String) -> Dictio
 	result["data"] = data if found_json else {}
 	return result
 
+
 func _read_encrypted_dictionary_with_backup(path: String, password: String) -> Dictionary:
 	var primary: Dictionary = _read_encrypted_dictionary(path, password)
 	var primary_data_value: Variant = primary.get("data", {})
@@ -374,6 +400,7 @@ func _read_encrypted_dictionary_with_backup(path: String, password: String) -> D
 		return primary
 	return primary if bool(backup.get("missing", false)) else backup
 
+
 func _read_encrypted_dictionary_compatible(path: String, primary_password: String) -> Dictionary:
 	flush_pending_saves()
 	var fallback: Dictionary = {"ok": false, "missing": false, "data": {}}
@@ -392,6 +419,7 @@ func _read_encrypted_dictionary_compatible(path: String, primary_password: Strin
 		if not bool(fallback.get("ok", false)) or not bool(attempt.get("missing", false)):
 			fallback = attempt
 	return fallback
+
 
 static func _atomic_write_encrypted_dictionary(path: String, data: Dictionary, password: String) -> bool:
 	if path.strip_edges() == "" or password == "":
@@ -434,18 +462,20 @@ static func _atomic_write_encrypted_dictionary(path: String, data: Dictionary, p
 		return false
 	return true
 
+
 static func _remove_file_if_exists(path: String) -> bool:
 	if not FileAccess.file_exists(path):
 		return true
 	var error: Error = DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
 	return error == OK or not FileAccess.file_exists(path)
 
+
 static func _rename_file(from_path: String, to_path: String) -> bool:
 	var error: Error = DirAccess.rename_absolute(
-		ProjectSettings.globalize_path(from_path), 
-		ProjectSettings.globalize_path(to_path)
+		ProjectSettings.globalize_path(from_path), ProjectSettings.globalize_path(to_path)
 	)
 	return error == OK
+
 
 func _load_stable_key() -> String:
 	if _stable_key_loaded:
@@ -462,6 +492,7 @@ func _load_stable_key() -> String:
 		_stable_key = saved_key
 	return _stable_key
 
+
 func _ensure_stable_key() -> String:
 	var existing_key: String = _load_stable_key()
 	if existing_key != "":
@@ -474,6 +505,7 @@ func _ensure_stable_key() -> String:
 		key_file.close()
 	return _stable_key
 
+
 func _archive_number_from_path(path: String) -> int:
 	var prefix: String = "user://MyAr_"
 	if not path.begins_with(prefix) or not path.ends_with(".json"):
@@ -484,7 +516,8 @@ func _archive_number_from_path(path: String) -> int:
 	var number: int = int(number_text)
 	return number if number > 0 else 0
 
-func _set_archive_time(archive_number: int, time_text: String) -> void :
+
+func _set_archive_time(archive_number: int, time_text: String) -> void:
 	if archive_number <= 6:
 		MainSet.set_data["time" + str(archive_number)] = time_text
 		return
@@ -497,41 +530,51 @@ func _set_archive_time(archive_number: int, time_text: String) -> void :
 	archive_meta["time"] = time_text
 	MainSet.set_data["其他存档"] = other_archives
 
+
 func repair_archive_time(archive_number: int, time_text: String) -> bool:
 	if archive_number <= 0 or time_text.strip_edges() == "":
 		return false
 	_set_archive_time(archive_number, time_text)
 	return main_bc()
 
+
 func get_time():
 	var date = Time.get_date_string_from_system()
 	var time_ = Time.get_time_string_from_system()
 	var last_time = date + " " + time_
 	return last_time
+
+
 func get_cd_number():
 	if Global.cd_path == null:
 		return "1"
 	var number: int = _archive_number_from_path(str(Global.cd_path))
 	return str(number) if number > 0 else "1"
+
+
 func remove_data():
 	Initialized_Data = PlayerData.Initialized_Data.duplicate(true)
 	RemoveMainData(get_cd_number())
 
-
 	MemoryClass.main_bc()
+
+
 func remove_play_data():
 	Initialized_Data = PlayerData.Initialized_Data.duplicate(true)
-
 
 	Player.clear()
 	Player.merge(Initialized_Data.duplicate(true))
 	pass
+
+
 func Remove():
 	Global.AddMessageShow(Global.Windows_, "数据不正常哦，拜拜啦~", 4, Vector2(485, 295))
 	remove_data()
 	MainSet.set_data["xg"] = true
 	安全写入存档(str(Global.cd_path), Initialized_Data)
 	MemoryClass.保存游戏(Global.cd_path)
+
+
 func RemoveMainData(Num: int):
 	if Num <= 6:
 		MainSet.set_data["name" + str(Num)] = ""

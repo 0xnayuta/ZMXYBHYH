@@ -1,88 +1,94 @@
 extends Node2D
 class_name MainSwordArrayWeapon
 
-const SWORD_CONFIG: = {
-	"zhuxianjian": {
-		"body": "res://Art/zhuxianjianzhen/sword_hover/sword1/sprites/DefineSprite_3_idle", 
-		"effect": "res://Art/zhuxianjianzhen/sword_hover/sword1/sprites/DefineSprite_18_effect1_1", 
-		"impact": "res://Art/zhuxianjianzhen/sword_hover/sword1/sprites/DefineSprite_32_ef_effect1", 
-		"scale": Vector2(0.95, 0.95), 
-		"effect_scale": Vector2(1.0, 1.0), 
-		"power_rate_base": 4.0, 
-		"power_rate_per_level": 0.3, 
-	}, 
-	"xianxianjian": {
-		"body": "res://Art/zhuxianjianzhen/sword_hover/sword2/sprites/DefineSprite_3_idle", 
-		"effect": "res://Art/zhuxianjianzhen/xianxianjian/sprites/DefineSprite_54_mc_effect2", 
-		"projectile": "res://Art/zhuxianjianzhen/sword_hover/sword2/sprites/DefineSprite_24_effect1_1", 
-		"impact": "res://Art/zhuxianjianzhen/sword_hover/sword2/sprites/DefineSprite_38_ef_effect1", 
-		"scale": Vector2(0.95, 0.95), 
-		"effect_scale": Vector2(1.0, 1.0), 
-		"effect_offset": Vector2(0, -280), 
-		"power_rate_base": 12.0, 
-		"power_rate_per_level": 0.8, 
-	}, 
-	"sijianheyi": {
-		"body": "res://Art/zhuxianjianzhen/sword_hover/sword3/sprites/DefineSprite_3_idle", 
-		"effect": "res://Art/zhuxianjianzhen/sijianguiyi/sprites/DefineSprite_101_mc_effect3", 
-		"projectile": "res://Art/zhuxianjianzhen/sword_hover/sword3/sprites/DefineSprite_48_effect1_1", 
-		"impact": "res://Art/zhuxianjianzhen/sword_hover/sword3/sprites/DefineSprite_62_ef_effect1", 
-		"scale": Vector2(0.95, 0.95), 
-		"effect_scale": Vector2(1.0, 1.0), 
-		"effect_offset": Vector2(0, -160), 
-		"power_rate_base": 6.0, 
-		"power_rate_per_level": 0.8, 
-	}, 
-	"luxianjian": {
-		"body": "res://Art/zhuxianjianzhen/sword_hover/sword4/sprites/DefineSprite_3_idle", 
-		"effect": "res://Art/zhuxianjianzhen/luxianjian/sprites/DefineSprite_38_effect3", 
-		"projectile": "res://Art/zhuxianjianzhen/sword_hover/sword4/sprites/DefineSprite_26_effect1_1", 
-		"impact": "res://Art/zhuxianjianzhen/sword_hover/sword4/sprites/DefineSprite_40_ef_effect1", 
-		"scale": Vector2(0.95, 0.95), 
-		"effect_scale": Vector2(1.0, 1.0), 
-		"power_rate_base": 3.0, 
-		"power_rate_per_level": 0.2, 
-	}, 
-	"juexianjian": {
-		"body": "res://Art/zhuxianjianzhen/sword_hover/sword5/sprites/DefineSprite_3_idle", 
-		"effect": "res://Art/zhuxianjianzhen/juexianjian/sprites/DefineSprite_38_effect3", 
-		"projectile": "res://Art/zhuxianjianzhen/sword_hover/sword5/sprites/DefineSprite_16_effect1_1", 
-		"impact": "res://Art/zhuxianjianzhen/sword_hover/sword5/sprites/DefineSprite_30_ef_effect1", 
-		"scale": Vector2(0.95, 0.95), 
-		"effect_scale": Vector2(1.0, 1.0), 
-		"effect_offset": Vector2.ZERO, 
-		"power_rate_base": 3.0, 
-		"power_rate_per_level": 0.2, 
-	}, 
+const SWORD_CONFIG := {
+	"zhuxianjian":
+	{
+		"body": "res://Art/zhuxianjianzhen/sword_hover/sword1/sprites/DefineSprite_3_idle",
+		"effect": "res://Art/zhuxianjianzhen/sword_hover/sword1/sprites/DefineSprite_18_effect1_1",
+		"impact": "res://Art/zhuxianjianzhen/sword_hover/sword1/sprites/DefineSprite_32_ef_effect1",
+		"scale": Vector2(0.95, 0.95),
+		"effect_scale": Vector2(1.0, 1.0),
+		"power_rate_base": 4.0,
+		"power_rate_per_level": 0.3,
+	},
+	"xianxianjian":
+	{
+		"body": "res://Art/zhuxianjianzhen/sword_hover/sword2/sprites/DefineSprite_3_idle",
+		"effect": "res://Art/zhuxianjianzhen/xianxianjian/sprites/DefineSprite_54_mc_effect2",
+		"projectile": "res://Art/zhuxianjianzhen/sword_hover/sword2/sprites/DefineSprite_24_effect1_1",
+		"impact": "res://Art/zhuxianjianzhen/sword_hover/sword2/sprites/DefineSprite_38_ef_effect1",
+		"scale": Vector2(0.95, 0.95),
+		"effect_scale": Vector2(1.0, 1.0),
+		"effect_offset": Vector2(0, -280),
+		"power_rate_base": 12.0,
+		"power_rate_per_level": 0.8,
+	},
+	"sijianheyi":
+	{
+		"body": "res://Art/zhuxianjianzhen/sword_hover/sword3/sprites/DefineSprite_3_idle",
+		"effect": "res://Art/zhuxianjianzhen/sijianguiyi/sprites/DefineSprite_101_mc_effect3",
+		"projectile": "res://Art/zhuxianjianzhen/sword_hover/sword3/sprites/DefineSprite_48_effect1_1",
+		"impact": "res://Art/zhuxianjianzhen/sword_hover/sword3/sprites/DefineSprite_62_ef_effect1",
+		"scale": Vector2(0.95, 0.95),
+		"effect_scale": Vector2(1.0, 1.0),
+		"effect_offset": Vector2(0, -160),
+		"power_rate_base": 6.0,
+		"power_rate_per_level": 0.8,
+	},
+	"luxianjian":
+	{
+		"body": "res://Art/zhuxianjianzhen/sword_hover/sword4/sprites/DefineSprite_3_idle",
+		"effect": "res://Art/zhuxianjianzhen/luxianjian/sprites/DefineSprite_38_effect3",
+		"projectile": "res://Art/zhuxianjianzhen/sword_hover/sword4/sprites/DefineSprite_26_effect1_1",
+		"impact": "res://Art/zhuxianjianzhen/sword_hover/sword4/sprites/DefineSprite_40_ef_effect1",
+		"scale": Vector2(0.95, 0.95),
+		"effect_scale": Vector2(1.0, 1.0),
+		"power_rate_base": 3.0,
+		"power_rate_per_level": 0.2,
+	},
+	"juexianjian":
+	{
+		"body": "res://Art/zhuxianjianzhen/sword_hover/sword5/sprites/DefineSprite_3_idle",
+		"effect": "res://Art/zhuxianjianzhen/juexianjian/sprites/DefineSprite_38_effect3",
+		"projectile": "res://Art/zhuxianjianzhen/sword_hover/sword5/sprites/DefineSprite_16_effect1_1",
+		"impact": "res://Art/zhuxianjianzhen/sword_hover/sword5/sprites/DefineSprite_30_ef_effect1",
+		"scale": Vector2(0.95, 0.95),
+		"effect_scale": Vector2(1.0, 1.0),
+		"effect_offset": Vector2.ZERO,
+		"power_rate_base": 3.0,
+		"power_rate_per_level": 0.2,
+	},
 }
-const CAST_CD: = 30.0
-const HIT_RADIUS: = 520.0
-const IMPACT_RADIUS: = 300.0
-const FOLLOW_X: = 160.0
-const FOLLOW_Y: = -175.0
-const HOVER_FLOAT_AMPLITUDE: = 3.0
-const HOVER_FLOAT_SPEED: = 5.0
-const HOVER_Z_INDEX: = 1001
-const ZHUXIAN_HIT_DELAYS: = [0.5, 1.25, 2.0]
-const XIANXIAN_HIT_DELAY: = 1.65
-const LUXIAN_ROTATE_START_DELAY: = 1.55
-const LUXIAN_ROTATE_DURATION: = 1.2
-const LUXIAN_HIT_INTERVAL: = 0.2
-const LUXIAN_ADVANCE_DISTANCE: = 260.0
-const LUXIAN_HURT_BACK: = [-4, -2]
-const LUXIAN_STUN_TIME: = 0.35
-const JUEXIAN_FIELD_START_DELAY: = 1.2
-const JUEXIAN_FIELD_DURATION: = 4.8
-const JUEXIAN_HIT_INTERVAL: = 0.4
-const SIJIAN_FIELD_START_DELAY: = 1.3
-const SIJIAN_FIELD_DURATION: = 3.6
-const SIJIAN_HIT_INTERVAL: = 0.3
-const SIJIAN_HIT_RADIUS: = 430.0
-const SIJIAN_STUN_TIME: = 1.0
-const SWORD_ARRAY_DEFE_REDUCE_VALUE: = 0.5
-const SWORD_ARRAY_HIT_COLLISION_MASK: = 1024 | 2048 | 16
-const SWORD_ARRAY_HIT_BULLET_SCENE_PATH: = "res://Scene/Hero/SwordArrayHitBullet.tscn"
-const SWORD_ATLAS_MANIFEST_PATH: = "res://Art/zhuxianjianzhen/atlas/manifest.json"
+const CAST_CD := 30.0
+const HIT_RADIUS := 520.0
+const IMPACT_RADIUS := 300.0
+const FOLLOW_X := 160.0
+const FOLLOW_Y := -175.0
+const HOVER_FLOAT_AMPLITUDE := 3.0
+const HOVER_FLOAT_SPEED := 5.0
+const HOVER_Z_INDEX := 1001
+const ZHUXIAN_HIT_DELAYS := [0.5, 1.25, 2.0]
+const XIANXIAN_HIT_DELAY := 1.65
+const LUXIAN_ROTATE_START_DELAY := 1.55
+const LUXIAN_ROTATE_DURATION := 1.2
+const LUXIAN_HIT_INTERVAL := 0.2
+const LUXIAN_ADVANCE_DISTANCE := 260.0
+const LUXIAN_HURT_BACK := [-4, -2]
+const LUXIAN_STUN_TIME := 0.35
+const JUEXIAN_FIELD_START_DELAY := 1.2
+const JUEXIAN_FIELD_DURATION := 4.8
+const JUEXIAN_HIT_INTERVAL := 0.4
+const SIJIAN_FIELD_START_DELAY := 1.3
+const SIJIAN_FIELD_DURATION := 3.6
+const SIJIAN_HIT_INTERVAL := 0.3
+const SIJIAN_HIT_RADIUS := 430.0
+const SIJIAN_STUN_TIME := 1.0
+const SWORD_ARRAY_DEFE_REDUCE_VALUE := 0.5
+const SWORD_ARRAY_HIT_COLLISION_MASK := 1024 | 2048 | 16
+const SWORD_ARRAY_HIT_BULLET_SCENE_PATH := "res://Scene/Hero/SwordArrayHitBullet.tscn"
+const SWORD_ATLAS_MANIFEST_PATH := "res://Art/zhuxianjianzhen/atlas/manifest.json"
+
 
 class StreamingFrameEffect:
 	extends Sprite2D
@@ -90,13 +96,13 @@ class StreamingFrameEffect:
 	signal animation_finished
 
 	var frame_paths: Array[String] = []
-	var fps: = 24.0
-	var loop: = false
-	var _frame_index: = 0
-	var _elapsed: = 0.0
-	var _playing: = false
+	var fps := 24.0
+	var loop := false
+	var _frame_index := 0
+	var _elapsed := 0.0
+	var _playing := false
 
-	func setup(paths: Array[String], animation_fps: float, should_loop: bool) -> void :
+	func setup(paths: Array[String], animation_fps: float, should_loop: bool) -> void:
 		frame_paths = paths.duplicate()
 		fps = animation_fps
 		loop = should_loop
@@ -104,22 +110,22 @@ class StreamingFrameEffect:
 		if not frame_paths.is_empty():
 			_show_frame(0)
 
-	func play(_animation_name: StringName = &"") -> void :
+	func play(_animation_name: StringName = &"") -> void:
 		_playing = true
 		set_process(true)
 
-	func stop() -> void :
+	func stop() -> void:
 		_playing = false
 		set_process(false)
 
-	func _process(delta: float) -> void :
+	func _process(delta: float) -> void:
 		if not _playing or frame_paths.is_empty():
 			return
 		_elapsed += delta
-		var frame_time: = 1.0 / maxf(1.0, fps)
+		var frame_time := 1.0 / maxf(1.0, fps)
 		while _elapsed >= frame_time:
 			_elapsed -= frame_time
-			var next_index: = _frame_index + 1
+			var next_index := _frame_index + 1
 			if next_index >= frame_paths.size():
 				if loop:
 					next_index = 0
@@ -130,30 +136,28 @@ class StreamingFrameEffect:
 					return
 			_show_frame(next_index)
 
-	func _show_frame(index: int) -> void :
+	func _show_frame(index: int) -> void:
 		_frame_index = index
 
-
-		var next_texture: = ResourceLoader.load(
-			frame_paths[index], 
-			"Texture2D", 
-			ResourceLoader.CACHE_MODE_REUSE
-		) as Texture2D
+		var next_texture := (
+			ResourceLoader.load(frame_paths[index], "Texture2D", ResourceLoader.CACHE_MODE_REUSE) as Texture2D
+		)
 		if next_texture != null:
 			texture = next_texture
+
 
 class SwordAtlasPageLoader:
 	extends Node
 
-	const READY_TTL_MSEC: = 15000
-	const FAILURE_TTL_MSEC: = 1000
-	const MAX_READY_PAGES: = 4
+	const READY_TTL_MSEC := 15000
+	const FAILURE_TTL_MSEC := 1000
+	const MAX_READY_PAGES := 4
 
 	var _pending: Dictionary = {}
 	var _ready_pages: Dictionary = {}
 	var _failed_until: Dictionary = {}
 
-	func _ready() -> void :
+	func _ready() -> void:
 		process_mode = Node.PROCESS_MODE_ALWAYS
 		set_process(false)
 
@@ -163,16 +167,13 @@ class SwordAtlasPageLoader:
 		_collect_path(page_path)
 		if _ready_pages.has(page_path) or _pending.has(page_path):
 			return OK
-		var now: = Time.get_ticks_msec()
+		var now := Time.get_ticks_msec()
 		if _failed_until.has(page_path):
 			if now < int(_failed_until[page_path]):
 				return ERR_CANT_OPEN
 			_failed_until.erase(page_path)
-		var request_error: = ResourceLoader.load_threaded_request(
-			page_path, 
-			"Texture2D", 
-			false, 
-			ResourceLoader.CACHE_MODE_IGNORE
+		var request_error := ResourceLoader.load_threaded_request(
+			page_path, "Texture2D", false, ResourceLoader.CACHE_MODE_IGNORE
 		)
 		if request_error == OK:
 			_pending[page_path] = true
@@ -184,21 +185,21 @@ class SwordAtlasPageLoader:
 		if not _ready_pages.has(page_path):
 			return null
 		var ready_entry: Dictionary = _ready_pages[page_path]
-		var page_texture: = ready_entry.get("texture") as Texture2D
+		var page_texture := ready_entry.get("texture") as Texture2D
 		_ready_pages.erase(page_path)
 		_update_processing()
 		return page_texture
 
-	func _process(_delta: float) -> void :
+	func _process(_delta: float) -> void:
 		for path_value in _pending.keys():
 			_collect_path(str(path_value))
 		_trim_expired()
 		_update_processing()
 
-	func _collect_path(page_path: String) -> void :
+	func _collect_path(page_path: String) -> void:
 		if not _pending.has(page_path):
 			return
-		var load_status: = ResourceLoader.load_threaded_get_status(page_path)
+		var load_status := ResourceLoader.load_threaded_get_status(page_path)
 		if load_status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 			return
 		var page_texture: Texture2D = null
@@ -207,36 +208,36 @@ class SwordAtlasPageLoader:
 		else:
 			ResourceLoader.load_threaded_get(page_path)
 		_pending.erase(page_path)
-		var now: = Time.get_ticks_msec()
+		var now := Time.get_ticks_msec()
 		if page_texture != null:
 			_ready_pages[page_path] = {
-				"texture": page_texture, 
-				"expires_at": now + READY_TTL_MSEC, 
+				"texture": page_texture,
+				"expires_at": now + READY_TTL_MSEC,
 			}
 			_trim_ready_limit()
 		else:
 			_failed_until[page_path] = now + FAILURE_TTL_MSEC
 
-	func _trim_expired() -> void :
-		var now: = Time.get_ticks_msec()
+	func _trim_expired() -> void:
+		var now := Time.get_ticks_msec()
 		for path_value in _ready_pages.keys():
-			var path: = str(path_value)
+			var path := str(path_value)
 			var entry: Dictionary = _ready_pages[path]
 			if now >= int(entry.get("expires_at", 0)):
 				_ready_pages.erase(path)
 		for path_value in _failed_until.keys():
-			var path: = str(path_value)
+			var path := str(path_value)
 			if now >= int(_failed_until[path]):
 				_failed_until.erase(path)
 
-	func _trim_ready_limit() -> void :
+	func _trim_ready_limit() -> void:
 		while _ready_pages.size() > MAX_READY_PAGES:
-			var oldest_path: = ""
-			var oldest_expiry: = 9223372036854775807
+			var oldest_path := ""
+			var oldest_expiry := 9223372036854775807
 			for path_value in _ready_pages.keys():
-				var path: = str(path_value)
+				var path := str(path_value)
 				var entry: Dictionary = _ready_pages[path]
-				var expiry: = int(entry.get("expires_at", 0))
+				var expiry := int(entry.get("expires_at", 0))
 				if expiry < oldest_expiry:
 					oldest_expiry = expiry
 					oldest_path = path
@@ -244,28 +245,26 @@ class SwordAtlasPageLoader:
 				return
 			_ready_pages.erase(oldest_path)
 
-	func _update_processing() -> void :
-		set_process( not _pending.is_empty() or not _ready_pages.is_empty() or not _failed_until.is_empty())
+	func _update_processing() -> void:
+		set_process(not _pending.is_empty() or not _ready_pages.is_empty() or not _failed_until.is_empty())
+
 
 class AtlasStreamingFrameEffect:
 	extends StreamingFrameEffect
 
-	const MAX_RESIDENT_PAGES: = 1
-	const PREFETCH_PAGE_COUNT: = 2
+	const MAX_RESIDENT_PAGES := 1
+	const PREFETCH_PAGE_COUNT := 2
 
 	var atlas_sequence: Dictionary = {}
 	var _page_loader: SwordAtlasPageLoader
 	var _page_textures: Dictionary = {}
 	var _page_lru: Array[int] = []
-	var _abort_requested: = false
-	var _completion_emitted: = false
+	var _abort_requested := false
+	var _completion_emitted := false
 
 	func setup_atlas(
-		sequence: Dictionary, 
-		animation_fps: float, 
-		should_loop: bool, 
-		page_loader: SwordAtlasPageLoader = null
-	) -> void :
+		sequence: Dictionary, animation_fps: float, should_loop: bool, page_loader: SwordAtlasPageLoader = null
+	) -> void:
 		frame_paths.clear()
 		atlas_sequence = sequence
 		fps = animation_fps
@@ -279,23 +278,23 @@ class AtlasStreamingFrameEffect:
 		else:
 			_mark_atlas_failed("empty atlas sequence")
 
-	func play(_animation_name: StringName = &"") -> void :
+	func play(_animation_name: StringName = &"") -> void:
 		_playing = true
 		set_process(true)
 
-	func _process(delta: float) -> void :
+	func _process(delta: float) -> void:
 		if _completion_emitted:
 			return
 		if _abort_requested:
 			_complete_animation()
 			return
-		var count: = _frame_count()
+		var count := _frame_count()
 		if not _playing or count <= 0:
 			return
 		_elapsed += delta
-		var frame_time: = 1.0 / maxf(1.0, fps)
+		var frame_time := 1.0 / maxf(1.0, fps)
 		while _elapsed >= frame_time:
-			var next_index: = _frame_index + 1
+			var next_index := _frame_index + 1
 			if next_index >= count:
 				if loop:
 					next_index = 0
@@ -316,7 +315,7 @@ class AtlasStreamingFrameEffect:
 			return frames_value.size()
 		return 0
 
-	func _show_frame(index: int) -> void :
+	func _show_frame(index: int) -> void:
 		_try_show_frame(index, true)
 
 	func _try_show_frame(index: int, allow_sync_load: bool) -> bool:
@@ -328,14 +327,14 @@ class AtlasStreamingFrameEffect:
 		if not (entry_value is Array):
 			_mark_atlas_failed("invalid atlas frame entry")
 			return false
-		var entry: = entry_value as Array
+		var entry := entry_value as Array
 		if entry.size() < 10:
 			_mark_atlas_failed("incomplete atlas frame entry")
 			return false
-		var page_index: = int(entry[1])
-		var page_texture: = _get_atlas_page(page_index, allow_sync_load)
+		var page_index := int(entry[1])
+		var page_texture := _get_atlas_page(page_index, allow_sync_load)
 		if page_texture == null:
-			var request_error: = _request_atlas_page(page_index)
+			var request_error := _request_atlas_page(page_index)
 			if request_error != OK:
 				page_texture = _load_atlas_page_sync(page_index)
 				if page_texture == null:
@@ -343,16 +342,10 @@ class AtlasStreamingFrameEffect:
 					return false
 			else:
 				return false
-		var frame_texture: = AtlasTexture.new()
+		var frame_texture := AtlasTexture.new()
 		frame_texture.atlas = page_texture
-		frame_texture.region = Rect2(
-			float(entry[2]), float(entry[3]), 
-			float(entry[4]), float(entry[5])
-		)
-		frame_texture.margin = Rect2(
-			float(entry[6]), float(entry[7]), 
-			float(entry[8]), float(entry[9])
-		)
+		frame_texture.region = Rect2(float(entry[2]), float(entry[3]), float(entry[4]), float(entry[5]))
+		frame_texture.margin = Rect2(float(entry[6]), float(entry[7]), float(entry[8]), float(entry[9]))
 		frame_texture.filter_clip = true
 		texture = frame_texture
 		_frame_index = index
@@ -364,32 +357,24 @@ class AtlasStreamingFrameEffect:
 	func _get_atlas_page(page_index: int, allow_sync_load: bool) -> Texture2D:
 		if _page_textures.has(page_index):
 			return _page_textures[page_index] as Texture2D
-		var page_path: = _get_atlas_page_path(page_index)
+		var page_path := _get_atlas_page_path(page_index)
 		if page_path == "":
 			return null
 		var page_texture: Texture2D = null
 		if _page_loader != null:
 			page_texture = _page_loader.take(page_path)
 		if page_texture == null and allow_sync_load:
-			page_texture = ResourceLoader.load(
-				page_path, 
-				"Texture2D", 
-				ResourceLoader.CACHE_MODE_IGNORE
-			) as Texture2D
+			page_texture = ResourceLoader.load(page_path, "Texture2D", ResourceLoader.CACHE_MODE_IGNORE) as Texture2D
 		if page_texture != null:
 			_page_textures[page_index] = page_texture
 			_touch_atlas_page(page_index)
 		return page_texture
 
 	func _load_atlas_page_sync(page_index: int) -> Texture2D:
-		var page_path: = _get_atlas_page_path(page_index)
+		var page_path := _get_atlas_page_path(page_index)
 		if page_path == "":
 			return null
-		var page_texture: = ResourceLoader.load(
-			page_path, 
-			"Texture2D", 
-			ResourceLoader.CACHE_MODE_IGNORE
-		) as Texture2D
+		var page_texture := ResourceLoader.load(page_path, "Texture2D", ResourceLoader.CACHE_MODE_IGNORE) as Texture2D
 		if page_texture != null:
 			_page_textures[page_index] = page_texture
 			_touch_atlas_page(page_index)
@@ -398,7 +383,7 @@ class AtlasStreamingFrameEffect:
 	func _request_atlas_page(page_index: int) -> Error:
 		if _page_textures.has(page_index):
 			return OK
-		var page_path: = _get_atlas_page_path(page_index)
+		var page_path := _get_atlas_page_path(page_index)
 		if page_path == "":
 			return ERR_INVALID_PARAMETER
 		if _page_loader == null:
@@ -414,13 +399,13 @@ class AtlasStreamingFrameEffect:
 			return ""
 		return str((page_value as Dictionary).get("path", ""))
 
-	func _request_next_atlas_pages(index: int, current_page: int) -> void :
+	func _request_next_atlas_pages(index: int, current_page: int) -> void:
 		var frames_value: Variant = atlas_sequence.get("frames", [])
 		if not (frames_value is Array) or frames_value.is_empty():
 			return
 		var requested_pages: Array[int] = []
 		for offset in range(1, frames_value.size() + 1):
-			var next_index: = index + offset
+			var next_index := index + offset
 			if next_index >= frames_value.size():
 				if not loop:
 					return
@@ -428,7 +413,7 @@ class AtlasStreamingFrameEffect:
 			var entry_value: Variant = frames_value[next_index]
 			if not (entry_value is Array) or entry_value.size() < 2:
 				continue
-			var next_page: = int(entry_value[1])
+			var next_page := int(entry_value[1])
 			if next_page == current_page or requested_pages.has(next_page):
 				continue
 			requested_pages.append(next_page)
@@ -436,11 +421,11 @@ class AtlasStreamingFrameEffect:
 			if requested_pages.size() >= PREFETCH_PAGE_COUNT:
 				return
 
-	func _touch_atlas_page(page_index: int) -> void :
+	func _touch_atlas_page(page_index: int) -> void:
 		_page_lru.erase(page_index)
 		_page_lru.append(page_index)
 
-	func _trim_atlas_pages(current_page: int) -> void :
+	func _trim_atlas_pages(current_page: int) -> void:
 		while _page_textures.size() > MAX_RESIDENT_PAGES and not _page_lru.is_empty():
 			var page_to_release: int = int(_page_lru.pop_front())
 			if page_to_release == current_page:
@@ -448,13 +433,13 @@ class AtlasStreamingFrameEffect:
 				continue
 			_page_textures.erase(page_to_release)
 
-	func _mark_atlas_failed(detail: String) -> void :
+	func _mark_atlas_failed(detail: String) -> void:
 		if _abort_requested:
 			return
 		_abort_requested = true
 		push_error("Sword atlas animation could not load: " + detail)
 
-	func _complete_animation() -> void :
+	func _complete_animation() -> void:
 		if _completion_emitted:
 			return
 		_completion_emitted = true
@@ -462,13 +447,14 @@ class AtlasStreamingFrameEffect:
 		_release_atlas_pages()
 		animation_finished.emit()
 
-	func _release_atlas_pages() -> void :
+	func _release_atlas_pages() -> void:
 		texture = null
 		_page_textures.clear()
 		_page_lru.clear()
 
-	func _exit_tree() -> void :
+	func _exit_tree() -> void:
 		_release_atlas_pages()
+
 
 @onready var sprite: AnimatedSprite2D = $Sprite2D
 
@@ -476,8 +462,8 @@ var Player: Node2D
 var sword_id: String = ""
 var _follow_tick: int = 0
 var _follow_tween: Tween
-var _hover_elapsed: = 0.0
-var _sprite_base_position: = Vector2.ZERO
+var _hover_elapsed := 0.0
+var _sprite_base_position := Vector2.ZERO
 var _atlas_page_loader: SwordAtlasPageLoader
 
 static var _frame_cache: Dictionary = {}
@@ -485,7 +471,8 @@ static var _atlas_manifest_cache: Dictionary = {}
 static var _prewarmed_swords: Dictionary = {}
 static var _sword_hit_bullet_scene: PackedScene = null
 
-func _ready() -> void :
+
+func _ready() -> void:
 	z_as_relative = false
 	z_index = HOVER_Z_INDEX
 	scale.x = 1
@@ -494,12 +481,14 @@ func _ready() -> void :
 	_sprite_base_position = sprite.position
 	_apply_idle_animation()
 
-func set_sword_id(value: String) -> void :
+
+func set_sword_id(value: String) -> void:
 	sword_id = value
 	if is_inside_tree():
 		_apply_idle_animation()
 
-func cast_skill() -> void :
+
+func cast_skill() -> void:
 	if sword_id == "" or not SWORD_CONFIG.has(sword_id):
 		return
 	if _get_sword_level() < 1:
@@ -521,7 +510,8 @@ func cast_skill() -> void :
 		return
 	_run_sword_projectile()
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	if not is_instance_valid(Player):
 		queue_free()
 		return
@@ -531,24 +521,28 @@ func _physics_process(delta: float) -> void :
 		_fix_hero()
 	sprite.flip_h = false
 
-func _fix_hero() -> void :
-	var target: = _get_follow_position()
+
+func _fix_hero() -> void:
+	var target := _get_follow_position()
 	scale.x = 1
 	if _follow_tween != null and _follow_tween.is_valid():
 		_follow_tween.kill()
 	_follow_tween = get_tree().create_tween()
 	_follow_tween.tween_property(self, "position", target, 0.5)
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	if sprite != null:
 		sprite.sprite_frames = null
 	clear_prewarmed_sword_resources()
 
-func _update_hover_float(delta: float) -> void :
+
+func _update_hover_float(delta: float) -> void:
 	_hover_elapsed += delta * HOVER_FLOAT_SPEED
 	sprite.position = _sprite_base_position + Vector2(0, sin(_hover_elapsed) * HOVER_FLOAT_AMPLITUDE)
 
-func _apply_idle_animation() -> void :
+
+func _apply_idle_animation() -> void:
 	if not SWORD_CONFIG.has(sword_id):
 		visible = false
 		return
@@ -562,22 +556,28 @@ func _apply_idle_animation() -> void :
 	sprite.scale = config.get("scale", Vector2(0.55, 0.55)) as Vector2
 	sprite.play("idle")
 
-func _prewarm_sword_frames(target_sword_id: String) -> void :
+
+func _prewarm_sword_frames(target_sword_id: String) -> void:
 	prewarm_sword_frames(target_sword_id)
 
-static func prewarm_active_sword_resources() -> void :
+
+static func prewarm_active_sword_resources() -> void:
 	prewarm_sword_frames(get_active_sword_id())
 
-static func prewarm_active_sword_resources_async() -> void :
+
+static func prewarm_active_sword_resources_async() -> void:
 	await prewarm_sword_frames_async(get_active_sword_id())
+
 
 static func get_active_sword_preload_paths() -> Array[String]:
 	return get_sword_hover_preload_paths(get_active_sword_id())
 
-static func clear_prewarmed_sword_resources() -> void :
+
+static func clear_prewarmed_sword_resources() -> void:
 	_frame_cache.clear()
 	_prewarmed_swords.clear()
 	_sword_hit_bullet_scene = null
+
 
 static func get_sword_hover_preload_paths(target_sword_id: String) -> Array[String]:
 	var paths: Array[String] = []
@@ -587,17 +587,19 @@ static func get_sword_hover_preload_paths(target_sword_id: String) -> Array[Stri
 	_append_atlas_page_paths(paths, str(config["body"]))
 	return paths
 
+
 static func get_active_sword_id() -> String:
 	if PlayerData == null:
 		return ""
 	if PlayerData.has_method("ensure_main_sword_array"):
 		PlayerData.ensure_main_sword_array()
-	var active: = str(PlayerData.player_data.get("主线剑阵出战", ""))
+	var active := str(PlayerData.player_data.get("主线剑阵出战", ""))
 	if active == "" or not SWORD_CONFIG.has(active):
 		return ""
 	if PlayerData.has_method("can_main_sword_array_battle") and not PlayerData.can_main_sword_array_battle(active):
 		return ""
 	return active
+
 
 static func get_sword_preload_paths(target_sword_id: String) -> Array[String]:
 	var paths: Array[String] = []
@@ -613,62 +615,67 @@ static func get_sword_preload_paths(target_sword_id: String) -> Array[String]:
 		_append_atlas_page_paths(paths, str(config["impact"]))
 	return paths
 
-static func _append_atlas_page_paths(paths: Array[String], folder: String) -> void :
-	var sequence: = _get_atlas_sequence(folder, 0, -1)
+
+static func _append_atlas_page_paths(paths: Array[String], folder: String) -> void:
+	var sequence := _get_atlas_sequence(folder, 0, -1)
 	var pages: Array = sequence.get("pages", [])
 	var used_pages: Dictionary = {}
 	for entry_value in sequence.get("frames", []):
 		var entry: Array = entry_value
-		var page_index: = int(entry[1])
+		var page_index := int(entry[1])
 		if used_pages.has(page_index) or page_index < 0 or page_index >= pages.size():
 			continue
 		used_pages[page_index] = true
 		var page_value: Dictionary = pages[page_index]
-		var path: = str(page_value.get("path", ""))
+		var path := str(page_value.get("path", ""))
 		if path != "" and not paths.has(path):
 			paths.append(path)
 
-static func prewarm_sword_frames(target_sword_id: String) -> void :
+
+static func prewarm_sword_frames(target_sword_id: String) -> void:
 	if not SWORD_CONFIG.has(target_sword_id):
 		return
 	_prewarm_sword_hit_bullet_scene()
 	_prewarmed_swords[target_sword_id] = true
 
-static func prewarm_sword_frames_async(target_sword_id: String) -> void :
+
+static func prewarm_sword_frames_async(target_sword_id: String) -> void:
 	if not SWORD_CONFIG.has(target_sword_id):
 		return
 	_prewarm_sword_hit_bullet_scene()
 	_prewarmed_swords[target_sword_id] = true
 
-static func _prewarm_sword_hit_bullet_scene() -> void :
+
+static func _prewarm_sword_hit_bullet_scene() -> void:
 	if _sword_hit_bullet_scene != null:
 		return
 	_sword_hit_bullet_scene = Global.preload_scene_path(SWORD_ARRAY_HIT_BULLET_SCENE_PATH)
 	if _sword_hit_bullet_scene != null:
 		Global._warm_scene_instance(_sword_hit_bullet_scene)
 
-func _run_sword_projectile() -> void :
+
+func _run_sword_projectile() -> void:
 	var config: Dictionary = SWORD_CONFIG[sword_id]
-	var parent: = _get_effect_parent()
+	var parent := _get_effect_parent()
 	if parent == null:
 		return
-	var player_dir: = _get_player_direction()
-	var target: = _get_highest_hp_monster()
-	var dir_x: = -1.0 if player_dir else 1.0
-	var start_pos: = global_position + Vector2(dir_x * 30.0, 8.0)
-	var end_pos: = start_pos + Vector2(dir_x * 520.0, 0.0)
+	var player_dir := _get_player_direction()
+	var target := _get_highest_hp_monster()
+	var dir_x := -1.0 if player_dir else 1.0
+	var start_pos := global_position + Vector2(dir_x * 30.0, 8.0)
+	var end_pos := start_pos + Vector2(dir_x * 520.0, 0.0)
 	if is_instance_valid(target):
 		end_pos = target.global_position + Vector2(0, -45)
 
-	var projectile: = _make_effect_sprite(str(config["projectile"]), true)
+	var projectile := _make_effect_sprite(str(config["projectile"]), true)
 	if projectile != null:
 		parent.add_child(projectile)
 		projectile.global_position = start_pos
 		projectile.flip_h = player_dir
 		projectile.scale = config.get("effect_scale", Vector2(0.8, 0.8)) as Vector2
 		projectile.play("cast")
-		var fly_time: = clampf(start_pos.distance_to(end_pos) / 1450.0, 0.18, 0.42)
-		var tween: = get_tree().create_tween()
+		var fly_time := clampf(start_pos.distance_to(end_pos) / 1450.0, 0.18, 0.42)
+		var tween := get_tree().create_tween()
 		tween.tween_property(projectile, "global_position", end_pos, fly_time)
 		await tween.finished
 		if is_instance_valid(projectile):
@@ -677,12 +684,13 @@ func _run_sword_projectile() -> void :
 	_spawn_impact_effect(end_pos)
 	await _damage_sword_targets(end_pos)
 
-func _spawn_impact_effect(at_position: Vector2) -> void :
+
+func _spawn_impact_effect(at_position: Vector2) -> void:
 	var config: Dictionary = SWORD_CONFIG[sword_id]
-	var parent: = _get_effect_parent()
+	var parent := _get_effect_parent()
 	if parent == null:
 		return
-	var impact: = _make_effect_sprite(str(config["impact"]), false)
+	var impact := _make_effect_sprite(str(config["impact"]), false)
 	if impact == null:
 		return
 	parent.add_child(impact)
@@ -691,26 +699,31 @@ func _spawn_impact_effect(at_position: Vector2) -> void :
 	impact.play("cast")
 	impact.animation_finished.connect(_free_effect_sprite.bind(impact))
 
-func _make_effect_sprite(folder: String, loop: bool, first_frame: int = 1, last_frame: int = -1) -> StreamingFrameEffect:
-	var sequence: = _get_atlas_sequence(folder, first_frame, last_frame)
+
+func _make_effect_sprite(
+	folder: String, loop: bool, first_frame: int = 1, last_frame: int = -1
+) -> StreamingFrameEffect:
+	var sequence := _get_atlas_sequence(folder, first_frame, last_frame)
 	if (sequence.get("frames", []) as Array).is_empty():
 		return null
-	var effect: = AtlasStreamingFrameEffect.new()
+	var effect := AtlasStreamingFrameEffect.new()
 	effect.setup_atlas(sequence, 24.0, loop, _atlas_page_loader)
 	effect.z_as_relative = false
 	effect.z_index = 80
 	return effect
 
-func _free_effect_sprite(effect: Node) -> void :
+
+func _free_effect_sprite(effect: Node) -> void:
 	if effect == null or not is_instance_valid(effect):
 		return
 	if effect is AnimatedSprite2D:
-		var animated_sprite: = effect as AnimatedSprite2D
+		var animated_sprite := effect as AnimatedSprite2D
 		animated_sprite.sprite_frames = null
 	elif effect is Sprite2D:
-		var sprite_node: = effect as Sprite2D
+		var sprite_node := effect as Sprite2D
 		sprite_node.texture = null
 	effect.queue_free()
+
 
 func _get_effect_parent() -> Node:
 	if is_inside_tree():
@@ -720,14 +733,15 @@ func _get_effect_parent() -> Node:
 		return get_parent()
 	return null
 
-func _run_zhuxian_skill() -> void :
+
+func _run_zhuxian_skill() -> void:
 	var config: Dictionary = SWORD_CONFIG[sword_id]
-	var parent: = _get_effect_parent()
+	var parent := _get_effect_parent()
 	if parent == null:
 		return
-	var target: = _get_highest_hp_monster()
-	var effect_pos: = _get_zhuxian_effect_position(target)
-	var effect: = _make_effect_sprite(str(config["effect"]), false)
+	var target := _get_highest_hp_monster()
+	var effect_pos := _get_zhuxian_effect_position(target)
+	var effect := _make_effect_sprite(str(config["effect"]), false)
 	if effect != null:
 		parent.add_child(effect)
 		effect.global_position = effect_pos
@@ -736,7 +750,7 @@ func _run_zhuxian_skill() -> void :
 		effect.play("cast")
 		effect.animation_finished.connect(_free_effect_sprite.bind(effect))
 
-	var previous_delay: = 0.0
+	var previous_delay := 0.0
 	for hit_delay in ZHUXIAN_HIT_DELAYS:
 		if not await _wait_for_sword_seconds(float(hit_delay) - previous_delay):
 			return
@@ -746,17 +760,18 @@ func _run_zhuxian_skill() -> void :
 		_spawn_impact_effect(effect_pos)
 		await _damage_sword_targets(effect_pos)
 
-func _run_xianxian_skill() -> void :
+
+func _run_xianxian_skill() -> void:
 	var config: Dictionary = SWORD_CONFIG[sword_id]
-	var parent: = _get_effect_parent()
+	var parent := _get_effect_parent()
 	if parent == null:
 		return
-	var target: = _get_highest_hp_monster()
-	var damage_pos: = _get_zhuxian_effect_position(target)
-	var effect_pos: = damage_pos + (config.get("effect_offset", Vector2.ZERO) as Vector2)
-	var player_dir: = _get_player_direction()
+	var target := _get_highest_hp_monster()
+	var damage_pos := _get_zhuxian_effect_position(target)
+	var effect_pos := damage_pos + (config.get("effect_offset", Vector2.ZERO) as Vector2)
+	var player_dir := _get_player_direction()
 
-	var effect: = _make_effect_sprite(str(config["effect"]), false)
+	var effect := _make_effect_sprite(str(config["effect"]), false)
 	if effect != null:
 		parent.add_child(effect)
 		effect.global_position = effect_pos
@@ -769,16 +784,17 @@ func _run_xianxian_skill() -> void :
 		return
 	await _damage_sword_targets(damage_pos)
 
-func _run_sijian_skill() -> void :
+
+func _run_sijian_skill() -> void:
 	var config: Dictionary = SWORD_CONFIG[sword_id]
-	var parent: = _get_effect_parent()
+	var parent := _get_effect_parent()
 	if parent == null:
 		return
-	var target: = _get_highest_hp_monster()
-	var damage_pos: = _get_zhuxian_effect_position(target)
-	var effect_pos: = damage_pos + (config.get("effect_offset", Vector2.ZERO) as Vector2)
+	var target := _get_highest_hp_monster()
+	var damage_pos := _get_zhuxian_effect_position(target)
+	var effect_pos := damage_pos + (config.get("effect_offset", Vector2.ZERO) as Vector2)
 
-	var field: = _make_effect_sprite(str(config["effect"]), false)
+	var field := _make_effect_sprite(str(config["effect"]), false)
 	if field != null:
 		parent.add_child(field)
 		field.global_position = effect_pos
@@ -789,7 +805,7 @@ func _run_sijian_skill() -> void :
 	if not await _wait_for_sword_seconds(SIJIAN_FIELD_START_DELAY):
 		return
 
-	var elapsed: = 0.0
+	var elapsed := 0.0
 	while elapsed <= SIJIAN_FIELD_DURATION + 0.01:
 		if not is_inside_tree() or is_queued_for_deletion():
 			return
@@ -798,18 +814,19 @@ func _run_sijian_skill() -> void :
 			return
 		elapsed += SIJIAN_HIT_INTERVAL
 
-func _run_luxian_skill() -> void :
+
+func _run_luxian_skill() -> void:
 	var config: Dictionary = SWORD_CONFIG[sword_id]
-	var parent: = _get_effect_parent()
+	var parent := _get_effect_parent()
 	if parent == null:
 		return
-	var player_dir: = _get_player_direction()
-	var dir_x: = 1.0 if player_dir else -1.0
-	var knockback_dir: = not player_dir
-	var start_pos: = global_position + Vector2(dir_x * 20.0, 0.0)
-	var end_pos: = start_pos + Vector2(dir_x * LUXIAN_ADVANCE_DISTANCE, 0)
+	var player_dir := _get_player_direction()
+	var dir_x := 1.0 if player_dir else -1.0
+	var knockback_dir := not player_dir
+	var start_pos := global_position + Vector2(dir_x * 20.0, 0.0)
+	var end_pos := start_pos + Vector2(dir_x * LUXIAN_ADVANCE_DISTANCE, 0)
 
-	var effect: = _make_effect_sprite(str(config["effect"]), false)
+	var effect := _make_effect_sprite(str(config["effect"]), false)
 	if effect != null:
 		parent.add_child(effect)
 		effect.global_position = start_pos
@@ -822,29 +839,30 @@ func _run_luxian_skill() -> void :
 		return
 
 	if is_instance_valid(effect):
-		var tween: = get_tree().create_tween()
+		var tween := get_tree().create_tween()
 		tween.tween_property(effect, "global_position", end_pos, LUXIAN_ROTATE_DURATION)
 
-	var elapsed: = 0.0
+	var elapsed := 0.0
 	while elapsed <= LUXIAN_ROTATE_DURATION + 0.01:
 		if not is_inside_tree() or is_queued_for_deletion():
 			return
-		var hit_pos: = start_pos.lerp(end_pos, clampf(elapsed / LUXIAN_ROTATE_DURATION, 0.0, 1.0))
+		var hit_pos := start_pos.lerp(end_pos, clampf(elapsed / LUXIAN_ROTATE_DURATION, 0.0, 1.0))
 		await _damage_sword_targets(hit_pos, LUXIAN_HURT_BACK, true, LUXIAN_STUN_TIME, knockback_dir)
 		if not await _wait_for_sword_seconds(LUXIAN_HIT_INTERVAL):
 			return
 		elapsed += LUXIAN_HIT_INTERVAL
 
-func _run_juexian_skill() -> void :
+
+func _run_juexian_skill() -> void:
 	var config: Dictionary = SWORD_CONFIG[sword_id]
-	var parent: = _get_effect_parent()
+	var parent := _get_effect_parent()
 	if parent == null:
 		return
-	var target: = _get_highest_hp_monster()
-	var damage_pos: = _get_zhuxian_effect_position(target)
-	var effect_pos: = damage_pos + (config.get("effect_offset", Vector2.ZERO) as Vector2)
+	var target := _get_highest_hp_monster()
+	var damage_pos := _get_zhuxian_effect_position(target)
+	var effect_pos := damage_pos + (config.get("effect_offset", Vector2.ZERO) as Vector2)
 
-	var effect: = _make_effect_sprite(str(config["effect"]), false)
+	var effect := _make_effect_sprite(str(config["effect"]), false)
 	if effect != null:
 		parent.add_child(effect)
 		effect.global_position = effect_pos
@@ -855,7 +873,7 @@ func _run_juexian_skill() -> void :
 	if not await _wait_for_sword_seconds(JUEXIAN_FIELD_START_DELAY):
 		return
 
-	var elapsed: = 0.0
+	var elapsed := 0.0
 	while elapsed <= JUEXIAN_FIELD_DURATION + 0.01:
 		if not is_inside_tree() or is_queued_for_deletion():
 			return
@@ -864,14 +882,17 @@ func _run_juexian_skill() -> void :
 			return
 		elapsed += JUEXIAN_HIT_INTERVAL
 
+
 func _get_zhuxian_effect_position(target: BaseMonster) -> Vector2:
 	if is_instance_valid(target):
 		return target.global_position + Vector2(0, -45)
-	var dir_x: = -1.0 if _get_player_direction() else 1.0
+	var dir_x := -1.0 if _get_player_direction() else 1.0
 	return Player.global_position + Vector2(dir_x * 300.0, -80.0)
+
 
 func _get_player_direction() -> bool:
 	return bool(RoleProp.Directon)
+
 
 func _get_follow_origin() -> Vector2:
 	if RoleProp.role_pos_x is int or RoleProp.role_pos_x is float:
@@ -881,34 +902,45 @@ func _get_follow_origin() -> Vector2:
 		return Player.position
 	return position
 
-func _get_follow_position() -> Vector2:
-	var origin: = _get_follow_origin()
-	if _get_player_direction():
-		return origin - Vector2(FOLLOW_X, - FOLLOW_Y)
-	return origin - Vector2( - FOLLOW_X, - FOLLOW_Y)
 
-func _damage_sword_targets(center: Vector2, hurt_back: Array = [4, -2], add_short_stun: bool = false, stun_time: float = 0.0, direction = null, hit_radius: float = IMPACT_RADIUS) -> void :
+func _get_follow_position() -> Vector2:
+	var origin := _get_follow_origin()
+	if _get_player_direction():
+		return origin - Vector2(FOLLOW_X, -FOLLOW_Y)
+	return origin - Vector2(-FOLLOW_X, -FOLLOW_Y)
+
+
+func _damage_sword_targets(
+	center: Vector2,
+	hurt_back: Array = [4, -2],
+	add_short_stun: bool = false,
+	stun_time: float = 0.0,
+	direction = null,
+	hit_radius: float = IMPACT_RADIUS
+) -> void:
 	if Player == null or not is_instance_valid(Player):
 		return
-	var hit_dic: = {
-		"power": int(int(RoleProp.roleprop.get("power", 0)) * _get_power_rate()), 
-		"hurtBack": hurt_back, 
-		"attackKind": "magic", 
-		"WSValue": 4, 
-		"defe_reduce": SWORD_ARRAY_DEFE_REDUCE_VALUE, 
+	var hit_dic := {
+		"power": int(int(RoleProp.roleprop.get("power", 0)) * _get_power_rate()),
+		"hurtBack": hurt_back,
+		"attackKind": "magic",
+		"WSValue": 4,
+		"defe_reduce": SWORD_ARRAY_DEFE_REDUCE_VALUE,
 	}
 	if add_short_stun:
 		hit_dic["addeffect"] = {
-			"Name": "stun", 
-			"AddTime": stun_time, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "magic", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+			"Name": "stun",
+			"AddTime": stun_time,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "magic",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 		hit_dic["stun_chance"] = 100
-	var hit_bullet: = _spawn_sword_hit_bullet(center, hit_radius, hit_dic, _get_player_direction() if direction == null else bool(direction))
+	var hit_bullet := _spawn_sword_hit_bullet(
+		center, hit_radius, hit_dic, _get_player_direction() if direction == null else bool(direction)
+	)
 	if hit_bullet == null:
 		return
 	if not await _wait_for_sword_physics_frame():
@@ -922,6 +954,7 @@ func _damage_sword_targets(center: Vector2, hurt_back: Array = [4, -2], add_shor
 	if hit_bullet != null and is_instance_valid(hit_bullet):
 		hit_bullet.queue_free()
 
+
 func _wait_for_sword_seconds(seconds: float) -> bool:
 	if not is_inside_tree() or is_queued_for_deletion():
 		return false
@@ -930,6 +963,7 @@ func _wait_for_sword_seconds(seconds: float) -> bool:
 		return false
 	await tree.create_timer(maxf(seconds, 0.0), false).timeout
 	return is_inside_tree() and not is_queued_for_deletion()
+
 
 func _wait_for_sword_physics_frame() -> bool:
 	if not is_inside_tree() or is_queued_for_deletion():
@@ -940,15 +974,16 @@ func _wait_for_sword_physics_frame() -> bool:
 	await tree.physics_frame
 	return is_inside_tree() and not is_queued_for_deletion()
 
+
 func _spawn_sword_hit_bullet(center: Vector2, hit_radius: float, hit_dic: Dictionary, direction: bool) -> RoleBullet:
-	var parent: = _get_effect_parent()
+	var parent := _get_effect_parent()
 	if parent == null:
 		return null
 	if _sword_hit_bullet_scene == null:
 		_prewarm_sword_hit_bullet_scene()
 	if _sword_hit_bullet_scene == null:
 		return null
-	var bullet: = _sword_hit_bullet_scene.instantiate() as RoleBullet
+	var bullet := _sword_hit_bullet_scene.instantiate() as RoleBullet
 	if bullet == null:
 		return null
 	parent.add_child(bullet)
@@ -960,25 +995,26 @@ func _spawn_sword_hit_bullet(center: Vector2, hit_radius: float, hit_dic: Dictio
 	bullet.visible = false
 	bullet.is_set = true
 	bullet.set_physics_process(false)
-	var hit_box: = bullet.get_node_or_null("Middle/HitBox") as Area2D
-	var shape: = bullet.get_node_or_null("Middle/HitBox/Collion") as CollisionShape2D
+	var hit_box := bullet.get_node_or_null("Middle/HitBox") as Area2D
+	var shape := bullet.get_node_or_null("Middle/HitBox/Collion") as CollisionShape2D
 	if hit_box != null:
 		hit_box.collision_layer = 2
 		hit_box.collision_mask = SWORD_ARRAY_HIT_COLLISION_MASK
 		hit_box.monitoring = true
 		hit_box.monitorable = true
 	if shape != null:
-		var circle: = CircleShape2D.new()
+		var circle := CircleShape2D.new()
 		circle.radius = hit_radius
 		shape.shape = circle
 		shape.position = Vector2.ZERO
 		shape.disabled = false
 	return bullet
 
+
 func _collect_sword_hit_area_monsters(hit_area: Area2D) -> Dictionary:
-	var hit_monsters: = {}
+	var hit_monsters := {}
 	for area in hit_area.get_overlapping_areas():
-		var monster: = _monster_from_hurt_area(area)
+		var monster := _monster_from_hurt_area(area)
 		if monster == null or hit_monsters.has(monster):
 			continue
 		hit_monsters[monster] = true
@@ -987,9 +1023,10 @@ func _collect_sword_hit_area_monsters(hit_area: Area2D) -> Dictionary:
 			hit_monsters[body] = true
 	return hit_monsters
 
+
 func _collect_sword_distance_monsters(center: Vector2, hit_radius: float) -> Dictionary:
-	var hit_monsters: = {}
-	var monster_parent: = _get_monster_parent()
+	var hit_monsters := {}
+	var monster_parent := _get_monster_parent()
 	if monster_parent == null:
 		return hit_monsters
 	for monster in monster_parent.get_children():
@@ -999,24 +1036,26 @@ func _collect_sword_distance_monsters(center: Vector2, hit_radius: float) -> Dic
 			hit_monsters[monster] = true
 	return hit_monsters
 
+
 func _create_sword_hit_area(center: Vector2, hit_radius: float) -> Area2D:
-	var parent: = _get_effect_parent()
+	var parent := _get_effect_parent()
 	if parent == null:
 		return null
-	var area: = Area2D.new()
+	var area := Area2D.new()
 	area.name = "SwordArrayHitArea"
 	area.collision_layer = 2
 	area.collision_mask = 3140
 	area.monitoring = true
 	area.monitorable = true
-	var shape: = CollisionShape2D.new()
-	var circle: = CircleShape2D.new()
+	var shape := CollisionShape2D.new()
+	var circle := CircleShape2D.new()
 	circle.radius = hit_radius
 	shape.shape = circle
 	area.add_child(shape)
 	parent.add_child(area)
 	area.global_position = center
 	return area
+
 
 func _monster_from_hurt_area(area: Area2D) -> BaseMonster:
 	if area == null or not is_instance_valid(area):
@@ -1030,21 +1069,27 @@ func _monster_from_hurt_area(area: Area2D) -> BaseMonster:
 		node = node.get_parent()
 	return null
 
+
 func _get_sword_level() -> int:
 	if PlayerData != null and PlayerData.has_method("get_main_sword_array_level"):
 		return int(PlayerData.get_main_sword_array_level(sword_id))
 	return 0
 
+
 func _get_power_rate() -> float:
 	var config: Dictionary = SWORD_CONFIG.get(sword_id, {})
-	return float(config.get("power_rate_base", 0.0)) + float(config.get("power_rate_per_level", 0.0)) * float(_get_sword_level())
+	return (
+		float(config.get("power_rate_base", 0.0))
+		+ float(config.get("power_rate_per_level", 0.0)) * float(_get_sword_level())
+	)
+
 
 func _get_highest_hp_monster() -> BaseMonster:
-	var monster_parent: = _get_monster_parent()
+	var monster_parent := _get_monster_parent()
 	if monster_parent == null:
 		return null
 	var best: BaseMonster = null
-	var best_hp: = -1
+	var best_hp := -1
 	for monster in monster_parent.get_children():
 		if not is_instance_valid(monster) or not (monster is BaseMonster):
 			continue
@@ -1057,51 +1102,74 @@ func _get_highest_hp_monster() -> BaseMonster:
 			best_hp = int(monster.Hp)
 	return best
 
+
 func _get_monster_parent() -> Node:
 	if Player == null or not is_instance_valid(Player):
 		return null
-	var player_parent: = Player.get_parent()
+	var player_parent := Player.get_parent()
 	if player_parent == null or player_parent.get_parent() == null:
 		return null
 	return player_parent.get_parent().get("monster") as Node
 
-func _add_defe_reduce(monster: BaseMonster) -> void :
+
+func _add_defe_reduce(monster: BaseMonster) -> void:
 	if monster == null or not is_instance_valid(monster) or monster.buff == null:
 		return
-	Global.AddBuff(monster.buff, {
-		"Name": "DefeReduce", 
-		"AddTime": 8, 
-		"ReduceInterval": 0, 
-		"value": SWORD_ARRAY_DEFE_REDUCE_VALUE, 
-		"AttackKind": "", 
-		"DeBuff": true, 
-	})
+	(
+		Global
+		. AddBuff(
+			monster.buff,
+			{
+				"Name": "DefeReduce",
+				"AddTime": 8,
+				"ReduceInterval": 0,
+				"value": SWORD_ARRAY_DEFE_REDUCE_VALUE,
+				"AttackKind": "",
+				"DeBuff": true,
+			}
+		)
+	)
 
-func _add_short_stun(monster: BaseMonster, stun_time: float) -> void :
+
+func _add_short_stun(monster: BaseMonster, stun_time: float) -> void:
 	if stun_time <= 0.0 or monster == null or not is_instance_valid(monster) or monster.buff == null:
 		return
-	Global.AddBuff(monster.buff, {
-		"Name": "stun", 
-		"AddTime": stun_time, 
-		"ReduceInterval": 0, 
-		"value": 0, 
-		"AttackKind": "", 
-		"CanAdd": false, 
-		"DeBuff": true, 
-	})
+	(
+		Global
+		. AddBuff(
+			monster.buff,
+			{
+				"Name": "stun",
+				"AddTime": stun_time,
+				"ReduceInterval": 0,
+				"value": 0,
+				"AttackKind": "",
+				"CanAdd": false,
+				"DeBuff": true,
+			}
+		)
+	)
 
-func _apply_sword_hit_feedback(monster: BaseMonster, value: int, source: RoleBullet) -> void :
+
+func _apply_sword_hit_feedback(monster: BaseMonster, value: int, source: RoleBullet) -> void:
 	if value <= 0 or monster == null or not is_instance_valid(monster):
 		return
 	if MainSet.set_data["MonsterLittleBlood"]:
 		if monster.monster_blood_bar == null:
-			monster.monster_blood_bar = Global.add_monster_blood(monster, Vector2(-30, -90), monster.Hp / float(monster.SHp), monster.Hp)
+			monster.monster_blood_bar = Global.add_monster_blood(
+				monster, Vector2(-30, -90), monster.Hp / float(monster.SHp), monster.Hp
+			)
 	monster.Role5Bullet(value, source)
 	Global.addSound_(monster, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
-	if not monster.is_miss and not monster.is_boss_protecting() and ( not bool(source.get_meta("sword_array_damage", false)) or Global.can_show_sword_hit_effect()):
+	if (
+		not monster.is_miss
+		and not monster.is_boss_protecting()
+		and (not bool(source.get_meta("sword_array_damage", false)) or Global.can_show_sword_hit_effect())
+	):
 		monster.HurtSpecialEffect = Global.add_mr_hurt(monster.pz, Vector2(0, 0))
 
-func _play_sword_hurt_animation(monster: BaseMonster) -> void :
+
+func _play_sword_hurt_animation(monster: BaseMonster) -> void:
 	if monster == null or not is_instance_valid(monster):
 		return
 	if monster.Monster_18_protect() or monster.Monster102Protect() or monster.is_control_immune():
@@ -1113,7 +1181,8 @@ func _play_sword_hurt_animation(monster: BaseMonster) -> void :
 		monster.mr_player.play("hurt")
 	call_deferred("_release_sword_hurt_animation", monster, int(monster.get_meta("sword_array_hit_token")))
 
-func _release_sword_hurt_animation(monster: BaseMonster, token: int) -> void :
+
+func _release_sword_hurt_animation(monster: BaseMonster, token: int) -> void:
 	if not await _wait_for_sword_seconds(0.2):
 		return
 	if monster == null or not is_instance_valid(monster):
@@ -1122,7 +1191,8 @@ func _release_sword_hurt_animation(monster: BaseMonster, token: int) -> void :
 		return
 	monster.is_be_attacking = false
 
-func _apply_role_attack_control(monster: BaseMonster, source: RoleBullet) -> void :
+
+func _apply_role_attack_control(monster: BaseMonster, source: RoleBullet) -> void:
 	if monster == null or not is_instance_valid(monster) or Player == null or not is_instance_valid(Player):
 		return
 	if monster.is_control_immune():
@@ -1132,39 +1202,45 @@ func _apply_role_attack_control(monster: BaseMonster, source: RoleBullet) -> voi
 	monster.state_hurt()
 	monster.get_target = old_target
 
-static func _build_frames(folder: String, animation_name: String, fps: float, loop: bool, first_frame: int = 1, last_frame: int = -1) -> SpriteFrames:
-	var sequence: = _get_atlas_sequence(folder, first_frame, last_frame)
+
+static func _build_frames(
+	folder: String, animation_name: String, fps: float, loop: bool, first_frame: int = 1, last_frame: int = -1
+) -> SpriteFrames:
+	var sequence := _get_atlas_sequence(folder, first_frame, last_frame)
 	var entries: Array = sequence.get("frames", [])
 	if entries.is_empty():
 		return null
-	var frames: = SpriteFrames.new()
+	var frames := SpriteFrames.new()
 	frames.add_animation(animation_name)
 	frames.set_animation_speed(animation_name, fps)
 	frames.set_animation_loop(animation_name, loop)
 	var page_cache: Dictionary = {}
 	for entry_value in entries:
-		var texture: = _make_atlas_frame_texture(sequence, entry_value, page_cache)
+		var texture := _make_atlas_frame_texture(sequence, entry_value, page_cache)
 		if texture != null:
 			frames.add_frame(animation_name, texture)
 	if frames.get_frame_count(animation_name) <= 0:
 		return null
 	return frames
 
-static func _build_frames_async(folder: String, animation_name: String, fps: float, loop: bool, first_frame: int = 1, last_frame: int = -1) -> SpriteFrames:
-	var sequence: = _get_atlas_sequence(folder, first_frame, last_frame)
+
+static func _build_frames_async(
+	folder: String, animation_name: String, fps: float, loop: bool, first_frame: int = 1, last_frame: int = -1
+) -> SpriteFrames:
+	var sequence := _get_atlas_sequence(folder, first_frame, last_frame)
 	var entries: Array = sequence.get("frames", [])
 	if entries.is_empty():
 		return null
-	var frames: = SpriteFrames.new()
+	var frames := SpriteFrames.new()
 	frames.add_animation(animation_name)
 	frames.set_animation_speed(animation_name, fps)
 	frames.set_animation_loop(animation_name, loop)
-	var tree: = Engine.get_main_loop() as SceneTree
-	var per_frame: = 12 if OS.has_feature("mobile") else 30
-	var loaded_this_frame: = 0
+	var tree := Engine.get_main_loop() as SceneTree
+	var per_frame := 12 if OS.has_feature("mobile") else 30
+	var loaded_this_frame := 0
 	var page_cache: Dictionary = {}
 	for entry_value in entries:
-		var texture: = _make_atlas_frame_texture(sequence, entry_value, page_cache)
+		var texture := _make_atlas_frame_texture(sequence, entry_value, page_cache)
 		if texture != null:
 			frames.add_frame(animation_name, texture)
 		loaded_this_frame += 1
@@ -1175,10 +1251,11 @@ static func _build_frames_async(folder: String, animation_name: String, fps: flo
 		return null
 	return frames
 
+
 static func _get_atlas_manifest() -> Dictionary:
 	if not _atlas_manifest_cache.is_empty():
 		return _atlas_manifest_cache
-	var manifest_file: = FileAccess.open(SWORD_ATLAS_MANIFEST_PATH, FileAccess.READ)
+	var manifest_file := FileAccess.open(SWORD_ATLAS_MANIFEST_PATH, FileAccess.READ)
 	if manifest_file == null:
 		push_error("Sword array atlas manifest is missing: " + SWORD_ATLAS_MANIFEST_PATH)
 		return {}
@@ -1190,43 +1267,46 @@ static func _get_atlas_manifest() -> Dictionary:
 	_atlas_manifest_cache = parsed
 	return parsed
 
+
 static func _get_atlas_sequence(folder: String, first_frame: int, last_frame: int) -> Dictionary:
-	var manifest: = _get_atlas_manifest()
+	var manifest := _get_atlas_manifest()
 	var sequences: Dictionary = manifest.get("sequences", {})
 	var source_sequence: Dictionary = sequences.get(folder, {})
 	var filtered_frames: Array = []
 	for entry_value in source_sequence.get("frames", []):
 		var entry: Array = entry_value
-		var frame_index: = int(entry[0])
+		var frame_index := int(entry[0])
 		if frame_index >= first_frame and (last_frame < 0 or frame_index <= last_frame):
 			filtered_frames.append(entry)
 	return {
-		"pages": manifest.get("pages", []), 
-		"frames": filtered_frames, 
+		"pages": manifest.get("pages", []),
+		"frames": filtered_frames,
 	}
 
-static func _make_atlas_frame_texture(sequence: Dictionary, entry_value: Variant, page_cache: Dictionary) -> AtlasTexture:
+
+static func _make_atlas_frame_texture(
+	sequence: Dictionary, entry_value: Variant, page_cache: Dictionary
+) -> AtlasTexture:
 	if not entry_value is Array:
 		return null
 	var entry: Array = entry_value
 	if entry.size() < 10:
 		return null
 	var pages: Array = sequence.get("pages", [])
-	var page_index: = int(entry[1])
+	var page_index := int(entry[1])
 	if page_index < 0 or page_index >= pages.size():
 		return null
-	var page_texture: = page_cache.get(page_index) as Texture2D
+	var page_texture := page_cache.get(page_index) as Texture2D
 	if page_texture == null:
 		var page_value: Dictionary = pages[page_index]
-		page_texture = ResourceLoader.load(
-			str(page_value.get("path", "")), 
-			"Texture2D", 
-			ResourceLoader.CACHE_MODE_REUSE
-		) as Texture2D
+		page_texture = (
+			ResourceLoader.load(str(page_value.get("path", "")), "Texture2D", ResourceLoader.CACHE_MODE_REUSE)
+			as Texture2D
+		)
 		if page_texture == null:
 			return null
 		page_cache[page_index] = page_texture
-	var texture: = AtlasTexture.new()
+	var texture := AtlasTexture.new()
 	texture.atlas = page_texture
 	texture.region = Rect2(float(entry[2]), float(entry[3]), float(entry[4]), float(entry[5]))
 	texture.margin = Rect2(float(entry[6]), float(entry[7]), float(entry[8]), float(entry[9]))

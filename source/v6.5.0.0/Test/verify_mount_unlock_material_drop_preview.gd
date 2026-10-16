@@ -1,19 +1,20 @@
 extends Node
 
-const LEVEL_INFO_SCENE_PATH: = "res://Scene/OtherScene/LevelInfo.tscn"
-const PREVIEW_CASES: = [
-	{"level_name": "通天教主", "stage_path": "res://Scene/Level/Level_46.tscn", "material_id": "139300016"}, 
-	{"level_name": "未央宫", "stage_path": "res://Scene/Level/Level_49.tscn", "material_id": "139300014V1"}, 
-	{"level_name": "神光金岭", "stage_path": "res://Scene/Level/Level_52.tscn", "material_id": "139300012"}, 
-	{"level_name": "法华灵洞", "stage_path": "res://Scene/Level/Level_55.tscn", "material_id": "139300018"}, 
-	{"level_name": "金顶云海", "stage_path": "res://Scene/Level/Level_58.tscn", "material_id": "139300021"}, 
-	{"level_name": "万佛朝阁", "stage_path": "res://Scene/Level/Level_61.tscn", "material_id": "139300017"}, 
+const LEVEL_INFO_SCENE_PATH := "res://Scene/OtherScene/LevelInfo.tscn"
+const PREVIEW_CASES := [
+	{"level_name": "通天教主", "stage_path": "res://Scene/Level/Level_46.tscn", "material_id": "139300016"},
+	{"level_name": "未央宫", "stage_path": "res://Scene/Level/Level_49.tscn", "material_id": "139300014V1"},
+	{"level_name": "神光金岭", "stage_path": "res://Scene/Level/Level_52.tscn", "material_id": "139300012"},
+	{"level_name": "法华灵洞", "stage_path": "res://Scene/Level/Level_55.tscn", "material_id": "139300018"},
+	{"level_name": "金顶云海", "stage_path": "res://Scene/Level/Level_58.tscn", "material_id": "139300021"},
+	{"level_name": "万佛朝阁", "stage_path": "res://Scene/Level/Level_61.tscn", "material_id": "139300017"},
 ]
 
 var failures: Array[String] = []
 
-func _ready() -> void :
-	var original_difficulty: = int(MainSet.set_data.get("Difficult", 0))
+
+func _ready() -> void:
+	var original_difficulty := int(MainSet.set_data.get("Difficult", 0))
 	MainSet.set_data["Difficult"] = 0
 	var level_info_scene: PackedScene = load(LEVEL_INFO_SCENE_PATH)
 	_check(level_info_scene != null, "战斗信息框场景应可加载")
@@ -24,7 +25,8 @@ func _ready() -> void :
 	level_info_scene = null
 	call_deferred("_finish")
 
-func _verify_preview(level_info_scene: PackedScene, preview_case: Dictionary) -> void :
+
+func _verify_preview(level_info_scene: PackedScene, preview_case: Dictionary) -> void:
 	var panel = level_info_scene.instantiate()
 	panel.LevelName = str(preview_case["level_name"])
 	panel.TargetStagePath = str(preview_case["stage_path"])
@@ -34,8 +36,8 @@ func _verify_preview(level_info_scene: PackedScene, preview_case: Dictionary) ->
 	await get_tree().process_frame
 	await get_tree().process_frame
 
-	var material_id: = str(preview_case["material_id"])
-	var fall_list: = panel.get_node("ColorRect/TextureRect/ScrollContainer/FallList") as HBoxContainer
+	var material_id := str(preview_case["material_id"])
+	var fall_list := panel.get_node("ColorRect/TextureRect/ScrollContainer/FallList") as HBoxContainer
 	var material_box: Button = null
 	for child in fall_list.get_children():
 		if child is Button and str(child.get_meta("fall_item_name", "")) == material_id:
@@ -44,7 +46,7 @@ func _verify_preview(level_info_scene: PackedScene, preview_case: Dictionary) ->
 	_check(material_box != null, "%s战斗信息框应显示材料%s" % [str(preview_case["level_name"]), material_id])
 	if material_box != null:
 		_check(material_box.icon != null, "%s材料图标应正常显示" % str(preview_case["level_name"]))
-		var probability_text: = ""
+		var probability_text := ""
 		for child in material_box.get_children():
 			if child is Label and child.has_meta("prob_label"):
 				probability_text = child.text
@@ -53,20 +55,25 @@ func _verify_preview(level_info_scene: PackedScene, preview_case: Dictionary) ->
 
 	if DisplayServer.get_name() != "headless":
 		await RenderingServer.frame_post_draw
-		var screenshot_path: = OS.get_temp_dir().path_join("mount_drop_preview_%s.png" % material_id)
-		var screenshot: = get_viewport().get_texture().get_image()
-		_check(screenshot != null and screenshot.save_png(screenshot_path) == OK, "%s截图应可生成" % str(preview_case["level_name"]))
+		var screenshot_path := OS.get_temp_dir().path_join("mount_drop_preview_%s.png" % material_id)
+		var screenshot := get_viewport().get_texture().get_image()
+		_check(
+			screenshot != null and screenshot.save_png(screenshot_path) == OK,
+			"%s截图应可生成" % str(preview_case["level_name"])
+		)
 		print("MOUNT_DROP_PREVIEW_SCREENSHOT=%s" % screenshot_path)
 
 	panel.free()
 	panel = null
 	await get_tree().process_frame
 
-func _check(condition: bool, message: String) -> void :
+
+func _check(condition: bool, message: String) -> void:
 	if not condition:
 		failures.append(message)
 
-func _finish() -> void :
+
+func _finish() -> void:
 	await get_tree().process_frame
 	if failures.is_empty():
 		print("MOUNT_UNLOCK_MATERIAL_DROP_PREVIEW_VERIFICATION_PASSED")

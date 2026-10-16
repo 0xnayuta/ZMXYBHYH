@@ -2,12 +2,13 @@ extends TextureRect
 @onready var show_box: Button = $ShowBox
 @onready var eq_name: Label = $Eq_name
 @onready var have_or_not: Label = $HaveOrNot
-@onready var cdorxx: Label = $change / cdorxx
+@onready var cdorxx: Label = $change/cdorxx
 @onready var cdinfor: TextureRect = $cdinfor
 var SelfName_: String
 var Transmogrified_: Transmogrified
-func _physics_process(_delta: float) -> void :
 
+
+func _physics_process(_delta: float) -> void:
 	eq_name.text = str(AE.AllEquipment_[SelfName_]["名字"])
 	show_box.is_in_ldl_gz = true
 	show_box.is_in_hhgz = true
@@ -33,13 +34,17 @@ func _physics_process(_delta: float) -> void :
 
 	set_physics_process(false)
 
+
 func load_(name_):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
 	return abc
+
+
 func AlreadyHave(Name):
 	return PlayerData.has_acquired_equipment(str(Name))
 
-func _on_change_pressed() -> void :
+
+func _on_change_pressed() -> void:
 	var Lx = AE.AllEquipment_[SelfName_]["类型"]
 	if Lx == "时装":
 		Lx = "防具"
@@ -54,8 +59,7 @@ func _on_change_pressed() -> void :
 		PlayerData.player_data["幻化列表"][Lx] = ""
 		Global.AddMessageShow(Global.Windows_, "取消" + str(Lx) + ":" + str(Name) + "的幻化！！", 1.5, Vector2(470, 295))
 	Transmogrified_.onEqchange()
-	if is_instance_valid(RoleProp.SourcePlayer)\
-	and RoleProp.SourcePlayer.has_method("onEqchange"):
+	if is_instance_valid(RoleProp.SourcePlayer) and RoleProp.SourcePlayer.has_method("onEqchange"):
 		RoleProp.SourcePlayer.onEqchange()
 	for i in Transmogrified_.box_list.get_children():
 		if i != null:

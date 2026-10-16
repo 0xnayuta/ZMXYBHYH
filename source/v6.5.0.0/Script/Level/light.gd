@@ -5,8 +5,8 @@ var IsLight: bool = false
 var current_level: String = ""
 var is_activated: bool = false
 
-func _ready() -> void :
 
+func _ready() -> void:
 	var scene_path = get_tree().current_scene.scene_file_path if get_tree().current_scene else ""
 
 	if "Level_28" in scene_path:
@@ -16,7 +16,8 @@ func _ready() -> void :
 	else:
 		configure_for_level("default")
 
-func configure_for_level(level_id: String) -> void :
+
+func configure_for_level(level_id: String) -> void:
 	current_level = level_id
 	match current_level:
 		"Level_28":
@@ -31,25 +32,17 @@ func configure_for_level(level_id: String) -> void :
 			modulate = Color.WHITE
 			print("Light: 当前在未知关卡，使用默认模式")
 
-func _set_initial_state_for_level34() -> void :
 
+func _set_initial_state_for_level34() -> void:
 	IsLight = false
 	is_activated = false
 
-
-
-
-
-
 	modulate = Color(1.0, 1.0, 1.0, 0.0)
-
-
-
-
 
 	animation_player.stop()
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	match current_level:
 		"Level_28":
 			_update_level_28_animation()
@@ -58,8 +51,8 @@ func _physics_process(delta: float) -> void :
 		_:
 			_update_default_animation()
 
-func _update_level_28_animation() -> void :
 
+func _update_level_28_animation() -> void:
 	if IsLight:
 		if animation_player.has_animation("Light2"):
 			animation_player.play("Light2")
@@ -71,46 +64,36 @@ func _update_level_28_animation() -> void :
 		else:
 			animation_player.play("RESET")
 
-func _update_level_34_animation() -> void :
 
+func _update_level_34_animation() -> void:
 	if is_activated and IsLight:
-
-
-
 		visible = true
 		modulate = Color(1.0, 1.0, 1.0, 1.0)
-
 
 		if animation_player.has_animation("Light3"):
 			animation_player.play("Light3")
 		else:
 			print("警告: Level_34的灯没有找到light3动画")
 	else:
-
-
 		modulate = Color(1.0, 1.0, 1.0, 0.0)
 		animation_player.stop()
 
-func _update_default_animation() -> void :
 
+func _update_default_animation() -> void:
 	if IsLight:
 		animation_player.play("Light2")
 	else:
 		animation_player.play("Light1")
 
 
-func _on_area_2d_area_entered(area: Area2D) -> void :
-
+func _on_area_2d_area_entered(area: Area2D) -> void:
 	if current_level == "Level_28":
-
 		IsLight = not IsLight
 		Global.add_mr_hurt($Area2D, Vector2(0, 0))
 		print("Level_28: 灯状态切换为: ", IsLight)
 
 	elif current_level == "Level_34":
-
 		if not is_activated:
-
 			if _is_attack_area(area):
 				is_activated = true
 				IsLight = true
@@ -121,10 +104,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void :
 
 
 func _is_attack_area(area: Area2D) -> bool:
-
 	if area.is_in_group("attack") or area.is_in_group("bullet") or area.is_in_group("player_attack"):
 		return true
-
 
 	var parent = area.get_parent()
 	if parent:
@@ -132,6 +113,5 @@ func _is_attack_area(area: Area2D) -> bool:
 			return true
 		if "attack" in parent.name.to_lower() or "bullet" in parent.name.to_lower():
 			return true
-
 
 	return true

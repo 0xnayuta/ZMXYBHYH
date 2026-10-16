@@ -1,21 +1,24 @@
 extends AnimatedSprite2D
 
-const FRAMES: = preload("res://Art/EquipmentEffects/MoonPalace/yuegong.tres")
-const BODY_IDS: = ["ygfjwk", "ygfjts", "ygfjbj", "ygfjss", "ygfjbl", "ygfjnz", "341071601"]
+const FRAMES := preload("res://Art/EquipmentEffects/MoonPalace/yuegong.tres")
+const BODY_IDS := ["ygfjwk", "ygfjts", "ygfjbj", "ygfjss", "ygfjbl", "ygfjnz", "341071601"]
 
-
-const FOOT_ORIGINS: = {
-	"ygfjwk": Vector2(5.5, 75), "ygfjts": Vector2(22.5, 64), 
-	"ygfjbj": Vector2(-5.5, 59), "ygfjss": Vector2(21.5, 69), 
-	"ygfjbl": Vector2(33.5, 109), "ygfjnz": Vector2(0, 188), 
-	"341071601": Vector2(0, 188), 
+const FOOT_ORIGINS := {
+	"ygfjwk": Vector2(5.5, 75),
+	"ygfjts": Vector2(22.5, 64),
+	"ygfjbj": Vector2(-5.5, 59),
+	"ygfjss": Vector2(21.5, 69),
+	"ygfjbl": Vector2(33.5, 109),
+	"ygfjnz": Vector2(0, 188),
+	"341071601": Vector2(0, 188),
 }
 var body_sprite: Sprite2D
-var equipment_id: = ""
-var combat: = false
+var equipment_id := ""
+var combat := false
 
-static func sync(body: Sprite2D, item_id: String, in_combat: = false) -> void :
-	var effect: = body.get_node_or_null("MoonPalaceClothesEffect")
+
+static func sync(body: Sprite2D, item_id: String, in_combat := false) -> void:
+	var effect := body.get_node_or_null("MoonPalaceClothesEffect")
 	if effect == null and not BODY_IDS.has(item_id):
 		return
 	if effect == null:
@@ -30,26 +33,28 @@ static func sync(body: Sprite2D, item_id: String, in_combat: = false) -> void :
 	effect.visible = BODY_IDS.has(item_id)
 	effect._process(0.0)
 
-func _ready() -> void :
+
+func _ready() -> void:
 	sprite_frames = FRAMES
 	flip_h = true
-
 
 	z_index = 1
 	process_priority = 100
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	play(&"idle")
 
-func _process(_delta: float) -> void :
+
+func _process(_delta: float) -> void:
 	if not visible or body_sprite.texture == null:
 		return
 	var feet: Vector2 = FOOT_ORIGINS.get(equipment_id, Vector2.ZERO)
 	position = body_sprite.offset + feet + Vector2(-3.5, -50.95)
 	scale = Vector2(1.1, 1.1)
 
+
 static func equipped_body() -> String:
 	var data: Dictionary = PlayerData.player_data
-	var appearance: = str(data.get("幻化列表", {}).get("防具", ""))
+	var appearance := str(data.get("幻化列表", {}).get("防具", ""))
 	if appearance != "":
 		return appearance
 	for slot in ["时装", "防具"]:

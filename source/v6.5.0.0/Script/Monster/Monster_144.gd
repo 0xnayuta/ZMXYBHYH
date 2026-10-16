@@ -7,22 +7,11 @@ var ShouldChase: bool = false
 @onready var qbtimer: Timer = $qbtimer
 @onready var can_jumpqb: RayCast2D = $CanJumpqb
 
-enum WangWang{
-	MoveLeft, 
-	MoveRight, 
-	QBMoveLeft, 
-	QBMoveRight, 
-	Jump, 
-	Smile, 
-	Dance, 
-	Cry, 
-	Wait, 
-	NormalWalk, 
-	Chase
-
-}
+enum WangWang { MoveLeft, MoveRight, QBMoveLeft, QBMoveRight, Jump, Smile, Dance, Cry, Wait, NormalWalk, Chase }
 var WangState = WangWang.NormalWalk
 var IsJump: bool
+
+
 func monster_144():
 	self.CannotAttract = true
 	self.is_boss = false
@@ -50,17 +39,21 @@ func monster_144():
 	self.add_exp = 0
 	self.fall_coin = 200
 	self.objattackDic["hit1"] = {
-		"power": 225, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "magic", 
-		}
+		"power": 225,
+		"hurtBack": [-4, -9],
+		"attackKind": "magic",
+	}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_144()
+
+
 func Monster_Intelligence():
 	if qb():
 		if qbtimer.is_stopped():
@@ -93,23 +86,28 @@ func Monster_Intelligence():
 			normal_state()
 		WangWang.Chase:
 			have_target()
+
+
 func move_left():
 	base_damage_box.scale.x = 1
 	monster_dir.scale.x = 1
-	velocity.x = - speed * 10
+	velocity.x = -speed * 10
 	if not IsJump:
 		mr_player.play("walk")
+
+
 func move_right():
 	base_damage_box.scale.x = -1
 	monster_dir.scale.x = -1
 	velocity.x = speed * 10
 	if not IsJump:
 		mr_player.play("walk")
+
+
 func have_target():
 	if not $RayCast2D.get_collider():
 		Jump()
 	if can_jumpqb.get_collider():
-
 		Jump()
 	if randi_range(0, 100) < 25 and jumpcd.time_left <= 0:
 		Jump()
@@ -120,25 +118,28 @@ func have_target():
 			move_left()
 		else:
 			stop_move()
+
+
 func Jump():
 	if jumpcd.time_left <= 0:
 		randomize()
 		jumpcd.start(randi_range(1, 4))
 		IsJump = true
 		if monster_dir.scale.x == 1:
-			velocity.x = - speed * 18
+			velocity.x = -speed * 18
 		else:
 			velocity.x = speed * 18
-		velocity.y = - randi_range(400, 900)
+		velocity.y = -randi_range(400, 900)
 		mr_player.play("jump")
 		await mr_player.animation_finished
 	IsJump = false
 	WangState = WangWang.NormalWalk
+
+
 func normal_state():
 	if not $RayCast2D.get_collider():
 		Jump()
 	if can_jumpqb.get_collider():
-
 		Jump()
 	if randi_range(0, 100) < 25 and jumpcd.time_left <= 0:
 		Jump()
@@ -149,10 +150,16 @@ func normal_state():
 			move_left()
 		else:
 			move_right()
+
+
 func qb():
 	return jcqb.get_collider()
+
+
 func CheckHp(i: float):
 	return Hp >= SHp * i
+
+
 func attack_target():
 	super.to_hero()
 	hit_name = "hit1"
@@ -161,6 +168,7 @@ func attack_target():
 	mr_player.play("smile")
 	await mr_player.animation_finished
 	is_attacking = false
+
 
 func do_hit_1():
 	super.to_hero()
@@ -172,6 +180,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	WangState = WangWang.NormalWalk
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = randi_range(16, 18)
@@ -182,6 +192,8 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	WangState = WangWang.NormalWalk
+
+
 func do_hit_3():
 	super.to_hero()
 	Skill_3_CD = randi_range(14, 16)
@@ -194,7 +206,7 @@ func do_hit_3():
 	WangState = WangWang.NormalWalk
 
 
-func _on_normal_walk_timer_timeout() -> void :
+func _on_normal_walk_timer_timeout() -> void:
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) > 600:
 		if randi_range(0, 100) < 30:
 			WangState = WangWang.Cry
@@ -218,7 +230,7 @@ func _on_normal_walk_timer_timeout() -> void :
 					WangState = WangWang.Dance
 
 
-func _on_qbtimer_timeout() -> void :
+func _on_qbtimer_timeout() -> void:
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) > 500:
 		WangState = WangWang.Cry
 	else:
@@ -234,7 +246,11 @@ func _on_qbtimer_timeout() -> void :
 				WangState = WangWang.Dance
 			else:
 				WangState = WangWang.Smile
+
+
 func reduce_hp(value: int):
 	return
+
+
 func HurtReduceHp(value, target):
 	return 0

@@ -2,6 +2,8 @@ extends BaseMonster
 class_name Monster44
 var MonsterList = [39, 40, 30, 31]
 var Curecount: int = 0
+
+
 func monster_44():
 	self.is_bt = true
 	self.CannotAttract = true
@@ -38,33 +40,33 @@ func monster_44():
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real"
-	}
+	self.objattackDic["hit1"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
 	self.fall_pro = 1
 	self.fall_list = [
-		{
-			"name": "yll", 
-			"value": randi_range(1, 10)
-		}, 
+		{"name": "yll", "value": randi_range(1, 10)},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_44()
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	velocity.x = 0
 	if is_on_floor():
 		velocity.y = 0
-func Monster_Intelligence():
 
+
+func Monster_Intelligence():
 	if Curecount % 60 == 0:
 		MonsterCall()
 	Curecount += 1
+
+
 func MonsterCall():
 	var BaseLevel_ = get_parent().get_parent() as BaseLevel
 	if BaseLevel_.monster.get_children().size() < 6:

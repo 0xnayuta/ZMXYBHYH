@@ -1,20 +1,20 @@
 extends Node2D
 class_name Mosaic
-@onready var bs_1: Button = $bs_1 / bs_1
-@onready var bs_2: Button = $bs_2 / bs_2
-@onready var bs_3: Button = $bs_3 / bs_3
-@onready var bs_4: Button = $bs_4 / bs_4
+@onready var bs_1: Button = $bs_1/bs_1
+@onready var bs_2: Button = $bs_2/bs_2
+@onready var bs_3: Button = $bs_3/bs_3
+@onready var bs_4: Button = $bs_4/bs_4
 
-@onready var bs_5: Button = $bs_5 / bs_5
-@onready var bs_6: Button = $bs_6 / bs_6
-@onready var bs_7: Button = $bs_7 / bs_7
-@onready var bs_8: Button = $bs_8 / bs_8
-@onready var Zb: Button = $zb / Zb
+@onready var bs_5: Button = $bs_5/bs_5
+@onready var bs_6: Button = $bs_6/bs_6
+@onready var bs_7: Button = $bs_7/bs_7
+@onready var bs_8: Button = $bs_8/bs_8
+@onready var Zb: Button = $zb/Zb
 
-const PET_GENERIC_EQUIPMENT_ICON: = preload("res://Art/Pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
+const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/Pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
 
 
-func _physics_process(_delta: float) -> void :
+func _physics_process(_delta: float) -> void:
 	setBoxInLdL()
 
 	if PlayerData.player_data["镶嵌列表"].size() != 0:
@@ -22,6 +22,7 @@ func _physics_process(_delta: float) -> void :
 		set_OtherProp()
 	else:
 		remove_infomation()
+
 
 func setBoxInLdL():
 	bs_1.is_in_ldl_gz = true
@@ -34,6 +35,8 @@ func setBoxInLdL():
 	bs_6.is_in_ldl_gz = true
 	bs_7.is_in_ldl_gz = true
 	bs_8.is_in_ldl_gz = true
+
+
 func set_ZBProperies():
 	var selected: Dictionary = PlayerData.player_data["镶嵌列表"][0]
 	Zb.qh_level = int(selected["强化等级"])
@@ -48,6 +51,8 @@ func set_ZBProperies():
 	else:
 		Zb.set_button_icon(load_(Zb.get_item_name))
 		Zb.EQ_prop = selected["Data"]
+
+
 func set_OtherProp():
 	var BSsize = PlayerData.player_data["镶嵌列表"][0]["Data"]["宝石"].size()
 	var bs_list = [bs_1, bs_2, bs_3, bs_4, bs_5, bs_6, bs_7, bs_8]
@@ -56,6 +61,7 @@ func set_OtherProp():
 			bs_list[i].set_button_icon(load_(str(PlayerData.player_data["镶嵌列表"][0]["Data"]["宝石"][i])))
 		else:
 			bs_list[i].set_button_icon(load_(str("empty")))
+
 
 func remove_infomation():
 	PlayerData.restore_mosaic_equipment()
@@ -77,11 +83,12 @@ func remove_infomation():
 	bs_8.set_button_icon(load_(str("empty")))
 	PlayerData.player_data["镶嵌列表"].clear()
 
+
 func _pet_item_icon(item: Dictionary, item_id: String) -> Texture2D:
 	var data: Dictionary = item.get("Data", {}) if item.get("Data", {}) is Dictionary else {}
 	for source in [item, data]:
 		for key in ["图标", "图标路径", "icon", "Icon"]:
-			var icon_path: = str(source.get(key, "")).strip_edges()
+			var icon_path := str(source.get(key, "")).strip_edges()
 			if icon_path == "":
 				continue
 			if not icon_path.begins_with("res://"):
@@ -90,15 +97,16 @@ func _pet_item_icon(item: Dictionary, item_id: String) -> Texture2D:
 					icon_path += ".png"
 			if ResourceLoader.exists(icon_path):
 				return load(icon_path) as Texture2D
-	var item_path: = "res://Art/BackPack/AllItems/%s.png" % item_id
+	var item_path := "res://Art/BackPack/AllItems/%s.png" % item_id
 	if ResourceLoader.exists(item_path):
 		return load(item_path) as Texture2D
 	return PET_GENERIC_EQUIPMENT_ICON
+
 
 func load_(name_):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
 	return abc
 
 
-func _on_help_pressed() -> void :
+func _on_help_pressed() -> void:
 	Global.AddMosaicHelp(Global.get_parent_(self, 3), Vector2(0, 0))

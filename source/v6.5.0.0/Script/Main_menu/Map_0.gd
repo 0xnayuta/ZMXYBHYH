@@ -1,35 +1,35 @@
 extends Node2D
 class_name Map0
 
-const MAP_DESIGN_SIZE: = Vector2(940.0, 590.0)
-const PET_PANEL_SIZE: = Vector2(653.0, 513.0)
-const PLAYER_HEAD_BASE_POSITION: = Vector2(15.0, 2.0)
-const PLAYER_PANEL_BASE_POSITION: = Vector2(8.0, 8.0)
-const PLAYER_LEVEL_BASE_POSITION: = Vector2(10.0, 84.0)
-const BACKPACK_SCENE_PATH: = "res://Scene/BackPack/BackPack.tscn"
-const PET_SCENE_PATH: = "res://Scene/Pet/PetInterface.tscn"
-const MOUNT_SCENE_PATH: = "res://Scene/Main_menu/MountPanel.tscn"
-const ZHUXIAN_SWORD_PAGE_PATH: = "res://Scene/Main_menu/ZhuXianSwordPage.tscn"
-const WANLING_CATALOG_PAGE_PATH: = "res://Scene/Main_menu/WanLingCatalogPage.tscn"
-const EQUIPMENT_CATALOG_PAGE_PATH: = "res://Scene/Main_menu/EquipmentCatalogPage.tscn"
-const BODY_TRAINING_SCENE_PATH: = "res://Scene/Main_menu/BodyTraining.tscn"
-const ZHENYAO_TOWER_SCENE_PATH: = "res://Scene/Main_menu/ZhenYaoTower.tscn"
-const SOUTH_CONTINENT_PATH: = "res://Scene/Main_menu/Map_6.tscn"
-const EAST_CONTINENT_PATH: = "res://Scene/Main_menu/Map_7.tscn"
-const NORTH_CONTINENT_PATH: = "res://Scene/Main_menu/Map_8.tscn"
-const WEST_CONTINENT_PATH: = "res://Scene/Main_menu/Map_9.tscn"
-const HUMAN_WORLD_PATH: = "res://Scene/Main_menu/Map_1.tscn"
-const UNDERWORLD_PATH: = "res://Scene/Main_menu/Map_2.tscn"
-const HEAVEN_PATH: = "res://Scene/Main_menu/Map_3.tscn"
-const HEAVEN_JIEJIAO_PATH: = "res://Scene/Main_menu/Map_4.tscn"
-const HEAVEN_BIYOU_PATH: = "res://Scene/Main_menu/Map_5.tscn"
-const ROLE_HEAD_PATHS: = {
-	1: "res://Art/HeroPicture/RoleProperiesBox/hud_swk.png", 
-	2: "res://Art/HeroPicture/RoleProperiesBox/hud_tsz.png", 
-	3: "res://Art/HeroPicture/RoleProperiesBox/hud_zbj.png", 
-	4: "res://Art/HeroPicture/RoleProperiesBox/hud_shs.png", 
-	5: "res://Art/HeroPicture/RoleProperiesBox/hud_blm.png", 
-	6: "res://Art/HeroPicture/RoleProperiesBox/hud_nz.png", 
+const MAP_DESIGN_SIZE := Vector2(940.0, 590.0)
+const PET_PANEL_SIZE := Vector2(653.0, 513.0)
+const PLAYER_HEAD_BASE_POSITION := Vector2(15.0, 2.0)
+const PLAYER_PANEL_BASE_POSITION := Vector2(8.0, 8.0)
+const PLAYER_LEVEL_BASE_POSITION := Vector2(10.0, 84.0)
+const BACKPACK_SCENE_PATH := "res://Scene/BackPack/BackPack.tscn"
+const PET_SCENE_PATH := "res://Scene/Pet/PetInterface.tscn"
+const MOUNT_SCENE_PATH := "res://Scene/Main_menu/MountPanel.tscn"
+const ZHUXIAN_SWORD_PAGE_PATH := "res://Scene/Main_menu/ZhuXianSwordPage.tscn"
+const WANLING_CATALOG_PAGE_PATH := "res://Scene/Main_menu/WanLingCatalogPage.tscn"
+const EQUIPMENT_CATALOG_PAGE_PATH := "res://Scene/Main_menu/EquipmentCatalogPage.tscn"
+const BODY_TRAINING_SCENE_PATH := "res://Scene/Main_menu/BodyTraining.tscn"
+const ZHENYAO_TOWER_SCENE_PATH := "res://Scene/Main_menu/ZhenYaoTower.tscn"
+const SOUTH_CONTINENT_PATH := "res://Scene/Main_menu/Map_6.tscn"
+const EAST_CONTINENT_PATH := "res://Scene/Main_menu/Map_7.tscn"
+const NORTH_CONTINENT_PATH := "res://Scene/Main_menu/Map_8.tscn"
+const WEST_CONTINENT_PATH := "res://Scene/Main_menu/Map_9.tscn"
+const HUMAN_WORLD_PATH := "res://Scene/Main_menu/Map_1.tscn"
+const UNDERWORLD_PATH := "res://Scene/Main_menu/Map_2.tscn"
+const HEAVEN_PATH := "res://Scene/Main_menu/Map_3.tscn"
+const HEAVEN_JIEJIAO_PATH := "res://Scene/Main_menu/Map_4.tscn"
+const HEAVEN_BIYOU_PATH := "res://Scene/Main_menu/Map_5.tscn"
+const ROLE_HEAD_PATHS := {
+	1: "res://Art/HeroPicture/RoleProperiesBox/hud_swk.png",
+	2: "res://Art/HeroPicture/RoleProperiesBox/hud_tsz.png",
+	3: "res://Art/HeroPicture/RoleProperiesBox/hud_zbj.png",
+	4: "res://Art/HeroPicture/RoleProperiesBox/hud_shs.png",
+	5: "res://Art/HeroPicture/RoleProperiesBox/hud_blm.png",
+	6: "res://Art/HeroPicture/RoleProperiesBox/hud_nz.png",
 }
 
 var backpack_page: Node = null
@@ -44,10 +44,7 @@ var body_training_page: Node = null
 var zhenyao_tower_page: Node = null
 
 
-func _ready() -> void :
-
-
-
+func _ready() -> void:
 	Global.Windows_ = _ui_parent()
 	_update_player_head()
 	_update_player_level()
@@ -58,39 +55,39 @@ func _ready() -> void :
 	Global.call_deferred("prewarm_permanent_small_ui_scenes")
 
 
-func _exit_tree() -> void :
+func _exit_tree() -> void:
 	_save_if_possible()
 	Global.release_map_visual_resources(self)
 
 
-func _save_if_possible() -> void :
-	var save_path: = str(Global.cd_path)
+func _save_if_possible() -> void:
+	var save_path := str(Global.cd_path)
 	if save_path != "" and save_path.contains("Ar_") and FileAccess.file_exists(save_path):
 		MemoryClass.保存游戏(save_path)
 
 
-func _update_player_head() -> void :
-	var role_id: = clampi(int(PlayerData.player_data.get("Myself", 1)), 1, 6)
+func _update_player_head() -> void:
+	var role_id := clampi(int(PlayerData.player_data.get("Myself", 1)), 1, 6)
 	$PlayerHead.texture = load(str(ROLE_HEAD_PATHS[role_id])) as Texture2D
 
 
-func _update_player_level() -> void :
-	var level_label: = get_node_or_null("PlayerLevel") as Label
+func _update_player_level() -> void:
+	var level_label := get_node_or_null("PlayerLevel") as Label
 	if level_label != null:
 		level_label.text = str(PlayerData.player_data.get("玩家等级", 1))
 
 
-func _fit_to_fullscreen() -> void :
-	var viewport_size: = get_viewport().get_visible_rect().size
+func _fit_to_fullscreen() -> void:
+	var viewport_size := get_viewport().get_visible_rect().size
 	if viewport_size.x <= 0.0 or viewport_size.y <= 0.0:
 		return
 	var fit_scale: float = minf(viewport_size.x / MAP_DESIGN_SIZE.x, viewport_size.y / MAP_DESIGN_SIZE.y)
 	scale = Vector2(fit_scale, fit_scale)
 	position = (viewport_size - MAP_DESIGN_SIZE * fit_scale) * 0.5
-	var left_compensation: = Vector2( - position.x / fit_scale, 0.0)
+	var left_compensation := Vector2(-position.x / fit_scale, 0.0)
 	$PlayerHead.position = PLAYER_HEAD_BASE_POSITION + left_compensation
 	$PlayerPanel.position = PLAYER_PANEL_BASE_POSITION + left_compensation
-	var level_label: = get_node_or_null("PlayerLevel") as Label
+	var level_label := get_node_or_null("PlayerLevel") as Label
 	if level_label != null:
 		level_label.position = PLAYER_LEVEL_BASE_POSITION + left_compensation
 	$TopButtons.position = left_compensation
@@ -99,7 +96,7 @@ func _fit_to_fullscreen() -> void :
 	_center_pet_page()
 
 
-func _center_pet_page() -> void :
+func _center_pet_page() -> void:
 	if pet_page is Control and is_instance_valid(pet_page):
 		(pet_page as Control).position = _viewport_center() - PET_PANEL_SIZE * 0.5
 
@@ -107,7 +104,7 @@ func _center_pet_page() -> void :
 func _ui_parent() -> Node:
 	if Global.has_method("get_ui_popup_layer"):
 		return Global.get_ui_popup_layer()
-	var parent: = get_parent()
+	var parent := get_parent()
 	return parent if parent != null else self
 
 
@@ -115,7 +112,7 @@ func _viewport_center() -> Vector2:
 	return get_viewport().get_visible_rect().size * 0.5
 
 
-func _set_if_has_property(target: Object, property_name: StringName, value: Variant) -> void :
+func _set_if_has_property(target: Object, property_name: StringName, value: Variant) -> void:
 	for property in target.get_property_list():
 		if StringName(property.name) == property_name:
 			target.set(property_name, value)
@@ -127,15 +124,15 @@ func _current_preview_player() -> Variant:
 	return player if is_instance_valid(player) else null
 
 
-func _toggle_scene(current_page: Variant, scene_path: String, setup_backpack: = false) -> Node:
+func _toggle_scene(current_page: Variant, scene_path: String, setup_backpack := false) -> Node:
 	if is_instance_valid(current_page):
 		(current_page as Node).queue_free()
 		return null
-	var page_scene: = Global.load_ui_scene(scene_path)
+	var page_scene := Global.load_ui_scene(scene_path)
 	if page_scene == null:
 		Global.AddMessageShow(_ui_parent(), "页面加载失败", 1.5, Vector2(470, 300))
 		return null
-	var page: = page_scene.instantiate()
+	var page := page_scene.instantiate()
 	Global.register_ui_runtime_instance(page, scene_path)
 	if setup_backpack:
 		var player: Variant = _current_preview_player()
@@ -148,11 +145,11 @@ func _toggle_scene(current_page: Variant, scene_path: String, setup_backpack: = 
 	return page
 
 
-func _show_unavailable(feature_name: String) -> void :
+func _show_unavailable(feature_name: String) -> void:
 	Global.AddMessageShow(_ui_parent(), "%s暂未开放" % feature_name, 1.5, Vector2(470, 300))
 
 
-func _change_map(scene_path: String) -> void :
+func _change_map(scene_path: String) -> void:
 	_save_if_possible()
 	Global.change_scene(scene_path)
 
@@ -164,48 +161,48 @@ func _require_map_clear(level_name: String, message: String) -> bool:
 	return false
 
 
-func _on_south_continent_pressed() -> void :
+func _on_south_continent_pressed() -> void:
 	if not _require_map_clear("通天教主", "需要先通关碧游宫！"):
 		return
 	_change_map(SOUTH_CONTINENT_PATH)
 
 
-func _on_east_continent_pressed() -> void :
+func _on_east_continent_pressed() -> void:
 	if not _require_map_clear("冥海", "需要先通关南瞻部洲！"):
 		return
 	_change_map(EAST_CONTINENT_PATH)
 
 
-func _on_north_continent_pressed() -> void :
+func _on_north_continent_pressed() -> void:
 	if not _require_map_clear("云川", "需要先通关东胜神洲！"):
 		return
 	_change_map(NORTH_CONTINENT_PATH)
 
 
-func _on_west_continent_pressed() -> void :
+func _on_west_continent_pressed() -> void:
 	if not _require_map_clear("星域", "需要先通关北俱芦洲！"):
 		return
 	_change_map(WEST_CONTINENT_PATH)
 
 
-func _on_demon_tower_pressed() -> void :
+func _on_demon_tower_pressed() -> void:
 	zhenyao_tower_page = _toggle_scene(zhenyao_tower_page, ZHENYAO_TOWER_SCENE_PATH)
 
 
-func _on_human_world_pressed() -> void :
+func _on_human_world_pressed() -> void:
 	_change_map(HUMAN_WORLD_PATH)
 
 
-func _on_underworld_pressed() -> void :
+func _on_underworld_pressed() -> void:
 	if not _require_map_clear("牛魔谷", "需要先通关人间！"):
 		return
 	_change_map(UNDERWORLD_PATH)
 
 
-func _on_heaven_pressed() -> void :
+func _on_heaven_pressed() -> void:
 	if not _require_map_clear("转轮殿", "需要先通关地府！"):
 		return
-	var target_path: = HEAVEN_PATH
+	var target_path := HEAVEN_PATH
 	match int(PlayerData.player_data.get("HeavenMap_num", 3)):
 		4:
 			target_path = HEAVEN_JIEJIAO_PATH
@@ -214,11 +211,11 @@ func _on_heaven_pressed() -> void :
 	_change_map(target_path)
 
 
-func _on_bag_pressed() -> void :
+func _on_bag_pressed() -> void:
 	backpack_page = _toggle_scene(backpack_page, BACKPACK_SCENE_PATH, true)
 
 
-func _on_magic_weapon_pressed() -> void :
+func _on_magic_weapon_pressed() -> void:
 	if magic_weapon_page != null and is_instance_valid(magic_weapon_page):
 		magic_weapon_page.queue_free()
 		magic_weapon_page = null
@@ -226,55 +223,54 @@ func _on_magic_weapon_pressed() -> void :
 	magic_weapon_page = Global.add_magp_infor(_ui_parent(), _viewport_center())
 
 
-func _on_mount_pressed() -> void :
+func _on_mount_pressed() -> void:
 	if not PlayerData.is_mount_system_unlocked():
 		Global.AddMessageShow(_ui_parent(), "通关碧游宫开放坐骑", 1.5, Vector2(470, 300))
 		return
 	mount_page = _toggle_scene(mount_page, MOUNT_SCENE_PATH)
 
 
-func _on_pet_pressed() -> void :
+func _on_pet_pressed() -> void:
 	pet_page = _toggle_scene(pet_page, PET_SCENE_PATH)
 	_center_pet_page()
 
 
-func _on_wing_pressed() -> void :
+func _on_wing_pressed() -> void:
 	_show_unavailable("翅膀")
 
 
-func _on_body_training_pressed() -> void :
-
-
+func _on_body_training_pressed() -> void:
 	if is_instance_valid(body_training_page) and not body_training_page.is_queued_for_deletion():
 		return
 	body_training_page = _toggle_scene(body_training_page, BODY_TRAINING_SCENE_PATH)
 
 
-func clear_body_training_page(page: Node) -> void :
+func clear_body_training_page(page: Node) -> void:
 	if body_training_page == page:
 		body_training_page = null
 
 
-func _on_zhuxian_pressed() -> void :
+func _on_zhuxian_pressed() -> void:
 	zhuxian_sword_page = _toggle_scene(zhuxian_sword_page, ZHUXIAN_SWORD_PAGE_PATH)
 
 
-func _on_wanling_catalog_pressed() -> void :
+func _on_wanling_catalog_pressed() -> void:
 	wanling_catalog_page = _toggle_scene(wanling_catalog_page, WANLING_CATALOG_PAGE_PATH)
 
-func _on_equipment_catalog_pressed() -> void :
+
+func _on_equipment_catalog_pressed() -> void:
 	equipment_catalog_page = _toggle_scene(equipment_catalog_page, EQUIPMENT_CATALOG_PAGE_PATH)
 
 
-func _on_shop_pressed() -> void :
+func _on_shop_pressed() -> void:
 	Global.add_SHOP(_ui_parent(), Vector2.ZERO)
 
 
-func _on_alchemy_pressed() -> void :
+func _on_alchemy_pressed() -> void:
 	Global.add_ldl(_ui_parent(), Vector2.ZERO)
 
 
-func _on_skill_pressed() -> void :
+func _on_skill_pressed() -> void:
 	if skill_page != null and is_instance_valid(skill_page):
 		skill_page.queue_free()
 		skill_page = null
@@ -282,18 +278,18 @@ func _on_skill_pressed() -> void :
 	skill_page = Global.add_learn_skill(_ui_parent(), Vector2.ZERO)
 
 
-func _on_activity_pressed() -> void :
+func _on_activity_pressed() -> void:
 	Global.AddGameAnnouncement(_ui_parent(), Vector2.ZERO)
 
 
-func _on_task_pressed() -> void :
+func _on_task_pressed() -> void:
 	Global.AddBasicTask_(_ui_parent(), Vector2.ZERO)
 
 
-func _on_group_pressed() -> void :
+func _on_group_pressed() -> void:
 	_show_unavailable("群组")
 
 
-func _on_return_pressed() -> void :
+func _on_return_pressed() -> void:
 	_save_if_possible()
 	Global.change_scene("res://Scene/Main_menu/Main_Menu.tscn")

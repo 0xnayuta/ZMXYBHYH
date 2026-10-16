@@ -20,17 +20,18 @@ var IsChoose: bool
 var MainBack
 @onready var item_number: Label = $item_number
 var is_in_ldl
-var strength_source: = "装备背包"
-var strength_index: = -1
-var item_locked: = false
+var strength_source := "装备背包"
+var strength_index := -1
+var item_locked := false
 @onready var lock_mark: Label = $lock_mark
+
 
 func _get_strength_max_level(item_name: String) -> int:
 	return PlayerData.get_equipment_strength_max_level(EQ_prop, item_name)
-func _ready() -> void :
+
+
+func _ready() -> void:
 	is_in_ldl = Global.is_in_ldl
-
-
 
 	if strength_source == "宠物背包":
 		get_type = "宠物装备"
@@ -48,23 +49,9 @@ func _ready() -> void :
 	else:
 		get_item_name = "empty"
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	lock_mark.visible = item_locked and get_item_name != "empty"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	if strength_source == "宠物背包":
 		get_type = "宠物装备"
@@ -95,7 +82,6 @@ func _physics_process(_delta: float) -> void :
 		get_type = "宠物装备"
 		item_number.text = "+%d" % qh_level if qh_level > 0 else ""
 	elif get_item_name != "empty":
-
 		if AE.AllEquipment_.has(get_item_name):
 			get_type = AE.AllEquipment_[get_item_name]["类型"]
 			match get_type:
@@ -124,13 +110,14 @@ func _physics_process(_delta: float) -> void :
 					else:
 						item_number.text = ""
 		else:
-
 			get_item_name = "empty"
 			total_number = 0
 			item_number.text = ""
 	else:
 		total_number = 0
 		item_number.text = ""
+
+
 func _onPressWhenInBack():
 	var parent_ = Global.get_parent_(self, 6)
 	var Position_ = Global.popup_position_for_parent(parent_, Vector2(18, 18))
@@ -147,11 +134,12 @@ func _onPressWhenInBack():
 			pp.EQ_prop = EQ_prop
 			pp.source_box = self
 
-func _keep_click_menu_near_item(menu: Node, parent_: Node) -> void :
+
+func _keep_click_menu_near_item(menu: Node, parent_: Node) -> void:
 	if menu == null or parent_ == null:
 		return
 	var viewport_size = get_viewport().get_visible_rect().size
-	var estimated_size: = Vector2(135, 95)
+	var estimated_size := Vector2(135, 95)
 	if menu is Control:
 		estimated_size = (menu as Control).size
 		if estimated_size.x <= 0.0 or estimated_size.y <= 0.0:
@@ -173,6 +161,8 @@ func _keep_click_menu_near_item(menu: Node, parent_: Node) -> void :
 		(menu as Control).position = local_pos
 	elif menu is Node2D:
 		(menu as Node2D).position = local_pos
+
+
 func _onPressWhenStrength():
 	if bool(EQ_prop.get("不可强化", false)) and get_item_name not in ["cjxianjie", "cdxianjie", "zhxianjie"]:
 		var parent_ = Global.get_parent_(self, 7)
@@ -193,9 +183,14 @@ func _onPressWhenStrength():
 			var parent_ = Global.get_parent_(self, 7)
 			Global.AddMessageShow(parent_, "装备等级已达最高等级！！无法继续强化！", 1.5, Vector2(500, 305))
 
-func _onPressWhenDivineForge() -> void :
+
+func _onPressWhenDivineForge() -> void:
 	var item_data: Dictionary = AE.AllEquipment_.get(get_item_name, {})
-	if bool(EQ_prop.get("不可神铸", item_data.get("不可神铸", false))) or item_data.is_empty() or not AE.can_divine_forge(get_item_name, EQ_prop):
+	if (
+		bool(EQ_prop.get("不可神铸", item_data.get("不可神铸", false)))
+		or item_data.is_empty()
+		or not AE.can_divine_forge(get_item_name, EQ_prop)
+	):
 		var parent_ = Global.get_parent_(self, 7)
 		Global.AddMessageShow(parent_, "只有神器及以上品质的武器、防具和饰品可以神铸！", 1.5, Vector2(500, 305))
 		return
@@ -207,10 +202,11 @@ func _onPressWhenDivineForge() -> void :
 	MLdl.qh_list["穿戴栏"] = str(get_meta("equipped_type", ""))
 	MLdl.qh_list["Data"] = EQ_prop.duplicate(true)
 
-func _onPressWhenBoneForge() -> void :
+
+func _onPressWhenBoneForge() -> void:
 	var item_data: Dictionary = AE.AllEquipment_.get(get_item_name, {})
-	var item_type: = str(EQ_prop.get("类型", item_data.get("类型", "")))
-	var next_stage: = str(EQ_prop.get("下一阶段", item_data.get("下一阶段", "")))
+	var item_type := str(EQ_prop.get("类型", item_data.get("类型", "")))
+	var next_stage := str(EQ_prop.get("下一阶段", item_data.get("下一阶段", "")))
 	if item_data.is_empty() or item_type != "神骨" or next_stage == "":
 		var parent_ = Global.get_parent_(self, 7)
 		Global.AddMessageShow(parent_, "只有设置了下一阶段的神骨装备才可以淬骨！", 1.5, Vector2(500, 305))
@@ -222,6 +218,7 @@ func _onPressWhenBoneForge() -> void :
 	MLdl.qh_list["来源"] = strength_source
 	MLdl.qh_list["穿戴栏"] = str(get_meta("equipped_type", ""))
 	MLdl.qh_list["Data"] = EQ_prop.duplicate(true)
+
 
 func _has_socketed_gems(data: Dictionary) -> bool:
 	for key in data.keys():
@@ -240,7 +237,6 @@ func _has_socketed_gems(data: Dictionary) -> bool:
 
 
 func _onPressWhenSynthesis():
-
 	if strength_source == "人物穿戴":
 		var equipped_parent = Global.get_parent_(self, 7)
 		Global.AddMessageShow(equipped_parent, "请先将穿戴中的装备卸下后再进行合成！", 1.5, Vector2(500, 305))
@@ -263,7 +259,14 @@ func _onPressWhenSynthesis():
 				PlayerData.player_data["放入列表"][i].push_back(int(str(self.name).split("_")[1]) - 1)
 				PlayerData.player_data["放入列表"][i].push_back(qh_level)
 				PlayerData.player_data["放入列表"][i].push_back(EQ_prop.duplicate(true))
-				if get_tt == "武器" or get_tt == "防具" or get_tt == "饰品" or get_tt == "翅膀" or get_tt == "时装" or get_tt == "头衔":
+				if (
+					get_tt == "武器"
+					or get_tt == "防具"
+					or get_tt == "饰品"
+					or get_tt == "翅膀"
+					or get_tt == "时装"
+					or get_tt == "头衔"
+				):
 					if _has_socketed_gems(EQ_prop):
 						PlayerData.player_data["放入列表"][i].clear()
 						Global.AddMessageShow(parent_, "请先卸下该装备上的宝石！！！", 1.5, Vector2(500, 305))
@@ -272,7 +275,6 @@ func _onPressWhenSynthesis():
 						PlayerData.remove_zb(_get_equipment_source_page(), _get_equipment_source_index())
 						Global.get_parent_(self, 6).set_box_data()
 				elif get_tt == "道具" or get_tt == "消耗品":
-
 					PlayerData.remove_dj(get_item_name, PlayerData.get_dj_page(get_item_name), 1)
 					Global.get_parent_(self, 6).set_box_data()
 				elif get_tt == "法宝":
@@ -296,15 +298,17 @@ func _onPressWhenSynthesis():
 			PlayerData.player_data["放入列表"]["物品" + str(num)].clear()
 			MemoryClass.保存游戏(Global.cd_path)
 			return
+
+
 func _onPressWhenDZ():
 	if Global.Forge_ == null:
 		return
 	var item_data: Dictionary = AE.AllEquipment_.get(str(get_item_name), {})
 	if item_data.is_empty():
 		return
-	var Type: = str(item_data.get("类型", ""))
-	var Have: = str(item_data.get("所属", ""))
-	var Name: = str(item_data.get("名字", ""))
+	var Type := str(item_data.get("类型", ""))
+	var Have := str(item_data.get("所属", ""))
+	var Name := str(item_data.get("名字", ""))
 	if Type == "" or Have == "" or Name == "":
 		Global.AddMessageShow(Global.get_parent_(self, 7), "物品数据异常，无法参与打造！", 1.5, Vector2(500, 305))
 		return
@@ -321,27 +325,25 @@ func _onPressWhenDZ():
 				Global.Forge_.replace_book(get_item_name, qh_level, EQ_prop)
 		else:
 			if Have != "制作书":
-
 				var count_baozhu = 0
 				var count_jingshi = 0
 				var jewels_value: Variant = PlayerData.player_data.get("宝珠列表", [])
 				if not jewels_value is Array:
 					Global.AddMessageShow(parent_, "宝珠数据异常，无法参与打造！", 1.5, Vector2(500, 305))
 					return
-				for item_value in (jewels_value as Array):
+				for item_value in jewels_value as Array:
 					if not item_value is Dictionary:
 						continue
 					var item: Dictionary = item_value
-					var jewel_name: = str(item.get("名字", ""))
+					var jewel_name := str(item.get("名字", ""))
 					var jewel_data: Variant = AE.AllEquipment_.get(jewel_name, {})
 					if not jewel_data is Dictionary:
 						continue
-					var belong: = str((jewel_data as Dictionary).get("所属", ""))
+					var belong := str((jewel_data as Dictionary).get("所属", ""))
 					if belong == "宝珠":
 						count_baozhu += 1
 					elif belong == "晶石":
 						count_jingshi += 1
-
 
 				if Have == "宝珠" or Have == "晶石":
 					if count_baozhu + count_jingshi >= 4:
@@ -350,7 +352,6 @@ func _onPressWhenDZ():
 				else:
 					Global.AddMessageShow(parent_, "只能放入宝珠或晶石！", 1.5, Vector2(500, 305))
 					return
-
 
 				var BzProp = {"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
 				PlayerData.player_data["宝珠列表"].push_back(BzProp)
@@ -362,10 +363,11 @@ func _onPressWhenDZ():
 	else:
 		Global.Forge_.RemoveBSPIC(ForgeBZID)
 
-func _set_forge_book_box_properties(item_box) -> void :
+
+func _set_forge_book_box_properties(item_box) -> void:
 	if item_box == null or not is_instance_valid(item_box):
 		return
-	var icon_path: = "res://Art/BackPack/AllItems/%s.png" % str(get_item_name)
+	var icon_path := "res://Art/BackPack/AllItems/%s.png" % str(get_item_name)
 	item_box.set("icon", ResourceLoader.load(icon_path) as Texture2D if ResourceLoader.exists(icon_path) else null)
 	item_box.set("is_in_ldl_gz", true)
 	item_box.set("is_in_hhgz", true)
@@ -376,6 +378,8 @@ func _set_forge_book_box_properties(item_box) -> void :
 	item_box.set("get_item_name", get_item_name)
 	item_box.set_meta("item_name", get_item_name)
 	item_box.set("position", Vector2(8, 8))
+
+
 func _onPressWhenfj():
 	if strength_source == "人物穿戴":
 		var equipped_parent = Global.get_parent_(self, 7)
@@ -416,14 +420,17 @@ func _onPressWhenfj():
 				Global.AddMessageShow(parent_, "头衔不可以分解！！", 1.5, Vector2(500, 305))
 				return
 			"道具":
-				PlayerData.player_data["分解列表"].push_back({"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)})
+				PlayerData.player_data["分解列表"].push_back(
+					{"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
+				)
 				PlayerData.remove_dj(get_item_name, current_page, 1)
 			"武器", "防具", "饰品", "翅膀", "时装", "头衔":
 				if _has_socketed_gems(EQ_prop):
-
 					Global.AddMessageShow(parent_, "请先卸下该装备上的宝石！！！", 1.5, Vector2(500, 305))
 					return
-				PlayerData.player_data["分解列表"].push_back({"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)})
+				PlayerData.player_data["分解列表"].push_back(
+					{"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
+				)
 				PlayerData.remove_zb(_get_equipment_source_page(), _get_equipment_source_index())
 			"":
 				Global.AddMessageShow(parent_, "错误？？！！", 1.5, Vector2(500, 305))
@@ -442,6 +449,8 @@ func _onPressWhenfj():
 					PlayerData.add_dj(Name_, 1)
 					PlayerData.player_data["分解列表"].clear()
 		return
+
+
 func _onPressWhenXQ():
 	if not is_in_ldl_gz:
 		var parent_ = Global.get_parent_(self, 7)
@@ -463,8 +472,6 @@ func _onPressWhenXQ():
 					Global.AddMessageShow(parent_, "不可放入消耗品！！", 1.5, Vector2(500, 305))
 					return
 
-
-
 				"道具":
 					if Base == "宝石":
 						if PlayerData.player_data["镶嵌列表"].size() == 0:
@@ -474,13 +481,17 @@ func _onPressWhenXQ():
 
 				"武器", "防具", "饰品", "神骨", "翅膀", "时装", "头衔":
 					if strength_source == "人物穿戴":
-						var equipped_slot: = str(get_meta("equipped_type", ""))
-						var taken_equipment: Dictionary = PlayerData.take_equipped_equipment_for_mosaic(equipped_slot, get_item_name, EQ_prop)
+						var equipped_slot := str(get_meta("equipped_type", ""))
+						var taken_equipment: Dictionary = PlayerData.take_equipped_equipment_for_mosaic(
+							equipped_slot, get_item_name, EQ_prop
+						)
 						if taken_equipment.is_empty():
 							Global.AddMessageShow(parent_, "穿戴装备位置已变化，请重新选择！", 1.5, Vector2(500, 305))
 							return
 					else:
-						PlayerData.player_data["镶嵌列表"].push_back({"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)})
+						PlayerData.player_data["镶嵌列表"].push_back(
+							{"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
+						)
 						PlayerData.remove_zb(_get_equipment_source_page(), _get_equipment_source_index())
 					Global.get_parent_(self, 6).set_box_data()
 
@@ -498,7 +509,6 @@ func _onPressWhenXQ():
 					return
 				"道具":
 					if Base == "宝石":
-
 						if Data["宝石"].size() < get_MaxBs():
 							if Data["宝石"].size() != 0:
 								PlayerData.player_data["镶嵌列表"][0]["Data"]["宝石"].push_back(get_item_name)
@@ -534,16 +544,9 @@ func _onPressWhenXQ():
 				"":
 					pass
 		return
-func _on_pressed() -> void :
 
 
-
-
-
-
-
-
-
+func _on_pressed() -> void:
 	var parent_
 	if Global.BoxCount > 0:
 		if is_in_ldl:
@@ -584,7 +587,9 @@ func _on_pressed() -> void :
 				"打造":
 					_onPressWhenDZ()
 	MemoryClass.保存游戏(Global.cd_path)
-func _on_mouse_entered() -> void :
+
+
+func _on_mouse_entered() -> void:
 	if HideProp:
 		return
 	if get_item_name != "empty" and add_equ_box == null:
@@ -596,20 +601,27 @@ func _on_mouse_entered() -> void :
 				add_equ_box.call("setup_pet_equipment", EQ_prop)
 			add_equ_box.is_in_ldl_gz = is_in_ldl_gz
 			add_equ_box.is_in_shop = is_in_shop
-func _on_mouse_exited() -> void :
+
+
+func _on_mouse_exited() -> void:
 	if add_equ_box != null:
 		add_equ_box.queue_free()
+
+
 func get_number():
 	var number = int(str(self.name).split("_")[1]) - 1
 	return number
 
+
 func _get_equipment_source_page() -> int:
-	var source_page: = int(get_meta("backpack_page", 0))
+	var source_page := int(get_meta("backpack_page", 0))
 	return source_page if source_page > 0 else int(current_page)
 
+
 func _get_equipment_source_index() -> int:
-	var source_index: = int(get_meta("backpack_index", -1))
+	var source_index := int(get_meta("backpack_index", -1))
 	return source_index if source_index >= 0 else get_number()
+
 
 func get_parent_():
 	var LastParent
@@ -618,10 +630,13 @@ func get_parent_():
 	else:
 		LastParent = Global.get_parent_(self, 7)
 	return LastParent
+
+
 func get_MaxBs():
 	if PlayerData.player_data["镶嵌列表"].size() == 0:
 		return 0
 	return 8
+
 
 func load_(name_):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")

@@ -2,6 +2,8 @@ extends BaseMonster
 class_name Monster6602
 var DeathCount: int = 0
 var XYcount: int = 0
+
+
 func monster_6602():
 	self.is_boss = false
 	self.my_mr_name = "死亡墓碑"
@@ -28,22 +30,26 @@ func monster_6602():
 	self.add_exp = 0
 	self.fall_coin = 0
 	self.objattackDic["hit1"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "", 
+		"power": 0,
+		"hurtBack": [0, 0],
+		"attackKind": "",
 	}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_6602()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
 	Skill_3_CD = 0
 	Skill_4_CD = 0
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	velocity.x = 0
 	if not is_on_floor():
 		mr_player.play("begin")
@@ -57,14 +63,22 @@ func _physics_process(delta: float) -> void :
 				RoleReduceProp()
 			if XYcount % 180 == 0:
 				move_playerto_boss(null, 0.3)
-				Global.AddBuff(get_Player.buff, {
-			"Name": "speed_down", 
-			"AddTime": 1, 
-			"ReduceInterval": 0, 
-			"value": 0.6, 
-			"AttackKind": "", 
-		})
+				(
+					Global
+					. AddBuff(
+						get_Player.buff,
+						{
+							"Name": "speed_down",
+							"AddTime": 1,
+							"ReduceInterval": 0,
+							"value": 0.6,
+							"AttackKind": "",
+						}
+					)
+				)
 	super._physics_process(delta)
+
+
 func Monster_Intelligence():
 	velocity.x = 0
 	if not is_on_floor():
@@ -79,13 +93,21 @@ func Monster_Intelligence():
 				RoleReduceProp()
 			if XYcount % 180 == 0:
 				move_playerto_boss(null, 0.3)
-				Global.AddBuff(get_Player.buff, {
-			"Name": "speed_down", 
-			"AddTime": 1, 
-			"ReduceInterval": 0, 
-			"value": 0.6, 
-			"AttackKind": "", 
-		})
+				(
+					Global
+					. AddBuff(
+						get_Player.buff,
+						{
+							"Name": "speed_down",
+							"AddTime": 1,
+							"ReduceInterval": 0,
+							"value": 0.6,
+							"AttackKind": "",
+						}
+					)
+				)
+
+
 func RoleReduceProp():
 	if get_Player != null:
 		if get_Player is BaseHero:

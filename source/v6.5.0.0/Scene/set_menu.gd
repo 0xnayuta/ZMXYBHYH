@@ -1,11 +1,11 @@
 extends CanvasLayer
 
-@onready var enable: Button = $bg / box / enable
-@onready var big: Button = $bg / box / HBoxContainer / big
-@onready var mid: Button = $bg / box / HBoxContainer / mid
-@onready var small: Button = $bg / box / HBoxContainer / small
-@onready var role_btn: Button = $bg / box / RoleP2
-@onready var set_key: Button = $bg / box / SetKey
+@onready var enable: Button = $bg/box/enable
+@onready var big: Button = $bg/box/HBoxContainer/big
+@onready var mid: Button = $bg/box/HBoxContainer/mid
+@onready var small: Button = $bg/box/HBoxContainer/small
+@onready var role_btn: Button = $bg/box/RoleP2
+@onready var set_key: Button = $bg/box/SetKey
 
 var set_key_tscn: PackedScene = preload("res://Scene/Tools/set_com.tscn")
 var auto_battle_tscn: PackedScene = preload("res://Scene/AutoBattleConfig.tscn")
@@ -13,7 +13,8 @@ var tree: SceneTree
 var icon_scale: float = 1.0
 var joy_enabled: bool = true
 
-func _ready() -> void :
+
+func _ready() -> void:
 	tree = get_tree()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	joy_enabled = _current_joy_enabled()
@@ -22,15 +23,18 @@ func _ready() -> void :
 		_refresh_auto_battle_button()
 	_refresh_mobile_buttons()
 
-func _physics_process(_delta: float) -> void :
-	$bg / box / BGMControl.text = "关闭音乐" if MainSet.set_data.get("BackGroundMusic", true) else "打开音乐"
-	$bg / box / RoleOrMonsterControl.text = "关闭音效" if MainSet.set_data.get("RoleOrMonsterHit", true) else "打开音效"
 
-func _process(_delta: float) -> void :
+func _physics_process(_delta: float) -> void:
+	$bg/box/BGMControl.text = "关闭音乐" if MainSet.set_data.get("BackGroundMusic", true) else "打开音乐"
+	$bg/box/RoleOrMonsterControl.text = "关闭音效" if MainSet.set_data.get("RoleOrMonsterHit", true) else "打开音效"
+
+
+func _process(_delta: float) -> void:
 	_refresh_mobile_buttons()
 	_refresh_auto_battle_button()
 
-func _refresh_mobile_buttons() -> void :
+
+func _refresh_mobile_buttons() -> void:
 	var is_android: bool = _use_old_touch_hud()
 	if set_key != null:
 		set_key.disabled = not is_android
@@ -44,18 +48,21 @@ func _refresh_mobile_buttons() -> void :
 	if small != null:
 		small.disabled = not is_android or is_equal_approx(icon_scale, 1.0)
 
-func _on_close_pressed() -> void :
+
+func _on_close_pressed() -> void:
 	queue_free()
 
-func _on_continue_game_pressed() -> void :
+
+func _on_continue_game_pressed() -> void:
 	queue_free()
 
-func _on_continue_game_2_pressed() -> void :
+
+func _on_continue_game_2_pressed() -> void:
 	tree.paused = false
 	if Global.CurrentLevel == "镇妖塔":
 		Global.change_scene("res://Scene/Main_menu/Map_0.tscn")
 		return
-	var target_map: = "res://Scene/Main_menu/Map_1.tscn"
+	var target_map := "res://Scene/Main_menu/Map_1.tscn"
 	match int(PlayerData.player_data.get("Map_num", 1)):
 		2:
 			if PlayerData.player_data.get("地府", false):
@@ -86,34 +93,42 @@ func _on_continue_game_2_pressed() -> void :
 				target_map = "res://Scene/Main_menu/Map_9.tscn"
 	Global.change_scene(target_map)
 
-func _on_continue_game_4_pressed() -> void :
+
+func _on_continue_game_4_pressed() -> void:
 	tree.paused = false
 	Global.change_scene("res://Scene/Main_menu/Main_Menu.tscn")
 
-func _on_bgm_control_pressed() -> void :
+
+func _on_bgm_control_pressed() -> void:
 	MainSet.set_data["BackGroundMusic"] = not MainSet.set_data.get("BackGroundMusic", true)
 	MemoryClass.main_bc()
 
-func _on_role_or_monster_control_pressed() -> void :
+
+func _on_role_or_monster_control_pressed() -> void:
 	MainSet.set_data["RoleOrMonsterHit"] = not MainSet.set_data.get("RoleOrMonsterHit", true)
 	MemoryClass.main_bc()
 
-func _on_big_pressed() -> void :
+
+func _on_big_pressed() -> void:
 	_set_icon_scale(1.3)
 
-func _on_mid_pressed() -> void :
+
+func _on_mid_pressed() -> void:
 	_set_icon_scale(1.15)
 
-func _on_small_pressed() -> void :
+
+func _on_small_pressed() -> void:
 	_set_icon_scale(1.0)
 
-func _on_enable_pressed() -> void :
+
+func _on_enable_pressed() -> void:
 	joy_enabled = not joy_enabled
 	for node in get_tree().get_nodes_in_group("TouchControlSetCom"):
 		if node.has_method("set_joy_enabled"):
 			node.set_joy_enabled(joy_enabled)
 
-func _on_rolep2_pressed() -> void :
+
+func _on_rolep2_pressed() -> void:
 	if MainSet.is_auto_battle_enabled():
 		MainSet.set_auto_battle_enabled(false)
 		_refresh_auto_battle_button()
@@ -128,13 +143,15 @@ func _on_rolep2_pressed() -> void :
 	if config is CanvasLayer:
 		config.layer = 20
 
-func _refresh_auto_battle_button() -> void :
+
+func _refresh_auto_battle_button() -> void:
 	if role_btn == null:
 		return
 	role_btn.disabled = false
 	role_btn.text = "关闭自动战斗" if MainSet.is_auto_battle_enabled() else "开启自动战斗"
 
-func _on_set_key_pressed() -> void :
+
+func _on_set_key_pressed() -> void:
 	if not _use_old_touch_hud():
 		return
 	var node = set_key_tscn.instantiate()
@@ -147,14 +164,17 @@ func _on_set_key_pressed() -> void :
 		get_tree().root.add_child(node)
 	queue_free()
 
+
 func _use_old_touch_hud() -> bool:
 	return true
 
-func _set_icon_scale(value: float) -> void :
+
+func _set_icon_scale(value: float) -> void:
 	icon_scale = value
 	for node in get_tree().get_nodes_in_group("TouchControlSetCom"):
 		if node.has_method("apply_global_scale"):
 			node.apply_global_scale(icon_scale)
+
 
 func _current_joy_enabled() -> bool:
 	for node in get_tree().get_nodes_in_group("TouchControlSetCom"):

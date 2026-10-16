@@ -6,14 +6,12 @@ var _monster_refresh_elapsed: float = 0.0
 var HitTimes: int = 0
 var MaxTimes: int = 0
 var isBegin: bool
-var _hit_data: = {
-	"power": 0, 
-	"hurtBack": [1, -2], 
-	"attackKind": "magic"
-}
+var _hit_data := {"power": 0, "hurtBack": [1, -2], "attackKind": "magic"}
 
-func _ready() -> void :
+
+func _ready() -> void:
 	objattackDic["hit1"] = _hit_data
+
 
 func _get_active_monster_snapshot() -> Array:
 	var level: Node = Player.get_parent().get_parent() if Player != null and Player.get_parent() != null else null
@@ -23,7 +21,8 @@ func _get_active_monster_snapshot() -> Array:
 		return level.monster.get_children()
 	return []
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	_monster_refresh_elapsed += delta
 	if _monster_refresh_elapsed >= 0.1 or MonsterList.is_empty():
 		_monster_refresh_elapsed = 0.0
@@ -56,6 +55,8 @@ func _physics_process(delta: float) -> void :
 			get_target()
 			if HitTimes <= 0:
 				Useover()
+
+
 func change_dir():
 	if FollowTarget != null:
 		if FollowTarget is BaseMonster:
@@ -65,6 +66,7 @@ func change_dir():
 			else:
 				self.SelfDir = true
 				scale.x = -1
+
 
 func ShowSkill():
 	var a_1
@@ -109,6 +111,8 @@ func ShowSkill():
 	if FollowTarget == null:
 		RoleProp.roleprop.Mp += needMp
 		Useover()
+
+
 func get_target():
 	var a_1
 	var Monster: BaseMonster = null
@@ -158,35 +162,45 @@ func Useover():
 		self.usecd = 12
 		skill_cd.start(12)
 	self.visible = false
+
+
 func reduceTimes():
 	HitTimes -= 1
 
+
 func GhostBullet_1():
 	var Gh_1
-	var attack_data: = get_attack_snapshot()
+	var attack_data := get_attack_snapshot()
 	if self.SelfDir:
-
 		Gh_1 = Global.addWeaponBullet_(self, Vector2(-60, 0), "GhostDollBullet_1", attack_data, self.SelfDir, 100)
 	else:
-
 		Gh_1 = Global.addWeaponBullet_(self, Vector2(-60, 0), "GhostDollBullet_1", attack_data, !self.SelfDir, 100)
+
+
 func GhostBullet_2():
-	var attack_data: = get_attack_snapshot()
+	var attack_data := get_attack_snapshot()
 	if self.SelfDir:
 		Global.addWeaponBullet_(self, Vector2(-60, 0), "GhostDollBullet_2", attack_data, self.SelfDir, 100)
 	else:
 		Global.addWeaponBullet_(self, Vector2(-60, 0), "GhostDollBullet_2", attack_data, !self.SelfDir, 100)
+
+
 func GhostBullet_3():
-	var attack_data: = get_attack_snapshot()
+	var attack_data := get_attack_snapshot()
 	if self.SelfDir:
 		Global.addWeaponBullet_(self, Vector2(-60, 30), "GhostDollBullet_3", attack_data, !self.SelfDir, 100)
 	else:
 		Global.addWeaponBullet_(self, Vector2(-60, 30), "GhostDollBullet_3", attack_data, self.SelfDir, 100)
-func _on_check_monster_body_entered(body: Node2D) -> void :
+
+
+func _on_check_monster_body_entered(body: Node2D) -> void:
 	pass
 
-func free() -> void :
+
+func free() -> void:
 	FollowTarget = null
-func _on_skill_cd_timeout() -> void :
+
+
+func _on_skill_cd_timeout() -> void:
 	super._on_skill_cd_timeout()
 	self.visible = true

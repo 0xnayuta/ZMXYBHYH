@@ -1,16 +1,14 @@
 extends BaseMonster
 class_name Monster1410
 
-
 static var instance_count: int = 0
-const LIGHT_ORB_LIFE_SECONDS: = 10
-const LIGHT_ORB_COOLDOWN_AFTER_END_SECONDS: = 55
+const LIGHT_ORB_LIFE_SECONDS := 10
+const LIGHT_ORB_COOLDOWN_AFTER_END_SECONDS := 55
 
 var alternate_side: bool = false
 var is_reviving: bool = false
 var has_been_controlled: bool = false
 var next_light_orb_cast_msec: int = 0
-
 
 var is_invincible: bool = false
 var clone_count: int = 0
@@ -62,7 +60,6 @@ func init_monster(is_boss_flag: bool):
 	self.attack_in = 130
 	self.level = 59
 
-
 	var hp_multiplier = 1.0 if is_boss_flag else 0.5
 	self.SHp = int(2100000 * hp_multiplier)
 	self.Hp = self.SHp
@@ -89,79 +86,79 @@ func init_monster(is_boss_flag: bool):
 	self.ebol = 0
 
 	self.objattackDic["hit1"] = {
-		"power": 1500, 
-		"hurtBack": [-5, -12], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
+		"power": 1500,
+		"hurtBack": [-5, -12],
+		"attackKind": "physics",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 1700, 
-		"hurtBack": [-20, -10], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 3, 
-			"ReduceInterval": 0.61, 
-			"value": 0.5, 
-			"AttackKind": "magic", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 1700,
+		"hurtBack": [-20, -10],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 3,
+			"ReduceInterval": 0.61,
+			"value": 0.5,
+			"AttackKind": "magic",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit3"] = {
-		"power": 1800, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "Immobilize", 
-			"AddTime": 2, 
-			"ReduceInterval": 0, 
-			"value": 1, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false, 
+		"power": 1800,
+		"hurtBack": [-8, -12],
+		"attackKind": "physics",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "Immobilize",
+			"AddTime": 2,
+			"ReduceInterval": 0,
+			"value": 1,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanRemove": false,
 		}
 	}
 	self.objattackDic["hit4"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real", 
-		"HitProtect": 10, 
+		"power": 0,
+		"hurtBack": [0, 0],
+		"attackKind": "real",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit5"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real", 
-		"HitProtect": 10, 
+		"power": 0,
+		"hurtBack": [0, 0],
+		"attackKind": "real",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit6"] = {
-		"power": 10, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real", 
-		"HitProtect": 10, 
+		"power": 10,
+		"hurtBack": [0, 0],
+		"attackKind": "real",
+		"HitProtect": 10,
 	}
-
 
 	if is_boss_flag:
 		self.fall_pro = 0.5
 		self.fall_list = [
-			{"name": "ttsl3", "value": 1}, 
-			{"name": "shenhuo_3", "value": 1}, 
+			{"name": "ttsl3", "value": 1},
+			{"name": "shenhuo_3", "value": 1},
 		]
 		self.fall_stone_pro = 0
 		self.fall_stone = [
-			{"name": "sichou", "value": randi_range(1, 2)}, 
-			{"name": "xuantie", "value": randi_range(1, 2)}, 
-			{"name": "tanmu", "value": randi_range(1, 2)}, 
+			{"name": "sichou", "value": randi_range(1, 2)},
+			{"name": "xuantie", "value": randi_range(1, 2)},
+			{"name": "tanmu", "value": randi_range(1, 2)},
 		]
 	else:
 		self.fall_pro = 0.0
 		self.fall_list.clear()
 		self.fall_stone_pro = 0
 		self.fall_stone.clear()
-
 
 	if has_meta("is_clone") and get_meta("is_clone"):
 		is_weakened_clone = true
@@ -186,10 +183,10 @@ func init_monster(is_boss_flag: bool):
 			if self.objattackDic[key].has("power"):
 				self.objattackDic[key]["power"] = int(self.objattackDic[key]["power"] * weaken)
 
-func _ready() -> void :
 
+func _ready() -> void:
 	var is_clone = has_meta("is_clone") and get_meta("is_clone")
-	init_monster( not is_clone)
+	init_monster(not is_clone)
 
 	super._ready()
 
@@ -199,14 +196,13 @@ func _ready() -> void :
 	Skill_4_CD = 20
 	Skill_5_CD = 50
 
-
 	instance_count += 1
-
 
 	if buff:
 		buff.connect("child_entered_tree", Callable(self, "_on_buff_child_entered"))
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	super._exit_tree()
 	instance_count -= 1
 
@@ -217,6 +213,7 @@ func _on_buff_child_entered(child: Node):
 		if buff_name in ["stun", "Ice", "Immobilize"]:
 			has_been_controlled = true
 
+
 func Monster_Intelligence():
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
 		if has_target == false:
@@ -224,11 +221,20 @@ func Monster_Intelligence():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
 				have_target()
-				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 160 and Skill_1_CD <= 0:
+				if (
+					abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 160
+					and Skill_1_CD <= 0
+				):
 					do_hit_1()
-				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 290 and Skill_2_CD <= 0:
+				if (
+					abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 290
+					and Skill_2_CD <= 0
+				):
 					do_hit_2()
-				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270 and Skill_3_CD <= 0:
+				if (
+					abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270
+					and Skill_3_CD <= 0
+				):
 					do_hit_3()
 				if Skill_4_CD <= 0:
 					do_hit_4()
@@ -248,8 +254,10 @@ func Monster_Intelligence():
 				else:
 					stop_move()
 
+
 func do_hit_1():
-	if Skill_1_CD > 0 or is_attacking: return
+	if Skill_1_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	var cd_base = randi_range(1, 3)
 	Skill_1_CD = int(cd_base * (1.3 if is_weakened_clone else 1.0))
@@ -261,10 +269,12 @@ func do_hit_1():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_2():
 	if is_weakened_clone:
 		return
-	if Skill_2_CD > 0 or is_attacking: return
+	if Skill_2_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	var cd_base = randi_range(10, 20)
 	Skill_2_CD = int(cd_base * (1.3 if is_weakened_clone else 1.0))
@@ -276,9 +286,12 @@ func do_hit_2():
 	is_attacking = false
 	stop_move()
 
-func do_hit_3(ignore_cd: = false):
-	if is_attacking: return
-	if not ignore_cd and Skill_3_CD > 0: return
+
+func do_hit_3(ignore_cd := false):
+	if is_attacking:
+		return
+	if not ignore_cd and Skill_3_CD > 0:
+		return
 	super.to_hero()
 	if not ignore_cd:
 		var cd_base = randi_range(25, 30)
@@ -291,8 +304,10 @@ func do_hit_3(ignore_cd: = false):
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_4():
-	if Skill_4_CD > 0 or is_attacking: return
+	if Skill_4_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	var cd_base = randi_range(20, 25)
 	Skill_4_CD = int(cd_base * (1.3 if is_weakened_clone else 1.0))
@@ -304,10 +319,12 @@ func do_hit_4():
 	is_attacking = false
 	do_hit_3(true)
 
+
 func do_hit_5():
 	if is_weakened_clone:
 		return
-	if not _can_cast_light_orb() or is_attacking: return
+	if not _can_cast_light_orb() or is_attacking:
+		return
 	super.to_hero()
 	var cd_base = LIGHT_ORB_LIFE_SECONDS + LIGHT_ORB_COOLDOWN_AFTER_END_SECONDS
 	Skill_5_CD = int(cd_base * (1.3 if is_weakened_clone else 1.0))
@@ -321,30 +338,55 @@ func do_hit_5():
 	is_attacking = false
 	stop_move()
 
+
 func _can_cast_light_orb() -> bool:
 	return Skill_5_CD <= 0 and Time.get_ticks_msec() >= next_light_orb_cast_msec
+
 
 func CallBullet1():
 	var bullet_count = randi_range(1, 3)
 	for i in range(bullet_count):
 		var Bullets
 		if self.MonsterDirection:
-			Bullets = Global.add_Bullet("Monster1410Bullet1", self.bullet, false, 1, Vector2(35, 25) + position, "hit1", self.objattackDic["hit1"])
+			Bullets = Global.add_Bullet(
+				"Monster1410Bullet1",
+				self.bullet,
+				false,
+				1,
+				Vector2(35, 25) + position,
+				"hit1",
+				self.objattackDic["hit1"]
+			)
 		else:
-			Bullets = Global.add_Bullet("Monster1410Bullet1", self.bullet, false, 1, Vector2(-35, 25) + position, "hit1", self.objattackDic["hit1"])
+			Bullets = Global.add_Bullet(
+				"Monster1410Bullet1",
+				self.bullet,
+				false,
+				1,
+				Vector2(-35, 25) + position,
+				"hit1",
+				self.objattackDic["hit1"]
+			)
 		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 		Bullets.MyFather = self
 		if i < bullet_count - 1:
 			await get_tree().create_timer(0.2).timeout
+
 
 func MovePlayer2():
 	if not get_Player:
 		return
 	var offset = 150
 	if alternate_side:
-		self.position = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + offset, RoleProp.get_nearest_monster_target_position(global_position).y)
+		self.position = Vector2(
+			RoleProp.get_nearest_monster_target_position(global_position).x + offset,
+			RoleProp.get_nearest_monster_target_position(global_position).y
+		)
 	else:
-		self.position = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x - offset, RoleProp.get_nearest_monster_target_position(global_position).y)
+		self.position = Vector2(
+			RoleProp.get_nearest_monster_target_position(global_position).x - offset,
+			RoleProp.get_nearest_monster_target_position(global_position).y
+		)
 	alternate_side = not alternate_side
 
 
@@ -379,9 +421,7 @@ func state_death():
 		set_meta("counts_as_alive_for_stage_clear", true)
 		return
 
-
 	if has_meta("is_clone") and get_meta("is_clone"):
-
 		if not has_meta("_death_reported"):
 			set_meta("_death_reported", true)
 			var owner = get_meta("owner_monster") if has_meta("owner_monster") else null
@@ -390,15 +430,14 @@ func state_death():
 		super.state_death()
 		return
 
-
 	if MonsterBullet.get_active_1410_bullet_count() > 0:
 		set_meta("counts_as_alive_for_stage_clear", true)
 		revive()
 		return
 
-
 	set_meta("counts_as_alive_for_stage_clear", false)
 	super.state_death()
+
 
 func is_alive_for_stage_clear() -> bool:
 	if has_meta("is_clone") and get_meta("is_clone"):
@@ -406,7 +445,7 @@ func is_alive_for_stage_clear() -> bool:
 	return is_reviving or MonsterBullet.get_active_1410_bullet_count() > 0 or not death()
 
 
-func _on_hurt_box_area_entered(area: Area2D) -> void :
+func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if is_invincible:
 		print("本体无敌，免疫伤害")
 		return

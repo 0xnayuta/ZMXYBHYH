@@ -1,15 +1,14 @@
 extends BaseMonster
 class_name Monster146
 
-
 var moonlight_active = false
 var moonlight_timer = 0.0
 var moonlight_cooldown = 15.0
 var phantom_summoned = false
 var is_phantom = false
 
-
 const PHANTOM_SCALE = 0.7
+
 
 func monster_146():
 	var phantom_multiplier = PHANTOM_SCALE if is_phantom else 1.0
@@ -47,7 +46,7 @@ func monster_146():
 
 	self.fall_pro = 0.1
 	self.fall_list = [
-		{"name": "sqzlwzzs", "value": 1}, 
+		{"name": "sqzlwzzs", "value": 1},
 	]
 
 	moonlight_active = false
@@ -56,34 +55,36 @@ func monster_146():
 	phantom_summoned = false
 
 	self.objattackDic["hit1"] = {
-		"power": int(2700 * phantom_multiplier), 
-		"hurtBack": [-5, -8], 
-		"attackKind": "physics", 
-		"HitProtect": 0, 
+		"power": int(2700 * phantom_multiplier),
+		"hurtBack": [-5, -8],
+		"attackKind": "physics",
+		"HitProtect": 0,
 	}
 	self.objattackDic["hit2"] = {
-		"power": int(2700 * phantom_multiplier), 
-		"hurtBack": [-8, -12], 
-		"attackKind": "physics", 
-		"HitProtect": 0, 
+		"power": int(2700 * phantom_multiplier),
+		"hurtBack": [-8, -12],
+		"attackKind": "physics",
+		"HitProtect": 0,
 	}
 	self.objattackDic["hit3"] = {
-		"power": int(5000 * phantom_multiplier), 
-		"hurtBack": [0, 0], 
-		"attackKind": "physics", 
-		"HitProtect": 0, 
-		"addeffect": {
-			"Name": "Immobilize", 
-			"AddTime": 2, 
-			"ReduceInterval": 0, 
-			"value": 1, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false, 
+		"power": int(5000 * phantom_multiplier),
+		"hurtBack": [0, 0],
+		"attackKind": "physics",
+		"HitProtect": 0,
+		"addeffect":
+		{
+			"Name": "Immobilize",
+			"AddTime": 2,
+			"ReduceInterval": 0,
+			"value": 1,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanRemove": false,
 		}
 	}
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_146()
 
@@ -94,7 +95,8 @@ func _ready() -> void :
 	Skill_2_CD = 10.0
 	Skill_3_CD = 8.0
 
-func _process(delta: float) -> void :
+
+func _process(delta: float) -> void:
 	if is_phantom:
 		return
 
@@ -106,7 +108,8 @@ func _process(delta: float) -> void :
 	if moonlight_cooldown > 0:
 		moonlight_cooldown -= delta
 
-func Monster_Intelligence() -> void :
+
+func Monster_Intelligence() -> void:
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
 		has_target = abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee
 
@@ -126,7 +129,8 @@ func Monster_Intelligence() -> void :
 			stop_move()
 			_handle_melee_combat(distance_to_player)
 
-func _handle_ranged_combat(distance: float) -> void :
+
+func _handle_ranged_combat(distance: float) -> void:
 	if Skill_2_CD <= 0:
 		do_hit_2()
 	elif Skill_3_CD <= 0 and distance > 400 and _can_dash_towards_player():
@@ -134,7 +138,8 @@ func _handle_ranged_combat(distance: float) -> void :
 	elif Skill_1_CD <= 0 and distance <= 155:
 		do_hit_1()
 
-func _handle_melee_combat(distance: float) -> void :
+
+func _handle_melee_combat(distance: float) -> void:
 	if Skill_1_CD <= 0 and distance <= 155:
 		do_hit_1()
 	elif Skill_3_CD <= 0 and distance < 200 and _can_dash_towards_player():
@@ -142,12 +147,15 @@ func _handle_melee_combat(distance: float) -> void :
 	elif Skill_2_CD <= 0:
 		do_hit_2()
 
+
 func _can_dash_towards_player() -> bool:
 	var target_x = position.x + 600 * _get_dash_direction()
 	return 0 <= target_x and target_x <= 1480
 
+
 func _get_dash_direction() -> int:
 	return 1 if position.x < RoleProp.get_nearest_monster_target_position(global_position).x else -1
+
 
 func _activate_moonlight():
 	if moonlight_active or is_phantom:
@@ -162,6 +170,7 @@ func _activate_moonlight():
 	if modulate:
 		modulate.a = 0.5
 
+
 func _end_moonlight():
 	if not moonlight_active:
 		return
@@ -171,6 +180,7 @@ func _end_moonlight():
 
 	if modulate:
 		modulate.a = 1.0
+
 
 func HurtReduceHp(value, target):
 	if is_phantom:
@@ -187,10 +197,12 @@ func HurtReduceHp(value, target):
 
 	return super.HurtReduceHp(value, target)
 
+
 func do_hit_1():
 	if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > 155:
 		return
-	if Skill_1_CD > 0 or is_attacking: return
+	if Skill_1_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_1_CD = 2.0
 	hit_name = "hit1"
@@ -201,8 +213,10 @@ func do_hit_1():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_2():
-	if Skill_2_CD > 0 or is_attacking: return
+	if Skill_2_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_2_CD = 10.0
 	hit_name = "hit2"
@@ -213,8 +227,10 @@ func do_hit_2():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_3():
-	if Skill_3_CD > 0 or is_attacking: return
+	if Skill_3_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_3_CD = 8.0
 	hit_name = "hit3"
@@ -233,8 +249,10 @@ func do_hit_3():
 	is_attacking = false
 	stop_move()
 
+
 func _perform_hit3_damage():
 	pass
+
 
 func CallBullet_2():
 	var attack_config = objattackDic.get("hit2", {})
@@ -245,19 +263,14 @@ func CallBullet_2():
 	var bullet_name = "Monster146Bullet"
 
 	var bb = Global.add_Bullet(
-		bullet_name, 
-		self.bullet, 
-		!self.MonsterDirection, 
-		sp, 
-		Vector2(0, 0) + position, 
-		"hit2", 
-		attack_config
+		bullet_name, self.bullet, !self.MonsterDirection, sp, Vector2(0, 0) + position, "hit2", attack_config
 	)
 
 	if bb:
 		bb.rotation_degrees = 0
 
-func state_death() -> void :
+
+func state_death() -> void:
 	if is_phantom:
 		super.state_death()
 		return
@@ -279,6 +292,7 @@ func state_death() -> void :
 	else:
 		super.state_death()
 
+
 func _summon_phantom():
 	var phantom_scene = Global.load_scene_uncached("res://Scene/Monster/Monster_146.tscn")
 	if phantom_scene:
@@ -288,10 +302,9 @@ func _summon_phantom():
 		var spawn_position = position + Vector2(randi_range(-50, 50), randi_range(-30, 30))
 		spawn_position.x = clamp(spawn_position.x, 100, 1380)
 
-
-
 		get_parent().add_child(phantom_instance)
 		phantom_instance.position = spawn_position
+
 
 func _handle_death_events():
 	if not is_death:

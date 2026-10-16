@@ -1,69 +1,68 @@
 extends Node2D
 
-
-@onready var eq_name: Label = $pro_wk / information / inf / VBoxContainer2 / eq_name
-@onready var eq_pz: Label = $pro_wk / information / inf / VBoxContainer2 / eq_pz
-@onready var eq_lx: Label = $pro_wk / information / inf / VBoxContainer2 / eq_lx
-@onready var eq_czl: Label = $pro_wk / information / inf / VBoxContainer3 / eq_czl
-@onready var eq_star_level: Label = $pro_wk / information / inf / VBoxContainer3 / eq_star_level
-@onready var eq_hp: Label = $pro_wk / information / inf / VBoxContainer3 / eq_hp
-@onready var eq_mp: Label = $pro_wk / information / inf / VBoxContainer3 / eq_mp
-@onready var eq_power: Label = $pro_wk / information / inf / VBoxContainer3 / eq_power
-@onready var eq_def: Label = $pro_wk / information / inf / VBoxContainer3 / eq_def
-@onready var eq_mdef: Label = $pro_wk / information / inf / VBoxContainer3 / eq_mdef
-@onready var eq_crit: Label = $pro_wk / information / inf / VBoxContainer3 / eq_crit
-@onready var eq_miss: Label = $pro_wk / information / inf / VBoxContainer3 / eq_miss
-@onready var eq_ehp: Label = $pro_wk / information / inf / VBoxContainer3 / eq_ehp
-@onready var eq_emp: Label = $pro_wk / information / inf / VBoxContainer3 / eq_emp
-@onready var eq_mz: Label = $pro_wk / information / inf / VBoxContainer3 / eq_mz
-@onready var eq_lucky: Label = $pro_wk / information / inf / VBoxContainer3 / eq_lucky
-@onready var eq_rx: Label = $pro_wk / information / inf / VBoxContainer3 / eq_rx
-@onready var eq_pj: Label = $pro_wk / information / inf / VBoxContainer3 / eq_pj
-@onready var eq_pm: Label = $pro_wk / information / inf / VBoxContainer3 / eq_pm
-@onready var eq_xx: Label = $pro_wk / information / inf / VBoxContainer3 / eq_xx
-@onready var eq_bm: Label = $pro_wk / information / inf / VBoxContainer3 / eq_bm
-@onready var eq_ms: Label = $pro_wk / information / inf / VBoxContainer / eq_ms
-@onready var eq_sj: Label = $pro_wk / information / inf / VBoxContainer / eq_sj
+@onready var eq_name: Label = $pro_wk/information/inf/VBoxContainer2/eq_name
+@onready var eq_pz: Label = $pro_wk/information/inf/VBoxContainer2/eq_pz
+@onready var eq_lx: Label = $pro_wk/information/inf/VBoxContainer2/eq_lx
+@onready var eq_czl: Label = $pro_wk/information/inf/VBoxContainer3/eq_czl
+@onready var eq_star_level: Label = $pro_wk/information/inf/VBoxContainer3/eq_star_level
+@onready var eq_hp: Label = $pro_wk/information/inf/VBoxContainer3/eq_hp
+@onready var eq_mp: Label = $pro_wk/information/inf/VBoxContainer3/eq_mp
+@onready var eq_power: Label = $pro_wk/information/inf/VBoxContainer3/eq_power
+@onready var eq_def: Label = $pro_wk/information/inf/VBoxContainer3/eq_def
+@onready var eq_mdef: Label = $pro_wk/information/inf/VBoxContainer3/eq_mdef
+@onready var eq_crit: Label = $pro_wk/information/inf/VBoxContainer3/eq_crit
+@onready var eq_miss: Label = $pro_wk/information/inf/VBoxContainer3/eq_miss
+@onready var eq_ehp: Label = $pro_wk/information/inf/VBoxContainer3/eq_ehp
+@onready var eq_emp: Label = $pro_wk/information/inf/VBoxContainer3/eq_emp
+@onready var eq_mz: Label = $pro_wk/information/inf/VBoxContainer3/eq_mz
+@onready var eq_lucky: Label = $pro_wk/information/inf/VBoxContainer3/eq_lucky
+@onready var eq_rx: Label = $pro_wk/information/inf/VBoxContainer3/eq_rx
+@onready var eq_pj: Label = $pro_wk/information/inf/VBoxContainer3/eq_pj
+@onready var eq_pm: Label = $pro_wk/information/inf/VBoxContainer3/eq_pm
+@onready var eq_xx: Label = $pro_wk/information/inf/VBoxContainer3/eq_xx
+@onready var eq_bm: Label = $pro_wk/information/inf/VBoxContainer3/eq_bm
+@onready var eq_ms: Label = $pro_wk/information/inf/VBoxContainer/eq_ms
+@onready var eq_sj: Label = $pro_wk/information/inf/VBoxContainer/eq_sj
 @onready var color_rect: ColorRect = $ColorRect
-@onready var BsProList = $pro_wk / information / inf / BsProp
-@onready var have: Label = $pro_wk / information / inf / VBoxContainer2 / have
-@onready var v_box_container_3: VBoxContainer = $pro_wk / information / inf / VBoxContainer3
+@onready var BsProList = $pro_wk/information/inf/BsProp
+@onready var have: Label = $pro_wk/information/inf/VBoxContainer2/have
+@onready var v_box_container_3: VBoxContainer = $pro_wk/information/inf/VBoxContainer3
 
-@onready var Bs_eq_hp: Label = $pro_wk / information / inf / BsProp / eq_hp
-@onready var Bs_eq_mp: Label = $pro_wk / information / inf / BsProp / eq_mp
-@onready var Bs_eq_power: Label = $pro_wk / information / inf / BsProp / eq_power
-@onready var Bs_eq_def: Label = $pro_wk / information / inf / BsProp / eq_def
-@onready var Bs_eq_mdef: Label = $pro_wk / information / inf / BsProp / eq_mdef
-@onready var Bs_eq_crit: Label = $pro_wk / information / inf / BsProp / eq_crit
-@onready var Bs_eq_miss: Label = $pro_wk / information / inf / BsProp / eq_miss
-@onready var Bs_eq_ehp: Label = $pro_wk / information / inf / BsProp / eq_ehp
-@onready var Bs_eq_emp: Label = $pro_wk / information / inf / BsProp / eq_emp
-@onready var Bs_eq_mz: Label = $pro_wk / information / inf / BsProp / eq_mz
-@onready var Bs_eq_lucky: Label = $pro_wk / information / inf / BsProp / eq_lucky
-@onready var Bs_eq_rx: Label = $pro_wk / information / inf / BsProp / eq_rx
-@onready var Bs_eq_pj: Label = $pro_wk / information / inf / BsProp / eq_pj
-@onready var Bs_eq_pm: Label = $pro_wk / information / inf / BsProp / eq_pm
-@onready var Bs_eq_xx: Label = $pro_wk / information / inf / BsProp / eq_xx
-@onready var Bs_eq_bm: Label = $pro_wk / information / inf / BsProp / eq_bm
+@onready var Bs_eq_hp: Label = $pro_wk/information/inf/BsProp/eq_hp
+@onready var Bs_eq_mp: Label = $pro_wk/information/inf/BsProp/eq_mp
+@onready var Bs_eq_power: Label = $pro_wk/information/inf/BsProp/eq_power
+@onready var Bs_eq_def: Label = $pro_wk/information/inf/BsProp/eq_def
+@onready var Bs_eq_mdef: Label = $pro_wk/information/inf/BsProp/eq_mdef
+@onready var Bs_eq_crit: Label = $pro_wk/information/inf/BsProp/eq_crit
+@onready var Bs_eq_miss: Label = $pro_wk/information/inf/BsProp/eq_miss
+@onready var Bs_eq_ehp: Label = $pro_wk/information/inf/BsProp/eq_ehp
+@onready var Bs_eq_emp: Label = $pro_wk/information/inf/BsProp/eq_emp
+@onready var Bs_eq_mz: Label = $pro_wk/information/inf/BsProp/eq_mz
+@onready var Bs_eq_lucky: Label = $pro_wk/information/inf/BsProp/eq_lucky
+@onready var Bs_eq_rx: Label = $pro_wk/information/inf/BsProp/eq_rx
+@onready var Bs_eq_pj: Label = $pro_wk/information/inf/BsProp/eq_pj
+@onready var Bs_eq_pm: Label = $pro_wk/information/inf/BsProp/eq_pm
+@onready var Bs_eq_xx: Label = $pro_wk/information/inf/BsProp/eq_xx
+@onready var Bs_eq_bm: Label = $pro_wk/information/inf/BsProp/eq_bm
 
 var Bs_prop = {
-		"SHp": 0, 
-		"SMp": 0, 
-		"power": 0, 
-		"Def": 0, 
-		"Mdef": 0, 
-		"Crit": 0, 
-		"Miss": 0, 
-		"R_hp": 0, 
-		"R_mp": 0, 
-		"vampirism": 0, 
-		"Lucky": 0, 
-		"Toughness": 0, 
-		"Htarget": 0, 
-		"CritReduce": 0, 
-		"ar": 0, 
-		"sp": 0
-	}
+	"SHp": 0,
+	"SMp": 0,
+	"power": 0,
+	"Def": 0,
+	"Mdef": 0,
+	"Crit": 0,
+	"Miss": 0,
+	"R_hp": 0,
+	"R_mp": 0,
+	"vampirism": 0,
+	"Lucky": 0,
+	"Toughness": 0,
+	"Htarget": 0,
+	"CritReduce": 0,
+	"ar": 0,
+	"sp": 0
+}
 
 var EQ_prop = {}
 var qh_level: int
@@ -77,18 +76,45 @@ var pet_item: Dictionary = {}
 var pet_sale_price: int = 0
 var pet_random_labels: Array = []
 
-const DIVINE_PROPERTY_NAMES: = [
-	"SHp", "SMp", "power", "Def", "Mdef", "Crit", "Miss", "R_hp", "R_mp", 
-	"vampirism", "Lucky", "Toughness", "Htarget", "CritReduce", "ar", "sp"
+const DIVINE_PROPERTY_NAMES := [
+	"SHp",
+	"SMp",
+	"power",
+	"Def",
+	"Mdef",
+	"Crit",
+	"Miss",
+	"R_hp",
+	"R_mp",
+	"vampirism",
+	"Lucky",
+	"Toughness",
+	"Htarget",
+	"CritReduce",
+	"ar",
+	"sp"
 ]
-const PET_RANDOM_STAT_NAMES: = {
-	"SHp": "生命", "SMp": "魔法", "power": "攻击", "Def": "物防", "Mdef": "魔防", 
-	"Crit": "暴击", "Miss": "闪避", "R_hp": "回血", "R_mp": "回魔", "Htarget": "命中", 
-	"Lucky": "幸运", "Toughness": "韧性", "ar": "破甲", "sp": "破魔", 
-	"vampirism": "吸血", "CritReduce": "暴免"
+const PET_RANDOM_STAT_NAMES := {
+	"SHp": "生命",
+	"SMp": "魔法",
+	"power": "攻击",
+	"Def": "物防",
+	"Mdef": "魔防",
+	"Crit": "暴击",
+	"Miss": "闪避",
+	"R_hp": "回血",
+	"R_mp": "回魔",
+	"Htarget": "命中",
+	"Lucky": "幸运",
+	"Toughness": "韧性",
+	"ar": "破甲",
+	"sp": "破魔",
+	"vampirism": "吸血",
+	"CritReduce": "暴免"
 }
 
-func setup_pet_equipment(item: Dictionary, sale_price: int = 0) -> void :
+
+func setup_pet_equipment(item: Dictionary, sale_price: int = 0) -> void:
 	is_pet_equipment = true
 	pet_item = item.duplicate(true)
 	pet_sale_price = maxi(0, sale_price)
@@ -97,6 +123,7 @@ func setup_pet_equipment(item: Dictionary, sale_price: int = 0) -> void :
 	nam = str(item.get("名字", item.get("名称", data.get("名字", data.get("名称", "宠物装备")))))
 	qh_level = int(item.get("强化等级", data.get("强化等级", 0)))
 
+
 func _pet_merged_data() -> Dictionary:
 	var result: Dictionary = {}
 	var nested: Variant = pet_item.get("Data", {})
@@ -104,6 +131,7 @@ func _pet_merged_data() -> Dictionary:
 		result.merge((nested as Dictionary).duplicate(true), true)
 	result.merge(pet_item, true)
 	return result
+
 
 func _pet_number(source: Dictionary, keys: Array) -> float:
 	for key in keys:
@@ -114,36 +142,60 @@ func _pet_number(source: Dictionary, keys: Array) -> float:
 			return float(value)
 	return 0.0
 
+
 func _pet_number_text(value: float) -> String:
 	if is_equal_approx(value, round(value)):
 		return str(int(round(value)))
 	return str(snappedf(value, 0.01))
 
-func _pet_quality_color(quality: String) -> Color:
-	return {
-		"普通": Color(1, 1, 1), "优秀": Color(0.35, 1, 0.35), 
-		"精良": Color(0.35, 0.7, 1), "史诗": Color(0.78, 0.42, 1), 
-		"邪灵": Color(0.9, 0.3, 0.82), "魂器": Color(1, 0.55, 0.18), 
-		"传说": Color(1, 0.78, 0.18), "神器": Color(1, 0.3, 0.2), 
-		"玄冥": Color(0.3, 0.9, 1), "黑神话": Color(0.6, 0, 0), 
-		"无敌": Color(1, 0.2, 0.2)
-	}.get(quality, Color(1, 1, 1))
 
-func _set_pet_information() -> void :
-	var data: = _pet_merged_data()
-	var item_name: = str(data.get("名字", data.get("名称", nam))).strip_edges()
+func _pet_quality_color(quality: String) -> Color:
+	return (
+		{
+			"普通": Color(1, 1, 1),
+			"优秀": Color(0.35, 1, 0.35),
+			"精良": Color(0.35, 0.7, 1),
+			"史诗": Color(0.78, 0.42, 1),
+			"邪灵": Color(0.9, 0.3, 0.82),
+			"魂器": Color(1, 0.55, 0.18),
+			"传说": Color(1, 0.78, 0.18),
+			"神器": Color(1, 0.3, 0.2),
+			"玄冥": Color(0.3, 0.9, 1),
+			"黑神话": Color(0.6, 0, 0),
+			"无敌": Color(1, 0.2, 0.2)
+		}
+		. get(quality, Color(1, 1, 1))
+	)
+
+
+func _set_pet_information() -> void:
+	var data := _pet_merged_data()
+	var item_name := str(data.get("名字", data.get("名称", nam))).strip_edges()
 	if item_name == "":
 		item_name = "宠物装备"
-	var quality: = str(data.get("品质", "普通"))
+	var quality := str(data.get("品质", "普通"))
 	eq_name.text = "%s(+%d)" % [item_name, qh_level] if qh_level > 0 else item_name
 	eq_pz.text = "品质：%s" % quality
-	var raw_type: = str(data.get("类型", data.get("装备类型", ""))).strip_edges()
-	var slot_name: = str({
-		"zbst": "技能", "zbmz": "衣服", "zbxz": "鞋子", "zbyf": "手套", "zbjn": "帽子", 
-		"技能": "技能", "衣服": "衣服", "鞋子": "鞋子", "手套": "手套", "帽子": "帽子"
-	}.get(raw_type.to_lower(), raw_type))
+	var raw_type := str(data.get("类型", data.get("装备类型", ""))).strip_edges()
+	var slot_name := str(
+		(
+			{
+				"zbst": "技能",
+				"zbmz": "衣服",
+				"zbxz": "鞋子",
+				"zbyf": "手套",
+				"zbjn": "帽子",
+				"技能": "技能",
+				"衣服": "衣服",
+				"鞋子": "鞋子",
+				"手套": "手套",
+				"帽子": "帽子"
+			}
+			. get(raw_type.to_lower(), raw_type)
+		)
+	)
 	eq_lx.text = "类型：宠物装备%s" % ("·" + slot_name if slot_name != "" else "")
-	var display_color: = _pet_quality_color(quality)
+	var display_color := _pet_quality_color(quality)
 	var item_color: Variant = data.get("颜色", display_color)
 	if item_color is Color:
 		display_color = item_color
@@ -161,33 +213,33 @@ func _set_pet_information() -> void :
 		_set_gem_resonance_information(data)
 	var strengthen_value: Variant = data.get("强化属性", {})
 	var strengthen: Dictionary = strengthen_value if strengthen_value is Dictionary else {}
-	var rows: = [
-		[eq_hp, "生命", ["生命", "生命上限", "SHp"]], 
-		[eq_mp, "魔法", ["魔法", "魔力", "魔法上限", "SMp"]], 
-		[eq_power, "攻击", ["攻击", "power"]], 
-		[eq_def, "物防", ["物防", "防御", "Def"]], 
-		[eq_mdef, "魔防", ["魔防", "Mdef"]], 
-		[eq_crit, "暴击", ["暴击", "Crit"]], 
-		[eq_miss, "闪避", ["闪避", "Miss"]], 
-		[eq_ehp, "回血", ["回血", "R_hp"]], 
-		[eq_emp, "回魔", ["回魔", "R_mp"]], 
-		[eq_mz, "命中", ["命中", "Htarget"]], 
-		[eq_lucky, "幸运", ["幸运", "Lucky"]], 
-		[eq_rx, "韧性", ["韧性", "Toughness"]], 
-		[eq_pj, "破甲", ["破甲", "ar"]], 
-		[eq_pm, "破魔", ["破魔", "sp"]], 
-		[eq_xx, "吸血", ["吸血", "vampirism"]], 
+	var rows := [
+		[eq_hp, "生命", ["生命", "生命上限", "SHp"]],
+		[eq_mp, "魔法", ["魔法", "魔力", "魔法上限", "SMp"]],
+		[eq_power, "攻击", ["攻击", "power"]],
+		[eq_def, "物防", ["物防", "防御", "Def"]],
+		[eq_mdef, "魔防", ["魔防", "Mdef"]],
+		[eq_crit, "暴击", ["暴击", "Crit"]],
+		[eq_miss, "闪避", ["闪避", "Miss"]],
+		[eq_ehp, "回血", ["回血", "R_hp"]],
+		[eq_emp, "回魔", ["回魔", "R_mp"]],
+		[eq_mz, "命中", ["命中", "Htarget"]],
+		[eq_lucky, "幸运", ["幸运", "Lucky"]],
+		[eq_rx, "韧性", ["韧性", "Toughness"]],
+		[eq_pj, "破甲", ["破甲", "ar"]],
+		[eq_pm, "破魔", ["破魔", "sp"]],
+		[eq_xx, "吸血", ["吸血", "vampirism"]],
 		[eq_bm, "暴免", ["暴免", "CritReduce"]]
 	]
 	for row in rows:
-		var label: = row[0] as Label
-		var base_value: = _pet_number(data, row[2])
-		var strengthen_total: = _pet_number(strengthen, row[2]) * float(qh_level)
+		var label := row[0] as Label
+		var base_value := _pet_number(data, row[2])
+		var strengthen_total := _pet_number(strengthen, row[2]) * float(qh_level)
 		label.visible = not is_zero_approx(base_value) or not is_zero_approx(strengthen_total)
 		if label.visible:
 			label.text = "%s:%s" % [str(row[1]), _pet_number_text(base_value)]
 			if not is_zero_approx(strengthen_total):
-				var sign: = "+" if strengthen_total > 0.0 else ""
+				var sign := "+" if strengthen_total > 0.0 else ""
 				label.text += "(%s%s)" % [sign, _pet_number_text(strengthen_total)]
 
 	_clear_pet_random_labels()
@@ -201,11 +253,15 @@ func _set_pet_information() -> void :
 			if not (random_entry is Dictionary):
 				continue
 			var random_stat: Dictionary = random_entry
-			var stat_key: = str(random_stat.get("属性", random_stat.get("属性名", random_stat.get("stat", random_stat.get("key", "")))))
-			var stat_name: = str(PET_RANDOM_STAT_NAMES.get(stat_key, stat_key))
-			var base_value: = _pet_value(random_stat.get("数值", random_stat.get("基础值", random_stat.get("value", 0))))
-			var strengthen_per_level: = _pet_value(random_stat.get("强化属性", random_stat.get("强化值", random_stat.get("strength", 0))))
-			var line: = "  %s+%s" % [stat_name, _pet_number_text(base_value)]
+			var stat_key := str(
+				random_stat.get("属性", random_stat.get("属性名", random_stat.get("stat", random_stat.get("key", ""))))
+			)
+			var stat_name := str(PET_RANDOM_STAT_NAMES.get(stat_key, stat_key))
+			var base_value := _pet_value(random_stat.get("数值", random_stat.get("基础值", random_stat.get("value", 0))))
+			var strengthen_per_level := _pet_value(
+				random_stat.get("强化属性", random_stat.get("强化值", random_stat.get("strength", 0)))
+			)
+			var line := "  %s+%s" % [stat_name, _pet_number_text(base_value)]
 			if not is_zero_approx(strengthen_per_level):
 				line += "（强化+%s/级" % _pet_number_text(strengthen_per_level)
 				if qh_level > 0:
@@ -213,7 +269,7 @@ func _set_pet_information() -> void :
 				line += "）"
 			_add_pet_random_label(line)
 
-	var description: = str(data.get("描述", "")).strip_edges()
+	var description := str(data.get("描述", "")).strip_edges()
 	eq_ms.visible = description != ""
 	if eq_ms.visible:
 		eq_ms.text = "描述:%s" % description
@@ -222,16 +278,18 @@ func _set_pet_information() -> void :
 		eq_sj.text = "售价:%d灵魂。" % pet_sale_price
 	call_deferred("_update_pet_popup_background")
 
-func _clear_pet_random_labels() -> void :
+
+func _clear_pet_random_labels() -> void:
 	for label_value in pet_random_labels:
 		if label_value is Label and is_instance_valid(label_value):
 			(label_value as Label).queue_free()
 	pet_random_labels.clear()
 
-func _add_pet_random_label(text_value: String, is_header: = false) -> void :
+
+func _add_pet_random_label(text_value: String, is_header := false) -> void:
 	if v_box_container_3 == null:
 		return
-	var label: = Label.new()
+	var label := Label.new()
 	label.text = text_value
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
@@ -242,6 +300,7 @@ func _add_pet_random_label(text_value: String, is_header: = false) -> void :
 	v_box_container_3.add_child(label)
 	pet_random_labels.append(label)
 
+
 func _pet_value(value: Variant) -> float:
 	if typeof(value) == TYPE_INT or typeof(value) == TYPE_FLOAT:
 		return float(value)
@@ -249,15 +308,16 @@ func _pet_value(value: Variant) -> float:
 		return float(value)
 	return 0.0
 
-func _update_pet_popup_background() -> void :
+
+func _update_pet_popup_background() -> void:
 	if is_pet_equipment and is_instance_valid(color_rect):
-		color_rect.size = $pro_wk / information.size
+		color_rect.size = $pro_wk/information.size
+
 
 func _call_divine_helper(method_names: Array, args: Array):
 	for method_name in method_names:
 		if AE.has_method(method_name):
 			return AE.callv(method_name, args)
-
 
 	if AE.has_method("_get_data"):
 		var data_node = AE.call("_get_data")
@@ -267,15 +327,16 @@ func _call_divine_helper(method_names: Array, args: Array):
 					return data_node.callv(method_name, args)
 	return null
 
+
 func _is_divine_eligible(name_: String, data: Dictionary) -> bool:
 	var template: Dictionary = AE.AllEquipment_.get(name_, {})
-	var item_type: = str(data.get("类型", template.get("类型", "")))
-	var quality: = str(data.get("品质", template.get("品质", "")))
-	var quality_rank: = {
-		"普通": 0, "优秀": 1, "精良": 2, "史诗": 3, "邪灵": 4, 
-		"魂器": 5, "传说": 6, "神器": 7, "玄冥": 8, "黑神话": 9, "无敌": 10
+	var item_type := str(data.get("类型", template.get("类型", "")))
+	var quality := str(data.get("品质", template.get("品质", "")))
+	var quality_rank := {
+		"普通": 0, "优秀": 1, "精良": 2, "史诗": 3, "邪灵": 4, "魂器": 5, "传说": 6, "神器": 7, "玄冥": 8, "黑神话": 9, "无敌": 10
 	}
 	return ["武器", "防具", "饰品"].has(item_type) and int(quality_rank.get(quality, -1)) >= 7
+
 
 func _get_divine_stage(data: Dictionary) -> int:
 	var stage = _call_divine_helper(["get_divine_forge_stage"], [data])
@@ -283,11 +344,13 @@ func _get_divine_stage(data: Dictionary) -> int:
 		stage = data.get("神铸阶段", 0)
 	return clampi(int(stage), 0, 9)
 
+
 func _get_divine_multiplier(name_: String, data: Dictionary) -> float:
 	var multiplier = _call_divine_helper(["get_divine_forge_multiplier"], [name_, data])
 	if multiplier == null:
 		return 1.0 + float(_get_divine_stage(data)) * 0.3 if _is_divine_eligible(name_, data) else 1.0
 	return float(multiplier)
+
 
 func _scale_divine_value(value, name_: String, data: Dictionary):
 	if typeof(value) != TYPE_INT and typeof(value) != TYPE_FLOAT:
@@ -297,25 +360,34 @@ func _scale_divine_value(value, name_: String, data: Dictionary):
 		return scaled
 	return float(value) * _get_divine_multiplier(name_, data)
 
+
 func _get_divine_display_name(name_: String) -> String:
-	var display_name = _call_divine_helper(["get_divine_forge_display_name", "get_equipment_display_name"], [name_, EQ_prop])
+	var display_name = _call_divine_helper(
+		["get_divine_forge_display_name", "get_equipment_display_name"], [name_, EQ_prop]
+	)
 	if display_name != null:
 		return str(display_name)
-	var base_name: = str(EQ_prop.get("名字", AE.AllEquipment_.get(name_, {}).get("名字", name_)))
-	var prefixes: = ["", "一阶·", "二阶·", "三阶·", "四阶·", "五阶·", "六阶·", "七阶·", "八阶·", "九阶·"]
+	var base_name := str(EQ_prop.get("名字", AE.AllEquipment_.get(name_, {}).get("名字", name_)))
+	var prefixes := ["", "一阶·", "二阶·", "三阶·", "四阶·", "五阶·", "六阶·", "七阶·", "八阶·", "九阶·"]
 	return prefixes[_get_divine_stage(EQ_prop)] + base_name if _is_divine_eligible(name_, EQ_prop) else base_name
 
-func _get_divine_properties(name_: String, level: int, data: Dictionary, include_gems: = false) -> Dictionary:
-	var properties = _call_divine_helper(["get_divine_forge_properties", "get_divine_forge_props"], [name_, level, data, include_gems])
+
+func _get_divine_properties(name_: String, level: int, data: Dictionary, include_gems := false) -> Dictionary:
+	var properties = _call_divine_helper(
+		["get_divine_forge_properties", "get_divine_forge_props"], [name_, level, data, include_gems]
+	)
 	if properties is Dictionary:
 		return properties
 	return {}
 
+
 func _get_divine_gem_properties(name_: String, data: Dictionary) -> Dictionary:
-	var properties = _call_divine_helper(["get_divine_forge_gem_properties", "get_divine_forge_gem_props"], [name_, data])
+	var properties = _call_divine_helper(
+		["get_divine_forge_gem_properties", "get_divine_forge_gem_props"], [name_, data]
+	)
 	if properties is Dictionary:
 		return properties
-	var result: = {}
+	var result := {}
 	for property_name in DIVINE_PROPERTY_NAMES:
 		result[property_name] = 0
 	if not data.has("宝石") or not data["宝石"] is Array:
@@ -327,16 +399,19 @@ func _get_divine_gem_properties(name_: String, data: Dictionary) -> Dictionary:
 				result[property_name] += AE.scale_gem_resonance_value(gem_data[property_name], data)
 	return result
 
-func _ready() -> void :
+
+func _ready() -> void:
 	self.modulate = Color(1, 1, 1, 0)
-func _physics_process(_delta: float) -> void :
+
+
+func _physics_process(_delta: float) -> void:
 	if get_parent().get_script() != null and get_parent().get_script().resource_path.ends_with("BackPack.gdc"):
 		if self.position.y + color_rect.size.y >= 320:
 			self.position.y = 320 - color_rect.size.y
 		if self.position.x + color_rect.size.x >= 495:
 			self.position.x = 270 - color_rect.size.x
 	elif get_parent() == Global.Windows_:
-		var viewport_size: = get_viewport().get_visible_rect().size
+		var viewport_size := get_viewport().get_visible_rect().size
 		if self.position.y + color_rect.size.y >= viewport_size.y:
 			self.position.y = viewport_size.y - color_rect.size.y - 8.0
 		if self.position.x + color_rect.size.x >= viewport_size.x:
@@ -346,7 +421,7 @@ func _physics_process(_delta: float) -> void :
 		if self.position.y < 8.0:
 			self.position.y = 8.0
 	if is_pet_equipment:
-		color_rect.size = $pro_wk / information.size
+		color_rect.size = $pro_wk/information.size
 		if not is_set:
 			create_tween().tween_property(self, "modulate", Color(1, 1, 1, 1), 0.2)
 			_set_pet_information()
@@ -354,7 +429,7 @@ func _physics_process(_delta: float) -> void :
 		return
 	if nam == "empty":
 		return
-	color_rect.size = $pro_wk / information.size
+	color_rect.size = $pro_wk/information.size
 	if BsProList != null:
 		if EQ_prop != {}:
 			if EQ_prop.has("宝石"):
@@ -373,6 +448,8 @@ func _physics_process(_delta: float) -> void :
 			if BsProList != null:
 				BsProList.queue_free()
 		is_set = true
+
+
 func set_some_pro_color(name_):
 	if str(AE.AllEquipment_[name_].get("品质", "")) == "黑神话":
 		_apply_black_myth_text_style(eq_name)
@@ -383,8 +460,11 @@ func set_some_pro_color(name_):
 	eq_pz.add_theme_color_override("font_color", AE.AllEquipment_[name_]["颜色"])
 	eq_pz.add_theme_color_override("font_outline_color", AE.AllEquipment_[name_]["颜色"])
 
-func _apply_black_myth_text_style(label: Label) -> void :
+
+func _apply_black_myth_text_style(label: Label) -> void:
 	label.add_theme_color_override("font_color", Color(0.6, 0.0, 0.0, 1.0))
+
+
 func set_information_(name_: String):
 	if AE.AllEquipment_[name_]["类型"] == "道具" or AE.AllEquipment_[name_]["类型"] == "消耗品":
 		eq_name.text = str(AE.AllEquipment_[name_]["名字"])
@@ -597,6 +677,7 @@ func set_information_(name_: String):
 			if get_properies(name_, "CritReduce")[0] == 0 and eq_bm != null:
 				eq_bm.queue_free()
 
+
 func setBsInfor():
 	if not is_pet_equipment and str(AE.AllEquipment_.get(nam, {}).get("类型", "")) == "法宝":
 		BsProList.hide()
@@ -611,11 +692,22 @@ func setBsInfor():
 		return
 
 	var prop_names = {
-		"SHp": "生命", "SMp": "魔力", "power": "攻击", 
-		"Def": "防御", "Mdef": "魔防", "Crit": "暴击", 
-		"Miss": "闪避", "R_hp": "回血", "R_mp": "回魔", 
-		"Htarget": "命中", "Lucky": "幸运", "Toughness": "韧性", 
-		"ar": "破甲", "sp": "破魔", "vampirism": "吸血", "CritReduce": "暴免"
+		"SHp": "生命",
+		"SMp": "魔力",
+		"power": "攻击",
+		"Def": "防御",
+		"Mdef": "魔防",
+		"Crit": "暴击",
+		"Miss": "闪避",
+		"R_hp": "回血",
+		"R_mp": "回魔",
+		"Htarget": "命中",
+		"Lucky": "幸运",
+		"Toughness": "韧性",
+		"ar": "破甲",
+		"sp": "破魔",
+		"vampirism": "吸血",
+		"CritReduce": "暴免"
 	}
 
 	var equipment_data_source: Node = AE._get_data()
@@ -627,7 +719,24 @@ func setBsInfor():
 		var gem_name = gem_data.get("名字", str(i))
 
 		var props_text = ""
-		for u in ["SHp", "SMp", "power", "Def", "Mdef", "Crit", "Miss", "R_hp", "R_mp", "Htarget", "Lucky", "Toughness", "ar", "sp", "vampirism", "CritReduce"]:
+		for u in [
+			"SHp",
+			"SMp",
+			"power",
+			"Def",
+			"Mdef",
+			"Crit",
+			"Miss",
+			"R_hp",
+			"R_mp",
+			"Htarget",
+			"Lucky",
+			"Toughness",
+			"ar",
+			"sp",
+			"vampirism",
+			"CritReduce"
+		]:
 			if gem_data.has(u) and gem_data[u] != 0:
 				var display_name = prop_names.get(u, u)
 				var scaled_value = equipment_data_source.scale_gem_resonance_value(gem_data[u], EQ_prop)
@@ -651,13 +760,14 @@ func setBsInfor():
 		label.text = gem_name + " " + props_text
 		hbox.add_child(label)
 
-func _set_gem_resonance_information(data: Dictionary) -> void :
+
+func _set_gem_resonance_information(data: Dictionary) -> void:
 	var gems: Variant = data.get("宝石", null)
 	if not gems is Array:
 		return
-	var resonance: = AE.get_gem_resonance_level(data)
-	var container: = BsProList.get_parent()
-	var label: = container.get_node_or_null("GemResonance") as Label
+	var resonance := AE.get_gem_resonance_level(data)
+	var container := BsProList.get_parent()
+	var label := container.get_node_or_null("GemResonance") as Label
 	if label == null:
 		label = Label.new()
 		label.name = "GemResonance"
@@ -672,6 +782,8 @@ func _set_gem_resonance_information(data: Dictionary) -> void :
 		label.text = "宝石共鸣：%d级\n宝石属性加成：+%d%%" % [resonance, resonance * 15]
 	else:
 		label.text = "宝石共鸣：未开启（%d/8）" % gems.size()
+
+
 func get_bs_prop(need):
 	if set_BsProp() == {}:
 		return 0
@@ -691,6 +803,7 @@ func set_BsProp():
 		return {}
 	return Bs_prop
 
+
 func get_properies(name_, need):
 	var Num
 	var infomation
@@ -707,7 +820,6 @@ func get_properies(name_, need):
 	else:
 		Num = infomation
 
-
 		var strengthen_val = 0
 		if EQ_prop.has("强化属性") and EQ_prop["强化属性"].has(need):
 			strengthen_val = EQ_prop["强化属性"][need]
@@ -722,21 +834,29 @@ func get_properies(name_, need):
 		)
 		infomation = str(scaled_base)
 		if qh_level > 0 and strengthen_val != 0:
-			var sign: = "+" if float(scaled_strength) >= 0.0 else ""
+			var sign := "+" if float(scaled_strength) >= 0.0 else ""
 			infomation += "(" + sign + str(scaled_strength) + ")"
 	return [Num, infomation]
+
+
 func get_last_equ_pro(_name_, qh_level_):
 	if EQ_prop == null:
 		return
 	return AE._get_data().get_divine_forge_properties(_name_, qh_level_, EQ_prop)
+
+
 func get_name_():
 	var name_ = str(self.get_parent().get_item_name)
 	return name_
+
+
 func get_wx():
 	var a = ""
 	for i in wx:
 		a = a + str(i)
 	return a
+
+
 func get_fb_pro(name_, need):
 	var infomation = AE.get_fb_last_equ_pro(name_, qh_level, wx, EQ_prop)[need]
 	return infomation

@@ -1,16 +1,13 @@
 extends BaseMonster
 class_name Monster1405
 
-
 var ShouldFly: bool
 var IsCall: bool
 var OnsetEatblood: bool
 var RemoveBlood: bool
 
 
-
 func monster_1405():
-
 	self.rush_speed = 520
 	self.is_boss = true
 	self.my_mr_name = "魔王吕岳"
@@ -39,87 +36,73 @@ func monster_1405():
 	self.ebol = 0
 
 	self.objattackDic["hit1"] = {
-		"power": 750, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 750,
+		"hurtBack": [-8, -12],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 700, 
-		"hurtBack": [-6, -10], 
-		"attackKind": "real", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "MagicDrain", 
-			"AddTime": 3.0, 
-			"ReduceInterval": 1.0, 
-			"value": 0, 
-			"CanAdd": false, 
+		"power": 700,
+		"hurtBack": [-6, -10],
+		"attackKind": "real",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "MagicDrain",
+			"AddTime": 3.0,
+			"ReduceInterval": 1.0,
+			"value": 0,
+			"CanAdd": false,
 			"AttackKind": "control"
 		}
 	}
 
 	self.objattackDic["hit3"] = {
-		"power": 400, 
-		"hurtBack": [-6, -10], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "poision", 
-			"AddTime": 3, 
-			"ReduceInterval": 1, 
-			"value": 300, 
-			"CanAdd": true, 
-			"AttackKind": "real", 
+		"power": 400,
+		"hurtBack": [-6, -10],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "poision",
+			"AddTime": 3,
+			"ReduceInterval": 1,
+			"value": 300,
+			"CanAdd": true,
+			"AttackKind": "real",
 		}
 	}
 
 	self.objattackDic["hit4"] = {
-		"power": 400, 
-		"hurtBack": [-6, -10], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "poision", 
-			"AddTime": 3, 
-			"ReduceInterval": 1, 
-			"value": 400, 
-			"CanAdd": true, 
-			"AttackKind": "real", 
+		"power": 400,
+		"hurtBack": [-6, -10],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "poision",
+			"AddTime": 3,
+			"ReduceInterval": 1,
+			"value": 400,
+			"CanAdd": true,
+			"AttackKind": "real",
 		}
 	}
 
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "slshgzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "slfmzzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "slhlqzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "slxjczzs", 
-			"value": 1
-		}, 
-		{
-			"name": "sllypzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "240007005zzs", 
-			"value": 1
-		}, 
+		{"name": "slshgzzs", "value": 1},
+		{"name": "slfmzzzs", "value": 1},
+		{"name": "slhlqzzs", "value": 1},
+		{"name": "slxjczzs", "value": 1},
+		{"name": "sllypzzs", "value": 1},
+		{"name": "240007005zzs", "value": 1},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_1405()
 
@@ -160,7 +143,8 @@ func Monster_Intelligence():
 
 
 func do_hit_1():
-	if Skill_1_CD > 0 or is_attacking: return
+	if Skill_1_CD > 0 or is_attacking:
+		return
 	super.to_hero()
 	Skill_1_CD = 2
 	hit_name = "hit1"
@@ -170,6 +154,7 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
 
 func do_hit_2():
 	super.to_hero()
@@ -182,6 +167,7 @@ func do_hit_2():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_3():
 	super.to_hero()
 	Skill_3_CD = randi_range(15, 20)
@@ -192,6 +178,7 @@ func do_hit_3():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
 
 func do_hit_4():
 	super.to_hero()
@@ -211,19 +198,22 @@ func CallBullet2():
 
 	var player = get_Player if get_Player else null
 
-
 	for i in PositionList1:
-		var bullet = Global.add_Bullet("Monster1405Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
+		var bullet = Global.add_Bullet(
+			"Monster1405Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"]
+		)
 		if bullet and player:
 			await get_tree().create_timer(0.6, false).timeout
 			bullet.look_at(player.position)
-
 
 	for i in PositionList2:
-		var bullet = Global.add_Bullet("Monster1405Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
+		var bullet = Global.add_Bullet(
+			"Monster1405Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"]
+		)
 		if bullet and player:
 			await get_tree().create_timer(0.6, false).timeout
 			bullet.look_at(player.position)
+
 
 func CallBullet3():
 	var PositionList1 = [Vector2(position.x, position.y - 20), Vector2(position.x, position.y + 20)]
@@ -233,46 +223,50 @@ func CallBullet3():
 
 	var player = get_Player if get_Player else null
 
-
 	for i in PositionList1:
-		var bullet = Global.add_Bullet("Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
+		var bullet = Global.add_Bullet(
+			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
+		)
 		if bullet and player:
 			bullet.look_at(player.position)
 	await get_tree().create_timer(0.2, false).timeout
-
 
 	for i in PositionList2:
-		var bullet = Global.add_Bullet("Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
+		var bullet = Global.add_Bullet(
+			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
+		)
 		if bullet and player:
 			bullet.look_at(player.position)
 	await get_tree().create_timer(0.2, false).timeout
-
 
 	for i in PositionList3:
-		var bullet = Global.add_Bullet("Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
+		var bullet = Global.add_Bullet(
+			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
+		)
 		if bullet and player:
 			bullet.look_at(player.position)
 	await get_tree().create_timer(0.2, false).timeout
-
 
 	for i in PositionList4:
-		var bullet = Global.add_Bullet("Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
+		var bullet = Global.add_Bullet(
+			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
+		)
 		if bullet and player:
 			bullet.look_at(player.position)
 	await get_tree().create_timer(0.2, false).timeout
+
 
 func ADDFire():
 	Global.add_Bullet("Monster1405Bullet4", self, false, 1, Vector2(-20, -50), "hit4", self.objattackDic["hit4"])
 
 	var player = RoleProp.SourcePlayer
 	var stun_effect = {
-		"Name": "DeadLink", 
-		"AddTime": 7, 
-		"ReduceInterval": 0, 
-		"value": 0, 
-		"DeBuff": true, 
-		"AttackKind": "", 
+		"Name": "DeadLink",
+		"AddTime": 7,
+		"ReduceInterval": 0,
+		"value": 0,
+		"DeBuff": true,
+		"AttackKind": "",
 	}
-
 
 	Global.AddBuff(player.buff, stun_effect)

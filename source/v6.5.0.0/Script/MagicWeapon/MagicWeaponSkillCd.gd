@@ -8,15 +8,20 @@ class_name mgcd
 var SkillName: String
 var MaxTime: float
 var Iszhenfa: bool
-var _last_icon_key: = ""
+var _last_icon_key := ""
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	if SkillName != null and SkillName != "":
-		var icon_key: = str(SkillName) + ":" + str(Iszhenfa)
+		var icon_key := str(SkillName) + ":" + str(Iszhenfa)
 		if _last_icon_key != icon_key:
 			_last_icon_key = icon_key
-			var icon_path: = "res://Art/TwentyEightConstellations/" + str(SkillName) + ".png" if Iszhenfa else "res://Art/MagicWeapon/Skill_Icon/" + str(SkillName) + ".png"
-			var icon_texture: = Global.get_cached_texture(icon_path)
+			var icon_path := (
+				"res://Art/TwentyEightConstellations/" + str(SkillName) + ".png"
+				if Iszhenfa
+				else "res://Art/MagicWeapon/Skill_Icon/" + str(SkillName) + ".png"
+			)
+			var icon_texture := Global.get_cached_texture(icon_path)
 			skillicon.texture = icon_texture
 			pic_box.texture_progress = icon_texture
 		if MaxTime > 0:
@@ -33,9 +38,10 @@ func _physics_process(delta: float) -> void :
 			time_text.text = str(snapped(last_time.time_left, 0.1))
 		pic_box.value = last_time.time_left / float(MaxTime)
 
-func _on_last_time_timeout() -> void :
+
+func _on_last_time_timeout() -> void:
 	MaxTime = 0
 
 
-func _on_mouse_entered() -> void :
+func _on_mouse_entered() -> void:
 	pass

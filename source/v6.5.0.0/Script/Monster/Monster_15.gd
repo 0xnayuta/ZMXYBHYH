@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster15
+
+
 func monster_15():
 	self.is_boss = false
 	self.my_mr_name = "蟹将"
@@ -26,34 +28,36 @@ func monster_15():
 	self.add_exp = 35
 	self.fall_coin = 10
 	self.objattackDic["hit1"] = {
-		"power": 30, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics", 
+		"power": 30,
+		"hurtBack": [-4, -9],
+		"attackKind": "physics",
 	}
 	self.objattackDic["qlzg"] = {
-		"power": 40, 
-		"hurtBack": [0, 0], 
-		"attackKind": "physics", 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 0.5, 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": 40,
+		"hurtBack": [0, 0],
+		"attackKind": "physics",
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 0.5,
+			"CanAdd": false,
+			"DeBuff": true,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
 		}
 	}
 	self.fall_pro = 0.0
-	self.fall_list = [
-	]
+	self.fall_list = []
 	self.fall_stone_pro = 0
-	self.fall_stone = [
-	]
-func _ready() -> void :
+	self.fall_stone = []
+
+
+func _ready() -> void:
 	super._ready()
 	monster_15()
 	Skill_1_CD = 0
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -82,6 +86,8 @@ func Monster_Intelligence():
 						attack_target()
 					else:
 						stop_move()
+
+
 func do_hit_2():
 	Skill_1_CD = 9
 	hit_name = "qlzg"
@@ -90,6 +96,8 @@ func do_hit_2():
 	mr_player.play("qlzg")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func call_boom():
 	var po = self.position
 	Global.add_Bullet("Monster15Bullet", self.bullet, self.MonsterDirection, 0.7, po, "qlzg", self.objattackDic["qlzg"])

@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster73
+
+
 func monster_73():
 	self.is_Fly = true
 	self.is_boss = false
@@ -26,18 +28,18 @@ func monster_73():
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
-		"power": 1 + RoleProp.roleprop.SHp * 0.04, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "real"
-	}
+	self.objattackDic["hit1"] = {"power": 1 + RoleProp.roleprop.SHp * 0.04, "hurtBack": [-4, -9], "attackKind": "real"}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0.0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_73()
+
+
 func attack_target():
 	velocity.x = 0
 	velocity.y = 40

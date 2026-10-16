@@ -2,6 +2,8 @@ extends BaseMonster
 class_name Monster23
 var boss_3
 var up_power = 1
+
+
 func monster_23():
 	if get_parent().get_parent() is LevelNMGHDGQ:
 		self.is_boss = true
@@ -29,41 +31,31 @@ func monster_23():
 		self.add_exp = 0
 		self.fall_coin = 200
 		self.objattackDic["hit1"] = {
-			"power": int(250 * up_power), 
-			"hurtBack": [-4, -9], 
-			"attackKind": "physics", 
+			"power": int(250 * up_power),
+			"hurtBack": [-4, -9],
+			"attackKind": "physics",
 		}
-		self.objattackDic["whs"] = {
-			"power": int(500 * up_power), 
-			"hurtBack": [-4, -15], 
-			"attackKind": "magic"
-		}
-		self.objattackDic["ryzj"] = {
-			"power": int(500 * up_power), 
-			"hurtBack": [-6, 0], 
-			"attackKind": "magic"
-		}
+		self.objattackDic["whs"] = {"power": int(500 * up_power), "hurtBack": [-4, -15], "attackKind": "magic"}
+		self.objattackDic["ryzj"] = {"power": int(500 * up_power), "hurtBack": [-6, 0], "attackKind": "magic"}
 		self.objattackDic["mncz"] = {
-			"power": int(1500 * up_power), 
-			"hurtBack": [-15, 0], 
-			"attackKind": "magic", 
-			"addeffect": {
-				"Name": "stun", 
-				"AddTime": 10, 
-				"CanAdd": true, 
-				"DeBuff": true, 
-				"DeRemove": false, 
-				"ReduceInterval": 0.5, 
-				"value": 0, 
-				"AttackKind": "", 
+			"power": int(1500 * up_power),
+			"hurtBack": [-15, 0],
+			"attackKind": "magic",
+			"addeffect":
+			{
+				"Name": "stun",
+				"AddTime": 10,
+				"CanAdd": true,
+				"DeBuff": true,
+				"DeRemove": false,
+				"ReduceInterval": 0.5,
+				"value": 0,
+				"AttackKind": "",
 			}
 		}
 		self.fall_pro = 0.5
 		self.fall_list = [
-			{
-				"name": "nmwdnhsp", 
-				"value": 3
-			}, 
+			{"name": "nmwdnhsp", "value": 3},
 		]
 		self.fall_stone_pro = 0
 		self.fall_stone = []
@@ -93,51 +85,45 @@ func monster_23():
 	self.add_exp = 0
 	self.fall_coin = 200
 	self.objattackDic["hit1"] = {
-		"power": int(150 * up_power), 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics", 
+		"power": int(150 * up_power),
+		"hurtBack": [-4, -9],
+		"attackKind": "physics",
 	}
-	self.objattackDic["whs"] = {
-		"power": int(200 * up_power), 
-		"hurtBack": [-4, -15], 
-		"attackKind": "magic"
-	}
-	self.objattackDic["ryzj"] = {
-		"power": int(100 * up_power), 
-		"hurtBack": [-6, 0], 
-		"attackKind": "magic"
-	}
+	self.objattackDic["whs"] = {"power": int(200 * up_power), "hurtBack": [-4, -15], "attackKind": "magic"}
+	self.objattackDic["ryzj"] = {"power": int(100 * up_power), "hurtBack": [-6, 0], "attackKind": "magic"}
 	self.objattackDic["mncz"] = {
-		"power": int(300 * up_power), 
-		"hurtBack": [-15, 0], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 5, 
-			"CanAdd": true, 
-			"DeBuff": true, 
-			"ReduceInterval": 0.5, 
-			"value": 20, 
-			"AttackKind": "magic", 
+		"power": int(300 * up_power),
+		"hurtBack": [-15, 0],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 5,
+			"CanAdd": true,
+			"DeBuff": true,
+			"ReduceInterval": 0.5,
+			"value": 20,
+			"AttackKind": "magic",
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "nmwdnhsp", 
-			"value": 3
-		}, 
+		{"name": "nmwdnhsp", "value": 3},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	monster_23()
 	super._ready()
 	start_spawn_damage_protection()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
 	Skill_3_CD = 0
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if self.Hp <= 0:
 		var par = get_parent().get_parent()
@@ -151,8 +137,9 @@ func _physics_process(delta: float) -> void :
 				boss_3 = Global.Create_Monster(24, get_parent(), po) as Monster24
 				var BaseLevel_ = get_parent().get_parent() as BaseLevel
 				BaseLevel_.MonsterArray.push_back(boss_3)
-func Monster_Intelligence():
 
+
+func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
@@ -169,11 +156,20 @@ func Monster_Intelligence():
 					else:
 						stop_move()
 			else:
-				if Skill_1_CD <= 0 and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 180:
+				if (
+					Skill_1_CD <= 0
+					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 180
+				):
 					do_hit_2()
-				elif Skill_2_CD <= 0 and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 300:
+				elif (
+					Skill_2_CD <= 0
+					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 300
+				):
 					do_hit_3()
-				elif Skill_3_CD <= 0 and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 280:
+				elif (
+					Skill_3_CD <= 0
+					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 280
+				):
 					do_hit_4()
 				else:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
@@ -184,6 +180,8 @@ func Monster_Intelligence():
 								attack_target()
 						else:
 							stop_move()
+
+
 func do_hit_2():
 	Skill_1_CD = 12
 	hit_name = "whs"
@@ -192,6 +190,8 @@ func do_hit_2():
 	mr_player.play("whs")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func do_hit_3():
 	Skill_2_CD = 20
 	hit_name = "mncz"
@@ -200,6 +200,8 @@ func do_hit_3():
 	mr_player.play("mncz")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func do_hit_4():
 	Skill_3_CD = 18
 	hit_name = "ryzj"
@@ -208,12 +210,16 @@ func do_hit_4():
 	mr_player.play("ryzj")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func speed_up():
 	velocity.x = 0
 	if self.MonsterDirection:
 		velocity.x = 1000
 	else:
 		velocity.x = -1000
+
+
 func self_cure():
 	cure_hp((self.SHp - Hp) * 0.02)
 	if up_power < 10:
@@ -222,62 +228,48 @@ func self_cure():
 		up_power = 10
 	if get_parent().get_parent() is LevelNMGHDGQ:
 		self.objattackDic["hit1"] = {
-			"power": int(250 * up_power), 
-			"hurtBack": [-4, -9], 
-			"attackKind": "physics", 
+			"power": int(250 * up_power),
+			"hurtBack": [-4, -9],
+			"attackKind": "physics",
 		}
-		self.objattackDic["whs"] = {
-			"power": int(500 * up_power), 
-			"hurtBack": [-4, -15], 
-			"attackKind": "magic"
-		}
-		self.objattackDic["ryzj"] = {
-			"power": int(500 * up_power), 
-			"hurtBack": [-6, 0], 
-			"attackKind": "magic"
-		}
+		self.objattackDic["whs"] = {"power": int(500 * up_power), "hurtBack": [-4, -15], "attackKind": "magic"}
+		self.objattackDic["ryzj"] = {"power": int(500 * up_power), "hurtBack": [-6, 0], "attackKind": "magic"}
 		self.objattackDic["mncz"] = {
-			"power": int(1500 * up_power), 
-			"hurtBack": [-15, 0], 
-			"attackKind": "magic", 
-			"addeffect": {
-				"Name": "stun", 
-				"AddTime": 10, 
-				"CanAdd": true, 
-				"DeBuff": true, 
-				"DeRemove": false, 
-				"ReduceInterval": 0.5, 
-				"value": 0, 
-				"AttackKind": "", 
+			"power": int(1500 * up_power),
+			"hurtBack": [-15, 0],
+			"attackKind": "magic",
+			"addeffect":
+			{
+				"Name": "stun",
+				"AddTime": 10,
+				"CanAdd": true,
+				"DeBuff": true,
+				"DeRemove": false,
+				"ReduceInterval": 0.5,
+				"value": 0,
+				"AttackKind": "",
 			}
 		}
 		return
 	self.objattackDic["hit1"] = {
-		"power": int(150 * up_power), 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics", 
+		"power": int(150 * up_power),
+		"hurtBack": [-4, -9],
+		"attackKind": "physics",
 	}
-	self.objattackDic["whs"] = {
-		"power": int(200 * up_power), 
-		"hurtBack": [-4, -15], 
-		"attackKind": "magic"
-	}
-	self.objattackDic["ryzj"] = {
-		"power": int(100 * up_power), 
-		"hurtBack": [-6, 0], 
-		"attackKind": "magic"
-	}
+	self.objattackDic["whs"] = {"power": int(200 * up_power), "hurtBack": [-4, -15], "attackKind": "magic"}
+	self.objattackDic["ryzj"] = {"power": int(100 * up_power), "hurtBack": [-6, 0], "attackKind": "magic"}
 	self.objattackDic["mncz"] = {
-		"power": int(300 * up_power), 
-		"hurtBack": [-15, 0], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 5, 
-			"CanAdd": true, 
-			"DeBuff": true, 
-			"ReduceInterval": 0.5, 
-			"value": 20, 
-			"AttackKind": "magic", 
+		"power": int(300 * up_power),
+		"hurtBack": [-15, 0],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 5,
+			"CanAdd": true,
+			"DeBuff": true,
+			"ReduceInterval": 0.5,
+			"value": 20,
+			"AttackKind": "magic",
 		}
 	}

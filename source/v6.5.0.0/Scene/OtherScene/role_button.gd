@@ -4,7 +4,7 @@ var MyFather
 @onready var role_name: Label = $RoleName
 
 
-func _physics_process(delta: float) -> void :
+func _physics_process(delta: float) -> void:
 	self.set_button_icon(load("res://Art/MainGame/ChoosePlayer/" + str(MyName) + ".png"))
 	match MyName:
 		"swk":
@@ -20,9 +20,8 @@ func _physics_process(delta: float) -> void :
 	set_physics_process(false)
 
 
-
-func _on_pressed() -> void :
-	var role_id: = 0
+func _on_pressed() -> void:
+	var role_id := 0
 	match MyName:
 		"swk":
 			role_id = 1

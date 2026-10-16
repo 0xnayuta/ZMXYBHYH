@@ -1,43 +1,46 @@
 extends BaseLevel
 class_name Level45
 
-@onready var stop_left: CollisionShape2D = $wall / stop_left
-@onready var stop_right: CollisionShape2D = $wall / stop_right
-@onready var stop_1: CollisionShape2D = $wall / stop1
-@onready var stop_2: CollisionShape2D = $wall / stop2
-@onready var stop_3: CollisionShape2D = $wall / stop3
+@onready var stop_left: CollisionShape2D = $wall/stop_left
+@onready var stop_right: CollisionShape2D = $wall/stop_right
+@onready var stop_1: CollisionShape2D = $wall/stop1
+@onready var stop_2: CollisionShape2D = $wall/stop2
+@onready var stop_3: CollisionShape2D = $wall/stop3
 
-func _ready() -> void :
+
+func _ready() -> void:
 	Global.CurrentLevel = "绝境宫"
 	Global.addBGM_(self, "res://Music/level/10_bg4.mp3")
 	self.level_stage = 47
 	Global.GameOver = 1
 	super._ready()
 	Monster_group = {
-		"stage_1": [118, 118, 118, 118, 118, 118], 
-		"stage_2": [118, 118, 118, 118, 118, 118], 
-		"stage_3": [118, 118, 118, 118, 118, 118], 
-		"stage_4": [215], 
+		"stage_1": [118, 118, 118, 118, 118, 118],
+		"stage_2": [118, 118, 118, 118, 118, 118],
+		"stage_3": [118, 118, 118, 118, 118, 118],
+		"stage_4": [215],
 	}
 	Monster_position_x = {
-		"stage_1": [350, 900, 450, 850, 550, 800], 
-		"stage_2": [1750, 2200, 1850, 2150, 1950, 2100], 
-		"stage_3": [2850, 3500, 3000, 3450, 3150, 3400], 
-		"stage_4": [4300], 
+		"stage_1": [350, 900, 450, 850, 550, 800],
+		"stage_2": [1750, 2200, 1850, 2150, 1950, 2100],
+		"stage_3": [2850, 3500, 3000, 3450, 3150, 3400],
+		"stage_4": [4300],
 	}
 	Monster_position_y = {
-		"stage_1": [300, 300, 300, 300, 300, 300], 
-		"stage_2": [300, 300, 300, 300, 300, 300], 
-		"stage_3": [300, 300, 300, 300, 300, 300], 
-		"stage_4": [300], 
+		"stage_1": [300, 300, 300, 300, 300, 300],
+		"stage_2": [300, 300, 300, 300, 300, 300],
+		"stage_3": [300, 300, 300, 300, 300, 300],
+		"stage_4": [300],
 	}
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if role_information != null and role_information.gogo != null:
 		role_information.gogo.visible = current_stage >= 1 and current_stage < 4 and check_can_pass()
 
-func set_through() -> void :
+
+func set_through() -> void:
 	if current_stage == 1:
 		if check_can_pass():
 			stop_1.disabled = true

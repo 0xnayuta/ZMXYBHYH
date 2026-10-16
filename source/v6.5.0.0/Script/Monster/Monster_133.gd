@@ -2,6 +2,8 @@ extends BaseMonster
 class_name Monster133
 var MyParent: Monster132
 var DeathCount: int = 900
+
+
 func monster_133():
 	self.CannotAttract = true
 	self.is_boss = false
@@ -30,19 +32,23 @@ func monster_133():
 	self.add_exp = 0
 	self.fall_coin = 0
 	self.objattackDic["hit1"] = {
-		"power": 150, 
-		"hurtBack": [-4, -7], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 150,
+		"hurtBack": [-4, -7],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_133()
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	if MyParent != null:
 		self.objattackDic["hit1"] = MyParent.objattackDic["hit1"]
 	else:
@@ -53,6 +59,8 @@ func _physics_process(delta: float) -> void :
 	DeathCount -= 1
 	if DeathCount <= 0:
 		Hp = -10
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true

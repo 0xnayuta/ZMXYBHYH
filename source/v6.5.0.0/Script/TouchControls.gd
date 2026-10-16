@@ -11,14 +11,35 @@ var is_android: bool = false
 var _ui_check_elapsed: float = 0.0
 var _control_scene: PackedScene = null
 
-const CONTROL_SCENE: = "res://Scene/Tools/set_com.tscn"
-const UI_CHECK_INTERVAL: = 0.12
-const TOUCH_ACTIONS: = ["move_left", "move_right", "down", "Exit", "normalhit", "jump", "slz", "lys", "lyfb", "hmz", "hytj", "MagicWeapon", "无双", "阵法", "MDS", "backpack", "技能", "法宝"]
+const CONTROL_SCENE := "res://Scene/Tools/set_com.tscn"
+const UI_CHECK_INTERVAL := 0.12
+const TOUCH_ACTIONS := [
+	"move_left",
+	"move_right",
+	"down",
+	"Exit",
+	"normalhit",
+	"jump",
+	"slz",
+	"lys",
+	"lyfb",
+	"hmz",
+	"hytj",
+	"MagicWeapon",
+	"无双",
+	"阵法",
+	"MDS",
+	"backpack",
+	"技能",
+	"法宝"
+]
+
 
 func _ready():
 	process_mode = PROCESS_MODE_ALWAYS
 
-func _process(delta: float) -> void :
+
+func _process(delta: float) -> void:
 	if settings_mode:
 		return
 
@@ -38,7 +59,7 @@ func _process(delta: float) -> void :
 		return
 	_ui_check_elapsed = 0.0
 
-	var ui_open: = _has_ui_open()
+	var ui_open := _has_ui_open()
 	if path != last_scene_path or ui_open != last_ui_open:
 		last_scene_path = path
 		last_ui_open = ui_open
@@ -48,9 +69,23 @@ func _process(delta: float) -> void :
 		elif ui_open and controls_initialized:
 			_clear_controls()
 
+
 func _has_ui_open() -> bool:
-	var ui_names = ["BackPack", "Main_Backpack", "zd_skill", "bd_skill", "SkillKeySet", "Set_Menu", "Learn_skill", "UseMagicWeapon", "MagicWeaponInfor", "MagicHelp", "SetCom"]
+	var ui_names = [
+		"BackPack",
+		"Main_Backpack",
+		"zd_skill",
+		"bd_skill",
+		"SkillKeySet",
+		"Set_Menu",
+		"Learn_skill",
+		"UseMagicWeapon",
+		"MagicWeaponInfor",
+		"MagicHelp",
+		"SetCom"
+	]
 	return _find_ui_node(get_tree().root, ui_names)
+
 
 func _find_ui_node(node: Node, names: Array) -> bool:
 	for uname in names:
@@ -63,8 +98,9 @@ func _find_ui_node(node: Node, names: Array) -> bool:
 			return true
 	return false
 
+
 func _init_controls(is_set_mode: bool):
-	var scene: = _get_control_scene()
+	var scene := _get_control_scene()
 	if scene == null:
 		push_warning("TouchControls: mobile control scene not found")
 		return
@@ -72,11 +108,13 @@ func _init_controls(is_set_mode: bool):
 	_set_if_has_property(cn, "isSet", is_set_mode)
 	add_child(cn)
 
-func _set_if_has_property(obj: Object, prop_name: String, value) -> void :
+
+func _set_if_has_property(obj: Object, prop_name: String, value) -> void:
 	for p in obj.get_property_list():
 		if str(p.get("name", "")) == prop_name:
 			obj.set(prop_name, value)
 			return
+
 
 func _clear_controls():
 	_release_touch_actions()
@@ -84,10 +122,12 @@ func _clear_controls():
 		child.queue_free()
 	controls_initialized = false
 
+
 func _release_touch_actions():
 	for action in TOUCH_ACTIONS:
 		if InputMap.has_action(action):
 			Input.action_release(action)
+
 
 func _get_control_scene() -> PackedScene:
 	if _control_scene != null:
@@ -96,27 +136,31 @@ func _get_control_scene() -> PackedScene:
 		_control_scene = load(CONTROL_SCENE)
 	return _control_scene
 
-func set_controls_enabled(value: bool) -> void :
+
+func set_controls_enabled(value: bool) -> void:
 	controls_enabled = value
 	if not controls_enabled:
 		_clear_controls()
 
+
 func toggle_controls_enabled() -> bool:
-	set_controls_enabled( not controls_enabled)
+	set_controls_enabled(not controls_enabled)
 	return controls_enabled
 
-func set_icon_scale(value: float) -> void :
+
+func set_icon_scale(value: float) -> void:
 	icon_scale = value
 	for child in get_children():
 		if child.has_method("apply_global_scale"):
 			child.apply_global_scale(icon_scale)
 
-func open_settings() -> void :
+
+func open_settings() -> void:
 	_clear_controls()
 	settings_mode = true
 	controls_initialized = false
 	get_tree().paused = true
-	var scene: = _get_control_scene()
+	var scene := _get_control_scene()
 	if scene == null:
 		settings_mode = false
 		get_tree().paused = false
@@ -125,9 +169,10 @@ func open_settings() -> void :
 	var cn = scene.instantiate()
 	_set_if_has_property(cn, "isSet", true)
 	add_child(cn)
-	cn.tree_exited.connect( func():
-		settings_mode = false
-		controls_initialized = false
-		_release_touch_actions()
-		get_tree().paused = false
+	cn.tree_exited.connect(
+		func():
+			settings_mode = false
+			controls_initialized = false
+			_release_touch_actions()
+			get_tree().paused = false
 	)

@@ -1,58 +1,59 @@
 extends MonsterBullet
 class_name NanhaiProjectile
 
-const SOURCE_FPS: = 30.0
+const SOURCE_FPS := 30.0
 static var _frames_cache: Dictionary = {}
 
 var owner_monster: BaseMonster
-var spawn_global_position: = Vector2.ZERO
-var frame_root: = ""
-var frame_count: = 0
-var atlas_manifest: = ""
-var atlas_sequence: = ""
-var visual_scale: = Vector2.ONE
-var frame_fps: = SOURCE_FPS
-var loop_visual: = true
-var visual_offset: = Vector2.ZERO
-var visual_faces_right: = true
-var impact_frame_root: = ""
-var impact_frame_count: = 0
-var impact_atlas_manifest: = ""
-var impact_atlas_sequence: = ""
-var impact_visual_faces_right: = true
-var impact_visual_offset: = Vector2.ZERO
-var impact_duration: = 0.0
-var motion_velocity: = Vector2.ZERO
-var motion_acceleration: = Vector2.ZERO
-var orient_to_motion: = false
-var follow_owner: = false
-var follow_owner_offset: = Vector2.ZERO
-var collision_size: = Vector2(48.0, 32.0)
-var collision_offset: = Vector2.ZERO
-var hit_delay: = 0.0
-var damage_duration: = 0.1
-var hit_interval: = 0.0
-var max_hits: = 1
-var lifetime: = 1.0
-var expire_on_hit: = true
-var damage_enabled: = true
-var finished_callback: = Callable()
+var spawn_global_position := Vector2.ZERO
+var frame_root := ""
+var frame_count := 0
+var atlas_manifest := ""
+var atlas_sequence := ""
+var visual_scale := Vector2.ONE
+var frame_fps := SOURCE_FPS
+var loop_visual := true
+var visual_offset := Vector2.ZERO
+var visual_faces_right := true
+var impact_frame_root := ""
+var impact_frame_count := 0
+var impact_atlas_manifest := ""
+var impact_atlas_sequence := ""
+var impact_visual_faces_right := true
+var impact_visual_offset := Vector2.ZERO
+var impact_duration := 0.0
+var motion_velocity := Vector2.ZERO
+var motion_acceleration := Vector2.ZERO
+var orient_to_motion := false
+var follow_owner := false
+var follow_owner_offset := Vector2.ZERO
+var collision_size := Vector2(48.0, 32.0)
+var collision_offset := Vector2.ZERO
+var hit_delay := 0.0
+var damage_duration := 0.1
+var hit_interval := 0.0
+var max_hits := 1
+var lifetime := 1.0
+var expire_on_hit := true
+var damage_enabled := true
+var finished_callback := Callable()
 
-var _elapsed: = 0.0
-var _impact_elapsed: = 0.0
-var _hit_count: = 0
-var _pulse_index: = -1
-var _reenable_next_frame: = false
-var _finished: = false
-var _impacting: = false
+var _elapsed := 0.0
+var _impact_elapsed := 0.0
+var _hit_count := 0
+var _pulse_index := -1
+var _reenable_next_frame := false
+var _finished := false
+var _impacting := false
 var _visual_stream: StreamedPngEffect
 
-func _init() -> void :
-	var middle_node: = Node2D.new()
+
+func _init() -> void:
+	var middle_node := Node2D.new()
 	middle_node.name = "middle"
 	add_child(middle_node)
 
-	var attack_area: = Area2D.new()
+	var attack_area := Area2D.new()
 	attack_area.name = "HitBox"
 	attack_area.collision_layer = 4
 	attack_area.collision_mask = 8321
@@ -60,30 +61,31 @@ func _init() -> void :
 	attack_area.monitorable = true
 	middle_node.add_child(attack_area)
 
-	var attack_shape: = CollisionShape2D.new()
+	var attack_shape := CollisionShape2D.new()
 	attack_shape.name = "Hit_Box"
 	attack_area.add_child(attack_shape)
 
-	var visual: = AnimatedSprite2D.new()
+	var visual := AnimatedSprite2D.new()
 	visual.name = "BulletANI"
 	visual.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	middle_node.add_child(visual)
 
-	var animation_player: = AnimationPlayer.new()
+	var animation_player := AnimationPlayer.new()
 	animation_player.name = "BulletPlayer"
 	add_child(animation_player)
 
-	var lifetime_timer: = Timer.new()
+	var lifetime_timer := Timer.new()
 	lifetime_timer.name = "queue_timer"
 	lifetime_timer.one_shot = true
 	add_child(lifetime_timer)
 
-	var throw_timer: = Timer.new()
+	var throw_timer := Timer.new()
 	throw_timer.name = "IsThrowClose"
 	throw_timer.one_shot = true
 	add_child(throw_timer)
 
-func configure(config: Dictionary) -> void :
+
+func configure(config: Dictionary) -> void:
 	owner_monster = config.get("owner") as BaseMonster
 	MyFather = owner_monster
 	spawn_global_position = config.get("position", Vector2.ZERO)
@@ -107,8 +109,7 @@ func configure(config: Dictionary) -> void :
 	impact_atlas_sequence = str(config.get("impact_atlas_sequence", ""))
 	if impact_atlas_manifest.is_empty() and not impact_frame_root.is_empty():
 		impact_atlas_manifest = MonsterAtlasSequence.manifest_for_source_root(impact_frame_root)
-	if impact_atlas_sequence.is_empty() and not impact_frame_root.is_empty()\
-	and not impact_atlas_manifest.is_empty():
+	if impact_atlas_sequence.is_empty() and not impact_frame_root.is_empty() and not impact_atlas_manifest.is_empty():
 		impact_atlas_sequence = impact_frame_root.get_file()
 	impact_visual_faces_right = bool(config.get("impact_visual_faces_right", visual_faces_right))
 	impact_visual_offset = config.get("impact_visual_offset", Vector2.ZERO)
@@ -131,7 +132,8 @@ func configure(config: Dictionary) -> void :
 	if callback_value is Callable:
 		finished_callback = callback_value
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	set_as_top_level(true)
 	global_position = spawn_global_position
@@ -141,7 +143,8 @@ func _ready() -> void :
 	if damage_enabled and not hit_box.area_entered.is_connected(_on_nanhai_hit_box_area_entered):
 		hit_box.area_entered.connect(_on_nanhai_hit_box_area_entered)
 
-func _configure_visual() -> void :
+
+func _configure_visual() -> void:
 	if atlas_manifest.is_empty() and not frame_root.is_empty():
 		atlas_manifest = MonsterAtlasSequence.manifest_for_source_root(frame_root)
 		if not atlas_manifest.is_empty():
@@ -151,10 +154,13 @@ func _configure_visual() -> void :
 			return
 		if _is_swf_png_root(frame_root):
 			return
-	var next_frames: = get_frame_set(frame_root, frame_count, frame_fps, loop_visual)
-	if next_frames == null or not next_frames.has_animation(&"play")\
-	or next_frames.get_frame_count(&"play") == 0\
-	or next_frames.get_frame_texture(&"play", 0) == null:
+	var next_frames := get_frame_set(frame_root, frame_count, frame_fps, loop_visual)
+	if (
+		next_frames == null
+		or not next_frames.has_animation(&"play")
+		or next_frames.get_frame_count(&"play") == 0
+		or next_frames.get_frame_texture(&"play", 0) == null
+	):
 		return
 	bullet_ani.visible = true
 	bullet_ani.sprite_frames = next_frames
@@ -166,16 +172,17 @@ func _configure_visual() -> void :
 	_replace_visual_stream(null)
 	_update_motion_rotation()
 
+
 func _configure_atlas_visual(
-	sequence_name: String, 
-	source_offset: Vector2, 
-	looped: bool, 
-	faces_right: bool = visual_faces_right, 
+	sequence_name: String,
+	source_offset: Vector2,
+	looped: bool,
+	faces_right: bool = visual_faces_right,
 	manifest_path: String = ""
 ) -> bool:
-	var stream: = StreamedPngEffect.new()
+	var stream := StreamedPngEffect.new()
 	stream.name = "VisualStream"
-	var resolved_manifest: = atlas_manifest if manifest_path.is_empty() else manifest_path
+	var resolved_manifest := atlas_manifest if manifest_path.is_empty() else manifest_path
 	if not MonsterAtlasSequence.configure_stream(stream, resolved_manifest, sequence_name):
 		stream.free()
 		return false
@@ -184,35 +191,38 @@ func _configure_atlas_visual(
 	stream.auto_free = false
 	stream.hold_last_frame = true
 	stream.flip_h = faces_right != dir
-	var mirrored_offset: = source_offset
+	var mirrored_offset := source_offset
 	if stream.flip_h:
-		mirrored_offset.x = - mirrored_offset.x
+		mirrored_offset.x = -mirrored_offset.x
 	stream.position = mirrored_offset
 	_install_visual_stream(stream)
 	_update_motion_rotation()
 	return true
 
-func _apply_visual_offset(source_offset: Vector2) -> void :
-	var mirrored_offset: = source_offset
+
+func _apply_visual_offset(source_offset: Vector2) -> void:
+	var mirrored_offset := source_offset
 	if bullet_ani.flip_h:
-		mirrored_offset.x = - mirrored_offset.x
+		mirrored_offset.x = -mirrored_offset.x
 	bullet_ani.position = mirrored_offset
 
-func _configure_collision() -> void :
-	var shape_node: = get_node_or_null("middle/HitBox/Hit_Box") as CollisionShape2D
+
+func _configure_collision() -> void:
+	var shape_node := get_node_or_null("middle/HitBox/Hit_Box") as CollisionShape2D
 	if shape_node == null:
 		return
-	var shape: = RectangleShape2D.new()
+	var shape := RectangleShape2D.new()
 	shape.size = Vector2(maxf(collision_size.x, 1.0), maxf(collision_size.y, 1.0))
 	shape_node.shape = shape
-	var mirrored_collision_offset: = collision_offset
+	var mirrored_collision_offset := collision_offset
 	if bullet_ani.flip_h:
-		mirrored_collision_offset.x = - mirrored_collision_offset.x
+		mirrored_collision_offset.x = -mirrored_collision_offset.x
 	shape_node.position = mirrored_collision_offset
 	shape_node.disabled = not damage_enabled
 	hit_box.monitoring = false
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	if _finished:
 		return
 	if _impacting:
@@ -231,27 +241,29 @@ func _physics_process(delta: float) -> void :
 	if _elapsed >= lifetime:
 		_finish()
 
-func _update_motion_rotation() -> void :
+
+func _update_motion_rotation() -> void:
 	if not orient_to_motion or motion_velocity.is_zero_approx() or middle == null:
 		return
 	middle.rotation = motion_velocity.angle()
 
-func _update_damage_window() -> void :
+
+func _update_damage_window() -> void:
 	if not damage_enabled:
 		_set_monitoring(false)
 		return
 	if _hit_count >= max_hits:
 		_set_monitoring(false)
 		return
-	var active_elapsed: = _elapsed - hit_delay
-	var in_window: = active_elapsed >= 0.0 and active_elapsed <= damage_duration
+	var active_elapsed := _elapsed - hit_delay
+	var in_window := active_elapsed >= 0.0 and active_elapsed <= damage_duration
 	if not in_window:
 		_set_monitoring(false)
 		return
 	if hit_interval <= 0.0:
 		_set_monitoring(true)
 		return
-	var next_index: = int(floor(active_elapsed / hit_interval))
+	var next_index := int(floor(active_elapsed / hit_interval))
 	if next_index != _pulse_index:
 		_pulse_index = next_index
 		_set_monitoring(false)
@@ -261,12 +273,14 @@ func _update_damage_window() -> void :
 		_reenable_next_frame = false
 		_set_monitoring(true)
 
-func _set_monitoring(enabled: bool) -> void :
+
+func _set_monitoring(enabled: bool) -> void:
 	if hit_box != null and hit_box.monitoring != enabled:
 		hit_box.set_deferred("monitoring", enabled)
 
-func _on_nanhai_hit_box_area_entered(area: Area2D) -> void :
-	var role: = _find_role_owner(area)
+
+func _on_nanhai_hit_box_area_entered(area: Area2D) -> void:
+	var role := _find_role_owner(area)
 	if role == null:
 		return
 	_hit_count += 1
@@ -279,6 +293,7 @@ func _on_nanhai_hit_box_area_entered(area: Area2D) -> void :
 			else:
 				_finish()
 
+
 func _find_role_owner(area: Area2D) -> BaseHero:
 	var node: Node = area
 	while node != null:
@@ -287,7 +302,8 @@ func _find_role_owner(area: Area2D) -> BaseHero:
 		node = node.get_parent()
 	return null
 
-func _finish() -> void :
+
+func _finish() -> void:
 	if _finished:
 		return
 	_finished = true
@@ -296,7 +312,8 @@ func _finish() -> void :
 		finished_callback.call(global_position)
 	queue_free()
 
-func _begin_impact() -> void :
+
+func _begin_impact() -> void:
 	if _impacting or _finished:
 		return
 	_impacting = true
@@ -309,30 +326,27 @@ func _begin_impact() -> void :
 		impact_atlas_manifest = MonsterAtlasSequence.manifest_for_source_root(impact_frame_root)
 	if impact_atlas_sequence.is_empty() and not impact_frame_root.is_empty():
 		impact_atlas_sequence = impact_frame_root.get_file()
-	var configured: = false
-	if not impact_atlas_manifest.is_empty() and FileAccess.file_exists(impact_atlas_manifest)\
-	and not impact_atlas_sequence.is_empty():
+	var configured := false
+	if (
+		not impact_atlas_manifest.is_empty()
+		and FileAccess.file_exists(impact_atlas_manifest)
+		and not impact_atlas_sequence.is_empty()
+	):
 		configured = _configure_atlas_visual(
-			impact_atlas_sequence, 
-			impact_visual_offset, 
-			false, 
-			impact_visual_faces_right, 
-			impact_atlas_manifest
+			impact_atlas_sequence, impact_visual_offset, false, impact_visual_faces_right, impact_atlas_manifest
 		)
 	if not configured and _is_swf_png_root(impact_frame_root):
 		_impacting = false
 		_finish()
 		return
 	if not configured:
-		var impact_frames: = get_frame_set(
-			impact_frame_root, 
-			impact_frame_count, 
-			frame_fps, 
-			false
-		)
-		if impact_frames == null or not impact_frames.has_animation(&"play")\
-		or impact_frames.get_frame_count(&"play") == 0\
-		or impact_frames.get_frame_texture(&"play", 0) == null:
+		var impact_frames := get_frame_set(impact_frame_root, impact_frame_count, frame_fps, false)
+		if (
+			impact_frames == null
+			or not impact_frames.has_animation(&"play")
+			or impact_frames.get_frame_count(&"play") == 0
+			or impact_frames.get_frame_texture(&"play", 0) == null
+		):
 			_impacting = false
 			_finish()
 			return
@@ -348,37 +362,29 @@ func _begin_impact() -> void :
 		_finish()
 		return
 	if impact_duration <= 0.0:
-		var visual_frame_count: = impact_frame_count
+		var visual_frame_count := impact_frame_count
 		impact_duration = maxf(float(visual_frame_count) / frame_fps, 0.05)
 
-static func prewarm_frame_set(
-	root: String, 
-	count: int, 
-	fps: float = SOURCE_FPS, 
-	looped: bool = true
-) -> void :
+
+static func prewarm_frame_set(root: String, count: int, fps: float = SOURCE_FPS, looped: bool = true) -> void:
 	get_frame_set(root, count, fps, looped)
-	var tree: = Engine.get_main_loop() as SceneTree
+	var tree := Engine.get_main_loop() as SceneTree
 	if tree != null:
 		await tree.process_frame
 
-static func get_frame_set(
-	root: String, 
-	count: int, 
-	fps: float = SOURCE_FPS, 
-	looped: bool = true
-) -> SpriteFrames:
-	var cache_key: = "%s|%d|%.3f|%s" % [root, count, fps, str(looped)]
+
+static func get_frame_set(root: String, count: int, fps: float = SOURCE_FPS, looped: bool = true) -> SpriteFrames:
+	var cache_key := "%s|%d|%.3f|%s" % [root, count, fps, str(looped)]
 	if _frames_cache.has(cache_key):
 		return _frames_cache[cache_key] as SpriteFrames
-	var frames: = SpriteFrames.new()
+	var frames := SpriteFrames.new()
 	frames.remove_animation(&"default")
 	frames.add_animation(&"play")
 	frames.set_animation_loop(&"play", looped)
 	frames.set_animation_speed(&"play", fps)
 	if not root.is_empty():
 		for frame_index in range(1, count + 1):
-			var texture: = Global.get_cached_texture(root.path_join(str(frame_index) + ".png"))
+			var texture := Global.get_cached_texture(root.path_join(str(frame_index) + ".png"))
 			if texture != null:
 				frames.add_frame(&"play", texture)
 	if frames.get_frame_count(&"play") == 0:
@@ -386,49 +392,45 @@ static func get_frame_set(
 	_frames_cache[cache_key] = frames
 	return frames
 
-func _clear_visual_stream() -> void :
+
+func _clear_visual_stream() -> void:
 	_replace_visual_stream(null)
 
-func _install_visual_stream(stream: StreamedPngEffect) -> void :
-	var previous_stream: = _visual_stream
+
+func _install_visual_stream(stream: StreamedPngEffect) -> void:
+	var previous_stream := _visual_stream
 	_visual_stream = stream
-	stream.frame_ready.connect(
-		_on_visual_stream_frame_ready.bind(stream, previous_stream), 
-		CONNECT_ONE_SHOT
-	)
+	stream.frame_ready.connect(_on_visual_stream_frame_ready.bind(stream, previous_stream), CONNECT_ONE_SHOT)
 	middle.add_child(stream)
 	if stream.has_displayed_frame():
 		_commit_visual_stream(stream, previous_stream)
 
-func _on_visual_stream_frame_ready(
-	stream: StreamedPngEffect, 
-	previous_stream: StreamedPngEffect
-) -> void :
+
+func _on_visual_stream_frame_ready(stream: StreamedPngEffect, previous_stream: StreamedPngEffect) -> void:
 	_commit_visual_stream(stream, previous_stream)
 
-func _commit_visual_stream(
-	stream: StreamedPngEffect, 
-	previous_stream: StreamedPngEffect
-) -> void :
+
+func _commit_visual_stream(stream: StreamedPngEffect, previous_stream: StreamedPngEffect) -> void:
 	if _visual_stream != stream or not is_instance_valid(stream):
 		return
 	bullet_ani.visible = false
-	if previous_stream != null and previous_stream != stream\
-	and is_instance_valid(previous_stream):
+	if previous_stream != null and previous_stream != stream and is_instance_valid(previous_stream):
 		previous_stream.clear_texture()
 		previous_stream.queue_free()
 
-func _replace_visual_stream(next_stream: StreamedPngEffect) -> void :
-	var previous_stream: = _visual_stream
+
+func _replace_visual_stream(next_stream: StreamedPngEffect) -> void:
+	var previous_stream := _visual_stream
 	if next_stream == null or previous_stream != next_stream:
 		_visual_stream = next_stream
-	if previous_stream != null and previous_stream != next_stream\
-	and is_instance_valid(previous_stream):
+	if previous_stream != null and previous_stream != next_stream and is_instance_valid(previous_stream):
 		previous_stream.clear_texture()
 		previous_stream.queue_free()
+
 
 func _is_swf_png_root(root: String) -> bool:
 	return root.replace("\\", "/").begins_with("res://Art/Monster/SwfPng/")
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	_clear_visual_stream()

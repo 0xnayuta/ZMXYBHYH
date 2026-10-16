@@ -5,15 +5,13 @@ extends Node2D
 @export var color = Color(1, 1, 1)
 
 
-
-
-
-func _process(_delta: float) -> void :
+func _process(_delta: float) -> void:
 	if DeathTimer.is_stopped():
 		DeathTimer.start(live_time)
 	var alfa = DeathTimer.time_left * alfa_factor / float(live_time)
 	set("modulate", Color(color.r, color.g, color.b, alfa))
 	pass
 
-func _on_death_timer_timeout() -> void :
+
+func _on_death_timer_timeout() -> void:
 	queue_free()

@@ -1,90 +1,90 @@
 extends Node2D
 
-@onready var lh_bar: TextureProgressBar = $BG / bg_2 / lh_bar
-@onready var lh_value: Label = $BG / bg_2 / lh_bar / lh_value
-@onready var m_level: Label = $BG / bg_2 / m_level
-@onready var m_czl: Label = $BG / bg_2 / m_czl
-@onready var m_wx: Label = $BG / bg_2 / m_wx
-@onready var m_hp: Label = $BG / bg_2 / m_Hp
-@onready var m_mp: Label = $BG / bg_2 / m_Mp
-@onready var m_power: Label = $BG / bg_2 / m_Power
-@onready var m_def: Label = $BG / bg_2 / m_Def
-@onready var m_m_def: Label = $BG / bg_2 / m_MDef
-@onready var name_: Label = $BG / Name_
-@onready var icon: Sprite2D = $BG / Icon
-@onready var icon_player: AnimationPlayer = $BG / IconPlayer
-@onready var magic_weapon_skill_title: Label = $BG / MagicWeaponSkillTitle
-@onready var magic_weapon_skill: Label = $BG / ScrollContainer / VBoxContainer / MagicWeaponSkill
-@onready var PaTitle_: Label = $BG / ScrollContainer / VBoxContainer / PsTitle
-@onready var magic_weapon_skill_2: Label = $BG / ScrollContainer / VBoxContainer / MagicWeaponSkill2
-@onready var icon_: Sprite2D = $BG / Icon_
+@onready var lh_bar: TextureProgressBar = $BG/bg_2/lh_bar
+@onready var lh_value: Label = $BG/bg_2/lh_bar/lh_value
+@onready var m_level: Label = $BG/bg_2/m_level
+@onready var m_czl: Label = $BG/bg_2/m_czl
+@onready var m_wx: Label = $BG/bg_2/m_wx
+@onready var m_hp: Label = $BG/bg_2/m_Hp
+@onready var m_mp: Label = $BG/bg_2/m_Mp
+@onready var m_power: Label = $BG/bg_2/m_Power
+@onready var m_def: Label = $BG/bg_2/m_Def
+@onready var m_m_def: Label = $BG/bg_2/m_MDef
+@onready var name_: Label = $BG/Name_
+@onready var icon: Sprite2D = $BG/Icon
+@onready var icon_player: AnimationPlayer = $BG/IconPlayer
+@onready var magic_weapon_skill_title: Label = $BG/MagicWeaponSkillTitle
+@onready var magic_weapon_skill: Label = $BG/ScrollContainer/VBoxContainer/MagicWeaponSkill
+@onready var PaTitle_: Label = $BG/ScrollContainer/VBoxContainer/PsTitle
+@onready var magic_weapon_skill_2: Label = $BG/ScrollContainer/VBoxContainer/MagicWeaponSkill2
+@onready var icon_: Sprite2D = $BG/Icon_
 
-const PREVIEW_ICONS: = {
-	"zcld": "res://Art/MagicWeapon/Skill_Icon/zcld.png", 
-	"dshl": "res://Art/MagicWeapon/Skill_Icon/dshl.png", 
-	"dhqf": "res://Art/MagicWeapon/Skill_Icon/dhqf.png", 
-	"tsgj": "res://Art/MagicWeapon/Skill_Icon/wjgz.png", 
-	"bsyj": "res://Art/MagicWeapon/Skill_Icon/bsyj.png", 
-	"lsys": "res://Art/MagicWeapon/Skill_Icon/lsys.png", 
-	"xhmt": "res://Art/MagicWeapon/Skill_Icon/xhmt.png", 
-	"kyl": "res://Art/MagicWeapon/Skill_Icon/kyl.png", 
-	"xhhl": "res://Art/MagicWeapon/Skill_Icon/xhhl.png", 
-	"qyj": "res://Art/MagicWeapon/Skill_Icon/qyj.png", 
-	"zjfyd": "res://Art/MagicWeapon/Skill_Icon/zjfyd.png", 
-	"zjhl": "res://Art/MagicWeapon/Skill_Icon/zjhl.png", 
-	"yjp": "res://Art/MagicWeapon/Skill_Icon/yjp.png", 
-	"yx": "res://Art/MagicWeapon/Skill_Icon/yx.png", 
-	"qlsword": "res://Art/MagicWeapon/Skill_Icon/qlsword.png", 
-	"dzyl": "res://Art/MagicWeapon/Skill_Icon/dzyl.png", 
-	"469000004": "res://Art/MagicWeapon/Skill_Icon/469000004.png", 
-	"469000011": "res://Art/MagicWeapon/Skill_Icon/469000011.png", 
-	"zlwdah": "res://Art/MagicWeapon/Skill_Icon/zlwdah.png", 
-	"sqzlw": "res://Art/MagicWeapon/Skill_Icon/zlwdah.png", 
-	"nmwdnh": "res://Art/MagicWeapon/Skill_Icon/nmwdnh.png", 
-	"sqnmwdnh": "res://Art/MagicWeapon/Skill_Icon/nmwdnh.png", 
-	"xianyjp": "res://Art/MagicWeapon/Skill_Icon/xianyjp.png", 
-	"yyzlj": "res://Art/MagicWeapon/Skill_Icon/yyzlj.png", 
-	"ywhl": "res://Art/MagicWeapon/Skill_Icon/ywhl.png", 
-	"zhyx": "res://Art/MagicWeapon/Skill_Icon/zhyx.png", 
-	"bjs": "res://Art/MagicWeapon/Skill_Icon/bjs.png", 
-	"sxyg": "res://Art/MagicWeapon/Skill_Icon/sxyg.png", 
-	"dkhl": "res://Art/MagicWeapon/Skill_Icon/dkhl.png", 
-	"yyb": "res://Art/MagicWeapon/Skill_Icon/yyb.png", 
-	"hehua": "res://Art/MagicWeapon/Skill_Icon/hehua.png", 
+const PREVIEW_ICONS := {
+	"zcld": "res://Art/MagicWeapon/Skill_Icon/zcld.png",
+	"dshl": "res://Art/MagicWeapon/Skill_Icon/dshl.png",
+	"dhqf": "res://Art/MagicWeapon/Skill_Icon/dhqf.png",
+	"tsgj": "res://Art/MagicWeapon/Skill_Icon/wjgz.png",
+	"bsyj": "res://Art/MagicWeapon/Skill_Icon/bsyj.png",
+	"lsys": "res://Art/MagicWeapon/Skill_Icon/lsys.png",
+	"xhmt": "res://Art/MagicWeapon/Skill_Icon/xhmt.png",
+	"kyl": "res://Art/MagicWeapon/Skill_Icon/kyl.png",
+	"xhhl": "res://Art/MagicWeapon/Skill_Icon/xhhl.png",
+	"qyj": "res://Art/MagicWeapon/Skill_Icon/qyj.png",
+	"zjfyd": "res://Art/MagicWeapon/Skill_Icon/zjfyd.png",
+	"zjhl": "res://Art/MagicWeapon/Skill_Icon/zjhl.png",
+	"yjp": "res://Art/MagicWeapon/Skill_Icon/yjp.png",
+	"yx": "res://Art/MagicWeapon/Skill_Icon/yx.png",
+	"qlsword": "res://Art/MagicWeapon/Skill_Icon/qlsword.png",
+	"dzyl": "res://Art/MagicWeapon/Skill_Icon/dzyl.png",
+	"469000004": "res://Art/MagicWeapon/Skill_Icon/469000004.png",
+	"469000011": "res://Art/MagicWeapon/Skill_Icon/469000011.png",
+	"zlwdah": "res://Art/MagicWeapon/Skill_Icon/zlwdah.png",
+	"sqzlw": "res://Art/MagicWeapon/Skill_Icon/zlwdah.png",
+	"nmwdnh": "res://Art/MagicWeapon/Skill_Icon/nmwdnh.png",
+	"sqnmwdnh": "res://Art/MagicWeapon/Skill_Icon/nmwdnh.png",
+	"xianyjp": "res://Art/MagicWeapon/Skill_Icon/xianyjp.png",
+	"yyzlj": "res://Art/MagicWeapon/Skill_Icon/yyzlj.png",
+	"ywhl": "res://Art/MagicWeapon/Skill_Icon/ywhl.png",
+	"zhyx": "res://Art/MagicWeapon/Skill_Icon/zhyx.png",
+	"bjs": "res://Art/MagicWeapon/Skill_Icon/bjs.png",
+	"sxyg": "res://Art/MagicWeapon/Skill_Icon/sxyg.png",
+	"dkhl": "res://Art/MagicWeapon/Skill_Icon/dkhl.png",
+	"yyb": "res://Art/MagicWeapon/Skill_Icon/yyb.png",
+	"hehua": "res://Art/MagicWeapon/Skill_Icon/hehua.png",
 }
 
-const SKILL_INFO: = {
-	"zcld": {"title": "招财进宝好运来！", "desc": "无主动技能。", "passive": "提升灵魂获取和掉宝率！随等级提高。"}, 
-	"dshl": {"title": "烈焰火柱", "desc": "释放三道火柱，对范围内的敌人造成多段物理伤害（并令其灼烧）。"}, 
-	"dhqf": {"title": "士气鼓舞", "desc": "拥有【士气鼓舞】技能，回复少量血和蓝。"}, 
-	"tsgj": {"title": "万剑归宗", "desc": "召唤数把巨剑从天而降，造成多段魔法伤害（30%概率冰冻命中的目标）。"}, 
-	"bsyj": {"title": "邪灵寄生", "desc": "附身到怪物身上偷取生命并令其减速，一段时间后将偷取到的生命给予玩家。"}, 
-	"lsys": {"title": "暴雨梨花", "desc": "散出漫天毒针，命中敌人后会造成少量伤害并令其中毒。"}, 
-	"xhmt": {"title": "魔童连击邪灵净化", "desc": "清除低级负面效果，之后对目标进行多次打击，造成魔法伤害。"}, 
-	"kyl": {"title": "沐露回春", "desc": "每秒为玩家恢复生命，期间免疫击退，持续10秒。"}, 
-	"xhhl": {"title": "万象天引", "desc": "将怪物吸引至玩家身边。"}, 
-	"qyj": {"title": "戮天斩击", "desc": "释放剑阵，飞向当前生命最高的敌人，对受到伤害的目标施加破甲。"}, 
-	"zjfyd": {"title": "不灭神盾", "desc": "拥有【不灭神盾】技能，使用后获得【不灭】Buff，一段时间内免疫高于当前生命的伤害。"}, 
-	"zjhl": {"title": "伏妖神火", "desc": "拥有【伏妖神火】技能，朝前方喷出火焰，造成物理伤害，并有10%概率施加一层灼烧。"}, 
-	"yjp": {"title": "吸收", "desc": "吸取Boss技能，释放Boss战斗。"}, 
-	"zlwdah": {"title": "召唤", "desc": "召唤转轮王。"}, 
-	"sqzlw": {"title": "召唤", "desc": "召唤转轮王。"}, 
-	"nmwdnh": {"title": "召唤", "desc": "召唤牛魔王。"}, 
-	"sqnmwdnh": {"title": "召唤", "desc": "召唤牛魔王。"}, 
-	"xianyjp": {"title": "召唤", "desc": "召唤观音助战。"}, 
-	"yx": {"title": "入魔", "desc": "扣除并失去一半生命值，攻击力与暴击率提高50%，持续一段时间。"}, 
-	"qlsword": {"title": "御剑飞行", "desc": "脚踏青龙剑，御剑飞行！"}, 
-	"dzyl": {"title": "护体圣莲", "desc": "减少受到的伤害并持续一段时间霸体。"}, 
-	"469000004": {"title": "浩瀚雷音", "desc": "天锤敲击空气，对大范围怪物造成伤害并使其眩晕，法宝等级越高眩晕时间越长。"}, 
-	"469000011": {"title": "御魔领域", "desc": "在原地创造隔绝所有伤害的空间；进入领域后怪物攻击无法命中，离开立即失效，持续时间随法宝等级提升。"}, 
-	"yyzlj": {"title": "阴阳斩龙剑", "desc": "召唤阴阳斩龙剑攻击敌人。"}, 
-	"ywhl": {"title": "药王葫芦", "desc": "使用后恢复生命值。"}, 
-	"zhyx": {"title": "镇魂玉箫", "desc": "吹奏玉箫，使敌人进入睡眠状态。"}, 
-	"bjs": {"title": "玄风棕扇", "desc": "召唤玄风棕扇吹出强风攻击敌人。"}, 
-	"sxyg": {"title": "神行", "desc": "短时间提升移动速度。"}, 
-	"dkhl": {"title": "地魁花篮", "desc": "持续恢复生命和魔法。"}, 
-	"yyb": {"title": "云阳板", "desc": "提升宠物战斗能力。"}, 
-	"hehua": {"title": "慈心妙莲", "desc": "复活已阵亡的宠物。"}, 
+const SKILL_INFO := {
+	"zcld": {"title": "招财进宝好运来！", "desc": "无主动技能。", "passive": "提升灵魂获取和掉宝率！随等级提高。"},
+	"dshl": {"title": "烈焰火柱", "desc": "释放三道火柱，对范围内的敌人造成多段物理伤害（并令其灼烧）。"},
+	"dhqf": {"title": "士气鼓舞", "desc": "拥有【士气鼓舞】技能，回复少量血和蓝。"},
+	"tsgj": {"title": "万剑归宗", "desc": "召唤数把巨剑从天而降，造成多段魔法伤害（30%概率冰冻命中的目标）。"},
+	"bsyj": {"title": "邪灵寄生", "desc": "附身到怪物身上偷取生命并令其减速，一段时间后将偷取到的生命给予玩家。"},
+	"lsys": {"title": "暴雨梨花", "desc": "散出漫天毒针，命中敌人后会造成少量伤害并令其中毒。"},
+	"xhmt": {"title": "魔童连击邪灵净化", "desc": "清除低级负面效果，之后对目标进行多次打击，造成魔法伤害。"},
+	"kyl": {"title": "沐露回春", "desc": "每秒为玩家恢复生命，期间免疫击退，持续10秒。"},
+	"xhhl": {"title": "万象天引", "desc": "将怪物吸引至玩家身边。"},
+	"qyj": {"title": "戮天斩击", "desc": "释放剑阵，飞向当前生命最高的敌人，对受到伤害的目标施加破甲。"},
+	"zjfyd": {"title": "不灭神盾", "desc": "拥有【不灭神盾】技能，使用后获得【不灭】Buff，一段时间内免疫高于当前生命的伤害。"},
+	"zjhl": {"title": "伏妖神火", "desc": "拥有【伏妖神火】技能，朝前方喷出火焰，造成物理伤害，并有10%概率施加一层灼烧。"},
+	"yjp": {"title": "吸收", "desc": "吸取Boss技能，释放Boss战斗。"},
+	"zlwdah": {"title": "召唤", "desc": "召唤转轮王。"},
+	"sqzlw": {"title": "召唤", "desc": "召唤转轮王。"},
+	"nmwdnh": {"title": "召唤", "desc": "召唤牛魔王。"},
+	"sqnmwdnh": {"title": "召唤", "desc": "召唤牛魔王。"},
+	"xianyjp": {"title": "召唤", "desc": "召唤观音助战。"},
+	"yx": {"title": "入魔", "desc": "扣除并失去一半生命值，攻击力与暴击率提高50%，持续一段时间。"},
+	"qlsword": {"title": "御剑飞行", "desc": "脚踏青龙剑，御剑飞行！"},
+	"dzyl": {"title": "护体圣莲", "desc": "减少受到的伤害并持续一段时间霸体。"},
+	"469000004": {"title": "浩瀚雷音", "desc": "天锤敲击空气，对大范围怪物造成伤害并使其眩晕，法宝等级越高眩晕时间越长。"},
+	"469000011": {"title": "御魔领域", "desc": "在原地创造隔绝所有伤害的空间；进入领域后怪物攻击无法命中，离开立即失效，持续时间随法宝等级提升。"},
+	"yyzlj": {"title": "阴阳斩龙剑", "desc": "召唤阴阳斩龙剑攻击敌人。"},
+	"ywhl": {"title": "药王葫芦", "desc": "使用后恢复生命值。"},
+	"zhyx": {"title": "镇魂玉箫", "desc": "吹奏玉箫，使敌人进入睡眠状态。"},
+	"bjs": {"title": "玄风棕扇", "desc": "召唤玄风棕扇吹出强风攻击敌人。"},
+	"sxyg": {"title": "神行", "desc": "短时间提升移动速度。"},
+	"dkhl": {"title": "地魁花篮", "desc": "持续恢复生命和魔法。"},
+	"yyb": {"title": "云阳板", "desc": "提升宠物战斗能力。"},
+	"hehua": {"title": "慈心妙莲", "desc": "复活已阵亡的宠物。"},
 }
 
 var choosejm_1
@@ -93,15 +93,18 @@ var choosejm_3
 var choosejm_4
 var _displayed_weapon_name: String = ""
 
-func _ready() -> void :
+
+func _ready() -> void:
 	icon.texture = null
 	_refresh_weapon_visual_if_needed()
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	if icon != null:
 		icon.texture = null
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	if PlayerData.player_data.get("法宝", []).is_empty():
 		return
 	_refresh_weapon_visual_if_needed()
@@ -117,10 +120,11 @@ func _physics_process(_delta: float) -> void :
 	m_def.text = "%.1f" % get_fb_pro(nn_name, "Def")
 	m_m_def.text = "%.1f" % get_fb_pro(nn_name, "Mdef")
 
-func _refresh_weapon_visual_if_needed() -> void :
+
+func _refresh_weapon_visual_if_needed() -> void:
 	if PlayerData.player_data.get("法宝", []).is_empty():
 		return
-	var nn_name: = str(PlayerData.player_data["法宝"][0]["名字"])
+	var nn_name := str(PlayerData.player_data["法宝"][0]["名字"])
 	if nn_name == _displayed_weapon_name:
 		return
 	_displayed_weapon_name = nn_name
@@ -128,20 +132,23 @@ func _refresh_weapon_visual_if_needed() -> void :
 	set_skill_info(nn_name)
 	_show_lazy_preview(nn_name)
 
-func _show_lazy_preview(weapon_name: String) -> void :
+
+func _show_lazy_preview(weapon_name: String) -> void:
 	icon_player.stop()
 	icon.texture = null
-	var texture_path: = str(PREVIEW_ICONS.get(weapon_name, ""))
+	var texture_path := str(PREVIEW_ICONS.get(weapon_name, ""))
 	if texture_path == "":
 		return
 	icon.position = Vector2(-200, -75)
 	icon.scale = Vector2(1.5, 1.5)
 	icon.texture = _load_preview_texture(texture_path)
 
+
 func _load_preview_texture(path: String) -> Texture2D:
 	return Global.get_cached_texture(path)
 
-func _on_up_level_pressed() -> void :
+
+func _on_up_level_pressed() -> void:
 	if PlayerData.player_data["法宝"][0]["强化等级"] < 15:
 		if PlayerData.get_soul() >= get_need_lh():
 			PlayerData.spend_soul(get_need_lh())
@@ -154,7 +161,8 @@ func _on_up_level_pressed() -> void :
 		Global.AddMessageShow(self, "法宝已经满级了！", 1.5, Vector2(0, 0))
 		MemoryClass.保存游戏(Global.cd_path)
 
-func set_skill_info(weapon_name: String = "") -> void :
+
+func set_skill_info(weapon_name: String = "") -> void:
 	if PlayerData.player_data["法宝"].is_empty():
 		return
 	if weapon_name == "":
@@ -166,14 +174,17 @@ func set_skill_info(weapon_name: String = "") -> void :
 	PaTitle_.text = "被动技能"
 	magic_weapon_skill_2.text = str(info.get("passive", "暂无"))
 
-func _on_close_pressed() -> void :
+
+func _on_close_pressed() -> void:
 	queue_free()
+
 
 func get_need_lh() -> int:
 	var current_level: int = 0
 	if PlayerData.player_data["法宝"].size() != 0:
 		current_level = PlayerData.player_data["法宝"][0]["强化等级"]
 	return 1000 * int(pow(current_level + 1, 2))
+
 
 func get_fb_pro(name__, need):
 	var wx = PlayerData.player_data["法宝"][0]["五行"]
@@ -182,6 +193,7 @@ func get_fb_pro(name__, need):
 	var infomation = AE.get_fb_last_equ_pro(name__, level_, wx, Data)[need]
 	return infomation
 
+
 func get_wx() -> String:
 	var wx = PlayerData.player_data["法宝"][0]["五行"]
 	var a = ""
@@ -189,13 +201,16 @@ func get_wx() -> String:
 		a = a + str(i)
 	return a
 
-func _on_szfb_pressed() -> void :
+
+func _on_szfb_pressed() -> void:
 	Global.addUseMagicWeapon($".", Vector2(0, 0))
 
-func _on_tips_pressed() -> void :
+
+func _on_tips_pressed() -> void:
 	Global.addMagicHelp($".", Vector2(0, 0))
 
-func LowWX() -> void :
+
+func LowWX() -> void:
 	if PlayerData.get_item_data("wxxls") >= 1:
 		PlayerData.player_data["法宝"][0]["五行"] = Global.get_wx(0)
 		PlayerData.remove_dj("wxxls", PlayerData.get_dj_page("wxxls"), 1)
@@ -203,7 +218,8 @@ func LowWX() -> void :
 	else:
 		Global.AddMessageShow(get_parent(), "五行洗炼石数量不足！", 1.5, Vector2(490, 280))
 
-func HighWX() -> void :
+
+func HighWX() -> void:
 	var wx_num = PlayerData.player_data["法宝"][0]["五行"].size() * 5
 	if PlayerData.get_item_data("wxxls") >= wx_num:
 		match PlayerData.player_data["法宝"][0]["五行"].size():
@@ -222,7 +238,8 @@ func HighWX() -> void :
 	else:
 		Global.AddMessageShow(get_parent(), "五行洗炼石数量不足！", 1.5, Vector2(490, 280))
 
-func CZL() -> void :
+
+func CZL() -> void:
 	if PlayerData.get_item_data("czlxls") >= 1:
 		PlayerData.player_data["法宝"][0]["Data"]["成长率"] = MagicWeaponCZL(PlayerData.player_data["法宝"][0]["名字"])
 		PlayerData.remove_dj("czlxls", PlayerData.get_dj_page("czlxls"), 1)
@@ -230,18 +247,22 @@ func CZL() -> void :
 	else:
 		Global.AddMessageShow(get_parent(), "成长率洗炼石数量不足！", 1.5, Vector2(490, 280))
 
-func _on_wxxl_pressed() -> void :
+
+func _on_wxxl_pressed() -> void:
 	Signals.ConnectChooseBoxSignal(self, "LowWX")
 	Global.add_choose_text(get_parent(), Vector2(0, 0), "确定要使用1颗五行洗炼石洗炼法宝的五行吗？", 0)
 
-func _on_gjwx_pressed() -> void :
+
+func _on_gjwx_pressed() -> void:
 	Signals.ConnectChooseBoxSignal(self, "HighWX")
 	var wx_num = PlayerData.player_data["法宝"][0]["五行"].size() * 5
 	Global.add_choose_text(get_parent(), Vector2(0, 0), "确定要使用" + str(wx_num) + "颗五行洗炼石高级洗炼一次法宝的五行吗？", 0)
 
-func _on_czlxl_pressed() -> void :
+
+func _on_czlxl_pressed() -> void:
 	Signals.ConnectChooseBoxSignal(self, "CZL")
 	Global.add_choose_text(get_parent(), Vector2(0, 0), "确定要使用1颗成长率洗炼石洗炼法宝的成长率吗？", 0)
+
 
 func MagicWeaponCZL(name__):
 	randomize()

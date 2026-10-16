@@ -1,8 +1,12 @@
 extends Node
 var MyMainMusic
+
+
 func RemoveMusic():
 	if MyMainMusic != null:
 		MyMainMusic.queue_free()
+
+
 func ADDMusic():
 	if MainSet.set_data["music"] == 1:
 		if MyMainMusic != null:

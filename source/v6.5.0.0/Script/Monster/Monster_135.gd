@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster135
+
+
 func monster_135():
 	self.is_boss = false
 	self.my_mr_name = "天王使者"
@@ -26,15 +28,17 @@ func monster_135():
 	self.add_exp = 200
 	self.fall_coin = 150
 	self.objattackDic["hit1"] = {
-		"power": 400, 
-		"hurtBack": [-3, -6], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
+		"power": 400,
+		"hurtBack": [-3, -6],
+		"attackKind": "physics",
+		"HitProtect": 10,
 	}
 	self.fall_pro = 0.0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_135()

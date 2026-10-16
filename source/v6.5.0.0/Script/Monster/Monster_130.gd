@@ -1,32 +1,32 @@
 extends BaseMonster
 class_name Monster130
 
-const MODEL_ROOT: = "res://Art/Monster/Game3Monster/Monster_130"
-const ACTION_FRAME_DIRS: = {
-	&"wait": "wait", 
-	&"walk": "wait", 
-	&"hurt": "hurt", 
-	&"death": "death", 
-	&"hit1": "hit1", 
-	&"hit2": "hit2", 
-	&"hit3": "hit3", 
-	&"hit4": "hit4", 
+const MODEL_ROOT := "res://Art/Monster/Game3Monster/Monster_130"
+const ACTION_FRAME_DIRS := {
+	&"wait": "wait",
+	&"walk": "wait",
+	&"hurt": "hurt",
+	&"death": "death",
+	&"hit1": "hit1",
+	&"hit2": "hit2",
+	&"hit3": "hit3",
+	&"hit4": "hit4",
 }
-const ACTION_FRAME_DURATIONS: = {
-	&"wait": [2.0, 2.0, 2.0, 3.0, 2.0, 4.0], 
-	&"walk": [2.0, 2.0, 2.0, 3.0, 2.0, 4.0], 
-	&"hurt": [8.0], 
-	&"death": [2.0, 2.0, 2.0, 2.0, 10.0], 
-	&"hit1": [2.0, 2.0, 10.0], 
-	&"hit2": [2.0, 10.0], 
-	&"hit3": [10.0], 
-	&"hit4": [10.0], 
+const ACTION_FRAME_DURATIONS := {
+	&"wait": [2.0, 2.0, 2.0, 3.0, 2.0, 4.0],
+	&"walk": [2.0, 2.0, 2.0, 3.0, 2.0, 4.0],
+	&"hurt": [8.0],
+	&"death": [2.0, 2.0, 2.0, 2.0, 10.0],
+	&"hit1": [2.0, 2.0, 10.0],
+	&"hit2": [2.0, 10.0],
+	&"hit3": [10.0],
+	&"hit4": [10.0],
 }
-var _skill_busy: = false
-var _barrage_generation: = 0
+var _skill_busy := false
+var _barrage_generation := 0
 
 
-func _ready() -> void :
+func _ready() -> void:
 	_configure_visuals()
 	_configure_animation_player()
 	super._ready()
@@ -37,11 +37,10 @@ func _ready() -> void :
 	Skill_3_CD = 10
 
 
-func _configure_stats() -> void :
-
-	var average_level: = clampi(int(PlayerData.player_data.get("玩家等级", 1)), 1, 80)
-	var level_step: = ceili(float(average_level) / 10.0)
-	var attack_power: = 3000
+func _configure_stats() -> void:
+	var average_level := clampi(int(PlayerData.player_data.get("玩家等级", 1)), 1, 80)
+	var level_step := ceili(float(average_level) / 10.0)
+	var attack_power := 3000
 
 	is_boss = true
 	my_mr_name = "嫦娥"
@@ -72,56 +71,57 @@ func _configure_stats() -> void :
 	fall_stone = []
 
 	objattackDic["hit1"] = {
-		"power": attack_power, 
-		"hurtBack": [-6, -5], 
-		"attackKind": "physics", 
-		"HitProtect": 0, 
+		"power": attack_power,
+		"hurtBack": [-6, -5],
+		"attackKind": "physics",
+		"HitProtect": 0,
 	}
 	objattackDic["hit2"] = {
-		"power": attack_power, 
-		"hurtBack": [0, 0], 
-		"attackKind": "physics", 
-		"HitProtect": 0, 
+		"power": attack_power,
+		"hurtBack": [0, 0],
+		"attackKind": "physics",
+		"HitProtect": 0,
 	}
 	objattackDic["hit3"] = {
-		"power": 900, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
-		"HitProtect": 0, 
+		"power": 900,
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
+		"HitProtect": 0,
 	}
 	objattackDic["hit4"] = {
-		"power": 2000, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
-		"HitProtect": 0, 
+		"power": 2000,
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
+		"HitProtect": 0,
 	}
 
 
-func _configure_visuals() -> void :
-	var frames: = SpriteFrames.new()
+func _configure_visuals() -> void:
+	var frames := SpriteFrames.new()
 	frames.remove_animation(&"default")
 	for animation_name in ACTION_FRAME_DIRS.keys():
 		frames.add_animation(animation_name)
 		frames.set_animation_loop(animation_name, animation_name in [&"wait", &"walk"])
 		frames.set_animation_speed(animation_name, 24.0)
 		var frame_durations: Array = ACTION_FRAME_DURATIONS[animation_name]
-		var action_dir: = str(ACTION_FRAME_DIRS[animation_name])
+		var action_dir := str(ACTION_FRAME_DIRS[animation_name])
 		for frame_index in range(frame_durations.size()):
-			var texture_path: = MODEL_ROOT.path_join("frames").path_join(action_dir).path_join(str(frame_index + 1) + ".png")
-			var texture: = load(texture_path) as Texture2D
+			var texture_path := MODEL_ROOT.path_join("frames").path_join(action_dir).path_join(
+				str(frame_index + 1) + ".png"
+			)
+			var texture := load(texture_path) as Texture2D
 			if texture != null:
 				frames.add_frame(animation_name, texture, float(frame_durations[frame_index]))
 	mr_ani.sprite_frames = frames
-
 
 	mr_ani.offset = Vector2(5, -56)
 	mr_ani.play(&"wait")
 
 
-func _configure_animation_player() -> void :
+func _configure_animation_player() -> void:
 	for library_name in mr_player.get_animation_library_list():
 		mr_player.remove_animation_library(library_name)
-	var library: = AnimationLibrary.new()
+	var library := AnimationLibrary.new()
 	library.add_animation(&"RESET", _make_state_animation(&"wait", 0.05, false))
 	library.add_animation(&"wait", _make_state_animation(&"wait", 15.0 / 24.0, true))
 	library.add_animation(&"walk", _make_state_animation(&"walk", 15.0 / 24.0, true))
@@ -135,31 +135,43 @@ func _configure_animation_player() -> void :
 
 
 func _make_state_animation(state_name: StringName, duration: float, loops: bool) -> Animation:
-	var animation: = Animation.new()
+	var animation := Animation.new()
 	animation.length = duration
 	animation.loop_mode = Animation.LOOP_LINEAR if loops else Animation.LOOP_NONE
-	var animation_track: = animation.add_track(Animation.TYPE_VALUE)
+	var animation_track := animation.add_track(Animation.TYPE_VALUE)
 	animation.track_set_path(animation_track, NodePath("MonsterDir/mr_ani:animation"))
 	animation.track_insert_key(animation_track, 0.0, state_name)
 	animation.value_track_set_update_mode(animation_track, Animation.UPDATE_DISCRETE)
-	var frame_track: = animation.add_track(Animation.TYPE_VALUE)
+	var frame_track := animation.add_track(Animation.TYPE_VALUE)
 	animation.track_set_path(frame_track, NodePath("MonsterDir/mr_ani:frame"))
 	animation.track_insert_key(frame_track, 0.0, 0)
 	animation.value_track_set_update_mode(frame_track, Animation.UPDATE_DISCRETE)
 	if state_name == &"death":
-		var finish_track: = animation.add_track(Animation.TYPE_METHOD)
+		var finish_track := animation.add_track(Animation.TYPE_METHOD)
 		animation.track_set_path(finish_track, NodePath("."))
-		animation.track_insert_key(finish_track, maxf(0.01, duration - 0.01), {
-			"method": &"settle_death_drops_and_free", 
-			"args": [], 
-		})
+		(
+			animation
+			. track_insert_key(
+				finish_track,
+				maxf(0.01, duration - 0.01),
+				{
+					"method": &"settle_death_drops_and_free",
+					"args": [],
+				}
+			)
+		)
 	return animation
 
 
-func Monster_Intelligence() -> void :
-	if _skill_busy or Hp <= 0 or RoleProp.SourcePlayer == null or RoleProp.get_nearest_monster_target_position(global_position).x == null:
+func Monster_Intelligence() -> void:
+	if (
+		_skill_busy
+		or Hp <= 0
+		or RoleProp.SourcePlayer == null
+		or RoleProp.get_nearest_monster_target_position(global_position).x == null
+	):
 		return
-	var distance: = global_position.distance_to(RoleProp.SourcePlayer.global_position)
+	var distance := global_position.distance_to(RoleProp.SourcePlayer.global_position)
 	if distance < mysee:
 		has_target = true
 	if not has_target:
@@ -167,7 +179,6 @@ func Monster_Intelligence() -> void :
 		return
 	if is_ice or is_sleep or is_stun or is_Immobilize or Islljy or cannotchangestatewhenattorbeatt():
 		return
-
 
 	if Skill_1_CD <= 0 and distance < 1000.0:
 		_cast_moonlight()
@@ -183,7 +194,7 @@ func Monster_Intelligence() -> void :
 			attack_target()
 
 
-func attack_target() -> void :
+func attack_target() -> void:
 	if _skill_busy or Hp <= 0:
 		return
 	_skill_busy = true
@@ -194,7 +205,7 @@ func attack_target() -> void :
 	mr_player.play(&"hit1")
 	await get_tree().create_timer(4.0 / 24.0, false).timeout
 	if Hp > 0:
-		var offset_x: = 50.0 if MonsterDirection else -50.0
+		var offset_x := 50.0 if MonsterDirection else -50.0
 		_spawn_effect("Monster130Bullet1", global_position + Vector2(offset_x, 0), "hit1", objattackDic["hit1"])
 	await get_tree().create_timer(10.0 / 24.0, false).timeout
 	is_attacking = false
@@ -203,7 +214,7 @@ func attack_target() -> void :
 		stop_move()
 
 
-func _cast_moonlight() -> void :
+func _cast_moonlight() -> void:
 	if _skill_busy:
 		return
 	_skill_busy = true
@@ -223,7 +234,7 @@ func _cast_moonlight() -> void :
 		stop_move()
 
 
-func _cast_gaze() -> void :
+func _cast_gaze() -> void:
 	if _skill_busy:
 		return
 	_skill_busy = true
@@ -246,13 +257,13 @@ func _cast_gaze() -> void :
 		stop_move()
 
 
-func _cast_repeated_moonlight() -> void :
+func _cast_repeated_moonlight() -> void:
 	if _skill_busy:
 		return
 	_skill_busy = true
 	Skill_3_CD = 30
 	_barrage_generation += 1
-	var generation: = _barrage_generation
+	var generation := _barrage_generation
 	to_hero()
 	velocity.x = 0
 	hit_name = "hit4"
@@ -269,7 +280,7 @@ func _cast_repeated_moonlight() -> void :
 		stop_move()
 
 
-func _run_moonlight_barrage(generation: int) -> void :
+func _run_moonlight_barrage(generation: int) -> void:
 	for _index in range(5):
 		await get_tree().create_timer(2.0, false).timeout
 		if generation != _barrage_generation or Hp <= 0 or not is_inside_tree():
@@ -277,20 +288,17 @@ func _run_moonlight_barrage(generation: int) -> void :
 		_spawn_moonlight_on_random_target()
 
 
-func _spawn_moonlight_on_random_target() -> void :
-	var targets: = _get_player_and_pet_targets()
+func _spawn_moonlight_on_random_target() -> void:
+	var targets := _get_player_and_pet_targets()
 	if targets.is_empty():
 		return
-	var target: = targets[randi_range(0, targets.size() - 1)] as Node2D
+	var target := targets[randi_range(0, targets.size() - 1)] as Node2D
 	_spawn_effect("Monster130Bullet2", target.global_position + Vector2(0, -30), "hit2", objattackDic["hit2"])
 
 
 func _spawn_effect(effect_name: String, spawn_position: Vector2, attack_name: String, attack_data: Dictionary):
 	var effect = Global.add_Bullet(effect_name, bullet, MonsterDirection, 1.0, spawn_position, attack_name, attack_data)
 	if effect != null:
-
-
-
 		if effect is Node2D:
 			effect.set_as_top_level(true)
 			effect.global_position = spawn_position
@@ -298,56 +306,65 @@ func _spawn_effect(effect_name: String, spawn_position: Vector2, attack_name: St
 	return effect
 
 
-func _apply_gaze_control() -> void :
+func _apply_gaze_control() -> void:
 	if Hp <= 0:
 		return
 	for target_value in _get_player_and_pet_targets():
-		var target: = target_value as Node2D
+		var target := target_value as Node2D
 		if target == null or not is_instance_valid(target):
 			continue
-		var facing_right: = false
+		var facing_right := false
 		if target is BaseHero:
 			facing_right = bool(target.get("PlayerDir"))
 		elif target is BaseMonster:
 			facing_right = bool(target.get("MonsterDirection"))
-		var looking_at_change: = (target.global_position.x < global_position.x and facing_right) or (target.global_position.x > global_position.x and not facing_right)
+		var looking_at_change := (
+			(target.global_position.x < global_position.x and facing_right)
+			or (target.global_position.x > global_position.x and not facing_right)
+		)
 		if not looking_at_change:
 			continue
 		var buff_node = target.get("buff")
 		if buff_node == null:
 			buff_node = target.get_node_or_null("Buff")
 		if buff_node != null:
-			Global.AddBuff(buff_node, {
-				"Name": "EyeFix", 
-				"AddTime": 3.0, 
-				"ReduceInterval": 0, 
-				"value": 0, 
-				"AttackKind": "", 
-				"DeBuff": true, 
-				"CanRemove": false, 
-			})
+			(
+				Global
+				. AddBuff(
+					buff_node,
+					{
+						"Name": "EyeFix",
+						"AddTime": 3.0,
+						"ReduceInterval": 0,
+						"value": 0,
+						"AttackKind": "",
+						"DeBuff": true,
+						"CanRemove": false,
+					}
+				)
+			)
 
 
 func _get_player_and_pet_targets() -> Array[Node2D]:
 	var result: Array[Node2D] = []
 	if RoleProp.SourcePlayer != null and is_instance_valid(RoleProp.SourcePlayer) and RoleProp.SourcePlayer is Node2D:
 		result.append(RoleProp.SourcePlayer as Node2D)
-	var scene_root: = get_tree().current_scene
+	var scene_root := get_tree().current_scene
 	if scene_root != null:
 		_collect_pet_targets(scene_root, result)
 	return result
 
 
-func _collect_pet_targets(node: Node, result: Array[Node2D]) -> void :
+func _collect_pet_targets(node: Node, result: Array[Node2D]) -> void:
 	if node != self and node is Node2D and bool(node.get_meta("is_summon", false)):
-		var candidate: = node as Node2D
+		var candidate := node as Node2D
 		if candidate not in result:
 			result.append(candidate)
 	for child in node.get_children():
 		_collect_pet_targets(child, result)
 
 
-func state_death() -> void :
+func state_death() -> void:
 	_barrage_generation += 1
 	_skill_busy = true
 	super.state_death()
@@ -356,10 +373,10 @@ func state_death() -> void :
 		call_deferred("_finish_monster130_death")
 
 
-func _finish_monster130_death() -> void :
-	var death_length: = 0.9
+func _finish_monster130_death() -> void:
+	var death_length := 0.9
 	if mr_player != null and is_instance_valid(mr_player):
-		var death_animation: = mr_player.get_animation(&"death")
+		var death_animation := mr_player.get_animation(&"death")
 		if death_animation != null:
 			death_length = maxf(float(death_animation.length) + 0.08, 0.25)
 	await get_tree().create_timer(death_length, false).timeout
@@ -369,14 +386,14 @@ func _finish_monster130_death() -> void :
 		queue_free()
 
 
-func settle_death_drops_and_free() -> void :
+func settle_death_drops_and_free() -> void:
 	if is_queued_for_deletion() or get_meta("death_drops_settled", false):
 		return
 	_try_unlock_pet_rabbit()
 	super.settle_death_drops_and_free()
 
 
-func _try_unlock_pet_rabbit() -> void :
+func _try_unlock_pet_rabbit() -> void:
 	if PlayerData.has_method("is_pet_rabbit_unlocked") and PlayerData.is_pet_rabbit_unlocked():
 		return
 	if not PlayerData.has_method("unlock_pet_rabbit") or not PlayerData.unlock_pet_rabbit():

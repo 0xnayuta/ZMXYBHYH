@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster1
+
+
 func monster_1():
 	self.is_boss = false
 	self.my_mr_name = "小猴子"
@@ -26,55 +28,27 @@ func monster_1():
 	self.add_exp = 1
 	self.fall_coin = 1
 	self.objattackDic["hit1"] = {
-		"power": 10, 
-		"hurtBack": [-3, -6], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
+		"power": 10,
+		"hurtBack": [-3, -6],
+		"attackKind": "physics",
+		"HitProtect": 10,
 	}
 	self.fall_pro = 1.0
 	self.fall_list = [
-
-		{
-			"name": "ptjs", 
-			"value": 0
-		}, 
-		{
-			"name": "ptdp", 
-			"value": 0
-		}, 
-		{
-			"name": "ptcs", 
-			"value": 0
-		}, 
-		{
-			"name": "ptyyc", 
-			"value": 0
-		}, 
-		{
-			"name": "ptcp", 
-			"value": 0
-		}, 
-		{
-			"name": "pttq", 
-			"value": 0
-		}, 
-		{
-			"name": "ptcf", 
-			"value": 0
-		}, 
-		{
-			"name": "nzhjq", 
-			"value": 0
-		}, 
-		{
-			"name": "nzly", 
-			"value": 0
-		}, 
+		{"name": "ptjs", "value": 0},
+		{"name": "ptdp", "value": 0},
+		{"name": "ptcs", "value": 0},
+		{"name": "ptyyc", "value": 0},
+		{"name": "ptcp", "value": 0},
+		{"name": "pttq", "value": 0},
+		{"name": "ptcf", "value": 0},
+		{"name": "nzhjq", "value": 0},
+		{"name": "nzly", "value": 0},
 	]
 	self.fall_stone_pro = 0
-	self.fall_stone = [
+	self.fall_stone = []
 
-	]
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_1()

@@ -3,29 +3,29 @@ extends Control
 
 @onready var menu: TextureRect = $role_menu
 @onready var head: TextureRect = $role_hp_mp_exp
-@onready var ws_effect: TextureProgressBar = $role_menu / ws_wk / ws_effect
-@onready var max_ws: AnimatedSprite2D = $role_menu / grey / max_ws
-@onready var SkillBox: HBoxContainer = $role_menu / SkillBox
+@onready var ws_effect: TextureProgressBar = $role_menu/ws_wk/ws_effect
+@onready var max_ws: AnimatedSprite2D = $role_menu/grey/max_ws
+@onready var SkillBox: HBoxContainer = $role_menu/SkillBox
 @onready var role_skill_slots: Array[TextureRect] = [
-	$role_menu / skil_1, 
-	$role_menu / skil_2, 
-	$role_menu / skil_3, 
-	$role_menu / skil_4, 
-	$role_menu / skil_5, 
+	$role_menu/skil_1,
+	$role_menu/skil_2,
+	$role_menu/skil_3,
+	$role_menu/skil_4,
+	$role_menu/skil_5,
 ]
-@onready var grey: Sprite2D = $role_menu / grey
-@onready var role_protect: TextureProgressBar = $role_menu / RoleProtect
-@onready var role_level: Label = $role_hp_mp_exp / TextureRect / role_level
-@onready var hp_bar: TextureProgressBar = $role_hp_mp_exp / hp_bar
-@onready var hp_text: Label = $role_hp_mp_exp / hp_bar / hp_text
-@onready var mp_bar: TextureProgressBar = $role_hp_mp_exp / mp_bar
-@onready var mp_text: Label = $role_hp_mp_exp / mp_bar / mp_text
-@onready var exp_bar: TextureProgressBar = $role_hp_mp_exp / exp_bar
-@onready var exp_text: Label = $role_hp_mp_exp / exp_bar / exp_text
-@onready var nature_recovery_mp: Label = $role_hp_mp_exp / mp_bar / nature_recovery_mp
-@onready var nature_recovery_hp: Label = $role_hp_mp_exp / hp_bar / nature_recovery_hp
-@onready var buff_box: HBoxContainer = $role_hp_mp_exp / Buff_box
-@onready var role_head: TextureRect = $role_hp_mp_exp / PanelContainer / Control / role_head
+@onready var grey: Sprite2D = $role_menu/grey
+@onready var role_protect: TextureProgressBar = $role_menu/RoleProtect
+@onready var role_level: Label = $role_hp_mp_exp/TextureRect/role_level
+@onready var hp_bar: TextureProgressBar = $role_hp_mp_exp/hp_bar
+@onready var hp_text: Label = $role_hp_mp_exp/hp_bar/hp_text
+@onready var mp_bar: TextureProgressBar = $role_hp_mp_exp/mp_bar
+@onready var mp_text: Label = $role_hp_mp_exp/mp_bar/mp_text
+@onready var exp_bar: TextureProgressBar = $role_hp_mp_exp/exp_bar
+@onready var exp_text: Label = $role_hp_mp_exp/exp_bar/exp_text
+@onready var nature_recovery_mp: Label = $role_hp_mp_exp/mp_bar/nature_recovery_mp
+@onready var nature_recovery_hp: Label = $role_hp_mp_exp/hp_bar/nature_recovery_hp
+@onready var buff_box: HBoxContainer = $role_hp_mp_exp/Buff_box
+@onready var role_head: TextureRect = $role_hp_mp_exp/PanelContainer/Control/role_head
 var pet_panel: TextureRect
 var pet_head: TextureRect
 var pet_level: Label
@@ -39,35 +39,34 @@ var pet_exp_bar: TextureProgressBar
 var pet_exp_text: Label
 var pet_protect_bar: TextureProgressBar
 var pet_skill_box: HBoxContainer
-@onready var magicIcon: HBoxContainer = $role_menu / magicIcon
+@onready var magicIcon: HBoxContainer = $role_menu/magicIcon
 
 var SkillTscn: PackedScene = preload("res://Scene/OtherScene/SkillIcon.tscn")
 var MagicTscn: PackedScene = preload("res://Scene/MagicWeapon/MagicWeaponSkillCd.tscn")
 var BuffTscn: PackedScene = preload("res://Scene/OtherScene/BuffIcon.tscn")
-const STATUS_ICON_SIZE: = Vector2(32, 32)
-const PET_LEARNED_SKILL_RUNTIME: = preload("res://Script/Pet/PetLifeBonusRuntime.gd")
-const PET_LEARNED_ACTIVE_SKILL_ICONS: = {
-	"嗜血狂爆": "sxkb", "法术能量": "fsnl"
-}
+const STATUS_ICON_SIZE := Vector2(32, 32)
+const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/Pet/PetLifeBonusRuntime.gd")
+const PET_LEARNED_ACTIVE_SKILL_ICONS := {"嗜血狂爆": "sxkb", "法术能量": "fsnl"}
 
 var Player
 var magicCD
 var buff_icons: Dictionary = {}
 var _last_skill_bindings: Dictionary = {}
 var _last_skill_levels: Dictionary = {}
-var _last_mount_skill_signature: = ""
-var _last_magic_name: = ""
-var _last_pet_head_key: = ""
+var _last_mount_skill_signature := ""
+var _last_magic_name := ""
+var _last_pet_head_key := ""
 var _last_pet_skill_names: Array[String] = []
 var _role_skill_icons: Array[TextureRect] = []
-var _uses_role_skill_slots: = false
-var _skill_bindings_initialized: = false
-var _magic_name_initialized: = false
+var _uses_role_skill_slots := false
+var _skill_bindings_initialized := false
+var _magic_name_initialized := false
 var _cached_level: Node = null
 var _cached_pet_unit: Node = null
-var _pet_lookup_cooldown: = 0.0
+var _pet_lookup_cooldown := 0.0
 
-func _ready() -> void :
+
+func _ready() -> void:
 	if Player == null:
 		Player = RoleProp.SourcePlayer
 	_set_role_head()
@@ -78,7 +77,8 @@ func _ready() -> void :
 	_bind_pet_panel_nodes()
 	_set_pet_values()
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	_pet_lookup_cooldown = maxf(0.0, _pet_lookup_cooldown - _delta)
 	if Player == null:
 		Player = RoleProp.SourcePlayer
@@ -92,7 +92,8 @@ func _physics_process(_delta: float) -> void :
 	_set_values()
 	_set_pet_values()
 
-func _set_role_head() -> void :
+
+func _set_role_head() -> void:
 	match int(PlayerData.player_data.get("Myself", 1)):
 		1:
 			role_head.texture = load("res://Art/HeroPicture/RoleProperiesBox/hud_swk.png")
@@ -107,7 +108,8 @@ func _set_role_head() -> void :
 		6:
 			role_head.texture = load("res://Art/HeroPicture/RoleProperiesBox/hud_nz.png")
 
-func _load_skill_icons() -> void :
+
+func _load_skill_icons() -> void:
 	for key_name in ["Y", "U", "I", "O", "L"]:
 		var icon = SkillTscn.instantiate()
 		icon.name = key_name
@@ -127,9 +129,11 @@ func _load_skill_icons() -> void :
 	magicCD.name = "H"
 	magicIcon.add_child(magicCD)
 
-func _load_buff_icons() -> void :
+
+func _load_buff_icons() -> void:
 	for buff_name in Global.AllBuffList:
 		_ensure_buff_icon(str(buff_name))
+
 
 func _ensure_buff_icon(buff_name: String):
 	if buff_icons.has(buff_name):
@@ -161,7 +165,8 @@ func _ensure_buff_icon(buff_name: String):
 	buff_icon.visible = false
 	return buff_icon
 
-func _update_buff_icon(icon, buff, buff_obj: Dictionary, stack_count: int = 1) -> void :
+
+func _update_buff_icon(icon, buff, buff_obj: Dictionary, stack_count: int = 1) -> void:
 	if not is_instance_valid(icon) or icon.is_queued_for_deletion():
 		return
 	var buff_info: Dictionary = _make_buff_info(buff_obj)
@@ -176,15 +181,24 @@ func _update_buff_icon(icon, buff, buff_obj: Dictionary, stack_count: int = 1) -
 			icon.buff_icon_remove.start(add_time)
 		buff.set("IsCheck", true)
 
-func _set_values() -> void :
+
+func _set_values() -> void:
 	var shp: float = max(float(RoleProp.roleprop.SHp), 1.0)
 	var smp: float = max(float(RoleProp.roleprop.SMp), 1.0)
 	var max_exp: float = max(float(RoleProp.baseroleprop.max_exp), 1.0)
 	var max_ws_value: float = max(float(RoleProp.max_ws_value), 1.0)
 	var max_protect: float = max(float(Player.MaxProtect), 1.0)
 
-	nature_recovery_hp.text = "+" + str(float(RoleProp.roleprop.R_hp)) + "/s * " + str(Player.CureValue) if RoleProp.roleprop.Hp < RoleProp.roleprop.SHp and RoleProp.roleprop.R_hp > 0 else ""
-	nature_recovery_mp.text = "+" + str(float(RoleProp.roleprop.R_mp)) + "/s" if RoleProp.roleprop.Mp < RoleProp.roleprop.SMp and RoleProp.roleprop.R_mp > 0 else ""
+	nature_recovery_hp.text = (
+		"+" + str(float(RoleProp.roleprop.R_hp)) + "/s * " + str(Player.CureValue)
+		if RoleProp.roleprop.Hp < RoleProp.roleprop.SHp and RoleProp.roleprop.R_hp > 0
+		else ""
+	)
+	nature_recovery_mp.text = (
+		"+" + str(float(RoleProp.roleprop.R_mp)) + "/s"
+		if RoleProp.roleprop.Mp < RoleProp.roleprop.SMp and RoleProp.roleprop.R_mp > 0
+		else ""
+	)
 
 	role_level.text = str(RoleProp.baseroleprop.Level)
 	hp_bar.value = float(RoleProp.roleprop.Hp) / shp
@@ -196,11 +210,12 @@ func _set_values() -> void :
 	if ws_effect != null:
 		ws_effect.value = float(RoleProp.ws_value) / max_ws_value
 	if max_ws != null:
-		var ws_percent: = ws_effect.value if ws_effect != null else float(RoleProp.ws_value) / max_ws_value
+		var ws_percent := ws_effect.value if ws_effect != null else float(RoleProp.ws_value) / max_ws_value
 		max_ws.visible = ws_percent >= 1.0 and not RoleProp.is_ws_state
 	role_protect.value = float(Player.CurrentProtect) / max_protect
 
-func _bind_pet_panel_nodes() -> void :
+
+func _bind_pet_panel_nodes() -> void:
 	pet_panel = _find_pet_panel()
 	if pet_panel == null:
 		return
@@ -215,8 +230,8 @@ func _bind_pet_panel_nodes() -> void :
 	pet_protect_bar = pet_panel.get_node_or_null("RoleProtect") as TextureProgressBar
 	pet_exp_text = pet_panel.get_node_or_null("exp_bar/exp_text") as Label
 	pet_skill_box = pet_panel.get_node_or_null("SkillBox") as HBoxContainer
-	var pet_head_panel: = pet_panel.get_node_or_null("PanelContainer") as Control
-	var pet_head_control: = pet_panel.get_node_or_null("PanelContainer/Control") as Control
+	var pet_head_panel := pet_panel.get_node_or_null("PanelContainer") as Control
+	var pet_head_control := pet_panel.get_node_or_null("PanelContainer/Control") as Control
 	if pet_head_panel != null:
 		pet_head_panel.clip_contents = true
 	if pet_head_control != null:
@@ -236,13 +251,15 @@ func _bind_pet_panel_nodes() -> void :
 		pet_head.offset_right = 0.0
 		pet_head.offset_bottom = 0.0
 
+
 func _find_pet_panel() -> TextureRect:
 	for child in get_children():
 		if child is TextureRect and str(child.name).ends_with("_hp_mp_exp") and str(child.name) != "role_hp_mp_exp":
 			return child
 	return null
 
-func _set_pet_values() -> void :
+
+func _set_pet_values() -> void:
 	if pet_panel == null:
 		_bind_pet_panel_nodes()
 	if pet_panel == null:
@@ -314,9 +331,10 @@ func _set_pet_values() -> void :
 	_update_pet_head(pet, pet_unit)
 	_update_pet_skill_icons(pet, pet_unit)
 
+
 func _active_pet_data() -> Dictionary:
 	var data: Dictionary = PlayerData.player_data
-	var active_name: = str(data.get("出战宠物", ""))
+	var active_name := str(data.get("出战宠物", ""))
 	var pets: Variant = data.get("宠物列表", [])
 	if not (pets is Array):
 		return {}
@@ -344,44 +362,47 @@ func _active_pet_data() -> Dictionary:
 			return pet
 	return first_active_pet
 
+
 func _is_pet_dead_in_current_level(pet_name: String) -> bool:
-	var level: = _get_current_level()
+	var level := _get_current_level()
 	if level == null or not bool(level.get_meta("active_pet_dead_this_level", false)):
 		return false
-	var aliases: = _pet_dead_aliases(pet_name)
+	var aliases := _pet_dead_aliases(pet_name)
 	var dead_pet_keys_value: Variant = level.get_meta("active_pet_dead_keys", [])
 	if dead_pet_keys_value is Array:
 		for alias in aliases:
 			if dead_pet_keys_value.has(alias):
 				return true
-	var dead_type: = str(level.get_meta("active_pet_dead_type", ""))
+	var dead_type := str(level.get_meta("active_pet_dead_type", ""))
 	if dead_type != "" and aliases.has(dead_type):
 		return true
-	var dead_name: = str(level.get_meta("active_pet_dead_name", ""))
-	var dead_display_name: = str(level.get_meta("active_pet_dead_display_name", ""))
+	var dead_name := str(level.get_meta("active_pet_dead_name", ""))
+	var dead_display_name := str(level.get_meta("active_pet_dead_display_name", ""))
 	return dead_name == "" or aliases.has(dead_name) or aliases.has(dead_display_name)
+
 
 func _find_pet_dead_level(node: Node, pet_name: String) -> bool:
 	if node == null:
 		return false
 	if bool(node.get_meta("active_pet_dead_this_level", false)):
-		var aliases: = _pet_dead_aliases(pet_name)
+		var aliases := _pet_dead_aliases(pet_name)
 		var dead_pet_keys_value: Variant = node.get_meta("active_pet_dead_keys", [])
 		if dead_pet_keys_value is Array:
 			for alias in aliases:
 				if dead_pet_keys_value.has(alias):
 					return true
-		var dead_type: = str(node.get_meta("active_pet_dead_type", ""))
+		var dead_type := str(node.get_meta("active_pet_dead_type", ""))
 		if dead_type != "" and aliases.has(dead_type):
 			return true
-		var dead_name: = str(node.get_meta("active_pet_dead_name", ""))
-		var dead_display_name: = str(node.get_meta("active_pet_dead_display_name", ""))
+		var dead_name := str(node.get_meta("active_pet_dead_name", ""))
+		var dead_display_name := str(node.get_meta("active_pet_dead_display_name", ""))
 		if dead_name == "" or aliases.has(dead_name) or aliases.has(dead_display_name):
 			return true
 	for child in node.get_children():
 		if _find_pet_dead_level(child, pet_name):
 			return true
 	return false
+
 
 func _pet_dead_aliases(pet_name: String) -> Array[String]:
 	var aliases: Array[String] = [pet_name]
@@ -413,7 +434,11 @@ func _pet_dead_aliases(pet_name: String) -> Array[String]:
 		for name in ["虎丸", "白灵虎", "白虎将军", "白虎战神", "白虎"]:
 			if not aliases.has(name):
 				aliases.append(name)
-	if pet_name == "PetPhoenix" or pet_name.begins_with("朱雀") or pet_name in ["雀蛋", "炎皇雀", "朱雀将军", "朱雀女皇", "朱雀幼灵", "赤羽朱雀", "朱雀神君"]:
+	if (
+		pet_name == "PetPhoenix"
+		or pet_name.begins_with("朱雀")
+		or pet_name in ["雀蛋", "炎皇雀", "朱雀将军", "朱雀女皇", "朱雀幼灵", "赤羽朱雀", "朱雀神君"]
+	):
 		aliases.append("PetPhoenix")
 		for name in ["雀蛋", "炎皇雀", "朱雀将军", "朱雀女皇", "朱雀幼灵", "赤羽朱雀", "朱雀神君"]:
 			if not aliases.has(name):
@@ -425,6 +450,7 @@ func _pet_dead_aliases(pet_name: String) -> Array[String]:
 				aliases.append(name)
 	return aliases
 
+
 func _get_current_level() -> Node:
 	if is_instance_valid(_cached_level) and _cached_level.is_inside_tree():
 		return _cached_level
@@ -434,33 +460,38 @@ func _get_current_level() -> Node:
 			_cached_level = ancestor
 			return ancestor
 		ancestor = ancestor.get_parent()
-	var current_scene: = get_tree().current_scene
+	var current_scene := get_tree().current_scene
 	if current_scene != null and (current_scene is BaseLevel or current_scene.get("monster") is Node):
 		_cached_level = current_scene
 		return current_scene
-	var levels: = get_tree().get_nodes_in_group("BaseLevel")
+	var levels := get_tree().get_nodes_in_group("BaseLevel")
 	_cached_level = levels[0] if not levels.is_empty() else null
 	return _cached_level
 
+
 func _get_cached_active_pet_unit() -> Node:
-	if is_instance_valid(_cached_pet_unit) and _cached_pet_unit.is_inside_tree() and not _cached_pet_unit.is_queued_for_deletion():
+	if (
+		is_instance_valid(_cached_pet_unit)
+		and _cached_pet_unit.is_inside_tree()
+		and not _cached_pet_unit.is_queued_for_deletion()
+	):
 		return _cached_pet_unit
 	_cached_pet_unit = null
 	if _pet_lookup_cooldown > 0.0:
 		return null
 	_pet_lookup_cooldown = 0.25
-	var level: = _get_current_level()
+	var level := _get_current_level()
 	if level == null:
 		return null
 	var registered_pet = level.get_meta("active_pet_unit", false)
 	if is_instance_valid(registered_pet):
-		var registered_pet_node: = registered_pet as Node
+		var registered_pet_node := registered_pet as Node
 		if registered_pet_node != null and _is_hud_active_pet_unit(registered_pet_node):
 			_cached_pet_unit = registered_pet_node
 			return registered_pet_node
 	elif level.has_meta("active_pet_unit"):
 		level.remove_meta("active_pet_unit")
-	var monster_container: = level.get("monster") as Node
+	var monster_container := level.get("monster") as Node
 	if monster_container == null:
 		return null
 	for child in monster_container.get_children():
@@ -469,23 +500,57 @@ func _get_cached_active_pet_unit() -> Node:
 			return child
 	return null
 
+
 func _is_hud_active_pet_unit(node: Node) -> bool:
 	if not is_instance_valid(node) or not node.is_inside_tree() or node.is_queued_for_deletion():
 		return false
-	if bool(node.get_meta("pet_tiger_unit", false)) or bool(node.get_meta("pet_phoenix_unit", false)) or bool(node.get_meta("pet_turtle_unit", false)) or bool(node.get_meta("pet_rabbit_unit", false)) or bool(node.get_meta("pet_mouse_unit", false)) or bool(node.get_meta("pet_neat_unit", false)) or bool(node.get_meta("pet_yin_tiger_unit", false)):
+	if (
+		bool(node.get_meta("pet_tiger_unit", false))
+		or bool(node.get_meta("pet_phoenix_unit", false))
+		or bool(node.get_meta("pet_turtle_unit", false))
+		or bool(node.get_meta("pet_rabbit_unit", false))
+		or bool(node.get_meta("pet_mouse_unit", false))
+		or bool(node.get_meta("pet_neat_unit", false))
+		or bool(node.get_meta("pet_yin_tiger_unit", false))
+	):
 		return true
 	return bool(node.get_meta("pet_dragon_unit", false)) and not bool(node.get("is_dragon_clone"))
 
-func _update_pet_head(pet: Dictionary, pet_unit: Node) -> void :
+
+func _update_pet_head(pet: Dictionary, pet_unit: Node) -> void:
 	if pet_head == null:
 		return
 	if pet.is_empty():
 		if pet_head.texture != null:
 			pet_head.texture = null
 		return
-	var stage: = _active_pet_skill_stage(pet, pet_unit)
-	var pet_type: = "yin_tiger" if _is_pet_yin_tiger_hud_data(pet, pet_unit) else "neat" if _is_pet_neat_hud_data(pet, pet_unit) else "mouse" if _is_pet_mouse_hud_data(pet, pet_unit) else "rabbit" if _is_pet_rabbit_hud_data(pet, pet_unit) else "turtle" if _is_pet_turtle_hud_data(pet, pet_unit) else "phoenix" if _is_pet_phoenix_hud_data(pet, pet_unit) else ("dragon" if _is_pet_dragon_hud_data(pet, pet_unit) else "tiger")
-	var head_key: = "%s:%d" % [pet_type, stage]
+	var stage := _active_pet_skill_stage(pet, pet_unit)
+	var pet_type := (
+		"yin_tiger"
+		if _is_pet_yin_tiger_hud_data(pet, pet_unit)
+		else (
+			"neat"
+			if _is_pet_neat_hud_data(pet, pet_unit)
+			else (
+				"mouse"
+				if _is_pet_mouse_hud_data(pet, pet_unit)
+				else (
+					"rabbit"
+					if _is_pet_rabbit_hud_data(pet, pet_unit)
+					else (
+						"turtle"
+						if _is_pet_turtle_hud_data(pet, pet_unit)
+						else (
+							"phoenix"
+							if _is_pet_phoenix_hud_data(pet, pet_unit)
+							else ("dragon" if _is_pet_dragon_hud_data(pet, pet_unit) else "tiger")
+						)
+					)
+				)
+			)
+		)
+	)
+	var head_key := "%s:%d" % [pet_type, stage]
 	if head_key == _last_pet_head_key:
 		return
 	_last_pet_head_key = head_key
@@ -504,60 +569,71 @@ func _update_pet_head(pet: Dictionary, pet_unit: Node) -> void :
 	else:
 		pet_head.texture = _pet_dragon_head_texture(stage) if pet_type == "dragon" else _pet_tiger_head_texture(stage)
 
+
 func _pet_tiger_head_texture(stage: int) -> Texture2D:
 	return Global.get_cached_texture("res://Art/Pet/PetTiger/model/actions/stage%d/wait/icon.png" % clampi(stage, 1, 4))
+
 
 func _pet_dragon_head_texture(stage: int) -> Texture2D:
 	return Global.get_cached_texture("res://Art/Pet/PetDragon/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4))
 
+
 func _pet_phoenix_head_texture(stage: int) -> Texture2D:
 	return Global.get_cached_texture("res://Art/Pet/PetPhoenix/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4))
+
 
 func _pet_turtle_head_texture(stage: int) -> Texture2D:
 	return load("res://Art/Pet/PetTurtle/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4)) as Texture2D
 
+
 func _pet_rabbit_head_texture(stage: int) -> Texture2D:
 	return load("res://Art/Pet/PetRabbit/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4)) as Texture2D
+
 
 func _pet_mouse_head_texture(stage: int) -> Texture2D:
 	return load("res://Art/Pet/PetMouse/model/actions/stage%d/wait/head.png" % clampi(stage, 1, 2)) as Texture2D
 
+
 func _pet_neat_head_texture(stage: int) -> Texture2D:
 	return load("res://Art/Pet/PetNeat/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4)) as Texture2D
 
+
 func _pet_yin_tiger_head_texture(stage: int) -> Texture2D:
-	var source_stage: = 2 if stage >= 4 else 1
-	var path: = "res://Art/Pet/PetYinTiger/model/actions/stage%d/wait/1.png" % source_stage
+	var source_stage := 2 if stage >= 4 else 1
+	var path := "res://Art/Pet/PetYinTiger/model/actions/stage%d/wait/1.png" % source_stage
 	return load(path) as Texture2D
 
-func _clear_pet_skill_icons() -> void :
+
+func _clear_pet_skill_icons() -> void:
 	if pet_skill_box == null:
 		return
 	for child in pet_skill_box.get_children():
 		child.queue_free()
 	_last_pet_skill_names.clear()
 
-func _update_pet_skill_icons(pet: Dictionary, pet_unit: Node) -> void :
+
+func _update_pet_skill_icons(pet: Dictionary, pet_unit: Node) -> void:
 	if pet_skill_box == null:
 		return
-	var stage: = _active_pet_skill_stage(pet, pet_unit)
-	var skill_names: = _pet_visible_skill_icon_names(pet, pet_unit, stage)
-	var skill_names_changed: = skill_names != _last_pet_skill_names
+	var stage := _active_pet_skill_stage(pet, pet_unit)
+	var skill_names := _pet_visible_skill_icon_names(pet, pet_unit, stage)
+	var skill_names_changed := skill_names != _last_pet_skill_names
 	if skill_names_changed:
 		_last_pet_skill_names = skill_names.duplicate()
 	while pet_skill_box.get_child_count() > skill_names.size():
-		var extra: = pet_skill_box.get_child(pet_skill_box.get_child_count() - 1)
+		var extra := pet_skill_box.get_child(pet_skill_box.get_child_count() - 1)
 		pet_skill_box.remove_child(extra)
 		extra.queue_free()
 	for i in range(skill_names.size()):
-		var icon: = _ensure_pet_skill_icon(i)
-		var skill_name: = str(skill_names[i])
+		var icon := _ensure_pet_skill_icon(i)
+		var skill_name := str(skill_names[i])
 		if skill_names_changed or str(icon.name) != skill_name:
 			icon.name = skill_name
-			var icon_file: = "aoyi" if skill_name in ["xwaoyi", "ysaoyi", "zsaoyi"] else skill_name
+			var icon_file := "aoyi" if skill_name in ["xwaoyi", "ysaoyi", "zsaoyi"] else skill_name
 			icon.texture = load("res://Art/Pet/skillicon/%s.png" % icon_file)
 			icon.visible = icon.texture != null
 		_set_pet_skill_cooldown(icon, skill_name, pet_unit)
+
 
 func _ensure_pet_skill_icon(index: int) -> TextureRect:
 	var icon: TextureRect = null
@@ -573,8 +649,9 @@ func _ensure_pet_skill_icon(index: int) -> TextureRect:
 	_ensure_pet_skill_cooldown_nodes(icon)
 	return icon
 
-func _ensure_pet_skill_cooldown_nodes(icon: TextureRect) -> void :
-	var mask: = icon.get_node_or_null("PicBox") as TextureProgressBar
+
+func _ensure_pet_skill_cooldown_nodes(icon: TextureRect) -> void:
+	var mask := icon.get_node_or_null("PicBox") as TextureProgressBar
 	if mask == null:
 		mask = TextureProgressBar.new()
 		mask.name = "PicBox"
@@ -588,7 +665,7 @@ func _ensure_pet_skill_cooldown_nodes(icon: TextureRect) -> void :
 	mask.size = Vector2(32, 32)
 	mask.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	mask.z_index = 1
-	var time_text: = icon.get_node_or_null("TimeText") as Label
+	var time_text := icon.get_node_or_null("TimeText") as Label
 	if time_text == null:
 		time_text = Label.new()
 		time_text.name = "TimeText"
@@ -603,13 +680,14 @@ func _ensure_pet_skill_cooldown_nodes(icon: TextureRect) -> void :
 	time_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	time_text.z_index = 2
 
-func _set_pet_skill_cooldown(icon: TextureRect, skill_name: String, pet_unit: Node) -> void :
-	var mask: = icon.get_node_or_null("PicBox") as TextureProgressBar
-	var time_text: = icon.get_node_or_null("TimeText") as Label
+
+func _set_pet_skill_cooldown(icon: TextureRect, skill_name: String, pet_unit: Node) -> void:
+	var mask := icon.get_node_or_null("PicBox") as TextureProgressBar
+	var time_text := icon.get_node_or_null("TimeText") as Label
 	if mask == null or time_text == null:
 		return
-	var cd: = _pet_skill_cooldown_left(skill_name, pet_unit)
-	var max_cd: = _pet_skill_cooldown_max(skill_name, pet_unit)
+	var cd := _pet_skill_cooldown_left(skill_name, pet_unit)
+	var max_cd := _pet_skill_cooldown_max(skill_name, pet_unit)
 	mask.texture_progress = icon.texture
 	if cd <= 0.0 or max_cd <= 0.0:
 		mask.visible = false
@@ -624,18 +702,20 @@ func _set_pet_skill_cooldown(icon: TextureRect, skill_name: String, pet_unit: No
 	else:
 		time_text.text = str(snapped(cd, 0.1))
 
+
 func _pet_skill_cooldown_left(skill_name: String, pet_unit: Node) -> float:
 	if pet_unit == null:
 		return 0.0
 	if skill_name in PET_LEARNED_ACTIVE_SKILL_ICONS.values():
-		var runtime: = pet_unit.get_node_or_null("PetLearnedSkillRuntime")
+		var runtime := pet_unit.get_node_or_null("PetLearnedSkillRuntime")
 		if runtime != null and runtime.has_method("cooldown_left"):
 			return maxf(0.0, float(runtime.cooldown_left()))
 		return 0.0
-	var key: = _pet_skill_cooldown_key(skill_name)
+	var key := _pet_skill_cooldown_key(skill_name)
 	if key == "":
 		return 0.0
 	return maxf(0.0, float(pet_unit.get(key)))
+
 
 func _pet_skill_cooldown_key(skill_name: String) -> String:
 	match skill_name:
@@ -649,14 +729,15 @@ func _pet_skill_cooldown_key(skill_name: String) -> String:
 			return "Skill_4_CD"
 	return ""
 
+
 func _pet_skill_cooldown_max(skill_name: String, pet_unit: Node) -> float:
 	if skill_name in PET_LEARNED_ACTIVE_SKILL_ICONS.values():
 		if pet_unit != null:
-			var runtime: = pet_unit.get_node_or_null("PetLearnedSkillRuntime")
+			var runtime := pet_unit.get_node_or_null("PetLearnedSkillRuntime")
 			if runtime != null and runtime.has_method("cooldown_max"):
 				return maxf(0.0, float(runtime.cooldown_max()))
 		return PET_LEARNED_SKILL_RUNTIME.COOLDOWN_SECONDS
-	var base_cooldown: = 1.0
+	var base_cooldown := 1.0
 	match skill_name:
 		"hy":
 			base_cooldown = 7.0
@@ -725,12 +806,13 @@ func _pet_skill_cooldown_max(skill_name: String, pet_unit: Node) -> float:
 			base_cooldown = 12.0
 		"cnaoyi":
 			base_cooldown = 45.0
-	var cooldown_multiplier: = 1.0
+	var cooldown_multiplier := 1.0
 	if pet_unit != null:
 		var unit_multiplier = pet_unit.get("pet_skill_cooldown_multiplier")
 		if unit_multiplier != null:
 			cooldown_multiplier = maxf(0.01, float(unit_multiplier))
 	return base_cooldown * cooldown_multiplier
+
 
 func _active_pet_skill_stage(pet: Dictionary, pet_unit: Node) -> int:
 	if _is_pet_neat_hud_data(pet, pet_unit):
@@ -762,10 +844,10 @@ func _active_pet_skill_stage(pet: Dictionary, pet_unit: Node) -> int:
 			return clampi(int(unit_stage), 1, 4)
 	if pet.has("阶段"):
 		return clampi(int(pet.get("阶段", 1)), 1, 4)
-	var skill_stage: = _pet_tiger_stage_from_skill_data(pet)
+	var skill_stage := _pet_tiger_stage_from_skill_data(pet)
 	if skill_stage > 0:
 		return skill_stage
-	var level: = int(pet.get("等级", pet.get("Level", pet.get("level", 1))))
+	var level := int(pet.get("等级", pet.get("Level", pet.get("level", 1))))
 	if level >= 50:
 		return 4
 	if level >= 30:
@@ -774,20 +856,22 @@ func _active_pet_skill_stage(pet: Dictionary, pet_unit: Node) -> int:
 		return 2
 	return 1
 
+
 func _pet_tiger_stage_from_skill_data(pet: Dictionary) -> int:
-	var stage: = 0
+	var stage := 0
 	for value in pet.values():
 		if value is Array:
 			stage = max(stage, _pet_tiger_stage_from_skill_array(value))
 	return stage
 
+
 func _pet_tiger_stage_from_skill_array(skills: Array) -> int:
-	var stage: = 0
+	var stage := 0
 	for skill in skills:
-		var skill_name: = ""
+		var skill_name := ""
 		if skill is Dictionary:
 			for value in skill.values():
-				var text: = str(value)
+				var text := str(value)
 				if text in ["hy", "sxhz", "hsqj", "aoyi"]:
 					skill_name = text
 					break
@@ -804,6 +888,7 @@ func _pet_tiger_stage_from_skill_array(skills: Array) -> int:
 				stage = max(stage, 1)
 	return stage
 
+
 func _pet_tiger_skill_names_for_stage(stage: int) -> Array[String]:
 	match clampi(stage, 1, 4):
 		1:
@@ -815,17 +900,19 @@ func _pet_tiger_skill_names_for_stage(stage: int) -> Array[String]:
 		_:
 			return ["hy", "sxhz", "hsqj", "aoyi"]
 
+
 func _pet_visible_skill_icon_names(pet: Dictionary, pet_unit: Node, stage: int) -> Array[String]:
 	var result: Array[String] = []
 	for skill_id in _pet_skill_icon_names_for_pet(pet, pet_unit, stage):
-		var native_skill_id: = str(skill_id)
+		var native_skill_id := str(skill_id)
 		if native_skill_id == "yg" or _pet_skill_cooldown_max(native_skill_id, pet_unit) > 0.0:
 			result.append(native_skill_id)
 	for skill_name in PET_LEARNED_SKILL_RUNTIME.learned_skill_names(pet):
-		var learned_skill_id: = str(PET_LEARNED_ACTIVE_SKILL_ICONS.get(str(skill_name), ""))
+		var learned_skill_id := str(PET_LEARNED_ACTIVE_SKILL_ICONS.get(str(skill_name), ""))
 		if not learned_skill_id.is_empty() and not result.has(learned_skill_id):
 			result.append(learned_skill_id)
 	return result
+
 
 func _pet_skill_icon_names_for_pet(pet: Dictionary, pet_unit: Node, stage: int) -> Array[String]:
 	if _is_pet_yin_tiger_hud_data(pet, pet_unit):
@@ -840,7 +927,7 @@ func _pet_skill_icon_names_for_pet(pet: Dictionary, pet_unit: Node, stage: int) 
 				return ["mncz"]
 	if _is_pet_mouse_hud_data(pet, pet_unit):
 		var mouse_skill_names: Array[String] = ["sc"]
-		var pet_level: = int(pet.get("等级", 1))
+		var pet_level := int(pet.get("等级", 1))
 		if pet_level >= 30:
 			mouse_skill_names.append("hxfb")
 		if pet_level >= 50:
@@ -888,75 +975,100 @@ func _pet_skill_icon_names_for_pet(pet: Dictionary, pet_unit: Node, stage: int) 
 		_:
 			return ["fs", "sdcc", "ltwj", "aoyi"]
 
+
 func _is_pet_dragon_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name: = str(pet.get("名称", ""))
-	var is_dragon: = str(pet.get("类型", "")) == "PetDragon" or pet_name.begins_with("辰龙") or pet_name in ["龙仔", "绿英龙", "青龙将军", "青龙妖圣"]
+	var pet_name := str(pet.get("名称", ""))
+	var is_dragon := (
+		str(pet.get("类型", "")) == "PetDragon" or pet_name.begins_with("辰龙") or pet_name in ["龙仔", "绿英龙", "青龙将军", "青龙妖圣"]
+	)
 	if pet_unit != null and bool(pet_unit.get_meta("pet_dragon_unit", false)):
 		is_dragon = true
 	return is_dragon
 
+
 func _is_pet_phoenix_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name: = str(pet.get("名称", pet.get("名字", "")))
-	var is_phoenix: = str(pet.get("类型", "")) == "PetPhoenix" or pet_name.begins_with("朱雀") or pet_name in ["雀蛋", "炎皇雀", "朱雀将军", "朱雀女皇", "朱雀幼灵", "赤羽朱雀", "朱雀神君"]
+	var pet_name := str(pet.get("名称", pet.get("名字", "")))
+	var is_phoenix := (
+		str(pet.get("类型", "")) == "PetPhoenix"
+		or pet_name.begins_with("朱雀")
+		or pet_name in ["雀蛋", "炎皇雀", "朱雀将军", "朱雀女皇", "朱雀幼灵", "赤羽朱雀", "朱雀神君"]
+	)
 	if pet_unit != null and bool(pet_unit.get_meta("pet_phoenix_unit", false)):
 		is_phoenix = true
 	return is_phoenix
 
+
 func _is_pet_turtle_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name: = str(pet.get("名称", pet.get("名字", "")))
-	var is_turtle: = str(pet.get("类型", "")) == "PetTurtle" or pet_name.begins_with("玄武") or pet_name in ["龟布", "墨玄龟", "玄武将军", "玄武大帝"]
+	var pet_name := str(pet.get("名称", pet.get("名字", "")))
+	var is_turtle := (
+		str(pet.get("类型", "")) == "PetTurtle" or pet_name.begins_with("玄武") or pet_name in ["龟布", "墨玄龟", "玄武将军", "玄武大帝"]
+	)
 	if pet_unit != null and bool(pet_unit.get_meta("pet_turtle_unit", false)):
 		is_turtle = true
 	return is_turtle
 
+
 func _is_pet_rabbit_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name: = str(pet.get("名称", pet.get("名字", "")))
-	var is_rabbit: = str(pet.get("类型", "")) == "PetRabbit" or pet_name in ["月兔", "疾风兔", "寒冰玉兔", "冰霜月神"]
+	var pet_name := str(pet.get("名称", pet.get("名字", "")))
+	var is_rabbit := str(pet.get("类型", "")) == "PetRabbit" or pet_name in ["月兔", "疾风兔", "寒冰玉兔", "冰霜月神"]
 	if pet_unit != null and bool(pet_unit.get_meta("pet_rabbit_unit", false)):
 		is_rabbit = true
 	return is_rabbit
 
+
 func _is_pet_mouse_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name: = str(pet.get("名称", pet.get("名字", "")))
-	var is_mouse: = str(pet.get("类型", "")) == "PetMouse" or pet_name.begins_with("子鼠") or pet_name in ["子鼠元帅", "子鼠大元帅"]
+	var pet_name := str(pet.get("名称", pet.get("名字", "")))
+	var is_mouse := str(pet.get("类型", "")) == "PetMouse" or pet_name.begins_with("子鼠") or pet_name in ["子鼠元帅", "子鼠大元帅"]
 	if pet_unit != null and bool(pet_unit.get_meta("pet_mouse_unit", false)):
 		is_mouse = true
 	return is_mouse
 
+
 func _is_pet_neat_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name: = str(pet.get("名称", pet.get("名字", "")))
-	var is_neat: = str(pet.get("类型", "")) == "PetNeat" or pet_name in ["丑牛", "丑牛元帅", "丑牛大元帅"]
+	var pet_name := str(pet.get("名称", pet.get("名字", "")))
+	var is_neat := str(pet.get("类型", "")) == "PetNeat" or pet_name in ["丑牛", "丑牛元帅", "丑牛大元帅"]
 	if pet_unit != null and bool(pet_unit.get_meta("pet_neat_unit", false)):
 		is_neat = true
 	return is_neat
 
+
 func _is_pet_yin_tiger_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name: = str(pet.get("名称", pet.get("名字", "")))
-	var is_yin_tiger: = str(pet.get("类型", "")) == "PetYinTiger" or pet_name in ["寅虎", "银角虎", "寅虎元帅", "寅虎大元帅"]
+	var pet_name := str(pet.get("名称", pet.get("名字", "")))
+	var is_yin_tiger := str(pet.get("类型", "")) == "PetYinTiger" or pet_name in ["寅虎", "银角虎", "寅虎元帅", "寅虎大元帅"]
 	if pet_unit != null and bool(pet_unit.get_meta("pet_yin_tiger_unit", false)):
 		is_yin_tiger = true
 	return is_yin_tiger
 
 
 func _is_mobile_touch_hud() -> bool:
-	return OS.has_feature("android") or get_tree().root.has_node("TouchControls") or get_parent() != null and get_parent().name == "Control"
+	return (
+		OS.has_feature("android")
+		or get_tree().root.has_node("TouchControls")
+		or get_parent() != null and get_parent().name == "Control"
+	)
+
 
 func is_full_ws() -> bool:
 	return RoleProp.ws_value >= RoleProp.max_ws_value and not RoleProp.is_ws_state
 
-func _set_skill_pic() -> void :
+
+func _set_skill_pic() -> void:
 	var skill_data = PlayerData.player_data.get("技能学习", {})
 	var skill_keys = skill_data.get("技能键位", {}) if skill_data is Dictionary else {}
-	var skill_levels: = _get_skill_level_snapshot(skill_data)
-	var mount_runtime: = _current_mount_runtime()
+	var skill_levels := _get_skill_level_snapshot(skill_data)
+	var mount_runtime := _current_mount_runtime()
 	var display_skill_keys: Variant = skill_keys
-	var mount_skill_signature: = ""
-	if mount_runtime != null and mount_runtime.has_method("is_riding_mount") and bool(mount_runtime.call("is_riding_mount")):
+	var mount_skill_signature := ""
+	if (
+		mount_runtime != null
+		and mount_runtime.has_method("is_riding_mount")
+		and bool(mount_runtime.call("is_riding_mount"))
+	):
 		display_skill_keys = {}
 		var mount_skill_ids: Array[String] = []
 		for slot in range(5):
 			var mount_skill: Dictionary = mount_runtime.call("get_mount_skill_for_slot", slot)
-			var mount_skill_id: = str(mount_skill.get("id", ""))
+			var mount_skill_id := str(mount_skill.get("id", ""))
 			mount_skill_ids.append(mount_skill_id)
 			if mount_skill_id != "":
 				display_skill_keys[["Y", "U", "I", "O", "L"][slot]] = mount_skill_id
@@ -973,21 +1085,25 @@ func _set_skill_pic() -> void :
 	_last_skill_bindings = skill_keys.duplicate() if skill_keys is Dictionary else {}
 	_last_skill_levels = skill_levels
 	_last_mount_skill_signature = mount_skill_signature
-	_set_skill_pic_for_icons(SkillBox.get_children(), display_skill_keys, mount_runtime if mount_skill_signature != "" else null)
+	_set_skill_pic_for_icons(
+		SkillBox.get_children(), display_skill_keys, mount_runtime if mount_skill_signature != "" else null
+	)
 	_sync_role_skill_slot_icons(display_skill_keys)
-	_set_skill_pic_for_icons(_role_skill_icons, display_skill_keys, mount_runtime if mount_skill_signature != "" else null)
+	_set_skill_pic_for_icons(
+		_role_skill_icons, display_skill_keys, mount_runtime if mount_skill_signature != "" else null
+	)
 
-func _sync_role_skill_slot_icons(skill_keys: Variant) -> void :
+
+func _sync_role_skill_slot_icons(skill_keys: Variant) -> void:
 	_role_skill_icons.clear()
 	if not _uses_role_skill_slots or role_skill_slots.size() != 5:
 		return
-	var key_names: = ["Y", "U", "I", "O", "L"]
+	var key_names := ["Y", "U", "I", "O", "L"]
 	for index in range(role_skill_slots.size()):
-		var slot: = role_skill_slots[index]
+		var slot := role_skill_slots[index]
 		var key_name: String = key_names[index]
-		var skill_name: = str(skill_keys.get(key_name, ""))\
-		if skill_keys is Dictionary else ""
-		var icon: = slot.get_node_or_null(key_name) as TextureRect
+		var skill_name := str(skill_keys.get(key_name, "")) if skill_keys is Dictionary else ""
+		var icon := slot.get_node_or_null(key_name) as TextureRect
 		if skill_name == "" or skill_name == "Empty":
 			if icon != null:
 				slot.remove_child(icon)
@@ -998,11 +1114,12 @@ func _sync_role_skill_slot_icons(skill_keys: Variant) -> void :
 			icon.name = key_name
 			slot.add_child(icon)
 			icon.size = Vector2(45, 45)
-			var icon_scale: = Vector2(slot.size.x / 45.0, slot.size.y / 45.0)
+			var icon_scale := Vector2(slot.size.x / 45.0, slot.size.y / 45.0)
 
 			icon.position = Vector2(slot.size.x, 0)
-			icon.scale = Vector2( - icon_scale.x, icon_scale.y)
+			icon.scale = Vector2(-icon_scale.x, icon_scale.y)
 		_role_skill_icons.append(icon)
+
 
 func _get_skill_level_snapshot(skill_data: Variant) -> Dictionary:
 	var levels: Dictionary = {}
@@ -1014,8 +1131,9 @@ func _get_skill_level_snapshot(skill_data: Variant) -> Dictionary:
 			levels[str(key)] = int(entry["等级"])
 	return levels
 
-func _set_skill_pic_for_icons(icons: Array, skill_keys: Variant, mount_runtime: Node = null) -> void :
-	var key_names: = ["Y", "U", "I", "O", "L"]
+
+func _set_skill_pic_for_icons(icons: Array, skill_keys: Variant, mount_runtime: Node = null) -> void:
+	var key_names := ["Y", "U", "I", "O", "L"]
 	for icon in icons:
 		var key_name: String = str(icon.name)
 		var skill_name: String = str(skill_keys.get(key_name, "")) if skill_keys is Dictionary else ""
@@ -1024,10 +1142,12 @@ func _set_skill_pic_for_icons(icons: Array, skill_keys: Variant, mount_runtime: 
 		if icon.has_method("set_mp_display"):
 			icon.set_mp_display(0 if mount_runtime != null else _get_skill_mp(skill_name))
 
+
 func _current_mount_runtime() -> Node:
 	if Player == null or not is_instance_valid(Player):
 		return null
 	return Player.get_node_or_null("MountRuntime")
+
 
 func _get_skill_mp(skill_name: String) -> int:
 	if skill_name == "" or skill_name == "Empty":
@@ -1040,7 +1160,8 @@ func _get_skill_mp(skill_name: String) -> int:
 		return int(Player.get_need_mp(skill_name, false))
 	return 0
 
-func _set_magic_weapon_pic() -> void :
+
+func _set_magic_weapon_pic() -> void:
 	if magicCD == null:
 		return
 	var magic_name: String = str(PlayerData.player_data.get("实战法宝", ""))
@@ -1051,7 +1172,8 @@ func _set_magic_weapon_pic() -> void :
 	magicCD.visible = magic_name != ""
 	magicCD.SkillName = magic_name
 
-func _set_buff_icon_info() -> void :
+
+func _set_buff_icon_info() -> void:
 	var active_buff_names: Array[String] = []
 	var buff_counts: Dictionary = {}
 	var first_buff_by_name: Dictionary = {}
@@ -1084,14 +1206,15 @@ func _set_buff_icon_info() -> void :
 			if is_instance_valid(inactive_icon) and not inactive_icon.is_queued_for_deletion():
 				inactive_icon.visible = false
 
+
 func _make_buff_info(buff_obj: Dictionary) -> Dictionary:
 	var info: Dictionary = {
-		"Name": str(buff_obj.get("Name", "")), 
-		"value": 0.0, 
-		"AddTime": float(buff_obj.get("AddTime", 0.0)), 
-		"ReduceInterval": float(buff_obj.get("ReduceInterval", 0.0)), 
-		"AttackKind": str(buff_obj.get("AttackKind", "")), 
-		"HaveCount": 1, 
+		"Name": str(buff_obj.get("Name", "")),
+		"value": 0.0,
+		"AddTime": float(buff_obj.get("AddTime", 0.0)),
+		"ReduceInterval": float(buff_obj.get("ReduceInterval", 0.0)),
+		"AttackKind": str(buff_obj.get("AttackKind", "")),
+		"HaveCount": 1,
 	}
 	for key in buff_obj.keys():
 		if not info.has(key):

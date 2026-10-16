@@ -1,7 +1,7 @@
 extends BaseLevel
-@onready var stop_1: CollisionShape2D = $wall / stop1
-@onready var stop_2: CollisionShape2D = $wall / stop2
-@onready var stop_3: CollisionShape2D = $wall / stop3
+@onready var stop_1: CollisionShape2D = $wall/stop1
+@onready var stop_2: CollisionShape2D = $wall/stop2
+@onready var stop_3: CollisionShape2D = $wall/stop3
 var trap_sky_1
 var trap_sky_2
 var trap_sky_3
@@ -13,7 +13,8 @@ var trap_sky_8
 var trap_sky_9
 var trap_sky_10
 
-func _ready() -> void :
+
+func _ready() -> void:
 	Global.CurrentLevel = "蝙蝠窟"
 	bgm_node = Global.addBGM_(self, "res://Music/level/7_bg2.mp3")
 	add_trap_sky()
@@ -21,24 +22,26 @@ func _ready() -> void :
 	self.level_stage = 4
 	super._ready()
 	Monster_group = {
-		"stage_1": [7, 7, 7, 7, 7, 7, 7, 7, 7], 
-		"stage_2": [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7], 
-		"stage_3": [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7], 
-		"stage_4": [7, 7, 7, 7, 7, 8], 
+		"stage_1": [7, 7, 7, 7, 7, 7, 7, 7, 7],
+		"stage_2": [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
+		"stage_3": [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
+		"stage_4": [7, 7, 7, 7, 7, 8],
 	}
 	Monster_position_x = {
-		"stage_1": [700, 700, 700, 700, 700, 700, 700, 700, 700], 
-		"stage_2": [2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000], 
-		"stage_3": [3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000], 
-		"stage_4": [4500, 4500, 4500, 4500, 4500, 4350], 
+		"stage_1": [700, 700, 700, 700, 700, 700, 700, 700, 700],
+		"stage_2": [2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000],
+		"stage_3": [3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000],
+		"stage_4": [4500, 4500, 4500, 4500, 4500, 4350],
 	}
 	Monster_position_y = {
-		"stage_1": [300, 300, 300, 300, 300, 300, 300, 300, 300], 
-		"stage_2": [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300], 
-		"stage_3": [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300], 
-		"stage_4": [300, 300, 300, 300, 300, 465], 
+		"stage_1": [300, 300, 300, 300, 300, 300, 300, 300, 300],
+		"stage_2": [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
+		"stage_3": [300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
+		"stage_4": [300, 300, 300, 300, 300, 465],
 	}
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	add_trap_sky()
 	super._physics_process(delta)
 	if current_stage >= 1:
@@ -46,6 +49,8 @@ func _physics_process(delta: float) -> void :
 			role_information.gogo.visible = true
 		else:
 			role_information.gogo.visible = false
+
+
 func set_through():
 	if current_stage == 1:
 		if check_can_pass():
@@ -60,7 +65,6 @@ func set_through():
 		my_camera.max_left = 3500
 		stop_2.disabled = false
 
-
 		if not bgm_changed_for_stage_4:
 			bgm_changed_for_stage_4 = true
 
@@ -68,9 +72,9 @@ func set_through():
 				bgm_node.queue_free()
 				bgm_node = null
 
-
-
 			bgm_node = Global.addBGM_(self, "res://Music/level/7_bg3.mp3")
+
+
 func set_trap_floor():
 	Global.add_Trap(self, Vector2(350, 400), "Trap_2")
 	Global.add_Trap(self, Vector2(400, 400), "Trap_2")
@@ -83,11 +87,12 @@ func set_trap_floor():
 	Global.add_Trap(self, Vector2(1600, 400), "Trap_2")
 	Global.add_Trap(self, Vector2(1650, 400), "Trap_2")
 
-
 	Global.add_Trap(self, Vector2(1800, 400), "Trap_2")
 	Global.add_Trap(self, Vector2(1850, 400), "Trap_2")
 	Global.add_Trap(self, Vector2(1900, 400), "Trap_2")
 	Global.add_Trap(self, Vector2(1950, 400), "Trap_2")
+
+
 func add_trap_sky():
 	if trap_sky_1 == null:
 		trap_sky_1 = Global.add_Trap(self, Vector2(1000, -100), "Trap_1")

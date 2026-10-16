@@ -2,8 +2,14 @@ extends WutaiMinghaiProjectile
 
 var collide_with_terrain: bool = false
 
-func _physics_process(delta: float) -> void :
-	if owner_monster == null or not is_instance_valid(owner_monster) or owner_monster.is_queued_for_deletion() or owner_monster.death():
+
+func _physics_process(delta: float) -> void:
+	if (
+		owner_monster == null
+		or not is_instance_valid(owner_monster)
+		or owner_monster.is_queued_for_deletion()
+		or owner_monster.death()
+	):
 		finished_callback = Callable()
 		queue_free()
 		return

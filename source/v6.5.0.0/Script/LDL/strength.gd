@@ -1,13 +1,13 @@
 extends Node2D
 class_name Strength
-const PET_GENERIC_EQUIPMENT_ICON: = preload("res://Art/Pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
-@onready var lh_text = $need_lh / lh
-@onready var old_zb = $old_zb / old_zb
-@onready var new_zb = $new_zb / new_zb
-@onready var n_q_1: Button = $n_q_1 / n_q_1
-@onready var n_q_2: Button = $n_q_2 / n_q_2
-@onready var num_b1 = $n_q_1 / n_q_1 / number
-@onready var num_b2 = $n_q_2 / n_q_2 / number2
+const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/Pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
+@onready var lh_text = $need_lh/lh
+@onready var old_zb = $old_zb/old_zb
+@onready var new_zb = $new_zb/new_zb
+@onready var n_q_1: Button = $n_q_1/n_q_1
+@onready var n_q_2: Button = $n_q_2/n_q_2
+@onready var num_b1 = $n_q_1/n_q_1/number
+@onready var num_b2 = $n_q_2/n_q_2/number2
 var old_zb_name = "empty"
 var new_zb_name = "empty"
 var qhs_1_name = "empty"
@@ -18,15 +18,20 @@ var qhs_1_num = 0
 var qhs_2_num = 0
 var need_lh: int
 
+
 func _get_strength_max_level(item_name: String) -> int:
 	var item: Dictionary = MLdl.qh_list.get("Data", {}) if MLdl.qh_list.get("Data", {}) is Dictionary else {}
 	return PlayerData.get_equipment_strength_max_level(item, item_name)
-func _ready() -> void :
+
+
+func _ready() -> void:
 	n_q_1.is_in_ldl_gz = true
 	n_q_2.is_in_ldl_gz = true
 	old_zb.is_in_ldl_gz = true
 	new_zb.is_in_ldl_gz = true
-func _physics_process(_delta: float) -> void :
+
+
+func _physics_process(_delta: float) -> void:
 	n_q_1.is_in_ldl_gz = true
 	n_q_2.is_in_ldl_gz = true
 	old_zb.is_in_ldl_gz = true
@@ -38,11 +43,13 @@ func _physics_process(_delta: float) -> void :
 	get_qhs_name()
 	set_color()
 	set_str_info()
+
+
 func set_str_info():
 	new_zb_name = old_zb_name
 	n_q_1.set_button_icon(load_(str(qhs_1_name)))
 	n_q_2.set_button_icon(load_(str(qhs_2_name)))
-	var equipment_icon: = _selected_equipment_icon()
+	var equipment_icon := _selected_equipment_icon()
 	old_zb.set_button_icon(equipment_icon)
 	old_zb.get_item_name = old_zb_name
 	old_zb.set_meta("item_name", old_zb_name)
@@ -72,9 +79,12 @@ func set_str_info():
 	else:
 		num_b2.text = ""
 	lh_text.text = str(need_lh)
+
+
 func load_(name_):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
 	return abc
+
 
 func _selected_equipment_icon() -> Texture2D:
 	if str(MLdl.qh_list.get("来源", "装备背包")) != "宠物背包":
@@ -83,7 +93,7 @@ func _selected_equipment_icon() -> Texture2D:
 	var nested: Dictionary = item.get("Data", {}) if item.get("Data", {}) is Dictionary else {}
 	for source in [item, nested]:
 		for key in ["图标", "图标路径", "icon", "Icon"]:
-			var icon_path: = str(source.get(key, "")).strip_edges()
+			var icon_path := str(source.get(key, "")).strip_edges()
 			if icon_path == "":
 				continue
 			if not icon_path.begins_with("res://"):
@@ -92,10 +102,12 @@ func _selected_equipment_icon() -> Texture2D:
 					icon_path += ".png"
 			if ResourceLoader.exists(icon_path):
 				return load(icon_path) as Texture2D
-	var named_path: = "res://Art/BackPack/AllItems/%s.png" % old_zb_name
+	var named_path := "res://Art/BackPack/AllItems/%s.png" % old_zb_name
 	if ResourceLoader.exists(named_path):
 		return load(named_path) as Texture2D
 	return PET_GENERIC_EQUIPMENT_ICON
+
+
 func set_color():
 	if PlayerData.get_item_data(qhs_1_name) < qhs_1_num:
 		num_b1.add_theme_color_override("font_color", Color("FF0000"))
@@ -105,11 +117,16 @@ func set_color():
 		num_b2.add_theme_color_override("font_color", Color("FF0000"))
 	else:
 		num_b2.add_theme_color_override("font_color", Color("00FF00"))
-func _on_qh__pressed() -> void :
+
+
+func _on_qh__pressed() -> void:
 	var selected_name: String = str(MLdl.qh_list.get("名字", ""))
 	var selected_data: Dictionary = MLdl.qh_list.get("Data", {}) if MLdl.qh_list.get("Data", {}) is Dictionary else {}
 	var template_data: Dictionary = AE.AllEquipment_.get(selected_name, {})
-	if bool(selected_data.get("不可强化", template_data.get("不可强化", false))) and selected_name not in ["cjxianjie", "cdxianjie", "zhxianjie"]:
+	if (
+		bool(selected_data.get("不可强化", template_data.get("不可强化", false)))
+		and selected_name not in ["cjxianjie", "cdxianjie", "zhxianjie"]
+	):
 		Global.AddMessageShow(get_parent(), "该装备无法强化！", 1.5, Vector2(15, -45))
 		return
 	if old_zb_name == "empty" or new_zb_name == "empty" or selected_name == "":
@@ -151,13 +168,14 @@ func _on_qh__pressed() -> void :
 		Global.AddMessageShow(get_parent(), "强化石数量不足！！", 1.5, Vector2(15, -45))
 	MemoryClass.保存游戏(Global.cd_path)
 
+
 func _get_selected_equipment(position_index: int) -> Variant:
-	var source: = str(MLdl.qh_list.get("来源", "装备背包"))
+	var source := str(MLdl.qh_list.get("来源", "装备背包"))
 	var equipment_list: Variant
 	if source == "宠物背包":
 		equipment_list = PlayerData.ensure_shared_pet_backpack()
 	elif source == "人物穿戴":
-		var slot_type: = str(MLdl.qh_list.get("穿戴栏", ""))
+		var slot_type := str(MLdl.qh_list.get("穿戴栏", ""))
 		var equipped_value: Variant = PlayerData.player_data.get(slot_type, [])
 		if not (equipped_value is Array):
 			return null
@@ -166,7 +184,7 @@ func _get_selected_equipment(position_index: int) -> Variant:
 	else:
 		var equipment_pages: Variant = PlayerData.player_data.get("装备列表", {})
 		var page_number: int = int(MLdl.qh_list.get("页码", 0))
-		var page_key: = "页码" + str(page_number)
+		var page_key := "页码" + str(page_number)
 		if page_number < 1 or not (equipment_pages is Dictionary) or not equipment_pages.has(page_key):
 			return null
 		equipment_list = equipment_pages[page_key]
@@ -182,9 +200,11 @@ func _get_selected_equipment(position_index: int) -> Variant:
 		return null
 	return equipment
 
-func _show_invalid_strength_selection() -> void :
+
+func _show_invalid_strength_selection() -> void:
 	Global.AddMessageShow(Global.Windows_, "装备位置已变化，请重新选择装备！", 1.5, Vector2(470, 295))
 	remove_infomation()
+
 
 func get_qhs_name():
 	if qh_level == -1:
@@ -235,6 +255,8 @@ func get_qhs_name():
 		qhs_1_num = 60 + (qh_level - 6) * 10
 		qhs_2_num = 36 + (qh_level - 6) * 10
 		need_lh = 100000 + (qh_level - 6) * 10000
+
+
 func remove_infomation():
 	old_zb_name = "empty"
 	new_zb_name = "empty"

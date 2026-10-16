@@ -1,18 +1,18 @@
 extends Control
 class_name MainBackPack
-@onready var coin_number: Label = $coin_text / coin_number
-@onready var tab_bar: TabBar = $MarginContainer / VBoxContainer / TabBar
-@onready var current_page_text: Label = $ChangePage / CurrentPageText
-@onready var title: Label = $MarginContainer / VBoxContainer / title
-@onready var PlSell = $MarginContainer / VBoxContainer / HBoxContainer / pl_sell
-@onready var pet_backpack_button: TextureButton = $MarginContainer / VBoxContainer / HBoxContainer / pet_backpack
+@onready var coin_number: Label = $coin_text/coin_number
+@onready var tab_bar: TabBar = $MarginContainer/VBoxContainer/TabBar
+@onready var current_page_text: Label = $ChangePage/CurrentPageText
+@onready var title: Label = $MarginContainer/VBoxContainer/title
+@onready var PlSell = $MarginContainer/VBoxContainer/HBoxContainer/pl_sell
+@onready var pet_backpack_button: TextureButton = $MarginContainer/VBoxContainer/HBoxContainer/pet_backpack
 @onready var timer: Timer = $Timer
 @onready var sort_button: Button = $SortButton
 
-const PET_ITEMS_PER_PAGE: = 25
-const PET_GENERIC_EQUIPMENT_ICON: = preload("res://Art/Pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
-const EQUIPMENT_ITEMS_PER_PAGE: = 25
-const LDL_EQUIPPED_SLOT_TYPES: = ["武器", "防具", "饰品", "神骨", "法宝", "头衔", "时装", "翅膀"]
+const PET_ITEMS_PER_PAGE := 25
+const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/Pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
+const EQUIPMENT_ITEMS_PER_PAGE := 25
+const LDL_EQUIPPED_SLOT_TYPES := ["武器", "防具", "饰品", "神骨", "法宝", "头衔", "时装", "翅膀"]
 var current_fl = 0
 var current_page = 1
 var max_page: int = 20
@@ -22,12 +22,16 @@ var message
 var ChooseList = []
 var ChooseMs: bool
 var pet_item_id_cache: Dictionary = {}
-func _ready() -> void :
+
+
+func _ready() -> void:
 	title.text = "装备背包"
 	sort_button.pressed.connect(_on_sort_pressed)
 
 	set_box_data()
-func _physics_process(_delta: float) -> void :
+
+
+func _physics_process(_delta: float) -> void:
 	sort_button.disabled = Global.is_in_ldl or ChooseMs or is_instance_valid(pl_sell)
 	if not PlayerData.player_data["ieho"]:
 		if PlayerData.checkHaveZB("xczg")[0]:
@@ -47,11 +51,7 @@ func _physics_process(_delta: float) -> void :
 	coin_number.text = str(PlayerData.get_soul())
 
 
-
-
-
-
-func _set_box_item(box, item_name: String, qh_level: = 0, total_num: = 0, eq_prop = {}, wx_list: = []) -> void :
+func _set_box_item(box, item_name: String, qh_level := 0, total_num := 0, eq_prop = {}, wx_list := []) -> void:
 	box.set_button_icon(load_(item_name))
 	box.get_item_name = item_name
 	box.set_meta("item_name", item_name)
@@ -63,8 +63,9 @@ func _set_box_item(box, item_name: String, qh_level: = 0, total_num: = 0, eq_pro
 	box.strength_source = "装备背包"
 	box.strength_index = -1
 
-func _set_pet_box_item(box, item: Dictionary, item_index: int) -> void :
-	var item_id: = _pet_item_id(item)
+
+func _set_pet_box_item(box, item: Dictionary, item_index: int) -> void:
+	var item_id := _pet_item_id(item)
 	box.set_button_icon(_pet_item_icon(item, item_id))
 	box.get_item_name = item_id
 	box.set_meta("item_name", item_id)
@@ -77,18 +78,19 @@ func _set_pet_box_item(box, item: Dictionary, item_index: int) -> void :
 	box.strength_source = "宠物背包"
 	box.strength_index = item_index
 
+
 func _pet_item_id(item: Dictionary) -> String:
 	var data: Dictionary = item.get("Data", {}) if item.get("Data", {}) is Dictionary else {}
 	for source in [item, data]:
 		for key in ["物品ID", "ID", "id"]:
-			var candidate: = str(source.get(key, "")).strip_edges()
+			var candidate := str(source.get(key, "")).strip_edges()
 			if AE.AllEquipment_.has(candidate):
 				return candidate
 		for key in ["图标", "图标路径", "icon", "Icon"]:
-			var candidate: = str(source.get(key, "")).get_file().get_basename()
+			var candidate := str(source.get(key, "")).get_file().get_basename()
 			if AE.AllEquipment_.has(candidate):
 				return candidate
-	var stored_name: = str(item.get("名字", item.get("名称", data.get("名字", data.get("名称", ""))))).strip_edges()
+	var stored_name := str(item.get("名字", item.get("名称", data.get("名字", data.get("名称", ""))))).strip_edges()
 	if AE.AllEquipment_.has(stored_name):
 		return stored_name
 	if pet_item_id_cache.has(stored_name):
@@ -97,15 +99,16 @@ func _pet_item_id(item: Dictionary) -> String:
 		if str(AE.AllEquipment_[item_id].get("名字", "")) == stored_name:
 			pet_item_id_cache[stored_name] = str(item_id)
 			return str(item_id)
-	var fallback: = stored_name if stored_name != "" else "宠物装备"
+	var fallback := stored_name if stored_name != "" else "宠物装备"
 	pet_item_id_cache[stored_name] = fallback
 	return fallback
+
 
 func _pet_item_icon(item: Dictionary, item_id: String) -> Texture2D:
 	var data: Dictionary = item.get("Data", {}) if item.get("Data", {}) is Dictionary else {}
 	for source in [item, data]:
 		for key in ["图标", "图标路径", "icon", "Icon"]:
-			var icon_path: = str(source.get(key, "")).strip_edges()
+			var icon_path := str(source.get(key, "")).strip_edges()
 			if icon_path == "":
 				continue
 			if not icon_path.begins_with("res://"):
@@ -114,12 +117,13 @@ func _pet_item_icon(item: Dictionary, item_id: String) -> Texture2D:
 					icon_path += ".png"
 			if ResourceLoader.exists(icon_path):
 				return load(icon_path) as Texture2D
-	var item_path: = "res://Art/BackPack/AllItems/%s.png" % item_id
+	var item_path := "res://Art/BackPack/AllItems/%s.png" % item_id
 	if ResourceLoader.exists(item_path):
 		return load(item_path) as Texture2D
 	return PET_GENERIC_EQUIPMENT_ICON
 
-func _set_box_empty(box) -> void :
+
+func _set_box_empty(box) -> void:
 	box.set_button_icon(load_("empty"))
 	box.get_item_name = "empty"
 	box.set_meta("item_name", "empty")
@@ -134,14 +138,16 @@ func _set_box_empty(box) -> void :
 	box.set_meta("backpack_page", 0)
 	box.set_meta("backpack_index", -1)
 
-func _mark_box_kind(box, kind: String) -> void :
+
+func _mark_box_kind(box, kind: String) -> void:
 	box.strength_source = "宠物背包" if kind == "pet_equipment" else "装备背包"
 	if kind != "pet_equipment":
 		box.strength_index = -1
 
+
 func _get_ldl_equipment_entries() -> Array:
 	var entries: Array = []
-	var ldl_type_filter: = "神骨" if str(MLdl.loc_) == "淬骨" else ""
+	var ldl_type_filter := "神骨" if str(MLdl.loc_) == "淬骨" else ""
 	for slot_type in LDL_EQUIPPED_SLOT_TYPES:
 		var equipped_value: Variant = PlayerData.player_data.get(slot_type, [])
 		if not (equipped_value is Array) or (equipped_value as Array).is_empty():
@@ -149,18 +155,23 @@ func _get_ldl_equipment_entries() -> Array:
 		var equipped_item: Variant = (equipped_value as Array)[0]
 		if not (equipped_item is Dictionary):
 			continue
-		var item_name: = str((equipped_item as Dictionary).get("名字", ""))
+		var item_name := str((equipped_item as Dictionary).get("名字", ""))
 		if item_name == "" or not AE.AllEquipment_.has(item_name):
 			continue
 		if ldl_type_filter != "" and str(AE.AllEquipment_[item_name].get("类型", "")) != ldl_type_filter:
 			continue
-		entries.push_back({
-			"item": equipped_item, 
-			"source": "人物穿戴", 
-			"page": 0, 
-			"index": 0, 
-			"装备栏": slot_type, 
-		})
+		(
+			entries
+			. push_back(
+				{
+					"item": equipped_item,
+					"source": "人物穿戴",
+					"page": 0,
+					"index": 0,
+					"装备栏": slot_type,
+				}
+			)
+		)
 
 	var equipment_pages: Variant = PlayerData.player_data.get("装备列表", {})
 	if equipment_pages is Dictionary:
@@ -173,32 +184,44 @@ func _get_ldl_equipment_entries() -> Array:
 			for item_index in range(page.size()):
 				var item_value: Variant = page[item_index]
 				if item_value is Dictionary:
-					var item_name: = str((item_value as Dictionary).get("名字", ""))
-					if ldl_type_filter != "" and ( not AE.AllEquipment_.has(item_name) or str(AE.AllEquipment_[item_name].get("类型", "")) != ldl_type_filter):
+					var item_name := str((item_value as Dictionary).get("名字", ""))
+					if (
+						ldl_type_filter != ""
+						and (
+							not AE.AllEquipment_.has(item_name)
+							or str(AE.AllEquipment_[item_name].get("类型", "")) != ldl_type_filter
+						)
+					):
 						continue
-					entries.push_back({
-						"item": item_value, 
-						"source": "装备背包", 
-						"page": page_number, 
-						"index": item_index, 
-						"装备栏": "", 
-					})
+					(
+						entries
+						. push_back(
+							{
+								"item": item_value,
+								"source": "装备背包",
+								"page": page_number,
+								"index": item_index,
+								"装备栏": "",
+							}
+						)
+					)
 	return entries
 
-func _set_ldl_equipment_box_data() -> void :
+
+func _set_ldl_equipment_box_data() -> void:
 	title.text = "装备背包"
-	var entries: = _get_ldl_equipment_entries()
+	var entries := _get_ldl_equipment_entries()
 	var first_index: int = (int(current_page) - 1) * EQUIPMENT_ITEMS_PER_PAGE
 	var last_index: int = mini(first_index + EQUIPMENT_ITEMS_PER_PAGE, entries.size())
-	var x: = 1
+	var x := 1
 	for entry_index in range(first_index, last_index):
 		var entry: Dictionary = entries[entry_index]
 		var item: Dictionary = entry.get("item", {})
-		var item_name: = str(item.get("名字", ""))
+		var item_name := str(item.get("名字", ""))
 		if item_name == "" or not AE.AllEquipment_.has(item_name):
 			continue
 		var item_data: Dictionary = item.get("Data", {}) if item.get("Data", {}) is Dictionary else {}
-		var item_type: = str(AE.AllEquipment_[item_name].get("类型", ""))
+		var item_type := str(AE.AllEquipment_[item_name].get("类型", ""))
 		var wx_list: Variant = item.get("五行", []) if item_type == "法宝" else []
 		var box = target_box(x)
 		_set_box_item(box, item_name, int(item.get("强化等级", 0)), 0, item_data, wx_list)
@@ -214,8 +237,8 @@ func _set_ldl_equipment_box_data() -> void :
 		target_box(x).current_page = current_page
 		x += 1
 
-func set_box_data():
 
+func set_box_data():
 	match current_fl:
 		0:
 			if Global.is_in_ldl:
@@ -297,46 +320,59 @@ func set_box_data():
 				_mark_box_kind(target_box(x), "")
 				target_box(x).current_page = current_page
 				x += 1
+
+
 func target_box(num):
 	var target = get_node("MarginContainer/VBoxContainer/MarginContainer/Sc_Box/Gd_Box/box_" + str(num))
 	return target
+
+
 func set_empty_box():
 	for i in range(25):
 		_set_box_empty(target_box(i + 1))
 		_mark_box_kind(target_box(i + 1), "")
+
+
 func load_(name_):
-	var item_id: = str(name_)
+	var item_id := str(name_)
 	var item_data: Dictionary = AE.AllEquipment_.get(item_id, {})
-	var data_icon_path: = str(item_data.get("图标", ""))
+	var data_icon_path := str(item_data.get("图标", ""))
 	if data_icon_path != "" and ResourceLoader.exists(data_icon_path):
 		return load(data_icon_path)
-	var icon_path: = "res://Art/BackPack/AllItems/" + item_id + ".png"
+	var icon_path := "res://Art/BackPack/AllItems/" + item_id + ".png"
 	if ResourceLoader.exists(icon_path):
 		return load(icon_path)
 	return load("res://Art/BackPack/AllItems/empty.png")
 
-func _on_button_pressed() -> void :
+
+func _on_button_pressed() -> void:
 	randomize()
-func _on_add_xhp_pressed() -> void :
+
+
+func _on_add_xhp_pressed() -> void:
 	pass
 
-func _on_add_dj_pressed() -> void :
+
+func _on_add_dj_pressed() -> void:
 	randomize()
 	PlayerData.add_dj("qhs_1", 2)
 
 
-func _on_批量出售_pressed() -> void :
+func _on_批量出售_pressed() -> void:
 	if pl_sell == null:
 		pl_sell = Global.add_pl_sell(PlSell, Vector2(90, 0))
 		pl_sell.MainBack = self
 	elif pl_sell != null:
 		RemoveChoose()
 		pl_sell.queue_free()
+
+
 func RemoveChoose():
 	ChooseMs = false
 	ChooseList.clear()
 
-func _on_sort_pressed() -> void :
+
+func _on_sort_pressed() -> void:
 	if Global.is_in_ldl or ChooseMs or is_instance_valid(pl_sell):
 		return
 	if not PlayerData.organize_backpack():
@@ -345,59 +381,75 @@ func _on_sort_pressed() -> void :
 	current_page = 1
 	set_box_data()
 	MemoryClass.保存游戏(Global.cd_path)
-func _on_zb_pressed() -> void :
+
+
+func _on_zb_pressed() -> void:
 	current_fl = 0
 	current_page = 1
 	PlayerData.zl_zb()
 	PlayerData.zl_dj()
 	PlayerData.zl_xhp()
-func _on_dj_pressed() -> void :
+
+
+func _on_dj_pressed() -> void:
 	current_fl = 1
 	current_page = 1
 	PlayerData.zl_zb()
 	PlayerData.zl_dj()
 	PlayerData.zl_xhp()
-func _on_xhp_pressed() -> void :
+
+
+func _on_xhp_pressed() -> void:
 	current_fl = 2
 	current_page = 1
 	PlayerData.zl_zb()
 	PlayerData.zl_dj()
 	PlayerData.zl_xhp()
-func _on_pet_backpack_pressed() -> void :
+
+
+func _on_pet_backpack_pressed() -> void:
 	if not Global.is_in_ldl or str(MLdl.loc_) not in ["强化", "镶嵌"]:
 		return
 	current_fl = 3
 	current_page = 1
 	set_box_data()
 
-func _update_max_page() -> void :
+
+func _update_max_page() -> void:
 	if current_fl == 3:
 		var pet_backpack: Array = PlayerData.ensure_shared_pet_backpack()
 		max_page = maxi(1, ceili(float(pet_backpack.size()) / PET_ITEMS_PER_PAGE))
 	elif current_fl == 0 and Global.is_in_ldl:
-		var equipment_count: = _get_ldl_equipment_entries().size()
+		var equipment_count := _get_ldl_equipment_entries().size()
 		max_page = maxi(1, ceili(float(equipment_count) / EQUIPMENT_ITEMS_PER_PAGE))
 	else:
 		max_page = 20
 	current_page = clampi(current_page, 1, max_page)
-func _on_timer_timeout() -> void :
+
+
+func _on_timer_timeout() -> void:
 	set_box_data()
+
+
 func add_text(parent, text):
 	if message == null:
 		message = Global.add_touch_text(parent, Vector2(120, 40), text)
+
+
 func remove_message():
 	if message != null:
 		message.queue_free()
 
 
-func _on_last_page_pressed() -> void :
+func _on_last_page_pressed() -> void:
 	if current_page > 1:
 		current_page -= 1
 	if current_page <= 1:
 		current_page = 1
 	set_box_data()
 
-func _on_next_page_pressed() -> void :
+
+func _on_next_page_pressed() -> void:
 	if current_page < max_page:
 		current_page += 1
 	if current_page >= max_page:

@@ -1,17 +1,19 @@
 extends TextureButton
 
 @onready var my_num: Label = $MyNum
-@onready var Name: Label = $InfoBox / Name
-@onready var level_and_role: Label = $InfoBox / LevelAndRole
-@onready var time: Label = $InfoBox / Time
-
+@onready var Name: Label = $InfoBox/Name
+@onready var level_and_role: Label = $InfoBox/LevelAndRole
+@onready var time: Label = $InfoBox/Time
 
 var MyNum: int
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	SetNormalInfo()
 	set_physics_process(false)
-func SetNormalInfo() -> void :
+
+
+func SetNormalInfo() -> void:
 	my_num.text = str(MyNum)
 	var archive_data: Dictionary = MemoryClass.提前数据(_archive_path(MyNum))
 	var role_id: int = int(archive_data.get("Myself", 0))
@@ -32,14 +34,16 @@ func SetNormalInfo() -> void :
 	Name.text = "名字：" + archive_name if archive_name != "" else ""
 	level_and_role.text = "Lv：" + str(MemoryClass.得到数据(_archive_path(MyNum))) + "    " + _role_name(role_id)
 
+
 func _archive_path(archive_number: int) -> String:
 	return "user://MyAr_" + str(archive_number) + ".json"
+
 
 func _archive_metadata(archive_number: int) -> Dictionary:
 	if archive_number <= 6:
 		return {
-			"name": MainSet.set_data.get("name" + str(archive_number), ""), 
-			"time": MainSet.set_data.get("time" + str(archive_number), ""), 
+			"name": MainSet.set_data.get("name" + str(archive_number), ""),
+			"time": MainSet.set_data.get("time" + str(archive_number), ""),
 		}
 	var other_archives_value: Variant = MainSet.set_data.get("其他存档", {})
 	if not other_archives_value is Dictionary:
@@ -48,8 +52,10 @@ func _archive_metadata(archive_number: int) -> Dictionary:
 	var metadata_value: Variant = other_archives.get(str(archive_number), {})
 	return metadata_value as Dictionary if metadata_value is Dictionary else {}
 
+
 func GeTroleNmae(cd_num) -> String:
 	return _role_name(int(MemoryClass.提前数据(_archive_path(int(cd_num))).get("Myself", 0)))
+
 
 func _role_name(role_id: int) -> String:
 	match role_id:
@@ -68,7 +74,7 @@ func _role_name(role_id: int) -> String:
 	return "空存档"
 
 
-func _on_pressed() -> void :
+func _on_pressed() -> void:
 	Global.cd_path = "user://MyAr_" + str(MyNum) + ".json"
 	if not MemoryClass.读取游戏(Global.cd_path):
 		return
@@ -83,8 +89,12 @@ func _on_pressed() -> void :
 	else:
 		await Global.begin_archive_session()
 		change_to_map()
+
+
 func change_to_map():
 	Global.change_scene("res://Scene/Main_menu/Map_0.tscn")
+
+
 func get_time():
 	var date = Time.get_date_string_from_system()
 	var time_ = Time.get_time_string_from_system()

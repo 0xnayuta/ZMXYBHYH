@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster80
+
+
 func monster_80():
 	self.is_boss = false
 	self.my_mr_name = "天兵·枪"
@@ -26,40 +28,31 @@ func monster_80():
 	self.add_exp = 110
 	self.fall_coin = 90
 	self.objattackDic["hit1"] = {
-		"power": 225, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics", 
-		"addeffect": {
-			"Name": "Bleed", 
-			"AddTime": 3, 
-			"ReduceInterval": 0.5, 
-			"value": 30, 
-			"AttackKind": "magic", 
-			"DeBuff": true, 
+		"power": 225,
+		"hurtBack": [-4, -9],
+		"attackKind": "physics",
+		"addeffect":
+		{
+			"Name": "Bleed",
+			"AddTime": 3,
+			"ReduceInterval": 0.5,
+			"value": 30,
+			"AttackKind": "magic",
+			"DeBuff": true,
 		}
 	}
 	self.fall_pro = 0.3
 	self.fall_list = [
-		{
-			"name": "sichou", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "xuantie", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "tanmu", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "sichou", "value": randi_range(1, 2)},
+		{"name": "xuantie", "value": randi_range(1, 2)},
+		{"name": "tanmu", "value": randi_range(1, 2)},
 	]
 	self.fall_stone_pro = 0.1
 	self.fall_stone = [
-		{
-			"name": "smlp", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "smlp", "value": randi_range(1, 2)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_80()

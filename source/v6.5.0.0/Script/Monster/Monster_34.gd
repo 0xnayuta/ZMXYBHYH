@@ -1,6 +1,8 @@
 extends BaseMonster
 class_name Monster34
 var should_death = false
+
+
 func monster_34():
 	self.is_boss = true
 	self.my_mr_name = "傀儡"
@@ -27,15 +29,17 @@ func monster_34():
 	self.add_exp = 0
 	self.fall_coin = 0
 	self.objattackDic["hit1"] = {
-		"power": 240, 
-		"hurtBack": [-8, -15], 
-		"attackKind": "real", 
+		"power": 240,
+		"hurtBack": [-8, -15],
+		"attackKind": "real",
 	}
 	self.fall_pro = 0.0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_34()
 	Skill_1_CD = 0

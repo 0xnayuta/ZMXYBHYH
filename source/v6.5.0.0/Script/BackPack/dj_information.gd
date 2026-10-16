@@ -1,27 +1,33 @@
 extends Control
-@onready var title: Label = $MarginContainer / MarginContainer / VBoxContainer / title
+@onready var title: Label = $MarginContainer/MarginContainer/VBoxContainer/title
 @onready var color_rect: ColorRect = $ColorRect
 
-@onready var name_: Label = $MarginContainer / MarginContainer / VBoxContainer / name
-@onready var lx: Label = $MarginContainer / MarginContainer / VBoxContainer / lx
-@onready var pz: Label = $MarginContainer / MarginContainer / VBoxContainer / pz
-@onready var ms: Label = $MarginContainer / MarginContainer / VBoxContainer / VBoxContainer / ms
-@onready var sl: Label = $MarginContainer / MarginContainer / VBoxContainer / sl
-@onready var sj: Label = $MarginContainer / MarginContainer / VBoxContainer / VBoxContainer / sj
+@onready var name_: Label = $MarginContainer/MarginContainer/VBoxContainer/name
+@onready var lx: Label = $MarginContainer/MarginContainer/VBoxContainer/lx
+@onready var pz: Label = $MarginContainer/MarginContainer/VBoxContainer/pz
+@onready var ms: Label = $MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/ms
+@onready var sl: Label = $MarginContainer/MarginContainer/VBoxContainer/sl
+@onready var sj: Label = $MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/sj
 var my_name
 var is_set = false
+
+
 func get_name_():
 	var name1 = my_name
 	return name1
-func _ready() -> void :
+
+
+func _ready() -> void:
 	self.modulate = Color(1, 1, 1, 0)
-func _physics_process(_delta: float) -> void :
+
+
+func _physics_process(_delta: float) -> void:
 	color_rect.size = $MarginContainer.size
 	if get_parent().get_script() != null and get_parent().get_script().resource_path.ends_with("BackPack.gdc"):
 		if self.position.y + color_rect.size.y >= 320:
 			self.position.y = 320 - color_rect.size.y
 	elif get_parent() == Global.Windows_:
-		var viewport_size: = get_viewport().get_visible_rect().size
+		var viewport_size := get_viewport().get_visible_rect().size
 		if self.position.y + color_rect.size.y >= viewport_size.y:
 			self.position.y = viewport_size.y - color_rect.size.y - 8.0
 		if self.position.x + color_rect.size.x >= viewport_size.x:
@@ -44,6 +50,7 @@ func _physics_process(_delta: float) -> void :
 		sj.text = "售价：" + str(AE.AllEquipment_[get_name_()]["售价"]) + "灵魂。"
 		is_set = true
 
+
 func set_color():
 	if str(AE.AllEquipment_[get_name_()].get("品质", "")) == "黑神话":
 		_apply_black_myth_text_style(name_)
@@ -52,5 +59,6 @@ func set_color():
 	name_.add_theme_color_override("font_color", AE.AllEquipment_[get_name_()]["颜色"])
 	pz.add_theme_color_override("font_color", AE.AllEquipment_[get_name_()]["颜色"])
 
-func _apply_black_myth_text_style(label: Label) -> void :
+
+func _apply_black_myth_text_style(label: Label) -> void:
 	label.add_theme_color_override("font_color", Color(0.6, 0.0, 0.0, 1.0))

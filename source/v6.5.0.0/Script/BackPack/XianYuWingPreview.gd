@@ -1,24 +1,25 @@
 extends AnimatedSprite2D
 
-const HUAHAO_WING_FRAME_DIR: = "res://Art/HeroPicture/Wings/hhyq"
-const XIANYU_WING_PATHS: = {
-	1: "res://Art/HeroPicture/Wings/xyzy/role1.tres", 
-	2: "res://Art/HeroPicture/Wings/xyzy/role2.tres", 
-	3: "res://Art/HeroPicture/Wings/xyzy/role3.tres", 
-	4: "res://Art/HeroPicture/Wings/xyzy/role4.tres", 
-	5: "res://Art/HeroPicture/Wings/xyzy/role5.tres", 
-	6: "res://Art/HeroPicture/Wings/xyzy/role6.tres", 
+const HUAHAO_WING_FRAME_DIR := "res://Art/HeroPicture/Wings/hhyq"
+const XIANYU_WING_PATHS := {
+	1: "res://Art/HeroPicture/Wings/xyzy/role1.tres",
+	2: "res://Art/HeroPicture/Wings/xyzy/role2.tres",
+	3: "res://Art/HeroPicture/Wings/xyzy/role3.tres",
+	4: "res://Art/HeroPicture/Wings/xyzy/role4.tres",
+	5: "res://Art/HeroPicture/Wings/xyzy/role5.tres",
+	6: "res://Art/HeroPicture/Wings/xyzy/role6.tres",
 }
-const ROLE_SCRIPT_IDS: = {
-	"res://Script/Hero/Role1.gd": 1, 
-	"res://Script/Hero/Role_2.gd": 2, 
-	"res://Script/Hero/Role_3.gd": 3, 
-	"res://Script/Hero/Role_4.gd": 4, 
-	"res://Script/Hero/Role_5.gd": 5, 
-	"res://Script/Hero/NeZhaHero.gd": 6, 
+const ROLE_SCRIPT_IDS := {
+	"res://Script/Hero/Role1.gd": 1,
+	"res://Script/Hero/Role_2.gd": 2,
+	"res://Script/Hero/Role_3.gd": 3,
+	"res://Script/Hero/Role_4.gd": 4,
+	"res://Script/Hero/Role_5.gd": 5,
+	"res://Script/Hero/NeZhaHero.gd": 6,
 }
 
-func _ready() -> void :
+
+func _ready() -> void:
 	if not animation_changed.is_connected(_on_animation_changed):
 		animation_changed.connect(_on_animation_changed)
 	if sprite_frames != null:
@@ -27,16 +28,20 @@ func _ready() -> void :
 	_ensure_huahao_wing_animation()
 	_apply_preview_transform()
 
-func _on_animation_changed() -> void :
+
+func _on_animation_changed() -> void:
 	_apply_preview_transform()
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	_apply_preview_transform()
 
-func _process(_delta: float) -> void :
+
+func _process(_delta: float) -> void:
 	_apply_preview_transform()
 
-func _apply_preview_transform() -> void :
+
+func _apply_preview_transform() -> void:
 	flip_h = animation == &"xyzy" or animation == &"hhyq"
 	z_index = 0
 	match animation:
@@ -65,10 +70,11 @@ func _apply_preview_transform() -> void :
 			scale = Vector2.ONE
 			offset = Vector2(15, 15)
 
-func _ensure_xianyu_wing_animation() -> void :
+
+func _ensure_xianyu_wing_animation() -> void:
 	if sprite_frames == null:
 		return
-	var source_frames: = _get_role_frames()
+	var source_frames := _get_role_frames()
 	if source_frames == null or not source_frames.has_animation(&"xyzy"):
 		return
 	if sprite_frames.has_animation(&"xyzy"):
@@ -78,28 +84,30 @@ func _ensure_xianyu_wing_animation() -> void :
 	sprite_frames.set_animation_speed(&"xyzy", source_frames.get_animation_speed(&"xyzy"))
 	for frame_index in source_frames.get_frame_count(&"xyzy"):
 		sprite_frames.add_frame(
-			&"xyzy", 
-			source_frames.get_frame_texture(&"xyzy", frame_index), 
+			&"xyzy",
+			source_frames.get_frame_texture(&"xyzy", frame_index),
 			source_frames.get_frame_duration(&"xyzy", frame_index)
 		)
 
-func _ensure_huahao_wing_animation() -> void :
+
+func _ensure_huahao_wing_animation() -> void:
 	if sprite_frames == null or sprite_frames.has_animation(&"hhyq"):
 		return
 	sprite_frames.add_animation(&"hhyq")
 	sprite_frames.set_animation_loop(&"hhyq", true)
 	sprite_frames.set_animation_speed(&"hhyq", 30.0)
 	for frame_index in range(1, 41):
-		var texture: = load("%s/%d.png" % [HUAHAO_WING_FRAME_DIR, frame_index]) as Texture2D
+		var texture := load("%s/%d.png" % [HUAHAO_WING_FRAME_DIR, frame_index]) as Texture2D
 		if texture != null:
 			sprite_frames.add_frame(&"hhyq", texture)
 
+
 func _get_role_frames() -> SpriteFrames:
-	var backpack_root: = get_parent().get_parent()
+	var backpack_root := get_parent().get_parent()
 	var player = backpack_root.get("Player") if backpack_root != null else null
-	var role_id: = clampi(int(PlayerData.player_data.get("Myself", 1)), 1, 6)
+	var role_id := clampi(int(PlayerData.player_data.get("Myself", 1)), 1, 6)
 	if player != null:
-		var role_script: = player.get_script() as Script
+		var role_script := player.get_script() as Script
 		if role_script != null:
 			role_id = int(ROLE_SCRIPT_IDS.get(role_script.resource_path, role_id))
 	return load(str(XIANYU_WING_PATHS[role_id])) as SpriteFrames

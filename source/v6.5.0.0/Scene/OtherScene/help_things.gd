@@ -5,14 +5,14 @@ extends Node2D
 @onready var scw: Button = $scw
 
 var ItemInfo = {
-	"cl_1": "", 
-	"cl_2": "", 
-	"cl_3": "", 
-	"scw": "", 
-
+	"cl_1": "",
+	"cl_2": "",
+	"cl_3": "",
+	"scw": "",
 }
 
-func _ready() -> void :
+
+func _ready() -> void:
 	cl_1.is_in_ldl_gz = true
 	cl_1.is_in_hhgz = true
 	cl_1.is_in_hhgz = true
@@ -34,7 +34,8 @@ func _ready() -> void :
 	scw.qh_level = 0
 	scw.wx = []
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	cl_1.set_button_icon(load_(ItemInfo["cl_1"]))
 	cl_2.set_button_icon(load_(ItemInfo["cl_2"]))
 	cl_3.set_button_icon(load_(ItemInfo["cl_3"]))
@@ -44,6 +45,8 @@ func _physics_process(delta: float) -> void :
 	cl_3.EQ_prop = AE.AllEquipment_[ItemInfo["cl_3"]]
 	scw.EQ_prop = AE.AllEquipment_[ItemInfo["scw"]]
 	set_physics_process(false)
+
+
 func load_(name_):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
 	return abc

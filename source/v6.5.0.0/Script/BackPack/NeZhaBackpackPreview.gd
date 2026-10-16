@@ -1,19 +1,24 @@
 extends Node
 
+
 func _get_body_frames(equipment_id: String) -> SpriteFrames:
 	return NeZhaEquipmentVisuals.get_body_frames(equipment_id)
+
 
 func _get_weapon_frames(equipment_id: String) -> SpriteFrames:
 	return NeZhaEquipmentVisuals.get_weapon_frames(equipment_id)
 
+
 func _get_body_front_frames(equipment_id: String) -> SpriteFrames:
 	return NeZhaEquipmentVisuals.get_body_front_frames(equipment_id)
+
 
 @onready var role_body: Sprite2D = get_node("../RoleBody")
 @onready var role_equipment: Sprite2D = get_node("../RoleEquipment")
 @onready var role_body_front: Sprite2D = get_node("../RoleBodyFront")
 
 var _elapsed: float = 0.0
+
 
 func _equipped_name(slot_name: String) -> String:
 	var transmog_value: Variant = PlayerData.player_data.get("幻化列表", {}).get(slot_name, "")
@@ -26,23 +31,24 @@ func _equipped_name(slot_name: String) -> String:
 			return str((item_value as Dictionary).get("名字", "Empty"))
 	return "Empty"
 
-func _process(delta: float) -> void :
-	var clothes_effect: = preload("res://Script/Hero/MoonPalaceClothesEffect.gd")
+
+func _process(delta: float) -> void:
+	var clothes_effect := preload("res://Script/Hero/MoonPalaceClothesEffect.gd")
 	if int(PlayerData.player_data.get("Myself", 1)) != 6:
 		clothes_effect.sync(role_body, clothes_effect.equipped_body())
 		return
-	var body_id: = _equipped_name("时装")
+	var body_id := _equipped_name("时装")
 	if body_id == "Empty":
 		body_id = _equipped_name("防具")
-	var weapon_id: = _equipped_name("武器")
-	var body_frames: = _get_body_frames(body_id)
-	var body_front_frames: = _get_body_front_frames(body_id)
-	var weapon_frames: = _get_weapon_frames(weapon_id)
-	var frame_count: = body_frames.get_frame_count(&"wait")
+	var weapon_id := _equipped_name("武器")
+	var body_frames := _get_body_frames(body_id)
+	var body_front_frames := _get_body_front_frames(body_id)
+	var weapon_frames := _get_weapon_frames(weapon_id)
+	var frame_count := body_frames.get_frame_count(&"wait")
 	if frame_count <= 0:
 		return
 	_elapsed += delta
-	var frame_index: = int(_elapsed * body_frames.get_animation_speed(&"wait")) % frame_count
+	var frame_index := int(_elapsed * body_frames.get_animation_speed(&"wait")) % frame_count
 	role_body.hframes = 1
 	role_body.vframes = 1
 	role_body.frame = 0

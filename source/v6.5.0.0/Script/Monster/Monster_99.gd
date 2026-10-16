@@ -1,6 +1,7 @@
 extends BaseMonster
 class_name Monster99
 
+
 func monster_99():
 	self.is_boss = false
 	self.is_Fly = true
@@ -28,42 +29,37 @@ func monster_99():
 	self.add_exp = 60 + Global.LLBTLevel * 5
 	self.fall_coin = 70 + Global.LLBTLevel * 6
 	self.objattackDic["hit1"] = {
-		"power": 270 + Global.LLBTLevel * 10, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-
+		"power": 270 + Global.LLBTLevel * 10,
+		"hurtBack": [-8, -12],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "sichou", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "xuantie", 
-			"value": randi_range(1, 2)
-		}, 
-		{
-			"name": "tanmu", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "sichou", "value": randi_range(1, 2)},
+		{"name": "xuantie", "value": randi_range(1, 2)},
+		{"name": "tanmu", "value": randi_range(1, 2)},
 	]
 	self.fall_stone_pro = 0.07
 	self.fall_stone = [
-		{
-			"name": "smlp", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "smlp", "value": randi_range(1, 2)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_99()
+
+
 func CallBullet():
 	var Bullets
 
 	if self.MonsterDirection:
-		Bullets = Global.add_Bullet("Monster99Bullet", self.bullet, false, 1, Vector2(40, 20) + position, "hit1", self.objattackDic["hit1"])
+		Bullets = Global.add_Bullet(
+			"Monster99Bullet", self.bullet, false, 1, Vector2(40, 20) + position, "hit1", self.objattackDic["hit1"]
+		)
 	else:
-		Bullets = Global.add_Bullet("Monster99Bullet", self.bullet, false, 1, Vector2(-40, 20) + position, "hit1", self.objattackDic["hit1"])
+		Bullets = Global.add_Bullet(
+			"Monster99Bullet", self.bullet, false, 1, Vector2(-40, 20) + position, "hit1", self.objattackDic["hit1"]
+		)
 	Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))

@@ -3,72 +3,95 @@ class_name PetTurtleSummonBase
 
 @export var turtle_stage: int = 1
 
-const SKILL_SLD: = "sld"
-const SKILL_TXLJ: = "txlj"
-const SKILL_SYBH: = "sybh"
-const SKILL_XWAOYI: = "xwaoyi"
-const PET_SKILL_PROGRESSION: = preload("res://Script/Pet/PetSkillProgression.gd")
-const PET_LEARNED_SKILL_RUNTIME: = preload("res://Script/Pet/PetLifeBonusRuntime.gd")
-const SKILL_NAMES: = {
-	SKILL_SLD: "水疗盾", 
-	SKILL_TXLJ: "同心链接", 
-	SKILL_SYBH: "水湮八荒", 
-	SKILL_XWAOYI: "玄武奥义", 
+const SKILL_SLD := "sld"
+const SKILL_TXLJ := "txlj"
+const SKILL_SYBH := "sybh"
+const SKILL_XWAOYI := "xwaoyi"
+const PET_SKILL_PROGRESSION := preload("res://Script/Pet/PetSkillProgression.gd")
+const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/Pet/PetLifeBonusRuntime.gd")
+const SKILL_NAMES := {
+	SKILL_SLD: "水疗盾",
+	SKILL_TXLJ: "同心链接",
+	SKILL_SYBH: "水湮八荒",
+	SKILL_XWAOYI: "玄武奥义",
 }
-const SKILL_MP_COSTS: = {
-	SKILL_SLD: 50, 
-	SKILL_TXLJ: 70, 
-	SKILL_SYBH: 90, 
-	SKILL_XWAOYI: 100, 
+const SKILL_MP_COSTS := {
+	SKILL_SLD: 50,
+	SKILL_TXLJ: 70,
+	SKILL_SYBH: 90,
+	SKILL_XWAOYI: 100,
 }
-const SKILL_INITIAL_COOLDOWNS: = {
-	SKILL_SLD: 5.0, 
-	SKILL_TXLJ: 5.0, 
-	SKILL_SYBH: 6.0, 
-	SKILL_XWAOYI: 30.0, 
+const SKILL_INITIAL_COOLDOWNS := {
+	SKILL_SLD: 5.0,
+	SKILL_TXLJ: 5.0,
+	SKILL_SYBH: 6.0,
+	SKILL_XWAOYI: 30.0,
 }
-const SKILL_COOLDOWNS: = {
-	SKILL_SLD: 10.0, 
-	SKILL_TXLJ: 45.0, 
-	SKILL_SYBH: 12.0, 
-	SKILL_XWAOYI: 60.0, 
+const SKILL_COOLDOWNS := {
+	SKILL_SLD: 10.0,
+	SKILL_TXLJ: 45.0,
+	SKILL_SYBH: 12.0,
+	SKILL_XWAOYI: 60.0,
 }
-const TURTLE_STAGE_NAMES: = {1: "龟布", 2: "墨玄龟", 3: "玄武将军", 4: "玄武大帝"}
-const TURTLE_STAGE_SKILLS: = {
-	1: ["水疗盾"], 
-	2: ["水疗盾", "同心链接"], 
-	3: ["水疗盾", "同心链接", "水湮八荒"], 
-	4: ["水疗盾", "同心链接", "水湮八荒", "玄武奥义"], 
+const TURTLE_STAGE_NAMES := {1: "龟布", 2: "墨玄龟", 3: "玄武将军", 4: "玄武大帝"}
+const TURTLE_STAGE_SKILLS := {
+	1: ["水疗盾"],
+	2: ["水疗盾", "同心链接"],
+	3: ["水疗盾", "同心链接", "水湮八荒"],
+	4: ["水疗盾", "同心链接", "水湮八荒", "玄武奥义"],
 }
-const TURTLE_ACTION_TICK_RATE: = 24.0
-const TURTLE_MODEL_FRAMES_RES: = "res://Art/Pet/PetTurtle/model/pet_turtle_stage%d_frames.tres"
-const TURTLE_SCENE_RES: = "res://Scene/Pet/PetTurtleSummon_%d.tscn"
-const TURTLE_BUFF_TEXTURE: = "res://Art/Pet/PetTurtle/effects/PetTurtle2Buff/1.png"
-const PET_TURTLE_BULLET_SCENE: = preload("res://Scene/Pet/PetTurtleBullet.tscn")
-const TURTLE_NORMAL_ATTACK_RANGES: = {1: 40, 2: 70, 3: 70, 4: 70}
-const TURTLE_WATER_SHIELD_HIT_SIZE: = Vector2(500, 340)
-const TURTLE_ORIGINAL_SPRITE_OFFSETS: = {
-	1: Vector2(1, -10), 2: Vector2(1, -10), 3: Vector2(21, 5), 4: Vector2(21, -17), 
+const TURTLE_ACTION_TICK_RATE := 24.0
+const TURTLE_MODEL_FRAMES_RES := "res://Art/Pet/PetTurtle/model/pet_turtle_stage%d_frames.tres"
+const TURTLE_SCENE_RES := "res://Scene/Pet/PetTurtleSummon_%d.tscn"
+const TURTLE_BUFF_TEXTURE := "res://Art/Pet/PetTurtle/effects/PetTurtle2Buff/1.png"
+const PET_TURTLE_BULLET_SCENE := preload("res://Scene/Pet/PetTurtleBullet.tscn")
+const TURTLE_NORMAL_ATTACK_RANGES := {1: 40, 2: 70, 3: 70, 4: 70}
+const TURTLE_WATER_SHIELD_HIT_SIZE := Vector2(500, 340)
+const TURTLE_ORIGINAL_SPRITE_OFFSETS := {
+	1: Vector2(1, -10),
+	2: Vector2(1, -10),
+	3: Vector2(21, 5),
+	4: Vector2(21, -17),
 }
-const ACTION_STOP_COUNTS: = {
-	1: {
-		"wait": [2, 2, 2, 3, 2, 4], "walk": [2, 2, 2, 3, 2, 4], 
-		"hurt": [8], "death": [2, 2, 2, 2, 2], "hit1": [2, 2, 10], "hit2": [2, 2, 10], 
-	}, 
-	2: {
-		"wait": [2, 2, 2, 3, 2, 4], "walk": [4, 4, 4, 4], 
-		"hurt": [8], "death": [2, 2, 2, 2, 2], "hit1": [2, 2, 2, 10], "hit2": [2, 2, 10], 
-	}, 
-	3: {
-		"wait": [2, 2, 2, 3, 2, 4], "walk": [4, 4, 4, 4], 
-		"hurt": [8], "death": [2, 2, 2, 2, 2], "hit1": [2, 2, 2, 10], 
-		"hit2": [2, 2, 10], "hit3": [2, 2, 10], 
-	}, 
-	4: {
-		"wait": [2, 2, 2, 3, 2, 4], "walk": [4, 4, 4, 4], 
-		"hurt": [8], "death": [2, 2, 2, 2, 2], "hit1": [2, 2, 2, 10], 
-		"hit2": [2, 2, 10], "hit3": [2, 2, 10], 
-	}, 
+const ACTION_STOP_COUNTS := {
+	1:
+	{
+		"wait": [2, 2, 2, 3, 2, 4],
+		"walk": [2, 2, 2, 3, 2, 4],
+		"hurt": [8],
+		"death": [2, 2, 2, 2, 2],
+		"hit1": [2, 2, 10],
+		"hit2": [2, 2, 10],
+	},
+	2:
+	{
+		"wait": [2, 2, 2, 3, 2, 4],
+		"walk": [4, 4, 4, 4],
+		"hurt": [8],
+		"death": [2, 2, 2, 2, 2],
+		"hit1": [2, 2, 2, 10],
+		"hit2": [2, 2, 10],
+	},
+	3:
+	{
+		"wait": [2, 2, 2, 3, 2, 4],
+		"walk": [4, 4, 4, 4],
+		"hurt": [8],
+		"death": [2, 2, 2, 2, 2],
+		"hit1": [2, 2, 2, 10],
+		"hit2": [2, 2, 10],
+		"hit3": [2, 2, 10],
+	},
+	4:
+	{
+		"wait": [2, 2, 2, 3, 2, 4],
+		"walk": [4, 4, 4, 4],
+		"hurt": [8],
+		"death": [2, 2, 2, 2, 2],
+		"hit1": [2, 2, 2, 10],
+		"hit2": [2, 2, 10],
+		"hit3": [2, 2, 10],
+	},
 }
 
 static var _turtle_scene_cache: Dictionary = {}
@@ -78,28 +101,28 @@ var SMp: int = 1
 var Mp: int = 1
 var hp_recover_per_second: int = 0
 var mp_recover_per_second: int = 0
-var recovery_timer: = 0.0
-var pet_skill_cooldown_multiplier: = 1.0
-var is_aoyi: = false
+var recovery_timer := 0.0
+var pet_skill_cooldown_multiplier := 1.0
+var is_aoyi := false
 
-var _turtle_action: = ""
-var _turtle_action_tick: = 0
-var _turtle_action_accumulator: = 0.0
+var _turtle_action := ""
+var _turtle_action_tick := 0
+var _turtle_action_accumulator := 0.0
 var _turtle_action_triggered: Dictionary = {}
-var _death_started: = false
-var _skill_cast_frame: = -1
-var _aoyi_token: = 0
-var _aoyi_until_msec: = 0
-var _link_until_msec: = 0
-var _link_percent: = 0
+var _death_started := false
+var _skill_cast_frame := -1
+var _aoyi_token := 0
+var _aoyi_until_msec := 0
+var _link_until_msec := 0
+var _link_percent := 0
 var _turtle_link_visual: Sprite2D = null
 var _hero_link_visual: Sprite2D = null
 var _aoyi_visual: Sprite2D = null
 
-@onready var turtle_sprite: AnimatedSprite2D = $MonsterDir / mr_ani
+@onready var turtle_sprite: AnimatedSprite2D = $MonsterDir/mr_ani
 
 
-func _ready() -> void :
+func _ready() -> void:
 	_initialize_summon_base()
 	set_meta("pet_turtle_unit", true)
 	set_meta("is_summon", true)
@@ -115,14 +138,14 @@ func _ready() -> void :
 		hit_box.disabled = true
 
 
-func _initialize_summon_base() -> void :
+func _initialize_summon_base() -> void:
 	randomize()
 	ran_num = randi_range(0, 100)
 	RndiCount = randi_range(0, 100)
 	if has_node("CalmHit"):
 		$CalmHit.start(1.0)
 	if not has_node("Buff"):
-		var buff_node: = Node.new()
+		var buff_node := Node.new()
 		buff_node.name = "Buff"
 		add_child(buff_node)
 		buff = buff_node
@@ -139,16 +162,16 @@ func _initialize_summon_base() -> void :
 	current_state = State.IDLE
 
 
-func _physics_process(delta: float) -> void :
+func _physics_process(delta: float) -> void:
 	if is_aoyi:
 		velocity = Vector2.ZERO
 	_tick_turtle_action(delta)
-	super (delta)
+	super(delta)
 	if is_aoyi:
 		velocity = Vector2.ZERO
 
 
-func _process(delta: float) -> void :
+func _process(delta: float) -> void:
 	_process_pet_turtle_recovery(delta)
 	_process_turtle_link()
 	_process_turtle_aoyi()
@@ -161,12 +184,12 @@ func _get_gravity() -> float:
 
 
 func is_super_armor() -> bool:
-	return is_aoyi or super ()
+	return is_aoyi or super()
 
 
-func apply_pet_data(data: Dictionary) -> void :
-	var previous_stage: = turtle_stage
-	var previous_skills: = _learned_skills().duplicate(true)
+func apply_pet_data(data: Dictionary) -> void:
+	var previous_stage := turtle_stage
+	var previous_skills := _learned_skills().duplicate(true)
 	pet_data = data.duplicate(true)
 	setup_pet_turtle(_pet_stage_from_data(pet_data, turtle_stage))
 	if is_node_ready() and turtle_sprite != null:
@@ -177,54 +200,73 @@ func apply_pet_data(data: Dictionary) -> void :
 
 
 func _pet_stage_from_data(data: Dictionary, fallback: int) -> int:
-	var pet_level: = int(data.get("等级", fallback))
-	var level_stage: = 4 if pet_level >= 50 else 3 if pet_level >= 30 else 2 if pet_level >= 15 else 1
+	var pet_level := int(data.get("等级", fallback))
+	var level_stage := 4 if pet_level >= 50 else 3 if pet_level >= 30 else 2 if pet_level >= 15 else 1
 	return maxi(level_stage, clampi(int(data.get("阶段", fallback)), 1, 4))
 
 
-func setup_pet_turtle(stage: int) -> void :
+func setup_pet_turtle(stage: int) -> void:
 	turtle_stage = clampi(stage, 1, 4)
 	pet_data["阶段"] = turtle_stage
 	pet_data["类型"] = "PetTurtle"
 	pet_data["名称"] = TURTLE_STAGE_NAMES[turtle_stage]
 	pet_data["名字"] = TURTLE_STAGE_NAMES[turtle_stage]
 	pet_data["技能"] = (TURTLE_STAGE_SKILLS[turtle_stage] as Array).duplicate(true)
-	var pet_level: = int(pet_data.get("等级", 1))
-	var hp_max: = int(pet_data.get("生命上限", 620))
-	var mp_max: = int(pet_data.get("魔法上限", 180))
+	var pet_level := int(pet_data.get("等级", 1))
+	var hp_max := int(pet_data.get("生命上限", 620))
+	var mp_max := int(pet_data.get("魔法上限", 180))
 	var equipment_bonus: Dictionary = {}
 	if PlayerData.has_method("get_pet_equipment_bonuses"):
 		equipment_bonus = PlayerData.get_pet_equipment_bonuses(pet_data)
-	var hp_bonus: = int(equipment_bonus.get("生命", 0))
-	var mp_bonus: = int(equipment_bonus.get("魔法", 0))
+	var hp_bonus := int(equipment_bonus.get("生命", 0))
+	var mp_bonus := int(equipment_bonus.get("魔法", 0))
 	var passive_value = pet_data.get("被动技能", {})
 	var passive: Dictionary = passive_value if passive_value is Dictionary else {}
-	var passive_hp: = int(PaSkill.get_value("热血", int(passive.get("热血", 0))))
-	var passive_mp: = int(PaSkill.get_value("魔泉", int(passive.get("魔泉", 0))))
+	var passive_hp := int(PaSkill.get_value("热血", int(passive.get("热血", 0))))
+	var passive_mp := int(PaSkill.get_value("魔泉", int(passive.get("魔泉", 0))))
 	level = maxi(1, pet_level)
 	my_mr_name = str(TURTLE_STAGE_NAMES[turtle_stage])
 	attack_in = maxi(1, int(pet_data.get("攻击", 65)) + int(equipment_bonus.get("攻击", 0)))
 	attack_in += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "天生蛮力", attack_in)
 	SHp = maxi(1, hp_max + hp_bonus + passive_hp)
-	var learned_hp_bonus: = PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "生命祝福", SHp)
+	var learned_hp_bonus := PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "生命祝福", SHp)
 	SHp += learned_hp_bonus
-	var current_hp: = int(pet_data.get("生命", hp_max))
+	var current_hp := int(pet_data.get("生命", hp_max))
 	Hp = 0 if current_hp <= 0 else clampi(current_hp + hp_bonus + passive_hp + learned_hp_bonus, 0, SHp)
 	SMp = maxi(1, mp_max + mp_bonus + passive_mp)
-	var learned_mp_bonus: = PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "魔法庇佑", SMp)
+	var learned_mp_bonus := PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "魔法庇佑", SMp)
 	SMp += learned_mp_bonus
-	var current_mp: = int(pet_data.get("魔法", mp_max))
+	var current_mp := int(pet_data.get("魔法", mp_max))
 	Mp = 0 if current_mp <= 0 else clampi(current_mp + mp_bonus + passive_mp + learned_mp_bonus, 0, SMp)
-	hp_recover_per_second = int(pet_data.get("回血", 2)) + int(equipment_bonus.get("回血", 0)) + int(PaSkill.get_value("永恒", int(passive.get("永恒", 0))))
-	mp_recover_per_second = int(pet_data.get("回魔", 1)) + int(equipment_bonus.get("回魔", 0)) + int(PaSkill.get_value("辉煌", int(passive.get("辉煌", 0))))
+	hp_recover_per_second = (
+		int(pet_data.get("回血", 2))
+		+ int(equipment_bonus.get("回血", 0))
+		+ int(PaSkill.get_value("永恒", int(passive.get("永恒", 0))))
+	)
+	mp_recover_per_second = (
+		int(pet_data.get("回魔", 1))
+		+ int(equipment_bonus.get("回魔", 0))
+		+ int(PaSkill.get_value("辉煌", int(passive.get("辉煌", 0))))
+	)
 	self_rhp = hp_recover_per_second
 	def = int(pet_data.get("防御", pet_data.get("物防", 60))) + int(equipment_bonus.get("防御", 0))
 	def += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "自然守护", def)
-	mdef = int(pet_data.get("魔防", pet_data.get("魔抗", pet_data.get("防御", pet_data.get("物防", 60))))) + int(equipment_bonus.get("魔防", 0))
+	mdef = (
+		int(pet_data.get("魔防", pet_data.get("魔抗", pet_data.get("防御", pet_data.get("物防", 60)))))
+		+ int(equipment_bonus.get("魔防", 0))
+	)
 	mdef += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "自然守护", mdef)
-	crit = int(pet_data.get("暴击", 12)) + int(equipment_bonus.get("暴击", 0)) + int(PaSkill.get_value("狂暴", int(passive.get("狂暴", 0))))
+	crit = (
+		int(pet_data.get("暴击", 12))
+		+ int(equipment_bonus.get("暴击", 0))
+		+ int(PaSkill.get_value("狂暴", int(passive.get("狂暴", 0))))
+	)
 	miss = int(pet_data.get("闪避", 6)) + int(equipment_bonus.get("闪避", 0))
-	Htarget = int(pet_data.get("命中", 0)) + int(equipment_bonus.get("命中", 0)) + int(PaSkill.get_value("敏锐", int(passive.get("敏锐", 0))))
+	Htarget = (
+		int(pet_data.get("命中", 0))
+		+ int(equipment_bonus.get("命中", 0))
+		+ int(PaSkill.get_value("敏锐", int(passive.get("敏锐", 0))))
+	)
 	lucky = int(pet_data.get("幸运", 10)) + int(equipment_bonus.get("幸运", 0))
 	Toughness = int(pet_data.get("韧性", 0)) + int(equipment_bonus.get("韧性", 0))
 	ar = int(pet_data.get("破甲", 0)) + int(equipment_bonus.get("破甲", 0))
@@ -242,12 +284,12 @@ func setup_pet_turtle(stage: int) -> void :
 	_rebuild_pet_turtle_attack_data()
 
 
-func apply_pet_develop_effects(data: Dictionary) -> void :
-	var previous_multiplier: = maxf(0.01, pet_skill_cooldown_multiplier)
+func apply_pet_develop_effects(data: Dictionary) -> void:
+	var previous_multiplier := maxf(0.01, pet_skill_cooldown_multiplier)
 	for key in ["悟性", "根骨", "灵力"]:
 		pet_data[key] = clampi(int(data.get(key, pet_data.get(key, 0))), 0, 25)
 	pet_skill_cooldown_multiplier = 1.0 - float(pet_data["灵力"]) * 0.02
-	var ratio: = pet_skill_cooldown_multiplier / previous_multiplier
+	var ratio := pet_skill_cooldown_multiplier / previous_multiplier
 	Skill_1_CD = maxf(0.0, Skill_1_CD * ratio)
 	Skill_2_CD = maxf(0.0, Skill_2_CD * ratio)
 	Skill_3_CD = maxf(0.0, Skill_3_CD * ratio)
@@ -257,12 +299,18 @@ func apply_pet_develop_effects(data: Dictionary) -> void :
 		_apply_turtle_link(true)
 
 
-func _rebuild_pet_turtle_attack_data() -> void :
-	var root_rate: = 1.0 + float(clampi(int(pet_data.get("根骨", 0)), 0, 25)) * 0.02
-	var normal_power: = maxi(1, int(float(attack_in) * root_rate))
-	var water_power: = PET_SKILL_PROGRESSION.scaled_power(maxi(1, int(float(attack_in) * 6.0 * root_rate)), pet_data, SKILL_NAMES[SKILL_SLD])
-	var sybh_power: = PET_SKILL_PROGRESSION.scaled_power(maxi(1, int(float(attack_in) * 6.0 * root_rate)), pet_data, SKILL_NAMES[SKILL_SYBH])
-	var aoyi_power: = PET_SKILL_PROGRESSION.scaled_power(maxi(1, int(float(attack_in) * 6.0 * root_rate)), pet_data, SKILL_NAMES[SKILL_XWAOYI])
+func _rebuild_pet_turtle_attack_data() -> void:
+	var root_rate := 1.0 + float(clampi(int(pet_data.get("根骨", 0)), 0, 25)) * 0.02
+	var normal_power := maxi(1, int(float(attack_in) * root_rate))
+	var water_power := PET_SKILL_PROGRESSION.scaled_power(
+		maxi(1, int(float(attack_in) * 6.0 * root_rate)), pet_data, SKILL_NAMES[SKILL_SLD]
+	)
+	var sybh_power := PET_SKILL_PROGRESSION.scaled_power(
+		maxi(1, int(float(attack_in) * 6.0 * root_rate)), pet_data, SKILL_NAMES[SKILL_SYBH]
+	)
+	var aoyi_power := PET_SKILL_PROGRESSION.scaled_power(
+		maxi(1, int(float(attack_in) * 6.0 * root_rate)), pet_data, SKILL_NAMES[SKILL_XWAOYI]
+	)
 	objattackDic["hit1"] = _attack_dic(normal_power, [6, -5], "physics", 24)
 	objattackDic["hit2"] = _attack_dic(water_power, [0, 0], "magic", 24)
 	objattackDic["hit3"] = _attack_dic(sybh_power, [0, 0], "magic", 24)
@@ -271,21 +319,25 @@ func _rebuild_pet_turtle_attack_data() -> void :
 
 func _attack_dic(power: int, hurt_back: Array, kind: String, interval: int) -> Dictionary:
 	return {
-		"power": power, "hurtBack": hurt_back, "attackKind": kind, 
-		"attackInterval": interval, "hitMaxCount": 99, "HitProtect": 0, 
+		"power": power,
+		"hurtBack": hurt_back,
+		"attackKind": kind,
+		"attackInterval": interval,
+		"hitMaxCount": 99,
+		"HitProtect": 0,
 	}
 
 
-func setup_skills() -> void :
+func setup_skills() -> void:
 	Skill_1_CD = SKILL_INITIAL_COOLDOWNS[SKILL_SLD] * pet_skill_cooldown_multiplier
 	Skill_2_CD = SKILL_INITIAL_COOLDOWNS[SKILL_TXLJ] * pet_skill_cooldown_multiplier
 	Skill_3_CD = SKILL_INITIAL_COOLDOWNS[SKILL_SYBH] * pet_skill_cooldown_multiplier
 	Skill_4_CD = SKILL_INITIAL_COOLDOWNS[SKILL_XWAOYI] * pet_skill_cooldown_multiplier
 
 
-func _unlock_new_stage_skill_cooldowns(previous_skills: Array) -> void :
+func _unlock_new_stage_skill_cooldowns(previous_skills: Array) -> void:
 	for skill_id in [SKILL_SLD, SKILL_TXLJ, SKILL_SYBH, SKILL_XWAOYI]:
-		var skill_name: = str(SKILL_NAMES[skill_id])
+		var skill_name := str(SKILL_NAMES[skill_id])
 		if previous_skills.has(skill_name) or previous_skills.has(skill_id) or not _has_skill(skill_id):
 			continue
 		match skill_id:
@@ -305,7 +357,7 @@ func _learned_skills() -> Array:
 
 
 func _has_skill(skill_id: String) -> bool:
-	var skills: = _learned_skills()
+	var skills := _learned_skills()
 	return skills.has(skill_id) or skills.has(SKILL_NAMES[skill_id])
 
 
@@ -314,7 +366,9 @@ func _skill_cost(skill_id: String) -> int:
 	var costs: Dictionary = costs_value if costs_value is Dictionary else {}
 	if costs.has(skill_id) or costs.has(SKILL_NAMES[skill_id]):
 		return int(costs.get(skill_id, costs.get(SKILL_NAMES[skill_id], SKILL_MP_COSTS[skill_id])))
-	return PET_SKILL_PROGRESSION.mana_cost(SKILL_MP_COSTS[skill_id], PET_SKILL_PROGRESSION.get_level(pet_data, SKILL_NAMES[skill_id]))
+	return PET_SKILL_PROGRESSION.mana_cost(
+		SKILL_MP_COSTS[skill_id], PET_SKILL_PROGRESSION.get_level(pet_data, SKILL_NAMES[skill_id])
+	)
 
 
 func _can_use_skill(skill_id: String) -> bool:
@@ -322,7 +376,7 @@ func _can_use_skill(skill_id: String) -> bool:
 
 
 func _consume_skill(skill_id: String) -> bool:
-	var cost: = _skill_cost(skill_id)
+	var cost := _skill_cost(skill_id)
 	if Mp < cost:
 		return false
 	Mp -= cost
@@ -330,7 +384,7 @@ func _consume_skill(skill_id: String) -> bool:
 	return true
 
 
-func _process_pet_turtle_recovery(delta: float) -> void :
+func _process_pet_turtle_recovery(delta: float) -> void:
 	if Hp <= 0:
 		return
 	recovery_timer += delta
@@ -344,10 +398,10 @@ func _process_pet_turtle_recovery(delta: float) -> void :
 		pet_data["魔法"] = Mp
 
 
-func try_use_skills() -> void :
+func try_use_skills() -> void:
 	if is_aoyi or is_attacking or is_be_attacking or not is_instance_valid(current_target):
 		return
-	var physics_frame: = Engine.get_physics_frames()
+	var physics_frame := Engine.get_physics_frames()
 	if _skill_cast_frame == physics_frame:
 		return
 	if turtle_stage >= 4 and Skill_4_CD <= 0.0 and _can_use_skill(SKILL_XWAOYI):
@@ -360,14 +414,14 @@ func try_use_skills() -> void :
 		do_sld()
 
 
-func Monster_Intelligence() -> void :
+func Monster_Intelligence() -> void:
 	if is_aoyi or is_attacking or is_be_attacking:
 		return
 	if not is_instance_valid(current_target) or current_target.Hp <= 0:
 		current_target = null
 		follow_player_when_idle()
 		return
-	var distance: = global_position.distance_to(current_target.global_position)
+	var distance := global_position.distance_to(current_target.global_position)
 	if distance >= mysee:
 		current_target = null
 		has_target = false
@@ -377,7 +431,7 @@ func Monster_Intelligence() -> void :
 	try_use_skills()
 	if is_attacking or is_aoyi or _skill_cast_frame == Engine.get_physics_frames():
 		return
-	var attack_gap: = _horizontal_attack_gap(current_target)
+	var attack_gap := _horizontal_attack_gap(current_target)
 	if attack_gap > attackRange:
 		if current_target.global_position.x > global_position.x:
 			move_right()
@@ -393,29 +447,32 @@ func Monster_Intelligence() -> void :
 func _horizontal_attack_gap(target: Node2D) -> float:
 	if target == null:
 		return INF
-	var center_distance: = absf(global_position.x - target.global_position.x)
+	var center_distance := absf(global_position.x - target.global_position.x)
 	return maxf(0.0, center_distance - _body_collision_half_width(self) - _body_collision_half_width(target))
 
 
 func _is_target_in_water_shield_range(target: Node2D) -> bool:
 	if target == null:
 		return false
-	var target_position: = target.global_position
-	var hurt_shape: = target.get_node_or_null("BaseDamageBox/HurtBox/HurtBox") as CollisionShape2D
+	var target_position := target.global_position
+	var hurt_shape := target.get_node_or_null("BaseDamageBox/HurtBox/HurtBox") as CollisionShape2D
 	if hurt_shape != null:
 		target_position = hurt_shape.global_position
-	var shield_center: = global_position + Vector2(0, _water_shield_y_offset())
-	var local_delta: = target_position - shield_center
-	return absf(local_delta.x) <= TURTLE_WATER_SHIELD_HIT_SIZE.x * 0.5 and absf(local_delta.y) <= TURTLE_WATER_SHIELD_HIT_SIZE.y * 0.5
+	var shield_center := global_position + Vector2(0, _water_shield_y_offset())
+	var local_delta := target_position - shield_center
+	return (
+		absf(local_delta.x) <= TURTLE_WATER_SHIELD_HIT_SIZE.x * 0.5
+		and absf(local_delta.y) <= TURTLE_WATER_SHIELD_HIT_SIZE.y * 0.5
+	)
 
 
 func _body_collision_half_width(body: Node) -> float:
 	if body == null:
 		return 0.0
-	var collision: = body.get_node_or_null("pz") as CollisionShape2D
+	var collision := body.get_node_or_null("pz") as CollisionShape2D
 	if collision == null or collision.shape == null:
 		return 0.0
-	var half_width: = 0.0
+	var half_width := 0.0
 	if collision.shape is RectangleShape2D:
 		half_width = (collision.shape as RectangleShape2D).size.x * 0.5
 	elif collision.shape is CapsuleShape2D:
@@ -425,13 +482,13 @@ func _body_collision_half_width(body: Node) -> float:
 	return half_width * absf(collision.global_scale.x)
 
 
-func do_hit_1() -> void :
+func do_hit_1() -> void:
 	_face_current_target()
 	hit_name = "hit1"
 	_start_turtle_action("hit1")
 
 
-func do_sld(without_mana: bool = false, set_cooldown: bool = true) -> void :
+func do_sld(without_mana: bool = false, set_cooldown: bool = true) -> void:
 	if not without_mana and not _consume_skill(SKILL_SLD):
 		return
 	_skill_cast_frame = Engine.get_physics_frames()
@@ -442,7 +499,7 @@ func do_sld(without_mana: bool = false, set_cooldown: bool = true) -> void :
 	_start_turtle_action("hit2")
 
 
-func do_txlj(without_mana: bool = false, set_cooldown: bool = true) -> void :
+func do_txlj(without_mana: bool = false, set_cooldown: bool = true) -> void:
 	if not without_mana and not _consume_skill(SKILL_TXLJ):
 		return
 	_skill_cast_frame = Engine.get_physics_frames()
@@ -451,7 +508,7 @@ func do_txlj(without_mana: bool = false, set_cooldown: bool = true) -> void :
 	_apply_turtle_link(false)
 
 
-func do_sybh(without_mana: bool = false, set_cooldown: bool = true) -> void :
+func do_sybh(without_mana: bool = false, set_cooldown: bool = true) -> void:
 	if not without_mana and not _consume_skill(SKILL_SYBH):
 		return
 	_skill_cast_frame = Engine.get_physics_frames()
@@ -462,14 +519,14 @@ func do_sybh(without_mana: bool = false, set_cooldown: bool = true) -> void :
 	_start_turtle_action("hit3")
 
 
-func do_xwaoyi() -> void :
+func do_xwaoyi() -> void:
 	if not _consume_skill(SKILL_XWAOYI):
 		return
 	_skill_cast_frame = Engine.get_physics_frames()
 	_face_current_target()
 	Skill_4_CD = SKILL_COOLDOWNS[SKILL_XWAOYI] * pet_skill_cooldown_multiplier
 	_aoyi_token += 1
-	var token: = _aoyi_token
+	var token := _aoyi_token
 	is_aoyi = true
 	_aoyi_until_msec = Time.get_ticks_msec() + 5000
 	_show_aoyi_visual()
@@ -483,21 +540,21 @@ func do_xwaoyi() -> void :
 		_spawn_sybh(true)
 
 
-func _delayed_aoyi_water_shield(delay: float, token: int) -> void :
+func _delayed_aoyi_water_shield(delay: float, token: int) -> void:
 	await get_tree().create_timer(delay, false).timeout
 	if not is_inside_tree() or Hp <= 0 or token != _aoyi_token or not is_aoyi:
 		return
 	do_sld(true, false)
 
 
-func _process_turtle_aoyi() -> void :
+func _process_turtle_aoyi() -> void:
 	if not is_aoyi:
 		return
 	if Hp <= 0 or Time.get_ticks_msec() >= _aoyi_until_msec:
 		_cancel_aoyi()
 
 
-func _cancel_aoyi() -> void :
+func _cancel_aoyi() -> void:
 	if not is_aoyi and _aoyi_visual == null:
 		return
 	is_aoyi = false
@@ -508,7 +565,7 @@ func _cancel_aoyi() -> void :
 	_aoyi_visual = null
 
 
-func _show_aoyi_visual() -> void :
+func _show_aoyi_visual() -> void:
 	if is_instance_valid(_aoyi_visual):
 		_aoyi_visual.queue_free()
 	_aoyi_visual = _create_link_visual("PetTurtleAoyiVisual", Vector2(0, -82))
@@ -516,15 +573,17 @@ func _show_aoyi_visual() -> void :
 		_aoyi_visual.modulate = Color(1.0, 1.0, 1.0, 0.8)
 
 
-func _apply_turtle_link(refresh_only: bool = false) -> void :
+func _apply_turtle_link(refresh_only: bool = false) -> void:
 	_find_pet_turtle_player_reference()
 	if not is_instance_valid(player_reference):
 		return
 	if not refresh_only:
 		_clear_turtle_link()
-	var technique: = maxi(1, int(pet_data.get("灵力", 0)))
-	var warpower: = maxi(1, int(pet_data.get("根骨", 0)))
-	var link_multiplier: = PET_SKILL_PROGRESSION.damage_multiplier(PET_SKILL_PROGRESSION.get_level(pet_data, SKILL_NAMES[SKILL_TXLJ]))
+	var technique := maxi(1, int(pet_data.get("灵力", 0)))
+	var warpower := maxi(1, int(pet_data.get("根骨", 0)))
+	var link_multiplier := PET_SKILL_PROGRESSION.damage_multiplier(
+		PET_SKILL_PROGRESSION.get_level(pet_data, SKILL_NAMES[SKILL_TXLJ])
+	)
 	_link_percent = clampi(int(round(float(5 * technique) * link_multiplier)), 5, 100)
 	_link_until_msec = Time.get_ticks_msec() + int(round(float(4000 * warpower) * link_multiplier))
 	player_reference.set_meta("pet_turtle_link_unit_ref", weakref(self))
@@ -547,12 +606,12 @@ func _link_active() -> bool:
 	return unit_ref.get_ref() == self
 
 
-func _process_turtle_link() -> void :
+func _process_turtle_link() -> void:
 	if _link_until_msec > 0 and not _link_active():
 		_clear_turtle_link()
 
 
-func _clear_turtle_link() -> void :
+func _clear_turtle_link() -> void:
 	if is_instance_valid(player_reference):
 		var unit_ref = player_reference.get_meta("pet_turtle_link_unit_ref", null)
 		if unit_ref is WeakRef and unit_ref.get_ref() == self:
@@ -576,10 +635,10 @@ func _create_link_visual(node_name: String, local_position: Vector2) -> Sprite2D
 func _create_link_visual_for(target: Node, node_name: String, local_position: Vector2) -> Sprite2D:
 	if target == null:
 		return null
-	var texture: = ResourceLoader.load(TURTLE_BUFF_TEXTURE, "Texture2D", ResourceLoader.CACHE_MODE_REUSE) as Texture2D
+	var texture := ResourceLoader.load(TURTLE_BUFF_TEXTURE, "Texture2D", ResourceLoader.CACHE_MODE_REUSE) as Texture2D
 	if texture == null:
 		return null
-	var sprite: = Sprite2D.new()
+	var sprite := Sprite2D.new()
 	sprite.name = node_name
 	sprite.texture = texture
 	sprite.position = local_position
@@ -591,7 +650,7 @@ func _create_link_visual_for(target: Node, node_name: String, local_position: Ve
 func receive_linked_damage(value: int) -> int:
 	if value <= 0 or Hp <= 0 or not _link_active():
 		return 0
-	var before: = Hp
+	var before := Hp
 	reduce_hp(value, player_reference)
 	return maxi(0, before - Hp)
 
@@ -602,10 +661,10 @@ func receive_linked_heal(value: int) -> int:
 	return cure_Hp(value)
 
 
-func _heal_linked_hero(value: int) -> void :
+func _heal_linked_hero(value: int) -> void:
 	if value <= 0 or not _link_active() or not is_instance_valid(player_reference):
 		return
-	var had_skip: = bool(player_reference.get_meta("pet_turtle_skip_link_heal", false))
+	var had_skip := bool(player_reference.get_meta("pet_turtle_skip_link_heal", false))
 	player_reference.set_meta("pet_turtle_skip_link_heal", true)
 	player_reference.cure_Hp(value)
 	if had_skip:
@@ -614,14 +673,14 @@ func _heal_linked_hero(value: int) -> void :
 		player_reference.remove_meta("pet_turtle_skip_link_heal")
 
 
-func heal_from_water_shield_damage(value: int) -> void :
+func heal_from_water_shield_damage(value: int) -> void:
 	if value <= 0:
 		return
 	cure_Hp(value)
 	_heal_linked_hero(value)
 
 
-func _start_turtle_action(action_name: String) -> void :
+func _start_turtle_action(action_name: String) -> void:
 	if not (ACTION_STOP_COUNTS[turtle_stage] as Dictionary).has(action_name):
 		return
 	if action_name != "hurt":
@@ -634,7 +693,7 @@ func _start_turtle_action(action_name: String) -> void :
 	_set_turtle_action_visual(action_name, 0)
 
 
-func _tick_turtle_action(delta: float) -> void :
+func _tick_turtle_action(delta: float) -> void:
 	if _turtle_action.is_empty():
 		return
 	_turtle_action_accumulator += delta * TURTLE_ACTION_TICK_RATE
@@ -648,19 +707,23 @@ func _tick_turtle_action(delta: float) -> void :
 
 
 func _turtle_action_total_ticks(action_name: String) -> int:
-	var total: = 0
+	var total := 0
 	for stop_count in (ACTION_STOP_COUNTS[turtle_stage] as Dictionary).get(action_name, []):
 		total += int(stop_count)
 	return total
 
 
-func _set_turtle_action_visual(action_name: String, action_tick: int) -> void :
-	if turtle_sprite == null or turtle_sprite.sprite_frames == null or not turtle_sprite.sprite_frames.has_animation(action_name):
+func _set_turtle_action_visual(action_name: String, action_tick: int) -> void:
+	if (
+		turtle_sprite == null
+		or turtle_sprite.sprite_frames == null
+		or not turtle_sprite.sprite_frames.has_animation(action_name)
+	):
 		return
 	turtle_sprite.animation = action_name
 	turtle_sprite.pause()
-	var running: = 0
-	var frame_index: = 0
+	var running := 0
+	var frame_index := 0
 	for stop_count in (ACTION_STOP_COUNTS[turtle_stage] as Dictionary).get(action_name, []):
 		running += int(stop_count)
 		if action_tick <= running:
@@ -677,7 +740,7 @@ func _trigger_once(key: String, expected_tick: int) -> bool:
 	return true
 
 
-func _process_turtle_action_triggers() -> void :
+func _process_turtle_action_triggers() -> void:
 	match _turtle_action:
 		"hit1":
 			if _trigger_once("hit1", 10):
@@ -690,8 +753,8 @@ func _process_turtle_action_triggers() -> void :
 				_spawn_sybh(false)
 
 
-func _finish_turtle_action() -> void :
-	var finished: = _turtle_action
+func _finish_turtle_action() -> void:
+	var finished := _turtle_action
 	_turtle_action = ""
 	velocity.x = 0.0
 	if finished == "death":
@@ -705,22 +768,24 @@ func _finish_turtle_action() -> void :
 	_play_turtle_model_animation("wait")
 
 
-func _spawn_normal_attack() -> void :
-	var bullet_name: = "PetTurtle1Bullet1" if turtle_stage == 1 else "PetTurtle2Bullet1"
-	var x_offset: = 85.0 if turtle_stage == 1 else 55.0 if turtle_stage == 2 else 65.0
-	var y_offset: = -40.0 if turtle_stage == 1 else -60.0 if turtle_stage == 2 else -75.0
-	var hit_size: = Vector2(190, 82) if turtle_stage == 1 else Vector2(108, 128)
-	_add_turtle_bullet(bullet_name, global_position + _front_offset(x_offset, y_offset), "hit1", objattackDic["hit1"], hit_size)
-
-
-func _resolve_water_shield() -> void :
-	var y_offset: = _water_shield_y_offset()
+func _spawn_normal_attack() -> void:
+	var bullet_name := "PetTurtle1Bullet1" if turtle_stage == 1 else "PetTurtle2Bullet1"
+	var x_offset := 85.0 if turtle_stage == 1 else 55.0 if turtle_stage == 2 else 65.0
+	var y_offset := -40.0 if turtle_stage == 1 else -60.0 if turtle_stage == 2 else -75.0
+	var hit_size := Vector2(190, 82) if turtle_stage == 1 else Vector2(108, 128)
 	_add_turtle_bullet(
-		"PetTurtle1Bullet2", 
-		global_position + Vector2(0, y_offset), 
-		"hit2", 
-		objattackDic["hit2"], 
-		TURTLE_WATER_SHIELD_HIT_SIZE, 
+		bullet_name, global_position + _front_offset(x_offset, y_offset), "hit1", objattackDic["hit1"], hit_size
+	)
+
+
+func _resolve_water_shield() -> void:
+	var y_offset := _water_shield_y_offset()
+	_add_turtle_bullet(
+		"PetTurtle1Bullet2",
+		global_position + Vector2(0, y_offset),
+		"hit2",
+		objattackDic["hit2"],
+		TURTLE_WATER_SHIELD_HIT_SIZE,
 		true
 	)
 
@@ -729,14 +794,10 @@ func _water_shield_y_offset() -> float:
 	return -60.0 if turtle_stage == 1 else -75.0 if turtle_stage == 2 else -85.0
 
 
-func _spawn_sybh(persistent: bool) -> void :
-	var attack_key: = "hit4" if persistent else "hit3"
-	var instance: = _add_turtle_bullet(
-		"PetTurtle3Bullet3", 
-		global_position + Vector2(0, -20), 
-		attack_key, 
-		objattackDic[attack_key], 
-		Vector2(560, 170)
+func _spawn_sybh(persistent: bool) -> void:
+	var attack_key := "hit4" if persistent else "hit3"
+	var instance := _add_turtle_bullet(
+		"PetTurtle3Bullet3", global_position + Vector2(0, -20), attack_key, objattackDic[attack_key], Vector2(560, 170)
 	)
 	if instance == null:
 		return
@@ -750,7 +811,14 @@ func _spawn_sybh(persistent: bool) -> void :
 		instance.set_meta("pet_turtle_lifetime", 0.75)
 
 
-func _add_turtle_bullet(bullet_name: String, bullet_position: Vector2, attack_name: String, attack_data: Dictionary, hit_size: Vector2, follow_self: bool = false) -> Node:
+func _add_turtle_bullet(
+	bullet_name: String,
+	bullet_position: Vector2,
+	attack_name: String,
+	attack_data: Dictionary,
+	hit_size: Vector2,
+	follow_self: bool = false
+) -> Node:
 	if bullet == null or PET_TURTLE_BULLET_SCENE == null:
 		return null
 	var instance = PET_TURTLE_BULLET_SCENE.instantiate()
@@ -773,7 +841,7 @@ func _add_turtle_bullet(bullet_name: String, bullet_position: Vector2, attack_na
 
 func setup_bullet_collision(bullet_instance) -> Node:
 	if bullet_instance != null and bullet_instance.has_node("middle/HitBox"):
-		var area: = bullet_instance.get_node("middle/HitBox") as Area2D
+		var area := bullet_instance.get_node("middle/HitBox") as Area2D
 		if area != null:
 			area.collision_layer = 2
 			area.collision_mask = 1024 | 2048
@@ -783,23 +851,23 @@ func setup_bullet_collision(bullet_instance) -> Node:
 
 
 func _front_offset(x: float, y: float) -> Vector2:
-	return Vector2( - x if MonsterDirection else x, y)
+	return Vector2(-x if MonsterDirection else x, y)
 
 
-func _face_current_target() -> void :
+func _face_current_target() -> void:
 	if is_instance_valid(current_target):
 		to_monster()
 
 
-func move_left() -> void :
+func move_left() -> void:
 	if is_aoyi:
 		return
 	_face_left()
-	velocity.x = - speed * 10
+	velocity.x = -speed * 10
 	play_move_animation()
 
 
-func move_right() -> void :
+func move_right() -> void:
 	if is_aoyi:
 		return
 	_face_right()
@@ -807,7 +875,7 @@ func move_right() -> void :
 	play_move_animation()
 
 
-func to_monster() -> void :
+func to_monster() -> void:
 	if not is_instance_valid(current_target) or is_aoyi:
 		return
 	if current_target.global_position.x > global_position.x:
@@ -816,7 +884,7 @@ func to_monster() -> void :
 		_face_left()
 
 
-func _face_left() -> void :
+func _face_left() -> void:
 	MonsterDirection = true
 	if base_damage_box != null:
 		base_damage_box.scale.x = 1
@@ -825,7 +893,7 @@ func _face_left() -> void :
 	_sync_turtle_model_facing()
 
 
-func _face_right() -> void :
+func _face_right() -> void:
 	MonsterDirection = false
 	if base_damage_box != null:
 		base_damage_box.scale.x = -1
@@ -834,23 +902,23 @@ func _face_right() -> void :
 	_sync_turtle_model_facing()
 
 
-func _sync_turtle_model_facing() -> void :
+func _sync_turtle_model_facing() -> void:
 	if turtle_sprite != null:
 		turtle_sprite.flip_h = false
 
 
-func play_move_animation() -> void :
+func play_move_animation() -> void:
 	if not is_attacking and not is_be_attacking and not _death_started:
 		_play_turtle_model_animation("walk")
 
 
-func stop_move() -> void :
+func stop_move() -> void:
 	velocity.x = 0.0
 	if not is_attacking and not is_be_attacking and not _death_started:
 		_play_turtle_model_animation("wait")
 
 
-func update_animation_and_direction() -> void :
+func update_animation_and_direction() -> void:
 	if is_attacking or is_be_attacking or _death_started:
 		return
 	if velocity.x > 0:
@@ -860,8 +928,12 @@ func update_animation_and_direction() -> void :
 	_play_turtle_model_animation("walk" if velocity.x != 0 else "wait")
 
 
-func _play_turtle_model_animation(animation_name: String) -> void :
-	if turtle_sprite == null or turtle_sprite.sprite_frames == null or not turtle_sprite.sprite_frames.has_animation(animation_name):
+func _play_turtle_model_animation(animation_name: String) -> void:
+	if (
+		turtle_sprite == null
+		or turtle_sprite.sprite_frames == null
+		or not turtle_sprite.sprite_frames.has_animation(animation_name)
+	):
 		return
 	_sync_turtle_model_facing()
 	if turtle_sprite.animation != animation_name:
@@ -870,21 +942,24 @@ func _play_turtle_model_animation(animation_name: String) -> void :
 		turtle_sprite.play()
 
 
-func _setup_turtle_model_frames() -> void :
-	var frames: = ResourceLoader.load(TURTLE_MODEL_FRAMES_RES % turtle_stage, "SpriteFrames", ResourceLoader.CACHE_MODE_REUSE) as SpriteFrames
+func _setup_turtle_model_frames() -> void:
+	var frames := (
+		ResourceLoader.load(TURTLE_MODEL_FRAMES_RES % turtle_stage, "SpriteFrames", ResourceLoader.CACHE_MODE_REUSE)
+		as SpriteFrames
+	)
 	if frames == null:
 		push_error("PetTurtle SpriteFrames missing for stage %d" % turtle_stage)
 		return
 	turtle_sprite.sprite_frames = frames
 	for animation_name in frames.get_animation_names():
 		for frame_index in range(frames.get_frame_count(animation_name)):
-			var texture: = frames.get_frame_texture(animation_name, frame_index)
+			var texture := frames.get_frame_texture(animation_name, frame_index)
 			if texture != null:
 				texture.get_rid()
 	_play_turtle_model_animation("wait")
 
 
-func state_hurt(attacker: Node) -> void :
+func state_hurt(attacker: Node) -> void:
 	super.state_hurt(attacker)
 	if Hp <= 0:
 		return
@@ -895,20 +970,20 @@ func state_hurt(attacker: Node) -> void :
 	_start_turtle_action("hurt")
 
 
-func reduce_hp(value: int, attacker = null) -> void :
+func reduce_hp(value: int, attacker = null) -> void:
 	super.reduce_hp(value, attacker)
 
 
-func _on_hurt_box_area_entered(area: Area2D) -> void :
-	var before: = Hp
-	var was_attacking: = is_attacking
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	var before := Hp
+	var was_attacking := is_attacking
 	super._on_hurt_box_area_entered(area)
 	if Hp < before:
 		if was_attacking and Hp > 0 and not is_super_armor():
 			state_hurt(null)
 
 
-func process_death(_delta: float) -> void :
+func process_death(_delta: float) -> void:
 	velocity = Vector2.ZERO
 	if _death_started:
 		return
@@ -920,16 +995,16 @@ func process_death(_delta: float) -> void :
 	_start_turtle_action("death")
 
 
-func _apply_turtle_stage_scene_layout() -> void :
-	var packed_scene: = _get_turtle_stage_scene(turtle_stage)
+func _apply_turtle_stage_scene_layout() -> void:
+	var packed_scene := _get_turtle_stage_scene(turtle_stage)
 	if packed_scene == null:
 		return
-	var template: = packed_scene.instantiate()
+	var template := packed_scene.instantiate()
 	if template == null:
 		return
-	var ground_shape: = get_node_or_null("pz") as CollisionShape2D
-	var old_ground_bottom: = _collision_shape_bottom(ground_shape)
-	var template_sprite: = template.get_node_or_null("MonsterDir/mr_ani") as AnimatedSprite2D
+	var ground_shape := get_node_or_null("pz") as CollisionShape2D
+	var old_ground_bottom := _collision_shape_bottom(ground_shape)
+	var template_sprite := template.get_node_or_null("MonsterDir/mr_ani") as AnimatedSprite2D
 	if template_sprite != null and turtle_sprite != null:
 		turtle_sprite.position = template_sprite.position
 		turtle_sprite.rotation = template_sprite.rotation
@@ -938,29 +1013,31 @@ func _apply_turtle_stage_scene_layout() -> void :
 		turtle_sprite.centered = template_sprite.centered
 	for path in ["BaseDamageBox/HitBox/HitBox", "BaseDamageBox/HurtBox/HurtBox", "pz"]:
 		_copy_turtle_collision_layout(template, NodePath(path))
-	var new_ground_bottom: = _collision_shape_bottom(ground_shape)
+	var new_ground_bottom := _collision_shape_bottom(ground_shape)
 	global_position.y += old_ground_bottom - new_ground_bottom
 	template.free()
 
 
 static func _get_turtle_stage_scene(stage: int) -> PackedScene:
-	var cached: = _turtle_scene_cache.get(stage) as PackedScene
+	var cached := _turtle_scene_cache.get(stage) as PackedScene
 	if cached != null:
 		return cached
 	_turtle_scene_cache.clear()
-	var loaded: = ResourceLoader.load(TURTLE_SCENE_RES % stage, "PackedScene", ResourceLoader.CACHE_MODE_REUSE) as PackedScene
+	var loaded := (
+		ResourceLoader.load(TURTLE_SCENE_RES % stage, "PackedScene", ResourceLoader.CACHE_MODE_REUSE) as PackedScene
+	)
 	if loaded != null:
 		_turtle_scene_cache[stage] = loaded
 	return loaded
 
 
-static func clear_cached_scenes() -> void :
+static func clear_cached_scenes() -> void:
 	_turtle_scene_cache.clear()
 
 
-func _copy_turtle_collision_layout(template: Node, path: NodePath) -> void :
-	var source: = template.get_node_or_null(path) as CollisionShape2D
-	var target: = get_node_or_null(path) as CollisionShape2D
+func _copy_turtle_collision_layout(template: Node, path: NodePath) -> void:
+	var source := template.get_node_or_null(path) as CollisionShape2D
+	var target := get_node_or_null(path) as CollisionShape2D
 	if source == null or target == null:
 		return
 	target.position = source.position
@@ -972,7 +1049,7 @@ func _copy_turtle_collision_layout(template: Node, path: NodePath) -> void :
 func _collision_shape_bottom(collision: CollisionShape2D) -> float:
 	if collision == null or collision.shape == null:
 		return 0.0
-	var half_height: = 0.0
+	var half_height := 0.0
 	if collision.shape is RectangleShape2D:
 		half_height = (collision.shape as RectangleShape2D).size.y * 0.5
 	elif collision.shape is CapsuleShape2D:
@@ -982,10 +1059,10 @@ func _collision_shape_bottom(collision: CollisionShape2D) -> float:
 	return collision.position.y + half_height * absf(collision.scale.y)
 
 
-func _find_pet_turtle_player_reference() -> void :
+func _find_pet_turtle_player_reference() -> void:
 	if is_instance_valid(player_reference):
 		return
-	var scene: = get_tree().current_scene if get_tree() != null else null
+	var scene := get_tree().current_scene if get_tree() != null else null
 	if scene == null or not scene.has_node("Hero"):
 		return
 	for child in scene.get_node("Hero").get_children():
@@ -994,7 +1071,7 @@ func _find_pet_turtle_player_reference() -> void :
 			return
 
 
-func _exit_tree() -> void :
+func _exit_tree() -> void:
 	_cancel_aoyi()
 	_clear_turtle_link()
 	super._exit_tree()

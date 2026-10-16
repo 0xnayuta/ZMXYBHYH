@@ -9,6 +9,7 @@ var bullet2_wave_count: int = 0
 
 var bullet3_portals: Array = []
 
+
 func monster_101():
 	self.is_boss = true
 	self.my_mr_name = "白水神君"
@@ -37,62 +38,55 @@ func monster_101():
 	self.ebol = 0
 
 	self.objattackDic["hit1"] = {
-		"power": 3888, 
-		"hurtBack": [-4, -7], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
+		"power": 3888,
+		"hurtBack": [-4, -7],
+		"attackKind": "magic",
+		"HitProtect": 10,
 	}
 	self.objattackDic["hit2"] = {
-		"power": 3888, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "DefeReduce", 
-			"AddTime": 10, 
-			"ReduceInterval": 0, 
-			"value": 0.3, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanRemove": false, 
-			"CanAdd": false, 
+		"power": 3888,
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "DefeReduce",
+			"AddTime": 10,
+			"ReduceInterval": 0,
+			"value": 0.3,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanRemove": false,
+			"CanAdd": false,
 		}
 	}
 
 	self.objattackDic["hit3"] = {
-		"power": 7200, 
-		"hurtBack": [-50, 0], 
-		"attackKind": "magic", 
-		"HitProtect": 12, 
+		"power": 7200,
+		"hurtBack": [-50, 0],
+		"attackKind": "magic",
+		"HitProtect": 12,
 	}
 
 	self.fall_pro = 0.1
 	self.fall_list = [
-		{
-			"name": "cjshenjzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "cdshenjzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "zhshenjzzs", 
-			"value": 1
-		}, 
+		{"name": "cjshenjzzs", "value": 1},
+		{"name": "cdshenjzzs", "value": 1},
+		{"name": "zhshenjzzs", "value": 1},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_101()
 
 	Skill_2_CD = randi_range(5, 10)
 	Skill_3_CD = randi_range(15, 20)
 
-func Monster_Intelligence():
 
+func Monster_Intelligence():
 	if is_attacking or is_using_skills or is_be_attacking:
 		return
 
@@ -126,13 +120,9 @@ func Monster_Intelligence():
 				else:
 					stop_move()
 
+
 func _create_bullet1_portal():
-	var portal = {
-		"position": position, 
-		"direction": -1 if self.MonsterDirection else 1, 
-		"count": 0, 
-		"timer": null
-	}
+	var portal = {"position": position, "direction": -1 if self.MonsterDirection else 1, "count": 0, "timer": null}
 
 	portal.timer = Timer.new()
 	add_child(portal.timer)
@@ -148,9 +138,15 @@ func _on_portal1_timeout(portal):
 		_remove_portal1(portal)
 		return
 
-	var Bullets = Global.add_Bullet("Monster148Bullet1", self.bullet, false, 1, 
-		portal.position + Vector2(35 * portal.direction, 25), 
-		"hit1", self.objattackDic["hit1"])
+	var Bullets = Global.add_Bullet(
+		"Monster148Bullet1",
+		self.bullet,
+		false,
+		1,
+		portal.position + Vector2(35 * portal.direction, 25),
+		"hit1",
+		self.objattackDic["hit1"]
+	)
 	Bullets.rotation = 0 if portal.direction < 0 else PI
 	portal.count += 1
 
@@ -160,6 +156,7 @@ func _remove_portal1(portal):
 		portal.timer.stop()
 		portal.timer.queue_free()
 	bullet1_portals.erase(portal)
+
 
 func do_hit_2():
 	if is_attacking:
@@ -171,7 +168,6 @@ func do_hit_2():
 	is_attacking = true
 	is_using_skills = true
 
-
 	mr_player.stop()
 	mr_player.play("hit2")
 
@@ -182,25 +178,28 @@ func do_hit_2():
 	is_attacking = false
 	is_using_skills = false
 
-func _activate_bullet2():
 
+func _activate_bullet2():
 	if bullet2_active:
 		_stop_bullet2()
 
 	bullet2_active = true
 	bullet2_wave_count = 0
 
-
 	bullet2_spawn_positions = [
-		Vector2(-500 + position.x, 500), Vector2(-400 + position.x, 500), Vector2(-300 + position.x, 500), 
-		Vector2(-200 + position.x, 500), Vector2(-100 + position.x, 500), Vector2(100 + position.x, 500), 
-		Vector2(200 + position.x, 500), Vector2(300 + position.x, 500), Vector2(400 + position.x, 500), 
+		Vector2(-500 + position.x, 500),
+		Vector2(-400 + position.x, 500),
+		Vector2(-300 + position.x, 500),
+		Vector2(-200 + position.x, 500),
+		Vector2(-100 + position.x, 500),
+		Vector2(100 + position.x, 500),
+		Vector2(200 + position.x, 500),
+		Vector2(300 + position.x, 500),
+		Vector2(400 + position.x, 500),
 		Vector2(500 + position.x, 500)
 	]
 
-
 	_spawn_bullet2_wave()
-
 
 	bullet2_timer = Timer.new()
 	add_child(bullet2_timer)
@@ -208,23 +207,26 @@ func _activate_bullet2():
 	bullet2_timer.timeout.connect(_on_bullet2_timer_timeout)
 	bullet2_timer.start(1.5)
 
+
 func _spawn_bullet2_wave():
 	if not bullet2_active:
 		return
 
 	bullet2_wave_count += 1
 
-
 	if bullet2_wave_count > 3:
 		_stop_bullet2()
 		return
 
 	for pos in bullet2_spawn_positions:
-		var bullet = Global.add_Bullet("Monster148Bullet2", self.bullet, false, 1, 
-			pos, "hit2", self.objattackDic["hit2"])
+		var bullet = Global.add_Bullet(
+			"Monster148Bullet2", self.bullet, false, 1, pos, "hit2", self.objattackDic["hit2"]
+		)
+
 
 func _on_bullet2_timer_timeout():
 	_spawn_bullet2_wave()
+
 
 func _stop_bullet2():
 	if not bullet2_active:
@@ -234,12 +236,12 @@ func _stop_bullet2():
 	bullet2_spawn_positions.clear()
 	bullet2_wave_count = 0
 
-
 	if bullet2_timer:
 		if bullet2_timer.is_inside_tree():
 			bullet2_timer.stop()
 			bullet2_timer.queue_free()
 		bullet2_timer = null
+
 
 func do_hit_3():
 	if is_attacking:
@@ -251,22 +253,17 @@ func do_hit_3():
 	is_attacking = true
 	is_using_skills = true
 
-
 	if RoleProp.get_nearest_monster_target_position(global_position).x > position.x:
-
 		base_damage_box.scale.x = -1
 		monster_dir.scale.x = -1
 	else:
-
 		base_damage_box.scale.x = 1
 		monster_dir.scale.x = 1
-
 
 	mr_player.stop()
 	mr_player.play("hit3")
 
 	await mr_player.animation_finished
-
 
 	var player_direction = -1 if RoleProp.get_nearest_monster_target_position(global_position).x > position.x else 1
 	_create_bullet3_portal(player_direction)
@@ -276,15 +273,9 @@ func do_hit_3():
 
 
 func _create_bullet3_portal(direction: int = 0):
-
 	var portal_direction = direction if direction != 0 else (-1 if self.MonsterDirection else 1)
 
-	var portal = {
-		"position": position, 
-		"direction": portal_direction, 
-		"count": 0, 
-		"timer": null
-	}
+	var portal = {"position": position, "direction": portal_direction, "count": 0, "timer": null}
 
 	portal.timer = Timer.new()
 	add_child(portal.timer)
@@ -300,12 +291,11 @@ func _on_portal3_timeout(portal):
 		_remove_portal3(portal)
 		return
 
-
 	var spawn_pos = Vector2(portal.position.x + 35 * portal.direction, portal.position.y + 25)
 
-	var Bullets = Global.add_Bullet("Monster148Bullet3", self.bullet, false, 1, 
-		spawn_pos, "hit3", self.objattackDic["hit3"])
-
+	var Bullets = Global.add_Bullet(
+		"Monster148Bullet3", self.bullet, false, 1, spawn_pos, "hit3", self.objattackDic["hit3"]
+	)
 
 	if Bullets.has_method("set_scale"):
 		if portal.direction < 0:
@@ -324,14 +314,13 @@ func _remove_portal3(portal):
 		portal.timer.queue_free()
 	bullet3_portals.erase(portal)
 
-func state_death():
 
+func state_death():
 	for portal in bullet1_portals:
 		if portal.timer:
 			portal.timer.stop()
 			portal.timer.queue_free()
 	bullet1_portals.clear()
-
 
 	for portal in bullet3_portals:
 		if portal.timer:
@@ -339,8 +328,6 @@ func state_death():
 			portal.timer.queue_free()
 	bullet3_portals.clear()
 
-
 	_stop_bullet2()
-
 
 	super.state_death()

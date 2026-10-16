@@ -1,8 +1,9 @@
 extends AnimatedSprite2D
 
-var _recycled: = true
+var _recycled := true
 
-func setup(scale_value: Vector2, direction: bool, speed_value: float) -> void :
+
+func setup(scale_value: Vector2, direction: bool, speed_value: float) -> void:
 	_recycled = false
 	visible = true
 	modulate = Color.WHITE
@@ -13,7 +14,8 @@ func setup(scale_value: Vector2, direction: bool, speed_value: float) -> void :
 	frame = 0
 	play(&"RoleBeHit")
 
-func recycle() -> void :
+
+func recycle() -> void:
 	if _recycled:
 		return
 	_recycled = true
@@ -24,5 +26,6 @@ func recycle() -> void :
 	else:
 		queue_free()
 
-func _on_animation_finished() -> void :
+
+func _on_animation_finished() -> void:
 	recycle()

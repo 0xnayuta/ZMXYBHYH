@@ -8,9 +8,11 @@ var node_opacities: Array[float] = []
 const MIN_NUM: int = 1
 const MAX_NUM: int = 7
 
+
 func _ready():
 	batch_get_texture_rects()
 	init_opacities()
+
 
 func batch_get_texture_rects():
 	var sprite_node = $Sprite2D
@@ -27,10 +29,12 @@ func batch_get_texture_rects():
 		else:
 			push_warning("未找到TextureRect节点：" + node_name)
 
+
 func init_opacities():
 	node_opacities.clear()
 	for i in range(MAX_NUM):
 		node_opacities.append(1.0)
+
 
 func assign_image_to_rect(rect_num: int, image_num: int):
 	if rect_num < MIN_NUM or rect_num > MAX_NUM:
@@ -55,6 +59,7 @@ func assign_image_to_rect(rect_num: int, image_num: int):
 	all_texture_rects[rect_index].texture = all_images[image_index]
 	set_node_opacity(rect_num, 1.0)
 
+
 func set_node_opacity(rect_num: int, opacity: float):
 	if rect_num < MIN_NUM or rect_num > MAX_NUM:
 		return
@@ -64,10 +69,12 @@ func set_node_opacity(rect_num: int, opacity: float):
 		all_texture_rects[rect_index].modulate = Color(1.0, 1.0, 1.0, opacity)
 		node_opacities[rect_index] = opacity
 
+
 func reset_all_opacities():
 	for i in range(all_texture_rects.size()):
 		all_texture_rects[i].modulate = Color(1.0, 1.0, 1.0, 1.0)
 		node_opacities[i] = 1.0
+
 
 func get_node_opacity(rect_num: int) -> float:
 	if rect_num < MIN_NUM or rect_num > MAX_NUM:
@@ -77,6 +84,7 @@ func get_node_opacity(rect_num: int) -> float:
 	if rect_index >= 0 and rect_index < node_opacities.size():
 		return node_opacities[rect_index]
 	return 1.0
+
 
 func get_current_image_sequence() -> Array[int]:
 	var sequence: Array[int] = []

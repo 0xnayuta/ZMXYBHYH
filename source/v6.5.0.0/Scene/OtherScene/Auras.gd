@@ -1,21 +1,17 @@
 extends Node2D
 
-enum ColorType{
-	WHITE, 
-	YELLOW, 
-	BLUE, 
-	RED
-}
+enum ColorType { WHITE, YELLOW, BLUE, RED }
 
 var Idle = true
 var Value: int
 var color_type: ColorType = ColorType.WHITE
 
-@onready var check: CollisionShape2D = $Check / Check
+@onready var check: CollisionShape2D = $Check/Check
 var Speed: float = 0
 var tween
 
-func _ready() -> void :
+
+func _ready() -> void:
 	match color_type:
 		ColorType.WHITE:
 			self.modulate = Color(1, 1, 1, 0)
@@ -26,7 +22,8 @@ func _ready() -> void :
 		ColorType.RED:
 			self.modulate = Color(1, 0.2, 0.2, 0)
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	if Idle:
 		tween = create_tween().set_parallel(true)
 		match color_type:
@@ -38,7 +35,7 @@ func _physics_process(delta: float) -> void :
 				tween.tween_property(self, "modulate", Color(0, 0.5, 1, 1), 1.5)
 			ColorType.RED:
 				tween.tween_property(self, "modulate", Color(1, 0.2, 0.2, 1), 1.5)
-		tween.tween_property(self, "position", position + Vector2(0, - randi_range(20, 40)), 0.4)
+		tween.tween_property(self, "position", position + Vector2(0, -randi_range(20, 40)), 0.4)
 		await get_tree().create_timer(0.6, false).timeout
 		Idle = false
 
@@ -49,13 +46,12 @@ func _physics_process(delta: float) -> void :
 		if Speed >= 20:
 			Speed = 20
 
-func _on_check_body_entered(body: Node2D) -> void :
+
+func _on_check_body_entered(body: Node2D) -> void:
 	if body is BaseHero:
 		var hero = body as BaseHero
 
-
 		PlayerData.add_soul(Value)
-
 
 		match color_type:
 			ColorType.YELLOW:

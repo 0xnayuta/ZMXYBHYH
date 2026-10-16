@@ -1,5 +1,7 @@
 extends BaseMonster
 class_name Monster96
+
+
 func monster_96():
 	self.is_boss = true
 	self.rush_speed = 900
@@ -26,61 +28,55 @@ func monster_96():
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {
-		"power": 505, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics", 
-		"HitProtect": 8
-	}
+	self.objattackDic["hit1"] = {"power": 505, "hurtBack": [-4, -9], "attackKind": "physics", "HitProtect": 8}
 	self.objattackDic["tfhx"] = {
-		"power": 90, 
-		"hurtBack": [-35, -2], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"value": 0.8, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 90,
+		"hurtBack": [-35, -2],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"value": 0.8,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["jfkx"] = {
-		"power": 450, 
-		"hurtBack": [-15, -24], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"value": 0.8, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 450,
+		"hurtBack": [-15, -24],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"value": 0.8,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "tfljzzs", 
-			"value": 1
-		}, 
+		{"name": "tfljzzs", "value": 1},
 	]
 	self.fall_stone_pro = 0.2
 	self.fall_stone = [
-		{
-			"name": "smlp", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "smlp", "value": randi_range(1, 2)},
 	]
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_96()
 	Skill_1_CD = 7
 	Skill_2_CD = 0
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:

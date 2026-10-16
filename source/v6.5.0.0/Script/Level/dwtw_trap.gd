@@ -10,7 +10,9 @@ var total_hit = 0
 var objattackDic = {}
 var Player
 var HitCount: int = 0
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	var Parent = get_parent().get_parent()
 	Player = Parent.Role_
 	if not IsHit:
@@ -22,23 +24,27 @@ func _physics_process(delta: float) -> void :
 		HitCount += 1
 
 
-func _on_hit_box_area_entered(area: Area2D) -> void :
+func _on_hit_box_area_entered(area: Area2D) -> void:
 	hit_name = "Trap_1"
 	self.objattackDic["Trap_1"] = {
-		"power": int(RoleProp.roleprop.SHp * 0.05), 
-		"hurtBack": [15, -15], 
-		"attackKind": "real"
+		"power": int(RoleProp.roleprop.SHp * 0.05), "hurtBack": [15, -15], "attackKind": "real"
 	}
 	if Player is BaseHero:
-		Global.AddBuff(Player.buff, {
-			"Name": "speed_down", 
-			"AddTime": 2, 
-			"ReduceInterval": 0, 
-			"value": 0.35, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
-		}, )
+		(
+			Global
+			. AddBuff(
+				Player.buff,
+				{
+					"Name": "speed_down",
+					"AddTime": 2,
+					"ReduceInterval": 0,
+					"value": 0.35,
+					"AttackKind": "",
+					"CanAdd": false,
+					"DeBuff": true,
+				},
+			)
+		)
 	var target = area.get_parent().get_parent()
 	if target is BaseHero:
 		target.reduce_hp(objattackDic[hit_name]["power"], self, self)
@@ -57,9 +63,9 @@ func _on_hit_box_area_entered(area: Area2D) -> void :
 			target.attack_to_right(self, self)
 
 
-func _on_check_area_entered(area: Area2D) -> void :
+func _on_check_area_entered(area: Area2D) -> void:
 	IsHit = true
 
 
-func _on_check_area_exited(area: Area2D) -> void :
+func _on_check_area_exited(area: Area2D) -> void:
 	IsHit = false

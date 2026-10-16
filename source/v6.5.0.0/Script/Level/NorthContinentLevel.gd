@@ -1,31 +1,32 @@
 extends Game4EastLateLevel
 class_name NorthContinentLevel
 
-@export var hidden_original_room: = false
-const MAZE_WAVE_COUNT: = 3
+@export var hidden_original_room := false
+const MAZE_WAVE_COUNT := 3
 
 var _north_data: Dictionary = {}
 var _active_points: Dictionary = {}
 var _visited_triggers: Dictionary = {}
 var _pending_triggers: Array[int] = []
-var _battle_bounds: = Rect2()
-var _camera_center: = Vector2.ZERO
-var _camera_initialized: = false
-var _source_camera_rect: = Rect2()
+var _battle_bounds := Rect2()
+var _camera_center := Vector2.ZERO
+var _camera_initialized := false
+var _source_camera_rect := Rect2()
 var _source_screen_starts: Array = []
-var _source_screen_width: = 1200.0
-var _source_map_size: = Vector2.ZERO
-var _elapsed: = 0.0
-var maze_room: = 1
-var in_void_space: = false
+var _source_screen_width := 1200.0
+var _source_map_size := Vector2.ZERO
+var _elapsed := 0.0
+var maze_room := 1
+var in_void_space := false
 var _void_boss: BaseMonster
-var _void_return: = Vector2.ZERO
+var _void_return := Vector2.ZERO
 var _void_units: Array = []
-var _boss_seen: = false
+var _boss_seen := false
 var _boss_ids: Array = []
 var _ready_triggers: Dictionary = {}
 
-func _build_level_runtime() -> void :
+
+func _build_level_runtime() -> void:
 	_north_data = NorthOriginalData.level_data(stage_number, hidden_original_room)
 	_source_screen_starts = NorthOriginalData.numbers(_north_data["dungeon"]["sceneStart"])
 	_source_screen_width = float(_north_data["dungeon"]["screenWidth"])
@@ -45,14 +46,16 @@ func _build_level_runtime() -> void :
 	_source_terrain = _north_data
 	_late_birth_points.clear()
 	for source: Dictionary in _north_data["points"]:
-		var point: = source.duplicate(true)
+		var point := source.duplicate(true)
 		point["position"] = Vector2(float(source["position"][0]), float(source["position"][1]))
 
-
-		point["ignore_count_multiplier"] = NorthOriginalData.monster_record(int(point["monster"])).get("boss", "0") == "1"
+		point["ignore_count_multiplier"] = (
+			NorthOriginalData.monster_record(int(point["monster"])).get("boss", "0") == "1"
+		)
 		_late_birth_points.append(point)
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	Role_.set_meta("allow_position_y_over_800", true)
 	Role_.floor_max_angle = deg_to_rad(80)
@@ -73,27 +76,34 @@ func _ready() -> void :
 		Role_.collision_mask = 0
 		Role_.set_physics_process(false)
 
+
 func _stage_count() -> int:
 	return maxi(_north_data.get("triggers", []).size(), 1)
+
 
 func _level_number() -> int:
 	return stage_number
 
+
 func _level_data() -> Dictionary:
 	return {"name": display_name, "map": source_map, "width": level_width_override, "boss": -1}
+
 
 func _allows_deep_monster_positions() -> bool:
 	return true
 
+
 func _level_bgm_path() -> String:
-	var id: = int(_north_data["dungeon"]["bgMusic"])
-	var path: = "res://Music/level/original_bg_%02d.mp3" % id
+	var id := int(_north_data["dungeon"]["bgMusic"])
+	var path := "res://Music/level/original_bg_%02d.mp3" % id
 	return path if ResourceLoader.exists(path) else DEFAULT_LEVEL_BGM_PATH
+
 
 func get_level_monster_config(id: int) -> Dictionary:
 	return NorthOriginalData.monster_config(id)
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	_elapsed += delta
 	super._physics_process(delta)
 	if stage_number == 80 and not hidden_original_room and role_information != null:
@@ -101,8 +111,6 @@ func _physics_process(delta: float) -> void :
 	if not is_instance_valid(Role_):
 		return
 	if stage_number == 85:
-
-
 		Role_.velocity.y = 0
 		Role_._physics_process(0.0)
 		Role_.gravity = 0
@@ -111,28 +119,30 @@ func _physics_process(delta: float) -> void :
 		Role_.global_position.x = clampf(Role_.global_position.x, 25, 915)
 		Role_.global_position.y = clampf(Role_.global_position.y, 60, 565)
 	if in_void_space:
-		var alive: = false
+		var alive := false
 		for unit in _void_units:
 			if is_instance_valid(unit) and not unit.death():
 				alive = true
 		if not alive:
 			leave_void_space()
 
-func _update_stage_progression() -> void :
+
+func _update_stage_progression() -> void:
 	if not _spawn_runtime_ready or not is_instance_valid(Role_):
 		return
 	if stage_number == 80 and not hidden_original_room:
 		if maze_room == 7:
-			if not _visited_triggers.has(6): _activate_trigger(6)
+			if not _visited_triggers.has(6):
+				_activate_trigger(6)
 		elif current_stage == 0:
 			_activate_trigger(0)
 		elif current_stage < MAZE_WAVE_COUNT and check_can_pass():
 			_activate_trigger(current_stage)
 		return
-	var collider: = Role_.get_node_or_null("pz") as CollisionShape2D
+	var collider := Role_.get_node_or_null("pz") as CollisionShape2D
 	if collider == null:
 		return
-	var hero_rect: = collider.shape.get_rect()
+	var hero_rect := collider.shape.get_rect()
 	hero_rect.position += collider.global_position - global_position
 	for i in range(_north_data["triggers"].size()):
 		if _visited_triggers.has(i):
@@ -150,11 +160,11 @@ func _update_stage_progression() -> void :
 			if not _pending_triggers.has(i):
 				_pending_triggers.append(i)
 
-
 	if not _pending_triggers.is_empty() and (_active_points.is_empty() or check_can_pass()):
 		_activate_trigger(_pending_triggers.pop_front())
 
-func _activate_trigger(index: int) -> void :
+
+func _activate_trigger(index: int) -> void:
 	if _visited_triggers.has(index) or not _active_points.is_empty() and not check_can_pass():
 		return
 	_visited_triggers[index] = true
@@ -167,15 +177,15 @@ func _activate_trigger(index: int) -> void :
 			_point_states[int(point)]["next_spawn_at"] = _elapsed
 	_set_battle_bounds(index)
 
-func _set_battle_bounds(index: int) -> void :
-	var map_size: = _source_map_size
-	var starts: = _source_screen_starts
-	var width: = _source_screen_width
-	var left: = float(starts[mini(index, starts.size() - 1)])
+
+func _set_battle_bounds(index: int) -> void:
+	var map_size := _source_map_size
+	var starts := _source_screen_starts
+	var width := _source_screen_width
+	var left := float(starts[mini(index, starts.size() - 1)])
 	_battle_bounds = Rect2(left, 0, minf(width, map_size.x - left), map_size.y)
 
-
-	var top: = INF
+	var top := INF
 	for point: Dictionary in _birth_points():
 		if int(point["point"]) in _north_data["triggers"][index]["points"]:
 			var pos: Vector2 = point["position"]
@@ -185,37 +195,41 @@ func _set_battle_bounds(index: int) -> void :
 		_battle_bounds.position.y = top
 		_battle_bounds.size.y = map_size.y - top
 
+
 func source_battle_bounds() -> Rect2:
 	return _battle_bounds
 
-func set_source_camera_rect(rect: Rect2) -> void :
+
+func set_source_camera_rect(rect: Rect2) -> void:
 	_source_camera_rect = rect
 
-func _preload_level_resources() -> void :
 
-
+func _preload_level_resources() -> void:
 	pass
 
-func _request_stage_resource_preload(stage: int) -> void :
+
+func _request_stage_resource_preload(stage: int) -> void:
 	if _stage_preload_requested.has(stage):
 		return
 	_stage_preload_requested[stage] = true
 	call_deferred("_preload_north_trigger", stage)
 
-func _preload_north_trigger(stage: int) -> void :
+
+func _preload_north_trigger(stage: int) -> void:
 	var ids: Array = Monster_group.get(_stage_key(stage), []).duplicate()
 	await Global.preload_level_monster_runtime_resources(ids)
 	if is_inside_tree():
 		_ready_triggers[stage] = true
 
-func _spawn_next_protected_unit() -> void :
+
+func _spawn_next_protected_unit() -> void:
 	if not _spawn_runtime_ready:
 		return
-	var alive_count: = _get_alive_stage_monster_count()
+	var alive_count := _get_alive_stage_monster_count()
 	if alive_count >= (30 if stage_number == 85 else 12) * _count_multiplier:
 		return
 	for point: Dictionary in _birth_points():
-		var id: = int(point["point"])
+		var id := int(point["point"])
 		if not _active_points.has(id):
 			continue
 		var state: Dictionary = _point_states[id]
@@ -223,21 +237,20 @@ func _spawn_next_protected_unit() -> void :
 			continue
 		if int(state["spawned"]) >= int(state["target"]) or not _point_dependency_satisfied(point):
 			continue
-		var delay_ms: = float(point["tile"].get("beginTime", "0")) * 1000.0
+		var delay_ms := float(point["tile"].get("beginTime", "0")) * 1000.0
 		if _elapsed * 1000 < delay_ms:
 			continue
 		state["started"] = true
 		if _spawn_birth_point_unit(point, state):
-			var speed_ratio: = clampf(float(MainSet.set_data.get("CreateMonsterSpeed", 1.2)) / 1.2, 0.0625, 1.0)
+			var speed_ratio := clampf(float(MainSet.set_data.get("CreateMonsterSpeed", 1.2)) / 1.2, 0.0625, 1.0)
 			state["next_spawn_at"] = _elapsed + float(point["tile"].get("birthInterval", "0")) * speed_ratio
 			if float(point["monster"]) in _boss_ids:
 				_boss_seen = true
 			return
 
-func _update_screen_bounds(delta: float = 0.0) -> void :
+
+func _update_screen_bounds(delta: float = 0.0) -> void:
 	if _source_screen_starts.size() > 1 and not in_void_space:
-
-
 		super._update_screen_bounds(delta)
 		for wall_shape in [_screen_left_wall, _screen_right_wall]:
 			if is_instance_valid(wall_shape):
@@ -253,13 +266,13 @@ func _update_screen_bounds(delta: float = 0.0) -> void :
 	if my_camera != null and not _north_data.is_empty():
 		my_camera.position_smoothing_enabled = false
 		my_camera.limit_smoothed = false
-		var map_size: = _source_map_size
-		var starts: = _source_screen_starts
-		var clear: = check_can_pass()
-		var room: = _battle_bounds if _battle_bounds.has_area() else Rect2(0, 0, _source_screen_width, map_size.y)
+		var map_size := _source_map_size
+		var starts := _source_screen_starts
+		var clear := check_can_pass()
+		var room := _battle_bounds if _battle_bounds.has_area() else Rect2(0, 0, _source_screen_width, map_size.y)
 		if clear:
 			if starts.size() > 1:
-				var next: = mini(current_stage, starts.size() - 1)
+				var next := mini(current_stage, starts.size() - 1)
 				room.size.x = minf(float(starts[next]) + _source_screen_width, map_size.x) - room.position.x
 			else:
 				room.size.y += room.position.y
@@ -276,15 +289,20 @@ func _update_screen_bounds(delta: float = 0.0) -> void :
 			if is_instance_valid(Role_):
 				var pos: Vector2 = Role_.global_position - global_position
 				var half_view: Vector2 = get_viewport_rect().size / my_camera.zoom / 2
-				var moving_left: = minf(_battle_bounds.position.x, maxf(_camera_center.x - half_view.x, 0))
-				var bounded: = Vector2(clampf(pos.x, moving_left + 25, _battle_bounds.end.x - 25), 
-					maxf(pos.y, _battle_bounds.position.y + 40) if stage_number in [76, 79] else pos.y)
-				if bounded.x != pos.x: Role_.velocity.x = 0
-				if bounded.y != pos.y: Role_.velocity.y = 0
+				var moving_left := minf(_battle_bounds.position.x, maxf(_camera_center.x - half_view.x, 0))
+				var bounded := Vector2(
+					clampf(pos.x, moving_left + 25, _battle_bounds.end.x - 25),
+					maxf(pos.y, _battle_bounds.position.y + 40) if stage_number in [76, 79] else pos.y
+				)
+				if bounded.x != pos.x:
+					Role_.velocity.x = 0
+				if bounded.y != pos.y:
+					Role_.velocity.y = 0
 				Role_.global_position = global_position + bounded
-		if not is_instance_valid(Role_): return
+		if not is_instance_valid(Role_):
+			return
 		var view: Vector2 = get_viewport_rect().size / my_camera.zoom
-		var half: = view / 2
+		var half := view / 2
 		var desired: Vector2 = Role_.global_position - global_position
 		if stage_number in [80, 85] and not in_void_space:
 			desired = map_size / 2
@@ -294,11 +312,8 @@ func _update_screen_bounds(delta: float = 0.0) -> void :
 			_camera_center = desired
 			_camera_initialized = true
 		elif delta > 0:
-
-
 			_camera_center.x = move_toward(_camera_center.x, desired.x, 300 * delta)
 			_camera_center.y = lerpf(_camera_center.y, desired.y, 1 - pow(0.9, delta * 30))
-
 
 		my_camera.limit_left = -100000
 		my_camera.limit_right = 100000
@@ -307,16 +322,20 @@ func _update_screen_bounds(delta: float = 0.0) -> void :
 		my_camera.global_position = global_position + _camera_center
 		my_camera.force_update_scroll()
 
+
 func _screen_starts() -> Array:
-	var starts: = _source_screen_starts.duplicate()
-	while starts.size() < _stage_count(): starts.append(starts.back())
+	var starts := _source_screen_starts.duplicate()
+	while starts.size() < _stage_count():
+		starts.append(starts.back())
 	return starts
+
 
 func _screen_rights() -> Array:
 	var rights: Array = []
 	for start in _screen_starts():
 		rights.append(minf(float(start) + _source_screen_width, _source_map_size.x))
 	return rights
+
 
 func check_can_pass() -> bool:
 	if _active_points.is_empty():
@@ -325,6 +344,7 @@ func check_can_pass() -> bool:
 		if not _point_all_dead(id):
 			return false
 	return _get_alive_stage_monster_count() == 0
+
 
 func check_can_exit() -> bool:
 	if not _boss_seen or in_void_space or not check_can_pass():
@@ -337,11 +357,18 @@ func check_can_exit() -> bool:
 			return false
 	return true
 
-func maze_choices_ready() -> bool:
-	return stage_number == 80 and not hidden_original_room and maze_room == 1\
-	and current_stage == MAZE_WAVE_COUNT and check_can_pass()
 
-func enter_maze_gate(side: int) -> void :
+func maze_choices_ready() -> bool:
+	return (
+		stage_number == 80
+		and not hidden_original_room
+		and maze_room == 1
+		and current_stage == MAZE_WAVE_COUNT
+		and check_can_pass()
+	)
+
+
+func enter_maze_gate(side: int) -> void:
 	if side not in [0, 1] or not maze_choices_ready():
 		return
 	maze_room = 7 if side == 0 else 8
@@ -366,7 +393,8 @@ func enter_maze_gate(side: int) -> void :
 	Role_.velocity = Vector2.ZERO
 	_palace_terrain.set_maze_room(maze_room)
 
-func enter_void_space(boss: BaseMonster) -> void :
+
+func enter_void_space(boss: BaseMonster) -> void:
 	if stage_number != 81 or in_void_space or not is_instance_valid(boss):
 		return
 	in_void_space = true
@@ -385,11 +413,12 @@ func enter_void_space(boss: BaseMonster) -> void :
 	Role_.SXYRCannotCure = true
 	_void_units.clear()
 	for i in range(4):
-		var unit: = Global.Create_Monster(3423, monster, Vector2(4420 + i * 130, 570))
+		var unit := Global.Create_Monster(3423, monster, Vector2(4420 + i * 130, 570))
 		unit.set_meta("allow_position_y_over_800", true)
 		_void_units.append(unit)
 
-func leave_void_space() -> void :
+
+func leave_void_space() -> void:
 	in_void_space = false
 	Role_.position = _void_return
 	if _source_screen_starts.size() > 1:
@@ -407,10 +436,12 @@ func leave_void_space() -> void :
 		_void_boss.set_physics_process(true)
 		_void_boss.hurt_box.set_deferred("disabled", false)
 
-func add_tg(_number) -> void :
+
+func add_tg(_number) -> void:
 	PlayerData.player_data["北俱芦洲通关_%d" % stage_number] = 1
 	PlayerData.player_data[display_name] = 1
 
-func _on_exit_2_body_entered(body: Node2D) -> void :
+
+func _on_exit_2_body_entered(body: Node2D) -> void:
 	if body == Role_:
 		super._on_exit_2_body_entered(body)

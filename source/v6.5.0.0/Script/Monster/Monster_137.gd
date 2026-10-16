@@ -29,48 +29,50 @@ func monster_137():
 	self.add_exp = 200
 	self.fall_coin = 135
 	self.objattackDic["hit1"] = {
-		"power": 300, 
-		"hurtBack": [-8, -12], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "silent", 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanAdd": false, 
+		"power": 300,
+		"hurtBack": [-8, -12],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "silent",
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanAdd": false,
 		}
 	}
 	self.objattackDic["hit2"] = {
-		"power": 350, 
-		"hurtBack": [-2, -4], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 4, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"DeBuff": true, 
-			"CanAdd": false, 
+		"power": 350,
+		"hurtBack": [-2, -4],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 4,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"DeBuff": true,
+			"CanAdd": false,
 		}
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "tdlzjzzs", 
-			"value": 1
-		}, 
-
+		{"name": "tdlzjzzs", "value": 1},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_137()
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -89,6 +91,8 @@ func Monster_Intelligence():
 				if count % 60 == 0:
 					if randi_range(0, 100) < attackDesire:
 						attack_target()
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(10, 12)
@@ -99,8 +103,14 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func Call():
 	Global.Create_Monster(136, get_parent(), RoleProp.get_nearest_monster_target_position(global_position))
-	var PositionList = [RoleProp.get_nearest_monster_target_position(global_position) + Vector2(-100, -100), RoleProp.get_nearest_monster_target_position(global_position) + Vector2(0, -100), RoleProp.get_nearest_monster_target_position(global_position) + Vector2(100, -100)]
+	var PositionList = [
+		RoleProp.get_nearest_monster_target_position(global_position) + Vector2(-100, -100),
+		RoleProp.get_nearest_monster_target_position(global_position) + Vector2(0, -100),
+		RoleProp.get_nearest_monster_target_position(global_position) + Vector2(100, -100)
+	]
 	for i in PositionList:
 		Global.add_Bullet("Monster137Bullet1", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])

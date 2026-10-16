@@ -2,6 +2,8 @@ extends BaseMonster
 class_name Monster54
 
 var CheckCount: int = 0
+
+
 func monster_54():
 	self.is_boss = false
 	self.my_mr_name = "青蛇"
@@ -28,28 +30,42 @@ func monster_54():
 	self.add_exp = 75
 	self.fall_coin = 40
 	self.objattackDic["hit1"] = {
-		"power": 150, 
-		"hurtBack": [-8, 0], 
-		"attackKind": "magic", 
+		"power": 150,
+		"hurtBack": [-8, 0],
+		"attackKind": "magic",
 	}
 	self.fall_pro = 0.05
 	self.fall_list = [
-		{
-			"name": "jssp", 
-			"value": 1
-		}, 
-		{
-			"name": "lshb", 
-			"value": 1
-		}, 
+		{"name": "jssp", "value": 1},
+		{"name": "lshb", "value": 1},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_54()
+
+
 func CallBullet():
 	if self.MonsterDirection:
-		Global.add_Bullet("Monster54Bullet", self.bullet, self.MonsterDirection, 1, Vector2(self.position.x + 220, self.position.y), "hit1", self.objattackDic["hit1"])
+		Global.add_Bullet(
+			"Monster54Bullet",
+			self.bullet,
+			self.MonsterDirection,
+			1,
+			Vector2(self.position.x + 220, self.position.y),
+			"hit1",
+			self.objattackDic["hit1"]
+		)
 	else:
-		Global.add_Bullet("Monster54Bullet", self.bullet, self.MonsterDirection, 1, Vector2(self.position.x - 220, self.position.y), "hit1", self.objattackDic["hit1"])
+		Global.add_Bullet(
+			"Monster54Bullet",
+			self.bullet,
+			self.MonsterDirection,
+			1,
+			Vector2(self.position.x - 220, self.position.y),
+			"hit1",
+			self.objattackDic["hit1"]
+		)

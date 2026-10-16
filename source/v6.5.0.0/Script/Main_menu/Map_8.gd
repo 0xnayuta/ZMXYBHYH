@@ -1,53 +1,55 @@
 extends Node2D
 class_name Map8
 
-const TEMPORARILY_CLOSED: = true
+const TEMPORARILY_CLOSED := true
 
-const MAP_DESIGN_SIZE: = Vector2(940.0, 590.0)
-const LEVEL_HIGHLIGHT_SHADER: = preload("res://Shader/WsEffect.gdshader")
-const LEFT_ALIGNED_BUTTON_NAMES: = [
-	"MemoryClass", 
-	"Shop", 
-	"LDL2", 
-	"Skill", 
-	"Activity", 
-	"Task", 
-	"Return", 
-	"GameSet", 
-	"GameAn", 
-	"next", 
-	"Pellet", 
+const MAP_DESIGN_SIZE := Vector2(940.0, 590.0)
+const LEVEL_HIGHLIGHT_SHADER := preload("res://Shader/WsEffect.gdshader")
+const LEFT_ALIGNED_BUTTON_NAMES := [
+	"MemoryClass",
+	"Shop",
+	"LDL2",
+	"Skill",
+	"Activity",
+	"Task",
+	"Return",
+	"GameSet",
+	"GameAn",
+	"next",
+	"Pellet",
 ]
-const RIGHT_ALIGNED_BUTTON_NAMES: = [
-	"WestContinent", 
-	"WorldMapButton", 
+const RIGHT_ALIGNED_BUTTON_NAMES := [
+	"WestContinent",
+	"WorldMapButton",
 ]
-const MAP_LEVEL_NAMES: = {
-	76: "苍梧渊", 
-	77: "寒山坡", 
-	78: "冻天", 
-	79: "蜃楼城", 
-	80: "幻境阁", 
-	81: "壶中洞天", 
-	82: "夙夜径", 
-	83: "太虚星河", 
-	84: "钟晷极地", 
-	85: "星域", 
+const MAP_LEVEL_NAMES := {
+	76: "苍梧渊",
+	77: "寒山坡",
+	78: "冻天",
+	79: "蜃楼城",
+	80: "幻境阁",
+	81: "壶中洞天",
+	82: "夙夜径",
+	83: "太虚星河",
+	84: "钟晷极地",
+	85: "星域",
 }
 
 var MaxPage: int = 8
 var skill_target
-var _left_aligned_button_positions: = {}
-var _right_aligned_button_right_edges: = {}
+var _left_aligned_button_positions := {}
+var _right_aligned_button_right_edges := {}
 var _level_highlight_tween: Tween
 
+
 func _ui_parent() -> Node:
-	var parent: = get_parent()
+	var parent := get_parent()
 	if parent != null:
 		return parent
 	return self
 
-func _fit_to_fullscreen() -> void :
+
+func _fit_to_fullscreen() -> void:
 	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 	if viewport_size.x <= 0.0 or viewport_size.y <= 0.0:
 		return
@@ -59,26 +61,25 @@ func _fit_to_fullscreen() -> void :
 	_align_right_side_buttons(fit_scale)
 	_cleanup_map_shadow_rects()
 
-func _align_left_side_buttons(fit_scale: float) -> void :
+
+func _align_left_side_buttons(fit_scale: float) -> void:
 	if fit_scale <= 0.0:
 		return
 	for button_name in LEFT_ALIGNED_BUTTON_NAMES:
-		var button: = get_node_or_null(button_name) as Control
+		var button := get_node_or_null(button_name) as Control
 		if button == null:
 			continue
 		if not _left_aligned_button_positions.has(button_name):
 			_left_aligned_button_positions[button_name] = button.position
 		var original_position: Vector2 = _left_aligned_button_positions[button_name]
-		button.position = Vector2(
-			original_position.x - position.x / fit_scale, 
-			original_position.y
-		)
+		button.position = Vector2(original_position.x - position.x / fit_scale, original_position.y)
 
-func _align_right_side_buttons(fit_scale: float) -> void :
+
+func _align_right_side_buttons(fit_scale: float) -> void:
 	if fit_scale <= 0.0:
 		return
 	for button_name in RIGHT_ALIGNED_BUTTON_NAMES:
-		var button: = get_node_or_null(button_name) as Control
+		var button := get_node_or_null(button_name) as Control
 		if button == null:
 			continue
 		if not _right_aligned_button_right_edges.has(button_name):
@@ -86,19 +87,20 @@ func _align_right_side_buttons(fit_scale: float) -> void :
 		var original_right_edge: float = _right_aligned_button_right_edges[button_name]
 		var right_margin: float = MAP_DESIGN_SIZE.x - original_right_edge
 		button.position = Vector2(
-			MAP_DESIGN_SIZE.x - button.size.x - right_margin + position.x / fit_scale, 
-			button.position.y
+			MAP_DESIGN_SIZE.x - button.size.x - right_margin + position.x / fit_scale, button.position.y
 		)
 
-func _cleanup_map_shadow_rects() -> void :
-	var parent: = get_parent()
+
+func _cleanup_map_shadow_rects() -> void:
+	var parent := get_parent()
 	if parent == null:
 		return
 	for child in parent.get_children():
 		if child != null and child.name in ["MapShadowTop", "MapShadowBottom", "MapShadowLeft", "MapShadowRight"]:
 			child.queue_free()
 
-func _ready() -> void :
+
+func _ready() -> void:
 	_fit_to_fullscreen()
 	if not get_viewport().size_changed.is_connected(_fit_to_fullscreen):
 		get_viewport().size_changed.connect(_fit_to_fullscreen)
@@ -146,7 +148,8 @@ func _ready() -> void :
 	MemoryClass.main_dq()
 	_update_level_progression()
 
-func _on_map_level_pressed(level_number: int) -> void :
+
+func _on_map_level_pressed(level_number: int) -> void:
 	if TEMPORARILY_CLOSED:
 		Global.AddMessageShow(_ui_parent(), "北俱芦洲副本暂未开放", 1.5, Vector2(470, 300))
 		return
@@ -155,84 +158,104 @@ func _on_map_level_pressed(level_number: int) -> void :
 		Global.AddMessageShow(_ui_parent(), "需要先通关%s！" % previous, 1.5, Vector2(470, 300))
 		return
 	var level_name: String = MAP_LEVEL_NAMES.get(level_number, "北俱芦洲关卡")
-	var level_path: = "res://Scene/Level/Level_%d.tscn" % level_number
+	var level_path := "res://Scene/Level/Level_%d.tscn" % level_number
 	if ResourceLoader.exists(level_path):
 		Global.AddLevelInfo(_ui_parent(), level_name, Vector2.ZERO, level_path)
 		return
 	Global.AddMessageShow(_ui_parent(), "%s 尚未接入，敬请期待！" % level_name, 1.5, Vector2(470, 300))
 
-func _on_nightmare_portal_pressed() -> void :
+
+func _on_nightmare_portal_pressed() -> void:
 	Global.cleanup_transient_ui()
 	Global.change_scene("res://Scene/Main_menu/Map_8_1.tscn")
 
-func _on_memory_class_pressed() -> void :
+
+func _on_memory_class_pressed() -> void:
 	if not Global.cd_path.is_empty():
 		MemoryClass.保存游戏(Global.cd_path)
 	Global.AddMessageShow(_ui_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
 
-func _on_shop_pressed() -> void :
+
+func _on_shop_pressed() -> void:
 	Global.add_SHOP(_ui_parent(), Vector2.ZERO)
 
-func _on_ldl_2_pressed() -> void :
+
+func _on_ldl_2_pressed() -> void:
 	Global.add_ldl(_ui_parent(), Vector2.ZERO)
 
-func _on_skill_pressed() -> void :
+
+func _on_skill_pressed() -> void:
 	if skill_target == null:
 		skill_target = Global.add_learn_skill(_ui_parent(), Vector2.ZERO)
 	else:
 		skill_target.queue_free()
 
-func _on_activity_pressed() -> void :
+
+func _on_activity_pressed() -> void:
 	Global.AddMessageShow(_ui_parent(), "敬请期待！！！", 1.5, Vector2(470, 300))
 
-func _on_task_pressed() -> void :
+
+func _on_task_pressed() -> void:
 	Global.AddBasicTask_(_ui_parent(), Vector2.ZERO)
 
-func _on_return_pressed() -> void :
+
+func _on_return_pressed() -> void:
 	Global.cleanup_transient_ui()
 	Global.change_scene("res://Scene/Main_menu/Map_0.tscn")
 
-func _on_game_set_pressed() -> void :
+
+func _on_game_set_pressed() -> void:
 	Global.Add_GameSet_(_ui_parent(), Vector2.ZERO)
 
-func _on_game_an_pressed() -> void :
+
+func _on_game_an_pressed() -> void:
 	Global.AddGameAnnouncement(_ui_parent(), Vector2.ZERO)
 
-func _on_pellet_pressed() -> void :
+
+func _on_pellet_pressed() -> void:
 	Global.AddBasicPellet_(_ui_parent(), Vector2.ZERO)
 
-func _on_jjtj_pressed() -> void :
+
+func _on_jjtj_pressed() -> void:
 	Global.cleanup_transient_ui()
 	Global.change_scene("res://Scene/Main_menu/Map_7.tscn")
 
-func _on_west_continent_pressed() -> void :
+
+func _on_west_continent_pressed() -> void:
 	Global.cleanup_transient_ui()
 	Global.change_scene("res://Scene/Main_menu/Map_9.tscn")
+
 
 func _has_prerequisite(number: int) -> bool:
 	if number == 76:
 		return bool(PlayerData.player_data.get("云川", false))
-	return bool(PlayerData.player_data.get("北俱芦洲通关_%d" % (number - 1), false)) or bool(PlayerData.player_data.get(MAP_LEVEL_NAMES[number - 1], false))
+	return (
+		bool(PlayerData.player_data.get("北俱芦洲通关_%d" % (number - 1), false))
+		or bool(PlayerData.player_data.get(MAP_LEVEL_NAMES[number - 1], false))
+	)
 
-func _update_level_progression() -> void :
+
+func _update_level_progression() -> void:
 	if _level_highlight_tween != null:
 		_level_highlight_tween.kill()
 		_level_highlight_tween = null
 	for number in range(76, 86):
-		var button: = get_node_or_null("Level_%d" % number) as TextureButton
+		var button := get_node_or_null("Level_%d" % number) as TextureButton
 		if button != null:
 			button.material = null
 			button.disabled = TEMPORARILY_CLOSED or not _has_prerequisite(number)
 	if TEMPORARILY_CLOSED:
 		return
 	for number in range(76, 86):
-		var cleared: = bool(PlayerData.player_data.get("北俱芦洲通关_%d" % number, false))\
-		or bool(PlayerData.player_data.get(MAP_LEVEL_NAMES[number], false))
+		var cleared := (
+			bool(PlayerData.player_data.get("北俱芦洲通关_%d" % number, false))
+			or bool(PlayerData.player_data.get(MAP_LEVEL_NAMES[number], false))
+		)
 		if cleared or not _has_prerequisite(number):
 			continue
-		var button: = get_node_or_null("Level_%d" % number) as TextureButton
+		var button := get_node_or_null("Level_%d" % number) as TextureButton
 		if button != null:
-			var material: = ShaderMaterial.new()
+			var material := ShaderMaterial.new()
 			material.shader = LEVEL_HIGHLIGHT_SHADER
 			material.set_shader_parameter("outline_color", Color(1.0, 0.941176, 0.0, 1.0))
 			button.material = material
@@ -241,6 +264,7 @@ func _update_level_progression() -> void :
 			_level_highlight_tween.tween_method(_set_level_highlight_width.bind(material), 4.0, 1.0, 0.5)
 		break
 
-func _set_level_highlight_width(width: float, material: ShaderMaterial) -> void :
+
+func _set_level_highlight_width(width: float, material: ShaderMaterial) -> void:
 	if is_instance_valid(material):
 		material.set_shader_parameter("outline_width", width)

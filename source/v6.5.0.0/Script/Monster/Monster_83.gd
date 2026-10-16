@@ -1,6 +1,7 @@
 extends BaseMonster
 class_name Monster83
 
+
 func monster_83():
 	self.is_boss = true
 	self.my_mr_name = "增长天王"
@@ -27,72 +28,66 @@ func monster_83():
 	self.add_exp = 0
 	self.fall_coin = 200
 	self.objattackDic["hit1"] = {
-		"power": 225, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "Ice", 
-			"AddTime": 2, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 225,
+		"hurtBack": [-4, -9],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "Ice",
+			"AddTime": 2,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 			"probability": 0.7
-		}, 
+		},
 	}
 	self.objattackDic["hit2"] = {
-		"power": 150, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "real", 
-		"HitProtect": 12, 
+		"power": 150,
+		"hurtBack": [-4, -9],
+		"attackKind": "real",
+		"HitProtect": 12,
 	}
 	self.objattackDic["hit3"] = {
-		"power": 325, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "magic", 
-		"HitProtect": 10, 
-		"addeffect": {
-			"Name": "Ice", 
-			"AddTime": 2, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 325,
+		"hurtBack": [-4, -9],
+		"attackKind": "magic",
+		"HitProtect": 10,
+		"addeffect":
+		{
+			"Name": "Ice",
+			"AddTime": 2,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 			"probability": 0.7
-		}, 
+		},
 	}
 	self.objattackDic["hit4"] = {
-		"power": 325, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "magic", 
-		"HitProtect": 9, 
-		"addeffect": {
-			"Name": "Ice", 
-			"AddTime": 2, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 325,
+		"hurtBack": [-4, -9],
+		"attackKind": "magic",
+		"HitProtect": 9,
+		"addeffect":
+		{
+			"Name": "Ice",
+			"AddTime": 2,
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 			"probability": 0.7
-		}, 
+		},
 	}
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "qyfp", 
-			"value": 0
-		}, 
-		{
-			"name": "qybd", 
-			"value": 0
-		}, 
-		{
-			"name": "qysq", 
-			"value": 0
-		}, 
+		{"name": "qyfp", "value": 0},
+		{"name": "qybd", "value": 0},
+		{"name": "qysq", "value": 0},
 	]
 
 	enable_treasure_box = true
@@ -101,18 +96,17 @@ func monster_83():
 	update_fall_mode()
 	self.fall_stone_pro = 0.2
 	self.fall_stone = [
-		{
-			"name": "smlp", 
-			"value": randi_range(1, 2)
-		}, 
+		{"name": "smlp", "value": randi_range(1, 2)},
 	]
 
-func _ready() -> void :
+
+func _ready() -> void:
 	Skill_1_CD = 5
 	Skill_2_CD = 0
 	Skill_3_CD = 0
 	super._ready()
 	monster_83()
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -144,6 +138,7 @@ func Monster_Intelligence():
 					if randi_range(0, 100) < attackDesire:
 						attack_target()
 
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = randi_range(12, 14)
@@ -154,6 +149,7 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
 
 func do_hit_2():
 	super.to_hero()
@@ -166,6 +162,7 @@ func do_hit_2():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_3():
 	super.to_hero()
 	Skill_3_CD = randi_range(14, 16)
@@ -177,6 +174,7 @@ func do_hit_3():
 	is_attacking = false
 	stop_move()
 
+
 func TweenToTop():
 	if _movement_command_is_blocked():
 		return
@@ -184,21 +182,33 @@ func TweenToTop():
 	tween.tween_property(self, "position", Vector2(0, -150) + position, 1.5)
 	pass
 
+
 func CallArrow1():
 	if get_Player == null:
 		return
-	var PositionList = [Vector2(0, -150), Vector2(-70, -150), Vector2(70, -150), Vector2(140, -150), Vector2(-140, -150), Vector2(210, -150), Vector2(-210, -150)]
+	var PositionList = [
+		Vector2(0, -150),
+		Vector2(-70, -150),
+		Vector2(70, -150),
+		Vector2(140, -150),
+		Vector2(-140, -150),
+		Vector2(210, -150),
+		Vector2(-210, -150)
+	]
 	randomize()
 	PositionList.shuffle()
 	for i in PositionList:
 		var desired_angle
-		var Arrow = Global.add_Bullet("Monster83Bullet", self.bullet, false, 2, i + position, "hit4", self.objattackDic["hit4"])
+		var Arrow = Global.add_Bullet(
+			"Monster83Bullet", self.bullet, false, 2, i + position, "hit4", self.objattackDic["hit4"]
+		)
 		Arrow.scale = Vector2(0.7, 0.7)
 		Arrow.modulate = Color(1, 1, 1, 0)
 		Arrow.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 		var tween = get_tree().create_tween().set_parallel(true)
 		tween.tween_property(Arrow, "modulate", Color(1, 1, 1, 1), 1)
 		await get_tree().create_timer(0.3, false).timeout
+
 
 func CallArrow2():
 	if get_Player == null:
@@ -212,27 +222,53 @@ func CallArrow2():
 	randomize()
 	PositionList.shuffle()
 	for i in PositionList:
-		var Arrow = Global.add_Bullet("Monster83Bullet", self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"])
+		var Arrow = Global.add_Bullet(
+			"Monster83Bullet", self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"]
+		)
 		Arrow.scale = Vector2(0.9, 0.9)
 		Arrow.modulate = Color(1, 1, 1, 0)
 		var po = Arrow.position - position
 		var tween = get_tree().create_tween().set_parallel(true)
 		if MonsterDirection:
-			desired_angle = - desired_angle
+			desired_angle = -desired_angle
 		tween.tween_property(Arrow, "rotation", desired_angle, 1)
 		tween.tween_property(Arrow, "modulate", Color(1, 1, 1, 1), 1)
 		await get_tree().create_timer(randf_range(0.2, 0.4), false).timeout
 
+
 func CallArrow3():
 	if get_Player == null:
 		return
-	var PositionList = [Vector2(0, -700), Vector2(-30, -800), Vector2(30, -900), Vector2(60, -700), Vector2(-60, -700), Vector2(90, -900), Vector2(-90, -800), 
-	Vector2(-120, -800), Vector2(120, -700), Vector2(150, -800), Vector2(-150, -800), Vector2(0, -700), Vector2(-180, -800), Vector2(180, -900), Vector2(210, -700), Vector2(-210, -700), 
-	Vector2(240, -900), Vector2(-240, -800), Vector2(-270, -800), Vector2(270, -700), Vector2(300, -800), Vector2(-300, -800)]
+	var PositionList = [
+		Vector2(0, -700),
+		Vector2(-30, -800),
+		Vector2(30, -900),
+		Vector2(60, -700),
+		Vector2(-60, -700),
+		Vector2(90, -900),
+		Vector2(-90, -800),
+		Vector2(-120, -800),
+		Vector2(120, -700),
+		Vector2(150, -800),
+		Vector2(-150, -800),
+		Vector2(0, -700),
+		Vector2(-180, -800),
+		Vector2(180, -900),
+		Vector2(210, -700),
+		Vector2(-210, -700),
+		Vector2(240, -900),
+		Vector2(-240, -800),
+		Vector2(-270, -800),
+		Vector2(270, -700),
+		Vector2(300, -800),
+		Vector2(-300, -800)
+	]
 	randomize()
 	PositionList.shuffle()
 	for i in PositionList:
-		var Arrow = Global.add_Bullet("Monster83Bullet", self.bullet, false, 3.5, i + position, "hit3", self.objattackDic["hit3"])
+		var Arrow = Global.add_Bullet(
+			"Monster83Bullet", self.bullet, false, 3.5, i + position, "hit3", self.objattackDic["hit3"]
+		)
 		Arrow.scale = Vector2(1, 1)
 		Arrow.rotation_degrees = 90
 		await get_tree().create_timer(0.1, false).timeout

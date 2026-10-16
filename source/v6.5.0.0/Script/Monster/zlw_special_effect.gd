@@ -20,10 +20,16 @@ var Speed: float = 1:
 		Speed = value
 		Set_Speed()
 var RoundPosition_1 = [Vector2(0, 0), Vector2(0, 0), Vector2(35, 0), Vector2(60, 0), Vector2(35, -100), Vector2(60, 60)]
-var RoundPosition_2 = [Vector2(0, -90), Vector2(0, -90), Vector2(50, -85), Vector2(-45, -135), Vector2(65, -130), Vector2(35, -160)]
+var RoundPosition_2 = [
+	Vector2(0, -90), Vector2(0, -90), Vector2(50, -85), Vector2(-45, -135), Vector2(65, -130), Vector2(35, -160)
+]
 var LunziList: Array = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	LunziList = [lunzi_1, lunzi_2, lunzi_3, lunzi_4, lunzi_5, lunzi_6]
+
+
 func _onroundChange():
 	if CurrentCount == 6:
 		lunzi_1.visible = true
@@ -74,6 +80,8 @@ func _onroundChange():
 		lunzi_4.visible = false
 		lunzi_5.visible = false
 		lunzi_6.visible = false
+
+
 func ChangePOSITION():
 	var count: int = 0
 	var List: Array
@@ -84,6 +92,7 @@ func ChangePOSITION():
 	for i in LunziList:
 		i.position = List[count]
 		count += 1
+
 
 func Set_Speed():
 	var num: int = 0

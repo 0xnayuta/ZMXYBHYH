@@ -5,6 +5,8 @@ var RoundChaseTime: float = 2.3
 var RoundThrowCOUNT: int = 2
 var RoundList = []
 var Boss_2: Monster55
+
+
 func monster_57():
 	if get_parent().get_parent() is LevelZLDHDGQ:
 		self.is_Fly = true
@@ -33,81 +35,71 @@ func monster_57():
 		self.add_exp = 1000
 		self.fall_coin = 1000
 		self.objattackDic["hit1"] = {
-			"power": 600, 
-			"hurtBack": [-4, -9], 
-			"attackKind": "magic", 
-			"addeffect": {
-				"Name": "stun", 
-				"AddTime": randi_range(2, 3), 
-				"ReduceInterval": 0, 
-				"value": 0, 
-				"AttackKind": "", 
-				"CanAdd": false, 
-				"DeBuff": true, 
+			"power": 600,
+			"hurtBack": [-4, -9],
+			"attackKind": "magic",
+			"addeffect":
+			{
+				"Name": "stun",
+				"AddTime": randi_range(2, 3),
+				"ReduceInterval": 0,
+				"value": 0,
+				"AttackKind": "",
+				"CanAdd": false,
+				"DeBuff": true,
 			}
 		}
 		self.objattackDic["hit1_1"] = {
-			"power": 660, 
-			"hurtBack": [-4, -9], 
-			"attackKind": "magic", 
-			"addeffect": {
-				"Name": "Ice", 
-				"AddTime": randi_range(2, 3), 
-				"ReduceInterval": 0, 
-				"value": 0, 
-				"AttackKind": "", 
-				"CanAdd": false, 
-				"DeBuff": true, 
+			"power": 660,
+			"hurtBack": [-4, -9],
+			"attackKind": "magic",
+			"addeffect":
+			{
+				"Name": "Ice",
+				"AddTime": randi_range(2, 3),
+				"ReduceInterval": 0,
+				"value": 0,
+				"AttackKind": "",
+				"CanAdd": false,
+				"DeBuff": true,
 			}
 		}
 		self.objattackDic["hit1_2"] = {
-			"power": 680, 
-			"hurtBack": [-4, -9], 
-			"attackKind": "magic", 
-			"addeffect": {
-				"Name": "poision", 
-				"AddTime": randi_range(2, 3), 
-				"ReduceInterval": randf_range(0.6, 1), 
-				"value": randi_range(40, 60), 
-				"AttackKind": "magic", 
-				"CanAdd": true, 
-				"DeBuff": true, 
+			"power": 680,
+			"hurtBack": [-4, -9],
+			"attackKind": "magic",
+			"addeffect":
+			{
+				"Name": "poision",
+				"AddTime": randi_range(2, 3),
+				"ReduceInterval": randf_range(0.6, 1),
+				"value": randi_range(40, 60),
+				"AttackKind": "magic",
+				"CanAdd": true,
+				"DeBuff": true,
 			}
 		}
 		self.objattackDic["hit1_3"] = {
-			"power": 520, 
-			"hurtBack": [-4, -9], 
-			"attackKind": "magic", 
-			"addeffect": {
-				"Name": "Fire", 
-				"AddTime": randi_range(2, 3), 
-				"ReduceInterval": randf_range(0.6, 1), 
-				"value": randi_range(40, 60), 
-				"AttackKind": "magic", 
-				"CanAdd": true, 
-				"DeBuff": true, 
+			"power": 520,
+			"hurtBack": [-4, -9],
+			"attackKind": "magic",
+			"addeffect":
+			{
+				"Name": "Fire",
+				"AddTime": randi_range(2, 3),
+				"ReduceInterval": randf_range(0.6, 1),
+				"value": randi_range(40, 60),
+				"AttackKind": "magic",
+				"CanAdd": true,
+				"DeBuff": true,
 			}
 		}
-		self.objattackDic["dmzhl"] = {
-			"power": 600, 
-			"hurtBack": [-8, 0], 
-			"attackKind": "magic"
-		}
-		self.objattackDic["dmgz"] = {
-			"power": 800, 
-			"hurtBack": [0, -7], 
-			"attackKind": "magic"
-		}
+		self.objattackDic["dmzhl"] = {"power": 600, "hurtBack": [-8, 0], "attackKind": "magic"}
+		self.objattackDic["dmgz"] = {"power": 800, "hurtBack": [0, -7], "attackKind": "magic"}
 		self.fall_pro = 0.5
 		self.fall_list = [
-			{
-				"name": "zlwdahsp1", 
-				"value": 1
-			}, 
-			{
-				"name": "zlwdahsp2", 
-				"value": 1
-			}, 
+			{"name": "zlwdahsp1", "value": 1},
+			{"name": "zlwdahsp2", "value": 1},
 		]
 		return
 	self.is_Fly = true
@@ -136,79 +128,79 @@ func monster_57():
 	self.add_exp = 1000
 	self.fall_coin = 1000
 	self.objattackDic["hit1"] = {
-		"power": 200, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": randi_range(2, 3), 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 200,
+		"hurtBack": [-4, -9],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": randi_range(2, 3),
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit1_1"] = {
-		"power": 220, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "Ice", 
-			"AddTime": randi_range(2, 3), 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
+		"power": 220,
+		"hurtBack": [-4, -9],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "Ice",
+			"AddTime": randi_range(2, 3),
+			"ReduceInterval": 0,
+			"value": 0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit1_2"] = {
-		"power": 240, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "poision", 
-			"AddTime": randi_range(2, 3), 
-			"ReduceInterval": randf_range(0.6, 1), 
-			"value": randi_range(40, 60), 
-			"AttackKind": "magic", 
-			"CanAdd": true, 
-			"DeBuff": true, 
+		"power": 240,
+		"hurtBack": [-4, -9],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "poision",
+			"AddTime": randi_range(2, 3),
+			"ReduceInterval": randf_range(0.6, 1),
+			"value": randi_range(40, 60),
+			"AttackKind": "magic",
+			"CanAdd": true,
+			"DeBuff": true,
 		}
 	}
 	self.objattackDic["hit1_3"] = {
-		"power": 260, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "Fire", 
-			"AddTime": randi_range(2, 3), 
-			"ReduceInterval": randf_range(0.6, 1), 
-			"value": randi_range(40, 60), 
-			"AttackKind": "magic", 
-			"CanAdd": true, 
-			"DeBuff": true, 
+		"power": 260,
+		"hurtBack": [-4, -9],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "Fire",
+			"AddTime": randi_range(2, 3),
+			"ReduceInterval": randf_range(0.6, 1),
+			"value": randi_range(40, 60),
+			"AttackKind": "magic",
+			"CanAdd": true,
+			"DeBuff": true,
 		}
 	}
-	self.objattackDic["dmzhl"] = {
-		"power": 300, 
-		"hurtBack": [-8, 0], 
-		"attackKind": "magic"
-	}
-	self.objattackDic["dmgz"] = {
-		"power": 400, 
-		"hurtBack": [0, -7], 
-		"attackKind": "magic"
-	}
+	self.objattackDic["dmzhl"] = {"power": 300, "hurtBack": [-8, 0], "attackKind": "magic"}
+	self.objattackDic["dmgz"] = {"power": 400, "hurtBack": [0, -7], "attackKind": "magic"}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	Skill_1_CD = 0
 	monster_57()
+
+
 func Monster_Intelligence():
 	ChangeProperies()
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -225,6 +217,8 @@ func Monster_Intelligence():
 				attack_target()
 			else:
 				normal_state()
+
+
 func NormalHit():
 	super.to_hero()
 	hit_name = "hit1"
@@ -234,6 +228,8 @@ func NormalHit():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func UseSkill():
 	super.to_hero()
 	Skill_1_CD = randi_range(10, 14)
@@ -244,6 +240,8 @@ func UseSkill():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func ChangeProperies():
 	if Hp >= SHp * 0.8 and Hp <= SHp:
 		attack_in = 180
@@ -270,17 +268,25 @@ func ChangeProperies():
 		RoundSpeed = 300
 		RoundChaseTime = 5
 		RoundThrowCOUNT = 5
+
+
 func CallRound():
 	var RoundPositionList = []
 	var tween = get_tree().create_tween().set_parallel(true)
 	for i in range(RoundThrowCOUNT):
-		var round = Global.add_Bullet("Monster57Bullet", bullet, false, 1, position, "dmzhl", self.objattackDic["dmzhl"])
+		var round = Global.add_Bullet(
+			"Monster57Bullet", bullet, false, 1, position, "dmzhl", self.objattackDic["dmzhl"]
+		)
 		RoundList.push_back(round)
 	for i in RoundList:
 		if i != null:
-			var pp = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + randi_range(-220, 220), 500)
+			var pp = Vector2(
+				RoleProp.get_nearest_monster_target_position(global_position).x + randi_range(-220, 220), 500
+			)
 			tween.tween_property(i, "position", pp, 0.35)
 	RoundList.clear()
+
+
 func normalBullet():
 	var Bullet
 	var BulletName: String
@@ -300,10 +306,16 @@ func normalBullet():
 		BulletName = "Monster57Bullet4"
 		Hit_name = "hit1_3"
 	if MonsterDirection:
-		Bullet = Global.CallChaseBullet(self.bullet, BulletName, RoundSpeed, RoundChaseTime, false, Position, Hit_name, self.objattackDic[Hit_name])
+		Bullet = Global.CallChaseBullet(
+			self.bullet, BulletName, RoundSpeed, RoundChaseTime, false, Position, Hit_name, self.objattackDic[Hit_name]
+		)
 	else:
-		Bullet = Global.CallChaseBullet(self.bullet, BulletName, RoundSpeed, RoundChaseTime, false, Position, Hit_name, self.objattackDic[Hit_name])
+		Bullet = Global.CallChaseBullet(
+			self.bullet, BulletName, RoundSpeed, RoundChaseTime, false, Position, Hit_name, self.objattackDic[Hit_name]
+		)
 	Bullet.scale = Vector2(0.5, 0.5)
+
+
 func CallMonster():
 	if get_parent().get_parent() is level21:
 		if Boss_2 == null:

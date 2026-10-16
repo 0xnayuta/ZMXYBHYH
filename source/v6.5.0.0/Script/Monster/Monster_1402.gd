@@ -6,14 +6,13 @@ var IsCall: bool
 var OnsetEatblood: bool
 var RemoveBlood: bool
 
-
 var summoned_monsters: Array = []
 var can_summon: bool = true
 var summon_cooldown: float = 0
 const SUMMON_COOLDOWN_TIME: float = 30.0
 
-func monster_1402():
 
+func monster_1402():
 	self.rush_speed = 450
 	self.is_boss = true
 	self.my_mr_name = "狻猊圣者·杨森"
@@ -41,65 +40,58 @@ func monster_1402():
 	self.fall_coin = 1200
 	self.ebol = 0
 
-
 	self.objattackDic["hit1"] = {
-		"power": 600, 
-		"hurtBack": [15, -12], 
-		"attackKind": "physics", 
-		"HitProtect": 10, 
+		"power": 600,
+		"hurtBack": [15, -12],
+		"attackKind": "physics",
+		"HitProtect": 10,
 	}
 
 	self.objattackDic["hit2"] = {
-		"power": 550, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
-		"HitProtect": 15, 
-		"addeffect": {
-			"Name": "speed_down", 
-			"AddTime": 3, 
-			"ReduceInterval": 0.0, 
-			"value": 0.5, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
-		}, 
+		"power": 550,
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
+		"HitProtect": 15,
+		"addeffect":
+		{
+			"Name": "speed_down",
+			"AddTime": 3,
+			"ReduceInterval": 0.0,
+			"value": 0.5,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
+		},
 	}
 
 	self.objattackDic["hit3"] = {
-		"power": 550, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic", 
-		"HitProtect": 15, 
-		"addeffect": {
-			"Name": "LifeManaLock", 
-			"AddTime": 4, 
-			"ReduceInterval": 0.0, 
-			"value": 0.0, 
-			"AttackKind": "", 
-			"CanAdd": false, 
-			"DeBuff": true, 
-		}, 
+		"power": 550,
+		"hurtBack": [0, 0],
+		"attackKind": "magic",
+		"HitProtect": 15,
+		"addeffect":
+		{
+			"Name": "LifeManaLock",
+			"AddTime": 4,
+			"ReduceInterval": 0.0,
+			"value": 0.0,
+			"AttackKind": "",
+			"CanAdd": false,
+			"DeBuff": true,
+		},
 	}
 
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "slyszzs", 
-			"value": 1
-		}, 
-		{
-			"name": "slfkzzs", 
-			"value": 1
-		}, 
-		{
-			"name": "241007005zzs", 
-			"value": 1
-		}, 
+		{"name": "slyszzs", "value": 1},
+		{"name": "slfkzzs", "value": 1},
+		{"name": "241007005zzs", "value": 1},
 	]
 	self.fall_stone_pro = 0
 	self.fall_stone = []
 
-func _ready() -> void :
+
+func _ready() -> void:
 	super._ready()
 	monster_1402()
 	Skill_1_CD = 2
@@ -107,7 +99,8 @@ func _ready() -> void :
 	Skill_3_CD = 8
 	summon_cooldown = 10
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 	if summon_cooldown > 0:
@@ -117,11 +110,13 @@ func _physics_process(delta: float) -> void :
 
 	cleanup_dead_summoned_monsters()
 
+
 func cleanup_dead_summoned_monsters():
 	for i in range(summoned_monsters.size() - 1, -1, -1):
 		var monster = summoned_monsters[i]
 		if not is_instance_valid(monster) or monster.Hp <= 0:
 			summoned_monsters.remove_at(i)
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -149,6 +144,7 @@ func Monster_Intelligence():
 				elif Skill_1_CD <= 0:
 					do_hit_1()
 
+
 func do_summon_skill():
 	super.to_hero()
 	summon_cooldown = SUMMON_COOLDOWN_TIME
@@ -163,17 +159,12 @@ func do_summon_skill():
 	is_attacking = false
 	stop_move()
 
+
 func summon_enhanced_monsters():
 	if not can_summon or summoned_monsters.size() > 0:
 		return
 
-	var summon_positions = [
-		Vector2(-400, 0), 
-		Vector2(-200, 0), 
-		Vector2(0, 0), 
-		Vector2(200, 0), 
-		Vector2(400, 0)
-	]
+	var summon_positions = [Vector2(-400, 0), Vector2(-200, 0), Vector2(0, 0), Vector2(200, 0), Vector2(400, 0)]
 
 	for i in range(5):
 		var summon_pos = self.position + summon_positions[i]
@@ -186,6 +177,7 @@ func summon_enhanced_monsters():
 	can_summon = false
 	summon_cooldown = SUMMON_COOLDOWN_TIME
 
+
 func enhance_monster_122(monster):
 	if monster.has_method("monster_120"):
 		monster.SHp = 45000 * 10
@@ -196,6 +188,7 @@ func enhance_monster_122(monster):
 		monster.my_mr_name = "强化·妖风炼气师"
 		monster.add_exp = 100 * 5
 		monster.fall_coin = 30 * 10
+
 
 func do_hit_1():
 	super.to_hero()
@@ -208,6 +201,7 @@ func do_hit_1():
 	is_attacking = false
 	stop_move()
 
+
 func do_hit_3():
 	super.to_hero()
 	Skill_3_CD = randi_range(15, 20)
@@ -219,50 +213,39 @@ func do_hit_3():
 	is_attacking = false
 	stop_move()
 
+
 func CallBullet2():
 	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 300)
 	await get_tree().create_timer(0.5, false).timeout
 
 	var ly = Global.CallChaseBullet(
-		self.bullet, 
-		"Monster1402Bullet2", 
-		250, 
-		10.0, 
-		false, 
-		Po, 
-		"hit3", 
-		self.objattackDic["hit2"]
+		self.bullet, "Monster1402Bullet2", 250, 10.0, false, Po, "hit3", self.objattackDic["hit2"]
 	)
 	ly.scale = Vector2(1.2, 1.2)
+
 
 func CallBullet3():
 	var Po = Vector2(self.position.x, 300)
 	await get_tree().create_timer(2, false).timeout
 
 	var ly = Global.CallChaseBullet(
-		self.bullet, 
-		"Monster1402Bullet3", 
-		250, 
-		10.0, 
-		false, 
-		Po, 
-		"hit3", 
-		self.objattackDic["hit3"]
+		self.bullet, "Monster1402Bullet3", 250, 10.0, false, Po, "hit3", self.objattackDic["hit3"]
 	)
 	ly.scale = Vector2(2.5, 2)
 	ly.owner_monster = self
 
 	var heal_buff = {
-		"Name": "HealOverTime", 
-		"value": 0.01, 
-		"AddTime": 5.0, 
-		"ReduceInterval": 1.0, 
-		"AttackKind": "cure", 
+		"Name": "HealOverTime",
+		"value": 0.01,
+		"AddTime": 5.0,
+		"ReduceInterval": 1.0,
+		"AttackKind": "cure",
 		"CanAdd": false
 	}
 	Global.AddBuff(self.buff, heal_buff)
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	super._exit_tree()
 	for monster in summoned_monsters:
 		if is_instance_valid(monster):

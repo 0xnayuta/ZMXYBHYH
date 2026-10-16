@@ -1,12 +1,14 @@
 extends BaseLevel
 class_name Level20
-@onready var stop_1: CollisionShape2D = $wall / stop1
-@onready var stop_2: CollisionShape2D = $wall / stop2
-@onready var stop_3: CollisionShape2D = $wall / stop3
+@onready var stop_1: CollisionShape2D = $wall/stop1
+@onready var stop_2: CollisionShape2D = $wall/stop2
+@onready var stop_3: CollisionShape2D = $wall/stop3
 var Color_list = ["00ffff"]
 
 var CanPass = false
-func _ready() -> void :
+
+
+func _ready() -> void:
 	Global.CurrentLevel = ""
 	var RoleId = PlayerData.player_data["Myself"]
 	Role_ = Global.call_hero("role_" + str(RoleId), hero, Vector2(4100, 340), false)
@@ -33,30 +35,34 @@ func _ready() -> void :
 	RoleProp.roleprop.Hp = RoleProp.CurrentHp
 	RoleProp.roleprop.Mp = RoleProp.CurrentMp
 	Monster_group = {
-		"stage_1": [], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [49], 
+		"stage_1": [],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [49],
 	}
 	Monster_position_x = {
-		"stage_1": [], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [4550], 
+		"stage_1": [],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [4550],
 	}
 	Monster_position_y = {
-		"stage_1": [], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [250], 
+		"stage_1": [],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [250],
 	}
 	Global.LastLevelPath = "res://Scene/Level/Level_19.tscn"
-func _physics_process(delta: float) -> void :
+
+
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if current_stage >= 1:
 		if check_can_pass() and current_stage < 4:
 			role_information.gogo.visible = true
 		else:
 			role_information.gogo.visible = false
+
+
 func set_through():
 	pass

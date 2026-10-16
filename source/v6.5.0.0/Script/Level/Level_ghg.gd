@@ -1,30 +1,30 @@
 extends BaseLevel
 class_name LevelGHG
 
-const MONSTER_130_SCENE: = preload("res://Scene/Monster/Monster_130.tscn")
+const MONSTER_130_SCENE := preload("res://Scene/Monster/Monster_130.tscn")
 
-@onready var left_wall: CollisionShape2D = $wall / left_wall
-@onready var right_wall: CollisionShape2D = $wall / right_wall
+@onready var left_wall: CollisionShape2D = $wall/left_wall
+@onready var right_wall: CollisionShape2D = $wall/right_wall
 
 
-func _ready() -> void :
+func _ready() -> void:
 	Monster_group = {
-		"stage_1": [130], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [130],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_x = {
-		"stage_1": [500], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [500],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Monster_position_y = {
-		"stage_1": [200], 
-		"stage_2": [], 
-		"stage_3": [], 
-		"stage_4": [], 
+		"stage_1": [200],
+		"stage_2": [],
+		"stage_3": [],
+		"stage_4": [],
 	}
 	Global.CurrentLevel = "广寒宫"
 	Global.GameOver = 1
@@ -34,7 +34,7 @@ func _ready() -> void :
 	super._ready()
 
 
-func _physics_process(delta: float) -> void :
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if my_camera != null:
 		my_camera.max_left = 0
@@ -43,11 +43,10 @@ func _physics_process(delta: float) -> void :
 		role_information.gogo.visible = one_check_can_exit()
 
 
-func set_through() -> void :
+func set_through() -> void:
 	if left_wall != null:
 		left_wall.disabled = false
 	if right_wall != null:
-
 		right_wall.disabled = false
 
 

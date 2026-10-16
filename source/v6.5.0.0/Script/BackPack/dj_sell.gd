@@ -2,11 +2,11 @@ extends Control
 const LOCK_BUTTON_ICON = preload("res://Art/BackPack/dj_lock_button.png")
 const UNLOCK_BUTTON_ICON = preload("res://Art/BackPack/dj_unlock_button.png")
 
-@onready var v_box_container: VBoxContainer = $MarginContainer2 / MarginContainer / VBoxContainer
-@onready var infor: Label = $MarginContainer2 / MarginContainer / VBoxContainer / infor
-@onready var sell_number: LineEdit = $MarginContainer2 / MarginContainer / VBoxContainer / sell_number
-@onready var use: TextureButton = $MarginContainer2 / MarginContainer / VBoxContainer / use
-@onready var sell: Button = $MarginContainer2 / MarginContainer / VBoxContainer / sell
+@onready var v_box_container: VBoxContainer = $MarginContainer2/MarginContainer/VBoxContainer
+@onready var infor: Label = $MarginContainer2/MarginContainer/VBoxContainer/infor
+@onready var sell_number: LineEdit = $MarginContainer2/MarginContainer/VBoxContainer/sell_number
+@onready var use: TextureButton = $MarginContainer2/MarginContainer/VBoxContainer/use
+@onready var sell: Button = $MarginContainer2/MarginContainer/VBoxContainer/sell
 var ChooseJM
 var source_box: Node = null
 var outside_click_enabled: bool = false
@@ -17,26 +17,21 @@ var be_number = 0
 var is_set = false
 var EQ_prop = {}
 
-@onready var lock_button: Button = $MarginContainer2 / MarginContainer / VBoxContainer / lock
+@onready var lock_button: Button = $MarginContainer2/MarginContainer/VBoxContainer/lock
 
 
-
-
-
-
-
-
-
-func _ready() -> void :
+func _ready() -> void:
 	call_deferred("_enable_outside_click")
 
-func _enable_outside_click() -> void :
+
+func _enable_outside_click() -> void:
 	outside_click_enabled = true
 
-func _input(event: InputEvent) -> void :
+
+func _input(event: InputEvent) -> void:
 	if not outside_click_enabled or not is_visible_in_tree():
 		return
-	var click_position: = Vector2.ZERO
+	var click_position := Vector2.ZERO
 	if event is InputEventMouseButton:
 		if not event.pressed or event.button_index != MOUSE_BUTTON_LEFT:
 			return
@@ -50,11 +45,13 @@ func _input(event: InputEvent) -> void :
 	if not _control_has_point($MarginContainer2, click_position) and not _control_has_point($close_btn, click_position):
 		queue_free()
 
+
 func _control_has_point(control: Control, screen_position: Vector2) -> bool:
-	var local_position: = control.get_global_transform_with_canvas().affine_inverse() * screen_position
+	var local_position := control.get_global_transform_with_canvas().affine_inverse() * screen_position
 	return Rect2(Vector2.ZERO, control.size).has_point(local_position)
 
-func _physics_process(_delta: float) -> void :
+
+func _physics_process(_delta: float) -> void:
 	infor.text = "名字：" + str(AE.AllEquipment_[my_name]["名字"])
 	if AE.AllEquipment_[my_name]["类型"] == "道具" and is_set == false:
 		use.disabled = true
@@ -62,8 +59,9 @@ func _physics_process(_delta: float) -> void :
 	be_number = int(sell_number.text)
 	_refresh_lock_button()
 
+
 func _get_inventory_entry() -> Dictionary:
-	var list_name: = "道具列表" if AE.AllEquipment_[my_name]["类型"] == "道具" else "消耗品列表"
+	var list_name := "道具列表" if AE.AllEquipment_[my_name]["类型"] == "道具" else "消耗品列表"
 	var pages: Variant = PlayerData.player_data.get(list_name, {})
 	if not pages is Dictionary:
 		return {}
@@ -75,20 +73,23 @@ func _get_inventory_entry() -> Dictionary:
 			return item as Dictionary
 	return {}
 
+
 func _is_locked() -> bool:
 	return bool(_get_inventory_entry().get("锁定", false))
 
-func _refresh_lock_button() -> void :
+
+func _refresh_lock_button() -> void:
 	if lock_button == null:
 		return
-	var locked: = _is_locked()
+	var locked := _is_locked()
 	lock_button.icon = UNLOCK_BUTTON_ICON if locked else LOCK_BUTTON_ICON
 	lock_button.tooltip_text = "解锁后才能出售" if locked else "锁定物品，禁止出售"
 	if source_box != null and is_instance_valid(source_box):
 		source_box.item_locked = locked
 
-func _on_lock_pressed() -> void :
-	var item: = _get_inventory_entry()
+
+func _on_lock_pressed() -> void:
+	var item := _get_inventory_entry()
 	if item.is_empty():
 		return
 	item["锁定"] = not bool(item.get("锁定", false))
@@ -100,17 +101,18 @@ func _on_close_pressed():
 	queue_free()
 
 
-func _on_sell_number_text_change_rejected(rejected_substring: String) -> void :
+func _on_sell_number_text_change_rejected(rejected_substring: String) -> void:
 	be_number = int(rejected_substring)
 
-func _get_sell_count() -> int:
-	var requested_text: = sell_number.text.strip_edges()
-	if requested_text.is_empty():
 
+func _get_sell_count() -> int:
+	var requested_text := sell_number.text.strip_edges()
+	if requested_text.is_empty():
 		return maxi(0, int(_get_inventory_entry().get("数量", 0)))
 	return maxi(0, int(requested_text))
 
-func _on_sell_pressed() -> void :
+
+func _on_sell_pressed() -> void:
 	if _is_locked():
 		Global.AddMessageShow(Global.get_ui_popup_layer(), "该物品已锁定，请先解锁后再出售！", 1.5, Vector2.ZERO)
 		return
@@ -122,7 +124,12 @@ func _on_sell_pressed() -> void :
 			if be_number > 0 and int(get_list["获得灵魂"]) > 0:
 				var name_ = AE.AllEquipment_[my_name]["名字"]
 				var parent = get_parent().get_parent().get_parent()
-				Global.AddMessageShow(parent, "丢弃：" + str(get_list["卖出数量"]) + "个" + str(name_) + "。  获得：" + str(get_list["获得灵魂"]) + "灵魂。", 1.5, Vector2(480, 280))
+				Global.AddMessageShow(
+					parent,
+					"丢弃：" + str(get_list["卖出数量"]) + "个" + str(name_) + "。  获得：" + str(get_list["获得灵魂"]) + "灵魂。",
+					1.5,
+					Vector2(480, 280)
+				)
 			PlayerData.zl_dj()
 			MemoryClass.保存游戏(Global.cd_path)
 			queue_free()
@@ -131,12 +138,18 @@ func _on_sell_pressed() -> void :
 			if be_number > 0 and int(get_list["获得灵魂"]) > 0:
 				var name_ = AE.AllEquipment_[my_name]["名字"]
 				var parent = get_parent().get_parent().get_parent()
-				Global.AddMessageShow(parent, "丢弃：" + str(get_list["卖出数量"]) + "个" + str(name_) + "。  获得：" + str(get_list["获得灵魂"]) + "灵魂。", 1.5, Vector2(480, 280))
+				Global.AddMessageShow(
+					parent,
+					"丢弃：" + str(get_list["卖出数量"]) + "个" + str(name_) + "。  获得：" + str(get_list["获得灵魂"]) + "灵魂。",
+					1.5,
+					Vector2(480, 280)
+				)
 			PlayerData.zl_xhp()
 			MemoryClass.保存游戏(Global.cd_path)
 			queue_free()
 
-func _on_use_pressed() -> void :
+
+func _on_use_pressed() -> void:
 	if be_number <= 1:
 		be_number = 1
 
@@ -145,10 +158,10 @@ func _on_use_pressed() -> void :
 	use_xhp()
 
 
-
-
-func _on_panel_mouse_exited() -> void :
+func _on_panel_mouse_exited() -> void:
 	queue_free()
+
+
 func UseMpyj():
 	for i in PlayerData.player_data["技能学习"]:
 		if PlayerData.player_data["技能学习"][i].has("等级"):
@@ -158,6 +171,8 @@ func UseMpyj():
 	var parent = get_parent().get_parent().get_parent()
 	Global.AddMessageShow(parent, "技能等级已重置！。", 1.5, Vector2(450, 300))
 	queue_free()
+
+
 func use_xhp():
 	match my_name:
 		"yll":
@@ -172,74 +187,168 @@ func use_xhp():
 		"mpyj":
 			self.visible = false
 			Signals.ConnectChooseBoxSignal(self, "UseMpyj")
-			ChooseJM = Global.add_choose_text(Global.get_parent_(self, 3), Vector2(0, 0), "确定使用孟婆药剂吗，所有高于1级的技能等级将清除为1（不返还灵魂）？", 0)
+			ChooseJM = Global.add_choose_text(
+				Global.get_parent_(self, 3), Vector2(0, 0), "确定使用孟婆药剂吗，所有高于1级的技能等级将清除为1（不返还灵魂）？", 0
+			)
 		"qhsbx":
 			var a = Global.GetAllItemNum(["qhs_1", "qhs_2", "qhs_3", "qhs_4"], be_number, randi_range(3, 4))
 			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 		"hhbx":
-			var a = Global.GetAllItemNum(["qhs_1", "qhs_2", "qhs_3", "qhs_4", "bsz", "c", "ch", "t", "hshb", "lshb", "zshb", "yazfw", "yizfw", "fygwj", "jssp", "lssp", "qssp", "yll", "zxbx_1", "zxbx_2", "zxbx_3"], be_number, randi_range(1, 1))
+			var a = Global.GetAllItemNum(
+				[
+					"qhs_1",
+					"qhs_2",
+					"qhs_3",
+					"qhs_4",
+					"bsz",
+					"c",
+					"ch",
+					"t",
+					"hshb",
+					"lshb",
+					"zshb",
+					"yazfw",
+					"yizfw",
+					"fygwj",
+					"jssp",
+					"lssp",
+					"qssp",
+					"yll",
+					"zxbx_1",
+					"zxbx_2",
+					"zxbx_3"
+				],
+				be_number,
+				randi_range(1, 1)
+			)
 			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 
 		"jsbx_1":
-			var LIST = [{"名字": "gjjs_1", "num": 6, "五行": []}, {"名字": "smjs_1", "num": 6, "五行": []}, {"名字": "mfjs_1", "num": 6, "五行": []}, ]
+			var LIST = [
+				{"名字": "gjjs_1", "num": 6, "五行": []},
+				{"名字": "smjs_1", "num": 6, "五行": []},
+				{"名字": "mfjs_1", "num": 6, "五行": []},
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"jsbx_2":
-			var LIST = [{"名字": "gjjs_2", "num": 6, "五行": []}, {"名字": "smjs_2", "num": 6, "五行": []}, {"名字": "mfjs_2", "num": 6, "五行": []}, ]
+			var LIST = [
+				{"名字": "gjjs_2", "num": 6, "五行": []},
+				{"名字": "smjs_2", "num": 6, "五行": []},
+				{"名字": "mfjs_2", "num": 6, "五行": []},
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"jsbx_3":
-			var LIST = [{"名字": "gjjs_3", "num": 6, "五行": []}, {"名字": "smjs_3", "num": 6, "五行": []}, {"名字": "mfjs_3", "num": 6, "五行": []}, ]
+			var LIST = [
+				{"名字": "gjjs_3", "num": 6, "五行": []},
+				{"名字": "smjs_3", "num": 6, "五行": []},
+				{"名字": "mfjs_3", "num": 6, "五行": []},
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 
 		"zxbx_1":
-			var LIST = [{"名字": "qhs_1", "num": 5, "五行": []}, {"名字": "qhs_2", "num": 2, "五行": []}, {"名字": "qhs_3", "num": 1, "五行": []}, 
-			{"名字": "qhs_4", "num": 1, "五行": []}]
+			var LIST = [
+				{"名字": "qhs_1", "num": 5, "五行": []},
+				{"名字": "qhs_2", "num": 2, "五行": []},
+				{"名字": "qhs_3", "num": 1, "五行": []},
+				{"名字": "qhs_4", "num": 1, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"zxbx_2":
-			var LIST = [{"名字": "qld", "num": 0, "五行": []}, {"名字": "hdc", "num": 0, "五行": []}, {"名字": "bhz", "num": 0, "五行": []}, 
-			{"名字": "zhp", "num": 0, "五行": []}, {"名字": "twq", "num": 0, "五行": []}, {"名字": "ryjgb", "num": 0, "五行": []}, 
-			{"名字": "jcdp", "num": 0, "五行": []}, {"名字": "jhcz", "num": 0, "五行": []}, {"名字": "qxsh", "num": 0, "五行": []}, 
-			{"名字": "jlxmc", "num": 0, "五行": []}, {"名字": "qthbq", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "qld", "num": 0, "五行": []},
+				{"名字": "hdc", "num": 0, "五行": []},
+				{"名字": "bhz", "num": 0, "五行": []},
+				{"名字": "zhp", "num": 0, "五行": []},
+				{"名字": "twq", "num": 0, "五行": []},
+				{"名字": "ryjgb", "num": 0, "五行": []},
+				{"名字": "jcdp", "num": 0, "五行": []},
+				{"名字": "jhcz", "num": 0, "五行": []},
+				{"名字": "qxsh", "num": 0, "五行": []},
+				{"名字": "jlxmc", "num": 0, "五行": []},
+				{"名字": "qthbq", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"zxbx_3":
-			var LIST = [{"名字": "qld", "num": 0, "五行": []}, {"名字": "hdc", "num": 0, "五行": []}, {"名字": "bhz", "num": 0, "五行": []}, 
-			{"名字": "zhp", "num": 0, "五行": []}, {"名字": "twq", "num": 0, "五行": []}, {"名字": "ryjgb", "num": 0, "五行": []}, 
-			{"名字": "jcdp", "num": 0, "五行": []}, {"名字": "jhcz", "num": 0, "五行": []}, {"名字": "qxsh", "num": 0, "五行": []}, 
-			{"名字": "jlxmc", "num": 0, "五行": []}, {"名字": "qthbq", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "qld", "num": 0, "五行": []},
+				{"名字": "hdc", "num": 0, "五行": []},
+				{"名字": "bhz", "num": 0, "五行": []},
+				{"名字": "zhp", "num": 0, "五行": []},
+				{"名字": "twq", "num": 0, "五行": []},
+				{"名字": "ryjgb", "num": 0, "五行": []},
+				{"名字": "jcdp", "num": 0, "五行": []},
+				{"名字": "jhcz", "num": 0, "五行": []},
+				{"名字": "qxsh", "num": 0, "五行": []},
+				{"名字": "jlxmc", "num": 0, "五行": []},
+				{"名字": "qthbq", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"mhwbx":
-			var LIST = [{"名字": "dszy", "num": 0, "五行": []}, {"名字": "dslq", "num": 0, "五行": []}, {"名字": "dshp", "num": 0, "五行": []}, {"名字": "dslj", "num": 0, "五行": []}, {"名字": "210007001", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "dszy", "num": 0, "五行": []},
+				{"名字": "dslq", "num": 0, "五行": []},
+				{"名字": "dshp", "num": 0, "五行": []},
+				{"名字": "dslj", "num": 0, "五行": []},
+				{"名字": "210007001", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"yrwbx":
-			var LIST = [{"名字": "dsyj", "num": 0, "五行": []}, {"名字": "dsqz", "num": 0, "五行": []}, {"名字": "jmc", "num": 0, "五行": []}, {"名字": "zhj", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "dsyj", "num": 0, "五行": []},
+				{"名字": "dsqz", "num": 0, "五行": []},
+				{"名字": "jmc", "num": 0, "五行": []},
+				{"名字": "zhj", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"bfsxbx":
-			var LIST = [{"名字": "whg", "num": 0, "五行": []}, {"名字": "wtp", "num": 0, "五行": []}, {"名字": "bsp", "num": 0, "五行": []}, {"名字": "211007001", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "whg", "num": 0, "五行": []},
+				{"名字": "wtp", "num": 0, "五行": []},
+				{"名字": "bsp", "num": 0, "五行": []},
+				{"名字": "211007001", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"stwbx":
-			var LIST = [{"名字": "jcjp", "num": 0, "五行": []}, {"名字": "jcbj", "num": 0, "五行": []}, {"名字": "jcmc", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "jcjp", "num": 0, "五行": []},
+				{"名字": "jcbj", "num": 0, "五行": []},
+				{"名字": "jcmc", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"pmwbx":
-			var LIST = [{"名字": "jcjs", "num": 0, "五行": []}, {"名字": "jcsz", "num": 0, "五行": []}, {"名字": "jclj", "num": 0, "五行": []}, {"名字": "210007002", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "jcjs", "num": 0, "五行": []},
+				{"名字": "jcsz", "num": 0, "五行": []},
+				{"名字": "jclj", "num": 0, "五行": []},
+				{"名字": "210007002", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"jmwbx":
-			var LIST = [{"名字": "xwj", "num": 0, "五行": []}, {"名字": "pxk", "num": 0, "五行": []}, {"名字": "bxp", "num": 0, "五行": []}, {"名字": "211007002", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "xwj", "num": 0, "五行": []},
+				{"名字": "pxk", "num": 0, "五行": []},
+				{"名字": "bxp", "num": 0, "五行": []},
+				{"名字": "211007002", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"smwbx":
-			var LIST = [{"名字": "qlp", "num": 0, "五行": []}, {"名字": "zqj", "num": 0, "五行": []}, {"名字": "ttj", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "qlp", "num": 0, "五行": []}, {"名字": "zqj", "num": 0, "五行": []}, {"名字": "ttj", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 
@@ -249,7 +358,11 @@ func use_xhp():
 			queue_free()
 
 		"syrbx":
-			var LIST = [{"名字": "jmy", "num": 0, "五行": []}, {"名字": "lzp", "num": 0, "五行": []}, {"名字": "221007001", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "jmy", "num": 0, "五行": []},
+				{"名字": "lzp", "num": 0, "五行": []},
+				{"名字": "221007001", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 
@@ -258,11 +371,24 @@ func use_xhp():
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"bgjbx1":
-			var LIST = [{"名字": "bsxj", "num": 0, "五行": []}, {"名字": "bszj", "num": 0, "五行": []}, {"名字": "bsyz", "num": 0, "五行": []}, {"名字": "bsbc", "num": 0, "五行": []}, {"名字": "bshq", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "bsxj", "num": 0, "五行": []},
+				{"名字": "bszj", "num": 0, "五行": []},
+				{"名字": "bsyz", "num": 0, "五行": []},
+				{"名字": "bsbc", "num": 0, "五行": []},
+				{"名字": "bshq", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"bgjbx2":
-			var LIST = [{"名字": "bsxj", "num": 0, "五行": []}, {"名字": "bszj", "num": 0, "五行": []}, {"名字": "bsyz", "num": 0, "五行": []}, {"名字": "bsbc", "num": 0, "五行": []}, {"名字": "bshq", "num": 0, "五行": []}, {"名字": "csgs", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "bsxj", "num": 0, "五行": []},
+				{"名字": "bszj", "num": 0, "五行": []},
+				{"名字": "bsyz", "num": 0, "五行": []},
+				{"名字": "bsbc", "num": 0, "五行": []},
+				{"名字": "bshq", "num": 0, "五行": []},
+				{"名字": "csgs", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"klwbx":
@@ -270,7 +396,11 @@ func use_xhp():
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"qgwbx":
-			var LIST = [{"名字": "tsyj", "num": 0, "五行": []}, {"名字": "gtc", "num": 0, "五行": []}, {"名字": "220007001", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "tsyj", "num": 0, "五行": []},
+				{"名字": "gtc", "num": 0, "五行": []},
+				{"名字": "220007001", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"pgbx":
@@ -278,38 +408,82 @@ func use_xhp():
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"ylwbx":
-			var LIST = [{"名字": "fygwj", "num": 0, "五行": []}, {"名字": "lchp", "num": 0, "五行": []}, {"名字": "221007002", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "fygwj", "num": 0, "五行": []},
+				{"名字": "lchp", "num": 0, "五行": []},
+				{"名字": "221007002", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"ycbx":
-			var LIST = [{"名字": "lczh", "num": 0, "五行": []}, {"名字": "xhmj", "num": 0, "五行": []}, {"名字": "xhxc", "num": 0, "五行": []}, {"名字": "220007002", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "lczh", "num": 0, "五行": []},
+				{"名字": "xhmj", "num": 0, "五行": []},
+				{"名字": "xhxc", "num": 0, "五行": []},
+				{"名字": "220007002", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"mpbx":
-			var LIST = [{"名字": "xhgp", "num": 0, "五行": []}, {"名字": "xhxh", "num": 0, "五行": []}, {"名字": "xhymk", "num": 0, "五行": []}, {"名字": "xhyk", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "xhgp", "num": 0, "五行": []},
+				{"名字": "xhxh", "num": 0, "五行": []},
+				{"名字": "xhymk", "num": 0, "五行": []},
+				{"名字": "xhyk", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"zlwbx":
-			var LIST = [{"名字": "myz", "num": 0, "五行": []}, {"名字": "nyd", "num": 0, "五行": []}, {"名字": "syc", "num": 0, "五行": []}, {"名字": "shyc", "num": 0, "五行": []}, {"名字": "xyq", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "myz", "num": 0, "五行": []},
+				{"名字": "nyd", "num": 0, "五行": []},
+				{"名字": "syc", "num": 0, "五行": []},
+				{"名字": "shyc", "num": 0, "五行": []},
+				{"名字": "xyq", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"xtbx":
-			var LIST = [{"名字": "qtz", "num": 0, "五行": []}, {"名字": "dszk", "num": 0, "五行": []}, {"名字": "jljs", "num": 0, "五行": []}, {"名字": "lhz", "num": 0, "五行": []}
-			, {"名字": "tpzy", "num": 0, "五行": []}, {"名字": "tpltp", "num": 0, "五行": []}, {"名字": "jlfyc", "num": 0, "五行": []}, {"名字": "jlfyj", "num": 0, "五行": []}, {"名字": "ylhq", "num": 0, "五行": []}, {"名字": "yljj", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "qtz", "num": 0, "五行": []},
+				{"名字": "dszk", "num": 0, "五行": []},
+				{"名字": "jljs", "num": 0, "五行": []},
+				{"名字": "lhz", "num": 0, "五行": []},
+				{"名字": "tpzy", "num": 0, "五行": []},
+				{"名字": "tpltp", "num": 0, "五行": []},
+				{"名字": "jlfyc", "num": 0, "五行": []},
+				{"名字": "jlfyj", "num": 0, "五行": []},
+				{"名字": "ylhq", "num": 0, "五行": []},
+				{"名字": "yljj", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 
-
 		"qlysfebx":
-			var LIST = [{"名字": "kyz", "num": 0, "五行": []}, {"名字": "kyc", "num": 0, "五行": []}, {"名字": "kys", "num": 0, "五行": []}, {"名字": "xhz", "num": 0, "五行": []}, {"名字": "231007001", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "kyz", "num": 0, "五行": []},
+				{"名字": "kyc", "num": 0, "五行": []},
+				{"名字": "kys", "num": 0, "五行": []},
+				{"名字": "xhz", "num": 0, "五行": []},
+				{"名字": "231007001", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"jlsbx":
-			var LIST = [{"名字": "xhp", "num": 0, "五行": []}, {"名字": "xhc", "num": 0, "五行": []}, {"名字": "xhj", "num": 0, "五行": []}, {"名字": "230007001", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "xhp", "num": 0, "五行": []},
+				{"名字": "xhc", "num": 0, "五行": []},
+				{"名字": "xhj", "num": 0, "五行": []},
+				{"名字": "230007001", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"zztwbx":
-			var LIST = [{"名字": "qybd", "num": 0, "五行": []}, {"名字": "qyfp", "num": 0, "五行": []}, {"名字": "qysq", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "qybd", "num": 0, "五行": []},
+				{"名字": "qyfp", "num": 0, "五行": []},
+				{"名字": "qysq", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"gmtwbx":
@@ -317,53 +491,101 @@ func use_xhp():
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"dwtwbx":
-			var LIST = [{"名字": "hylz", "num": 0, "五行": []}, {"名字": "hylc", "num": 0, "五行": []}, {"名字": "231007002", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "hylz", "num": 0, "五行": []},
+				{"名字": "hylc", "num": 0, "五行": []},
+				{"名字": "231007002", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"zzzbx":
-			var LIST = [{"名字": "zjqj", "num": 0, "五行": []}, {"名字": "zjksf", "num": 0, "五行": []}, {"名字": "zjgp", "num": 0, "五行": []}, 
-			{"名字": "zjxmczzs", "num": 0, "五行": []}, {"名字": "hljhzzs", "num": 0, "五行": []}, {"名字": "230007002", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "zjqj", "num": 0, "五行": []},
+				{"名字": "zjksf", "num": 0, "五行": []},
+				{"名字": "zjgp", "num": 0, "五行": []},
+				{"名字": "zjxmczzs", "num": 0, "五行": []},
+				{"名字": "hljhzzs", "num": 0, "五行": []},
+				{"名字": "230007002", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"yhbx":
-			var LIST = [{"名字": "jllm", "num": 0, "五行": []}, {"名字": "smz", "num": 0, "五行": []}, {"名字": "zjbtgzzs", "num": 0, "五行": []}, 
-			{"名字": "wsjgzzs", "num": 0, "五行": []}, {"名字": "blmqzzs", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "jllm", "num": 0, "五行": []},
+				{"名字": "smz", "num": 0, "五行": []},
+				{"名字": "zjbtgzzs", "num": 0, "五行": []},
+				{"名字": "wsjgzzs", "num": 0, "五行": []},
+				{"名字": "blmqzzs", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"txsbx":
-			var LIST = [{"名字": "eyzzs", "num": 0, "五行": []}, {"名字": "tzzzs", "num": 0, "五行": []}, {"名字": "yjzzs", "num": 0, "五行": []}, 
-			{"名字": "zezzs", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "eyzzs", "num": 0, "五行": []},
+				{"名字": "tzzzs", "num": 0, "五行": []},
+				{"名字": "yjzzs", "num": 0, "五行": []},
+				{"名字": "zezzs", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"lzzbx":
-			var LIST = [{"名字": "tczzs", "num": 0, "五行": []}, {"名字": "czzzs", "num": 0, "五行": []}, {"名字": "thzzs", "num": 0, "五行": []}, 
-			{"名字": "tqzzs", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "tczzs", "num": 0, "五行": []},
+				{"名字": "czzzs", "num": 0, "五行": []},
+				{"名字": "thzzs", "num": 0, "五行": []},
+				{"名字": "tqzzs", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"nzbx":
-			var LIST = [{"名字": "rls", "num": 0, "五行": []}, {"名字": "ryzzs", "num": 0, "五行": []}, {"名字": "tszzs", "num": 0, "五行": []}, {"名字": "230007003zzs", "num": 0, "五行": []}, {"名字": "231007003zzs", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "rls", "num": 0, "五行": []},
+				{"名字": "ryzzs", "num": 0, "五行": []},
+				{"名字": "tszzs", "num": 0, "五行": []},
+				{"名字": "230007003zzs", "num": 0, "五行": []},
+				{"名字": "231007003zzs", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"qnjbx":
-			var LIST = [{"名字": "qljzzs", "num": 0, "五行": []}, {"名字": "plpzzs", "num": 0, "五行": []}, {"名字": "ylkzzs", "num": 0, "五行": []}
-			, {"名字": "jljzzs", "num": 0, "五行": []}, {"名字": "tljzzs", "num": 0, "五行": []}, {"名字": "231007004zzs", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "qljzzs", "num": 0, "五行": []},
+				{"名字": "plpzzs", "num": 0, "五行": []},
+				{"名字": "ylkzzs", "num": 0, "五行": []},
+				{"名字": "jljzzs", "num": 0, "五行": []},
+				{"名字": "tljzzs", "num": 0, "五行": []},
+				{"名字": "231007004zzs", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"tbjxbx":
-			var LIST = [{"名字": "qlgzzs", "num": 0, "五行": []}, {"名字": "plzzzs", "num": 0, "五行": []}, {"名字": "ylfzzs", "num": 0, "五行": []}
-			, {"名字": "jlczzs", "num": 0, "五行": []}, {"名字": "tlqzzs", "num": 0, "五行": []}, {"名字": "230007004zzs", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "qlgzzs", "num": 0, "五行": []},
+				{"名字": "plzzzs", "num": 0, "五行": []},
+				{"名字": "ylfzzs", "num": 0, "五行": []},
+				{"名字": "jlczzs", "num": 0, "五行": []},
+				{"名字": "tlqzzs", "num": 0, "五行": []},
+				{"名字": "230007004zzs", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
-
-
-
 
 		"xydxq":
 			var parent = get_parent().get_parent().get_parent()
 			if not PlayerData.CheckSameIniBuff("DoubleFallPro"):
 				PlayerData.remove_xhp(my_name, my_page, 1)
-				PlayerData.player_data["初始Buff"].push_back({"Name": "DoubleFallPro", "value": 0.0, 
-				"AddTime": 7200, "ReduceInterval": 0.0, "AttackKind": "SpecialBuff_1", "CanRemove": false, "CanAdd": false, "DeBuff": false})
+				PlayerData.player_data["初始Buff"].push_back(
+					{
+						"Name": "DoubleFallPro",
+						"value": 0.0,
+						"AddTime": 7200,
+						"ReduceInterval": 0.0,
+						"AttackKind": "SpecialBuff_1",
+						"CanRemove": false,
+						"CanAdd": false,
+						"DeBuff": false
+					}
+				)
 				Global.AddMessageShow(parent, "获得两小时双倍掉率Buff，重进关卡生效。", 1.5, Vector2.ZERO)
 			else:
 				Global.AddMessageShow(parent, "当前已有双倍掉率Buff!!!。", 1.5, Vector2.ZERO)
@@ -374,98 +596,194 @@ func use_xhp():
 
 			var target_buff_name = "LifeManaLock"
 
-
 			if Global.get_player != null and Global.get_player.buff != null:
-
 				var player = Global.get_player
-
 
 				PlayerData.remove_xhp(my_name, my_page, 1)
 
-
 				var buff_data = {
-					"Name": target_buff_name, 
-					"value": 0.0, 
-					"AddTime": 10, 
-					"ReduceInterval": 0.0, 
-					"AttackKind": "", 
-					"CanRemove": false, 
-					"CanAdd": false, 
+					"Name": target_buff_name,
+					"value": 0.0,
+					"AddTime": 10,
+					"ReduceInterval": 0.0,
+					"AttackKind": "",
+					"CanRemove": false,
+					"CanAdd": false,
 					"DeBuff": true
 				}
 
 				Global.AddBuff(player.buff, buff_data)
 
-
 				Global.AddMessageShow(parent, "获得特效：" + target_buff_name + "，持续10秒！", 1.5, Vector2(450, 300))
 			else:
-
 				Global.AddMessageShow(parent, "请在关卡中使用此道具！", 1.5, Vector2(450, 300))
 				return
 
 			queue_free()
 
-
-
-
-
 		"szbx_1":
-			var LIST = [{"名字": "wklzyf", "num": 0, "五行": []}, {"名字": "tslzyf", "num": 0, "五行": []}, 
-			{"名字": "bjlzyf", "num": 0, "五行": []}, {"名字": "sslzyf", "num": 0, "五行": []}
-			, {"名字": "bllzyf", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "wklzyf", "num": 0, "五行": []},
+				{"名字": "tslzyf", "num": 0, "五行": []},
+				{"名字": "bjlzyf", "num": 0, "五行": []},
+				{"名字": "sslzyf", "num": 0, "五行": []},
+				{"名字": "bllzyf", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"szbx_2":
-			var LIST = [{"名字": "wkhzyf", "num": 0, "五行": []}, {"名字": "tshzyf", "num": 0, "五行": []}, 
-			{"名字": "bjhzyf", "num": 0, "五行": []}, {"名字": "sshzyf", "num": 0, "五行": []}, {"名字": "blhzyf", "num": 0, "五行": []}]
+			var LIST = [
+				{"名字": "wkhzyf", "num": 0, "五行": []},
+				{"名字": "tshzyf", "num": 0, "五行": []},
+				{"名字": "bjhzyf", "num": 0, "五行": []},
+				{"名字": "sshzyf", "num": 0, "五行": []},
+				{"名字": "blhzyf", "num": 0, "五行": []}
+			]
 			Global.add_Choose_Item(Global.get_parent_(get_parent(), 2), Vector2(460, 260), LIST, my_name, my_page)
 			queue_free()
 		"bsd_1":
-			var a = Global.GetAllItemNum(["sms_1", "fls_1", "gjs_1", "bjs_1", "sbs_1", "wfs_1", "mfs_1"
-			, "xys_1", "bms_1", "rxs_1", "pjs_1", "pms_1", "mzs_1", "hxs_1", "hms_1"], be_number, 1)
+			var a = Global.GetAllItemNum(
+				[
+					"sms_1",
+					"fls_1",
+					"gjs_1",
+					"bjs_1",
+					"sbs_1",
+					"wfs_1",
+					"mfs_1",
+					"xys_1",
+					"bms_1",
+					"rxs_1",
+					"pjs_1",
+					"pms_1",
+					"mzs_1",
+					"hxs_1",
+					"hms_1"
+				],
+				be_number,
+				1
+			)
 			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 
 		"bsd_2":
-			var a = Global.GetAllItemNum(["sms_2", "fls_2", "gjs_2", "bjs_2", "sbs_2", "wfs_2", "mfs_2"
-			, "xys_2", "bms_2", "rxs_2", "pjs_2", "pms_2", "mzs_2", "hxs_2", "hms_2"], be_number, 1)
+			var a = Global.GetAllItemNum(
+				[
+					"sms_2",
+					"fls_2",
+					"gjs_2",
+					"bjs_2",
+					"sbs_2",
+					"wfs_2",
+					"mfs_2",
+					"xys_2",
+					"bms_2",
+					"rxs_2",
+					"pjs_2",
+					"pms_2",
+					"mzs_2",
+					"hxs_2",
+					"hms_2"
+				],
+				be_number,
+				1
+			)
 			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 		"bsd_3":
-			var a = Global.GetAllItemNum(["sms_3", "fls_3", "gjs_3", "bjs_3", "sbs_3", "wfs_3", "mfs_3"
-			, "xys_3", "bms_3", "rxs_3", "pjs_3", "pms_3", "mzs_3", "hxs_3", "hms_3"], be_number, 1)
+			var a = Global.GetAllItemNum(
+				[
+					"sms_3",
+					"fls_3",
+					"gjs_3",
+					"bjs_3",
+					"sbs_3",
+					"wfs_3",
+					"mfs_3",
+					"xys_3",
+					"bms_3",
+					"rxs_3",
+					"pjs_3",
+					"pms_3",
+					"mzs_3",
+					"hxs_3",
+					"hms_3"
+				],
+				be_number,
+				1
+			)
 			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 		"bsd_4":
-			var a = Global.GetAllItemNum(["sms_4", "fls_4", "gjs_4", "bjs_4", "sbs_4", "wfs_4", "mfs_4"
-			, "xys_4", "bms_4", "rxs_4", "pjs_4", "pms_4", "mzs_4", "hxs_4", "hms_4"], be_number, 1)
+			var a = Global.GetAllItemNum(
+				[
+					"sms_4",
+					"fls_4",
+					"gjs_4",
+					"bjs_4",
+					"sbs_4",
+					"wfs_4",
+					"mfs_4",
+					"xys_4",
+					"bms_4",
+					"rxs_4",
+					"pjs_4",
+					"pms_4",
+					"mzs_4",
+					"hxs_4",
+					"hms_4"
+				],
+				be_number,
+				1
+			)
 			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 		"bsd_5":
-			var a = Global.GetAllItemNum(["sms_5", "fls_5", "gjs_5", "bjs_5", "sbs_5", "wfs_5", "mfs_5"
-			, "xys_5", "bms_5", "rxs_5", "pjs_5", "pms_5", "mzs_5", "hxs_5", "hms_5"], be_number, 1)
+			var a = Global.GetAllItemNum(
+				[
+					"sms_5",
+					"fls_5",
+					"gjs_5",
+					"bjs_5",
+					"sbs_5",
+					"wfs_5",
+					"mfs_5",
+					"xys_5",
+					"bms_5",
+					"rxs_5",
+					"pjs_5",
+					"pms_5",
+					"mzs_5",
+					"hxs_5",
+					"hms_5"
+				],
+				be_number,
+				1
+			)
 			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 		"xlhys":
 			var parent = get_parent().get_parent().get_parent()
 			PlayerData.add_soul(150000 * be_number)
 			PlayerData.remove_xhp("xlhys", PlayerData.get_xhp_page("xlhys"), be_number)
-			Global.AddMessageShow(parent, "使用" + str(be_number) + "个小灵魂药水获得" + str(be_number * 15) + "w灵魂。", 1.5, Vector2(450, 300))
+			Global.AddMessageShow(
+				parent, "使用" + str(be_number) + "个小灵魂药水获得" + str(be_number * 15) + "w灵魂。", 1.5, Vector2(450, 300)
+			)
 			MemoryClass.保存游戏(Global.cd_path)
 			queue_free()
 		"dlhys":
 			var parent = get_parent().get_parent().get_parent()
 			PlayerData.add_soul(600000 * be_number)
 			PlayerData.remove_xhp("dlhys", PlayerData.get_xhp_page("dlhys"), be_number)
-			Global.AddMessageShow(parent, "使用" + str(be_number) + "个大灵魂药水获得" + str(be_number * 60) + "w灵魂。", 1.5, Vector2(450, 300))
+			Global.AddMessageShow(
+				parent, "使用" + str(be_number) + "个大灵魂药水获得" + str(be_number * 60) + "w灵魂。", 1.5, Vector2(450, 300)
+			)
 			MemoryClass.保存游戏(Global.cd_path)
 			queue_free()
 
-
-
 		"djyys":
 			var parent = get_parent().get_parent().get_parent()
-			var player_level_cap: = int(PlayerData.PLAYER_MAX_LEVEL)
+			var player_level_cap := int(PlayerData.PLAYER_MAX_LEVEL)
 			if int(PlayerData.player_data["玩家等级"]) >= player_level_cap:
 				PlayerData.enforce_level_caps()
 				Global.AddMessageShow(parent, "人物等级已达到%d级上限。" % player_level_cap, 1.5, Vector2(450, 300))
@@ -480,7 +798,28 @@ func use_xhp():
 			var current_exp = PlayerData.player_data["玩家当前经验"]
 			var current_level = PlayerData.player_data["玩家等级"]
 
-			var max_exp_list = [140, 160, 180, 200, 220, 300, 400, 500, 600, 700, 800, 900, 1200, 1400, 1600, 2000, 2400, 3000, 4000, 5000]
+			var max_exp_list = [
+				140,
+				160,
+				180,
+				200,
+				220,
+				300,
+				400,
+				500,
+				600,
+				700,
+				800,
+				900,
+				1200,
+				1400,
+				1600,
+				2000,
+				2400,
+				3000,
+				4000,
+				5000
+			]
 			var get_max_exp = func(level):
 				if level <= 19:
 					return max_exp_list[level - 1]

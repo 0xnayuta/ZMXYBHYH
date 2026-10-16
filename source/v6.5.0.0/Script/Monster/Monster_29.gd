@@ -1,6 +1,7 @@
 extends BaseMonster
 class_name Monster29
 
+
 func monster_29():
 	self.is_boss = true
 	self.my_mr_name = "魔·红孩儿"
@@ -27,57 +28,49 @@ func monster_29():
 	self.add_exp = 100
 	self.fall_coin = 100
 	self.objattackDic["hit1"] = {
-		"power": int(40 + RoleProp.roleprop.power * 0.2), 
-		"hurtBack": [-3, -5], 
-		"attackKind": "physics"
+		"power": int(40 + RoleProp.roleprop.power * 0.2), "hurtBack": [-3, -5], "attackKind": "physics"
 	}
 	self.objattackDic["lxhjq"] = {
-		"power": int(50 + RoleProp.roleprop.power * 0.6), 
-		"hurtBack": [-3, -5], 
-		"attackKind": "magic"
+		"power": int(50 + RoleProp.roleprop.power * 0.6), "hurtBack": [-3, -5], "attackKind": "magic"
 	}
 	self.objattackDic["tghs"] = {
-		"power": int(60 + RoleProp.roleprop.power * 0.4), 
-		"hurtBack": [-3, -5], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "stun", 
-			"AddTime": 3, 
-			"ReduceInterval": 0, 
-			"CanAdd": false, 
-			"DeBuff": true, 
-			"value": 0, 
-			"AttackKind": "", 
+		"power": int(60 + RoleProp.roleprop.power * 0.4),
+		"hurtBack": [-3, -5],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "stun",
+			"AddTime": 3,
+			"ReduceInterval": 0,
+			"CanAdd": false,
+			"DeBuff": true,
+			"value": 0,
+			"AttackKind": "",
 		}
 	}
 	self.objattackDic["smzh"] = {
-		"power": int(20 + RoleProp.roleprop.power * 0.12), 
-		"hurtBack": [-3, -5], 
-		"attackKind": "real", 
-		"addeffect": {
-			"Name": "Fire", 
-			"AddTime": 5, 
-			"CanAdd": true, 
-			"ReduceInterval": 0.5, 
-			"DeBuff": true, 
-			"value": int(RoleProp.roleprop.SHp * 0.01), 
-			"AttackKind": "real", 
+		"power": int(20 + RoleProp.roleprop.power * 0.12),
+		"hurtBack": [-3, -5],
+		"attackKind": "real",
+		"addeffect":
+		{
+			"Name": "Fire",
+			"AddTime": 5,
+			"CanAdd": true,
+			"ReduceInterval": 0.5,
+			"DeBuff": true,
+			"value": int(RoleProp.roleprop.SHp * 0.01),
+			"AttackKind": "real",
 		}
 	}
 
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "jgj", 
-			"value": 0
-		}, 
-		{
-			"name": "ssj", 
-			"value": 0
-		}, 
-		{"name": "gjjs_1", "value": 0}, 
-		{"name": "smjs_1", "value": 0}, 
-		{"name": "mfjs_1", "value": 0}, 
+		{"name": "jgj", "value": 0},
+		{"name": "ssj", "value": 0},
+		{"name": "gjjs_1", "value": 0},
+		{"name": "smjs_1", "value": 0},
+		{"name": "mfjs_1", "value": 0},
 	]
 
 	enable_treasure_box = true
@@ -86,17 +79,18 @@ func monster_29():
 	update_fall_mode()
 	self.fall_stone_pro = 0.9
 	self.fall_stone = [
-		{
-			"name": "mjlp", 
-			"value": 0
-		}, 
-		]
-func _ready() -> void :
+		{"name": "mjlp", "value": 0},
+	]
+
+
+func _ready() -> void:
 	super._ready()
 	Skill_1_CD = 0
 	Skill_2_CD = 0
 	Skill_3_CD = 0
 	monster_29()
+
+
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
@@ -128,6 +122,8 @@ func Monster_Intelligence():
 						attack_target()
 				else:
 					stop_move()
+
+
 func do_hit_1():
 	super.to_hero()
 	Skill_1_CD = 16
@@ -138,6 +134,8 @@ func do_hit_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_2():
 	super.to_hero()
 	Skill_2_CD = 18
@@ -148,6 +146,8 @@ func do_hit_2():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func do_hit_3():
 	super.to_hero()
 	Skill_3_CD = 12
@@ -158,6 +158,8 @@ func do_hit_3():
 	await mr_player.animation_finished
 	is_attacking = false
 	stop_move()
+
+
 func normal_state():
 	if is_be_attacking:
 		return
@@ -167,6 +169,8 @@ func normal_state():
 		move_left()
 	else:
 		move_right()
+
+
 func CallLXHJQ():
 	var Po: Vector2
 	if MonsterDirection:

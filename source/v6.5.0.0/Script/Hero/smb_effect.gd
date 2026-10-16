@@ -3,10 +3,13 @@ extends Node2D
 
 var Dir: bool
 var ShouldDeath: bool
-func _ready() -> void :
+
+
+func _ready() -> void:
 	animation_player.play("smb")
 
-func _physics_process(delta: float) -> void :
+
+func _physics_process(delta: float) -> void:
 	if ShouldDeath:
 		self.queue_free()
 	if Dir:

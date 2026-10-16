@@ -28,52 +28,43 @@ func monster_37():
 	self.add_exp = 200
 	self.fall_coin = 200
 	self.objattackDic["hit1"] = {
-		"power": 120, 
-		"hurtBack": [-7, -9], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "poision", 
-			"AddTime": 5, 
-			"ReduceInterval": 1, 
-			"value": 60, 
-			"AttackKind": "magic", 
-			"DeBuff": true, 
-			"CanAdd": true, 
+		"power": 120,
+		"hurtBack": [-7, -9],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "poision",
+			"AddTime": 5,
+			"ReduceInterval": 1,
+			"value": 60,
+			"AttackKind": "magic",
+			"DeBuff": true,
+			"CanAdd": true,
 		}
 	}
-	self.objattackDic["wdzh"] = {
-		"power": 30, 
-		"hurtBack": [0, 0], 
-		"attackKind": "magic"
-	}
+	self.objattackDic["wdzh"] = {"power": 30, "hurtBack": [0, 0], "attackKind": "magic"}
 	self.objattackDic["Dead"] = {
-		"power": 30, 
-		"hurtBack": [-7, -15], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "DeadLink", 
-			"AddTime": 7, 
-			"ReduceInterval": 0, 
-			"value": 0, 
-			"DeBuff": true, 
-			"AttackKind": "", 
+		"power": 30,
+		"hurtBack": [-7, -15],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "DeadLink",
+			"AddTime": 7,
+			"ReduceInterval": 0,
+			"value": 0,
+			"DeBuff": true,
+			"AttackKind": "",
 		}
 	}
 
 	self.fall_pro = 0.5
 	self.fall_list = [
-		{
-			"name": "tsyj", 
-			"value": 0
-		}, 
-		{
-			"name": "gtc", 
-			"value": 0
-		}, 
-
+		{"name": "tsyj", "value": 0},
+		{"name": "gtc", "value": 0},
 	]
 	self.independent_fall_list = [
-		{"name": "220007001", "value": 0, "chance": 0.333}, 
+		{"name": "220007001", "value": 0, "chance": 0.333},
 	]
 
 	enable_treasure_box = true
@@ -84,10 +75,13 @@ func monster_37():
 		self.independent_fall_list.clear()
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_37()
 	Skill_1_CD = 0
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -117,6 +111,7 @@ func Monster_Intelligence():
 					else:
 						stop_move()
 
+
 func do_hit_2():
 	Skill_1_CD = 18
 	hit_name = "wdzh"
@@ -125,16 +120,38 @@ func do_hit_2():
 	mr_player.play("wdzh")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func call_dd():
 	if self.MonsterDirection:
-		Global.CallChaseBullet(self.bullet, "Monster37Bullet", 220, 3, true, Vector2(self.position.x + 70, self.position.y), "hit1", self.objattackDic["hit1"])
+		Global.CallChaseBullet(
+			self.bullet,
+			"Monster37Bullet",
+			220,
+			3,
+			true,
+			Vector2(self.position.x + 70, self.position.y),
+			"hit1",
+			self.objattackDic["hit1"]
+		)
 	else:
-		Global.CallChaseBullet(self.bullet, "Monster37Bullet", 220, 3, true, Vector2(self.position.x - 70, self.position.y), "hit1", self.objattackDic["hit1"])
+		Global.CallChaseBullet(
+			self.bullet,
+			"Monster37Bullet",
+			220,
+			3,
+			true,
+			Vector2(self.position.x - 70, self.position.y),
+			"hit1",
+			self.objattackDic["hit1"]
+		)
+
 
 func call_wdww():
 	for i in range(randi_range(6, 10)):
 		Global.Create_Monster(38, get_parent(), Vector2(self.position.x + randi_range(0, 100), self.position.y - 200))
 
-func _on_add_deadlink_timeout() -> void :
+
+func _on_add_deadlink_timeout() -> void:
 	if not Global.is_DeadLink:
 		Global.AddBuff(get_Player.buff, objattackDic["Dead"]["addeffect"])

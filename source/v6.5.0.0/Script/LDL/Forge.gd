@@ -3,138 +3,130 @@ class_name Forge
 
 const FORGE_ITEM_BOX_SCENE: PackedScene = preload("res://Scene/BackPack/Box_1.tscn")
 const FORGE_MATERIAL_BOX_SCENE: PackedScene = preload("res://Scene/LDL/ForgeMaterialBox.tscn")
-@onready var scw: Button = $LastItem / scw
+@onready var scw: Button = $LastItem/scw
 @onready var zzs: TextureRect = $Zzs
 @onready var last_item: TextureRect = $LastItem
-@onready var item_name: Label = $LastItem / Name / ItemName
-@onready var basic_material: HBoxContainer = $BasicMaterial / BasicMaterial
-@onready var lh: Label = $LastItem / Need / LH
+@onready var item_name: Label = $LastItem/Name/ItemName
+@onready var basic_material: HBoxContainer = $BasicMaterial/BasicMaterial
+@onready var lh: Label = $LastItem/Need/LH
 @onready var bs_box: HBoxContainer = $BSBox
 var ItemData = {}
 var ItemMaterialList = {
-	"tfljzzs": {"xuantie": 40, "tanmu": 40}, 
-	"mgzhzzs": {"tanmu": 40, "sichou": 40}, 
-	"tdlzjzzs": {"xuantie": 30, "tanmu": 30, "sichou": 30}, 
-
-	"wsjgzzs": {"xuantie": 80, "tanmu": 60}, 
-	"hljhzzs": {"tanmu": 60, "sichou": 80}, 
-	"zjbtgzzs": {"xuantie": 140}, 
-	"zjxmczzs": {"xuantie": 140}, 
-	"blmqzzs": {"xuantie": 140}, 
-
-	"eyzzs": {"xuantie": 240, "sichou": 240}, 
-	"thzzs": {"xuantie": 300, "tanmu": 180}, 
-	"tczzs": {"xuantie": 300, "tanmu": 180}, 
-	"czzzs": {"sichou": 480}, 
-	"tzzzs": {"xuantie": 480}, 
-	"ryzzs": {"xuantie": 300, "tanmu": 180}, 
-	"tszzs": {"xuantie": 160, "sichou": 160, "tanmu": 160}, 
-	"yjzzs": {"xuantie": 160, "sichou": 160, "tanmu": 160}, 
-	"tqzzs": {"xuantie": 160, "sichou": 160, "tanmu": 160}, 
-	"zezzs": {"xuantie": 160, "sichou": 160, "tanmu": 160}, 
-	"llyzzs": {"xuantie": 160, "sichou": 160, "tanmu": 160, "tss": 5, "yhs": 5}, 
-	"230007003zzs": {"xuantie": 300, "tanmu": 180}, 
-	"231007003zzs": {"xuantie": 240, "sichou": 240}, 
-	"nmwdnhzzs": {"nmwdnhsp": 60, "nmwjh": 1}, 
-	"zlwdahzzs": {"zlwdahsp1": 30, "zlwdahsp2": 30, "zlwdahsp3": 10}, 
-	"sqzlwzzs": {"zlwdahsp1": 99, "zlwdahsp2": 99, "zlwdahsp3": 33}, 
-	"sqnmwdnhzzs": {"nmwdnhsp": 180, "nmwjh": 3}, 
-	"cjshenjzzs": {"xuantie": 999, "sichou": 999, "tanmu": 999}, 
-	"cdshenjzzs": {"xuantie": 999, "sichou": 999, "tanmu": 999}, 
-	"zhshenjzzs": {"xuantie": 999, "sichou": 999, "tanmu": 999}, 
-	"xyfjwkzzs": {"yhs": 66, "tss": 66}, 
-	"xyfjbjzzs": {"yhs": 66, "tss": 66}, 
-	"xyfjtszzs": {"yhs": 66, "tss": 66}, 
-	"xyfjsszzs": {"yhs": 66, "tss": 66}, 
-	"xyfjblzzs": {"yhs": 66, "tss": 66}, 
-	"341071301zzs": {"yhs": 66, "tss": 66}, 
-	"cswkxyhbzzs": {"yhs": 66, "tss": 66}, 
-	"cstsxyhbzzs": {"yhs": 66, "tss": 66}, 
-	"csbjxyhbzzs": {"yhs": 66, "tss": 66}, 
-	"csssxyhbzzs": {"yhs": 66, "tss": 66}, 
-	"csblxyhbzzs": {"yhs": 66, "tss": 66}, 
-	"342071301zzs": {"yhs": 66, "tss": 66}, 
-	"xyzyzzs": {"yhs": 66, "tss": 66}, 
-	"ygfjwkzzs": {"yhs": 66, "tss": 66}, 
-	"ygwqwkzzs": {"yhs": 66, "tss": 66}, 
-	"ygfjtszzs": {"yhs": 66, "tss": 66}, 
-	"ygwqtszzs": {"yhs": 66, "tss": 66}, 
-	"ygfjbjzzs": {"yhs": 66, "tss": 66}, 
-	"ygwqbjzzs": {"yhs": 66, "tss": 66}, 
-	"ygfjsszzs": {"yhs": 66, "tss": 66}, 
-	"ygwqsszzs": {"yhs": 66, "tss": 66}, 
-	"ygfjblzzs": {"yhs": 66, "tss": 66}, 
-	"ygwqblzzs": {"yhs": 66, "tss": 66}, 
-	"ygfjnzzzs": {"yhs": 66, "tss": 66}, 
-	"ygwqnzzzs": {"yhs": 66, "tss": 66}, 
-	"zqfjwkzzs": {"yhs": 66, "tss": 66}, 
-	"zqfjtszzs": {"yhs": 66, "tss": 66}, 
-	"zqfjbjzzs": {"yhs": 66, "tss": 66}, 
-	"zqfjsszzs": {"yhs": 66, "tss": 66}, 
-	"zqfjblzzs": {"yhs": 66, "tss": 66}, 
-	"zqfjnzzzs": {"yhs": 66, "tss": 66}, 
-	"zqwqwkzzs": {"yhs": 66, "tss": 66}, 
-	"zqwqtszzs": {"yhs": 66, "tss": 66}, 
-	"zqwqbjzzs": {"yhs": 66, "tss": 66}, 
-	"zqwqsszzs": {"yhs": 66, "tss": 66}, 
-	"zqwqblzzs": {"yhs": 66, "tss": 66}, 
-	"zqwqnzzzs": {"yhs": 66, "tss": 66}, 
-	"zhhzzzs": {"xuantie": 600, "ygs": 30}, 
-	"phhlzzs": {"xuantie": 600, "ygs": 30}, 
-	"bxhyzzs": {"xuantie": 600, "ygs": 30}, 
-
-
-
-	"qlgzzs": {"xuantie": 600, "tanmu": 300}, 
-	"qljzzs": {"xuantie": 300, "tanmu": 300, "sichou": 300}, 
-	"230007004zzs": {"xuantie": 600, "tanmu": 300}, 
-	"231007004zzs": {"xuantie": 300, "tanmu": 300, "sichou": 300}, 
-	"plzzzs": {"xuantie": 450, "tanmu": 450}, 
-	"plpzzs": {"sichou": 900}, 
-	"ylfzzs": {"xuantie": 900}, 
-	"ylkzzs": {"xuantie": 600, "tanmu": 300}, 
-	"jlczzs": {"xuantie": 300, "sichou": 300, "tanmu": 300}, 
-	"jljzzs": {"xuantie": 300, "sichou": 300, "tanmu": 300}, 
-	"tlqzzs": {"xuantie": 300, "sichou": 300, "tanmu": 300}, 
-	"tljzzs": {"xuantie": 300, "sichou": 300, "tanmu": 300}, 
-	"doushuaiziyanzzs": {"ziyanyujin": 1500}, 
-	"zjhlzzs": {"xuantie": 600, "tanmu": 300}, 
-	"canglongjiezzs": {"canglonglingpo": 10, "tss": 5, "yhs": 5, "xuantie": 500, "tanmu": 500, "sichou": 500}, 
-
-
-
-	"qszzs": {"xuantie": 1200, "tanmu": 900, "tss": 20}, 
-	"240007001zzs": {"xuantie": 1200, "tanmu": 900, "tss": 20}, 
-	"241007001zzs": {"xuantie": 700, "tanmu": 700, "sichou": 700, "yhs": 20}, 
-	"dzzzs": {"xuantie": 700, "tanmu": 700, "sichou": 700, "yhs": 20}, 
-	"rczzs": {"xuantie": 1050, "tanmu": 1050, "tss": 20}, 
-	"ztzzs": {"sichou": 2100, "yhs": 20}, 
-	"ytzzs": {"xuantie": 2100, "tss": 20}, 
-	"jtzzs": {"xuantie": 1500, "tanmu": 600, "yhs": 20}, 
-	"llzzs": {"xuantie": 700, "sichou": 700, "tanmu": 700, "tss": 20}, 
-	"jszzs": {"xuantie": 700, "sichou": 700, "tanmu": 700, "yhs": 20}, 
-	"ldzzs": {"xuantie": 2100, "tss": 20}, 
-	"tlzzs": {"xuantie": 700, "sichou": 700, "tss": 10, "yhs": 10}, 
-
-	"slshgzzs": {"xuantie": 1400, "tanmu": 1300, "tss": 30}, 
-	"240007005zzs": {"xuantie": 1400, "tanmu": 1300, "tss": 30}, 
-	"241007005zzs": {"xuantie": 900, "tanmu": 900, "sichou": 900, "yhs": 30}, 
-	"slshjzzs": {"xuantie": 900, "tanmu": 900, "sichou": 900, "yhs": 30}, 
-	"slfmzzzs": {"xuantie": 1350, "tanmu": 1350, "tss": 30}, 
-	"sljszzs": {"sichou": 2700, "yhs": 30}, 
-	"slcpzzs": {"xuantie": 1300, "sichou": 1400, "tss": 15, "yhs": 15}, 
-	"slhlqzzs": {"xuantie": 2700, "tss": 30}, 
-	"slxjczzs": {"xuantie": 900, "sichou": 900, "tanmu": 900, "tss": 30}, 
-	"slyszzs": {"xuantie": 900, "sichou": 900, "tanmu": 900, "yhs": 30}, 
-	"sllypzzs": {"xuantie": 2700, "tss": 30}, 
-	"slfkzzs": {"xuantie": 1800, "tanmu": 900, "yhs": 30}, 
+	"tfljzzs": {"xuantie": 40, "tanmu": 40},
+	"mgzhzzs": {"tanmu": 40, "sichou": 40},
+	"tdlzjzzs": {"xuantie": 30, "tanmu": 30, "sichou": 30},
+	"wsjgzzs": {"xuantie": 80, "tanmu": 60},
+	"hljhzzs": {"tanmu": 60, "sichou": 80},
+	"zjbtgzzs": {"xuantie": 140},
+	"zjxmczzs": {"xuantie": 140},
+	"blmqzzs": {"xuantie": 140},
+	"eyzzs": {"xuantie": 240, "sichou": 240},
+	"thzzs": {"xuantie": 300, "tanmu": 180},
+	"tczzs": {"xuantie": 300, "tanmu": 180},
+	"czzzs": {"sichou": 480},
+	"tzzzs": {"xuantie": 480},
+	"ryzzs": {"xuantie": 300, "tanmu": 180},
+	"tszzs": {"xuantie": 160, "sichou": 160, "tanmu": 160},
+	"yjzzs": {"xuantie": 160, "sichou": 160, "tanmu": 160},
+	"tqzzs": {"xuantie": 160, "sichou": 160, "tanmu": 160},
+	"zezzs": {"xuantie": 160, "sichou": 160, "tanmu": 160},
+	"llyzzs": {"xuantie": 160, "sichou": 160, "tanmu": 160, "tss": 5, "yhs": 5},
+	"230007003zzs": {"xuantie": 300, "tanmu": 180},
+	"231007003zzs": {"xuantie": 240, "sichou": 240},
+	"nmwdnhzzs": {"nmwdnhsp": 60, "nmwjh": 1},
+	"zlwdahzzs": {"zlwdahsp1": 30, "zlwdahsp2": 30, "zlwdahsp3": 10},
+	"sqzlwzzs": {"zlwdahsp1": 99, "zlwdahsp2": 99, "zlwdahsp3": 33},
+	"sqnmwdnhzzs": {"nmwdnhsp": 180, "nmwjh": 3},
+	"cjshenjzzs": {"xuantie": 999, "sichou": 999, "tanmu": 999},
+	"cdshenjzzs": {"xuantie": 999, "sichou": 999, "tanmu": 999},
+	"zhshenjzzs": {"xuantie": 999, "sichou": 999, "tanmu": 999},
+	"xyfjwkzzs": {"yhs": 66, "tss": 66},
+	"xyfjbjzzs": {"yhs": 66, "tss": 66},
+	"xyfjtszzs": {"yhs": 66, "tss": 66},
+	"xyfjsszzs": {"yhs": 66, "tss": 66},
+	"xyfjblzzs": {"yhs": 66, "tss": 66},
+	"341071301zzs": {"yhs": 66, "tss": 66},
+	"cswkxyhbzzs": {"yhs": 66, "tss": 66},
+	"cstsxyhbzzs": {"yhs": 66, "tss": 66},
+	"csbjxyhbzzs": {"yhs": 66, "tss": 66},
+	"csssxyhbzzs": {"yhs": 66, "tss": 66},
+	"csblxyhbzzs": {"yhs": 66, "tss": 66},
+	"342071301zzs": {"yhs": 66, "tss": 66},
+	"xyzyzzs": {"yhs": 66, "tss": 66},
+	"ygfjwkzzs": {"yhs": 66, "tss": 66},
+	"ygwqwkzzs": {"yhs": 66, "tss": 66},
+	"ygfjtszzs": {"yhs": 66, "tss": 66},
+	"ygwqtszzs": {"yhs": 66, "tss": 66},
+	"ygfjbjzzs": {"yhs": 66, "tss": 66},
+	"ygwqbjzzs": {"yhs": 66, "tss": 66},
+	"ygfjsszzs": {"yhs": 66, "tss": 66},
+	"ygwqsszzs": {"yhs": 66, "tss": 66},
+	"ygfjblzzs": {"yhs": 66, "tss": 66},
+	"ygwqblzzs": {"yhs": 66, "tss": 66},
+	"ygfjnzzzs": {"yhs": 66, "tss": 66},
+	"ygwqnzzzs": {"yhs": 66, "tss": 66},
+	"zqfjwkzzs": {"yhs": 66, "tss": 66},
+	"zqfjtszzs": {"yhs": 66, "tss": 66},
+	"zqfjbjzzs": {"yhs": 66, "tss": 66},
+	"zqfjsszzs": {"yhs": 66, "tss": 66},
+	"zqfjblzzs": {"yhs": 66, "tss": 66},
+	"zqfjnzzzs": {"yhs": 66, "tss": 66},
+	"zqwqwkzzs": {"yhs": 66, "tss": 66},
+	"zqwqtszzs": {"yhs": 66, "tss": 66},
+	"zqwqbjzzs": {"yhs": 66, "tss": 66},
+	"zqwqsszzs": {"yhs": 66, "tss": 66},
+	"zqwqblzzs": {"yhs": 66, "tss": 66},
+	"zqwqnzzzs": {"yhs": 66, "tss": 66},
+	"zhhzzzs": {"xuantie": 600, "ygs": 30},
+	"phhlzzs": {"xuantie": 600, "ygs": 30},
+	"bxhyzzs": {"xuantie": 600, "ygs": 30},
+	"qlgzzs": {"xuantie": 600, "tanmu": 300},
+	"qljzzs": {"xuantie": 300, "tanmu": 300, "sichou": 300},
+	"230007004zzs": {"xuantie": 600, "tanmu": 300},
+	"231007004zzs": {"xuantie": 300, "tanmu": 300, "sichou": 300},
+	"plzzzs": {"xuantie": 450, "tanmu": 450},
+	"plpzzs": {"sichou": 900},
+	"ylfzzs": {"xuantie": 900},
+	"ylkzzs": {"xuantie": 600, "tanmu": 300},
+	"jlczzs": {"xuantie": 300, "sichou": 300, "tanmu": 300},
+	"jljzzs": {"xuantie": 300, "sichou": 300, "tanmu": 300},
+	"tlqzzs": {"xuantie": 300, "sichou": 300, "tanmu": 300},
+	"tljzzs": {"xuantie": 300, "sichou": 300, "tanmu": 300},
+	"doushuaiziyanzzs": {"ziyanyujin": 1500},
+	"zjhlzzs": {"xuantie": 600, "tanmu": 300},
+	"canglongjiezzs": {"canglonglingpo": 10, "tss": 5, "yhs": 5, "xuantie": 500, "tanmu": 500, "sichou": 500},
+	"qszzs": {"xuantie": 1200, "tanmu": 900, "tss": 20},
+	"240007001zzs": {"xuantie": 1200, "tanmu": 900, "tss": 20},
+	"241007001zzs": {"xuantie": 700, "tanmu": 700, "sichou": 700, "yhs": 20},
+	"dzzzs": {"xuantie": 700, "tanmu": 700, "sichou": 700, "yhs": 20},
+	"rczzs": {"xuantie": 1050, "tanmu": 1050, "tss": 20},
+	"ztzzs": {"sichou": 2100, "yhs": 20},
+	"ytzzs": {"xuantie": 2100, "tss": 20},
+	"jtzzs": {"xuantie": 1500, "tanmu": 600, "yhs": 20},
+	"llzzs": {"xuantie": 700, "sichou": 700, "tanmu": 700, "tss": 20},
+	"jszzs": {"xuantie": 700, "sichou": 700, "tanmu": 700, "yhs": 20},
+	"ldzzs": {"xuantie": 2100, "tss": 20},
+	"tlzzs": {"xuantie": 700, "sichou": 700, "tss": 10, "yhs": 10},
+	"slshgzzs": {"xuantie": 1400, "tanmu": 1300, "tss": 30},
+	"240007005zzs": {"xuantie": 1400, "tanmu": 1300, "tss": 30},
+	"241007005zzs": {"xuantie": 900, "tanmu": 900, "sichou": 900, "yhs": 30},
+	"slshjzzs": {"xuantie": 900, "tanmu": 900, "sichou": 900, "yhs": 30},
+	"slfmzzzs": {"xuantie": 1350, "tanmu": 1350, "tss": 30},
+	"sljszzs": {"sichou": 2700, "yhs": 30},
+	"slcpzzs": {"xuantie": 1300, "sichou": 1400, "tss": 15, "yhs": 15},
+	"slhlqzzs": {"xuantie": 2700, "tss": 30},
+	"slxjczzs": {"xuantie": 900, "sichou": 900, "tanmu": 900, "tss": 30},
+	"slyszzs": {"xuantie": 900, "sichou": 900, "tanmu": 900, "yhs": 30},
+	"sllypzzs": {"xuantie": 2700, "tss": 30},
+	"slfkzzs": {"xuantie": 1800, "tanmu": 900, "yhs": 30},
 }
-func _ready() -> void :
+
+
+func _ready() -> void:
 	Global.Forge_ = self
 	ADDBZPIC()
 	lh.text = str(5000)
 	RemoveNameAndNeed()
-
 
 	scw.is_in_ldl_gz = true
 	scw.HideProp = false
@@ -145,7 +137,7 @@ var current_book: String = ""
 
 func _physics_process(_delta):
 	if zzs.get_child_count() > 0:
-		var book_name: = _get_current_book_name()
+		var book_name := _get_current_book_name()
 		if book_name != current_book:
 			current_book = book_name
 			LoadMaterialBox()
@@ -156,13 +148,14 @@ func _physics_process(_delta):
 		RemoveMaterialBox()
 		RemoveNameAndNeed()
 
+
 func LoadMaterialBox():
 	if zzs.get_children().size() == 0:
 		return
 	_clear_children_now(basic_material)
 
-	var book_name: = _get_current_book_name()
-	var material_list: = _get_material_list(book_name)
+	var book_name := _get_current_book_name()
+	var material_list := _get_material_list(book_name)
 	var material_names: Array = material_list.keys()
 	for material_name in material_names:
 		_add_forge_material_box(basic_material, str(material_name), int(material_list[material_name]))
@@ -173,9 +166,11 @@ func LoadMaterialBox():
 		basic_material.add_theme_constant_override("separation", 55)
 	else:
 		basic_material.add_theme_constant_override("separation", 15)
+
+
 func ADDItemBox():
-	var book_name: = _get_current_book_name()
-	var ItemName: = book_name.split("zzs")[0] if book_name != "" else ""
+	var book_name := _get_current_book_name()
+	var ItemName := book_name.split("zzs")[0] if book_name != "" else ""
 	if ItemName == "" or not AE.AllEquipment_.has(ItemName):
 		scw.get_item_name = "empty"
 		scw.icon = load_("empty")
@@ -188,22 +183,21 @@ func ADDItemBox():
 	else:
 		ItemData = GetBZProp()
 
-
 	scw.get_item_name = ItemName
 	scw.icon = load_(str(ItemName))
 	scw.EQ_prop = ItemData
 	scw.is_in_ldl_gz = true
 
 	RefreshName()
-func RefreshName():
 
+
+func RefreshName():
 	if zzs.get_children().size() == 0:
 		RemoveNameAndNeed()
 		return
 
-
-	var book_name: = _get_current_book_name()
-	var ItemName: = book_name.split("zzs")[0] if book_name != "" else ""
+	var book_name := _get_current_book_name()
+	var ItemName := book_name.split("zzs")[0] if book_name != "" else ""
 	if ItemName == "" or not AE.AllEquipment_.has(ItemName):
 		RemoveNameAndNeed()
 		return
@@ -211,6 +205,8 @@ func RefreshName():
 	var Color_ = AE.AllEquipment_[ItemName]["颜色"]
 	item_name.text = str(Name)
 	item_name.add_theme_color_override("font_color", Color_)
+
+
 func ADDBZPIC():
 	RemoveAllBspic()
 	var bz_value: Variant = PlayerData.player_data.get("宝珠列表", [])
@@ -222,16 +218,17 @@ func ADDBZPIC():
 	for idx in range(bz_list.size()):
 		var jewel_value: Variant = bz_list[idx]
 		var jewel: Dictionary = jewel_value if jewel_value is Dictionary else {}
-		var Name: = str(jewel.get("名字", ""))
+		var Name := str(jewel.get("名字", ""))
 		var data_value: Variant = jewel.get("Data", {})
 		var Data: Dictionary = data_value if data_value is Dictionary else {}
-		var ItemBox: = _add_forge_item_box(bs_box, str(Name), 0, 1, [], Data, true, false)
+		var ItemBox := _add_forge_item_box(bs_box, str(Name), 0, 1, [], Data, true, false)
 		if ItemBox == null or not is_instance_valid(ItemBox):
 			continue
-		var icon_path: = "res://Art/BackPack/AllItems/%s.png" % str(Name)
+		var icon_path := "res://Art/BackPack/AllItems/%s.png" % str(Name)
 		ItemBox.set("icon", ResourceLoader.load(icon_path) as Texture2D if ResourceLoader.exists(icon_path) else null)
 		ItemBox.ForgeBZID = idx
 		ItemBox.is_in_ldl_gz = true
+
 
 func RemoveBSPIC(id: int):
 	var bz_value: Variant = PlayerData.player_data.get("宝珠列表", [])
@@ -242,13 +239,12 @@ func RemoveBSPIC(id: int):
 		print("警告：尝试移除无效索引 ", id)
 		return
 
-
 	var jewel_value: Variant = bz_list[id]
 	if not jewel_value is Dictionary:
 		print("警告：宝珠数据格式无效，跳过移除索引 ", id)
 		return
 	var jewel: Dictionary = jewel_value
-	var jewel_name: = str(jewel.get("名字", ""))
+	var jewel_name := str(jewel.get("名字", ""))
 	if jewel_name == "" or not AE.AllEquipment_.has(jewel_name):
 		print("警告：宝珠名称无效，跳过移除索引 ", id)
 		return
@@ -264,6 +260,7 @@ func RemoveBSPIC(id: int):
 	bz_list.remove_at(id)
 	ADDBZPIC()
 
+
 func remove_infomation():
 	var bz_value: Variant = PlayerData.player_data.get("宝珠列表", [])
 	if not bz_value is Array or (bz_value as Array).is_empty():
@@ -273,31 +270,37 @@ func remove_infomation():
 		if not jewel_value is Dictionary:
 			continue
 		var jewel: Dictionary = jewel_value
-		var Name: = str(jewel.get("名字", ""))
+		var Name := str(jewel.get("名字", ""))
 		if Name != "" and AE.AllEquipment_.has(Name):
 			PlayerData.add_dj(Name, 1)
 	bz_list.clear()
 	MemoryClass.保存游戏(Global.cd_path)
+
+
 func RemoveAllBspic():
 	_clear_children_now(bs_box)
+
 
 func load_(name_):
 	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
 	return abc
+
+
 func CheckFullMaterial() -> bool:
 	if zzs == null or zzs.get_child_count() != 1:
 		return false
-	var book_name: = _get_current_book_name()
-	var material_list: = _get_material_list(book_name)
+	var book_name := _get_current_book_name()
+	var material_list := _get_material_list(book_name)
 	if book_name == "" or material_list.is_empty():
 		return false
 	if _get_forge_item_count(book_name) < 1:
 		return false
 	for material_name in material_list.keys():
-		var need_num: = int(material_list[material_name])
+		var need_num := int(material_list[material_name])
 		if _get_forge_item_count(str(material_name)) < need_num:
 			return false
 	return true
+
 
 func _get_forge_item_count(item_name: String) -> int:
 	if item_name == "":
@@ -305,7 +308,7 @@ func _get_forge_item_count(item_name: String) -> int:
 	var pages_value: Variant = PlayerData.player_data.get("道具列表", {})
 	if not pages_value is Dictionary:
 		return 0
-	var total: = 0
+	var total := 0
 	var pages: Dictionary = pages_value
 	for page_value in pages.values():
 		if not page_value is Array:
@@ -319,13 +322,14 @@ func _get_forge_item_count(item_name: String) -> int:
 				total += maxi(int(item.get("数量", 0)), 0)
 	return total
 
+
 func _consume_forge_item(item_name: String, amount: int) -> bool:
 	if item_name == "" or amount <= 0:
 		return amount <= 0
 	var pages_value: Variant = PlayerData.player_data.get("道具列表", {})
 	if not pages_value is Dictionary:
 		return false
-	var remaining: = amount
+	var remaining := amount
 	var pages: Dictionary = pages_value
 	for page_key in pages.keys():
 		var page_value: Variant = pages.get(page_key, [])
@@ -339,10 +343,10 @@ func _consume_forge_item(item_name: String, amount: int) -> bool:
 			var item: Dictionary = item_value
 			if str(item.get("名字", "")) != item_name:
 				continue
-			var available: = maxi(int(item.get("数量", 0)), 0)
+			var available := maxi(int(item.get("数量", 0)), 0)
 			if available <= 0:
 				continue
-			var consumed: = mini(available, remaining)
+			var consumed := mini(available, remaining)
 			item["数量"] = available - consumed
 			remaining -= consumed
 			if int(item["数量"]) <= 0:
@@ -351,17 +355,22 @@ func _consume_forge_item(item_name: String, amount: int) -> bool:
 				return true
 	return false
 
-func _restore_player_data(snapshot: Dictionary) -> void :
+
+func _restore_player_data(snapshot: Dictionary) -> void:
 	PlayerData.player_data.clear()
 	PlayerData.player_data.merge(snapshot.duplicate(true), true)
 
-func _restore_forge_state(snapshot: Dictionary, book_name: String, book_level: int, book_props: Dictionary) -> void :
+
+func _restore_forge_state(snapshot: Dictionary, book_name: String, book_level: int, book_props: Dictionary) -> void:
 	_restore_player_data(snapshot)
 	replace_book(book_name, book_level, book_props)
 	ADDBZPIC()
+
+
 func RemoveZZSBox():
 	_clear_children_now(zzs)
 	current_book = ""
+
 
 func RemoveMaterialBox():
 	_clear_children_now(basic_material)
@@ -373,17 +382,23 @@ func RemoveMaterialBox():
 		basic_material.add_theme_constant_override("separation", 55)
 	else:
 		basic_material.add_theme_constant_override("separation", 15)
+
+
 func RmoveBox():
 	scw.get_item_name = "empty"
 	scw.icon = load_("empty")
 	scw.EQ_prop = {}
+
+
 func RemoveNameAndNeed():
 	item_name.text = ""
+
+
 func RemoveAll() -> bool:
-	var book_name: = _get_current_book_name()
+	var book_name := _get_current_book_name()
 	if book_name == "":
 		return false
-	var material_list: = _get_material_list(book_name)
+	var material_list := _get_material_list(book_name)
 	if material_list.is_empty():
 		return false
 
@@ -408,18 +423,29 @@ func RemoveAll() -> bool:
 	RemoveMaterialBox()
 	return true
 
-func replace_book(book_name: String, level: int, props: Dictionary) -> void :
+
+func replace_book(book_name: String, level: int, props: Dictionary) -> void:
 	if book_name == "" or not is_instance_valid(zzs):
 		return
 	_clear_children_now(zzs)
-	var book_box: = _add_forge_item_box(zzs, book_name, level, 1, [], props, true, true)
+	var book_box := _add_forge_item_box(zzs, book_name, level, 1, [], props, true, true)
 	if book_box != null and is_instance_valid(book_box):
 		book_box.set("position", Vector2(8, 8))
 	current_book = book_name
 	LoadMaterialBox()
 	ADDItemBox()
 
-func _add_forge_item_box(parent: Node, item_name: String, level: int, number: int, elements: Array, props: Variant, in_ldl: bool, in_hhgz: bool) -> Node:
+
+func _add_forge_item_box(
+	parent: Node,
+	item_name: String,
+	level: int,
+	number: int,
+	elements: Array,
+	props: Variant,
+	in_ldl: bool,
+	in_hhgz: bool
+) -> Node:
 	if parent == null or not is_instance_valid(parent) or parent.is_queued_for_deletion():
 		return null
 	var target: Node = FORGE_ITEM_BOX_SCENE.instantiate()
@@ -431,10 +457,11 @@ func _add_forge_item_box(parent: Node, item_name: String, level: int, number: in
 	target.set("EQ_prop", props)
 	target.set("get_item_name", item_name)
 	target.set_meta("item_name", item_name)
-	var icon_path: = "res://Art/BackPack/AllItems/%s.png" % item_name
+	var icon_path := "res://Art/BackPack/AllItems/%s.png" % item_name
 	target.set("icon", ResourceLoader.load(icon_path) as Texture2D if ResourceLoader.exists(icon_path) else null)
 	parent.add_child(target)
 	return target
+
 
 func _add_forge_material_box(parent: Node, material_name: String, need_num: int) -> Node:
 	if parent == null or not is_instance_valid(parent) or parent.is_queued_for_deletion():
@@ -445,7 +472,8 @@ func _add_forge_material_box(parent: Node, material_name: String, need_num: int)
 	parent.add_child(target)
 	return target
 
-func _clear_children_now(parent: Node) -> void :
+
+func _clear_children_now(parent: Node) -> void:
 	if parent == null or not is_instance_valid(parent):
 		return
 	for child in parent.get_children():
@@ -453,7 +481,8 @@ func _clear_children_now(parent: Node) -> void :
 			parent.remove_child(child)
 			child.queue_free()
 
-func _on_froge_pressed_legacy() -> void :
+
+func _on_froge_pressed_legacy() -> void:
 	if zzs.get_children().size() == 0:
 		Global.AddMessageShow(Global.Windows_, "请先放入制作书！！", 1.5, Vector2(500, 305))
 		return
@@ -461,30 +490,25 @@ func _on_froge_pressed_legacy() -> void :
 		Global.AddMessageShow(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
 		return
 
-
-
-
 	if CheckFullMaterial():
 		ADDItemBox()
 		var ItemName: String
 		if zzs.get_children().size() == 1:
 			ItemName = str(zzs.get_children()[0].get_item_name).split("zzs")[0]
 
-
 		var new_equip_data = AE.AllEquipment_[ItemName].duplicate(true)
 		var legacy_jewels_value: Variant = PlayerData.player_data.get("宝珠列表", [])
 		if not legacy_jewels_value is Array:
 			return
-		for jewel_value in (legacy_jewels_value as Array):
+		for jewel_value in legacy_jewels_value as Array:
 			if not jewel_value is Dictionary:
 				return
 			var jewel: Dictionary = jewel_value
-			var jewel_name: = str(jewel.get("名字", ""))
+			var jewel_name := str(jewel.get("名字", ""))
 			var jewel_data_value: Variant = AE.AllEquipment_.get(jewel_name, {})
 			if jewel_name == "" or not jewel_data_value is Dictionary:
 				return
 			var jewel_data: Dictionary = jewel_data_value
-
 
 			for prop in AE.PropListName:
 				if jewel_data.has(prop):
@@ -496,7 +520,6 @@ func _on_froge_pressed_legacy() -> void :
 						new_equip_data["强化属性"][key] += jewel_data["强化属性"][key]
 					else:
 						new_equip_data["强化属性"][key] = jewel_data["强化属性"][key]
-
 
 		print("保存前 new_equip_data.power = ", new_equip_data.power)
 		print("宝珠列表长度 = ", PlayerData.player_data["宝珠列表"].size())
@@ -513,14 +536,15 @@ func _on_froge_pressed_legacy() -> void :
 	else:
 		Global.AddMessageShow(Global.Windows_, "材料不足！！", 1.5, Vector2(500, 305))
 
-func _on_froge_pressed() -> void :
+
+func _on_froge_pressed() -> void:
 	if zzs == null or zzs.get_child_count() != 1:
 		Global.AddMessageShow(Global.Windows_, "请先放入制作书！！", 1.5, Vector2(500, 305))
 		return
 
 	var book_box: Node = zzs.get_child(0)
-	var book_name: = _get_current_book_name()
-	var item_name: = book_name.split("zzs")[0] if book_name != "" else ""
+	var book_name := _get_current_book_name()
+	var item_name := book_name.split("zzs")[0] if book_name != "" else ""
 	if book_name == "" or item_name == "" or not ItemMaterialList.has(book_name) or not AE.AllEquipment_.has(item_name):
 		Global.AddMessageShow(Global.Windows_, "制作书数据异常，无法打造！！", 1.5, Vector2(500, 305))
 		return
@@ -531,15 +555,15 @@ func _on_froge_pressed() -> void :
 		Global.AddMessageShow(Global.Windows_, "材料或制作书不足！！", 1.5, Vector2(500, 305))
 		return
 
-	var item_data: Dictionary = (AE.AllEquipment_[item_name] as Dictionary)
-	var equipment_type: = str(item_data.get("类型", ""))
+	var item_data: Dictionary = AE.AllEquipment_[item_name] as Dictionary
+	var equipment_type := str(item_data.get("类型", ""))
 	var jewels_value: Variant = PlayerData.player_data.get("宝珠列表", [])
 	if not jewels_value is Array:
 		Global.AddMessageShow(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
 		return
 
 	var snapshot: Dictionary = PlayerData.player_data.duplicate(true)
-	var book_level: = int(book_box.get("qh_level"))
+	var book_level := int(book_box.get("qh_level"))
 	var book_props_value: Variant = book_box.get("EQ_prop")
 	var book_props: Dictionary = book_props_value if book_props_value is Dictionary else {}
 	var new_equip_data: Dictionary = item_data.duplicate(true)
@@ -552,7 +576,7 @@ func _on_froge_pressed() -> void :
 			Global.AddMessageShow(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
 			return
 		var jewel: Dictionary = jewel_value
-		var jewel_name: = str(jewel.get("名字", ""))
+		var jewel_name := str(jewel.get("名字", ""))
 		if jewel_name == "" or not AE.AllEquipment_.has(jewel_name):
 			Global.AddMessageShow(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
 			return
@@ -570,7 +594,7 @@ func _on_froge_pressed() -> void :
 			for key in jewel_strength.keys():
 				strengthen[key] = strengthen.get(key, 0) + jewel_strength[key]
 
-	var added: = false
+	var added := false
 	match equipment_type:
 		"法宝":
 			added = PlayerData.add_fb(item_name, 0, AE.get_wx(), new_equip_data)
@@ -593,22 +617,25 @@ func _on_froge_pressed() -> void :
 		return
 	Global.AddMessageShow(Global.Windows_, "打造成功！！", 1.5, Vector2(500, 305))
 
+
 func _get_material_list(book_name: String) -> Dictionary:
 	var material_list: Variant = ItemMaterialList.get(book_name, {})
 	if material_list is Dictionary:
 		return material_list
 	return {}
 
+
 func _get_current_book_name() -> String:
 	if zzs == null or zzs.get_child_count() == 0:
 		return ""
-	var book_box: = zzs.get_child(0)
-	var book_name: = str(book_box.get("get_item_name"))
+	var book_box := zzs.get_child(0)
+	var book_name := str(book_box.get("get_item_name"))
 	if book_name == "" or book_name == "empty":
-		var metadata_name: = str(book_box.get_meta("item_name", ""))
+		var metadata_name := str(book_box.get_meta("item_name", ""))
 		if metadata_name != "":
 			book_name = metadata_name
 	return book_name
+
 
 func GetBZProp_legacy():
 	if PlayerData.player_data["宝珠列表"].size() <= 0:
@@ -620,16 +647,18 @@ func GetBZProp_legacy():
 		i["Data"] = AE.AllEquipment_[i["名字"]]
 		for u in AE.PropListName:
 			BZProp[u] += i["Data"][u]
-	var book_name: = _get_current_book_name()
+	var book_name := _get_current_book_name()
 	if book_name == "":
 		return
-	var ItemName: = book_name.split("zzs")[0]
+	var ItemName := book_name.split("zzs")[0]
 	if not AE.AllEquipment_.has(ItemName):
 		return
 	var PropList = AE.AllEquipment_[ItemName].duplicate(true)
 	for i in AE.PropListName:
 		PropList[i] += BZProp[i]
 	return PropList
+
+
 func GetBZProp() -> Dictionary:
 	var jewels_value: Variant = PlayerData.player_data.get("宝珠列表", [])
 	if not jewels_value is Array:
@@ -645,7 +674,7 @@ func GetBZProp() -> Dictionary:
 		if not jewel_value is Dictionary:
 			return {}
 		var jewel: Dictionary = jewel_value
-		var jewel_name: = str(jewel.get("名字", ""))
+		var jewel_name := str(jewel.get("名字", ""))
 		if jewel_name == "" or not AE.AllEquipment_.has(jewel_name):
 			return {}
 		var jewel_data_value: Variant = AE.AllEquipment_.get(jewel_name, {})
@@ -656,8 +685,8 @@ func GetBZProp() -> Dictionary:
 			if jewel_data.has(prop):
 				bonus[prop] = bonus.get(prop, 0) + jewel_data[prop]
 
-	var book_name: = _get_current_book_name()
-	var item_name: = book_name.split("zzs")[0] if book_name != "" else ""
+	var book_name := _get_current_book_name()
+	var item_name := book_name.split("zzs")[0] if book_name != "" else ""
 	if item_name == "" or not AE.AllEquipment_.has(item_name):
 		return {}
 	var prop_list: Dictionary = (AE.AllEquipment_[item_name] as Dictionary).duplicate(true)
@@ -666,16 +695,17 @@ func GetBZProp() -> Dictionary:
 			prop_list[prop] += bonus.get(prop, 0)
 	return prop_list
 
+
 func GetEqProp():
-	var book_name: = _get_current_book_name()
+	var book_name := _get_current_book_name()
 	if book_name == "":
 		return
-	var ItemName: = book_name.split("zzs")[0]
+	var ItemName := book_name.split("zzs")[0]
 	if not AE.AllEquipment_.has(ItemName):
 		return
 	return AE.AllEquipment_[ItemName]
 	pass
 
 
-func _on_help_pressed() -> void :
+func _on_help_pressed() -> void:
 	Global.AddForgeHelp(Global.get_parent_(self, 3), Vector2(455, 265))

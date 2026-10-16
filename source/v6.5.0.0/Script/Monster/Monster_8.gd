@@ -1,15 +1,14 @@
-
-
 extends BaseMonster
 class_name Monster8
 
 var buff_icon
 @onready var rd: Area2D = $Rd
-@onready var rrd: CollisionShape2D = $Rd / rrd
+@onready var rrd: CollisionShape2D = $Rd/rrd
 var has_hd = true
 
 var RD_node
 var shader_material: ShaderMaterial
+
 
 func monster_8():
 	Skill_1_CD = 0
@@ -39,19 +38,11 @@ func monster_8():
 	self.self_rhp = 50
 	self.add_exp = 50
 	self.fall_coin = 14
-	self.objattackDic["hit1"] = {
-		"power": 0, 
-		"hurtBack": [0, 0], 
-		"attackKind": ""
-	}
+	self.objattackDic["hit1"] = {"power": 0, "hurtBack": [0, 0], "attackKind": ""}
 	self.fall_pro = 0.5
-	self.fall_list = [
-		{"name": "whg", "value": 0}, 
-		{"name": "bsp", "value": 0}, 
-		{"name": "wtp", "value": 0}
-	]
+	self.fall_list = [{"name": "whg", "value": 0}, {"name": "bsp", "value": 0}, {"name": "wtp", "value": 0}]
 	self.independent_fall_list = [
-		{"name": "211007001", "value": 0, "chance": 0.25}, 
+		{"name": "211007001", "value": 0, "chance": 0.25},
 	]
 	enable_treasure_box = true
 	treasure_box_item = "bfsxbx"
@@ -61,15 +52,15 @@ func monster_8():
 	self.fall_stone_pro = 0
 	self.fall_stone = []
 
+
 func _ready():
 	super._ready()
 	monster_8()
 
-
-	var original_material = $MonsterDir / mr_ani.material
+	var original_material = $MonsterDir/mr_ani.material
 	if original_material:
 		shader_material = original_material.duplicate()
-		$MonsterDir / mr_ani.material = shader_material
+		$MonsterDir/mr_ani.material = shader_material
 		shader_material.set_shader_parameter("TINT_COLOR", Color(1, 1, 1, 1))
 
 
@@ -92,8 +83,6 @@ func _physics_process(delta):
 			if shader_material:
 				shader_material.set_shader_parameter("TINT_COLOR", Color(1, 1, 1, 1))
 
-
-
 	if RD_node != null:
 		rrd.disabled = false
 	else:
@@ -104,14 +93,17 @@ func _physics_process(delta):
 		velocity.y = 0
 	super._physics_process(delta)
 
+
 func use_Skill_1():
 	Skill_1_CD = 10
 	call_monster()
+
 
 func call_monster():
 	Global.add_SpecialEffect(self, Vector2(21, -46), "red_eyes", Vector2(1, 1), false, 1)
 	Global.add_SpecialEffect(self, Vector2(-27, -46), "red_eyes", Vector2(1, 1), true, 1)
 	create_bf(randi_range(3, 6))
+
 
 func create_bf(get_number):
 	for i in range(get_number):
@@ -127,6 +119,7 @@ func create_bf(get_number):
 		bf.fall_pro = 0
 		bf.fall_stone_pro = 0
 
+
 func _on_create_rd_timeout():
 	randomize()
 	var po_x_list = [-600, -700, -200, -250]
@@ -141,6 +134,7 @@ func _on_create_rd_timeout():
 	rd.position = rd_pos
 	rrd.disabled = false
 
+
 func _on_rd_area_entered(area):
 	if not has_hd:
 		return
@@ -151,12 +145,15 @@ func _on_rd_area_entered(area):
 	$reset_hd.wait_time = 5
 	$reset_hd.start()
 
+
 func Monster_Intelligence():
 	if Skill_1_CD <= 0:
 		use_Skill_1()
 
+
 func attack_target():
 	pass
+
 
 func _on_reset_hd_timeout():
 	has_hd = true

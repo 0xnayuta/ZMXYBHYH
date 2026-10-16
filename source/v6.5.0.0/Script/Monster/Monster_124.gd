@@ -1,6 +1,7 @@
 extends BaseMonster
 class_name Monster124
 
+
 func monster_1301():
 	self.is_Fly = true
 	self.is_boss = false
@@ -28,22 +29,16 @@ func monster_1301():
 	self.self_rhp = 0
 	self.add_exp = 100
 	self.fall_coin = 30
-	self.objattackDic["hit1"] = {
-		"power": 1000, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics"
-	}
+	self.objattackDic["hit1"] = {"power": 1000, "hurtBack": [-4, -9], "attackKind": "physics"}
 
 	self.fall_pro = 0.28
 	self.fall_list = [
-		{
-			"name": "ygs", 
-			"value": 1
-		}, 
+		{"name": "ygs", "value": 1},
 	]
 	self.fall_stone_pro = 0
-	self.fall_stone = [
-	]
-func _ready() -> void :
+	self.fall_stone = []
+
+
+func _ready() -> void:
 	super._ready()
 	monster_1301()

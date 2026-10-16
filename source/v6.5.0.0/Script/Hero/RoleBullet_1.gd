@@ -6,14 +6,12 @@ var MonsterList
 var name_: String
 var Player: BaseHero
 var is_set = false
-var HitDic = {
-	"power": 0, 
-	"hurtBack": [0, 0], 
-	"attackKind": "real"
-}
+var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
 var Shallow
 var FirstHyjj: bool = true
-func _physics_process(_delta: float) -> void :
+
+
+func _physics_process(_delta: float) -> void:
 	if not is_set:
 		Player = get_parent().get_parent()
 		if name_ == "hyjj":
@@ -22,33 +20,28 @@ func _physics_process(_delta: float) -> void :
 			bullet_player.play(name_)
 			await bullet_player.animation_finished
 		is_set = true
+
+
 func call_hyjj():
 	var Level = PlayerData.player_data["技能学习"]["技能9"]["等级"] + 1
 
-
 	for i in range(3):
-
-
 		var Monster = get_monster()
-
 
 		if Monster == null:
 			self.queue_free()
 			return
 
-
 		self.position = Monster.position
-
 
 		bullet_player.play(name_)
 		Global.addSound_(self, "res://Music/Hero/44_Role1_hit12_2.mp3")
 
-
 		await bullet_player.animation_finished
 		await get_tree().create_timer(0.55, false).timeout
 
-
 	self.queue_free()
+
 
 func get_monster():
 	var AllMonsterList = Player.get_parent().get_parent().get_node("Monster").get_children()
@@ -56,7 +49,11 @@ func get_monster():
 		return null
 	for i in AllMonsterList:
 		if i is BaseMonster:
-			if i.get_meta("pet_tiger_unit", false) or i.get_meta("is_summon", false) or (i.has_method("get") and i.get("is_summon") == true):
+			if (
+				i.get_meta("pet_tiger_unit", false)
+				or i.get_meta("is_summon", false)
+				or (i.has_method("get") and i.get("is_summon") == true)
+			):
 				continue
 
 			if i.is_death:
@@ -84,57 +81,7 @@ func get_monster():
 	return null
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-func _on_area_entered(_area: Area2D) -> void :
+func _on_area_entered(_area: Area2D) -> void:
 	randomize()
 	if name_ == "qsez" or name_ == "qsez_1":
 		var num = randi_range(0, 4)

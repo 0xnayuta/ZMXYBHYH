@@ -1,6 +1,8 @@
 extends BaseMonster
 class_name Monster58
 var Round
+
+
 func monster_58():
 	self.is_boss = false
 	self.my_mr_name = "勾魂使者"
@@ -27,32 +29,36 @@ func monster_58():
 	self.add_exp = 90
 	self.fall_coin = 50
 	self.objattackDic["hit1"] = {
-		"power": 180, 
-		"hurtBack": [-4, -9], 
-		"attackKind": "physics", 
+		"power": 180,
+		"hurtBack": [-4, -9],
+		"attackKind": "physics",
 	}
 	self.objattackDic["dmghr"] = {
-		"power": 60, 
-		"hurtBack": [-1, 0], 
-		"attackKind": "magic", 
-		"addeffect": {
-			"Name": "Bleed", 
-			"AddTime": 3, 
-			"ReduceInterval": 0.5, 
-			"value": 10, 
-			"CanAdd": true, 
-			"DeBuff": true, 
-			"AttackKind": "real", 
+		"power": 60,
+		"hurtBack": [-1, 0],
+		"attackKind": "magic",
+		"addeffect":
+		{
+			"Name": "Bleed",
+			"AddTime": 3,
+			"ReduceInterval": 0.5,
+			"value": 10,
+			"CanAdd": true,
+			"DeBuff": true,
+			"AttackKind": "real",
 		}
 	}
 	self.fall_pro = 0.0
 	self.fall_list = []
 	self.fall_stone_pro = 0
 	self.fall_stone = []
-func _ready() -> void :
+
+
+func _ready() -> void:
 	super._ready()
 	monster_58()
 	Skill_1_CD = 0
+
 
 func Monster_Intelligence():
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -78,6 +84,8 @@ func Monster_Intelligence():
 						attack_target()
 					else:
 						stop_move()
+
+
 func do_hit_2():
 	Skill_1_CD = 4
 	hit_name = "dmghr"
@@ -86,6 +94,8 @@ func do_hit_2():
 	mr_player.play("dmghr")
 	await mr_player.animation_finished
 	is_attacking = false
+
+
 func CallRound():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
@@ -93,6 +103,8 @@ func CallRound():
 	tween.tween_property(Round, "position", setposition(), 0.5)
 	await get_tree().create_timer(2.5, false).timeout
 	return_()
+
+
 func return_():
 	if Round != null:
 		var tween = get_tree().create_tween()
@@ -100,5 +112,10 @@ func return_():
 		tween.tween_property(Round, "position", pp, 0.3)
 		await get_tree().create_timer(0.28, false).timeout
 		Round.queue_free()
+
+
 func setposition():
-	return Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, RoleProp.get_nearest_monster_target_position(global_position).y)
+	return Vector2(
+		RoleProp.get_nearest_monster_target_position(global_position).x,
+		RoleProp.get_nearest_monster_target_position(global_position).y
+	)
