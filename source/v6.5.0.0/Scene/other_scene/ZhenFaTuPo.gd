@@ -46,91 +46,95 @@ func load_(name_):
 
 
 func SetAddPropText():
-	var Level = PlayerData.player_data[RealName]["Level"]
-	old_text.text = "阵法等级：Lv." + str(Level)
-	if Level + 1 < 10:
-		new_text.text = "阵法等级：Lv." + str(Level + 1)
+	var cur_level = PlayerData.player_data[RealName]["Level"]
+	old_text.text = "阵法等级：Lv." + str(cur_level)
+	if cur_level + 1 < 10:
+		new_text.text = "阵法等级：Lv." + str(cur_level + 1)
 	else:
 		new_text.text = "已满级"
 	match RealName:
 		"森罗阵":
-			add_prop_old.text = "附加属性：最终伤害减少" + str(Level) + "%"
-			if Level < 10:
-				add_prop_new.text = "附加属性：最终伤害减少" + str(Level + 1) + "%"
+			add_prop_old.text = "附加属性：最终伤害减少" + str(cur_level) + "%"
+			if cur_level < 10:
+				add_prop_new.text = "附加属性：最终伤害减少" + str(cur_level + 1) + "%"
 			else:
 				add_prop_new.text = ""
 		"落魄阵":
-			add_prop_old.text = "附加属性：最终伤害增加" + str(Level) + "%"
-			if Level < 10:
-				add_prop_new.text = "附加属性：最终伤害增加" + str(Level + 1) + "%"
+			add_prop_old.text = "附加属性：最终伤害增加" + str(cur_level) + "%"
+			if cur_level < 10:
+				add_prop_new.text = "附加属性：最终伤害增加" + str(cur_level + 1) + "%"
 			else:
 				add_prop_new.text = ""
 		"腾蛇阵":
-			add_prop_old.text = "附加属性：受到爆伤伤害减少" + str(Level) + "%"
-			if Level < 10:
-				add_prop_new.text = "附加属性：受到爆伤伤害减少" + str(Level + 1) + "%"
+			add_prop_old.text = "附加属性：受到爆伤伤害减少" + str(cur_level) + "%"
+			if cur_level < 10:
+				add_prop_new.text = "附加属性：受到爆伤伤害减少" + str(cur_level + 1) + "%"
 			else:
 				add_prop_new.text = ""
 		"太清阵":
-			add_prop_old.text = "附加属性：造成爆伤增加" + str(Level) + "%"
-			if Level < 10:
-				add_prop_new.text = "附加属性：造成爆伤增加" + str(Level + 1) + "%"
+			add_prop_old.text = "附加属性：造成爆伤增加" + str(cur_level) + "%"
+			if cur_level < 10:
+				add_prop_new.text = "附加属性：造成爆伤增加" + str(cur_level + 1) + "%"
 			else:
 				add_prop_new.text = ""
 
 
 func SetSkillInfo():
-	var Level = PlayerData.player_data[RealName]["Level"]
+	var cur_level = PlayerData.player_data[RealName]["Level"]
 	match RealName:
 		"森罗阵":
-			skill_info_old.text = "森罗阵Lv." + str(Level) + "：使用后立刻获得森罗加护（自身受伤减少" + str(Level * 2) + "%，持续10秒。）"
-			if Level < 10:
+			skill_info_old.text = "森罗阵Lv." + str(cur_level) + "：使用后立刻获得森罗加护（自身受伤减少" + str(cur_level * 2) + "%，持续10秒。）"
+			if cur_level < 10:
 				skill_info_new.text = (
-					"森罗阵Lv." + str(Level + 1) + "：使用后立刻获得森罗加护（自身受伤减少" + str((Level + 1) * 2) + "%，持续10秒。）"
+					"森罗阵Lv." + str(cur_level + 1) + "：使用后立刻获得森罗加护（自身受伤减少" + str((cur_level + 1) * 2) + "%，持续10秒。）"
 				)
 			else:
 				skill_info_new.text = ""
 		"落魄阵":
 			skill_info_old.text = (
 				"落魄阵Lv."
-				+ str(Level)
+				+ str(cur_level)
 				+ "：对进入法阵的敌人有"
-				+ str(Level * 10)
+				+ str(cur_level * 10)
 				+ "%概率对其施加虚弱效果（造成伤害降低"
-				+ str(Level * 2)
+				+ str(cur_level * 2)
 				+ "%），阵法存在8秒，持续10秒。"
 			)
-			if Level < 10:
+			if cur_level < 10:
 				skill_info_new.text = (
 					"落魄阵Lv."
-					+ str(Level + 1)
+					+ str(cur_level + 1)
 					+ "：对进入法阵的敌人有"
-					+ str((Level + 1) * 10)
+					+ str((cur_level + 1) * 10)
 					+ "%概率对其施加虚弱效果（造成伤害降低"
-					+ str((Level + 1) * 2)
+					+ str((cur_level + 1) * 2)
 					+ "%），阵法存在8秒，效果持续10秒。"
 				)
 			else:
 				skill_info_new.text = ""
 		"腾蛇阵":
-			skill_info_old.text = "腾蛇阵Lv." + str(Level) + "：自身伤害增加" + str(Level * 1.5) + "%，持续10秒。"
-			if Level < 10:
-				skill_info_new.text = "腾蛇阵Lv." + str(Level + 1) + "：自身伤害增加" + str((Level + 1) * 1.5) + "%，持续10秒。"
+			skill_info_old.text = "腾蛇阵Lv." + str(cur_level) + "：自身伤害增加" + str(cur_level * 1.5) + "%，持续10秒。"
+			if cur_level < 10:
+				skill_info_new.text = (
+					"腾蛇阵Lv." + str(cur_level + 1) + "：自身伤害增加" + str((cur_level + 1) * 1.5) + "%，持续10秒。"
+				)
 			else:
 				skill_info_new.text = ""
 		"太清阵":
-			skill_info_old.text = "太清阵Lv." + str(Level + 1) + "：每过1秒，清除处于法阵内玩家的低级负面，并恢复一定量的生命，令其1秒内不会被击退，法阵持续10秒。"
-			if Level < 10:
-				skill_info_new.text = "太清阵Lv." + str(Level + 1) + "：每过1秒，清除处于法阵内玩家的低级负面，并恢复一定量的生命，令其1秒内不会被击退，法阵持续10秒。"
+			skill_info_old.text = "太清阵Lv." + str(cur_level + 1) + "：每过1秒，清除处于法阵内玩家的低级负面，并恢复一定量的生命，令其1秒内不会被击退，法阵持续10秒。"
+			if cur_level < 10:
+				skill_info_new.text = (
+					"太清阵Lv." + str(cur_level + 1) + "：每过1秒，清除处于法阵内玩家的低级负面，并恢复一定量的生命，令其1秒内不会被击退，法阵持续10秒。"
+				)
 			else:
 				skill_info_new.text = ""
 
 
 func SetNeedAndLhInfo():
-	var Level = PlayerData.player_data[RealName]["Level"]
+	var cur_level = PlayerData.player_data[RealName]["Level"]
 	var item_name = "zftps"
-	var MaterialNeedValue = int(Level) * 10 + 10
-	var NeedLh = int(Level) * 10000 + 1000
+	var MaterialNeedValue = int(cur_level) * 10 + 10
+	var NeedLh = int(cur_level) * 10000 + 1000
 	var CurrentNum = int(PlayerData.get_item_data(item_name))
 	need.text = str(PlayerData.get_item_data(item_name)) + "/" + str(MaterialNeedValue)
 	if CurrentNum >= MaterialNeedValue:
@@ -142,8 +146,8 @@ func SetNeedAndLhInfo():
 
 func CheckFullLevel():
 	var List = PlayerData.player_data[RealName]
-	var Level = PlayerData.player_data[RealName]["Level"]
-	var NeedLevel = 5 + Level * 5
+	var cur_level = PlayerData.player_data[RealName]["Level"]
+	var NeedLevel = 5 + cur_level * 5
 	for i in List:
 		if typeof(List[i]) == TYPE_DICTIONARY:
 			if List[i]["Level"] < NeedLevel:
@@ -152,12 +156,12 @@ func CheckFullLevel():
 
 
 func _on_tupo_pressed() -> void:
-	var Level = PlayerData.player_data[RealName]["Level"]
+	var cur_level = PlayerData.player_data[RealName]["Level"]
 	var item_name = "zftps"
-	var MaterialNeedValue = int(Level) * 10 + 10
-	var NeedLh = int(Level) * 10000 + 1000
+	var MaterialNeedValue = int(cur_level) * 10 + 10
+	var NeedLh = int(cur_level) * 10000 + 1000
 	var CurrentNum := int(PlayerData.get_item_data(item_name))
-	if Level >= 10:
+	if cur_level >= 10:
 		Global.add_message_show(Global.Windows_, "阵法已满级！！", 1.5, Vector2(500, 305))
 		return
 	if CurrentNum < MaterialNeedValue:

@@ -294,18 +294,18 @@ func call_bullet_1():
 	for i in range(3):
 		if i > 0:
 			await get_tree().create_timer(0.3).timeout
-		var Bullets = Global.add_bullet(
+		var bullet_node = Global.add_bullet(
 			"Monster1407Bullet1", self.bullet, false, 1.5, position, "hit1", self.objattackDic["hit1"]
 		)
-		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
 func call_bullet_3():
 	for i in range(1):
-		var Bullets = Global.add_bullet(
+		var bullet_node = Global.add_bullet(
 			"Monster1407Bullet3", self.bullet, false, 1.5, position, "hit3", self.objattackDic["hit3"]
 		)
-		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
 func call_bullet_4():

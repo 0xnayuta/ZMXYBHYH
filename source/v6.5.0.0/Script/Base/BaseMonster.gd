@@ -1790,7 +1790,7 @@ func get_Role_last_hurt(target):
 	var Crit = 0
 	var LastDef = 0
 	var LastMdef = 0
-	var Level: int = 0
+	var cur_level: int = 0
 	var Lucky = 0
 	var HurtLx: String = "real"
 	if (
@@ -1805,14 +1805,14 @@ func get_Role_last_hurt(target):
 		Crit = RoleProp.roleprop.Crit - Critreduce
 		LastDef = def - RoleProp.roleprop.ar
 		LastMdef = mdef - RoleProp.roleprop.sp
-		Level = RoleProp.baseroleprop.Level
+		cur_level = RoleProp.baseroleprop.cur_level
 		Lucky = RoleProp.roleprop.Lucky - Toughness
 	elif target is BaseBuff:
 		Miss = miss - RoleProp.roleprop.Htarget
 		Crit = RoleProp.roleprop.Crit - Critreduce
 		LastDef = def - RoleProp.roleprop.ar
 		LastMdef = mdef - RoleProp.roleprop.sp
-		Level = RoleProp.baseroleprop.Level
+		cur_level = RoleProp.baseroleprop.cur_level
 		Lucky = RoleProp.roleprop.Lucky - Toughness
 	else:
 		return 0
@@ -1836,20 +1836,20 @@ func get_Role_last_hurt(target):
 	if Miss <= 0:
 		Miss = 0
 	else:
-		var miss_bl = abs(level - Level) * 0.04
+		var miss_bl = abs(level - cur_level) * 0.04
 		if miss_bl >= 0.9:
 			miss_bl = 0.9
-		if Level_suppression(Level):
+		if Level_suppression(cur_level):
 			Miss = Miss * (1 + miss_bl)
 		else:
 			Miss = Miss * (1 - miss_bl)
 	if Crit <= 0:
 		Crit = 0
 	else:
-		var crit_bl = abs(level - Level) * 0.11
+		var crit_bl = abs(level - cur_level) * 0.11
 		if crit_bl >= 1:
 			crit_bl = 1
-		if Level_suppression(Level):
+		if Level_suppression(cur_level):
 			Crit = Crit * (1 - crit_bl)
 		else:
 			Crit = Crit * (1 + crit_bl)
@@ -1864,18 +1864,18 @@ func get_Role_last_hurt(target):
 	if Lucky <= 0:
 		Lucky = 0
 	else:
-		var lucky_bl = abs(level - Level) * 0.07
+		var lucky_bl = abs(level - cur_level) * 0.07
 		if lucky_bl >= 0.7:
 			lucky_bl = 0.7
-		if Level_suppression(Level):
+		if Level_suppression(cur_level):
 			Lucky = Lucky * (1 - lucky_bl)
 		else:
 			Lucky = Lucky * (1 + lucky_bl)
 	var bl
-	if Level_suppression(Level):
-		Hurt = int(Hurt * (1 - is_suppression_num(Level) * 0.05))
+	if Level_suppression(cur_level):
+		Hurt = int(Hurt * (1 - is_suppression_num(cur_level) * 0.05))
 	else:
-		Hurt = int(Hurt * (1 + not_suppression_num(Level) * 0.05))
+		Hurt = int(Hurt * (1 + not_suppression_num(cur_level) * 0.05))
 	Crit = snapped(Crit / float(Crit + 100), 0.001)
 	Miss = snapped(Miss / float(Miss + 70), 0.001)
 	randomize()

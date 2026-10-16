@@ -50,22 +50,22 @@ func _ready() -> void:
 
 
 func ADDBullet():
-	var PositionList = []
+	var bullet_spawn_positions = []
 	if MonsterDirection:
-		PositionList = [
+		bullet_spawn_positions = [
 			Vector2(-15, -35),
 			Vector2(-10, -55),
 			Vector2(-5, -10),
 			Vector2(5, -45),
 		]
 	else:
-		PositionList = [
+		bullet_spawn_positions = [
 			Vector2(15, -35),
 			Vector2(10, -55),
 			Vector2(5, -10),
 			Vector2(-5, -45),
 		]
-	for i in PositionList:
+	for i in bullet_spawn_positions:
 		Global.add_bullet(
 			"Monster87Bullet", self.bullet, MonsterDirection, 1, i + position, "hit1", self.objattackDic["hit1"]
 		)

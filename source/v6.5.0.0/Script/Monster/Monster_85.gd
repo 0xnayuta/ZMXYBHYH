@@ -284,8 +284,10 @@ func ADDBullet():
 
 
 func ADDsd():
-	var PositionList = [Vector2(-380, -45), Vector2(-190, -45), Vector2(0, -45), Vector2(190, -45), Vector2(380, -45)]
-	for i in PositionList:
+	var bullet_spawn_positions = [
+		Vector2(-380, -45), Vector2(-190, -45), Vector2(0, -45), Vector2(190, -45), Vector2(380, -45)
+	]
+	for i in bullet_spawn_positions:
 		Global.add_bullet(
 			"Monster85Bullet2", self.bullet, MonsterDirection, 1, i + position, "hit5", self.objattackDic["hit5"]
 		)

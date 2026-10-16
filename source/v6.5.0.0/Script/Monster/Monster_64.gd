@@ -403,12 +403,16 @@ func ToDrop():
 
 
 func call_bullet():
-	var PositionList
+	var bullet_spawn_positions
 	if First:
-		PositionList = [Vector2(-158, 105), Vector2(158, 105), Vector2(0, 105), Vector2(-315, 105), Vector2(315, 105)]
+		bullet_spawn_positions = [
+			Vector2(-158, 105), Vector2(158, 105), Vector2(0, 105), Vector2(-315, 105), Vector2(315, 105)
+		]
 	else:
-		PositionList = [Vector2(-280, 240), Vector2(280, 240), Vector2(0, 240), Vector2(620, 240), Vector2(-620, 240)]
-	for i in PositionList:
+		bullet_spawn_positions = [
+			Vector2(-280, 240), Vector2(280, 240), Vector2(0, 240), Vector2(620, 240), Vector2(-620, 240)
+		]
+	for i in bullet_spawn_positions:
 		var bb = Global.add_bullet(
 			"Monster63Bullet", self.bullet, false, 1, i + self.position, "tsyd", self.objattackDic["tsyd"]
 		)

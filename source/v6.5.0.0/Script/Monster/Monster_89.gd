@@ -193,8 +193,8 @@ func ADDBullet():
 		self.objattackDic["hit3"]
 	)
 	await get_tree().create_timer(0.7, false).timeout
-	var PositionList = [[-180, 180], [-360, 360], [-540, 540]]
-	for i in PositionList:
+	var bullet_spawn_positions = [[-180, 180], [-360, 360], [-540, 540]]
+	for i in bullet_spawn_positions:
 		for u in i:
 			Global.add_bullet(
 				"Monster88Bullet2",
@@ -210,10 +210,10 @@ func ADDBullet():
 
 func call_bullet_3():
 	for i in range(1):
-		var Bullets = Global.add_bullet(
+		var bullet_node = Global.add_bullet(
 			"Monster89Bullet3", self.bullet, false, 1.5, position, "hit3", self.objattackDic["hit3"]
 		)
-		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
 func _on_get_hd_timeout() -> void:

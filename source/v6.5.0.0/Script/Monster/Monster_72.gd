@@ -129,8 +129,8 @@ func do_hit_2():
 func CallMonsterBullet():
 	var BulletName = "Monster72Bullet"
 	var bullet_pos
-	var PositionList = [Vector2(0, 0), Vector2(0, -75), Vector2(0, 75)]
-	for i in PositionList:
+	var bullet_spawn_positions = [Vector2(0, 0), Vector2(0, -75), Vector2(0, 75)]
+	for i in bullet_spawn_positions:
 		Global.add_bullet(BulletName, self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"])
 		await get_tree().create_timer(0.3, false).timeout
 

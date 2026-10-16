@@ -155,8 +155,8 @@ func Call_ZZZY():
 
 
 func CallZZHY():
-	var Num = 3 + int(RoleBeHitCount / 3)
-	for i in range(Num):
+	var target_count = 3 + int(RoleBeHitCount / 3)
+	for i in range(target_count):
 		var bullet_pos = Vector2(
 			RoleProp.get_nearest_monster_target_position(global_position).x + randi_range(-140, 140), 500
 		)

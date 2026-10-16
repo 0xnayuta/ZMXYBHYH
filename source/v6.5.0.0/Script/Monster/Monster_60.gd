@@ -294,15 +294,15 @@ func is_alive_for_stage_clear() -> bool:
 
 
 func CallHands():
-	var PositionList = []
+	var bullet_spawn_positions = []
 	var OtherPo = []
 	if MonsterDirection:
 		OtherPo = [Vector2(37, 55), Vector2(67, 45), Vector2(27, 25)]
-		PositionList = [Vector2(37, -35), Vector2(67, -65), Vector2(27, -5)]
+		bullet_spawn_positions = [Vector2(37, -35), Vector2(67, -65), Vector2(27, -5)]
 	else:
 		OtherPo = [Vector2(-37, 55), Vector2(-67, 45), Vector2(-27, 25)]
-		PositionList = [Vector2(-37, -35), Vector2(-67, -65), Vector2(-27, -5)]
-	for i in PositionList:
+		bullet_spawn_positions = [Vector2(-37, -35), Vector2(-67, -65), Vector2(-27, -5)]
+	for i in bullet_spawn_positions:
 		Global.add_bullet(
 			"Monster60Bullet", self, MonsterDirection, randf_range(1.1, 1.3), i, "mykl", self.objattackDic["mykl"]
 		)

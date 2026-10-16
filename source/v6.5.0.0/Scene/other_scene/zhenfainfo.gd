@@ -31,37 +31,37 @@ func _physics_process(delta: float) -> void:
 
 
 func SetAddPropText():
-	var Level = PlayerData.player_data[RealName]["Level"]
+	var cur_level = PlayerData.player_data[RealName]["Level"]
 	match RealName:
 		"森罗阵":
-			add_prop.text = "附加属性：最终伤害减少" + str(Level) + "%"
+			add_prop.text = "附加属性：最终伤害减少" + str(cur_level) + "%"
 		"落魄阵":
-			add_prop.text = "附加属性：最终伤害增加" + str(Level) + "%"
+			add_prop.text = "附加属性：最终伤害增加" + str(cur_level) + "%"
 		"腾蛇阵":
-			add_prop.text = "附加属性：受到爆伤伤害减少" + str(Level) + "%"
+			add_prop.text = "附加属性：受到爆伤伤害减少" + str(cur_level) + "%"
 		"太清阵":
-			add_prop.text = "附加属性：造成爆伤增加" + str(Level) + "%"
+			add_prop.text = "附加属性：造成爆伤增加" + str(cur_level) + "%"
 
 
 func SetSkillInfo():
-	var Level = PlayerData.player_data[RealName]["Level"]
+	var cur_level = PlayerData.player_data[RealName]["Level"]
 	match RealName:
 		"森罗阵":
-			skill_info.text = "森罗阵Lv." + str(Level) + "：使用后立刻获得森罗加护（自身受伤减少" + str(Level * 2) + "%，效果持续10秒）。"
+			skill_info.text = "森罗阵Lv." + str(cur_level) + "：使用后立刻获得森罗加护（自身受伤减少" + str(cur_level * 2) + "%，效果持续10秒）。"
 		"落魄阵":
 			skill_info.text = (
 				"落魄阵Lv."
-				+ str(Level)
+				+ str(cur_level)
 				+ "：对进入法阵的敌人有"
-				+ str(Level * 10)
+				+ str(cur_level * 10)
 				+ "%概率对其施加虚弱效果（造成伤害降低"
-				+ str(Level * 2)
+				+ str(cur_level * 2)
 				+ "%），阵法存在8秒，持续10秒。"
 			)
 		"腾蛇阵":
-			skill_info.text = "腾蛇阵Lv." + str(Level) + "：自身伤害增加" + str(Level * 1.5) + "%，持续10秒。"
+			skill_info.text = "腾蛇阵Lv." + str(cur_level) + "：自身伤害增加" + str(cur_level * 1.5) + "%，持续10秒。"
 		"太清阵":
-			skill_info.text = "太清阵Lv." + str(Level) + "：每过1秒，清除处于法阵内玩家的低级负面，并恢复一定量的生命，令其1秒内不会被击退，法阵持续10秒。"
+			skill_info.text = "太清阵Lv." + str(cur_level) + "：每过1秒，清除处于法阵内玩家的低级负面，并恢复一定量的生命，令其1秒内不会被击退，法阵持续10秒。"
 
 
 func SetPropText():

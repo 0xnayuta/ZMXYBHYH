@@ -1,7 +1,9 @@
 extends BaseMagicWeapon
 class_name MagicUmbrella
 var StabRotationList = [-5, -5, -5, -5, -5, -5, -5, -5, -5, -5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
-var PositionList = [150, 135, 120, 105, 90, 75, 60, 45, 30, 15, 0, -15, -30, -45, -60, -75, -90, -105, -120, -135, -150]
+var bullet_spawn_positions = [
+	150, 135, 120, 105, 90, 75, 60, 45, 30, 15, 0, -15, -30, -45, -60, -75, -90, -105, -120, -135, -150
+]
 var _hit_data := {
 	"power": 0,
 	"hurtBack": [5, -5],
@@ -54,7 +56,7 @@ func addBullet():
 	for i in range(21):
 		var stab = Global.addWeaponBullet_(
 			$Bullet,
-			Vector2(self.position.x + PositionList[i], self.position.y),
+			Vector2(self.position.x + bullet_spawn_positions[i], self.position.y),
 			"MagicUmbrellaBullet",
 			attack_data,
 			mg_action.flip_h,

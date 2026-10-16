@@ -134,17 +134,17 @@ func AddChild1():
 	var Rotation
 	var Rotation2
 	var po: Vector2
-	var PositionList = []
+	var bullet_spawn_positions = []
 	if MonsterDirection:
 		po = Vector2(70, -20)
 		Rotation = -11
 		Rotation2 = 40
-		PositionList = [
+		bullet_spawn_positions = [
 			Vector2(1400, -1000), Vector2(1200, -1000), Vector2(1000, -1000), Vector2(800, -1000), Vector2(600, -1000)
 		]
 	else:
 		po = Vector2(-70, -20)
-		PositionList = [
+		bullet_spawn_positions = [
 			Vector2(-1400, -1000),
 			Vector2(-1200, -1000),
 			Vector2(-1000, -1000),
@@ -159,7 +159,7 @@ func AddChild1():
 	child.rotation_degrees = Rotation
 	var dir = MonsterDirection
 	await get_tree().create_timer(1, false).timeout
-	for i in PositionList:
+	for i in bullet_spawn_positions:
 		child = Global.add_bullet("Monster77Bullet3", bullet, dir, 2, position + i, "hit3", self.objattackDic["hit3"])
 		child.rotation_degrees = Rotation2
 		await get_tree().create_timer(0.5, false).timeout

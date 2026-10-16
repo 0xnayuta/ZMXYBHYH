@@ -51,17 +51,17 @@ func _ready() -> void:
 
 
 func call_bullet():
-	var Bullets
+	var bullet_node
 
 	if self.MonsterDirection:
-		Bullets = Global.add_bullet(
+		bullet_node = Global.add_bullet(
 			"Monster99Bullet", self.bullet, false, 1, Vector2(40, 20) + position, "hit1", self.objattackDic["hit1"]
 		)
 	else:
-		Bullets = Global.add_bullet(
+		bullet_node = Global.add_bullet(
 			"Monster99Bullet", self.bullet, false, 1, Vector2(-40, 20) + position, "hit1", self.objattackDic["hit1"]
 		)
-	Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+	bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
 # ==============================================================================

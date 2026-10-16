@@ -391,10 +391,10 @@ func call_bullet():
 		return
 
 	var MaxCount: int = 15
-	var Num: int = 0
+	var target_count: int = 0
 
-	while Num < MaxCount:
-		var NewRotation = 360.0 / MaxCount * Num
+	while target_count < MaxCount:
+		var NewRotation = 360.0 / MaxCount * target_count
 		var rad = deg_to_rad(NewRotation)
 		var stabPosition = Vector2(self.position.x + sin(rad) * 300, self.position.y - 15 - cos(rad) * 300)
 		var Arrow = Global.add_bullet(
@@ -404,7 +404,7 @@ func call_bullet():
 			Arrow.rotation_degrees = NewRotation - 90
 
 		await get_tree().create_timer(0.05, false).timeout
-		Num += 1
+		target_count += 1
 
 
 func _on_hurt_box_area_entered(area: Area2D):

@@ -97,7 +97,7 @@ func do_hit_2():
 
 
 func call_bullet_1():
-	var Bullets
+	var bullet_node
 	var bullet_parent: Node = self.bullet
 	var level_node := get_level_node()
 	if level_node != null:
@@ -108,15 +108,15 @@ func call_bullet_1():
 		bullet_parent = get_tree().current_scene
 	var hit_data: Dictionary = self.objattackDic["hit2"].duplicate(true)
 	if self.MonsterDirection:
-		Bullets = Global.add_bullet(
+		bullet_node = Global.add_bullet(
 			"Monster118Bullet2", bullet_parent, false, 1, Vector2(35, 25) + global_position, "hit2", hit_data
 		)
 	else:
-		Bullets = Global.add_bullet(
+		bullet_node = Global.add_bullet(
 			"Monster118Bullet2", bullet_parent, false, 1, Vector2(-35, 25) + global_position, "hit2", hit_data
 		)
-	if Bullets != null and get_Player != null:
-		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+	if bullet_node != null and get_Player != null:
+		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
 func state_death():

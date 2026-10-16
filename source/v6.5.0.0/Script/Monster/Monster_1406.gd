@@ -257,11 +257,11 @@ func call_bullet_1():
 		if i > 0:
 			await get_tree().create_timer(0.3).timeout
 
-		var Bullets = Global.add_bullet(
+		var bullet_node = Global.add_bullet(
 			"Monster1406Bullet1", self.bullet, false, 1.5, position, "hit1", self.objattackDic["hit1"]
 		)
 
-		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
 func call_bullet_2():

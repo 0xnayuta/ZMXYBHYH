@@ -392,12 +392,12 @@ func _onPressWhenfj():
 		var Name_
 		if PlayerData.player_data["分解列表"].size() != 0:
 			Name_ = PlayerData.player_data["分解列表"][0]["名字"]
-			var Level = PlayerData.player_data["分解列表"][0]["强化等级"]
+			var cur_level = PlayerData.player_data["分解列表"][0]["强化等级"]
 			var Data = PlayerData.player_data["分解列表"][0]["Data"]
 			get_tt = AE.AllEquipment_[Name_]["类型"]
 			match get_tt:
 				"武器", "饰品", "防具":
-					PlayerData.add_zb(Name_, Level, Data)
+					PlayerData.add_zb(Name_, cur_level, Data)
 					PlayerData.player_data["分解列表"].clear()
 				"道具":
 					PlayerData.add_dj(Name_, 1)
@@ -438,12 +438,12 @@ func _onPressWhenfj():
 	else:
 		if PlayerData.player_data["分解列表"].size() != 0:
 			var Name_ = PlayerData.player_data["分解列表"][0]["名字"]
-			var Level = PlayerData.player_data["分解列表"][0]["强化等级"]
+			var cur_level = PlayerData.player_data["分解列表"][0]["强化等级"]
 			var Data = PlayerData.player_data["分解列表"][0]["Data"]
 			get_tt = AE.AllEquipment_[Name_]["类型"]
 			match get_tt:
 				"武器", "饰品", "防具":
-					PlayerData.add_zb(Name_, Level, Data)
+					PlayerData.add_zb(Name_, cur_level, Data)
 					PlayerData.player_data["分解列表"].clear()
 				"道具":
 					PlayerData.add_dj(Name_, 1)

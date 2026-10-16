@@ -137,7 +137,7 @@ func _on_portal1_timeout(portal):
 		_remove_portal1(portal)
 		return
 
-	var Bullets = Global.add_bullet(
+	var bullet_node = Global.add_bullet(
 		"Monster148Bullet1",
 		self.bullet,
 		false,
@@ -146,7 +146,7 @@ func _on_portal1_timeout(portal):
 		"hit1",
 		self.objattackDic["hit1"]
 	)
-	Bullets.rotation = 0 if portal.direction < 0 else PI
+	bullet_node.rotation = 0 if portal.direction < 0 else PI
 	portal.count += 1
 
 
@@ -292,17 +292,17 @@ func _on_portal3_timeout(portal):
 
 	var spawn_pos = Vector2(portal.position.x + 35 * portal.direction, portal.position.y + 25)
 
-	var Bullets = Global.add_bullet(
+	var bullet_node = Global.add_bullet(
 		"Monster148Bullet3", self.bullet, false, 1, spawn_pos, "hit3", self.objattackDic["hit3"]
 	)
 
-	if Bullets.has_method("set_scale"):
+	if bullet_node.has_method("set_scale"):
 		if portal.direction < 0:
-			Bullets.scale.x = 1
-			Bullets.rotation = 0
+			bullet_node.scale.x = 1
+			bullet_node.rotation = 0
 		else:
-			Bullets.scale.x = -1
-			Bullets.rotation = 0
+			bullet_node.scale.x = -1
+			bullet_node.rotation = 0
 
 	portal.count += 1
 

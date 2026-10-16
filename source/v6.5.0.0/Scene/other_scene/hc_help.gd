@@ -116,7 +116,7 @@ func OnCurrentTypeChange():
 
 func ADDHelpItems():
 	RemoveItem()
-	var Num = 0
+	var target_count = 0
 	var target_dict
 	match CurrentType:
 		0:
@@ -131,8 +131,8 @@ func ADDHelpItems():
 			target_dict = L_szList
 	if target_dict.has("page" + str(CurrentPage)):
 		for recipe in target_dict["page" + str(CurrentPage)]:
-			ItemList_.append(Global.AddHelpThing(self, PositonList[Num], recipe))
-			Num += 1
+			ItemList_.append(Global.AddHelpThing(self, PositonList[target_count], recipe))
+			target_count += 1
 
 
 func RemoveItem():

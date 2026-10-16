@@ -169,30 +169,30 @@ func do_hit_3():
 
 
 func call_bullet_1():
-	var Bullets
+	var bullet_node
 	if self.MonsterDirection:
-		Bullets = Global.add_bullet(
+		bullet_node = Global.add_bullet(
 			"Monster102Bullet", self.bullet, false, 0.6, Vector2(50, 0) + position, "hit2", self.objattackDic["hit2"]
 		)
 	else:
-		Bullets = Global.add_bullet(
+		bullet_node = Global.add_bullet(
 			"Monster102Bullet", self.bullet, false, 0.6, Vector2(-50, 0) + position, "hit2", self.objattackDic["hit2"]
 		)
-	Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+	bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
 func call_bullet_2():
-	var Bullets
+	var bullet_node
 	var BulletList = []
 	if self.MonsterDirection:
 		BulletList = [Vector2(0, 0), Vector2(50, 0)]
 	else:
 		BulletList = [Vector2(0, 0), Vector2(-50, 0)]
 	for i in BulletList:
-		Bullets = Global.add_bullet(
+		bullet_node = Global.add_bullet(
 			"Monster102Bullet1", self.bullet, false, 1, i + position, "hit3", self.objattackDic["hit3"]
 		)
-		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 		await get_tree().create_timer(0.2, false).timeout
 
 

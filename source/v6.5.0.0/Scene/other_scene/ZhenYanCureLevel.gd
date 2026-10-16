@@ -31,16 +31,16 @@ func SetLevelInfo():
 			RealName = "腾蛇阵"
 		"tqz":
 			RealName = "太清阵"
-	var Level = int(PlayerData.player_data[RealName][str(Father.CurrentNum)]["Level"])
+	var cur_level = int(PlayerData.player_data[RealName][str(Father.CurrentNum)]["Level"])
 	var PropType = RoleProp.ZhenFaProps[RealName][str(Father.CurrentNum)]["Type"]
-	if int(Level) <= 50:
-		level_info_old.text = "Lv." + str(Level)
+	if int(cur_level) <= 50:
+		level_info_old.text = "Lv." + str(cur_level)
 		prop_info_old.text = str(PropType) + "+" + str(RoleProp.GetZFLocProp(RealName, Father.CurrentNum))
 	else:
 		level_info_old.text = "已满级"
 		prop_info_old.text = "已满级"
-	if int(Level) + 1 <= 50:
-		level_info_new.text = "Lv." + str(Level + 1)
+	if int(cur_level) + 1 <= 50:
+		level_info_new.text = "Lv." + str(cur_level + 1)
 		prop_info_new.text = str(PropType) + "+" + str(RoleProp.GetNextLevelProp(RealName, Father.CurrentNum))
 	else:
 		prop_info_new.text = "已满级"
@@ -48,10 +48,10 @@ func SetLevelInfo():
 
 
 func SetNeedAndLhInfo():
-	var Level = int(PlayerData.player_data[RealName][str(Father.CurrentNum)]["Level"])
+	var cur_level = int(PlayerData.player_data[RealName][str(Father.CurrentNum)]["Level"])
 	var item_name = PlayerData.player_data[RealName][str(Father.CurrentNum)]["InName"]
-	var MaterialNeedValue = int(Level / 5) + 1
-	var NeedLh = int(Level / 5) * 1000 + 1000
+	var MaterialNeedValue = int(cur_level / 5) + 1
+	var NeedLh = int(cur_level / 5) * 1000 + 1000
 	var CurrentNum = int(PlayerData.get_item_data(item_name))
 	need_num.text = str(PlayerData.get_item_data(item_name)) + "/" + str(MaterialNeedValue)
 	if CurrentNum >= MaterialNeedValue:
@@ -71,12 +71,12 @@ func SetBoxInfo():
 
 
 func _on_cure_level_pressed() -> void:
-	var Level = int(PlayerData.player_data[RealName][str(Father.CurrentNum)]["Level"])
+	var cur_level = int(PlayerData.player_data[RealName][str(Father.CurrentNum)]["Level"])
 	var item_name = PlayerData.player_data[RealName][str(Father.CurrentNum)]["InName"]
-	var MaterialNeedValue = int(Level / 5) + 1
-	var NeedLh = int(Level / 5) * 1000 + 1000
+	var MaterialNeedValue = int(cur_level / 5) + 1
+	var NeedLh = int(cur_level / 5) * 1000 + 1000
 	var CurrentNum := int(PlayerData.get_item_data(item_name))
-	if Level >= 50:
+	if cur_level >= 50:
 		Global.add_message_show(Global.Windows_, "已满级！！", 1.5, Vector2(500, 305))
 		return
 	if CurrentNum < MaterialNeedValue:

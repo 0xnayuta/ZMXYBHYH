@@ -193,20 +193,20 @@ func movetoplayer():
 
 
 func call_bullet_1():
-	var PositionList = [{}]
+	var bullet_spawn_positions = [{}]
 	if self.MonsterDirection:
-		PositionList = [
+		bullet_spawn_positions = [
 			{"position": Vector2(50, 0), "Scale": Vector2(0.5, 0.5)},
 			{"position": Vector2(90, 0), "Scale": Vector2(0.7, 0.7)},
 			{"position": Vector2(130, 0), "Scale": Vector2(1, 1)}
 		]
 	else:
-		PositionList = [
+		bullet_spawn_positions = [
 			{"position": Vector2(-50, 0), "Scale": Vector2(0.5, 0.5)},
 			{"position": Vector2(-90, 0), "Scale": Vector2(0.7, 0.7)},
 			{"position": Vector2(-130, 0), "Scale": Vector2(1, 1)}
 		]
-	for i in PositionList:
+	for i in bullet_spawn_positions:
 		var Bullet = Global.add_bullet(
 			"Monster108Bullet2", self, MonsterDirection, 1, i["position"], "hit4", self.objattackDic["hit4"]
 		)

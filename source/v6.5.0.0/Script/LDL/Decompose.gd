@@ -107,15 +107,15 @@ func BsFj(Name_):
 	if Base != "宝石":
 		return
 	var NameList = str(Name_).split("_")
-	var Level = NameList[1]
+	var cur_level = NameList[1]
 	var item_name = NameList[0]
 	if Base != "宝石":
 		return
-	if int(Level) <= 1:
+	if int(cur_level) <= 1:
 		return
 	NormalItems[Name_] = {"Value": [], "Need": 100}
 	for i in range(3):
-		NormalItems[Name_]["Value"].push_back({"name": str(item_name) + "_" + str(int(Level) - 1), "num": 1})
+		NormalItems[Name_]["Value"].push_back({"name": str(item_name) + "_" + str(int(cur_level) - 1), "num": 1})
 
 
 func ChangeItemList():
@@ -124,7 +124,7 @@ func ChangeItemList():
 
 	if PlayerData.player_data["分解列表"].size() != 0:
 		var Name_ = PlayerData.player_data["分解列表"][0]["名字"]
-		var Level = PlayerData.player_data["分解列表"][0]["强化等级"]
+		var cur_level = PlayerData.player_data["分解列表"][0]["强化等级"]
 		var Data = PlayerData.player_data["分解列表"][0]["Data"]
 		var get_tt = AE.AllEquipment_[Name_]["类型"]
 		if NormalItems.has(Name_):
@@ -140,24 +140,24 @@ func ChangeItemList():
 		var num: int = 0
 		match get_tt:
 			"武器", "饰品", "防具":
-				Pushqhs(Name_, Level)
+				Pushqhs(Name_, cur_level)
 				PushBS(Name_, AE.AllEquipment_[Name_]["品质"])
 				PushBasicItem(AE.AllEquipment_[Name_]["品质"])
 				if ItemList_.size() != 0:
 					for i in ItemList_:
 						var ItemName = i["name"]
 						var Type = AE.AllEquipment_[ItemName]["类型"]
-						var Num = i["num"]
+						var target_count = i["num"]
 						var box
 						match Type:
 							"武器", "饰品", "防具":
 								box = Global.AddItemBox(
-									item_list, true, true, ItemName, Num, 0, [], AE.AllEquipment_[ItemName]
+									item_list, true, true, ItemName, target_count, 0, [], AE.AllEquipment_[ItemName]
 								)
 								box.set_button_icon(load_(ItemName))
 							"道具":
 								box = Global.AddItemBox(
-									item_list, true, true, ItemName, 0, Num, [], AE.AllEquipment_[ItemName]
+									item_list, true, true, ItemName, 0, target_count, [], AE.AllEquipment_[ItemName]
 								)
 								box.set_button_icon(load_(ItemName))
 						num += 1
@@ -212,12 +212,12 @@ func _on_decompose_button_pressed() -> void:
 
 	if PlayerData.player_data["分解列表"].size() != 0:
 		var Name_ = PlayerData.player_data["分解列表"][0]["名字"]
-		var Level = PlayerData.player_data["分解列表"][0]["强化等级"]
+		var cur_level = PlayerData.player_data["分解列表"][0]["强化等级"]
 		var Data = PlayerData.player_data["分解列表"][0]["Data"]
 		var get_tt = AE.AllEquipment_[Name_]["类型"]
 		var Typee = AE.AllEquipment_[Name_]["类型"]
 		var ItemName_ = AE.AllEquipment_[Name_]["名字"]
-		if Level > 0:
+		if cur_level > 0:
 			Global.add_choose_text(
 				Global.get_parent_(self, 3), Vector2(0, 0), "确定要分解" + str(ItemName_) + "吗？（该装备包含强化等级！）", 0
 			)
@@ -231,7 +231,7 @@ func fj():
 	if PlayerData.player_data["分解列表"].size() != 0:
 		var list = []
 		var Name_ = PlayerData.player_data["分解列表"][0]["名字"]
-		var Level = PlayerData.player_data["分解列表"][0]["强化等级"]
+		var cur_level = PlayerData.player_data["分解列表"][0]["强化等级"]
 		var Data = PlayerData.player_data["分解列表"][0]["Data"]
 		var get_tt = AE.AllEquipment_[Name_]["类型"]
 		var Typee = AE.AllEquipment_[Name_]["类型"]
@@ -242,7 +242,7 @@ func fj():
 					for i in ItemList_:
 						var ItemName = i["name"]
 						var Type = AE.AllEquipment_[ItemName]["类型"]
-						var Num = i["num"]
+						var target_count = i["num"]
 						var box
 						match Type:
 							"武器", "饰品", "防具":
@@ -252,13 +252,13 @@ func fj():
 										"Value": 1,
 										"Prop": AE.AllEquipment_[ItemName],
 										"WX": [],
-										"StrengthValue": Num
+										"StrengthValue": target_count
 									}
 								)
 								PlayerData.player_data["分解列表"].clear()
 							"道具":
 								list.push_back(
-									{"Name": ItemName, "Value": Num, "Prop": [], "WX": [], "StrengthValue": 0}
+									{"Name": ItemName, "Value": target_count, "Prop": [], "WX": [], "StrengthValue": 0}
 								)
 								PlayerData.player_data["分解列表"].clear()
 					Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), list, null, null)
@@ -282,8 +282,10 @@ func fj():
 					PlayerData.spend_soul(NeedLh)
 					for i in NormalItems[Name_]["Value"]:
 						var item_name = i["name"]
-						var Num = i["num"]
-						list.push_back({"Name": item_name, "Value": Num, "Prop": [], "WX": [], "StrengthValue": 0})
+						var target_count = i["num"]
+						list.push_back(
+							{"Name": item_name, "Value": target_count, "Prop": [], "WX": [], "StrengthValue": 0}
+						)
 					Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), list, null, null)
 					PlayerData.player_data["分解列表"].clear()
 					Global.add_message_show(Global.Windows_, "分解成功！！", 1.5, Vector2(500, 305))
@@ -292,12 +294,12 @@ func fj():
 func remove_infomation():
 	if PlayerData.player_data["分解列表"].size() != 0:
 		var Name_ = PlayerData.player_data["分解列表"][0]["名字"]
-		var Level = PlayerData.player_data["分解列表"][0]["强化等级"]
+		var cur_level = PlayerData.player_data["分解列表"][0]["强化等级"]
 		var Data = PlayerData.player_data["分解列表"][0]["Data"]
 		var get_tt = AE.AllEquipment_[Name_]["类型"]
 		match get_tt:
 			"武器", "饰品", "防具":
-				PlayerData.add_zb(Name_, Level, Data)
+				PlayerData.add_zb(Name_, cur_level, Data)
 				PlayerData.player_data["分解列表"].clear()
 			"道具":
 				PlayerData.add_dj(Name_, 1)

@@ -136,10 +136,10 @@ func _on_hit_box_area_exited(_area: Area2D) -> void:
 
 
 func call_bullet():
-	var PositionList = []
+	var bullet_spawn_positions = []
 	if randi_range(0, 100) < 30:
 		if not MonsterDirection:
-			PositionList = [
+			bullet_spawn_positions = [
 				Vector2(-80, 70),
 				Vector2(-180, 70),
 				Vector2(-280, 70),
@@ -148,7 +148,7 @@ func call_bullet():
 				Vector2(-580, 70)
 			]
 		else:
-			PositionList = [
+			bullet_spawn_positions = [
 				Vector2(80, 70),
 				Vector2(180, 70),
 				Vector2(280, 70),
@@ -156,14 +156,14 @@ func call_bullet():
 				Vector2(480, 70),
 				Vector2(580, 70)
 			]
-		for i in PositionList:
+		for i in bullet_spawn_positions:
 			Global.add_bullet(
 				"Monster67Bullet", self.bullet, MonsterDirection, 1, i + position, "hit3", self.objattackDic["hit3"]
 			)
 			await get_tree().create_timer(0.2, false).timeout
 	else:
 		await get_tree().create_timer(2, false).timeout
-		PositionList = [
+		bullet_spawn_positions = [
 			Vector2(1050, 510),
 			Vector2(1210, 510),
 			Vector2(1370, 510),
@@ -171,10 +171,10 @@ func call_bullet():
 			Vector2(1690, 510),
 			Vector2(1850, 510)
 		]
-		for i in PositionList:
+		for i in bullet_spawn_positions:
 			Global.add_bullet("Monster67Bullet", self.bullet, MonsterDirection, 1, i, "hit3", self.objattackDic["hit3"])
 		await get_tree().create_timer(2, false).timeout
-		PositionList = [
+		bullet_spawn_positions = [
 			Vector2(1110, 510),
 			Vector2(1240, 510),
 			Vector2(1370, 510),
@@ -184,7 +184,7 @@ func call_bullet():
 			Vector2(1890, 510),
 			Vector2(2020, 510)
 		]
-		for i in PositionList:
+		for i in bullet_spawn_positions:
 			Global.add_bullet("Monster67Bullet", self.bullet, MonsterDirection, 1, i, "hit3", self.objattackDic["hit3"])
 
 

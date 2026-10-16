@@ -163,9 +163,11 @@ func call_bullet_1():
 
 
 func call_bullet_2():
-	var PositionList = [{"position": Vector2(125, 50), "dir": true}, {"position": Vector2(-125, 50), "dir": false}]
+	var bullet_spawn_positions = [
+		{"position": Vector2(125, 50), "dir": true}, {"position": Vector2(-125, 50), "dir": false}
+	]
 	for i in range(3):
-		for u in PositionList:
+		for u in bullet_spawn_positions:
 			Global.add_bullet(
 				"Monster134Bullet",
 				self.bullet,

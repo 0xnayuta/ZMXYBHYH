@@ -322,7 +322,7 @@ func CallBullet_3():
 
 
 func CallBullet_4():
-	var PositionList = [
+	var bullet_spawn_positions = [
 		Vector2(-500 + position.x, 500),
 		Vector2(-400 + position.x, 500),
 		Vector2(-300 + position.x, 500),
@@ -334,7 +334,7 @@ func CallBullet_4():
 		Vector2(400 + position.x, 500),
 		Vector2(500 + position.x, 500)
 	]
-	for i in PositionList:
+	for i in bullet_spawn_positions:
 		Global.add_bullet("Monster140Bullet4", self.bullet, false, 1, i, "hit5", self.objattackDic["hit5"])
 
 

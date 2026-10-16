@@ -106,10 +106,10 @@ func do_hit_1():
 
 func Call():
 	Global.create_monster(136, get_parent(), RoleProp.get_nearest_monster_target_position(global_position))
-	var PositionList = [
+	var bullet_spawn_positions = [
 		RoleProp.get_nearest_monster_target_position(global_position) + Vector2(-100, -100),
 		RoleProp.get_nearest_monster_target_position(global_position) + Vector2(0, -100),
 		RoleProp.get_nearest_monster_target_position(global_position) + Vector2(100, -100)
 	]
-	for i in PositionList:
+	for i in bullet_spawn_positions:
 		Global.add_bullet("Monster137Bullet1", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])

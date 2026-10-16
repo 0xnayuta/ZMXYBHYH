@@ -285,8 +285,8 @@ func _get_zznh_buff_info() -> Dictionary:
 func Role3SdCure():
 	var Player = get_parent()
 	if Player is Role3Hero:
-		var Level = PlayerData.player_data["技能学习"]["技能6"]["等级"] + 1
-		var CureValue = int(6 + RoleProp.roleprop.SHp * (0.004 + Level * 0.001))
+		var cur_level = PlayerData.player_data["技能学习"]["技能6"]["等级"] + 1
+		var CureValue = int(6 + RoleProp.roleprop.SHp * (0.004 + cur_level * 0.001))
 		Player.cure_Hp(CureValue)
 
 

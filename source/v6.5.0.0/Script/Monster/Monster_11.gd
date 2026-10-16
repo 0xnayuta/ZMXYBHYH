@@ -198,8 +198,8 @@ func call_pp():
 
 
 func CallYSYB():
-	var PositionList = [Vector2(0, 90), Vector2(-120, -20), Vector2(120, -20)]
-	for i in PositionList:
+	var bullet_spawn_positions = [Vector2(0, 90), Vector2(-120, -20), Vector2(120, -20)]
+	for i in bullet_spawn_positions:
 		Global.add_bullet(
 			"Monster11Bullet", self.bullet, self.MonsterDirection, 1, i + position, "ysyb", self.objattackDic["ysyb"]
 		)

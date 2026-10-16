@@ -287,11 +287,11 @@ func CallWGWbULLET():
 
 func CallTSWBullet():
 	var PP = self.position
-	var PositionList = [
+	var bullet_spawn_positions = [
 		Vector2(-180, 0) + PP, Vector2(0, 0) + PP, Vector2(180, 0) + PP, Vector2(-360, 0) + PP, Vector2(360, 0) + PP
 	]
 	for i in range(5):
-		var bullet_pos = PositionList[i]
+		var bullet_pos = bullet_spawn_positions[i]
 		var bullet_ = Global.add_bullet(
 			"Monster61TSw", self.bullet, MonsterDirection, 1.7, bullet_pos, "skill_1_3", self.objattackDic["skill_1_3"]
 		)

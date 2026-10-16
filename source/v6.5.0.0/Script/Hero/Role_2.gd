@@ -539,15 +539,15 @@ func Addsgq():
 
 
 func AddXBZ():
-	var PositionList = [Vector2(-80, -15)]
+	var bullet_spawn_positions = [Vector2(-80, -15)]
 	var ScaleList = [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1.5, 1.5)]
 	if !PlayerDir:
-		PositionList = [Vector2(-80, -15), Vector2(-175, -20), Vector2(-275, -25)]
+		bullet_spawn_positions = [Vector2(-80, -15), Vector2(-175, -20), Vector2(-275, -25)]
 	else:
-		PositionList = [Vector2(80, -15), Vector2(175, -20), Vector2(275, -25)]
-	for i in PositionList.size():
+		bullet_spawn_positions = [Vector2(80, -15), Vector2(175, -20), Vector2(275, -25)]
+	for i in bullet_spawn_positions.size():
 		var xbz = Global.addRoleBullet_(
-			self.Bullet, PositionList[i] + position, PlayerDir, "Role2Bullet3", objattackDic["xbz"]
+			self.Bullet, bullet_spawn_positions[i] + position, PlayerDir, "Role2Bullet3", objattackDic["xbz"]
 		)
 		xbz.scale = ScaleList[i]
 		await get_tree().create_timer(0.2, false).timeout

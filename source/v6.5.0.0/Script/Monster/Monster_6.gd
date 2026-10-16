@@ -214,9 +214,11 @@ func call_m6_bullet():
 
 
 func CallBFX():
-	var PositionList = [Vector2(-182, 65), Vector2(-91, 65), Vector2(0, 65), Vector2(91, 65), Vector2(182, 65)]
+	var bullet_spawn_positions = [
+		Vector2(-182, 65), Vector2(-91, 65), Vector2(0, 65), Vector2(91, 65), Vector2(182, 65)
+	]
 	var GetPo = []
-	for i in PositionList:
+	for i in bullet_spawn_positions:
 		GetPo.push_back(i + RoleProp.get_nearest_monster_target_position(global_position))
 	await get_tree().create_timer(1.6, false).timeout
 	for i in GetPo:

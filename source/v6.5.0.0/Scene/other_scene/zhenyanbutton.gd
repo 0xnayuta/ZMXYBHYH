@@ -27,8 +27,8 @@ func _physics_process(delta: float) -> void:
 		pic.qh_level = 0
 		pic.wx = []
 		pic.EQ_prop = AE.AllEquipment_[item_name]
-		var Level = PlayerData.player_data[RealName][str(LocNum)]["Level"]
-		locandlevel.text = str(LocNum) + "号位 Lv:" + str(Level)
+		var cur_level = PlayerData.player_data[RealName][str(LocNum)]["Level"]
+		locandlevel.text = str(LocNum) + "号位 Lv:" + str(cur_level)
 		if not NotShow:
 			if Father.CurrentNum == LocNum:
 				jt.visible = true

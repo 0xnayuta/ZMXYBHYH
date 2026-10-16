@@ -202,7 +202,7 @@ func call_bullet_1():
 
 		var final_rotation = deg_to_rad(angle_offset)
 
-		var Bullets = Global.add_bullet(
+		var bullet_node = Global.add_bullet(
 			"Monster1404Bullet1",
 			self.bullet,
 			false,
@@ -212,19 +212,19 @@ func call_bullet_1():
 			self.objattackDic["hit1"]
 		)
 
-		Bullets.skill_name = "Monster1404Bullet1"
+		bullet_node.skill_name = "Monster1404Bullet1"
 
 		if direction_multiplier > 0:
-			Bullets.dir = true
-			Bullets.rotation = final_rotation
+			bullet_node.dir = true
+			bullet_node.rotation = final_rotation
 		else:
-			Bullets.dir = false
-			Bullets.rotation = final_rotation
+			bullet_node.dir = false
+			bullet_node.rotation = final_rotation
 
-		Bullets.set_meta("is_fan_bullet", true)
-		Bullets.set_meta("fan_direction", direction_multiplier)
-		Bullets.set_meta("fan_angle", angle_offset)
-		Bullets.set_meta("move_speed", 200.0)
+		bullet_node.set_meta("is_fan_bullet", true)
+		bullet_node.set_meta("fan_direction", direction_multiplier)
+		bullet_node.set_meta("fan_angle", angle_offset)
+		bullet_node.set_meta("move_speed", 200.0)
 
 
 func call_bullet_2():

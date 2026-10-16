@@ -23,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func call_hyjj():
-	var Level = PlayerData.player_data["技能学习"]["技能9"]["等级"] + 1
+	var cur_level = PlayerData.player_data["技能学习"]["技能9"]["等级"] + 1
 
 	for i in range(3):
 		var Monster = get_monster()

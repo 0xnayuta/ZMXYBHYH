@@ -74,9 +74,9 @@ func _ready() -> void:
 
 
 func call_bullet_1():
-	var Bullets
+	var bullet_node
 	if self.MonsterDirection:
-		Bullets = Global.add_bullet(
+		bullet_node = Global.add_bullet(
 			"Monster104Bullet",
 			self.bullet,
 			MonsterDirection,
@@ -86,7 +86,7 @@ func call_bullet_1():
 			self.objattackDic["hit1"]
 		)
 	else:
-		Bullets = Global.add_bullet(
+		bullet_node = Global.add_bullet(
 			"Monster104Bullet",
 			self.bullet,
 			MonsterDirection,

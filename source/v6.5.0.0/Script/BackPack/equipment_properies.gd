@@ -805,7 +805,7 @@ func set_BsProp():
 
 
 func get_properies(name_, need):
-	var Num
+	var target_count
 	var infomation
 	infomation = get_last_equ_pro(name_, qh_level)
 	if infomation == null:
@@ -818,7 +818,7 @@ func get_properies(name_, need):
 	if typeof(infomation) == TYPE_STRING:
 		return [infomation]
 	else:
-		Num = infomation
+		target_count = infomation
 
 		var strengthen_val = 0
 		if EQ_prop.has("强化属性") and EQ_prop["强化属性"].has(need):
@@ -836,7 +836,7 @@ func get_properies(name_, need):
 		if qh_level > 0 and strengthen_val != 0:
 			var sign := "+" if float(scaled_strength) >= 0.0 else ""
 			infomation += "(" + sign + str(scaled_strength) + ")"
-	return [Num, infomation]
+	return [target_count, infomation]
 
 
 func get_last_equ_pro(_name_, qh_level_):

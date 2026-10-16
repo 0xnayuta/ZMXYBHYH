@@ -1731,10 +1731,10 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 			_add_role_protect(randi_range(3, 7))
 	if self is Role3Hero:
 		if randi_range(0, 100) <= 2 + PlayerData.player_data["技能学习"]["技能10"]["等级"] * 0.5:
-			var Level = PlayerData.player_data["技能学习"]["技能10"]["等级"]
-			if Level > 0:
+			var cur_level = PlayerData.player_data["技能学习"]["技能10"]["等级"]
+			if cur_level > 0:
 				if not get_parent().get_parent() is Level17 and not get_parent().get_parent() is Level22:
-					cure_Hp(RoleProp.roleprop.power * (0.5 + Level * 0.03))
+					cure_Hp(RoleProp.roleprop.power * (0.5 + cur_level * 0.03))
 
 	if self is Role1Hero or self is Role2Hero or self is Role4Hero or self is NeZhaHero:
 		if is_miss or RoleProp.is_ws_state or IsSuperArmor or needProtect or is_knockback_immune():
@@ -1941,7 +1941,7 @@ func get_Monster_last_hurt(target_boss, target_obj):
 		return 0
 	if not attack_data.has("attackKind") or not attack_data.has("power"):
 		return 0
-	var LevelInter = abs(target_boss.level - RoleProp.baseroleprop.Level)
+	var LevelInter = abs(target_boss.level - RoleProp.baseroleprop.cur_level)
 
 	var lx = String(attack_data["attackKind"])
 	var Hurt = int(attack_data["power"])
@@ -1978,7 +1978,7 @@ func get_Monster_last_hurt(target_boss, target_obj):
 		crit_bl = 1
 	if lucky_bl >= 0.7:
 		lucky_bl = 0.7
-	if target_boss.level - RoleProp.baseroleprop.Level < 0:
+	if target_boss.level - RoleProp.baseroleprop.cur_level < 0:
 		Crit = Crit * (1 - crit_bl)
 		Lucky = Lucky * (1 - lucky_bl)
 		Hurt = int(Hurt * (1 - is_suppression_num(target_boss) * 0.05))
@@ -2017,8 +2017,8 @@ func get_Monster_last_hurt(target_boss, target_obj):
 			if Hurt > 0:
 				if target_boss != null:
 					if target_boss is BaseMonster:
-						var Level = PlayerData.player_data["技能学习"]["技能5"]["等级"] + 1
-						var LastHurt = int(IniHurt * (2 + Level * 0.2))
+						var cur_level = PlayerData.player_data["技能学习"]["技能5"]["等级"] + 1
+						var LastHurt = int(IniHurt * (2 + cur_level * 0.2))
 						target_boss.receive_reflected_damage(LastHurt, "magic", int(RoleProp.roleprop.sp))
 	return Hurt
 
@@ -3621,7 +3621,7 @@ func ADDNMWEffect():
 	var PositionList_1 = [Vector2(-65, 500), Vector2(65, 500)]
 	var PositionList_2 = [Vector2(-175, 500), Vector2(175, 500)]
 	var PositionList_3 = [Vector2(-285, 500), Vector2(285, 500)]
-	var PositionList = {
+	var bullet_spawn_positions = {
 		"1": [Vector2(-185, 500), Vector2(65, 500), Vector2(-65, 500), Vector2(185, 500)],
 		"2":
 		[
@@ -3654,7 +3654,7 @@ func ADDNMWEffect():
 			Count = 2
 		"shishi":
 			Count = 3
-	for i in PositionList[str(Count)]:
+	for i in bullet_spawn_positions[str(Count)]:
 		Global.addRoleBullet_(self.Bullet, Vector2(i.x + position.x, 500), false, "NMWBullet2", objattackDic["nmw"])
 
 

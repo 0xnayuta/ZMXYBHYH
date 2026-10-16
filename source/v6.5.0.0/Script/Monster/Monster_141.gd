@@ -251,7 +251,7 @@ func call_bullet_alt2():
 
 
 func CallBullet_3():
-	var PositionList = [
+	var bullet_spawn_positions = [
 		Vector2(-300 + position.x, 370),
 		Vector2(-200 + position.x, 370),
 		Vector2(-100 + position.x, 370),
@@ -260,7 +260,7 @@ func CallBullet_3():
 		Vector2(200 + position.x, 370),
 		Vector2(300 + position.x, 370),
 	]
-	for i in PositionList:
+	for i in bullet_spawn_positions:
 		Global.add_bullet("Monster22Fire", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
 
 

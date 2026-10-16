@@ -245,18 +245,18 @@ func removeve():
 
 
 func ADDBullet2():
-	var PositionList
+	var bullet_spawn_positions
 	if MonsterDirection:
-		PositionList = Vector2(25, -30)
+		bullet_spawn_positions = Vector2(25, -30)
 	else:
-		PositionList = Vector2(-25, -30)
+		bullet_spawn_positions = Vector2(-25, -30)
 	for i in range(randi_range(3, 5)):
 		Global.add_bullet(
 			"Monster91Bullet2",
 			self.bullet,
 			MonsterDirection,
 			1,
-			PositionList + position,
+			bullet_spawn_positions + position,
 			"hit3",
 			self.objattackDic["hit3"]
 		)
@@ -264,12 +264,12 @@ func ADDBullet2():
 
 
 func AddBullet():
-	var PositionList = []
+	var bullet_spawn_positions = []
 	if MonsterDirection:
-		PositionList = [Vector2(100, 75), Vector2(180, 75), Vector2(260, 75), Vector2(340, 75)]
+		bullet_spawn_positions = [Vector2(100, 75), Vector2(180, 75), Vector2(260, 75), Vector2(340, 75)]
 	else:
-		PositionList = [Vector2(-100, 75), Vector2(-180, 75), Vector2(-260, 75), Vector2(-340, 75)]
-	for i in PositionList:
+		bullet_spawn_positions = [Vector2(-100, 75), Vector2(-180, 75), Vector2(-260, 75), Vector2(-340, 75)]
+	for i in bullet_spawn_positions:
 		var lt = Global.add_bullet(
 			"Monster91Bullet1", self.bullet, MonsterDirection, 2, i + position, "hit2", self.objattackDic["hit2"]
 		)

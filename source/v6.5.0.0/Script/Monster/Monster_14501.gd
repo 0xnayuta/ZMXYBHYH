@@ -1,4 +1,5 @@
 extends BaseMonster
+const BossXieShaSengWdww := preload("res://Script/Monster/Monster_14501_wdww.gd")
 
 var IsSky = false
 var RoundList = []

@@ -155,9 +155,9 @@ func call_fhjl():
 
 
 func call_dtsz():
-	var PositionList = []
+	var bullet_spawn_positions = []
 	if self.MonsterDirection == false:
-		PositionList = [
+		bullet_spawn_positions = [
 			Vector2(self.position.x - 120, self.position.y - 250),
 			Vector2(self.position.x - 270, self.position.y - 250),
 			Vector2(self.position.x - 420, self.position.y - 250),
@@ -165,7 +165,7 @@ func call_dtsz():
 			Vector2(self.position.x - 720, self.position.y - 250)
 		]
 	else:
-		PositionList = [
+		bullet_spawn_positions = [
 			Vector2(self.position.x + 120, self.position.y - 250),
 			Vector2(self.position.x + 270, self.position.y - 250),
 			Vector2(self.position.x + 420, self.position.y - 250),
@@ -178,7 +178,7 @@ func call_dtsz():
 			self.bullet,
 			self.MonsterDirection,
 			1,
-			PositionList[i],
+			bullet_spawn_positions[i],
 			"dtsz",
 			self.objattackDic["dtsz"]
 		)

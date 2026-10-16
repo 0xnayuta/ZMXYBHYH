@@ -185,7 +185,7 @@ func tween_to_top():
 func CallArrow1():
 	if get_Player == null:
 		return
-	var PositionList = [
+	var bullet_spawn_positions = [
 		Vector2(0, -150),
 		Vector2(-70, -150),
 		Vector2(70, -150),
@@ -195,8 +195,8 @@ func CallArrow1():
 		Vector2(-210, -150)
 	]
 	randomize()
-	PositionList.shuffle()
-	for i in PositionList:
+	bullet_spawn_positions.shuffle()
+	for i in bullet_spawn_positions:
 		var desired_angle
 		var Arrow = Global.add_bullet(
 			"Monster83Bullet", self.bullet, false, 2, i + position, "hit4", self.objattackDic["hit4"]
@@ -213,14 +213,18 @@ func CallArrow2():
 	if get_Player == null:
 		return
 	var desired_angle = 90
-	var PositionList = []
+	var bullet_spawn_positions = []
 	if MonsterDirection:
-		PositionList = [Vector2(0, -100), Vector2(-100, -50), Vector2(100, 0), Vector2(200, 50), Vector2(-200, 100)]
+		bullet_spawn_positions = [
+			Vector2(0, -100), Vector2(-100, -50), Vector2(100, 0), Vector2(200, 50), Vector2(-200, 100)
+		]
 	else:
-		PositionList = [Vector2(0, -100), Vector2(-100, -50), Vector2(100, 0), Vector2(200, 50), Vector2(-200, 100)]
+		bullet_spawn_positions = [
+			Vector2(0, -100), Vector2(-100, -50), Vector2(100, 0), Vector2(200, 50), Vector2(-200, 100)
+		]
 	randomize()
-	PositionList.shuffle()
-	for i in PositionList:
+	bullet_spawn_positions.shuffle()
+	for i in bullet_spawn_positions:
 		var Arrow = Global.add_bullet(
 			"Monster83Bullet", self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"]
 		)
@@ -238,7 +242,7 @@ func CallArrow2():
 func CallArrow3():
 	if get_Player == null:
 		return
-	var PositionList = [
+	var bullet_spawn_positions = [
 		Vector2(0, -700),
 		Vector2(-30, -800),
 		Vector2(30, -900),
@@ -263,8 +267,8 @@ func CallArrow3():
 		Vector2(-300, -800)
 	]
 	randomize()
-	PositionList.shuffle()
-	for i in PositionList:
+	bullet_spawn_positions.shuffle()
+	for i in bullet_spawn_positions:
 		var Arrow = Global.add_bullet(
 			"Monster83Bullet", self.bullet, false, 3.5, i + position, "hit3", self.objattackDic["hit3"]
 		)

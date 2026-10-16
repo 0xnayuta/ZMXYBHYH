@@ -649,13 +649,13 @@ func GetPageList():
 
 
 func GetFinishItemNum():
-	var Num: int = 0
+	var target_count: int = 0
 	var List = []
 	if CurrentType == "全部":
 		for item_id in PlayerData.player_data["幻化拥有列表"]:
 			if _is_transmog_item_visible(str(item_id)):
-				Num += 1
-		return Num
+				target_count += 1
+		return target_count
 	for i in PlayerData.player_data["幻化拥有列表"]:
 		if _is_transmog_item_visible(str(i)) and AE.AllEquipment_.has(i) and AE.AllEquipment_[i]["类型"] == CurrentType:
 			List.push_back(i)
@@ -771,11 +771,11 @@ func _physics_process(_delta: float) -> void:
 	if PlayerId == 6:
 		_update_nezha_preview(_delta)
 	SetWingsOffset()
-	var Num = GetFinishItemNum()
+	var target_count = GetFinishItemNum()
 	maxpage = GetCurrentMaxPage()
 	infor.text = str(currentpage) + "/" + str(maxpage)
 
-	collect_value.text = str(CurrentType) + "收集进度：(" + str(Num) + "/" + str(GetCurrentTypeList().size()) + ")"
+	collect_value.text = str(CurrentType) + "收集进度：(" + str(target_count) + "/" + str(GetCurrentTypeList().size()) + ")"
 
 
 func _on_close_pressed() -> void:

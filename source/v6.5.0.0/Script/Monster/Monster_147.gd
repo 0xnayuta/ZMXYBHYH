@@ -219,16 +219,16 @@ func do_hit_3():
 
 
 func call_bullet_1():
-	var Bullets
+	var bullet_node
 	if self.MonsterDirection:
-		Bullets = Global.add_bullet(
+		bullet_node = Global.add_bullet(
 			"Monster147Bullet1", self.bullet, false, 1, Vector2(35, 25) + position, "hit1", self.objattackDic["hit1"]
 		)
 	else:
-		Bullets = Global.add_bullet(
+		bullet_node = Global.add_bullet(
 			"Monster147Bullet1", self.bullet, false, 1, Vector2(-35, 25) + position, "hit1", self.objattackDic["hit1"]
 		)
-	Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+	bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 
 func call_bullet_2():
@@ -251,9 +251,11 @@ func call_bullet_2():
 
 
 func call_bullet_3():
-	var PositionList = [{"position": Vector2(125, 50), "dir": true}, {"position": Vector2(-125, 50), "dir": false}]
+	var bullet_spawn_positions = [
+		{"position": Vector2(125, 50), "dir": true}, {"position": Vector2(-125, 50), "dir": false}
+	]
 	for i in range(3):
-		for u in PositionList:
+		for u in bullet_spawn_positions:
 			Global.add_bullet(
 				"Monster147Bullet3",
 				self.bullet,

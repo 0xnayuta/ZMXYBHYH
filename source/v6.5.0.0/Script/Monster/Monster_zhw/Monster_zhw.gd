@@ -313,7 +313,7 @@ func call_bullet_1():
 
 
 func call_bullet_3():
-	var PositionList = [
+	var bullet_spawn_positions = [
 		Vector2(-400 + position.x, 490),
 		Vector2(-300 + position.x, 490),
 		Vector2(-200 + position.x, 490),
@@ -324,34 +324,34 @@ func call_bullet_3():
 		Vector2(300 + position.x, 490),
 		Vector2(400 + position.x, 490)
 	]
-	for i in PositionList:
+	for i in bullet_spawn_positions:
 		var bullet = Global.add_bullet("Monster56Bullet", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 		setup_bullet_collision(bullet)
 
 
 func call_bullet_4():
 	var MaxCount: int = 10
-	var Num: int = 0
-	var PositionList = []
-	while Num < MaxCount:
+	var target_count: int = 0
+	var bullet_spawn_positions = []
+	while target_count < MaxCount:
 		var NewRotation = 360 / MaxCount
-		NewRotation = NewRotation * Num
+		NewRotation = NewRotation * target_count
 		var stabPosition = Vector2(
 			self.position.x + sin(float(NewRotation) * PI / 180) * 150,
 			self.position.y - 15 - cos(float(NewRotation) * PI / 180) * 150
 		)
-		PositionList.push_back(stabPosition)
-		Num += 1
+		bullet_spawn_positions.push_back(stabPosition)
+		target_count += 1
 	if not MonsterDirection:
-		PositionList.reverse()
-	for i in PositionList:
+		bullet_spawn_positions.reverse()
+	for i in bullet_spawn_positions:
 		var stab = Global.add_bullet("Monster142Bullet2", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
 		setup_bullet_collision(stab)
 		await get_tree().create_timer(0.2, false).timeout
 
 
 func call_bullet_5():
-	var PositionList = [
+	var bullet_spawn_positions = [
 		Vector2(-400 + position.x, 450),
 		Vector2(-300 + position.x, 450),
 		Vector2(-200 + position.x, 450),
@@ -364,9 +364,9 @@ func call_bullet_5():
 		Vector2(500 + position.x, 450)
 	]
 	randomize()
-	var CountTime = PositionList.size() * 0.1
-	PositionList.shuffle()
-	for i in PositionList:
+	var CountTime = bullet_spawn_positions.size() * 0.1
+	bullet_spawn_positions.shuffle()
+	for i in bullet_spawn_positions:
 		var Round = Global.add_bullet(
 			"Monster55Bullet", self.bullet, false, 1, position, "hit5", self.objattackDic["hit5"]
 		)

@@ -192,16 +192,16 @@ func do_hit_4():
 
 
 func ADDBullet():
-	var PositionList = [Vector2()]
+	var bullet_spawn_positions = [Vector2()]
 	var Position2: Vector2
 	var Tween_ = create_tween().set_parallel(true)
 	if MonsterDirection:
-		PositionList = [Vector2(-10, -315), Vector2(70, -70), Vector2(-65, -70)]
+		bullet_spawn_positions = [Vector2(-10, -315), Vector2(70, -70), Vector2(-65, -70)]
 		Position2 = Vector2(-10, -160)
 	else:
-		PositionList = [Vector2(10, -315), Vector2(-70, -70), Vector2(65, -70)]
+		bullet_spawn_positions = [Vector2(10, -315), Vector2(-70, -70), Vector2(65, -70)]
 		Position2 = Vector2(10, -160)
-	for i in PositionList:
+	for i in bullet_spawn_positions:
 		var Line = Global.add_bullet(
 			"Monster93Bullet", self.bullet, MonsterDirection, 1.6, i + position, "hit5", self.objattackDic["hit5"]
 		)

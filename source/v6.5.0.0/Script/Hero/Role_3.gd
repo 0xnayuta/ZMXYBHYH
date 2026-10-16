@@ -572,15 +572,15 @@ func CallSYZQ():
 
 
 func AddSSP():
-	var PositionList = []
+	var bullet_spawn_positions = []
 	var ScaleList = [Vector2(1, 1), Vector2(1.6, 1.6), Vector2(2, 2), Vector2(2.5, 2.5)]
 	if !PlayerDir:
-		PositionList = [Vector2(-70, 15), Vector2(-160, 10), Vector2(-270, 0), Vector2(-400, -10)]
+		bullet_spawn_positions = [Vector2(-70, 15), Vector2(-160, 10), Vector2(-270, 0), Vector2(-400, -10)]
 	else:
-		PositionList = [Vector2(70, 15), Vector2(160, 10), Vector2(270, 0), Vector2(400, -10)]
-	for i in PositionList.size():
+		bullet_spawn_positions = [Vector2(70, 15), Vector2(160, 10), Vector2(270, 0), Vector2(400, -10)]
+	for i in bullet_spawn_positions.size():
 		var xbz = Global.addRoleBullet_(
-			self.Bullet, PositionList[i] + position, PlayerDir, "Role3Bullet2", objattackDic["ssp"]
+			self.Bullet, bullet_spawn_positions[i] + position, PlayerDir, "Role3Bullet2", objattackDic["ssp"]
 		)
 		xbz.scale = ScaleList[i]
 		await get_tree().create_timer(0.2, false).timeout
@@ -590,11 +590,11 @@ func AddTMC():
 	var MaxCount: int = 10
 	if RoleProp.is_ws_state:
 		MaxCount = 20
-	var Num: int = 0
+	var target_count: int = 0
 	var tween = create_tween().set_parallel(true)
-	while Num < MaxCount:
+	while target_count < MaxCount:
 		var NewRotation = 360 / MaxCount
-		NewRotation = NewRotation * Num
+		NewRotation = NewRotation * target_count
 		var stabPosition = Vector2(
 			self.position.x + sin(float(NewRotation) * PI / 180) * 100,
 			self.position.y - 15 - cos(float(NewRotation) * PI / 180) * 100
@@ -603,7 +603,7 @@ func AddTMC():
 		stab.rotation_degrees = NewRotation - 90
 		stab.modulate = Color(1, 1, 1, 0)
 		tween.tween_property(stab, "modulate", Color(1, 1, 1, 1), 0.6)
-		Num += 1
+		target_count += 1
 
 	pass
 

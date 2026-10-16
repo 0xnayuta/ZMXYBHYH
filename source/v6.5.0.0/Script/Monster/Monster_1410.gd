@@ -345,9 +345,9 @@ func _can_cast_light_orb() -> bool:
 func call_bullet_1():
 	var bullet_count = randi_range(1, 3)
 	for i in range(bullet_count):
-		var Bullets
+		var bullet_node
 		if self.MonsterDirection:
-			Bullets = Global.add_bullet(
+			bullet_node = Global.add_bullet(
 				"Monster1410Bullet1",
 				self.bullet,
 				false,
@@ -357,7 +357,7 @@ func call_bullet_1():
 				self.objattackDic["hit1"]
 			)
 		else:
-			Bullets = Global.add_bullet(
+			bullet_node = Global.add_bullet(
 				"Monster1410Bullet1",
 				self.bullet,
 				false,
@@ -366,8 +366,8 @@ func call_bullet_1():
 				"hit1",
 				self.objattackDic["hit1"]
 			)
-		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
-		Bullets.MyFather = self
+		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
+		bullet_node.MyFather = self
 		if i < bullet_count - 1:
 			await get_tree().create_timer(0.2).timeout
 

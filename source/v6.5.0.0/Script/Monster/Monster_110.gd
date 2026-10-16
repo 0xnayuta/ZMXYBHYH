@@ -167,12 +167,16 @@ func return_():
 
 func call_gc():
 	var gc: MonsterBullet
-	var PositionList: Array[Vector2] = []
+	var bullet_spawn_positions: Array[Vector2] = []
 	if MonsterDirection:
-		PositionList = [Vector2(40, 55), Vector2(140, 55), Vector2(240, 55), Vector2(340, 55), Vector2(440, 55)]
+		bullet_spawn_positions = [
+			Vector2(40, 55), Vector2(140, 55), Vector2(240, 55), Vector2(340, 55), Vector2(440, 55)
+		]
 	else:
-		PositionList = [Vector2(-40, 55), Vector2(-140, 55), Vector2(-240, 55), Vector2(-340, 55), Vector2(-440, 55)]
-	for i in PositionList:
+		bullet_spawn_positions = [
+			Vector2(-40, 55), Vector2(-140, 55), Vector2(-240, 55), Vector2(-340, 55), Vector2(-440, 55)
+		]
+	for i in bullet_spawn_positions:
 		gc = Global.add_bullet(
 			"Monster32Bullet", self.bullet, MonsterDirection, 1, i + position, "hit1", self.objattackDic["hit1"]
 		)
