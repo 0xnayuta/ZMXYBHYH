@@ -1,4 +1,4 @@
-[gd_resource type="PackedScene" format=3]
+[gd_scene format=3]
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_magic_weapon.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/magic_weapon/cucurbit.gd" id="2"]
@@ -1069,18 +1069,15 @@ _data = {
 &"wait": SubResource("17")
 }
 
-[resource]
-_bundled = {
-"base_scene": 0,
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"id_paths": [PackedInt32Array(1533773469)],
-"names": PackedStringArray("Cucurbit", "script", "Bullet", "MgAction", "scale", "sprite_frames", "MgPlayer", "libraries/", "SkillCD", "HitBox", "disabled"),
-"node_count": 4,
-"node_ids": PackedInt32Array(809925084, 1758968530, 1971401172, 133518962),
-"node_paths": [NodePath("HitBox")],
-"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 0, 0, 2147483647, 524291, -1, 2, 4, 2, 5, 3, 0, 0, 0, 2147483647, 786438, -1, 1, 7, 4, 0, 1073741824, 0, 2147483647, 262153, -1, 1, 10, 5, 0),
-"variants": [ExtResource("1"), ExtResource("2"), Vector2(0.6, 0.6), SubResource("15"), SubResource("18"), true],
-"version": 3
-}
+[node name="Cucurbit" unique_id=809925084 instance=ExtResource("1")]
+script = ExtResource("2")
+
+[node name="MgAction" parent="." index="1" unique_id=1758968530]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("15")
+
+[node name="MgPlayer" parent="." index="2" unique_id=1971401172]
+libraries/ = SubResource("18")
+
+[node name="HitBox" parent="HitBox" parent_id_path=PackedInt32Array(1533773469) index="0" unique_id=133518962]
+disabled = true

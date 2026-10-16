@@ -83,7 +83,7 @@ const MAP_PROGRESS_KEYS := [
 const MAP_5_PROGRESS_SEQUENCE := ["绝仙门", "紫晶门", "戮仙门", "指景宫", "陷仙门", "绝境宫", "通天教主"]
 
 @onready var bb: Label = $BG/PanelContainer/HBoxContainer/InfoBg/BB
-@onready var text_list: VBoxContainer = $BG/PanelContainer/HBoxContainer/InfoBg/ScrollContainer/text_list
+@onready var text_list: VBoxContainer = $BG/PanelContainer/HBoxContainer/InfoBg/ScrollContainer/TextList
 @onready var secret_title: Label = $BG/PanelContainer/HBoxContainer/BBBg/BB
 @onready var secret_password_overlay: Control = $SecretPasswordOverlay
 @onready

@@ -16,7 +16,7 @@ var outside_click_enabled: bool = false
 
 @onready var infor = $VBoxContainer/infor
 @onready var lock_button: Button = $VBoxContainer/lock
-@onready var lock_text: Label = $VBoxContainer/lock/text_str
+@onready var lock_text: Label = $VBoxContainer/lock/Text
 
 
 func _ready() -> void:

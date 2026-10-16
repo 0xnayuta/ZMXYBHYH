@@ -1,11 +1,11 @@
 extends Node2D
-@onready var text_1: Label = $VBoxContainer/text_1
-@onready var text_2: Label = $VBoxContainer/text_2
-@onready var text_3: Label = $VBoxContainer/text_3
-@onready var text_4: Label = $VBoxContainer/text_4
+@onready var text_1: Label = $PropText/text_1
+@onready var text_2: Label = $PropText/text_2
+@onready var text_3: Label = $PropText/text_3
+@onready var text_4: Label = $PropText/text_4
 @onready var zhen_fa_level: Label = $BG/ZhenFaLevel
 @onready var add_prop: Label = $VBoxContainer2/AddProp
-@onready var skill_info: Label = $VBoxContainer2/skill_info
+@onready var skill_info: Label = $VBoxContainer2/SkillInfo
 var father
 var zhen_fa_type: String
 var real_name: String

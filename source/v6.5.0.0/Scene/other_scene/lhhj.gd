@@ -5,7 +5,7 @@ const FULLSCREEN_CONTENT_CENTER := Vector2(461.0, 282.0)
 var target_boss: String
 @onready var boss_list: VBoxContainer = $BG/ColorRect/Text2/total_list/boss_list
 @onready var text_3: Label = $BG/ColorRect/Text3
-@onready var boss_list_1: VBoxContainer = $BG/ColorRect/text_str/total_list/BossList1
+@onready var boss_list_1: VBoxContainer = $BG/ColorRect/Text/TotalList/BossList1
 var boss_data = [
 	{"Name": "白骨精·改", "Num": 3201},
 	{"Name": "草木皆兵", "Num": 139},

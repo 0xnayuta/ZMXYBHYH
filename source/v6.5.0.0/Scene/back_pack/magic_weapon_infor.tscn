@@ -1,4 +1,4 @@
-[gd_resource type="PackedScene" format=3]
+[gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/back_pack/magic_weapon_infor.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/151.png" id="2"]
@@ -21,17 +21,350 @@
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/149.png" id="19"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/145.png" id="20"]
 
-[resource]
-_bundled = {
-"conn_count": 7,
-"conns": PackedInt32Array(5, 0, 78, 77, 2, 0, 0, 14, 0, 78, 79, 2, 0, 0, 27, 0, 78, 80, 2, 0, 0, 29, 0, 78, 81, 2, 0, 0, 30, 0, 78, 82, 2, 0, 0, 32, 0, 78, 83, 2, 0, 0, 34, 0, 78, 84, 2, 0, 0),
-"editable_instances": [],
-"id_paths": [],
-"names": PackedStringArray("MagicWeaponInfor", "position", "script", "metadata/_edit_lock_", "Node2D", "BG", "texture", "Sprite2D", "bg_2", "lh_bar", "offset_left", "offset_top", "offset_right", "offset_bottom", "max_value", "step", "texture_under", "texture_progress", "TextureProgressBar", "lh_value", "layout_mode", "theme_override_fonts/font", "text", "horizontal_alignment", "vertical_alignment", "Label", "up_level", "texture_normal", "texture_pressed", "texture_hover", "texture_disabled", "TextureButton", "m_level", "m_czl", "m_wx", "theme_override_colors/font_color", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "theme_override_font_sizes/font_size", "m_Hp", "m_Mp", "m_Power", "m_Def", "m_MDef", "Close", "Icon", "scale", "Tooth", "visible", "Tooth2", "flip_h", "IconPlayer", "AnimationPlayer", "MagicWeaponSkillTitle", "theme_override_colors/font_shadow_color", "theme_override_constants/shadow_outline_size", "autowrap_mode", "Icon_", "ScrollContainer", "VBoxContainer", "size_flags_horizontal", "size_flags_vertical", "theme_override_constants/separation", "MagicWeaponSkill", "theme_override_constants/shadow_offset_x", "theme_override_constants/shadow_offset_y", "PsTitle", "MagicWeaponSkill2", "Name_", "szfb", "title", "tips", "wxxl", "WXXL", "gjwx", "czlxl", "CZLXL", "_on_up_level_pressed", "pressed", "_on_close_pressed", "_on_szfb_pressed", "_on_tips_pressed", "_on_wxxl_pressed", "_on_gjwx_pressed", "_on_czlxl_pressed"),
-"node_count": 36,
-"node_ids": PackedInt32Array(1651371050, 2087549401, 1801748302, 768121703, 943746546, 1265863943, 1516528480, 1081971812, 89639896, 681891453, 394025124, 1902768053, 1752735930, 1725095469, 1921203456, 1370820530, 1492631375, 630824372, 1469273213, 1945734207, 927100122, 1754821003, 848609022, 550509959, 1457521027, 2131532858, 20511901, 398742012, 623487555, 2067818989, 793068610, 300490567, 315744925, 427623153, 2091609692, 1226602499),
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0, 0, 0, 7, 5, -1, 2, 6, 3, 3, 2, 0, 1, 0, 7, 8, -1, 3, 1, 4, 6, 5, 3, 2, 0, 2, 0, 18, 9, -1, 9, 10, 6, 11, 7, 12, 8, 13, 9, 14, 10, 15, 11, 16, 12, 17, 13, 3, 2, 0, 3, 0, 25, 19, -1, 10, 20, 14, 10, 15, 11, 16, 12, 17, 13, 18, 21, 19, 22, 20, 23, 21, 24, 22, 3, 2, 0, 2, 0, 31, 26, -1, 9, 10, 23, 11, 24, 12, 25, 13, 26, 27, 27, 28, 27, 29, 28, 30, 27, 3, 2, 0, 2, 0, 25, 32, -1, 7, 10, 29, 11, 30, 12, 31, 13, 32, 21, 33, 24, 22, 3, 2, 0, 2, 0, 25, 33, -1, 7, 10, 34, 11, 35, 12, 36, 13, 37, 21, 33, 24, 22, 3, 2, 0, 2, 0, 25, 34, -1, 10, 10, 29, 11, 38, 12, 31, 13, 39, 35, 40, 36, 40, 37, 22, 38, 41, 24, 22, 3, 2, 0, 2, 0, 25, 39, -1, 9, 10, 6, 11, 42, 12, 43, 13, 44, 35, 40, 21, 33, 22, 45, 24, 22, 3, 2, 0, 2, 0, 25, 40, -1, 8, 10, 46, 11, 42, 12, 36, 13, 44, 21, 33, 22, 45, 24, 22, 3, 2, 0, 2, 0, 25, 41, -1, 8, 10, 6, 11, 47, 12, 43, 13, 48, 21, 33, 22, 45, 24, 22, 3, 2, 0, 2, 0, 25, 42, -1, 8, 10, 46, 11, 47, 12, 49, 13, 48, 21, 33, 22, 45, 24, 22, 3, 2, 0, 2, 0, 25, 43, -1, 8, 10, 50, 11, 47, 12, 51, 13, 48, 21, 33, 22, 45, 24, 22, 3, 2, 0, 1, 0, 31, 44, -1, 9, 10, 52, 11, 53, 12, 54, 13, 55, 27, 56, 28, 56, 29, 57, 30, 56, 3, 2, 0, 1, 0, 7, 45, -1, 3, 1, 58, 46, 59, 3, 2, 0, 15, 0, 7, 47, -1, 3, 48, 60, 1, 61, 3, 2, 0, 16, 0, 7, 49, -1, 3, 1, 62, 50, 2, 3, 2, 0, 1, 0, 52, 51, -1, 0, 0, 1, 0, 25, 53, -1, 13, 10, 63, 11, 64, 12, 65, 13, 66, 35, 40, 54, 67, 36, 40, 37, 68, 55, 41, 38, 69, 24, 21, 56, 21, 3, 2, 0, 1, 0, 7, 57, -1, 2, 1, 70, 3, 2, 0, 1, 0, 58, 58, -1, 5, 10, 71, 11, 72, 12, 73, 13, 74, 3, 2, 0, 21, 0, 59, 59, -1, 5, 20, 22, 60, 68, 61, 68, 62, 75, 3, 2, 0, 22, 0, 25, 63, -1, 10, 20, 22, 35, 40, 54, 67, 36, 40, 64, 14, 65, 14, 37, 22, 55, 76, 56, 21, 3, 2, 0, 22, 0, 25, 66, -1, 6, 20, 22, 36, 67, 64, 14, 65, 14, 37, 76, 21, 77, 0, 22, 0, 25, 67, -1, 8, 20, 22, 36, 67, 64, 14, 65, 14, 37, 78, 21, 79, 56, 21, 3, 2, 0, 1, 0, 25, 68, -1, 11, 10, 80, 11, 81, 12, 82, 13, 83, 35, 40, 36, 67, 37, 84, 21, 77, 23, 21, 24, 21, 3, 2, 0, 1, 0, 31, 69, -1, 9, 10, 85, 11, 86, 12, 87, 13, 88, 27, 89, 28, 89, 29, 90, 30, 89, 3, 2, 0, 27, 0, 7, 70, -1, 3, 1, 91, 6, 92, 3, 2, 0, 1, 0, 31, 71, -1, 8, 10, 93, 11, 94, 12, 95, 13, 96, 27, 97, 28, 97, 29, 98, 3, 2, 0, 1, 0, 31, 72, -1, 10, 10, 47, 11, 99, 12, 100, 13, 101, 46, 102, 27, 103, 28, 103, 29, 104, 30, 103, 3, 2, 0, 30, 0, 25, 73, -1, 13, 20, 14, 10, 15, 11, 15, 12, 105, 13, 106, 35, 107, 36, 67, 37, 108, 38, 109, 22, 110, 23, 21, 24, 21, 3, 2, 0, 1, 0, 31, 74, -1, 10, 10, 111, 11, 99, 12, 95, 13, 101, 46, 102, 27, 103, 28, 103, 29, 104, 30, 103, 3, 2, 0, 32, 0, 25, 73, -1, 13, 20, 14, 10, 15, 11, 15, 12, 105, 13, 106, 35, 107, 36, 67, 37, 76, 38, 112, 22, 113, 23, 21, 24, 21, 3, 2, 0, 1, 0, 31, 75, -1, 10, 10, 114, 11, 99, 12, 115, 13, 101, 46, 102, 27, 103, 28, 103, 29, 104, 30, 103, 3, 2, 0, 34, 0, 25, 76, -1, 13, 20, 14, 10, 15, 11, 15, 12, 105, 13, 106, 35, 107, 36, 67, 37, 76, 38, 109, 22, 116, 23, 21, 24, 21, 3, 2, 0),
-"variants": [Vector2(472, 293), ExtResource("1"), true, ExtResource("2"), Vector2(-142, -16), ExtResource("3"), -88.0, 127.0, 79.0, 150.0, 1.0, 0.0, ExtResource("4"), ExtResource("5"), 0, 2.0, -1.0, 165.0, 22.0, ExtResource("6"), "999/999", 1, 2, 73.0, 122.0, 141.0, 155.0, ExtResource("7"), ExtResource("8"), 44.0, -106.0, 126.0, -85.0, ExtResource("9"), 58.0, -58.0, 125.0, -37.0, -12.0, 5.0, Color(1, 1, 1, 1), 13, 36.0, -6.0, 57.0, "0", 43.0, 84.0, 105.0, 80.0, 81.0, 123.0, 238.0, -212.0, 279.0, -171.0, ExtResource("10"), ExtResource("11"), Vector2(-200, -75), Vector2(1e-05, 1e-05), false, Vector2(25, 18), Vector2(-38, -1), 97.0, -122.0, 186.0, -59.0, Color(0, 0, 0, 1), 3, 21, Vector2(62, -90), 28.0, -55.0, 222.0, 86.0, 7, 8, ExtResource("12"), 4, ExtResource("13"), -271.0, -7.0, -143.0, 14.0, 6, -309.0, -162.0, -275.0, -66.0, ExtResource("14"), ExtResource("15"), Vector2(17, 45), ExtResource("16"), 210.0, -172.0, 250.0, -132.0, ExtResource("17"), ExtResource("18"), 111.0, 177.0, 146.0, Vector2(0.8, 0.8), ExtResource("19"), ExtResource("20"), 88.0, 30.0, Color(0, 1, 1, 1), 9, 20, "五行重置", 157.0, 14, "高级五行重置", 10.0, 103.0, "成长重置"],
-"version": 3
-}
+[node name="MagicWeaponInfor" type="Node2D" unique_id=1651371050]
+position = Vector2(472, 293)
+script = ExtResource("1")
+metadata/_edit_lock_ = true
+
+[node name="BG" type="Sprite2D" parent="." unique_id=2087549401]
+texture = ExtResource("2")
+metadata/_edit_lock_ = true
+
+[node name="bg_2" type="Sprite2D" parent="BG" unique_id=1801748302]
+position = Vector2(-142, -16)
+texture = ExtResource("3")
+metadata/_edit_lock_ = true
+
+[node name="lh_bar" type="TextureProgressBar" parent="BG/bg_2" unique_id=768121703]
+offset_left = -88.0
+offset_top = 127.0
+offset_right = 79.0
+offset_bottom = 150.0
+max_value = 1.0
+step = 0.0
+texture_under = ExtResource("4")
+texture_progress = ExtResource("5")
+metadata/_edit_lock_ = true
+
+[node name="lh_value" type="Label" parent="BG/bg_2/lh_bar" unique_id=943746546]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 165.0
+offset_bottom = 22.0
+theme_override_fonts/font = ExtResource("6")
+text = "999/999"
+horizontal_alignment = 1
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="up_level" type="TextureButton" parent="BG/bg_2" unique_id=1265863943]
+offset_left = 73.0
+offset_top = 122.0
+offset_right = 141.0
+offset_bottom = 155.0
+texture_normal = ExtResource("7")
+texture_pressed = ExtResource("7")
+texture_hover = ExtResource("8")
+texture_disabled = ExtResource("7")
+metadata/_edit_lock_ = true
+
+[node name="m_level" type="Label" parent="BG/bg_2" unique_id=1516528480]
+offset_left = 44.0
+offset_top = -106.0
+offset_right = 126.0
+offset_bottom = -85.0
+theme_override_fonts/font = ExtResource("9")
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="m_czl" type="Label" parent="BG/bg_2" unique_id=1081971812]
+offset_left = 58.0
+offset_top = -58.0
+offset_right = 125.0
+offset_bottom = -37.0
+theme_override_fonts/font = ExtResource("9")
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="m_wx" type="Label" parent="BG/bg_2" unique_id=89639896]
+offset_left = 44.0
+offset_top = -12.0
+offset_right = 126.0
+offset_bottom = 5.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 13
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="m_Hp" type="Label" parent="BG/bg_2" unique_id=681891453]
+offset_left = -88.0
+offset_top = 36.0
+offset_right = -6.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9")
+text = "0"
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="m_Mp" type="Label" parent="BG/bg_2" unique_id=394025124]
+offset_left = 43.0
+offset_top = 36.0
+offset_right = 125.0
+offset_bottom = 57.0
+theme_override_fonts/font = ExtResource("9")
+text = "0"
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="m_Power" type="Label" parent="BG/bg_2" unique_id=1902768053]
+offset_left = -88.0
+offset_top = 84.0
+offset_right = -6.0
+offset_bottom = 105.0
+theme_override_fonts/font = ExtResource("9")
+text = "0"
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="m_Def" type="Label" parent="BG/bg_2" unique_id=1752735930]
+offset_left = 43.0
+offset_top = 84.0
+offset_right = 80.0
+offset_bottom = 105.0
+theme_override_fonts/font = ExtResource("9")
+text = "0"
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="m_MDef" type="Label" parent="BG/bg_2" unique_id=1725095469]
+offset_left = 81.0
+offset_top = 84.0
+offset_right = 123.0
+offset_bottom = 105.0
+theme_override_fonts/font = ExtResource("9")
+text = "0"
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="Close" type="TextureButton" parent="BG" unique_id=1921203456]
+offset_left = 238.0
+offset_top = -212.0
+offset_right = 279.0
+offset_bottom = -171.0
+texture_normal = ExtResource("10")
+texture_pressed = ExtResource("10")
+texture_hover = ExtResource("11")
+texture_disabled = ExtResource("10")
+metadata/_edit_lock_ = true
+
+[node name="Icon" type="Sprite2D" parent="BG" unique_id=1370820530]
+position = Vector2(-200, -75)
+scale = Vector2(1e-05, 1e-05)
+metadata/_edit_lock_ = true
+
+[node name="Tooth" type="Sprite2D" parent="BG/Icon" unique_id=1492631375]
+visible = false
+position = Vector2(25, 18)
+metadata/_edit_lock_ = true
+
+[node name="Tooth2" type="Sprite2D" parent="BG/Icon/Tooth" unique_id=630824372]
+position = Vector2(-38, -1)
+flip_h = true
+metadata/_edit_lock_ = true
+
+[node name="IconPlayer" type="AnimationPlayer" parent="BG" unique_id=1469273213]
+
+[node name="MagicWeaponSkillTitle" type="Label" parent="BG" unique_id=1945734207]
+offset_left = 97.0
+offset_top = -122.0
+offset_right = 186.0
+offset_bottom = -59.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 13
+theme_override_font_sizes/font_size = 21
+vertical_alignment = 1
+autowrap_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Icon_" type="Sprite2D" parent="BG" unique_id=927100122]
+position = Vector2(62, -90)
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BG" unique_id=1754821003]
+offset_left = 28.0
+offset_top = -55.0
+offset_right = 222.0
+offset_bottom = 86.0
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/ScrollContainer" unique_id=848609022]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 7
+metadata/_edit_lock_ = true
+
+[node name="MagicWeaponSkill" type="Label" parent="BG/ScrollContainer/VBoxContainer" unique_id=550509959]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 8
+autowrap_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="PsTitle" type="Label" parent="BG/ScrollContainer/VBoxContainer" unique_id=1457521027]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("12")
+
+[node name="MagicWeaponSkill2" type="Label" parent="BG/ScrollContainer/VBoxContainer" unique_id=2131532858]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("13")
+autowrap_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Name_" type="Label" parent="BG" unique_id=20511901]
+offset_left = -271.0
+offset_top = -7.0
+offset_right = -143.0
+offset_bottom = 14.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("12")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="szfb" type="TextureButton" parent="BG" unique_id=398742012]
+offset_left = -309.0
+offset_top = -162.0
+offset_right = -275.0
+offset_bottom = -66.0
+texture_normal = ExtResource("14")
+texture_pressed = ExtResource("14")
+texture_hover = ExtResource("15")
+texture_disabled = ExtResource("14")
+metadata/_edit_lock_ = true
+
+[node name="title" type="Sprite2D" parent="BG/szfb" unique_id=623487555]
+position = Vector2(17, 45)
+texture = ExtResource("16")
+metadata/_edit_lock_ = true
+
+[node name="tips" type="TextureButton" parent="BG" unique_id=2067818989]
+offset_left = 210.0
+offset_top = -172.0
+offset_right = 250.0
+offset_bottom = -132.0
+texture_normal = ExtResource("17")
+texture_pressed = ExtResource("17")
+texture_hover = ExtResource("18")
+metadata/_edit_lock_ = true
+
+[node name="wxxl" type="TextureButton" parent="BG" unique_id=793068610]
+offset_left = 84.0
+offset_top = 111.0
+offset_right = 177.0
+offset_bottom = 146.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("19")
+texture_pressed = ExtResource("19")
+texture_hover = ExtResource("20")
+texture_disabled = ExtResource("19")
+metadata/_edit_lock_ = true
+
+[node name="WXXL" type="Label" parent="BG/wxxl" unique_id=300490567]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 88.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 20
+text = "五行重置"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="gjwx" type="TextureButton" parent="BG" unique_id=315744925]
+offset_left = 157.0
+offset_top = 111.0
+offset_right = 250.0
+offset_bottom = 146.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("19")
+texture_pressed = ExtResource("19")
+texture_hover = ExtResource("20")
+texture_disabled = ExtResource("19")
+metadata/_edit_lock_ = true
+
+[node name="WXXL" type="Label" parent="BG/gjwx" unique_id=427623153]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 88.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 14
+text = "高级五行重置"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="czlxl" type="TextureButton" parent="BG" unique_id=2091609692]
+offset_left = 10.0
+offset_top = 111.0
+offset_right = 103.0
+offset_bottom = 146.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("19")
+texture_pressed = ExtResource("19")
+texture_hover = ExtResource("20")
+texture_disabled = ExtResource("19")
+metadata/_edit_lock_ = true
+
+[node name="CZLXL" type="Label" parent="BG/czlxl" unique_id=1226602499]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 88.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 20
+text = "成长重置"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="BG/bg_2/up_level" to="." method="_on_up_level_pressed"]
+[connection signal="pressed" from="BG/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="BG/szfb" to="." method="_on_szfb_pressed"]
+[connection signal="pressed" from="BG/tips" to="." method="_on_tips_pressed"]
+[connection signal="pressed" from="BG/wxxl" to="." method="_on_wxxl_pressed"]
+[connection signal="pressed" from="BG/gjwx" to="." method="_on_gjwx_pressed"]
+[connection signal="pressed" from="BG/czlxl" to="." method="_on_czlxl_pressed"]

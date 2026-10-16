@@ -1,4 +1,4 @@
-[gd_resource type="PackedScene" format=3]
+[gd_scene format=3]
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_magic_weapon.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/magic_weapon/purple_glod_cucurbit.gd" id="2"]
@@ -199,18 +199,12 @@ _data = {
 &"wait": SubResource("5")
 }
 
-[resource]
-_bundled = {
-"base_scene": 0,
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"id_paths": [],
-"names": PackedStringArray("PurpleGlodCucurbit", "script", "Bullet", "MgAction", "scale", "sprite_frames", "MgPlayer", "libraries/", "SkillCD", "HitBox"),
-"node_count": 3,
-"node_ids": PackedInt32Array(763997545, 1758968530, 1971401172),
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 0, 0, 2147483647, 524291, -1, 2, 4, 2, 5, 3, 0, 0, 0, 2147483647, 786438, -1, 1, 7, 4, 0),
-"variants": [ExtResource("1"), ExtResource("2"), Vector2(0.05, 0.05), SubResource("3"), SubResource("6")],
-"version": 3
-}
+[node name="PurpleGlodCucurbit" unique_id=763997545 instance=ExtResource("1")]
+script = ExtResource("2")
+
+[node name="MgAction" parent="." index="1" unique_id=1758968530]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("3")
+
+[node name="MgPlayer" parent="." index="2" unique_id=1971401172]
+libraries/ = SubResource("6")

@@ -1,10 +1,10 @@
 extends Node2D
 
-@onready var have_or_not: Label = $BG/have_or_not
+@onready var have_or_not: Label = $BG/HaveOrNot
 @onready var cdorxx: Label = $BG/change/cdorxx
 @onready var cdinfor: Sprite2D = $cdinfor
-@onready var show_box: Button = $BG/show_box
-@onready var eq_name: Label = $BG/eq_name
+@onready var show_box: Button = $BG/ShowBox
+@onready var eq_name: Label = $BG/Eq_name
 
 var self_name: String
 var transmogrified: Transmogrified

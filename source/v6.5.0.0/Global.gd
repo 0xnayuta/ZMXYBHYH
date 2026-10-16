@@ -3728,7 +3728,8 @@ func add_smb_effect(parent, position, dir):
 
 
 func add_role2_shallow(parent, position, dir):
-	if not role2_shallow: role2_shallow = _load_scene("res://Scene/base/role2shallow.tscn")
+	if not role2_shallow:
+		role2_shallow = _load_scene("res://Scene/base/role2shallow.tscn")
 	var target = instance_scene(role2_shallow, parent)
 	target.position = position
 	target.dir = dir

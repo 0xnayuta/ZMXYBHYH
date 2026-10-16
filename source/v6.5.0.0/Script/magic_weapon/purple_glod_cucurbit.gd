@@ -19,9 +19,13 @@ func _physics_process(delta: float) -> void:
 	var Power: int
 	var player_power = RoleProp.roleprop.power
 	if PlayerData.check_have_wx("zjhl", "木"):
-		Power = int(player_power * randf_range(0.15, 0.2)) + int(player_power * (randf_range(0.08, 0.1) * self.fb_level))
+		Power = (
+			int(player_power * randf_range(0.15, 0.2)) + int(player_power * (randf_range(0.08, 0.1) * self.fb_level))
+		)
 	else:
-		Power = int(player_power * randf_range(0.08, 0.1)) + int(player_power * (randf_range(0.05, 0.07) * self.fb_level))
+		Power = (
+			int(player_power * randf_range(0.08, 0.1)) + int(player_power * (randf_range(0.05, 0.07) * self.fb_level))
+		)
 	_hit_data["power"] = Power
 	_hit_data["WSValue"] = randi_range(15, 20)
 	var add_effect: Dictionary = _hit_data["addeffect"]

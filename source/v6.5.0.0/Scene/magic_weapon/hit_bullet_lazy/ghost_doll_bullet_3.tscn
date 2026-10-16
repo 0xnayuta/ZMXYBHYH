@@ -1,4 +1,4 @@
-[gd_resource type="PackedScene" format=3]
+[gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/magic_weapon/hit_bullet.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon4/Bullet_2.png" id="2"]
@@ -440,17 +440,31 @@ _data = {
 &"aEmpty": SubResource("226")
 }
 
-[resource]
-_bundled = {
-"conn_count": 1,
-"conns": PackedInt32Array(4, 0, 22, 21, 2, 0, 0),
-"editable_instances": [],
-"id_paths": [],
-"names": PackedStringArray("HitBullet", "self_modulate", "script", "metadata/_edit_horizontal_guides_", "Node2D", "Bullet", "scale", "sprite_frames", "animation", "AnimatedSprite2D", "wds", "BulletPlayer", "libraries/", "AnimationPlayer", "Area2D", "collision_layer", "collision_mask", "CollisionShape2D", "position", "shape", "disabled", "_on_area_2d_area_entered", "area_entered"),
-"node_count": 6,
-"node_ids": PackedInt32Array(1351105488, 1997253556, 2142695316, 1896312828, 601041098, 1914035874),
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0, 0, 0, 9, 5, -1, 3, 6, 3, 7, 4, 8, 5, 0, 0, 0, 9, 10, -1, 2, 6, 6, 7, 7, 0, 0, 0, 13, 11, -1, 1, 12, 8, 0, 0, 0, 14, 14, -1, 3, 15, 9, 16, 10, 2, 11, 0, 4, 0, 17, 17, -1, 3, 18, 12, 19, 13, 20, 14, 0),
-"variants": [Color(1, 1, 1, 0), ExtResource("1"), [513.0], Vector2(1, 0.8), SubResource("202"), &"aEmpty", Vector2(1, 0.5), SubResource("SpriteFrames_43wu8"), SubResource("227"), 2, 1024, ExtResource("3"), Vector2(-115, 109), SubResource("205"), true],
-"version": 3
-}
+[node name="HitBullet" type="Node2D" unique_id=1351105488]
+self_modulate = Color(1, 1, 1, 0)
+script = ExtResource("1")
+metadata/_edit_horizontal_guides_ = [513.0]
+
+[node name="Bullet" type="AnimatedSprite2D" parent="." unique_id=1997253556]
+scale = Vector2(1, 0.8)
+sprite_frames = SubResource("202")
+animation = &"aEmpty"
+
+[node name="wds" type="AnimatedSprite2D" parent="." unique_id=2142695316]
+scale = Vector2(1, 0.5)
+sprite_frames = SubResource("SpriteFrames_43wu8")
+
+[node name="BulletPlayer" type="AnimationPlayer" parent="." unique_id=1896312828]
+libraries/ = SubResource("227")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=601041098]
+collision_layer = 2
+collision_mask = 1024
+script = ExtResource("3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1914035874]
+position = Vector2(-115, 109)
+shape = SubResource("205")
+disabled = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

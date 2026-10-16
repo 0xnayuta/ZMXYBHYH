@@ -2,10 +2,10 @@ extends Node2D
 
 @onready var skill_icon: Sprite2D = $BG/SkillIcon
 @onready var wx_mu: Sprite2D = $BG/SkillIcon/MU
-@onready var wp_name: Label = $BG/SkillIcon/name_str
-@onready var skill_name: Label = $BG/skill_name
-@onready var skill_level: Label = $BG/skill_name/Level
-@onready var skill_infor: Label = $BG/skill_infor
+@onready var wp_name: Label = $BG/SkillIcon/Name_
+@onready var skill_name: Label = $BG/SkillName
+@onready var skill_level: Label = $BG/SkillName/Level
+@onready var skill_infor: Label = $BG/Skill_Infor
 @onready var choose_icon: Sprite2D = $BG/isChoose
 @onready var choose_button = $BG/choose
 @onready var no_have: Label = $BG/NoHave

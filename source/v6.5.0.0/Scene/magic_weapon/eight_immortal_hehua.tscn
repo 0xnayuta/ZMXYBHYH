@@ -1,20 +1,13 @@
-[gd_resource type="PackedScene" format=3]
+[gd_scene format=3]
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_magic_weapon.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/magic_weapon/eight_immortal_magic_weapon.gd" id="2"]
 
-[resource]
-_bundled = {
-"base_scene": 0,
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"id_paths": [],
-"names": PackedStringArray("hehua", "script", "weapon_id", "model_path", "model_frame_size", "effect_dir", "skill_cost", "skill_cooldown", "Bullet", "MgAction", "MgPlayer", "SkillCD", "HitBox"),
-"node_count": 1,
-"node_ids": PackedInt32Array(2089043980),
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 7, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 0),
-"variants": [ExtResource("1"), ExtResource("2"), "hehua", "res://Art/MagicWeapon/EightImmortal/hehua/model.png", Vector2i(50, 50), "res://Art/MagicWeapon/EightImmortal/hehua/effect", 10, 10.0],
-"version": 3
-}
+[node name="hehua" unique_id=2089043980 instance=ExtResource("1")]
+script = ExtResource("2")
+weapon_id = "hehua"
+model_path = "res://Art/MagicWeapon/EightImmortal/hehua/model.png"
+model_frame_size = Vector2i(50, 50)
+effect_dir = "res://Art/MagicWeapon/EightImmortal/hehua/effect"
+skill_cost = 10
+skill_cooldown = 10.0

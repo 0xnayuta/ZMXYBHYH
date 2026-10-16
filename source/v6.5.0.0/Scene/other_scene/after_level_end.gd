@@ -13,18 +13,18 @@ func _fit_to_window() -> void:
 	position = viewport_size * 0.5 - Vector2(477.0, 274.0) * fit_scale
 
 
-@onready var total_hit_count: Label = $HBoxContainer/VBoxContainer/total_hit_count
-@onready var total_hit: Label = $HBoxContainer/VBoxContainer/total_hit
+@onready var total_hit_count: Label = $HBoxContainer/VBoxContainer/TotalHitCount
+@onready var total_hit: Label = $HBoxContainer/VBoxContainer/TotalHit
 @onready var totalphyhit: Label = $HBoxContainer/VBoxContainer/Totalphyhit
 @onready var totalmaghit: Label = $HBoxContainer/VBoxContainer/Totalmaghit
-@onready var total_real_hit: Label = $HBoxContainer/VBoxContainer/total_real_hit
-@onready var total_crit_count: Label = $HBoxContainer/VBoxContainer/total_crit_count
-@onready var total_hurt_count: Label = $HBoxContainer/VBoxContainer2/total_hurt_count
+@onready var total_real_hit: Label = $HBoxContainer/VBoxContainer/TotalRealHit
+@onready var total_crit_count: Label = $HBoxContainer/VBoxContainer/TotalCritCount
+@onready var total_hurt_count: Label = $HBoxContainer/VBoxContainer2/TotalHurtCount
 @onready var total_hurt: Label = $HBoxContainer/VBoxContainer2/TotalHurt
-@onready var total_phy_hurt: Label = $HBoxContainer/VBoxContainer2/total_phy_hurt
-@onready var total_mag_hurt: Label = $HBoxContainer/VBoxContainer2/total_mag_hurt
-@onready var total_real_hurt: Label = $HBoxContainer/VBoxContainer2/total_real_hurt
-@onready var total_miss_count: Label = $HBoxContainer/VBoxContainer2/total_miss_count
+@onready var total_phy_hurt: Label = $HBoxContainer/VBoxContainer2/TotalPhyHurt
+@onready var total_mag_hurt: Label = $HBoxContainer/VBoxContainer2/TotalMagHurt
+@onready var total_real_hurt: Label = $HBoxContainer/VBoxContainer2/TotalRealHurt
+@onready var total_miss_count: Label = $HBoxContainer/VBoxContainer2/TotalMissCount
 @onready var total_cure: Label = $HBoxContainer/VBoxContainer3/TotalCure
 
 

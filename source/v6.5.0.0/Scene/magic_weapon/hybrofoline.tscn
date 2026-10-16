@@ -1,4 +1,4 @@
-[gd_resource type="PackedScene" format=3]
+[gd_scene format=3]
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_magic_weapon.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/magic_weapon/hybrofoline.gd" id="2"]
@@ -1799,18 +1799,22 @@ _data = {
 &"wait": SubResource("176")
 }
 
-[resource]
-_bundled = {
-"base_scene": 0,
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"id_paths": [],
-"names": PackedStringArray("Hybrofoline", "script", "Bullet", "MgAction", "scale", "sprite_frames", "animation", "metadata/_edit_lock_", "SpecialEffect", "position", "frame_progress", "AnimatedSprite2D", "MgPlayer", "libraries/", "SkillCD", "HitBox"),
-"node_count": 4,
-"node_ids": PackedInt32Array(898936743, 1758968530, 1748233276, 1971401172),
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 0, 0, 2147483647, 524291, -1, 4, 4, 2, 5, 3, 6, 4, 7, 5, 0, 0, 0, 11, 786440, -1, 6, 9, 6, 4, 7, 5, 8, 6, 9, 10, 10, 7, 5, 0, 0, 0, 2147483647, 1048588, -1, 1, 13, 11, 0),
-"variants": [ExtResource("1"), ExtResource("2"), Vector2(0.050000012, 0.050000012), SubResource("3"), &"hit", true, Vector2(32, 103), Vector2(1, 2), SubResource("174"), &"Empty", 0.144262, SubResource("177")],
-"version": 3
-}
+[node name="Hybrofoline" unique_id=898936743 instance=ExtResource("1")]
+script = ExtResource("2")
+
+[node name="MgAction" parent="." index="1" unique_id=1758968530]
+scale = Vector2(0.050000012, 0.050000012)
+sprite_frames = SubResource("3")
+animation = &"hit"
+metadata/_edit_lock_ = true
+
+[node name="SpecialEffect" type="AnimatedSprite2D" parent="." index="2" unique_id=1748233276]
+position = Vector2(32, 103)
+scale = Vector2(1, 2)
+sprite_frames = SubResource("174")
+animation = &"Empty"
+frame_progress = 0.144262
+metadata/_edit_lock_ = true
+
+[node name="MgPlayer" parent="." index="3" unique_id=1971401172]
+libraries/ = SubResource("177")

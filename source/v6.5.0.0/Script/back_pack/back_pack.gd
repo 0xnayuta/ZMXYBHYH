@@ -27,7 +27,7 @@ extends Node2D
 @onready var fb: Button = $background/infomation/equ_/VBoxContainer/fb
 @onready var zdl: Label = $background/Zdlnc/zdl
 @onready var name_1: LineEdit = $background/Zdlnc/name
-@onready var role_body = $background/role_body
+@onready var role_body = $background/RoleBody
 @onready var role_eq = $background/RoleEquipment
 @onready var number_1: TextureRect = $background/infomation/leve_background/Level_Show/Number_1
 @onready var number_2: TextureRect = $background/infomation/leve_background/Level_Show/Number_2

@@ -1,5 +1,5 @@
 extends Node2D
-@onready var stage_info: Label = $Hdgqbg/stage_info
+@onready var stage_info: Label = $Hdgqbg/StageInfo
 var LastTime: int
 var target_map: String
 var ini_text = "搜遍了整个天庭，都找不到玉帝。唯一的可能就是玉帝被人挟持，通过混沌之门传送到另一个世界里了。而要进入那个世界必须拥有通天令牌和足够强的实力。斩妖除魔，找到罪魁祸首，加油挑战自我吧！"

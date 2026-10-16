@@ -1,4 +1,4 @@
-[gd_resource type="PackedScene" format=3]
+[gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/main_menu/game_set.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/Level/Settlement/结算.jpg" id="2"]
@@ -105,17 +105,613 @@ bg_color = Color(1, 0.0392157, 0.0235294, 1)
 
 [sub_resource type="StyleBoxEmpty" id="47"]
 
-[resource]
-_bundled = {
-"conn_count": 24,
-"conns": PackedInt32Array(9, 0, 84, 83, 2, 0, 0, 11, 0, 84, 85, 2, 0, 0, 13, 0, 87, 86, 2, 0, 0, 15, 0, 87, 88, 2, 0, 0, 17, 0, 84, 89, 2, 0, 0, 19, 0, 84, 90, 2, 0, 0, 21, 0, 84, 91, 2, 0, 0, 23, 0, 84, 92, 2, 0, 0, 25, 0, 84, 93, 2, 0, 0, 28, 0, 84, 94, 2, 0, 0, 29, 0, 84, 95, 2, 0, 0, 30, 0, 84, 96, 2, 0, 0, 31, 0, 84, 97, 2, 0, 0, 33, 0, 84, 98, 2, 0, 0, 34, 0, 84, 99, 2, 0, 0, 35, 0, 84, 100, 2, 0, 0, 37, 0, 102, 101, 2, 0, 0, 39, 0, 84, 103, 2, 0, 0, 41, 0, 84, 104, 2, 0, 0, 43, 0, 84, 105, 2, 0, 0, 45, 0, 84, 106, 2, 0, 0, 47, 0, 84, 107, 2, 0, 0, 49, 0, 84, 108, 2, 0, 0, 50, 0, 84, 109, 2, 0, 0),
-"editable_instances": [],
-"id_paths": [],
-"names": PackedStringArray("GameSet", "script", "Node2D", "ColorRect", "offset_right", "offset_bottom", "color", "metadata/_edit_lock_", "Bg", "position", "texture", "Sprite2D", "BGColor", "offset_left", "offset_top", "Title", "layout_mode", "theme_override_constants/outline_size", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "text", "Label", "fgx_1", "fgx_2", "VBoxContainer", "theme_override_constants/separation", "GameMusicTitle", "vertical_alignment", "GMOpenOrClose", "theme_override_colors/font_color", "theme_override_colors/font_hover_color", "theme_override_styles/normal", "theme_override_styles/pressed", "theme_override_styles/hover", "theme_override_styles/disabled", "theme_override_styles/focus", "Button", "GameMusicTitle2", "GM2OpenOrClose", "GameMusicFB", "HSlider", "mouse_default_cursor_shape", "theme_override_styles/slider", "theme_override_styles/grabber_area_highlight", "min_value", "max_value", "GameMusicFB2", "GM2Slider", "MonsterBloodText", "MBTOpenOrClose", "MonsterBloodShow", "MBSOpenOrClose", "MonsterBloodShow2", "MBS2OpenOrClose", "RoleEQ", "ShowClose2", "DamageTextShow", "DamageShow", "VBoxContainer2", "GMzm_1", "GMzm_2", "GMzm_3", "GMzm_4", "GM2zm_1", "GM2zm_2", "GM2zm_3", "FrameRate", "FrameRateOption", "OptionButton", "BodyShow", "YesOrNo", "HpBloodDelay", "YesORNot", "AutomaticallyPickUpItems", "YesOrNots", "AutomaticallyPickUpItems2", "Ornot", "LevelInfo", "openClose", "RoleBody", "ShowClose", "Return", "theme_override_colors/font_outline_color", "_on_gm_open_or_close_pressed", "pressed", "_on_gm_2_open_or_close_pressed", "_on_h_slider_value_changed", "value_changed", "_on_gm_2_slider_value_changed", "_on_mbt_open_or_close_pressed", "_on_mbs_open_or_close_pressed", "_on_mbs_2_open_or_close_pressed", "_on_show_close_2_pressed", "_on_damage_show_pressed", "_on_g_mzm_1_pressed", "_on_g_mzm_2_pressed", "_on_g_mzm_3_pressed", "_on_g_mzm_4_pressed", "_on_gm_2_zm_1_pressed", "_on_gm_2_zm_2_pressed", "_on_gm_2_zm_3_pressed", "_on_frame_rate_option_item_selected", "item_selected", "_on_yes_or_no_pressed", "_on_yes_or_not_pressed", "_on_yes_or_nots_pressed", "_on_ornot_pressed", "_on_open_close_pressed", "_on_show_close_pressed", "_on_return_pressed"),
-"node_count": 51,
-"node_ids": PackedInt32Array(2019225896, 317436361, 2117196493, 2021278244, 530171692, 1585691706, 1907793712, 442887094, 2023921290, 1049166244, 700261303, 1697016772, 817646953, 602989658, 1789230435, 922919085, 1362629116, 1291079408, 225415514, 1728372082, 899102068, 1268503238, 1798618653, 1849280288, 248281484, 1957387526, 40909052, 735655496, 464794921, 1789212436, 735050377, 1982698630, 2095465952, 1368180277, 366721653, 1387987070, 92201906, 811515314, 124328430, 1089088166, 322246918, 629010139, 1430773193, 1136729546, 868423002, 2036751583, 1570220617, 1427756886, 1144253783, 379111823, 15723700),
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 3, 3, -1, 4, 4, 1, 5, 2, 6, 3, 7, 4, 0, 0, 0, 11, 8, -1, 3, 9, 5, 10, 6, 7, 4, 0, 2, 0, 3, 12, -1, 6, 13, 7, 14, 8, 4, 9, 5, 10, 6, 11, 7, 4, 0, 3, 0, 21, 15, -1, 9, 16, 12, 13, 13, 14, 14, 4, 15, 5, 16, 17, 17, 18, 18, 19, 19, 20, 20, 0, 3, 0, 11, 22, -1, 3, 9, 21, 10, 22, 7, 4, 0, 3, 0, 11, 23, -1, 3, 9, 23, 10, 22, 7, 4, 0, 3, 0, 24, 24, -1, 6, 16, 12, 13, 24, 14, 25, 4, 26, 5, 27, 25, 28, 0, 7, 0, 21, 26, -1, 6, 16, 17, 17, 29, 18, 18, 19, 30, 20, 31, 27, 29, 0, 8, 0, 36, 28, -1, 16, 16, 12, 13, 32, 14, 33, 4, 34, 5, 35, 29, 36, 30, 37, 18, 18, 19, 30, 31, 38, 32, 39, 33, 40, 34, 41, 35, 42, 20, 43, 7, 4, 0, 7, 0, 21, 37, -1, 6, 16, 17, 17, 29, 18, 18, 19, 30, 20, 44, 27, 29, 0, 10, 0, 36, 38, -1, 15, 16, 12, 13, 32, 14, 33, 4, 34, 5, 35, 30, 37, 18, 18, 19, 30, 31, 38, 32, 39, 33, 40, 34, 41, 35, 42, 20, 43, 7, 4, 0, 7, 0, 21, 39, -1, 6, 16, 17, 17, 29, 18, 18, 19, 30, 20, 45, 27, 29, 0, 12, 0, 40, 40, -1, 11, 16, 12, 13, 46, 14, 47, 4, 48, 5, 49, 41, 17, 42, 50, 43, 51, 44, 52, 45, 53, 7, 4, 0, 7, 0, 21, 46, -1, 6, 16, 17, 17, 29, 18, 18, 19, 30, 20, 54, 27, 29, 0, 14, 0, 40, 47, -1, 11, 16, 12, 13, 46, 14, 47, 4, 48, 5, 49, 41, 17, 42, 50, 43, 51, 44, 52, 45, 53, 7, 4, 0, 7, 0, 21, 48, -1, 6, 16, 17, 17, 29, 18, 18, 19, 30, 20, 55, 27, 29, 0, 16, 0, 36, 49, -1, 15, 16, 12, 13, 56, 14, 33, 4, 57, 5, 35, 30, 37, 18, 18, 19, 30, 31, 38, 32, 39, 33, 40, 34, 41, 35, 42, 20, 43, 7, 4, 0, 7, 0, 21, 50, -1, 6, 16, 17, 17, 29, 18, 18, 19, 30, 20, 58, 27, 29, 0, 18, 0, 36, 51, -1, 15, 16, 12, 13, 59, 14, 33, 4, 60, 5, 35, 30, 37, 18, 18, 19, 30, 31, 38, 32, 39, 33, 40, 34, 41, 35, 42, 20, 61, 7, 4, 0, 7, 0, 21, 52, -1, 6, 16, 17, 17, 29, 18, 18, 19, 30, 20, 62, 27, 29, 0, 20, 0, 36, 53, -1, 15, 16, 12, 13, 59, 14, 33, 4, 60, 5, 35, 30, 37, 18, 18, 19, 30, 31, 38, 32, 39, 33, 40, 34, 41, 35, 42, 20, 43, 7, 4, 0, 7, 0, 21, 54, -1, 5, 16, 17, 17, 29, 18, 18, 19, 63, 20, 64, 0, 22, 0, 36, 55, -1, 15, 16, 12, 13, 65, 14, 66, 4, 67, 5, 68, 30, 37, 18, 18, 19, 69, 31, 70, 32, 71, 33, 72, 34, 73, 35, 74, 20, 75, 7, 4, 0, 7, 0, 21, 56, -1, 5, 16, 17, 17, 29, 18, 18, 19, 63, 20, 76, 0, 24, 0, 36, 57, -1, 15, 16, 12, 13, 65, 14, 66, 4, 67, 5, 68, 30, 37, 18, 18, 19, 69, 31, 70, 32, 71, 33, 72, 34, 73, 35, 74, 20, 75, 7, 4, 0, 3, 0, 24, 58, -1, 6, 16, 12, 13, 77, 14, 25, 4, 78, 5, 79, 25, 80, 0, 26, 0, 21, 26, -1, 6, 16, 17, 17, 29, 18, 18, 19, 30, 20, 81, 27, 29, 0, 27, 0, 36, 59, -1, 15, 16, 12, 13, 82, 14, 33, 4, 83, 5, 35, 30, 37, 18, 18, 19, 30, 31, 38, 32, 39, 33, 40, 34, 41, 35, 42, 20, 84, 7, 4, 0, 27, 0, 36, 60, -1, 15, 16, 12, 13, 85, 14, 33, 4, 86, 5, 35, 30, 37, 18, 18, 19, 30, 31, 38, 32, 39, 33, 40, 34, 41, 35, 42, 20, 87, 7, 4, 0, 27, 0, 36, 61, -1, 15, 16, 12, 13, 88, 14, 33, 4, 89, 5, 35, 30, 37, 18, 18, 19, 30, 31, 38, 32, 39, 33, 40, 34, 41, 35, 42, 20, 90, 7, 4, 0, 27, 0, 36, 62, -1, 16, 16, 12, 13, 91, 14, 33, 4, 92, 5, 93, 29, 36, 30, 37, 18, 18, 19, 30, 31, 94, 32, 95, 33, 96, 34, 97, 35, 98, 20, 99, 7, 4, 0, 26, 0, 21, 37, -1, 6, 16, 17, 17, 29, 18, 18, 19, 30, 20, 100, 27, 29, 0, 32, 0, 36, 63, -1, 15, 16, 12, 13, 101, 14, 33, 4, 102, 5, 35, 30, 37, 18, 18, 19, 30, 31, 38, 32, 39, 33, 40, 34, 41, 35, 42, 20, 84, 7, 4, 0, 32, 0, 36, 64, -1, 15, 16, 12, 13, 103, 14, 33, 4, 104, 5, 35, 30, 37, 18, 18, 19, 30, 31, 38, 32, 39, 33, 40, 34, 41, 35, 42, 20, 87, 7, 4, 0, 32, 0, 36, 65, -1, 15, 16, 12, 13, 105, 14, 33, 4, 106, 5, 35, 30, 37, 18, 18, 19, 30, 31, 38, 32, 39, 33, 40, 34, 41, 35, 42, 20, 90, 7, 4, 0, 26, 0, 21, 66, -1, 6, 16, 17, 17, 29, 18, 18, 19, 107, 20, 108, 27, 29, 0, 36, 0, 68, 67, -1, 7, 16, 12, 13, 109, 14, 110, 4, 111, 5, 112, 18, 18, 19, 69, 0, 26, 0, 21, 69, -1, 4, 16, 17, 17, 29, 18, 18, 20, 113, 0, 38, 0, 36, 70, -1, 14, 16, 12, 13, 114, 14, 66, 4, 115, 5, 116, 30, 37, 18, 18, 19, 107, 31, 117, 32, 118, 33, 119, 34, 120, 35, 121, 20, 122, 0, 26, 0, 21, 71, -1, 5, 16, 17, 17, 29, 18, 18, 19, 123, 20, 124, 0, 40, 0, 36, 72, -1, 14, 16, 12, 13, 125, 14, 110, 4, 111, 5, 126, 30, 37, 18, 18, 19, 30, 31, 127, 32, 128, 33, 129, 34, 130, 35, 131, 20, 61, 0, 26, 0, 21, 73, -1, 5, 16, 17, 17, 29, 18, 18, 19, 132, 20, 133, 0, 42, 0, 36, 74, -1, 14, 16, 12, 13, 134, 4, 135, 5, 136, 29, 36, 30, 37, 18, 18, 19, 132, 31, 137, 32, 138, 33, 139, 34, 140, 35, 141, 20, 61, 0, 26, 0, 21, 75, -1, 5, 16, 17, 17, 29, 18, 18, 19, 69, 20, 142, 0, 44, 0, 36, 76, -1, 15, 16, 12, 13, 143, 14, 110, 4, 144, 5, 49, 29, 36, 30, 37, 18, 18, 19, 132, 31, 145, 32, 146, 33, 147, 34, 148, 35, 149, 20, 61, 0, 26, 0, 21, 77, -1, 5, 16, 17, 17, 29, 18, 18, 19, 132, 20, 150, 0, 46, 0, 36, 78, -1, 15, 16, 12, 13, 104, 14, 110, 4, 151, 5, 49, 29, 36, 30, 37, 18, 18, 19, 152, 31, 153, 32, 154, 33, 155, 34, 156, 35, 157, 20, 61, 0, 26, 0, 21, 79, -1, 5, 16, 17, 17, 29, 18, 18, 19, 63, 20, 158, 0, 48, 0, 36, 80, -1, 15, 16, 12, 13, 65, 14, 66, 4, 67, 5, 68, 30, 37, 18, 18, 19, 69, 31, 70, 32, 71, 33, 72, 34, 73, 35, 74, 20, 75, 7, 4, 0, 2, 0, 36, 81, -1, 16, 13, 159, 14, 160, 4, 161, 5, 162, 30, 37, 82, 3, 17, 163, 18, 164, 19, 165, 31, 166, 32, 167, 33, 168, 34, 169, 35, 170, 20, 171, 7, 4, 0),
-"variants": [ExtResource("1"), 942.0, 589.0, Color(0, 0, 0, 1), true, Vector2(471, 294), ExtResource("2"), -415.0, -252.0, 424.0, 266.0, Color(0, 0, 0, 0.541176), 0, 364.0, 11.0, 504.0, 60.0, 2, ExtResource("3"), 35, "游戏设置", Vector2(300, 35), ExtResource("4"), Vector2(580, 35), 43.0, 67.0, 333.0, 508.0, 7, 1, 25, "游戏音乐：", 120.0, 1.0, 195.0, 37.0, Color(1, 1, 1, 1), Color(1, 0.466667, 0, 1), SubResource("1"), SubResource("3"), SubResource("2"), SubResource("4"), SubResource("5"), "关闭中", "游戏音效：", "音乐音量：", 122.0, 14.0, 250.0, 30.0, SubResource("6"), SubResource("7"), -80.0, 5.0, "音效音量：", "怪物具体血量显示：", 224.0, 299.0, "怪物上方血条显示：", 221.0, 296.0, "开启中", "怪物头顶血条显示：", 19, "角色武器：", 94.0, -2.0, 157.0, 29.0, 21, SubResource("8"), SubResource("10"), SubResource("9"), SubResource("11"), SubResource("12"), "显示中", "显示伤害：", 449.0, 739.0, 479.0, 13, "主题音乐：", 114.0, 178.0, "版本1", 185.0, 249.0, "版本2", 255.0, 319.0, "版本3", 321.0, 385.0, 36.0, SubResource("13"), SubResource("15"), SubResource("14"), SubResource("16"), SubResource("17"), "版本4", "主题背景：", 118.0, 182.0, 189.0, 253.0, 259.0, 323.0, 22, "帧率：", 105.0, -1.0, 230.0, 35.0, "是否显示怪物身体（此项对部分怪物无效）", 304.0, 348.0, 27.0, SubResource("18"), SubResource("20"), SubResource("19"), SubResource("21"), SubResource("22"), "显示", 23, "血条缓动机制：", 155.0, 34.0, SubResource("23"), SubResource("25"), SubResource("24"), SubResource("26"), SubResource("27"), 20, "自动捡拾掉落物：", 158.0, 218.0, 28.0, SubResource("28"), SubResource("30"), SubResource("29"), SubResource("31"), SubResource("32"), "捡拾物品音效：", 145.0, 205.0, SubResource("33"), SubResource("35"), SubResource("34"), SubResource("36"), SubResource("37"), "进入关卡前弹出关卡信息框：", 309.0, 18, SubResource("38"), SubResource("40"), SubResource("39"), SubResource("41"), SubResource("42"), "角色身体：", 352.0, -290.0, 456.0, -259.0, 4, ExtResource("5"), 30, SubResource("43"), SubResource("45"), SubResource("44"), SubResource("46"), SubResource("47"), "返回"],
-"version": 3
-}
+[node name="GameSet" type="Node2D" unique_id=2019225896]
+script = ExtResource("1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=317436361]
+offset_right = 942.0
+offset_bottom = 589.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=2117196493]
+position = Vector2(471, 294)
+texture = ExtResource("2")
+metadata/_edit_lock_ = true
+
+[node name="BGColor" type="ColorRect" parent="Bg" unique_id=2021278244]
+offset_left = -415.0
+offset_top = -252.0
+offset_right = 424.0
+offset_bottom = 266.0
+color = Color(0, 0, 0, 0.541176)
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Label" parent="Bg/BGColor" unique_id=530171692]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 11.0
+offset_right = 504.0
+offset_bottom = 60.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 35
+text = "游戏设置"
+
+[node name="fgx_1" type="Sprite2D" parent="Bg/BGColor" unique_id=1585691706]
+position = Vector2(300, 35)
+texture = ExtResource("4")
+metadata/_edit_lock_ = true
+
+[node name="fgx_2" type="Sprite2D" parent="Bg/BGColor" unique_id=1907793712]
+position = Vector2(580, 35)
+texture = ExtResource("4")
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Bg/BGColor" unique_id=442887094]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 67.0
+offset_right = 333.0
+offset_bottom = 508.0
+theme_override_constants/separation = 7
+
+[node name="GameMusicTitle" type="Label" parent="Bg/BGColor/VBoxContainer" unique_id=2023921290]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+text = "游戏音乐："
+vertical_alignment = 1
+
+[node name="GMOpenOrClose" type="Button" parent="Bg/BGColor/VBoxContainer/GameMusicTitle" unique_id=1049166244]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 1.0
+offset_right = 195.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("1")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/focus = SubResource("5")
+text = "关闭中"
+metadata/_edit_lock_ = true
+
+[node name="GameMusicTitle2" type="Label" parent="Bg/BGColor/VBoxContainer" unique_id=700261303]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+text = "游戏音效："
+vertical_alignment = 1
+
+[node name="GM2OpenOrClose" type="Button" parent="Bg/BGColor/VBoxContainer/GameMusicTitle2" unique_id=1697016772]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 1.0
+offset_right = 195.0
+offset_bottom = 37.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("1")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/focus = SubResource("5")
+text = "关闭中"
+metadata/_edit_lock_ = true
+
+[node name="GameMusicFB" type="Label" parent="Bg/BGColor/VBoxContainer" unique_id=817646953]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+text = "音乐音量："
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Bg/BGColor/VBoxContainer/GameMusicFB" unique_id=602989658]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 14.0
+offset_right = 250.0
+offset_bottom = 30.0
+mouse_default_cursor_shape = 2
+theme_override_styles/slider = SubResource("6")
+theme_override_styles/grabber_area_highlight = SubResource("7")
+min_value = -80.0
+max_value = 5.0
+metadata/_edit_lock_ = true
+
+[node name="GameMusicFB2" type="Label" parent="Bg/BGColor/VBoxContainer" unique_id=1789230435]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+text = "音效音量："
+vertical_alignment = 1
+
+[node name="GM2Slider" type="HSlider" parent="Bg/BGColor/VBoxContainer/GameMusicFB2" unique_id=922919085]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 14.0
+offset_right = 250.0
+offset_bottom = 30.0
+mouse_default_cursor_shape = 2
+theme_override_styles/slider = SubResource("6")
+theme_override_styles/grabber_area_highlight = SubResource("7")
+min_value = -80.0
+max_value = 5.0
+metadata/_edit_lock_ = true
+
+[node name="MonsterBloodText" type="Label" parent="Bg/BGColor/VBoxContainer" unique_id=1362629116]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+text = "怪物具体血量显示："
+vertical_alignment = 1
+
+[node name="MBTOpenOrClose" type="Button" parent="Bg/BGColor/VBoxContainer/MonsterBloodText" unique_id=1291079408]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 1.0
+offset_right = 299.0
+offset_bottom = 37.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("1")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/focus = SubResource("5")
+text = "关闭中"
+metadata/_edit_lock_ = true
+
+[node name="MonsterBloodShow" type="Label" parent="Bg/BGColor/VBoxContainer" unique_id=225415514]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+text = "怪物上方血条显示："
+vertical_alignment = 1
+
+[node name="MBSOpenOrClose" type="Button" parent="Bg/BGColor/VBoxContainer/MonsterBloodShow" unique_id=1728372082]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 1.0
+offset_right = 296.0
+offset_bottom = 37.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("1")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/focus = SubResource("5")
+text = "开启中"
+metadata/_edit_lock_ = true
+
+[node name="MonsterBloodShow2" type="Label" parent="Bg/BGColor/VBoxContainer" unique_id=899102068]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+text = "怪物头顶血条显示："
+vertical_alignment = 1
+
+[node name="MBS2OpenOrClose" type="Button" parent="Bg/BGColor/VBoxContainer/MonsterBloodShow2" unique_id=1268503238]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 1.0
+offset_right = 296.0
+offset_bottom = 37.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("1")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/focus = SubResource("5")
+text = "关闭中"
+metadata/_edit_lock_ = true
+
+[node name="RoleEQ" type="Label" parent="Bg/BGColor/VBoxContainer" unique_id=1798618653]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 19
+text = "角色武器："
+
+[node name="ShowClose2" type="Button" parent="Bg/BGColor/VBoxContainer/RoleEQ" unique_id=1849280288]
+layout_mode = 0
+offset_left = 94.0
+offset_top = -2.0
+offset_right = 157.0
+offset_bottom = 29.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("8")
+theme_override_styles/pressed = SubResource("10")
+theme_override_styles/hover = SubResource("9")
+theme_override_styles/disabled = SubResource("11")
+theme_override_styles/focus = SubResource("12")
+text = "显示中"
+metadata/_edit_lock_ = true
+
+[node name="DamageTextShow" type="Label" parent="Bg/BGColor/VBoxContainer" unique_id=248281484]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 19
+text = "显示伤害："
+
+[node name="DamageShow" type="Button" parent="Bg/BGColor/VBoxContainer/DamageTextShow" unique_id=1957387526]
+layout_mode = 0
+offset_left = 94.0
+offset_top = -2.0
+offset_right = 157.0
+offset_bottom = 29.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("8")
+theme_override_styles/pressed = SubResource("10")
+theme_override_styles/hover = SubResource("9")
+theme_override_styles/disabled = SubResource("11")
+theme_override_styles/focus = SubResource("12")
+text = "显示中"
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Bg/BGColor" unique_id=40909052]
+layout_mode = 0
+offset_left = 449.0
+offset_top = 67.0
+offset_right = 739.0
+offset_bottom = 479.0
+theme_override_constants/separation = 13
+
+[node name="GameMusicTitle" type="Label" parent="Bg/BGColor/VBoxContainer2" unique_id=735655496]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+text = "主题音乐："
+vertical_alignment = 1
+
+[node name="GMzm_1" type="Button" parent="Bg/BGColor/VBoxContainer2/GameMusicTitle" unique_id=464794921]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 1.0
+offset_right = 178.0
+offset_bottom = 37.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("1")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/focus = SubResource("5")
+text = "版本1"
+metadata/_edit_lock_ = true
+
+[node name="GMzm_2" type="Button" parent="Bg/BGColor/VBoxContainer2/GameMusicTitle" unique_id=1789212436]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 1.0
+offset_right = 249.0
+offset_bottom = 37.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("1")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/focus = SubResource("5")
+text = "版本2"
+metadata/_edit_lock_ = true
+
+[node name="GMzm_3" type="Button" parent="Bg/BGColor/VBoxContainer2/GameMusicTitle" unique_id=735050377]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 1.0
+offset_right = 319.0
+offset_bottom = 37.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("1")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/focus = SubResource("5")
+text = "版本3"
+metadata/_edit_lock_ = true
+
+[node name="GMzm_4" type="Button" parent="Bg/BGColor/VBoxContainer2/GameMusicTitle" unique_id=1982698630]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 1.0
+offset_right = 385.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("13")
+theme_override_styles/pressed = SubResource("15")
+theme_override_styles/hover = SubResource("14")
+theme_override_styles/disabled = SubResource("16")
+theme_override_styles/focus = SubResource("17")
+text = "版本4"
+metadata/_edit_lock_ = true
+
+[node name="GameMusicTitle2" type="Label" parent="Bg/BGColor/VBoxContainer2" unique_id=2095465952]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+text = "主题背景："
+vertical_alignment = 1
+
+[node name="GM2zm_1" type="Button" parent="Bg/BGColor/VBoxContainer2/GameMusicTitle2" unique_id=1368180277]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 1.0
+offset_right = 182.0
+offset_bottom = 37.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("1")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/focus = SubResource("5")
+text = "版本1"
+metadata/_edit_lock_ = true
+
+[node name="GM2zm_2" type="Button" parent="Bg/BGColor/VBoxContainer2/GameMusicTitle2" unique_id=366721653]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 1.0
+offset_right = 253.0
+offset_bottom = 37.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("1")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/focus = SubResource("5")
+text = "版本2"
+metadata/_edit_lock_ = true
+
+[node name="GM2zm_3" type="Button" parent="Bg/BGColor/VBoxContainer2/GameMusicTitle2" unique_id=1387987070]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 1.0
+offset_right = 323.0
+offset_bottom = 37.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("1")
+theme_override_styles/pressed = SubResource("3")
+theme_override_styles/hover = SubResource("2")
+theme_override_styles/disabled = SubResource("4")
+theme_override_styles/focus = SubResource("5")
+text = "版本3"
+metadata/_edit_lock_ = true
+
+[node name="FrameRate" type="Label" parent="Bg/BGColor/VBoxContainer2" unique_id=92201906]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 22
+text = "帧率："
+vertical_alignment = 1
+
+[node name="FrameRateOption" type="OptionButton" parent="Bg/BGColor/VBoxContainer2/FrameRate" unique_id=811515314]
+layout_mode = 0
+offset_left = 105.0
+offset_top = -1.0
+offset_right = 230.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 21
+
+[node name="BodyShow" type="Label" parent="Bg/BGColor/VBoxContainer2" unique_id=124328430]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+text = "是否显示怪物身体（此项对部分怪物无效）"
+
+[node name="YesOrNo" type="Button" parent="Bg/BGColor/VBoxContainer2/BodyShow" unique_id=1089088166]
+layout_mode = 0
+offset_left = 304.0
+offset_top = -2.0
+offset_right = 348.0
+offset_bottom = 27.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("18")
+theme_override_styles/pressed = SubResource("20")
+theme_override_styles/hover = SubResource("19")
+theme_override_styles/disabled = SubResource("21")
+theme_override_styles/focus = SubResource("22")
+text = "显示"
+
+[node name="HpBloodDelay" type="Label" parent="Bg/BGColor/VBoxContainer2" unique_id=322246918]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 23
+text = "血条缓动机制："
+
+[node name="YesORNot" type="Button" parent="Bg/BGColor/VBoxContainer2/HpBloodDelay" unique_id=629010139]
+layout_mode = 0
+offset_left = 155.0
+offset_top = -1.0
+offset_right = 230.0
+offset_bottom = 34.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("23")
+theme_override_styles/pressed = SubResource("25")
+theme_override_styles/hover = SubResource("24")
+theme_override_styles/disabled = SubResource("26")
+theme_override_styles/focus = SubResource("27")
+text = "开启中"
+
+[node name="AutomaticallyPickUpItems" type="Label" parent="Bg/BGColor/VBoxContainer2" unique_id=1430773193]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 20
+text = "自动捡拾掉落物："
+
+[node name="YesOrNots" type="Button" parent="Bg/BGColor/VBoxContainer2/AutomaticallyPickUpItems" unique_id=1136729546]
+layout_mode = 0
+offset_left = 158.0
+offset_right = 218.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("28")
+theme_override_styles/pressed = SubResource("30")
+theme_override_styles/hover = SubResource("29")
+theme_override_styles/disabled = SubResource("31")
+theme_override_styles/focus = SubResource("32")
+text = "开启中"
+
+[node name="AutomaticallyPickUpItems2" type="Label" parent="Bg/BGColor/VBoxContainer2" unique_id=868423002]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 21
+text = "捡拾物品音效："
+
+[node name="Ornot" type="Button" parent="Bg/BGColor/VBoxContainer2/AutomaticallyPickUpItems2" unique_id=2036751583]
+layout_mode = 0
+offset_left = 145.0
+offset_top = -1.0
+offset_right = 205.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("33")
+theme_override_styles/pressed = SubResource("35")
+theme_override_styles/hover = SubResource("34")
+theme_override_styles/disabled = SubResource("36")
+theme_override_styles/focus = SubResource("37")
+text = "开启中"
+
+[node name="LevelInfo" type="Label" parent="Bg/BGColor/VBoxContainer2" unique_id=1570220617]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 20
+text = "进入关卡前弹出关卡信息框："
+
+[node name="openClose" type="Button" parent="Bg/BGColor/VBoxContainer2/LevelInfo" unique_id=1427756886]
+layout_mode = 0
+offset_left = 253.0
+offset_top = -1.0
+offset_right = 309.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("38")
+theme_override_styles/pressed = SubResource("40")
+theme_override_styles/hover = SubResource("39")
+theme_override_styles/disabled = SubResource("41")
+theme_override_styles/focus = SubResource("42")
+text = "开启中"
+
+[node name="RoleBody" type="Label" parent="Bg/BGColor/VBoxContainer2" unique_id=1144253783]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 19
+text = "角色身体："
+
+[node name="ShowClose" type="Button" parent="Bg/BGColor/VBoxContainer2/RoleBody" unique_id=379111823]
+layout_mode = 0
+offset_left = 94.0
+offset_top = -2.0
+offset_right = 157.0
+offset_bottom = 29.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("8")
+theme_override_styles/pressed = SubResource("10")
+theme_override_styles/hover = SubResource("9")
+theme_override_styles/disabled = SubResource("11")
+theme_override_styles/focus = SubResource("12")
+text = "显示中"
+metadata/_edit_lock_ = true
+
+[node name="Return" type="Button" parent="Bg" unique_id=15723700]
+offset_left = 352.0
+offset_top = -290.0
+offset_right = 456.0
+offset_bottom = -259.0
+theme_override_colors/font_hover_color = Color(1, 0.466667, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("43")
+theme_override_styles/pressed = SubResource("45")
+theme_override_styles/hover = SubResource("44")
+theme_override_styles/disabled = SubResource("46")
+theme_override_styles/focus = SubResource("47")
+text = "返回"
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer/GameMusicTitle/GMOpenOrClose" to="." method="_on_gm_open_or_close_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer/GameMusicTitle2/GM2OpenOrClose" to="." method="_on_gm_2_open_or_close_pressed"]
+[connection signal="value_changed" from="Bg/BGColor/VBoxContainer/GameMusicFB/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="Bg/BGColor/VBoxContainer/GameMusicFB2/GM2Slider" to="." method="_on_gm_2_slider_value_changed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer/MonsterBloodText/MBTOpenOrClose" to="." method="_on_mbt_open_or_close_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer/MonsterBloodShow/MBSOpenOrClose" to="." method="_on_mbs_open_or_close_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer/MonsterBloodShow2/MBS2OpenOrClose" to="." method="_on_mbs_2_open_or_close_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer/RoleEQ/ShowClose2" to="." method="_on_show_close_2_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer/DamageTextShow/DamageShow" to="." method="_on_damage_show_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer2/GameMusicTitle/GMzm_1" to="." method="_on_g_mzm_1_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer2/GameMusicTitle/GMzm_2" to="." method="_on_g_mzm_2_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer2/GameMusicTitle/GMzm_3" to="." method="_on_g_mzm_3_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer2/GameMusicTitle/GMzm_4" to="." method="_on_g_mzm_4_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer2/GameMusicTitle2/GM2zm_1" to="." method="_on_gm_2_zm_1_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer2/GameMusicTitle2/GM2zm_2" to="." method="_on_gm_2_zm_2_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer2/GameMusicTitle2/GM2zm_3" to="." method="_on_gm_2_zm_3_pressed"]
+[connection signal="item_selected" from="Bg/BGColor/VBoxContainer2/FrameRate/FrameRateOption" to="." method="_on_frame_rate_option_item_selected"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer2/BodyShow/YesOrNo" to="." method="_on_yes_or_no_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer2/HpBloodDelay/YesORNot" to="." method="_on_yes_or_not_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer2/AutomaticallyPickUpItems/YesOrNots" to="." method="_on_yes_or_nots_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer2/AutomaticallyPickUpItems2/Ornot" to="." method="_on_ornot_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer2/LevelInfo/openClose" to="." method="_on_open_close_pressed"]
+[connection signal="pressed" from="Bg/BGColor/VBoxContainer2/RoleBody/ShowClose" to="." method="_on_show_close_pressed"]
+[connection signal="pressed" from="Bg/Return" to="." method="_on_return_pressed"]

@@ -62,9 +62,7 @@ func _on_change_pressed() -> void:
 			Global.add_message_show(Global.windows, "您还未获得过" + str(item_name) + "！！", 1.5, Vector2(470, 295))
 	elif cdorxx.text == "卸下":
 		PlayerData.player_data[DataKeys.TRANSMOG_LIST][lx] = ""
-		Global.add_message_show(
-			Global.windows, "取消" + str(lx) + ":" + str(item_name) + "的幻化！！", 1.5, Vector2(470, 295)
-		)
+		Global.add_message_show(Global.windows, "取消" + str(lx) + ":" + str(item_name) + "的幻化！！", 1.5, Vector2(470, 295))
 	transmogrified.on_eqchange()
 	if is_instance_valid(RoleProp.source_player) and RoleProp.source_player.has_method("on_eqchange"):
 		RoleProp.source_player.on_eqchange()

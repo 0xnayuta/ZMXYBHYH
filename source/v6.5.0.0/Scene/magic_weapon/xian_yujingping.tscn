@@ -1,4 +1,4 @@
-[gd_resource type="PackedScene" format=3]
+[gd_scene format=3]
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_magic_weapon.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/magic_weapon/xian_yujingping.gd" id="2"]
@@ -1219,18 +1219,14 @@ animations = [{
 "speed": 30.0
 }]
 
-[resource]
-_bundled = {
-"base_scene": 0,
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"id_paths": [PackedInt32Array(1533773469)],
-"names": PackedStringArray("XianYujingping", "script", "Bullet", "MgAction", "position", "scale", "sprite_frames", "autoplay", "MgPlayer", "SkillCD", "HitBox", "disabled"),
-"node_count": 3,
-"node_ids": PackedInt32Array(1569121402, 1758968530, 133518962),
-"node_paths": [NodePath("HitBox")],
-"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 0, 0, 2147483647, 524291, -1, 4, 4, 2, 5, 3, 6, 4, 7, 5, 0, 1073741824, 0, 2147483647, 262154, -1, 1, 11, 6, 0),
-"variants": [ExtResource("1"), ExtResource("2"), Vector2(0, -18), Vector2(-0.42, 0.42), SubResource("SpriteFrames_weapon"), "wait", true],
-"version": 3
-}
+[node name="XianYujingping" unique_id=1569121402 instance=ExtResource("1")]
+script = ExtResource("2")
+
+[node name="MgAction" parent="." index="1" unique_id=1758968530]
+position = Vector2(0, -18)
+scale = Vector2(-0.42, 0.42)
+sprite_frames = SubResource("SpriteFrames_weapon")
+autoplay = "wait"
+
+[node name="HitBox" parent="HitBox" parent_id_path=PackedInt32Array(1533773469) index="0" unique_id=133518962]
+disabled = true

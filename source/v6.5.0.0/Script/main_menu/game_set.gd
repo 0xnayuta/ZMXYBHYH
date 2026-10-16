@@ -15,7 +15,7 @@ const GAME_SET_DESIGN_SIZE := Vector2(942.0, 589.0)
 @onready var ornot: Button = $Bg/BGColor/VBoxContainer2/AutomaticallyPickUpItems2/Ornot
 @onready var open_close: Button = $Bg/BGColor/VBoxContainer2/LevelInfo/openClose
 @onready var show_close_2: Button = $Bg/BGColor/VBoxContainer/RoleEQ/ShowClose2
-@onready var show_close: Button = $Bg/BGColor/VBoxContainer2/role_body/ShowClose
+@onready var show_close: Button = $Bg/BGColor/VBoxContainer2/RoleBody/ShowClose
 @onready var frame_rate_option: OptionButton = $Bg/BGColor/VBoxContainer2/FrameRate/FrameRateOption
 
 var is_set = false
@@ -65,7 +65,7 @@ func _fix_setting_layout_rows() -> void:
 		[$Bg/BGColor/VBoxContainer2/AutomaticallyPickUpItems, Vector2(290, 30)],
 		[$Bg/BGColor/VBoxContainer2/AutomaticallyPickUpItems2, Vector2(290, 31)],
 		[$Bg/BGColor/VBoxContainer2/LevelInfo, Vector2(330, 31)],
-		[$Bg/BGColor/VBoxContainer2/role_body, Vector2(290, 31)],
+		[$Bg/BGColor/VBoxContainer2/RoleBody, Vector2(290, 31)],
 	]
 	for row in rows:
 		var label := row[0] as Label

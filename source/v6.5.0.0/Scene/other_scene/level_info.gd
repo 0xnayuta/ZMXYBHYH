@@ -209,8 +209,8 @@ const HEAVEN_SOUL_CRYSTAL_MONSTER_IDS := {
 @onready var mybg: TextureRect = $ColorRect/TextureRect/Mybg
 @onready var fall: Label = $ColorRect/TextureRect/Fall
 @onready var pj: Label = $ColorRect/TextureRect/pj
-@onready var speedtext: Label = $ColorRect/TextureRect/speed/speedtext
-@onready var counttext: Label = $ColorRect/TextureRect/count/counttext
+@onready var speedtext: Label = $ColorRect/TextureRect/Speed/speedtext
+@onready var counttext: Label = $ColorRect/TextureRect/Count/counttext
 @onready var diffbutton: TextureButton = $ColorRect/TextureRect/diffbutton
 @onready var difftext: Label = $ColorRect/TextureRect/diffbutton/difftext
 @onready var diffvalue: Label = $ColorRect/TextureRect/diffbutton/diffvalue
@@ -2644,7 +2644,9 @@ func _get_level_monster_config(
 		if not monster_id_text.is_valid_int():
 			return {}
 		monster_id = int(monster_id_text)
-	var level_script_path := target_stage_path.replace("res://Scene/level/", "res://Script/level/").get_basename() + ".gd"
+	var level_script_path := (
+		target_stage_path.replace("res://Scene/level/", "res://Script/level/").get_basename() + ".gd"
+	)
 	if not ResourceLoader.exists(level_script_path):
 		return {}
 	var level_script = load(level_script_path)

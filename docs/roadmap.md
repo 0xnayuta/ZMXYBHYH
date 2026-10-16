@@ -334,4 +334,23 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 - 动画方法轨道审计：183 个唯一轨道方法名中 179 个精确命中脚本函数；剩余 4 个（`role_4.tscn` 的 `add_arrow_*` 系列）经 `git log -S` 追溯确认**自 B2 前即无对应脚本实现**，属上游历史遗留，非本轮引入。
 
 > ⚠️ **已知遗留（后续专项）**：`source/v6.5.0.0/Scene/` 下 748/1131 个 `.tscn` 为 GDRE 导出的 `_bundled`（Godot 3 PCK 内嵌二进制）格式，节点树可加载但无法在文本层面参与重命名同步；如需彻底归一为 Godot 4 原生文本场景，应单列专项阶段（含 `uid` 重映射与导入缓存重建）。
+>
+> ✅ **该遗留已于 7.5 专项中全部解决**（1130/1130 场景归一为原生文本格式）。
+
+### 7.5 `_bundled` 场景归一化与路径大小写提纯专项 [已完成 · Done]
+
+**背景 1（场景格式）**：`source/v6.5.0.0/Scene/` 下 1130/1131 个 `.tscn` 为 GDRE Tools 导出的 `_bundled` 格式（Godot 4 PackedScene 二进制内嵌于 `[resource] _bundled = {...}`），文本层面无法参与重命名同步，是跨平台导出与后续重构的系统性障碍。
+
+**背景 2（git 索引大小写）**：Windows 下 `core.ignorecase=true` 使 B4/B4b 的目录/文件大小写改名**未被 git 记录**（索引 `Scene/Base/...` vs 磁盘 `Scene/base/...`），克隆到 Linux/macOS 将得到 PascalCase 路径并与代码引用直接断裂。
+
+**执行方案与实测**：
+1. **场景归一化**：Godot 4.7.2 headless `load()` → `ResourceSaver.save()` 将 1120 个 `_bundled` 场景重写为原生文本场景（`[gd_scene]` + `[ext_resource]` + `[sub_resource]` + `[node]` + `[connection]`）；
+2. **一致性验证**：试点（1 场景）→ 小批量（10 场景，含 `role_4.tscn` 的 62 条动画方法轨道）→ 全量 4 批（1130 场景）；节点数 / 连接数 / 属性数 / 动画方法轨道数**逐项一致**，**0 失败、0 不一致、`_bundled` 残留 0**；
+3. **转换后引用审计**：以"多段路径 + 场景继承链（`instance=ExtResource`）"双维度全盘扫描脚本节点引用，修复 **44 处**（`$BG/Name_`、`$.../Text`、`$Action/RoleBody`、`$BG/ColorRect/Text/TotalList/BossList1` 等），区分出 11 处合法的运行时动态 `get_node` 与跨场景继承引用；
+4. **路径大小写提纯**：`git config core.ignorecase false` 暴露 2822 处不一致后，以 `git mv` 两步法（经由临时名）原子修正 **28 个目录 + 877 个文件**，索引与磁盘大小写达成 **100% 一致**（`仅索引有 = 0`）；
+5. **工具链同步**：`scripts/check_all.py` 的 gdlint 核心脚本清单更新为 B4 后的新路径（原硬编码 `Script/Base/BaseHero.gd` 等已失效）；17 个脚本经 `format_all.py` 归一官方排版。
+
+**门禁基线**：`python scripts/check_all.py` 四维度全绿（LF 行尾 / gdformat / gdlint / 引擎编译）；`health_check.py` 874 脚本 0 Parse Error、0 断裂引用；实机运行 **0 脚本错误**（仅引擎退出时 RID 释放噪声）。
+
+**规模**：1130 场景文件（+74,868 / −30,274 行，场景总大小 14 MB）+ 44 处引用修复 + 905 项路径大小写修正。
 

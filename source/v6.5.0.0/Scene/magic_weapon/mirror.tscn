@@ -1,4 +1,4 @@
-[gd_resource type="PackedScene" format=3]
+[gd_scene format=3]
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_magic_weapon.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/magic_weapon/mirror.gd" id="2"]
@@ -182,18 +182,32 @@ _data = {
 [sub_resource type="CircleShape2D" id="10"]
 radius = 1555.78
 
-[resource]
-_bundled = {
-"base_scene": 0,
-"conn_count": 2,
-"conns": PackedInt32Array(4, 0, 24, 23, 2, 0, 0, 7, 0, 26, 25, 2, 0, 0),
-"editable_instances": [],
-"id_paths": [PackedInt32Array(1533773469)],
-"names": PackedStringArray("Mirror", "script", "Bullet", "MgAction", "scale", "MgPlayer", "libraries/", "SkillCD", "HitBox", "disabled", "CheckMonster", "visible", "collision_layer", "collision_mask", "Area2D", "Area", "shape", "CollisionShape2D", "Skill", "one_shot", "Timer", "wait_time", "autostart", "_on_check_monster_body_entered", "body_entered", "_on_timer_timeout", "timeout"),
-"node_count": 8,
-"node_ids": PackedInt32Array(1326018271, 1758968530, 1971401172, 133518962, 1234335528, 1431483368, 2049924119, 933824672),
-"node_paths": [NodePath("HitBox")],
-"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 0, 0, 2147483647, 524291, -1, 1, 4, 2, 0, 0, 0, 2147483647, 786437, -1, 1, 6, 3, 0, 1073741824, 0, 2147483647, 262152, -1, 1, 9, 4, 0, 0, 0, 14, 1572874, -1, 3, 11, 5, 12, 6, 13, 7, 0, 4, 0, 17, 262159, -1, 1, 16, 8, 0, 0, 0, 20, 1835026, -1, 1, 19, 4, 0, 0, 0, 20, 2097172, -1, 2, 21, 9, 22, 4, 0),
-"variants": [ExtResource("1"), ExtResource("2"), Vector2(0.060000002, 0.060000002), SubResource("9"), true, false, 0, 4, SubResource("10"), 2.0],
-"version": 3
-}
+[node name="Mirror" unique_id=1326018271 instance=ExtResource("1")]
+script = ExtResource("2")
+
+[node name="MgAction" parent="." index="1" unique_id=1758968530]
+scale = Vector2(0.060000002, 0.060000002)
+
+[node name="MgPlayer" parent="." index="2" unique_id=1971401172]
+libraries/ = SubResource("9")
+
+[node name="HitBox" parent="HitBox" parent_id_path=PackedInt32Array(1533773469) index="0" unique_id=133518962]
+disabled = true
+
+[node name="CheckMonster" type="Area2D" parent="." index="5" unique_id=1234335528]
+visible = false
+collision_layer = 0
+collision_mask = 4
+
+[node name="Area" type="CollisionShape2D" parent="CheckMonster" index="0" unique_id=1431483368]
+shape = SubResource("10")
+
+[node name="Skill" type="Timer" parent="." index="6" unique_id=2049924119]
+one_shot = true
+
+[node name="Timer" type="Timer" parent="." index="7" unique_id=933824672]
+wait_time = 2.0
+autostart = true
+
+[connection signal="body_entered" from="CheckMonster" to="." method="_on_check_monster_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

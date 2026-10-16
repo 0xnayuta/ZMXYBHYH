@@ -1,5 +1,5 @@
 extends Control
-@onready var show_text: Label = $MarginContainer/show_text
+@onready var show_text: Label = $MarginContainer/ShowText
 
 var text_value
 
