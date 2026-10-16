@@ -6,15 +6,15 @@ var Curecount: int = 0
 func monster_44():
 	self.is_bt = true
 	self.CannotAttract = true
-	preload("res://Scene/Monster/monster_39.tscn")
-	preload("res://Scene/Monster/monster_40.tscn")
-	preload("res://Scene/Monster/monster_28.tscn")
-	preload("res://Scene/Monster/monster_27.tscn")
-	preload("res://Scene/Monster/monster_26.tscn")
-	preload("res://Scene/Monster/monster_30.tscn")
-	preload("res://Scene/Monster/monster_31.tscn")
-	preload("res://Scene/Monster/monster_23.tscn")
-	preload("res://Scene/Monster/monster_29.tscn")
+	preload("res://Scene/monster/monster_39.tscn")
+	preload("res://Scene/monster/monster_40.tscn")
+	preload("res://Scene/monster/monster_28.tscn")
+	preload("res://Scene/monster/monster_27.tscn")
+	preload("res://Scene/monster/monster_26.tscn")
+	preload("res://Scene/monster/monster_30.tscn")
+	preload("res://Scene/monster/monster_31.tscn")
+	preload("res://Scene/monster/monster_23.tscn")
+	preload("res://Scene/monster/monster_29.tscn")
 	self.is_boss = true
 	self.my_mr_name = "鬼门·生灵"
 	self.attack_in = 0

@@ -6,16 +6,16 @@ var wdsl_damage_reduction: float = 0.0
 var dikong_field_invincible_count: int = 0
 
 var smsrsz_timer: Timer
-const SMSR_SHENQI_LIGHTNING_EFFECT := preload("res://Script/Hero/smsr_shenqi_lightning_effect.gd")
-const MOUNT_RUNTIME_SCRIPT := preload("res://Script/Mount/mount_runtime.gd")
-const MAIN_SWORD_ARRAY_WEAPON_SCENE_PATH := "res://Scene/MagicWeapon/main_sword_array_weapon.tscn"
+const SMSR_SHENQI_LIGHTNING_EFFECT := preload("res://Script/hero/smsr_shenqi_lightning_effect.gd")
+const MOUNT_RUNTIME_SCRIPT := preload("res://Script/mount/mount_runtime.gd")
+const MAIN_SWORD_ARRAY_WEAPON_SCENE_PATH := "res://Scene/magic_weapon/main_sword_array_weapon.tscn"
 const XIANYU_WING_PATHS := {
-	"res://Script/Hero/role1.gd": "res://Art/HeroPicture/Wings/xyzy/role1.tres",
-	"res://Script/Hero/role_2.gd": "res://Art/HeroPicture/Wings/xyzy/role2.tres",
-	"res://Script/Hero/role_3.gd": "res://Art/HeroPicture/Wings/xyzy/role3.tres",
-	"res://Script/Hero/role_4.gd": "res://Art/HeroPicture/Wings/xyzy/role4.tres",
-	"res://Script/Hero/role_5.gd": "res://Art/HeroPicture/Wings/xyzy/role5.tres",
-	"res://Script/Hero/ne_zha_hero.gd": "res://Art/HeroPicture/Wings/xyzy/role6.tres",
+	"res://Script/hero/role1.gd": "res://Art/HeroPicture/Wings/xyzy/role1.tres",
+	"res://Script/hero/role_2.gd": "res://Art/HeroPicture/Wings/xyzy/role2.tres",
+	"res://Script/hero/role_3.gd": "res://Art/HeroPicture/Wings/xyzy/role3.tres",
+	"res://Script/hero/role_4.gd": "res://Art/HeroPicture/Wings/xyzy/role4.tres",
+	"res://Script/hero/role_5.gd": "res://Art/HeroPicture/Wings/xyzy/role5.tres",
+	"res://Script/hero/ne_zha_hero.gd": "res://Art/HeroPicture/Wings/xyzy/role6.tres",
 }
 const HUAHAO_WING_FRAME_DIR := "res://Art/HeroPicture/Wings/hhyq"
 var zlwsz_shenqi_timer: Timer
@@ -694,7 +694,7 @@ func _physics_process(delta: float) -> void:
 		set_process_input(false)
 		set_process_unhandled_input(false)
 		await get_tree().create_timer(1.5).timeout
-		Global.change_scene("res://Scene/Level/defeat.tscn")
+		Global.change_scene("res://Scene/level/defeat.tscn")
 		return
 	RoleProp.up_level()
 	RoleProp.role_pos_x = position.x
@@ -1629,7 +1629,7 @@ func state_behit():
 			get_action = "death"
 			role_action_player.play("death")
 			await get_tree().create_timer(1.5).timeout
-			Global.change_scene("res://Scene/Level/defeat.tscn")
+			Global.change_scene("res://Scene/level/defeat.tscn")
 		return
 
 	_prepare_hit_reaction()
@@ -2933,7 +2933,7 @@ func _ensure_huahao_wing_animation() -> void:
 
 func change_body(name1):
 	self.RoleBody.texture = Global.load_role1_body(name1)
-	preload("res://Script/Hero/moon_palace_clothes_effect.gd").sync(RoleBody, str(name1), true)
+	preload("res://Script/hero/moon_palace_clothes_effect.gd").sync(RoleBody, str(name1), true)
 
 
 func change_eq(name1):
@@ -3549,7 +3549,7 @@ func set_insky():
 func _prewarm_heavy_skill_resources() -> void:
 	SMSR_SHENQI_LIGHTNING_EFFECT.prewarm_frames()
 	if zlwsz_shenqi_gear_scene == null:
-		zlwsz_shenqi_gear_scene = load("res://Scene/Hero/zlw_shenqi_gear_bullet.tscn")
+		zlwsz_shenqi_gear_scene = load("res://Scene/hero/zlw_shenqi_gear_bullet.tscn")
 
 
 func addsmsr_shenqi_lightning_round() -> void:
@@ -3600,7 +3600,7 @@ func addzlw_shenqi_wheel_effect():
 	if not objattackDic.has("zlw_shenqi_ws"):
 		return
 	if zlwsz_shenqi_gear_scene == null:
-		zlwsz_shenqi_gear_scene = load("res://Scene/Hero/zlw_shenqi_gear_bullet.tscn")
+		zlwsz_shenqi_gear_scene = load("res://Scene/hero/zlw_shenqi_gear_bullet.tscn")
 	var bullet_parent = get_tree().current_scene
 	if bullet_parent == null:
 		bullet_parent = self.Bullet

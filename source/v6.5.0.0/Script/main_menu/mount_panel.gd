@@ -1,7 +1,7 @@
 extends Control
 
-const MOUNT_CATALOG := preload("res://Script/Mount/mount_catalog.gd")
-const MOUNT_VISUAL := preload("res://Script/Mount/mount_visual.gd")
+const MOUNT_CATALOG := preload("res://Script/mount/mount_catalog.gd")
+const MOUNT_VISUAL := preload("res://Script/mount/mount_visual.gd")
 const UI_FONT := preload("res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf")
 const PANEL_SIZE := Vector2(900.0, 590.0)
 const TAB_NAMES := ["属性", "装备", "兽魂"]

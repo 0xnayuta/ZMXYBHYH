@@ -1,4 +1,4 @@
-extends "res://Script/Base/base_role.gd"
+extends "res://Script/base/base_role.gd"
 
 @onready var touch_screen_button = $role_menu/grey/TouchScreenButton
 

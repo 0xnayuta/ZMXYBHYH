@@ -1,8 +1,8 @@
 extends BaseObject
 class_name Role6
 
-const BaseMonster = preload("res://Script/Base/base_monster.gd")
-const BaseHero = preload("res://Script/Base/base_hero.gd")
+const BaseMonster = preload("res://Script/base/base_monster.gd")
+const BaseHero = preload("res://Script/base/base_hero.gd")
 
 var monster_instance: BaseMonster
 var monster_instance1: BaseHero

@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Level/defeat.gd" id="1"]
+[ext_resource type="Script" path="res://Script/level/defeat.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/Level/Settlement/结算.jpg" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Level/Settlement/622.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Level/Settlement/630.png" id="4"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/149.png" id="8"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/145.png" id="9"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="10"]
-[ext_resource type="PackedScene" path="res://Scene/BackPack/box_1.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://Scene/back_pack/box_1.tscn" id="11"]
 
 [sub_resource type="Animation" id="1"]
 length = 0.001

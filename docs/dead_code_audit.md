@@ -1,6 +1,6 @@
 # ZMXYBHYH 全工程资产拓扑与死代码审计报告 (Phase 1)
 
-> 生成时间: 2026-10-17 00:42:10  
+> 生成时间: 2026-10-17 00:45:25  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
 > 引擎环境: `Godot 4.7.2 Headless`
 
@@ -37,7 +37,7 @@
 
 | 脚本路径 | 保护原因 | 详细依据 |
 |:---|:---|:---|
-| `res://Script/Monster/pet_tiger_boss_base.gd` | 拥有全局 class_name: PetTigerBossBase | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/monster/pet_tiger_boss_base.gd` | 拥有全局 class_name: PetTigerBossBase | 被 0 个外部文件引用或提供全局类型接口 |
 
 ---
 

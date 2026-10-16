@@ -1,8 +1,8 @@
 extends BaseMonster
 class_name FireAncestorBoss
 
-const PROJECTILE_SCRIPT := preload("res://Script/Monster/nanhai_projectile.gd")
-const FIRE_ORB_SCENE := preload("res://Scene/Monster/monster_3056.tscn")
+const PROJECTILE_SCRIPT := preload("res://Script/monster/nanhai_projectile.gd")
+const FIRE_ORB_SCENE := preload("res://Scene/monster/monster_3056.tscn")
 const ROOT := "res://Art/Monster/SwfPng/3042"
 const ATLAS_MANIFEST := ROOT + "/atlas/manifest.json"
 const SOURCE_FPS := 30.0

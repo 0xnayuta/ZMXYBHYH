@@ -1,5 +1,5 @@
 extends CharacterBody2D
-const BossXieShaSengWdww := preload("res://Script/Monster/monster_14501_wdww.gd")
+const BossXieShaSengWdww := preload("res://Script/monster/monster_14501_wdww.gd")
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var speed_

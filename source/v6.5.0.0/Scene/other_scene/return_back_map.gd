@@ -41,8 +41,8 @@ func _on_challenge_pressed() -> void:
 		return
 	match TargetMap:
 		"nmg":
-			Global.change_scene("res://Scene/Level/level_hdgqnmg.tscn")
+			Global.change_scene("res://Scene/level/level_hdgqnmg.tscn")
 		"zld":
-			Global.change_scene("res://Scene/Level/level_hdgqzld.tscn")
+			Global.change_scene("res://Scene/level/level_hdgqzld.tscn")
 		"sssl":
 			Global.add_message_show(Global.Windows_, "青龙之森暂未开放！！", 1.5, Vector2(500, 305))

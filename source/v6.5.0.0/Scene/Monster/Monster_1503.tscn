@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/base_monster.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Monster/monster_1503.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/base/base_monster.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/monster/monster_1503.gd" id="2"]
 [ext_resource type="SpriteFrames" path="res://Art/Monster/PetTigerBoss/model/pet_tiger_stage3_frames.tres" id="3"]
 
 [sub_resource type="Animation" id="anim_death"]

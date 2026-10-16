@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/145.png" id="5"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="6"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="7"]
-[ext_resource type="PackedScene" path="res://Scene/BackPack/box_1.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://Scene/back_pack/box_1.tscn" id="8"]
 [ext_resource type="FontFile" path="res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf" id="9"]
 [ext_resource type="Texture2D" path="res://Art/BackPack/ClothesChange/53.png" id="10"]
 [ext_resource type="FontFile" path="res://Font/Aa我读山月山月独我_mianfeiziti.com.ttf" id="11"]

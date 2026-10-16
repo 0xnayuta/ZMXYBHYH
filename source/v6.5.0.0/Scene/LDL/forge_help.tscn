@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/LDL/forge_help.gd" id="1"]
+[ext_resource type="Script" path="res://Script/ldl/forge_help.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/66.png" id="2"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="3"]
 [ext_resource type="Texture2D" path="res://Art/BackPack/ClothesChange/8.png" id="4"]

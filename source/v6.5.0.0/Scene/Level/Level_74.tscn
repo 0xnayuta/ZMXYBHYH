@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/game4_imported_level_base.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/level_74.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/base/game4_imported_level_base.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/level/level_74.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/futiantai/background/bg30.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/futiantai/background/bg11.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/futiantai/background/bg12.png" id="5"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/futiantai/background/bg16.png" id="9"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/futiantai/background/bg17.png" id="10"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/maps/futiantai/background/bg10.png" id="11"]
-[ext_resource type="Script" path="res://Script/Level/game4_palace_terrain.gd" id="12"]
+[ext_resource type="Script" path="res://Script/level/game4_palace_terrain.gd" id="12"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/terrain/item_1114.png" id="13"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/terrain/item_1113.png" id="14"]
 

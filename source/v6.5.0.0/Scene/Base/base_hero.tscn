@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
 [ext_resource type="Shader" path="res://Shader/WsEffect.gdshader" id="1"]
-[ext_resource type="Script" path="res://Script/Base/base_hero.gd" id="2"]
+[ext_resource type="Script" path="res://Script/base/base_hero.gd" id="2"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="3"]
 [ext_resource type="Texture2D" path="res://Art/AllTX/cmscj.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/AllTX/sryx.png" id="5"]
@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" path="res://Art/AllTX/zmxz.png" id="20"]
 [ext_resource type="Texture2D" path="res://Art/AllTX/zyscj.png" id="21"]
 [ext_resource type="Texture2D" path="res://Art/zhenfa/senluozhen/slzEffect.png" id="22"]
-[ext_resource type="Script" path="res://Script/Base/base_role_hit_box.gd" id="23"]
+[ext_resource type="Script" path="res://Script/base/base_role_hit_box.gd" id="23"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 shader = ExtResource("1")

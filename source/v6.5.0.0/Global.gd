@@ -1,29 +1,29 @@
 extends Node
-const DataKeys := preload("res://Script/Base/data_keys.gd")
+const DataKeys := preload("res://Script/base/data_keys.gd")
 
 signal combo_milestone_reached(milestone: int)
 signal sound_settings_changed
 
 const TARGET_MAX_FPS := 150
 const SHOW_DEBUG_PERF_OVERLAY := true
-const DuplicateTextureAliases = preload("res://Script/Monster/duplicate_texture_aliases.gd")
-const WUSHUANG_HUOYAN_EFFECT_SCRIPT = preload("res://Script/Hero/wu_shuang_huo_yan_jin_jing_effect.gd")
-const BING_YU_EFFECT_SCRIPT = preload("res://Script/Hero/bing_yu_effect.gd")
-const BA_DI_QIAN_KUN_EFFECT_SCRIPT = preload("res://Script/Hero/ba_di_qian_kun_effect.gd")
-const BI_LUO_TIAN_EFFECT_SCRIPT = preload("res://Script/Hero/bi_luo_tian_effect.gd")
-const LEI_TING_JIE_ZHEN_EFFECT_SCRIPT = preload("res://Script/Hero/lei_ting_jie_zhen_effect.gd")
-const SMSR_SHENQI_LIGHTNING_EFFECT_SCRIPT = preload("res://Script/Hero/smsr_shenqi_lightning_effect.gd")
-const HMZ_AWAKEN_EFFECT_SCRIPT = preload("res://Script/Hero/hmz_awaken_effect.gd")
-const LYFB_AWAKEN_EFFECT_SCRIPT = preload("res://Script/Hero/lyfb_awaken_effect.gd")
-const JHSJ_AWAKEN_EFFECT_SCRIPT = preload("res://Script/Hero/jhsj_awaken_effect.gd")
-const CANG_MU_LONG_YUN_EFFECT_SCRIPT = preload("res://Script/Hero/cang_mu_long_yun_effect.gd")
-const ROLE4_POISON_ARRAY_AWAKEN_EFFECT_SCRIPT = preload("res://Script/Hero/role4_poison_array_awaken_effect.gd")
-const STREAMING_ROLE_BULLET_SCRIPT = preload("res://Script/Hero/streaming_role_bullet.gd")
-const MIRROR_SCRIPT = preload("res://Script/MagicWeapon/mirror.gd")
-const PET_TURTLE_BULLET_SCRIPT = preload("res://Script/Pet/pet_turtle_bullet.gd")
-const PET_RABBIT_BULLET_SCRIPT = preload("res://Script/Pet/pet_rabbit_bullet.gd")
-const PET_MOUSE_BULLET_SCRIPT = preload("res://Script/Pet/pet_mouse_bullet.gd")
-const PET_NEAT_BULLET_SCRIPT = preload("res://Script/Pet/pet_neat_bullet.gd")
+const DuplicateTextureAliases = preload("res://Script/monster/duplicate_texture_aliases.gd")
+const WUSHUANG_HUOYAN_EFFECT_SCRIPT = preload("res://Script/hero/wu_shuang_huo_yan_jin_jing_effect.gd")
+const BING_YU_EFFECT_SCRIPT = preload("res://Script/hero/bing_yu_effect.gd")
+const BA_DI_QIAN_KUN_EFFECT_SCRIPT = preload("res://Script/hero/ba_di_qian_kun_effect.gd")
+const BI_LUO_TIAN_EFFECT_SCRIPT = preload("res://Script/hero/bi_luo_tian_effect.gd")
+const LEI_TING_JIE_ZHEN_EFFECT_SCRIPT = preload("res://Script/hero/lei_ting_jie_zhen_effect.gd")
+const SMSR_SHENQI_LIGHTNING_EFFECT_SCRIPT = preload("res://Script/hero/smsr_shenqi_lightning_effect.gd")
+const HMZ_AWAKEN_EFFECT_SCRIPT = preload("res://Script/hero/hmz_awaken_effect.gd")
+const LYFB_AWAKEN_EFFECT_SCRIPT = preload("res://Script/hero/lyfb_awaken_effect.gd")
+const JHSJ_AWAKEN_EFFECT_SCRIPT = preload("res://Script/hero/jhsj_awaken_effect.gd")
+const CANG_MU_LONG_YUN_EFFECT_SCRIPT = preload("res://Script/hero/cang_mu_long_yun_effect.gd")
+const ROLE4_POISON_ARRAY_AWAKEN_EFFECT_SCRIPT = preload("res://Script/hero/role4_poison_array_awaken_effect.gd")
+const STREAMING_ROLE_BULLET_SCRIPT = preload("res://Script/hero/streaming_role_bullet.gd")
+const MIRROR_SCRIPT = preload("res://Script/magic_weapon/mirror.gd")
+const PET_TURTLE_BULLET_SCRIPT = preload("res://Script/pet/pet_turtle_bullet.gd")
+const PET_RABBIT_BULLET_SCRIPT = preload("res://Script/pet/pet_rabbit_bullet.gd")
+const PET_MOUSE_BULLET_SCRIPT = preload("res://Script/pet/pet_mouse_bullet.gd")
+const PET_NEAT_BULLET_SCRIPT = preload("res://Script/pet/pet_neat_bullet.gd")
 const MONSTER_CONTROL_BUFF_NAMES := [
 	"Ice",
 	"stun",
@@ -128,95 +128,95 @@ var LHHJBossList = {}
 
 const BASIC_AR_BUTTON_PATH := "res://Scene/other_scene/bacis_ar_button.tscn"
 const ADD_WEAPON_BULLET_PATHS := {
-	"CloudSwordBullet": "res://Scene/MagicWeapon/HitBulletLazy/cloud_sword_bullet.tscn",
-	"CucurFire_1": "res://Scene/MagicWeapon/HitBulletLazy/cucur_fire_1.tscn",
-	"CucurFire_2": "res://Scene/MagicWeapon/HitBulletLazy/cucur_fire_2.tscn",
-	"GhostDollBullet_1": "res://Scene/MagicWeapon/HitBulletLazy/ghost_doll_bullet_1.tscn",
-	"GhostDollBullet_2": "res://Scene/MagicWeapon/HitBulletLazy/ghost_doll_bullet_2.tscn",
-	"GhostDollBullet_3": "res://Scene/MagicWeapon/HitBulletLazy/ghost_doll_bullet_3.tscn",
-	"MagicUmbrellaBullet": "res://Scene/MagicWeapon/HitBulletLazy/magic_umbrella_bullet.tscn",
-	"PurpleGlodCucurbitBullet": "res://Scene/MagicWeapon/HitBulletLazy/purple_glod_cucurbit_bullet.tscn",
-	"SwordBullet": "res://Scene/MagicWeapon/HitBulletLazy/sword_bullet.tscn",
-	"wdsfBullet1": "res://Scene/MagicWeapon/HitBulletLazy/wdsf_bullet1.tscn",
-	"wdsfBullet2": "res://Scene/MagicWeapon/HitBulletLazy/wdsf_bullet2.tscn",
-	"wdsfBullet3": "res://Scene/MagicWeapon/HitBulletLazy/wdsf_bullet3.tscn",
-	"wdshBullet1": "res://Scene/MagicWeapon/HitBulletLazy/wdsh_bullet1.tscn",
-	"wdshBullet2": "res://Scene/MagicWeapon/HitBulletLazy/wdsh_bullet2.tscn",
-	"wdshBullet2_1": "res://Scene/MagicWeapon/HitBulletLazy/wdsh_bullet2_1.tscn",
-	"wdslBullet1": "res://Scene/MagicWeapon/HitBulletLazy/wdsl_bullet1.tscn",
-	"wdslBullet2": "res://Scene/MagicWeapon/HitBulletLazy/wdsl_bullet2.tscn",
-	"wdstBullet1": "res://Scene/MagicWeapon/HitBulletLazy/wdst_bullet1.tscn",
-	"wdstBullet2": "res://Scene/MagicWeapon/HitBulletLazy/wdst_bullet2.tscn",
-	"wdstBullet3": "res://Scene/MagicWeapon/HitBulletLazy/wdst_bullet3.tscn",
+	"CloudSwordBullet": "res://Scene/magic_weapon/hit_bullet_lazy/cloud_sword_bullet.tscn",
+	"CucurFire_1": "res://Scene/magic_weapon/hit_bullet_lazy/cucur_fire_1.tscn",
+	"CucurFire_2": "res://Scene/magic_weapon/hit_bullet_lazy/cucur_fire_2.tscn",
+	"GhostDollBullet_1": "res://Scene/magic_weapon/hit_bullet_lazy/ghost_doll_bullet_1.tscn",
+	"GhostDollBullet_2": "res://Scene/magic_weapon/hit_bullet_lazy/ghost_doll_bullet_2.tscn",
+	"GhostDollBullet_3": "res://Scene/magic_weapon/hit_bullet_lazy/ghost_doll_bullet_3.tscn",
+	"MagicUmbrellaBullet": "res://Scene/magic_weapon/hit_bullet_lazy/magic_umbrella_bullet.tscn",
+	"PurpleGlodCucurbitBullet": "res://Scene/magic_weapon/hit_bullet_lazy/purple_glod_cucurbit_bullet.tscn",
+	"SwordBullet": "res://Scene/magic_weapon/hit_bullet_lazy/sword_bullet.tscn",
+	"wdsfBullet1": "res://Scene/magic_weapon/hit_bullet_lazy/wdsf_bullet1.tscn",
+	"wdsfBullet2": "res://Scene/magic_weapon/hit_bullet_lazy/wdsf_bullet2.tscn",
+	"wdsfBullet3": "res://Scene/magic_weapon/hit_bullet_lazy/wdsf_bullet3.tscn",
+	"wdshBullet1": "res://Scene/magic_weapon/hit_bullet_lazy/wdsh_bullet1.tscn",
+	"wdshBullet2": "res://Scene/magic_weapon/hit_bullet_lazy/wdsh_bullet2.tscn",
+	"wdshBullet2_1": "res://Scene/magic_weapon/hit_bullet_lazy/wdsh_bullet2_1.tscn",
+	"wdslBullet1": "res://Scene/magic_weapon/hit_bullet_lazy/wdsl_bullet1.tscn",
+	"wdslBullet2": "res://Scene/magic_weapon/hit_bullet_lazy/wdsl_bullet2.tscn",
+	"wdstBullet1": "res://Scene/magic_weapon/hit_bullet_lazy/wdst_bullet1.tscn",
+	"wdstBullet2": "res://Scene/magic_weapon/hit_bullet_lazy/wdst_bullet2.tscn",
+	"wdstBullet3": "res://Scene/magic_weapon/hit_bullet_lazy/wdst_bullet3.tscn",
 }
 const MAGIC_WEAPON_SCENE_PATHS := {
-	"zcld": "res://Scene/MagicWeapon/zcld.tscn",
-	"dshl": "res://Scene/MagicWeapon/cucurbit.tscn",
-	"dhqf": "res://Scene/MagicWeapon/dhqf.tscn",
-	"tsgj": "res://Scene/MagicWeapon/sword.tscn",
-	"bsyj": "res://Scene/MagicWeapon/mirror.tscn",
-	"lsys": "res://Scene/MagicWeapon/magic_umbrella.tscn",
-	"xhmt": "res://Scene/MagicWeapon/ghost_doll.tscn",
-	"xhhl": "res://Scene/MagicWeapon/cucurbit2.tscn",
-	"kyl": "res://Scene/MagicWeapon/hybrofoline.tscn",
-	"qyj": "res://Scene/MagicWeapon/cloud_sword.tscn",
-	"zjfyd": "res://Scene/MagicWeapon/purple_gold_bell.tscn",
-	"zjhl": "res://Scene/MagicWeapon/purple_glod_cucurbit.tscn",
-	"yjp": "res://Scene/MagicWeapon/yujingping.tscn",
-	"zlwdah": "res://Scene/MagicWeapon/zlwdah.tscn",
-	"sqzlw": "res://Scene/MagicWeapon/sqzlw.tscn",
-	"nmwdnh": "res://Scene/MagicWeapon/nmwdnh.tscn",
-	"sqnmwdnh": "res://Scene/MagicWeapon/nmwdnh.tscn",
-	"xianyjp": "res://Scene/MagicWeapon/xian_yujingping.tscn",
-	"yx": "res://Scene/MagicWeapon/yx.tscn",
-	"qlsword": "res://Scene/MagicWeapon/qlsword.tscn",
-	"dzyl": "res://Scene/MagicWeapon/qing_lian.tscn",
-	"469000004": "res://Scene/MagicWeapon/zhen_lei_tian_chui.tscn",
-	"469000011": "res://Scene/MagicWeapon/di_kong_yu_mo_quan.tscn",
-	"yyzlj": "res://Scene/MagicWeapon/eight_immortal_yyzlj.tscn",
-	"ywhl": "res://Scene/MagicWeapon/eight_immortal_ywhl.tscn",
-	"zhyx": "res://Scene/MagicWeapon/eight_immortal_zhyx.tscn",
-	"bjs": "res://Scene/MagicWeapon/eight_immortal_bjs.tscn",
-	"sxyg": "res://Scene/MagicWeapon/eight_immortal_sxyg.tscn",
-	"dkhl": "res://Scene/MagicWeapon/eight_immortal_dkhl.tscn",
-	"yyb": "res://Scene/MagicWeapon/eight_immortal_yyb.tscn",
-	"hehua": "res://Scene/MagicWeapon/eight_immortal_hehua.tscn",
+	"zcld": "res://Scene/magic_weapon/zcld.tscn",
+	"dshl": "res://Scene/magic_weapon/cucurbit.tscn",
+	"dhqf": "res://Scene/magic_weapon/dhqf.tscn",
+	"tsgj": "res://Scene/magic_weapon/sword.tscn",
+	"bsyj": "res://Scene/magic_weapon/mirror.tscn",
+	"lsys": "res://Scene/magic_weapon/magic_umbrella.tscn",
+	"xhmt": "res://Scene/magic_weapon/ghost_doll.tscn",
+	"xhhl": "res://Scene/magic_weapon/cucurbit2.tscn",
+	"kyl": "res://Scene/magic_weapon/hybrofoline.tscn",
+	"qyj": "res://Scene/magic_weapon/cloud_sword.tscn",
+	"zjfyd": "res://Scene/magic_weapon/purple_gold_bell.tscn",
+	"zjhl": "res://Scene/magic_weapon/purple_glod_cucurbit.tscn",
+	"yjp": "res://Scene/magic_weapon/yujingping.tscn",
+	"zlwdah": "res://Scene/magic_weapon/zlwdah.tscn",
+	"sqzlw": "res://Scene/magic_weapon/sqzlw.tscn",
+	"nmwdnh": "res://Scene/magic_weapon/nmwdnh.tscn",
+	"sqnmwdnh": "res://Scene/magic_weapon/nmwdnh.tscn",
+	"xianyjp": "res://Scene/magic_weapon/xian_yujingping.tscn",
+	"yx": "res://Scene/magic_weapon/yx.tscn",
+	"qlsword": "res://Scene/magic_weapon/qlsword.tscn",
+	"dzyl": "res://Scene/magic_weapon/qing_lian.tscn",
+	"469000004": "res://Scene/magic_weapon/zhen_lei_tian_chui.tscn",
+	"469000011": "res://Scene/magic_weapon/di_kong_yu_mo_quan.tscn",
+	"yyzlj": "res://Scene/magic_weapon/eight_immortal_yyzlj.tscn",
+	"ywhl": "res://Scene/magic_weapon/eight_immortal_ywhl.tscn",
+	"zhyx": "res://Scene/magic_weapon/eight_immortal_zhyx.tscn",
+	"bjs": "res://Scene/magic_weapon/eight_immortal_bjs.tscn",
+	"sxyg": "res://Scene/magic_weapon/eight_immortal_sxyg.tscn",
+	"dkhl": "res://Scene/magic_weapon/eight_immortal_dkhl.tscn",
+	"yyb": "res://Scene/magic_weapon/eight_immortal_yyb.tscn",
+	"hehua": "res://Scene/magic_weapon/eight_immortal_hehua.tscn",
 }
-const HIT_TEXT_PATH := "res://Scene/Hittext/hit_text.tscn"
-const DAMAGE_TEXT_PATH := "res://Scene/Hittext/damage_text.tscn"
-const MONSTER_BLOOD_PATH := "res://Scene/MonsterBlood/monster_blood_bar.tscn"
-const BOSS_BLOOD_PATH := "res://Scene/MonsterBlood/boss_blood.tscn"
-const MONSTER_BE_HIT_PATH := "res://Scene/MonsterDamage/monster_be_hit.tscn"
-const SPECIAL_AFFECT_SLIM_DIR := "res://Scene/Base/SpecialAffectSlim"
-const ROLE_BE_HIT_EFFECT_PATH := "res://Scene/Base/role_be_hit_effect.tscn"
+const HIT_TEXT_PATH := "res://Scene/hittext/hit_text.tscn"
+const DAMAGE_TEXT_PATH := "res://Scene/hittext/damage_text.tscn"
+const MONSTER_BLOOD_PATH := "res://Scene/monster_blood/monster_blood_bar.tscn"
+const BOSS_BLOOD_PATH := "res://Scene/monster_blood/boss_blood.tscn"
+const MONSTER_BE_HIT_PATH := "res://Scene/monster_damage/monster_be_hit.tscn"
+const SPECIAL_AFFECT_SLIM_DIR := "res://Scene/base/SpecialAffectSlim"
+const ROLE_BE_HIT_EFFECT_PATH := "res://Scene/base/role_be_hit_effect.tscn"
 const AURA_PATH := "res://Scene/other_scene/auras.tscn"
 const BUFF_ICON_PATH := "res://Scene/other_scene/buff_icon.tscn"
-const DAMAGE_NUMBER_PATH := "res://Scene/Hittext/damage_number.tscn"
-const MISS_EFFECT_PATH := "res://Scene/Hittext/miss_effect.tscn"
+const DAMAGE_NUMBER_PATH := "res://Scene/hittext/damage_number.tscn"
+const MISS_EFFECT_PATH := "res://Scene/hittext/miss_effect.tscn"
 const COMBO_PATH := "res://Scene/show_text/combo.tscn"
 const COMBO_NUM_PATH := "res://Scene/show_text/combo_num.tscn"
 const LIJI_PATH := "res://Scene/show_text/liji.tscn"
 const MOMENT_TEXT_PATH := "res://Scene/show_text/moment_text.tscn"
 const MESSAGE_SHOW_PATH := "res://Scene/show_text/message_show.tscn"
-const BASE_BUFF_PATH := "res://Scene/Base/base_buff.tscn"
-const ROLE_BULLET_SLIM_DIR := "res://Scene/Hero/RoleBulletSlim"
-const STREAMING_ROLE_BULLET_PATH := "res://Scene/Hero/streaming_role_bullet.tscn"
-const ROLE3_BULLET3_SLIM_PATH := "res://Scene/Hero/role3_bullet3_slim.tscn"
-const ROLE3_SD_SLIM_PATH := "res://Scene/Hero/role3_sd_slim.tscn"
-const ROLE3_ZZNH_SLIM_PATH := "res://Scene/Hero/role3_zznh_slim.tscn"
-const ROLE_SPECIAL_EFFECT_SLIM_DIR := "res://Scene/Hero/RoleSpecialEffectSlim"
-const TTZSSZ_BULLET_SLIM_PATH := "res://Scene/Hero/ttzssz_bullet_slim.tscn"
-const MONSTER_BULLET_SLIM_DIR := "res://Scene/Monster/MonsterBulletSlim"
-const MONSTER_BULLET_PATH := "res://Scene/Monster/MonsterBullet.tscn"
-const FLY_BULLET_PATH := "res://Scene/Bullet/fly_bullet.tscn"
-const FLY_BULLET_SLIM_DIR := "res://Scene/Bullet/FlyBulletSlim"
-const CHASE_BULLET_PATH := "res://Scene/Bullet/chase_bullet.tscn"
-const STREAMED_PNG_EFFECT_SCRIPT = preload("res://Script/Monster/streamed_png_effect.gd")
+const BASE_BUFF_PATH := "res://Scene/base/base_buff.tscn"
+const ROLE_BULLET_SLIM_DIR := "res://Scene/hero/RoleBulletSlim"
+const STREAMING_ROLE_BULLET_PATH := "res://Scene/hero/streaming_role_bullet.tscn"
+const ROLE3_BULLET3_SLIM_PATH := "res://Scene/hero/role3_bullet3_slim.tscn"
+const ROLE3_SD_SLIM_PATH := "res://Scene/hero/role3_sd_slim.tscn"
+const ROLE3_ZZNH_SLIM_PATH := "res://Scene/hero/role3_zznh_slim.tscn"
+const ROLE_SPECIAL_EFFECT_SLIM_DIR := "res://Scene/hero/RoleSpecialEffectSlim"
+const TTZSSZ_BULLET_SLIM_PATH := "res://Scene/hero/ttzssz_bullet_slim.tscn"
+const MONSTER_BULLET_SLIM_DIR := "res://Scene/monster/MonsterBulletSlim"
+const MONSTER_BULLET_PATH := "res://Scene/monster/MonsterBullet.tscn"
+const FLY_BULLET_PATH := "res://Scene/bullet/fly_bullet.tscn"
+const FLY_BULLET_SLIM_DIR := "res://Scene/bullet/FlyBulletSlim"
+const CHASE_BULLET_PATH := "res://Scene/bullet/chase_bullet.tscn"
+const STREAMED_PNG_EFFECT_SCRIPT = preload("res://Script/monster/streamed_png_effect.gd")
 const MONSTER_212_BULLET_SCRIPTS := [
-	preload("res://Script/Monster/monster212_bullet1.gd"),
-	preload("res://Script/Monster/monster212_bullet2.gd"),
-	preload("res://Script/Monster/monster212_bullet3.gd"),
-	preload("res://Script/Monster/monster212_bullet4.gd"),
+	preload("res://Script/monster/monster212_bullet1.gd"),
+	preload("res://Script/monster/monster212_bullet2.gd"),
+	preload("res://Script/monster/monster212_bullet3.gd"),
+	preload("res://Script/monster/monster212_bullet4.gd"),
 ]
 const MONSTER_SCENE_ALIASES := {
 	3043: 3031,
@@ -346,68 +346,68 @@ const DYNAMIC_MONSTER_STREAM_EFFECT_ROOTS := {
 	175: ["res://Art/Monster/Game3Monster/Monster_175/hit1", "res://Art/Monster/Game3Monster/Monster_175/hit3"],
 }
 const DYNAMIC_MONSTER_SCENE_PATHS := {
-	114: ["res://Scene/Monster/MonsterBulletSlim/monster114_bullet2.tscn"],
-	137: ["res://Scene/Monster/MonsterBulletSlim/monster137_bullet2.tscn"],
+	114: ["res://Scene/monster/monster_bullet_slim/monster114_bullet2.tscn"],
+	137: ["res://Scene/monster/monster_bullet_slim/monster137_bullet2.tscn"],
 	1460:
 	[
-		"res://Scene/Monster/MonsterBulletSlim/tongtian3057_projectile.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/tongtian3057_beam.tscn",
+		"res://Scene/monster/monster_bullet_slim/tongtian3057_projectile.tscn",
+		"res://Scene/monster/monster_bullet_slim/tongtian3057_beam.tscn",
 	],
-	3002: ["res://Scene/Monster/MonsterBulletSlim/zhuque_tiger_arrow.tscn"],
-	3004: ["res://Scene/Monster/MonsterBulletSlim/xuanwu_gate_arrow.tscn"],
+	3002: ["res://Scene/monster/monster_bullet_slim/zhuque_tiger_arrow.tscn"],
+	3004: ["res://Scene/monster/monster_bullet_slim/xuanwu_gate_arrow.tscn"],
 	3007:
 	[
-		"res://Scene/Monster/MonsterBulletSlim/weiyang_boss_bullet1.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/weiyang_boss_bullet2.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/weiyang_boss_bullet3.tscn",
+		"res://Scene/monster/monster_bullet_slim/weiyang_boss_bullet1.tscn",
+		"res://Scene/monster/monster_bullet_slim/weiyang_boss_bullet2.tscn",
+		"res://Scene/monster/monster_bullet_slim/weiyang_boss_bullet3.tscn",
 	],
 	3012: [],
-	3009: ["res://Scene/Monster/MonsterBulletSlim/jiuhua_pine_arrow.tscn"],
+	3009: ["res://Scene/monster/monster_bullet_slim/jiuhua_pine_arrow.tscn"],
 	3020:
 	[
-		"res://Scene/Monster/MonsterBulletSlim/shuangxi_boss_arrow1.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/shuangxi_boss_arrow2.tscn",
+		"res://Scene/monster/monster_bullet_slim/shuangxi_boss_arrow1.tscn",
+		"res://Scene/monster/monster_bullet_slim/shuangxi_boss_arrow2.tscn",
 	],
 	212:
 	[
-		"res://Scene/Monster/MonsterBulletSlim/monster212_bullet1.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/monster212_bullet2.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/monster212_bullet3.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/monster212_bullet4.tscn",
+		"res://Scene/monster/monster_bullet_slim/monster212_bullet1.tscn",
+		"res://Scene/monster/monster_bullet_slim/monster212_bullet2.tscn",
+		"res://Scene/monster/monster_bullet_slim/monster212_bullet3.tscn",
+		"res://Scene/monster/monster_bullet_slim/monster212_bullet4.tscn",
 	],
 	1501:
 	[
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger1_bullet1.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger1_bullet2.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger1_bullet1.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger1_bullet2.tscn",
 	],
 	1502:
 	[
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger2_bullet1.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger1_bullet2.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger2_bullet3_1.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger2_bullet3_2.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger2_bullet1.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger1_bullet2.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger2_bullet3_1.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger2_bullet3_2.tscn",
 	],
 	1503:
 	[
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger2_bullet1.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger1_bullet2.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger2_bullet3_1.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger2_bullet3_2.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger3_bullet4_1.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger3_bullet4_2.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger2_bullet1.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger1_bullet2.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger2_bullet3_1.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger2_bullet3_2.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger3_bullet4_1.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger3_bullet4_2.tscn",
 	],
 	1504:
 	[
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger2_bullet1.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger1_bullet2.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger2_bullet3_1.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger2_bullet3_2.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger3_bullet4_1.tscn",
-		"res://Scene/Monster/MonsterBulletSlim/pet_tiger3_bullet4_2.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger2_bullet1.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger1_bullet2.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger2_bullet3_1.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger2_bullet3_2.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger3_bullet4_1.tscn",
+		"res://Scene/monster/monster_bullet_slim/pet_tiger3_bullet4_2.tscn",
 	],
-	4401: ["res://Scene/Monster/MonsterBulletSlim/three_prince_bullet.tscn"],
-	4402: ["res://Scene/Monster/MonsterBulletSlim/three_prince_bullet.tscn"],
-	4403: ["res://Scene/Monster/MonsterBulletSlim/three_prince_bullet.tscn"],
+	4401: ["res://Scene/monster/monster_bullet_slim/three_prince_bullet.tscn"],
+	4402: ["res://Scene/monster/monster_bullet_slim/three_prince_bullet.tscn"],
+	4403: ["res://Scene/monster/monster_bullet_slim/three_prince_bullet.tscn"],
 }
 
 var BasicArButton = null
@@ -551,10 +551,10 @@ var _archive_session_generation: int = 0
 var _ui_runtime_instance_paths: Dictionary = {}
 var _ui_runtime_instance_counts: Dictionary = {}
 const PERMANENT_SMALL_UI_SCENE_PATHS := [
-	"res://Scene/BackPack/back_pack.tscn",
-	"res://Scene/Skill/learn_skill.tscn",
-	"res://Scene/Pet/pet_interface.tscn",
-	"res://Scene/BackPack/magic_weapon_infor.tscn",
+	"res://Scene/back_pack/back_pack.tscn",
+	"res://Scene/skill/learn_skill.tscn",
+	"res://Scene/pet/pet_interface.tscn",
+	"res://Scene/back_pack/magic_weapon_infor.tscn",
 ]
 var _permanent_small_ui_scene_cache: Dictionary = {}
 var _permanent_ui_prewarm_in_progress := false
@@ -946,9 +946,9 @@ func preload_scene_path(path: String) -> PackedScene:
 
 func prewarm_skill_page_resources() -> void:
 	var paths: Array = [
-		"res://Scene/Skill/learn_skill.tscn",
-		"res://Scene/Skill/zd_skill.tscn",
-		"res://Scene/Skill/bd_skill.tscn",
+		"res://Scene/skill/learn_skill.tscn",
+		"res://Scene/skill/zd_skill.tscn",
+		"res://Scene/skill/bd_skill.tscn",
 	]
 	var role_id := clampi(int(PlayerData.player_data.get("Myself", 1)), 1, 6)
 	var role_skill_icons := {
@@ -962,9 +962,9 @@ func prewarm_skill_page_resources() -> void:
 	for icon_name in role_skill_icons[role_id]:
 		paths.append("res://Art/Skill/SkillIcon/%s.png" % icon_name)
 	await _preload_paths_threaded(paths)
-	Skill_learn = _resource_cache.get("res://Scene/Skill/learn_skill.tscn") as PackedScene
-	zd_skill = _resource_cache.get("res://Scene/Skill/zd_skill.tscn") as PackedScene
-	bd_skill = _resource_cache.get("res://Scene/Skill/bd_skill.tscn") as PackedScene
+	Skill_learn = _resource_cache.get("res://Scene/skill/learn_skill.tscn") as PackedScene
+	zd_skill = _resource_cache.get("res://Scene/skill/zd_skill.tscn") as PackedScene
+	bd_skill = _resource_cache.get("res://Scene/skill/bd_skill.tscn") as PackedScene
 
 
 func load_scene_uncached(path: String) -> PackedScene:
@@ -996,7 +996,7 @@ func _canonical_monster_scene_id(monster_id: int) -> int:
 
 
 func _monster_scene_path(monster_id: int) -> String:
-	return "res://Scene/Monster/Monster_%d.tscn" % _canonical_monster_scene_id(monster_id)
+	return "res://Scene/monster/Monster_%d.tscn" % _canonical_monster_scene_id(monster_id)
 
 
 func preload_level_monster_scenes(monster_ids: Array) -> void:
@@ -1298,7 +1298,7 @@ func preload_combat_hit_resources() -> void:
 	var role_be_hit_scene := preload_scene_path(ROLE_BE_HIT_EFFECT_PATH)
 	var monster_hit_scene := _cached_scene(&"monster_be_hit", MONSTER_BE_HIT_PATH)
 	var monster_blood_scene := _cached_scene(&"monster_blood", MONSTER_BLOOD_PATH)
-	var sound_scene := preload_scene_path("res://Scene/AllSound/monster_be_hit.tscn")
+	var sound_scene := preload_scene_path("res://Scene/all_sound/monster_be_hit.tscn")
 	get_cached_audio("res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 	get_cached_audio("res://Music/Hero/9_BeattackByRole2.mp3")
 	get_cached_audio("res://Music/Hero/49_Role1_beAttack.mp3")
@@ -1398,7 +1398,7 @@ func _prewarm_combat_hit_rendering(monster_blood_scene: PackedScene) -> void:
 		"res://Music/Hero/9_BeattackByRole2.mp3",
 	]:
 		var sound_player = (
-			_take_pooled_node(_pool_data["sound_player"], "res://Scene/AllSound/monster_be_hit.tscn")
+			_take_pooled_node(_pool_data["sound_player"], "res://Scene/all_sound/monster_be_hit.tscn")
 			as AudioStreamPlayer
 		)
 		if sound_player == null:
@@ -1510,10 +1510,10 @@ func clear_combat_runtime_cache() -> void:
 		"res://Art/zhuxianjianzhen/",
 		"res://Art/AddEffect/",
 		"res://Art/AllNumber/",
-		"res://Scene/Hero/",
-		"res://Scene/Monster/",
-		"res://Scene/MagicWeapon/",
-		"res://Scene/Pet/",
+		"res://Scene/hero/",
+		"res://Scene/monster/",
+		"res://Scene/magic_weapon/",
+		"res://Scene/pet/",
 	]
 	_erase_cached_paths_by_prefix(_resource_cache, combat_prefixes)
 	_erase_cached_paths_by_prefix(_texture_cache, combat_prefixes)
@@ -1601,12 +1601,12 @@ func _prewarm_archive_role_resources(role_id: int) -> void:
 func _role_scene_path(role_id: int) -> String:
 	return (
 		{
-			1: "res://Scene/Hero/Role_1/role1.tscn",
-			2: "res://Scene/Hero/Role_2/role_2.tscn",
-			3: "res://Scene/Hero/Role_3/role_3.tscn",
-			4: "res://Scene/Hero/Role_4/role_4.tscn",
-			5: "res://Scene/Hero/Role_5/role_5.tscn",
-			6: "res://Scene/Hero/Role_6/role_6.tscn",
+			1: "res://Scene/hero/role_1/role1.tscn",
+			2: "res://Scene/hero/role_2/role_2.tscn",
+			3: "res://Scene/hero/role_3/role_3.tscn",
+			4: "res://Scene/hero/role_4/role_4.tscn",
+			5: "res://Scene/hero/role_5/role_5.tscn",
+			6: "res://Scene/hero/role_6/role_6.tscn",
 		}
 		. get(role_id, "")
 	)
@@ -1710,7 +1710,7 @@ func release_role_runtime_resources() -> void:
 	CANG_MU_LONG_YUN_EFFECT_SCRIPT.clear_cached_data()
 	ROLE4_POISON_ARRAY_AWAKEN_EFFECT_SCRIPT.clear_cached_data()
 	STREAMING_ROLE_BULLET_SCRIPT.clear_cached_frames()
-	_erase_cached_paths_by_prefix(_resource_cache, ["res://Art/HeroPicture/", "res://Scene/Hero/"])
+	_erase_cached_paths_by_prefix(_resource_cache, ["res://Art/HeroPicture/", "res://Scene/hero/"])
 	_erase_cached_paths_by_prefix(_texture_cache, ["res://Art/HeroPicture/"])
 	_erase_cached_paths_by_prefix(_audio_cache, ["res://Music/Hero/"])
 	SpecialEffectBullet = null
@@ -1982,7 +1982,7 @@ func preload_level_monster_resources(monster_group: Dictionary) -> void:
 			if seen_monster_ids.has(monster_id):
 				continue
 			seen_monster_ids[monster_id] = true
-			var scene_path := "res://Scene/Monster/Monster_" + str(monster_id) + ".tscn"
+			var scene_path := "res://Scene/monster/Monster_" + str(monster_id) + ".tscn"
 			if stage_key == "stage_1" or stage_key == "stage_2":
 				_append_unique_preload_path(priority_scene_paths, scene_path)
 				priority_monster_ids.append(monster_id)
@@ -2058,13 +2058,13 @@ func preload_combat_misc_resources() -> void:
 	for path in texture_paths:
 		get_cached_texture(path)
 	var scene_paths: Array[String] = [
-		"res://Scene/Monster/Monster_zhw/monster_141_zhw.tscn",
-		"res://Scene/Monster/Monster_zhw/monster_142_sqzlw.tscn",
-		"res://Scene/Monster/Monster_zhw/monster_142_zhw.tscn",
-		"res://Scene/Monster/monster_14501.tscn",
-		"res://Scene/Monster/monster_14501_wdww.tscn",
-		"res://Scene/Monster/monster_146.tscn",
-		"res://Scene/Monster/monster_63.tscn",
+		"res://Scene/monster/monster_zhw/monster_141_zhw.tscn",
+		"res://Scene/monster/monster_zhw/monster_142_sqzlw.tscn",
+		"res://Scene/monster/monster_zhw/monster_142_zhw.tscn",
+		"res://Scene/monster/monster_14501.tscn",
+		"res://Scene/monster/monster_14501_wdww.tscn",
+		"res://Scene/monster/monster_146.tscn",
+		"res://Scene/monster/monster_63.tscn",
 	]
 
 
@@ -2107,15 +2107,15 @@ func preload_all_hero_skill_resources() -> void:
 		return
 	_all_hero_skill_resources_preloaded = true
 	var scene_paths: Array[String] = [
-		"res://Scene/Hero/role_bullet_1.tscn",
-		"res://Scene/Hero/role1_s_hallow.tscn",
-		"res://Scene/Hero/Role_1/hmz_effect/special_effect_bullet.tscn",
-		"res://Scene/Hero/Role_1/hmz_effect/special_effect_bullet-1.tscn",
-		"res://Scene/Hero/Role_1/ws_effect.tscn",
-		"res://Scene/Hero/Role_2/smb_effect.tscn",
-		"res://Scene/Hero/Role_4/role4_bullet.tscn",
-		"res://Scene/Bullet/fly_bullet.tscn",
-		"res://Scene/Bullet/chase_bullet.tscn",
+		"res://Scene/hero/role_bullet_1.tscn",
+		"res://Scene/hero/role1_s_hallow.tscn",
+		"res://Scene/hero/role_1/hmz_effect/special_effect_bullet.tscn",
+		"res://Scene/hero/role_1/hmz_effect/special_effect_bullet-1.tscn",
+		"res://Scene/hero/role_1/ws_effect.tscn",
+		"res://Scene/hero/role_2/smb_effect.tscn",
+		"res://Scene/hero/role_4/role4_bullet.tscn",
+		"res://Scene/bullet/fly_bullet.tscn",
+		"res://Scene/bullet/chase_bullet.tscn",
 	]
 	for scene_path in scene_paths:
 		var scene := preload_scene_path(scene_path)
@@ -2225,11 +2225,11 @@ func _role_skill_scene_paths(role_id: int) -> Array[String]:
 	var equipped_skills := _equipped_role_skill_names()
 
 	if _is_zlwsz_shenqi_equipped():
-		paths.append("res://Scene/Hero/zlw_shenqi_gear_bullet.tscn")
+		paths.append("res://Scene/hero/zlw_shenqi_gear_bullet.tscn")
 	match role_id:
 		1:
 			if equipped_skills.has("qsez") or equipped_skills.has("hyjj"):
-				paths.append("res://Scene/Hero/role_bullet_1.tscn")
+				paths.append("res://Scene/hero/role_bullet_1.tscn")
 			if (
 				equipped_skills.has("qsez")
 				or equipped_skills.has("zz")
@@ -2237,29 +2237,29 @@ func _role_skill_scene_paths(role_id: int) -> Array[String]:
 				or equipped_skills.has("hmz")
 				or equipped_skills.has("hmz_ws")
 			):
-				paths.append("res://Scene/Hero/role1_s_hallow.tscn")
+				paths.append("res://Scene/hero/role1_s_hallow.tscn")
 			if equipped_skills.has("hmz") or equipped_skills.has("hmz_ws"):
-				paths.append("res://Scene/Hero/Role_1/hmz_effect/special_effect_bullet.tscn")
+				paths.append("res://Scene/hero/role_1/hmz_effect/special_effect_bullet.tscn")
 		2:
 			(
 				paths
 				. append_array(
 					[
-						"res://Scene/Base/role2shallow.tscn",
-						"res://Scene/Hero/Role_2/smb_effect.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role2_bullet1.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role2_bullet2.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role2_bullet3.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role2_bullet4.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role2_bullet5.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role2_bullet5_1.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role2_bullet6.tscn",
-						"res://Scene/Hero/RoleSpecialEffectSlim/zfjg_zh.tscn",
-						"res://Scene/Hero/RoleSpecialEffectSlim/tjgl.tscn",
-						"res://Scene/Hero/RoleSpecialEffectSlim/tjgl_hd.tscn",
-						"res://Scene/Hero/RoleSpecialEffectSlim/myhc.tscn",
-						"res://Scene/Hero/RoleSpecialEffectSlim/jgz.tscn",
-						"res://Scene/Hero/RoleSpecialEffectSlim/jhsj.tscn",
+						"res://Scene/base/role2shallow.tscn",
+						"res://Scene/hero/role_2/smb_effect.tscn",
+						"res://Scene/hero/role_bullet_slim/role2_bullet1.tscn",
+						"res://Scene/hero/role_bullet_slim/role2_bullet2.tscn",
+						"res://Scene/hero/role_bullet_slim/role2_bullet3.tscn",
+						"res://Scene/hero/role_bullet_slim/role2_bullet4.tscn",
+						"res://Scene/hero/role_bullet_slim/role2_bullet5.tscn",
+						"res://Scene/hero/role_bullet_slim/role2_bullet5_1.tscn",
+						"res://Scene/hero/role_bullet_slim/role2_bullet6.tscn",
+						"res://Scene/hero/role_special_effect_slim/zfjg_zh.tscn",
+						"res://Scene/hero/role_special_effect_slim/tjgl.tscn",
+						"res://Scene/hero/role_special_effect_slim/tjgl_hd.tscn",
+						"res://Scene/hero/role_special_effect_slim/myhc.tscn",
+						"res://Scene/hero/role_special_effect_slim/jgz.tscn",
+						"res://Scene/hero/role_special_effect_slim/jhsj.tscn",
 					]
 				)
 			)
@@ -2269,7 +2269,7 @@ func _role_skill_scene_paths(role_id: int) -> Array[String]:
 				. append_array(
 					[
 						STREAMING_ROLE_BULLET_PATH,
-						"res://Scene/Hero/RoleBulletSlim/role3_bullet1.tscn",
+						"res://Scene/hero/role_bullet_slim/role3_bullet1.tscn",
 						ROLE3_BULLET3_SLIM_PATH,
 						ROLE3_SD_SLIM_PATH,
 						ROLE3_ZZNH_SLIM_PATH,
@@ -2281,25 +2281,25 @@ func _role_skill_scene_paths(role_id: int) -> Array[String]:
 				paths
 				. append_array(
 					[
-						"res://Scene/Hero/Role_4/role4_bullet.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role4_bullet3.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role4_bullet6.tscn",
+						"res://Scene/hero/role_4/role4_bullet.tscn",
+						"res://Scene/hero/role_bullet_slim/role4_bullet3.tscn",
+						"res://Scene/hero/role_bullet_slim/role4_bullet6.tscn",
 					]
 				)
 			)
 			if equipped_skills.has("wdww"):
-				paths.append("res://Scene/Monster/monster_138.tscn")
+				paths.append("res://Scene/monster/monster_138.tscn")
 		5:
 			(
 				paths
 				. append_array(
 					[
-						"res://Scene/Hero/RoleBulletSlim/role5_bullet1.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role5_bullet2.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role5_bullet3.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role5_bullet4.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role5_bullet5.tscn",
-						"res://Scene/Hero/RoleBulletSlim/role5_bullet6.tscn",
+						"res://Scene/hero/role_bullet_slim/role5_bullet1.tscn",
+						"res://Scene/hero/role_bullet_slim/role5_bullet2.tscn",
+						"res://Scene/hero/role_bullet_slim/role5_bullet3.tscn",
+						"res://Scene/hero/role_bullet_slim/role5_bullet4.tscn",
+						"res://Scene/hero/role_bullet_slim/role5_bullet5.tscn",
+						"res://Scene/hero/role_bullet_slim/role5_bullet6.tscn",
 					]
 				)
 			)
@@ -2311,12 +2311,12 @@ func _role_skill_scene_paths(role_id: int) -> Array[String]:
 						"res://Art/HeroPicture/Role6/equipment_atlas/default_body/default_body.tres",
 						"res://Art/HeroPicture/Role6/equipment_atlas/default_body_front/default_body_front.tres",
 						"res://Art/HeroPicture/Role6/equipment_atlas/default_weapon/default_weapon.tres",
-						"res://Scene/Hero/Role_6/ne_zha_skill_effect.tscn",
+						"res://Scene/hero/role_6/ne_zha_skill_effect.tscn",
 					]
 				)
 			)
 			if equipped_skills.has("nz_yysj"):
-				paths.append("res://Scene/Hero/Role_6/ne_zha_yin_yang_effect.tscn")
+				paths.append("res://Scene/hero/role_6/ne_zha_yin_yang_effect.tscn")
 	return paths
 
 
@@ -2494,7 +2494,7 @@ func prewarm_current_role_runtime_resources(role_id: int = 0) -> void:
 		BING_YU_EFFECT_SCRIPT.prewarm_frames()
 		await get_tree().process_frame
 	if role_id == 1 and (equipped_skills.has("hmz") or equipped_skills.has("hmz_ws")) and not SpecialEffectBullet:
-		SpecialEffectBullet = _load_scene("res://Scene/Hero/Role_1/hmz_effect/special_effect_bullet.tscn")
+		SpecialEffectBullet = _load_scene("res://Scene/hero/role_1/hmz_effect/special_effect_bullet.tscn")
 	_prewarmed_role_id = role_id
 
 
@@ -2508,17 +2508,17 @@ func _role_id_from_runtime_node(role: Variant) -> int:
 		var role_script := (role as Node).get_script() as Script
 		var script_path := role_script.resource_path if role_script != null else ""
 		match script_path:
-			"res://Script/Hero/role1.gd":
+			"res://Script/hero/role1.gd":
 				return 1
-			"res://Script/Hero/role_2.gd":
+			"res://Script/hero/role_2.gd":
 				return 2
-			"res://Script/Hero/role_3.gd":
+			"res://Script/hero/role_3.gd":
 				return 3
-			"res://Script/Hero/role_4.gd":
+			"res://Script/hero/role_4.gd":
 				return 4
-			"res://Script/Hero/role_5.gd":
+			"res://Script/hero/role_5.gd":
 				return 5
-			"res://Script/Hero/ne_zha_hero.gd":
+			"res://Script/hero/ne_zha_hero.gd":
 				return 6
 	return clampi(int(PlayerData.player_data.get("Myself", 1)), 1, 6)
 
@@ -2528,18 +2528,18 @@ func _legacy_preload_current_role_skill_resources(role: Variant) -> void:
 	var role_scene_paths: Array[String] = []
 	if role_id == 1:
 		role_scene_paths = [
-			"res://Scene/Hero/role1_s_hallow.tscn",
-			"res://Scene/Hero/Role_1/hmz_effect/special_effect_bullet.tscn",
-			"res://Scene/Hero/Role_1/ws_effect.tscn",
+			"res://Scene/hero/role1_s_hallow.tscn",
+			"res://Scene/hero/role_1/hmz_effect/special_effect_bullet.tscn",
+			"res://Scene/hero/role_1/ws_effect.tscn",
 		]
 	elif role_id == 2:
-		role_scene_paths = ["res://Scene/Hero/Role_2/smb_effect.tscn"]
+		role_scene_paths = ["res://Scene/hero/role_2/smb_effect.tscn"]
 	elif role_id == 4:
-		role_scene_paths = ["res://Scene/Hero/Role_4/role4_bullet.tscn"]
+		role_scene_paths = ["res://Scene/hero/role_4/role4_bullet.tscn"]
 	for scene_path in role_scene_paths:
 		_warm_scene_instance(preload_scene_path(scene_path))
 	if role_id == 1 and not SpecialEffectBullet:
-		SpecialEffectBullet = _load_scene("res://Scene/Hero/Role_1/hmz_effect/special_effect_bullet.tscn")
+		SpecialEffectBullet = _load_scene("res://Scene/hero/role_1/hmz_effect/special_effect_bullet.tscn")
 	var sounds: Array[String] = []
 	if role_id == 1:
 		sounds = [
@@ -2943,7 +2943,7 @@ func addlhhjbutton(parent, selfName, Father):
 
 func add_some_monster_help(parent, position):
 	if not SomeMonsterHelp:
-		SomeMonsterHelp = _load_scene("res://Scene/Monster/some_monster_help.tscn")
+		SomeMonsterHelp = _load_scene("res://Scene/monster/some_monster_help.tscn")
 	var target = instance_scene(SomeMonsterHelp, parent)
 	target.position = position
 	return target
@@ -2951,7 +2951,7 @@ func add_some_monster_help(parent, position):
 
 func add_mosaic_help(parent, position):
 	if not MosaicHelp:
-		MosaicHelp = _load_scene("res://Scene/LDL/mosaic_help.tscn")
+		MosaicHelp = _load_scene("res://Scene/ldl/mosaic_help.tscn")
 	var target = instance_scene(MosaicHelp, parent)
 	target.position = position
 	return target
@@ -2967,7 +2967,7 @@ func add_letter_for_player(parent, position):
 
 func add_cure_times_box(parent, position):
 	if not CureTimesBox:
-		CureTimesBox = _load_scene("res://Scene/Shop/cure_times_box.tscn")
+		CureTimesBox = _load_scene("res://Scene/shop/cure_times_box.tscn")
 	var target = instance_scene(CureTimesBox, parent)
 	target.position = position
 	return target
@@ -2975,7 +2975,7 @@ func add_cure_times_box(parent, position):
 
 func add_mystery_shop(parent, position):
 	if not MysteryShop:
-		MysteryShop = _load_scene("res://Scene/Shop/mystery_shop.tscn")
+		MysteryShop = _load_scene("res://Scene/shop/mystery_shop.tscn")
 	var target = instance_scene(MysteryShop, parent)
 	if position == Vector2.ZERO or position == Vector2(0, 0):
 		target.position = viewport_center_for_parent(parent) - Vector2(458, 293)
@@ -2995,7 +2995,7 @@ func add_trans_box(parent, name_, Transmogrified_):
 
 func add_role4_bullet(parent, Player, position: Vector2):
 	if not Role4Bullet_:
-		Role4Bullet_ = _load_scene("res://Scene/Hero/Role_4/role4_bullet.tscn")
+		Role4Bullet_ = _load_scene("res://Scene/hero/role_4/role4_bullet.tscn")
 	var target = instance_scene(Role4Bullet_, parent)
 	target.Player = Player
 	target.position = position
@@ -3004,7 +3004,7 @@ func add_role4_bullet(parent, Player, position: Vector2):
 
 func add_line(parent, Monster, Type):
 	if not Line:
-		Line = _load_scene("res://Scene/Level/line_effect.tscn")
+		Line = _load_scene("res://Scene/level/line_effect.tscn")
 	var target = instance_scene(Line, parent)
 	target.position = Vector2(0, 0)
 	target.Type = Type
@@ -3014,7 +3014,7 @@ func add_line(parent, Monster, Type):
 
 func add_dsg_choose(parent):
 	if not DsgChoose:
-		DsgChoose = _load_scene("res://Scene/Level/dsg_choose.tscn")
+		DsgChoose = _load_scene("res://Scene/level/dsg_choose.tscn")
 	var target = instance_scene(DsgChoose, parent)
 	target.position = Vector2(0, 0)
 	return target
@@ -3022,12 +3022,12 @@ func add_dsg_choose(parent):
 
 func add_hdzm(parent, Parent):
 	if not HDZM:
-		HDZM = _load_scene("res://Scene/Level/hdzm.tscn")
+		HDZM = _load_scene("res://Scene/level/hdzm.tscn")
 	var target = instance_scene(HDZM, parent)
 	target.scale = Vector2.ONE
 	target.position = viewport_center_for_parent(parent) - Vector2(493, 260)
 	target.Parent = Parent
-	var guard_script = load("res://Script/Level/hdzm_window_guard.gd")
+	var guard_script = load("res://Script/level/hdzm_window_guard.gd")
 	if guard_script != null:
 		var guard = guard_script.new()
 		get_tree().root.add_child(guard)
@@ -3055,7 +3055,7 @@ func add_lxdy(parent, Parent):
 
 func add_monster_info(parent, MonsterName, position):
 	if not MonsterInfo:
-		MonsterInfo = _load_scene("res://Scene/Monster/boss_info.tscn")
+		MonsterInfo = _load_scene("res://Scene/monster/boss_info.tscn")
 	var target = instance_scene(MonsterInfo, parent)
 	target.MonsterName = MonsterName
 	target.position = position
@@ -3073,7 +3073,7 @@ func add_basic_monment_info(parent, ShowText, position):
 
 func add_forge_help(parent, position):
 	if not ForgeHelp:
-		ForgeHelp = _load_scene("res://Scene/LDL/forge_help.tscn")
+		ForgeHelp = _load_scene("res://Scene/ldl/forge_help.tscn")
 	var target = instance_scene(ForgeHelp, parent)
 	target.position = position
 	return target
@@ -3081,7 +3081,7 @@ func add_forge_help(parent, position):
 
 func add_forge_box(parent, Name, Num):
 	if not ForgeBox:
-		ForgeBox = _load_scene("res://Scene/LDL/forge_material_box.tscn")
+		ForgeBox = _load_scene("res://Scene/ldl/forge_material_box.tscn")
 	var target = instance_scene(ForgeBox, parent)
 	target.ItemName = Name
 	target.NeedNum = Num
@@ -3090,7 +3090,7 @@ func add_forge_box(parent, Name, Num):
 
 func add_forges(parent, position):
 	if not Forges:
-		Forges = _load_scene("res://Scene/LDL/forge.tscn")
+		Forges = _load_scene("res://Scene/ldl/forge.tscn")
 	var target = instance_scene(Forges, parent)
 	target.position = position
 	return target
@@ -3098,7 +3098,7 @@ func add_forges(parent, position):
 
 func addllbt_challenge(parent, position):
 	if not llbtChallenge:
-		llbtChallenge = _load_scene("res://Scene/Level/llbt_challenge.tscn")
+		llbtChallenge = _load_scene("res://Scene/level/llbt_challenge.tscn")
 	var target = instance_scene(llbtChallenge, parent)
 	target.position = position
 	return target
@@ -3106,7 +3106,7 @@ func addllbt_challenge(parent, position):
 
 func add_basic_pellet(parent, position):
 	if not BasicPellet_:
-		BasicPellet_ = _load_scene("res://Scene/Pellet/basic_pellet.tscn")
+		BasicPellet_ = _load_scene("res://Scene/pellet/basic_pellet.tscn")
 	var target = instance_scene(BasicPellet_, parent)
 	target.position = position
 	return target
@@ -3141,7 +3141,7 @@ func add_font_(parent, ShowText, Font_, FontSize, FontColor, OutLineSize, OutLin
 
 func add_task_reward(parent, ItemName, TotalNum):
 	if not TaskReward:
-		TaskReward = _load_scene("res://Scene/Task/task_reward.tscn")
+		TaskReward = _load_scene("res://Scene/task/task_reward.tscn")
 	var target = instance_scene(TaskReward, parent)
 	target.ItemName = ItemName
 	target.TotalNum = TotalNum
@@ -3151,7 +3151,7 @@ func add_task_reward(parent, ItemName, TotalNum):
 
 func add_basic_task(parent, position):
 	if not BasicTask_:
-		BasicTask_ = _load_scene("res://Scene/Task/basic_task.tscn")
+		BasicTask_ = _load_scene("res://Scene/task/basic_task.tscn")
 	var target = instance_scene(BasicTask_, parent)
 	if position == Vector2.ZERO or position == Vector2(0, 0):
 		target.position = viewport_center_for_parent(parent) - Vector2(470, 295)
@@ -3162,7 +3162,7 @@ func add_basic_task(parent, position):
 
 func add_task_title(parent, TaskType, TaskName, MyFather):
 	if not TaskTitle:
-		TaskTitle = _load_scene("res://Scene/Task/task_title.tscn")
+		TaskTitle = _load_scene("res://Scene/task/task_title.tscn")
 	var target = instance_scene(TaskTitle, parent)
 	target.TaskName = TaskName
 	target.TaskType = TaskType
@@ -3355,16 +3355,16 @@ func _clear_packed_scene_members_for_path(scene_path: String) -> void:
 
 
 func _is_runtime_ui_scene_path(scene_path: String) -> bool:
-	if scene_path == "res://Scene/set_menu.tscn" or scene_path == "res://Scene/Pet/pet_interface.tscn":
+	if scene_path == "res://Scene/set_menu.tscn" or scene_path == "res://Scene/pet/pet_interface.tscn":
 		return true
 	for prefix in [
-		"res://Scene/BackPack/",
-		"res://Scene/Skill/",
-		"res://Scene/Shop/",
-		"res://Scene/LDL/",
-		"res://Scene/Task/",
-		"res://Scene/Pellet/",
-		"res://Scene/ArchiveInterface/",
+		"res://Scene/back_pack/",
+		"res://Scene/skill/",
+		"res://Scene/shop/",
+		"res://Scene/ldl/",
+		"res://Scene/task/",
+		"res://Scene/pellet/",
+		"res://Scene/archive_interface/",
 	]:
 		if scene_path.begins_with(prefix):
 			return true
@@ -3384,19 +3384,19 @@ func _is_runtime_ui_scene_path(scene_path: String) -> bool:
 			"res://Scene/other_scene/transmogtified_box.tscn",
 			"res://Scene/other_scene/transmogrified.tscn",
 			"res://Scene/other_scene/change_back_ground.tscn",
-			"res://Scene/MagicWeapon/magic_help.tscn",
+			"res://Scene/magic_weapon/magic_help.tscn",
 		]
 	)
 
 
 func _ui_art_prefixes_for_scene(scene_path: String) -> Array:
-	if scene_path.begins_with("res://Scene/Skill/"):
+	if scene_path.begins_with("res://Scene/skill/"):
 		return ["res://Art/Skill/"]
-	if scene_path.begins_with("res://Scene/BackPack/"):
+	if scene_path.begins_with("res://Scene/back_pack/"):
 		return ["res://Art/BackPack/"]
-	if scene_path == "res://Scene/Pet/pet_interface.tscn":
+	if scene_path == "res://Scene/pet/pet_interface.tscn":
 		return ["res://Art/Pet/PetPageResources/"]
-	if scene_path.begins_with("res://Scene/LDL/"):
+	if scene_path.begins_with("res://Scene/ldl/"):
 		return ["res://Art/LDL/"]
 	if (
 		scene_path == "res://Scene/main_menu/body_training.tscn"
@@ -3492,7 +3492,7 @@ func add_reward_box(parent, item_id, Num):
 
 func add_decompose_help(parent, position):
 	if not Decompose_Help:
-		Decompose_Help = _load_scene("res://Scene/LDL/decompose_help.tscn")
+		Decompose_Help = _load_scene("res://Scene/ldl/decompose_help.tscn")
 	var target = instance_scene(Decompose_Help, parent)
 	target.position = position
 	return target
@@ -3500,7 +3500,7 @@ func add_decompose_help(parent, position):
 
 func add_decompose_(parent, position):
 	if not Decompose_:
-		Decompose_ = _load_scene("res://Scene/LDL/decompose.tscn")
+		Decompose_ = _load_scene("res://Scene/ldl/decompose.tscn")
 	var target = instance_scene(Decompose_, parent)
 	target.position = position
 	return target
@@ -3508,7 +3508,7 @@ func add_decompose_(parent, position):
 
 func add_zztw_trap(parent, Name, position):
 	if not zztwtrap:
-		zztwtrap = _load_scene("res://Scene/Level/zztw_trap.tscn")
+		zztwtrap = _load_scene("res://Scene/level/zztw_trap.tscn")
 	var target = instance_scene(zztwtrap, parent)
 	target.MyName = Name
 	target.position = position
@@ -3517,7 +3517,7 @@ func add_zztw_trap(parent, Name, position):
 
 func add_stage(parent, Obj, position):
 	if not Stage:
-		Stage = _load_scene("res://Scene/Level/jctfloor_1.tscn")
+		Stage = _load_scene("res://Scene/level/jctfloor_1.tscn")
 	var target = instance_scene(Stage, parent)
 	target.Type = Obj
 	target.position = position
@@ -3588,7 +3588,7 @@ func sync_level_drop_pro_data(level_info: Dictionary) -> void:
 
 
 func _enter_level_without_info(parent, path):
-	if path == "res://Scene/Level/level_llbt.tscn":
+	if path == "res://Scene/level/level_llbt.tscn":
 		return addllbt_challenge(parent, Vector2(0, 0))
 	if not str(path).begins_with("res://"):
 		return add_dsg_choose(parent)
@@ -3602,23 +3602,23 @@ func add_level_info(parent, Name, position, path):
 	if (
 		str(path)
 		in [
-			"res://Scene/Level/level_stz.tscn",
-			"res://Scene/Level/level_esbxx.tscn",
-			"res://Scene/Level/level_tzsijian.tscn",
-			"res://Scene/Level/level_sssl.tscn",
-			"res://Scene/Level/level_bxgh.tscn"
+			"res://Scene/level/level_stz.tscn",
+			"res://Scene/level/level_esbxx.tscn",
+			"res://Scene/level/level_tzsijian.tscn",
+			"res://Scene/level/level_sssl.tscn",
+			"res://Scene/level/level_bxgh.tscn"
 		]
 	):
 		show_level_info = true
-	if str(path) == "res://Scene/Level/level_tzsijian.tscn":
+	if str(path) == "res://Scene/level/level_tzsijian.tscn":
 		FourSwordsEndlessMode = false
-	if str(path) == "res://Scene/Level/level_stz.tscn":
+	if str(path) == "res://Scene/level/level_stz.tscn":
 		ThreePrinceEndlessMode = false
-	if str(path) == "res://Scene/Level/level_sssl.tscn":
+	if str(path) == "res://Scene/level/level_sssl.tscn":
 		SSSLendlessMode = false
-	if str(path) == "res://Scene/Level/level_esbxx.tscn":
+	if str(path) == "res://Scene/level/level_esbxx.tscn":
 		ConstellationEndlessMode = false
-	if str(path) == "res://Scene/Level/level_bxgh.tscn":
+	if str(path) == "res://Scene/level/level_bxgh.tscn":
 		SelectedEightImmortalId = 0
 	if not LevelInfo:
 		LevelInfo = _load_scene("res://Scene/other_scene/level_info.tscn")
@@ -3661,7 +3661,7 @@ func add_monster_head(parent, Name, IsBoss, ScenePath := ""):
 
 func add_level_fall_box(parent, Inldl, Inhhgz, Name, qh_level, wx, EqProp):
 	if not LevelFallBox:
-		LevelFallBox = _load_scene("res://Scene/BackPack/box_1.tscn")
+		LevelFallBox = _load_scene("res://Scene/back_pack/box_1.tscn")
 	var target = instance_scene(LevelFallBox, parent)
 	target.is_in_ldl_gz = Inldl
 	target.is_in_hhgz = Inhhgz
@@ -3676,7 +3676,7 @@ func add_level_fall_box(parent, Inldl, Inhhgz, Name, qh_level, wx, EqProp):
 
 func add_item_box(parent, Inldl, Inhhgz, Name, qh_level, num, wx, EqProp):
 	if not LevelFallBox:
-		LevelFallBox = _load_scene("res://Scene/BackPack/box_1.tscn")
+		LevelFallBox = _load_scene("res://Scene/back_pack/box_1.tscn")
 	var target = instance_scene(LevelFallBox, parent)
 	target.is_in_ldl_gz = Inldl
 	target.is_in_hhgz = Inhhgz
@@ -3699,7 +3699,7 @@ func add_game_need_know(parent, position):
 
 func add_role_magic_need(parent, position, name_, Old, New):
 	if not RoleMagicNeed:
-		RoleMagicNeed = _load_scene("res://Scene/Skill/role_magic_need.tscn")
+		RoleMagicNeed = _load_scene("res://Scene/skill/role_magic_need.tscn")
 	var target = instance_scene(RoleMagicNeed, parent)
 	target.position = position
 	target.Skill_name = name_
@@ -3710,7 +3710,7 @@ func add_role_magic_need(parent, position, name_, Old, New):
 
 func add_new_bullet(parent, position, Dir, name_, Dic):
 	if not NewBullet:
-		NewBullet = _load_scene("res://Scene/Hero/bullet_bullet.tscn")
+		NewBullet = _load_scene("res://Scene/hero/bullet_bullet.tscn")
 	var target = instance_scene(NewBullet, parent)
 	target.position = position
 	target.name_ = name_
@@ -3721,7 +3721,7 @@ func add_new_bullet(parent, position, Dir, name_, Dic):
 
 func add_smb_effect(parent, position, Dir):
 	if not SMBEffect:
-		SMBEffect = _load_scene("res://Scene/Hero/Role_2/smb_effect.tscn")
+		SMBEffect = _load_scene("res://Scene/hero/role_2/smb_effect.tscn")
 	var target = instance_scene(SMBEffect, parent)
 	target.position = position
 	target.Dir = Dir
@@ -3730,7 +3730,7 @@ func add_smb_effect(parent, position, Dir):
 
 func add_role2_shallow(parent, position, Dir):
 	if not Role2Shallow:
-		Role2Shallow = _load_scene("res://Scene/Base/role2shallow.tscn")
+		Role2Shallow = _load_scene("res://Scene/base/role2shallow.tscn")
 	var target = instance_scene(Role2Shallow, parent)
 	target.position = position
 	target.Dir = Dir
@@ -3749,7 +3749,7 @@ func add_role_special_effect(parent, position, Dir, name_):
 		scene = load_scene_uncached(slim_path) if ResourceLoader.exists(slim_path) else null
 	if scene == null:
 		if not RoleSpecialEffect_:
-			RoleSpecialEffect_ = _load_scene("res://Scene/Hero/role_special_effect.tscn")
+			RoleSpecialEffect_ = _load_scene("res://Scene/hero/role_special_effect.tscn")
 		scene = RoleSpecialEffect_
 	var target = instance_scene(scene, parent)
 	target.position = position
@@ -3791,7 +3791,7 @@ func add_choose_player(parent, position_):
 
 func add_monster65_bullet(parent, position_):
 	if not Monster65Bullet:
-		Monster65Bullet = _load_scene("res://Scene/Monster/monster65bullet.tscn")
+		Monster65Bullet = _load_scene("res://Scene/monster/monster65bullet.tscn")
 	var target = instance_scene(Monster65Bullet, parent)
 	target.position = position_
 	return target
@@ -3977,7 +3977,7 @@ func add_combo_num(parent, ComboNum_):
 
 func add_z_lw_stage(parent, position, Speed, Dir, Max, PD):
 	if not ZLw_stage:
-		ZLw_stage = _load_scene("res://Scene/Level/zlw_fly_floor.tscn")
+		ZLw_stage = _load_scene("res://Scene/level/zlw_fly_floor.tscn")
 	var target = instance_scene(ZLw_stage, parent)
 	target.position = position
 	target.Direction = Dir
@@ -4097,7 +4097,7 @@ func _on_damage_text_freed():
 
 func add_role1_shallow(parent, position, dir, int_action):
 	if not Role1Shallow:
-		Role1Shallow = _load_scene("res://Scene/Hero/role1_s_hallow.tscn")
+		Role1Shallow = _load_scene("res://Scene/hero/role1_s_hallow.tscn")
 	var target = instance_scene(Role1Shallow, parent)
 	target.position = position
 	target.iniaction = int_action
@@ -4107,7 +4107,7 @@ func add_role1_shallow(parent, position, dir, int_action):
 
 func add_role_bullet_1(parent, position, name_, Dic):
 	if not RoleBullet_1:
-		RoleBullet_1 = _load_scene("res://Scene/Hero/role_bullet_1.tscn")
+		RoleBullet_1 = _load_scene("res://Scene/hero/role_bullet_1.tscn")
 	var target = instance_scene(RoleBullet_1, parent)
 	target.position = position
 	target.name_ = name_
@@ -4117,7 +4117,7 @@ func add_role_bullet_1(parent, position, name_, Dic):
 
 func add_skill_key_set(parent, position, name_):
 	if not SkillKeySet:
-		SkillKeySet = _load_scene("res://Scene/Skill/skill_key_set.tscn")
+		SkillKeySet = _load_scene("res://Scene/skill/skill_key_set.tscn")
 	var target = instance_scene(SkillKeySet, parent)
 	target.position = position
 	target.need_name = name_
@@ -4143,7 +4143,7 @@ func add_game_set(parent, position):
 
 func add_bgm(parent, target_):
 	if not BGM_:
-		BGM_ = _load_scene("res://Scene/AllSound/bgm.tscn")
+		BGM_ = _load_scene("res://Scene/all_sound/bgm.tscn")
 	var target = instance_scene(BGM_, parent)
 	target.target = target_
 	return target
@@ -4151,7 +4151,7 @@ func add_bgm(parent, target_):
 
 func add_mosaic_(parent, position):
 	if not Mosaic_:
-		Mosaic_ = _load_scene("res://Scene/LDL/mosaic.tscn")
+		Mosaic_ = _load_scene("res://Scene/ldl/mosaic.tscn")
 	var target = instance_scene(Mosaic_, parent)
 	target.position = position
 	return target
@@ -4171,7 +4171,7 @@ func add_sound(parent, target_, priority: int = 0):
 		return null
 	if get_cached_audio(sound_key) == null:
 		return null
-	var target = _take_pooled_node(_pool_data["sound_player"], "res://Scene/AllSound/monster_be_hit.tscn")
+	var target = _take_pooled_node(_pool_data["sound_player"], "res://Scene/all_sound/monster_be_hit.tscn")
 	if target == null:
 		return null
 	_last_sound_play_msec[sound_key] = now_msec
@@ -4190,7 +4190,7 @@ func add_sound(parent, target_, priority: int = 0):
 
 func add_magic_help(parent, position):
 	if not MagicHelp:
-		MagicHelp = _load_scene("res://Scene/MagicWeapon/magic_help.tscn")
+		MagicHelp = _load_scene("res://Scene/magic_weapon/magic_help.tscn")
 	var target = instance_scene(MagicHelp, parent)
 	target.z_index = 99
 	target.position = position
@@ -4203,7 +4203,7 @@ func _get_viewport_center_position() -> Vector2:
 
 func add_use_magic_weapon(parent, position):
 	if not UseMagicWeapon:
-		UseMagicWeapon = _load_scene("res://Scene/BackPack/use_magic_weapon.tscn")
+		UseMagicWeapon = _load_scene("res://Scene/back_pack/use_magic_weapon.tscn")
 	var target = instance_scene(UseMagicWeapon, parent)
 	target.z_index = 99
 	target.position = position
@@ -4212,7 +4212,7 @@ func add_use_magic_weapon(parent, position):
 
 func add_skill_select(parent, position, name_):
 	if not SkillSelect:
-		SkillSelect = _load_scene("res://Scene/BackPack/skill_select.tscn")
+		SkillSelect = _load_scene("res://Scene/back_pack/skill_select.tscn")
 	var target = instance_scene(SkillSelect, parent)
 	target.wp_name = name_
 	target.position = position
@@ -4338,9 +4338,9 @@ func get_active_pet_preload_paths() -> Array[String]:
 	if pet_type == "PetNeat":
 		return (
 			[
-				"res://Scene/Pet/PetNeatSummon_%d.tscn" % stage,
+				"res://Scene/pet/PetNeatSummon_%d.tscn" % stage,
 				"res://Art/Pet/PetNeat/model/pet_neat_stage%d_frames.tres" % stage,
-				"res://Scene/Pet/pet_neat_bullet.tscn",
+				"res://Scene/pet/pet_neat_bullet.tscn",
 				"res://Art/Pet/PetNeat/model/actions/stage%d/wait/头像.png" % stage,
 				"res://Art/Pet/skillicon/mncz.png",
 			]
@@ -4349,9 +4349,9 @@ func get_active_pet_preload_paths() -> Array[String]:
 		)
 	if pet_type == "PetMouse":
 		var mouse_paths: Array[String] = [
-			"res://Scene/Pet/PetMouseSummon_%d.tscn" % stage,
+			"res://Scene/pet/PetMouseSummon_%d.tscn" % stage,
 			"res://Art/Pet/PetMouse/model/pet_mouse_stage%d_frames.tres" % stage,
-			"res://Scene/Pet/pet_mouse_bullet.tscn",
+			"res://Scene/pet/pet_mouse_bullet.tscn",
 			"res://Art/Pet/PetMouse/model/actions/stage%d/wait/head.png" % stage,
 			"res://Art/Pet/skillicon/sc.png",
 		]
@@ -4362,9 +4362,9 @@ func get_active_pet_preload_paths() -> Array[String]:
 		return mouse_paths
 	if pet_type == "PetTiger":
 		var tiger_paths: Array[String] = [
-			"res://Scene/Pet/PetTigerSummon_%d.tscn" % stage,
+			"res://Scene/pet/PetTigerSummon_%d.tscn" % stage,
 			"res://Art/Pet/PetTiger/model/pet_tiger_stage%d_frames.tres" % stage,
-			"res://Scene/Pet/pet_tiger_bullet.tscn",
+			"res://Scene/pet/pet_tiger_bullet.tscn",
 			"res://Art/Pet/PetTiger/model/actions/stage%d/wait/icon.png" % stage,
 			"res://Art/Pet/skillicon/hy.png",
 		]
@@ -4377,7 +4377,7 @@ func get_active_pet_preload_paths() -> Array[String]:
 		return tiger_paths
 	if pet_type == "PetPhoenix":
 		var phoenix_paths: Array[String] = [
-			"res://Scene/Pet/PetPhoenixSummon_%d.tscn" % stage,
+			"res://Scene/pet/PetPhoenixSummon_%d.tscn" % stage,
 			"res://Art/Pet/PetPhoenix/model/pet_phoenix_stage%d_frames.tres" % stage,
 			"res://Art/Pet/PetPhoenix/model/actions/stage%d/wait/头像.png" % stage,
 			"res://Art/Pet/skillicon/np.png",
@@ -4391,9 +4391,9 @@ func get_active_pet_preload_paths() -> Array[String]:
 		return phoenix_paths
 	if pet_type == "PetTurtle":
 		var turtle_paths: Array[String] = [
-			"res://Scene/Pet/PetTurtleSummon_%d.tscn" % stage,
+			"res://Scene/pet/PetTurtleSummon_%d.tscn" % stage,
 			"res://Art/Pet/PetTurtle/model/pet_turtle_stage%d_frames.tres" % stage,
-			"res://Scene/Pet/pet_turtle_bullet.tscn",
+			"res://Scene/pet/pet_turtle_bullet.tscn",
 			"res://Art/Pet/PetTurtle/model/actions/stage%d/wait/头像.png" % stage,
 			"res://Art/Pet/skillicon/sld.png",
 		]
@@ -4406,9 +4406,9 @@ func get_active_pet_preload_paths() -> Array[String]:
 		return turtle_paths
 	if pet_type == "PetRabbit":
 		var rabbit_paths: Array[String] = [
-			"res://Scene/Pet/PetRabbitSummon_%d.tscn" % stage,
+			"res://Scene/pet/PetRabbitSummon_%d.tscn" % stage,
 			"res://Art/Pet/PetRabbit/model/pet_rabbit_stage%d_frames.tres" % stage,
-			"res://Scene/Pet/pet_rabbit_bullet.tscn",
+			"res://Scene/pet/pet_rabbit_bullet.tscn",
 			"res://Art/Pet/PetRabbit/model/actions/stage%d/wait/头像.png" % stage,
 			"res://Art/Pet/skillicon/yg.png",
 		]
@@ -4420,9 +4420,9 @@ func get_active_pet_preload_paths() -> Array[String]:
 			rabbit_paths.append("res://Art/Pet/skillicon/aoyi.png")
 		return rabbit_paths
 	var paths: Array[String] = [
-		"res://Scene/Pet/PetDragonSummon_%d.tscn" % stage,
+		"res://Scene/pet/PetDragonSummon_%d.tscn" % stage,
 		"res://Art/Pet/PetDragon/model/pet_dragon_stage%d_frames.tres" % stage,
-		"res://Scene/Pet/pet_dragon_bullet.tscn",
+		"res://Scene/pet/pet_dragon_bullet.tscn",
 		"res://Art/Pet/PetDragon/model/actions/stage%d/wait/头像.png" % stage,
 		"res://Art/Pet/skillicon/fs.png",
 	]
@@ -4464,33 +4464,33 @@ func prewarm_active_pet_runtime_resources() -> void:
 	var frames_path := ""
 	var bullet_scene_path := ""
 	if pet_type == "PetNeat":
-		scene_path = "res://Scene/Pet/PetNeatSummon_%d.tscn" % stage
+		scene_path = "res://Scene/pet/PetNeatSummon_%d.tscn" % stage
 		frames_path = "res://Art/Pet/PetNeat/model/pet_neat_stage%d_frames.tres" % stage
-		bullet_scene_path = "res://Scene/Pet/pet_neat_bullet.tscn"
+		bullet_scene_path = "res://Scene/pet/pet_neat_bullet.tscn"
 	elif pet_type == "PetMouse":
-		scene_path = "res://Scene/Pet/PetMouseSummon_%d.tscn" % stage
+		scene_path = "res://Scene/pet/PetMouseSummon_%d.tscn" % stage
 		frames_path = "res://Art/Pet/PetMouse/model/pet_mouse_stage%d_frames.tres" % stage
-		bullet_scene_path = "res://Scene/Pet/pet_mouse_bullet.tscn"
+		bullet_scene_path = "res://Scene/pet/pet_mouse_bullet.tscn"
 	elif pet_type == "PetTiger":
-		scene_path = "res://Scene/Pet/PetTigerSummon_%d.tscn" % stage
+		scene_path = "res://Scene/pet/PetTigerSummon_%d.tscn" % stage
 		frames_path = "res://Art/Pet/PetTiger/model/pet_tiger_stage%d_frames.tres" % stage
-		bullet_scene_path = "res://Scene/Pet/pet_tiger_bullet.tscn"
+		bullet_scene_path = "res://Scene/pet/pet_tiger_bullet.tscn"
 	elif pet_type == "PetPhoenix":
-		scene_path = "res://Scene/Pet/PetPhoenixSummon_%d.tscn" % stage
+		scene_path = "res://Scene/pet/PetPhoenixSummon_%d.tscn" % stage
 		frames_path = "res://Art/Pet/PetPhoenix/model/pet_phoenix_stage%d_frames.tres" % stage
-		bullet_scene_path = "res://Scene/Pet/pet_tiger_bullet.tscn"
+		bullet_scene_path = "res://Scene/pet/pet_tiger_bullet.tscn"
 	elif pet_type == "PetTurtle":
-		scene_path = "res://Scene/Pet/PetTurtleSummon_%d.tscn" % stage
+		scene_path = "res://Scene/pet/PetTurtleSummon_%d.tscn" % stage
 		frames_path = "res://Art/Pet/PetTurtle/model/pet_turtle_stage%d_frames.tres" % stage
-		bullet_scene_path = "res://Scene/Pet/pet_turtle_bullet.tscn"
+		bullet_scene_path = "res://Scene/pet/pet_turtle_bullet.tscn"
 	elif pet_type == "PetRabbit":
-		scene_path = "res://Scene/Pet/PetRabbitSummon_%d.tscn" % stage
+		scene_path = "res://Scene/pet/PetRabbitSummon_%d.tscn" % stage
 		frames_path = "res://Art/Pet/PetRabbit/model/pet_rabbit_stage%d_frames.tres" % stage
-		bullet_scene_path = "res://Scene/Pet/pet_rabbit_bullet.tscn"
+		bullet_scene_path = "res://Scene/pet/pet_rabbit_bullet.tscn"
 	else:
-		scene_path = "res://Scene/Pet/PetDragonSummon_%d.tscn" % stage
+		scene_path = "res://Scene/pet/PetDragonSummon_%d.tscn" % stage
 		frames_path = "res://Art/Pet/PetDragon/model/pet_dragon_stage%d_frames.tres" % stage
-		bullet_scene_path = "res://Scene/Pet/pet_dragon_bullet.tscn"
+		bullet_scene_path = "res://Scene/pet/pet_dragon_bullet.tscn"
 	_warm_scene_instance(preload_scene_path(scene_path))
 	var bullet_scene := preload_scene_path(bullet_scene_path)
 	_warm_scene_instance(bullet_scene)
@@ -4523,7 +4523,7 @@ func get_magic_weapon_preload_paths(name_) -> Array[String]:
 			paths
 			. append_array(
 				[
-					"res://Scene/Monster/Monster_zhw/guanyin_summon.tscn",
+					"res://Scene/monster/monster_zhw/guanyin_summon.tscn",
 					"res://Art/Monster/GuanyinSpine/skeleton.atlas",
 					"res://Art/Monster/GuanyinSpine/guanyin.spine-json",
 				]
@@ -4585,14 +4585,14 @@ func add_message_show(Parent, NeedText: String, Time_: float, Position: Vector2)
 
 func add_ws_effect(parent):
 	if not WS_Effect:
-		WS_Effect = _load_scene("res://Scene/Hero/Role_1/ws_effect.tscn")
+		WS_Effect = _load_scene("res://Scene/hero/role_1/ws_effect.tscn")
 	var target = instance_scene(WS_Effect, parent)
 	return target
 
 
 func add_choose_item(parent, position, List, name_, page):
 	if not Choose_Item:
-		Choose_Item = _load_scene("res://Scene/Shop/choose_item.tscn")
+		Choose_Item = _load_scene("res://Scene/shop/choose_item.tscn")
 	var target = instance_scene(Choose_Item, parent)
 	target.name_ = name_
 	target.page_ = page
@@ -4607,7 +4607,7 @@ func add_choose_item(parent, position, List, name_, page):
 
 func add_s_y_n_help(parent, position):
 	if not ldl_help:
-		ldl_help = _load_scene("res://Scene/LDL/s_yn_help.tscn")
+		ldl_help = _load_scene("res://Scene/ldl/s_yn_help.tscn")
 	var target = instance_scene(ldl_help, parent)
 	target.z_index = 99
 	target.position = position
@@ -4616,7 +4616,7 @@ func add_s_y_n_help(parent, position):
 
 func add_shop(parent, position):
 	if not SHop:
-		SHop = _load_scene("res://Scene/Shop/shop.tscn")
+		SHop = _load_scene("res://Scene/shop/shop.tscn")
 	var target = instance_scene(SHop, parent)
 	target.z_index = 99
 	target.position = position
@@ -4625,7 +4625,7 @@ func add_shop(parent, position):
 
 func add_shop_items(parent, position, name_: String, need_):
 	if not shop_ttems:
-		shop_ttems = _load_scene("res://Scene/Shop/shop_item.tscn")
+		shop_ttems = _load_scene("res://Scene/shop/shop_item.tscn")
 	var target = instance_scene(shop_ttems, parent)
 	target.position = position
 	target.item_name_ = name_
@@ -4635,7 +4635,7 @@ func add_shop_items(parent, position, name_: String, need_):
 
 func add_magp_infor(parent, position):
 	if not magp_infor:
-		magp_infor = _load_scene("res://Scene/BackPack/magic_weapon_infor.tscn")
+		magp_infor = _load_scene("res://Scene/back_pack/magic_weapon_infor.tscn")
 	var target = instance_scene(magp_infor, parent)
 	target.position = position
 	return target
@@ -4643,7 +4643,7 @@ func add_magp_infor(parent, position):
 
 func add_synthesis(parent, position):
 	if not synthesis:
-		synthesis = _load_scene("res://Scene/LDL/synthesis.tscn")
+		synthesis = _load_scene("res://Scene/ldl/synthesis.tscn")
 	var target = instance_scene(synthesis, parent)
 	target.position = position
 	return target
@@ -4662,7 +4662,7 @@ func add_change_bg(parent, position):
 
 func add_strength(parent, position):
 	if not qh_jm:
-		qh_jm = _load_scene("res://Scene/LDL/strength.tscn")
+		qh_jm = _load_scene("res://Scene/ldl/strength.tscn")
 	var target = instance_scene(qh_jm, parent)
 	target.position = position
 	return target
@@ -4670,7 +4670,7 @@ func add_strength(parent, position):
 
 func create_hands(parent, direction, position):
 	if not nmw_hands:
-		nmw_hands = _load_scene("res://Scene/Monster/monster_25.tscn")
+		nmw_hands = _load_scene("res://Scene/monster/monster_25.tscn")
 	var target = instance_scene(nmw_hands, parent)
 	if target == null:
 		return null
@@ -4728,7 +4728,7 @@ func add_lj(parent, position_):
 
 func add_trap(parent, position_, name_):
 	if not Trap_:
-		Trap_ = _load_scene("res://Scene/Level/trap.tscn")
+		Trap_ = _load_scene("res://Scene/level/trap.tscn")
 	var target = instance_scene(Trap_, parent)
 	target.z_index = 99
 	target.get_name_ = name_
@@ -4738,7 +4738,7 @@ func add_trap(parent, position_, name_):
 
 func add_buff_icon_text(parent, text_):
 	if not BuffIcon:
-		BuffIcon = _load_scene("res://Scene/BackPack/buff.tscn")
+		BuffIcon = _load_scene("res://Scene/back_pack/buff.tscn")
 	var target = instance_scene(BuffIcon, parent)
 	target.z_index = 99
 	target.texture_ = text_
@@ -4785,7 +4785,7 @@ func add_choose_text(parent, position_, text_, calm_time):
 
 func add_special_effect_bullet(parent, position_, scale_, name_, dir):
 	if not SpecialEffectBullet:
-		SpecialEffectBullet = _load_scene("res://Scene/Hero/Role_1/hmz_effect/special_effect_bullet.tscn")
+		SpecialEffectBullet = _load_scene("res://Scene/hero/role_1/hmz_effect/special_effect_bullet.tscn")
 	var target = instance_scene(SpecialEffectBullet, parent)
 	target.z_index = 99
 	target.position = position_
@@ -4797,7 +4797,7 @@ func add_special_effect_bullet(parent, position_, scale_, name_, dir):
 
 func add_role_information(parent, position):
 	if not role_information:
-		role_information = _load_scene("res://Scene/Level/role_information.tscn")
+		role_information = _load_scene("res://Scene/level/role_information.tscn")
 	if role_information == null or parent == null or not is_instance_valid(parent):
 		return null
 	var target = role_information.instantiate()
@@ -4812,7 +4812,7 @@ func add_role_information(parent, position):
 
 func add_learn_skill(parent, position):
 	if not Skill_learn:
-		Skill_learn = _load_scene("res://Scene/Skill/learn_skill.tscn")
+		Skill_learn = _load_scene("res://Scene/skill/learn_skill.tscn")
 	var target = instance_scene(Skill_learn, parent)
 	target.z_index = 99
 	target.position = position
@@ -4821,7 +4821,7 @@ func add_learn_skill(parent, position):
 
 func add_zd_skillscene(parent, position):
 	if not zd_skill:
-		zd_skill = _load_scene("res://Scene/Skill/zd_skill.tscn")
+		zd_skill = _load_scene("res://Scene/skill/zd_skill.tscn")
 	var target = instance_scene(zd_skill, parent)
 	target.z_index = 99
 	target.position = position
@@ -4830,7 +4830,7 @@ func add_zd_skillscene(parent, position):
 
 func add_bd_skillscene(parent, position):
 	if not bd_skill:
-		bd_skill = _load_scene("res://Scene/Skill/bd_skill.tscn")
+		bd_skill = _load_scene("res://Scene/skill/bd_skill.tscn")
 	var target = instance_scene(bd_skill, parent)
 	target.z_index = 99
 	target.position = position
@@ -4848,7 +4848,7 @@ func add_gm_infor(parent, position):
 
 func add_ldl(parent, position):
 	if not ldl:
-		ldl = _load_scene("res://Scene/LDL/ldl.tscn")
+		ldl = _load_scene("res://Scene/ldl/ldl.tscn")
 	var target = instance_scene(ldl, parent)
 	target.z_index = 99
 	target.position = position
@@ -4857,7 +4857,7 @@ func add_ldl(parent, position):
 
 func add_pl_sell(parent, position):
 	if not pl_sell:
-		pl_sell = _load_scene("res://Scene/BackPack/pl_sell.tscn")
+		pl_sell = _load_scene("res://Scene/back_pack/pl_sell.tscn")
 	var target = instance_scene(pl_sell, parent)
 	target.z_index = 99
 	target.position = position
@@ -4866,7 +4866,7 @@ func add_pl_sell(parent, position):
 
 func fall_item(parent, position, name_, value_):
 	if not fall_equ:
-		fall_equ = _load_scene("res://Scene/BackPack/equipment_fall.tscn")
+		fall_equ = _load_scene("res://Scene/back_pack/equipment_fall.tscn")
 	var target = instance_scene(fall_equ, parent)
 	target.position = position
 	target.item_name = name_
@@ -4876,7 +4876,7 @@ func fall_item(parent, position, name_, value_):
 
 func add_dj_infor(parent, position, name_):
 	if not dj_infor:
-		dj_infor = _load_scene("res://Scene/BackPack/dj_information.tscn")
+		dj_infor = _load_scene("res://Scene/back_pack/dj_information.tscn")
 	var target = instance_scene(dj_infor, parent)
 	target.my_name = name_
 	target.z_index = 99
@@ -4913,7 +4913,7 @@ func _close_backpack_click_menus_in(root: Node) -> void:
 func add_dj_sell(parent, position, name_, page_):
 	close_backpack_click_menus(parent)
 	if not dj_sell:
-		dj_sell = _load_scene("res://Scene/BackPack/dj_sell.tscn")
+		dj_sell = _load_scene("res://Scene/back_pack/dj_sell.tscn")
 	var target = instance_scene(dj_sell, parent)
 	target.my_page = page_
 	target.my_name = name_
@@ -4932,7 +4932,7 @@ func get_parent_(self_, times):
 
 func add_equ_propeties_box(parent, position, name_, qh_level, wx, Data):
 	if not equ_propeties_box:
-		equ_propeties_box = _load_scene("res://Scene/BackPack/equipment_properies.tscn")
+		equ_propeties_box = _load_scene("res://Scene/back_pack/equipment_properies.tscn")
 	var target = instance_scene(equ_propeties_box, parent)
 	target.z_index = 199
 	var item_data: Dictionary = Data.duplicate(true) if Data is Dictionary else {}
@@ -4966,7 +4966,7 @@ func add_equ_propeties_box(parent, position, name_, qh_level, wx, Data):
 func add_se_eq_jm(parent, position, name_, page_, number_):
 	close_backpack_click_menus(parent)
 	if not sell_or_equ:
-		sell_or_equ = _load_scene("res://Scene/BackPack/sell_or_equ.tscn")
+		sell_or_equ = _load_scene("res://Scene/back_pack/sell_or_equ.tscn")
 	var target = instance_scene(sell_or_equ, parent)
 	target.page = page_
 	target.number = number_
@@ -4978,7 +4978,7 @@ func add_se_eq_jm(parent, position, name_, page_, number_):
 
 func add_main_backpack(parent, position):
 	if not main_backpack:
-		main_backpack = _load_scene("res://Scene/BackPack/main_backpack.tscn")
+		main_backpack = _load_scene("res://Scene/back_pack/main_backpack.tscn")
 	var target = instance_scene(main_backpack, parent)
 	target.position = position
 	return target
@@ -4999,8 +4999,8 @@ func change_scene(target, force_loading_screen: bool = false):
 	if (
 		not force_loading_screen
 		and cached != null
-		and target_path.begins_with("res://Scene/Level/")
-		and target_path != "res://Scene/Level/level_hdzm.tscn"
+		and target_path.begins_with("res://Scene/level/")
+		and target_path != "res://Scene/level/level_hdzm.tscn"
 	):
 		get_tree().change_scene_to_packed(cached)
 		return
@@ -5023,7 +5023,7 @@ func add_music_set(parent, position):
 
 func add_camera(parent, position, right):
 	if not mycamera:
-		mycamera = _load_scene("res://Scene/Level/camera.tscn")
+		mycamera = _load_scene("res://Scene/level/camera.tscn")
 	var target = instance_scene(mycamera, parent)
 	target.position = position
 	target.max_right = right
@@ -5033,12 +5033,12 @@ func add_camera(parent, position, right):
 func call_hero(who: String, parent, position: Vector2, _dir: bool):
 	var clean_who = who.replace(".0", "").replace(".", "")
 	var scene_paths = {
-		"role_1": "res://Scene/Hero/Role_1/role1.tscn",
-		"role_2": "res://Scene/Hero/Role_2/role_2.tscn",
-		"role_3": "res://Scene/Hero/Role_3/role_3.tscn",
-		"role_4": "res://Scene/Hero/Role_4/role_4.tscn",
-		"role_5": "res://Scene/Hero/Role_5/role_5.tscn",
-		"role_6": "res://Scene/Hero/Role_6/role_6.tscn"
+		"role_1": "res://Scene/hero/role_1/role1.tscn",
+		"role_2": "res://Scene/hero/role_2/role_2.tscn",
+		"role_3": "res://Scene/hero/role_3/role_3.tscn",
+		"role_4": "res://Scene/hero/role_4/role_4.tscn",
+		"role_5": "res://Scene/hero/role_5/role_5.tscn",
+		"role_6": "res://Scene/hero/role_6/role_6.tscn"
 	}
 	if not scene_paths.has(clean_who):
 		push_error("Unknown hero type: " + who + " (cleaned to: " + clean_who + ")")
@@ -5065,7 +5065,7 @@ func add_set_menu(parent, position):
 
 func add_cd_jm(parent, position):
 	if not cd_jm:
-		cd_jm = _load_scene("res://Scene/ArchiveInterface/read_archive_interface.tscn")
+		cd_jm = _load_scene("res://Scene/archive_interface/read_archive_interface.tscn")
 	var target = instance_scene(cd_jm, parent)
 	target.position = position
 	return target
@@ -5094,7 +5094,7 @@ func add_touch_text(parent, position, text):
 
 func add_back_pack(parent, position):
 	if not back_pack:
-		back_pack = _load_scene("res://Scene/BackPack/back_pack.tscn")
+		back_pack = _load_scene("res://Scene/back_pack/back_pack.tscn")
 	var target = instance_scene(back_pack, parent)
 	configure_backpack_role_preview(target)
 	target.position = position - Vector2(481, 297)
@@ -5273,7 +5273,7 @@ func instance_scene_safe(target_scene_, parent):
 
 func add_role_bullet_1_safe(parent, position, name_, Dic):
 	if not RoleBullet_1:
-		RoleBullet_1 = _load_scene("res://Scene/Hero/role_bullet_1.tscn")
+		RoleBullet_1 = _load_scene("res://Scene/hero/role_bullet_1.tscn")
 	var target = RoleBullet_1.instantiate()
 	target.position = position
 	target.name_ = name_

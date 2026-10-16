@@ -93,7 +93,7 @@ static func preview(number: int) -> Dictionary:
 			{
 				"Name": record["name"],
 				"IsBoss": record["boss"] == "1",
-				"ScenePath": "res://Scene/Monster/Monster_%d.tscn" % id,
+				"ScenePath": "res://Scene/monster/Monster_%d.tscn" % id,
 				"ConfigId": id
 			}
 		)

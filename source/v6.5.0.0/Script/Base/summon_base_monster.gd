@@ -1,7 +1,7 @@
 extends BaseObject
 class_name SummonBaseMonster
 
-const BaseHero = preload("res://Script/Base/base_hero.gd")
+const BaseHero = preload("res://Script/base/base_hero.gd")
 
 @onready var bullet: Node = $Bullet
 @onready var hit_box: CollisionShape2D = $BaseDamageBox/HitBox/HitBox

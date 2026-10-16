@@ -1,4 +1,4 @@
-extends "res://Script/Pet/pet_turtle_summon_base.gd"
+extends "res://Script/pet/pet_turtle_summon_base.gd"
 class_name PetMouseSummonBase
 
 const SKILL_SC := "sc"
@@ -41,8 +41,8 @@ const MOUSE_ACTIONS := {
 	},
 }
 const MOUSE_MODEL_FRAMES_RES := "res://Art/Pet/PetMouse/model/pet_mouse_stage%d_frames.tres"
-const MOUSE_SCENE_RES := "res://Scene/Pet/PetMouseSummon_%d.tscn"
-const PET_MOUSE_BULLET_SCENE := preload("res://Scene/Pet/pet_mouse_bullet.tscn")
+const MOUSE_SCENE_RES := "res://Scene/pet/PetMouseSummon_%d.tscn"
+const PET_MOUSE_BULLET_SCENE := preload("res://Scene/pet/pet_mouse_bullet.tscn")
 const MOUSE_ROLE_ORIGIN_Y := -35.0
 const MOUSE_DASH_SPEED_PER_SECOND := 240.0
 

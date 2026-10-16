@@ -111,7 +111,7 @@ const BOSS_POOL := [
 ]
 const SPAWN_X := [190.0, 305.0, 420.0, 535.0, 650.0, 765.0, 880.0]
 const SPAWN_Y := [394.0, 405.0, 416.0, 427.0]
-const TOWER_LEVEL_SCENE_PATH := "res://Scene/Level/level_zhen_yao_tower.tscn"
+const TOWER_LEVEL_SCENE_PATH := "res://Scene/level/level_zhen_yao_tower.tscn"
 const SMALL_MONSTER_BASE_STATS := {
 	"hp": 3000000,
 	"attack": 7000,

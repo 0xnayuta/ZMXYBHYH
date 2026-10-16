@@ -1,9 +1,9 @@
 extends BaseMonster
 
-const PROJECTILE_SCRIPT := preload("res://Script/Monster/wutai_minghai_projectile.gd")
-const STREAM_SCRIPT := preload("res://Script/Monster/streamed_png_effect.gd")
-const BODY_STREAM_SCRIPT := preload("res://Script/Monster/constellation_body_stream.gd")
-const HEAL_AURA_SCRIPT := preload("res://Script/Monster/constellation_heal_aura.gd")
+const PROJECTILE_SCRIPT := preload("res://Script/monster/wutai_minghai_projectile.gd")
+const STREAM_SCRIPT := preload("res://Script/monster/streamed_png_effect.gd")
+const BODY_STREAM_SCRIPT := preload("res://Script/monster/constellation_body_stream.gd")
+const HEAL_AURA_SCRIPT := preload("res://Script/monster/constellation_heal_aura.gd")
 const ASSET_ROOT := "res://Art/Constellations/Boss"
 const SOURCE_FPS := 24.0
 const MONSTER140_EFFECT_FPS := 24.0

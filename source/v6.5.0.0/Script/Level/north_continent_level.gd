@@ -373,7 +373,7 @@ func enter_maze_gate(side: int) -> void:
 		return
 	maze_room = 7 if side == 0 else 8
 	if maze_room == 8:
-		Global.change_scene("res://Scene/Level/level_80_hidden.tscn")
+		Global.change_scene("res://Scene/level/level_80_hidden.tscn")
 		return
 	for enemy in monster.get_children():
 		enemy.queue_free()

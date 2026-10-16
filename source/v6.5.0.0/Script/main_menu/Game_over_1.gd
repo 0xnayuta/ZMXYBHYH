@@ -40,4 +40,4 @@ func _on_bg_1_pressed() -> void:
 
 
 func change_tomap():
-	Global.change_scene("res://Scene/Level/victory.tscn")
+	Global.change_scene("res://Scene/level/victory.tscn")

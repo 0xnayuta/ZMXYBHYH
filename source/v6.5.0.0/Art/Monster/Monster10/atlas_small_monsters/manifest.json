@@ -97,9 +97,9 @@
     ]
   },
   "consumer_scenes": [
-    "res://Scene/Base/base_monster.tscn",
-    "res://Scene/Monster/MonsterBulletSlim/knife.tscn",
-    "res://Scene/Monster/monster_10.tscn"
+    "res://Scene/base/base_monster.tscn",
+    "res://Scene/monster/monster_bullet_slim/knife.tscn",
+    "res://Scene/monster/monster_10.tscn"
   ],
   "monster_ids": [
     10

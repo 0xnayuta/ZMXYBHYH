@@ -49,11 +49,11 @@
     ]
   },
   "consumer_scenes": [
-    "res://Scene/Base/base_monster.tscn",
-    "res://Scene/Monster/MonsterBulletSlim/monster76_bullet1.tscn",
-    "res://Scene/Monster/MonsterBulletSlim/monster76_bullet2.tscn",
-    "res://Scene/Monster/monster_74.tscn",
-    "res://Scene/Monster/monster_76.tscn"
+    "res://Scene/base/base_monster.tscn",
+    "res://Scene/monster/monster_bullet_slim/monster76_bullet1.tscn",
+    "res://Scene/monster/monster_bullet_slim/monster76_bullet2.tscn",
+    "res://Scene/monster/monster_74.tscn",
+    "res://Scene/monster/monster_76.tscn"
   ],
   "monster_ids": [
     74,

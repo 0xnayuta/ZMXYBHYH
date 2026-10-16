@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/base_through_level.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/level_kls.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/base/base_through_level.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/level/level_kls.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_Hide/klsdt.png" id="3"]
 
 [sub_resource type="RectangleShape2D" id="3"]

@@ -1,0 +1,43 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/back_pack/sell_or_equ.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/841.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/AllItems/5.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/15.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/lock_button_bg.png" id="5"]
+[ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="6"]
+
+[sub_resource type="StyleBoxEmpty" id="1"]
+
+[sub_resource type="StyleBoxEmpty" id="3"]
+
+[sub_resource type="StyleBoxEmpty" id="2"]
+
+[sub_resource type="StyleBoxEmpty" id="4"]
+
+[sub_resource type="StyleBoxEmpty" id="5"]
+
+[sub_resource type="StyleBoxEmpty" id="6"]
+
+[sub_resource type="StyleBoxEmpty" id="8"]
+
+[sub_resource type="StyleBoxEmpty" id="7"]
+
+[sub_resource type="StyleBoxEmpty" id="9"]
+
+[sub_resource type="StyleBoxEmpty" id="10"]
+
+[resource]
+_bundled = {
+"conn_count": 6,
+"conns": PackedInt32Array(0, 0, 59, 58, 2, 0, 0, 1, 0, 59, 60, 2, 0, 0, 3, 0, 59, 61, 2, 0, 0, 5, 0, 63, 62, 2, 0, 0, 6, 0, 63, 64, 2, 0, 0, 7, 0, 63, 65, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("sell_or_equ", "show_behind_parent", "layout_mode", "anchor_right", "anchor_bottom", "offset_left", "offset_right", "offset_bottom", "grow_horizontal", "grow_vertical", "scale", "mouse_default_cursor_shape", "script", "metadata/_edit_lock_", "Control", "Panel", "offset_top", "color", "ColorRect", "841", "position", "texture", "Sprite2D", "VBoxContainer", "mouse_filter", "theme_override_constants/separation", "alignment", "infor", "theme_override_colors/font_shadow_color", "theme_override_colors/font_outline_color", "theme_override_constants/shadow_offset_x", "theme_override_constants/shadow_offset_y", "theme_override_constants/shadow_outline_size", "theme_override_font_sizes/font_size", "text", "horizontal_alignment", "vertical_alignment", "Label", "equ", "custom_minimum_size", "theme_override_styles/normal", "theme_override_styles/pressed", "theme_override_styles/hover", "theme_override_styles/disabled", "theme_override_styles/focus", "icon", "flat", "icon_alignment", "expand_icon", "Button", "sell", "lock", "tooltip_text", "Text", "anchors_preset", "theme_override_colors/font_color", "theme_override_constants/outline_size", "theme_override_fonts/font", "_on_mouse_exited", "mouse_exited", "_on_panel_mouse_exited", "_on_v_box_container_mouse_exited", "_on_equ_pressed", "pressed", "_on_sell_pressed", "_on_lock_pressed"),
+"node_count": 9,
+"node_ids": PackedInt32Array(2075446418, 421315084, 683657286, 1144302610, 1040900393, 1170422351, 1356043163, 896095821, 778338259),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 14, 0, -1, 13, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 6, 8, 7, 9, 7, 10, 8, 11, 7, 12, 9, 13, 0, 0, 0, 0, 18, 15, -1, 7, 2, 10, 5, 11, 16, 11, 6, 12, 7, 13, 17, 14, 13, 0, 0, 1, 0, 22, 19, -1, 4, 20, 15, 10, 16, 21, 17, 13, 0, 0, 0, 0, 23, 23, -1, 9, 2, 10, 5, 18, 16, 19, 6, 12, 7, 20, 24, 10, 25, 21, 26, 22, 13, 0, 0, 3, 0, 37, 27, -1, 10, 2, 7, 28, 14, 29, 14, 30, 7, 31, 22, 32, 23, 33, 24, 34, 25, 35, 22, 36, 22, 0, 3, 0, 49, 38, -1, 11, 39, 26, 2, 7, 40, 27, 41, 28, 42, 29, 43, 30, 44, 31, 45, 32, 46, 0, 47, 22, 48, 0, 0, 3, 0, 49, 50, -1, 11, 39, 26, 2, 7, 40, 33, 41, 34, 42, 35, 43, 36, 44, 37, 45, 38, 46, 0, 47, 22, 48, 0, 0, 3, 0, 49, 51, -1, 12, 39, 26, 2, 7, 52, 39, 40, 27, 41, 28, 42, 29, 43, 30, 44, 31, 45, 40, 46, 0, 47, 22, 48, 0, 0, 7, 0, 37, 53, -1, 16, 2, 22, 54, 41, 3, 42, 4, 42, 5, 43, 6, 43, 8, 7, 9, 7, 55, 14, 29, 14, 56, 22, 57, 44, 33, 45, 34, 46, 35, 22, 36, 22, 0),
+"variants": [true, 3, 0.063, 0.102, 5.0, 5.78, 47.82, 2, Vector2(1.5, 1.5), ExtResource("1"), 0, 4.0, 57.0, 106.0, Color(0, 0, 0, 1), Vector2(26.3333, 51), Vector2(0.697318, 0.72), ExtResource("2"), 2.0, 3.0, 104.0, -2, 1, 8, 10, "第1页第2格", Vector2(0, 30), SubResource("1"), SubResource("3"), SubResource("2"), SubResource("4"), SubResource("5"), ExtResource("3"), SubResource("6"), SubResource("8"), SubResource("7"), SubResource("9"), SubResource("10"), ExtResource("4"), "锁定物品，禁止出售", ExtResource("5"), 15, 1.0, 0.666667, ExtResource("6"), 11, "锁 定"],
+"version": 3
+}

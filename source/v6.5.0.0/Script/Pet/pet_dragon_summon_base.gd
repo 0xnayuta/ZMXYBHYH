@@ -1,4 +1,4 @@
-extends "res://Script/Base/summon_base_monster.gd"
+extends "res://Script/base/summon_base_monster.gd"
 class_name PetDragonSummonBase
 
 @export var dragon_stage: int = 1
@@ -7,8 +7,8 @@ const SKILL_FS := "fs"
 const SKILL_SDCC := "sdcc"
 const SKILL_LTWJ := "ltwj"
 const SKILL_QLAOYI := "qlaoyi"
-const PET_SKILL_PROGRESSION := preload("res://Script/Pet/pet_skill_progression.gd")
-const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/Pet/pet_life_bonus_runtime.gd")
+const PET_SKILL_PROGRESSION := preload("res://Script/pet/pet_skill_progression.gd")
+const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/pet/pet_life_bonus_runtime.gd")
 const SKILL_NAMES := {
 	SKILL_FS: "分身",
 	SKILL_SDCC: "闪电冲刺",
@@ -40,8 +40,8 @@ const DRAGON_FALL_GRAVITY := -2280.0
 const LTWJ_DAMAGE_FREQUENCY_MULTIPLIER := 2
 const LTWJ_DAMAGE_REPEAT_INTERVAL := 0.1
 const DRAGON_MODEL_FRAMES_RES := "res://Art/Pet/PetDragon/model/pet_dragon_stage%d_frames.tres"
-const PET_DRAGON_BULLET_SCENE := preload("res://Scene/Pet/pet_dragon_bullet.tscn")
-const DRAGON_SCENE_RES := "res://Scene/Pet/PetDragonSummon_%d.tscn"
+const PET_DRAGON_BULLET_SCENE := preload("res://Scene/pet/pet_dragon_bullet.tscn")
+const DRAGON_SCENE_RES := "res://Scene/pet/PetDragonSummon_%d.tscn"
 static var _dragon_scene_cache: Dictionary = {}
 const DRAGON_ORIGINAL_SPRITE_OFFSET_Y := {1: -5.0, 2: -5.0, 3: -15.0, 4: -25.0}
 const DRAGON_NORMAL_ATTACK_RANGES := {1: 80, 2: 95, 3: 75, 4: 110}

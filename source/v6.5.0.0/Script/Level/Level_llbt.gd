@@ -205,22 +205,22 @@ func _leave_level_from_exit() -> void:
 	RoleProp.CurrentMp = RoleProp.roleprop.Mp
 	if Global.LLBTBOSSMS:
 		if not _restart_level_for_auto_battle():
-			Global.change_scene("res://Scene/Level/victory.tscn")
+			Global.change_scene("res://Scene/level/victory.tscn")
 	elif Global.LLBTCGMS:
 		if Global.LLBTLevel == 24:
 			if PlayerData.has_method("ensure_special_dungeon_progress"):
 				PlayerData.ensure_special_dungeon_progress()
 			PlayerData.player_data["玲珑宝塔层数"] = 25
 			if not _restart_level_for_auto_battle():
-				Global.change_scene("res://Scene/Level/victory.tscn")
+				Global.change_scene("res://Scene/level/victory.tscn")
 		else:
 			if Global.LLBTLevel < 24:
 				Global.LLBTLevel += 1
 			_save_auto_battle_progress()
-			Global.change_scene("res://Scene/Level/level_llbt.tscn")
+			Global.change_scene("res://Scene/level/level_llbt.tscn")
 	elif Global.LLBTWXMS:
 		_save_auto_battle_progress()
-		Global.change_scene("res://Scene/Level/level_llbt.tscn")
+		Global.change_scene("res://Scene/level/level_llbt.tscn")
 
 
 func _save_auto_battle_progress() -> bool:

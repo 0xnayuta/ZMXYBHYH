@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Base/base_role.gd" id="1"]
+[ext_resource type="Script" path="res://Script/base/base_role.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/RoleInfoIcon/964.png" id="2"]
 [ext_resource type="Texture2D" path="res://Art/RoleInfoIcon/680.png" id="3"]
 [ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="4"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" path="res://Art/RoleInfoIcon/694.png" id="9"]
 [ext_resource type="Texture2D" path="res://Art/HeroPicture/RoleProperiesBox/748.png" id="10"]
 [ext_resource type="Texture2D" path="res://Spritesheet/icons_ps4_animated_buttons2.png" id="11"]
-[ext_resource type="Script" path="res://Script/Base/switch_role.gd" id="12"]
+[ext_resource type="Script" path="res://Script/base/switch_role.gd" id="12"]
 [ext_resource type="Texture2D" path="res://Art/2_6_0_0/skill.png" id="13"]
 [ext_resource type="Texture2D" path="res://Art/RoleInfoIcon/393.png" id="14"]
 [ext_resource type="Texture2D" path="res://Art/RoleInfoIcon/397.png" id="15"]
@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" path="res://Art/RoleInfoIcon/428.png" id="24"]
 [ext_resource type="Texture2D" path="res://Art/RoleInfoIcon/430.png" id="25"]
 [ext_resource type="Texture2D" path="res://Art/RoleInfoIcon/432.png" id="26"]
-[ext_resource type="Script" path="res://Script/Base/ws_key.gd" id="27"]
+[ext_resource type="Script" path="res://Script/base/ws_key.gd" id="27"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_462f4"]
 atlas = ExtResource("11")

@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/LDL/divine_forge.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/LDL/bone_forge.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/ldl/divine_forge.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/ldl/bone_forge.gd" id="2"]
 
 [resource]
 _bundled = {

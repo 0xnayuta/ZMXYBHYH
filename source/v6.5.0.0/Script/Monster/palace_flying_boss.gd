@@ -2,7 +2,7 @@ extends EastContinentMonster
 
 signal skill_projectile_spawned(sequence: String, projectile: WutaiMinghaiProjectile)
 
-const PALACE_PROJECTILE := preload("res://Script/Monster/palace_boss_projectile.gd")
+const PALACE_PROJECTILE := preload("res://Script/monster/palace_boss_projectile.gd")
 const SCOPES := {
 	3323: [[0, 150, -125, 20], [0, 600, -150, 20], [0, 900, -600, 600], [0, 900, -600, 600]],
 	3343: [[0, 160, -100, -20], [0, 900, -300, 300], [-85, 455, -300, 300], [205, 745, -300, 300], [0, 900, -300, 300]],

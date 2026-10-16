@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/game4_imported_level_base.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/level_60.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/base/game4_imported_level_base.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/level/level_60.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/a4ffcf03a056e4f4eb880c7a37b4b12ecbc031298ccda8eda528af43af5a016e.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/2dd938d061e040311ef15e4d5c7960f0b087a9cc82b6fa5f7335eaf4e917f88f.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/44e02a3de4ba592a3c529aacce3c95f11a2bd58391f8a46002fb02d56857c933.png" id="5"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/58e36a6fc6f6ab2afe1062f2caee2f8cf8ce365a1d7d07f84087c7581455a3d4.png" id="13"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/b2333994b503b8957cafaa55e207859bdcef4dc2ff3b327fe11300faf91e054a.png" id="14"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/7141a8c3fc62bad7fca68f7c2086f5e68d1182b1f3d6e3198fc5812e43842e82.png" id="15"]
-[ext_resource type="Script" path="res://Script/Level/level46_moving_platform.gd" id="16"]
+[ext_resource type="Script" path="res://Script/level/level46_moving_platform.gd" id="16"]
 [ext_resource type="Texture2D" path="res://Art/Level/Level59_60Terrain/moving_platform_1024.png" id="17"]
 [ext_resource type="Texture2D" path="res://Art/Level/Level59_60Terrain/moving_platform_1025.png" id="18"]
 [ext_resource type="Texture2D" path="res://Art/Level/Level59_60Terrain/hazard_1022_idle.png" id="19"]

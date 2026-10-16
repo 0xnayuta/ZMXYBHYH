@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Hero/role_special_effect.gd" id="1"]
+[ext_resource type="Script" path="res://Script/hero/role_special_effect.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/HeroPicture/Role3/Role3SpecialEffect5.png" id="2"]
 [ext_resource type="Texture2D" path="res://Art/HeroPicture/Role3/Role3SpecialEffect6.png" id="3"]
 

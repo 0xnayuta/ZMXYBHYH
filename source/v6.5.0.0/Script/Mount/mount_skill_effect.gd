@@ -2,8 +2,8 @@ extends Node2D
 
 signal hit_landed(skill_id: String, target: BaseMonster, hit_time: float)
 
-const MOUNT_CATALOG := preload("res://Script/Mount/mount_catalog.gd")
-const MOUNT_VISUAL := preload("res://Script/Mount/mount_visual.gd")
+const MOUNT_CATALOG := preload("res://Script/mount/mount_catalog.gd")
+const MOUNT_VISUAL := preload("res://Script/mount/mount_visual.gd")
 const EFFECT_RUNTIME_ROOT := "res://Art/Mount/Runtime/Effects"
 const OFFICIAL_PHYSICS_SPEED_SCALE := 3.0
 

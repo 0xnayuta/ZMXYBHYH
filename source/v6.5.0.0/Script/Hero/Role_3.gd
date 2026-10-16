@@ -1,7 +1,7 @@
 extends BaseHero
 class_name Role3Hero
-const BA_DI_QIAN_KUN_EFFECT = preload("res://Script/Hero/ba_di_qian_kun_effect.gd")
-const STREAMING_ROLE_BULLET = preload("res://Script/Hero/streaming_role_bullet.gd")
+const BA_DI_QIAN_KUN_EFFECT = preload("res://Script/hero/ba_di_qian_kun_effect.gd")
+const STREAMING_ROLE_BULLET = preload("res://Script/hero/streaming_role_bullet.gd")
 const BDQK_ACTION_SPEED := 1.4
 const BDQK_ACTION_LENGTH := 0.7
 const SPECIAL_EFFECT_ATLAS_MANIFEST := "res://Art/HeroPicture/Role3/RuntimeAtlas/Role3SpecialEffects/manifest.json"

@@ -3,7 +3,7 @@ extends MarginContainer
 const SKILL_AWAKEN_NORMAL = preload("res://Art/Skill/Awaken/skill_awaken_normal.png")
 const SKILL_AWAKEN_HOVER = preload("res://Art/Skill/Awaken/skill_awaken_hover.png")
 const SKILL_AWAKEN_PRESSED = preload("res://Art/Skill/Awaken/skill_awaken_pressed.png")
-const SKILL_AWAKEN_POPUP = preload("res://Scene/Skill/skill_awaken_popup.tscn")
+const SKILL_AWAKEN_POPUP = preload("res://Scene/skill/skill_awaken_popup.tscn")
 
 @onready var skill_11_label = $ScrollContainer/HBoxContainer/Sk_na/skill_11
 @onready var ski_11_btn = $ScrollContainer/HBoxContainer/sk_pi/ski_11

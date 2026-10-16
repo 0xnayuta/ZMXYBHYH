@@ -26,8 +26,8 @@ var vampirism: float = 0.0
 
 const SPINE_ATLAS_PATH := "res://Art/Monster/GuanyinSpine/skeleton.atlas"
 const SPINE_SKELETON_PATH := "res://Art/Monster/GuanyinSpine/guanyin.spine-json"
-const SKILL_2_EFFECT_SCENE := preload("res://Scene/Monster/Monster_zhw/guanyin_skill2_effect.tscn")
-const SKILL_A_EFFECT_SCENE := preload("res://Scene/Monster/Monster_zhw/guanyin_skill_a_effect.tscn")
+const SKILL_2_EFFECT_SCENE := preload("res://Scene/monster/monster_zhw/guanyin_skill2_effect.tscn")
+const SKILL_A_EFFECT_SCENE := preload("res://Scene/monster/monster_zhw/guanyin_skill_a_effect.tscn")
 
 static var _shared_spine_data: Variant = null
 static var _spine_load_failed: bool = false

@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Hero/role_bullet.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://Scene/hero/role_bullet.tscn" id="1"]
 [ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/Role2Bullet.png" id="2"]
 [ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/Role2Skill_blb-0.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/zhenfa/senluozhen/slzEffect.png" id="4"]

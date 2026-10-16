@@ -10,9 +10,9 @@ var gogo: AnimatedSprite2D:
 @onready var Control_: Control = $roleLayer/Control2
 @onready var SetMenuCon: BoxContainer = $roleLayer/ButtonGroup
 
-var set_key_tscn: PackedScene = preload("res://Scene/Tools/set_com.tscn")
-var head_tscn: PackedScene = preload("res://Scene/Base/base_role.tscn")
-var head_p2_tscn: PackedScene = preload("res://Scene/Base/base_role_p2.tscn")
+var set_key_tscn: PackedScene = preload("res://Scene/tools/set_com.tscn")
+var head_tscn: PackedScene = preload("res://Scene/base/base_role.tscn")
+var head_p2_tscn: PackedScene = preload("res://Scene/base/base_role_p2.tscn")
 
 var setComNode
 var Player

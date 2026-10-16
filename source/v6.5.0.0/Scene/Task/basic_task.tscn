@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Task/basic_task.gd" id="1"]
+[ext_resource type="Script" path="res://Script/task/basic_task.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/Task/637.png" id="2"]
 [ext_resource type="FontFile" path="res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf" id="3"]
 [ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="4"]

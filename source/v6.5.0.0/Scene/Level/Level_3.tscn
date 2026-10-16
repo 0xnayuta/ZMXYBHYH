@@ -1,8 +1,8 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/base_through_level.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/level_3.gd" id="2"]
-[ext_resource type="PackedScene" path="res://Scene/Level/stage.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Scene/base/base_through_level.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/level/level_3.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/level/stage.tscn" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Level/Level_1/19_1.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Level/level_3/55.png" id="5"]
 [ext_resource type="Texture2D" path="res://Art/Level/Level_1/183.png" id="6"]

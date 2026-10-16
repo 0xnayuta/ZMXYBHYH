@@ -1,4 +1,4 @@
-extends "res://Script/Pet/pet_turtle_summon_base.gd"
+extends "res://Script/pet/pet_turtle_summon_base.gd"
 
 const SKILL_MNCZ := "mncz"
 const SKILL_MLJT := "mljt"
@@ -10,8 +10,8 @@ const SKILL_CDS := {SKILL_MNCZ: 10.0, SKILL_MLJT: 12.0, SKILL_CNAOYI: 25.0}
 const STAGE_NAMES := {1: "丑牛元帅", 2: "丑牛元帅", 3: "丑牛元帅", 4: "丑牛大元帅"}
 const STAGE_SKILLS := {1: ["蛮牛冲撞"], 2: ["蛮牛冲撞"], 3: ["蛮牛冲撞"], 4: ["蛮牛冲撞", "蛮力践踏", "丑牛奥义"]}
 const MODEL_FRAMES_RES := "res://Art/Pet/PetNeat/model/pet_neat_stage%d_frames.tres"
-const SCENE_RES := "res://Scene/Pet/PetNeatSummon_%d.tscn"
-const BULLET_SCENE := preload("res://Scene/Pet/pet_neat_bullet.tscn")
+const SCENE_RES := "res://Scene/pet/PetNeatSummon_%d.tscn"
+const BULLET_SCENE := preload("res://Scene/pet/pet_neat_bullet.tscn")
 const ACTIONS := {
 	1:
 	{

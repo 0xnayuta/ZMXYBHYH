@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Hittext/damage_text.gd" id="1"]
+[ext_resource type="Script" path="res://Script/hittext/damage_text.gd" id="1"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "magic"

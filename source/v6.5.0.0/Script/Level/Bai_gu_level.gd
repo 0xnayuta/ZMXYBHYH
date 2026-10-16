@@ -57,4 +57,4 @@ func _on_check_in_body_exited(body: Node2D) -> void:
 func _on_await_timeout() -> void:
 	if is_can_in:
 		await_.stop()
-		Global.change_scene("res://Scene/Level/level_bgmj.tscn")
+		Global.change_scene("res://Scene/level/level_bgmj.tscn")

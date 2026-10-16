@@ -1,4 +1,4 @@
-extends "res://Script/Base/summon_base_monster.gd"
+extends "res://Script/base/summon_base_monster.gd"
 class_name PetTigerSummonBase
 
 @export var tiger_stage: int = 4
@@ -7,8 +7,8 @@ const SKILL_HY := "hy"
 const SKILL_SXHZ := "sxhz"
 const SKILL_HSQJ := "hsqj"
 const SKILL_BHAOYI := "bhaoyi"
-const PET_SKILL_PROGRESSION := preload("res://Script/Pet/pet_skill_progression.gd")
-const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/Pet/pet_life_bonus_runtime.gd")
+const PET_SKILL_PROGRESSION := preload("res://Script/pet/pet_skill_progression.gd")
+const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/pet/pet_life_bonus_runtime.gd")
 const SKILL_NAMES := {
 	"hit1": "猛扑",
 	SKILL_HY: "虎啸",
@@ -21,8 +21,8 @@ const SKILL_SXHZ_MP_COST := 30
 const SKILL_HSQJ_MP_COST := 35
 const SKILL_BHAOYI_MP_COST := 45
 const TIGER_MODEL_FRAMES_RES := "res://Art/Pet/PetTiger/model/pet_tiger_stage%d_frames.tres"
-const TIGER_SCENE_RES := "res://Scene/Pet/PetTigerSummon_%d.tscn"
-const PET_TIGER_BULLET_SCENE := preload("res://Scene/Pet/pet_tiger_bullet.tscn")
+const TIGER_SCENE_RES := "res://Scene/pet/PetTigerSummon_%d.tscn"
+const PET_TIGER_BULLET_SCENE := preload("res://Scene/pet/pet_tiger_bullet.tscn")
 const TIGER_FRAME_SPEED := 10.0
 const TIGER_FALL_GRAVITY := -2280.0
 const TIGER_ACTIONS := [

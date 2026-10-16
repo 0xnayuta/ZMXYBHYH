@@ -228,43 +228,43 @@ func _on_boss_treasure_toggled():
 
 
 func _on_level_1_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "花果山", Vector2(0, 0), "res://Scene/Level/level_1.tscn")
+	Global.add_level_info(_ui_parent(), "花果山", Vector2(0, 0), "res://Scene/level/level_1.tscn")
 
 
 func _on_level_2_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "水帘洞", Vector2(0, 0), "res://Scene/Level/level_2.tscn")
+	Global.add_level_info(_ui_parent(), "水帘洞", Vector2(0, 0), "res://Scene/level/level_2.tscn")
 
 
 func _on_level_3_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "桃花源", Vector2(0, 0), "res://Scene/Level/level_3.tscn")
+	Global.add_level_info(_ui_parent(), "桃花源", Vector2(0, 0), "res://Scene/level/level_3.tscn")
 
 
 func _on_level_4_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "蝙蝠窟", Vector2(0, 0), "res://Scene/Level/level_4.tscn")
+	Global.add_level_info(_ui_parent(), "蝙蝠窟", Vector2(0, 0), "res://Scene/level/level_4.tscn")
 
 
 func _on_level_5_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "七星洞", Vector2(0, 0), "res://Scene/Level/level_5.tscn")
+	Global.add_level_info(_ui_parent(), "七星洞", Vector2(0, 0), "res://Scene/level/level_5.tscn")
 
 
 func _on_level_6_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "迦楼罗之穴", Vector2(0, 0), "res://Scene/Level/level_6.tscn")
+	Global.add_level_info(_ui_parent(), "迦楼罗之穴", Vector2(0, 0), "res://Scene/level/level_6.tscn")
 
 
 func _on_level_7_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "浅岸", Vector2(0, 0), "res://Scene/Level/level_7.tscn")
+	Global.add_level_info(_ui_parent(), "浅岸", Vector2(0, 0), "res://Scene/level/level_7.tscn")
 
 
 func _on_level_8_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "东海", Vector2(0, 0), "res://Scene/Level/level_8.tscn")
+	Global.add_level_info(_ui_parent(), "东海", Vector2(0, 0), "res://Scene/level/level_8.tscn")
 
 
 func _on_level_9_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "鲨之涡流", Vector2(0, 0), "res://Scene/Level/level_9.tscn")
+	Global.add_level_info(_ui_parent(), "鲨之涡流", Vector2(0, 0), "res://Scene/level/level_9.tscn")
 
 
 func _on_level_10_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "牛魔谷", Vector2(0, 0), "res://Scene/Level/level_10.tscn")
+	Global.add_level_info(_ui_parent(), "牛魔谷", Vector2(0, 0), "res://Scene/level/level_10.tscn")
 
 
 func check_music():

@@ -1,6 +1,6 @@
 extends Node2D
 
-const RecipeData = preload("res://Script/LDL/recipe_data.gd")
+const RecipeData = preload("res://Script/ldl/recipe_data.gd")
 
 @onready var page: Label = $BG/ChangePage/Page
 var message

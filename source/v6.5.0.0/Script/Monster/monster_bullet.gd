@@ -2679,7 +2679,7 @@ func can_curee():
 
 func add_round_shallow():
 	if IsThrow:
-		var effect_scene := load("res://Scene/Hero/Role_1/ws_effect.tscn") as PackedScene
+		var effect_scene := load("res://Scene/hero/role_1/ws_effect.tscn") as PackedScene
 		if effect_scene == null:
 			return
 		var WS_Effect = effect_scene.instantiate()

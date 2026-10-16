@@ -6,10 +6,10 @@ var is_cc = false
 
 func _ready() -> void:
 	Global.add_bgm(self, "res://Music/level/2_bg4.mp3")
-	load("res://Scene/Monster/monster_142.tscn")
-	load("res://Scene/Monster/monster_55.tscn")
-	load("res://Scene/Monster/monster_36.tscn")
-	load("res://Scene/Monster/monster_57.tscn")
+	load("res://Scene/monster/monster_142.tscn")
+	load("res://Scene/monster/monster_55.tscn")
+	load("res://Scene/monster/monster_36.tscn")
+	load("res://Scene/monster/monster_57.tscn")
 	Global.CurrentLevel = ""
 	self.level_stage = 1
 	super._ready()

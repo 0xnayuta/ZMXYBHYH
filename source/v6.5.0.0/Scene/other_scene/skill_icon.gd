@@ -1,5 +1,5 @@
 extends TextureRect
-const MOUNT_CATALOG := preload("res://Script/Mount/mount_catalog.gd")
+const MOUNT_CATALOG := preload("res://Script/mount/mount_catalog.gd")
 
 @onready var pic_box: TextureProgressBar = $PicBox
 @onready var time_text: Label = $TimeText

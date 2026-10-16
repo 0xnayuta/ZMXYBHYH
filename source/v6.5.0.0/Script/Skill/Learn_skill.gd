@@ -1,6 +1,6 @@
 extends Node2D
 const FULLSCREEN_DESIGN_SIZE := Vector2(940, 590)
-const SKILL_FORMULA_DATA = preload("res://Script/Skill/skill_damage_formula_data.gd")
+const SKILL_FORMULA_DATA = preload("res://Script/skill/skill_damage_formula_data.gd")
 const FORMULA_FONT = preload("res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf")
 @onready var front_bg: ColorRect = $bg/lh_pic/front_bg
 @onready var Title: Label = $bg/lh_pic/front_bg/Title

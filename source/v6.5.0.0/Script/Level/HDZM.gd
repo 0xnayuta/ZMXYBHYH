@@ -24,7 +24,7 @@ func _on_ttzstz_pressed() -> void:
 	elif not PlayerData.player_data["截教天镜"]:
 		Global.add_message_show(get_parent(), "前置关卡要求未达到！", 1.5, Vector2(470, 300))
 		return
-	get_tree().change_scene_to_file("res://Scene/Level/level_hdzm.tscn")
+	get_tree().change_scene_to_file("res://Scene/level/level_hdzm.tscn")
 
 
 func _on_csm_pressed() -> void:

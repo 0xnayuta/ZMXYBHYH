@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/LDL/strength.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/LDL/divine_forge.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/ldl/strength.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/ldl/divine_forge.gd" id="2"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]

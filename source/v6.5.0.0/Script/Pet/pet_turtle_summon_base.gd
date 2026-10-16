@@ -1,4 +1,4 @@
-extends "res://Script/Base/summon_base_monster.gd"
+extends "res://Script/base/summon_base_monster.gd"
 class_name PetTurtleSummonBase
 
 @export var turtle_stage: int = 1
@@ -7,8 +7,8 @@ const SKILL_SLD := "sld"
 const SKILL_TXLJ := "txlj"
 const SKILL_SYBH := "sybh"
 const SKILL_XWAOYI := "xwaoyi"
-const PET_SKILL_PROGRESSION := preload("res://Script/Pet/pet_skill_progression.gd")
-const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/Pet/pet_life_bonus_runtime.gd")
+const PET_SKILL_PROGRESSION := preload("res://Script/pet/pet_skill_progression.gd")
+const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/pet/pet_life_bonus_runtime.gd")
 const SKILL_NAMES := {
 	SKILL_SLD: "水疗盾",
 	SKILL_TXLJ: "同心链接",
@@ -42,9 +42,9 @@ const TURTLE_STAGE_SKILLS := {
 }
 const TURTLE_ACTION_TICK_RATE := 24.0
 const TURTLE_MODEL_FRAMES_RES := "res://Art/Pet/PetTurtle/model/pet_turtle_stage%d_frames.tres"
-const TURTLE_SCENE_RES := "res://Scene/Pet/PetTurtleSummon_%d.tscn"
+const TURTLE_SCENE_RES := "res://Scene/pet/PetTurtleSummon_%d.tscn"
 const TURTLE_BUFF_TEXTURE := "res://Art/Pet/PetTurtle/effects/PetTurtle2Buff/1.png"
-const PET_TURTLE_BULLET_SCENE := preload("res://Scene/Pet/pet_turtle_bullet.tscn")
+const PET_TURTLE_BULLET_SCENE := preload("res://Scene/pet/pet_turtle_bullet.tscn")
 const TURTLE_NORMAL_ATTACK_RANGES := {1: 40, 2: 70, 3: 70, 4: 70}
 const TURTLE_WATER_SHIELD_HIT_SIZE := Vector2(500, 340)
 const TURTLE_ORIGINAL_SPRITE_OFFSETS := {

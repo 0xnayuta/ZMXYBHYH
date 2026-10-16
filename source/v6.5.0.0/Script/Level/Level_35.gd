@@ -1,6 +1,6 @@
 extends BaseLevel
 
-const XYDSTAGE_SCENE = preload("res://Scene/Level/xyd_stage.tscn")
+const XYDSTAGE_SCENE = preload("res://Scene/level/xyd_stage.tscn")
 
 var stage_nodes: Array[StageNode] = []
 @onready var yf_list_node = $CanvasLayer/ActivityButton/YFList
@@ -21,8 +21,8 @@ var has_shown_start_hint: bool = false
 
 
 func _ready() -> void:
-	load("res://Scene/Monster/monster_123.tscn")
-	load("res://Scene/Monster/monster_1404.tscn")
+	load("res://Scene/monster/monster_123.tscn")
+	load("res://Scene/monster/monster_1404.tscn")
 	Global.CurrentLevel = "仙音岛"
 	Global.add_bgm(self, "res://Music/level/Floor1_3.mp3")
 	self.level_stage = 40

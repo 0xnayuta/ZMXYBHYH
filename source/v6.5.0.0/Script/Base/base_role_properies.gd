@@ -1,6 +1,6 @@
 extends Node
 
-const BODY_TRAINING_DATA = preload("res://Script/Data/body_training_data.gd")
+const BODY_TRAINING_DATA = preload("res://Script/data/body_training_data.gd")
 
 var Directon: bool
 var SourcePlayer

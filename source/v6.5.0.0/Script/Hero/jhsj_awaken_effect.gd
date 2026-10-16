@@ -1,7 +1,7 @@
 extends Node2D
 class_name JHSJAwakenEffect
 
-const FALLBACK_EFFECT_SCENE_PATH := "res://Scene/Hero/RoleSpecialEffectSlim/jhsj.tscn"
+const FALLBACK_EFFECT_SCENE_PATH := "res://Scene/hero/role_special_effect_slim/jhsj.tscn"
 const ATLAS_PATH := "res://Art/HeroPicture/Role2/JHSJAwaken/runtime/HeroF_6030_skill.atlas"
 const SKELETON_PATH := "res://Art/HeroPicture/Role2/JHSJAwaken/runtime/HeroF_6030_skill08_1.spine-json"
 const SPINE_SCALE := Vector2(0.2, 0.2)

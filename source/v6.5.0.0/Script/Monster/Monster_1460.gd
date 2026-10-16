@@ -34,8 +34,8 @@ const SKILL_1_HITBOX_START := (18.0 - 1.0) / SOURCE_FPS
 const SKILL_1_HITBOX_END := (26.0 - 1.0) / SOURCE_FPS
 
 const LITTLE_BLOOD_OFFSET := Vector2(-30, -175)
-const PROJECTILE_SCENE := preload("res://Scene/Monster/MonsterBulletSlim/tongtian3057_projectile.tscn")
-const BEAM_SCENE := preload("res://Scene/Monster/MonsterBulletSlim/tongtian3057_beam.tscn")
+const PROJECTILE_SCENE := preload("res://Scene/monster/monster_bullet_slim/tongtian3057_projectile.tscn")
+const BEAM_SCENE := preload("res://Scene/monster/monster_bullet_slim/tongtian3057_beam.tscn")
 
 enum AiPhase {
 	OPENING_DELAY,

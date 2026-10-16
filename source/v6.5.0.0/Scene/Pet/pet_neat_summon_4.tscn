@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Pet/pet_neat_summon_base.gd" id="1"]
+[ext_resource type="Script" path="res://Script/pet/pet_neat_summon_base.gd" id="1"]
 [ext_resource type="SpriteFrames" path="res://Art/Pet/PetNeat/model/pet_neat_stage4_frames.tres" id="2"]
 
 [sub_resource type="RectangleShape2D" id="shape"]

@@ -1,8 +1,8 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/base_monster.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Monster/wutai_earth_ancestor3078.gd" id="2"]
-[ext_resource type="Script" path="res://Script/Monster/monster_scene_editor_preview.gd" id="3"]
+[ext_resource type="PackedScene" path="res://Scene/base/base_monster.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/monster/wutai_earth_ancestor3078.gd" id="2"]
+[ext_resource type="Script" path="res://Script/monster/monster_scene_editor_preview.gd" id="3"]
 
 [sub_resource type="RectangleShape2D" id="hit"]
 size = Vector2(1, 1)

@@ -60,33 +60,33 @@ func _enter_dsg_level(path: String) -> void:
 
 
 func _on_dsgyc_pressed() -> void:
-	_enter_dsg_level("res://Scene/Level/level_dsg_1.tscn")
+	_enter_dsg_level("res://Scene/level/level_dsg_1.tscn")
 
 
 func _on_dsgyc_2_pressed() -> void:
 	if _dsg_stage_clear("兜率宫1"):
-		_enter_dsg_level("res://Scene/Level/level_dsg_2.tscn")
+		_enter_dsg_level("res://Scene/level/level_dsg_2.tscn")
 	else:
 		Global.add_message_show(Global.Windows_, "请先通过兜率宫一层", 1.5, Vector2(470, 300))
 
 
 func _on_dsgyc_3_pressed() -> void:
 	if _dsg_stage_clear("兜率宫2"):
-		_enter_dsg_level("res://Scene/Level/level_dsg_3.tscn")
+		_enter_dsg_level("res://Scene/level/level_dsg_3.tscn")
 	else:
 		Global.add_message_show(Global.Windows_, "请先通过兜率宫地下一层", 1.5, Vector2(470, 300))
 
 
 func _on_dsgyc_4_pressed() -> void:
 	if _dsg_stage_clear("兜率宫3"):
-		_enter_dsg_level("res://Scene/Level/level_dsg_4.tscn")
+		_enter_dsg_level("res://Scene/level/level_dsg_4.tscn")
 	else:
 		Global.add_message_show(Global.Windows_, "请先通过兜率宫地下二层", 1.5, Vector2(470, 300))
 
 
 func _on_dsgyc_5_pressed() -> void:
 	if _dsg_stage_clear("兜率宫4"):
-		_enter_dsg_level("res://Scene/Level/level_dsg_5.tscn")
+		_enter_dsg_level("res://Scene/level/level_dsg_5.tscn")
 	else:
 		Global.add_message_show(Global.Windows_, "请先通过兜率宫地下三层", 1.5, Vector2(470, 300))
 

@@ -6,8 +6,8 @@ const PET_LIST_KEY := "宠物列表"
 const ACTIVE_PET_KEY := "出战宠物"
 const PET_SHARED_PACK_KEY := "宠物背包"
 const PET_RABBIT_UNLOCK_KEY := "月兔已解锁"
-const PET_SKILL_PROGRESSION := preload("res://Script/Pet/pet_skill_progression.gd")
-const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/Pet/pet_life_bonus_runtime.gd")
+const PET_SKILL_PROGRESSION := preload("res://Script/pet/pet_skill_progression.gd")
+const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/pet/pet_life_bonus_runtime.gd")
 const PET_LEARNED_SKILLS_KEY := "已学习技能"
 const PET_FORMATION_MAX_LEVEL := 100
 const PET_FORMATION_DEFINITIONS := [
@@ -170,7 +170,7 @@ const PET_ATTRIBUTE_PAGES := [
 	[["命中", "命中"], ["韧性", "韧性"], ["吸血", "吸血"], ["暴免", "暴免"], ["破甲", "破甲"], ["破魔", "破魔"]],
 ]
 const PET_PACK_CAPACITY := 40
-const PET_BACKPACK_SLOT_SCENE := preload("res://Scene/Pet/pet_backpack_slot.tscn")
+const PET_BACKPACK_SLOT_SCENE := preload("res://Scene/pet/pet_backpack_slot.tscn")
 const PET_EQUIPMENT_SLOT_TYPES := ["zbst", "zbmz", "zbxz", "zbyf", "zbjn"]
 const PET_EQUIPMENT_SLOT_LABELS := {"zbst": "技能", "zbmz": "衣服", "zbxz": "鞋子", "zbyf": "手套", "zbjn": "帽子"}
 const PET_ITEM_STAT_ALIASES := {
@@ -2965,7 +2965,7 @@ func _finish_pet_equipment_change(pet: Dictionary, message: String) -> void:
 
 func _show_pet_action_menu(index: int, slot_type: String, item: Dictionary, action_label := "装备") -> void:
 	_close_pet_action_menu()
-	var menu_scene := load("res://Scene/BackPack/sell_or_equ.tscn") as PackedScene
+	var menu_scene := load("res://Scene/back_pack/sell_or_equ.tscn") as PackedScene
 	if menu_scene == null:
 		return
 	var menu := menu_scene.instantiate() as Control
@@ -3693,7 +3693,7 @@ func _show_pet_item_properties(item: Dictionary, _anchor: Control) -> void:
 	if is_instance_valid(pet_action_menu):
 		return
 	_hide_pet_property_popup()
-	var popup_scene := load("res://Scene/BackPack/equipment_properies.tscn") as PackedScene
+	var popup_scene := load("res://Scene/back_pack/equipment_properies.tscn") as PackedScene
 	if popup_scene == null:
 		return
 	var popup := popup_scene.instantiate() as Node2D

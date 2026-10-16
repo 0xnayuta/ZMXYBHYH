@@ -85,8 +85,8 @@
     ]
   },
   "consumer_scenes": [
-    "res://Scene/Base/base_monster.tscn",
-    "res://Scene/Monster/monster_17.tscn"
+    "res://Scene/base/base_monster.tscn",
+    "res://Scene/monster/monster_17.tscn"
   ],
   "monster_ids": [
     17

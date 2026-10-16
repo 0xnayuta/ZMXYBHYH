@@ -22,7 +22,7 @@ static func sync(body: Sprite2D, item_id: String, in_combat := false) -> void:
 	if effect == null and not BODY_IDS.has(item_id):
 		return
 	if effect == null:
-		effect = load("res://Script/Hero/moon_palace_clothes_effect.gd").new()
+		effect = load("res://Script/hero/moon_palace_clothes_effect.gd").new()
 		effect.name = "MoonPalaceClothesEffect"
 		effect.body_sprite = body
 		body.add_child(effect)

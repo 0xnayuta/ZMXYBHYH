@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/base_through_level.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/level_42.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/base/base_through_level.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/level/level_42.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Level/Level_10/250.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_lxm/Level_42_bg.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Level/Level_10/230.png" id="5"]

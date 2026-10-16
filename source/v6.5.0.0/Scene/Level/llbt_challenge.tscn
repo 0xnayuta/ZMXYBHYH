@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Level/llbt_challenge.gd" id="1"]
+[ext_resource type="Script" path="res://Script/level/llbt_challenge.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/set_menu/653.png" id="2"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/220.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/222.png" id="4"]

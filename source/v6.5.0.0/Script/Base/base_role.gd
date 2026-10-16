@@ -42,10 +42,10 @@ var pet_skill_box: HBoxContainer
 @onready var magicIcon: HBoxContainer = $role_menu/magicIcon
 
 var SkillTscn: PackedScene = preload("res://Scene/other_scene/skill_icon.tscn")
-var MagicTscn: PackedScene = preload("res://Scene/MagicWeapon/magic_weapon_skill_cd.tscn")
+var MagicTscn: PackedScene = preload("res://Scene/magic_weapon/magic_weapon_skill_cd.tscn")
 var BuffTscn: PackedScene = preload("res://Scene/other_scene/buff_icon.tscn")
 const STATUS_ICON_SIZE := Vector2(32, 32)
-const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/Pet/pet_life_bonus_runtime.gd")
+const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/pet/pet_life_bonus_runtime.gd")
 const PET_LEARNED_ACTIVE_SKILL_ICONS := {"嗜血狂爆": "sxkb", "法术能量": "fsnl"}
 
 var Player

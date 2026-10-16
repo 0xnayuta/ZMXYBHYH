@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Shop/mystery_shop.gd" id="1"]
+[ext_resource type="Script" path="res://Script/shop/mystery_shop.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/Shop/ShopBg.png" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Shop/OtheBg1.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Shop/OtheBg2.png" id="4"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" path="res://Art/Shop/CureTimes2.png" id="9"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/close_1.png" id="10"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/close_2.png" id="11"]
-[ext_resource type="PackedScene" path="res://Scene/Shop/mystery_shop_item_box.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://Scene/shop/mystery_shop_item_box.tscn" id="12"]
 
 [resource]
 _bundled = {

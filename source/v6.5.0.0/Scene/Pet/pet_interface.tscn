@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Pet/pet_interface.gd" id="1"]
+[ext_resource type="Script" path="res://Script/pet/pet_interface.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/Pet/PetPageResources/pet_ui_id80_lossless_653x513.png" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Pet/PetPageResources/PetInterfacev1270_id79_lossless_55x20.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Pet/PetPageResources/pet_ui_id46_lossless_296x190.png" id="4"]
@@ -40,7 +40,7 @@
 [ext_resource type="Texture2D" path="res://Art/Pet/PetPageResources/PetInterfacev1270_id69_lossless_53x53.png" id="38"]
 [ext_resource type="Texture2D" path="res://Art/Pet/PetPageResources/PetInterfacev1270_id72_lossless_53x53.png" id="39"]
 [ext_resource type="Texture2D" path="res://Art/Pet/PetPageResources/PetInterfacev1270_id75_lossless_53x53.png" id="40"]
-[ext_resource type="PackedScene" path="res://Scene/Pet/pet_backpack_slot.tscn" id="41"]
+[ext_resource type="PackedScene" path="res://Scene/pet/pet_backpack_slot.tscn" id="41"]
 [ext_resource type="Texture2D" path="res://Art/Pet/PetPageResources/PetInterfacev1270_id189_lossless_132x17.png" id="42"]
 [ext_resource type="Texture2D" path="res://Art/Pet/PetPageResources/pet_ui_id279_jpeg3_110x35.png" id="43"]
 [ext_resource type="Texture2D" path="res://Art/Pet/PetPageResources/pet_ui_id276_jpeg3_110x35.png" id="44"]

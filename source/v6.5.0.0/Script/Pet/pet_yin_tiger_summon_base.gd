@@ -1,4 +1,4 @@
-extends "res://Script/Pet/pet_turtle_summon_base.gd"
+extends "res://Script/pet/pet_turtle_summon_base.gd"
 
 const SKILL_HX := "hx"
 const SKILL_MHXS := "mhxs"
@@ -50,7 +50,7 @@ const MODEL_STOP_COUNTS := {
 	"hit2": [3, 3, 10],
 	"hit3": [3, 3, 3, 20]
 }
-const BULLET_SCENE := preload("res://Scene/Pet/pet_yin_tiger_bullet.tscn")
+const BULLET_SCENE := preload("res://Scene/pet/pet_yin_tiger_bullet.tscn")
 
 const HIT1_TICK := 7
 const HIT2_TICK := 7
@@ -368,7 +368,7 @@ func apply_pet_data(data: Dictionary) -> void:
 
 
 func _apply_turtle_stage_scene_layout() -> void:
-	var scene_path := "res://Scene/Pet/PetYinTigerSummon_%d.tscn" % clampi(turtle_stage, 1, 4)
+	var scene_path := "res://Scene/pet/PetYinTigerSummon_%d.tscn" % clampi(turtle_stage, 1, 4)
 	var packed_scene := ResourceLoader.load(scene_path, "PackedScene", ResourceLoader.CACHE_MODE_REUSE) as PackedScene
 	if packed_scene == null:
 		return

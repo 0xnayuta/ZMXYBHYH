@@ -7,7 +7,7 @@ extends CanvasLayer
 @onready var role_btn: Button = $bg/box/RoleP2
 @onready var set_key: Button = $bg/box/SetKey
 
-var set_key_tscn: PackedScene = preload("res://Scene/Tools/set_com.tscn")
+var set_key_tscn: PackedScene = preload("res://Scene/tools/set_com.tscn")
 var auto_battle_tscn: PackedScene = preload("res://Scene/auto_battle_config.tscn")
 var tree: SceneTree
 var icon_scale: float = 1.0

@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Monster/east_continent_monster.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Monster/cloud_boss.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/monster/east_continent_monster.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/monster/cloud_boss.gd" id="2"]
 
 [resource]
 _bundled = {

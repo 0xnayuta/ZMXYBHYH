@@ -5,8 +5,8 @@ const MOUNT_RIDER_ANIMATION: StringName = &"skill4"
 const MOUNT_RIDER_FRAME := 14
 const MOUNT_RIDER_CANVAS_SIZE := Vector2i(1024, 1024)
 
-const EFFECT_SCENE_PATH := "res://Scene/Hero/Role_6/ne_zha_skill_effect.tscn"
-const YINYANG_EFFECT_SCENE_PATH := "res://Scene/Hero/Role_6/ne_zha_yin_yang_effect.tscn"
+const EFFECT_SCENE_PATH := "res://Scene/hero/role_6/ne_zha_skill_effect.tscn"
+const YINYANG_EFFECT_SCENE_PATH := "res://Scene/hero/role_6/ne_zha_yin_yang_effect.tscn"
 
 
 func _get_body_frames(equipment_id: String) -> SpriteFrames:
@@ -1291,7 +1291,7 @@ func change_body(_name) -> void:
 	if current_animation != &"":
 		current_position = role_action_player.current_animation_position
 	_body_equipment_id = str(_name)
-	preload("res://Script/Hero/moon_palace_clothes_effect.gd").sync(role_body, _body_equipment_id, true)
+	preload("res://Script/hero/moon_palace_clothes_effect.gd").sync(role_body, _body_equipment_id, true)
 	_body_frames = _get_body_frames(_body_equipment_id)
 	_body_front_frames = NeZhaEquipmentVisuals.get_body_front_frames(_body_equipment_id)
 	_build_body_animations()

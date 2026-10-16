@@ -360,7 +360,7 @@ func _align_boss_spawn_height() -> void:
 
 
 func _get_boss_floor_offset() -> float:
-	var boss_scene := load("res://Scene/Monster/Monster_%d.tscn" % selected_boss_id) as PackedScene
+	var boss_scene := load("res://Scene/monster/Monster_%d.tscn" % selected_boss_id) as PackedScene
 	if boss_scene == null:
 		return 0.0
 	var preview := boss_scene.instantiate()

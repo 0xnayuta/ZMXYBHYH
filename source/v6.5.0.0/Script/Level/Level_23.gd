@@ -394,4 +394,4 @@ func _on_animation_finished(anim_name: String):
 
 
 func _transport_to_hidden_level():
-	Global.change_scene("res://Scene/Level/level_pty.tscn")
+	Global.change_scene("res://Scene/level/level_pty.tscn")

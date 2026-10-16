@@ -293,7 +293,7 @@ func state_death() -> void:
 
 
 func _summon_phantom():
-	var phantom_scene = Global.load_scene_uncached("res://Scene/Monster/monster_146.tscn")
+	var phantom_scene = Global.load_scene_uncached("res://Scene/monster/monster_146.tscn")
 	if phantom_scene:
 		var phantom_instance = phantom_scene.instantiate() as BaseMonster
 		phantom_instance.is_phantom = true

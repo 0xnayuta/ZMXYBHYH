@@ -29,7 +29,7 @@ var is_EyeFix: bool
 func spawn_ws_effect(visual_node: Node, parent_node: Node) -> void:
 	if visual_node == null or not is_instance_valid(visual_node):
 		return
-	var ws_effect_scene = Global.preload_scene_path("res://Scene/Hero/Role_1/ws_effect.tscn")
+	var ws_effect_scene = Global.preload_scene_path("res://Scene/hero/role_1/ws_effect.tscn")
 	if ws_effect_scene == null:
 		return
 	var ws_effect = ws_effect_scene.instantiate()

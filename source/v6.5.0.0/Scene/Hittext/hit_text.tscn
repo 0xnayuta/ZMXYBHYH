@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
 [ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="1"]
-[ext_resource type="Script" path="res://Script/Hittext/hit_text.gd" id="2"]
+[ext_resource type="Script" path="res://Script/hittext/hit_text.gd" id="2"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "cure_text"

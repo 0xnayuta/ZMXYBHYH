@@ -1,11 +1,11 @@
 extends Node
 
-const MOUNT_CATALOG := preload("res://Script/Mount/mount_catalog.gd")
-const MOUNT_SKILL_EFFECT := preload("res://Script/Mount/mount_skill_effect.gd")
-const MOUNT_VISUAL := preload("res://Script/Mount/mount_visual.gd")
+const MOUNT_CATALOG := preload("res://Script/mount/mount_catalog.gd")
+const MOUNT_SKILL_EFFECT := preload("res://Script/mount/mount_skill_effect.gd")
+const MOUNT_VISUAL := preload("res://Script/mount/mount_visual.gd")
 const RIDE_SPEED_MULTIPLIER := 1.2
 const RIDING_TITLE_OFFSET := Vector2(0.0, -80.0)
-const RIDER_ADJUSTMENT_ROOT := "res://Scene/Mount/RiderAdjustments"
+const RIDER_ADJUSTMENT_ROOT := "res://Scene/mount/RiderAdjustments"
 const RIDER_POSE_FRAMES := {
 	1: 8 * 6 + 1,
 	2: 7 * 6 + 2,

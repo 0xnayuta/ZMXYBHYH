@@ -1,4 +1,4 @@
-extends "res://Script/Monster/palace_boss_projectile.gd"
+extends "res://Script/monster/palace_boss_projectile.gd"
 
 var bounce := false
 var bounds := Rect2()

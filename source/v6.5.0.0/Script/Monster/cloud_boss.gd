@@ -2,7 +2,7 @@ extends EastContinentMonster
 
 signal skill_projectile_spawned(sequence: String, projectile: WutaiMinghaiProjectile)
 
-const CLOUD_PROJECTILE := preload("res://Script/Monster/palace_boss_projectile.gd")
+const CLOUD_PROJECTILE := preload("res://Script/monster/palace_boss_projectile.gd")
 var _source: Dictionary = {}
 var _dash_active := false
 var _flight_y := 300.0

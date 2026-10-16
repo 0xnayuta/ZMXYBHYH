@@ -11,10 +11,10 @@ const CAMERA_LIMIT_SPEED := 600.0
 const CAMERA_UNLOCK_MARGIN := 100.0
 
 const LEVEL_59_MONSTER_SCENES := {
-	3065: "res://Scene/Monster/monster_3065.tscn",
-	3066: "res://Scene/Monster/monster_3066.tscn",
-	3068: "res://Scene/Monster/monster_3068.tscn",
-	3069: "res://Scene/Monster/monster_3069.tscn",
+	3065: "res://Scene/monster/monster_3065.tscn",
+	3066: "res://Scene/monster/monster_3066.tscn",
+	3068: "res://Scene/monster/monster_3068.tscn",
+	3069: "res://Scene/monster/monster_3069.tscn",
 }
 
 const LEVEL_59_MONSTER_DATA := {

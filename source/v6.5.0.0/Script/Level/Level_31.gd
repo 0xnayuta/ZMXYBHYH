@@ -6,10 +6,10 @@ extends BaseLevel
 
 
 func _ready() -> void:
-	load("res://Scene/Monster/monster_140.tscn")
-	load("res://Scene/Monster/monster_115.tscn")
-	load("res://Scene/Monster/monster_116.tscn")
-	load("res://Scene/Monster/monster_117.tscn")
+	load("res://Scene/monster/monster_140.tscn")
+	load("res://Scene/monster/monster_115.tscn")
+	load("res://Scene/monster/monster_116.tscn")
+	load("res://Scene/monster/monster_117.tscn")
 	Global.CurrentLevel = "火龙岛"
 	Global.add_bgm(self, "res://Music/level/music_emsd.mp3")
 	self.level_stage = 36

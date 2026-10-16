@@ -1,14 +1,14 @@
-extends "res://Script/Base/summon_base_monster.gd"
+extends "res://Script/base/summon_base_monster.gd"
 class_name PetPhoenixSummonBase
 
 @export var phoenix_stage: int = 1
 
 const PHOENIX_MODEL_FRAMES_RES := "res://Art/Pet/PetPhoenix/model/pet_phoenix_stage%d_frames.tres"
-const PHOENIX_SCENE_RES := "res://Scene/Pet/PetPhoenixSummon_%d.tscn"
+const PHOENIX_SCENE_RES := "res://Scene/pet/PetPhoenixSummon_%d.tscn"
 const PHOENIX_EFFECT_DIR := "res://Art/Pet/PetPhoenix/effects"
-const PET_PHOENIX_BULLET_SCENE := preload("res://Scene/Pet/pet_tiger_bullet.tscn")
-const PET_SKILL_PROGRESSION := preload("res://Script/Pet/pet_skill_progression.gd")
-const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/Pet/pet_life_bonus_runtime.gd")
+const PET_PHOENIX_BULLET_SCENE := preload("res://Scene/pet/pet_tiger_bullet.tscn")
+const PET_SKILL_PROGRESSION := preload("res://Script/pet/pet_skill_progression.gd")
+const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/pet/pet_life_bonus_runtime.gd")
 const PHOENIX_STAGE_NAMES := {1: "雀蛋", 2: "炎皇雀", 3: "朱雀将军", 4: "朱雀女皇"}
 const SKILL_NAMES := {1: "涅槃", 2: "不死火鸟", 3: "地火燎原", 4: "朱雀奥义"}
 const SKILL_MP_COSTS := {1: 35, 2: 45, 3: 65, 4: 90}

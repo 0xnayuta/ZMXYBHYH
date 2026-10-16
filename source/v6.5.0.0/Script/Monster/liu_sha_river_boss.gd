@@ -11,7 +11,7 @@ const ORIGINAL_EFFECT_ROOT := BODY_ROOT + "/OriginalEffects"
 const ORIGINAL_ROLE1_EFFECT_ROOT := ORIGINAL_EFFECT_ROOT + "/Role1"
 const ORIGINAL_ROLE2_EFFECT_ROOT := ORIGINAL_EFFECT_ROOT + "/Role2"
 const ORIGINAL_MONSTER172_EFFECT_ROOT := ORIGINAL_EFFECT_ROOT + "/Monster172"
-const SHADOW_SCRIPT := preload("res://Script/Monster/liu_sha_river_shadow.gd")
+const SHADOW_SCRIPT := preload("res://Script/monster/liu_sha_river_shadow.gd")
 
 const SKILL_CD := {
 	31: {"initial": 2.0, "repeat": 4.0, "special": 4.0, "teleport": 1.0},

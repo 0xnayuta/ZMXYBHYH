@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Level/jctfloor_1.gd" id="1"]
+[ext_resource type="Script" path="res://Script/level/jctfloor_1.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_1_3/floor1.png" id="2"]
 
 [sub_resource type="RectangleShape2D" id="1"]

@@ -1,12 +1,12 @@
 extends BaseHero
 class_name Role1Hero
 
-const WUSHUANG_HUOYAN_EFFECT = preload("res://Script/Hero/wu_shuang_huo_yan_jin_jing_effect.gd")
-const HMZ_AWAKEN_EFFECT = preload("res://Scene/Hero/RoleSpecialEffectSlim/hmz_awaken_effect.tscn")
-const HMZ_AWAKEN_EFFECT_SCRIPT = preload("res://Script/Hero/hmz_awaken_effect.gd")
-const LYFB_AWAKEN_EFFECT = preload("res://Scene/Hero/RoleSpecialEffectSlim/lyfb_awaken_effect.tscn")
-const LYFB_AWAKEN_EFFECT_SCRIPT = preload("res://Script/Hero/lyfb_awaken_effect.gd")
-const STREAMING_ROLE_BULLET = preload("res://Script/Hero/streaming_role_bullet.gd")
+const WUSHUANG_HUOYAN_EFFECT = preload("res://Script/hero/wu_shuang_huo_yan_jin_jing_effect.gd")
+const HMZ_AWAKEN_EFFECT = preload("res://Scene/hero/role_special_effect_slim/hmz_awaken_effect.tscn")
+const HMZ_AWAKEN_EFFECT_SCRIPT = preload("res://Script/hero/hmz_awaken_effect.gd")
+const LYFB_AWAKEN_EFFECT = preload("res://Scene/hero/role_special_effect_slim/lyfb_awaken_effect.tscn")
+const LYFB_AWAKEN_EFFECT_SCRIPT = preload("res://Script/hero/lyfb_awaken_effect.gd")
+const STREAMING_ROLE_BULLET = preload("res://Script/hero/streaming_role_bullet.gd")
 var use_new_hmz: bool = false
 var hmz_cooldown_key: String = "hmz"
 var hmz_damage_level: int = 1

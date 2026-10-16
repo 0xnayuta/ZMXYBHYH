@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/base_through_level.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/game4_imported_level.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/base/base_through_level.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/level/game4_imported_level.gd" id="2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape_floor"]
 size = Vector2(1700, 500)

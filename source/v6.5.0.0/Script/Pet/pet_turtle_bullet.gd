@@ -1,4 +1,4 @@
-extends "res://Script/Monster/monster_bullet.gd"
+extends "res://Script/monster/monster_bullet.gd"
 class_name PetTurtleBullet
 
 const TURTLE_EFFECT_FPS := 24.0

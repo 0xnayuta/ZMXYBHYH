@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Level/hdzm.gd" id="1"]
-[ext_resource type="Script" path="res://Script/Level/hdzm_first_dungeon_transition.gd" id="2"]
+[ext_resource type="Script" path="res://Script/level/hdzm.gd" id="1"]
+[ext_resource type="Script" path="res://Script/level/hdzm_first_dungeon_transition.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/hdzm_.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/ttzs.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/tz_1.png" id="5"]

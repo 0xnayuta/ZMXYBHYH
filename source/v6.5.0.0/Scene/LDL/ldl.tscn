@@ -1,12 +1,12 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/LDL/ldl.gd" id="1"]
+[ext_resource type="Script" path="res://Script/ldl/ldl.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/LDL/炼丹炉背景.jpg" id="2"]
 [ext_resource type="Texture2D" path="res://Art/LDL/100.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/LDL/114.png" id="4"]
 [ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="5"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="6"]
-[ext_resource type="PackedScene" path="res://Scene/BackPack/main_backpack.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://Scene/back_pack/main_backpack.tscn" id="7"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 

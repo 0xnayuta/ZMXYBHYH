@@ -6,8 +6,8 @@ extends BaseLevel
 
 
 func _ready() -> void:
-	load("res://Scene/Monster/monster_120.tscn")
-	load("res://Scene/Monster/monster_122.tscn")
+	load("res://Scene/monster/monster_120.tscn")
+	load("res://Scene/monster/monster_122.tscn")
 
 	Global.CurrentLevel = "龙脊山"
 	Global.add_bgm(self, "res://Music/level/34_bg5.mp3")

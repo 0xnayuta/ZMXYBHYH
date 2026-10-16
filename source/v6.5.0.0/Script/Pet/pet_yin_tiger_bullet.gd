@@ -1,4 +1,4 @@
-extends "res://Script/Monster/monster_bullet.gd"
+extends "res://Script/monster/monster_bullet.gd"
 class_name PetYinTigerBullet
 
 const FPS := 24.0

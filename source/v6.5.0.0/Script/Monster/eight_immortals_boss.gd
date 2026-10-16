@@ -1,6 +1,6 @@
 extends BaseMonster
 
-const PROJECTILE_SCRIPT := preload("res://Script/Monster/wutai_minghai_projectile.gd")
+const PROJECTILE_SCRIPT := preload("res://Script/monster/wutai_minghai_projectile.gd")
 const SOURCE_FPS := 24.0
 
 const SOURCE_X_SCALE := 1.0

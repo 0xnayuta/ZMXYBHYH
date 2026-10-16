@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/base_monster.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Monster/monster_130.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/base/base_monster.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/monster/monster_130.gd" id="2"]
 
 [sub_resource type="RectangleShape2D" id="hurt_shape"]
 size = Vector2(82, 126)

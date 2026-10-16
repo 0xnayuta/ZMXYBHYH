@@ -1,4 +1,4 @@
-extends "res://Script/Level/game4_palace_terrain.gd"
+extends "res://Script/level/game4_palace_terrain.gd"
 
 var screen_templates: Array[int] = [1]
 var _moving: Array[Dictionary] = []

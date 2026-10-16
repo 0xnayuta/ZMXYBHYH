@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" path="res://Art/Task/653.png" id="1"]
 [ext_resource type="Texture2D" path="res://Art/Task/656.png" id="2"]
-[ext_resource type="Script" path="res://Script/Task/task_title.gd" id="3"]
+[ext_resource type="Script" path="res://Script/task/task_title.gd" id="3"]
 [ext_resource type="FontFile" path="res://Font/Aa梦里掏花对月饮_mianfeiziti.com.ttf" id="4"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="5"]
 

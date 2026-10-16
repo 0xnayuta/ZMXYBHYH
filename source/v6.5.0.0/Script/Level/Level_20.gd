@@ -52,7 +52,7 @@ func _ready() -> void:
 		"stage_3": [],
 		"stage_4": [250],
 	}
-	Global.LastLevelPath = "res://Scene/Level/level_19.tscn"
+	Global.LastLevelPath = "res://Scene/level/level_19.tscn"
 
 
 func _physics_process(delta: float) -> void:

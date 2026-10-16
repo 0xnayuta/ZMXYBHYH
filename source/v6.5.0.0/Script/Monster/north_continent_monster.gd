@@ -3,7 +3,7 @@ extends EastContinentMonster
 signal source_skill_cast(skill_id: int)
 signal source_projectile_spawned(sequence: String, projectile: WutaiMinghaiProjectile)
 
-const NORTH_PROJECTILE := preload("res://Script/Monster/north_boss_projectile.gd")
+const NORTH_PROJECTILE := preload("res://Script/monster/north_boss_projectile.gd")
 var _raw: Dictionary = {}
 var _source: Dictionary = {}
 var _skill_actions: Dictionary = {}

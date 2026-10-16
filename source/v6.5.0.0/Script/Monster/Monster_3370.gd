@@ -1,6 +1,6 @@
 extends BaseMonster
 
-const PROJECTILE_SCRIPT := preload("res://Script/Monster/nanhai_projectile.gd")
+const PROJECTILE_SCRIPT := preload("res://Script/monster/nanhai_projectile.gd")
 const ATLAS_MANIFEST := "res://Art/Monster/SwfPng/3370/atlas/manifest.json"
 const SOURCE_FPS := 30.0
 const AI_DELAY_MSEC := 1000

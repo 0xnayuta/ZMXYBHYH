@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Monster/some_monster_help.gd" id="1"]
+[ext_resource type="Script" path="res://Script/monster/some_monster_help.gd" id="1"]
 [ext_resource type="FontFile" path="res://Font/Aa梦里掏花对月饮_mianfeiziti.com.ttf" id="2"]
 [ext_resource type="FontFile" path="res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf" id="3"]
 [ext_resource type="Texture2D" path="res://Art/game_pic/679.PNG" id="4"]

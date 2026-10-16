@@ -3,8 +3,8 @@ class_name EastContinentMonster
 
 const SOURCE_FPS := 30.0
 const FRAME_ROOT := "res://Art/Monster/SwfPng"
-const PROJECTILE_SCRIPT := preload("res://Script/Monster/wutai_minghai_projectile.gd")
-const RAIN_ANCESTOR_WEATHER_SCRIPT := preload("res://Script/Monster/rain_ancestor_weather.gd")
+const PROJECTILE_SCRIPT := preload("res://Script/monster/wutai_minghai_projectile.gd")
+const RAIN_ANCESTOR_WEATHER_SCRIPT := preload("res://Script/monster/rain_ancestor_weather.gd")
 const RANGED_EFFECT_ROOT := "res://Art/Monster/Game4SpecialEffect/3177/effect2_1"
 const MONKEY_EFFECT2_ROOT := "res://Art/Monster/Game4SpecialEffect/3161/effect2_1"
 const MONKEY_EFFECT3_1_ROOT := "res://Art/Monster/Game4SpecialEffect/3161/effect3_1"
@@ -2691,7 +2691,7 @@ func _spawn_3223_summon(summon_id: int, source_offset: Vector2) -> void:
 		existing = existing_value as BaseMonster
 	if existing != null and is_instance_valid(existing) and not existing.death():
 		return
-	var scene := load("res://Scene/Monster/Monster_%d.tscn" % summon_id) as PackedScene
+	var scene := load("res://Scene/monster/Monster_%d.tscn" % summon_id) as PackedScene
 	var parent := get_parent()
 	if scene == null or parent == null or not is_instance_valid(parent):
 		return

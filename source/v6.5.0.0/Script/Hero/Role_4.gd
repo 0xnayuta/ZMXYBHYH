@@ -1,8 +1,8 @@
 extends BaseHero
 class_name Role4Hero
-const BI_LUO_TIAN_EFFECT = preload("res://Script/Hero/bi_luo_tian_effect.gd")
-const CANG_MU_LONG_YUN_EFFECT = preload("res://Script/Hero/cang_mu_long_yun_effect.gd")
-const ROLE4_POISON_ARRAY_AWAKEN_EFFECT = preload("res://Script/Hero/role4_poison_array_awaken_effect.gd")
+const BI_LUO_TIAN_EFFECT = preload("res://Script/hero/bi_luo_tian_effect.gd")
+const CANG_MU_LONG_YUN_EFFECT = preload("res://Script/hero/cang_mu_long_yun_effect.gd")
+const ROLE4_POISON_ARRAY_AWAKEN_EFFECT = preload("res://Script/hero/role4_poison_array_awaken_effect.gd")
 const WDZT_SKILL_ID := "wdzt"
 const WDZT_AWAKEN_MP_INTERVAL := 5.0
 const WDWW_AWAKEN_TARGET_LIMIT := 4

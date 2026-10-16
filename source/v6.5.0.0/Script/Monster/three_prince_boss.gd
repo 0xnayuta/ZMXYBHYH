@@ -2,7 +2,7 @@ extends BaseMonster
 class_name ThreePrinceBoss
 
 const SOURCE_FPS := 24.0
-const BULLET_SCENE := preload("res://Scene/Monster/MonsterBulletSlim/three_prince_bullet.tscn")
+const BULLET_SCENE := preload("res://Scene/monster/monster_bullet_slim/three_prince_bullet.tscn")
 const THREE_PRINCE_PET_DROP_CHANCE := 0.2
 const NIGHTMARE_EQUIPMENT_REPLACEMENTS := {
 	"llst": "xyst",
@@ -726,7 +726,7 @@ func _spawn_muzha_clone() -> void:
 				active_monster_count += 1
 	if active_monster_count >= 5:
 		return
-	var packed := load("res://Scene/Monster/monster_4402.tscn") as PackedScene
+	var packed := load("res://Scene/monster/monster_4402.tscn") as PackedScene
 	if packed == null or get_parent() == null:
 		return
 	var clone := packed.instantiate() as BaseMonster

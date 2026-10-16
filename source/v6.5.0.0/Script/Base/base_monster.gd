@@ -21,37 +21,37 @@ const HEAVEN_NIGHTMARE_PENETRATION_BONUS := 21000
 const HEAVEN_NIGHTMARE_DAMAGE_BONUS := 1.0
 const HEAVEN_NIGHTMARE_DAMAGE_REDUCTION := 1.0
 const UNDERWORLD_NIGHTMARE_LEVEL_PATHS := [
-	"res://Scene/Level/level_nmg.tscn",
-	"res://Scene/Level/level_bgmj.tscn",
-	"res://Scene/Level/level_11.tscn",
-	"res://Scene/Level/level_12.tscn",
-	"res://Scene/Level/level_13.tscn",
-	"res://Scene/Level/level_14.tscn",
-	"res://Scene/Level/level_15.tscn",
-	"res://Scene/Level/level_16.tscn",
-	"res://Scene/Level/level_17.tscn",
-	"res://Scene/Level/level_18.tscn",
-	"res://Scene/Level/level_19.tscn",
-	"res://Scene/Level/level_21.tscn",
+	"res://Scene/level/level_nmg.tscn",
+	"res://Scene/level/level_bgmj.tscn",
+	"res://Scene/level/level_11.tscn",
+	"res://Scene/level/level_12.tscn",
+	"res://Scene/level/level_13.tscn",
+	"res://Scene/level/level_14.tscn",
+	"res://Scene/level/level_15.tscn",
+	"res://Scene/level/level_16.tscn",
+	"res://Scene/level/level_17.tscn",
+	"res://Scene/level/level_18.tscn",
+	"res://Scene/level/level_19.tscn",
+	"res://Scene/level/level_21.tscn",
 ]
 const HEAVEN_NIGHTMARE_LEVEL_PATHS := [
-	"res://Scene/Level/level_23.tscn",
-	"res://Scene/Level/level_24.tscn",
-	"res://Scene/Level/level_25.tscn",
-	"res://Scene/Level/level_26.tscn",
-	"res://Scene/Level/level_27.tscn",
-	"res://Scene/Level/level_28.tscn",
-	"res://Scene/Level/level_29.tscn",
-	"res://Scene/Level/level_30.tscn",
-	"res://Scene/Level/level_pty.tscn",
-	"res://Scene/Level/level_ymj.tscn",
-	"res://Scene/Level/level_dtwd.tscn",
-	"res://Scene/Level/level_llbt.tscn",
-	"res://Scene/Level/level_dsg_1.tscn",
-	"res://Scene/Level/level_dsg_2.tscn",
-	"res://Scene/Level/level_dsg_3.tscn",
-	"res://Scene/Level/level_dsg_4.tscn",
-	"res://Scene/Level/level_dsg_5.tscn",
+	"res://Scene/level/level_23.tscn",
+	"res://Scene/level/level_24.tscn",
+	"res://Scene/level/level_25.tscn",
+	"res://Scene/level/level_26.tscn",
+	"res://Scene/level/level_27.tscn",
+	"res://Scene/level/level_28.tscn",
+	"res://Scene/level/level_29.tscn",
+	"res://Scene/level/level_30.tscn",
+	"res://Scene/level/level_pty.tscn",
+	"res://Scene/level/level_ymj.tscn",
+	"res://Scene/level/level_dtwd.tscn",
+	"res://Scene/level/level_llbt.tscn",
+	"res://Scene/level/level_dsg_1.tscn",
+	"res://Scene/level/level_dsg_2.tscn",
+	"res://Scene/level/level_dsg_3.tscn",
+	"res://Scene/level/level_dsg_4.tscn",
+	"res://Scene/level/level_dsg_5.tscn",
 	"兜率宫",
 ]
 const HUMAN_SOUL_CRYSTAL_ITEM_PREFIX := "human_soul_crystal_"
@@ -236,7 +236,7 @@ static func is_heaven_nightmare_path(level_path: String) -> bool:
 
 
 static func uses_heaven_nightmare_attributes(level_path: String) -> bool:
-	return is_heaven_nightmare_path(level_path) or level_path == "res://Scene/Level/level_stz.tscn"
+	return is_heaven_nightmare_path(level_path) or level_path == "res://Scene/level/level_stz.tscn"
 
 
 func update_fall_mode():

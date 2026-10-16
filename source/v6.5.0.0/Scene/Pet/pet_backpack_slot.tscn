@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Pet/pet_backpack_slot.gd" id="1"]
+[ext_resource type="Script" path="res://Script/pet/pet_backpack_slot.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/Pet/PetPageResources/PetInterfacev1270_id202_lossless_54x54.png" id="2"]
 [ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="3"]
 

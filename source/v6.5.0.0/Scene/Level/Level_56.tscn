@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/game4_imported_level_base.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/level_56.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/base/game4_imported_level_base.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/level/level_56.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/5721bda62d4235875bf270246d3c94af426b1742bc31a5d67a25acef0e328e71.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/806f8258c4c0e3f26774de937d22feba61ee5db9c2f0e6f66dfbcb3538fff190.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/e73af5348cff89cff9be421d70202271c52423ea96527d26f679f40aa7a872ee.png" id="5"]
@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/c3328baaccf9de6170c3be8131e53b158629e09cabcf4652b179d234a945208a.png" id="20"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/64f72846500dab54947b95d77a218776e18750564d4d78cc8223c30c4a5c5c45.png" id="21"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/e62b912623c9f7b3dc5353a9505e0e9372fc158548b176c671730caec8b62ff0.png" id="22"]
-[ext_resource type="Script" path="res://Script/Level/game4_rope_bridge.gd" id="23"]
+[ext_resource type="Script" path="res://Script/level/game4_rope_bridge.gd" id="23"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/items/emeishandao_rope.png" id="24"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape_floor"]

@@ -31,4 +31,4 @@ func configure(level: int, display_name: String, is_north: bool) -> void:
 
 func _on_pressed() -> void:
 	Global.SelectedConstellationLevel = level_index
-	Global.change_scene("res://Scene/Level/level_esbxx.tscn")
+	Global.change_scene("res://Scene/level/level_esbxx.tscn")

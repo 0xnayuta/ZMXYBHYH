@@ -2,7 +2,7 @@ extends Node
 
 const COOLDOWN_SECONDS := 30.0
 const BONUS_RATE_PER_LEVEL := 0.02
-const PET_SKILL_PROGRESSION := preload("res://Script/Pet/pet_skill_progression.gd")
+const PET_SKILL_PROGRESSION := preload("res://Script/pet/pet_skill_progression.gd")
 const LEARNED_SKILLS_KEY := "已学习技能"
 const LEARNABLE_SKILLS := ["生命加成", "攻击加成", "防御加成", "魔法庇佑", "嗜血狂爆", "法术能量", "天生蛮力", "自然守护", "生命祝福", "魔法加成"]
 const OWNER_BUFFS := {

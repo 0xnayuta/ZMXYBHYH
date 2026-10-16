@@ -1,8 +1,8 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Shop/shop_item.gd" id="1"]
+[ext_resource type="Script" path="res://Script/shop/shop_item.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/Shop/83.png" id="2"]
-[ext_resource type="PackedScene" path="res://Scene/BackPack/box_1.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Scene/back_pack/box_1.tscn" id="3"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Shop/93.png" id="5"]
 [ext_resource type="Texture2D" path="res://Art/Shop/87.png" id="6"]

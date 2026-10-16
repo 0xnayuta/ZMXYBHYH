@@ -1,9 +1,9 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/LDL/mosaic.gd" id="1"]
+[ext_resource type="Script" path="res://Script/ldl/mosaic.gd" id="1"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/215.png" id="3"]
-[ext_resource type="PackedScene" path="res://Scene/BackPack/box_1.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://Scene/back_pack/box_1.tscn" id="4"]
 [ext_resource type="Texture2D" path="res://Art/LDL/173.png" id="5"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/68.png" id="6"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/70.png" id="7"]

@@ -8,4 +8,4 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is BaseHero:
-		Global.call_deferred("change_scene", "res://Scene/Level/Level_sxmg.tscn")
+		Global.call_deferred("change_scene", "res://Scene/level/Level_sxmg.tscn")

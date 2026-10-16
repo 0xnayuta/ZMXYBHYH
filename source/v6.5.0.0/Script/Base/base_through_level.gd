@@ -1,7 +1,7 @@
 extends Node2D
 class_name BaseLevel
-const PET_LIFE_BONUS_RUNTIME := preload("res://Script/Pet/pet_life_bonus_runtime.gd")
-const PET_SKILL_PROGRESSION := preload("res://Script/Pet/pet_skill_progression.gd")
+const PET_LIFE_BONUS_RUNTIME := preload("res://Script/pet/pet_life_bonus_runtime.gd")
+const PET_SKILL_PROGRESSION := preload("res://Script/pet/pet_skill_progression.gd")
 var is_two_scene
 
 var bgm_node: Node = null
@@ -489,7 +489,7 @@ func _update_pet_dragon_evolution(pet: Dictionary) -> void:
 
 
 func _pet_dragon_scene_path(stage: int) -> String:
-	return "res://Scene/Pet/PetDragonSummon_%d.tscn" % clampi(stage, 1, 4)
+	return "res://Scene/pet/PetDragonSummon_%d.tscn" % clampi(stage, 1, 4)
 
 
 func _is_pet_dragon_data(pet: Dictionary) -> bool:
@@ -564,7 +564,7 @@ func _update_pet_turtle_evolution(pet: Dictionary) -> void:
 
 
 func _pet_turtle_scene_path(stage: int) -> String:
-	return "res://Scene/Pet/PetTurtleSummon_%d.tscn" % clampi(stage, 1, 4)
+	return "res://Scene/pet/PetTurtleSummon_%d.tscn" % clampi(stage, 1, 4)
 
 
 func _is_pet_turtle_data(pet: Dictionary) -> bool:
@@ -625,7 +625,7 @@ func _update_pet_rabbit_evolution(pet: Dictionary) -> void:
 
 
 func _pet_rabbit_scene_path(stage: int) -> String:
-	return "res://Scene/Pet/PetRabbitSummon_%d.tscn" % clampi(stage, 1, 4)
+	return "res://Scene/pet/PetRabbitSummon_%d.tscn" % clampi(stage, 1, 4)
 
 
 func _is_pet_mouse_data(pet: Dictionary) -> bool:
@@ -685,7 +685,7 @@ func _update_pet_mouse_evolution(pet: Dictionary) -> void:
 
 
 func _pet_mouse_scene_path(stage: int) -> String:
-	return "res://Scene/Pet/PetMouseSummon_%d.tscn" % clampi(stage, 1, 2)
+	return "res://Scene/pet/PetMouseSummon_%d.tscn" % clampi(stage, 1, 2)
 
 
 func _is_pet_neat_data(pet: Dictionary) -> bool:
@@ -737,7 +737,7 @@ func _update_pet_neat_evolution(pet: Dictionary) -> void:
 
 
 func _pet_neat_scene_path(stage: int) -> String:
-	return "res://Scene/Pet/PetNeatSummon_%d.tscn" % clampi(stage, 1, 4)
+	return "res://Scene/pet/PetNeatSummon_%d.tscn" % clampi(stage, 1, 4)
 
 
 func _is_pet_yin_tiger_data(pet: Dictionary) -> bool:
@@ -789,7 +789,7 @@ func _update_pet_yin_tiger_evolution(pet: Dictionary) -> void:
 
 
 func _pet_yin_tiger_scene_path(stage: int) -> String:
-	return "res://Scene/Pet/PetYinTigerSummon_%d.tscn" % clampi(stage, 1, 4)
+	return "res://Scene/pet/PetYinTigerSummon_%d.tscn" % clampi(stage, 1, 4)
 
 
 func _pet_tiger_stage_for_level(level: int) -> int:
@@ -925,7 +925,7 @@ func _update_pet_tiger_evolution(pet: Dictionary) -> void:
 
 
 func _pet_tiger_scene_path(stage: int) -> String:
-	return "res://Scene/Pet/PetTigerSummon_%d.tscn" % clampi(stage, 1, 4)
+	return "res://Scene/pet/PetTigerSummon_%d.tscn" % clampi(stage, 1, 4)
 
 
 func _active_pet_stage_from_data(pet: Dictionary) -> int:
@@ -1015,7 +1015,7 @@ func _update_pet_phoenix_evolution(pet: Dictionary) -> void:
 
 
 func _pet_phoenix_scene_path(stage: int) -> String:
-	return "res://Scene/Pet/PetPhoenixSummon_%d.tscn" % clampi(stage, 1, 4)
+	return "res://Scene/pet/PetPhoenixSummon_%d.tscn" % clampi(stage, 1, 4)
 
 
 func _active_pet_spawn_position(pet: Node) -> Vector2:
@@ -1281,13 +1281,13 @@ func _physics_process(_delta: float) -> void:
 				and Monster_group["stage_4"].size() == 0
 			):
 				if one_check_can_exit():
-					Global.preload_next("res://Scene/Level/victory.tscn")
+					Global.preload_next("res://Scene/level/victory.tscn")
 					exit.visible = true
 					exit_2.disabled = false
 					exit_ready = true
 			else:
 				if check_can_exit():
-					Global.preload_next("res://Scene/Level/victory.tscn")
+					Global.preload_next("res://Scene/level/victory.tscn")
 					exit.visible = true
 					exit_2.disabled = false
 					exit_ready = true
@@ -1298,7 +1298,7 @@ func _physics_process(_delta: float) -> void:
 				and Monster_group["stage_4"].size() == 0
 			):
 				if one_check_can_exit():
-					Global.preload_next("res://Scene/Level/victory.tscn")
+					Global.preload_next("res://Scene/level/victory.tscn")
 					exit.visible = true
 					exit_2.disabled = false
 					exit_ready = true
@@ -1331,33 +1331,33 @@ func _leave_level_from_exit() -> void:
 	else:
 		add_tg(level_stage)
 	if self is Level17:
-		Global.change_scene("res://Scene/Level/level_sdwfb.tscn")
+		Global.change_scene("res://Scene/level/level_sdwfb.tscn")
 		return
 	if self is Level22:
-		Global.change_scene("res://Scene/Level/level_xtqfb.tscn")
+		Global.change_scene("res://Scene/level/level_xtqfb.tscn")
 		return
 	if self is Level10 or self is Level21:
 		if _restart_level_for_auto_battle():
 			return
 		if MainSet.set_data["剧情跳过"]:
-			Global.change_scene("res://Scene/Level/victory.tscn")
+			Global.change_scene("res://Scene/level/victory.tscn")
 		else:
 			Global.change_scene("res://Scene/main_menu/game_over_1.tscn")
 	elif self is Level19:
 		if self.Canthro:
 			if not _restart_level_for_auto_battle():
-				Global.change_scene("res://Scene/Level/victory.tscn")
+				Global.change_scene("res://Scene/level/victory.tscn")
 		else:
 			RoleProp.CurrentHp = RoleProp.roleprop.Hp
 			RoleProp.CurrentMp = RoleProp.roleprop.Mp
-			Global.change_scene("res://Scene/Level/level_20.tscn")
+			Global.change_scene("res://Scene/level/level_20.tscn")
 	elif self is Level20:
 		RoleProp.CurrentHp = RoleProp.roleprop.Hp
 		RoleProp.CurrentMp = RoleProp.roleprop.Mp
-		Global.change_scene("res://Scene/Level/level_20.tscn")
+		Global.change_scene("res://Scene/level/level_20.tscn")
 	else:
 		if not _restart_level_for_auto_battle():
-			Global.change_scene("res://Scene/Level/victory.tscn")
+			Global.change_scene("res://Scene/level/victory.tscn")
 
 
 func _restart_level_for_auto_battle() -> bool:

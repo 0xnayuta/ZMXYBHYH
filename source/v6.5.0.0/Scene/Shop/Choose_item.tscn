@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Shop/choose_item.gd" id="1"]
+[ext_resource type="Script" path="res://Script/shop/choose_item.gd" id="1"]
 [ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="2"]
 [ext_resource type="Texture2D" path="res://Art/BackPack/119.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/BackPack/121.png" id="4"]

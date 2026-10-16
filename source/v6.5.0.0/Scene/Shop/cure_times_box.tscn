@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
 [ext_resource type="Texture2D" path="res://Art/set_menu/653.png" id="1"]
-[ext_resource type="Script" path="res://Script/Shop/cure_times_box.gd" id="2"]
+[ext_resource type="Script" path="res://Script/shop/cure_times_box.gd" id="2"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="3"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/220.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/MagicWeapon/222.png" id="5"]

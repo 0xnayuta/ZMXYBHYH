@@ -1,7 +1,7 @@
 extends BaseMonster
 class_name EmeiMountainMonster
 
-const PROJECTILE_SCRIPT := preload("res://Script/Monster/nanhai_projectile.gd")
+const PROJECTILE_SCRIPT := preload("res://Script/monster/nanhai_projectile.gd")
 const SOURCE_FPS := 30.0
 const ROOT := "res://Art/Monster/SwfPng"
 const SMALL_HURT_DURATION := 0.28

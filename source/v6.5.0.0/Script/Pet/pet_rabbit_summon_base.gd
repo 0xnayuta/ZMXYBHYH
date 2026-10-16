@@ -1,4 +1,4 @@
-extends "res://Script/Pet/pet_turtle_summon_base.gd"
+extends "res://Script/pet/pet_turtle_summon_base.gd"
 class_name PetRabbitSummonBase
 
 const SKILL_YG := "yg"
@@ -19,8 +19,8 @@ const RABBIT_STAGE_SKILLS := {
 	4: ["月光", "疾风", "冰陨", "月神奥义"],
 }
 const RABBIT_MODEL_FRAMES_RES := "res://Art/Pet/PetRabbit/model/pet_rabbit_stage%d_frames.tres"
-const RABBIT_SCENE_RES := "res://Scene/Pet/PetRabbitSummon_%d.tscn"
-const PET_RABBIT_BULLET_SCENE := preload("res://Scene/Pet/pet_rabbit_bullet.tscn")
+const RABBIT_SCENE_RES := "res://Scene/pet/PetRabbitSummon_%d.tscn"
+const PET_RABBIT_BULLET_SCENE := preload("res://Scene/pet/pet_rabbit_bullet.tscn")
 const RABBIT_ACTIONS := {
 	1:
 	{

@@ -1,5 +1,5 @@
 extends BaseMonster
-const BossXieShaSengWdww := preload("res://Script/Monster/monster_14501_wdww.gd")
+const BossXieShaSengWdww := preload("res://Script/monster/monster_14501_wdww.gd")
 
 var IsSky = false
 var RoundList = []
@@ -314,9 +314,9 @@ func call_wdww():
 		bullet_pos = Vector2(30, -30)
 	else:
 		bullet_pos = Vector2(-30, -30)
-	var scene = preload("res://Scene/Monster/monster_14501_wdww.tscn")
+	var scene = preload("res://Scene/monster/monster_14501_wdww.tscn")
 
-	if not ResourceLoader.exists("res://Scene/Monster/monster_14501_wdww.tscn"):
+	if not ResourceLoader.exists("res://Scene/monster/monster_14501_wdww.tscn"):
 		print("错误：文件不存在")
 		return
 	wdww = Global.instance_scene(scene, get_parent())
@@ -343,7 +343,7 @@ func state_death():
 func _summon_next_stage():
 	has_summoned_next = true
 
-	var next_boss_scene := Global.load_scene_uncached("res://Scene/Monster/monster_14501.tscn")
+	var next_boss_scene := Global.load_scene_uncached("res://Scene/monster/monster_14501.tscn")
 	if next_boss_scene == null:
 		return
 	var next_boss = next_boss_scene.instantiate() as BaseMonster

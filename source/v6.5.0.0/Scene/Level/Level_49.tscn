@@ -1,7 +1,7 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="PackedScene" path="res://Scene/Base/game4_imported_level_base.tscn" id="1"]
-[ext_resource type="Script" path="res://Script/Level/level_49.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Scene/base/game4_imported_level_base.tscn" id="1"]
+[ext_resource type="Script" path="res://Script/level/level_49.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/20841235d755bc3fd2789c19df4031e467115d8ac21d83e73efb5216163f9a30.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/433967c7e3455b38d374959440c5887b17a39f6166ad657e4ed83b711fbc7d89.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/58e47729a08d9d5329bcf066153c8955e9be0a38d7466275ef3228867fe9cbce.png" id="5"]

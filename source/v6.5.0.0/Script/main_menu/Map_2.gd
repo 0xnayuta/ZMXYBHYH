@@ -306,47 +306,47 @@ func _on_button_pressed() -> void:
 
 
 func _on_level_11_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "鬼城", Vector2(0, 0), "res://Scene/Level/level_11.tscn")
+	Global.add_level_info(_ui_parent(), "鬼城", Vector2(0, 0), "res://Scene/level/level_11.tscn")
 
 
 func _on_level_12_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "无常巷", Vector2(0, 0), "res://Scene/Level/level_12.tscn")
+	Global.add_level_info(_ui_parent(), "无常巷", Vector2(0, 0), "res://Scene/level/level_12.tscn")
 
 
 func _on_level_13_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "鬼门关", Vector2(0, 0), "res://Scene/Level/level_13.tscn")
+	Global.add_level_info(_ui_parent(), "鬼门关", Vector2(0, 0), "res://Scene/level/level_13.tscn")
 
 
 func _on_level_14_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "接引院", Vector2(0, 0), "res://Scene/Level/level_14.tscn")
+	Global.add_level_info(_ui_parent(), "接引院", Vector2(0, 0), "res://Scene/level/level_14.tscn")
 
 
 func _on_level_15_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "判官府", Vector2(0, 0), "res://Scene/Level/level_15.tscn")
+	Global.add_level_info(_ui_parent(), "判官府", Vector2(0, 0), "res://Scene/level/level_15.tscn")
 
 
 func _on_level_16_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "阎罗殿", Vector2(0, 0), "res://Scene/Level/level_16.tscn")
+	Global.add_level_info(_ui_parent(), "阎罗殿", Vector2(0, 0), "res://Scene/level/level_16.tscn")
 
 
 func _on_level_17_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "忘川河", Vector2(0, 0), "res://Scene/Level/level_17.tscn")
+	Global.add_level_info(_ui_parent(), "忘川河", Vector2(0, 0), "res://Scene/level/level_17.tscn")
 
 
 func _on_level_18_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "奈何桥", Vector2(0, 0), "res://Scene/Level/level_18.tscn")
+	Global.add_level_info(_ui_parent(), "奈何桥", Vector2(0, 0), "res://Scene/level/level_18.tscn")
 
 
 func _on_level_19_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "望乡台", Vector2(0, 0), "res://Scene/Level/level_19.tscn")
+	Global.add_level_info(_ui_parent(), "望乡台", Vector2(0, 0), "res://Scene/level/level_19.tscn")
 
 
 func _on_level_20_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "转轮殿", Vector2(0, 0), "res://Scene/Level/level_21.tscn")
+	Global.add_level_info(_ui_parent(), "转轮殿", Vector2(0, 0), "res://Scene/level/level_21.tscn")
 
 
 func _on_level_nmg_pressed() -> void:
-	Global.add_level_info(_ui_parent(), "火焰山", Vector2(0, 0), "res://Scene/Level/level_nmg.tscn")
+	Global.add_level_info(_ui_parent(), "火焰山", Vector2(0, 0), "res://Scene/level/level_nmg.tscn")
 
 
 func _on_level_lxdy_pressed() -> void:

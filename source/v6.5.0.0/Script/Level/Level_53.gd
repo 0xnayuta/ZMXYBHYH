@@ -1,7 +1,7 @@
 extends Game4ImportedLevel
 
-const NANHAI_MONSTER_SCRIPT := preload("res://Script/Monster/nanhai_monster.gd")
-const LINGGAN_BOSS_SCRIPT := preload("res://Script/Monster/linggan_king_boss.gd")
+const NANHAI_MONSTER_SCRIPT := preload("res://Script/monster/nanhai_monster.gd")
+const LINGGAN_BOSS_SCRIPT := preload("res://Script/monster/linggan_king_boss.gd")
 
 const PUTUO_STAGE_COUNT := 5
 const PUTUO_SCREEN_STARTS := [0.0, 1000.0, 2000.0, 3000.0, 3784.0]

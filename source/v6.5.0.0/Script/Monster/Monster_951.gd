@@ -1,4 +1,4 @@
-extends "res://Script/Monster/sword_boss_base.gd"
+extends "res://Script/monster/sword_boss_base.gd"
 
 
 func _configure_sword_boss() -> void:

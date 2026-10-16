@@ -513,7 +513,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _setup_north_idle_preview() -> void:
-	if not MonsterScenePath.begins_with("res://Scene/Monster/Monster_"):
+	if not MonsterScenePath.begins_with("res://Scene/monster/Monster_"):
 		return
 	var id := MonsterScenePath.get_file().get_basename().trim_prefix("Monster_").to_int()
 	var manifest_path := NorthOriginalData.manifest(id)

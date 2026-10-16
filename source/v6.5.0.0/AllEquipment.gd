@@ -1,6 +1,6 @@
 extends Node
 
-const DATA_SCRIPT := "res://Script/Data/all_equipment_data.gd"
+const DATA_SCRIPT := "res://Script/data/all_equipment_data.gd"
 
 var PropListName = [
 	"SHp",

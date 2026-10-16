@@ -7,45 +7,45 @@ const THREE_PRINCE_DROP_ITEMS := {
 }
 const EIGHT_IMMORTAL_IDS: Array[int] = [163, 175, 165, 166, 168, 169, 174, 164]
 const HUMAN_NIGHTMARE_LEVEL_PATHS := [
-	"res://Scene/Level/level_1.tscn",
-	"res://Scene/Level/level_2.tscn",
-	"res://Scene/Level/level_3.tscn",
-	"res://Scene/Level/level_4.tscn",
-	"res://Scene/Level/level_5.tscn",
-	"res://Scene/Level/level_6.tscn",
-	"res://Scene/Level/level_7.tscn",
-	"res://Scene/Level/level_8.tscn",
-	"res://Scene/Level/level_9.tscn",
-	"res://Scene/Level/level_10.tscn",
+	"res://Scene/level/level_1.tscn",
+	"res://Scene/level/level_2.tscn",
+	"res://Scene/level/level_3.tscn",
+	"res://Scene/level/level_4.tscn",
+	"res://Scene/level/level_5.tscn",
+	"res://Scene/level/level_6.tscn",
+	"res://Scene/level/level_7.tscn",
+	"res://Scene/level/level_8.tscn",
+	"res://Scene/level/level_9.tscn",
+	"res://Scene/level/level_10.tscn",
 ]
 const UNDERWORLD_NIGHTMARE_LEVEL_PATHS := [
-	"res://Scene/Level/level_nmg.tscn",
-	"res://Scene/Level/level_bgmj.tscn",
-	"res://Scene/Level/level_11.tscn",
-	"res://Scene/Level/level_12.tscn",
-	"res://Scene/Level/level_13.tscn",
-	"res://Scene/Level/level_14.tscn",
-	"res://Scene/Level/level_15.tscn",
-	"res://Scene/Level/level_16.tscn",
-	"res://Scene/Level/level_17.tscn",
-	"res://Scene/Level/level_18.tscn",
-	"res://Scene/Level/level_19.tscn",
-	"res://Scene/Level/level_21.tscn",
+	"res://Scene/level/level_nmg.tscn",
+	"res://Scene/level/level_bgmj.tscn",
+	"res://Scene/level/level_11.tscn",
+	"res://Scene/level/level_12.tscn",
+	"res://Scene/level/level_13.tscn",
+	"res://Scene/level/level_14.tscn",
+	"res://Scene/level/level_15.tscn",
+	"res://Scene/level/level_16.tscn",
+	"res://Scene/level/level_17.tscn",
+	"res://Scene/level/level_18.tscn",
+	"res://Scene/level/level_19.tscn",
+	"res://Scene/level/level_21.tscn",
 ]
 const HEAVEN_NIGHTMARE_LEVEL_PATHS := [
-	"res://Scene/Level/level_23.tscn",
-	"res://Scene/Level/level_24.tscn",
-	"res://Scene/Level/level_25.tscn",
-	"res://Scene/Level/level_26.tscn",
-	"res://Scene/Level/level_27.tscn",
-	"res://Scene/Level/level_28.tscn",
-	"res://Scene/Level/level_29.tscn",
-	"res://Scene/Level/level_30.tscn",
-	"res://Scene/Level/level_pty.tscn",
-	"res://Scene/Level/level_ymj.tscn",
-	"res://Scene/Level/level_llbt.tscn",
+	"res://Scene/level/level_23.tscn",
+	"res://Scene/level/level_24.tscn",
+	"res://Scene/level/level_25.tscn",
+	"res://Scene/level/level_26.tscn",
+	"res://Scene/level/level_27.tscn",
+	"res://Scene/level/level_28.tscn",
+	"res://Scene/level/level_29.tscn",
+	"res://Scene/level/level_30.tscn",
+	"res://Scene/level/level_pty.tscn",
+	"res://Scene/level/level_ymj.tscn",
+	"res://Scene/level/level_llbt.tscn",
 	"兜率宫",
-	"res://Scene/Level/level_dtwd.tscn",
+	"res://Scene/level/level_dtwd.tscn",
 ]
 const EAST_LATE_LEVEL_NAMES := {
 	69: "蝙蝠窟",
@@ -59,48 +59,48 @@ const EAST_LATE_LEVEL_NAMES := {
 const EAST_LATE_LEVEL_MONSTERS := {
 	69:
 	[
-		{"Name": "3198", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3198.tscn", "ConfigId": 3198},
-		{"Name": "3199", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3199.tscn", "ConfigId": 3199},
-		{"Name": "3201", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3201.tscn", "ConfigId": 3201},
-		{"Name": "3200", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3200.tscn", "ConfigId": 3200},
+		{"Name": "3198", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3198.tscn", "ConfigId": 3198},
+		{"Name": "3199", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3199.tscn", "ConfigId": 3199},
+		{"Name": "3201", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3201.tscn", "ConfigId": 3201},
+		{"Name": "3200", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3200.tscn", "ConfigId": 3200},
 	],
 	70:
 	[
-		{"Name": "3221", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3199.tscn", "ConfigId": 3221},
-		{"Name": "3222", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3222.tscn", "ConfigId": 3222},
-		{"Name": "3226", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3198.tscn", "ConfigId": 3226},
-		{"Name": "3223", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3223.tscn", "ConfigId": 3223},
+		{"Name": "3221", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3199.tscn", "ConfigId": 3221},
+		{"Name": "3222", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3222.tscn", "ConfigId": 3222},
+		{"Name": "3226", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3198.tscn", "ConfigId": 3226},
+		{"Name": "3223", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3223.tscn", "ConfigId": 3223},
 	],
 	71:
 	[
-		{"Name": "3274", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3222.tscn", "ConfigId": 3274},
-		{"Name": "3275", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3198.tscn", "ConfigId": 3275},
-		{"Name": "3276", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3276.tscn", "ConfigId": 3276},
-		{"Name": "3277", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3277.tscn", "ConfigId": 3277},
+		{"Name": "3274", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3222.tscn", "ConfigId": 3274},
+		{"Name": "3275", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3198.tscn", "ConfigId": 3275},
+		{"Name": "3276", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3276.tscn", "ConfigId": 3276},
+		{"Name": "3277", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3277.tscn", "ConfigId": 3277},
 	],
 	72:
 	[
-		{"Name": "3308", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3308.tscn", "ConfigId": 3308},
-		{"Name": "3309", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3309.tscn", "ConfigId": 3309},
-		{"Name": "3310", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3310.tscn", "ConfigId": 3310},
+		{"Name": "3308", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3308.tscn", "ConfigId": 3308},
+		{"Name": "3309", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3309.tscn", "ConfigId": 3309},
+		{"Name": "3310", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3310.tscn", "ConfigId": 3310},
 	],
 	73:
 	[
-		{"Name": "3320", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3320.tscn", "ConfigId": 3320},
-		{"Name": "3321", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3308.tscn", "ConfigId": 3321},
-		{"Name": "3322", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3309.tscn", "ConfigId": 3322},
-		{"Name": "3323", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3323.tscn", "ConfigId": 3323},
+		{"Name": "3320", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3320.tscn", "ConfigId": 3320},
+		{"Name": "3321", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3308.tscn", "ConfigId": 3321},
+		{"Name": "3322", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3309.tscn", "ConfigId": 3322},
+		{"Name": "3323", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3323.tscn", "ConfigId": 3323},
 	],
 	74:
 	[
-		{"Name": "3340", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3320.tscn", "ConfigId": 3340},
-		{"Name": "3341", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3308.tscn", "ConfigId": 3341},
-		{"Name": "3342", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3309.tscn", "ConfigId": 3342},
-		{"Name": "3343", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3343.tscn", "ConfigId": 3343},
+		{"Name": "3340", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3320.tscn", "ConfigId": 3340},
+		{"Name": "3341", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3308.tscn", "ConfigId": 3341},
+		{"Name": "3342", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3309.tscn", "ConfigId": 3342},
+		{"Name": "3343", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3343.tscn", "ConfigId": 3343},
 	],
 	75:
 	[
-		{"Name": "3352", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3352.tscn", "ConfigId": 3352},
+		{"Name": "3352", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3352.tscn", "ConfigId": 3352},
 	],
 }
 const HUMAN_SOUL_CRYSTAL_MONSTER_IDS := {
@@ -235,7 +235,7 @@ var LevelInfo = {
 			{
 				"Name": "ce",
 				"IsBoss": true,
-				"ScenePath": "res://Scene/Monster/monster_130.tscn",
+				"ScenePath": "res://Scene/monster/monster_130.tscn",
 				"HideIndependentDrops": true
 			},
 		],
@@ -256,9 +256,9 @@ var LevelInfo = {
 		"fall_pro": 50,
 		"MonsterList":
 		[
-			{"Name": "stz_nz", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_4401.tscn", "SelectId": 4401},
-			{"Name": "stz_mz", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_4402.tscn", "SelectId": 4402},
-			{"Name": "stz_jz", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_4403.tscn", "SelectId": 4403},
+			{"Name": "stz_nz", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_4401.tscn", "SelectId": 4401},
+			{"Name": "stz_mz", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_4402.tscn", "SelectId": 4402},
+			{"Name": "stz_jz", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_4403.tscn", "SelectId": 4403},
 		],
 		"LevelFall": ["rls", "llst", "llzx", "llkj", "lltk"],
 		"LevelFallProbability": {"rls": 50, "llst": 20, "llzx": 20, "llkj": 20, "lltk": 20},
@@ -278,14 +278,14 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "bxgh_163", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_163.tscn", "SelectId": 163},
-			{"Name": "bxgh_175", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_175.tscn", "SelectId": 175},
-			{"Name": "bxgh_165", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_165.tscn", "SelectId": 165},
-			{"Name": "bxgh_166", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_166.tscn", "SelectId": 166},
-			{"Name": "bxgh_168", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_168.tscn", "SelectId": 168},
-			{"Name": "bxgh_169", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_169.tscn", "SelectId": 169},
-			{"Name": "bxgh_174", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_174.tscn", "SelectId": 174},
-			{"Name": "bxgh_164", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_164.tscn", "SelectId": 164},
+			{"Name": "bxgh_163", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_163.tscn", "SelectId": 163},
+			{"Name": "bxgh_175", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_175.tscn", "SelectId": 175},
+			{"Name": "bxgh_165", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_165.tscn", "SelectId": 165},
+			{"Name": "bxgh_166", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_166.tscn", "SelectId": 166},
+			{"Name": "bxgh_168", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_168.tscn", "SelectId": 168},
+			{"Name": "bxgh_169", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_169.tscn", "SelectId": 169},
+			{"Name": "bxgh_174", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_174.tscn", "SelectId": 174},
+			{"Name": "bxgh_164", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_164.tscn", "SelectId": 164},
 		],
 		"LevelFall": [],
 		"NeedZDL":
@@ -336,10 +336,10 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "zxjboss", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_951.tscn"},
-			{"Name": "xxjboss", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_952.tscn"},
-			{"Name": "lxjboss", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_953.tscn"},
-			{"Name": "jxjboss", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_954.tscn"},
+			{"Name": "zxjboss", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_951.tscn"},
+			{"Name": "xxjboss", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_952.tscn"},
+			{"Name": "lxjboss", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_953.tscn"},
+			{"Name": "jxjboss", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_954.tscn"},
 		],
 		"LevelFall": ["zxjp", "xxjp", "lxjp", "jxjp", "zxjh"],
 		"LevelFallProbability":
@@ -1492,7 +1492,7 @@ var LevelInfo = {
 			{
 				"Name": "qysj",
 				"IsBoss": true,
-				"ScenePath": "res://Scene/Monster/monster_212.tscn",
+				"ScenePath": "res://Scene/monster/monster_212.tscn",
 				"HideIndependentDrops": true
 			}
 		],
@@ -1522,11 +1522,11 @@ var LevelInfo = {
 		"fall_pro": 10,
 		"MonsterList":
 		[
-			{"Name": "dylqs", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_118.tscn"},
+			{"Name": "dylqs", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_118.tscn"},
 			{
 				"Name": "hyr",
 				"IsBoss": true,
-				"ScenePath": "res://Scene/Monster/monster_215.tscn",
+				"ScenePath": "res://Scene/monster/monster_215.tscn",
 				"HideIndependentDrops": true
 			},
 		],
@@ -1559,7 +1559,7 @@ var LevelInfo = {
 			{
 				"Name": "ttjz",
 				"IsBoss": true,
-				"ScenePath": "res://Scene/Monster/monster_1460.tscn",
+				"ScenePath": "res://Scene/monster/monster_1460.tscn",
 				"HideIndependentDrops": true
 			}
 		],
@@ -1585,13 +1585,13 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "xwm3001", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3001.tscn"},
-			{"Name": "xwm3003", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3003.tscn"},
-			{"Name": "xwm3004", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3004.tscn"},
+			{"Name": "xwm3001", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3001.tscn"},
+			{"Name": "xwm3003", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3003.tscn"},
+			{"Name": "xwm3004", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3004.tscn"},
 			{
 				"Name": "xwm3005",
 				"IsBoss": true,
-				"ScenePath": "res://Scene/Monster/monster_3005.tscn",
+				"ScenePath": "res://Scene/monster/monster_3005.tscn",
 				"HideIndependentDrops": true
 			},
 		],
@@ -1613,10 +1613,10 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "xwm3001", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3001.tscn"},
-			{"Name": "zqj3002", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3002.tscn"},
-			{"Name": "xwm3004", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3004.tscn"},
-			{"Name": "zqj3006", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3006.tscn"},
+			{"Name": "xwm3001", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3001.tscn"},
+			{"Name": "zqj3002", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3002.tscn"},
+			{"Name": "xwm3004", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3004.tscn"},
+			{"Name": "zqj3006", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3006.tscn"},
 		],
 		"LevelFall": ["tjs"],
 		"LevelFallProbability": {"tjs": 10},
@@ -1636,10 +1636,10 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "xwm3001", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3001.tscn"},
-			{"Name": "zqj3002", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3002.tscn"},
-			{"Name": "xwm3004", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3004.tscn"},
-			{"Name": "weiyang3007", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3007.tscn"},
+			{"Name": "xwm3001", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3001.tscn"},
+			{"Name": "zqj3002", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3002.tscn"},
+			{"Name": "xwm3004", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3004.tscn"},
+			{"Name": "weiyang3007", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3007.tscn"},
 		],
 		"LevelFall": ["139300014V1", "1_jns"],
 		"LevelFallProbability": {"139300014V1": 10, "1_jns": 20},
@@ -1659,12 +1659,12 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "蘑菇精", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3008.tscn"},
-			{"Name": "金钱松", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3009.tscn"},
+			{"Name": "蘑菇精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3008.tscn"},
+			{"Name": "金钱松", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3009.tscn"},
 			{
 				"Name": "闵老护法",
 				"IsBoss": true,
-				"ScenePath": "res://Scene/Monster/monster_3019.tscn",
+				"ScenePath": "res://Scene/monster/monster_3019.tscn",
 				"HideIndependentDrops": true
 			}
 		],
@@ -1686,13 +1686,13 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "蘑菇精", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3008.tscn"},
-			{"Name": "人形藤蔓", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3010.tscn"},
-			{"Name": "苍耳妖", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3011.tscn"},
+			{"Name": "蘑菇精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3008.tscn"},
+			{"Name": "人形藤蔓", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3010.tscn"},
+			{"Name": "苍耳妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3011.tscn"},
 			{
 				"Name": "道明妖僧",
 				"IsBoss": true,
-				"ScenePath": "res://Scene/Monster/monster_3020.tscn",
+				"ScenePath": "res://Scene/monster/monster_3020.tscn",
 				"HideIndependentDrops": true
 			}
 		],
@@ -1714,10 +1714,10 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "金钱松", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3009.tscn"},
-			{"Name": "人形藤蔓", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3010.tscn"},
-			{"Name": "苍耳妖", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3011.tscn"},
-			{"Name": "木之祖巫", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3021.tscn"}
+			{"Name": "金钱松", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3009.tscn"},
+			{"Name": "人形藤蔓", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3010.tscn"},
+			{"Name": "苍耳妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3011.tscn"},
+			{"Name": "木之祖巫", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3021.tscn"}
 		],
 		"LevelFall": ["139300012", "105400003"],
 		"LevelFallProbability": {"139300012": 10, "105400003": 10},
@@ -1737,9 +1737,9 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "虾兵", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3031.tscn"},
-			{"Name": "虎鲨", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3029.tscn"},
-			{"Name": "灵感大王", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3033.tscn"}
+			{"Name": "虾兵", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3031.tscn"},
+			{"Name": "虎鲨", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3029.tscn"},
+			{"Name": "灵感大王", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3033.tscn"}
 		],
 		"LevelFall": ["105400005V1"],
 		"LevelFallProbability": {"105400005V1": 10},
@@ -1759,10 +1759,10 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "贝壳", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3028.tscn"},
-			{"Name": "夜叉", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3032.tscn"},
-			{"Name": "虾兵", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3031.tscn", "ConfigId": 3031},
-			{"Name": "四头虫", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3034.tscn"}
+			{"Name": "贝壳", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3028.tscn"},
+			{"Name": "夜叉", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3032.tscn"},
+			{"Name": "虾兵", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3031.tscn", "ConfigId": 3031},
+			{"Name": "四头虫", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3034.tscn"}
 		],
 		"LevelFall": ["ymqzq"],
 		"LevelFallProbability": {"ymqzq": 10},
@@ -1782,10 +1782,10 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "蚌女", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3030.tscn", "ConfigId": 3030},
-			{"Name": "夜叉", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3032.tscn", "ConfigId": 3032},
-			{"Name": "贝壳", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3028.tscn", "ConfigId": 3028},
-			{"Name": "水之祖巫", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3035.tscn"}
+			{"Name": "蚌女", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3030.tscn", "ConfigId": 3030},
+			{"Name": "夜叉", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3032.tscn", "ConfigId": 3032},
+			{"Name": "贝壳", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3028.tscn", "ConfigId": 3028},
+			{"Name": "水之祖巫", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3035.tscn"}
 		],
 		"LevelFall": ["139300018", "hhyq"],
 		"LevelFallProbability": {"139300018": 10, "hhyq": 10},
@@ -1805,9 +1805,9 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "岩石怪", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3047.tscn"},
-			{"Name": "忍猴", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3038.tscn"},
-			{"Name": "赤炎金刚", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3040.tscn"}
+			{"Name": "岩石怪", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3047.tscn"},
+			{"Name": "忍猴", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3038.tscn"},
+			{"Name": "赤炎金刚", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3040.tscn"}
 		],
 		"LevelFall": ["zqfjwkzzs", "zqfjtszzs", "zqfjbjzzs"],
 		"LevelFallProbability": {"zqfjwkzzs": 10, "zqfjtszzs": 10, "zqfjbjzzs": 10},
@@ -1827,10 +1827,10 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "百足蜈蚣", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3039.tscn"},
-			{"Name": "蝎子精", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3037.tscn"},
-			{"Name": "火焰鸟", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3036.tscn"},
-			{"Name": "噬火毒蝎", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3041.tscn"}
+			{"Name": "百足蜈蚣", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3039.tscn"},
+			{"Name": "蝎子精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3037.tscn"},
+			{"Name": "火焰鸟", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3036.tscn"},
+			{"Name": "噬火毒蝎", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3041.tscn"}
 		],
 		"LevelFall": ["zqfjsszzs", "zqfjblzzs", "zqfjnzzzs"],
 		"LevelFallProbability": {"zqfjsszzs": 10, "zqfjblzzs": 10, "zqfjnzzzs": 10},
@@ -1850,11 +1850,11 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "岩石怪", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3047.tscn", "ConfigId": 3047},
-			{"Name": "忍猴", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3038.tscn", "ConfigId": 3038},
-			{"Name": "火焰鸟", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3036.tscn", "ConfigId": 3036},
-			{"Name": "百足蜈蚣", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3039.tscn", "ConfigId": 3039},
-			{"Name": "火之祖巫", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3042.tscn"}
+			{"Name": "岩石怪", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3047.tscn", "ConfigId": 3047},
+			{"Name": "忍猴", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3038.tscn", "ConfigId": 3038},
+			{"Name": "火焰鸟", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3036.tscn", "ConfigId": 3036},
+			{"Name": "百足蜈蚣", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3039.tscn", "ConfigId": 3039},
+			{"Name": "火之祖巫", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3042.tscn"}
 		],
 		"LevelFall": ["139300021", "zqwqwkzzs", "zqwqtszzs", "zqwqbjzzs"],
 		"LevelFallProbability": {"139300021": 10, "zqwqwkzzs": 10, "zqwqtszzs": 10, "zqwqbjzzs": 10},
@@ -1874,10 +1874,10 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "鸟身女妖", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3065.tscn"},
-			{"Name": "泥偶精", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3066.tscn"},
-			{"Name": "核桃精", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3068.tscn"},
-			{"Name": "金光孔雀", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3069.tscn"}
+			{"Name": "鸟身女妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3065.tscn"},
+			{"Name": "泥偶精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3066.tscn"},
+			{"Name": "核桃精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3068.tscn"},
+			{"Name": "金光孔雀", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3069.tscn"}
 		],
 		"LevelFall": ["zqwqsszzs", "zqwqblzzs", "zqwqnzzzs"],
 		"LevelFallProbability": {"zqwqsszzs": 10, "zqwqblzzs": 10, "zqwqnzzzs": 10},
@@ -1897,9 +1897,9 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "鸟身女妖", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3065.tscn"},
-			{"Name": "花妖", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3067.tscn"},
-			{"Name": "芙蓉仙子", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3070.tscn"}
+			{"Name": "鸟身女妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3065.tscn"},
+			{"Name": "花妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3067.tscn"},
+			{"Name": "芙蓉仙子", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3070.tscn"}
 		],
 		"LevelFall": ["469000004"],
 		"LevelFallProbability": {"469000004": 10},
@@ -1919,14 +1919,14 @@ var LevelInfo = {
 		"fall_pro": 0,
 		"MonsterList":
 		[
-			{"Name": "花妖", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3067.tscn", "ConfigId": 3067},
-			{"Name": "核桃精", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3068.tscn", "ConfigId": 3068},
-			{"Name": "泥偶精", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3066.tscn", "ConfigId": 3066},
-			{"Name": "守卫", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3076.tscn", "ConfigId": 3076},
+			{"Name": "花妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3067.tscn", "ConfigId": 3067},
+			{"Name": "核桃精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3068.tscn", "ConfigId": 3068},
+			{"Name": "泥偶精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3066.tscn", "ConfigId": 3066},
+			{"Name": "守卫", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3076.tscn", "ConfigId": 3076},
 			{
 				"Name": "土之祖巫",
 				"IsBoss": true,
-				"ScenePath": "res://Scene/Monster/monster_3071.tscn",
+				"ScenePath": "res://Scene/monster/monster_3071.tscn",
 				"ConfigId": 3071,
 				"HideIndependentDrops": true
 			}
@@ -1952,7 +1952,7 @@ var LevelInfo = {
 			{
 				"Name": "通天教主(穷奇版)",
 				"IsBoss": true,
-				"ScenePath": "res://Scene/Monster/monster_3117.tscn",
+				"ScenePath": "res://Scene/monster/monster_3117.tscn",
 				"HideIndependentDrops": true
 			}
 		],
@@ -2044,7 +2044,7 @@ func _popup_parent() -> Node:
 func _open_special_level_popup(target_path: String) -> void:
 	var parent_node := _popup_parent()
 	var popup = null
-	if target_path == "res://Scene/Level/level_llbt.tscn":
+	if target_path == "res://Scene/level/level_llbt.tscn":
 		popup = Global.addllbt_challenge(parent_node, Vector2(0, 0))
 	elif target_path == "兜率宫":
 		popup = Global.add_dsg_choose(parent_node)
@@ -2064,7 +2064,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if TargetStagePath not in ["res://Scene/Level/level_bxgh.tscn", "res://Scene/Level/level_esbxx.tscn"]:
+	if TargetStagePath not in ["res://Scene/level/level_bxgh.tscn", "res://Scene/level/level_esbxx.tscn"]:
 		return
 	if monster_scroll == null or not is_instance_valid(monster_scroll) or not monster_scroll.is_visible_in_tree():
 		return
@@ -2136,30 +2136,30 @@ func _get_level_info() -> Dictionary:
 
 
 func _get_base_level_info() -> Dictionary:
-	if TargetStagePath == "res://Scene/Level/level_63.tscn":
+	if TargetStagePath == "res://Scene/level/level_63.tscn":
 		var east_jinshacun := (LevelInfo["金沙村"] as Dictionary).duplicate(true) if LevelInfo.has("金沙村") else {}
 		east_jinshacun["LevelName"] = "金沙村"
 		east_jinshacun["MonsterList"] = [
-			{"Name": "金沙村小怪", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3118.tscn"},
-			{"Name": "金沙村飞行怪", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3119.tscn"},
-			{"Name": "金沙村首领", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3120.tscn"},
+			{"Name": "金沙村小怪", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3118.tscn"},
+			{"Name": "金沙村飞行怪", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3119.tscn"},
+			{"Name": "金沙村首领", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3120.tscn"},
 		]
 		east_jinshacun = _clear_east_continent_drop_preview(east_jinshacun)
 		east_jinshacun["LevelFall"] = ["469000011"]
 		east_jinshacun["LevelFallProbability"] = {"469000011": 10}
 		return east_jinshacun
-	if TargetStagePath == "res://Scene/Level/level_64.tscn":
+	if TargetStagePath == "res://Scene/level/level_64.tscn":
 		var east_baixianyuan := (LevelInfo["百仙园"] as Dictionary).duplicate(true) if LevelInfo.has("百仙园") else {}
 		east_baixianyuan["LevelName"] = "百仙园"
 		east_baixianyuan["MonsterList"] = [
-			{"Name": "百仙园弓手", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3121.tscn"},
-			{"Name": "百仙园妖灵", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3122.tscn"},
-			{"Name": "煞人蜂", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3126.tscn"},
-			{"Name": "百仙园首领", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3123.tscn"},
+			{"Name": "百仙园弓手", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3121.tscn"},
+			{"Name": "百仙园妖灵", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3122.tscn"},
+			{"Name": "煞人蜂", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3126.tscn"},
+			{"Name": "百仙园首领", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3123.tscn"},
 			{
 				"Name": "百仙碟",
 				"IsBoss": true,
-				"ScenePath": "res://Scene/Monster/monster_3125.tscn",
+				"ScenePath": "res://Scene/monster/monster_3125.tscn",
 				"HideIndependentDrops": true
 			},
 		]
@@ -2167,14 +2167,14 @@ func _get_base_level_info() -> Dictionary:
 		east_baixianyuan["LevelFall"] = ["2_jns"]
 		east_baixianyuan["LevelFallProbability"] = {"2_jns": 20}
 		return east_baixianyuan
-	if TargetStagePath == "res://Scene/Level/level_65.tscn":
+	if TargetStagePath == "res://Scene/level/level_65.tscn":
 		var east_aolaiguo := (LevelInfo["傲来国"] as Dictionary).duplicate(true) if LevelInfo.has("傲来国") else {}
 		east_aolaiguo["LevelName"] = "傲来国"
 		east_aolaiguo["MonsterList"] = [
-			{"Name": "3144", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3144.tscn", "ConfigId": 3144},
-			{"Name": "3145", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3121.tscn", "ConfigId": 3145},
-			{"Name": "3146", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3122.tscn", "ConfigId": 3146},
-			{"Name": "3136", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3136.tscn", "ConfigId": 3136},
+			{"Name": "3144", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3144.tscn", "ConfigId": 3144},
+			{"Name": "3145", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3121.tscn", "ConfigId": 3145},
+			{"Name": "3146", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3122.tscn", "ConfigId": 3146},
+			{"Name": "3136", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3136.tscn", "ConfigId": 3136},
 		]
 		east_aolaiguo = _clear_east_continent_drop_preview(east_aolaiguo)
 		if not east_aolaiguo.has("NeedZDL"):
@@ -2184,28 +2184,28 @@ func _get_base_level_info() -> Dictionary:
 		if not east_aolaiguo.has("Level"):
 			east_aolaiguo["Level"] = 90
 		return east_aolaiguo
-	if TargetStagePath == "res://Scene/Level/level_66.tscn":
+	if TargetStagePath == "res://Scene/level/level_66.tscn":
 		var east_huaguoshan := (LevelInfo["花果山"] as Dictionary).duplicate(true)
 		east_huaguoshan["MonsterList"] = [
-			{"Name": "猴妖", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3159.tscn"},
-			{"Name": "银杏精", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3160.tscn"},
-			{"Name": "通臂白猿", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3161.tscn"},
+			{"Name": "猴妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3159.tscn"},
+			{"Name": "银杏精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3160.tscn"},
+			{"Name": "通臂白猿", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3161.tscn"},
 		]
 		return _clear_east_continent_drop_preview(east_huaguoshan)
-	if TargetStagePath == "res://Scene/Level/level_67.tscn":
+	if TargetStagePath == "res://Scene/level/level_67.tscn":
 		var east_shuiliandong := (LevelInfo["水帘洞"] as Dictionary).duplicate(true)
 		east_shuiliandong["MonsterList"] = [
-			{"Name": "猴妖", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3159.tscn"},
-			{"Name": "蘑菇长老", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3177.tscn"},
-			{"Name": "六耳猕猴", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3179.tscn"},
+			{"Name": "猴妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3159.tscn"},
+			{"Name": "蘑菇长老", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3177.tscn"},
+			{"Name": "六耳猕猴", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3179.tscn"},
 		]
 		return _clear_east_continent_drop_preview(east_shuiliandong)
-	if TargetStagePath == "res://Scene/Level/level_68.tscn":
+	if TargetStagePath == "res://Scene/level/level_68.tscn":
 		var east_taohuagu := (LevelInfo["桃花源"] as Dictionary).duplicate(true)
 		east_taohuagu["LevelName"] = "桃花谷"
 		east_taohuagu["MonsterList"] = [
-			{"Name": "骨刺兽", "IsBoss": false, "ScenePath": "res://Scene/Monster/monster_3181.tscn"},
-			{"Name": "雨之祖巫", "IsBoss": true, "ScenePath": "res://Scene/Monster/monster_3182.tscn"},
+			{"Name": "骨刺兽", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3181.tscn"},
+			{"Name": "雨之祖巫", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3182.tscn"},
 		]
 		return _clear_east_continent_drop_preview(east_taohuagu)
 	var target_stage_text := TargetStagePath.get_file().get_basename().trim_prefix("Level_")
@@ -2346,23 +2346,23 @@ func _get_level_fall_items(level_info: Dictionary) -> Array:
 		return _get_underworld_nightmare_soul_items(level_info)
 	if _is_human_nightmare_level():
 		return _get_human_nightmare_soul_items(level_info)
-	if TargetStagePath == "res://Scene/Level/level_stz.tscn":
+	if TargetStagePath == "res://Scene/level/level_stz.tscn":
 		var selected_id := int(Global.SelectedThreePrinceId)
 		var items := (THREE_PRINCE_DROP_ITEMS.get(selected_id, THREE_PRINCE_DROP_ITEMS[0]) as Array).duplicate()
 		if int(MainSet.set_data.get("Difficult", 0)) == BaseMonster.NIGHTMARE_DIFFICULTY:
 			for index in range(items.size()):
 				items[index] = ThreePrinceBoss.NIGHTMARE_EQUIPMENT_REPLACEMENTS.get(items[index], items[index])
 		return items
-	if TargetStagePath == "res://Scene/Level/level_bxgh.tscn":
+	if TargetStagePath == "res://Scene/level/level_bxgh.tscn":
 		return (_get_eight_immortal_fall_preview().get("items", []) as Array).duplicate()
-	if TargetStagePath == "res://Scene/Level/level_esbxx.tscn":
+	if TargetStagePath == "res://Scene/level/level_esbxx.tscn":
 		return (_get_constellation_fall_preview().get("items", []) as Array).duplicate()
 	return (level_info.get("LevelFall", []) as Array).duplicate()
 
 
 func _get_level_fall_probabilities(level_info: Dictionary) -> Dictionary:
 	if (
-		TargetStagePath == "res://Scene/Level/level_stz.tscn"
+		TargetStagePath == "res://Scene/level/level_stz.tscn"
 		and int(MainSet.set_data.get("Difficult", 0)) == BaseMonster.NIGHTMARE_DIFFICULTY
 	):
 		var probabilities := {}
@@ -2385,9 +2385,9 @@ func _get_level_fall_probabilities(level_info: Dictionary) -> Dictionary:
 		for item_id in _get_human_nightmare_soul_items(level_info):
 			probabilities[item_id] = 25
 		return probabilities
-	if TargetStagePath == "res://Scene/Level/level_bxgh.tscn":
+	if TargetStagePath == "res://Scene/level/level_bxgh.tscn":
 		return (_get_eight_immortal_fall_preview().get("probabilities", {}) as Dictionary).duplicate()
-	if TargetStagePath == "res://Scene/Level/level_esbxx.tscn":
+	if TargetStagePath == "res://Scene/level/level_esbxx.tscn":
 		return (_get_constellation_fall_preview().get("probabilities", {}) as Dictionary).duplicate()
 	return (level_info.get("LevelFallProbability", {}) as Dictionary).duplicate()
 
@@ -2633,7 +2633,7 @@ func add_monster_head():
 func _get_level_monster_config(
 	monster_scene_path: String, explicit_monster_id: int = 0, constellation_tier: int = 0
 ) -> Dictionary:
-	if not TargetStagePath.begins_with("res://Scene/Level/Level_"):
+	if not TargetStagePath.begins_with("res://Scene/level/Level_"):
 		return {}
 	var monster_id := explicit_monster_id
 	if monster_id <= 0:
@@ -2644,7 +2644,7 @@ func _get_level_monster_config(
 		if not monster_id_text.is_valid_int():
 			return {}
 		monster_id = int(monster_id_text)
-	var level_script_path := TargetStagePath.replace("res://Scene/Level/", "res://Script/Level/").get_basename() + ".gd"
+	var level_script_path := TargetStagePath.replace("res://Scene/level/", "res://Script/level/").get_basename() + ".gd"
 	if not ResourceLoader.exists(level_script_path):
 		return {}
 	var level_script = load(level_script_path)
@@ -2733,7 +2733,7 @@ func load_2(name_):
 func _get_nightmare_entry_block_message() -> String:
 	if int(MainSet.set_data.get("Difficult", 0)) != BaseMonster.NIGHTMARE_DIFFICULTY:
 		return ""
-	if TargetStagePath == "res://Scene/Level/level_stz.tscn":
+	if TargetStagePath == "res://Scene/level/level_stz.tscn":
 		return ""
 	if TargetStagePath in HUMAN_NIGHTMARE_LEVEL_PATHS:
 		var cleared_biyou_palace := int(PlayerData.player_data.get("通天教主", 0)) == 1
@@ -2754,24 +2754,24 @@ func _on_challenge_pressed() -> void:
 			Global.add_message_show(_popup_parent(), nightmare_block_message, 1.5, Vector2(470, 300))
 			return
 		if (
-			TargetStagePath == "res://Scene/Level/level_stz.tscn"
+			TargetStagePath == "res://Scene/level/level_stz.tscn"
 			and Global.SelectedThreePrinceId not in [4401, 4402, 4403]
 		):
 			Global.add_message_show(_popup_parent(), "请选择要挑战的太子！", 1.5, Vector2(470, 300))
 			return
 		if (
-			TargetStagePath == "res://Scene/Level/level_esbxx.tscn"
+			TargetStagePath == "res://Scene/level/level_esbxx.tscn"
 			and Global.SelectedConstellationLevel not in range(1, 15)
 		):
 			Global.add_message_show(_popup_parent(), "请选择要挑战的星宿！", 1.5, Vector2(470, 300))
 			return
 		if (
-			TargetStagePath == "res://Scene/Level/level_bxgh.tscn"
+			TargetStagePath == "res://Scene/level/level_bxgh.tscn"
 			and Global.SelectedEightImmortalId not in EIGHT_IMMORTAL_IDS
 		):
 			Global.add_message_show(_popup_parent(), "请选择要挑战的八仙 Boss！", 1.5, Vector2(470, 300))
 			return
-		if TargetStagePath == "res://Scene/Level/level_llbt.tscn":
+		if TargetStagePath == "res://Scene/level/level_llbt.tscn":
 			_open_special_level_popup(TargetStagePath)
 			return
 		elif TargetStagePath == "兜率宫":
@@ -2780,13 +2780,13 @@ func _on_challenge_pressed() -> void:
 		if (
 			TargetStagePath
 			in [
-				"res://Scene/Level/level_stz.tscn",
-				"res://Scene/Level/level_tzsijian.tscn",
-				"res://Scene/Level/level_sssl.tscn",
-				"res://Scene/Level/level_esbxx.tscn"
+				"res://Scene/level/level_stz.tscn",
+				"res://Scene/level/level_tzsijian.tscn",
+				"res://Scene/level/level_sssl.tscn",
+				"res://Scene/level/level_esbxx.tscn"
 			]
 		):
-			if TargetStagePath == "res://Scene/Level/level_esbxx.tscn":
+			if TargetStagePath == "res://Scene/level/level_esbxx.tscn":
 				four_swords_mode_dialog.get_node("BG/Title").text = "28星宿模式"
 			else:
 				four_swords_mode_dialog.get_node("BG/Title").text = "副本模式"
@@ -2810,10 +2810,10 @@ func _on_close_pressed() -> void:
 	if (
 		TargetStagePath
 		in [
-			"res://Scene/Level/level_stz.tscn",
-			"res://Scene/Level/level_tzsijian.tscn",
-			"res://Scene/Level/level_sssl.tscn",
-			"res://Scene/Level/level_esbxx.tscn"
+			"res://Scene/level/level_stz.tscn",
+			"res://Scene/level/level_tzsijian.tscn",
+			"res://Scene/level/level_sssl.tscn",
+			"res://Scene/level/level_esbxx.tscn"
 		]
 	):
 		Global.ThreePrinceEndlessMode = false
@@ -2827,17 +2827,17 @@ func _enter_four_swords_mode(endless_mode: bool) -> void:
 	if (
 		TargetStagePath
 		not in [
-			"res://Scene/Level/level_stz.tscn",
-			"res://Scene/Level/level_tzsijian.tscn",
-			"res://Scene/Level/level_sssl.tscn",
-			"res://Scene/Level/level_esbxx.tscn"
+			"res://Scene/level/level_stz.tscn",
+			"res://Scene/level/level_tzsijian.tscn",
+			"res://Scene/level/level_sssl.tscn",
+			"res://Scene/level/level_esbxx.tscn"
 		]
 	):
 		return
-	Global.ThreePrinceEndlessMode = TargetStagePath == "res://Scene/Level/level_stz.tscn" and endless_mode
-	Global.FourSwordsEndlessMode = TargetStagePath == "res://Scene/Level/level_tzsijian.tscn" and endless_mode
-	Global.SSSLendlessMode = TargetStagePath == "res://Scene/Level/level_sssl.tscn" and endless_mode
-	Global.ConstellationEndlessMode = TargetStagePath == "res://Scene/Level/level_esbxx.tscn" and endless_mode
+	Global.ThreePrinceEndlessMode = TargetStagePath == "res://Scene/level/level_stz.tscn" and endless_mode
+	Global.FourSwordsEndlessMode = TargetStagePath == "res://Scene/level/level_tzsijian.tscn" and endless_mode
+	Global.SSSLendlessMode = TargetStagePath == "res://Scene/level/level_sssl.tscn" and endless_mode
+	Global.ConstellationEndlessMode = TargetStagePath == "res://Scene/level/level_esbxx.tscn" and endless_mode
 	four_swords_mode_dialog.visible = false
 	Global.cleanup_transient_ui()
 	Global.change_scene(TargetStagePath)

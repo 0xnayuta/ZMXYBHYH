@@ -11,8 +11,8 @@ const TOWER_MAX_FLOOR_KEY := "镇妖塔最高层数"
 const TOWER_POINTS_KEY := "镇妖塔积分"
 const TOWER_RUN_POINTS_KEY := "镇妖塔本次闯关积分"
 const TOWER_ACHIEVEMENT_PURCHASE_KEY := "镇妖塔成就商店觉醒石已购次数"
-const TOWER_LEVEL_SCENE_PATH := "res://Scene/Level/level_zhen_yao_tower.tscn"
-const TOWER_LEVEL_SCRIPT := preload("res://Script/Level/level_zhen_yao_tower.gd")
+const TOWER_LEVEL_SCENE_PATH := "res://Scene/level/level_zhen_yao_tower.tscn"
+const TOWER_LEVEL_SCRIPT := preload("res://Script/level/level_zhen_yao_tower.gd")
 const TOWER_FONT := preload("res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf")
 const TOWER_MATERIAL_IDS := [
 	"105000012",

@@ -2,36 +2,36 @@ extends CanvasLayer
 
 const DEFAULT_TARGET_SCENE := "res://Scene/main_menu/main_menu.tscn"
 const MIN_VISIBLE_SECONDS := 0.0
-const HDZM_LEVEL_SCENE := "res://Scene/Level/level_hdzm.tscn"
-const MAIN_SWORD_ARRAY_WEAPON_SCRIPT := preload("res://Script/MagicWeapon/main_sword_array_weapon.gd")
-const BADI_EFFECT_SCRIPT := preload("res://Script/Hero/ba_di_qian_kun_effect.gd")
-const HUOYAN_EFFECT_SCRIPT := preload("res://Script/Hero/wu_shuang_huo_yan_jin_jing_effect.gd")
-const HMZ_AWAKEN_EFFECT_SCRIPT := preload("res://Script/Hero/hmz_awaken_effect.gd")
-const LYFB_AWAKEN_EFFECT_SCRIPT := preload("res://Script/Hero/lyfb_awaken_effect.gd")
-const JHSJ_AWAKEN_EFFECT_SCRIPT := preload("res://Script/Hero/jhsj_awaken_effect.gd")
-const STREAMING_ROLE_BULLET_SCRIPT := preload("res://Script/Hero/streaming_role_bullet.gd")
-const MIRROR_SCRIPT := preload("res://Script/MagicWeapon/mirror.gd")
-const BILUO_EFFECT_SCRIPT := preload("res://Script/Hero/bi_luo_tian_effect.gd")
-const CANG_MU_LONG_YUN_EFFECT_SCRIPT := preload("res://Script/Hero/cang_mu_long_yun_effect.gd")
-const ROLE4_POISON_ARRAY_AWAKEN_EFFECT_SCRIPT := preload("res://Script/Hero/role4_poison_array_awaken_effect.gd")
-const BINGYU_EFFECT_SCRIPT := preload("res://Script/Hero/bing_yu_effect.gd")
-const LEITING_EFFECT_SCRIPT := preload("res://Script/Hero/lei_ting_jie_zhen_effect.gd")
-const SMSR_EFFECT_SCRIPT := preload("res://Script/Hero/smsr_shenqi_lightning_effect.gd")
-const PET_DRAGON_SUMMON_SCRIPT := preload("res://Script/Pet/pet_dragon_summon_base.gd")
-const PET_TURTLE_SUMMON_SCRIPT := preload("res://Script/Pet/pet_turtle_summon_base.gd")
-const PET_TURTLE_BULLET_SCRIPT := preload("res://Script/Pet/pet_turtle_bullet.gd")
-const TZSIJIAN_LEVEL_SCRIPT := preload("res://Script/Level/level_tzsijian.gd")
-const SWORD_BOSS_BASE_SCRIPT := preload("res://Script/Monster/sword_boss_base.gd")
-const MONSTER_BULLET_SCRIPT := preload("res://Script/Monster/monster_bullet.gd")
-const GUANYIN_SUMMON_SCRIPT := preload("res://Script/Monster/Monster_zhw/guanyin_summon.gd")
-const GUANYIN_NORMAL_EFFECT_SCRIPT := preload("res://Script/Monster/Monster_zhw/guanyin_normal_attack_effect.gd")
-const GUANYIN_SKILLA_EFFECT_SCRIPT := preload("res://Script/Monster/Monster_zhw/guanyin_skill_a_effect.gd")
-const GUANYIN_SKILL2_EFFECT_SCRIPT := preload("res://Script/Monster/Monster_zhw/guanyin_skill2_effect.gd")
-const TZSIJIAN_LEVEL_SCENE := "res://Scene/Level/level_tzsijian.tscn"
-const ZHENYAO_TOWER_LEVEL_SCENE := "res://Scene/Level/level_zhen_yao_tower.tscn"
-const WANFO_LEVEL_SCRIPT_PATH := "res://Script/Level/level_61.gd"
+const HDZM_LEVEL_SCENE := "res://Scene/level/level_hdzm.tscn"
+const MAIN_SWORD_ARRAY_WEAPON_SCRIPT := preload("res://Script/magic_weapon/main_sword_array_weapon.gd")
+const BADI_EFFECT_SCRIPT := preload("res://Script/hero/ba_di_qian_kun_effect.gd")
+const HUOYAN_EFFECT_SCRIPT := preload("res://Script/hero/wu_shuang_huo_yan_jin_jing_effect.gd")
+const HMZ_AWAKEN_EFFECT_SCRIPT := preload("res://Script/hero/hmz_awaken_effect.gd")
+const LYFB_AWAKEN_EFFECT_SCRIPT := preload("res://Script/hero/lyfb_awaken_effect.gd")
+const JHSJ_AWAKEN_EFFECT_SCRIPT := preload("res://Script/hero/jhsj_awaken_effect.gd")
+const STREAMING_ROLE_BULLET_SCRIPT := preload("res://Script/hero/streaming_role_bullet.gd")
+const MIRROR_SCRIPT := preload("res://Script/magic_weapon/mirror.gd")
+const BILUO_EFFECT_SCRIPT := preload("res://Script/hero/bi_luo_tian_effect.gd")
+const CANG_MU_LONG_YUN_EFFECT_SCRIPT := preload("res://Script/hero/cang_mu_long_yun_effect.gd")
+const ROLE4_POISON_ARRAY_AWAKEN_EFFECT_SCRIPT := preload("res://Script/hero/role4_poison_array_awaken_effect.gd")
+const BINGYU_EFFECT_SCRIPT := preload("res://Script/hero/bing_yu_effect.gd")
+const LEITING_EFFECT_SCRIPT := preload("res://Script/hero/lei_ting_jie_zhen_effect.gd")
+const SMSR_EFFECT_SCRIPT := preload("res://Script/hero/smsr_shenqi_lightning_effect.gd")
+const PET_DRAGON_SUMMON_SCRIPT := preload("res://Script/pet/pet_dragon_summon_base.gd")
+const PET_TURTLE_SUMMON_SCRIPT := preload("res://Script/pet/pet_turtle_summon_base.gd")
+const PET_TURTLE_BULLET_SCRIPT := preload("res://Script/pet/pet_turtle_bullet.gd")
+const TZSIJIAN_LEVEL_SCRIPT := preload("res://Script/level/level_tzsijian.gd")
+const SWORD_BOSS_BASE_SCRIPT := preload("res://Script/monster/sword_boss_base.gd")
+const MONSTER_BULLET_SCRIPT := preload("res://Script/monster/monster_bullet.gd")
+const GUANYIN_SUMMON_SCRIPT := preload("res://Script/monster/monster_zhw/guanyin_summon.gd")
+const GUANYIN_NORMAL_EFFECT_SCRIPT := preload("res://Script/monster/monster_zhw/guanyin_normal_attack_effect.gd")
+const GUANYIN_SKILLA_EFFECT_SCRIPT := preload("res://Script/monster/monster_zhw/guanyin_skill_a_effect.gd")
+const GUANYIN_SKILL2_EFFECT_SCRIPT := preload("res://Script/monster/monster_zhw/guanyin_skill2_effect.gd")
+const TZSIJIAN_LEVEL_SCENE := "res://Scene/level/level_tzsijian.tscn"
+const ZHENYAO_TOWER_LEVEL_SCENE := "res://Scene/level/level_zhen_yao_tower.tscn"
+const WANFO_LEVEL_SCRIPT_PATH := "res://Script/level/level_61.gd"
 const WANFO_RUNTIME_MONSTER_IDS := [3071, 3076, 3077, 3078, 3080, 3081, 3082]
-const ZHENYAO_TOWER_LEVEL_SCRIPT := preload("res://Script/Level/level_zhen_yao_tower.gd")
+const ZHENYAO_TOWER_LEVEL_SCRIPT := preload("res://Script/level/level_zhen_yao_tower.gd")
 const TZSIJIAN_BG_ROOT := "res://Art/Level/Game3Level/Level_tzsijian/96/bg961_parts"
 const TZSIJIAN_BOSS_IDS := [951, 952, 953, 954]
 
@@ -163,7 +163,7 @@ func _build_archive_preload_paths() -> Array[String]:
 
 	for extra_path in EXTRA_PRELOAD_PATHS:
 		_append_preload_path(unique, str(extra_path))
-	if str(Global.target_scene) == "res://Scene/Level/level_esbxx.tscn":
+	if str(Global.target_scene) == "res://Scene/level/level_esbxx.tscn":
 		var constellation_level := clampi(int(Global.SelectedConstellationLevel), 1, 14)
 		_append_preload_path(unique, "res://Art/Constellations/Background/%d.png" % constellation_level)
 	for role_path in Global.get_current_role_preload_paths():
@@ -192,12 +192,12 @@ func _is_battle_target_scene() -> bool:
 	if (
 		target_path
 		in [
-			"res://Scene/Level/victory.tscn",
-			"res://Scene/Level/defeat.tscn",
+			"res://Scene/level/victory.tscn",
+			"res://Scene/level/defeat.tscn",
 		]
 	):
 		return false
-	return target_path.begins_with("res://Scene/Level/")
+	return target_path.begins_with("res://Scene/level/")
 
 
 func _get_tzsijian_bg_preload_paths() -> Array[String]:
@@ -212,10 +212,10 @@ func _get_tzsijian_bg_preload_paths() -> Array[String]:
 
 func _get_tzsijian_boss_preload_paths() -> Array[String]:
 	var paths: Array[String] = [
-		"res://Scene/MonsterBlood/boss_blood.tscn",
+		"res://Scene/monster_blood/boss_blood.tscn",
 	]
 	for boss_id in TZSIJIAN_BOSS_IDS:
-		paths.append("res://Scene/Monster/Monster_" + str(boss_id) + ".tscn")
+		paths.append("res://Scene/monster/Monster_" + str(boss_id) + ".tscn")
 	return paths
 
 
@@ -230,11 +230,11 @@ func _get_target_first_wave_monster_scene_paths() -> Array[String]:
 			if monster_id <= 0 or seen_ids.has(monster_id):
 				continue
 			seen_ids[monster_id] = true
-			var scene_path := "res://Scene/Monster/Monster_%d.tscn" % monster_id
+			var scene_path := "res://Scene/monster/Monster_%d.tscn" % monster_id
 			if ResourceLoader.exists(scene_path):
 				paths.append(scene_path)
 	if str(Global.target_scene) == TZSIJIAN_LEVEL_SCENE:
-		for special_path in ["res://Scene/Monster/monster_951.tscn", "res://Scene/MonsterBlood/boss_blood.tscn"]:
+		for special_path in ["res://Scene/monster/monster_951.tscn", "res://Scene/monster_blood/boss_blood.tscn"]:
 			if ResourceLoader.exists(special_path) and not paths.has(special_path):
 				paths.append(special_path)
 	return paths

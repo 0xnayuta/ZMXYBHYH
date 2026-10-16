@@ -4,7 +4,7 @@ class_name StreamedPngEffect
 signal finished
 signal frame_ready
 
-const DuplicateTextureAliases = preload("res://Script/Monster/duplicate_texture_aliases.gd")
+const DuplicateTextureAliases = preload("res://Script/monster/duplicate_texture_aliases.gd")
 
 static var _prewarmed_textures: Dictionary = {}
 static var _prewarm_mutex := Mutex.new()

@@ -12,7 +12,7 @@ const BOSS_GUARD_MAGIC_DAMAGE_MULTIPLIER := 4.0 / 9.0
 const BOSS_GUARD_REFLECT_RATE := 0.1
 const BOSS_GUARD_DEF_FLAT_SCALED := 1600
 const BOSS_GUARD_REFLECT_FLAT_SCALED := 5470
-const BOSS_LIFE_MARK_SCRIPT := preload("res://Script/Monster/jiuhua_life_mark.gd")
+const BOSS_LIFE_MARK_SCRIPT := preload("res://Script/monster/jiuhua_life_mark.gd")
 
 @export_enum("蘑菇精:3008", "金钱松:3009", "闵老护法:3019") var monster_kind := 3008
 

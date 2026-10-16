@@ -1,6 +1,6 @@
 extends Node
 
-const HEAVENLY_WAR_GOD_LEVEL := "res://Scene/Level/level_hdzm.tscn"
+const HEAVENLY_WAR_GOD_LEVEL := "res://Scene/level/level_hdzm.tscn"
 
 
 func _on_challenge_pressed() -> void:

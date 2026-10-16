@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Base/base_buff.gd" id="1"]
+[ext_resource type="Script" path="res://Script/base/base_buff.gd" id="1"]
 
 [resource]
 _bundled = {

@@ -890,7 +890,7 @@ func _set_special_preview_tracks(disabled: bool) -> void:
 
 
 func change_body(name_):
-	preload("res://Script/Hero/moon_palace_clothes_effect.gd").sync(role_body, str(name_))
+	preload("res://Script/hero/moon_palace_clothes_effect.gd").sync(role_body, str(name_))
 	if PlayerId == 6:
 		_nezha_body_id = str(name_)
 		return

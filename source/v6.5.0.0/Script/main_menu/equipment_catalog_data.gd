@@ -20,8 +20,8 @@ const ATTRIBUTES := {
 	"vampirism": "吸血",
 	"成长率": "成长率",
 }
-const RECIPE_SCRIPT := preload("res://Script/LDL/recipe_data.gd")
-const MAGIC_INFO_SCRIPT := preload("res://Script/BackPack/magic_weapon_infor.gd")
+const RECIPE_SCRIPT := preload("res://Script/ldl/recipe_data.gd")
+const MAGIC_INFO_SCRIPT := preload("res://Script/back_pack/magic_weapon_infor.gd")
 const HIDDEN_ITEM_IDS := ["fgwxg", "fgwxj", "sbhf", "xczg", "zxttq", "zxttp"]
 
 var equipment: Dictionary = {}
@@ -39,11 +39,11 @@ func initialize(all_equipment: Dictionary) -> void:
 		_register_level(str(level_name), level_info.LevelInfo[level_name])
 
 	for level_id in range(63, 76):
-		level_info.TargetStagePath = "res://Scene/Level/Level_%d.tscn" % level_id
+		level_info.TargetStagePath = "res://Scene/level/Level_%d.tscn" % level_id
 		var info: Dictionary = level_info._get_level_info()
 		_register_level("东胜神洲·" + str(info.get("LevelName", "")), info)
 	level_info.free()
-	var immortal_script := load("res://Script/Level/level_bxgh.gd")
+	var immortal_script := load("res://Script/level/level_bxgh.gd")
 	var immortal_drops: Dictionary = immortal_script.get_script_constant_map()["EIGHT_IMMORTAL_DROP_DATA"]
 	for drop_group in immortal_drops.values():
 		var item_ids: Array[String] = []
@@ -55,10 +55,10 @@ func initialize(all_equipment: Dictionary) -> void:
 		if not recipes.has(result):
 			recipes[result] = []
 		recipes[result].append(recipe)
-	var forge = load("res://Script/LDL/forge.gd").new()
+	var forge = load("res://Script/ldl/forge.gd").new()
 	forge_materials = forge.ItemMaterialList.duplicate(true)
 	forge.free()
-	var shop = load("res://Script/Shop/shop.gd").new()
+	var shop = load("res://Script/shop/shop.gd").new()
 	for category in shop.CUSTOM_SHOP_ITEMS.values():
 		for item in category:
 			shop_items[str(item.get(DataKeys.NAME, ""))] = true

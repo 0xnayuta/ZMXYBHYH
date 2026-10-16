@@ -1,7 +1,7 @@
 extends Game4ImportedLevel
 
-const EMEI_MONSTER_SCRIPT := preload("res://Script/Monster/emei_mountain_monster.gd")
-const EMEI_BOSS_SCRIPT := preload("res://Script/Monster/emei_boss3040.gd")
+const EMEI_MONSTER_SCRIPT := preload("res://Script/monster/emei_mountain_monster.gd")
+const EMEI_BOSS_SCRIPT := preload("res://Script/monster/emei_boss3040.gd")
 
 const EMEI_STAGE_COUNT := 5
 const EMEI_SCREEN_STARTS := [0.0, 1000.0, 2000.0, 3000.0, 3784.0]

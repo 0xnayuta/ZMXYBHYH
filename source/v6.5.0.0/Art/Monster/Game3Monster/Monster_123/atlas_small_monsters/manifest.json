@@ -781,9 +781,9 @@
     ]
   },
   "consumer_scenes": [
-    "res://Scene/Base/base_monster.tscn",
-    "res://Scene/Monster/MonsterBulletSlim/monster123_bullet1.tscn",
-    "res://Scene/Monster/monster_123.tscn"
+    "res://Scene/base/base_monster.tscn",
+    "res://Scene/monster/monster_bullet_slim/monster123_bullet1.tscn",
+    "res://Scene/monster/monster_123.tscn"
   ],
   "monster_ids": [
     123

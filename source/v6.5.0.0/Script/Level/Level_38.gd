@@ -31,10 +31,10 @@ func _apply_hp_multiplier(monster: BaseMonster):
 
 
 func _ready() -> void:
-	load("res://Scene/Monster/monster_119.tscn")
-	load("res://Scene/Monster/monster_118.tscn")
-	load("res://Scene/Monster/monster_120.tscn")
-	load("res://Scene/Monster/monster_122.tscn")
+	load("res://Scene/monster/monster_119.tscn")
+	load("res://Scene/monster/monster_118.tscn")
+	load("res://Scene/monster/monster_120.tscn")
+	load("res://Scene/monster/monster_122.tscn")
 
 	Global.CurrentLevel = "蓬莱岛"
 	Global.add_bgm(self, "res://Music/level/34_bg5.mp3")
@@ -446,4 +446,4 @@ func _on_tp_body_exited(body: Node2D) -> void:
 
 
 func _transport_to_hidden_level():
-	Global.change_scene("res://Scene/Level/level_38_1.tscn")
+	Global.change_scene("res://Scene/level/level_38_1.tscn")

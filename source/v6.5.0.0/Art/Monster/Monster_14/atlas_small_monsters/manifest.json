@@ -580,11 +580,11 @@
     ]
   },
   "consumer_scenes": [
-    "res://Scene/Base/base_monster.tscn",
-    "res://Scene/Monster/MonsterBulletSlim/monster15_bullet.tscn",
-    "res://Scene/Monster/monster_14.tscn",
-    "res://Scene/Monster/monster_15.tscn",
-    "res://Scene/Monster/monster_16.tscn"
+    "res://Scene/base/base_monster.tscn",
+    "res://Scene/monster/monster_bullet_slim/monster15_bullet.tscn",
+    "res://Scene/monster/monster_14.tscn",
+    "res://Scene/monster/monster_15.tscn",
+    "res://Scene/monster/monster_16.tscn"
   ],
   "monster_ids": [
     14,
