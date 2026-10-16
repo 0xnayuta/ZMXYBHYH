@@ -1,68 +1,144 @@
 extends BaseObject
 class_name BaseMonster
 
-const NIGHTMARE_DIFFICULTY: = 3
-const NIGHTMARE_HEALTH_BONUS: = 20000000
-const NIGHTMARE_ATTACK_BONUS: = 40000
-const NIGHTMARE_DEFENSE_BONUS: = 5000
-const NIGHTMARE_HIT_BONUS: = 2000
-const NIGHTMARE_LEVEL_BONUS: = 300
-const NIGHTMARE_DAMAGE_BONUS: = 0.3
-const NIGHTMARE_DAMAGE_REDUCTION: = 0.3
-const UNDERWORLD_NIGHTMARE_HEALTH_BONUS: = 40000000
-const UNDERWORLD_NIGHTMARE_ATTACK_BONUS: = 60000
-const UNDERWORLD_NIGHTMARE_DEFENSE_BONUS: = 9000
-const UNDERWORLD_NIGHTMARE_DAMAGE_BONUS: = 0.6
-const UNDERWORLD_NIGHTMARE_DAMAGE_REDUCTION: = 0.6
-const HEAVEN_NIGHTMARE_HEALTH_BONUS: = 100000000
-const HEAVEN_NIGHTMARE_ATTACK_BONUS: = 100000
-const HEAVEN_NIGHTMARE_DEFENSE_BONUS: = 13000
-const HEAVEN_NIGHTMARE_PENETRATION_BONUS: = 21000
-const HEAVEN_NIGHTMARE_DAMAGE_BONUS: = 1.0
-const HEAVEN_NIGHTMARE_DAMAGE_REDUCTION: = 1.0
-const UNDERWORLD_NIGHTMARE_LEVEL_PATHS: = [
-	"res://Scene/Level/Level_nmg.tscn", 
-	"res://Scene/Level/Level_bgmj.tscn", 
-	"res://Scene/Level/Level_11.tscn", "res://Scene/Level/Level_12.tscn", 
-	"res://Scene/Level/Level_13.tscn", "res://Scene/Level/Level_14.tscn", 
-	"res://Scene/Level/Level_15.tscn", "res://Scene/Level/Level_16.tscn", 
-	"res://Scene/Level/Level_17.tscn", "res://Scene/Level/Level_18.tscn", 
-	"res://Scene/Level/Level_19.tscn", "res://Scene/Level/Level_21.tscn", 
+const NIGHTMARE_DIFFICULTY := 3
+const NIGHTMARE_HEALTH_BONUS := 20000000
+const NIGHTMARE_ATTACK_BONUS := 40000
+const NIGHTMARE_DEFENSE_BONUS := 5000
+const NIGHTMARE_HIT_BONUS := 2000
+const NIGHTMARE_LEVEL_BONUS := 300
+const NIGHTMARE_DAMAGE_BONUS := 0.3
+const NIGHTMARE_DAMAGE_REDUCTION := 0.3
+const UNDERWORLD_NIGHTMARE_HEALTH_BONUS := 40000000
+const UNDERWORLD_NIGHTMARE_ATTACK_BONUS := 60000
+const UNDERWORLD_NIGHTMARE_DEFENSE_BONUS := 9000
+const UNDERWORLD_NIGHTMARE_DAMAGE_BONUS := 0.6
+const UNDERWORLD_NIGHTMARE_DAMAGE_REDUCTION := 0.6
+const HEAVEN_NIGHTMARE_HEALTH_BONUS := 100000000
+const HEAVEN_NIGHTMARE_ATTACK_BONUS := 100000
+const HEAVEN_NIGHTMARE_DEFENSE_BONUS := 13000
+const HEAVEN_NIGHTMARE_PENETRATION_BONUS := 21000
+const HEAVEN_NIGHTMARE_DAMAGE_BONUS := 1.0
+const HEAVEN_NIGHTMARE_DAMAGE_REDUCTION := 1.0
+const UNDERWORLD_NIGHTMARE_LEVEL_PATHS := [
+	"res://Scene/Level/Level_nmg.tscn",
+	"res://Scene/Level/Level_bgmj.tscn",
+	"res://Scene/Level/Level_11.tscn",
+	"res://Scene/Level/Level_12.tscn",
+	"res://Scene/Level/Level_13.tscn",
+	"res://Scene/Level/Level_14.tscn",
+	"res://Scene/Level/Level_15.tscn",
+	"res://Scene/Level/Level_16.tscn",
+	"res://Scene/Level/Level_17.tscn",
+	"res://Scene/Level/Level_18.tscn",
+	"res://Scene/Level/Level_19.tscn",
+	"res://Scene/Level/Level_21.tscn",
 ]
-const HEAVEN_NIGHTMARE_LEVEL_PATHS: = [
-	"res://Scene/Level/Level_23.tscn", "res://Scene/Level/Level_24.tscn", 
-	"res://Scene/Level/Level_25.tscn", "res://Scene/Level/Level_26.tscn", 
-	"res://Scene/Level/Level_27.tscn", "res://Scene/Level/Level_28.tscn", 
-	"res://Scene/Level/Level_29.tscn", "res://Scene/Level/Level_30.tscn", 
-	"res://Scene/Level/Level_pty.tscn", "res://Scene/Level/Level_ymj.tscn", 
-	"res://Scene/Level/Level_dtwd.tscn", 
-	"res://Scene/Level/Level_llbt.tscn", 
-	"res://Scene/Level/Level_dsg_1.tscn", "res://Scene/Level/Level_dsg_2.tscn", 
-	"res://Scene/Level/Level_dsg_3.tscn", "res://Scene/Level/Level_dsg_4.tscn", 
-	"res://Scene/Level/Level_dsg_5.tscn", "兜率宫", 
+const HEAVEN_NIGHTMARE_LEVEL_PATHS := [
+	"res://Scene/Level/Level_23.tscn",
+	"res://Scene/Level/Level_24.tscn",
+	"res://Scene/Level/Level_25.tscn",
+	"res://Scene/Level/Level_26.tscn",
+	"res://Scene/Level/Level_27.tscn",
+	"res://Scene/Level/Level_28.tscn",
+	"res://Scene/Level/Level_29.tscn",
+	"res://Scene/Level/Level_30.tscn",
+	"res://Scene/Level/Level_pty.tscn",
+	"res://Scene/Level/Level_ymj.tscn",
+	"res://Scene/Level/Level_dtwd.tscn",
+	"res://Scene/Level/Level_llbt.tscn",
+	"res://Scene/Level/Level_dsg_1.tscn",
+	"res://Scene/Level/Level_dsg_2.tscn",
+	"res://Scene/Level/Level_dsg_3.tscn",
+	"res://Scene/Level/Level_dsg_4.tscn",
+	"res://Scene/Level/Level_dsg_5.tscn",
+	"兜率宫",
 ]
-const HUMAN_SOUL_CRYSTAL_ITEM_PREFIX: = "human_soul_crystal_"
-const UNDERWORLD_SOUL_CRYSTAL_ITEM_PREFIX: = "underworld_soul_crystal_"
-const HEAVEN_SOUL_CRYSTAL_ITEM_PREFIX: = "heaven_soul_crystal_"
-const HUMAN_NIGHTMARE_NO_DROP_MONSTER_IDS: = [19]
-const UNDERWORLD_NIGHTMARE_SOUL_CRYSTAL_MONSTER_IDS: = [
-	26, 27, 28, 29, 30, 31, 32, 33, 34, 37, 39, 40, 41, 43, 
-	48, 49, 51, 52, 53, 54, 55, 56, 57, 58, 
+const HUMAN_SOUL_CRYSTAL_ITEM_PREFIX := "human_soul_crystal_"
+const UNDERWORLD_SOUL_CRYSTAL_ITEM_PREFIX := "underworld_soul_crystal_"
+const HEAVEN_SOUL_CRYSTAL_ITEM_PREFIX := "heaven_soul_crystal_"
+const HUMAN_NIGHTMARE_NO_DROP_MONSTER_IDS := [19]
+const UNDERWORLD_NIGHTMARE_SOUL_CRYSTAL_MONSTER_IDS := [
+	26,
+	27,
+	28,
+	29,
+	30,
+	31,
+	32,
+	33,
+	34,
+	37,
+	39,
+	40,
+	41,
+	43,
+	48,
+	49,
+	51,
+	52,
+	53,
+	54,
+	55,
+	56,
+	57,
+	58,
 ]
-const HEAVEN_NIGHTMARE_SOUL_CRYSTAL_MONSTER_IDS: = [
-	74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 
-	88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 
-	102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 
-	134, 135, 136, 137, 
+const HEAVEN_NIGHTMARE_SOUL_CRYSTAL_MONSTER_IDS := [
+	74,
+	75,
+	76,
+	77,
+	78,
+	79,
+	80,
+	81,
+	82,
+	83,
+	84,
+	85,
+	86,
+	87,
+	88,
+	89,
+	90,
+	91,
+	92,
+	93,
+	94,
+	95,
+	96,
+	97,
+	98,
+	99,
+	100,
+	101,
+	102,
+	103,
+	104,
+	105,
+	106,
+	107,
+	108,
+	109,
+	110,
+	111,
+	112,
+	113,
+	114,
+	134,
+	135,
+	136,
+	137,
 ]
 
 @onready var buff: Node = $Buff
 var Islljy: bool
 var lpzzs: float
 var tqzbs: float
-var _last_monster_formation: = ""
+var _last_monster_formation := ""
 var _last_monster_formation_level: int = -1
-var _lhhj_drop_disabled: = false
+var _lhhj_drop_disabled := false
 var tszzs: float
 var lpzjs: float
 var NoGrav: bool
@@ -142,12 +218,7 @@ var Therapeutic_effects: float
 var fall_coin
 var my_mr_name
 
-
-enum FallMode{
-	NORMAL, 
-	TREASURE_BOX
-}
-
+enum FallMode { NORMAL, TREASURE_BOX }
 
 var current_fall_mode: FallMode = FallMode.NORMAL
 
@@ -155,14 +226,18 @@ var enable_treasure_box: bool = false
 
 var treasure_box_item: String = ""
 
+
 static func is_underworld_nightmare_path(level_path: String) -> bool:
 	return level_path in UNDERWORLD_NIGHTMARE_LEVEL_PATHS
+
 
 static func is_heaven_nightmare_path(level_path: String) -> bool:
 	return level_path in HEAVEN_NIGHTMARE_LEVEL_PATHS
 
+
 static func uses_heaven_nightmare_attributes(level_path: String) -> bool:
 	return is_heaven_nightmare_path(level_path) or level_path == "res://Scene/Level/Level_stz.tscn"
+
 
 func update_fall_mode():
 	if enable_treasure_box and MainSet.set_data.has("BossTreasureBoxMode") and MainSet.set_data["BossTreasureBoxMode"]:
@@ -171,7 +246,6 @@ func update_fall_mode():
 		if treasure_box_item != "":
 			fall_list = [{"name": treasure_box_item, "value": 1}]
 		else:
-
 			current_fall_mode = FallMode.NORMAL
 			push_warning("Boss 启用了宝箱模式但没有设置 treasure_box_item，降级为普通掉落")
 	else:
@@ -184,7 +258,6 @@ var fall_stone_pro: float
 var fall_list = []
 var independent_fall_list = []
 var fall_stone = []
-
 
 var is_fall = false
 var is_fall_medi = false
@@ -225,19 +298,17 @@ var CannotAttract: bool
 var IsLpz: bool
 var IsLLRD: bool
 @onready var bullet: Node = $Bullet
-@onready var hit_box: CollisionShape2D = $BaseDamageBox / HitBox / HitBox
-@onready var hurt_box: CollisionShape2D = $BaseDamageBox / HurtBox / HurtBox
+@onready var hit_box: CollisionShape2D = $BaseDamageBox/HitBox/HitBox
+@onready var hurt_box: CollisionShape2D = $BaseDamageBox/HurtBox/HurtBox
 @onready var damage_text: Node2D = $damage_text
 @onready var base_damage_box: Node2D = $BaseDamageBox
 @onready var pz: CollisionShape2D = $pz
 @onready var mr_player: AnimationPlayer = $mr_player
-@onready var mr_ani: AnimatedSprite2D = $MonsterDir / mr_ani
+@onready var mr_ani: AnimatedSprite2D = $MonsterDir/mr_ani
 @onready var monster_dir: Node2D = $MonsterDir
 @onready var remove_hurt_bl: Timer = $RemoveHurtBL
 
-
 var level_cache_valid: bool = false
-
 
 var llrdCount: int = 0
 var RunHit: bool
@@ -245,11 +316,11 @@ var RunHitCount: int = 0
 var MonsterDirection: bool = false
 var HitText
 var is_Fly = false
-enum State{
-	other, 
-	Death, 
-	is_top, 
-	is_under, 
+enum State {
+	other,
+	Death,
+	is_top,
+	is_under,
 }
 var hit_name
 var monster_blood_bar: mr_blood_bar
@@ -263,13 +334,14 @@ var _control_movement_tweens: Array = []
 var _hurt_reaction_active: bool = false
 var _hurt_reaction_generation: int = 0
 
-func apply_tower_monster_config(config: Dictionary) -> void :
+
+func apply_tower_monster_config(config: Dictionary) -> void:
 	if config.is_empty():
 		return
 	set_meta("tower_config", config.duplicate(true))
 	SHp = int(config.get("hp", SHp))
 	Hp = SHp
-	var tower_attack: = int(config.get("attack", 0))
+	var tower_attack := int(config.get("attack", 0))
 	def = int(config.get("def", def))
 	mdef = int(config.get("mdef", mdef))
 	crit = int(config.get("crit", crit))
@@ -286,27 +358,26 @@ func apply_tower_monster_config(config: Dictionary) -> void :
 		Critreduce *= 3
 		self_rhp *= 3
 
-
-
 	for attack_name in objattackDic:
 		var attack_data: Variant = objattackDic[attack_name]
 		if attack_data is Dictionary and (attack_data as Dictionary).has("power"):
 			(attack_data as Dictionary)["power"] = tower_attack
 
+
 func SetGra():
 	gravity = -980
+
 
 func CanSetGra():
 	return not NoGrav and not Islljy and not ShouldInSky
 
-func _ready() -> void :
+
+func _ready() -> void:
 	self.SHp = self.SHp + randi_range(0, 1)
 	self.Hp = self.Hp + randi_range(0, 1)
 	$CalmHit.start(CHangeClamCount)
 
-
 	if is_Fly:
-
 		if mr_player.has_animation("Fly_wait"):
 			mr_player.play("Fly_wait")
 		elif mr_player.has_animation("fly_wait"):
@@ -316,33 +387,33 @@ func _ready() -> void :
 		elif mr_player.has_animation("fly"):
 			mr_player.play("fly")
 		else:
-
 			try_play_default_animation()
 	else:
-
 		try_play_default_animation()
 
-	$BaseDamageBox / HitBox / HitBox.disabled = true
+	$BaseDamageBox/HitBox/HitBox.disabled = true
 
 	if MainSet.set_data["NoShowMonsterBody"] == false:
 		monster_dir.visible = false
 
-func _exit_tree() -> void :
+
+func _exit_tree() -> void:
 	_clear_visual_resources(self)
 
-func _clear_visual_resources(node: Node) -> void :
+
+func _clear_visual_resources(node: Node) -> void:
 	if node is AnimatedSprite2D:
-		var animated_sprite: = node as AnimatedSprite2D
+		var animated_sprite := node as AnimatedSprite2D
 		animated_sprite.stop()
 		animated_sprite.sprite_frames = null
 	elif node is Sprite2D:
-		var sprite: = node as Sprite2D
+		var sprite := node as Sprite2D
 		sprite.texture = null
 	for child in node.get_children():
 		_clear_visual_resources(child)
 
-func try_play_default_animation():
 
+func try_play_default_animation():
 	if mr_player.has_animation("wait"):
 		mr_player.play("wait")
 	elif mr_player.has_animation("idle"):
@@ -354,27 +425,18 @@ func try_play_default_animation():
 		print("⚠️ 怪物 ", name, " 没有任何动画")
 
 
-
-
-
-
-
 func get_level_node() -> Node:
-
 	if level_cache_valid and is_instance_valid(BaseLevel_):
 		return BaseLevel_
 
 	if not is_inside_tree():
 		return null
 
-
 	var tree = get_tree()
 	if not tree:
-
 		BaseLevel_ = self
 		level_cache_valid = true
 		return BaseLevel_
-
 
 	var node = get_parent()
 	while node:
@@ -384,13 +446,11 @@ func get_level_node() -> Node:
 			return BaseLevel_
 		node = node.get_parent()
 
-
 	var base_levels = tree.get_nodes_in_group("BaseLevel")
 	if base_levels.size() > 0:
 		BaseLevel_ = base_levels[0]
 		level_cache_valid = true
 		return BaseLevel_
-
 
 	var scene_root = tree.current_scene
 	if scene_root and scene_root.has_node("BaseLevel"):
@@ -398,17 +458,14 @@ func get_level_node() -> Node:
 		level_cache_valid = true
 		return BaseLevel_
 
-
 	var all_nodes = tree.get_nodes_in_group("level_container")
 	if all_nodes.size() > 0:
 		BaseLevel_ = all_nodes[0]
 		level_cache_valid = true
 		return BaseLevel_
 
-
 	BaseLevel_ = tree.current_scene
 	if not BaseLevel_:
-
 		BaseLevel_ = self
 	level_cache_valid = true
 	return BaseLevel_
@@ -418,9 +475,7 @@ func invalidate_level_cache():
 	level_cache_valid = false
 
 
-
-
-func _physics_process(delta: float) -> void :
+func _physics_process(delta: float) -> void:
 	if is_queued_for_deletion() or not is_inside_tree():
 		return
 	_process_boss_protect(delta)
@@ -438,7 +493,6 @@ func _physics_process(delta: float) -> void :
 	else:
 		llrdzs = 1
 	jsfzsy()
-
 
 	var level_node = get_level_node()
 	if not _lhhj_drop_disabled and level_node is Lhhj:
@@ -460,17 +514,8 @@ func _physics_process(delta: float) -> void :
 				var Parent = level_node.monster_blood
 				MyBlood = Global.AddBossBlood_(Parent, self)
 
-
-
-
-
-
-
-
-
 	if self.position.x <= 0:
 		self.position.x = 100
-
 
 	if self.position.y >= 800 and get_meta("allow_position_y_over_800", false) != true:
 		self.position.y = 400
@@ -492,7 +537,6 @@ func _physics_process(delta: float) -> void :
 	count += 1
 	if death():
 		state = State.Death
-
 
 		if has_meta("tower_floor") and not get_meta("death_drops_settled", false):
 			settle_death_drops()
@@ -516,17 +560,18 @@ func _physics_process(delta: float) -> void :
 	if not is_queued_for_deletion() and is_inside_tree():
 		move_and_slide()
 
+
 func _should_run_ai_this_frame() -> bool:
 	if has_target:
 		return true
 	var role_position_x = RoleProp.get_nearest_monster_target_position(global_position).x
 	if role_position_x != null and absf(float(role_position_x) - position.x) < float(mysee):
 		return true
-	var parent: = get_parent()
+	var parent := get_parent()
 	if parent == null:
 		return true
-	var active_count: = parent.get_child_count()
-	var interval: = 1
+	var active_count := parent.get_child_count()
+	var interval := 1
 	if active_count >= 30:
 		interval = 4
 	elif active_count >= 18:
@@ -539,17 +584,20 @@ func _should_run_ai_this_frame() -> bool:
 		return true
 	return int(Engine.get_physics_frames() + _ai_tick_offset) % interval == 0
 
+
 func IsLimitBuff():
 	if is_control_immune():
 		return false
 	return IsMovementLockedByControl() or IsScary
+
 
 func IsMovementLockedByControl() -> bool:
 	if is_control_immune():
 		return false
 	return is_ice or is_stun or is_Immobilize or is_sleep or Islljy or is_EyeFix
 
-func interrupt_movement_for_control() -> void :
+
+func interrupt_movement_for_control() -> void:
 	if is_control_immune():
 		return
 	velocity.x = 0
@@ -561,20 +609,23 @@ func interrupt_movement_for_control() -> void :
 	_control_movement_locked = true
 	if mr_player == null:
 		return
-	var current_animation: = String(mr_player.current_animation)
+	var current_animation := String(mr_player.current_animation)
 	if current_animation in ["walk", "walk_1", "walk_2", "run", "Fly", "fly"]:
-		var idle_animations: = ["Fly_wait", "fly_wait", "wait", "idle"] if is_Fly else ["wait", "idle", "wait_1", "wait_2"]
+		var idle_animations := (
+			["Fly_wait", "fly_wait", "wait", "idle"] if is_Fly else ["wait", "idle", "wait_1", "wait_2"]
+		)
 		for idle_animation in idle_animations:
 			if mr_player.has_animation(idle_animation):
 				mr_player.play(idle_animation)
 				break
 
-func extend_timed_hit_stun(stun_key: String, duration: float = 0.2) -> void :
+
+func extend_timed_hit_stun(stun_key: String, duration: float = 0.2) -> void:
 	if is_control_immune():
 		return
-	var until_key: = stun_key + "_until_msec"
-	var pending_key: = stun_key + "_release_pending"
-	var until_msec: = Time.get_ticks_msec() + int(maxf(duration, 0.0) * 1000.0)
+	var until_key := stun_key + "_until_msec"
+	var pending_key := stun_key + "_release_pending"
+	var until_msec := Time.get_ticks_msec() + int(maxf(duration, 0.0) * 1000.0)
 	set_meta(until_key, maxi(int(get_meta(until_key, 0)), until_msec))
 	is_be_attacking = true
 	interrupt_movement_for_control()
@@ -583,9 +634,10 @@ func extend_timed_hit_stun(stun_key: String, duration: float = 0.2) -> void :
 	set_meta(pending_key, true)
 	call_deferred("_release_timed_hit_stun", until_key, pending_key)
 
-func _release_timed_hit_stun(until_key: String, pending_key: String) -> void :
+
+func _release_timed_hit_stun(until_key: String, pending_key: String) -> void:
 	while is_inside_tree():
-		var remaining_msec: = int(get_meta(until_key, 0)) - Time.get_ticks_msec()
+		var remaining_msec := int(get_meta(until_key, 0)) - Time.get_ticks_msec()
 		if remaining_msec <= 0:
 			break
 		await get_tree().create_timer(float(remaining_msec) / 1000.0, false).timeout
@@ -596,28 +648,34 @@ func _release_timed_hit_stun(until_key: String, pending_key: String) -> void :
 	if not _hurt_reaction_active:
 		is_be_attacking = false
 
+
 func create_control_movement_tween() -> Tween:
-	var movement_tween: = create_tween()
+	var movement_tween := create_tween()
 	_control_movement_tweens.append(movement_tween)
 	movement_tween.finished.connect(_forget_control_movement_tween.bind(movement_tween), CONNECT_ONE_SHOT)
 	return movement_tween
 
-func _forget_control_movement_tween(movement_tween: Tween) -> void :
+
+func _forget_control_movement_tween(movement_tween: Tween) -> void:
 	_control_movement_tweens.erase(movement_tween)
 
-func _kill_control_movement_tweens() -> void :
+
+func _kill_control_movement_tweens() -> void:
 	for movement_tween in _control_movement_tweens:
 		if movement_tween != null and movement_tween.is_valid():
 			movement_tween.kill()
 	_control_movement_tweens.clear()
 
-func _release_control_movement_lock() -> void :
+
+func _release_control_movement_lock() -> void:
 	_control_movement_locked = false
+
 
 func _movement_command_is_blocked() -> bool:
 	return _control_movement_locked or IsMovementLockedByControl() or _hurt_reaction_active
 
-func _recover_interrupted_combat_state() -> void :
+
+func _recover_interrupted_combat_state() -> void:
 	if IsLimitBuff():
 		return
 	if _hurt_reaction_active:
@@ -625,15 +683,15 @@ func _recover_interrupted_combat_state() -> void :
 	if has_meta("pet_tiger_sxhz_hold_until"):
 		return
 	if has_meta("pet_summon_knockback_token"):
-		var knockback_until: = int(get_meta("pet_summon_knockback_until", 0))
+		var knockback_until := int(get_meta("pet_summon_knockback_until", 0))
 		if Time.get_ticks_msec() < knockback_until:
 			return
 		_clear_friendly_knockback_lock(int(get_meta("pet_summon_knockback_token", -1)))
-	var current_animation: = String(mr_player.current_animation)
-	var is_idle_animation: = current_animation in [
-		"", "wait", "idle", "walk", "Fly", "Fly_wait", 
-		"wait_1", "wait_2", "walk_1", "walk_2", "Hands", "can_hurt"
-	]
+	var current_animation := String(mr_player.current_animation)
+	var is_idle_animation := (
+		current_animation
+		in ["", "wait", "idle", "walk", "Fly", "Fly_wait", "wait_1", "wait_2", "walk_1", "walk_2", "Hands", "can_hurt"]
+	)
 	if not mr_player.is_playing() or is_idle_animation:
 		is_attacking = false
 		is_be_attacking = false
@@ -643,7 +701,8 @@ func _recover_interrupted_combat_state() -> void :
 		if "is_special_combo" in self:
 			set("is_special_combo", false)
 
-func _process_boss_protect(delta: float) -> void :
+
+func _process_boss_protect(delta: float) -> void:
 	if not is_boss:
 		boss_current_protect = 0.0
 		boss_protect_active = false
@@ -659,14 +718,16 @@ func _process_boss_protect(delta: float) -> void :
 			boss_current_protect = 0.0
 			_set_boss_protect_transparent(false)
 		return
-	var since_last_hit: = Time.get_ticks_msec() - boss_protect_last_hit_msec
+	var since_last_hit := Time.get_ticks_msec() - boss_protect_last_hit_msec
 	if since_last_hit > BOSS_PROTECT_IDLE_DELAY_MSEC:
 		boss_current_protect = maxf(0.0, boss_current_protect - BOSS_PROTECT_IDLE_DECAY * delta)
-func _add_boss_protect_from_hit(_source: Node) -> void :
+
+
+func _add_boss_protect_from_hit(_source: Node) -> void:
 	if not is_boss or boss_protect_active:
 		return
 	boss_protect_last_hit_msec = Time.get_ticks_msec()
-	var gain: = float(randi_range(BOSS_PROTECT_GAIN_MIN, BOSS_PROTECT_GAIN_MAX))
+	var gain := float(randi_range(BOSS_PROTECT_GAIN_MIN, BOSS_PROTECT_GAIN_MAX))
 	boss_current_protect = minf(boss_max_protect, boss_current_protect + gain)
 	if boss_current_protect >= boss_max_protect:
 		boss_current_protect = boss_max_protect
@@ -676,27 +737,32 @@ func _add_boss_protect_from_hit(_source: Node) -> void :
 		is_be_attacking = false
 		_set_boss_protect_transparent(true)
 
-func _set_boss_protect_transparent(active: bool) -> void :
-	var body_color: = modulate
+
+func _set_boss_protect_transparent(active: bool) -> void:
+	var body_color := modulate
 	body_color.a = 0.5 if active else 1.0
 	modulate = body_color
+
 
 func is_boss_protecting() -> bool:
 	return is_boss and boss_protect_active
 
-func start_spawn_damage_protection(duration: float = 0.75) -> void :
+
+func start_spawn_damage_protection(duration: float = 0.75) -> void:
 	spawn_damage_protection_until_msec = maxi(
-		spawn_damage_protection_until_msec, 
-		Time.get_ticks_msec() + int(maxf(duration, 0.0) * 1000.0)
+		spawn_damage_protection_until_msec, Time.get_ticks_msec() + int(maxf(duration, 0.0) * 1000.0)
 	)
+
 
 func is_spawn_damage_protected() -> bool:
 	return Time.get_ticks_msec() < spawn_damage_protection_until_msec
 
+
 func is_control_immune() -> bool:
 	return IsSuperArmor or is_boss_protecting()
 
-func _enforce_control_immunity_state() -> void :
+
+func _enforce_control_immunity_state() -> void:
 	if not is_control_immune():
 		return
 	is_be_attacking = false
@@ -717,7 +783,9 @@ func _enforce_control_immunity_state() -> void :
 		speed = iniSpeed
 	_kill_control_movement_tweens()
 	_release_control_movement_lock()
-func _process_pet_tiger_sxhz_air_hold() -> void :
+
+
+func _process_pet_tiger_sxhz_air_hold() -> void:
 	if not has_meta("pet_tiger_sxhz_hold_until"):
 		return
 	if is_control_immune():
@@ -735,7 +803,8 @@ func _process_pet_tiger_sxhz_air_hold() -> void :
 		return
 	_release_pet_tiger_sxhz_air_hold()
 
-func _release_pet_tiger_sxhz_air_hold() -> void :
+
+func _release_pet_tiger_sxhz_air_hold() -> void:
 	if has_meta("pet_tiger_sxhz_hold_token"):
 		remove_meta("pet_tiger_sxhz_hold_token")
 	if has_meta("pet_tiger_sxhz_hold_until"):
@@ -750,21 +819,24 @@ func _release_pet_tiger_sxhz_air_hold() -> void :
 	velocity.x = 0
 	velocity.y = 520.0
 
-func begin_friendly_knockback_lock(duration: float) -> void :
+
+func begin_friendly_knockback_lock(duration: float) -> void:
 	if is_control_immune():
 		return
 	_friendly_knockback_generation += 1
-	var knockback_token: = _friendly_knockback_generation
+	var knockback_token := _friendly_knockback_generation
 	set_meta("pet_summon_knockback_token", knockback_token)
 	set_meta("pet_summon_knockback_until", Time.get_ticks_msec() + int(maxf(0.0, duration) * 1000.0))
 	is_be_attacking = true
 	_release_friendly_knockback_lock_after(knockback_token, duration)
 
-func _release_friendly_knockback_lock_after(knockback_token: int, duration: float) -> void :
+
+func _release_friendly_knockback_lock_after(knockback_token: int, duration: float) -> void:
 	await get_tree().create_timer(maxf(0.0, duration), false).timeout
 	_clear_friendly_knockback_lock(knockback_token)
 
-func _clear_friendly_knockback_lock(knockback_token: int) -> void :
+
+func _clear_friendly_knockback_lock(knockback_token: int) -> void:
 	if int(get_meta("pet_summon_knockback_token", -1)) != knockback_token:
 		return
 	remove_meta("pet_summon_knockback_token")
@@ -773,7 +845,8 @@ func _clear_friendly_knockback_lock(knockback_token: int) -> void :
 	if not has_meta("pet_tiger_sxhz_hold_until"):
 		is_be_attacking = false
 
-func _remove_pet_tiger_sxhz_stun_buff() -> void :
+
+func _remove_pet_tiger_sxhz_stun_buff() -> void:
 	if buff == null:
 		return
 	for child in buff.get_children():
@@ -784,13 +857,21 @@ func _remove_pet_tiger_sxhz_stun_buff() -> void :
 			buff.remove_child(child)
 			child.queue_free()
 
+
 func Monster_Intelligence():
 	var role_position_x = RoleProp.get_nearest_monster_target_position(global_position).x
 	if role_position_x == null:
 		return
 	if abs(float(role_position_x) - position.x) < mysee:
 		has_target = true
-	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt() and not is_Immobilize and not Islljy:
+	if (
+		not is_ice
+		and not is_sleep
+		and not is_stun
+		and not cannotchangestatewhenattorbeatt()
+		and not is_Immobilize
+		and not Islljy
+	):
 		if has_target == false:
 			normal_state()
 		else:
@@ -829,6 +910,7 @@ func Monster_Intelligence():
 						if randi_range(0, 100) < attackDesire:
 							attack_target()
 
+
 func RunHit_():
 	if ran_num < 70:
 		if position.x > RoleProp.get_nearest_monster_target_position(global_position).x + randi_range(-60, 60):
@@ -840,8 +922,10 @@ func RunHit_():
 	else:
 		stop_move()
 
+
 func follow_Hero():
 	return abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange
+
 
 func to_hero():
 	if RoleProp.get_nearest_monster_target_position(global_position).x > position.x:
@@ -851,8 +935,8 @@ func to_hero():
 		base_damage_box.scale.x = 1
 		monster_dir.scale.x = 1
 
-func attack_target():
 
+func attack_target():
 	if RoleProp.get_nearest_monster_target_position(global_position).x > position.x:
 		base_damage_box.scale.x = -1
 		monster_dir.scale.x = -1
@@ -868,6 +952,7 @@ func attack_target():
 	is_attacking = false
 	if not is_Fly:
 		stop_move()
+
 
 func normal_state():
 	if is_quiescent:
@@ -893,6 +978,7 @@ func normal_state():
 	else:
 		move_right()
 
+
 func Else_haveTarget():
 	if is_quiescent:
 		return
@@ -908,6 +994,7 @@ func Else_haveTarget():
 	else:
 		stop_move()
 
+
 func have_target():
 	if is_quiescent:
 		return
@@ -921,6 +1008,7 @@ func have_target():
 	elif RoleProp.get_nearest_monster_target_position(global_position).x < position.x - randi_range(65, 85):
 		move_left()
 
+
 func move_left():
 	if _movement_command_is_blocked():
 		if not _hurt_reaction_active:
@@ -930,12 +1018,13 @@ func move_left():
 	monster_dir.scale.x = 1
 
 	if IsScary:
-		velocity.x = - speed * 15
+		velocity.x = -speed * 15
 	else:
-		velocity.x = - speed * 10
-	var movement_animation: = "Fly" if is_Fly else "walk"
+		velocity.x = -speed * 10
+	var movement_animation := "Fly" if is_Fly else "walk"
 	if mr_player.current_animation != movement_animation:
 		mr_player.play(movement_animation)
+
 
 func move_right():
 	if _movement_command_is_blocked():
@@ -949,20 +1038,22 @@ func move_right():
 		velocity.x = speed * 15
 	else:
 		velocity.x = speed * 10
-	var movement_animation: = "Fly" if is_Fly else "walk"
+	var movement_animation := "Fly" if is_Fly else "walk"
 	if mr_player.current_animation != movement_animation:
 		mr_player.play(movement_animation)
+
 
 func move_up():
 	if _movement_command_is_blocked():
 		if not _hurt_reaction_active:
 			velocity.y = 0
 		return
-	velocity.y = - speed * randi_range(7, 9)
+	velocity.y = -speed * randi_range(7, 9)
 	if not is_Fly:
 		mr_player.play("walk")
 	else:
 		mr_player.play("Fly")
+
 
 func move_down():
 	if _movement_command_is_blocked():
@@ -975,27 +1066,28 @@ func move_down():
 	else:
 		mr_player.play("Fly")
 
+
 func stop_move():
 	if _hurt_reaction_active:
 		return
 	velocity.x = 0
-	var idle_animation: = "Fly_wait" if is_Fly else "wait"
+	var idle_animation := "Fly_wait" if is_Fly else "wait"
 	if mr_player.current_animation != idle_animation:
 		mr_player.play(idle_animation)
+
 
 func stop():
 	if _hurt_reaction_active:
 		return
 	velocity.x = 0
 
+
 func turn_towad_role():
 	if RoleProp.get_nearest_monster_target_position(global_position).x < position.x:
 		self.scale.x = 1
 
 	else:
-
 		mr_ani.flip_h = true
-
 
 
 func state_hurt():
@@ -1006,16 +1098,14 @@ func state_hurt():
 		return
 
 	if self is Monster114:
-
 		if get_target.HitDic["hurtBack"][0] != 0 or get_target.HitDic["hurtBack"][1] != 0:
-			var hurt_generation: = _begin_hurt_reaction()
+			var hurt_generation := _begin_hurt_reaction()
 			is_be_attacking = true
 
 			if mr_player.has_animation("hurt"):
 				mr_player.play("hurt")
 				await mr_player.animation_finished
 			else:
-
 				await get_tree().create_timer(0.2).timeout
 			if hurt_generation != _hurt_reaction_generation or is_control_immune() or death() or is_death:
 				return
@@ -1023,9 +1113,8 @@ func state_hurt():
 			_finish_hurt_reaction(hurt_generation)
 		return
 
-
 	if get_target.HitDic["hurtBack"][0] != 0 or get_target.HitDic["hurtBack"][1] != 0:
-		var hurt_generation: = _begin_hurt_reaction()
+		var hurt_generation := _begin_hurt_reaction()
 		is_be_attacking = true
 		velocity.x = 0
 		if is_control_immune() or hurt_generation != _hurt_reaction_generation:
@@ -1042,41 +1131,41 @@ func state_hurt():
 			await get_tree().create_timer(0.2).timeout
 		_finish_hurt_reaction(hurt_generation)
 
+
 func _begin_hurt_reaction() -> int:
 	_hurt_reaction_generation += 1
 	_hurt_reaction_active = true
 	_kill_control_movement_tweens()
 	return _hurt_reaction_generation
 
-func _finish_hurt_reaction(hurt_generation: int) -> void :
+
+func _finish_hurt_reaction(hurt_generation: int) -> void:
 	if hurt_generation != _hurt_reaction_generation:
 		return
 	_hurt_reaction_active = false
 	is_be_attacking = false
 
-func _cancel_hurt_reaction() -> void :
+
+func _cancel_hurt_reaction() -> void:
 	_hurt_reaction_generation += 1
 	_hurt_reaction_active = false
 
 
 func _deferred_hurt_animation():
-
 	if is_control_immune():
 		return
 	if mr_player.has_animation("hurt"):
 		mr_player.play("hurt")
 		await mr_player.animation_finished
 
-
 	if is_control_immune():
 		return
 	try_play_default_animation()
 
 
-
 func little_blood_bar_control():
 	if monster_blood_bar != null:
-		var pet_hit_show: = Time.get_ticks_msec() < int(get_meta("pet_hit_blood_until", 0))
+		var pet_hit_show := Time.get_ticks_msec() < int(get_meta("pet_hit_blood_until", 0))
 		if not is_be_attacking and not pet_hit_show:
 			monster_blood_bar.can_show = false
 			monster_blood_bar.bar_value = float(Hp) / float(SHp)
@@ -1086,13 +1175,13 @@ func little_blood_bar_control():
 			monster_blood_bar.bar_text = Hp
 			monster_blood_bar.can_show = true
 
+
 func set_hd(value, max_value):
 	hd = value
 	max_hd = max_value
 
 
 func be_hit_back(target):
-
 	if hd > 0:
 		return
 	if target == null:
@@ -1122,7 +1211,6 @@ func be_hit_back(target):
 		var bullet = target as MgHit
 		var hero = null
 
-
 		if bullet.source_weapon and bullet.source_weapon is BaseMagicWeapon:
 			hero = bullet.source_weapon.Player
 
@@ -1130,13 +1218,11 @@ func be_hit_back(target):
 			hero = Global.get_player
 
 		if hero and hero is BaseHero:
-
 			if hero.PlayerDir:
 				attack_to_right(bullet.HitDic["hurtBack"])
 			else:
 				attack_to_left(bullet.HitDic["hurtBack"])
 		else:
-
 			if bullet.source_weapon and bullet.source_weapon.mg_action.flip_h:
 				attack_to_right(bullet.HitDic["hurtBack"])
 			else:
@@ -1144,16 +1230,18 @@ func be_hit_back(target):
 	else:
 		return
 
+
 func attack_to_right(list):
 	if is_control_immune():
 		return
 	var sp_x = list[0]
 	var sp_y = list[1]
-	self.velocity.x = - sp_x * 30
+	self.velocity.x = -sp_x * 30
 	if not is_Fly:
 		self.velocity.y = sp_y * 15
 	else:
 		self.velocity.y = sp_y * 3
+
 
 func attack_to_left(list):
 	if is_control_immune():
@@ -1166,9 +1254,8 @@ func attack_to_left(list):
 	else:
 		self.velocity.y = sp_y * 3
 
+
 func state_death():
-
-
 	if not bool(get_meta("counts_as_alive_for_stage_clear", false)):
 		settle_death_drops()
 	if get_meta("sssl_special_boss", false):
@@ -1237,10 +1324,11 @@ func state_death():
 			is_death = true
 			await mr_player.animation_finished
 
-func _finish_sssl_death() -> void :
-	var death_length: = 0.9
+
+func _finish_sssl_death() -> void:
+	var death_length := 0.9
 	if mr_player != null and is_instance_valid(mr_player):
-		var death_animation: = mr_player.get_animation(&"death")
+		var death_animation := mr_player.get_animation(&"death")
 		if death_animation != null:
 			death_length = maxf(float(death_animation.length) + 0.08, 0.25)
 	await get_tree().create_timer(death_length, false).timeout
@@ -1252,20 +1340,18 @@ func get_zcld_multiplier() -> float:
 	if get_Player != null and PlayerData.ChekEqzb("法宝", "zcld"):
 		var level = get_Player.zcld_level
 
-
 		var bonus = 0.2 + level * 0.08
 
 		return 1.0 + min(bonus, 1.0)
 	return 1.0
 
 
-
-
-func settle_death_drops_and_free() -> void :
+func settle_death_drops_and_free() -> void:
 	if is_queued_for_deletion():
 		return
 	settle_death_drops()
 	queue_free()
+
 
 func _is_tower_drop_context() -> bool:
 	if has_meta("tower_floor"):
@@ -1273,13 +1359,13 @@ func _is_tower_drop_context() -> bool:
 	var level_node: Node = get_level_node()
 	return level_node != null and level_node.has_method("on_tower_monster_defeated")
 
-func settle_death_drops() -> void :
+
+func settle_death_drops() -> void:
 	if get_meta("death_drops_settled", false):
 		return
 	set_meta("death_drops_settled", true)
 	if _settle_nightmare_soul_drop():
 		return
-
 
 	if not _is_tower_drop_context():
 		fall_items()
@@ -1289,31 +1375,29 @@ func settle_death_drops() -> void :
 	if has_meta("tower_floor") and level_node != null and level_node.has_method("on_tower_monster_defeated"):
 		level_node.call("on_tower_monster_defeated", self)
 
+
 func _settle_human_nightmare_soul_drop() -> bool:
 	return _settle_nightmare_soul_drop()
 
+
 func _settle_nightmare_soul_drop() -> bool:
-	var difficulty: = int(MainSet.set_data.get("Difficult", 0))
+	var difficulty := int(MainSet.set_data.get("Difficult", 0))
 	if difficulty != NIGHTMARE_DIFFICULTY:
 		return false
-	var monster_id: = _human_soul_crystal_monster_id()
-	var item_id: = ""
-	var is_human_soul_crystal: = monster_id >= 1 and monster_id <= 24
+	var monster_id := _human_soul_crystal_monster_id()
+	var item_id := ""
+	var is_human_soul_crystal := monster_id >= 1 and monster_id <= 24
 	if is_human_soul_crystal:
 		if monster_id in HUMAN_NIGHTMARE_NO_DROP_MONSTER_IDS:
 			set_meta("human_nightmare_soul_drop_settled", true)
 			return true
 		item_id = HUMAN_SOUL_CRYSTAL_ITEM_PREFIX + str(monster_id)
 	elif _is_underworld_nightmare_level():
-
-
 		set_meta("underworld_nightmare_soul_drop_settled", true)
 		if monster_id not in UNDERWORLD_NIGHTMARE_SOUL_CRYSTAL_MONSTER_IDS:
 			return true
 		item_id = UNDERWORLD_SOUL_CRYSTAL_ITEM_PREFIX + str(monster_id)
 	elif _is_heaven_nightmare_level():
-
-
 		set_meta("heaven_nightmare_soul_drop_settled", true)
 		if monster_id not in HEAVEN_NIGHTMARE_SOUL_CRYSTAL_MONSTER_IDS:
 			return true
@@ -1325,10 +1409,10 @@ func _settle_nightmare_soul_drop() -> bool:
 	if has_meta("nightmare_soul_drop_settled"):
 		return true
 	set_meta("nightmare_soul_drop_settled", true)
-	var soul_drop_chance: = _get_human_nightmare_soul_drop_chance()
+	var soul_drop_chance := _get_human_nightmare_soul_drop_chance()
 	if randf() >= soul_drop_chance:
 		return true
-	var level_node: = get_level_node()
+	var level_node := get_level_node()
 	if level_node == null:
 		return true
 	var fall_container: Variant = level_node.get("fall_it")
@@ -1337,35 +1421,40 @@ func _settle_nightmare_soul_drop() -> bool:
 	Global.fall_item(fall_container, Vector2(position.x, position.y - 30), item_id, randi_range(3, 5))
 	return true
 
+
 func _is_underworld_nightmare_level() -> bool:
 	if int(MainSet.set_data.get("Difficult", 0)) != NIGHTMARE_DIFFICULTY:
 		return false
-	var level_node: = get_level_node()
+	var level_node := get_level_node()
 	return level_node != null and is_underworld_nightmare_path(str(level_node.scene_file_path))
+
 
 func _is_heaven_nightmare_level() -> bool:
 	if int(MainSet.set_data.get("Difficult", 0)) != NIGHTMARE_DIFFICULTY:
 		return false
-	var level_node: = get_level_node()
+	var level_node := get_level_node()
 	return level_node != null and is_heaven_nightmare_path(str(level_node.scene_file_path))
 
+
 func _get_human_nightmare_soul_drop_chance() -> float:
-	var soul_drop_chance: = 0.25
+	var soul_drop_chance := 0.25
 	if RoleProp.SourcePlayer != null and RoleProp.SourcePlayer.IsDoubleFallPro:
 		soul_drop_chance = clampf(soul_drop_chance * 2.0, 0.0, 1.0)
 	return soul_drop_chance
 
+
 func _human_soul_crystal_monster_id() -> int:
 	var candidates: Array[String] = [str(scene_file_path), str(name)]
-	var monster_script: = get_script() as Script
+	var monster_script := get_script() as Script
 	if monster_script != null:
 		candidates.append(str(monster_script.resource_path))
 	var id_pattern: RegEx = RegEx.create_from_string("(?:^|/)Monster_?(\\d+)(?:\\.(?:tscn|gd))?$")
 	for candidate in candidates:
-		var match : RegExMatch = id_pattern.search(str(candidate).replace("\\", "/"))
+		var match: RegExMatch = id_pattern.search(str(candidate).replace("\\", "/"))
 		if match != null:
-			return int(match .get_string(1))
+			return int(match.get_string(1))
 	return 0
+
 
 func fall_items():
 	if _settle_nightmare_soul_drop():
@@ -1374,7 +1463,7 @@ func fall_items():
 		return
 	ran_1 = randf_range(0, 1)
 	if fall_list.size() > 0 and is_fall == false:
-		var loc_4 = randi_range(0, (fall_list.size() - 1))
+		var loc_4 = randi_range(0, fall_list.size() - 1)
 		var loc_2 = fall_list[loc_4]["name"]
 		var loc_3 = fall_list[loc_4]["value"]
 		var effective_fall_pro = Global.get_current_level_fall_pro(float(fall_pro))
@@ -1383,40 +1472,41 @@ func fall_items():
 			var level_node = get_level_node()
 			Global.fall_item(level_node.fall_it, Vector2(self.position.x, self.position.y - 30), loc_2, loc_3)
 			is_fall = true
-	var direct_pet_drop_added: = false
+	var direct_pet_drop_added := false
 	for independent_drop in independent_fall_list:
-		var difficulty_index: = clampi(int(MainSet.set_data.get("Difficult", 0)), 0, 3)
+		var difficulty_index := clampi(int(MainSet.set_data.get("Difficult", 0)), 0, 3)
 		var difficulty_multiplier: float = [1.0, 2.0, 3.0, 3.0][difficulty_index]
-		var drop_chance: = clampf(float(independent_drop.get("chance", 0.0)) * difficulty_multiplier, 0.0, 1.0)
+		var drop_chance := clampf(float(independent_drop.get("chance", 0.0)) * difficulty_multiplier, 0.0, 1.0)
 		if RoleProp.SourcePlayer != null and RoleProp.SourcePlayer.IsDoubleFallPro:
 			drop_chance = clampf(drop_chance * 2.0, 0.0, 1.0)
-		var independent_roll: = randf()
+		var independent_roll := randf()
 		if independent_roll <= drop_chance:
-			var minimum_value: = int(independent_drop.get("min_value", independent_drop.get("value", 1)))
-			var maximum_value: = int(independent_drop.get("max_value", minimum_value))
+			var minimum_value := int(independent_drop.get("min_value", independent_drop.get("value", 1)))
+			var maximum_value := int(independent_drop.get("max_value", minimum_value))
 			if maximum_value < minimum_value:
-				var swap_value: = minimum_value
+				var swap_value := minimum_value
 				minimum_value = maximum_value
 				maximum_value = swap_value
-			var drop_value: = randi_range(minimum_value, maximum_value)
+			var drop_value := randi_range(minimum_value, maximum_value)
 			if bool(independent_drop.get("direct_to_pet_backpack", false)):
-				direct_pet_drop_added = _add_direct_pet_backpack_drop(independent_drop, drop_value) or direct_pet_drop_added
+				direct_pet_drop_added = (
+					_add_direct_pet_backpack_drop(independent_drop, drop_value) or direct_pet_drop_added
+				)
 				continue
 			var independent_level_node = get_level_node()
 			if independent_level_node != null:
 				var spawn_offset_value: Variant = independent_drop.get("spawn_offset", Vector2.ZERO)
-				var spawn_offset: = spawn_offset_value as Vector2\
-				if spawn_offset_value is Vector2 else Vector2.ZERO
+				var spawn_offset := spawn_offset_value as Vector2 if spawn_offset_value is Vector2 else Vector2.ZERO
 				Global.fall_item(
-					independent_level_node.fall_it, 
-					Vector2(self.position.x, self.position.y - 30) + spawn_offset, 
-					String(independent_drop.get("name", "")), 
+					independent_level_node.fall_it,
+					Vector2(self.position.x, self.position.y - 30) + spawn_offset,
+					String(independent_drop.get("name", "")),
 					drop_value
 				)
 	if direct_pet_drop_added:
 		_save_direct_pet_backpack_drop()
 	if int(MainSet.set_data.get("Difficult", 0)) == 2:
-		var hell_box_fall_pro: = 0.2
+		var hell_box_fall_pro := 0.2
 		if RoleProp.SourcePlayer != null and RoleProp.SourcePlayer.IsDoubleFallPro:
 			hell_box_fall_pro *= 2.0
 		hell_box_fall_pro = clampf(hell_box_fall_pro, 0.0, 1.0)
@@ -1425,23 +1515,24 @@ func fall_items():
 			if hell_level_node != null:
 				Global.fall_item(hell_level_node.fall_it, Vector2(self.position.x, self.position.y - 30), "qhsbx", 1)
 
+
 func _add_direct_pet_backpack_drop(drop: Dictionary, amount: int) -> bool:
 	if not PlayerData.has_method("add_pet_backpack_item"):
 		return false
-	var item_id: = str(drop.get("name", "")).strip_edges()
+	var item_id := str(drop.get("name", "")).strip_edges()
 	if item_id == "":
 		return false
 	var data_value: Variant = drop.get("data", {})
 	var data_override: Dictionary = data_value if data_value is Dictionary else {}
 	return int(PlayerData.call("add_pet_backpack_item", item_id, amount, data_override)) > 0
 
-func _save_direct_pet_backpack_drop() -> void :
-	var save_path: = str(Global.cd_path)
+
+func _save_direct_pet_backpack_drop() -> void:
+	var save_path := str(Global.cd_path)
 	if save_path != "" and save_path.contains("Ar_") and FileAccess.file_exists(save_path):
 		if not MemoryClass.request_background_save(save_path):
-
-
 			MemoryClass.保存游戏(save_path)
+
 
 func fall_medicine():
 	if _settle_nightmare_soul_drop():
@@ -1465,6 +1556,7 @@ func fall_medicine():
 			Global.fall_item(level_node.fall_it, Vector2(self.position.x, self.position.y - 30), "peach", 0)
 		is_fall_medi = true
 
+
 func fall_stone_():
 	if _settle_nightmare_soul_drop():
 		return
@@ -1474,7 +1566,7 @@ func fall_stone_():
 	if PlayerData.ChekEqzb("头衔", "xczg"):
 		fall_stone_pro = 100
 	if fall_stone.size() > 0:
-		var loc_1 = randi_range(0, (fall_stone.size() - 1))
+		var loc_1 = randi_range(0, fall_stone.size() - 1)
 		var loc_2 = fall_stone[loc_1]["name"]
 		var loc_3 = fall_stone[loc_1]["value"]
 		if ran_4 <= float(fall_stone_pro):
@@ -1483,17 +1575,18 @@ func fall_stone_():
 
 	pass
 
+
 func death():
 	return Hp <= 0
 
-func _on_hurt_box_area_entered(area: Area2D) -> void :
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if death() or is_death or is_spawn_damage_protected():
 		return
 	if is_boss and boss_protect_active:
 		return
 	if _is_summon_or_pet_hit_area(area):
 		return
-
 
 	if area is BaseRoleHitBox or area is RolehmzBullet:
 		get_target = get_Player
@@ -1536,12 +1629,23 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 	has_target = true
 	Global.TotalHitCount += 1
 	if source_player.Istsz:
-		var tsz_level: = int(PlayerData.player_data["腾蛇阵"]["Level"])
+		var tsz_level := int(PlayerData.player_data["腾蛇阵"]["Level"])
 		source_player.tszzs = tsz_level * 0.015
 	else:
 		source_player.tszzs = 0.0
 
-	var last_hurt: = int(float(get_Role_last_hurt(source_target)) * RoleProp.ws_up_power * jgz_bl * zznh_bl * HurtBl * (1.0 + lpzzs) * (1.0 + source_player.tszzs) * llrdzs)
+	var last_hurt := int(
+		(
+			float(get_Role_last_hurt(source_target))
+			* RoleProp.ws_up_power
+			* jgz_bl
+			* zznh_bl
+			* HurtBl
+			* (1.0 + lpzzs)
+			* (1.0 + source_player.tszzs)
+			* llrdzs
+		)
+	)
 	last_hurt = int(HurtReduceHp(last_hurt, source_target))
 	GetHurt = last_hurt
 	if source_player.is_DeadLink:
@@ -1584,8 +1688,8 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 func _is_summon_or_pet_hit_area(area: Area2D) -> bool:
 	if area == null or not is_instance_valid(area):
 		return false
-	var parent: = area.get_parent()
-	var owner: = parent.get_parent() if parent != null else null
+	var parent := area.get_parent()
+	var owner := parent.get_parent() if parent != null else null
 	if owner == null or not is_instance_valid(owner):
 		return false
 	if owner.get_meta("pet_tiger_unit", false) or owner.get_meta("is_summon", false):
@@ -1617,13 +1721,13 @@ func Role5Bullet(last_hurt, source_target = null):
 	if randi_range(0, 100) > 15:
 		return
 	var HurtValue = int(last_hurt * 0.3 + (SLevel * 0.02))
-	Global.addRoleBullet_(get_Player.Bullet, Vector2(position.x, position.y + 30), false, "Role5Bullet6", 
-	{
-		"power": HurtValue, 
-		"hurtBack": [0, 0], 
-		"attackKind": "real", 
-		"WSValue": 5
-	})
+	Global.addRoleBullet_(
+		get_Player.Bullet,
+		Vector2(position.x, position.y + 30),
+		false,
+		"Role5Bullet6",
+		{"power": HurtValue, "hurtBack": [0, 0], "attackKind": "real", "WSValue": 5}
+	)
 	var bl = 1 + (SLevel * 0.2)
 	get_Player.cure_Hp(HurtValue * bl)
 
@@ -1658,23 +1762,23 @@ func _get_damage_source_player(target) -> BaseHero:
 	return null
 
 
-func _apply_damage_vampirism(target, effective_damage: int) -> void :
+func _apply_damage_vampirism(target, effective_damage: int) -> void:
 	if effective_damage <= 0 or target == null:
 		return
 	var attack_data_value: Variant = target.get("HitDic")
 	if not attack_data_value is Dictionary:
 		return
 	var attack_data: Dictionary = attack_data_value
-	var attack_kind: = str(attack_data.get("attackKind", ""))
+	var attack_kind := str(attack_data.get("attackKind", ""))
 	if attack_kind not in ["physics", "magic", "real"]:
 		return
-	var source_player: = _get_damage_source_player(target)
+	var source_player := _get_damage_source_player(target)
 	if source_player == null or not is_instance_valid(source_player):
 		return
-	var vampirism_rate: = maxf(0.0, float(RoleProp.roleprop.get("vampirism", 0.0)))
+	var vampirism_rate := maxf(0.0, float(RoleProp.roleprop.get("vampirism", 0.0)))
 	if vampirism_rate <= 0.0:
 		return
-	var heal_value: = maxi(1, int(float(effective_damage) * vampirism_rate))
+	var heal_value := maxi(1, int(float(effective_damage) * vampirism_rate))
 	source_player.cure_Hp(heal_value)
 
 
@@ -1689,7 +1793,14 @@ func get_Role_last_hurt(target):
 	var Level: int = 0
 	var Lucky = 0
 	var HurtLx: String = "real"
-	if target is BaseHero or target is BaseMagicWeapon or target is RoleBullet1 or target is RoleBullet or target is MgHit or target is Role1Shallow:
+	if (
+		target is BaseHero
+		or target is BaseMagicWeapon
+		or target is RoleBullet1
+		or target is RoleBullet
+		or target is MgHit
+		or target is Role1Shallow
+	):
 		Miss = miss - RoleProp.roleprop.Htarget
 		Crit = RoleProp.roleprop.Crit - Critreduce
 		LastDef = def - RoleProp.roleprop.ar
@@ -1710,12 +1821,11 @@ func get_Role_last_hurt(target):
 		Hurt = target.HitDic["power"]
 		HurtLx = target.HitDic["attackKind"]
 	else:
-
 		Hurt = target.LastValue
 		HurtLx = str(target.BuffInfo.get("AttackKind", ""))
-	var source_player: = RoleProp.SourcePlayer as BaseHero
+	var source_player := RoleProp.SourcePlayer as BaseHero
 	if source_player != null and is_instance_valid(source_player):
-		var monster149_buff_until: = int(source_player.get_meta("monster149_buff_until", 0))
+		var monster149_buff_until := int(source_player.get_meta("monster149_buff_until", 0))
 		if monster149_buff_until > 0:
 			if Time.get_ticks_msec() < monster149_buff_until:
 				Hurt = int(float(Hurt) / 2.0)
@@ -1748,7 +1858,7 @@ func get_Role_last_hurt(target):
 	if LastMdef <= 0:
 		LastMdef = 0
 	if IsDefeReduce:
-		var defense_reduction: = get_effective_defense_reduction()
+		var defense_reduction := get_effective_defense_reduction()
 		LastDef *= 1.0 - defense_reduction
 		LastMdef *= 1.0 - defense_reduction
 	if Lucky <= 0:
@@ -1790,12 +1900,14 @@ func get_Role_last_hurt(target):
 			return 0
 	return Hurt
 
+
 func _apply_role_damage_vs_reduction(value: int) -> int:
 	if value <= 0:
 		return value
-	var bonus: = maxf(0.0, float(RoleProp.roleprop.get("damage_bonus", 0.0)))
-	var reduction: = maxf(0.0, damage_reduction)
+	var bonus := maxf(0.0, float(RoleProp.roleprop.get("damage_bonus", 0.0)))
+	var reduction := maxf(0.0, damage_reduction)
 	return int(float(value) * maxf(0.0, 1.0 + bonus - reduction))
+
 
 func reduce_hp(value: int):
 	if is_spawn_damage_protected():
@@ -1838,8 +1950,8 @@ func reduce_pet_hp(value: int, attack_kind: String) -> int:
 		return 0
 	if IsIndestructible and value >= Hp:
 		return 0
-	var damage_kind: = attack_kind if attack_kind in ["physics", "magic"] else "real"
-	var last_value: = int(hd_reduce(value))
+	var damage_kind := attack_kind if attack_kind in ["physics", "magic"] else "real"
+	var last_value := int(hd_reduce(value))
 	Hp -= last_value
 	total_hurt += last_value
 	Global.TotalRoleHit += last_value
@@ -1851,9 +1963,9 @@ func reduce_pet_hp(value: int, attack_kind: String) -> int:
 		_:
 			Global.TotalRealHit += last_value
 	if last_value > 0:
-		var level_node: = get_level_node()
+		var level_node := get_level_node()
 		if level_node != null:
-			var text_position: = Vector2(position.x - 20, position.y - 240)
+			var text_position := Vector2(position.x - 20, position.y - 240)
 			Global.addDamageText(level_node, text_position, last_value, damage_kind, is_crit, self)
 	is_crit = false
 	is_miss = false
@@ -1869,35 +1981,55 @@ func resolve_friendly_damage(base_damage: int, attack_kind: String, attacker: No
 	is_miss = false
 	if base_damage <= 0:
 		return 0
-	var damage_source: = attacker
+	var damage_source := attacker
 	if damage_source != null and is_instance_valid(damage_source) and damage_source.has_meta("summoner"):
 		var summon_owner: Variant = damage_source.get_meta("summoner", null)
 		if summon_owner is Node and is_instance_valid(summon_owner):
 			damage_source = summon_owner
-	if damage_source != null and is_instance_valid(damage_source) and damage_source.has_method("get_gxp_damage_multiplier"):
-		var gxp_multiplier: = maxf(1.0, float(damage_source.call("get_gxp_damage_multiplier")))
+	if (
+		damage_source != null
+		and is_instance_valid(damage_source)
+		and damage_source.has_method("get_gxp_damage_multiplier")
+	):
+		var gxp_multiplier := maxf(1.0, float(damage_source.call("get_gxp_damage_multiplier")))
 		base_damage = maxi(1, int(round(float(base_damage) * gxp_multiplier)))
-	var owner_hit: = int(attacker.get("Htarget")) if attacker != null and is_instance_valid(attacker) and "Htarget" in attacker else 0
-	var target_miss: = maxi(0, int(miss) - owner_hit)
-	var miss_chance: = float(target_miss) / float(target_miss + 70) if target_miss > 0 else 0.0
+	var owner_hit := (
+		int(attacker.get("Htarget"))
+		if attacker != null and is_instance_valid(attacker) and "Htarget" in attacker
+		else 0
+	)
+	var target_miss := maxi(0, int(miss) - owner_hit)
+	var miss_chance := float(target_miss) / float(target_miss + 70) if target_miss > 0 else 0.0
 	if miss_chance > 0.0 and randf() < miss_chance:
 		is_miss = true
 		return 0
-	var owner_crit: = int(attacker.get("crit")) if attacker != null and is_instance_valid(attacker) and "crit" in attacker else 0
-	var effective_crit: = maxi(0, owner_crit - int(Critreduce))
-	var crit_chance: = float(effective_crit) / (float(effective_crit) + 100.0) if effective_crit > 0 else 0.0
-	var resolved_damage: = base_damage
+	var owner_crit := (
+		int(attacker.get("crit")) if attacker != null and is_instance_valid(attacker) and "crit" in attacker else 0
+	)
+	var effective_crit := maxi(0, owner_crit - int(Critreduce))
+	var crit_chance := float(effective_crit) / (float(effective_crit) + 100.0) if effective_crit > 0 else 0.0
+	var resolved_damage := base_damage
 	if crit_chance > 0.0 and randf() < crit_chance:
-		var owner_lucky: = int(attacker.get("lucky")) if attacker != null and is_instance_valid(attacker) and "lucky" in attacker else 0
-		var effective_lucky: = maxi(0, owner_lucky - int(Toughness))
-		var crit_multiplier: = 2.0 + float(effective_lucky) / (float(effective_lucky) + 100.0) if effective_lucky > 0 else 2.0
+		var owner_lucky := (
+			int(attacker.get("lucky"))
+			if attacker != null and is_instance_valid(attacker) and "lucky" in attacker
+			else 0
+		)
+		var effective_lucky := maxi(0, owner_lucky - int(Toughness))
+		var crit_multiplier := (
+			2.0 + float(effective_lucky) / (float(effective_lucky) + 100.0) if effective_lucky > 0 else 2.0
+		)
 		resolved_damage = int(float(base_damage) * crit_multiplier)
 		is_crit = true
 		Global.TotalCritCount += 1
 	if attack_kind in ["physics", "magic"]:
-		var penetration_name: = "ar" if attack_kind == "physics" else "sp"
-		var penetration: = int(attacker.get(penetration_name)) if attacker != null and is_instance_valid(attacker) and penetration_name in attacker else 0
-		var defense: = int(def) if attack_kind == "physics" else int(mdef)
+		var penetration_name := "ar" if attack_kind == "physics" else "sp"
+		var penetration := (
+			int(attacker.get(penetration_name))
+			if attacker != null and is_instance_valid(attacker) and penetration_name in attacker
+			else 0
+		)
+		var defense := int(def) if attack_kind == "physics" else int(mdef)
 		defense = maxi(0, defense - penetration)
 		if IsDefeReduce:
 			defense = maxi(0, int(float(defense) * (1.0 - get_effective_defense_reduction())))
@@ -1912,7 +2044,7 @@ func _get_friendly_damage_taken_multiplier() -> float:
 
 
 func receive_friendly_damage(base_damage: int, attack_kind: String, attacker: Node = null) -> int:
-	var resolved_damage: = resolve_friendly_damage(base_damage, attack_kind, attacker)
+	var resolved_damage := resolve_friendly_damage(base_damage, attack_kind, attacker)
 	if resolved_damage <= 0:
 		return 0
 	return reduce_pet_hp(resolved_damage, attack_kind)
@@ -1921,10 +2053,10 @@ func receive_friendly_damage(base_damage: int, attack_kind: String, attacker: No
 func receive_reflected_damage(base_damage: int, attack_kind: String, penetration: int = 0) -> int:
 	if base_damage <= 0:
 		return 0
-	var damage_kind: = attack_kind if attack_kind in ["physics", "magic"] else "real"
-	var resolved_damage: = base_damage
+	var damage_kind := attack_kind if attack_kind in ["physics", "magic"] else "real"
+	var resolved_damage := base_damage
 	if damage_kind in ["physics", "magic"]:
-		var defense: = int(def) if damage_kind == "physics" else int(mdef)
+		var defense := int(def) if damage_kind == "physics" else int(mdef)
 		defense = maxi(0, defense - maxi(0, penetration))
 		if IsDefeReduce:
 			defense = maxi(0, int(float(defense) * (1.0 - get_effective_defense_reduction())))
@@ -1939,7 +2071,12 @@ func receive_reflected_damage(base_damage: int, attack_kind: String, penetration
 func HurtReduceHp(value, target):
 	if death() or is_death or is_spawn_damage_protected():
 		return 0
-	var skip_mds_combo: bool = value > 0 and target is BaseBuff and str(target.BuffInfo.get("Name", "")) == "Voodoo" and _is_mds_awaken_active()
+	var skip_mds_combo: bool = (
+		value > 0
+		and target is BaseBuff
+		and str(target.BuffInfo.get("Name", "")) == "Voodoo"
+		and _is_mds_awaken_active()
+	)
 	if Global.is_hidden_feature_enabled(Global.HIDDEN_FEATURE_INSTANT_KILL) and value > 0:
 		value = maxi(int(value), Hp)
 	if Monster_18_protect():
@@ -1969,14 +2106,23 @@ func HurtReduceHp(value, target):
 	is_miss = false
 	return int(last_value)
 
+
 func addHurtText(value, target):
-	if value <= 0 and not is_miss: return
+	if value <= 0 and not is_miss:
+		return
 	if target == null:
 		return
 	if target is Object and target.has_meta("sword_array_damage") and target.get_meta("sword_array_damage"):
 		if not Global.can_show_sword_damage_text():
 			return
-	if target is BaseHero or target is BaseMagicWeapon or target is RoleBullet1 or target is RoleBullet or target is MgHit or target is Role1Shallow:
+	if (
+		target is BaseHero
+		or target is BaseMagicWeapon
+		or target is RoleBullet1
+		or target is RoleBullet
+		or target is MgHit
+		or target is Role1Shallow
+	):
 		var HurtLx = target.HitDic["attackKind"]
 		if is_miss:
 			var level_node = get_level_node()
@@ -1991,6 +2137,7 @@ func addHurtText(value, target):
 		var level_node = get_level_node()
 		var po = Vector2(self.position.x - 20, self.position.y - 240)
 		Global.addDamageText(level_node, po, value, HurtLx, is_crit, self)
+
 
 func hd_reduce(value):
 	value = _apply_role_damage_vs_reduction(int(value))
@@ -2009,6 +2156,8 @@ func hd_reduce(value):
 		last_value = 0
 	hd -= value
 	return last_value
+
+
 func cure_hp(value: int):
 	if Hp <= 0:
 		return
@@ -2024,6 +2173,7 @@ func cure_hp(value: int):
 		var level_node = get_level_node()
 		var po = Vector2(self.position.x - 20, self.position.y - 240)
 		Global.addDamageText(level_node, po, value, "cure", false, self)
+
 
 func remove_CD():
 	if Skill_1_CD >= 0:
@@ -2043,11 +2193,14 @@ func remove_CD():
 	if Skill_8_CD >= 0:
 		Skill_8_CD -= 1
 
-func _on_cd_remove_timeout() -> void :
+
+func _on_cd_remove_timeout() -> void:
 	remove_CD()
+
 
 func Level_suppression(Level):
 	return level - Level > 0
+
 
 func is_suppression_num(Level):
 	var num: int
@@ -2057,6 +2210,7 @@ func is_suppression_num(Level):
 		num = level - Level
 	return num
 
+
 func not_suppression_num(Level):
 	var num: int
 	if Level - level > 2:
@@ -2065,44 +2219,56 @@ func not_suppression_num(Level):
 		num = Level - level
 	return num
 
-func _on_change_state_timeout() -> void :
+
+func _on_change_state_timeout() -> void:
 	ran_num = randi_range(0, 100)
+
 
 func do_hit_1():
 	pass
 
+
 func do_hit_2():
 	pass
+
 
 func do_hit_2_2():
 	pass
 
+
 func do_hit_3():
 	pass
+
 
 func do_hit_3_2():
 	pass
 
+
 func do_hit_4():
 	pass
+
 
 func do_hit_5():
 	pass
 
+
 func do_hit_6():
 	pass
 
+
 func set_position_(x: int, y: int):
 	if mr_ani.flip_h == false:
-		mr_ani.position.x = - x
+		mr_ani.position.x = -x
 	elif mr_ani.flip_h == true:
 		mr_ani.position.x = x
 	mr_ani.position.y = y
 
+
 func cannotchangestatewhenattorbeatt():
 	return is_attacking or is_be_attacking or _hurt_reaction_active
 
-func _interrupt_attack_state_on_hit() -> void :
+
+func _interrupt_attack_state_on_hit() -> void:
 	if is_control_immune():
 		return
 	_cancel_hurt_reaction()
@@ -2115,6 +2281,7 @@ func _interrupt_attack_state_on_hit() -> void :
 	if not has_meta("pet_summon_knockback_token") and not has_meta("pet_tiger_sxhz_hold_until"):
 		is_be_attacking = false
 
+
 func check_hp():
 	if Hp >= SHp:
 		Hp = SHp
@@ -2122,9 +2289,10 @@ func check_hp():
 		Hp = 0
 
 
-func _on_spontaneous_recovery_timeout() -> void :
+func _on_spontaneous_recovery_timeout() -> void:
 	if Hp < SHp and not death():
 		cure_hp(self_rhp)
+
 
 func get_hd(value: int, hit_bl: float, hurt_bl: float):
 	var hd_1 = int(total_hit * hit_bl)
@@ -2136,11 +2304,10 @@ func get_hd(value: int, hit_bl: float, hurt_bl: float):
 	total_hit = 0
 	total_hurt = 0
 
+
 func remove_hd():
 	hd = 0
 	max_hd = 0
-
-
 
 
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
@@ -2156,13 +2323,12 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 	if rro == null:
 		return buff_target
 
-
 	var buff_node = null
 	var methods_to_try = [
-		func(): return rro.get_node("buff") if rro.has_node("buff") else null, 
-		func(): return rro.get_node("Buff") if rro.has_node("Buff") else null, 
-		func(): return rro.get("buff") if rro.has("buff") else null, 
-		func(): return rro.get("Buff") if rro.has("Buff") else null, 
+		func(): return rro.get_node("buff") if rro.has_node("buff") else null,
+		func(): return rro.get_node("Buff") if rro.has_node("Buff") else null,
+		func(): return rro.get("buff") if rro.has("buff") else null,
+		func(): return rro.get("Buff") if rro.has("Buff") else null,
 		func(): return rro.get_buff_node() if rro.has_method("get_buff_node") else null
 	]
 
@@ -2172,13 +2338,11 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 			buff_target = rro
 			break
 
-
 	if objattackDic != null and hit_name != null:
 		if objattackDic[hit_name].has("addeffect"):
 			var addeffect = objattackDic[hit_name]["addeffect"]
 			if addeffect.size() != 0:
 				if buff_node != null:
-
 					var probability = 1.0
 					if addeffect.has("probability"):
 						probability = addeffect["probability"]
@@ -2187,11 +2351,6 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 						Global.AddBuff(buff_node, addeffect)
 
 	return buff_target
-
-
-
-
-
 
 
 func add_lj(value):
@@ -2208,7 +2367,7 @@ func add_lj(value):
 
 func Monster_18_protect():
 	if self is Monster18:
-		if self.MonsterDirection != !Global.Player_dir:
+		if self.MonsterDirection == Global.Player_dir:
 			if self.MonsterDirection == false:
 				Global.add_SpecialEffect(self, Vector2(0, 5), "protect", Vector2(1.1, 1.1), false, 1)
 			else:
@@ -2217,13 +2376,14 @@ func Monster_18_protect():
 	return false
 
 
-func _on_hit_box_area_exited(_area: Area2D) -> void :
+func _on_hit_box_area_exited(_area: Area2D) -> void:
 	if self is Monster43:
 		if Skill_1_CD > 0:
 			Skill_1_CD -= 3
 		if hit_name == "csjq":
 			cure_hp(self.objattackDic["csjq"]["power"] * 25 + int((SHp - Hp) * 0.07))
 			self.Skill_3_CD = 0
+
 
 func rush():
 	if _movement_command_is_blocked():
@@ -2236,6 +2396,7 @@ func rush():
 	else:
 		velocity.x -= rush_speed
 
+
 func gg_pl():
 	if get_Player == null:
 		var top = get_parent().get_parent()
@@ -2245,15 +2406,13 @@ func gg_pl():
 			if i is BaseHero:
 				get_Player = i
 
+
 func move_player_to_boss(movetime):
 	var tween = create_tween()
 	tween.tween_property(get_Player, "position", self.position, movetime)
 
 
-
-
 func move_playerto_boss(target: Node2D, movetime: float):
-
 	var final_target: Node2D = null
 
 	if target != null and is_instance_valid(target) and target is Node2D:
@@ -2262,19 +2421,14 @@ func move_playerto_boss(target: Node2D, movetime: float):
 	elif get_Player != null and is_instance_valid(get_Player) and get_Player is Node2D:
 		final_target = get_Player
 
-
 	if final_target == null:
 		print("无有效移动目标（无buff_target且玩家节点无效），跳过位移")
 		return
-
 
 	var tween = create_tween()
 
 	var target_pos = Vector2(self.position)
 	tween.tween_property(final_target, "position", target_pos, movetime)
-
-
-
 
 
 func cureWSValue():
@@ -2287,9 +2441,11 @@ func cureWSValue():
 		else:
 			RoleProp.ws_value += 2
 
+
 func shake(strength, times, interv):
 	var baselevel = get_parent().get_parent() as BaseLevel
 	baselevel.shake_(strength, times, interv)
+
 
 func add_WSEffect(Object_):
 	var level_node = get_level_node()
@@ -2319,9 +2475,8 @@ func CheckAddBuff():
 	if self.buff == null:
 		return
 
-
-	var buff_child_count: = self.buff.get_child_count()
-	var buff_child_index: = 0
+	var buff_child_count := self.buff.get_child_count()
+	var buff_child_index := 0
 	while buff_child_index < buff_child_count:
 		var i = self.buff.get_child(buff_child_index)
 		buff_child_index += 1
@@ -2394,7 +2549,6 @@ func CheckAddBuff():
 		zznh_bl = 1.0
 		zznh_defense_reduction = 0.0
 
-
 	if not_jgz:
 		is_jgz = false
 		jgz_bl = 1
@@ -2444,15 +2598,16 @@ func CheckAddBuff():
 	else:
 		_release_control_movement_lock()
 
-func ChangeHdCureHp(zhl):
 
+func ChangeHdCureHp(zhl):
 	cure_hp(int(hd * zhl))
 	remove_hd()
 	pass
 
+
 func Difficult():
-	var mult: = 1.0
-	var difficulty: = int(MainSet.set_data.get("Difficult", 0))
+	var mult := 1.0
+	var difficulty := int(MainSet.set_data.get("Difficult", 0))
 	if difficulty == 1:
 		mult = 2.0
 	elif difficulty == 2 or difficulty == NIGHTMARE_DIFFICULTY:
@@ -2460,29 +2615,44 @@ func Difficult():
 	else:
 		return
 
-	var underworld_nightmare: = false
-	var heaven_nightmare: = false
-	var attack_bonus: = NIGHTMARE_ATTACK_BONUS
+	var underworld_nightmare := false
+	var heaven_nightmare := false
+	var attack_bonus := NIGHTMARE_ATTACK_BONUS
 	if difficulty == NIGHTMARE_DIFFICULTY:
-		var level_node: = get_level_node()
+		var level_node := get_level_node()
 		if level_node != null:
-			var level_path: = str(level_node.scene_file_path)
+			var level_path := str(level_node.scene_file_path)
 			underworld_nightmare = is_underworld_nightmare_path(level_path)
 			heaven_nightmare = uses_heaven_nightmare_attributes(level_path)
-		attack_bonus = HEAVEN_NIGHTMARE_ATTACK_BONUS if heaven_nightmare\
-		else UNDERWORLD_NIGHTMARE_ATTACK_BONUS if underworld_nightmare else NIGHTMARE_ATTACK_BONUS
+		attack_bonus = (
+			HEAVEN_NIGHTMARE_ATTACK_BONUS
+			if heaven_nightmare
+			else UNDERWORLD_NIGHTMARE_ATTACK_BONUS if underworld_nightmare else NIGHTMARE_ATTACK_BONUS
+		)
 
 	self.SHp = int(self.SHp * mult)
 	if difficulty == NIGHTMARE_DIFFICULTY:
-		var health_bonus: = HEAVEN_NIGHTMARE_HEALTH_BONUS if heaven_nightmare\
-		else UNDERWORLD_NIGHTMARE_HEALTH_BONUS if underworld_nightmare else NIGHTMARE_HEALTH_BONUS
-		var defense_bonus: = HEAVEN_NIGHTMARE_DEFENSE_BONUS if heaven_nightmare\
-		else UNDERWORLD_NIGHTMARE_DEFENSE_BONUS if underworld_nightmare else NIGHTMARE_DEFENSE_BONUS
-		var penetration_bonus: = HEAVEN_NIGHTMARE_PENETRATION_BONUS if heaven_nightmare else defense_bonus
-		damage_bonus = HEAVEN_NIGHTMARE_DAMAGE_BONUS if heaven_nightmare\
-		else UNDERWORLD_NIGHTMARE_DAMAGE_BONUS if underworld_nightmare else NIGHTMARE_DAMAGE_BONUS
-		damage_reduction = HEAVEN_NIGHTMARE_DAMAGE_REDUCTION if heaven_nightmare\
-		else UNDERWORLD_NIGHTMARE_DAMAGE_REDUCTION if underworld_nightmare else NIGHTMARE_DAMAGE_REDUCTION
+		var health_bonus := (
+			HEAVEN_NIGHTMARE_HEALTH_BONUS
+			if heaven_nightmare
+			else UNDERWORLD_NIGHTMARE_HEALTH_BONUS if underworld_nightmare else NIGHTMARE_HEALTH_BONUS
+		)
+		var defense_bonus := (
+			HEAVEN_NIGHTMARE_DEFENSE_BONUS
+			if heaven_nightmare
+			else UNDERWORLD_NIGHTMARE_DEFENSE_BONUS if underworld_nightmare else NIGHTMARE_DEFENSE_BONUS
+		)
+		var penetration_bonus := HEAVEN_NIGHTMARE_PENETRATION_BONUS if heaven_nightmare else defense_bonus
+		damage_bonus = (
+			HEAVEN_NIGHTMARE_DAMAGE_BONUS
+			if heaven_nightmare
+			else UNDERWORLD_NIGHTMARE_DAMAGE_BONUS if underworld_nightmare else NIGHTMARE_DAMAGE_BONUS
+		)
+		damage_reduction = (
+			HEAVEN_NIGHTMARE_DAMAGE_REDUCTION
+			if heaven_nightmare
+			else UNDERWORLD_NIGHTMARE_DAMAGE_REDUCTION if underworld_nightmare else NIGHTMARE_DAMAGE_REDUCTION
+		)
 		self.SHp += health_bonus
 		self.level += NIGHTMARE_LEVEL_BONUS
 		self.def = self.def * 3 + defense_bonus
@@ -2508,24 +2678,28 @@ func Difficult():
 			if difficulty == NIGHTMARE_DIFFICULTY:
 				objattackDic[attack_name]["power"] += attack_bonus
 
+
 func movetoplayer():
 	if _movement_command_is_blocked():
 		return
 	self.position = RoleProp.get_nearest_monster_target_position(global_position)
 
+
 func set_fullHp():
 	Hp = SHp
 
 
-func _on_calm_hit_timeout() -> void :
+func _on_calm_hit_timeout() -> void:
 	RndiCount = randi_range(0, 100)
 
 
-func _on_remove_hurt_bl_timeout() -> void :
+func _on_remove_hurt_bl_timeout() -> void:
 	HurtBl = 1
+
 
 func ADDMonsterDeathEffect():
 	Global.add_SpecialEffect(self, Vector2(0, 0), "MonsterDeath", Vector2(1, 1), false, 1)
+
 
 func WhenScary():
 	if ran_num <= 20:
@@ -2535,6 +2709,7 @@ func WhenScary():
 	else:
 		move_right()
 	pass
+
 
 func Monster102Protect():
 	if self is Monster102:
@@ -2553,7 +2728,6 @@ func set_gxp():
 		var has_zcld = false
 		var zcld_level = 0
 
-
 		if get_Player != null and PlayerData.ChekEqzb("法宝", "zcld"):
 			has_zcld = true
 			zcld_level = get_Player.zcld_level
@@ -2567,7 +2741,6 @@ func set_gxp():
 		for i in range(piles):
 			var pp = position + Vector2(randi_range(-15, 15), randi_range(-15, 15))
 
-
 			var rnd = randf()
 			var color_type = 0
 			if rnd < 0.7:
@@ -2579,14 +2752,13 @@ func set_gxp():
 			else:
 				color_type = 3
 
-
 			Global.AddAura(level_node.fall_it, pp, final_coin, color_type)
 			total_coins += final_coin
-
 
 		print("[金币] 怪物: ", my_mr_name, " 堆数: ", piles, " 每堆: ", final_coin, " 总计: ", total_coins)
 
 		fall_coin = 0
+
 
 func set_exp():
 	if add_exp <= 0:
@@ -2597,13 +2769,14 @@ func set_exp():
 	_cure_active_pet_exp(exp_value)
 	add_exp = 0
 
-func _cure_active_pet_exp(value: int) -> void :
+
+func _cure_active_pet_exp(value: int) -> void:
 	if value <= 0:
 		return
 	var pet: Dictionary = _active_pet_data_for_exp()
 	if pet.is_empty():
 		return
-	var player_level: = PlayerData.get_capped_player_level()
+	var player_level := PlayerData.get_capped_player_level()
 	PlayerData.clamp_pet_level_to_player(pet, player_level)
 	_ensure_pet_growth_fields(pet)
 	pet["下级经验"] = _pet_next_exp_requirement(int(pet.get("等级", 1)))
@@ -2611,16 +2784,16 @@ func _cure_active_pet_exp(value: int) -> void :
 		pet["经验"] = 0
 		return
 	pet["经验"] = int(pet.get("经验", 0)) + value
-	var old_pet_level: = int(pet.get("等级", 1))
+	var old_pet_level := int(pet.get("等级", 1))
 	var old_stage: int = int(pet.get("阶段", 1))
 	var level_up_count: int = 0
-	var growth: = {"hp": 0, "mp": 0, "attack": 0, "defense": 0, "hp_recover": 0, "mp_recover": 0}
+	var growth := {"hp": 0, "mp": 0, "attack": 0, "defense": 0, "hp_recover": 0, "mp_recover": 0}
 	while int(pet.get("等级", 1)) < player_level and int(pet.get("经验", 0)) >= max(1, int(pet.get("下级经验", 100))):
 		var next_exp: int = max(1, int(pet.get("下级经验", 100)))
 		pet["经验"] = int(pet.get("经验", 0)) - next_exp
 		pet["等级"] = int(pet.get("等级", 1)) + 1
 		pet["下级经验"] = _pet_next_exp_requirement(int(pet.get("等级", 1)))
-		var level_growth: = _apply_pet_level_growth(pet)
+		var level_growth := _apply_pet_level_growth(pet)
 		_update_pet_tiger_evolution(pet)
 		_update_pet_dragon_evolution(pet)
 		_update_pet_phoenix_evolution(pet)
@@ -2638,17 +2811,22 @@ func _cure_active_pet_exp(value: int) -> void :
 			_restore_pet_to_peak(pet)
 		_apply_active_pet_unit_growth(level_up_count, growth, pet, old_stage, old_pet_level)
 
+
 func _pet_next_exp_requirement(pet_level: int) -> int:
 	return max(1, int(ceil(float(_role_level_exp_requirement(pet_level)) * 0.6)))
 
+
 func _role_level_exp_requirement(level: int) -> int:
-	var max_exp_list: = [140, 160, 180, 200, 220, 300, 400, 500, 600, 700, 800, 900, 1200, 1400, 1600, 2000, 2400, 3000, 4000, 5000]
+	var max_exp_list := [
+		140, 160, 180, 200, 220, 300, 400, 500, 600, 700, 800, 900, 1200, 1400, 1600, 2000, 2400, 3000, 4000, 5000
+	]
 	var safe_level: int = max(1, level)
 	if safe_level < 20:
 		return int(max_exp_list[safe_level - 1])
 	return 5000 + 5000 * (safe_level - 19)
 
-func _ensure_pet_growth_fields(pet: Dictionary) -> void :
+
+func _ensure_pet_growth_fields(pet: Dictionary) -> void:
 	pet["悟性"] = clampi(int(pet.get("悟性", 0)), 0, 25)
 	pet["根骨"] = clampi(int(pet.get("根骨", 0)), 0, 25)
 	pet["灵力"] = clampi(int(pet.get("灵力", 0)), 0, 25)
@@ -2680,8 +2858,10 @@ func _ensure_pet_growth_fields(pet: Dictionary) -> void :
 	pet["攻击资质"] = clampi(int(pet.get("攻击资质", 1000)), 0, int(pet.get("攻击资质上限", 2000)))
 	pet["防御资质"] = clampi(int(pet.get("防御资质", 1000)), 0, int(pet.get("防御资质上限", 2000)))
 
+
 func _apply_pet_level_growth(pet: Dictionary) -> Dictionary:
 	return _recalculate_pet_growth_stats(pet, true)
+
 
 func _recalculate_pet_growth_stats(pet: Dictionary, restore_peak: bool = false) -> Dictionary:
 	_ensure_pet_growth_fields(pet)
@@ -2714,7 +2894,15 @@ func _recalculate_pet_growth_stats(pet: Dictionary, restore_peak: bool = false) 
 	else:
 		pet["生命"] = clampi(int(pet.get("生命", new_hp_max)), 0, new_hp_max)
 		pet["魔法"] = clampi(int(pet.get("魔法", new_mp_max)), 0, new_mp_max)
-	return {"hp": new_hp_max - old_hp_max, "mp": new_mp_max - old_mp_max, "attack": int(pet.get("攻击", 0)) - old_attack, "defense": int(pet.get("防御", 0)) - old_defense, "hp_recover": 0, "mp_recover": 0}
+	return {
+		"hp": new_hp_max - old_hp_max,
+		"mp": new_mp_max - old_mp_max,
+		"attack": int(pet.get("攻击", 0)) - old_attack,
+		"defense": int(pet.get("防御", 0)) - old_defense,
+		"hp_recover": 0,
+		"mp_recover": 0
+	}
+
 
 func _active_pet_unit_can_restore() -> bool:
 	var unit: Node = _active_pet_unit_for_exp(get_tree().root)
@@ -2726,9 +2914,11 @@ func _active_pet_unit_can_restore() -> bool:
 		return false
 	return true
 
-func _restore_pet_to_peak(pet: Dictionary) -> void :
+
+func _restore_pet_to_peak(pet: Dictionary) -> void:
 	pet["生命"] = int(pet.get("生命上限", pet.get("生命", 0)))
 	pet["魔法"] = int(pet.get("魔法上限", pet.get("魔法", 0)))
+
 
 func _pet_tiger_stage_for_level(level: int) -> int:
 	if level >= 50:
@@ -2738,6 +2928,7 @@ func _pet_tiger_stage_for_level(level: int) -> int:
 	if level >= 15:
 		return 2
 	return 1
+
 
 func _pet_tiger_stage_name(stage: int) -> String:
 	match clampi(stage, 1, 4):
@@ -2750,6 +2941,7 @@ func _pet_tiger_stage_name(stage: int) -> String:
 		_:
 			return "白虎战神"
 
+
 func _pet_tiger_stage_skills(stage: int) -> Array:
 	match clampi(stage, 1, 4):
 		1:
@@ -2759,10 +2951,11 @@ func _pet_tiger_stage_skills(stage: int) -> Array:
 		_:
 			return ["猛扑", "虎啸", "嗜血虎爪", "横扫千军"]
 
-func _update_pet_tiger_evolution(pet: Dictionary) -> void :
+
+func _update_pet_tiger_evolution(pet: Dictionary) -> void:
 	if str(pet.get("类型", "")) != "PetTiger" and not ["虎丸", "白灵虎", "白虎将军", "白虎战神"].has(str(pet.get("名称", ""))):
 		return
-	var stage: = _pet_tiger_stage_for_level(int(pet.get("等级", 1)))
+	var stage := _pet_tiger_stage_for_level(int(pet.get("等级", 1)))
 	pet["阶段"] = stage
 	pet["名称"] = _pet_tiger_stage_name(stage)
 	pet["类型"] = "PetTiger"
@@ -2770,18 +2963,24 @@ func _update_pet_tiger_evolution(pet: Dictionary) -> void :
 	if bool(pet.get("出战", false)):
 		PlayerData.player_data["出战宠物"] = str(pet.get("名称", ""))
 
-func _update_pet_dragon_evolution(pet: Dictionary) -> void :
-	var pet_name: = str(pet.get("名称", ""))
-	if str(pet.get("类型", "")) != "PetDragon" and not pet_name.begins_with("辰龙") and pet_name not in ["龙仔", "绿英龙", "青龙将军", "青龙妖圣"]:
+
+func _update_pet_dragon_evolution(pet: Dictionary) -> void:
+	var pet_name := str(pet.get("名称", ""))
+	if (
+		str(pet.get("类型", "")) != "PetDragon"
+		and not pet_name.begins_with("辰龙")
+		and pet_name not in ["龙仔", "绿英龙", "青龙将军", "青龙妖圣"]
+	):
 		return
-	var pet_level: = int(pet.get("等级", 1))
-	var stage: = 4 if pet_level >= 50 else 3 if pet_level >= 30 else 2 if pet_level >= 15 else 1
+	var pet_level := int(pet.get("等级", 1))
+	var stage := 4 if pet_level >= 50 else 3 if pet_level >= 30 else 2 if pet_level >= 15 else 1
 	pet["阶段"] = stage
 	pet["名称"] = ["", "龙仔", "绿英龙", "青龙将军", "青龙妖圣"][stage]
 	pet["类型"] = "PetDragon"
 	pet["技能"] = _pet_dragon_stage_skills(stage)
 	if bool(pet.get("出战", false)):
 		PlayerData.player_data["出战宠物"] = str(pet.get("名称", ""))
+
 
 func _pet_dragon_stage_skills(stage: int) -> Array:
 	match clampi(stage, 1, 4):
@@ -2794,12 +2993,17 @@ func _pet_dragon_stage_skills(stage: int) -> Array:
 		_:
 			return ["分身", "闪电冲刺", "雷霆万钧", "青龙奥义"]
 
-func _update_pet_turtle_evolution(pet: Dictionary) -> void :
-	var pet_name: = str(pet.get("名称", pet.get("名字", "")))
-	if str(pet.get("类型", "")) != "PetTurtle" and not pet_name.begins_with("玄武") and pet_name not in ["龟布", "墨玄龟", "玄武将军", "玄武大帝"]:
+
+func _update_pet_turtle_evolution(pet: Dictionary) -> void:
+	var pet_name := str(pet.get("名称", pet.get("名字", "")))
+	if (
+		str(pet.get("类型", "")) != "PetTurtle"
+		and not pet_name.begins_with("玄武")
+		and pet_name not in ["龟布", "墨玄龟", "玄武将军", "玄武大帝"]
+	):
 		return
-	var pet_level: = int(pet.get("等级", 1))
-	var stage: = 4 if pet_level >= 50 else 3 if pet_level >= 30 else 2 if pet_level >= 15 else 1
+	var pet_level := int(pet.get("等级", 1))
+	var stage := 4 if pet_level >= 50 else 3 if pet_level >= 30 else 2 if pet_level >= 15 else 1
 	pet["阶段"] = stage
 	pet["名称"] = ["", "龟布", "墨玄龟", "玄武将军", "玄武大帝"][stage]
 	pet["名字"] = pet["名称"]
@@ -2807,6 +3011,7 @@ func _update_pet_turtle_evolution(pet: Dictionary) -> void :
 	pet["技能"] = _pet_turtle_stage_skills(stage)
 	if bool(pet.get("出战", false)):
 		PlayerData.player_data["出战宠物"] = "PetTurtle"
+
 
 func _pet_turtle_stage_skills(stage: int) -> Array:
 	match clampi(stage, 1, 4):
@@ -2819,11 +3024,12 @@ func _pet_turtle_stage_skills(stage: int) -> Array:
 		_:
 			return ["水疗盾", "同心链接", "水湮八荒", "玄武奥义"]
 
-func _update_pet_rabbit_evolution(pet: Dictionary) -> void :
-	var pet_name: = str(pet.get("名称", pet.get("名字", "")))
+
+func _update_pet_rabbit_evolution(pet: Dictionary) -> void:
+	var pet_name := str(pet.get("名称", pet.get("名字", "")))
 	if str(pet.get("类型", "")) != "PetRabbit" and pet_name not in ["月兔", "疾风兔", "寒冰玉兔", "冰霜月神"]:
 		return
-	var stage: = _pet_stage_for_level(int(pet.get("等级", 1)))
+	var stage := _pet_stage_for_level(int(pet.get("等级", 1)))
 	pet["类型"] = "PetRabbit"
 	pet["阶段"] = stage
 	pet["名称"] = ["", "月兔", "疾风兔", "寒冰玉兔", "冰霜月神"][stage]
@@ -2831,6 +3037,7 @@ func _update_pet_rabbit_evolution(pet: Dictionary) -> void :
 	pet["技能"] = _pet_rabbit_stage_skills(stage)
 	if bool(pet.get("出战", false)):
 		PlayerData.player_data["出战宠物"] = "PetRabbit"
+
 
 func _pet_rabbit_stage_skills(stage: int) -> Array:
 	match clampi(stage, 1, 4):
@@ -2843,40 +3050,52 @@ func _pet_rabbit_stage_skills(stage: int) -> Array:
 		_:
 			return ["月光", "疾风", "冰陨", "月神奥义"]
 
+
 func _is_pet_mouse_data(pet: Dictionary) -> bool:
 	if str(pet.get("类型", "")) == "PetMouse":
 		return true
-	var pet_name: = str(pet.get("名称", "")).strip_edges()
-	var pet_title: = str(pet.get("名字", "")).strip_edges()
-	return pet_name.begins_with("子鼠") or pet_title.begins_with("子鼠") or pet_name in ["子鼠元帅", "子鼠大元帅"] or pet_title in ["子鼠元帅", "子鼠大元帅"]
+	var pet_name := str(pet.get("名称", "")).strip_edges()
+	var pet_title := str(pet.get("名字", "")).strip_edges()
+	return (
+		pet_name.begins_with("子鼠")
+		or pet_title.begins_with("子鼠")
+		or pet_name in ["子鼠元帅", "子鼠大元帅"]
+		or pet_title in ["子鼠元帅", "子鼠大元帅"]
+	)
+
 
 func _is_pet_neat_data(pet: Dictionary) -> bool:
 	if str(pet.get("类型", "")) == "PetNeat":
 		return true
-	var pet_name: = str(pet.get("名称", "")).strip_edges()
-	var pet_title: = str(pet.get("名字", "")).strip_edges()
+	var pet_name := str(pet.get("名称", "")).strip_edges()
+	var pet_title := str(pet.get("名字", "")).strip_edges()
 	return pet_name in ["丑牛", "丑牛元帅", "丑牛大元帅"] or pet_title in ["丑牛", "丑牛元帅", "丑牛大元帅"]
+
 
 func _is_pet_yin_tiger_data(pet: Dictionary) -> bool:
 	if str(pet.get("类型", "")) == "PetYinTiger":
 		return true
-	var pet_name: = str(pet.get("名称", "")).strip_edges()
-	var pet_title: = str(pet.get("名字", "")).strip_edges()
+	var pet_name := str(pet.get("名称", "")).strip_edges()
+	var pet_title := str(pet.get("名字", "")).strip_edges()
 	return pet_name in ["寅虎", "银角虎", "寅虎元帅", "寅虎大元帅"] or pet_title in ["寅虎", "银角虎", "寅虎元帅", "寅虎大元帅"]
+
 
 func _pet_yin_tiger_stage_for_level(level: int) -> int:
 	return 4 if level >= 50 else 3 if level >= 30 else 2 if level >= 15 else 1
 
+
 func _pet_yin_tiger_stage_name(stage: int) -> String:
 	return "寅虎大元帅" if clampi(stage, 1, 4) == 4 else "寅虎元帅"
+
 
 func _pet_yin_tiger_stage_skills(stage: int) -> Array:
 	return ["虎啸"] if clampi(stage, 1, 4) < 4 else ["虎啸", "猛虎下山", "寅虎奥义"]
 
-func _update_pet_yin_tiger_evolution(pet: Dictionary) -> void :
+
+func _update_pet_yin_tiger_evolution(pet: Dictionary) -> void:
 	if not _is_pet_yin_tiger_data(pet):
 		return
-	var stage: = _pet_yin_tiger_stage_for_level(int(pet.get("等级", 1)))
+	var stage := _pet_yin_tiger_stage_for_level(int(pet.get("等级", 1)))
 	pet["类型"] = "PetYinTiger"
 	pet["阶段"] = stage
 	pet["名称"] = _pet_yin_tiger_stage_name(stage)
@@ -2885,8 +3104,10 @@ func _update_pet_yin_tiger_evolution(pet: Dictionary) -> void :
 	if bool(pet.get("出战", false)):
 		PlayerData.player_data["出战宠物"] = "PetYinTiger"
 
+
 func _pet_mouse_stage_for_level(pet_level: int) -> int:
 	return 2 if pet_level >= 50 else 1
+
 
 func _pet_mouse_skills_for_level(pet_level: int) -> Array:
 	if pet_level >= 50:
@@ -2895,12 +3116,13 @@ func _pet_mouse_skills_for_level(pet_level: int) -> Array:
 		return ["鼠窜", "回旋飞镖"]
 	return ["鼠窜"]
 
-func _update_pet_mouse_evolution(pet: Dictionary) -> void :
+
+func _update_pet_mouse_evolution(pet: Dictionary) -> void:
 	if not _is_pet_mouse_data(pet):
 		return
-	var pet_level: = int(pet.get("等级", 1))
-	var stage: = _pet_mouse_stage_for_level(pet_level)
-	var stage_name: = "子鼠大元帅" if stage == 2 else "子鼠元帅"
+	var pet_level := int(pet.get("等级", 1))
+	var stage := _pet_mouse_stage_for_level(pet_level)
+	var stage_name := "子鼠大元帅" if stage == 2 else "子鼠元帅"
 	pet["类型"] = "PetMouse"
 	pet["阶段"] = stage
 	pet["名称"] = stage_name
@@ -2909,12 +3131,17 @@ func _update_pet_mouse_evolution(pet: Dictionary) -> void :
 	if bool(pet.get("出战", false)):
 		PlayerData.player_data["出战宠物"] = "PetMouse"
 
-func _update_pet_phoenix_evolution(pet: Dictionary) -> void :
-	var pet_name: = str(pet.get("名称", pet.get("名字", "")))
-	if str(pet.get("类型", "")) != "PetPhoenix" and not pet_name.begins_with("朱雀") and pet_name not in ["雀蛋", "炎皇雀", "朱雀将军", "朱雀女皇", "朱雀幼灵", "赤羽朱雀", "朱雀神君"]:
+
+func _update_pet_phoenix_evolution(pet: Dictionary) -> void:
+	var pet_name := str(pet.get("名称", pet.get("名字", "")))
+	if (
+		str(pet.get("类型", "")) != "PetPhoenix"
+		and not pet_name.begins_with("朱雀")
+		and pet_name not in ["雀蛋", "炎皇雀", "朱雀将军", "朱雀女皇", "朱雀幼灵", "赤羽朱雀", "朱雀神君"]
+	):
 		return
-	var pet_level: = int(pet.get("等级", 1))
-	var stage: = 4 if pet_level >= 50 else 3 if pet_level >= 30 else 2 if pet_level >= 15 else 1
+	var pet_level := int(pet.get("等级", 1))
+	var stage := 4 if pet_level >= 50 else 3 if pet_level >= 30 else 2 if pet_level >= 15 else 1
 	pet["阶段"] = stage
 	pet["名称"] = ["", "雀蛋", "炎皇雀", "朱雀将军", "朱雀女皇"][stage]
 	pet["名字"] = pet["名称"]
@@ -2922,6 +3149,7 @@ func _update_pet_phoenix_evolution(pet: Dictionary) -> void :
 	pet["技能"] = _pet_phoenix_stage_skills(stage)
 	if bool(pet.get("出战", false)):
 		PlayerData.player_data["出战宠物"] = "PetPhoenix"
+
 
 func _pet_phoenix_stage_skills(stage: int) -> Array:
 	match clampi(stage, 1, 4):
@@ -2934,7 +3162,10 @@ func _pet_phoenix_stage_skills(stage: int) -> Array:
 		_:
 			return ["涅槃", "不死火鸟", "地火燎原", "朱雀奥义"]
 
-func _apply_active_pet_unit_growth(level_up_count: int, growth: Dictionary, pet: Dictionary, old_stage: int, old_pet_level: int) -> void :
+
+func _apply_active_pet_unit_growth(
+	level_up_count: int, growth: Dictionary, pet: Dictionary, old_stage: int, old_pet_level: int
+) -> void:
 	var unit: Node = _active_pet_unit_for_exp(get_tree().root)
 	if unit == null:
 		return
@@ -2943,14 +3174,18 @@ func _apply_active_pet_unit_growth(level_up_count: int, growth: Dictionary, pet:
 	if unit.get("Hp") != null and int(unit.get("Hp")) <= 0:
 		return
 	var unit_level_value = unit.get("level")
-	var unit_level: = int(unit_level_value) if unit_level_value != null else 1
-	var is_mouse_unit: = bool(unit.get_meta("pet_mouse_unit", false)) or _is_pet_mouse_data(pet)
-	var is_neat_unit: = bool(unit.get_meta("pet_neat_unit", false)) or _is_pet_neat_data(pet)
-	var is_yin_tiger_unit: = bool(unit.get_meta("pet_yin_tiger_unit", false)) or _is_pet_yin_tiger_data(pet)
-	var level_stage: = _pet_mouse_stage_for_level(int(pet.get("等级", unit_level))) if is_mouse_unit else _pet_stage_for_level(int(pet.get("等级", unit_level)))
+	var unit_level := int(unit_level_value) if unit_level_value != null else 1
+	var is_mouse_unit := bool(unit.get_meta("pet_mouse_unit", false)) or _is_pet_mouse_data(pet)
+	var is_neat_unit := bool(unit.get_meta("pet_neat_unit", false)) or _is_pet_neat_data(pet)
+	var is_yin_tiger_unit := bool(unit.get_meta("pet_yin_tiger_unit", false)) or _is_pet_yin_tiger_data(pet)
+	var level_stage := (
+		_pet_mouse_stage_for_level(int(pet.get("等级", unit_level)))
+		if is_mouse_unit
+		else _pet_stage_for_level(int(pet.get("等级", unit_level)))
+	)
 	var new_stage: int = level_stage if is_mouse_unit else max(int(pet.get("阶段", old_stage)), level_stage)
 	if is_mouse_unit:
-		var mouse_name: = "子鼠大元帅" if new_stage == 2 else "子鼠元帅"
+		var mouse_name := "子鼠大元帅" if new_stage == 2 else "子鼠元帅"
 		pet["类型"] = "PetMouse"
 		pet["阶段"] = new_stage
 		pet["名称"] = mouse_name
@@ -2958,7 +3193,7 @@ func _apply_active_pet_unit_growth(level_up_count: int, growth: Dictionary, pet:
 		pet["技能"] = _pet_mouse_skills_for_level(int(pet.get("等级", unit_level)))
 		PlayerData.player_data["出战宠物"] = "PetMouse"
 	elif is_neat_unit:
-		var neat_stage: = _pet_stage_for_level(int(pet.get("等级", unit_level)))
+		var neat_stage := _pet_stage_for_level(int(pet.get("等级", unit_level)))
 		pet["类型"] = "PetNeat"
 		pet["阶段"] = neat_stage
 		pet["名称"] = "丑牛大元帅" if neat_stage == 4 else "丑牛元帅"
@@ -2966,7 +3201,7 @@ func _apply_active_pet_unit_growth(level_up_count: int, growth: Dictionary, pet:
 		pet["技能"] = ["蛮牛冲撞"] if neat_stage < 4 else ["蛮牛冲撞", "蛮力践踏", "丑牛奥义"]
 		PlayerData.player_data["出战宠物"] = "PetNeat"
 	elif is_yin_tiger_unit:
-		var yin_stage: = _pet_yin_tiger_stage_for_level(int(pet.get("等级", unit_level)))
+		var yin_stage := _pet_yin_tiger_stage_for_level(int(pet.get("等级", unit_level)))
 		pet["类型"] = "PetYinTiger"
 		pet["阶段"] = yin_stage
 		pet["名称"] = _pet_yin_tiger_stage_name(yin_stage)
@@ -3068,11 +3303,13 @@ func _apply_active_pet_unit_growth(level_up_count: int, growth: Dictionary, pet:
 	if unit.get("mdef") != null:
 		unit.set("mdef", int(pet.get("魔抗", pet.get("防御", int(unit.get("mdef")) + int(growth.get("defense", 0))))))
 
-func _unlock_pet_mouse_level_skill_cooldowns(unit: Node, old_pet_level: int, new_pet_level: int) -> void :
+
+func _unlock_pet_mouse_level_skill_cooldowns(unit: Node, old_pet_level: int, new_pet_level: int) -> void:
 	if old_pet_level < 30 and new_pet_level >= 30 and unit.get("Skill_2_CD") != null:
 		unit.set("Skill_2_CD", 0.0)
 	if old_pet_level < 50 and new_pet_level >= 50 and unit.get("Skill_3_CD") != null:
 		unit.set("Skill_3_CD", 0.0)
+
 
 func _pet_stage_for_level(pet_level: int) -> int:
 	if pet_level >= 50:
@@ -3082,6 +3319,7 @@ func _pet_stage_for_level(pet_level: int) -> int:
 	if pet_level >= 15:
 		return 2
 	return 1
+
 
 func _active_pet_unit_for_exp(node: Node) -> Node:
 	if node == null:
@@ -3103,7 +3341,7 @@ func _active_pet_unit_for_exp(node: Node) -> Node:
 	if bool(node.get_meta("pet_yin_tiger_unit", false)):
 		return node
 	for child in node.get_children():
-		var found: = _active_pet_unit_for_exp(child)
+		var found := _active_pet_unit_for_exp(child)
 		if found != null:
 			return found
 	return null
@@ -3114,7 +3352,7 @@ func _active_pet_data_for_exp() -> Dictionary:
 	var pets: Variant = data.get("宠物列表", [])
 	if not (pets is Array):
 		return {}
-	var active_name: = str(data.get("出战宠物", ""))
+	var active_name := str(data.get("出战宠物", ""))
 	var first_active_pet: Dictionary = {}
 	for pet in pets:
 		if not (pet is Dictionary) or not bool(pet.get("出战", false)):
@@ -3130,12 +3368,13 @@ func _active_pet_data_for_exp() -> Dictionary:
 				return pet
 	return first_active_pet
 
+
 func _pet_matches_active_name(pet: Dictionary, active_name: String) -> bool:
 	if active_name == "":
 		return false
-	var pet_name: = str(pet.get("名称", ""))
-	var pet_title: = str(pet.get("名字", ""))
-	var pet_type: = str(pet.get("类型", ""))
+	var pet_name := str(pet.get("名称", ""))
+	var pet_title := str(pet.get("名字", ""))
+	var pet_type := str(pet.get("类型", ""))
 	return pet_name == active_name or pet_title == active_name or pet_type == active_name
 
 
@@ -3147,6 +3386,7 @@ func CheckPlayerHaveDebuff(Target):
 			if i.BuffInfo["Name"] == Target:
 				return true
 	return false
+
 
 func WDHurt():
 	if RoleProp.SourcePlayer is role4:
@@ -3166,18 +3406,20 @@ func WDHurt():
 						remove_meta("mds_awaken_skip_combo")
 				Global.RemoveWD(self)
 
+
 func _is_mds_awaken_active() -> bool:
 	if not RoleProp.SourcePlayer is role4:
 		return false
 	var awaken_data: Variant = PlayerData.player_data.get("技能觉醒", {})
 	var enabled_data: Variant = PlayerData.player_data.get("技能觉醒启用", {})
-	var awakened: = awaken_data is Dictionary and bool(awaken_data.get("mds", false))
-	var enabled: = not enabled_data is Dictionary or bool(enabled_data.get("mds", true))
+	var awakened := awaken_data is Dictionary and bool(awaken_data.get("mds", false))
+	var enabled := not enabled_data is Dictionary or bool(enabled_data.get("mds", true))
 	return awakened and enabled
 
+
 func jsfzsy():
-	var formation_name: = str(PlayerData.player_data["已佩戴阵法"])
-	var formation_level: = 0
+	var formation_name := str(PlayerData.player_data["已佩戴阵法"])
+	var formation_level := 0
 	if formation_name == "lpz":
 		formation_level = int(PlayerData.player_data["落魄阵"]["Level"])
 	elif formation_name == "tqz":
@@ -3198,25 +3440,22 @@ func jsfzsy():
 		tqzbs = 0
 
 
-
 func play_hit_effect(attacker = null):
-
 	if not is_control_immune():
 		_interrupt_attack_state_on_hit()
 	_show_pet_hit_blood_bar()
 	Global.add_SpecialEffect(self, Vector2(0, 0), "RoleBeHit", Vector2(1, 1), false, 1)
-
 
 	if PlayerData.player_data["Myself"] != 2:
 		Global.addSound_(self, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 	else:
 		Global.addSound_(self, "res://Music/Hero/9_BeattackByRole2.mp3")
 
-
 	if not death() and not is_control_immune() and mr_player.has_animation("hurt"):
 		call_deferred("_deferred_play_hurt_animation")
 
-func _show_pet_hit_blood_bar() -> void :
+
+func _show_pet_hit_blood_bar() -> void:
 	if not MainSet.set_data.get("MonsterLittleBlood", false) or Hp <= 0:
 		return
 	if monster_blood_bar == null:
@@ -3227,6 +3466,7 @@ func _show_pet_hit_blood_bar() -> void :
 	monster_blood_bar.bar_text = Hp
 	monster_blood_bar.can_show = true
 	set_meta("pet_hit_blood_until", Time.get_ticks_msec() + 260)
+
 
 func _deferred_play_hurt_animation():
 	if not is_instance_valid(self) or death() or is_control_immune():

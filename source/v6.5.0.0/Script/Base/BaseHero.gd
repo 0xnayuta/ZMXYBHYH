@@ -3890,7 +3890,6 @@ func WhenScary():
 		action.scale.x = -1
 		base_damagebox.scale.x = -1
 		velocity.x = walk_speed * RoleProp.ws_up_power * 0.5
-	pass
 
 
 func AddTx():

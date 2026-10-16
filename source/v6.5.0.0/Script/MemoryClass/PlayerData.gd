@@ -3917,12 +3917,6 @@ func _normalize_pet_phoenix(pet: Dictionary) -> void:
 		player_data[ACTIVE_PET_KEY] = "PetPhoenix"
 
 
-func aa():
-	var na
-	player_data[na]["Target"]
-	pass
-
-
 var SynList = {
 	"放入列表": {"物品1": [], "物品2": [], "物品3": []},
 }

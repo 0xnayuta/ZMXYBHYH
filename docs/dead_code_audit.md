@@ -1,6 +1,6 @@
 # ZMXYBHYH 全工程资产拓扑与死代码审计报告 (Phase 1)
 
-> 生成时间: 2026-10-16 13:53:04  
+> 生成时间: 2026-10-16 14:12:14  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
 > 引擎环境: `Godot 4.7.2 Headless`
 
@@ -37,19 +37,19 @@
 
 | 脚本路径 | 保护原因 | 详细依据 |
 |:---|:---|:---|
+| `res://Script/Level/Level_czdy.gd` | 拥有全局 class_name: LevelCzdy | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Level/Level_zzdy.gd` | 拥有全局 class_name: LevelZzdy | 被 0 个外部文件引用或提供全局类型接口 |
 | `res://Script/Level/Level_szdy.gd` | 拥有全局 class_name: LevelSzdy | 被 0 个外部文件引用或提供全局类型接口 |
 | `res://Script/Monster/Monster_3201.gd` | 拥有全局 class_name: Monster3201 | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Level/Level_xzdy.gd` | 拥有全局 class_name: LevelXzdy | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Monster/Monster_62-1.gd` | 拥有全局 class_name: Monster622 | 被 0 个外部文件引用或提供全局类型接口 |
 | `res://Script/Level/Buff_box.gd` | 拥有全局 class_name: BuffBox | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Level/Level_zzdy.gd` | 拥有全局 class_name: LevelZzdy | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Skill/SummonBossCd.gd` | 拥有全局 class_name: SummonBossCd | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Base/BaseMap.gd` | 拥有全局 class_name: BaseMap | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Monster/AtlasMonsterVisual.gd` | 拥有全局 class_name: AtlasMonsterVisual | 被 0 个外部文件引用或提供全局类型接口 |
 | `res://Script/Monster/Monster_61-1.gd` | 拥有全局 class_name: Monster61000 | 被 0 个外部文件引用或提供全局类型接口 |
 | `res://Script/Monster/Monster_121.gd` | 拥有全局 class_name: Monster121 | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Monster/AtlasMonsterVisual.gd` | 拥有全局 class_name: AtlasMonsterVisual | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Monster/Monster_62-1.gd` | 拥有全局 class_name: Monster622 | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Level/Level_czdy.gd` | 拥有全局 class_name: LevelCzdy | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Skill/SummonBossCd.gd` | 拥有全局 class_name: SummonBossCd | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Base/BaseMap.gd` | 拥有全局 class_name: BaseMap | 被 0 个外部文件引用或提供全局类型接口 |
 | `res://Script/Base/BaseMonsterProperies.gd` | 拥有全局 class_name: BaseMonsterProperties | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Level/Level_xzdy.gd` | 拥有全局 class_name: LevelXzdy | 被 0 个外部文件引用或提供全局类型接口 |
 
 ---
 
@@ -59,33 +59,33 @@
 
 | 序号 | 脚本相对路径 | 源码大小 (字节) | 归属类别建议 |
 |:---|:---|:---|:---|
-| 1 | `res://BuffInfo.gd` | 514 | 历史遗留孤立脚本 |
-| 2 | `res://CK.gd` | 5,337 | 历史遗留孤立脚本 |
-| 3 | `res://Loder/Loader.gd` | 525 | 历史遗留孤立脚本 |
+| 1 | `res://BuffInfo.gd` | 491 | 历史遗留孤立脚本 |
+| 2 | `res://CK.gd` | 5,147 | 历史遗留孤立脚本 |
+| 3 | `res://Loder/Loader.gd` | 509 | 历史遗留孤立脚本 |
 | 4 | `res://MagicWeapon.gd` | 33 | 历史遗留孤立脚本 |
-| 5 | `res://Scene/Hero/Newbullet.gd` | 208 | 历史遗留孤立脚本 |
-| 6 | `res://Scene/OtherScene/load_scene.gd` | 28,658 | 历史遗留孤立脚本 |
-| 7 | `res://Script/Base/BaseAddEffect.gd` | 194 | 历史遗留孤立脚本 |
-| 8 | `res://Script/Data/AllEquipmentData.gd` | 421,082 | 历史遗留孤立脚本 |
-| 9 | `res://Script/FpsCounter.gd` | 727 | 历史遗留孤立脚本 |
-| 10 | `res://Script/Level/Level_gzdy.gd` | 72 | 历史遗留孤立脚本 |
-| 11 | `res://Script/Level/Level_lxdy.gd` | 4,510 | 历史遗留孤立脚本 |
-| 12 | `res://Script/Main_menu/WorldMapButton.gd` | 185 | 历史遗留孤立脚本 |
-| 13 | `res://Script/Monster/Fly_bullet.gd` | 568 | 历史遗留孤立脚本 |
-| 14 | `res://Script/Monster/SandKingSkills.gd` | 3,660 | 历史遗留孤立脚本 |
-| 15 | `res://Script/Tools/skill_1.gd` | 348 | 历史遗留孤立脚本 |
-| 16 | `res://Script/TouchControls.gd` | 4,097 | 历史遗留孤立脚本 |
-| 17 | `res://Test/ActiveSkillUpgradeProbe.gd` | 115 | 历史遗留孤立脚本 |
-| 18 | `res://Test/BackpackLevelLayoutProbe.gd` | 1,137 | 历史遗留孤立脚本 |
-| 19 | `res://Test/PetInterfaceEquipmentProbe.gd` | 366 | 历史遗留孤立脚本 |
-| 20 | `res://Test/verify_active_skill_upgrade.gd` | 6,109 | 历史遗留孤立脚本 |
-| 21 | `res://Test/verify_esbxx_popup.gd` | 3,149 | 历史遗留孤立脚本 |
-| 22 | `res://Test/verify_level49_skill_book_drop.gd` | 5,793 | 历史遗留孤立脚本 |
-| 23 | `res://Test/verify_mount_unlock_material_drop_preview.gd` | 3,583 | 历史遗留孤立脚本 |
-| 24 | `res://Test/verify_mount_unlock_material_drops.gd` | 6,230 | 历史遗留孤立脚本 |
-| 25 | `res://Test/verify_passive_income.gd` | 4,175 | 历史遗留孤立脚本 |
-| 26 | `res://Test/verify_pet_mosaic.gd` | 27,244 | 历史遗留孤立脚本 |
-| 27 | `res://Test/verify_pet_mouse.gd` | 24,346 | 历史遗留孤立脚本 |
+| 5 | `res://Scene/Hero/Newbullet.gd` | 197 | 历史遗留孤立脚本 |
+| 6 | `res://Scene/OtherScene/load_scene.gd` | 27,954 | 历史遗留孤立脚本 |
+| 7 | `res://Script/Base/BaseAddEffect.gd` | 180 | 历史遗留孤立脚本 |
+| 8 | `res://Script/Data/AllEquipmentData.gd` | 401,957 | 历史遗留孤立脚本 |
+| 9 | `res://Script/FpsCounter.gd` | 698 | 历史遗留孤立脚本 |
+| 10 | `res://Script/Level/Level_gzdy.gd` | 70 | 历史遗留孤立脚本 |
+| 11 | `res://Script/Level/Level_lxdy.gd` | 4,309 | 历史遗留孤立脚本 |
+| 12 | `res://Script/Main_menu/WorldMapButton.gd` | 177 | 历史遗留孤立脚本 |
+| 13 | `res://Script/Monster/Fly_bullet.gd` | 538 | 历史遗留孤立脚本 |
+| 14 | `res://Script/Monster/SandKingSkills.gd` | 3,547 | 历史遗留孤立脚本 |
+| 15 | `res://Script/Tools/skill_1.gd` | 330 | 历史遗留孤立脚本 |
+| 16 | `res://Script/TouchControls.gd` | 3,919 | 历史遗留孤立脚本 |
+| 17 | `res://Test/ActiveSkillUpgradeProbe.gd` | 108 | 历史遗留孤立脚本 |
+| 18 | `res://Test/BackpackLevelLayoutProbe.gd` | 1,112 | 历史遗留孤立脚本 |
+| 19 | `res://Test/PetInterfaceEquipmentProbe.gd` | 350 | 历史遗留孤立脚本 |
+| 20 | `res://Test/verify_active_skill_upgrade.gd` | 5,977 | 历史遗留孤立脚本 |
+| 21 | `res://Test/verify_esbxx_popup.gd` | 3,066 | 历史遗留孤立脚本 |
+| 22 | `res://Test/verify_level49_skill_book_drop.gd` | 5,661 | 历史遗留孤立脚本 |
+| 23 | `res://Test/verify_mount_unlock_material_drop_preview.gd` | 3,498 | 历史遗留孤立脚本 |
+| 24 | `res://Test/verify_mount_unlock_material_drops.gd` | 6,061 | 历史遗留孤立脚本 |
+| 25 | `res://Test/verify_passive_income.gd` | 4,087 | 历史遗留孤立脚本 |
+| 26 | `res://Test/verify_pet_mosaic.gd` | 26,768 | 历史遗留孤立脚本 |
+| 27 | `res://Test/verify_pet_mouse.gd` | 23,861 | 历史遗留孤立脚本 |
 
 ---
 

@@ -130,7 +130,7 @@ flowchart TD
 
 ---
 
-## Phase 4: 全工程代码资产归一化与现代工程流水线 (Code Normalization & Toolchain Enforcement) [进行中 · In Progress]
+## Phase 4: 全工程代码资产归一化与现代工程流水线 (Code Normalization & Toolchain Enforcement) [已完成 · Done]
 
 ### 1.1 阶段定位与目标
 - **定位**：对标现代大型 C++ 工程的 `clang-format`、`clang-tidy` 与 Git 规范体系，实施全工程代码资产与版本控制归一化。
@@ -158,11 +158,12 @@ flowchart TD
 - ⚠️ **门禁不可逾越**：格式化后必须保持 `health_check.py`（874 脚本）零报错及花果山关卡实机 0 ERROR 0 WARNING；
 - ⚠️ **历史溯源保护**：格式化提交必须立即登记进 `.git-blame-ignore-revs`，严禁破坏团队代码溯源能力。
 
-### 1.4 验收内容与指标
-1. 全工程 `.gd`、`.tscn`、`.tres`、`.gdshader` 等文本资产 100% 统一为 LF 换行；
-2. `source/v6.5.0.0/` 全量 734 个 GDScript 100% 通过 `gdformat` 格式化，排版完全符合官方规范；
-3. 具备一键式 `tools/check_all.py` 流水线，静态检查与实机回归全绿（0 ERROR、0 WARNING）。
-
+### 1.4 验收落地与实测指标
+1. **全盘文本 LF 100% 达成**：通过 `.gitattributes` 与 `tools/normalize_eol.py`，全盘 1,096 个场景、275 个 JSON 与全部源码彻底统一为纯净 LF（0 CRLF 残留）；
+2. **734 个 GDScript 100% 规范化**：通过 `tools/format_all.py` (gdformat 4.5.0) 全量格式化，并建立自动 LF 保护，幂等性测试 100% 通过；
+3. **Git Blame 历史穿透固化**：在 `.git-blame-ignore-revs` 成功登记巨型重构提交，实测 `git blame` 成功穿透格式化改动直达历史作者；
+4. **一键质量总指挥门禁交付**：构建 `tools/check_all.py`，一键串联“行尾 LF + gdformat + gdlint + 引擎静态编译”，实测四大维度全部 **PASS**；
+5. **实机战斗 0 错误 0 警告**：全流程花果山 Stage 1~4 及胜利结算实测日志维持绝对的 **0 ERROR、0 WARNING**。
 ---
 
 ## Phase 5: 业务驱动的内容正向开发与边缘按需提纯 (Content Evolution & On-Demand Refactoring)

@@ -181,6 +181,18 @@ def main():
 
         # 进度指示
         print(f" -> 处理进度: 批次 [{b_idx+1}/{total_batches}] (已处理 {end}/{len(files)} 文件)...")
+    # 若为写模式，自动确保所有文件统一维持标准 Unix LF 行尾，杜绝 Windows 平台 gdformat 写回 CRLF
+    if mode == "write":
+        for fp in files:
+            try:
+                with open(fp, "rb") as bf:
+                    data = bf.read()
+                if b"\r" in data:
+                    norm = data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+                    with open(fp, "wb") as bf:
+                        bf.write(norm)
+            except Exception:
+                pass
 
     print("=" * 72)
     print(" 格式化流水线执行结果报告")
