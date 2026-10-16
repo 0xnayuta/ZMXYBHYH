@@ -421,6 +421,8 @@ func invalidate_level_cache():
 
 
 func _physics_process(delta: float) -> void :
+	if is_queued_for_deletion() or not is_inside_tree():
+		return
 	_process_boss_protect(delta)
 	_enforce_control_immunity_state()
 	_process_pet_tiger_sxhz_air_hold()
@@ -511,7 +513,8 @@ func _physics_process(delta: float) -> void :
 		if not is_be_attacking:
 			WhenScary()
 	check_hp()
-	move_and_slide()
+	if not is_queued_for_deletion() and is_inside_tree():
+		move_and_slide()
 
 func _should_run_ai_this_frame() -> bool:
 	if has_target:

@@ -65,7 +65,6 @@ func _ready() -> void :
 func _save_completed_level() -> bool:
 	var archive_path: = str(Global.cd_path).strip_edges()
 	if archive_path == "":
-		push_warning("通关自动保存失败：当前存档路径为空")
 		return false
 	var saved: = MemoryClass.保存游戏(archive_path)
 	if not saved:
