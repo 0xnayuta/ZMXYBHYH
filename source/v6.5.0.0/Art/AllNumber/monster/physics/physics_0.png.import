@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bw5rip5oo6lff"
-path="res://godot/imported/physics_0.png-880515d382613565c2233d99cb463b23.ctex"
+path="res://.godot/imported/physics_0.png-880515d382613565c2233d99cb463b23.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AllNumber/monster/physics/physics_0.png"
-dest_files=["res://godot/imported/physics_0.png-880515d382613565c2233d99cb463b23.ctex"]
+dest_files=["res://.godot/imported/physics_0.png-880515d382613565c2233d99cb463b23.ctex"]
 
 [params]
 

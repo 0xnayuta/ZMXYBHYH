@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsc88suph27l0"
-path="res://godot/imported/qlp.png-ca914e60045518029891151723e139e0.ctex"
+path="res://.godot/imported/qlp.png-ca914e60045518029891151723e139e0.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/qlp.png"
-dest_files=["res://godot/imported/qlp.png-ca914e60045518029891151723e139e0.ctex"]
+dest_files=["res://.godot/imported/qlp.png-ca914e60045518029891151723e139e0.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0ebmhruwdlj"
-path="res://godot/imported/4_Monster32.png-4095a615f26cc0121175941219dd6061.ctex"
+path="res://.godot/imported/4_Monster32.png-4095a615f26cc0121175941219dd6061.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_lsh/4_Monster32.png"
-dest_files=["res://godot/imported/4_Monster32.png-4095a615f26cc0121175941219dd6061.ctex"]
+dest_files=["res://.godot/imported/4_Monster32.png-4095a615f26cc0121175941219dd6061.ctex"]
 
 [params]
 

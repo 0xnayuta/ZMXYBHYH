@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4lw7c6526h4t"
-path="res://godot/imported/岩石怪.png-79515d7ae2f030c98e01f33190e632db.ctex"
+path="res://.godot/imported/岩石怪.png-79515d7ae2f030c98e01f33190e632db.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/岩石怪.png"
-dest_files=["res://godot/imported/岩石怪.png-79515d7ae2f030c98e01f33190e632db.ctex"]
+dest_files=["res://.godot/imported/岩石怪.png-79515d7ae2f030c98e01f33190e632db.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://p7q2a8jalnfl"
-path="res://godot/imported/通天教主(穷奇版).png-5aa0ffd5f8ecf9b6116d3b23b3ba21e9.ctex"
+path="res://.godot/imported/通天教主(穷奇版).png-5aa0ffd5f8ecf9b6116d3b23b3ba21e9.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/通天教主(穷奇版).png"
-dest_files=["res://godot/imported/通天教主(穷奇版).png-5aa0ffd5f8ecf9b6116d3b23b3ba21e9.ctex"]
+dest_files=["res://.godot/imported/通天教主(穷奇版).png-5aa0ffd5f8ecf9b6116d3b23b3ba21e9.ctex"]
 
 [params]
 

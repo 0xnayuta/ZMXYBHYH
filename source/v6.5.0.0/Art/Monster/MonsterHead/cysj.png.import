@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vm0r8ytbfkl4"
-path="res://godot/imported/cysj.png-4a0b69d0bba907b887307345e3704e35.ctex"
+path="res://.godot/imported/cysj.png-4a0b69d0bba907b887307345e3704e35.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/cysj.png"
-dest_files=["res://godot/imported/cysj.png-4a0b69d0bba907b887307345e3704e35.ctex"]
+dest_files=["res://.godot/imported/cysj.png-4a0b69d0bba907b887307345e3704e35.ctex"]
 
 [params]
 

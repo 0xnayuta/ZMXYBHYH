@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dho4olw0tvlhy"
-path="res://godot/imported/item_1114.png-c141c7f3c34096fe5f838d37e45a1300.ctex"
+path="res://.godot/imported/item_1114.png-c141c7f3c34096fe5f838d37e45a1300.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/Imported/terrain/item_1114.png"
-dest_files=["res://godot/imported/item_1114.png-c141c7f3c34096fe5f838d37e45a1300.ctex"]
+dest_files=["res://.godot/imported/item_1114.png-c141c7f3c34096fe5f838d37e45a1300.ctex"]
 
 [params]
 

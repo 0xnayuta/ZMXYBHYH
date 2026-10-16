@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jaqjcaar0fjk"
-path="res://godot/imported/skill_normal.png-fe69d3fea8c43264dfc2a08c92e15375.ctex"
+path="res://.godot/imported/skill_normal.png-fe69d3fea8c43264dfc2a08c92e15375.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Main_menu/Map0/skill_normal.png"
-dest_files=["res://godot/imported/skill_normal.png-fe69d3fea8c43264dfc2a08c92e15375.ctex"]
+dest_files=["res://.godot/imported/skill_normal.png-fe69d3fea8c43264dfc2a08c92e15375.ctex"]
 
 [params]
 

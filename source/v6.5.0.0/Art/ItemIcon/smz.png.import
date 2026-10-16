@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsabihjaib686"
-path="res://godot/imported/smz.png-784cb44697f1bfc9d4e40c918d897edc.ctex"
+path="res://.godot/imported/smz.png-784cb44697f1bfc9d4e40c918d897edc.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/smz.png"
-dest_files=["res://godot/imported/smz.png-784cb44697f1bfc9d4e40c918d897edc.ctex"]
+dest_files=["res://.godot/imported/smz.png-784cb44697f1bfc9d4e40c918d897edc.ctex"]
 
 [params]
 

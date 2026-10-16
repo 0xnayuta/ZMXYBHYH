@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dmg1hrdw833k4"
-path="res://godot/imported/lhsq.mp3-bdca0ef11fb08437155980471f6f0411.mp3str"
+path="res://.godot/imported/lhsq.mp3-bdca0ef11fb08437155980471f6f0411.mp3str"
 
 [deps]
 
 source_file="res://Music/Hero/Role4/lhsq.mp3"
-dest_files=["res://godot/imported/lhsq.mp3-bdca0ef11fb08437155980471f6f0411.mp3str"]
+dest_files=["res://.godot/imported/lhsq.mp3-bdca0ef11fb08437155980471f6f0411.mp3str"]
 
 [params]
 

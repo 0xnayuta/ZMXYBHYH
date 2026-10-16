@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://w1xmv4b27cgh"
-path="res://godot/imported/47.png-f43f3c6aa316ca8bce8f1fd5e6deda1b.ctex"
+path="res://.godot/imported/47.png-f43f3c6aa316ca8bce8f1fd5e6deda1b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game4SpecialEffect/3120/effect1/47.png"
-dest_files=["res://godot/imported/47.png-f43f3c6aa316ca8bce8f1fd5e6deda1b.ctex"]
+dest_files=["res://.godot/imported/47.png-f43f3c6aa316ca8bce8f1fd5e6deda1b.ctex"]
 
 [params]
 

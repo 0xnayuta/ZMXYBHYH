@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://da3vguntx15x5"
-path="res://godot/imported/wait_0.png-0959c95a7176a5e4b993f94393609e89.ctex"
+path="res://.godot/imported/wait_0.png-0959c95a7176a5e4b993f94393609e89.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetTurtle/model/actions/stage1/wait/wait_0.png"
-dest_files=["res://godot/imported/wait_0.png-0959c95a7176a5e4b993f94393609e89.ctex"]
+dest_files=["res://.godot/imported/wait_0.png-0959c95a7176a5e4b993f94393609e89.ctex"]
 
 [params]
 

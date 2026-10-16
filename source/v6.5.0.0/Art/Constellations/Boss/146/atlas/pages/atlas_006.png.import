@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clvgevl6qm1o"
-path="res://godot/imported/atlas_006.png-60bdeea88bd5afb71a7d2bc20903c84d.ctex"
+path="res://.godot/imported/atlas_006.png-60bdeea88bd5afb71a7d2bc20903c84d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Constellations/Boss/146/atlas/pages/atlas_006.png"
-dest_files=["res://godot/imported/atlas_006.png-60bdeea88bd5afb71a7d2bc20903c84d.ctex"]
+dest_files=["res://.godot/imported/atlas_006.png-60bdeea88bd5afb71a7d2bc20903c84d.ctex"]
 
 [params]
 

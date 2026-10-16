@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://p1cgekvankm1"
-path="res://godot/imported/xhmt.png-e4a1bcaded835fdf90f5c87f2d219959.ctex"
+path="res://.godot/imported/xhmt.png-e4a1bcaded835fdf90f5c87f2d219959.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/Skill_Icon/xhmt.png"
-dest_files=["res://godot/imported/xhmt.png-e4a1bcaded835fdf90f5c87f2d219959.ctex"]
+dest_files=["res://.godot/imported/xhmt.png-e4a1bcaded835fdf90f5c87f2d219959.ctex"]
 
 [params]
 

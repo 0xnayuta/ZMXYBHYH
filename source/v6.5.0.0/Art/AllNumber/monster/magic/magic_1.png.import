@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dteurmj8w0hxt"
-path="res://godot/imported/magic_1.png-949e35c98c9ed87348fd23d3890a5603.ctex"
+path="res://.godot/imported/magic_1.png-949e35c98c9ed87348fd23d3890a5603.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AllNumber/monster/magic/magic_1.png"
-dest_files=["res://godot/imported/magic_1.png-949e35c98c9ed87348fd23d3890a5603.ctex"]
+dest_files=["res://.godot/imported/magic_1.png-949e35c98c9ed87348fd23d3890a5603.ctex"]
 
 [params]
 

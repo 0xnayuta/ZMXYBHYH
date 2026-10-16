@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckl82f3equkr0"
-path="res://godot/imported/422.png-fb8ac54684befdb6ebc0ccd1d2d25304.ctex"
+path="res://.godot/imported/422.png-fb8ac54684befdb6ebc0ccd1d2d25304.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/RoleInfoIcon/422.png"
-dest_files=["res://godot/imported/422.png-fb8ac54684befdb6ebc0ccd1d2d25304.ctex"]
+dest_files=["res://.godot/imported/422.png-fb8ac54684befdb6ebc0ccd1d2d25304.ctex"]
 
 [params]
 

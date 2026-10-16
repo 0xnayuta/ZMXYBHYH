@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bf4s1lkuccroh"
-path="res://godot/imported/05.png-3ea43f162279ed4773933e8a438f479c.ctex"
+path="res://.godot/imported/05.png-3ea43f162279ed4773933e8a438f479c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role3/Role3Bullet2Stream/05.png"
-dest_files=["res://godot/imported/05.png-3ea43f162279ed4773933e8a438f479c.ctex"]
+dest_files=["res://.godot/imported/05.png-3ea43f162279ed4773933e8a438f479c.ctex"]
 
 [params]
 

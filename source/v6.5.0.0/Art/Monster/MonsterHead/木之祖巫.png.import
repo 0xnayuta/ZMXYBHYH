@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bplyi8jsb3pi3"
-path="res://godot/imported/木之祖巫.png-cc9ef4d21739ce3ef58273298e91dc8a.ctex"
+path="res://.godot/imported/木之祖巫.png-cc9ef4d21739ce3ef58273298e91dc8a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/木之祖巫.png"
-dest_files=["res://godot/imported/木之祖巫.png-cc9ef4d21739ce3ef58273298e91dc8a.ctex"]
+dest_files=["res://.godot/imported/木之祖巫.png-cc9ef4d21739ce3ef58273298e91dc8a.ctex"]
 
 [params]
 

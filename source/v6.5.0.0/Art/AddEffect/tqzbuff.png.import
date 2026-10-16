@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjiprbyb7l1gp"
-path="res://godot/imported/tqzbuff.png-6aba0aff2d23e1a29015b399a470c509.ctex"
+path="res://.godot/imported/tqzbuff.png-6aba0aff2d23e1a29015b399a470c509.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AddEffect/tqzbuff.png"
-dest_files=["res://godot/imported/tqzbuff.png-6aba0aff2d23e1a29015b399a470c509.ctex"]
+dest_files=["res://.godot/imported/tqzbuff.png-6aba0aff2d23e1a29015b399a470c509.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://deb5ybhqqovja"
-path="res://godot/imported/bg11H.png-4e98a0e8808057269e0425f34e7f898d.ctex"
+path="res://.godot/imported/bg11H.png-4e98a0e8808057269e0425f34e7f898d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/NorthOriginal/maps/suiyunjianV3/bg11H.png"
-dest_files=["res://godot/imported/bg11H.png-4e98a0e8808057269e0425f34e7f898d.ctex"]
+dest_files=["res://.godot/imported/bg11H.png-4e98a0e8808057269e0425f34e7f898d.ctex"]
 
 [params]
 

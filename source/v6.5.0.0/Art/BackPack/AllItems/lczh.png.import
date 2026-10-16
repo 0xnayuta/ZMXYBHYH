@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqkt7746yrtb2"
-path="res://godot/imported/lczh.png-2e2f4e43ca02d3ef3718299afc0e756c.ctex"
+path="res://.godot/imported/lczh.png-2e2f4e43ca02d3ef3718299afc0e756c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/lczh.png"
-dest_files=["res://godot/imported/lczh.png-2e2f4e43ca02d3ef3718299afc0e756c.ctex"]
+dest_files=["res://.godot/imported/lczh.png-2e2f4e43ca02d3ef3718299afc0e756c.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqh404bv6wmd5"
-path="res://godot/imported/dxec.png-220ca345fad5a383afd8556f7baddc9a.ctex"
+path="res://.godot/imported/dxec.png-220ca345fad5a383afd8556f7baddc9a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_5/dxec.png"
-dest_files=["res://godot/imported/dxec.png-220ca345fad5a383afd8556f7baddc9a.ctex"]
+dest_files=["res://.godot/imported/dxec.png-220ca345fad5a383afd8556f7baddc9a.ctex"]
 
 [params]
 

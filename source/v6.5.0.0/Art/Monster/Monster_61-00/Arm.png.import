@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bq8ooj11ligci"
-path="res://godot/imported/Arm.png-ec7ed5ed024889c008682b7f297c3354.ctex"
+path="res://.godot/imported/Arm.png-ec7ed5ed024889c008682b7f297c3354.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_61-00/Arm.png"
-dest_files=["res://godot/imported/Arm.png-ec7ed5ed024889c008682b7f297c3354.ctex"]
+dest_files=["res://.godot/imported/Arm.png-ec7ed5ed024889c008682b7f297c3354.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cysmn1x5qycym"
-path="res://godot/imported/gmtwbx.png-d32ea33a6ea526417bf27db378111589.ctex"
+path="res://.godot/imported/gmtwbx.png-d32ea33a6ea526417bf27db378111589.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/gmtwbx.png"
-dest_files=["res://godot/imported/gmtwbx.png-d32ea33a6ea526417bf27db378111589.ctex"]
+dest_files=["res://.godot/imported/gmtwbx.png-d32ea33a6ea526417bf27db378111589.ctex"]
 
 [params]
 

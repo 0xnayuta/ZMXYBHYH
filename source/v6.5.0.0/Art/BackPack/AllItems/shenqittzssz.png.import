@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvjar4tb4os5e"
-path="res://godot/imported/shenqittzssz.png-c793eaa931573eedaeef67c8500e576b.ctex"
+path="res://.godot/imported/shenqittzssz.png-c793eaa931573eedaeef67c8500e576b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/shenqittzssz.png"
-dest_files=["res://godot/imported/shenqittzssz.png-c793eaa931573eedaeef67c8500e576b.ctex"]
+dest_files=["res://.godot/imported/shenqittzssz.png-c793eaa931573eedaeef67c8500e576b.ctex"]
 
 [params]
 

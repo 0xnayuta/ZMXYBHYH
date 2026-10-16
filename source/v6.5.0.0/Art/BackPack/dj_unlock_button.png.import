@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnes53kcu5uo6"
-path="res://godot/imported/dj_unlock_button.png-54e96fce3d43bdb4364d0aec0660a941.ctex"
+path="res://.godot/imported/dj_unlock_button.png-54e96fce3d43bdb4364d0aec0660a941.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/dj_unlock_button.png"
-dest_files=["res://godot/imported/dj_unlock_button.png-54e96fce3d43bdb4364d0aec0660a941.ctex"]
+dest_files=["res://.godot/imported/dj_unlock_button.png-54e96fce3d43bdb4364d0aec0660a941.ctex"]
 
 [params]
 

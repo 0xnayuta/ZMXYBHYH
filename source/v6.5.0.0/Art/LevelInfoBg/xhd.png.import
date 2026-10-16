@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2hd1vfjn63v3"
-path="res://godot/imported/xhd.png-6b00ac266a36d6aacb53cd53a5d9fdcd.ctex"
+path="res://.godot/imported/xhd.png-6b00ac266a36d6aacb53cd53a5d9fdcd.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/LevelInfoBg/xhd.png"
-dest_files=["res://godot/imported/xhd.png-6b00ac266a36d6aacb53cd53a5d9fdcd.ctex"]
+dest_files=["res://.godot/imported/xhd.png-6b00ac266a36d6aacb53cd53a5d9fdcd.ctex"]
 
 [params]
 

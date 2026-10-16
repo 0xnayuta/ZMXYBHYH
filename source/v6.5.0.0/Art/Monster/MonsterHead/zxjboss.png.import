@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dddgr3vefmexy"
-path="res://godot/imported/zxjboss.png-0f273fb8ba422c98f2f19ddea4c318ee.ctex"
+path="res://.godot/imported/zxjboss.png-0f273fb8ba422c98f2f19ddea4c318ee.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/zxjboss.png"
-dest_files=["res://godot/imported/zxjboss.png-0f273fb8ba422c98f2f19ddea4c318ee.ctex"]
+dest_files=["res://.godot/imported/zxjboss.png-0f273fb8ba422c98f2f19ddea4c318ee.ctex"]
 
 [params]
 

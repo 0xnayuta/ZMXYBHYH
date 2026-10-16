@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://do5jougj83wne"
-path="res://godot/imported/LifeManaLock.png-22b064cf179490162324f8337c2d2eff.ctex"
+path="res://.godot/imported/LifeManaLock.png-22b064cf179490162324f8337c2d2eff.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AddEffect/Buff_icon/LifeManaLock.png"
-dest_files=["res://godot/imported/LifeManaLock.png-22b064cf179490162324f8337c2d2eff.ctex"]
+dest_files=["res://.godot/imported/LifeManaLock.png-22b064cf179490162324f8337c2d2eff.ctex"]
 
 [params]
 

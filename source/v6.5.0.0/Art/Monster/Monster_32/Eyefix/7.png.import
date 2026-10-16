@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://doue587sb0nk1"
-path="res://godot/imported/7.png-b01acbb62f5c14ff395b164065d8fb9c.ctex"
+path="res://.godot/imported/7.png-b01acbb62f5c14ff395b164065d8fb9c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_32/Eyefix/7.png"
-dest_files=["res://godot/imported/7.png-b01acbb62f5c14ff395b164065d8fb9c.ctex"]
+dest_files=["res://.godot/imported/7.png-b01acbb62f5c14ff395b164065d8fb9c.ctex"]
 
 [params]
 

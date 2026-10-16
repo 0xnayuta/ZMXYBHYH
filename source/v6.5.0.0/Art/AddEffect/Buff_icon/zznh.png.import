@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dipncfgdx3r8i"
-path="res://godot/imported/zznh.png-3d23af6e9f6468b16e5c8997cdd77c0d.ctex"
+path="res://.godot/imported/zznh.png-3d23af6e9f6468b16e5c8997cdd77c0d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AddEffect/Buff_icon/zznh.png"
-dest_files=["res://godot/imported/zznh.png-3d23af6e9f6468b16e5c8997cdd77c0d.ctex"]
+dest_files=["res://.godot/imported/zznh.png-3d23af6e9f6468b16e5c8997cdd77c0d.ctex"]
 
 [params]
 

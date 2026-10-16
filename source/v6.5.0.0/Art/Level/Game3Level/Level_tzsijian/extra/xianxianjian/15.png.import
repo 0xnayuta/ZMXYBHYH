@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drkvmybj2bn54"
-path="res://godot/imported/15.png-63a88dabc526e227c388c988ef0d9ecf.ctex"
+path="res://.godot/imported/15.png-63a88dabc526e227c388c988ef0d9ecf.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_tzsijian/extra/xianxianjian/15.png"
-dest_files=["res://godot/imported/15.png-63a88dabc526e227c388c988ef0d9ecf.ctex"]
+dest_files=["res://.godot/imported/15.png-63a88dabc526e227c388c988ef0d9ecf.ctex"]
 
 [params]
 

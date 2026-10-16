@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5oaliks23n38"
-path="res://godot/imported/icons_xbox_animated_buttons1.png-a6d641d389f684648004657545a4b214.ctex"
+path="res://.godot/imported/icons_xbox_animated_buttons1.png-a6d641d389f684648004657545a4b214.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Spritesheet/icons_xbox_animated_buttons1.png"
-dest_files=["res://godot/imported/icons_xbox_animated_buttons1.png-a6d641d389f684648004657545a4b214.ctex"]
+dest_files=["res://.godot/imported/icons_xbox_animated_buttons1.png-a6d641d389f684648004657545a4b214.ctex"]
 
 [params]
 

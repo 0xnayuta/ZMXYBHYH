@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sof23bwyhimt"
-path="res://godot/imported/wdtz.png-c9ca5f6af168019a0e1e9ea7cda0d5f4.ctex"
+path="res://.godot/imported/wdtz.png-c9ca5f6af168019a0e1e9ea7cda0d5f4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/wdtz.png"
-dest_files=["res://godot/imported/wdtz.png-c9ca5f6af168019a0e1e9ea7cda0d5f4.ctex"]
+dest_files=["res://.godot/imported/wdtz.png-c9ca5f6af168019a0e1e9ea7cda0d5f4.ctex"]
 
 [params]
 

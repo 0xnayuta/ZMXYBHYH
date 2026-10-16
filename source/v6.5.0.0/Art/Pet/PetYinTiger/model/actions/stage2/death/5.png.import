@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c566aqpc71nda"
-path="res://godot/imported/5.png-537fc1bcfc7a5298695faa53ff814673.ctex"
+path="res://.godot/imported/5.png-537fc1bcfc7a5298695faa53ff814673.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetYinTiger/model/actions/stage2/death/5.png"
-dest_files=["res://godot/imported/5.png-537fc1bcfc7a5298695faa53ff814673.ctex"]
+dest_files=["res://.godot/imported/5.png-537fc1bcfc7a5298695faa53ff814673.ctex"]
 
 [params]
 

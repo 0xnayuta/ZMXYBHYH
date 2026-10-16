@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clsgpmraxubpa"
-path="res://godot/imported/mount_action_fight_hover.png-1e0f95c86ce2b0eacd7f30c2fa136812.ctex"
+path="res://.godot/imported/mount_action_fight_hover.png-1e0f95c86ce2b0eacd7f30c2fa136812.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Mount/UI/mount_action_fight_hover.png"
-dest_files=["res://godot/imported/mount_action_fight_hover.png-1e0f95c86ce2b0eacd7f30c2fa136812.ctex"]
+dest_files=["res://.godot/imported/mount_action_fight_hover.png-1e0f95c86ce2b0eacd7f30c2fa136812.ctex"]
 
 [params]
 

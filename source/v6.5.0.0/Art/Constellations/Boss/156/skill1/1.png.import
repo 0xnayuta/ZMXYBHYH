@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blcpj4hqpfh3i"
-path="res://godot/imported/1.png-7669270dafe9767cbf6d38d8b049a06e.ctex"
+path="res://.godot/imported/1.png-7669270dafe9767cbf6d38d8b049a06e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Constellations/Boss/156/skill1/1.png"
-dest_files=["res://godot/imported/1.png-7669270dafe9767cbf6d38d8b049a06e.ctex"]
+dest_files=["res://.godot/imported/1.png-7669270dafe9767cbf6d38d8b049a06e.ctex"]
 
 [params]
 

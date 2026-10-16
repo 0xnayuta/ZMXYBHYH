@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgskbxxcvclnn"
-path="res://godot/imported/g0007.png-f25dc537deae64855c45801aa7f52a82.ctex"
+path="res://.godot/imported/g0007.png-f25dc537deae64855c45801aa7f52a82.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role2/LYFBAwaken/runtime/images/fx/02/g0007.png"
-dest_files=["res://godot/imported/g0007.png-f25dc537deae64855c45801aa7f52a82.ctex"]
+dest_files=["res://.godot/imported/g0007.png-f25dc537deae64855c45801aa7f52a82.ctex"]
 
 [params]
 

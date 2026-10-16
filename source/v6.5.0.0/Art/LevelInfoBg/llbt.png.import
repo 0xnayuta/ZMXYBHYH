@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1ye1vnknam5g"
-path="res://godot/imported/llbt.png-fbceea42382c472c5506f48381999103.ctex"
+path="res://.godot/imported/llbt.png-fbceea42382c472c5506f48381999103.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/LevelInfoBg/llbt.png"
-dest_files=["res://godot/imported/llbt.png-fbceea42382c472c5506f48381999103.ctex"]
+dest_files=["res://.godot/imported/llbt.png-fbceea42382c472c5506f48381999103.ctex"]
 
 [params]
 

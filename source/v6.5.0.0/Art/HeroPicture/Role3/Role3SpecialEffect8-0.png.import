@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lvlbfiotypew"
-path="res://godot/imported/Role3SpecialEffect8-0.png-d7b91b9d867622e66711b91526ec9981.ctex"
+path="res://.godot/imported/Role3SpecialEffect8-0.png-d7b91b9d867622e66711b91526ec9981.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role3/Role3SpecialEffect8-0.png"
-dest_files=["res://godot/imported/Role3SpecialEffect8-0.png-d7b91b9d867622e66711b91526ec9981.ctex"]
+dest_files=["res://.godot/imported/Role3SpecialEffect8-0.png-d7b91b9d867622e66711b91526ec9981.ctex"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dlqppjxa8akko"
-path="res://godot/imported/effect7_1.mp3-d6ad9091371352ad9dc6a490d0497274.mp3str"
+path="res://.godot/imported/effect7_1.mp3-d6ad9091371352ad9dc6a490d0497274.mp3str"
 
 [deps]
 
 source_file="res://Music/Hero/Role5/effect7_1.mp3"
-dest_files=["res://godot/imported/effect7_1.mp3-d6ad9091371352ad9dc6a490d0497274.mp3str"]
+dest_files=["res://.godot/imported/effect7_1.mp3-d6ad9091371352ad9dc6a490d0497274.mp3str"]
 
 [params]
 

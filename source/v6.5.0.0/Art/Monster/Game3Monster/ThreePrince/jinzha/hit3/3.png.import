@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjvbxyxwsaq00"
-path="res://godot/imported/3.png-e83b222acd6c07e0d52642ab4deac96f.ctex"
+path="res://.godot/imported/3.png-e83b222acd6c07e0d52642ab4deac96f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/ThreePrince/jinzha/hit3/3.png"
-dest_files=["res://godot/imported/3.png-e83b222acd6c07e0d52642ab4deac96f.ctex"]
+dest_files=["res://.godot/imported/3.png-e83b222acd6c07e0d52642ab4deac96f.ctex"]
 
 [params]
 

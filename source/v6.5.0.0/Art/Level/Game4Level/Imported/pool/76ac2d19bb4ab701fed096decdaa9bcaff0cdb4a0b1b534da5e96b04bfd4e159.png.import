@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dyu43tcpk0dlh"
-path="res://godot/imported/76ac2d19bb4ab701fed096decdaa9bcaff0cdb4a0b1b534da5e96b04bfd4e159.png-2077606a540d0f1d3be17a46709cfc2c.ctex"
+path="res://.godot/imported/76ac2d19bb4ab701fed096decdaa9bcaff0cdb4a0b1b534da5e96b04bfd4e159.png-2077606a540d0f1d3be17a46709cfc2c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/Imported/pool/76ac2d19bb4ab701fed096decdaa9bcaff0cdb4a0b1b534da5e96b04bfd4e159.png"
-dest_files=["res://godot/imported/76ac2d19bb4ab701fed096decdaa9bcaff0cdb4a0b1b534da5e96b04bfd4e159.png-2077606a540d0f1d3be17a46709cfc2c.ctex"]
+dest_files=["res://.godot/imported/76ac2d19bb4ab701fed096decdaa9bcaff0cdb4a0b1b534da5e96b04bfd4e159.png-2077606a540d0f1d3be17a46709cfc2c.ctex"]
 
 [params]
 

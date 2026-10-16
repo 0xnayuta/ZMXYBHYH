@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bx3u6pgyl3sp4"
-path="res://godot/imported/sunwukong_attack3__txbujian-tx_05.png-88000c005dffe1d832c822ca09df103c.ctex"
+path="res://.godot/imported/sunwukong_attack3__txbujian-tx_05.png-88000c005dffe1d832c822ca09df103c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role1SpecialEffect/sunwukong_attack3__txbujian-tx_05.png"
-dest_files=["res://godot/imported/sunwukong_attack3__txbujian-tx_05.png-88000c005dffe1d832c822ca09df103c.ctex"]
+dest_files=["res://.godot/imported/sunwukong_attack3__txbujian-tx_05.png-88000c005dffe1d832c822ca09df103c.ctex"]
 
 [params]
 

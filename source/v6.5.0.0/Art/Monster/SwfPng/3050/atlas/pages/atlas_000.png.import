@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qridiwqak7mw"
-path="res://godot/imported/atlas_000.png-af9f8ed4ec976ce91f1d58f1abc16ac7.ctex"
+path="res://.godot/imported/atlas_000.png-af9f8ed4ec976ce91f1d58f1abc16ac7.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/SwfPng/3050/atlas/pages/atlas_000.png"
-dest_files=["res://godot/imported/atlas_000.png-af9f8ed4ec976ce91f1d58f1abc16ac7.ctex"]
+dest_files=["res://.godot/imported/atlas_000.png-af9f8ed4ec976ce91f1d58f1abc16ac7.ctex"]
 
 [params]
 

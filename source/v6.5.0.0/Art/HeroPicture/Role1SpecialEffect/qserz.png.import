@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyhsdc1vyve8j"
-path="res://godot/imported/qserz.png-394a4a223c417000ce9d9a4a9ef69b82.ctex"
+path="res://.godot/imported/qserz.png-394a4a223c417000ce9d9a4a9ef69b82.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role1SpecialEffect/qserz.png"
-dest_files=["res://godot/imported/qserz.png-394a4a223c417000ce9d9a4a9ef69b82.ctex"]
+dest_files=["res://.godot/imported/qserz.png-394a4a223c417000ce9d9a4a9ef69b82.ctex"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://cb2apte3a25ft"
-path="res://godot/imported/Shoveldcj.mp3-a721f482e12159e8ac6cfe0f3ed8263c.mp3str"
+path="res://.godot/imported/Shoveldcj.mp3-a721f482e12159e8ac6cfe0f3ed8263c.mp3str"
 
 [deps]
 
 source_file="res://Music/Hero/Role4/Shoveldcj.mp3"
-dest_files=["res://godot/imported/Shoveldcj.mp3-a721f482e12159e8ac6cfe0f3ed8263c.mp3str"]
+dest_files=["res://.godot/imported/Shoveldcj.mp3-a721f482e12159e8ac6cfe0f3ed8263c.mp3str"]
 
 [params]
 

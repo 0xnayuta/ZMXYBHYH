@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0wri3nb1c668"
-path="res://godot/imported/4.png-78e14c0ca5468bae0390d9b68ee2db14.ctex"
+path="res://.godot/imported/4.png-78e14c0ca5468bae0390d9b68ee2db14.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/SwfPng/3056/attack1/4.png"
-dest_files=["res://godot/imported/4.png-78e14c0ca5468bae0390d9b68ee2db14.ctex"]
+dest_files=["res://.godot/imported/4.png-78e14c0ca5468bae0390d9b68ee2db14.ctex"]
 
 [params]
 

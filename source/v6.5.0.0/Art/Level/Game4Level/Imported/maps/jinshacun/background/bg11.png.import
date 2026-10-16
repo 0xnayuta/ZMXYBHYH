@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://wtdhr65hjnty"
-path="res://godot/imported/bg11.png-763cd6d7a40e999f72724fb107a0e3eb.ctex"
+path="res://.godot/imported/bg11.png-763cd6d7a40e999f72724fb107a0e3eb.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/Imported/maps/jinshacun/background/bg11.png"
-dest_files=["res://godot/imported/bg11.png-763cd6d7a40e999f72724fb107a0e3eb.ctex"]
+dest_files=["res://.godot/imported/bg11.png-763cd6d7a40e999f72724fb107a0e3eb.ctex"]
 
 [params]
 

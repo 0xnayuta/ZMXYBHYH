@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgv5nscxkgbwx"
-path="res://godot/imported/76.png-0edb8c7bc63a1dfe23b2a862a29eecd5.ctex"
+path="res://.godot/imported/76.png-0edb8c7bc63a1dfe23b2a862a29eecd5.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Shop/76.png"
-dest_files=["res://godot/imported/76.png-0edb8c7bc63a1dfe23b2a862a29eecd5.ctex"]
+dest_files=["res://.godot/imported/76.png-0edb8c7bc63a1dfe23b2a862a29eecd5.ctex"]
 
 [params]
 

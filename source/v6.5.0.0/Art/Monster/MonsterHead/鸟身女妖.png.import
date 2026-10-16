@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cflg2te81ilyf"
-path="res://godot/imported/鸟身女妖.png-fbf043d0acf182d883f925b75e129087.ctex"
+path="res://.godot/imported/鸟身女妖.png-fbf043d0acf182d883f925b75e129087.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/鸟身女妖.png"
-dest_files=["res://godot/imported/鸟身女妖.png-fbf043d0acf182d883f925b75e129087.ctex"]
+dest_files=["res://.godot/imported/鸟身女妖.png-fbf043d0acf182d883f925b75e129087.ctex"]
 
 [params]
 

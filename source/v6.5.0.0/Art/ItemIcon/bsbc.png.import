@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crwagnu4vqfo3"
-path="res://godot/imported/bsbc.png-f2801acf49f8d2f0b670de3fbd983ed4.ctex"
+path="res://.godot/imported/bsbc.png-f2801acf49f8d2f0b670de3fbd983ed4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/bsbc.png"
-dest_files=["res://godot/imported/bsbc.png-f2801acf49f8d2f0b670de3fbd983ed4.ctex"]
+dest_files=["res://.godot/imported/bsbc.png-f2801acf49f8d2f0b670de3fbd983ed4.ctex"]
 
 [params]
 

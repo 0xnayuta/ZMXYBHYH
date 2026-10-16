@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxhiy84qem6wm"
-path="res://godot/imported/ui_zhenfa.png-38b76407116b018c72f261bf44c8aa9b.ctex"
+path="res://.godot/imported/ui_zhenfa.png-38b76407116b018c72f261bf44c8aa9b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/ui_zhenfa.png"
-dest_files=["res://godot/imported/ui_zhenfa.png-38b76407116b018c72f261bf44c8aa9b.ctex"]
+dest_files=["res://.godot/imported/ui_zhenfa.png-38b76407116b018c72f261bf44c8aa9b.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cp7xtquxvsdt8"
-path="res://godot/imported/CloudSword.png-1a609349234a7a4907e6dc87f20b42d0.ctex"
+path="res://.godot/imported/CloudSword.png-1a609349234a7a4907e6dc87f20b42d0.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/MagicWeapon8/CloudSword.png"
-dest_files=["res://godot/imported/CloudSword.png-1a609349234a7a4907e6dc87f20b42d0.ctex"]
+dest_files=["res://.godot/imported/CloudSword.png-1a609349234a7a4907e6dc87f20b42d0.ctex"]
 
 [params]
 

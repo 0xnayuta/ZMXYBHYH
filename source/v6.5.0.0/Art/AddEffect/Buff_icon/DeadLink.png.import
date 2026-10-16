@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bofar7inrkk7i"
-path="res://godot/imported/DeadLink.png-fc1addf8eb21013f522d2bf7d4eb7160.ctex"
+path="res://.godot/imported/DeadLink.png-fc1addf8eb21013f522d2bf7d4eb7160.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AddEffect/Buff_icon/DeadLink.png"
-dest_files=["res://godot/imported/DeadLink.png-fc1addf8eb21013f522d2bf7d4eb7160.ctex"]
+dest_files=["res://.godot/imported/DeadLink.png-fc1addf8eb21013f522d2bf7d4eb7160.ctex"]
 
 [params]
 

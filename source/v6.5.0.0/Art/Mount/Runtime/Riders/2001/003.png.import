@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bioyjt4af2p8e"
-path="res://godot/imported/003.png-c9516ea9d645ee9b950493960ad36ed0.ctex"
+path="res://.godot/imported/003.png-c9516ea9d645ee9b950493960ad36ed0.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Mount/Runtime/Riders/2001/003.png"
-dest_files=["res://godot/imported/003.png-c9516ea9d645ee9b950493960ad36ed0.ctex"]
+dest_files=["res://.godot/imported/003.png-c9516ea9d645ee9b950493960ad36ed0.ctex"]
 
 [params]
 

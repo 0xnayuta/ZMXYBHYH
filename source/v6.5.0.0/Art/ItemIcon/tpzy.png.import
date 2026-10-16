@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bcyew8ugu23df"
-path="res://godot/imported/tpzy.png-ccd9aba583240a20adcb8ccc03ecfa58.ctex"
+path="res://.godot/imported/tpzy.png-ccd9aba583240a20adcb8ccc03ecfa58.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/tpzy.png"
-dest_files=["res://godot/imported/tpzy.png-ccd9aba583240a20adcb8ccc03ecfa58.ctex"]
+dest_files=["res://.godot/imported/tpzy.png-ccd9aba583240a20adcb8ccc03ecfa58.ctex"]
 
 [params]
 

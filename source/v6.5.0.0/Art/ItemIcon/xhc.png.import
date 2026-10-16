@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3yv7481jockw"
-path="res://godot/imported/xhc.png-bdcab62c4ac04b95110be7631c4664c5.ctex"
+path="res://.godot/imported/xhc.png-bdcab62c4ac04b95110be7631c4664c5.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/xhc.png"
-dest_files=["res://godot/imported/xhc.png-bdcab62c4ac04b95110be7631c4664c5.ctex"]
+dest_files=["res://.godot/imported/xhc.png-bdcab62c4ac04b95110be7631c4664c5.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cthyfatlmgtx7"
-path="res://godot/imported/blmq.png-15ad20f2727516edcd185115a9aa35ad.ctex"
+path="res://.godot/imported/blmq.png-15ad20f2727516edcd185115a9aa35ad.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/blmq.png"
-dest_files=["res://godot/imported/blmq.png-15ad20f2727516edcd185115a9aa35ad.ctex"]
+dest_files=["res://.godot/imported/blmq.png-15ad20f2727516edcd185115a9aa35ad.ctex"]
 
 [params]
 

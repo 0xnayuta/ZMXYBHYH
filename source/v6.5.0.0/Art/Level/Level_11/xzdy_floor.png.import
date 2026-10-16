@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://m73yrcccpwjh"
-path="res://godot/imported/xzdy_floor.png-dec9685bc1fec71e2ec1aefe268cdfb8.ctex"
+path="res://.godot/imported/xzdy_floor.png-dec9685bc1fec71e2ec1aefe268cdfb8.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Level_11/xzdy_floor.png"
-dest_files=["res://godot/imported/xzdy_floor.png-dec9685bc1fec71e2ec1aefe268cdfb8.ctex"]
+dest_files=["res://.godot/imported/xzdy_floor.png-dec9685bc1fec71e2ec1aefe268cdfb8.ctex"]
 
 [params]
 

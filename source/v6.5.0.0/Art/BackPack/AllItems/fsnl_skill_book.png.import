@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b03qmudmdil3w"
-path="res://godot/imported/fsnl_skill_book.png-bc06b3b1457e8d9efa81d16f81d3c613.ctex"
+path="res://.godot/imported/fsnl_skill_book.png-bc06b3b1457e8d9efa81d16f81d3c613.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/fsnl_skill_book.png"
-dest_files=["res://godot/imported/fsnl_skill_book.png-bc06b3b1457e8d9efa81d16f81d3c613.ctex"]
+dest_files=["res://.godot/imported/fsnl_skill_book.png-bc06b3b1457e8d9efa81d16f81d3c613.ctex"]
 
 [params]
 

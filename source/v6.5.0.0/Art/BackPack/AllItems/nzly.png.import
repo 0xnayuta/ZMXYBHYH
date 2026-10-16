@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctykf4dx2wnkn"
-path="res://godot/imported/nzly.png-baf024ca7682d07ff8c1cde53cdeb240.ctex"
+path="res://.godot/imported/nzly.png-baf024ca7682d07ff8c1cde53cdeb240.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/nzly.png"
-dest_files=["res://godot/imported/nzly.png-baf024ca7682d07ff8c1cde53cdeb240.ctex"]
+dest_files=["res://.godot/imported/nzly.png-baf024ca7682d07ff8c1cde53cdeb240.ctex"]
 
 [params]
 

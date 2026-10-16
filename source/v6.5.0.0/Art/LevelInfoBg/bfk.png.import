@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqx0qo84seguy"
-path="res://godot/imported/bfk.png-386b7d7acf8b0ea7acd84677a3784e8e.ctex"
+path="res://.godot/imported/bfk.png-386b7d7acf8b0ea7acd84677a3784e8e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/LevelInfoBg/bfk.png"
-dest_files=["res://godot/imported/bfk.png-386b7d7acf8b0ea7acd84677a3784e8e.ctex"]
+dest_files=["res://.godot/imported/bfk.png-386b7d7acf8b0ea7acd84677a3784e8e.ctex"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://qpfqb3ox6obq"
-path="res://godot/imported/zhanchangbg.mp3-f27dc896ad1a0673e32db5b5d1d203e4.mp3str"
+path="res://.godot/imported/zhanchangbg.mp3-f27dc896ad1a0673e32db5b5d1d203e4.mp3str"
 
 [deps]
 
 source_file="res://Music/level/zhanchangbg.mp3"
-dest_files=["res://godot/imported/zhanchangbg.mp3-f27dc896ad1a0673e32db5b5d1d203e4.mp3str"]
+dest_files=["res://.godot/imported/zhanchangbg.mp3-f27dc896ad1a0673e32db5b5d1d203e4.mp3str"]
 
 [params]
 

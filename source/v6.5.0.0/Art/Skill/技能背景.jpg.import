@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtx84icemqrqp"
-path="res://godot/imported/技能背景.jpg-4c286c18ef1aef8671aa4b495114d5af.ctex"
+path="res://.godot/imported/技能背景.jpg-4c286c18ef1aef8671aa4b495114d5af.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Skill/技能背景.jpg"
-dest_files=["res://godot/imported/技能背景.jpg-4c286c18ef1aef8671aa4b495114d5af.ctex"]
+dest_files=["res://.godot/imported/技能背景.jpg-4c286c18ef1aef8671aa4b495114d5af.ctex"]
 
 [params]
 

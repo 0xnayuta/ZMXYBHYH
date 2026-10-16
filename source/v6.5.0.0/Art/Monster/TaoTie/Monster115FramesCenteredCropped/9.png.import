@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwountsp8facw"
-path="res://godot/imported/9.png-af6699e976c5a4fa78e708900451d565.ctex"
+path="res://.godot/imported/9.png-af6699e976c5a4fa78e708900451d565.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/TaoTie/Monster115FramesCenteredCropped/9.png"
-dest_files=["res://godot/imported/9.png-af6699e976c5a4fa78e708900451d565.ctex"]
+dest_files=["res://.godot/imported/9.png-af6699e976c5a4fa78e708900451d565.ctex"]
 
 [params]
 

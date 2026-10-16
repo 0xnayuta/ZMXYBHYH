@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2rev56s61dbn"
-path="res://godot/imported/芙蓉仙子.png-c4f2cdeeacf05566ee57d60228c8ccbb.ctex"
+path="res://.godot/imported/芙蓉仙子.png-c4f2cdeeacf05566ee57d60228c8ccbb.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/芙蓉仙子.png"
-dest_files=["res://godot/imported/芙蓉仙子.png-c4f2cdeeacf05566ee57d60228c8ccbb.ctex"]
+dest_files=["res://.godot/imported/芙蓉仙子.png-c4f2cdeeacf05566ee57d60228c8ccbb.ctex"]
 
 [params]
 

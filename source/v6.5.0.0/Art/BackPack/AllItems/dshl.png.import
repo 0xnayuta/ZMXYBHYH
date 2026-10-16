@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bf4322rtl8gbw"
-path="res://godot/imported/dshl.png-55f34d3fc6d53e4ff5726108e455ad1f.ctex"
+path="res://.godot/imported/dshl.png-55f34d3fc6d53e4ff5726108e455ad1f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/dshl.png"
-dest_files=["res://godot/imported/dshl.png-55f34d3fc6d53e4ff5726108e455ad1f.ctex"]
+dest_files=["res://.godot/imported/dshl.png-55f34d3fc6d53e4ff5726108e455ad1f.ctex"]
 
 [params]
 

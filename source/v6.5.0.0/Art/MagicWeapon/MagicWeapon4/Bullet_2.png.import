@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://duh5h0mmtnrqf"
-path="res://godot/imported/Bullet_2.png-df743f1b7508ef342a5521b50cf36fe0.ctex"
+path="res://.godot/imported/Bullet_2.png-df743f1b7508ef342a5521b50cf36fe0.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/MagicWeapon4/Bullet_2.png"
-dest_files=["res://godot/imported/Bullet_2.png-df743f1b7508ef342a5521b50cf36fe0.ctex"]
+dest_files=["res://.godot/imported/Bullet_2.png-df743f1b7508ef342a5521b50cf36fe0.ctex"]
 
 [params]
 

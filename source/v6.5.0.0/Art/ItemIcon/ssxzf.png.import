@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhcqjgkre0h75"
-path="res://godot/imported/ssxzf.png-88292a6b6e53c94ea95c5f3ee6ca1255.ctex"
+path="res://.godot/imported/ssxzf.png-88292a6b6e53c94ea95c5f3ee6ca1255.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/ssxzf.png"
-dest_files=["res://godot/imported/ssxzf.png-88292a6b6e53c94ea95c5f3ee6ca1255.ctex"]
+dest_files=["res://.godot/imported/ssxzf.png-88292a6b6e53c94ea95c5f3ee6ca1255.ctex"]
 
 [params]
 

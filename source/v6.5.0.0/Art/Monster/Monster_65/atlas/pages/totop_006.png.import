@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0i373q6kedgj"
-path="res://godot/imported/totop_006.png-10e117df8a4248288d0112b7dd07e866.ctex"
+path="res://.godot/imported/totop_006.png-10e117df8a4248288d0112b7dd07e866.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_65/atlas/pages/totop_006.png"
-dest_files=["res://godot/imported/totop_006.png-10e117df8a4248288d0112b7dd07e866.ctex"]
+dest_files=["res://.godot/imported/totop_006.png-10e117df8a4248288d0112b7dd07e866.ctex"]
 
 [params]
 

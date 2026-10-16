@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdxwcqd5rb5hg"
-path="res://godot/imported/8.png-b9be35dd69fd780b745766e022f34565.ctex"
+path="res://.godot/imported/8.png-b9be35dd69fd780b745766e022f34565.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/MagicWeapon_QingLian/ef_effect1_frames/8.png"
-dest_files=["res://godot/imported/8.png-b9be35dd69fd780b745766e022f34565.ctex"]
+dest_files=["res://.godot/imported/8.png-b9be35dd69fd780b745766e022f34565.ctex"]
 
 [params]
 

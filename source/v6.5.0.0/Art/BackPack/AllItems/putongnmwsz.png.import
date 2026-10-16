@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0cbtpmpcwgss"
-path="res://godot/imported/putongnmwsz.png-e4c0c722b1ee4bc55b224a22a894ac79.ctex"
+path="res://.godot/imported/putongnmwsz.png-e4c0c722b1ee4bc55b224a22a894ac79.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/putongnmwsz.png"
-dest_files=["res://godot/imported/putongnmwsz.png-e4c0c722b1ee4bc55b224a22a894ac79.ctex"]
+dest_files=["res://.godot/imported/putongnmwsz.png-e4c0c722b1ee4bc55b224a22a894ac79.ctex"]
 
 [params]
 

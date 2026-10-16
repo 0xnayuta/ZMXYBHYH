@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b53oiydsuyitv"
-path="res://godot/imported/hero_1045_Yanwu02_005.png-207a1f76443f3931c7ab650e72d48b53.ctex"
+path="res://.godot/imported/hero_1045_Yanwu02_005.png-207a1f76443f3931c7ab650e72d48b53.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role2/LYFBAwaken/runtime/images/fx/Yanwu_02/hero_1045_Yanwu02_005.png"
-dest_files=["res://godot/imported/hero_1045_Yanwu02_005.png-207a1f76443f3931c7ab650e72d48b53.ctex"]
+dest_files=["res://.godot/imported/hero_1045_Yanwu02_005.png-207a1f76443f3931c7ab650e72d48b53.ctex"]
 
 [params]
 

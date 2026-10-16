@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bix44aaaf1ln"
-path="res://godot/imported/Role_1_Eq_nyd.png-2f88efcc159bed40ed5e6b9fb5779fa7.ctex"
+path="res://.godot/imported/Role_1_Eq_nyd.png-2f88efcc159bed40ed5e6b9fb5779fa7.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role1AllEquipment/Role_1_Eq_nyd.png"
-dest_files=["res://godot/imported/Role_1_Eq_nyd.png-2f88efcc159bed40ed5e6b9fb5779fa7.ctex"]
+dest_files=["res://.godot/imported/Role_1_Eq_nyd.png-2f88efcc159bed40ed5e6b9fb5779fa7.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://r0i043yx8hmj"
-path="res://godot/imported/wjl.png-f82d25df8cb257821fdd3bfdc9dc442c.ctex"
+path="res://.godot/imported/wjl.png-f82d25df8cb257821fdd3bfdc9dc442c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_67/wjl.png"
-dest_files=["res://godot/imported/wjl.png-f82d25df8cb257821fdd3bfdc9dc442c.ctex"]
+dest_files=["res://.godot/imported/wjl.png-f82d25df8cb257821fdd3bfdc9dc442c.ctex"]
 
 [params]
 

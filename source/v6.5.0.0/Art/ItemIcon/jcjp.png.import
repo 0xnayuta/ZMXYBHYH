@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cevp3c8077umw"
-path="res://godot/imported/jcjp.png-3b5bdc3a1e3083ac0b87488cbe7c1992.ctex"
+path="res://.godot/imported/jcjp.png-3b5bdc3a1e3083ac0b87488cbe7c1992.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/jcjp.png"
-dest_files=["res://godot/imported/jcjp.png-3b5bdc3a1e3083ac0b87488cbe7c1992.ctex"]
+dest_files=["res://.godot/imported/jcjp.png-3b5bdc3a1e3083ac0b87488cbe7c1992.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://okku0fycs8r0"
-path="res://godot/imported/FB_Shark.png-1b1d76ace489d116e08c568361bf830f.ctex"
+path="res://.godot/imported/FB_Shark.png-1b1d76ace489d116e08c568361bf830f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_20/FB_Shark.png"
-dest_files=["res://godot/imported/FB_Shark.png-1b1d76ace489d116e08c568361bf830f.ctex"]
+dest_files=["res://.godot/imported/FB_Shark.png-1b1d76ace489d116e08c568361bf830f.ctex"]
 
 [params]
 

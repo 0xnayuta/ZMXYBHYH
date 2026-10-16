@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cc15800hagbse"
-path="res://godot/imported/BCWBullet.png-e9efa42311e6c35d1ddab725e4493ff2.ctex"
+path="res://.godot/imported/BCWBullet.png-e9efa42311e6c35d1ddab725e4493ff2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_64/BCWBullet.png"
-dest_files=["res://godot/imported/BCWBullet.png-e9efa42311e6c35d1ddab725e4493ff2.ctex"]
+dest_files=["res://.godot/imported/BCWBullet.png-e9efa42311e6c35d1ddab725e4493ff2.ctex"]
 
 [params]
 

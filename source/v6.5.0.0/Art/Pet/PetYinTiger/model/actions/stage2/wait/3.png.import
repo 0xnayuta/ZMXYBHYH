@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boc7demipr4oy"
-path="res://godot/imported/3.png-2e266081c5c01c50bf223ee1385ca980.ctex"
+path="res://.godot/imported/3.png-2e266081c5c01c50bf223ee1385ca980.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetYinTiger/model/actions/stage2/wait/3.png"
-dest_files=["res://godot/imported/3.png-2e266081c5c01c50bf223ee1385ca980.ctex"]
+dest_files=["res://.godot/imported/3.png-2e266081c5c01c50bf223ee1385ca980.ctex"]
 
 [params]
 

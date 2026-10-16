@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cfux0bo21w2ni"
-path="res://godot/imported/SpeedUpEffect.png-f72e9493ee9b01bd18c15b0607e1142c.ctex"
+path="res://.godot/imported/SpeedUpEffect.png-f72e9493ee9b01bd18c15b0607e1142c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_41/SpeedUpEffect.png"
-dest_files=["res://godot/imported/SpeedUpEffect.png-f72e9493ee9b01bd18c15b0607e1142c.ctex"]
+dest_files=["res://.godot/imported/SpeedUpEffect.png-f72e9493ee9b01bd18c15b0607e1142c.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://btgls0xpgpd5p"
-path="res://godot/imported/hazard_1022_idle.png-e3af65f220ae43b8194e6477caa73411.ctex"
+path="res://.godot/imported/hazard_1022_idle.png-e3af65f220ae43b8194e6477caa73411.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Level59_60Terrain/hazard_1022_idle.png"
-dest_files=["res://godot/imported/hazard_1022_idle.png-e3af65f220ae43b8194e6477caa73411.ctex"]
+dest_files=["res://.godot/imported/hazard_1022_idle.png-e3af65f220ae43b8194e6477caa73411.ctex"]
 
 [params]
 

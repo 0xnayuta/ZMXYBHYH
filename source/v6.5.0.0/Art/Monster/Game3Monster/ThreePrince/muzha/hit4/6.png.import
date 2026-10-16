@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cr15d7twti7mb"
-path="res://godot/imported/6.png-0bec1efd7f4f769c9c36bde54c2c0edc.ctex"
+path="res://.godot/imported/6.png-0bec1efd7f4f769c9c36bde54c2c0edc.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/ThreePrince/muzha/hit4/6.png"
-dest_files=["res://godot/imported/6.png-0bec1efd7f4f769c9c36bde54c2c0edc.ctex"]
+dest_files=["res://.godot/imported/6.png-0bec1efd7f4f769c9c36bde54c2c0edc.ctex"]
 
 [params]
 

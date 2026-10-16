@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d363owydubdq3"
-path="res://godot/imported/UmbrellaIdle.png-c797fc2ed28a0e75cd10919a4eaf7613.ctex"
+path="res://.godot/imported/UmbrellaIdle.png-c797fc2ed28a0e75cd10919a4eaf7613.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/MagicWeapon5/UmbrellaIdle.png"
-dest_files=["res://godot/imported/UmbrellaIdle.png-c797fc2ed28a0e75cd10919a4eaf7613.ctex"]
+dest_files=["res://.godot/imported/UmbrellaIdle.png-c797fc2ed28a0e75cd10919a4eaf7613.ctex"]
 
 [params]
 

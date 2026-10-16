@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qr8r8dcql0yd"
-path="res://godot/imported/lchp.png-21e25c086f484ee9168fa717a9adee89.ctex"
+path="res://.godot/imported/lchp.png-21e25c086f484ee9168fa717a9adee89.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/lchp.png"
-dest_files=["res://godot/imported/lchp.png-21e25c086f484ee9168fa717a9adee89.ctex"]
+dest_files=["res://.godot/imported/lchp.png-21e25c086f484ee9168fa717a9adee89.ctex"]
 
 [params]
 

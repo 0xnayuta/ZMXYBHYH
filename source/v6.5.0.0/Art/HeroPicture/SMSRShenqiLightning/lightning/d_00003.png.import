@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1d8wk2hyfc3"
-path="res://godot/imported/d_00003.png-9a1a37957fb0bc644eda77b229c05982.ctex"
+path="res://.godot/imported/d_00003.png-9a1a37957fb0bc644eda77b229c05982.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/SMSRShenqiLightning/lightning/d_00003.png"
-dest_files=["res://godot/imported/d_00003.png-9a1a37957fb0bc644eda77b229c05982.ctex"]
+dest_files=["res://.godot/imported/d_00003.png-9a1a37957fb0bc644eda77b229c05982.ctex"]
 
 [params]
 

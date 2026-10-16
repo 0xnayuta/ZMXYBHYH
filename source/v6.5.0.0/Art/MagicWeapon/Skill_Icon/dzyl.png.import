@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7j3b2211h87o"
-path="res://godot/imported/dzyl.png-1f66a51cdde916561fa4ede7ce8341b2.ctex"
+path="res://.godot/imported/dzyl.png-1f66a51cdde916561fa4ede7ce8341b2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/Skill_Icon/dzyl.png"
-dest_files=["res://godot/imported/dzyl.png-1f66a51cdde916561fa4ede7ce8341b2.ctex"]
+dest_files=["res://.godot/imported/dzyl.png-1f66a51cdde916561fa4ede7ce8341b2.ctex"]
 
 [params]
 

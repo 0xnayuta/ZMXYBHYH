@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clgwj64lmmlye"
-path="res://godot/imported/bg14D.png-b8a58ff951d36eb0d49852f43503d43d.ctex"
+path="res://.godot/imported/bg14D.png-b8a58ff951d36eb0d49852f43503d43d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/Imported/maps/taohuaguV383/background/bg14D.png"
-dest_files=["res://godot/imported/bg14D.png-b8a58ff951d36eb0d49852f43503d43d.ctex"]
+dest_files=["res://.godot/imported/bg14D.png-b8a58ff951d36eb0d49852f43503d43d.ctex"]
 
 [params]
 

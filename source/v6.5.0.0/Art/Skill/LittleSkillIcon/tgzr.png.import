@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pa0fncj4e3o1"
-path="res://godot/imported/tgzr.png-5a6985ed51b30e994edaeb4e432578dc.ctex"
+path="res://.godot/imported/tgzr.png-5a6985ed51b30e994edaeb4e432578dc.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Skill/LittleSkillIcon/tgzr.png"
-dest_files=["res://godot/imported/tgzr.png-5a6985ed51b30e994edaeb4e432578dc.ctex"]
+dest_files=["res://.godot/imported/tgzr.png-5a6985ed51b30e994edaeb4e432578dc.ctex"]
 
 [params]
 

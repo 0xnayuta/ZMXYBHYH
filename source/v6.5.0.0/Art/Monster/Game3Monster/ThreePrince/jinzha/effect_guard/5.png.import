@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4g2i4b04g3l4"
-path="res://godot/imported/5.png-2ab66f31a27707926ea754466825e502.ctex"
+path="res://.godot/imported/5.png-2ab66f31a27707926ea754466825e502.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/ThreePrince/jinzha/effect_guard/5.png"
-dest_files=["res://godot/imported/5.png-2ab66f31a27707926ea754466825e502.ctex"]
+dest_files=["res://.godot/imported/5.png-2ab66f31a27707926ea754466825e502.ctex"]
 
 [params]
 

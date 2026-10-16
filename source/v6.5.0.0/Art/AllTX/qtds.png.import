@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cypasw40ekask"
-path="res://godot/imported/qtds.png-a193067e13a25c8aa157e8731babceb4.ctex"
+path="res://.godot/imported/qtds.png-a193067e13a25c8aa157e8731babceb4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AllTX/qtds.png"
-dest_files=["res://godot/imported/qtds.png-a193067e13a25c8aa157e8731babceb4.ctex"]
+dest_files=["res://.godot/imported/qtds.png-a193067e13a25c8aa157e8731babceb4.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1xkwgny4dhyy"
-path="res://godot/imported/hdc.png-f9b37ac1cb77880b460ffecaddfc3615.ctex"
+path="res://.godot/imported/hdc.png-f9b37ac1cb77880b460ffecaddfc3615.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/hdc.png"
-dest_files=["res://godot/imported/hdc.png-f9b37ac1cb77880b460ffecaddfc3615.ctex"]
+dest_files=["res://.godot/imported/hdc.png-f9b37ac1cb77880b460ffecaddfc3615.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dh0c3wk4ebs08"
-path="res://godot/imported/font_fairy_element_4.png-b62771d4bc2eb762033b1145c24b6acb.ctex"
+path="res://.godot/imported/font_fairy_element_4.png-b62771d4bc2eb762033b1145c24b6acb.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AllNumber/otherNumber/font_fairy_element_4.png"
-dest_files=["res://godot/imported/font_fairy_element_4.png-b62771d4bc2eb762033b1145c24b6acb.ctex"]
+dest_files=["res://.godot/imported/font_fairy_element_4.png-b62771d4bc2eb762033b1145c24b6acb.ctex"]
 
 [params]
 

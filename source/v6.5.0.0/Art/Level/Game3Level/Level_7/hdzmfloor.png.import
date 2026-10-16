@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mn2b35ejn1nx"
-path="res://godot/imported/hdzmfloor.png-c1976923fff3cf8d17f40f2a621e5d3b.ctex"
+path="res://.godot/imported/hdzmfloor.png-c1976923fff3cf8d17f40f2a621e5d3b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_7/hdzmfloor.png"
-dest_files=["res://godot/imported/hdzmfloor.png-c1976923fff3cf8d17f40f2a621e5d3b.ctex"]
+dest_files=["res://.godot/imported/hdzmfloor.png-c1976923fff3cf8d17f40f2a621e5d3b.ctex"]
 
 [params]
 

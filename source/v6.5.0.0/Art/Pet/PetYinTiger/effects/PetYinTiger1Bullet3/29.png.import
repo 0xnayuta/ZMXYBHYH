@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0wnrf3vc3i6d"
-path="res://godot/imported/29.png-8940cdf75b6e5081d4bf8e81c64f82a5.ctex"
+path="res://.godot/imported/29.png-8940cdf75b6e5081d4bf8e81c64f82a5.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetYinTiger/effects/PetYinTiger1Bullet3/29.png"
-dest_files=["res://godot/imported/29.png-8940cdf75b6e5081d4bf8e81c64f82a5.ctex"]
+dest_files=["res://.godot/imported/29.png-8940cdf75b6e5081d4bf8e81c64f82a5.ctex"]
 
 [params]
 

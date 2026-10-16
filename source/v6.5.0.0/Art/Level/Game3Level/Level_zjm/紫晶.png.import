@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvofb63b3a3ot"
-path="res://godot/imported/紫晶.png-1250e16a855d77d41cac08b28bad7026.ctex"
+path="res://.godot/imported/紫晶.png-1250e16a855d77d41cac08b28bad7026.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_zjm/紫晶.png"
-dest_files=["res://godot/imported/紫晶.png-1250e16a855d77d41cac08b28bad7026.ctex"]
+dest_files=["res://.godot/imported/紫晶.png-1250e16a855d77d41cac08b28bad7026.ctex"]
 
 [params]
 

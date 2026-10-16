@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxg4h4p2hibsr"
-path="res://godot/imported/3105900.png-43f76a5a41f88046ef91283b0a5cc525.ctex"
+path="res://.godot/imported/3105900.png-43f76a5a41f88046ef91283b0a5cc525.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Mount/Skills/3105900.png"
-dest_files=["res://godot/imported/3105900.png-43f76a5a41f88046ef91283b0a5cc525.ctex"]
+dest_files=["res://.godot/imported/3105900.png-43f76a5a41f88046ef91283b0a5cc525.ctex"]
 
 [params]
 

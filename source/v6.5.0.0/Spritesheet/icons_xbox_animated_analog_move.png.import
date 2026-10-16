@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cd1cn4ppbjcdx"
-path="res://godot/imported/icons_xbox_animated_analog_move.png-10d042c4689f915c55c2153b49777c11.ctex"
+path="res://.godot/imported/icons_xbox_animated_analog_move.png-10d042c4689f915c55c2153b49777c11.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Spritesheet/icons_xbox_animated_analog_move.png"
-dest_files=["res://godot/imported/icons_xbox_animated_analog_move.png-10d042c4689f915c55c2153b49777c11.ctex"]
+dest_files=["res://.godot/imported/icons_xbox_animated_analog_move.png-10d042c4689f915c55c2153b49777c11.ctex"]
 
 [params]
 

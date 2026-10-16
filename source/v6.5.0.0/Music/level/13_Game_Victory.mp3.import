@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://doqdqsketwmsd"
-path="res://godot/imported/13_Game_Victory.mp3-1816fece09f12436b54c24e84e28b4c3.mp3str"
+path="res://.godot/imported/13_Game_Victory.mp3-1816fece09f12436b54c24e84e28b4c3.mp3str"
 
 [deps]
 
 source_file="res://Music/level/13_Game_Victory.mp3"
-dest_files=["res://godot/imported/13_Game_Victory.mp3-1816fece09f12436b54c24e84e28b4c3.mp3str"]
+dest_files=["res://.godot/imported/13_Game_Victory.mp3-1816fece09f12436b54c24e84e28b4c3.mp3str"]
 
 [params]
 

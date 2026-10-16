@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://wxhtq3h1m8wr"
-path="res://godot/imported/Hands.png-085a728bb6e8524231c78dc3fa54713d.ctex"
+path="res://.godot/imported/Hands.png-085a728bb6e8524231c78dc3fa54713d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_41/Hands.png"
-dest_files=["res://godot/imported/Hands.png-085a728bb6e8524231c78dc3fa54713d.ctex"]
+dest_files=["res://.godot/imported/Hands.png-085a728bb6e8524231c78dc3fa54713d.ctex"]
 
 [params]
 

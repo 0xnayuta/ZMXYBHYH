@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dumttmhhwdrwr"
-path="res://godot/imported/1002200.png-176779b2bb1c50d1657ccd023c1e49ab.ctex"
+path="res://.godot/imported/1002200.png-176779b2bb1c50d1657ccd023c1e49ab.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Mount/Portraits/1002200.png"
-dest_files=["res://godot/imported/1002200.png-176779b2bb1c50d1657ccd023c1e49ab.ctex"]
+dest_files=["res://.godot/imported/1002200.png-176779b2bb1c50d1657ccd023c1e49ab.ctex"]
 
 [params]
 

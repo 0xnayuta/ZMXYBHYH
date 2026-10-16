@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crbwjca5quecy"
-path="res://godot/imported/Role1HYJJEye.png-4a246804209050ebbb0c6ae6e8cf6673.ctex"
+path="res://.godot/imported/Role1HYJJEye.png-4a246804209050ebbb0c6ae6e8cf6673.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role1SpecialEffect/Role1HYJJEye.png"
-dest_files=["res://godot/imported/Role1HYJJEye.png-4a246804209050ebbb0c6ae6e8cf6673.ctex"]
+dest_files=["res://.godot/imported/Role1HYJJEye.png-4a246804209050ebbb0c6ae6e8cf6673.ctex"]
 
 [params]
 

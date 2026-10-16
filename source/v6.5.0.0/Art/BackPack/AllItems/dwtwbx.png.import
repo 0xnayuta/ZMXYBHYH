@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://x5urju6st5cf"
-path="res://godot/imported/dwtwbx.png-15127bc596ddea0ec6d7c4ab7ee50fa5.ctex"
+path="res://.godot/imported/dwtwbx.png-15127bc596ddea0ec6d7c4ab7ee50fa5.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/dwtwbx.png"
-dest_files=["res://godot/imported/dwtwbx.png-15127bc596ddea0ec6d7c4ab7ee50fa5.ctex"]
+dest_files=["res://.godot/imported/dwtwbx.png-15127bc596ddea0ec6d7c4ab7ee50fa5.ctex"]
 
 [params]
 

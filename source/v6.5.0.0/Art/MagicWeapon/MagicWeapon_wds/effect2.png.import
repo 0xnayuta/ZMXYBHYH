@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3nfawosyl41n"
-path="res://godot/imported/effect2.png-bfd1de50867b789725acd91419eaddbc.ctex"
+path="res://.godot/imported/effect2.png-bfd1de50867b789725acd91419eaddbc.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/MagicWeapon_wds/effect2.png"
-dest_files=["res://godot/imported/effect2.png-bfd1de50867b789725acd91419eaddbc.ctex"]
+dest_files=["res://.godot/imported/effect2.png-bfd1de50867b789725acd91419eaddbc.ctex"]
 
 [params]
 

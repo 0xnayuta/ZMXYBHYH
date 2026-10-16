@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://baotewbfmgm8n"
-path="res://godot/imported/DefeReduce.png-53f891b674af1365bdd6c06ef0271e0a.ctex"
+path="res://.godot/imported/DefeReduce.png-53f891b674af1365bdd6c06ef0271e0a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AddEffect/DefeReduce.png"
-dest_files=["res://godot/imported/DefeReduce.png-53f891b674af1365bdd6c06ef0271e0a.ctex"]
+dest_files=["res://.godot/imported/DefeReduce.png-53f891b674af1365bdd6c06ef0271e0a.ctex"]
 
 [params]
 

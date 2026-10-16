@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cql2n3l48rir8"
-path="res://godot/imported/0041.png-2ebd11e0a768360562763bf90bb76d88.ctex"
+path="res://.godot/imported/0041.png-2ebd11e0a768360562763bf90bb76d88.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/Imported/maps/fahualingdong_bossV1/background/bubble_frames/0041.png"
-dest_files=["res://godot/imported/0041.png-2ebd11e0a768360562763bf90bb76d88.ctex"]
+dest_files=["res://.godot/imported/0041.png-2ebd11e0a768360562763bf90bb76d88.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://da077jw2yopst"
-path="res://godot/imported/lljy.png-0c542ba6877cc9168ed622d64436c5a6.ctex"
+path="res://.godot/imported/lljy.png-0c542ba6877cc9168ed622d64436c5a6.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Skill/SkillIcon/lljy.png"
-dest_files=["res://godot/imported/lljy.png-0c542ba6877cc9168ed622d64436c5a6.ctex"]
+dest_files=["res://.godot/imported/lljy.png-0c542ba6877cc9168ed622d64436c5a6.ctex"]
 
 [params]
 

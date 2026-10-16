@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8n028i4kvfap"
-path="res://godot/imported/10.png-ba7b7ca3d41c46beb07560e778fdf3c3.ctex"
+path="res://.godot/imported/10.png-ba7b7ca3d41c46beb07560e778fdf3c3.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/ClothesChange/10.png"
-dest_files=["res://godot/imported/10.png-ba7b7ca3d41c46beb07560e778fdf3c3.ctex"]
+dest_files=["res://.godot/imported/10.png-ba7b7ca3d41c46beb07560e778fdf3c3.ctex"]
 
 [params]
 

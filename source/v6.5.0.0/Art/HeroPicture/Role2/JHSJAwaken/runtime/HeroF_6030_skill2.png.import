@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://coemqsbhbpufo"
-path="res://godot/imported/HeroF_6030_skill2.png-eb52a354b1c8226108a3d3256d87f089.ctex"
+path="res://.godot/imported/HeroF_6030_skill2.png-eb52a354b1c8226108a3d3256d87f089.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role2/JHSJAwaken/runtime/HeroF_6030_skill2.png"
-dest_files=["res://godot/imported/HeroF_6030_skill2.png-eb52a354b1c8226108a3d3256d87f089.ctex"]
+dest_files=["res://.godot/imported/HeroF_6030_skill2.png-eb52a354b1c8226108a3d3256d87f089.ctex"]
 
 [params]
 

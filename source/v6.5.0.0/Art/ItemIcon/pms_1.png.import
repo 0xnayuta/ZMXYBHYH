@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bs0fge0xw3hwm"
-path="res://godot/imported/pms_1.png-216bb192c67ad3614c288b63be0c959a.ctex"
+path="res://.godot/imported/pms_1.png-216bb192c67ad3614c288b63be0c959a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/pms_1.png"
-dest_files=["res://godot/imported/pms_1.png-216bb192c67ad3614c288b63be0c959a.ctex"]
+dest_files=["res://.godot/imported/pms_1.png-216bb192c67ad3614c288b63be0c959a.ctex"]
 
 [params]
 

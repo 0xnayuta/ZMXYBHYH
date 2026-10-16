@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://343lf2turgyn"
-path="res://godot/imported/5.png-c4f2bf595f1505c67e7def029a8fa8d1.ctex"
+path="res://.godot/imported/5.png-c4f2bf595f1505c67e7def029a8fa8d1.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/ThreePrince/jinzha/death/5.png"
-dest_files=["res://godot/imported/5.png-c4f2bf595f1505c67e7def029a8fa8d1.ctex"]
+dest_files=["res://.godot/imported/5.png-c4f2bf595f1505c67e7def029a8fa8d1.ctex"]
 
 [params]
 

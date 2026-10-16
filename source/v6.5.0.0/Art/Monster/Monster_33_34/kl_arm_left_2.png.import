@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://br5x787ovmkx7"
-path="res://godot/imported/kl_arm_left_2.png-eee7954147093a8be23b8702c1706965.ctex"
+path="res://.godot/imported/kl_arm_left_2.png-eee7954147093a8be23b8702c1706965.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_33_34/kl_arm_left_2.png"
-dest_files=["res://godot/imported/kl_arm_left_2.png-eee7954147093a8be23b8702c1706965.ctex"]
+dest_files=["res://.godot/imported/kl_arm_left_2.png-eee7954147093a8be23b8702c1706965.ctex"]
 
 [params]
 

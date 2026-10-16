@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcjshqxjpe2g"
-path="res://godot/imported/bhpic.png-c9d3efaa1421f34971aa782d6891e186.ctex"
+path="res://.godot/imported/bhpic.png-c9d3efaa1421f34971aa782d6891e186.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MainGame/bhpic.png"
-dest_files=["res://godot/imported/bhpic.png-c9d3efaa1421f34971aa782d6891e186.ctex"]
+dest_files=["res://.godot/imported/bhpic.png-c9d3efaa1421f34971aa782d6891e186.ctex"]
 
 [params]
 

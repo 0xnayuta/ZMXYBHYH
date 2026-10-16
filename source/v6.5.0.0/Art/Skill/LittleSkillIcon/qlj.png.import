@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dojpng1jvtiw4"
-path="res://godot/imported/qlj.png-cb502cf524a71a4ed9417baeab4cb93d.ctex"
+path="res://.godot/imported/qlj.png-cb502cf524a71a4ed9417baeab4cb93d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Skill/LittleSkillIcon/qlj.png"
-dest_files=["res://godot/imported/qlj.png-cb502cf524a71a4ed9417baeab4cb93d.ctex"]
+dest_files=["res://.godot/imported/qlj.png-cb502cf524a71a4ed9417baeab4cb93d.ctex"]
 
 [params]
 

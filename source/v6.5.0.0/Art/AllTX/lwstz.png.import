@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bn02ygbakvj27"
-path="res://godot/imported/lwstz.png-ea1f8d8e3ad9bc2c2f00fe80dfa5d351.ctex"
+path="res://.godot/imported/lwstz.png-ea1f8d8e3ad9bc2c2f00fe80dfa5d351.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AllTX/lwstz.png"
-dest_files=["res://godot/imported/lwstz.png-ea1f8d8e3ad9bc2c2f00fe80dfa5d351.ctex"]
+dest_files=["res://.godot/imported/lwstz.png-ea1f8d8e3ad9bc2c2f00fe80dfa5d351.ctex"]
 
 [params]
 

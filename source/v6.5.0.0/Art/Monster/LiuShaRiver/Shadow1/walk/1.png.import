@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://070bavfrja18"
-path="res://godot/imported/1.png-c3d0b5adcbebe1a5b0cf689a5984c491.ctex"
+path="res://.godot/imported/1.png-c3d0b5adcbebe1a5b0cf689a5984c491.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/LiuShaRiver/Shadow1/walk/1.png"
-dest_files=["res://godot/imported/1.png-c3d0b5adcbebe1a5b0cf689a5984c491.ctex"]
+dest_files=["res://.godot/imported/1.png-c3d0b5adcbebe1a5b0cf689a5984c491.ctex"]
 
 [params]
 

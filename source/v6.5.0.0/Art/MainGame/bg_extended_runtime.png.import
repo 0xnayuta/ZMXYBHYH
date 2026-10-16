@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjomb2i1vaohn"
-path="res://godot/imported/bg_extended_runtime.png-f18eac3b8693819ec9b9413c103aeae7.ctex"
+path="res://.godot/imported/bg_extended_runtime.png-f18eac3b8693819ec9b9413c103aeae7.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MainGame/bg_extended_runtime.png"
-dest_files=["res://godot/imported/bg_extended_runtime.png-f18eac3b8693819ec9b9413c103aeae7.ctex"]
+dest_files=["res://.godot/imported/bg_extended_runtime.png-f18eac3b8693819ec9b9413c103aeae7.ctex"]
 
 [params]
 

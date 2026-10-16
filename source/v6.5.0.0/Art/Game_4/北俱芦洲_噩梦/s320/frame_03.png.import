@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ohjhryldt7ia"
-path="res://godot/imported/frame_03.png-bbac653d50a7dd326c32976fc445471f.ctex"
+path="res://.godot/imported/frame_03.png-bbac653d50a7dd326c32976fc445471f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Game_4/北俱芦洲_噩梦/s320/frame_03.png"
-dest_files=["res://godot/imported/frame_03.png-bbac653d50a7dd326c32976fc445471f.ctex"]
+dest_files=["res://.godot/imported/frame_03.png-bbac653d50a7dd326c32976fc445471f.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpwj8s8o5r3yl"
-path="res://godot/imported/atlas_011.png-9da943dd55f753b829c60a0e514e0602.ctex"
+path="res://.godot/imported/atlas_011.png-9da943dd55f753b829c60a0e514e0602.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetPhoenix/atlas/pages/atlas_011.png"
-dest_files=["res://godot/imported/atlas_011.png-9da943dd55f753b829c60a0e514e0602.ctex"]
+dest_files=["res://.godot/imported/atlas_011.png-9da943dd55f753b829c60a0e514e0602.ctex"]
 
 [params]
 

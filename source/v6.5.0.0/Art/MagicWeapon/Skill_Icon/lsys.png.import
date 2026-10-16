@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://i0sb6116feja"
-path="res://godot/imported/lsys.png-2d33a35651cc2662be144a6368d28458.ctex"
+path="res://.godot/imported/lsys.png-2d33a35651cc2662be144a6368d28458.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/Skill_Icon/lsys.png"
-dest_files=["res://godot/imported/lsys.png-2d33a35651cc2662be144a6368d28458.ctex"]
+dest_files=["res://.godot/imported/lsys.png-2d33a35651cc2662be144a6368d28458.ctex"]
 
 [params]
 

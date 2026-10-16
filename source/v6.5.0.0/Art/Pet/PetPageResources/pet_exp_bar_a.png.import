@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://kspbchiloch5"
-path="res://godot/imported/pet_exp_bar_a.png-a0ebb3770b6549b6a070d3db15d66364.ctex"
+path="res://.godot/imported/pet_exp_bar_a.png-a0ebb3770b6549b6a070d3db15d66364.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetPageResources/pet_exp_bar_a.png"
-dest_files=["res://godot/imported/pet_exp_bar_a.png-a0ebb3770b6549b6a070d3db15d66364.ctex"]
+dest_files=["res://.godot/imported/pet_exp_bar_a.png-a0ebb3770b6549b6a070d3db15d66364.ctex"]
 
 [params]
 

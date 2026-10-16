@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://7jeq7q440yrh"
-path="res://godot/imported/6.png-181bca98dc12eb8302c0c57fba053e84.ctex"
+path="res://.godot/imported/6.png-181bca98dc12eb8302c0c57fba053e84.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/MagicWeapon_ZhenLeiTianChui/effect_frames/6.png"
-dest_files=["res://godot/imported/6.png-181bca98dc12eb8302c0c57fba053e84.ctex"]
+dest_files=["res://.godot/imported/6.png-181bca98dc12eb8302c0c57fba053e84.ctex"]
 
 [params]
 

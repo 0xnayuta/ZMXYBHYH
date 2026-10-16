@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdig3gsciwy0x"
-path="res://godot/imported/lsys.png-56b25c460ead7f661a060648a9f0d657.ctex"
+path="res://.godot/imported/lsys.png-56b25c460ead7f661a060648a9f0d657.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/lsys.png"
-dest_files=["res://godot/imported/lsys.png-56b25c460ead7f661a060648a9f0d657.ctex"]
+dest_files=["res://.godot/imported/lsys.png-56b25c460ead7f661a060648a9f0d657.ctex"]
 
 [params]
 

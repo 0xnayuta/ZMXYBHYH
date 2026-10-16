@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4ifbx1x6je8b"
-path="res://godot/imported/23.png-6b466ae309b02a9343115705d4f11342.ctex"
+path="res://.godot/imported/23.png-6b466ae309b02a9343115705d4f11342.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/MagicWeapon_DiKongYuMoQuan/idle_frames/23.png"
-dest_files=["res://godot/imported/23.png-6b466ae309b02a9343115705d4f11342.ctex"]
+dest_files=["res://.godot/imported/23.png-6b466ae309b02a9343115705d4f11342.ctex"]
 
 [params]
 

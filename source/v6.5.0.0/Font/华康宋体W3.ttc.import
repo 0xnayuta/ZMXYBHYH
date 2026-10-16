@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://d54mai85lflu"
-path="res://godot/imported/华康宋体W3.ttc-9220884513c5b3591541fe9a1c7f7a58.fontdata"
+path="res://.godot/imported/华康宋体W3.ttc-9220884513c5b3591541fe9a1c7f7a58.fontdata"
 
 [deps]
 
 source_file="res://Font/华康宋体W3.ttc"
-dest_files=["res://godot/imported/华康宋体W3.ttc-9220884513c5b3591541fe9a1c7f7a58.fontdata"]
+dest_files=["res://.godot/imported/华康宋体W3.ttc-9220884513c5b3591541fe9a1c7f7a58.fontdata"]
 
 [params]
 

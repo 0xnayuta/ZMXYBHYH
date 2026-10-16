@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bqpvr175nwfvr"
-path="res://godot/imported/wdww.mp3-b3bd2f66b64ee2ce221a03f90a782847.mp3str"
+path="res://.godot/imported/wdww.mp3-b3bd2f66b64ee2ce221a03f90a782847.mp3str"
 
 [deps]
 
 source_file="res://Music/Hero/Role4/wdww.mp3"
-dest_files=["res://godot/imported/wdww.mp3-b3bd2f66b64ee2ce221a03f90a782847.mp3str"]
+dest_files=["res://.godot/imported/wdww.mp3-b3bd2f66b64ee2ce221a03f90a782847.mp3str"]
 
 [params]
 

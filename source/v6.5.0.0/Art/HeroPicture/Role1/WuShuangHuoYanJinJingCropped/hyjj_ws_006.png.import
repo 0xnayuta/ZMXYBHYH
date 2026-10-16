@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmc5edlhhihhm"
-path="res://godot/imported/hyjj_ws_006.png-832994e2f5d52e0f52547763ac287ce4.ctex"
+path="res://.godot/imported/hyjj_ws_006.png-832994e2f5d52e0f52547763ac287ce4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role1/WuShuangHuoYanJinJingCropped/hyjj_ws_006.png"
-dest_files=["res://godot/imported/hyjj_ws_006.png-832994e2f5d52e0f52547763ac287ce4.ctex"]
+dest_files=["res://.godot/imported/hyjj_ws_006.png-832994e2f5d52e0f52547763ac287ce4.ctex"]
 
 [params]
 

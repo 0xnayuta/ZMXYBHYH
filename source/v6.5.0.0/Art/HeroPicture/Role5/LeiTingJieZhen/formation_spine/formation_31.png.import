@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://brmp6l8whh2cc"
-path="res://godot/imported/formation_31.png-e4a46c194498926bb56f87706d6cf5c1.ctex"
+path="res://.godot/imported/formation_31.png-e4a46c194498926bb56f87706d6cf5c1.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role5/LeiTingJieZhen/formation_spine/formation_31.png"
-dest_files=["res://godot/imported/formation_31.png-e4a46c194498926bb56f87706d6cf5c1.ctex"]
+dest_files=["res://.godot/imported/formation_31.png-e4a46c194498926bb56f87706d6cf5c1.ctex"]
 
 [params]
 

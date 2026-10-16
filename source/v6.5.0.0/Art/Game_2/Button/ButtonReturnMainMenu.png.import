@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://nfjh1sde2wxb"
-path="res://godot/imported/ButtonReturnMainMenu.png-1afd264dd2265ece6cabffbd7319aca9.ctex"
+path="res://.godot/imported/ButtonReturnMainMenu.png-1afd264dd2265ece6cabffbd7319aca9.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Game_2/Button/ButtonReturnMainMenu.png"
-dest_files=["res://godot/imported/ButtonReturnMainMenu.png-1afd264dd2265ece6cabffbd7319aca9.ctex"]
+dest_files=["res://.godot/imported/ButtonReturnMainMenu.png-1afd264dd2265ece6cabffbd7319aca9.ctex"]
 
 [params]
 

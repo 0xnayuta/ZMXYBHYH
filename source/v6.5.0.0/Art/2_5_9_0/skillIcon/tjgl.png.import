@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cg54gkhopldu4"
-path="res://godot/imported/tjgl.png-a00377b897794cd3c10bcbffd8beebaf.ctex"
+path="res://.godot/imported/tjgl.png-a00377b897794cd3c10bcbffd8beebaf.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/2_5_9_0/skillIcon/tjgl.png"
-dest_files=["res://godot/imported/tjgl.png-a00377b897794cd3c10bcbffd8beebaf.ctex"]
+dest_files=["res://.godot/imported/tjgl.png-a00377b897794cd3c10bcbffd8beebaf.ctex"]
 
 [params]
 

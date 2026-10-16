@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://s5d0gjyl2xwc"
-path="res://godot/imported/505.png-84d2bb8e3ad4d027f8d389673615cd1f.ctex"
+path="res://.godot/imported/505.png-84d2bb8e3ad4d027f8d389673615cd1f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role1/hmz_z4/505.png"
-dest_files=["res://godot/imported/505.png-84d2bb8e3ad4d027f8d389673615cd1f.ctex"]
+dest_files=["res://.godot/imported/505.png-84d2bb8e3ad4d027f8d389673615cd1f.ctex"]
 
 [params]
 

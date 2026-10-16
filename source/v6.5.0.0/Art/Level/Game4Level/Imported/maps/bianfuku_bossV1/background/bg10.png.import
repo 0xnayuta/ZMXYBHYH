@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dy5ejglp4ff4g"
-path="res://godot/imported/bg10.png-df0f297176aeba78eb95d75c4477ff95.ctex"
+path="res://.godot/imported/bg10.png-df0f297176aeba78eb95d75c4477ff95.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/Imported/maps/bianfuku_bossV1/background/bg10.png"
-dest_files=["res://godot/imported/bg10.png-df0f297176aeba78eb95d75c4477ff95.ctex"]
+dest_files=["res://.godot/imported/bg10.png-df0f297176aeba78eb95d75c4477ff95.ctex"]
 
 [params]
 

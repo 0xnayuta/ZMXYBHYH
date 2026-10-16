@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c21ilp3jo0kbi"
-path="res://godot/imported/7.png-68b19c92e1dd233029d3f092d1ee9174.ctex"
+path="res://.godot/imported/7.png-68b19c92e1dd233029d3f092d1ee9174.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/LiuShaRiver/OriginalEffects/Role1/Role1Bullet12/7.png"
-dest_files=["res://godot/imported/7.png-68b19c92e1dd233029d3f092d1ee9174.ctex"]
+dest_files=["res://.godot/imported/7.png-68b19c92e1dd233029d3f092d1ee9174.ctex"]
 
 [params]
 

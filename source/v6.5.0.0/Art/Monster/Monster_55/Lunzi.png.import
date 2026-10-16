@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sq2p3sy5es74"
-path="res://godot/imported/Lunzi.png-deecc3765615dd5c696542b75f490806.ctex"
+path="res://.godot/imported/Lunzi.png-deecc3765615dd5c696542b75f490806.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_55/Lunzi.png"
-dest_files=["res://godot/imported/Lunzi.png-deecc3765615dd5c696542b75f490806.ctex"]
+dest_files=["res://.godot/imported/Lunzi.png-deecc3765615dd5c696542b75f490806.ctex"]
 
 [params]
 

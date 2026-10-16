@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dqj1cg330cpbc"
-path="res://godot/imported/62_Role2_beAttack.mp3-efb00228d990f771668ebb92b1831a2a.mp3str"
+path="res://.godot/imported/62_Role2_beAttack.mp3-efb00228d990f771668ebb92b1831a2a.mp3str"
 
 [deps]
 
 source_file="res://Music/Hero/62_Role2_beAttack.mp3"
-dest_files=["res://godot/imported/62_Role2_beAttack.mp3-efb00228d990f771668ebb92b1831a2a.mp3str"]
+dest_files=["res://.godot/imported/62_Role2_beAttack.mp3-efb00228d990f771668ebb92b1831a2a.mp3str"]
 
 [params]
 

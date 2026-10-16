@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsm65qsylwxri"
-path="res://godot/imported/bag_pressed.png-3e37619f51f2240a4fe34ccf6f207ba5.ctex"
+path="res://.godot/imported/bag_pressed.png-3e37619f51f2240a4fe34ccf6f207ba5.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Main_menu/Map0/bag_pressed.png"
-dest_files=["res://godot/imported/bag_pressed.png-3e37619f51f2240a4fe34ccf6f207ba5.ctex"]
+dest_files=["res://.godot/imported/bag_pressed.png-3e37619f51f2240a4fe34ccf6f207ba5.ctex"]
 
 [params]
 

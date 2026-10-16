@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bn0w60jnlw1sd"
-path="res://godot/imported/xianyjp.png-fda674cd96ba6e5d84f02831f626b91a.ctex"
+path="res://.godot/imported/xianyjp.png-fda674cd96ba6e5d84f02831f626b91a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/Skill_Icon/xianyjp.png"
-dest_files=["res://godot/imported/xianyjp.png-fda674cd96ba6e5d84f02831f626b91a.ctex"]
+dest_files=["res://.godot/imported/xianyjp.png-fda674cd96ba6e5d84f02831f626b91a.ctex"]
 
 [params]
 

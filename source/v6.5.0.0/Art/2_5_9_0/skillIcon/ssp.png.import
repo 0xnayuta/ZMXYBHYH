@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://p0mn8uumuwtv"
-path="res://godot/imported/ssp.png-da92b5b692d92acdef976a5af75fc04d.ctex"
+path="res://.godot/imported/ssp.png-da92b5b692d92acdef976a5af75fc04d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/2_5_9_0/skillIcon/ssp.png"
-dest_files=["res://godot/imported/ssp.png-da92b5b692d92acdef976a5af75fc04d.ctex"]
+dest_files=["res://.godot/imported/ssp.png-da92b5b692d92acdef976a5af75fc04d.ctex"]
 
 [params]
 

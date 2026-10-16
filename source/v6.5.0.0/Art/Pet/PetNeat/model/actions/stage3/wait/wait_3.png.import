@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5s1schd0ifjd"
-path="res://godot/imported/wait_3.png-63499546d318c3b39289226a3882039d.ctex"
+path="res://.godot/imported/wait_3.png-63499546d318c3b39289226a3882039d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetNeat/model/actions/stage3/wait/wait_3.png"
-dest_files=["res://godot/imported/wait_3.png-63499546d318c3b39289226a3882039d.ctex"]
+dest_files=["res://.godot/imported/wait_3.png-63499546d318c3b39289226a3882039d.ctex"]
 
 [params]
 

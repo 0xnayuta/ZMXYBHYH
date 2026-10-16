@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnoxtves18nrq"
-path="res://godot/imported/TextBox.png-5df2ffe3c4d286ce0fff17f873e606b4.ctex"
+path="res://.godot/imported/TextBox.png-5df2ffe3c4d286ce0fff17f873e606b4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/show_text/TextBox.png"
-dest_files=["res://godot/imported/TextBox.png-5df2ffe3c4d286ce0fff17f873e606b4.ctex"]
+dest_files=["res://.godot/imported/TextBox.png-5df2ffe3c4d286ce0fff17f873e606b4.ctex"]
 
 [params]
 

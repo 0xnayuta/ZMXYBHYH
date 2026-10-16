@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://b0ll5nk2d13ls"
-path="res://godot/imported/jiuhuashan_bg.mp3-0c961bbfa62ae3f44f4e0bb46d63f33e.mp3str"
+path="res://.godot/imported/jiuhuashan_bg.mp3-0c961bbfa62ae3f44f4e0bb46d63f33e.mp3str"
 
 [deps]
 
 source_file="res://Music/level/jiuhuashan_bg.mp3"
-dest_files=["res://godot/imported/jiuhuashan_bg.mp3-0c961bbfa62ae3f44f4e0bb46d63f33e.mp3str"]
+dest_files=["res://.godot/imported/jiuhuashan_bg.mp3-0c961bbfa62ae3f44f4e0bb46d63f33e.mp3str"]
 
 [params]
 

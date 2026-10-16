@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqn0nij4eu6y7"
-path="res://godot/imported/bsyj_wait_frames_preview.png-b68e3cfcf64cb4b057fb8d2de0e27232.ctex"
+path="res://.godot/imported/bsyj_wait_frames_preview.png-b68e3cfcf64cb4b057fb8d2de0e27232.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/bsyj_wait_frames_preview.png"
-dest_files=["res://godot/imported/bsyj_wait_frames_preview.png-b68e3cfcf64cb4b057fb8d2de0e27232.ctex"]
+dest_files=["res://.godot/imported/bsyj_wait_frames_preview.png-b68e3cfcf64cb4b057fb8d2de0e27232.ctex"]
 
 [params]
 

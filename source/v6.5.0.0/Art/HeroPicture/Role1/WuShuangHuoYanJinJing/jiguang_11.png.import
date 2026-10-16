@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ciho6slbseepv"
-path="res://godot/imported/jiguang_11.png-1292db52598b99b70a87c56bcd8ab6c4.ctex"
+path="res://.godot/imported/jiguang_11.png-1292db52598b99b70a87c56bcd8ab6c4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role1/WuShuangHuoYanJinJing/jiguang_11.png"
-dest_files=["res://godot/imported/jiguang_11.png-1292db52598b99b70a87c56bcd8ab6c4.ctex"]
+dest_files=["res://.godot/imported/jiguang_11.png-1292db52598b99b70a87c56bcd8ab6c4.ctex"]
 
 [params]
 

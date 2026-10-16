@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djdorhhq2s8es"
-path="res://godot/imported/bdqk_001.png-329103d3cfdc0605057e5041f7eff3a3.ctex"
+path="res://.godot/imported/bdqk_001.png-329103d3cfdc0605057e5041f7eff3a3.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role3/BaDiQianKunSmooth/bdqk_001.png"
-dest_files=["res://godot/imported/bdqk_001.png-329103d3cfdc0605057e5041f7eff3a3.ctex"]
+dest_files=["res://.godot/imported/bdqk_001.png-329103d3cfdc0605057e5041f7eff3a3.ctex"]
 
 [params]
 

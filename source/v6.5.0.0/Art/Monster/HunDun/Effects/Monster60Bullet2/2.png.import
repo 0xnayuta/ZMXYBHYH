@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ki6c2dww37jk"
-path="res://godot/imported/2.png-b60bd10ff4dedbeb937e42e4b9bbbaf7.ctex"
+path="res://.godot/imported/2.png-b60bd10ff4dedbeb937e42e4b9bbbaf7.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/HunDun/Effects/Monster60Bullet2/2.png"
-dest_files=["res://godot/imported/2.png-b60bd10ff4dedbeb937e42e4b9bbbaf7.ctex"]
+dest_files=["res://.godot/imported/2.png-b60bd10ff4dedbeb937e42e4b9bbbaf7.ctex"]
 
 [params]
 

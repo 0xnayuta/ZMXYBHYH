@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blfnvbwgokr7i"
-path="res://godot/imported/ys.png-3106630312b710d3d3595dc70f05cbc3.ctex"
+path="res://.godot/imported/ys.png-3106630312b710d3d3595dc70f05cbc3.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/ys.png"
-dest_files=["res://godot/imported/ys.png-3106630312b710d3d3595dc70f05cbc3.ctex"]
+dest_files=["res://.godot/imported/ys.png-3106630312b710d3d3595dc70f05cbc3.ctex"]
 
 [params]
 

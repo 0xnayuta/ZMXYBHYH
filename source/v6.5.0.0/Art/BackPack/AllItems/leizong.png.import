@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://prk0kq58wiui"
-path="res://godot/imported/leizong.png-b9f5215cc95c1b7611dd90134b6bf1b2.ctex"
+path="res://.godot/imported/leizong.png-b9f5215cc95c1b7611dd90134b6bf1b2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/leizong.png"
-dest_files=["res://godot/imported/leizong.png-b9f5215cc95c1b7611dd90134b6bf1b2.ctex"]
+dest_files=["res://.godot/imported/leizong.png-b9f5215cc95c1b7611dd90134b6bf1b2.ctex"]
 
 [params]
 

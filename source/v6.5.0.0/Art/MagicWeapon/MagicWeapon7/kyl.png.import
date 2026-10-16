@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3up6q8ag8trt"
-path="res://godot/imported/kyl.png-a6f3db9111853b8e24e0ee645c8947ab.ctex"
+path="res://.godot/imported/kyl.png-a6f3db9111853b8e24e0ee645c8947ab.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/MagicWeapon7/kyl.png"
-dest_files=["res://godot/imported/kyl.png-a6f3db9111853b8e24e0ee645c8947ab.ctex"]
+dest_files=["res://.godot/imported/kyl.png-a6f3db9111853b8e24e0ee645c8947ab.ctex"]
 
 [params]
 

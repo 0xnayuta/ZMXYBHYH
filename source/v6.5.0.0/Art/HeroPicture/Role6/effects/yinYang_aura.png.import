@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://q7n40xeryj3a"
-path="res://godot/imported/yinYang_aura.png-26943a6c2fdd8ce68ccc3dcfbd4a3bd8.ctex"
+path="res://.godot/imported/yinYang_aura.png-26943a6c2fdd8ce68ccc3dcfbd4a3bd8.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role6/effects/yinYang_aura.png"
-dest_files=["res://godot/imported/yinYang_aura.png-26943a6c2fdd8ce68ccc3dcfbd4a3bd8.ctex"]
+dest_files=["res://.godot/imported/yinYang_aura.png-26943a6c2fdd8ce68ccc3dcfbd4a3bd8.ctex"]
 
 [params]
 

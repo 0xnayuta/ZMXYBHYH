@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bt8ndhwpa45yd"
-path="res://godot/imported/20.png-9d40fb1c0b0ef45fbd20a7f443c98fc2.ctex"
+path="res://.godot/imported/20.png-9d40fb1c0b0ef45fbd20a7f443c98fc2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/EightImmortal/zhyx/effect/20.png"
-dest_files=["res://godot/imported/20.png-9d40fb1c0b0ef45fbd20a7f443c98fc2.ctex"]
+dest_files=["res://.godot/imported/20.png-9d40fb1c0b0ef45fbd20a7f443c98fc2.ctex"]
 
 [params]
 

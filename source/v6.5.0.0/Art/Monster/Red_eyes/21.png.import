@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlhs7ras1ghfp"
-path="res://godot/imported/21.png-e4b34684d62feb51e0cecbb59b3f84ea.ctex"
+path="res://.godot/imported/21.png-e4b34684d62feb51e0cecbb59b3f84ea.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Red_eyes/21.png"
-dest_files=["res://godot/imported/21.png-e4b34684d62feb51e0cecbb59b3f84ea.ctex"]
+dest_files=["res://.godot/imported/21.png-e4b34684d62feb51e0cecbb59b3f84ea.ctex"]
 
 [params]
 

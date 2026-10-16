@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://uygytspg6pp1"
-path="res://godot/imported/猴妖.png-1544f0caae8aa51c4ea293429bcc5cfc.ctex"
+path="res://.godot/imported/猴妖.png-1544f0caae8aa51c4ea293429bcc5cfc.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/猴妖.png"
-dest_files=["res://godot/imported/猴妖.png-1544f0caae8aa51c4ea293429bcc5cfc.ctex"]
+dest_files=["res://.godot/imported/猴妖.png-1544f0caae8aa51c4ea293429bcc5cfc.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bu8lviwybbbse"
-path="res://godot/imported/NextPageN.png-4f00224c69637d0986dd273b2663f29a.ctex"
+path="res://.godot/imported/NextPageN.png-4f00224c69637d0986dd273b2663f29a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/NextPageN.png"
-dest_files=["res://godot/imported/NextPageN.png-4f00224c69637d0986dd273b2663f29a.ctex"]
+dest_files=["res://.godot/imported/NextPageN.png-4f00224c69637d0986dd273b2663f29a.ctex"]
 
 [params]
 

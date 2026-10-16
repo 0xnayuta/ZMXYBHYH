@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgcpxw01tgok7"
-path="res://godot/imported/21.png-300e132572e6f147e9350dffe50cefbc.ctex"
+path="res://.godot/imported/21.png-300e132572e6f147e9350dffe50cefbc.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/Monster_169/hit1/21.png"
-dest_files=["res://godot/imported/21.png-300e132572e6f147e9350dffe50cefbc.ctex"]
+dest_files=["res://.godot/imported/21.png-300e132572e6f147e9350dffe50cefbc.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dt4dkbt1c8ui3"
-path="res://godot/imported/bg16.png-f7b236e8f1411b7f20af6bccaa7ecd85.ctex"
+path="res://.godot/imported/bg16.png-f7b236e8f1411b7f20af6bccaa7ecd85.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/NorthOriginal/maps/cangwuyuanV398/bg16.png"
-dest_files=["res://godot/imported/bg16.png-f7b236e8f1411b7f20af6bccaa7ecd85.ctex"]
+dest_files=["res://.godot/imported/bg16.png-f7b236e8f1411b7f20af6bccaa7ecd85.ctex"]
 
 [params]
 

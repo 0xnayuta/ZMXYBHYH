@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bh3bvok68q03v"
-path="res://godot/imported/attribute_water.png-773101300423ea58c80a5f51a7420dbe.ctex"
+path="res://.godot/imported/attribute_water.png-773101300423ea58c80a5f51a7420dbe.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/lianti/attribute_water.png"
-dest_files=["res://godot/imported/attribute_water.png-773101300423ea58c80a5f51a7420dbe.ctex"]
+dest_files=["res://.godot/imported/attribute_water.png-773101300423ea58c80a5f51a7420dbe.ctex"]
 
 [params]
 

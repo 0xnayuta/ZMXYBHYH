@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5ukoeibwnrtf"
-path="res://godot/imported/GhostDoor_2.png-7b8e21551f1483d5bbf92fa5b1c9f118.ctex"
+path="res://.godot/imported/GhostDoor_2.png-7b8e21551f1483d5bbf92fa5b1c9f118.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_43/GhostDoor_2/GhostDoor_2.png"
-dest_files=["res://godot/imported/GhostDoor_2.png-7b8e21551f1483d5bbf92fa5b1c9f118.ctex"]
+dest_files=["res://.godot/imported/GhostDoor_2.png-7b8e21551f1483d5bbf92fa5b1c9f118.ctex"]
 
 [params]
 

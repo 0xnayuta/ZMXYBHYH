@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccs67tm2ptxbj"
-path="res://godot/imported/61.png-002445af7a1bf0f7ad8d2435d1eacfe0.ctex"
+path="res://.godot/imported/61.png-002445af7a1bf0f7ad8d2435d1eacfe0.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/EightImmortal/dkhl/effect/61.png"
-dest_files=["res://godot/imported/61.png-002445af7a1bf0f7ad8d2435d1eacfe0.ctex"]
+dest_files=["res://.godot/imported/61.png-002445af7a1bf0f7ad8d2435d1eacfe0.ctex"]
 
 [params]
 

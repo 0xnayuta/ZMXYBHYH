@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bb1dmn4j2o8m7"
-path="res://godot/imported/hyzzs.png-59238bb8960bbebf45e55b3b6fa3c740.ctex"
+path="res://.godot/imported/hyzzs.png-59238bb8960bbebf45e55b3b6fa3c740.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/2_5_9_0/fbIcon/hyzzs.png"
-dest_files=["res://godot/imported/hyzzs.png-59238bb8960bbebf45e55b3b6fa3c740.ctex"]
+dest_files=["res://.godot/imported/hyzzs.png-59238bb8960bbebf45e55b3b6fa3c740.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qodgf0y6lkof"
-path="res://godot/imported/lxdy31.png-e5a9b71c3ae210f4c63b47b93960a008.ctex"
+path="res://.godot/imported/lxdy31.png-e5a9b71c3ae210f4c63b47b93960a008.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Level_lxdy/lxdy31.png"
-dest_files=["res://godot/imported/lxdy31.png-e5a9b71c3ae210f4c63b47b93960a008.ctex"]
+dest_files=["res://.godot/imported/lxdy31.png-e5a9b71c3ae210f4c63b47b93960a008.ctex"]
 
 [params]
 

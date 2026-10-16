@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dygrfchqy3lq5"
-path="res://godot/imported/hit_00018.png-31bb65244ead42bac98032c191200960.ctex"
+path="res://.godot/imported/hit_00018.png-31bb65244ead42bac98032c191200960.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/SMSRShenqiLightning/hit/hit_00018.png"
-dest_files=["res://godot/imported/hit_00018.png-31bb65244ead42bac98032c191200960.ctex"]
+dest_files=["res://.godot/imported/hit_00018.png-31bb65244ead42bac98032c191200960.ctex"]
 
 [params]
 

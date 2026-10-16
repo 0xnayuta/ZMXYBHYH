@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b681df3ln6qi5"
-path="res://godot/imported/tab_soul_selected.png-b7220d426fb13957d79ca3902c548d21.ctex"
+path="res://.godot/imported/tab_soul_selected.png-b7220d426fb13957d79ca3902c548d21.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Mount/UI/tab_soul_selected.png"
-dest_files=["res://godot/imported/tab_soul_selected.png-b7220d426fb13957d79ca3902c548d21.ctex"]
+dest_files=["res://.godot/imported/tab_soul_selected.png-b7220d426fb13957d79ca3902c548d21.ctex"]
 
 [params]
 

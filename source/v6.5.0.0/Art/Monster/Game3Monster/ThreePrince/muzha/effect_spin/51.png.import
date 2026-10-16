@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://diqtfohrhmny5"
-path="res://godot/imported/51.png-44482c36c63cda1ac9b34d5a373cb7ef.ctex"
+path="res://.godot/imported/51.png-44482c36c63cda1ac9b34d5a373cb7ef.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/ThreePrince/muzha/effect_spin/51.png"
-dest_files=["res://godot/imported/51.png-44482c36c63cda1ac9b34d5a373cb7ef.ctex"]
+dest_files=["res://.godot/imported/51.png-44482c36c63cda1ac9b34d5a373cb7ef.ctex"]
 
 [params]
 

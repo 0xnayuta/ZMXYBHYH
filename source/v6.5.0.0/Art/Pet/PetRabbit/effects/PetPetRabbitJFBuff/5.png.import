@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cko7hqaig3au2"
-path="res://godot/imported/5.png-bf09eff850d356540baa6ba7f61d4133.ctex"
+path="res://.godot/imported/5.png-bf09eff850d356540baa6ba7f61d4133.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetRabbit/effects/PetPetRabbitJFBuff/5.png"
-dest_files=["res://godot/imported/5.png-bf09eff850d356540baa6ba7f61d4133.ctex"]
+dest_files=["res://.godot/imported/5.png-bf09eff850d356540baa6ba7f61d4133.ctex"]
 
 [params]
 

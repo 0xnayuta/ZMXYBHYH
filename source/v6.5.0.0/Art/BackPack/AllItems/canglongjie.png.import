@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ss2x83j5oe2k"
-path="res://godot/imported/canglongjie.png-9b65a2c1a615b147005b9ccf8a5f98b5.ctex"
+path="res://.godot/imported/canglongjie.png-9b65a2c1a615b147005b9ccf8a5f98b5.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/canglongjie.png"
-dest_files=["res://godot/imported/canglongjie.png-9b65a2c1a615b147005b9ccf8a5f98b5.ctex"]
+dest_files=["res://.godot/imported/canglongjie.png-9b65a2c1a615b147005b9ccf8a5f98b5.ctex"]
 
 [params]
 

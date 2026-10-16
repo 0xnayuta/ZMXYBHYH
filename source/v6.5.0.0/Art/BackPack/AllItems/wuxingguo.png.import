@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqrhtrmtqnkv4"
-path="res://godot/imported/wuxingguo.png-42742f91e70125352de874d0e23a12ba.ctex"
+path="res://.godot/imported/wuxingguo.png-42742f91e70125352de874d0e23a12ba.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/wuxingguo.png"
-dest_files=["res://godot/imported/wuxingguo.png-42742f91e70125352de874d0e23a12ba.ctex"]
+dest_files=["res://.godot/imported/wuxingguo.png-42742f91e70125352de874d0e23a12ba.ctex"]
 
 [params]
 

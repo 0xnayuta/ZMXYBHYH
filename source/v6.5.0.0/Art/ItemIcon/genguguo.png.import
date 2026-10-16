@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5suohv6evds3"
-path="res://godot/imported/genguguo.png-7ae939a8c5305ba4711eda3bee1ea523.ctex"
+path="res://.godot/imported/genguguo.png-7ae939a8c5305ba4711eda3bee1ea523.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/genguguo.png"
-dest_files=["res://godot/imported/genguguo.png-7ae939a8c5305ba4711eda3bee1ea523.ctex"]
+dest_files=["res://.godot/imported/genguguo.png-7ae939a8c5305ba4711eda3bee1ea523.ctex"]
 
 [params]
 

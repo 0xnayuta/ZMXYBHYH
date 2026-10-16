@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bh6kd6lrpu1b8"
-path="res://godot/imported/1066.png-0a41e064695ff7a950e878b25dcc8e68.ctex"
+path="res://.godot/imported/1066.png-0a41e064695ff7a950e878b25dcc8e68.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Game_3/OtherMapButton/1066.png"
-dest_files=["res://godot/imported/1066.png-0a41e064695ff7a950e878b25dcc8e68.ctex"]
+dest_files=["res://.godot/imported/1066.png-0a41e064695ff7a950e878b25dcc8e68.ctex"]
 
 [params]
 

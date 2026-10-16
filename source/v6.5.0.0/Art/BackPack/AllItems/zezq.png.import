@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dn0ktvoiad1py"
-path="res://godot/imported/zezq.png-f43f70eb3cb1013a4721696cd8567694.ctex"
+path="res://.godot/imported/zezq.png-f43f70eb3cb1013a4721696cd8567694.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/zezq.png"
-dest_files=["res://godot/imported/zezq.png-f43f70eb3cb1013a4721696cd8567694.ctex"]
+dest_files=["res://.godot/imported/zezq.png-f43f70eb3cb1013a4721696cd8567694.ctex"]
 
 [params]
 

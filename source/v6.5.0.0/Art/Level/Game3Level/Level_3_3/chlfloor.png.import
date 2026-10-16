@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cml5teyicu3r3"
-path="res://godot/imported/chlfloor.png-4a35ef32ff2f7516c10a9ee315985478.ctex"
+path="res://.godot/imported/chlfloor.png-4a35ef32ff2f7516c10a9ee315985478.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_3_3/chlfloor.png"
-dest_files=["res://godot/imported/chlfloor.png-4a35ef32ff2f7516c10a9ee315985478.ctex"]
+dest_files=["res://.godot/imported/chlfloor.png-4a35ef32ff2f7516c10a9ee315985478.ctex"]
 
 [params]
 

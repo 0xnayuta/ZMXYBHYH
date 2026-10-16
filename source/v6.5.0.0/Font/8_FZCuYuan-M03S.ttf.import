@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cj5ardrdbwejy"
-path="res://godot/imported/8_FZCuYuan-M03S.ttf-fd6883250c3d67ffce34a44f858d4d41.fontdata"
+path="res://.godot/imported/8_FZCuYuan-M03S.ttf-fd6883250c3d67ffce34a44f858d4d41.fontdata"
 
 [deps]
 
 source_file="res://Font/8_FZCuYuan-M03S.ttf"
-dest_files=["res://godot/imported/8_FZCuYuan-M03S.ttf-fd6883250c3d67ffce34a44f858d4d41.fontdata"]
+dest_files=["res://.godot/imported/8_FZCuYuan-M03S.ttf-fd6883250c3d67ffce34a44f858d4d41.fontdata"]
 
 [params]
 

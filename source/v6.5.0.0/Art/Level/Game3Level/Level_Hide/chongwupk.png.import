@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgn5ink53tna0"
-path="res://godot/imported/chongwupk.png-7572ae00c676866dd77aeeb1df142738.ctex"
+path="res://.godot/imported/chongwupk.png-7572ae00c676866dd77aeeb1df142738.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_Hide/chongwupk.png"
-dest_files=["res://godot/imported/chongwupk.png-7572ae00c676866dd77aeeb1df142738.ctex"]
+dest_files=["res://.godot/imported/chongwupk.png-7572ae00c676866dd77aeeb1df142738.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sadesh1l2mda"
-path="res://godot/imported/100.png-ba1d11ac1bc9d05bdfb4fd8b3820e64a.ctex"
+path="res://.godot/imported/100.png-ba1d11ac1bc9d05bdfb4fd8b3820e64a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/zhuxianjianzhen/ZhuXianSword/images/100.png"
-dest_files=["res://godot/imported/100.png-ba1d11ac1bc9d05bdfb4fd8b3820e64a.ctex"]
+dest_files=["res://.godot/imported/100.png-ba1d11ac1bc9d05bdfb4fd8b3820e64a.ctex"]
 
 [params]
 

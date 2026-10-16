@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4id1kpgon06c"
-path="res://godot/imported/fyjc_skill_book.png-a179362fbc822e2fe907b489808d865f.ctex"
+path="res://.godot/imported/fyjc_skill_book.png-a179362fbc822e2fe907b489808d865f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/fyjc_skill_book.png"
-dest_files=["res://godot/imported/fyjc_skill_book.png-a179362fbc822e2fe907b489808d865f.ctex"]
+dest_files=["res://.godot/imported/fyjc_skill_book.png-a179362fbc822e2fe907b489808d865f.ctex"]
 
 [params]
 

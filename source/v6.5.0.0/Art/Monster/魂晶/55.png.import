@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3mqj77mn8gwa"
-path="res://godot/imported/55.png-feaa1c2f0f0f24016c4aabf4c525037b.ctex"
+path="res://.godot/imported/55.png-feaa1c2f0f0f24016c4aabf4c525037b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/魂晶/55.png"
-dest_files=["res://godot/imported/55.png-feaa1c2f0f0f24016c4aabf4c525037b.ctex"]
+dest_files=["res://.godot/imported/55.png-feaa1c2f0f0f24016c4aabf4c525037b.ctex"]
 
 [params]
 

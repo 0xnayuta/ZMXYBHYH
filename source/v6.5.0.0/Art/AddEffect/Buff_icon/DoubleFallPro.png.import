@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ci1euvw7npo78"
-path="res://godot/imported/DoubleFallPro.png-b9a25b39d73c2f23d60edfd7da7b9f3b.ctex"
+path="res://.godot/imported/DoubleFallPro.png-b9a25b39d73c2f23d60edfd7da7b9f3b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AddEffect/Buff_icon/DoubleFallPro.png"
-dest_files=["res://godot/imported/DoubleFallPro.png-b9a25b39d73c2f23d60edfd7da7b9f3b.ctex"]
+dest_files=["res://.godot/imported/DoubleFallPro.png-b9a25b39d73c2f23d60edfd7da7b9f3b.ctex"]
 
 [params]
 

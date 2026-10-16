@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmj2fyn8o0jp4"
-path="res://godot/imported/cast_34.png-2278618508cb895fe3cf60bb9da0c7c6.ctex"
+path="res://.godot/imported/cast_34.png-2278618508cb895fe3cf60bb9da0c7c6.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role4/BiLuoTian/cast/cast_34.png"
-dest_files=["res://godot/imported/cast_34.png-2278618508cb895fe3cf60bb9da0c7c6.ctex"]
+dest_files=["res://.godot/imported/cast_34.png-2278618508cb895fe3cf60bb9da0c7c6.ctex"]
 
 [params]
 

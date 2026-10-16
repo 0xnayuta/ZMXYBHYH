@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://k544b3b0o7o6"
-path="res://godot/imported/detail_panel.png-1327502244d206a2f32fef32cf4f5626.ctex"
+path="res://.godot/imported/detail_panel.png-1327502244d206a2f32fef32cf4f5626.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/lianti/detail_panel.png"
-dest_files=["res://godot/imported/detail_panel.png-1327502244d206a2f32fef32cf4f5626.ctex"]
+dest_files=["res://.godot/imported/detail_panel.png-1327502244d206a2f32fef32cf4f5626.ctex"]
 
 [params]
 

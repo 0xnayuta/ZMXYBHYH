@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://doqrk26otcbrc"
-path="res://godot/imported/zsxt.png-f91315d0a6a0b7b3c4ae66a4a8aaf337.ctex"
+path="res://.godot/imported/zsxt.png-f91315d0a6a0b7b3c4ae66a4a8aaf337.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/zsxt.png"
-dest_files=["res://godot/imported/zsxt.png-f91315d0a6a0b7b3c4ae66a4a8aaf337.ctex"]
+dest_files=["res://.godot/imported/zsxt.png-f91315d0a6a0b7b3c4ae66a4a8aaf337.ctex"]
 
 [params]
 

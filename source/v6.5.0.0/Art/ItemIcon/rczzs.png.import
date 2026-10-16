@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cd32brnlvfnlv"
-path="res://godot/imported/rczzs.png-d662122587f1d94282a54470a33f6487.ctex"
+path="res://.godot/imported/rczzs.png-d662122587f1d94282a54470a33f6487.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/rczzs.png"
-dest_files=["res://godot/imported/rczzs.png-d662122587f1d94282a54470a33f6487.ctex"]
+dest_files=["res://.godot/imported/rczzs.png-d662122587f1d94282a54470a33f6487.ctex"]
 
 [params]
 

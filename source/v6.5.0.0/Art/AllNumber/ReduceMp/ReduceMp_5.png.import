@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b0fmcrg5v7hxd"
-path="res://godot/imported/ReduceMp_5.png-477a5468bc0ed128dc0ca02b0990ecdc.ctex"
+path="res://.godot/imported/ReduceMp_5.png-477a5468bc0ed128dc0ca02b0990ecdc.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AllNumber/ReduceMp/ReduceMp_5.png"
-dest_files=["res://godot/imported/ReduceMp_5.png-477a5468bc0ed128dc0ca02b0990ecdc.ctex"]
+dest_files=["res://.godot/imported/ReduceMp_5.png-477a5468bc0ed128dc0ca02b0990ecdc.ctex"]
 
 [params]
 

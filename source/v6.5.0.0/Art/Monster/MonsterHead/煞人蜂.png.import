@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bm6ljb5kn2vdc"
-path="res://godot/imported/煞人蜂.png-0ce8eeff93880bef49954cfb51521448.ctex"
+path="res://.godot/imported/煞人蜂.png-0ce8eeff93880bef49954cfb51521448.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/煞人蜂.png"
-dest_files=["res://godot/imported/煞人蜂.png-0ce8eeff93880bef49954cfb51521448.ctex"]
+dest_files=["res://.godot/imported/煞人蜂.png-0ce8eeff93880bef49954cfb51521448.ctex"]
 
 [params]
 

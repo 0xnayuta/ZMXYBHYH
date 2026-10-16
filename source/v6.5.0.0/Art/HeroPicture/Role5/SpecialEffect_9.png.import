@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cegvtjif3qya3"
-path="res://godot/imported/SpecialEffect_9.png-577d25c207cedc37574835e3a9a3d594.ctex"
+path="res://.godot/imported/SpecialEffect_9.png-577d25c207cedc37574835e3a9a3d594.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role5/SpecialEffect_9.png"
-dest_files=["res://godot/imported/SpecialEffect_9.png-577d25c207cedc37574835e3a9a3d594.ctex"]
+dest_files=["res://.godot/imported/SpecialEffect_9.png-577d25c207cedc37574835e3a9a3d594.ctex"]
 
 [params]
 

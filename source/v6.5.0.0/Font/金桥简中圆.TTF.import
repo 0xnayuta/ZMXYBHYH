@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b5ptii7okv6rt"
-path="res://godot/imported/金桥简中圆.TTF-3aefaa6bbb7aec70c0a5026917a6a8c0.fontdata"
+path="res://.godot/imported/金桥简中圆.TTF-3aefaa6bbb7aec70c0a5026917a6a8c0.fontdata"
 
 [deps]
 
 source_file="res://Font/金桥简中圆.TTF"
-dest_files=["res://godot/imported/金桥简中圆.TTF-3aefaa6bbb7aec70c0a5026917a6a8c0.fontdata"]
+dest_files=["res://.godot/imported/金桥简中圆.TTF-3aefaa6bbb7aec70c0a5026917a6a8c0.fontdata"]
 
 [params]
 

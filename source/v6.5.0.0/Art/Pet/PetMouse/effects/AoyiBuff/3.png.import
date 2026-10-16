@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjwyvo0bsl3y4"
-path="res://godot/imported/3.png-ed60f6d8d2e04bd008eb4b1c2f5f1245.ctex"
+path="res://.godot/imported/3.png-ed60f6d8d2e04bd008eb4b1c2f5f1245.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetMouse/effects/AoyiBuff/3.png"
-dest_files=["res://godot/imported/3.png-ed60f6d8d2e04bd008eb4b1c2f5f1245.ctex"]
+dest_files=["res://.godot/imported/3.png-ed60f6d8d2e04bd008eb4b1c2f5f1245.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cp4ujlbq5xwly"
-path="res://godot/imported/myhc.png-db3bbcdb9bcc3765ce7f36a37db88be4.ctex"
+path="res://.godot/imported/myhc.png-db3bbcdb9bcc3765ce7f36a37db88be4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Skill/LittleSkillIcon/myhc.png"
-dest_files=["res://godot/imported/myhc.png-db3bbcdb9bcc3765ce7f36a37db88be4.ctex"]
+dest_files=["res://.godot/imported/myhc.png-db3bbcdb9bcc3765ce7f36a37db88be4.ctex"]
 
 [params]
 

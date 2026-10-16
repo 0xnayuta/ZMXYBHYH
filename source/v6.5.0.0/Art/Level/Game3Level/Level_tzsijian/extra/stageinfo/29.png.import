@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dw4prug64sqsh"
-path="res://godot/imported/29.png-1c4031a085e297fb7ba4f11abeb14b41.ctex"
+path="res://.godot/imported/29.png-1c4031a085e297fb7ba4f11abeb14b41.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_tzsijian/extra/stageinfo/29.png"
-dest_files=["res://godot/imported/29.png-1c4031a085e297fb7ba4f11abeb14b41.ctex"]
+dest_files=["res://.godot/imported/29.png-1c4031a085e297fb7ba4f11abeb14b41.ctex"]
 
 [params]
 

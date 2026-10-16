@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bp40ouacjtjia"
-path="res://godot/imported/100.png-3377617ab6dcb830026c98887292653e.ctex"
+path="res://.godot/imported/100.png-3377617ab6dcb830026c98887292653e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/LDL/100.png"
-dest_files=["res://godot/imported/100.png-3377617ab6dcb830026c98887292653e.ctex"]
+dest_files=["res://.godot/imported/100.png-3377617ab6dcb830026c98887292653e.ctex"]
 
 [params]
 

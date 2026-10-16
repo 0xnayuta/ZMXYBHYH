@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://xnbu7jp28dsh"
-path="res://godot/imported/attack.mp3-28fcd351f558f2a9acb8228f9815ff4f.mp3str"
+path="res://.godot/imported/attack.mp3-28fcd351f558f2a9acb8228f9815ff4f.mp3str"
 
 [deps]
 
 source_file="res://Music/Hero/Role5/attack.mp3"
-dest_files=["res://godot/imported/attack.mp3-28fcd351f558f2a9acb8228f9815ff4f.mp3str"]
+dest_files=["res://.godot/imported/attack.mp3-28fcd351f558f2a9acb8228f9815ff4f.mp3str"]
 
 [params]
 

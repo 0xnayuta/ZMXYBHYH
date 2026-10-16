@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://chfyextdch8sh"
-path="res://godot/imported/lightning_24.png-7b090851d12dad2bf6f5c970d5806a42.ctex"
+path="res://.godot/imported/lightning_24.png-7b090851d12dad2bf6f5c970d5806a42.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role5/LeiTingJieZhen/lightning_spine/lightning_24.png"
-dest_files=["res://godot/imported/lightning_24.png-7b090851d12dad2bf6f5c970d5806a42.ctex"]
+dest_files=["res://.godot/imported/lightning_24.png-7b090851d12dad2bf6f5c970d5806a42.ctex"]
 
 [params]
 

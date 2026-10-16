@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmjecub3filmv"
-path="res://godot/imported/yg.png-8904c8de12e686a41d45fe4f57c07e6e.ctex"
+path="res://.godot/imported/yg.png-8904c8de12e686a41d45fe4f57c07e6e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/skillicon/yg.png"
-dest_files=["res://godot/imported/yg.png-8904c8de12e686a41d45fe4f57c07e6e.ctex"]
+dest_files=["res://.godot/imported/yg.png-8904c8de12e686a41d45fe4f57c07e6e.ctex"]
 
 [params]
 

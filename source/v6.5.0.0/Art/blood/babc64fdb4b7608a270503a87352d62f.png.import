@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdar533txrbiq"
-path="res://godot/imported/babc64fdb4b7608a270503a87352d62f.png-e9958ac5464491ab8b6ff10525d6ed9e.ctex"
+path="res://.godot/imported/babc64fdb4b7608a270503a87352d62f.png-e9958ac5464491ab8b6ff10525d6ed9e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/blood/babc64fdb4b7608a270503a87352d62f.png"
-dest_files=["res://godot/imported/babc64fdb4b7608a270503a87352d62f.png-e9958ac5464491ab8b6ff10525d6ed9e.ctex"]
+dest_files=["res://.godot/imported/babc64fdb4b7608a270503a87352d62f.png-e9958ac5464491ab8b6ff10525d6ed9e.ctex"]
 
 [params]
 

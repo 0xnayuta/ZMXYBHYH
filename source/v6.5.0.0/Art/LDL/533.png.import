@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://deb2p2c635j3a"
-path="res://godot/imported/533.png-ec9d62b457a83d7f48e8d7b82a885dac.ctex"
+path="res://.godot/imported/533.png-ec9d62b457a83d7f48e8d7b82a885dac.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/LDL/533.png"
-dest_files=["res://godot/imported/533.png-ec9d62b457a83d7f48e8d7b82a885dac.ctex"]
+dest_files=["res://.godot/imported/533.png-ec9d62b457a83d7f48e8d7b82a885dac.ctex"]
 
 [params]
 

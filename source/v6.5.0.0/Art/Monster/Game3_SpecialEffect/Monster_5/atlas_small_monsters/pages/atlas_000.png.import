@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dh0v3okpul5fb"
-path="res://godot/imported/atlas_000.png-b560a499715e52a25b034f5a0afc7890.ctex"
+path="res://.godot/imported/atlas_000.png-b560a499715e52a25b034f5a0afc7890.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3_SpecialEffect/Monster_5/atlas_small_monsters/pages/atlas_000.png"
-dest_files=["res://godot/imported/atlas_000.png-b560a499715e52a25b034f5a0afc7890.ctex"]
+dest_files=["res://.godot/imported/atlas_000.png-b560a499715e52a25b034f5a0afc7890.ctex"]
 
 [params]
 

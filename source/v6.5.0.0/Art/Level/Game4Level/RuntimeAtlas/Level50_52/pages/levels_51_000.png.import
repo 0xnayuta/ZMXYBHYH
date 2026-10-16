@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c56cxktg1yly1"
-path="res://godot/imported/levels_51_000.png-1c3edcd05d129ca31fc4d3e767507a2c.ctex"
+path="res://.godot/imported/levels_51_000.png-1c3edcd05d129ca31fc4d3e767507a2c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/RuntimeAtlas/Level50_52/pages/levels_51_000.png"
-dest_files=["res://godot/imported/levels_51_000.png-1c3edcd05d129ca31fc4d3e767507a2c.ctex"]
+dest_files=["res://.godot/imported/levels_51_000.png-1c3edcd05d129ca31fc4d3e767507a2c.ctex"]
 
 [params]
 

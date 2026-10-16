@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6h1r0401mdb2"
-path="res://godot/imported/005.png-df7a3d8ae5611e6b35485aa3836d4076.ctex"
+path="res://.godot/imported/005.png-df7a3d8ae5611e6b35485aa3836d4076.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/Show_Icon/yx_Effect/005.png"
-dest_files=["res://godot/imported/005.png-df7a3d8ae5611e6b35485aa3836d4076.ctex"]
+dest_files=["res://.godot/imported/005.png-df7a3d8ae5611e6b35485aa3836d4076.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1dhtqkmehi1e"
-path="res://godot/imported/hud_swk.png-b0f6dcb64f94fc6a35f597f11f94ce29.ctex"
+path="res://.godot/imported/hud_swk.png-b0f6dcb64f94fc6a35f597f11f94ce29.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/RoleProperiesBox/hud_swk.png"
-dest_files=["res://godot/imported/hud_swk.png-b0f6dcb64f94fc6a35f597f11f94ce29.ctex"]
+dest_files=["res://.godot/imported/hud_swk.png-b0f6dcb64f94fc6a35f597f11f94ce29.ctex"]
 
 [params]
 

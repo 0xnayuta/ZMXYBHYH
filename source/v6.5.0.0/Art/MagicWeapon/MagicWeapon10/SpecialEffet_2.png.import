@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcxivyw727b4a"
-path="res://godot/imported/SpecialEffet_2.png-b9a810db5f8c7e576247174d1a2cebee.ctex"
+path="res://.godot/imported/SpecialEffet_2.png-b9a810db5f8c7e576247174d1a2cebee.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/MagicWeapon10/SpecialEffet_2.png"
-dest_files=["res://godot/imported/SpecialEffet_2.png-b9a810db5f8c7e576247174d1a2cebee.ctex"]
+dest_files=["res://.godot/imported/SpecialEffet_2.png-b9a810db5f8c7e576247174d1a2cebee.ctex"]
 
 [params]
 

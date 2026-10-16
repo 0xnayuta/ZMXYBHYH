@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://kxkbies4ibu5"
-path="res://godot/imported/ny.png-130618a4e418f4aa84cd25fcf182086c.ctex"
+path="res://.godot/imported/ny.png-130618a4e418f4aa84cd25fcf182086c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/ny.png"
-dest_files=["res://godot/imported/ny.png-130618a4e418f4aa84cd25fcf182086c.ctex"]
+dest_files=["res://.godot/imported/ny.png-130618a4e418f4aa84cd25fcf182086c.ctex"]
 
 [params]
 

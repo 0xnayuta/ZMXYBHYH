@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://r5dlyv60u1ph"
-path="res://godot/imported/Hurt.png-e4a4c502abcc049e3cdb3c7d1bffe97c.ctex"
+path="res://.godot/imported/Hurt.png-e4a4c502abcc049e3cdb3c7d1bffe97c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Cow/Second/Hurt.png"
-dest_files=["res://godot/imported/Hurt.png-e4a4c502abcc049e3cdb3c7d1bffe97c.ctex"]
+dest_files=["res://.godot/imported/Hurt.png-e4a4c502abcc049e3cdb3c7d1bffe97c.ctex"]
 
 [params]
 

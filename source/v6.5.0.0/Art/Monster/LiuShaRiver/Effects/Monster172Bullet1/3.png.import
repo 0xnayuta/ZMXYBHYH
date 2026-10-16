@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bj4v3yuujdb22"
-path="res://godot/imported/3.png-fd92e3da886377e682814e6016b34fee.ctex"
+path="res://.godot/imported/3.png-fd92e3da886377e682814e6016b34fee.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/LiuShaRiver/Effects/Monster172Bullet1/3.png"
-dest_files=["res://godot/imported/3.png-fd92e3da886377e682814e6016b34fee.ctex"]
+dest_files=["res://.godot/imported/3.png-fd92e3da886377e682814e6016b34fee.ctex"]
 
 [params]
 

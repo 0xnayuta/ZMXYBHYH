@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvdcq3vddh6gc"
-path="res://godot/imported/shop_hover.png-a0d4c8cdafcdb2d9c6bbec000cc421d0.ctex"
+path="res://.godot/imported/shop_hover.png-a0d4c8cdafcdb2d9c6bbec000cc421d0.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Main_menu/Map0/shop_hover.png"
-dest_files=["res://godot/imported/shop_hover.png-a0d4c8cdafcdb2d9c6bbec000cc421d0.ctex"]
+dest_files=["res://.godot/imported/shop_hover.png-a0d4c8cdafcdb2d9c6bbec000cc421d0.ctex"]
 
 [params]
 

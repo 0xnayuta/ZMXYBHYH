@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bppxbgdjongpp"
-path="res://godot/imported/9.png-1a2dc59dd889787e24fbc79ceef2ea17.ctex"
+path="res://.godot/imported/9.png-1a2dc59dd889787e24fbc79ceef2ea17.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/ThreePrince/jinzha/effect_bullet1/9.png"
-dest_files=["res://godot/imported/9.png-1a2dc59dd889787e24fbc79ceef2ea17.ctex"]
+dest_files=["res://.godot/imported/9.png-1a2dc59dd889787e24fbc79ceef2ea17.ctex"]
 
 [params]
 

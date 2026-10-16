@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ds5qwlnf8nc48"
-path="res://godot/imported/zodiac_5.png-cad117ff1d5b1e4efbacd5046c6a6085.ctex"
+path="res://.godot/imported/zodiac_5.png-cad117ff1d5b1e4efbacd5046c6a6085.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/lianti/zodiac_5.png"
-dest_files=["res://godot/imported/zodiac_5.png-cad117ff1d5b1e4efbacd5046c6a6085.ctex"]
+dest_files=["res://.godot/imported/zodiac_5.png-cad117ff1d5b1e4efbacd5046c6a6085.ctex"]
 
 [params]
 

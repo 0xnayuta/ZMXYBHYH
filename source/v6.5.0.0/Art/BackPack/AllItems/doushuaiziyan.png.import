@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bkp1wy2y8obmp"
-path="res://godot/imported/doushuaiziyan.png-de8a450b047cad7dccaee10813041c69.ctex"
+path="res://.godot/imported/doushuaiziyan.png-de8a450b047cad7dccaee10813041c69.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/doushuaiziyan.png"
-dest_files=["res://godot/imported/doushuaiziyan.png-de8a450b047cad7dccaee10813041c69.ctex"]
+dest_files=["res://.godot/imported/doushuaiziyan.png-de8a450b047cad7dccaee10813041c69.ctex"]
 
 [params]
 

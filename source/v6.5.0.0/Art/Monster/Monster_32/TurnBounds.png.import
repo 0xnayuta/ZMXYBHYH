@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://brcgfmaowxdmy"
-path="res://godot/imported/TurnBounds.png-e8691dad9c39343645f916e0abbb36d4.ctex"
+path="res://.godot/imported/TurnBounds.png-e8691dad9c39343645f916e0abbb36d4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_32/TurnBounds.png"
-dest_files=["res://godot/imported/TurnBounds.png-e8691dad9c39343645f916e0abbb36d4.ctex"]
+dest_files=["res://.godot/imported/TurnBounds.png-e8691dad9c39343645f916e0abbb36d4.ctex"]
 
 [params]
 

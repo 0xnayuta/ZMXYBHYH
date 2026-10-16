@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlky302a0uf4c"
-path="res://godot/imported/walk_2.png-722be175aee10c46cfe37da4b5a3dd61.ctex"
+path="res://.godot/imported/walk_2.png-722be175aee10c46cfe37da4b5a3dd61.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetRabbit/model/actions/stage4/walk/walk_2.png"
-dest_files=["res://godot/imported/walk_2.png-722be175aee10c46cfe37da4b5a3dd61.ctex"]
+dest_files=["res://.godot/imported/walk_2.png-722be175aee10c46cfe37da4b5a3dd61.ctex"]
 
 [params]
 

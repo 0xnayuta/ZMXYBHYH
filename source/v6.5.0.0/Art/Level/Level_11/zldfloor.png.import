@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4bedlahjatv8"
-path="res://godot/imported/zldfloor.png-3d9e94b505c55fc9269ae6a31650efbe.ctex"
+path="res://.godot/imported/zldfloor.png-3d9e94b505c55fc9269ae6a31650efbe.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Level_11/zldfloor.png"
-dest_files=["res://godot/imported/zldfloor.png-3d9e94b505c55fc9269ae6a31650efbe.ctex"]
+dest_files=["res://.godot/imported/zldfloor.png-3d9e94b505c55fc9269ae6a31650efbe.ctex"]
 
 [params]
 

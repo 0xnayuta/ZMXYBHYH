@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://i7x77id37mug"
-path="res://godot/imported/ShovelHit2.mp3-128adac320a6f1edea26a9cb39eb000f.mp3str"
+path="res://.godot/imported/ShovelHit2.mp3-128adac320a6f1edea26a9cb39eb000f.mp3str"
 
 [deps]
 
 source_file="res://Music/Hero/Role4/ShovelHit2.mp3"
-dest_files=["res://godot/imported/ShovelHit2.mp3-128adac320a6f1edea26a9cb39eb000f.mp3str"]
+dest_files=["res://.godot/imported/ShovelHit2.mp3-128adac320a6f1edea26a9cb39eb000f.mp3str"]
 
 [params]
 

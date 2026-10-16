@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://d3h7gbb5u8s80"
-path="res://godot/imported/zmxy_2BGM.mp3-c9e3329e68b79b76d2e299b15e11d068.mp3str"
+path="res://.godot/imported/zmxy_2BGM.mp3-c9e3329e68b79b76d2e299b15e11d068.mp3str"
 
 [deps]
 
 source_file="res://Music/MainSceneMusic/zmxy_2BGM.mp3"
-dest_files=["res://godot/imported/zmxy_2BGM.mp3-c9e3329e68b79b76d2e299b15e11d068.mp3str"]
+dest_files=["res://.godot/imported/zmxy_2BGM.mp3-c9e3329e68b79b76d2e299b15e11d068.mp3str"]
 
 [params]
 

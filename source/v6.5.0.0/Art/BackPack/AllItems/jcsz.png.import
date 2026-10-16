@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3kxno15kn2eo"
-path="res://godot/imported/jcsz.png-5a93b7607f6b38e3ada379af441ccc8b.ctex"
+path="res://.godot/imported/jcsz.png-5a93b7607f6b38e3ada379af441ccc8b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/jcsz.png"
-dest_files=["res://godot/imported/jcsz.png-5a93b7607f6b38e3ada379af441ccc8b.ctex"]
+dest_files=["res://.godot/imported/jcsz.png-5a93b7607f6b38e3ada379af441ccc8b.ctex"]
 
 [params]
 

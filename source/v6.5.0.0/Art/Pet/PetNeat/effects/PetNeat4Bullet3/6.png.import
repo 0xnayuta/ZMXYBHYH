@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmivr223oks7e"
-path="res://godot/imported/6.png-e7ab132b44a2456644b3aa150102bb23.ctex"
+path="res://.godot/imported/6.png-e7ab132b44a2456644b3aa150102bb23.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetNeat/effects/PetNeat4Bullet3/6.png"
-dest_files=["res://godot/imported/6.png-e7ab132b44a2456644b3aa150102bb23.ctex"]
+dest_files=["res://.godot/imported/6.png-e7ab132b44a2456644b3aa150102bb23.ctex"]
 
 [params]
 

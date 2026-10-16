@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dyngt2jw8ehtn"
-path="res://godot/imported/idle.png-d6821cf110e800252268f91acede64e3.ctex"
+path="res://.godot/imported/idle.png-d6821cf110e800252268f91acede64e3.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/Imported/items/1050/idle.png"
-dest_files=["res://godot/imported/idle.png-d6821cf110e800252268f91acede64e3.ctex"]
+dest_files=["res://.godot/imported/idle.png-d6821cf110e800252268f91acede64e3.ctex"]
 
 [params]
 

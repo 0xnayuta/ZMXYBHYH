@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bywkmqfjmvrve"
-path="res://godot/imported/pet_eat_bg.png-f8cbdbe484a28f95a0f36e2843b2a086.ctex"
+path="res://.godot/imported/pet_eat_bg.png-f8cbdbe484a28f95a0f36e2843b2a086.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetPageResources/pet_eat_bg.png"
-dest_files=["res://godot/imported/pet_eat_bg.png-f8cbdbe484a28f95a0f36e2843b2a086.ctex"]
+dest_files=["res://.godot/imported/pet_eat_bg.png-f8cbdbe484a28f95a0f36e2843b2a086.ctex"]
 
 [params]
 

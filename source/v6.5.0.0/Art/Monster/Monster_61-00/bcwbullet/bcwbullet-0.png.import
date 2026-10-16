@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jud3kw8ddqgs"
-path="res://godot/imported/bcwbullet-0.png-e34e18cd635a513a0a2d02d3e8c754a6.ctex"
+path="res://.godot/imported/bcwbullet-0.png-e34e18cd635a513a0a2d02d3e8c754a6.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_61-00/bcwbullet/bcwbullet-0.png"
-dest_files=["res://godot/imported/bcwbullet-0.png-e34e18cd635a513a0a2d02d3e8c754a6.ctex"]
+dest_files=["res://.godot/imported/bcwbullet-0.png-e34e18cd635a513a0a2d02d3e8c754a6.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwcqg6187x6nc"
-path="res://godot/imported/Monster62Wait.png-8eb773229e5ff52072a57a1104d7af40.ctex"
+path="res://.godot/imported/Monster62Wait.png-8eb773229e5ff52072a57a1104d7af40.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_66_1/Monster62Wait.png"
-dest_files=["res://godot/imported/Monster62Wait.png-8eb773229e5ff52072a57a1104d7af40.ctex"]
+dest_files=["res://.godot/imported/Monster62Wait.png-8eb773229e5ff52072a57a1104d7af40.ctex"]
 
 [params]
 

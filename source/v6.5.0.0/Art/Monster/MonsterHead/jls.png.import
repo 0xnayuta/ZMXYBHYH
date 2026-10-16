@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dp8lriu7t8wrp"
-path="res://godot/imported/jls.png-a5b1527ed39ac95eae76c6ede3b2e379.ctex"
+path="res://.godot/imported/jls.png-a5b1527ed39ac95eae76c6ede3b2e379.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/jls.png"
-dest_files=["res://godot/imported/jls.png-a5b1527ed39ac95eae76c6ede3b2e379.ctex"]
+dest_files=["res://.godot/imported/jls.png-a5b1527ed39ac95eae76c6ede3b2e379.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b0h85pwqbmydv"
-path="res://godot/imported/商城背景.jpg-082de2081fe9834e825e8141e423e623.ctex"
+path="res://.godot/imported/商城背景.jpg-082de2081fe9834e825e8141e423e623.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Shop/商城背景.jpg"
-dest_files=["res://godot/imported/商城背景.jpg-082de2081fe9834e825e8141e423e623.ctex"]
+dest_files=["res://.godot/imported/商城背景.jpg-082de2081fe9834e825e8141e423e623.ctex"]
 
 [params]
 

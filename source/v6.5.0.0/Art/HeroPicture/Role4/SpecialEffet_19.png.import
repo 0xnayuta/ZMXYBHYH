@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2rirgim8fhgq"
-path="res://godot/imported/SpecialEffet_19.png-749440bb1aaf4d5cf6c1184c83ee9766.ctex"
+path="res://.godot/imported/SpecialEffet_19.png-749440bb1aaf4d5cf6c1184c83ee9766.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role4/SpecialEffet_19.png"
-dest_files=["res://godot/imported/SpecialEffet_19.png-749440bb1aaf4d5cf6c1184c83ee9766.ctex"]
+dest_files=["res://.godot/imported/SpecialEffet_19.png-749440bb1aaf4d5cf6c1184c83ee9766.ctex"]
 
 [params]
 

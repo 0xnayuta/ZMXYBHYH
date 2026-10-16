@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cs8nvv4s76ufa"
-path="res://godot/imported/klbx.png-2461d02c4b8ec46ef56dff910a83c855.ctex"
+path="res://.godot/imported/klbx.png-2461d02c4b8ec46ef56dff910a83c855.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/klbx.png"
-dest_files=["res://godot/imported/klbx.png-2461d02c4b8ec46ef56dff910a83c855.ctex"]
+dest_files=["res://.godot/imported/klbx.png-2461d02c4b8ec46ef56dff910a83c855.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cg17e0worxmuk"
-path="res://godot/imported/wyzy.png-705784771c37391849e2c73ccc2deb7d.ctex"
+path="res://.godot/imported/wyzy.png-705784771c37391849e2c73ccc2deb7d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/wyzy.png"
-dest_files=["res://godot/imported/wyzy.png-705784771c37391849e2c73ccc2deb7d.ctex"]
+dest_files=["res://.godot/imported/wyzy.png-705784771c37391849e2c73ccc2deb7d.ctex"]
 
 [params]
 

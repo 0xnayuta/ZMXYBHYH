@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c430itor1jqgo"
-path="res://godot/imported/CucurFire_2-0.png-92b624b1a27230e682e70439cb531a03.ctex"
+path="res://.godot/imported/CucurFire_2-0.png-92b624b1a27230e682e70439cb531a03.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/MagicWeapon1/CucurFire_2-0.png"
-dest_files=["res://godot/imported/CucurFire_2-0.png-92b624b1a27230e682e70439cb531a03.ctex"]
+dest_files=["res://.godot/imported/CucurFire_2-0.png-92b624b1a27230e682e70439cb531a03.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dow36ers1vaik"
-path="res://godot/imported/jlfyj.png-6e964209591fd94bfa3c63ddf0c0476b.ctex"
+path="res://.godot/imported/jlfyj.png-6e964209591fd94bfa3c63ddf0c0476b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/jlfyj.png"
-dest_files=["res://godot/imported/jlfyj.png-6e964209591fd94bfa3c63ddf0c0476b.ctex"]
+dest_files=["res://.godot/imported/jlfyj.png-6e964209591fd94bfa3c63ddf0c0476b.ctex"]
 
 [params]
 

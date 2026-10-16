@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ba62466xqexrb"
-path="res://godot/imported/nezha_hover.png-8b8c680adc9cfeb2996e5e84ca45b760.ctex"
+path="res://.godot/imported/nezha_hover.png-8b8c680adc9cfeb2996e5e84ca45b760.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MainGame/ChoosePlayerZM4/nezha_hover.png"
-dest_files=["res://godot/imported/nezha_hover.png-8b8c680adc9cfeb2996e5e84ca45b760.ctex"]
+dest_files=["res://.godot/imported/nezha_hover.png-8b8c680adc9cfeb2996e5e84ca45b760.ctex"]
 
 [params]
 

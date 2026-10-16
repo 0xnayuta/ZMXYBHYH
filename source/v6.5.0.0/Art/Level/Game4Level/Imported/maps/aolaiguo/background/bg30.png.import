@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtu16iv75mtjc"
-path="res://godot/imported/bg30.png-46f22fe0ab884a36bc53d6fb01c2d562.ctex"
+path="res://.godot/imported/bg30.png-46f22fe0ab884a36bc53d6fb01c2d562.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/Imported/maps/aolaiguo/background/bg30.png"
-dest_files=["res://godot/imported/bg30.png-46f22fe0ab884a36bc53d6fb01c2d562.ctex"]
+dest_files=["res://.godot/imported/bg30.png-46f22fe0ab884a36bc53d6fb01c2d562.ctex"]
 
 [params]
 

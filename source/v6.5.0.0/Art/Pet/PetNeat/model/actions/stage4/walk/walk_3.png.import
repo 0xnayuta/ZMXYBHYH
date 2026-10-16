@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boglyikm3axhj"
-path="res://godot/imported/walk_3.png-c4152fd5628c80b395cc9897e9c96f8c.ctex"
+path="res://.godot/imported/walk_3.png-c4152fd5628c80b395cc9897e9c96f8c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetNeat/model/actions/stage4/walk/walk_3.png"
-dest_files=["res://godot/imported/walk_3.png-c4152fd5628c80b395cc9897e9c96f8c.ctex"]
+dest_files=["res://.godot/imported/walk_3.png-c4152fd5628c80b395cc9897e9c96f8c.ctex"]
 
 [params]
 

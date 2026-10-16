@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c72p6k87cvjdm"
-path="res://godot/imported/ylwbx.png-fba852b7cedd776d99d8bb0c00eb9d2f.ctex"
+path="res://.godot/imported/ylwbx.png-fba852b7cedd776d99d8bb0c00eb9d2f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/ylwbx.png"
-dest_files=["res://godot/imported/ylwbx.png-fba852b7cedd776d99d8bb0c00eb9d2f.ctex"]
+dest_files=["res://.godot/imported/ylwbx.png-fba852b7cedd776d99d8bb0c00eb9d2f.ctex"]
 
 [params]
 

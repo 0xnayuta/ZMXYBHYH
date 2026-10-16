@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://v8hyi07jix6r"
-path="res://godot/imported/13.png-9c3905d923e87736e87756995ca50961.ctex"
+path="res://.godot/imported/13.png-9c3905d923e87736e87756995ca50961.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/ThreePrince/jinzha/effect_line/13.png"
-dest_files=["res://godot/imported/13.png-9c3905d923e87736e87756995ca50961.ctex"]
+dest_files=["res://.godot/imported/13.png-9c3905d923e87736e87756995ca50961.ctex"]
 
 [params]
 

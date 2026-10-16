@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnhbcf8ktmsr6"
-path="res://godot/imported/frame_01.png-e476951b1607ea6aaa0b0ac8892c95e4.ctex"
+path="res://.godot/imported/frame_01.png-e476951b1607ea6aaa0b0ac8892c95e4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Game_4/西牛贺洲_噩梦/s440/frame_01.png"
-dest_files=["res://godot/imported/frame_01.png-e476951b1607ea6aaa0b0ac8892c95e4.ctex"]
+dest_files=["res://.godot/imported/frame_01.png-e476951b1607ea6aaa0b0ac8892c95e4.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1d13sq0mi4ma"
-path="res://godot/imported/Walk.png-ad89249dbad5e95f7e49584760ada9e4.ctex"
+path="res://.godot/imported/Walk.png-ad89249dbad5e95f7e49584760ada9e4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Cow/Second/Walk.png"
-dest_files=["res://godot/imported/Walk.png-ad89249dbad5e95f7e49584760ada9e4.ctex"]
+dest_files=["res://.godot/imported/Walk.png-ad89249dbad5e95f7e49584760ada9e4.ctex"]
 
 [params]
 

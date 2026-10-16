@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4ix0vnvfwnuc"
-path="res://godot/imported/25.png-304c4eff7693aace5a63c1e667df1aa5.ctex"
+path="res://.godot/imported/25.png-304c4eff7693aace5a63c1e667df1aa5.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetRabbit/effects/Monster130Bullet2/25.png"
-dest_files=["res://godot/imported/25.png-304c4eff7693aace5a63c1e667df1aa5.ctex"]
+dest_files=["res://.godot/imported/25.png-304c4eff7693aace5a63c1e667df1aa5.ctex"]
 
 [params]
 

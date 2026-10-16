@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dijws0savlc2d"
-path="res://godot/imported/sslzyf.png-a6c7f10ca7ff5e8447c9aefbc2255164.ctex"
+path="res://.godot/imported/sslzyf.png-a6c7f10ca7ff5e8447c9aefbc2255164.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/sslzyf.png"
-dest_files=["res://godot/imported/sslzyf.png-a6c7f10ca7ff5e8447c9aefbc2255164.ctex"]
+dest_files=["res://.godot/imported/sslzyf.png-a6c7f10ca7ff5e8447c9aefbc2255164.ctex"]
 
 [params]
 

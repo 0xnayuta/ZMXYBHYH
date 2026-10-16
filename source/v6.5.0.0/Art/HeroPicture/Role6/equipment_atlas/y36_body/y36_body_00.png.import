@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlebmdb2ox15p"
-path="res://godot/imported/y36_body_00.png-40eef9fd646dde7c23ebd53e6f11d159.ctex"
+path="res://.godot/imported/y36_body_00.png-40eef9fd646dde7c23ebd53e6f11d159.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role6/equipment_atlas/y36_body/y36_body_00.png"
-dest_files=["res://godot/imported/y36_body_00.png-40eef9fd646dde7c23ebd53e6f11d159.ctex"]
+dest_files=["res://.godot/imported/y36_body_00.png-40eef9fd646dde7c23ebd53e6f11d159.ctex"]
 
 [params]
 

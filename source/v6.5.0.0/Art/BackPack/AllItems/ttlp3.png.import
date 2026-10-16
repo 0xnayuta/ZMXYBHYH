@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2fx0fnyncstw"
-path="res://godot/imported/ttlp3.png-14b5bb58ed92986bc294bcd2181295d6.ctex"
+path="res://.godot/imported/ttlp3.png-14b5bb58ed92986bc294bcd2181295d6.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/ttlp3.png"
-dest_files=["res://godot/imported/ttlp3.png-14b5bb58ed92986bc294bcd2181295d6.ctex"]
+dest_files=["res://.godot/imported/ttlp3.png-14b5bb58ed92986bc294bcd2181295d6.ctex"]
 
 [params]
 

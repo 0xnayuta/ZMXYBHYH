@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://dbr2rb1tdo4o8"
-path="res://godot/imported/HYZhuZiMeiXinTiW.ttf-c01d0e17dae25d3fb8411218531abca6.fontdata"
+path="res://.godot/imported/HYZhuZiMeiXinTiW.ttf-c01d0e17dae25d3fb8411218531abca6.fontdata"
 
 [deps]
 
 source_file="res://Font/HYZhuZiMeiXinTiW.ttf"
-dest_files=["res://godot/imported/HYZhuZiMeiXinTiW.ttf-c01d0e17dae25d3fb8411218531abca6.fontdata"]
+dest_files=["res://.godot/imported/HYZhuZiMeiXinTiW.ttf-c01d0e17dae25d3fb8411218531abca6.fontdata"]
 
 [params]
 

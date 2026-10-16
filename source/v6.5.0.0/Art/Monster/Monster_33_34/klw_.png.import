@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://f8mdmbx2508q"
-path="res://godot/imported/klw_.png-a6071540922970bf1d9fed5948ed8707.ctex"
+path="res://.godot/imported/klw_.png-a6071540922970bf1d9fed5948ed8707.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_33_34/klw_.png"
-dest_files=["res://godot/imported/klw_.png-a6071540922970bf1d9fed5948ed8707.ctex"]
+dest_files=["res://.godot/imported/klw_.png-a6071540922970bf1d9fed5948ed8707.ctex"]
 
 [params]
 

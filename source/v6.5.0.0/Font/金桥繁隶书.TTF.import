@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://byv3r2j1yneda"
-path="res://godot/imported/金桥繁隶书.TTF-6faf3161fabbfc732eac69bad66f59ff.fontdata"
+path="res://.godot/imported/金桥繁隶书.TTF-6faf3161fabbfc732eac69bad66f59ff.fontdata"
 
 [deps]
 
 source_file="res://Font/金桥繁隶书.TTF"
-dest_files=["res://godot/imported/金桥繁隶书.TTF-6faf3161fabbfc732eac69bad66f59ff.fontdata"]
+dest_files=["res://.godot/imported/金桥繁隶书.TTF-6faf3161fabbfc732eac69bad66f59ff.fontdata"]
 
 [params]
 

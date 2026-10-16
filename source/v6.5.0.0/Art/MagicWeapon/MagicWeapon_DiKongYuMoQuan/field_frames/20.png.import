@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7n6i2mqoynyq"
-path="res://godot/imported/20.png-57c30fa9698f5bafd13c47dc15c89987.ctex"
+path="res://.godot/imported/20.png-57c30fa9698f5bafd13c47dc15c89987.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/MagicWeapon_DiKongYuMoQuan/field_frames/20.png"
-dest_files=["res://godot/imported/20.png-57c30fa9698f5bafd13c47dc15c89987.ctex"]
+dest_files=["res://.godot/imported/20.png-57c30fa9698f5bafd13c47dc15c89987.ctex"]
 
 [params]
 

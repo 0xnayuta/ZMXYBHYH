@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7y803x3ubthn"
-path="res://godot/imported/蚌女.png-4c75114c6afa2df0d9a628804c569aa3.ctex"
+path="res://.godot/imported/蚌女.png-4c75114c6afa2df0d9a628804c569aa3.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/蚌女.png"
-dest_files=["res://godot/imported/蚌女.png-4c75114c6afa2df0d9a628804c569aa3.ctex"]
+dest_files=["res://.godot/imported/蚌女.png-4c75114c6afa2df0d9a628804c569aa3.ctex"]
 
 [params]
 

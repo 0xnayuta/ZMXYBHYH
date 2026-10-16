@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2a472e6wb7cw"
-path="res://godot/imported/ygth.png-1a89356f6b30965fde7973f33687be6a.ctex"
+path="res://.godot/imported/ygth.png-1a89356f6b30965fde7973f33687be6a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Skill/SkillIcon/ygth.png"
-dest_files=["res://godot/imported/ygth.png-1a89356f6b30965fde7973f33687be6a.ctex"]
+dest_files=["res://.godot/imported/ygth.png-1a89356f6b30965fde7973f33687be6a.ctex"]
 
 [params]
 

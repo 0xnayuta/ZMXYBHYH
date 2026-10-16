@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2gp6y3khwk05"
-path="res://godot/imported/ui_beizhan_guankadiaoluo.png-4194ebb0867045b6045e8409b2f1f18a.ctex"
+path="res://.godot/imported/ui_beizhan_guankadiaoluo.png-4194ebb0867045b6045e8409b2f1f18a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Challenge/ui_beizhan_guankadiaoluo.png"
-dest_files=["res://godot/imported/ui_beizhan_guankadiaoluo.png-4194ebb0867045b6045e8409b2f1f18a.ctex"]
+dest_files=["res://.godot/imported/ui_beizhan_guankadiaoluo.png-4194ebb0867045b6045e8409b2f1f18a.ctex"]
 
 [params]
 

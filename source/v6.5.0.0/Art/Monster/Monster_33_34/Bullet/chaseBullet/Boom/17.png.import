@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lc5dwbpcqv7"
-path="res://godot/imported/17.png-eb1a5ea5c15840e3d2d9d8c1459d5095.ctex"
+path="res://.godot/imported/17.png-eb1a5ea5c15840e3d2d9d8c1459d5095.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_33_34/Bullet/chaseBullet/Boom/17.png"
-dest_files=["res://godot/imported/17.png-eb1a5ea5c15840e3d2d9d8c1459d5095.ctex"]
+dest_files=["res://.godot/imported/17.png-eb1a5ea5c15840e3d2d9d8c1459d5095.ctex"]
 
 [params]
 

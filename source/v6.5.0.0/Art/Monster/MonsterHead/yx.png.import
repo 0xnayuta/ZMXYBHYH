@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dy8halodp0y31"
-path="res://godot/imported/yx.png-c29ec4b51a2247e4e4cf5eedd7eb4c7d.ctex"
+path="res://.godot/imported/yx.png-c29ec4b51a2247e4e4cf5eedd7eb4c7d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/yx.png"
-dest_files=["res://godot/imported/yx.png-c29ec4b51a2247e4e4cf5eedd7eb4c7d.ctex"]
+dest_files=["res://.godot/imported/yx.png-c29ec4b51a2247e4e4cf5eedd7eb4c7d.ctex"]
 
 [params]
 

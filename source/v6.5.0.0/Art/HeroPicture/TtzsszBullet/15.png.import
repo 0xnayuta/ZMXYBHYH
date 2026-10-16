@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2lii4sospfkh"
-path="res://godot/imported/15.png-372a12c0e5c62ea2d12bd4510d9dc53e.ctex"
+path="res://.godot/imported/15.png-372a12c0e5c62ea2d12bd4510d9dc53e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/TtzsszBullet/15.png"
-dest_files=["res://godot/imported/15.png-372a12c0e5c62ea2d12bd4510d9dc53e.ctex"]
+dest_files=["res://.godot/imported/15.png-372a12c0e5c62ea2d12bd4510d9dc53e.ctex"]
 
 [params]
 

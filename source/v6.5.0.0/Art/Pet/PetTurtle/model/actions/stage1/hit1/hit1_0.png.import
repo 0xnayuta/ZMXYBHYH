@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjfafefyldiwy"
-path="res://godot/imported/hit1_0.png-9f275539b15228f8d13daa0dbc04bafa.ctex"
+path="res://.godot/imported/hit1_0.png-9f275539b15228f8d13daa0dbc04bafa.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetTurtle/model/actions/stage1/hit1/hit1_0.png"
-dest_files=["res://godot/imported/hit1_0.png-9f275539b15228f8d13daa0dbc04bafa.ctex"]
+dest_files=["res://.godot/imported/hit1_0.png-9f275539b15228f8d13daa0dbc04bafa.ctex"]
 
 [params]
 

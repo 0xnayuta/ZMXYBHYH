@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cbjm56il8r7tv"
-path="res://godot/imported/Flush_2.png-09d85e6dc0cccab3a93a8c3f4b6c3d5f.ctex"
+path="res://.godot/imported/Flush_2.png-09d85e6dc0cccab3a93a8c3f4b6c3d5f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role1/Flush_2.png"
-dest_files=["res://godot/imported/Flush_2.png-09d85e6dc0cccab3a93a8c3f4b6c3d5f.ctex"]
+dest_files=["res://.godot/imported/Flush_2.png-09d85e6dc0cccab3a93a8c3f4b6c3d5f.ctex"]
 
 [params]
 

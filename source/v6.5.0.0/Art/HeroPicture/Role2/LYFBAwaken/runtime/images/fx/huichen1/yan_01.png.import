@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cx15j0epsm6t0"
-path="res://godot/imported/yan_01.png-e95c178e023a0d5c12484723e817737d.ctex"
+path="res://.godot/imported/yan_01.png-e95c178e023a0d5c12484723e817737d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role2/LYFBAwaken/runtime/images/fx/huichen1/yan_01.png"
-dest_files=["res://godot/imported/yan_01.png-e95c178e023a0d5c12484723e817737d.ctex"]
+dest_files=["res://.godot/imported/yan_01.png-e95c178e023a0d5c12484723e817737d.ctex"]
 
 [params]
 

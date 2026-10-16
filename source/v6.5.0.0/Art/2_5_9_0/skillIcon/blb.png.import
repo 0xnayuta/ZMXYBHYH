@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mhrl6vu63uc4"
-path="res://godot/imported/blb.png-c4f36e691feb1f71c3b7aa134bb795d0.ctex"
+path="res://.godot/imported/blb.png-c4f36e691feb1f71c3b7aa134bb795d0.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/2_5_9_0/skillIcon/blb.png"
-dest_files=["res://godot/imported/blb.png-c4f36e691feb1f71c3b7aa134bb795d0.ctex"]
+dest_files=["res://.godot/imported/blb.png-c4f36e691feb1f71c3b7aa134bb795d0.ctex"]
 
 [params]
 

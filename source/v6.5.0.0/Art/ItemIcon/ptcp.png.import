@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1heuf6nk41mm"
-path="res://godot/imported/ptcp.png-01fd93e5199a06a9a44f4efaa30ef502.ctex"
+path="res://.godot/imported/ptcp.png-01fd93e5199a06a9a44f4efaa30ef502.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/ptcp.png"
-dest_files=["res://godot/imported/ptcp.png-01fd93e5199a06a9a44f4efaa30ef502.ctex"]
+dest_files=["res://.godot/imported/ptcp.png-01fd93e5199a06a9a44f4efaa30ef502.ctex"]
 
 [params]
 

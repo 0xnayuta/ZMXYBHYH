@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d30237qy3plq1"
-path="res://godot/imported/bsj.png-95ceab3d120968c12b9ceb7c96ee2daf.ctex"
+path="res://.godot/imported/bsj.png-95ceab3d120968c12b9ceb7c96ee2daf.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/bsj.png"
-dest_files=["res://godot/imported/bsj.png-95ceab3d120968c12b9ceb7c96ee2daf.ctex"]
+dest_files=["res://.godot/imported/bsj.png-95ceab3d120968c12b9ceb7c96ee2daf.ctex"]
 
 [params]
 

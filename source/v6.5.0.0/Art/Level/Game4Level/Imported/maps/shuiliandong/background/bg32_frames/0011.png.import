@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckmgavbnd4wq"
-path="res://godot/imported/0011.png-5cf9ef7187be581c93f66751368274d4.ctex"
+path="res://.godot/imported/0011.png-5cf9ef7187be581c93f66751368274d4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/Imported/maps/shuiliandong/background/bg32_frames/0011.png"
-dest_files=["res://godot/imported/0011.png-5cf9ef7187be581c93f66751368274d4.ctex"]
+dest_files=["res://.godot/imported/0011.png-5cf9ef7187be581c93f66751368274d4.ctex"]
 
 [params]
 

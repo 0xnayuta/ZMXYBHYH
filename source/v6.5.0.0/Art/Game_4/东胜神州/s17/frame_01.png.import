@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b833vefqlq5d4"
-path="res://godot/imported/frame_01.png-a1db077879a7715f70b7821788790029.ctex"
+path="res://.godot/imported/frame_01.png-a1db077879a7715f70b7821788790029.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Game_4/东胜神州/s17/frame_01.png"
-dest_files=["res://godot/imported/frame_01.png-a1db077879a7715f70b7821788790029.ctex"]
+dest_files=["res://.godot/imported/frame_01.png-a1db077879a7715f70b7821788790029.ctex"]
 
 [params]
 

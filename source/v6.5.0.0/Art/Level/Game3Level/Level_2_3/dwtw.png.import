@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crmk1cqu3hxhy"
-path="res://godot/imported/dwtw.png-5c71b368153305828f521e5bcbdf7b1b.ctex"
+path="res://.godot/imported/dwtw.png-5c71b368153305828f521e5bcbdf7b1b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_2_3/dwtw.png"
-dest_files=["res://godot/imported/dwtw.png-5c71b368153305828f521e5bcbdf7b1b.ctex"]
+dest_files=["res://.godot/imported/dwtw.png-5c71b368153305828f521e5bcbdf7b1b.ctex"]
 
 [params]
 

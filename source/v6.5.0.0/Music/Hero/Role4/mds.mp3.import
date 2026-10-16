@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://b1roohx6dnj3d"
-path="res://godot/imported/mds.mp3-917e31997c970aa9489b297149e6351c.mp3str"
+path="res://.godot/imported/mds.mp3-917e31997c970aa9489b297149e6351c.mp3str"
 
 [deps]
 
 source_file="res://Music/Hero/Role4/mds.mp3"
-dest_files=["res://godot/imported/mds.mp3-917e31997c970aa9489b297149e6351c.mp3str"]
+dest_files=["res://.godot/imported/mds.mp3-917e31997c970aa9489b297149e6351c.mp3str"]
 
 [params]
 

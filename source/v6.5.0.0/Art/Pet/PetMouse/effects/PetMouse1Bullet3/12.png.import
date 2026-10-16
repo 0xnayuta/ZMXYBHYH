@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dm063mmrg2dj6"
-path="res://godot/imported/12.png-95c10ab303d18f74b5011a9107efff9a.ctex"
+path="res://.godot/imported/12.png-95c10ab303d18f74b5011a9107efff9a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetMouse/effects/PetMouse1Bullet3/12.png"
-dest_files=["res://godot/imported/12.png-95c10ab303d18f74b5011a9107efff9a.ctex"]
+dest_files=["res://.godot/imported/12.png-95c10ab303d18f74b5011a9107efff9a.ctex"]
 
 [params]
 

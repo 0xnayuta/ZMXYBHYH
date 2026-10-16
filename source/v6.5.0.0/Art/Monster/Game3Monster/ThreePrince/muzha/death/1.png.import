@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djc82pjsqo6bc"
-path="res://godot/imported/1.png-a9429f0fc39ada0eaac0c1a8f6dd707d.ctex"
+path="res://.godot/imported/1.png-a9429f0fc39ada0eaac0c1a8f6dd707d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/ThreePrince/muzha/death/1.png"
-dest_files=["res://godot/imported/1.png-a9429f0fc39ada0eaac0c1a8f6dd707d.ctex"]
+dest_files=["res://.godot/imported/1.png-a9429f0fc39ada0eaac0c1a8f6dd707d.ctex"]
 
 [params]
 

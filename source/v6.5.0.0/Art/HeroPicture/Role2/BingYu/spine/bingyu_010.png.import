@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnv0ix2sdl4dm"
-path="res://godot/imported/bingyu_010.png-20883ed49829e6e4498fc3ca82cd5a9b.ctex"
+path="res://.godot/imported/bingyu_010.png-20883ed49829e6e4498fc3ca82cd5a9b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role2/BingYu/spine/bingyu_010.png"
-dest_files=["res://godot/imported/bingyu_010.png-20883ed49829e6e4498fc3ca82cd5a9b.ctex"]
+dest_files=["res://.godot/imported/bingyu_010.png-20883ed49829e6e4498fc3ca82cd5a9b.ctex"]
 
 [params]
 

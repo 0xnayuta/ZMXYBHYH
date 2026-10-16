@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnss3ymjncj8i"
-path="res://godot/imported/6.png-5d0de1c52d55535c69711db3caded00d.ctex"
+path="res://.godot/imported/6.png-5d0de1c52d55535c69711db3caded00d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/TaoTie/Effects/Monster115Bullet3/6.png"
-dest_files=["res://godot/imported/6.png-5d0de1c52d55535c69711db3caded00d.ctex"]
+dest_files=["res://.godot/imported/6.png-5d0de1c52d55535c69711db3caded00d.ctex"]
 
 [params]
 

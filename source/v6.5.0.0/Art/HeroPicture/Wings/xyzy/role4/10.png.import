@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dk65g4f6v0erd"
-path="res://godot/imported/10.png-b0b9412d45d1ea501a1f7be847e47a0c.ctex"
+path="res://.godot/imported/10.png-b0b9412d45d1ea501a1f7be847e47a0c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Wings/xyzy/role4/10.png"
-dest_files=["res://godot/imported/10.png-b0b9412d45d1ea501a1f7be847e47a0c.ctex"]
+dest_files=["res://.godot/imported/10.png-b0b9412d45d1ea501a1f7be847e47a0c.ctex"]
 
 [params]
 

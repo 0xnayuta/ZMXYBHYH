@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbae5qxa7omru"
-path="res://godot/imported/bg10.png-8a1a6c271b87e8c16db1ca0488b5a67f.ctex"
+path="res://.godot/imported/bg10.png-8a1a6c271b87e8c16db1ca0488b5a67f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/Imported/maps/aolaiguo_bossV1/background/bg10.png"
-dest_files=["res://godot/imported/bg10.png-8a1a6c271b87e8c16db1ca0488b5a67f.ctex"]
+dest_files=["res://.godot/imported/bg10.png-8a1a6c271b87e8c16db1ca0488b5a67f.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhyls5vpln5pi"
-path="res://godot/imported/核桃精.png-34784bb2b394be65c29a517e77990b8c.ctex"
+path="res://.godot/imported/核桃精.png-34784bb2b394be65c29a517e77990b8c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/核桃精.png"
-dest_files=["res://godot/imported/核桃精.png-34784bb2b394be65c29a517e77990b8c.ctex"]
+dest_files=["res://.godot/imported/核桃精.png-34784bb2b394be65c29a517e77990b8c.ctex"]
 
 [params]
 

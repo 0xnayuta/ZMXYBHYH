@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://nolna3qwns68"
-path="res://godot/imported/6.png-70e274042da471fe388139f279df7360.ctex"
+path="res://.godot/imported/6.png-70e274042da471fe388139f279df7360.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Constellations/Background/6.png"
-dest_files=["res://godot/imported/6.png-70e274042da471fe388139f279df7360.ctex"]
+dest_files=["res://.godot/imported/6.png-70e274042da471fe388139f279df7360.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4xfhelfao6vo"
-path="res://godot/imported/bg11.png-c4655d6abaed625e968af3296a5dabfb.ctex"
+path="res://.godot/imported/bg11.png-c4655d6abaed625e968af3296a5dabfb.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/NorthOriginal/maps/feitianV1/bg11.png"
-dest_files=["res://godot/imported/bg11.png-c4655d6abaed625e968af3296a5dabfb.ctex"]
+dest_files=["res://.godot/imported/bg11.png-c4655d6abaed625e968af3296a5dabfb.ctex"]
 
 [params]
 

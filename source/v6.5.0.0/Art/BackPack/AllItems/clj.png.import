@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ti4wwwrfasu6"
-path="res://godot/imported/clj.png-4a3c4d7fdc728fcbb09b1781192c1943.ctex"
+path="res://.godot/imported/clj.png-4a3c4d7fdc728fcbb09b1781192c1943.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/clj.png"
-dest_files=["res://godot/imported/clj.png-4a3c4d7fdc728fcbb09b1781192c1943.ctex"]
+dest_files=["res://.godot/imported/clj.png-4a3c4d7fdc728fcbb09b1781192c1943.ctex"]
 
 [params]
 

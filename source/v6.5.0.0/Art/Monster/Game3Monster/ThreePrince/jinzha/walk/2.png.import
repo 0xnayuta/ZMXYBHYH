@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dquwe7owhodog"
-path="res://godot/imported/2.png-019b2c1aee9136febfa8ca0b9b1ba129.ctex"
+path="res://.godot/imported/2.png-019b2c1aee9136febfa8ca0b9b1ba129.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/ThreePrince/jinzha/walk/2.png"
-dest_files=["res://godot/imported/2.png-019b2c1aee9136febfa8ca0b9b1ba129.ctex"]
+dest_files=["res://.godot/imported/2.png-019b2c1aee9136febfa8ca0b9b1ba129.ctex"]
 
 [params]
 

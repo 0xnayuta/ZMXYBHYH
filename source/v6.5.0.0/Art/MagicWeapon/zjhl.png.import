@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://o56bw3likv7e"
-path="res://godot/imported/zjhl.png-e5433d546f31d563520f936a19c6922e.ctex"
+path="res://.godot/imported/zjhl.png-e5433d546f31d563520f936a19c6922e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/zjhl.png"
-dest_files=["res://godot/imported/zjhl.png-e5433d546f31d563520f936a19c6922e.ctex"]
+dest_files=["res://.godot/imported/zjhl.png-e5433d546f31d563520f936a19c6922e.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cynlkwgjm432c"
-path="res://godot/imported/Line.png-2742995673678eb3732482d9fa720c25.ctex"
+path="res://.godot/imported/Line.png-2742995673678eb3732482d9fa720c25.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_65/Line.png"
-dest_files=["res://godot/imported/Line.png-2742995673678eb3732482d9fa720c25.ctex"]
+dest_files=["res://.godot/imported/Line.png-2742995673678eb3732482d9fa720c25.ctex"]
 
 [params]
 

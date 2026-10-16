@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2mdgyfmbojpw"
-path="res://godot/imported/atlas_008.png-08df2fad91959511773c03658a2caa68.ctex"
+path="res://.godot/imported/atlas_008.png-08df2fad91959511773c03658a2caa68.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/PalaceBoss/3343/pages/atlas_008.png"
-dest_files=["res://godot/imported/atlas_008.png-08df2fad91959511773c03658a2caa68.ctex"]
+dest_files=["res://.godot/imported/atlas_008.png-08df2fad91959511773c03658a2caa68.ctex"]
 
 [params]
 

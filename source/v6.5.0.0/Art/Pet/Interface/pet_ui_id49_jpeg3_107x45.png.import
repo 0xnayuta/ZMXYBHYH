@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgjaa2mbjm1bd"
-path="res://godot/imported/pet_ui_id49_jpeg3_107x45.png-b80484e5d797ece478265f36a573ffef.ctex"
+path="res://.godot/imported/pet_ui_id49_jpeg3_107x45.png-b80484e5d797ece478265f36a573ffef.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/Interface/pet_ui_id49_jpeg3_107x45.png"
-dest_files=["res://godot/imported/pet_ui_id49_jpeg3_107x45.png-b80484e5d797ece478265f36a573ffef.ctex"]
+dest_files=["res://.godot/imported/pet_ui_id49_jpeg3_107x45.png-b80484e5d797ece478265f36a573ffef.ctex"]
 
 [params]
 

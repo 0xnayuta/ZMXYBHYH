@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgh7ju0an340t"
-path="res://godot/imported/kyl.png-dea68c8ec48563264803a6bda1918e3d.ctex"
+path="res://.godot/imported/kyl.png-dea68c8ec48563264803a6bda1918e3d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/kyl.png"
-dest_files=["res://godot/imported/kyl.png-dea68c8ec48563264803a6bda1918e3d.ctex"]
+dest_files=["res://.godot/imported/kyl.png-dea68c8ec48563264803a6bda1918e3d.ctex"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://chqga2eevm6bk"
-path="res://godot/imported/sdtw.MP3-ebeac6d3317d9512a2131f1562597163.mp3str"
+path="res://.godot/imported/sdtw.MP3-ebeac6d3317d9512a2131f1562597163.mp3str"
 
 [deps]
 
 source_file="res://Music/level/sdtw.MP3"
-dest_files=["res://godot/imported/sdtw.MP3-ebeac6d3317d9512a2131f1562597163.mp3str"]
+dest_files=["res://.godot/imported/sdtw.MP3-ebeac6d3317d9512a2131f1562597163.mp3str"]
 
 [params]
 

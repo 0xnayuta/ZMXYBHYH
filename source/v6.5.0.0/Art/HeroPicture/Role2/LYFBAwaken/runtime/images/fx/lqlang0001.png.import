@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cf823o82nv1nm"
-path="res://godot/imported/lqlang0001.png-ba5dbe2721bba1ea38247a0ba49053d3.ctex"
+path="res://.godot/imported/lqlang0001.png-ba5dbe2721bba1ea38247a0ba49053d3.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role2/LYFBAwaken/runtime/images/fx/lqlang0001.png"
-dest_files=["res://godot/imported/lqlang0001.png-ba5dbe2721bba1ea38247a0ba49053d3.ctex"]
+dest_files=["res://.godot/imported/lqlang0001.png-ba5dbe2721bba1ea38247a0ba49053d3.ctex"]
 
 [params]
 

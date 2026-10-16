@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mtgnyisci32b"
-path="res://godot/imported/Role_1_Body_lemhz.png-2267e1dcde0f54b8a3c57fd12c65a4d6.ctex"
+path="res://.godot/imported/Role_1_Body_lemhz.png-2267e1dcde0f54b8a3c57fd12c65a4d6.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role1AllEquipment/Role_1_Body_lemhz.png"
-dest_files=["res://godot/imported/Role_1_Body_lemhz.png-2267e1dcde0f54b8a3c57fd12c65a4d6.ctex"]
+dest_files=["res://.godot/imported/Role_1_Body_lemhz.png-2267e1dcde0f54b8a3c57fd12c65a4d6.ctex"]
 
 [params]
 

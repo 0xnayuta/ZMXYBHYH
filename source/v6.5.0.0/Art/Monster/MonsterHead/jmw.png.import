@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqj3kdeci6882"
-path="res://godot/imported/jmw.png-57eb24a323fa36700265ba41ce78646e.ctex"
+path="res://.godot/imported/jmw.png-57eb24a323fa36700265ba41ce78646e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/jmw.png"
-dest_files=["res://godot/imported/jmw.png-57eb24a323fa36700265ba41ce78646e.ctex"]
+dest_files=["res://.godot/imported/jmw.png-57eb24a323fa36700265ba41ce78646e.ctex"]
 
 [params]
 

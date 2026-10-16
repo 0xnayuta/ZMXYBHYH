@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://c00kyrqvvqcmh"
-path="res://godot/imported/6_BeattackByRole1.mp3-87c26ee53749d592e2027b97fa4be495.mp3str"
+path="res://.godot/imported/6_BeattackByRole1.mp3-87c26ee53749d592e2027b97fa4be495.mp3str"
 
 [deps]
 
 source_file="res://Music/MonsterHurt/6_BeattackByRole1.mp3"
-dest_files=["res://godot/imported/6_BeattackByRole1.mp3-87c26ee53749d592e2027b97fa4be495.mp3str"]
+dest_files=["res://.godot/imported/6_BeattackByRole1.mp3-87c26ee53749d592e2027b97fa4be495.mp3str"]
 
 [params]
 

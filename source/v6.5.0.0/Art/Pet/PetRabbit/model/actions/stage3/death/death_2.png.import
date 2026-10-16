@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bx5m46cai132p"
-path="res://godot/imported/death_2.png-2482d4f9c4e9e029d8825e1b98ffb4d5.ctex"
+path="res://.godot/imported/death_2.png-2482d4f9c4e9e029d8825e1b98ffb4d5.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetRabbit/model/actions/stage3/death/death_2.png"
-dest_files=["res://godot/imported/death_2.png-2482d4f9c4e9e029d8825e1b98ffb4d5.ctex"]
+dest_files=["res://.godot/imported/death_2.png-2482d4f9c4e9e029d8825e1b98ffb4d5.ctex"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://cm7so157vhk4w"
-path="res://godot/imported/effect8.mp3-c798043f6c5521547b668e65ae5dce49.mp3str"
+path="res://.godot/imported/effect8.mp3-c798043f6c5521547b668e65ae5dce49.mp3str"
 
 [deps]
 
 source_file="res://Music/Hero/effect8.mp3"
-dest_files=["res://godot/imported/effect8.mp3-c798043f6c5521547b668e65ae5dce49.mp3str"]
+dest_files=["res://.godot/imported/effect8.mp3-c798043f6c5521547b668e65ae5dce49.mp3str"]
 
 [params]
 

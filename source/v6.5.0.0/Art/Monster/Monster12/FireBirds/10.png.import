@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://moefgn7pdxmd"
-path="res://godot/imported/10.png-09f7a20c57980ca0e51c406c0276c100.ctex"
+path="res://.godot/imported/10.png-09f7a20c57980ca0e51c406c0276c100.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster12/FireBirds/10.png"
-dest_files=["res://godot/imported/10.png-09f7a20c57980ca0e51c406c0276c100.ctex"]
+dest_files=["res://.godot/imported/10.png-09f7a20c57980ca0e51c406c0276c100.ctex"]
 
 [params]
 

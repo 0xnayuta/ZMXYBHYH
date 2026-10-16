@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djrloueff6eww"
-path="res://godot/imported/bllzyf.png-2ad7f74bb7728f8d941ee088ecd4694d.ctex"
+path="res://.godot/imported/bllzyf.png-2ad7f74bb7728f8d941ee088ecd4694d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/bllzyf.png"
-dest_files=["res://godot/imported/bllzyf.png-2ad7f74bb7728f8d941ee088ecd4694d.ctex"]
+dest_files=["res://.godot/imported/bllzyf.png-2ad7f74bb7728f8d941ee088ecd4694d.ctex"]
 
 [params]
 

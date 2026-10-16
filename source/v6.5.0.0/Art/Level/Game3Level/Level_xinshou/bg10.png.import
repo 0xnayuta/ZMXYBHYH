@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://peaiseend0dj"
-path="res://godot/imported/bg10.png-e2e6cf8940f66f64dec7d118481f2a30.ctex"
+path="res://.godot/imported/bg10.png-e2e6cf8940f66f64dec7d118481f2a30.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_xinshou/bg10.png"
-dest_files=["res://godot/imported/bg10.png-e2e6cf8940f66f64dec7d118481f2a30.ctex"]
+dest_files=["res://.godot/imported/bg10.png-e2e6cf8940f66f64dec7d118481f2a30.ctex"]
 
 [params]
 

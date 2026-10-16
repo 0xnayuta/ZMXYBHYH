@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://yiui0igi38kr"
-path="res://godot/imported/IPix中文像素字体.ttf-653501625ed318e327f1c642ff73a058.fontdata"
+path="res://.godot/imported/IPix中文像素字体.ttf-653501625ed318e327f1c642ff73a058.fontdata"
 
 [deps]
 
 source_file="res://Font/IPix中文像素字体.ttf"
-dest_files=["res://godot/imported/IPix中文像素字体.ttf-653501625ed318e327f1c642ff73a058.fontdata"]
+dest_files=["res://.godot/imported/IPix中文像素字体.ttf-653501625ed318e327f1c642ff73a058.fontdata"]
 
 [params]
 

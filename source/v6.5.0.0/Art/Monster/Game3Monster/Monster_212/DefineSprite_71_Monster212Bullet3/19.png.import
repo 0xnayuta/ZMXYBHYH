@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7b1uvl3pc2ke"
-path="res://godot/imported/19.png-79786dd49c8bec0b1697fdc9e7cbfc08.ctex"
+path="res://.godot/imported/19.png-79786dd49c8bec0b1697fdc9e7cbfc08.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/Monster_212/DefineSprite_71_Monster212Bullet3/19.png"
-dest_files=["res://godot/imported/19.png-79786dd49c8bec0b1697fdc9e7cbfc08.ctex"]
+dest_files=["res://.godot/imported/19.png-79786dd49c8bec0b1697fdc9e7cbfc08.ctex"]
 
 [params]
 

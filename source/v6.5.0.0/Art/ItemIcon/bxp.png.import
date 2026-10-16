@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cal7ns55q6y37"
-path="res://godot/imported/bxp.png-b77acd9086e7ac6fd0accecda67ee2ce.ctex"
+path="res://.godot/imported/bxp.png-b77acd9086e7ac6fd0accecda67ee2ce.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/bxp.png"
-dest_files=["res://godot/imported/bxp.png-b77acd9086e7ac6fd0accecda67ee2ce.ctex"]
+dest_files=["res://.godot/imported/bxp.png-b77acd9086e7ac6fd0accecda67ee2ce.ctex"]
 
 [params]
 

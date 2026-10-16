@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccgjrpxkmyf5a"
-path="res://godot/imported/16.png-6ecfa412503b5136b6bb69de4af2ed18.ctex"
+path="res://.godot/imported/16.png-6ecfa412503b5136b6bb69de4af2ed18.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_tzsijian/96/bg961_parts/sword1/16.png"
-dest_files=["res://godot/imported/16.png-6ecfa412503b5136b6bb69de4af2ed18.ctex"]
+dest_files=["res://.godot/imported/16.png-6ecfa412503b5136b6bb69de4af2ed18.ctex"]
 
 [params]
 

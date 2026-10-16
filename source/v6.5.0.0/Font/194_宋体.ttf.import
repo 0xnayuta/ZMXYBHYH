@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cgektr6kjuk1a"
-path="res://godot/imported/194_宋体.ttf-3247d4e1ab1fac48dccaa2225c1b74f0.fontdata"
+path="res://.godot/imported/194_宋体.ttf-3247d4e1ab1fac48dccaa2225c1b74f0.fontdata"
 
 [deps]
 
 source_file="res://Font/194_宋体.ttf"
-dest_files=["res://godot/imported/194_宋体.ttf-3247d4e1ab1fac48dccaa2225c1b74f0.fontdata"]
+dest_files=["res://.godot/imported/194_宋体.ttf-3247d4e1ab1fac48dccaa2225c1b74f0.fontdata"]
 
 [params]
 

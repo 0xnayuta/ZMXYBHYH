@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dclq4owqsiqed"
-path="res://godot/imported/Role6RiderBodyFront.png-57071046dc22ccde5035f3b26fb77d2e.ctex"
+path="res://.godot/imported/Role6RiderBodyFront.png-57071046dc22ccde5035f3b26fb77d2e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Mount/RiderPoses/Role6RiderBodyFront.png"
-dest_files=["res://godot/imported/Role6RiderBodyFront.png-57071046dc22ccde5035f3b26fb77d2e.ctex"]
+dest_files=["res://.godot/imported/Role6RiderBodyFront.png-57071046dc22ccde5035f3b26fb77d2e.ctex"]
 
 [params]
 

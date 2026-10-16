@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://on0wllft4kys"
-path="res://godot/imported/hylc.png-512c8128b9a6daceefbee954e0d64885.ctex"
+path="res://.godot/imported/hylc.png-512c8128b9a6daceefbee954e0d64885.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/hylc.png"
-dest_files=["res://godot/imported/hylc.png-512c8128b9a6daceefbee954e0d64885.ctex"]
+dest_files=["res://.godot/imported/hylc.png-512c8128b9a6daceefbee954e0d64885.ctex"]
 
 [params]
 

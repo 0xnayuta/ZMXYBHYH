@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjsfis1j1k157"
-path="res://godot/imported/600020_skill14.png-11dbcdd05b618176579fe0d8492d8096.ctex"
+path="res://.godot/imported/600020_skill14.png-11dbcdd05b618176579fe0d8492d8096.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/GuanyinSpine/Skill2/600020_skill14.png"
-dest_files=["res://godot/imported/600020_skill14.png-11dbcdd05b618176579fe0d8492d8096.ctex"]
+dest_files=["res://.godot/imported/600020_skill14.png-11dbcdd05b618176579fe0d8492d8096.ctex"]
 
 [params]
 

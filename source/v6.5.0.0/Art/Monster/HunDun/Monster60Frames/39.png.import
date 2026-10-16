@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnrkxnnqo3um5"
-path="res://godot/imported/39.png-7b32db60b034431ee445e0dc2e57a815.ctex"
+path="res://.godot/imported/39.png-7b32db60b034431ee445e0dc2e57a815.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/HunDun/Monster60Frames/39.png"
-dest_files=["res://godot/imported/39.png-7b32db60b034431ee445e0dc2e57a815.ctex"]
+dest_files=["res://.godot/imported/39.png-7b32db60b034431ee445e0dc2e57a815.ctex"]
 
 [params]
 

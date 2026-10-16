@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgsmcgyul76ss"
-path="res://godot/imported/cmly_trim_002.png-18cf600bf84452a7132fe2ae0c70dac2.ctex"
+path="res://.godot/imported/cmly_trim_002.png-18cf600bf84452a7132fe2ae0c70dac2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role4/CangMuLongYun/frames/cmly_trim_002.png"
-dest_files=["res://godot/imported/cmly_trim_002.png-18cf600bf84452a7132fe2ae0c70dac2.ctex"]
+dest_files=["res://.godot/imported/cmly_trim_002.png-18cf600bf84452a7132fe2ae0c70dac2.ctex"]
 
 [params]
 

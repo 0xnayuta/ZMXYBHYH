@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddrdjq0ivdoer"
-path="res://godot/imported/klw.png-851a72897ce238b1019c8fab9a3f249a.ctex"
+path="res://.godot/imported/klw.png-851a72897ce238b1019c8fab9a3f249a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/klw.png"
-dest_files=["res://godot/imported/klw.png-851a72897ce238b1019c8fab9a3f249a.ctex"]
+dest_files=["res://.godot/imported/klw.png-851a72897ce238b1019c8fab9a3f249a.ctex"]
 
 [params]
 

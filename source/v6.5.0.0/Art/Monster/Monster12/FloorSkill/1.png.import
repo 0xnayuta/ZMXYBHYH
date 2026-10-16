@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://l8rm5hn2jj00"
-path="res://godot/imported/1.png-8e92ddf4f76be9ac651e4518e7c60a9c.ctex"
+path="res://.godot/imported/1.png-8e92ddf4f76be9ac651e4518e7c60a9c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster12/FloorSkill/1.png"
-dest_files=["res://godot/imported/1.png-8e92ddf4f76be9ac651e4518e7c60a9c.ctex"]
+dest_files=["res://.godot/imported/1.png-8e92ddf4f76be9ac651e4518e7c60a9c.ctex"]
 
 [params]
 

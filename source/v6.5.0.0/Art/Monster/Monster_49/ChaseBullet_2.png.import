@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://de38xqn08l5ex"
-path="res://godot/imported/ChaseBullet_2.png-86dcbe93310a9be2d6fdea3892fb58e2.ctex"
+path="res://.godot/imported/ChaseBullet_2.png-86dcbe93310a9be2d6fdea3892fb58e2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_49/ChaseBullet_2.png"
-dest_files=["res://godot/imported/ChaseBullet_2.png-86dcbe93310a9be2d6fdea3892fb58e2.ctex"]
+dest_files=["res://.godot/imported/ChaseBullet_2.png-86dcbe93310a9be2d6fdea3892fb58e2.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxh3cfuoyar3p"
-path="res://godot/imported/task_hover.png-ee2c579428144f93c81e26286f69a082.ctex"
+path="res://.godot/imported/task_hover.png-ee2c579428144f93c81e26286f69a082.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Main_menu/Map0/task_hover.png"
-dest_files=["res://godot/imported/task_hover.png-ee2c579428144f93c81e26286f69a082.ctex"]
+dest_files=["res://.godot/imported/task_hover.png-ee2c579428144f93c81e26286f69a082.ctex"]
 
 [params]
 

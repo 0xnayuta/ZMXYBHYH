@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://6lcd4cpiskbb"
-path="res://godot/imported/38_Role3_hit9.mp3-34fc60275f502dda0a68f304fb5a3f51.mp3str"
+path="res://.godot/imported/38_Role3_hit9.mp3-34fc60275f502dda0a68f304fb5a3f51.mp3str"
 
 [deps]
 
 source_file="res://Music/Hero/Role3/38_Role3_hit9.mp3"
-dest_files=["res://godot/imported/38_Role3_hit9.mp3-34fc60275f502dda0a68f304fb5a3f51.mp3str"]
+dest_files=["res://.godot/imported/38_Role3_hit9.mp3-34fc60275f502dda0a68f304fb5a3f51.mp3str"]
 
 [params]
 

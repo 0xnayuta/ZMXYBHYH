@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dviuv47ex7pnw"
-path="res://godot/imported/syrbx.png-e8969fb62813a38bc80ad957b2cc338b.ctex"
+path="res://.godot/imported/syrbx.png-e8969fb62813a38bc80ad957b2cc338b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/syrbx.png"
-dest_files=["res://godot/imported/syrbx.png-e8969fb62813a38bc80ad957b2cc338b.ctex"]
+dest_files=["res://.godot/imported/syrbx.png-e8969fb62813a38bc80ad957b2cc338b.ctex"]
 
 [params]
 

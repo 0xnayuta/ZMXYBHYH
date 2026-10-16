@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://r8s275sx8c67"
-path="res://godot/imported/llbtfloor.png-bfd0d19c4eecbc352c9f5e5c13a4c469.ctex"
+path="res://.godot/imported/llbtfloor.png-bfd0d19c4eecbc352c9f5e5c13a4c469.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_4/llbtfloor.png"
-dest_files=["res://godot/imported/llbtfloor.png-bfd0d19c4eecbc352c9f5e5c13a4c469.ctex"]
+dest_files=["res://.godot/imported/llbtfloor.png-bfd0d19c4eecbc352c9f5e5c13a4c469.ctex"]
 
 [params]
 

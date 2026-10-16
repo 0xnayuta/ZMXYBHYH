@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlboy0dtakrff"
-path="res://godot/imported/BSZ.png-96f982382f25f857c7cd66235741b495.ctex"
+path="res://.godot/imported/BSZ.png-96f982382f25f857c7cd66235741b495.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Level_11/BSZ.png"
-dest_files=["res://godot/imported/BSZ.png-96f982382f25f857c7cd66235741b495.ctex"]
+dest_files=["res://.godot/imported/BSZ.png-96f982382f25f857c7cd66235741b495.ctex"]
 
 [params]
 

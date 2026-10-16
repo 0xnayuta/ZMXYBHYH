@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bynkayys0f52n"
-path="res://godot/imported/9.png-e2a23019df8c3b19baf70597c20621d4.ctex"
+path="res://.godot/imported/9.png-e2a23019df8c3b19baf70597c20621d4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/SwfPng/3077/eye12/9.png"
-dest_files=["res://godot/imported/9.png-e2a23019df8c3b19baf70597c20621d4.ctex"]
+dest_files=["res://.godot/imported/9.png-e2a23019df8c3b19baf70597c20621d4.ctex"]
 
 [params]
 

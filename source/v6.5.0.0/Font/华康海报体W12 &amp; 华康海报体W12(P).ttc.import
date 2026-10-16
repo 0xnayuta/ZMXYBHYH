@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://dhby4qepqc8np"
-path="res://godot/imported/华康海报体W12 &amp; 华康海报体W12(P).ttc-474d9a184bd596bab3ff5f89d2317a29.fontdata"
+path="res://.godot/imported/华康海报体W12 &amp; 华康海报体W12(P).ttc-474d9a184bd596bab3ff5f89d2317a29.fontdata"
 
 [deps]
 
 source_file="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc"
-dest_files=["res://godot/imported/华康海报体W12 &amp; 华康海报体W12(P).ttc-474d9a184bd596bab3ff5f89d2317a29.fontdata"]
+dest_files=["res://.godot/imported/华康海报体W12 &amp; 华康海报体W12(P).ttc-474d9a184bd596bab3ff5f89d2317a29.fontdata"]
 
 [params]
 

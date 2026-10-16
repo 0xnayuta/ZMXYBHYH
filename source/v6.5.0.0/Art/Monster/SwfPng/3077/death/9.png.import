@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cptthd85uwkk7"
-path="res://godot/imported/9.png-68764c3a712b99d7843bb7896614b2ff.ctex"
+path="res://.godot/imported/9.png-68764c3a712b99d7843bb7896614b2ff.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/SwfPng/3077/death/9.png"
-dest_files=["res://godot/imported/9.png-68764c3a712b99d7843bb7896614b2ff.ctex"]
+dest_files=["res://.godot/imported/9.png-68764c3a712b99d7843bb7896614b2ff.ctex"]
 
 [params]
 

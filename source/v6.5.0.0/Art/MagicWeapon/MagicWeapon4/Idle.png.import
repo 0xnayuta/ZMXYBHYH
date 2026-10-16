@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bop1hem12bjoi"
-path="res://godot/imported/Idle.png-efd67081bc06a4ea312cbf04c3d6193f.ctex"
+path="res://.godot/imported/Idle.png-efd67081bc06a4ea312cbf04c3d6193f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/MagicWeapon4/Idle.png"
-dest_files=["res://godot/imported/Idle.png-efd67081bc06a4ea312cbf04c3d6193f.ctex"]
+dest_files=["res://.godot/imported/Idle.png-efd67081bc06a4ea312cbf04c3d6193f.ctex"]
 
 [params]
 

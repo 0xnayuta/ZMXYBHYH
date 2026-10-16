@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bcto53qpdo1ya"
-path="res://godot/imported/SanXianHuTi.png-e72c898647e75690856b4159094477a4.ctex"
+path="res://.godot/imported/SanXianHuTi.png-e72c898647e75690856b4159094477a4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AddEffect/SanXianHuTi.png"
-dest_files=["res://godot/imported/SanXianHuTi.png-e72c898647e75690856b4159094477a4.ctex"]
+dest_files=["res://.godot/imported/SanXianHuTi.png-e72c898647e75690856b4159094477a4.ctex"]
 
 [params]
 

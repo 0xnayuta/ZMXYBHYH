@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://3a3xunntmbdq"
-path="res://godot/imported/金桥简粗黑.TTF-1924f61eae3a45002eb142ddaed240cf.fontdata"
+path="res://.godot/imported/金桥简粗黑.TTF-1924f61eae3a45002eb142ddaed240cf.fontdata"
 
 [deps]
 
 source_file="res://Font/金桥简粗黑.TTF"
-dest_files=["res://godot/imported/金桥简粗黑.TTF-1924f61eae3a45002eb142ddaed240cf.fontdata"]
+dest_files=["res://.godot/imported/金桥简粗黑.TTF-1924f61eae3a45002eb142ddaed240cf.fontdata"]
 
 [params]
 

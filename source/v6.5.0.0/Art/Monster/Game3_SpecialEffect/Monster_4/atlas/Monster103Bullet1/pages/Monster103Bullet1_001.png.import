@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dce3ihe03vcve"
-path="res://godot/imported/Monster103Bullet1_001.png-8c65e2974ee42f04cb2af8525782ca78.ctex"
+path="res://.godot/imported/Monster103Bullet1_001.png-8c65e2974ee42f04cb2af8525782ca78.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3_SpecialEffect/Monster_4/atlas/Monster103Bullet1/pages/Monster103Bullet1_001.png"
-dest_files=["res://godot/imported/Monster103Bullet1_001.png-8c65e2974ee42f04cb2af8525782ca78.ctex"]
+dest_files=["res://.godot/imported/Monster103Bullet1_001.png-8c65e2974ee42f04cb2af8525782ca78.ctex"]
 
 [params]
 

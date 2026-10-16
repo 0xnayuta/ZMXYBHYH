@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1igdmr2kc0pj"
-path="res://godot/imported/1.png-c0741247691dac229c4e5b9758b34ffe.ctex"
+path="res://.godot/imported/1.png-c0741247691dac229c4e5b9758b34ffe.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/SwfPng/3082/wall/1.png"
-dest_files=["res://godot/imported/1.png-c0741247691dac229c4e5b9758b34ffe.ctex"]
+dest_files=["res://.godot/imported/1.png-c0741247691dac229c4e5b9758b34ffe.ctex"]
 
 [params]
 

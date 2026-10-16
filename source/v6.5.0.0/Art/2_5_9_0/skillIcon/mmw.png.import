@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsvjcpmj3ky15"
-path="res://godot/imported/mmw.png-e5812910198e39dd86bc240479fce154.ctex"
+path="res://.godot/imported/mmw.png-e5812910198e39dd86bc240479fce154.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/2_5_9_0/skillIcon/mmw.png"
-dest_files=["res://godot/imported/mmw.png-e5812910198e39dd86bc240479fce154.ctex"]
+dest_files=["res://.godot/imported/mmw.png-e5812910198e39dd86bc240479fce154.ctex"]
 
 [params]
 

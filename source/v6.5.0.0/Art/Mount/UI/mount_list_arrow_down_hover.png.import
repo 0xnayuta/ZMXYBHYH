@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bg05kbalk2yfn"
-path="res://godot/imported/mount_list_arrow_down_hover.png-4f98489240dbb24ebc6de587cdd77a0b.ctex"
+path="res://.godot/imported/mount_list_arrow_down_hover.png-4f98489240dbb24ebc6de587cdd77a0b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Mount/UI/mount_list_arrow_down_hover.png"
-dest_files=["res://godot/imported/mount_list_arrow_down_hover.png-4f98489240dbb24ebc6de587cdd77a0b.ctex"]
+dest_files=["res://.godot/imported/mount_list_arrow_down_hover.png-4f98489240dbb24ebc6de587cdd77a0b.ctex"]
 
 [params]
 

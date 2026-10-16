@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bthwgumvj7oon"
-path="res://godot/imported/7.png-fcf4fb5a8ec8731d916f015d39336265.ctex"
+path="res://.godot/imported/7.png-fcf4fb5a8ec8731d916f015d39336265.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster12/Eggs/7.png"
-dest_files=["res://godot/imported/7.png-fcf4fb5a8ec8731d916f015d39336265.ctex"]
+dest_files=["res://.godot/imported/7.png-fcf4fb5a8ec8731d916f015d39336265.ctex"]
 
 [params]
 

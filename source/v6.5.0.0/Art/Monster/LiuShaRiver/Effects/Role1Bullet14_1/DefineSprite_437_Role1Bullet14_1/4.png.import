@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxg7jq2p8lgo7"
-path="res://godot/imported/4.png-c5c6d447299fd01a57b4d8acc6e641a2.ctex"
+path="res://.godot/imported/4.png-c5c6d447299fd01a57b4d8acc6e641a2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/LiuShaRiver/Effects/Role1Bullet14_1/DefineSprite_437_Role1Bullet14_1/4.png"
-dest_files=["res://godot/imported/4.png-c5c6d447299fd01a57b4d8acc6e641a2.ctex"]
+dest_files=["res://.godot/imported/4.png-c5c6d447299fd01a57b4d8acc6e641a2.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnx23dd8lv5f0"
-path="res://godot/imported/jianyu-jia_00026.png-32293d9a7f43af5715a3912eb9cc6dfb.ctex"
+path="res://.godot/imported/jianyu-jia_00026.png-32293d9a7f43af5715a3912eb9cc6dfb.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role2/BingYu/drop/jianyu-jia_00026.png"
-dest_files=["res://godot/imported/jianyu-jia_00026.png-32293d9a7f43af5715a3912eb9cc6dfb.ctex"]
+dest_files=["res://.godot/imported/jianyu-jia_00026.png-32293d9a7f43af5715a3912eb9cc6dfb.ctex"]
 
 [params]
 

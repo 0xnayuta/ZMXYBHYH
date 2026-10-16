@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0gf3moa1p5no"
-path="res://godot/imported/qld.png-554abdf7fa33b64d61738ba8069cff55.ctex"
+path="res://.godot/imported/qld.png-554abdf7fa33b64d61738ba8069cff55.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/qld.png"
-dest_files=["res://godot/imported/qld.png-554abdf7fa33b64d61738ba8069cff55.ctex"]
+dest_files=["res://.godot/imported/qld.png-554abdf7fa33b64d61738ba8069cff55.ctex"]
 
 [params]
 

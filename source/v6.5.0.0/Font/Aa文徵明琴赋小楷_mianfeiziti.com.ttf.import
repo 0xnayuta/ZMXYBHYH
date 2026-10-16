@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cnmdyb3kjnw2p"
-path="res://godot/imported/Aa文徵明琴赋小楷_mianfeiziti.com.ttf-f7ca9e6339d1358afe41a295417bdc0f.fontdata"
+path="res://.godot/imported/Aa文徵明琴赋小楷_mianfeiziti.com.ttf-f7ca9e6339d1358afe41a295417bdc0f.fontdata"
 
 [deps]
 
 source_file="res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf"
-dest_files=["res://godot/imported/Aa文徵明琴赋小楷_mianfeiziti.com.ttf-f7ca9e6339d1358afe41a295417bdc0f.fontdata"]
+dest_files=["res://.godot/imported/Aa文徵明琴赋小楷_mianfeiziti.com.ttf-f7ca9e6339d1358afe41a295417bdc0f.fontdata"]
 
 [params]
 

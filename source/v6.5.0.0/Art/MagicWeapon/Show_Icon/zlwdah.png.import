@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://3guag8005r3w"
-path="res://godot/imported/zlwdah.png-641b39df19bf1ee26b2aa0341a1319d3.ctex"
+path="res://.godot/imported/zlwdah.png-641b39df19bf1ee26b2aa0341a1319d3.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/Show_Icon/zlwdah.png"
-dest_files=["res://godot/imported/zlwdah.png-641b39df19bf1ee26b2aa0341a1319d3.ctex"]
+dest_files=["res://.godot/imported/zlwdah.png-641b39df19bf1ee26b2aa0341a1319d3.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dncbi4sghcng0"
-path="res://godot/imported/ylw.png-e105558a5d304f79213bcf141ec136a2.ctex"
+path="res://.godot/imported/ylw.png-e105558a5d304f79213bcf141ec136a2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/ylw.png"
-dest_files=["res://godot/imported/ylw.png-e105558a5d304f79213bcf141ec136a2.ctex"]
+dest_files=["res://.godot/imported/ylw.png-e105558a5d304f79213bcf141ec136a2.ctex"]
 
 [params]
 

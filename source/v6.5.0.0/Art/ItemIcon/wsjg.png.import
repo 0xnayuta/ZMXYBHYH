@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgeyxv3frkyvu"
-path="res://godot/imported/wsjg.png-147de1d37658039167fdc45ad3b35ccf.ctex"
+path="res://.godot/imported/wsjg.png-147de1d37658039167fdc45ad3b35ccf.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/wsjg.png"
-dest_files=["res://godot/imported/wsjg.png-147de1d37658039167fdc45ad3b35ccf.ctex"]
+dest_files=["res://.godot/imported/wsjg.png-147de1d37658039167fdc45ad3b35ccf.ctex"]
 
 [params]
 

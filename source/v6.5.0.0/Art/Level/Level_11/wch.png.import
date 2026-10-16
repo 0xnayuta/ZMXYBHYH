@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwv1cyvn84rxg"
-path="res://godot/imported/wch.png-be291bfe4777295d8d0192b2f60f2cde.ctex"
+path="res://.godot/imported/wch.png-be291bfe4777295d8d0192b2f60f2cde.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Level_11/wch.png"
-dest_files=["res://godot/imported/wch.png-be291bfe4777295d8d0192b2f60f2cde.ctex"]
+dest_files=["res://.godot/imported/wch.png-be291bfe4777295d8d0192b2f60f2cde.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://h4vuvaxhvpx8"
-path="res://godot/imported/xtzylh.png-50d93f296590d761fb0024e510fca799.ctex"
+path="res://.godot/imported/xtzylh.png-50d93f296590d761fb0024e510fca799.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/xtzylh.png"
-dest_files=["res://godot/imported/xtzylh.png-50d93f296590d761fb0024e510fca799.ctex"]
+dest_files=["res://.godot/imported/xtzylh.png-50d93f296590d761fb0024e510fca799.ctex"]
 
 [params]
 

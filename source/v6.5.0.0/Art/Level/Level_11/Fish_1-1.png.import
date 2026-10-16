@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjuje6paebn7p"
-path="res://godot/imported/Fish_1-1.png-d3996c19baaf4e693af51e66e5bdb45c.ctex"
+path="res://.godot/imported/Fish_1-1.png-d3996c19baaf4e693af51e66e5bdb45c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Level_11/Fish_1-1.png"
-dest_files=["res://godot/imported/Fish_1-1.png-d3996c19baaf4e693af51e66e5bdb45c.ctex"]
+dest_files=["res://.godot/imported/Fish_1-1.png-d3996c19baaf4e693af51e66e5bdb45c.ctex"]
 
 [params]
 

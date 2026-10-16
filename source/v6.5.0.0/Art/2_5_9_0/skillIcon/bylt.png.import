@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dec2jqe2rr7da"
-path="res://godot/imported/bylt.png-d084ee7385c2dad1c9c410a645fd737c.ctex"
+path="res://.godot/imported/bylt.png-d084ee7385c2dad1c9c410a645fd737c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/2_5_9_0/skillIcon/bylt.png"
-dest_files=["res://godot/imported/bylt.png-d084ee7385c2dad1c9c410a645fd737c.ctex"]
+dest_files=["res://.godot/imported/bylt.png-d084ee7385c2dad1c9c410a645fd737c.ctex"]
 
 [params]
 

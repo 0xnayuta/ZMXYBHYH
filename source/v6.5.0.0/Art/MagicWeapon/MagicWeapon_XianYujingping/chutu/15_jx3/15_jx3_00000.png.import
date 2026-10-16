@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c46syc24fv6oi"
-path="res://godot/imported/15_jx3_00000.png-802f59f7d6a7cf5fa5b958c50e098fc8.ctex"
+path="res://.godot/imported/15_jx3_00000.png-802f59f7d6a7cf5fa5b958c50e098fc8.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MagicWeapon/MagicWeapon_XianYujingping/chutu/15_jx3/15_jx3_00000.png"
-dest_files=["res://godot/imported/15_jx3_00000.png-802f59f7d6a7cf5fa5b958c50e098fc8.ctex"]
+dest_files=["res://.godot/imported/15_jx3_00000.png-802f59f7d6a7cf5fa5b958c50e098fc8.ctex"]
 
 [params]
 

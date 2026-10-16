@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dj3sphn03f7u8"
-path="res://godot/imported/lxmc.png-06c1dffacdde2c1a23297b975ff8c0e4.ctex"
+path="res://.godot/imported/lxmc.png-06c1dffacdde2c1a23297b975ff8c0e4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/2_6_1_0/lxm/lxmc.png"
-dest_files=["res://godot/imported/lxmc.png-06c1dffacdde2c1a23297b975ff8c0e4.ctex"]
+dest_files=["res://.godot/imported/lxmc.png-06c1dffacdde2c1a23297b975ff8c0e4.ctex"]
 
 [params]
 

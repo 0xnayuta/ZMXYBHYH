@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2halw0l3rtlt"
-path="res://godot/imported/blm.png-27ef0fec4da6516a7a898fb4c61ef8c2.ctex"
+path="res://.godot/imported/blm.png-27ef0fec4da6516a7a898fb4c61ef8c2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/RoleProperiesBox/blm.png"
-dest_files=["res://godot/imported/blm.png-27ef0fec4da6516a7a898fb4c61ef8c2.ctex"]
+dest_files=["res://.godot/imported/blm.png-27ef0fec4da6516a7a898fb4c61ef8c2.ctex"]
 
 [params]
 

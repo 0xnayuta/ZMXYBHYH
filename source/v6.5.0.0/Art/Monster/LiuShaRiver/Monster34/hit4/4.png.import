@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cagy3brmttjvc"
-path="res://godot/imported/4.png-7fd41c916c07ea315d6cb7f9b98d12c3.ctex"
+path="res://.godot/imported/4.png-7fd41c916c07ea315d6cb7f9b98d12c3.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/LiuShaRiver/Monster34/hit4/4.png"
-dest_files=["res://godot/imported/4.png-7fd41c916c07ea315d6cb7f9b98d12c3.ctex"]
+dest_files=["res://.godot/imported/4.png-7fd41c916c07ea315d6cb7f9b98d12c3.ctex"]
 
 [params]
 

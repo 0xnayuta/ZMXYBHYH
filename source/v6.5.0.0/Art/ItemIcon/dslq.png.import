@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckvyg6ashd6uv"
-path="res://godot/imported/dslq.png-ff2d26e145067d9b9ec2446a86d43b9c.ctex"
+path="res://.godot/imported/dslq.png-ff2d26e145067d9b9ec2446a86d43b9c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/dslq.png"
-dest_files=["res://godot/imported/dslq.png-ff2d26e145067d9b9ec2446a86d43b9c.ctex"]
+dest_files=["res://.godot/imported/dslq.png-ff2d26e145067d9b9ec2446a86d43b9c.ctex"]
 
 [params]
 

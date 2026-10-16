@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxmuminix5ggv"
-path="res://godot/imported/y3_weapon_00.png-955bcc850a3ef7e21b589a0047129a2f.ctex"
+path="res://.godot/imported/y3_weapon_00.png-955bcc850a3ef7e21b589a0047129a2f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role6/equipment_atlas/y3_weapon/y3_weapon_00.png"
-dest_files=["res://godot/imported/y3_weapon_00.png-955bcc850a3ef7e21b589a0047129a2f.ctex"]
+dest_files=["res://.godot/imported/y3_weapon_00.png-955bcc850a3ef7e21b589a0047129a2f.ctex"]
 
 [params]
 

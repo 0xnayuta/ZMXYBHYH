@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://b3wfyiwg8i38h"
-path="res://godot/imported/twdboss.MP3-175751be278247fcd684318ef063c1b5.mp3str"
+path="res://.godot/imported/twdboss.MP3-175751be278247fcd684318ef063c1b5.mp3str"
 
 [deps]
 
 source_file="res://Music/level/twdboss.MP3"
-dest_files=["res://godot/imported/twdboss.MP3-175751be278247fcd684318ef063c1b5.mp3str"]
+dest_files=["res://.godot/imported/twdboss.MP3-175751be278247fcd684318ef063c1b5.mp3str"]
 
 [params]
 

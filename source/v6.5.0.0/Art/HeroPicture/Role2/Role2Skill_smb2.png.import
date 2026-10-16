@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://byfmdx42yrkod"
-path="res://godot/imported/Role2Skill_smb2.png-a878001abb7a4fe860e1ff4a860f1d36.ctex"
+path="res://.godot/imported/Role2Skill_smb2.png-a878001abb7a4fe860e1ff4a860f1d36.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role2/Role2Skill_smb2.png"
-dest_files=["res://godot/imported/Role2Skill_smb2.png-a878001abb7a4fe860e1ff4a860f1d36.ctex"]
+dest_files=["res://.godot/imported/Role2Skill_smb2.png-a878001abb7a4fe860e1ff4a860f1d36.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bl78oo02u361d"
-path="res://godot/imported/frame_012.png-0bbac13bbb4076bd2e5e1dfb41112cc1.ctex"
+path="res://.godot/imported/frame_012.png-0bbac13bbb4076bd2e5e1dfb41112cc1.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/RuntimeAtlas/Level62Background/pages/frame_012.png"
-dest_files=["res://godot/imported/frame_012.png-0bbac13bbb4076bd2e5e1dfb41112cc1.ctex"]
+dest_files=["res://.godot/imported/frame_012.png-0bbac13bbb4076bd2e5e1dfb41112cc1.ctex"]
 
 [params]
 

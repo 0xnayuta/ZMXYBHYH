@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vehpl0ovng5d"
-path="res://godot/imported/lxbd.png-5cfdf564b92ba709b55b6f05c97b3bbb.ctex"
+path="res://.godot/imported/lxbd.png-5cfdf564b92ba709b55b6f05c97b3bbb.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_3_3/lxbd.png"
-dest_files=["res://godot/imported/lxbd.png-5cfdf564b92ba709b55b6f05c97b3bbb.ctex"]
+dest_files=["res://.godot/imported/lxbd.png-5cfdf564b92ba709b55b6f05c97b3bbb.ctex"]
 
 [params]
 

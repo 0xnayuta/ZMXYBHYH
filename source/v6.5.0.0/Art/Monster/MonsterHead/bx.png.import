@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dha86g76njxs2"
-path="res://godot/imported/bx.png-a47232a3cb7918df038f4ce4daf44652.ctex"
+path="res://.godot/imported/bx.png-a47232a3cb7918df038f4ce4daf44652.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/bx.png"
-dest_files=["res://godot/imported/bx.png-a47232a3cb7918df038f4ce4daf44652.ctex"]
+dest_files=["res://.godot/imported/bx.png-a47232a3cb7918df038f4ce4daf44652.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://7q01wf5jvfvy"
-path="res://godot/imported/5.png-540d7c0fb9876f8300888023859a7e89.ctex"
+path="res://.godot/imported/5.png-540d7c0fb9876f8300888023859a7e89.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/LiuShaRiver/Monster34/jump2/5.png"
-dest_files=["res://godot/imported/5.png-540d7c0fb9876f8300888023859a7e89.ctex"]
+dest_files=["res://.godot/imported/5.png-540d7c0fb9876f8300888023859a7e89.ctex"]
 
 [params]
 

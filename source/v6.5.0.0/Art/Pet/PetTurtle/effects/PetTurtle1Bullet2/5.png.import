@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sehlgfos3psm"
-path="res://godot/imported/5.png-2f1e2a975305bcca99534908fda732ac.ctex"
+path="res://.godot/imported/5.png-2f1e2a975305bcca99534908fda732ac.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetTurtle/effects/PetTurtle1Bullet2/5.png"
-dest_files=["res://godot/imported/5.png-2f1e2a975305bcca99534908fda732ac.ctex"]
+dest_files=["res://.godot/imported/5.png-2f1e2a975305bcca99534908fda732ac.ctex"]
 
 [params]
 

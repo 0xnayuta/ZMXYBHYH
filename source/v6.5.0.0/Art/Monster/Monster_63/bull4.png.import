@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dykc4fhk6fmnr"
-path="res://godot/imported/bull4.png-125bb8388a762c7a52c7717c94db5dd2.ctex"
+path="res://.godot/imported/bull4.png-125bb8388a762c7a52c7717c94db5dd2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_63/bull4.png"
-dest_files=["res://godot/imported/bull4.png-125bb8388a762c7a52c7717c94db5dd2.ctex"]
+dest_files=["res://.godot/imported/bull4.png-125bb8388a762c7a52c7717c94db5dd2.ctex"]
 
 [params]
 

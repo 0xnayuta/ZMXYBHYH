@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhvn31esthbex"
-path="res://godot/imported/bg10.png-65a19537148df181fde90b6eee207e7f.ctex"
+path="res://.godot/imported/bg10.png-65a19537148df181fde90b6eee207e7f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/NorthOriginal/maps/anyemeng/bg10.png"
-dest_files=["res://godot/imported/bg10.png-65a19537148df181fde90b6eee207e7f.ctex"]
+dest_files=["res://.godot/imported/bg10.png-65a19537148df181fde90b6eee207e7f.ctex"]
 
 [params]
 

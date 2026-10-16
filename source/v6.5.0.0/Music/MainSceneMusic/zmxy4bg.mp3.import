@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://cvp8b7ckmky2o"
-path="res://godot/imported/zmxy4bg.mp3-69cacf3b8782935963b0d0b209d273db.mp3str"
+path="res://.godot/imported/zmxy4bg.mp3-69cacf3b8782935963b0d0b209d273db.mp3str"
 
 [deps]
 
 source_file="res://Music/MainSceneMusic/zmxy4bg.mp3"
-dest_files=["res://godot/imported/zmxy4bg.mp3-69cacf3b8782935963b0d0b209d273db.mp3str"]
+dest_files=["res://.godot/imported/zmxy4bg.mp3-69cacf3b8782935963b0d0b209d273db.mp3str"]
 
 [params]
 

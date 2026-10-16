@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dljfdusbaryam"
-path="res://godot/imported/SharkVortex.png-aca9ad021f9ef64d68f22f3ad4aa288a.ctex"
+path="res://.godot/imported/SharkVortex.png-aca9ad021f9ef64d68f22f3ad4aa288a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/game_pic/level_choose/SharkVortex.png"
-dest_files=["res://godot/imported/SharkVortex.png-aca9ad021f9ef64d68f22f3ad4aa288a.ctex"]
+dest_files=["res://.godot/imported/SharkVortex.png-aca9ad021f9ef64d68f22f3ad4aa288a.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://fx0napw1kv1h"
-path="res://godot/imported/27.png-d996baef4c0a6f074ac891daf2489e29.ctex"
+path="res://.godot/imported/27.png-d996baef4c0a6f074ac891daf2489e29.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Wings/hhyq/27.png"
-dest_files=["res://godot/imported/27.png-d996baef4c0a6f074ac891daf2489e29.ctex"]
+dest_files=["res://.godot/imported/27.png-d996baef4c0a6f074ac891daf2489e29.ctex"]
 
 [params]
 

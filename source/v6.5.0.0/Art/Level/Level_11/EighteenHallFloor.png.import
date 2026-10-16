@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cns54o8lgl1gt"
-path="res://godot/imported/EighteenHallFloor.png-03ca24335b074a626556f012479c4608.ctex"
+path="res://.godot/imported/EighteenHallFloor.png-03ca24335b074a626556f012479c4608.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Level_11/EighteenHallFloor.png"
-dest_files=["res://godot/imported/EighteenHallFloor.png-03ca24335b074a626556f012479c4608.ctex"]
+dest_files=["res://.godot/imported/EighteenHallFloor.png-03ca24335b074a626556f012479c4608.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cogexv0yaw43h"
-path="res://godot/imported/dudan.png-91be1189a4b05e54c2c9cfd689707d96.ctex"
+path="res://.godot/imported/dudan.png-91be1189a4b05e54c2c9cfd689707d96.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/dudan.png"
-dest_files=["res://godot/imported/dudan.png-91be1189a4b05e54c2c9cfd689707d96.ctex"]
+dest_files=["res://.godot/imported/dudan.png-91be1189a4b05e54c2c9cfd689707d96.ctex"]
 
 [params]
 

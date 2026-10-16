@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://m11tnae0dak3"
-path="res://godot/imported/bg30.png-8f3aaabc6104faa13f7f5cb7d7f2ecf0.ctex"
+path="res://.godot/imported/bg30.png-8f3aaabc6104faa13f7f5cb7d7f2ecf0.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/Imported/maps/huaguoshan/background/bg30.png"
-dest_files=["res://godot/imported/bg30.png-8f3aaabc6104faa13f7f5cb7d7f2ecf0.ctex"]
+dest_files=["res://.godot/imported/bg30.png-8f3aaabc6104faa13f7f5cb7d7f2ecf0.ctex"]
 
 [params]
 

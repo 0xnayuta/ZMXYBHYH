@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drtvgjm08fa7s"
-path="res://godot/imported/131.png-0c0237f61d2dc7cc1e0a1e4a71513c78.ctex"
+path="res://.godot/imported/131.png-0c0237f61d2dc7cc1e0a1e4a71513c78.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Level_Sjg/131.png"
-dest_files=["res://godot/imported/131.png-0c0237f61d2dc7cc1e0a1e4a71513c78.ctex"]
+dest_files=["res://.godot/imported/131.png-0c0237f61d2dc7cc1e0a1e4a71513c78.ctex"]
 
 [params]
 

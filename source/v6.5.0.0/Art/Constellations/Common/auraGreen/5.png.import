@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccu7yn5rhm8mg"
-path="res://godot/imported/5.png-e039b6b1397c8a3d6f518d73e09319b3.ctex"
+path="res://.godot/imported/5.png-e039b6b1397c8a3d6f518d73e09319b3.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Constellations/Common/auraGreen/5.png"
-dest_files=["res://godot/imported/5.png-e039b6b1397c8a3d6f518d73e09319b3.ctex"]
+dest_files=["res://.godot/imported/5.png-e039b6b1397c8a3d6f518d73e09319b3.ctex"]
 
 [params]
 

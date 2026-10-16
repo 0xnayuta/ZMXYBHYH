@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqhuk6g8f1cdf"
-path="res://godot/imported/ttzs.png-fa086f3158c7349bf3dfedcac571275a.ctex"
+path="res://.godot/imported/ttzs.png-fa086f3158c7349bf3dfedcac571275a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Game_3/OtherMapButton/ttzs.png"
-dest_files=["res://godot/imported/ttzs.png-fa086f3158c7349bf3dfedcac571275a.ctex"]
+dest_files=["res://.godot/imported/ttzs.png-fa086f3158c7349bf3dfedcac571275a.ctex"]
 
 [params]
 

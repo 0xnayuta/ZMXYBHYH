@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcunw1xmbtqjb"
-path="res://godot/imported/32.png-a901cae722cea603fcdc3018ca959e7a.ctex"
+path="res://.godot/imported/32.png-a901cae722cea603fcdc3018ca959e7a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_tzsijian/extra/ZhuXianSword/32.png"
-dest_files=["res://godot/imported/32.png-a901cae722cea603fcdc3018ca959e7a.ctex"]
+dest_files=["res://.godot/imported/32.png-a901cae722cea603fcdc3018ca959e7a.ctex"]
 
 [params]
 

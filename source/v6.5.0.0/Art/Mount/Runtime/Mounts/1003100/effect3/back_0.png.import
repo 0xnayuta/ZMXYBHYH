@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d35g76ov8gg0w"
-path="res://godot/imported/back_0.png-ab8bc33f8c6acac9a96a3fa33193e34f.ctex"
+path="res://.godot/imported/back_0.png-ab8bc33f8c6acac9a96a3fa33193e34f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Mount/Runtime/Mounts/1003100/effect3/back_0.png"
-dest_files=["res://godot/imported/back_0.png-ab8bc33f8c6acac9a96a3fa33193e34f.ctex"]
+dest_files=["res://.godot/imported/back_0.png-ab8bc33f8c6acac9a96a3fa33193e34f.ctex"]
 
 [params]
 

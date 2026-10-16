@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://8mqf7vvxyi0v"
-path="res://godot/imported/bxgh_normal.png-c7e693808211f29d2f347176ac491684.ctex"
+path="res://.godot/imported/bxgh_normal.png-c7e693808211f29d2f347176ac491684.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Game_3/LevelButtonIcon/bxgh_normal.png"
-dest_files=["res://godot/imported/bxgh_normal.png-c7e693808211f29d2f347176ac491684.ctex"]
+dest_files=["res://.godot/imported/bxgh_normal.png-c7e693808211f29d2f347176ac491684.ctex"]
 
 [params]
 

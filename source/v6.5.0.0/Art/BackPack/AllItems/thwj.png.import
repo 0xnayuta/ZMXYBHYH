@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ci3nvp26tjt3u"
-path="res://godot/imported/thwj.png-a8023ed8552f469ce08219d5cf7d2c68.ctex"
+path="res://.godot/imported/thwj.png-a8023ed8552f469ce08219d5cf7d2c68.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/thwj.png"
-dest_files=["res://godot/imported/thwj.png-a8023ed8552f469ce08219d5cf7d2c68.ctex"]
+dest_files=["res://.godot/imported/thwj.png-a8023ed8552f469ce08219d5cf7d2c68.ctex"]
 
 [params]
 

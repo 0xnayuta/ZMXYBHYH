@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pju2ss6nuhnb"
-path="res://godot/imported/bg10.png-789cef2a2e1e3dede606b040d16a0b03.ctex"
+path="res://.godot/imported/bg10.png-789cef2a2e1e3dede606b040d16a0b03.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/Imported/maps/liuligongV3/background/bg10.png"
-dest_files=["res://godot/imported/bg10.png-789cef2a2e1e3dede606b040d16a0b03.ctex"]
+dest_files=["res://.godot/imported/bg10.png-789cef2a2e1e3dede606b040d16a0b03.ctex"]
 
 [params]
 

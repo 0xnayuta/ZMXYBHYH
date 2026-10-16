@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csapt4n4jr5ha"
-path="res://godot/imported/frame_03.png-aeae09c8a5e6112fd1ec82f996d5ef7d.ctex"
+path="res://.godot/imported/frame_03.png-aeae09c8a5e6112fd1ec82f996d5ef7d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Game_4/幽冥血海/s51/frame_03.png"
-dest_files=["res://godot/imported/frame_03.png-aeae09c8a5e6112fd1ec82f996d5ef7d.ctex"]
+dest_files=["res://.godot/imported/frame_03.png-aeae09c8a5e6112fd1ec82f996d5ef7d.ctex"]
 
 [params]
 

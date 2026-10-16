@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1wcvuk8whakc"
-path="res://godot/imported/sunwukong_effect8__bujian-tx_05.png-c24ddb8a7d5dc88ca18d3615b0ae9d19.ctex"
+path="res://.godot/imported/sunwukong_effect8__bujian-tx_05.png-c24ddb8a7d5dc88ca18d3615b0ae9d19.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role1/lyfb/sunwukong_effect8__bujian-tx_05.png"
-dest_files=["res://godot/imported/sunwukong_effect8__bujian-tx_05.png-c24ddb8a7d5dc88ca18d3615b0ae9d19.ctex"]
+dest_files=["res://.godot/imported/sunwukong_effect8__bujian-tx_05.png-c24ddb8a7d5dc88ca18d3615b0ae9d19.ctex"]
 
 [params]
 

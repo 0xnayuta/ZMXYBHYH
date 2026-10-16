@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cx5aiqn1ytekp"
-path="res://godot/imported/CureMp_4.png-52a25ac49eb187ef6cf60831d2cbb15d.ctex"
+path="res://.godot/imported/CureMp_4.png-52a25ac49eb187ef6cf60831d2cbb15d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AllNumber/CureMp/CureMp_4.png"
-dest_files=["res://godot/imported/CureMp_4.png-52a25ac49eb187ef6cf60831d2cbb15d.ctex"]
+dest_files=["res://.godot/imported/CureMp_4.png-52a25ac49eb187ef6cf60831d2cbb15d.ctex"]
 
 [params]
 

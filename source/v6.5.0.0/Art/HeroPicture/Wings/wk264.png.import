@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b37dom0ium3ss"
-path="res://godot/imported/wk264.png-8a37e5ffdb37dfac54106d4a5994d832.ctex"
+path="res://.godot/imported/wk264.png-8a37e5ffdb37dfac54106d4a5994d832.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Wings/wk264.png"
-dest_files=["res://godot/imported/wk264.png-8a37e5ffdb37dfac54106d4a5994d832.ctex"]
+dest_files=["res://.godot/imported/wk264.png-8a37e5ffdb37dfac54106d4a5994d832.ctex"]
 
 [params]
 

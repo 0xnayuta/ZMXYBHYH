@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://da3xv2s1u0y7a"
-path="res://godot/imported/sqzlw.png-9685603a5f406d8c9706c943e4e60f41.ctex"
+path="res://.godot/imported/sqzlw.png-9685603a5f406d8c9706c943e4e60f41.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/sqzlw.png"
-dest_files=["res://godot/imported/sqzlw.png-9685603a5f406d8c9706c943e4e60f41.ctex"]
+dest_files=["res://.godot/imported/sqzlw.png-9685603a5f406d8c9706c943e4e60f41.ctex"]
 
 [params]
 

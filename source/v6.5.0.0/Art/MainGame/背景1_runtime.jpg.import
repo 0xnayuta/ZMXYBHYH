@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ds7o6c2i3yhg6"
-path="res://godot/imported/背景1_runtime.jpg-ff7b66991922f3919930eb655cc9753b.ctex"
+path="res://.godot/imported/背景1_runtime.jpg-ff7b66991922f3919930eb655cc9753b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/MainGame/背景1_runtime.jpg"
-dest_files=["res://godot/imported/背景1_runtime.jpg-ff7b66991922f3919930eb655cc9753b.ctex"]
+dest_files=["res://.godot/imported/背景1_runtime.jpg-ff7b66991922f3919930eb655cc9753b.ctex"]
 
 [params]
 

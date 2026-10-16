@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6exgg2sjw3q2"
-path="res://godot/imported/xianyufangju_shaseng_zzs.png-2a10ff6dcf4c3b6fa415ca1da0862fe7.ctex"
+path="res://.godot/imported/xianyufangju_shaseng_zzs.png-2a10ff6dcf4c3b6fa415ca1da0862fe7.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/xianyufangju_shaseng_zzs.png"
-dest_files=["res://godot/imported/xianyufangju_shaseng_zzs.png-2a10ff6dcf4c3b6fa415ca1da0862fe7.ctex"]
+dest_files=["res://.godot/imported/xianyufangju_shaseng_zzs.png-2a10ff6dcf4c3b6fa415ca1da0862fe7.ctex"]
 
 [params]
 

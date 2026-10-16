@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jc2ujlmrh3wv"
-path="res://godot/imported/0152.png-675d80ebd59082ab1b33fb7dda562f61.ctex"
+path="res://.godot/imported/0152.png-675d80ebd59082ab1b33fb7dda562f61.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game4Level/Imported/maps/futiantai/background/bg18_frames/0152.png"
-dest_files=["res://godot/imported/0152.png-675d80ebd59082ab1b33fb7dda562f61.ctex"]
+dest_files=["res://.godot/imported/0152.png-675d80ebd59082ab1b33fb7dda562f61.ctex"]
 
 [params]
 

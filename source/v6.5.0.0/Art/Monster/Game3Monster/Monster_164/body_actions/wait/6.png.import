@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drqh1in7vagoa"
-path="res://godot/imported/6.png-37f6d61e5b5bbcf1d373d13dd57ea401.ctex"
+path="res://.godot/imported/6.png-37f6d61e5b5bbcf1d373d13dd57ea401.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/Monster_164/body_actions/wait/6.png"
-dest_files=["res://godot/imported/6.png-37f6d61e5b5bbcf1d373d13dd57ea401.ctex"]
+dest_files=["res://.godot/imported/6.png-37f6d61e5b5bbcf1d373d13dd57ea401.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cc4m0oy1gidbe"
-path="res://godot/imported/hlzdz.png-8d6b925bda1594e516ae599b9a7195b7.ctex"
+path="res://.godot/imported/hlzdz.png-8d6b925bda1594e516ae599b9a7195b7.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_4/hlzdz.png"
-dest_files=["res://godot/imported/hlzdz.png-8d6b925bda1594e516ae599b9a7195b7.ctex"]
+dest_files=["res://.godot/imported/hlzdz.png-8d6b925bda1594e516ae599b9a7195b7.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmgbckuvvt07t"
-path="res://godot/imported/sjdl.png-2f8f017db3b30dccb161735167d88d08.ctex"
+path="res://.godot/imported/sjdl.png-2f8f017db3b30dccb161735167d88d08.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Game_3/OtherMapButton/sjdl.png"
-dest_files=["res://godot/imported/sjdl.png-2f8f017db3b30dccb161735167d88d08.ctex"]
+dest_files=["res://.godot/imported/sjdl.png-2f8f017db3b30dccb161735167d88d08.ctex"]
 
 [params]
 

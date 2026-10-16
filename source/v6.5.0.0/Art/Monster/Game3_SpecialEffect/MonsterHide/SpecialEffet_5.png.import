@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://t3oylcnaw5kp"
-path="res://godot/imported/SpecialEffet_5.png-511c36aa4e9ce35fda263506bcba783c.ctex"
+path="res://.godot/imported/SpecialEffet_5.png-511c36aa4e9ce35fda263506bcba783c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3_SpecialEffect/MonsterHide/SpecialEffet_5.png"
-dest_files=["res://godot/imported/SpecialEffet_5.png-511c36aa4e9ce35fda263506bcba783c.ctex"]
+dest_files=["res://.godot/imported/SpecialEffet_5.png-511c36aa4e9ce35fda263506bcba783c.ctex"]
 
 [params]
 

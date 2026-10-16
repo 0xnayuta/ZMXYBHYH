@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsyuvqvoo6uoa"
-path="res://godot/imported/nz_fhcc.png-9bdb872325357cc80ff6650789f44b2e.ctex"
+path="res://.godot/imported/nz_fhcc.png-9bdb872325357cc80ff6650789f44b2e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Skill/SkillIcon/nz_fhcc.png"
-dest_files=["res://godot/imported/nz_fhcc.png-9bdb872325357cc80ff6650789f44b2e.ctex"]
+dest_files=["res://.godot/imported/nz_fhcc.png-9bdb872325357cc80ff6650789f44b2e.ctex"]
 
 [params]
 

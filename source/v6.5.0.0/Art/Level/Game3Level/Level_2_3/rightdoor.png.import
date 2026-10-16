@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwbir3x40so4j"
-path="res://godot/imported/rightdoor.png-bbc088c43e220a6df036de43feafb111.ctex"
+path="res://.godot/imported/rightdoor.png-bbc088c43e220a6df036de43feafb111.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_2_3/rightdoor.png"
-dest_files=["res://godot/imported/rightdoor.png-bbc088c43e220a6df036de43feafb111.ctex"]
+dest_files=["res://.godot/imported/rightdoor.png-bbc088c43e220a6df036de43feafb111.ctex"]
 
 [params]
 

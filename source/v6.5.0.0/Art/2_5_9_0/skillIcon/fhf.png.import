@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2cjhppl4bb0o"
-path="res://godot/imported/fhf.png-dee0a8e393b8b637f06e463177bdde05.ctex"
+path="res://.godot/imported/fhf.png-dee0a8e393b8b637f06e463177bdde05.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/2_5_9_0/skillIcon/fhf.png"
-dest_files=["res://godot/imported/fhf.png-dee0a8e393b8b637f06e463177bdde05.ctex"]
+dest_files=["res://.godot/imported/fhf.png-dee0a8e393b8b637f06e463177bdde05.ctex"]
 
 [params]
 

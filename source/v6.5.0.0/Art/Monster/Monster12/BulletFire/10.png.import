@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgngt67u1ibcw"
-path="res://godot/imported/10.png-17b85f48796ebd922ceaa1eed94e14f1.ctex"
+path="res://.godot/imported/10.png-17b85f48796ebd922ceaa1eed94e14f1.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster12/BulletFire/10.png"
-dest_files=["res://godot/imported/10.png-17b85f48796ebd922ceaa1eed94e14f1.ctex"]
+dest_files=["res://.godot/imported/10.png-17b85f48796ebd922ceaa1eed94e14f1.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cumtf5bi4qohq"
-path="res://godot/imported/6601.png-9557c7a100ff7133baa9e5f5e05bacef.ctex"
+path="res://.godot/imported/6601.png-9557c7a100ff7133baa9e5f5e05bacef.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/万灵图录/6601.png"
-dest_files=["res://godot/imported/6601.png-9557c7a100ff7133baa9e5f5e05bacef.ctex"]
+dest_files=["res://.godot/imported/6601.png-9557c7a100ff7133baa9e5f5e05bacef.ctex"]
 
 [params]
 

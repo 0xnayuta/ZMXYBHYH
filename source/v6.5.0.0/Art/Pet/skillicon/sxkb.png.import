@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bucrtxkh8q2qi"
-path="res://godot/imported/sxkb.png-73143c6498eb5a788468fe4fbd81fdcf.ctex"
+path="res://.godot/imported/sxkb.png-73143c6498eb5a788468fe4fbd81fdcf.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/skillicon/sxkb.png"
-dest_files=["res://godot/imported/sxkb.png-73143c6498eb5a788468fe4fbd81fdcf.ctex"]
+dest_files=["res://.godot/imported/sxkb.png-73143c6498eb5a788468fe4fbd81fdcf.ctex"]
 
 [params]
 

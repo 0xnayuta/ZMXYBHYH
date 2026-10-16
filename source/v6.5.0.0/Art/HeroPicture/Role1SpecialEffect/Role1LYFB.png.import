@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2tbbcspiy5m8"
-path="res://godot/imported/Role1LYFB.png-063b9bc0c0a4a79d854fdb8bc2a6ff25.ctex"
+path="res://.godot/imported/Role1LYFB.png-063b9bc0c0a4a79d854fdb8bc2a6ff25.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role1SpecialEffect/Role1LYFB.png"
-dest_files=["res://godot/imported/Role1LYFB.png-063b9bc0c0a4a79d854fdb8bc2a6ff25.ctex"]
+dest_files=["res://.godot/imported/Role1LYFB.png-063b9bc0c0a4a79d854fdb8bc2a6ff25.ctex"]
 
 [params]
 

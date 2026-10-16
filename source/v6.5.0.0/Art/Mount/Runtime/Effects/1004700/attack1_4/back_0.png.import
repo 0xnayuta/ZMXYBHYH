@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://i7fopamho2sg"
-path="res://godot/imported/back_0.png-2e7b9f373079a5a24bf0ef923571f3db.ctex"
+path="res://.godot/imported/back_0.png-2e7b9f373079a5a24bf0ef923571f3db.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Mount/Runtime/Effects/1004700/attack1_4/back_0.png"
-dest_files=["res://godot/imported/back_0.png-2e7b9f373079a5a24bf0ef923571f3db.ctex"]
+dest_files=["res://.godot/imported/back_0.png-2e7b9f373079a5a24bf0ef923571f3db.ctex"]
 
 [params]
 

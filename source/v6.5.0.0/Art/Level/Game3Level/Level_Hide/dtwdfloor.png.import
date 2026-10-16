@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4xqig54k7gxb"
-path="res://godot/imported/dtwdfloor.png-e5bd72e10b8e240235ddf4740b60f561.ctex"
+path="res://.godot/imported/dtwdfloor.png-e5bd72e10b8e240235ddf4740b60f561.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Level/Game3Level/Level_Hide/dtwdfloor.png"
-dest_files=["res://godot/imported/dtwdfloor.png-e5bd72e10b8e240235ddf4740b60f561.ctex"]
+dest_files=["res://.godot/imported/dtwdfloor.png-e5bd72e10b8e240235ddf4740b60f561.ctex"]
 
 [params]
 

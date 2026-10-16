@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnijip5pjeawc"
-path="res://godot/imported/1.png-8eed57ab4e646d86be1eaf490e5cc5dd.ctex"
+path="res://.godot/imported/1.png-8eed57ab4e646d86be1eaf490e5cc5dd.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Constellations/Boss/156/body/7/1.png"
-dest_files=["res://godot/imported/1.png-8eed57ab4e646d86be1eaf490e5cc5dd.ctex"]
+dest_files=["res://.godot/imported/1.png-8eed57ab4e646d86be1eaf490e5cc5dd.ctex"]
 
 [params]
 

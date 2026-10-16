@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d380qr7almjok"
-path="res://godot/imported/hit2_3.png-5bb2c68ba3df28e3db8bd5b650915baa.ctex"
+path="res://.godot/imported/hit2_3.png-5bb2c68ba3df28e3db8bd5b650915baa.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Pet/PetRabbit/model/actions/stage4/hit2/hit2_3.png"
-dest_files=["res://godot/imported/hit2_3.png-5bb2c68ba3df28e3db8bd5b650915baa.ctex"]
+dest_files=["res://.godot/imported/hit2_3.png-5bb2c68ba3df28e3db8bd5b650915baa.ctex"]
 
 [params]
 

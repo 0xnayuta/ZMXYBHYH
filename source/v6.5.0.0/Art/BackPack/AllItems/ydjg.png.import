@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clg2usadauemh"
-path="res://godot/imported/ydjg.png-2d28751d885e01b4ca33c0f8cdf1147e.ctex"
+path="res://.godot/imported/ydjg.png-2d28751d885e01b4ca33c0f8cdf1147e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/ydjg.png"
-dest_files=["res://godot/imported/ydjg.png-2d28751d885e01b4ca33c0f8cdf1147e.ctex"]
+dest_files=["res://.godot/imported/ydjg.png-2d28751d885e01b4ca33c0f8cdf1147e.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://byiaf5o1qoxkj"
-path="res://godot/imported/4.png-667eb881093e83b297f2920eefb4aaab.ctex"
+path="res://.godot/imported/4.png-667eb881093e83b297f2920eefb4aaab.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game4SpecialEffect/3121/arrow1/4.png"
-dest_files=["res://godot/imported/4.png-667eb881093e83b297f2920eefb4aaab.ctex"]
+dest_files=["res://.godot/imported/4.png-667eb881093e83b297f2920eefb4aaab.ctex"]
 
 [params]
 

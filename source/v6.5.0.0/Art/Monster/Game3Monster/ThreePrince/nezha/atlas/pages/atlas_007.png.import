@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bo7jro1dlrtxt"
-path="res://godot/imported/atlas_007.png-009efe8cf90a26d9cd10f77547fef226.ctex"
+path="res://.godot/imported/atlas_007.png-009efe8cf90a26d9cd10f77547fef226.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/ThreePrince/nezha/atlas/pages/atlas_007.png"
-dest_files=["res://godot/imported/atlas_007.png-009efe8cf90a26d9cd10f77547fef226.ctex"]
+dest_files=["res://.godot/imported/atlas_007.png-009efe8cf90a26d9cd10f77547fef226.ctex"]
 
 [params]
 

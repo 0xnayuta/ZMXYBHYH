@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://ck3djriv8nsw8"
-path="res://godot/imported/13_hurtStand.mp3-9d9a28671af2b18d1532fbc5ba66c072.mp3str"
+path="res://.godot/imported/13_hurtStand.mp3-9d9a28671af2b18d1532fbc5ba66c072.mp3str"
 
 [deps]
 
 source_file="res://Music/Hero/Role5/13_hurtStand.mp3"
-dest_files=["res://godot/imported/13_hurtStand.mp3-9d9a28671af2b18d1532fbc5ba66c072.mp3str"]
+dest_files=["res://.godot/imported/13_hurtStand.mp3-9d9a28671af2b18d1532fbc5ba66c072.mp3str"]
 
 [params]
 

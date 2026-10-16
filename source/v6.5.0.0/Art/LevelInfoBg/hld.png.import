@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://be05raeycg2hc"
-path="res://godot/imported/hld.png-ebe96121e83fd7421086965163e06260.ctex"
+path="res://.godot/imported/hld.png-ebe96121e83fd7421086965163e06260.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/LevelInfoBg/hld.png"
-dest_files=["res://godot/imported/hld.png-ebe96121e83fd7421086965163e06260.ctex"]
+dest_files=["res://.godot/imported/hld.png-ebe96121e83fd7421086965163e06260.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1f2f1kjwn1fo"
-path="res://godot/imported/shy.png-60c19fd069112944dd48eb36cb1c4a0f.ctex"
+path="res://.godot/imported/shy.png-60c19fd069112944dd48eb36cb1c4a0f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/2_5_9_0/skillIcon/shy.png"
-dest_files=["res://godot/imported/shy.png-60c19fd069112944dd48eb36cb1c4a0f.ctex"]
+dest_files=["res://.godot/imported/shy.png-60c19fd069112944dd48eb36cb1c4a0f.ctex"]
 
 [params]
 

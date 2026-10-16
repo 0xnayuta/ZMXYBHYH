@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpj5us42qirgr"
-path="res://godot/imported/atlas_12.png-056dba9bb547ca7696e131742b6945d8.ctex"
+path="res://.godot/imported/atlas_12.png-056dba9bb547ca7696e131742b6945d8.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Game3Monster/SwordBoss/zhuxian/atlas/atlas_12.png"
-dest_files=["res://godot/imported/atlas_12.png-056dba9bb547ca7696e131742b6945d8.ctex"]
+dest_files=["res://.godot/imported/atlas_12.png-056dba9bb547ca7696e131742b6945d8.ctex"]
 
 [params]
 

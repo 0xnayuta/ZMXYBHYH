@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ch1ginwccjfce"
-path="res://godot/imported/wk.png-763a157ba4c6f22e0e2e6ebe6f34178f.ctex"
+path="res://.godot/imported/wk.png-763a157ba4c6f22e0e2e6ebe6f34178f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/blood/wk.png"
-dest_files=["res://godot/imported/wk.png-763a157ba4c6f22e0e2e6ebe6f34178f.ctex"]
+dest_files=["res://.godot/imported/wk.png-763a157ba4c6f22e0e2e6ebe6f34178f.ctex"]
 
 [params]
 

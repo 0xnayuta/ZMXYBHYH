@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blguqo6fjiqjf"
-path="res://godot/imported/六耳猕猴.png-2a8bdcc45b11a9c2e7d0ff527718d6a7.ctex"
+path="res://.godot/imported/六耳猕猴.png-2a8bdcc45b11a9c2e7d0ff527718d6a7.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/MonsterHead/六耳猕猴.png"
-dest_files=["res://godot/imported/六耳猕猴.png-2a8bdcc45b11a9c2e7d0ff527718d6a7.ctex"]
+dest_files=["res://.godot/imported/六耳猕猴.png-2a8bdcc45b11a9c2e7d0ff527718d6a7.ctex"]
 
 [params]
 

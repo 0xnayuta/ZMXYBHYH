@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cktuayi44q50k"
-path="res://godot/imported/llst.png-ee88005cbfe4e419875d2dc7f2d71fa2.ctex"
+path="res://.godot/imported/llst.png-ee88005cbfe4e419875d2dc7f2d71fa2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/llst.png"
-dest_files=["res://godot/imported/llst.png-ee88005cbfe4e419875d2dc7f2d71fa2.ctex"]
+dest_files=["res://.godot/imported/llst.png-ee88005cbfe4e419875d2dc7f2d71fa2.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dieeiv5esi5qw"
-path="res://godot/imported/animation (1).png-5084f20d565315f057d5eef002de4534.ctex"
+path="res://.godot/imported/animation (1).png-5084f20d565315f057d5eef002de4534.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/AddEffect/animation (1).png"
-dest_files=["res://godot/imported/animation (1).png-5084f20d565315f057d5eef002de4534.ctex"]
+dest_files=["res://.godot/imported/animation (1).png-5084f20d565315f057d5eef002de4534.ctex"]
 
 [params]
 

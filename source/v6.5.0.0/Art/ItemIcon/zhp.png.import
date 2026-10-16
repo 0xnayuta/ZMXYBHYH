@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://btctjh0xarxpu"
-path="res://godot/imported/zhp.png-10affd71022a2c45e2b92b5804595223.ctex"
+path="res://.godot/imported/zhp.png-10affd71022a2c45e2b92b5804595223.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/ItemIcon/zhp.png"
-dest_files=["res://godot/imported/zhp.png-10affd71022a2c45e2b92b5804595223.ctex"]
+dest_files=["res://.godot/imported/zhp.png-10affd71022a2c45e2b92b5804595223.ctex"]
 
 [params]
 

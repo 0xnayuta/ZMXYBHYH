@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dniyu4ogudkqr"
-path="res://godot/imported/sgqbullet2.png-dd398ddb92a0a81e4613b649c7c354f0.ctex"
+path="res://.godot/imported/sgqbullet2.png-dd398ddb92a0a81e4613b649c7c354f0.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role2/sgqbullet2.png"
-dest_files=["res://godot/imported/sgqbullet2.png-dd398ddb92a0a81e4613b649c7c354f0.ctex"]
+dest_files=["res://.godot/imported/sgqbullet2.png-dd398ddb92a0a81e4613b649c7c354f0.ctex"]
 
 [params]
 

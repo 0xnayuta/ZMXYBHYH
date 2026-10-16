@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://g4ixfpftk1p"
-path="res://godot/imported/PoisionUpEffect.png-bdc20aef618aed7ca045133ceede0324.ctex"
+path="res://.godot/imported/PoisionUpEffect.png-bdc20aef618aed7ca045133ceede0324.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster11/PoisionUpEffect.png"
-dest_files=["res://godot/imported/PoisionUpEffect.png-bdc20aef618aed7ca045133ceede0324.ctex"]
+dest_files=["res://.godot/imported/PoisionUpEffect.png-bdc20aef618aed7ca045133ceede0324.ctex"]
 
 [params]
 

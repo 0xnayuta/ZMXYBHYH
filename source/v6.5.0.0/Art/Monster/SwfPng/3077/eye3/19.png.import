@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpg0ylrw6swmr"
-path="res://godot/imported/19.png-32772a010f2385310d5f462a5e979a83.ctex"
+path="res://.godot/imported/19.png-32772a010f2385310d5f462a5e979a83.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/SwfPng/3077/eye3/19.png"
-dest_files=["res://godot/imported/19.png-32772a010f2385310d5f462a5e979a83.ctex"]
+dest_files=["res://.godot/imported/19.png-32772a010f2385310d5f462a5e979a83.ctex"]
 
 [params]
 

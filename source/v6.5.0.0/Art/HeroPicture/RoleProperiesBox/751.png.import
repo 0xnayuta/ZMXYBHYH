@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://caudxpbpbuoio"
-path="res://godot/imported/751.png-7421ff667a925ddb595c595a083b92fe.ctex"
+path="res://.godot/imported/751.png-7421ff667a925ddb595c595a083b92fe.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/RoleProperiesBox/751.png"
-dest_files=["res://godot/imported/751.png-7421ff667a925ddb595c595a083b92fe.ctex"]
+dest_files=["res://.godot/imported/751.png-7421ff667a925ddb595c595a083b92fe.ctex"]
 
 [params]
 

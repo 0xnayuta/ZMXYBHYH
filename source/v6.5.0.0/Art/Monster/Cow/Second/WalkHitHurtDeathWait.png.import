@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bx65bc212w8px"
-path="res://godot/imported/WalkHitHurtDeathWait.png-542fb992c1601ac526b798a9be8f8a89.ctex"
+path="res://.godot/imported/WalkHitHurtDeathWait.png-542fb992c1601ac526b798a9be8f8a89.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Cow/Second/WalkHitHurtDeathWait.png"
-dest_files=["res://godot/imported/WalkHitHurtDeathWait.png-542fb992c1601ac526b798a9be8f8a89.ctex"]
+dest_files=["res://.godot/imported/WalkHitHurtDeathWait.png-542fb992c1601ac526b798a9be8f8a89.ctex"]
 
 [params]
 

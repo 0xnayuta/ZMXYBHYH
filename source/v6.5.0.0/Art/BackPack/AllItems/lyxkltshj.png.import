@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://wpxhqvp52gab"
-path="res://godot/imported/lyxkltshj.png-31bb218400f6481a806c1aa2a8fd420f.ctex"
+path="res://.godot/imported/lyxkltshj.png-31bb218400f6481a806c1aa2a8fd420f.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/lyxkltshj.png"
-dest_files=["res://godot/imported/lyxkltshj.png-31bb218400f6481a806c1aa2a8fd420f.ctex"]
+dest_files=["res://.godot/imported/lyxkltshj.png-31bb218400f6481a806c1aa2a8fd420f.ctex"]
 
 [params]
 

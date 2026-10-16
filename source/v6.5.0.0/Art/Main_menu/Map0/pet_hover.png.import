@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4e6oq28t76dg"
-path="res://godot/imported/pet_hover.png-07fd3c49326b120bc5c4148d538ba130.ctex"
+path="res://.godot/imported/pet_hover.png-07fd3c49326b120bc5c4148d538ba130.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Main_menu/Map0/pet_hover.png"
-dest_files=["res://godot/imported/pet_hover.png-07fd3c49326b120bc5c4148d538ba130.ctex"]
+dest_files=["res://.godot/imported/pet_hover.png-07fd3c49326b120bc5c4148d538ba130.ctex"]
 
 [params]
 

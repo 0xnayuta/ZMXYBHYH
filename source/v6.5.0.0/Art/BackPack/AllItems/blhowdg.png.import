@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dypch052kclru"
-path="res://godot/imported/blhowdg.png-090689f3af4ff95582ab30ccfc38344e.ctex"
+path="res://.godot/imported/blhowdg.png-090689f3af4ff95582ab30ccfc38344e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/BackPack/AllItems/blhowdg.png"
-dest_files=["res://godot/imported/blhowdg.png-090689f3af4ff95582ab30ccfc38344e.ctex"]
+dest_files=["res://.godot/imported/blhowdg.png-090689f3af4ff95582ab30ccfc38344e.ctex"]
 
 [params]
 

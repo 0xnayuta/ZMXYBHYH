@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bklmpr5giwvmq"
-path="res://godot/imported/baodian_00046.png-286a9e951290ad14029dcddd846ac545.ctex"
+path="res://.godot/imported/baodian_00046.png-286a9e951290ad14029dcddd846ac545.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/HeroPicture/Role2/BingYu/impact/baodian_00046.png"
-dest_files=["res://godot/imported/baodian_00046.png-286a9e951290ad14029dcddd846ac545.ctex"]
+dest_files=["res://.godot/imported/baodian_00046.png-286a9e951290ad14029dcddd846ac545.ctex"]
 
 [params]
 

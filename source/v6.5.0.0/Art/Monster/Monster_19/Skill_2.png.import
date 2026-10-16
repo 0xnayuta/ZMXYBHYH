@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dy7p8utimhili"
-path="res://godot/imported/Skill_2.png-d3b7aa6bce11e118eefd9c28454a9a6b.ctex"
+path="res://.godot/imported/Skill_2.png-d3b7aa6bce11e118eefd9c28454a9a6b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/Monster/Monster_19/Skill_2.png"
-dest_files=["res://godot/imported/Skill_2.png-d3b7aa6bce11e118eefd9c28454a9a6b.ctex"]
+dest_files=["res://.godot/imported/Skill_2.png-d3b7aa6bce11e118eefd9c28454a9a6b.ctex"]
 
 [params]
 
