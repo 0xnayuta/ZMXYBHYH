@@ -28,7 +28,7 @@ func _on_qx_pressed() -> void:
 
 
 func _on_qd_pressed() -> void:
-	Signals.emit_signal("_on_Choose_pressed")
+	Signals.choose_pressed.emit()
 	is_qd = true
 	queue_free()
 

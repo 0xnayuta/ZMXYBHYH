@@ -1,5 +1,5 @@
 extends Node2D
-class_name lsh
+class_name Lsh
 
 const FULLSCREEN_DESIGN_SIZE := Vector2(984.0, 508.0)
 const FULLSCREEN_CONTENT_CENTER := Vector2(492.0, 254.0)

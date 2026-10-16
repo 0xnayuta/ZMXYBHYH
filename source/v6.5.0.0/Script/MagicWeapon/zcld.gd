@@ -1,5 +1,5 @@
 extends BaseMagicWeapon
-class_name zcld
+class_name Zcld
 
 var is_zcld = true
 

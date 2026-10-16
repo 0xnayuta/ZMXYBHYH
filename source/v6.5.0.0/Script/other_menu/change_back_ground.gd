@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-signal setBg(index: int)
+signal background_changed(index: int)
 
 
 func _on_game_1_bg_pressed() -> void:
@@ -40,4 +40,4 @@ func _on_close_pressed() -> void:
 func set_bg_image(index: int) -> void:
 	MainSet.set_data["MainMenuBG"] = clampi(index, 1, 6)
 	MemoryClass.main_bc()
-	setBg.emit(MainSet.set_data["MainMenuBG"])
+	background_changed.emit(MainSet.set_data["MainMenuBG"])

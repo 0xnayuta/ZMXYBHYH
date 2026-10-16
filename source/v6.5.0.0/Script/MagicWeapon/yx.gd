@@ -1,5 +1,5 @@
 extends BaseMagicWeapon
-class_name yx
+class_name Yx
 
 var ADDTime: float
 var ADDBl: float = 1

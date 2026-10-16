@@ -1,7 +1,7 @@
 class_name OldMemoryFacade
 extends RefCounted
 
-signal Main_Init(index: int)
+signal main_initialized(index: int)
 
 var isInit: bool = true
 
@@ -13,7 +13,7 @@ func CheckOutTime() -> bool:
 func readData(index: int) -> void:
 	if index == 0:
 		MemoryClass.main_dq()
-		Main_Init.emit(int(MainSet.set_data.get("MainMenuBG", 1)))
+		main_initialized.emit(int(MainSet.set_data.get("MainMenuBG", 1)))
 		return
 
 	Global.cd_path = _archive_path(index)

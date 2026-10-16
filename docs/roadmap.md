@@ -36,14 +36,22 @@ flowchart TD
 
     subgraph P5 [Phase 5: 全工程命名规范化与全局命名空间提纯]
         direction TB
-        E1[Phase 5.1: class_name 命名提纯与弱占位剥离] --> E2[Phase 5.2: 核心公共函数驼峰转下划线双轨过渡]
-        E2 --> E3[Phase 5.3: 目录与场景文件命名模块化渐进规范]
+        E1[Phase 5.1: 弱占位剥离与孤岛场景清理] --> E2[Phase 5.2: 历史死代码目录彻底根除]
+        E2 --> E3[Phase 5.3: 全局符号注册表收敛纯化]
+    end
+
+    subgraph P6 [Phase 6: 全工程深度命名规范化与数据契约演进]
+        direction TB
+        F1[Phase 6.1: 全局符号与信号微创提纯] --> F2[Phase 6.2: 核心安全与多态入口治理]
+        F2 --> F3[Phase 6.3: 核心中枢函数驼峰转下划线双轨兼容]
+        F3 --> F4[Phase 6.4: 弱类型字典键契约化与文件目录收敛]
     end
 
     P1 -->|提供 100% 确定性安全网| P2
     P2 -->|巩固核心数据流与基线| P3
     P3 -->|形成稳定可玩游玩闭环| P4
     P4 -->|资产纯净排版合规| P5
+    P5 -->|全局符号底数扎实| P6
 ```
 
 ---
@@ -173,40 +181,75 @@ flowchart TD
 5. **实机战斗 0 错误 0 警告**：全流程花果山 Stage 1~4 及胜利结算实测日志维持绝对的 **0 ERROR、0 WARNING**。
 ---
 
-## Phase 5: 全工程命名规范化与全局命名空间提纯 (Naming Conventions & Namespace Purification)
+## Phase 5: 全工程命名规范化与全局命名空间提纯 (Naming Conventions & Namespace Purification) [已完成 · Done]
 
 ### 5.1 阶段定位与目标
 - **定位**：对标 Godot 4.7 官方工程最佳实践（*Project Organization*）与官方 *GDScript Style Guide*，彻底解决工程从 Flash 逆向继承而来的命名混乱、大驼峰函数、非规范缩写以及严重的全局类名（`class_name`）空间污染问题。
 - **核心目标**：在 100% 保持运行时行为与资产引用零破坏的前提下，建立符合 Godot 官方规范与现代软件工程标准的命名体系，净化全局类型树，降低后续跨平台打包与多系统协同的心智负担。
 
-### 5.2 实施子阶段规划（三步走渐进方案）
+### 5.2 实施子阶段与成果
 
-#### 1. Phase 5.1: 全局 `class_name` 命名提纯与弱占位剥离 (Namespace Purification) [当前进行中]
+#### 1. Phase 5.1: 全局 `class_name` 命名提纯与弱占位剥离 (Namespace Purification) [已完成 · Done]
+- **核心成果**：
+  1. 全盘扫描 508 个 `class_name`，将 271 个完全 0 跨脚本引用的关卡脚本（`Level_23` ~ `Level_75`）、怪物脚本（`Monster_100` 等）首行弱占位声明 100% 安全剥离；
+  2. 彻底释放注册表空间，保留 237 个真正具备跨脚本类型消费/继承关系的活跃核心类。
+
+#### 2. Phase 5.2: 历史死代码目录与孤岛母体彻底清除 [已完成 · Done]
+- **核心成果**：
+  1. 彻底物理与版本控制移除 `Buff/`（`BasicBuff`、`Fire`）与 `Loder/` 目录，释放通用类名污染；
+  2. 移除 205 KB 早期废弃特效母体 `special_affect.tscn`、早期开屏 `boot.tscn`、主菜单草稿 `Main_Menu_1~3.tscn`、网络校验 `GetTime.tscn`、触屏轮盘 `TouchDirection.tscn` 及脱机短路防作弊脚本 `CK.gd`。
+
+#### 3. Phase 5.3: 目录与场景/脚本文件名的模块化渐进规范化 [已完成 · Done]
+- **核心成果**：
+  1. 根层非标异味目录归零，仅保留官方标准隐藏目录 `.godot/` 与 9 个合法业务目录；
+  2. 根层文件仅保留合法核心单例与 `project.godot`；
+  3. 资产与脚本 UID 完备对齐，全工程持续维持 0 ERROR 0 WARNING。
+
+### 5.3 验收落地与实测指标
+1. **弱占位清零**：0 跨脚本引用的 `class_name` 从 271 个下降至 **0 个**，活跃有效类名锁定为 237 个；
+2. **死代码清零**：消除 20 个死文件，净减少 9,295 行冗余数据；
+3. **总门禁全绿**：`python scripts/check_all.py` 四大维度 100% PASS（1,242 场景 0 断裂引用，874 脚本 0 编译错误）；
+4. **实机 0 错误 0 警告**：花果山全流程战斗实测日志维持绝对的 **0 ERROR、0 WARNING**。
+
+---
+
+## Phase 6: 全工程深度命名规范化与数据契约演进 (Deep Naming & Data Contract Modernization)
+
+### 6.1 阶段定位与目标
+- **定位**：在 Phase 5 净化全局符号底数的基础上，向代码内部深水区进军，对标现代业界工业级 GDScript 规范，分层分类治理残存的畸形全局类名、违规信号、高危撞车变量、多态 AI 决策入口及弱类型数据字典流。
+- **核心目标**：实现全工程全局类名 100% 纯正 PascalCase、信号 100% 规范过去时、消除与 Node 原生属性撞车的高危变量，并平稳推进核心公共 API 驼峰转下划线与中文字典键契约化。
+
+### 6.2 实施子阶段规划（四步走渐进方案）
+
+#### 1. Phase 6-1: 全局符号与信号微创提纯 (Global Symbols & Signals Purification) [当前进行中]
 - **核心任务**：
-  1. **消灭畸形全局类名**：彻底修复或剥离 29 个非 PascalCase 畸形类名（如包含下划线、纯小写拼音缩写如 `mr_blood_bar`、`lsh`、`lxdy`、`role1` 等）；
-  2. **剥离场景专属弱占位**：对 271 个完全 0 跨脚本消费的关卡脚本（`Level_23` ~ `Level_75`）、怪物脚本（`Monster_100` 等）、地图脚本，安全剥离其首行的 `class_name` 弱占位声明；
-  3. **固化核心领域模型**：保留并规范真正有继承消费（如 `BaseMonster`、`BaseRole`）或静态类型注解消费的 237 个核心类名，确保全局符号注册表高度纯净；
-- **收益**：彻底消除 Godot 编辑器“新建节点”面板与自动补全中数百个垃圾类的干扰，彻底规避符号撞车与命名空间污染。
+  1. **规范 8 个畸形全局类名**：彻底将 `lsh` -> `Lsh`，`lxdy` -> `Lxdy`，`role6` -> `Role6`，`dhqf` -> `Dhqf`，`qlsword` -> `QlSword`，`yx` -> `Yx`，`zcld` -> `Zcld`，`Monster_59` -> `Monster59` 及其所有跨脚本引用方同步更名；
+  2. **规范 3 个违规信号**：
+     - `_on_Choose_pressed`（`Signals.gd`）-> `choose_pressed`；
+     - `Main_Init`（`Script/Compat/OldMemoryFacade.gd`）-> `main_initialized`；
+     - `setBg`（`Script/other_menu/change_back_ground.gd`）-> `background_changed`；
+- **验收指标**：全工程 `class_name` 100% 达成纯正 PascalCase（0 个小写/拼音缩写/下划线残留），信号 100% 符合官方 snake_case 过去时规范。
 
-#### 2. Phase 5.2: 核心单例与公共 API 命名对齐 (Functions & Properties Realignment)
+#### 2. Phase 6-2: 核心安全与多态入口治理 (Collision Variables & AI Polymorphism)
 - **核心任务**：
-  1. 将 1,221 个历史 Flash AS2 大驼峰风格函数（如 `All_equ()`, `AddStar()`, `CheckIceBuff()`）规范化为现代 GDScript 官方推荐的 `snake_case`；
-  2. **双轨兼容别名过渡机制**：在核心单例（`Global.gd`、`PlayerData.gd`、`RoleProp`）中引入规范新函数，保留旧驼峰函数作为转发代理，确保调用方零中断；
-  3. **动画与反射安全保护**：建立 `AnimationPlayer` 动画轨道调用白名单，确保内嵌方法关键帧不失效。
+  1. **消除与 Node 原生属性撞车的高危成员变量**：
+     - 重构在 26 个脚本中定义的 `var Position` -> `var target_pos` 或 `var move_position`（彻底杜绝与 `Node2D.position` 的大小写冲突与混淆）；
+     - 重构在 22 个脚本中定义的 `var Name` -> `var item_name` 或 `var role_name`（消除与 `Node.name` 的命名冲突）；
+  2. **重构 174 处怪物的核心 AI 决策入口**：
+     - 编写专有 AST 脚本，将全盘 174 个怪物脚本中继承自 `BaseMonster` 的多态虚函数 `Monster_Intelligence()` 安全统一重命名为官方推荐的 `ai_think()` 或 `_ai_tick()`。
 
-#### 3. Phase 5.3: 目录与场景/脚本文件名的模块化渐进规范化 (Files & Directories Standardization)
+#### 3. Phase 6-3: 核心中枢函数驼峰转下划线双轨兼容 (Core Facade Dual-Track Functions)
 - **核心任务**：
-  1. 消除 729 个非 `snake_case` 目录与 966 个非规范场景文件名带来的跨平台导出隐患；
-  2. 采用“业务模块逐步收敛”策略（优先规范 `Scene/Main_menu/`、`Scene/BackPack/` 等核心子域）；
-  3. 研发场景文本 `ext_resource`、`uid` 与脚本 `load/preload` 原子同步工具，保证重命名过程零漏改。
+  1. 针对 `Global.gd`（123 个）、`BaseHero.gd`（86 个）中的高频 Flash AS2 大驼峰函数，实施**“双轨兼容别名机制”**；
+  2. 新增规范的 `snake_case` 主函数（如 `check_ice_buff()`），旧驼峰函数保留为一行代理转发，确保未迁移场景与 `AnimationPlayer` 方法轨道零中断；
+  3. 逐步收敛调用点，最终安全下线旧代理函数。
 
-### 5.3 执行边界与红线
-- ⚠️ **无损运行原则**：任何命名重构必须保持游戏逻辑语义、数值与流程 100% 不变；
-- ⚠️ **双重门禁防线**：每完成一个子阶段，必须通过 `python scripts/check_all.py` 四大门禁（全盘场景 0 断裂引用，脚本 0 Parse Error）及实机运行 0 ERROR 0 WARNING；
-- ⚠️ **原子提交约束**：严格按子阶段与模块进行独立的 Conventional Commits 本地原子提交。
+#### 4. Phase 6-4: 弱类型数据字典键契约化与文件目录收敛 (Data Contract & Asset Path Convergence)
+- **核心任务**：
+  1. 治理 220 种、2,625 次中文字典键弱类型引用（`player_data["名字"]`、`["等级"]` 等），建立强类型 `PlayerDataModel` 或 `DataKeys` 常量映射；
+  2. 在后续新模块开发（如人间大地图、地府关卡）中，强制推行全小写 `snake_case` 资源与场景文件命名，并提供路径与 `uid` 原子同步工具。
 
-### 5.4 验收指标
-1. 全工程无任何非 PascalCase 畸形 `class_name`；
-2. 关卡与怪物等场景专属脚本的无意义全局类名 100% 剥离；
-3. 全工程 1,242 个场景 0 断裂引用，874 脚本 0 编译错误；
-4. Godot 实机运行日志维持绝对的 **0 ERROR、0 WARNING**。
+### 6.3 执行边界与红线
+- ⚠️ **无损运行原则**：所有符号重命名与多态更新必须确保业务逻辑语义、数值与时序 100% 不变；
+- ⚠️ **双重门禁防线**：每个子阶段必须通过 `python scripts/check_all.py` 四大门禁与实机全流程冒烟 0 ERROR 0 WARNING；
+- ⚠️ **原子提交约束**：严格按 Phase 6-1 至 6-4 独立进行规范的 Conventional Commits 本地原子提交。

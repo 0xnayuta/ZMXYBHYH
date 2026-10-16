@@ -1,5 +1,5 @@
 extends BaseMagicWeapon
-class_name dhqf
+class_name Dhqf
 
 var def_timer: Timer
 

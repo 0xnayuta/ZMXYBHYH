@@ -1,5 +1,5 @@
 extends BaseMagicWeapon
-class_name qlsword
+class_name QlSword
 
 var floor_instance: Node2D = null
 var floor_timer: Timer = Timer.new()

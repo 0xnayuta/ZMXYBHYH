@@ -1,5 +1,5 @@
 extends BaseObject
-class_name role6
+class_name Role6
 
 const BaseMonster = preload("res://Script/Base/BaseMonster.gd")
 const BaseHero = preload("res://Script/Base/BaseHero.gd")

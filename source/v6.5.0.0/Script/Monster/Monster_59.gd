@@ -1,5 +1,5 @@
 extends BaseMonster
-class_name Monster_59
+class_name Monster59
 var RoleBeHitCount = Global.PlayerBeHitCount
 
 
