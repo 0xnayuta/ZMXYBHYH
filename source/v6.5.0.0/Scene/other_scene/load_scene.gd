@@ -110,7 +110,9 @@ func _show_integrity_failure() -> void:
 
 func _begin_load_after_first_frame() -> void:
     await get_tree().process_frame
-    await RenderingServer.frame_post_draw
+    # headless（无渲染循环）下 frame_post_draw 永不触发，会挂死加载流程
+    if DisplayServer.get_name() != "headless":
+        await RenderingServer.frame_post_draw
     _visible_since_msec = Time.get_ticks_msec()
     await _start_archive_preload()
 
@@ -118,7 +120,8 @@ func _begin_load_after_first_frame() -> void:
 func _start_archive_preload() -> void:
     if _is_battle_target_scene():
         _battle_vram_baseline_bytes = -1
-        await RenderingServer.frame_post_draw
+        if DisplayServer.get_name() != "headless":
+            await RenderingServer.frame_post_draw
         _log_battle_vram("battle loading page")
     if not _is_battle_target_scene():
         MAIN_SWORD_ARRAY_WEAPON_SCRIPT.clear_prewarmed_sword_resources()
@@ -402,12 +405,14 @@ func _finish_loading() -> void:
     var skill_keys: Variant = PlayerData.player_data.get(DataKeys.SKILL_LEARNED, {}).get("技能键位", {})
     var equipped_skills: Array = skill_keys.values() if skill_keys is Dictionary else []
     if is_battle_target:
-        await RenderingServer.frame_post_draw
+        if DisplayServer.get_name() != "headless":
+            await RenderingServer.frame_post_draw
         _log_battle_vram("archive preload queue")
         loading_text.text = "正在准备角色技能资源..."
         _set_progress(0.91)
         await Global.prewarm_current_role_runtime_resources(role_id)
-        await RenderingServer.frame_post_draw
+        if DisplayServer.get_name() != "headless":
+            await RenderingServer.frame_post_draw
         _log_battle_vram("role runtime resources")
         if role_id == 1:
             if equipped_skills.has("hmz_ws") and _is_skill_awaken_active("hmz_ws"):
@@ -423,10 +428,12 @@ func _finish_loading() -> void:
         elif role_id == 3:
             await BADI_EFFECT_SCRIPT.prewarm_frames()
             await STREAMING_ROLE_BULLET_SCRIPT.prewarm_bullet_frames("Role3Bullet2")
-        await RenderingServer.frame_post_draw
+        if DisplayServer.get_name() != "headless":
+            await RenderingServer.frame_post_draw
         _log_battle_vram("role-specific before sword array")
         await MAIN_SWORD_ARRAY_WEAPON_SCRIPT.prewarm_active_sword_resources_async()
-        await RenderingServer.frame_post_draw
+        if DisplayServer.get_name() != "headless":
+            await RenderingServer.frame_post_draw
         _log_battle_vram("role-specific and sword array")
         _set_progress(0.92)
         await get_tree().process_frame
@@ -439,17 +446,20 @@ func _finish_loading() -> void:
             await MIRROR_SCRIPT.prewarm_stream_frames()
         else:
             Global.prewarm_magic_weapon_runtime_resources(equipped_magic_weapon)
-        await RenderingServer.frame_post_draw
+        if DisplayServer.get_name() != "headless":
+            await RenderingServer.frame_post_draw
         _log_battle_vram("magic weapon")
         _set_progress(0.94)
         await get_tree().process_frame
     if is_battle_target:
         await Global.preload_combat_hit_resources()
-        await RenderingServer.frame_post_draw
+        if DisplayServer.get_name() != "headless":
+            await RenderingServer.frame_post_draw
         _log_battle_vram("combat hit resources")
         await get_tree().process_frame
         await Global.prewarm_active_pet_runtime_resources()
-        await RenderingServer.frame_post_draw
+        if DisplayServer.get_name() != "headless":
+            await RenderingServer.frame_post_draw
         _log_battle_vram("active pet")
         await get_tree().process_frame
         if role_id == 4:
@@ -469,7 +479,8 @@ func _finish_loading() -> void:
         loading_text.text = "正在准备副本怪物资源..."
         _set_progress(0.94)
         await _prewarm_target_level_resources()
-        await RenderingServer.frame_post_draw
+        if DisplayServer.get_name() != "headless":
+            await RenderingServer.frame_post_draw
         _log_battle_vram("target level monsters")
         _set_progress(0.98)
         await get_tree().process_frame
@@ -684,11 +695,13 @@ func _covered_change_to_packed_scene(packed_scene: PackedScene) -> void:
     tree.root.add_child(new_scene)
     tree.current_scene = new_scene
     await tree.process_frame
-    await RenderingServer.frame_post_draw
+    if DisplayServer.get_name() != "headless":
+        await RenderingServer.frame_post_draw
     if _is_battle_target_scene():
         _log_battle_vram("level scene instantiated")
     await tree.process_frame
-    await RenderingServer.frame_post_draw
+    if DisplayServer.get_name() != "headless":
+        await RenderingServer.frame_post_draw
     if new_scene == null or not is_instance_valid(new_scene) or not new_scene.is_inside_tree():
         return
     var role_information := new_scene.get_tree().get_first_node_in_group("RoleInformation")

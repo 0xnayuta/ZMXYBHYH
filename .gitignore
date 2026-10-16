@@ -98,3 +98,12 @@ desktop.ini
 *.suo
 *.user
 .omp/
+
+# ==========================================
+# 关卡冒烟夹具临时产物 (level_test_runner.py)
+# ==========================================
+level_smoke_driver.gd
+level_smoke_driver.gd.uid
+level_smoke_driver.tscn
+level_smoke_report.json
+level_smoke_run.log
