@@ -1766,7 +1766,7 @@ func be_hit_back(target_boss, target_obj):
 
 
 			var now_msec: = Time.get_ticks_msec()
-			var blocked_until: = int(get_meta("eight_immortals_knockback_until", 0))
+			var blocked_until: int = int(get_meta("eight_immortals_knockback_until")) if has_meta("eight_immortals_knockback_until") else 0
 			if now_msec >= blocked_until:
 				velocity = custom_velocity as Vector2
 				set_meta("eight_immortals_knockback_until", now_msec + 120)
@@ -1912,10 +1912,13 @@ func cure_Hp(value: int = 0):
 	return effective
 
 func _pet_turtle_link_unit() -> Node:
-	var unit_ref = get_meta("pet_turtle_link_unit_ref", null)
+	if not has_meta("pet_turtle_link_unit_ref"):
+		return null
+	var unit_ref = get_meta("pet_turtle_link_unit_ref")
 	if not (unit_ref is WeakRef):
 		return null
-	if Time.get_ticks_msec() >= int(get_meta("pet_turtle_link_until_msec", 0)):
+	var until_msec: int = int(get_meta("pet_turtle_link_until_msec")) if has_meta("pet_turtle_link_until_msec") else 0
+	if Time.get_ticks_msec() >= until_msec:
 		_clear_pet_turtle_link_meta()
 		return null
 	var unit_value = unit_ref.get_ref()
@@ -1938,7 +1941,9 @@ func _apply_pet_turtle_damage_share(value: int) -> int:
 	var unit: = _pet_turtle_link_unit()
 	if unit == null or not unit.has_method("receive_linked_damage"):
 		return value
-	var percent: = clampi(int(get_meta("pet_turtle_link_percent", 0)), 0, 100)
+	if not has_meta("pet_turtle_link_percent"):
+		return value
+	var percent: = clampi(int(get_meta("pet_turtle_link_percent")), 0, 100)
 	if percent <= 0:
 		return value
 	var requested_share: = clampi(int(round(float(value) * float(percent) / 100.0)), 0, value)
@@ -1948,12 +1953,12 @@ func _apply_pet_turtle_damage_share(value: int) -> int:
 	return maxi(0, value - actual_share)
 
 func _apply_pet_turtle_link_heal(value: int) -> void :
-	if value <= 0 or bool(get_meta("pet_turtle_skip_link_heal", false)):
+	var skip_heal: bool = bool(get_meta("pet_turtle_skip_link_heal")) if has_meta("pet_turtle_skip_link_heal") else false
+	if value <= 0 or skip_heal:
 		return
 	var unit: = _pet_turtle_link_unit()
 	if unit != null and unit.has_method("receive_linked_heal"):
 		unit.call("receive_linked_heal", value)
-
 func _clear_pet_turtle_link_meta() -> void :
 	for key in ["pet_turtle_link_unit_ref", "pet_turtle_link_percent", "pet_turtle_link_until_msec"]:
 		if has_meta(key):
@@ -2661,7 +2666,9 @@ func _on_hit_box_area_entered(area: Area2D) -> void :
 func _is_summon_or_pet_target(target: Node) -> bool:
 	if target == null or not is_instance_valid(target):
 		return true
-	if target.get_meta("pet_tiger_unit", false) or target.get_meta("is_summon", false):
+	var is_tiger: bool = bool(target.get_meta("pet_tiger_unit")) if target.has_meta("pet_tiger_unit") else false
+	var is_sum: bool = bool(target.get_meta("is_summon")) if target.has_meta("is_summon") else false
+	if is_tiger or is_sum:
 		return true
 	if target.has_method("get") and target.get("is_summon") == true:
 		return true
