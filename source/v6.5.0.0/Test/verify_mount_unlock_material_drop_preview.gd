@@ -1,6 +1,6 @@
 extends Node
 
-const LEVEL_INFO_SCENE_PATH := "res://Scene/OtherScene/LevelInfo.tscn"
+const LEVEL_INFO_SCENE_PATH := "res://Scene/other_scene/LevelInfo.tscn"
 const PREVIEW_CASES := [
 	{"level_name": "通天教主", "stage_path": "res://Scene/Level/Level_46.tscn", "material_id": "139300016"},
 	{"level_name": "未央宫", "stage_path": "res://Scene/Level/Level_49.tscn", "material_id": "139300014V1"},

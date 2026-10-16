@@ -1,0 +1,60 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/main_menu/BodyTrainingDetail.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/lianti/detail_panel.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/lianti/zodiac_1.png" id="3"]
+[ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="4"]
+[ext_resource type="Texture2D" path="res://Art/lianti/3.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/lianti/7.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/lianti/5.png" id="7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pet_page"]
+bg_color = Color(0.415686, 0.203922, 0.0705882, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.878431, 0.662745, 0.294118, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pet_page_hover"]
+bg_color = Color(0.552941, 0.298039, 0.0784314, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.878431, 0.662745, 0.294118, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pet_page_selected"]
+bg_color = Color(0.643137, 0.364706, 0.0901961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.878431, 0.662745, 0.294118, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[resource]
+_bundled = {
+"conn_count": 3,
+"conns": PackedInt32Array(10, 0, 49, 48, 2, 0, 0, 11, 0, 49, 50, 2, 0, 0, 12, 0, 49, 51, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("BodyTrainingDetail", "script", "Node2D", "InputBlocker", "offset_left", "offset_top", "offset_right", "offset_bottom", "color", "ColorRect", "DetailPanel", "z_index", "texture_filter", "texture", "Sprite2D", "DetailIcon", "position", "DetailLevel", "theme_override_colors/font_color", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "horizontal_alignment", "vertical_alignment", "Label", "DetailAttribute", "DetailAttributeNext", "DetailProgress", "DetailMaterialIcon", "DetailMaterial", "CloseButton", "focus_mode", "texture_normal", "texture_pressed", "texture_hover", "TextureButton", "TrainButton", "mouse_default_cursor_shape", "theme_override_colors/font_pressed_color", "theme_override_colors/font_hover_color", "theme_override_styles/normal", "theme_override_styles/pressed", "theme_override_styles/hover", "theme_override_styles/disabled", "text", "Button", "TrainAllButton", "_on_close_pressed", "pressed", "_on_train_button_pressed", "_on_train_all_button_pressed"),
+"node_count": 13,
+"node_ids": PackedInt32Array(2003527235, 1722137581, 1739270748, 1061755893, 950505772, 59039609, 463467229, 1283074893, 1817107405, 172582785, 1871901019, 1668466184, 1668466185),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 9, 3, -1, 5, 4, 1, 5, 1, 6, 2, 7, 2, 8, 3, 0, 0, 0, 14, 10, -1, 3, 11, 4, 12, 4, 13, 5, 0, 0, 0, 14, 15, -1, 4, 11, 6, 12, 4, 16, 7, 13, 8, 0, 0, 0, 25, 17, -1, 12, 11, 6, 4, 9, 5, 10, 6, 11, 7, 12, 18, 13, 19, 14, 20, 15, 21, 16, 22, 17, 23, 4, 24, 4, 0, 0, 0, 25, 26, -1, 10, 11, 6, 4, 18, 5, 19, 6, 20, 7, 21, 18, 22, 21, 16, 22, 23, 23, 4, 24, 4, 0, 0, 0, 25, 27, -1, 10, 11, 6, 4, 24, 5, 19, 6, 25, 7, 21, 18, 22, 21, 16, 22, 23, 23, 4, 24, 4, 0, 0, 0, 25, 28, -1, 12, 11, 6, 4, 26, 5, 27, 6, 28, 7, 29, 18, 30, 19, 31, 20, 15, 21, 16, 22, 23, 23, 4, 24, 4, 0, 0, 0, 14, 29, -1, 3, 11, 6, 12, 4, 16, 32, 0, 0, 0, 25, 30, -1, 12, 11, 6, 4, 33, 5, 34, 6, 35, 7, 36, 18, 13, 19, 14, 20, 15, 21, 16, 22, 23, 23, 4, 24, 4, 0, 0, 0, 36, 31, -1, 9, 11, 15, 4, 37, 5, 38, 6, 39, 7, 40, 32, 41, 33, 42, 34, 43, 35, 44, 0, 0, 0, 46, 37, -1, 17, 11, 15, 4, 45, 5, 46, 6, 47, 7, 48, 32, 41, 38, 6, 18, 30, 39, 30, 40, 30, 21, 16, 22, 49, 41, 50, 42, 51, 43, 51, 44, 52, 45, 53, 0, 0, 0, 46, 47, -1, 17, 11, 15, 4, 54, 5, 46, 6, 55, 7, 48, 32, 41, 38, 6, 18, 30, 39, 30, 40, 30, 21, 16, 22, 49, 41, 50, 42, 51, 43, 51, 44, 52, 45, 56, 0),
+"variants": [ExtResource("1"), -10000.0, 10000.0, Color(0, 0, 0, 0), 1, ExtResource("2"), 2, Vector2(-3, -127), ExtResource("3"), -60.0, -92.0, 60.0, -64.0, Color(1, 0.941176, 0.470588, 1), Color(0.2, 0.07451, 0.019608, 1), 3, ExtResource("4"), 20, -102.0, -45.0, -25.0, -17.0, Color(0.2, 0.12, 0.07, 1), 16, 18.0, 95.0, 2.0, -9.0, 72.0, 19.0, Color(1, 1, 1, 1), Color(0.1, 0.1, 0.1, 1), Vector2(-1, 70), -48.0, 92.0, 41.0, 119.0, 169.0, -234.0, 227.0, -178.0, 0, ExtResource("5"), ExtResource("6"), ExtResource("7"), -101.0, 151.0, -6.0, 189.0, 14, SubResource("StyleBoxFlat_pet_page"), SubResource("StyleBoxFlat_pet_page_hover"), SubResource("StyleBoxFlat_pet_page_selected"), "修炼", -1.0, 104.0, "一键修炼"],
+"version": 3
+}

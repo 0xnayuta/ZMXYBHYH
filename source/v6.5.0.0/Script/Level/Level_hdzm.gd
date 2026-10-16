@@ -7,12 +7,12 @@ func _return_to_current_map() -> void:
 	var map_num = int(PlayerData.player_data.get("Map_num", 4))
 	map_num = clamp(map_num, 1, 9)
 	if map_num == 8 and PlayerData.player_data.get("Map_variant", "") == "Map_8_1":
-		Global.change_scene("res://Scene/Main_menu/Map_8_1.tscn")
+		Global.change_scene("res://Scene/main_menu/Map_8_1.tscn")
 		return
 	if map_num == 9 and PlayerData.player_data.get("Map_variant", "") == "Map_9_1":
-		Global.change_scene("res://Scene/Main_menu/Map_9_1.tscn")
+		Global.change_scene("res://Scene/main_menu/Map_9_1.tscn")
 		return
-	Global.change_scene("res://Scene/Main_menu/Map_" + str(map_num) + ".tscn")
+	Global.change_scene("res://Scene/main_menu/Map_" + str(map_num) + ".tscn")
 
 
 func _ready() -> void:

@@ -1331,7 +1331,7 @@ func _leave_level_from_exit() -> void:
 		if MainSet.set_data["剧情跳过"]:
 			Global.change_scene("res://Scene/Level/victory.tscn")
 		else:
-			Global.change_scene("res://Scene/Main_menu/Game_over_1.tscn")
+			Global.change_scene("res://Scene/main_menu/Game_over_1.tscn")
 	elif self is Level19:
 		if self.Canthro:
 			if not _restart_level_for_auto_battle():

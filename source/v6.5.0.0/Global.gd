@@ -128,7 +128,7 @@ var MgCdPic
 var zhen_fa
 var LHHJBossList = {}
 
-const BASIC_AR_BUTTON_PATH := "res://Scene/OtherScene/BacisArButton.tscn"
+const BASIC_AR_BUTTON_PATH := "res://Scene/other_scene/BacisArButton.tscn"
 const ADD_WEAPON_BULLET_PATHS := {
 	"CloudSwordBullet": "res://Scene/MagicWeapon/HitBulletLazy/CloudSwordBullet.tscn",
 	"CucurFire_1": "res://Scene/MagicWeapon/HitBulletLazy/CucurFire_1.tscn",
@@ -191,8 +191,8 @@ const BOSS_BLOOD_PATH := "res://Scene/MonsterBlood/BossBlood.tscn"
 const MONSTER_BE_HIT_PATH := "res://Scene/MonsterDamage/monster_be_hit.tscn"
 const SPECIAL_AFFECT_SLIM_DIR := "res://Scene/Base/SpecialAffectSlim"
 const ROLE_BE_HIT_EFFECT_PATH := "res://Scene/Base/RoleBeHitEffect.tscn"
-const AURA_PATH := "res://Scene/OtherScene/Auras.tscn"
-const BUFF_ICON_PATH := "res://Scene/OtherScene/BuffIcon.tscn"
+const AURA_PATH := "res://Scene/other_scene/Auras.tscn"
+const BUFF_ICON_PATH := "res://Scene/other_scene/BuffIcon.tscn"
 const DAMAGE_NUMBER_PATH := "res://Scene/hittest/DamageNumber.tscn"
 const MISS_EFFECT_PATH := "res://Scene/hittest/miss_effect.tscn"
 const COMBO_PATH := "res://Scene/show_text/combo.tscn"
@@ -868,7 +868,7 @@ func get_level_info_monster_ids(level_name: String) -> Array:
 		return []
 	var level_info_scene: PackedScene = LevelInfo as PackedScene
 	if level_info_scene == null:
-		level_info_scene = _load_scene("res://Scene/OtherScene/LevelInfo.tscn") as PackedScene
+		level_info_scene = _load_scene("res://Scene/other_scene/LevelInfo.tscn") as PackedScene
 	if level_info_scene == null:
 		return []
 	var probe := level_info_scene.instantiate()
@@ -1557,8 +1557,8 @@ func is_archive_exit_scene(scene_path: String) -> bool:
 	return (
 		scene_path
 		in [
-			"res://Scene/Main_menu/Main_Menu.tscn",
-			"res://Scene/Main_menu/ChoosePlayer.tscn",
+			"res://Scene/main_menu/Main_Menu.tscn",
+			"res://Scene/main_menu/ChoosePlayer.tscn",
 		]
 	)
 
@@ -2793,7 +2793,7 @@ var Star = null
 
 func AddStar(parent, Type):
 	if not Star:
-		Star = _load_scene("res://Scene/OtherScene/star.tscn")
+		Star = _load_scene("res://Scene/other_scene/star.tscn")
 	var target = instance_scene(Star, parent)
 	target.Type = Type
 	return target
@@ -2801,7 +2801,7 @@ func AddStar(parent, Type):
 
 func AddRoleButton(parent, MyName, MyFather):
 	if not RoleButton:
-		RoleButton = _load_scene("res://Scene/OtherScene/role_button.tscn")
+		RoleButton = _load_scene("res://Scene/other_scene/role_button.tscn")
 	var target = instance_scene(RoleButton, parent)
 	target.MyName = MyName
 	target.MyFather = MyFather
@@ -2818,7 +2818,7 @@ func AddBasicArButton(parent, Num):
 
 func AddZhenFaHelp(parent, position):
 	if not ZhenFaHelp:
-		ZhenFaHelp = _load_scene("res://Scene/OtherScene/ZhenFaHelp.tscn")
+		ZhenFaHelp = _load_scene("res://Scene/other_scene/ZhenFaHelp.tscn")
 	var target = instance_scene(ZhenFaHelp, parent)
 	target.position = position
 	return target
@@ -2826,7 +2826,7 @@ func AddZhenFaHelp(parent, position):
 
 func AddZhenFaTuPo(parent, position, Father):
 	if not ZhenFaTuPo:
-		ZhenFaTuPo = _load_scene("res://Scene/OtherScene/ZhenFaTuPo.tscn")
+		ZhenFaTuPo = _load_scene("res://Scene/other_scene/ZhenFaTuPo.tscn")
 	var target = instance_scene(ZhenFaTuPo, parent)
 	target.position = position
 	target.Father = Father
@@ -2835,7 +2835,7 @@ func AddZhenFaTuPo(parent, position, Father):
 
 func AddZhenYanCureLevel(parent, position, Father):
 	if not ZhenYanCureLevel:
-		ZhenYanCureLevel = _load_scene("res://Scene/OtherScene/ZhenYanCureLevel.tscn")
+		ZhenYanCureLevel = _load_scene("res://Scene/other_scene/ZhenYanCureLevel.tscn")
 	var target = instance_scene(ZhenYanCureLevel, parent)
 	target.position = position
 	target.Father = Father
@@ -2844,7 +2844,7 @@ func AddZhenYanCureLevel(parent, position, Father):
 
 func Addzhenyanbutton(parent, position, LocNum, Father):
 	if not zhenyanbutton:
-		zhenyanbutton = _load_scene("res://Scene/OtherScene/zhenyanbutton.tscn")
+		zhenyanbutton = _load_scene("res://Scene/other_scene/zhenyanbutton.tscn")
 	var target = instance_scene(zhenyanbutton, parent)
 	target.position = position
 	target.LocNum = LocNum
@@ -2854,7 +2854,7 @@ func Addzhenyanbutton(parent, position, LocNum, Father):
 
 func Add_28Ui(parent, position):
 	if not _28Ui:
-		_28Ui = _load_scene("res://Scene/OtherScene/TwentyEightConstellations.tscn")
+		_28Ui = _load_scene("res://Scene/other_scene/TwentyEightConstellations.tscn")
 	var target = instance_scene(_28Ui, parent)
 	target.position = position
 	return target
@@ -2862,7 +2862,7 @@ func Add_28Ui(parent, position):
 
 func AddZhenFaUi(parent, position):
 	if not ZhenFaUi:
-		ZhenFaUi = _load_scene("res://Scene/OtherScene/ZhenFaUi.tscn")
+		ZhenFaUi = _load_scene("res://Scene/other_scene/ZhenFaUi.tscn")
 	var target = instance_scene(ZhenFaUi, parent)
 	target.position = position
 	return target
@@ -2870,7 +2870,7 @@ func AddZhenFaUi(parent, position):
 
 func AddZhenFaInfo(parent, position, Father):
 	if not ZhenFaInfo:
-		ZhenFaInfo = _load_scene("res://Scene/OtherScene/zhenfainfo.tscn")
+		ZhenFaInfo = _load_scene("res://Scene/other_scene/zhenfainfo.tscn")
 	var target = instance_scene(ZhenFaInfo, parent)
 	target.position = position
 	target.Father = Father
@@ -2879,7 +2879,7 @@ func AddZhenFaInfo(parent, position, Father):
 
 func AddZhenfalxbutton(parent, zhenfaName, Father):
 	if not Zhenfalxbutton:
-		Zhenfalxbutton = _load_scene("res://Scene/OtherScene/zhenfalxbutton.tscn")
+		Zhenfalxbutton = _load_scene("res://Scene/other_scene/zhenfalxbutton.tscn")
 	var target = instance_scene(Zhenfalxbutton, parent)
 	target.zhenfaName = zhenfaName
 	target.Father = Father
@@ -2888,7 +2888,7 @@ func AddZhenfalxbutton(parent, zhenfaName, Father):
 
 func Addhdgqmap(parent, position):
 	if not ReturnBackMap:
-		ReturnBackMap = _load_scene("res://Scene/OtherScene/ReturnBackMap.tscn")
+		ReturnBackMap = _load_scene("res://Scene/other_scene/ReturnBackMap.tscn")
 	var target = instance_scene(ReturnBackMap, parent)
 	target.position = position
 	return target
@@ -2896,7 +2896,7 @@ func Addhdgqmap(parent, position):
 
 func AddMonster141Aura(parent, position_, TargetMonster):
 	if not Monster141Aura:
-		Monster141Aura = _load_scene("res://Scene/OtherScene/NMWAura.tscn")
+		Monster141Aura = _load_scene("res://Scene/other_scene/NMWAura.tscn")
 	var target = instance_scene(Monster141Aura, parent)
 	target.TargetMonster = TargetMonster
 	target.position = position_
@@ -2905,7 +2905,7 @@ func AddMonster141Aura(parent, position_, TargetMonster):
 
 func Addlhhjhelp(parent, position):
 	if not lhhjhelp:
-		lhhjhelp = _load_scene("res://Scene/OtherScene/lhhj_help.tscn")
+		lhhjhelp = _load_scene("res://Scene/other_scene/lhhj_help.tscn")
 	var target = instance_scene(lhhjhelp, parent)
 	target.position = position
 	return target
@@ -2913,7 +2913,7 @@ func Addlhhjhelp(parent, position):
 
 func Addlistbutton(parent, selfName, Father, Num):
 	if not listbutton:
-		listbutton = _load_scene("res://Scene/OtherScene/list_button.tscn")
+		listbutton = _load_scene("res://Scene/other_scene/list_button.tscn")
 	var target = instance_scene(listbutton, parent)
 	target.selfName = selfName
 	target.Father = Father
@@ -2923,7 +2923,7 @@ func Addlistbutton(parent, selfName, Father, Num):
 
 func Addlhhj(parent, position):
 	if not Lhhj_:
-		Lhhj_ = _load_scene("res://Scene/OtherScene/lhhj.tscn")
+		Lhhj_ = _load_scene("res://Scene/other_scene/lhhj.tscn")
 	var target = instance_scene(Lhhj_, parent)
 	target.scale = Vector2.ONE
 	if position == Vector2.ZERO or position == Vector2(0, 0):
@@ -2935,7 +2935,7 @@ func Addlhhj(parent, position):
 
 func Addlhhjbutton(parent, selfName, Father):
 	if not lhhjbutton:
-		lhhjbutton = _load_scene("res://Scene/OtherScene/lhhj_button.tscn")
+		lhhjbutton = _load_scene("res://Scene/other_scene/lhhj_button.tscn")
 	var target = instance_scene(lhhjbutton, parent)
 	target.selfName = selfName
 	target.Father = Father
@@ -2960,7 +2960,7 @@ func AddMosaicHelp(parent, position):
 
 func AddLetterForPlayer(parent, position):
 	if not LetterForPlayer:
-		LetterForPlayer = _load_scene("res://Scene/OtherScene/ALetterForAllPlayers.tscn")
+		LetterForPlayer = _load_scene("res://Scene/other_scene/ALetterForAllPlayers.tscn")
 	var target = instance_scene(LetterForPlayer, parent)
 	target.position = position
 	return target
@@ -2987,7 +2987,7 @@ func AddMysteryShop(parent, position):
 
 func AddTransBox(parent, name_, Transmogrified_):
 	if not TransBox:
-		TransBox = _load_scene("res://Scene/OtherScene/TransmogtifiedBox.tscn")
+		TransBox = _load_scene("res://Scene/other_scene/TransmogtifiedBox.tscn")
 	var target = instance_scene(TransBox, parent)
 	target.SelfName_ = name_
 	target.Transmogrified_ = Transmogrified_
@@ -3038,7 +3038,7 @@ func AddHDZM(parent, Parent):
 
 func AddLSH(parent, Parent):
 	if not LSH:
-		LSH = _load_scene("res://Scene/OtherScene/lsh.tscn")
+		LSH = _load_scene("res://Scene/other_scene/lsh.tscn")
 	var target = instance_scene(LSH, parent)
 	target.scale = Vector2.ONE
 	target.position = viewport_center_for_parent(parent) - Vector2(492, 254)
@@ -3047,7 +3047,7 @@ func AddLSH(parent, Parent):
 
 func AddLXDY(parent, Parent):
 	if not LXDY:
-		LXDY = _load_scene("res://Scene/OtherScene/lxdy.tscn")
+		LXDY = _load_scene("res://Scene/other_scene/lxdy.tscn")
 	var target = instance_scene(LXDY, parent)
 	target.scale = Vector2.ONE
 	target.position = viewport_center_for_parent(parent) - Vector2(461, 282)
@@ -3065,7 +3065,7 @@ func AddMonsterInfo(parent, MonsterName, position):
 
 func AddBasicMonmentInfo(parent, ShowText, position):
 	if not BasicMonmentInfo:
-		BasicMonmentInfo = _load_scene("res://Scene/OtherScene/BasicMonmentInfo.tscn")
+		BasicMonmentInfo = _load_scene("res://Scene/other_scene/BasicMonmentInfo.tscn")
 	var target = instance_scene(BasicMonmentInfo, parent)
 	target.ShowText = ShowText
 	target.position = position
@@ -3115,7 +3115,7 @@ func add_basic_pellet(parent, position):
 
 func add_game_announcement(parent, position):
 	if not GameAnnouncement:
-		GameAnnouncement = _load_scene("res://Scene/Main_menu/GameAnnouncement.tscn")
+		GameAnnouncement = _load_scene("res://Scene/main_menu/GameAnnouncement.tscn")
 	var target = instance_scene(GameAnnouncement, parent)
 	if target is CanvasLayer:
 		target.offset = position
@@ -3372,19 +3372,19 @@ func _is_runtime_ui_scene_path(scene_path: String) -> bool:
 	return (
 		scene_path
 		in [
-			"res://Scene/Main_menu/BodyTraining.tscn",
-			"res://Scene/Main_menu/BodyTrainingDetail.tscn",
-			"res://Scene/Main_menu/ZhuXianSwordPage.tscn",
-			"res://Scene/Main_menu/ZhenYaoTower.tscn",
-			"res://Scene/Main_menu/GameSet.tscn",
-			"res://Scene/Main_menu/GameAnnouncement.tscn",
-			"res://Scene/Main_menu/Game_information.tscn",
-			"res://Scene/OtherScene/choose_music.tscn",
-			"res://Scene/OtherScene/TwentyEightConstellations.tscn",
-			"res://Scene/OtherScene/ZhenFaUi.tscn",
-			"res://Scene/OtherScene/TransmogtifiedBox.tscn",
-			"res://Scene/OtherScene/Transmogrified.tscn",
-			"res://Scene/OtherScene/change_back_ground.tscn",
+			"res://Scene/main_menu/BodyTraining.tscn",
+			"res://Scene/main_menu/BodyTrainingDetail.tscn",
+			"res://Scene/main_menu/ZhuXianSwordPage.tscn",
+			"res://Scene/main_menu/ZhenYaoTower.tscn",
+			"res://Scene/main_menu/GameSet.tscn",
+			"res://Scene/main_menu/GameAnnouncement.tscn",
+			"res://Scene/main_menu/Game_information.tscn",
+			"res://Scene/other_scene/choose_music.tscn",
+			"res://Scene/other_scene/TwentyEightConstellations.tscn",
+			"res://Scene/other_scene/ZhenFaUi.tscn",
+			"res://Scene/other_scene/TransmogtifiedBox.tscn",
+			"res://Scene/other_scene/Transmogrified.tscn",
+			"res://Scene/other_scene/change_back_ground.tscn",
 			"res://Scene/MagicWeapon/Magic_help.tscn",
 		]
 	)
@@ -3400,11 +3400,11 @@ func _ui_art_prefixes_for_scene(scene_path: String) -> Array:
 	if scene_path.begins_with("res://Scene/LDL/"):
 		return ["res://Art/LDL/"]
 	if (
-		scene_path == "res://Scene/Main_menu/BodyTraining.tscn"
-		or scene_path == "res://Scene/Main_menu/BodyTrainingDetail.tscn"
+		scene_path == "res://Scene/main_menu/BodyTraining.tscn"
+		or scene_path == "res://Scene/main_menu/BodyTrainingDetail.tscn"
 	):
 		return ["res://Art/lianti/"]
-	if scene_path == "res://Scene/Main_menu/ZhenYaoTower.tscn":
+	if scene_path == "res://Scene/main_menu/ZhenYaoTower.tscn":
 		return ["res://Art/zhenyaota/"]
 	return []
 
@@ -3468,7 +3468,7 @@ func viewport_center_for_parent(parent_node: Node) -> Vector2:
 
 func add_reward_info(parent, position, List, UseItemName, UseNum):
 	if not RewardInfo:
-		RewardInfo = _load_scene("res://Scene/OtherScene/RewardInterface.tscn")
+		RewardInfo = _load_scene("res://Scene/other_scene/RewardInterface.tscn")
 	var target = instance_scene(RewardInfo, parent)
 	if position == Vector2.ZERO:
 		target.position = viewport_center_for_parent(parent) - Vector2(478, 210)
@@ -3483,7 +3483,7 @@ func add_reward_info(parent, position, List, UseItemName, UseNum):
 
 func AddRewardBox(parent, Name, Num):
 	if not RewardBox:
-		RewardBox = _load_scene("res://Scene/OtherScene/reward_box_2.tscn")
+		RewardBox = _load_scene("res://Scene/other_scene/reward_box_2.tscn")
 	var target = instance_scene(RewardBox, parent)
 	target.Name = Name
 	target.Num = Num
@@ -3534,7 +3534,7 @@ func AddBossBlood_(parent, Obj):
 
 func AddHc_Help(parent, position):
 	if not Hc_Help:
-		Hc_Help = _load_scene("res://Scene/OtherScene/hc_help.tscn")
+		Hc_Help = _load_scene("res://Scene/other_scene/hc_help.tscn")
 	var target = instance_scene(Hc_Help, parent)
 	target.position = position
 	return target
@@ -3542,7 +3542,7 @@ func AddHc_Help(parent, position):
 
 func AddHelpThing(parent, position, ItemInfo):
 	if not HelpThing:
-		HelpThing = _load_scene("res://Scene/OtherScene/help_things.tscn")
+		HelpThing = _load_scene("res://Scene/other_scene/help_things.tscn")
 	var target = instance_scene(HelpThing, parent)
 	target.ItemInfo = ItemInfo
 	target.position = position
@@ -3551,7 +3551,7 @@ func AddHelpThing(parent, position, ItemInfo):
 
 func AddPj(parent, position, Num):
 	if not Pj:
-		Pj = _load_scene("res://Scene/OtherScene/ping_jia.tscn")
+		Pj = _load_scene("res://Scene/other_scene/ping_jia.tscn")
 	var target = instance_scene(Pj, parent)
 	target.Num = Num
 	target.position = position
@@ -3560,7 +3560,7 @@ func AddPj(parent, position, Num):
 
 func get_current_level_fall_pro(default_pro: float) -> float:
 	if LevelDropProData.is_empty():
-		var level_info_scene = _load_scene("res://Scene/OtherScene/LevelInfo.tscn")
+		var level_info_scene = _load_scene("res://Scene/other_scene/LevelInfo.tscn")
 		if level_info_scene != null:
 			var probe = level_info_scene.instantiate()
 			if probe != null:
@@ -3621,7 +3621,7 @@ func add_level_info(parent, Name, position, path):
 	if str(path) == "res://Scene/Level/Level_bxgh.tscn":
 		SelectedEightImmortalId = 0
 	if not LevelInfo:
-		LevelInfo = _load_scene("res://Scene/OtherScene/LevelInfo.tscn")
+		LevelInfo = _load_scene("res://Scene/other_scene/LevelInfo.tscn")
 	if not show_level_info:
 		var probe = LevelInfo.instantiate()
 		if probe != null:
@@ -3651,7 +3651,7 @@ func add_level_info(parent, Name, position, path):
 
 func AddMonsterHead(parent, Name, IsBoss, ScenePath := ""):
 	if not MonsterHead:
-		MonsterHead = _load_scene("res://Scene/OtherScene/MonsterHeadInfo.tscn")
+		MonsterHead = _load_scene("res://Scene/other_scene/MonsterHeadInfo.tscn")
 	var target = instance_scene(MonsterHead, parent)
 	target.MonsterName = Name
 	target.IsBoss = IsBoss
@@ -3691,7 +3691,7 @@ func AddItemBox(parent, Inldl, Inhhgz, Name, qh_level, num, wx, EqProp):
 
 func addGameNeedKnow(parent, position):
 	if not GameNeedKnow:
-		GameNeedKnow = _load_scene("res://Scene/OtherScene/GameNeedKnow.tscn")
+		GameNeedKnow = _load_scene("res://Scene/other_scene/GameNeedKnow.tscn")
 	var target = instance_scene(GameNeedKnow, parent)
 	target.position = position
 	return target
@@ -3783,7 +3783,7 @@ func add_role_bullet(parent, position, Dir, name_, Dic):
 
 func AddChoosePlayer(parent, position_):
 	if not ChoosePlayer:
-		ChoosePlayer = _load_scene("res://Scene/Main_menu/ChoosePlayer.tscn")
+		ChoosePlayer = _load_scene("res://Scene/main_menu/ChoosePlayer.tscn")
 	var target = instance_scene(ChoosePlayer, parent)
 	target.position = position_
 	return target
@@ -3809,7 +3809,7 @@ func AddAura(parent, position_, Value, color_type = 0):
 
 func AddBuffinfor(parent, position_, Data):
 	if not Buffinfor:
-		Buffinfor = _load_scene("res://Scene/OtherScene/buff_information.tscn")
+		Buffinfor = _load_scene("res://Scene/other_scene/buff_information.tscn")
 	var target = instance_scene(Buffinfor, parent)
 	target.DataList = Data
 	apply_popup_screen_layout(target, position_, Vector2(320, 120))
@@ -3937,7 +3937,7 @@ func add_buff(parent, BuffInfo):
 
 func addAfterLevelEnd(parent, position):
 	if not AfterLevelEnd:
-		AfterLevelEnd = _load_scene("res://Scene/OtherScene/AfterLevelEnd.tscn")
+		AfterLevelEnd = _load_scene("res://Scene/other_scene/AfterLevelEnd.tscn")
 	var target = instance_scene(AfterLevelEnd, parent)
 	target.z_index = 9999
 	target.top_level = true
@@ -3989,7 +3989,7 @@ func addZLw_stage(parent, position, Speed, Dir, Max, PD):
 
 func addHHjm(parent, position):
 	if not HHjm:
-		HHjm = _load_scene("res://Scene/OtherScene/Transmogrified.tscn")
+		HHjm = _load_scene("res://Scene/other_scene/Transmogrified.tscn")
 	var target = instance_scene(HHjm, parent)
 	target.position = position
 	return target
@@ -3997,7 +3997,7 @@ func addHHjm(parent, position):
 
 func addChangeClothesJm(parent, position, name_, Transmogrified_):
 	if not ChangeClothesJm:
-		ChangeClothesJm = _load_scene("res://Scene/OtherScene/c_hange_clothes_jm.tscn")
+		ChangeClothesJm = _load_scene("res://Scene/other_scene/c_hange_clothes_jm.tscn")
 	var target = instance_scene(ChangeClothesJm, parent)
 	target.position = position
 	target.SelfName_ = name_
@@ -4126,7 +4126,7 @@ func addSkillKeySet(parent, position, name_):
 
 func add_game_set(parent, position):
 	if not GameSet_:
-		GameSet_ = _load_scene("res://Scene/Main_menu/GameSet.tscn")
+		GameSet_ = _load_scene("res://Scene/main_menu/GameSet.tscn")
 	var target = instance_scene(GameSet_, parent)
 	if target == null:
 		return null
@@ -4651,7 +4651,7 @@ func add_Synthesis(parent, position):
 
 func add_change_bg(parent, position):
 	if not change_background:
-		change_background = _load_scene("res://Scene/OtherScene/change_back_ground.tscn")
+		change_background = _load_scene("res://Scene/other_scene/change_back_ground.tscn")
 	var target = instance_scene(change_background, parent)
 	if target is CanvasLayer:
 		target.offset = position
@@ -4839,7 +4839,7 @@ func add_bd_skillscene(parent, position):
 
 func add_gm_infor(parent, position):
 	if not Game_information:
-		Game_information = _load_scene("res://Scene/Main_menu/Game_information.tscn")
+		Game_information = _load_scene("res://Scene/main_menu/Game_information.tscn")
 	var target = instance_scene(Game_information, parent)
 	target.z_index = 99
 	target.position = position
@@ -5006,7 +5006,7 @@ func change_scene(target, force_loading_screen: bool = false):
 		return
 
 	target_scene = target_path
-	get_tree().change_scene_to_file("res://Scene/OtherScene/load_scene.tscn")
+	get_tree().change_scene_to_file("res://Scene/other_scene/load_scene.tscn")
 
 
 func _deferred_change_scene():
@@ -5015,7 +5015,7 @@ func _deferred_change_scene():
 
 func add_music_set(parent, position):
 	if not music_set:
-		music_set = _load_scene("res://Scene/OtherScene/choose_music.tscn")
+		music_set = _load_scene("res://Scene/other_scene/choose_music.tscn")
 	var target = instance_scene(music_set, parent)
 	target.position = position
 	return target

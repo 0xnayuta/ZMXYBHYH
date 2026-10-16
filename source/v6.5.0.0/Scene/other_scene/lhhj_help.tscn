@@ -1,0 +1,23 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Scene/other_scene/lhhj_help.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/MagicWeapon/66.png" id="2"]
+[ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="3"]
+[ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="4"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/ClothesChange/8.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/BackPack/ClothesChange/10.png" id="6"]
+
+[resource]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(14, 0, 48, 47, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("LHHJHelp", "script", "Node2D", "ColorRect", "offset_left", "offset_top", "offset_right", "offset_bottom", "color", "metadata/_edit_lock_", "BG", "position", "texture", "Sprite2D", "Title", "theme_override_colors/font_color", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "text", "Label", "ScrollContainer", "VBoxContainer", "custom_minimum_size", "layout_mode", "size_flags_vertical", "theme_override_constants/separation", "Text_1", "theme_override_colors/font_shadow_color", "theme_override_constants/shadow_offset_x", "theme_override_constants/shadow_offset_y", "theme_override_constants/shadow_outline_size", "autowrap_mode", "Text_11", "Text_12", "Text_13", "Text_14", "Text_15", "Text_16", "Text_17", "close", "texture_normal", "texture_pressed", "texture_hover", "texture_disabled", "TextureButton", "_on_close_pressed", "pressed"),
+"node_count": 15,
+"node_ids": PackedInt32Array(1194820640, 1827686515, 1244816590, 644985523, 2010399138, 1334931501, 1581446913, 1670470066, 1498466509, 1150350826, 865516262, 1241002536, 91269045, 1514144735, 98412600),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 3, 3, -1, 6, 4, 1, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 13, 10, -1, 3, 11, 7, 12, 8, 9, 6, 0, 2, 0, 21, 14, -1, 11, 4, 9, 5, 10, 6, 11, 7, 12, 15, 13, 16, 14, 17, 15, 18, 16, 19, 17, 20, 18, 9, 6, 0, 2, 0, 22, 22, -1, 4, 4, 19, 5, 20, 6, 21, 7, 22, 0, 4, 0, 23, 23, -1, 4, 24, 23, 25, 24, 26, 25, 27, 26, 0, 5, 0, 21, 28, -1, 13, 25, 24, 26, 15, 15, 14, 29, 27, 16, 14, 30, 28, 31, 28, 17, 24, 32, 29, 18, 30, 19, 31, 20, 32, 33, 33, 0, 5, 0, 21, 34, -1, 13, 25, 24, 26, 15, 15, 14, 29, 27, 16, 14, 30, 28, 31, 28, 17, 24, 32, 29, 18, 30, 19, 31, 20, 34, 33, 33, 0, 5, 0, 21, 35, -1, 13, 25, 24, 26, 15, 15, 14, 29, 27, 16, 14, 30, 28, 31, 28, 17, 24, 32, 29, 18, 30, 19, 31, 20, 35, 33, 33, 0, 5, 0, 21, 36, -1, 13, 25, 24, 26, 15, 15, 14, 29, 27, 16, 14, 30, 28, 31, 28, 17, 24, 32, 29, 18, 30, 19, 31, 20, 36, 33, 33, 0, 5, 0, 21, 37, -1, 13, 25, 24, 26, 15, 15, 14, 29, 27, 16, 14, 30, 28, 31, 28, 17, 24, 32, 29, 18, 30, 19, 31, 20, 37, 33, 33, 0, 5, 0, 21, 38, -1, 13, 25, 24, 26, 15, 15, 14, 29, 27, 16, 14, 30, 28, 31, 28, 17, 24, 32, 29, 18, 30, 19, 31, 20, 38, 33, 33, 0, 5, 0, 21, 39, -1, 13, 25, 24, 26, 15, 15, 14, 29, 27, 16, 14, 30, 28, 31, 28, 17, 24, 32, 29, 18, 30, 19, 31, 20, 39, 33, 33, 0, 5, 0, 21, 40, -1, 13, 25, 24, 26, 15, 15, 14, 29, 27, 16, 14, 30, 28, 31, 28, 17, 24, 32, 29, 18, 30, 19, 31, 20, 40, 33, 33, 0, 2, 0, 46, 41, -1, 9, 4, 41, 5, 42, 6, 43, 7, 20, 42, 44, 43, 44, 44, 45, 45, 44, 9, 6, 0),
+"variants": [ExtResource("1"), -300.0, -172.0, 1238.0, 761.0, Color(0, 0, 0, 0.45098), true, Vector2(468, 297), ExtResource("2"), -89.0, -220.0, 91.0, -186.0, Color(1, 1, 0, 1), Color(0, 0, 0, 1), 8, ExtResource("3"), 30, "轮回幻境帮助", -312.0, -173.0, 297.0, 208.0, Vector2(600, 400), 2, 4, 14, Color(1, 1, 1, 1), 0, 6, ExtResource("4"), 18, "1.测试阶段，可能有一些小Bug，仅供娱乐，目的不是用来练过关的，只是娱乐！", 1, "2.点击左侧Boss列表可将Boss添加到召唤列表内，召唤太多会很卡！不可重复添加，通关指定关卡可以解锁对应地图Boss。(截教天境暂不支持)", "3.在召唤列表内点击Boss名可以在右侧设置其部分属性（不设置则为其原本的属性，部分属性设置可能无效），也可以取消召唤该Boss。", "4.关卡内属性为玩家正常属性。", "5.轮回幻境内的boss不会掉落物品，也不会提供经验和灵魂。", "6.设置为0的属性，则默认为该Boss正常属性。", "7.设置伤害功能只能将其所有输出手段设为统一的数值！", "8.有些属性设置可能对该Boss无效！", 252.0, -229.0, 310.0, ExtResource("5"), ExtResource("6")],
+"version": 3
+}

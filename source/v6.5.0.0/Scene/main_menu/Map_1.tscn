@@ -1,0 +1,891 @@
+[gd_resource type="PackedScene" format=3]
+
+[ext_resource type="Script" path="res://Script/main_menu/Map_1.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/1.jpg" id="2"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/185.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/188.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/192.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/195.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/199.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/202.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/206.png" id="9"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/209.png" id="10"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/220.png" id="11"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/223.png" id="12"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/213.png" id="13"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/216.png" id="14"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/qa.png" id="15"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/ShallowShore.png" id="16"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/dh.png" id="17"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/EastSea.png" id="18"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/267.png" id="19"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/SharkVortex.png" id="20"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/234.png" id="21"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/237.png" id="22"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/241.png" id="23"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/244.png" id="24"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/227.png" id="25"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/230.png" id="26"]
+[ext_resource type="Texture2D" path="res://Art/Game_2/Button/445.png" id="27"]
+[ext_resource type="Texture2D" path="res://Art/Game_2/Button/447.png" id="28"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/level_choose/294.png" id="29"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/487.png" id="30"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/481.png" id="31"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/480.png" id="32"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/492.png" id="33"]
+[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/gg_1.png" id="34"]
+[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/gg_2.png" id="35"]
+[ext_resource type="Texture2D" path="res://Art/Level/Level_9/80.png" id="36"]
+[ext_resource type="Texture2D" path="res://Art/MainGame/463.png" id="37"]
+[ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="38"]
+[ext_resource type="Texture2D" path="res://Art/Game_2/Button/ButtonReturnMainMenu.png" id="39"]
+[ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="40"]
+[ext_resource type="Shader" path="res://Shader/LevelButton.gdshader" id="41"]
+[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/hj1.png" id="42"]
+[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/hj2.png" id="43"]
+
+[sub_resource type="ShaderMaterial" id="23"]
+shader = ExtResource("41")
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="Animation" id="24"]
+resource_name = "Level1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_1:material:shader_parameter/line_thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("level_1:material:shader")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("41")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("level_1:material:shader_parameter/line_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("level_1:material")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("23")]
+}
+
+[sub_resource type="Animation" id="25"]
+length = 0.001
+
+[sub_resource type="ShaderMaterial" id="26"]
+shader = ExtResource("41")
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="Animation" id="27"]
+resource_name = "level10"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_10:material:shader_parameter/line_thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("level_10:material:shader")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("41")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("level_10:material")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("26")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("level_10:material:shader_parameter/line_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="28"]
+resource_name = "level10_1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_10:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="29"]
+resource_name = "level1_1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_1:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="ShaderMaterial" id="30"]
+shader = ExtResource("41")
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="Animation" id="31"]
+resource_name = "level2"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_2:material:shader_parameter/line_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("level_2:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("30")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("level_2:material:shader_parameter/line_thickness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("level_2:material:shader")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("41")]
+}
+
+[sub_resource type="Animation" id="32"]
+resource_name = "level2_1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_2:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="ShaderMaterial" id="33"]
+shader = ExtResource("41")
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="Animation" id="34"]
+resource_name = "level3"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_3:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("33")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("level_3:material:shader")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("41")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("level_3:material:shader_parameter/line_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("level_3:material:shader_parameter/line_thickness")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 1.0]
+}
+
+[sub_resource type="Animation" id="35"]
+resource_name = "level3_1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_3:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="ShaderMaterial" id="36"]
+shader = ExtResource("41")
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="Animation" id="37"]
+resource_name = "level4"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_4:material:shader_parameter/line_thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("level_4:material:shader")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("41")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("level_4:material")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("36")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("level_4:material:shader_parameter/line_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="38"]
+resource_name = "level4_1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_4:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="ShaderMaterial" id="39"]
+shader = ExtResource("41")
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="Animation" id="40"]
+resource_name = "level5"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_5:material:shader_parameter/line_thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("level_5:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("39")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("level_5:material:shader")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("41")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("level_5:material:shader_parameter/line_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="41"]
+resource_name = "level5_1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_5:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="ShaderMaterial" id="42"]
+shader = ExtResource("41")
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="Animation" id="43"]
+resource_name = "level6"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_6:material:shader_parameter/line_thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("level_6:material:shader_parameter/line_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("level_6:material:shader")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("41")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("level_6:material")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("42")]
+}
+
+[sub_resource type="Animation" id="44"]
+resource_name = "level6_1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_6:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="ShaderMaterial" id="45"]
+shader = ExtResource("41")
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="Animation" id="46"]
+resource_name = "level7"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_7:material:shader_parameter/line_thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("level_7:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("45")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("level_7:material:shader")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("41")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("level_7:material:shader_parameter/line_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="47"]
+resource_name = "level7_1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_7:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="ShaderMaterial" id="48"]
+shader = ExtResource("41")
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="Animation" id="49"]
+resource_name = "level8"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_8:material:shader_parameter/line_thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("level_8:material:shader")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("41")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("level_8:material")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("48")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("level_8:material:shader_parameter/line_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="50"]
+resource_name = "level8_1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level_8:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="ShaderMaterial" id="51"]
+shader = ExtResource("41")
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="Animation" id="52"]
+resource_name = "level9"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D2/Node2D/level_9:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("51")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D2/Node2D/level_9:material:shader")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("41")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D2/Node2D/level_9:material:shader_parameter/line_thickness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D2/Node2D/level_9:material:shader_parameter/line_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="53"]
+resource_name = "level9_1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D2/Node2D/level_9:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="54"]
+_data = {
+&"Level1": SubResource("24"),
+&"RESET": SubResource("25"),
+&"level10": SubResource("27"),
+&"level10_1": SubResource("28"),
+&"level1_1": SubResource("29"),
+&"level2": SubResource("31"),
+&"level2_1": SubResource("32"),
+&"level3": SubResource("34"),
+&"level3_1": SubResource("35"),
+&"level4": SubResource("37"),
+&"level4_1": SubResource("38"),
+&"level5": SubResource("40"),
+&"level5_1": SubResource("41"),
+&"level6": SubResource("43"),
+&"level6_1": SubResource("44"),
+&"level7": SubResource("46"),
+&"level7_1": SubResource("47"),
+&"level8": SubResource("49"),
+&"level8_1": SubResource("50"),
+&"level9": SubResource("52"),
+&"level9_1": SubResource("53")
+}
+
+[sub_resource type="Animation" id="55"]
+resource_name = "szwl"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D2/Node2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 0.4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Level2:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+
+[sub_resource type="Animation" id="56"]
+resource_name = "szwl2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.6, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D2/Node2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="57"]
+_data = {
+&"szwl": SubResource("55"),
+&"szwl2": SubResource("56")
+}
+
+[resource]
+_bundled = {
+"conn_count": 39,
+"conns": PackedInt32Array(2, 0, 76, 75, 2, 0, 0, 2, 0, 78, 77, 2, 0, 0, 2, 0, 80, 79, 2, 0, 0, 3, 0, 76, 81, 2, 0, 0, 3, 0, 78, 82, 2, 0, 0, 3, 0, 80, 83, 2, 0, 0, 4, 0, 76, 84, 2, 0, 0, 4, 0, 78, 85, 2, 0, 0, 4, 0, 80, 86, 2, 0, 0, 5, 0, 76, 87, 2, 0, 0, 5, 0, 78, 88, 2, 0, 0, 5, 0, 80, 89, 2, 0, 0, 6, 0, 76, 90, 2, 0, 0, 6, 0, 78, 91, 2, 0, 0, 6, 0, 80, 92, 2, 0, 0, 7, 0, 76, 93, 2, 0, 0, 7, 0, 78, 94, 2, 0, 0, 7, 0, 80, 95, 2, 0, 0, 8, 0, 76, 96, 2, 0, 0, 8, 0, 78, 97, 2, 0, 0, 8, 0, 80, 98, 2, 0, 0, 9, 0, 76, 99, 2, 0, 0, 9, 0, 78, 100, 2, 0, 0, 9, 0, 80, 101, 2, 0, 0, 12, 0, 76, 102, 2, 0, 0, 12, 0, 78, 103, 2, 0, 0, 12, 0, 80, 104, 2, 0, 0, 13, 0, 76, 105, 2, 0, 0, 13, 0, 78, 106, 2, 0, 0, 13, 0, 80, 107, 2, 0, 0, 14, 0, 80, 108, 2, 0, 0, 16, 0, 80, 109, 2, 0, 0, 17, 0, 80, 110, 2, 0, 0, 18, 0, 80, 111, 2, 0, 0, 22, 0, 80, 112, 2, 0, 0, 23, 0, 80, 113, 2, 0, 0, 24, 0, 80, 114, 2, 0, 0, 28, 0, 80, 115, 2, 0, 0, 32, 0, 80, 116, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("Map_1", "process_mode", "script", "Node2D", "background", "position", "scale", "texture", "Sprite2D", "level_1", "offset_left", "offset_top", "offset_right", "offset_bottom", "texture_normal", "texture_pressed", "texture_hover", "texture_disabled", "stretch_mode", "metadata/_edit_use_anchors_", "metadata/_edit_lock_", "TextureButton", "level_2", "level_3", "level_4", "level_5", "level_6", "level_7", "ignore_texture_size", "level_8", "self_modulate", "Node2D2", "level_9", "anchors_preset", "anchor_left", "anchor_top", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "level_10", "ldl", "jjc", "visible", "disabled", "Shop", "bc_game", "Skill_learn", "481", "480", "492", "GameAn", "BossTreasureCheckBox", "Task", "bg", "difu", "theme_override_colors/font_color", "theme_override_fonts/font", "theme_override_font_sizes/font_size", "text", "horizontal_alignment", "vertical_alignment", "Label", "ldl2", "turn_mainmenu", "TEXT", "layout_mode", "theme_override_colors/font_outline_color", "theme_override_constants/outline_size", "Level", "libraries/", "AnimationPlayer", "Level2", "speed_scale", "level_lhhj", "_on_level_1_mouse_entered", "mouse_entered", "_on_level_1_mouse_exited", "mouse_exited", "_on_level_1_pressed", "pressed", "_on_level_2_mouse_entered", "_on_level_2_mouse_exited", "_on_level_2_pressed", "_on_level_3_mouse_entered", "_on_level_3_mouse_exited", "_on_level_3_pressed", "_on_level_4_mouse_entered", "_on_level_4_mouse_exited", "_on_level_4_pressed", "_on_level_5_mouse_entered", "_on_level_5_mouse_exited", "_on_level_5_pressed", "_on_level_6_mouse_entered", "_on_level_6_mouse_exited", "_on_level_6_pressed", "_on_level_7_mouse_entered", "_on_level_7_mouse_exited", "_on_level_7_pressed", "_on_level_8_mouse_entered", "_on_level_8_mouse_exited", "_on_level_8_pressed", "_on_level_9_mouse_entered", "_on_level_9_mouse_exited", "_on_level_9_pressed", "_on_level_10_mouse_entered", "_on_level_10_mouse_exited", "_on_level_10_pressed", "_on_ldl_pressed", "_on_shop_pressed", "_on_bc_game_pressed", "_on_skill_learn_pressed", "_on_game_an_pressed", "_on_boss_treasure_toggled", "_on_task_pressed", "_on_turn_mainmenu_pressed", "_on_level_lhhj_pressed"),
+"node_count": 35,
+"node_ids": PackedInt32Array(1459079726, 1994358030, 665934769, 1700971829, 287872012, 819091510, 1697174237, 506006446, 233533834, 1745063917, 2124844379, 1686845299, 1801453251, 250840933, 335118259, 933302349, 2135283245, 1103017988, 1719019526, 1479621661, 1170404785, 373920705, 824166379, 1825919740, 1133365424, 73074930, 802238854, 417251588, 1220120329, 238323628, 695945965, 752695154, 1810120353, 1335717608, 115170697),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 3, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 8, 4, -1, 3, 5, 2, 6, 3, 7, 4, 0, 0, 0, 21, 9, -1, 11, 10, 5, 11, 6, 12, 7, 13, 8, 14, 9, 15, 10, 16, 10, 17, 9, 18, 0, 19, 11, 20, 11, 0, 0, 0, 21, 22, -1, 10, 10, 12, 11, 13, 12, 14, 13, 15, 14, 16, 15, 17, 16, 17, 17, 16, 18, 0, 20, 11, 0, 0, 0, 21, 23, -1, 10, 10, 18, 11, 19, 12, 20, 13, 21, 14, 22, 15, 23, 16, 23, 17, 22, 18, 0, 20, 11, 0, 0, 0, 21, 24, -1, 10, 10, 24, 11, 25, 12, 26, 13, 27, 14, 28, 15, 29, 16, 29, 17, 28, 18, 0, 20, 11, 0, 0, 0, 21, 25, -1, 10, 10, 30, 11, 31, 12, 32, 13, 33, 14, 34, 15, 35, 16, 35, 17, 34, 18, 0, 20, 11, 0, 0, 0, 21, 26, -1, 10, 10, 36, 11, 37, 12, 38, 13, 39, 14, 40, 15, 41, 16, 41, 17, 40, 18, 0, 20, 11, 0, 0, 0, 21, 27, -1, 9, 10, 42, 11, 43, 12, 44, 13, 45, 14, 46, 15, 47, 16, 47, 28, 11, 20, 11, 0, 0, 0, 21, 29, -1, 11, 30, 48, 10, 49, 11, 50, 12, 51, 13, 52, 14, 53, 15, 54, 16, 54, 28, 11, 19, 11, 20, 11, 0, 0, 0, 3, 31, -1, 3, 5, 55, 6, 56, 20, 11, 0, 10, 0, 3, 3, -1, 1, 5, 57, 0, 11, 0, 21, 32, -1, 16, 33, 58, 34, 59, 35, 59, 36, 59, 37, 59, 10, 60, 11, 61, 12, 62, 13, 63, 38, 64, 39, 64, 14, 65, 15, 66, 16, 66, 17, 65, 28, 11, 0, 0, 0, 21, 40, -1, 9, 10, 67, 11, 68, 12, 69, 13, 70, 14, 71, 15, 72, 16, 72, 17, 71, 18, 0, 0, 0, 0, 21, 41, -1, 10, 10, 73, 11, 74, 12, 75, 13, 76, 14, 77, 15, 78, 16, 78, 17, 77, 18, 0, 20, 11, 0, 0, 0, 21, 42, -1, 12, 43, 79, 10, 80, 11, 81, 12, 82, 13, 83, 44, 11, 14, 84, 15, 85, 16, 85, 17, 84, 18, 0, 20, 11, 0, 0, 0, 21, 45, -1, 9, 10, 86, 11, 87, 12, 88, 13, 89, 14, 90, 15, 90, 16, 91, 17, 90, 20, 11, 0, 0, 0, 21, 46, -1, 10, 10, 92, 11, 93, 12, 94, 13, 95, 14, 96, 15, 96, 16, 96, 17, 96, 18, 0, 20, 11, 0, 0, 0, 21, 47, -1, 8, 10, 97, 11, 98, 12, 99, 13, 100, 14, 101, 15, 101, 16, 101, 20, 11, 0, 18, 0, 8, 48, -1, 2, 5, 102, 7, 103, 0, 18, 0, 8, 49, -1, 2, 5, 104, 7, 105, 0, 18, 0, 8, 50, -1, 2, 5, 106, 7, 107, 0, 0, 0, 21, 51, -1, 9, 10, 108, 11, 108, 12, 109, 13, 110, 14, 111, 15, 111, 16, 112, 17, 111, 20, 11, 0, 0, 0, 21, 52, -1, 4, 10, 113, 11, 108, 12, 114, 13, 110, 0, 0, 0, 21, 53, -1, 10, 10, 115, 11, 116, 12, 117, 13, 118, 14, 119, 15, 119, 16, 119, 17, 119, 28, 11, 18, 120, 0, 24, 0, 8, 54, -1, 2, 5, 121, 7, 122, 0, 25, 0, 62, 55, -1, 10, 10, 123, 11, 124, 12, 125, 13, 126, 56, 127, 57, 128, 58, 129, 59, 130, 60, 131, 61, 131, 0, 0, 0, 3, 63, -1, 1, 5, 132, 0, 0, 0, 21, 64, -1, 9, 10, 126, 11, 133, 12, 134, 13, 135, 14, 136, 15, 136, 16, 136, 17, 136, 20, 11, 0, 28, 0, 62, 65, -1, 12, 66, 120, 10, 137, 11, 138, 12, 139, 13, 73, 56, 140, 67, 141, 68, 142, 57, 143, 58, 144, 59, 145, 20, 11, 0, 0, 0, 71, 69, -1, 1, 70, 146, 0, 0, 0, 71, 72, -1, 2, 70, 147, 73, 59, 0, 0, 0, 21, 74, -1, 9, 10, 148, 11, 149, 12, 150, 13, 151, 6, 152, 14, 153, 15, 153, 16, 154, 17, 153, 0, 32, 0, 8, 54, -1, 2, 5, 155, 7, 122, 0, 33, 0, 62, 55, -1, 11, 10, 123, 11, 124, 12, 125, 13, 126, 56, 127, 57, 128, 58, 129, 59, 156, 60, 131, 61, 131, 20, 11, 0),
+"variants": [3, ExtResource("1"), Vector2(451.77496, 295.5), Vector2(0.25177428, 0.25550848), ExtResource("2"), 175.0, 126.0, 243.0, 204.0, ExtResource("3"), ExtResource("4"), true, 321.0, 123.0, 389.0, 201.0, ExtResource("5"), ExtResource("6"), 512.0, 57.0, 580.0, 135.0, ExtResource("7"), ExtResource("8"), 643.0, 38.0, 711.0, 116.0, ExtResource("9"), ExtResource("10"), 562.0, 213.0, 648.0, 291.0, ExtResource("11"), ExtResource("12"), 699.0, 115.0, 824.0, 193.0, ExtResource("13"), ExtResource("14"), 331.0, 235.0, 555.0, 393.0, ExtResource("15"), ExtResource("16"), Color(1, 1, 0.835294, 1), 253.0, 314.0, 903.0, 448.0, ExtResource("17"), ExtResource("18"), Vector2(769, 499), Vector2(0.6, 0.5), Vector2(-3.333374, -8), 8, 0.5, -107.20099, -115.42401, 125.79901, 92.57599, 2, ExtResource("19"), ExtResource("20"), 202.0, 335.0, 327.0, 413.0, ExtResource("21"), ExtResource("22"), 111.0, 401.0, 236.0, 479.0, ExtResource("23"), ExtResource("24"), false, 785.0, 196.0, 910.0, 274.0, ExtResource("25"), ExtResource("26"), 33.0, 428.0, 93.0, 490.0, ExtResource("27"), ExtResource("28"), -1.0, 179.0, 137.0, 272.0, ExtResource("29"), 43.0, 88.0, 102.0, 128.0, ExtResource("30"), Vector2(14, 32), ExtResource("31"), Vector2(40, 3), ExtResource("32"), Vector2(20, 51), ExtResource("33"), 1.0, 70.0, 72.0, ExtResource("34"), ExtResource("35"), 71.0, 140.0, 815.0, 11.0, 918.0, 113.0, ExtResource("36"), 0, Vector2(53, 103), ExtResource("37"), -35.0, -9.99997, 37.0, 12.0, Color(1, 0.290196, 0, 1), ExtResource("38"), 18, "任务", 1, Vector2(0, 1), 289.0, 124.0, 403.0, ExtResource("39"), 17.0, 86.0, 97.0, Color(1, 0.470588, 0, 1), Color(0, 0, 0, 1), 5, ExtResource("40"), 15, "返回主菜单", SubResource("54"), SubResource("57"), 773.0, 182.0, 983.0, 302.0, Vector2(0.8, 0.8), ExtResource("42"), ExtResource("43"), Vector2(110.5, 98), "轮回幻境"],
+"version": 3
+}

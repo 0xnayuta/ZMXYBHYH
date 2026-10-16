@@ -12,7 +12,7 @@ class_name BossBlood
 @onready var protect_value: Label = $ProtectBar/ProtectValue
 @onready var buff_list: HBoxContainer = $BuffList
 
-const BUFF_ICON_SCENE = preload("res://Scene/OtherScene/BuffIcon.tscn")
+const BUFF_ICON_SCENE = preload("res://Scene/other_scene/BuffIcon.tscn")
 
 var buff_icon_cache: Dictionary = {}
 var _buff_info_by_name: Dictionary = {}

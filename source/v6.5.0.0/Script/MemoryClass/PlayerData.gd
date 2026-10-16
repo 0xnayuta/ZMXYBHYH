@@ -4590,7 +4590,7 @@ func _process(_delta: float) -> void:
 
 func removedata():
 	MemoryClass.Remove()
-	Global.change_scene("res://Scene/Main_menu/Main_Menu.tscn")
+	Global.change_scene("res://Scene/main_menu/Main_Menu.tscn")
 
 
 func check_next_day():

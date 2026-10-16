@@ -465,7 +465,7 @@ func _on_exit_2_body_exited(body: Node2D) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		Global.change_scene("res://Scene/Main_menu/Map_0.tscn")
+		Global.change_scene("res://Scene/main_menu/Map_0.tscn")
 
 
 func _advance_tower_floor() -> void:

@@ -2,7 +2,7 @@ extends Node
 
 const LEVEL_SCRIPT_PATH := "res://Script/Level/Level_49.gd"
 const BOSS_SCENE_PATH := "res://Scene/Monster/Monster_3007.tscn"
-const LEVEL_INFO_SCENE_PATH := "res://Scene/OtherScene/LevelInfo.tscn"
+const LEVEL_INFO_SCENE_PATH := "res://Scene/other_scene/LevelInfo.tscn"
 
 var failures: Array[String] = []
 

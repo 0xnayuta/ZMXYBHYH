@@ -55,7 +55,7 @@ func getTimeStr() -> String:
 
 
 func gotoMap() -> void:
-	Global.change_scene("res://Scene/Main_menu/Map_0.tscn")
+	Global.change_scene("res://Scene/main_menu/Map_0.tscn")
 
 
 func change_secen(target: String) -> void:

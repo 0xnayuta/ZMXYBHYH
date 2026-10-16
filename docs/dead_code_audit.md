@@ -1,6 +1,6 @@
 # ZMXYBHYH 全工程资产拓扑与死代码审计报告 (Phase 1)
 
-> 生成时间: 2026-10-16 18:07:19  
+> 生成时间: 2026-10-16 18:19:11  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
 > 引擎环境: `Godot 4.7.2 Headless`
 
@@ -48,7 +48,7 @@
 |:---|:---|:---|:---|
 | 1 | `res://BuffInfo.gd` | 491 | 历史遗留孤立脚本 |
 | 2 | `res://MagicWeapon.gd` | 33 | 历史遗留孤立脚本 |
-| 3 | `res://Scene/OtherScene/load_scene.gd` | 27,954 | 历史遗留孤立脚本 |
+| 3 | `res://Scene/other_scene/load_scene.gd` | 27,954 | 历史遗留孤立脚本 |
 | 4 | `res://Script/Base/BaseMap.gd` | 1,285 | 历史遗留孤立脚本 |
 | 5 | `res://Script/Base/BaseMonsterProperies.gd` | 152 | 历史遗留孤立脚本 |
 | 6 | `res://Script/Data/AllEquipmentData.gd` | 401,957 | 历史遗留孤立脚本 |
@@ -59,27 +59,27 @@
 | 11 | `res://Script/Level/Level_szdy.gd` | 18 | 历史遗留孤立脚本 |
 | 12 | `res://Script/Level/Level_xzdy.gd` | 18 | 历史遗留孤立脚本 |
 | 13 | `res://Script/Level/Level_zzdy.gd` | 18 | 历史遗留孤立脚本 |
-| 14 | `res://Script/Main_menu/WorldMapButton.gd` | 177 | 历史遗留孤立脚本 |
-| 15 | `res://Script/Monster/AtlasMonsterVisual.gd` | 1,208 | 历史遗留孤立脚本 |
-| 16 | `res://Script/Monster/Fly_bullet.gd` | 538 | 历史遗留孤立脚本 |
-| 17 | `res://Script/Monster/Monster_121.gd` | 3,154 | 历史遗留孤立脚本 |
-| 18 | `res://Script/Monster/Monster_3201.gd` | 3,019 | 历史遗留孤立脚本 |
-| 19 | `res://Script/Monster/Monster_61-1.gd` | 20 | 历史遗留孤立脚本 |
-| 20 | `res://Script/Monster/Monster_62-1.gd` | 20 | 历史遗留孤立脚本 |
-| 21 | `res://Script/Monster/Monster_63-1.gd` | 7,614 | 历史遗留孤立脚本 |
-| 22 | `res://Script/Monster/Monster_70.gd` | 20 | 历史遗留孤立脚本 |
-| 23 | `res://Script/Monster/Monster_71.gd` | 20 | 历史遗留孤立脚本 |
-| 24 | `res://Script/Monster/SandKingSkills.gd` | 3,547 | 历史遗留孤立脚本 |
-| 25 | `res://Script/Pet/PetTigerSummon_4.gd` | 49 | 历史遗留孤立脚本 |
-| 26 | `res://Script/Skill/SummonBossCd.gd` | 13 | 历史遗留孤立脚本 |
-| 27 | `res://Script/Tools/skill_1.gd` | 330 | 历史遗留孤立脚本 |
+| 14 | `res://Script/Monster/AtlasMonsterVisual.gd` | 1,208 | 历史遗留孤立脚本 |
+| 15 | `res://Script/Monster/Fly_bullet.gd` | 538 | 历史遗留孤立脚本 |
+| 16 | `res://Script/Monster/Monster_121.gd` | 3,154 | 历史遗留孤立脚本 |
+| 17 | `res://Script/Monster/Monster_3201.gd` | 3,019 | 历史遗留孤立脚本 |
+| 18 | `res://Script/Monster/Monster_61-1.gd` | 20 | 历史遗留孤立脚本 |
+| 19 | `res://Script/Monster/Monster_62-1.gd` | 20 | 历史遗留孤立脚本 |
+| 20 | `res://Script/Monster/Monster_63-1.gd` | 7,614 | 历史遗留孤立脚本 |
+| 21 | `res://Script/Monster/Monster_70.gd` | 20 | 历史遗留孤立脚本 |
+| 22 | `res://Script/Monster/Monster_71.gd` | 20 | 历史遗留孤立脚本 |
+| 23 | `res://Script/Monster/SandKingSkills.gd` | 3,547 | 历史遗留孤立脚本 |
+| 24 | `res://Script/Pet/PetTigerSummon_4.gd` | 49 | 历史遗留孤立脚本 |
+| 25 | `res://Script/Skill/SummonBossCd.gd` | 13 | 历史遗留孤立脚本 |
+| 26 | `res://Script/Tools/skill_1.gd` | 330 | 历史遗留孤立脚本 |
+| 27 | `res://Script/main_menu/WorldMapButton.gd` | 177 | 历史遗留孤立脚本 |
 | 28 | `res://Test/ActiveSkillUpgradeProbe.gd` | 108 | 历史遗留孤立脚本 |
 | 29 | `res://Test/BackpackLevelLayoutProbe.gd` | 1,112 | 历史遗留孤立脚本 |
 | 30 | `res://Test/PetInterfaceEquipmentProbe.gd` | 350 | 历史遗留孤立脚本 |
 | 31 | `res://Test/verify_active_skill_upgrade.gd` | 5,977 | 历史遗留孤立脚本 |
 | 32 | `res://Test/verify_esbxx_popup.gd` | 3,068 | 历史遗留孤立脚本 |
-| 33 | `res://Test/verify_level49_skill_book_drop.gd` | 5,661 | 历史遗留孤立脚本 |
-| 34 | `res://Test/verify_mount_unlock_material_drop_preview.gd` | 3,498 | 历史遗留孤立脚本 |
+| 33 | `res://Test/verify_level49_skill_book_drop.gd` | 5,662 | 历史遗留孤立脚本 |
+| 34 | `res://Test/verify_mount_unlock_material_drop_preview.gd` | 3,499 | 历史遗留孤立脚本 |
 | 35 | `res://Test/verify_mount_unlock_material_drops.gd` | 6,061 | 历史遗留孤立脚本 |
 | 36 | `res://Test/verify_passive_income.gd` | 4,087 | 历史遗留孤立脚本 |
 | 37 | `res://Test/verify_pet_mosaic.gd` | 26,768 | 历史遗留孤立脚本 |
