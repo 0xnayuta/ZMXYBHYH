@@ -1,0 +1,39 @@
+# ==============================================================================
+# ZMXYBHYH EditorConfig Specification
+# Aligned with Godot Engine Official Style Guide
+# ==============================================================================
+
+root = true
+
+# 全局默认规则
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# GDScript 源码文件：官方强制要求 Tab 键缩进（缩进宽度 4）
+[*.gd]
+indent_style = tab
+indent_size = 4
+
+# Godot 引擎配置、场景与资源文件
+[*.{tscn,tres,godot,cfg,import}]
+indent_style = tab
+indent_size = 4
+
+# Python 工具链脚本：遵循 PEP 8（4 空格缩进）
+[*.py]
+indent_style = space
+indent_size = 4
+
+# Markdown 文档：允许行尾双空格（用于 Markdown 原生换行）
+[*.md]
+trim_trailing_whitespace = false
+indent_style = space
+indent_size = 2
+
+# JSON 与 YAML 配置文件
+[*.{json,yml,yaml}]
+indent_style = space
+indent_size = 2

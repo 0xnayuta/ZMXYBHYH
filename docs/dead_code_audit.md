@@ -1,6 +1,6 @@
 # ZMXYBHYH 全工程资产拓扑与死代码审计报告 (Phase 1)
 
-> 生成时间: 2026-10-16 12:37:28  
+> 生成时间: 2026-10-16 13:39:56  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
 > 引擎环境: `Godot 4.7.2 Headless`
 
@@ -37,19 +37,19 @@
 
 | 脚本路径 | 保护原因 | 详细依据 |
 |:---|:---|:---|
-| `res://Script/Level/Level_zzdy.gd` | 拥有全局 class_name: LevelZzdy | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Monster/Monster_3201.gd` | 拥有全局 class_name: Monster3201 | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Level/Level_czdy.gd` | 拥有全局 class_name: LevelCzdy | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Base/BaseMap.gd` | 拥有全局 class_name: BaseMap | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Level/Level_szdy.gd` | 拥有全局 class_name: LevelSzdy | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Base/BaseMonsterProperies.gd` | 拥有全局 class_name: BaseMonsterProperties | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Level/Level_xzdy.gd` | 拥有全局 class_name: LevelXzdy | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Level/Buff_box.gd` | 拥有全局 class_name: BuffBox | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Monster/Monster_61-1.gd` | 拥有全局 class_name: Monster61000 | 被 0 个外部文件引用或提供全局类型接口 |
-| `res://Script/Skill/SummonBossCd.gd` | 拥有全局 class_name: SummonBossCd | 被 0 个外部文件引用或提供全局类型接口 |
 | `res://Script/Monster/AtlasMonsterVisual.gd` | 拥有全局 class_name: AtlasMonsterVisual | 被 0 个外部文件引用或提供全局类型接口 |
 | `res://Script/Monster/Monster_121.gd` | 拥有全局 class_name: Monster121 | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Level/Level_szdy.gd` | 拥有全局 class_name: LevelSzdy | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Base/BaseMap.gd` | 拥有全局 class_name: BaseMap | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Base/BaseMonsterProperies.gd` | 拥有全局 class_name: BaseMonsterProperties | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Level/Level_czdy.gd` | 拥有全局 class_name: LevelCzdy | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Monster/Monster_3201.gd` | 拥有全局 class_name: Monster3201 | 被 0 个外部文件引用或提供全局类型接口 |
 | `res://Script/Monster/Monster_62-1.gd` | 拥有全局 class_name: Monster622 | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Skill/SummonBossCd.gd` | 拥有全局 class_name: SummonBossCd | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Level/Level_zzdy.gd` | 拥有全局 class_name: LevelZzdy | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Level/Buff_box.gd` | 拥有全局 class_name: BuffBox | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Level/Level_xzdy.gd` | 拥有全局 class_name: LevelXzdy | 被 0 个外部文件引用或提供全局类型接口 |
+| `res://Script/Monster/Monster_61-1.gd` | 拥有全局 class_name: Monster61000 | 被 0 个外部文件引用或提供全局类型接口 |
 
 ---
 
