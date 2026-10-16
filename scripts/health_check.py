@@ -123,15 +123,22 @@ class ProjectHealthChecker:
     def check_scene_references(self):
         """检查场景文件中的所有外部资源引用完整性"""
         print("[*] 开始全量检查 1,242 个场景的 ext_resource 引用完整性...")
-        pattern = re.compile(r'\[ext_resource\s+type="([^"]+)"\s+path="([^"]+)"\s+id="([^"]+)"\]')
+        # 逐行解析 ext_resource，提取全部属性；兼容属性顺序变化（如带 uid= 的引用）
+        ext_line_pattern = re.compile(r'\[ext_resource\s+([^\]]+)\]')
+        attr_pattern = re.compile(r'([a-z_]+)="([^"]*)"')
 
         for scn in self.all_scenes:
             abs_p = self.res_to_abs(scn)
             try:
                 with open(abs_p, "r", encoding="utf-8", errors="ignore") as f:
                     content = f.read()
-                    matches = pattern.findall(content)
-                    for res_type, res_path, res_id in matches:
+                    for ext_line in ext_line_pattern.findall(content):
+                        attrs = dict(attr_pattern.findall(ext_line))
+                        res_type = attrs.get("type", "")
+                        res_path = attrs.get("path", "")
+                        res_id = attrs.get("id", "")
+                        if not res_path:
+                            continue
                         self.tscn_to_resources[scn].add(res_path)
                         if res_path.endswith(".gd"):
                             self.tscn_script_refs[scn].add(res_path)
@@ -163,12 +170,17 @@ class ProjectHealthChecker:
         ext_pattern = re.compile(r'extends\s+([A-Za-z0-9_"\./]+)')
         load_pattern = re.compile(r'(?:preload|load)\(\s*["\'](res://[^"\']+)["\']\s*\)')
         dynamic_load_pattern = re.compile(r'(?:preload|load)\(\s*["\'](res://[^"\']+)["\']\s*\+')
+        # 字符串常量资源路径声明 (如 const DATA_SCRIPT := "res://Script/Data/XXX.gd")
+        const_str_pattern = re.compile(r'const\s+([A-Za-z_]\w*)\s*(?::\s*[A-Za-z_\[\]\w]+)?\s*(?::=|=)\s*"(res://[^"]+\.gd)"')
+        # 标识符间接加载 (如 load(DATA_SCRIPT))
+        load_var_pattern = re.compile(r'(?:preload|load)\(\s*([A-Za-z_]\w*)\s*\)')
 
         # 1. 提取声明
         for s in self.all_scripts:
             abs_p = self.res_to_abs(s)
             try:
                 with open(abs_p, "r", encoding="utf-8", errors="ignore") as f:
+                    const_paths: Dict[str, str] = {}
                     for line in f:
                         # 忽略注释
                         clean_line = line.split("#")[0].strip()
@@ -187,11 +199,21 @@ class ProjectHealthChecker:
                         if m_ext:
                             self.script_extends[s] = m_ext.group(1).strip('"')
 
+                        # 字符串常量资源路径 (供 load(常量) 间接引用识别)
+                        m_const = const_str_pattern.search(clean_line)
+                        if m_const:
+                            const_paths[m_const.group(1)] = m_const.group(2)
+
                         # 显式 preload/load
                         m_loads = load_pattern.findall(clean_line)
                         for l in m_loads:
                             if l.endswith(".gd"):
                                 self.script_explicit_loads[s].add(l)
+
+                        # 常量间接 load/preload (如 load(DATA_SCRIPT))
+                        for var_name in load_var_pattern.findall(clean_line):
+                            if var_name in const_paths:
+                                self.script_explicit_loads[s].add(const_paths[var_name])
 
                         # 动态字符串前缀拼装 (如 load("res://Script/Monster/" + id + ".gd"))
                         m_dyn = dynamic_load_pattern.findall(clean_line)
