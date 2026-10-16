@@ -106,7 +106,7 @@ func Monster_Intelligence():
 
 
 func ADDMonsterBullet():
-	Global.add_Bullet(
+	Global.add_bullet(
 		"Monster88Bullet",
 		self.bullet,
 		MonsterDirection,

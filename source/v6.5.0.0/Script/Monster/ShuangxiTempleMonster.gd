@@ -480,7 +480,7 @@ func _spawn_boss_arrow(skill_index: int) -> void:
 		if direction.is_zero_approx():
 			direction = Vector2(facing, 0.0)
 	var arrow_name := "ShuangxiBossArrow%d" % (skill_index + 1)
-	var arrow: Node = Global.add_Bullet(
+	var arrow: Node = Global.add_bullet(
 		arrow_name,
 		bullet,
 		direction.x >= 0.0,

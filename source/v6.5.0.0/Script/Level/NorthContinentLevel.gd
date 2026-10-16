@@ -413,7 +413,7 @@ func enter_void_space(boss: BaseMonster) -> void:
 	Role_.SXYRCannotCure = true
 	_void_units.clear()
 	for i in range(4):
-		var unit := Global.Create_Monster(3423, monster, Vector2(4420 + i * 130, 570))
+		var unit := Global.create_monster(3423, monster, Vector2(4420 + i * 130, 570))
 		unit.set_meta("allow_position_y_over_800", true)
 		_void_units.append(unit)
 

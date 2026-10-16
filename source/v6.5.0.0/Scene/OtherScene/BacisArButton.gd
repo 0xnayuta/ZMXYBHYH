@@ -82,7 +82,7 @@ func _on_pressed() -> void:
 		if float(PlayerData.player_data["FileValue"]) <= float(Global.FileNum):
 			PlayerData.player_data["FileValue"] = Global.FileNum
 		else:
-			Global.AddMessageShow(get_parent(), "当前游戏不是最新版本，请使用最新版本游戏！！！", 1.5, Vector2(470, 340))
+			Global.add_message_show(get_parent(), "当前游戏不是最新版本，请使用最新版本游戏！！！", 1.5, Vector2(470, 340))
 			return
 	if level_and_role.text == "空存档":
 		Global.change_scene("res://Scene/Main_menu/ChoosePlayer.tscn")

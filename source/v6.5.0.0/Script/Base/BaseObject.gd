@@ -76,17 +76,17 @@ func CheckFashionAndAddFallPro():
 		return 0.0
 	else:
 		if (
-			PlayerData.CheckFashionClothes("wklzyf")
-			or PlayerData.CheckFashionClothes("tslzyf")
-			or PlayerData.CheckFashionClothes("bjlzyf")
-			or PlayerData.CheckFashionClothes("sslzyf")
+			PlayerData.check_fashion_clothes("wklzyf")
+			or PlayerData.check_fashion_clothes("tslzyf")
+			or PlayerData.check_fashion_clothes("bjlzyf")
+			or PlayerData.check_fashion_clothes("sslzyf")
 		):
 			return 0.05
 		if (
-			PlayerData.CheckFashionClothes("wkhzyf")
-			or PlayerData.CheckFashionClothes("tshzyf")
-			or PlayerData.CheckFashionClothes("bjhzyf")
-			or PlayerData.CheckFashionClothes("sshzyf")
+			PlayerData.check_fashion_clothes("wkhzyf")
+			or PlayerData.check_fashion_clothes("tshzyf")
+			or PlayerData.check_fashion_clothes("bjhzyf")
+			or PlayerData.check_fashion_clothes("sshzyf")
 		):
 			return 0.08
 	return 0

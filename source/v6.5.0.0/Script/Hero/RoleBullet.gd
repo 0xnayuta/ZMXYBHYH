@@ -255,7 +255,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		match name_:
 			"SwordArrayHit":
 				if HitDic.has("addeffect"):
-					Global.AddBuff(Target.buff, HitDic["addeffect"])
+					Global.add_buff(Target.buff, HitDic["addeffect"])
 				if HitDic.has("defe_reduce"):
 					(
 						Global
@@ -272,7 +272,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 						)
 					)
 			"Role5Bullet4":
-				Global.AddBuff(
+				Global.add_buff(
 					Target.buff,
 					{
 						"Name": "speed_down",
@@ -292,11 +292,11 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 						TweenToLLRDCenter(Target)
 			"SMSRBullet", "TtzsszBullet", "NMWBullet2":
 				if HitDic.has("addeffect"):
-					Global.AddBuff(Target.buff, HitDic["addeffect"])
+					Global.add_buff(Target.buff, HitDic["addeffect"])
 			"Role4Bullet6":
 				if Global.CheckWD(Target) < 7 and HitDic.has("addeffect"):
-					Global.AddBuff(Target.buff, HitDic["addeffect"])
-				Global.AddBuff(
+					Global.add_buff(Target.buff, HitDic["addeffect"])
+				Global.add_buff(
 					Target.buff,
 					{
 						"Name": "speed_down",
@@ -310,17 +310,17 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				)
 			"Role4Bullet3":
 				if Global.CheckWD(Target) < 10 and HitDic.has("addeffect"):
-					Global.AddBuff(Target.buff, HitDic["addeffect"])
+					Global.add_buff(Target.buff, HitDic["addeffect"])
 			"ZLWBullet":
 				if HitDic.has("addeffect"):
-					Global.AddBuff(Target.buff, HitDic["addeffect"])
+					Global.add_buff(Target.buff, HitDic["addeffect"])
 			"LPZBullet":
 				var Levellpz = PlayerData.player_data["落魄阵"]["Level"]
 				var Value = 0.02 * Levellpz
 				var Rnd = 10 * Levellpz
 				randomize()
 				if randi_range(0, 100) <= Rnd:
-					Global.AddBuff(
+					Global.add_buff(
 						Target.buff,
 						{
 							"Name": "lpzbuff",
@@ -359,27 +359,27 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		if rand_val > threshold:
 			return
 		if HitDic.has("addeffect"):
-			Global.AddBuff(Target.buff, HitDic["addeffect"])
+			Global.add_buff(Target.buff, HitDic["addeffect"])
 
 
 func ADDMusic(num):
 	match num:
 		1:
-			Global.addSound_(self, "res://Music/Hero/58_Role2_hit1.mp3")
+			Global.add_sound(self, "res://Music/Hero/58_Role2_hit1.mp3")
 		2:
-			Global.addSound_(self, "res://Music/Hero/59_Role2_hit2.mp3")
+			Global.add_sound(self, "res://Music/Hero/59_Role2_hit2.mp3")
 		3:
-			Global.addSound_(self, "res://Music/Hero/57_Role2_hit8.mp3")
+			Global.add_sound(self, "res://Music/Hero/57_Role2_hit8.mp3")
 		4:
-			Global.addSound_(self, "res://Music/Hero/60_Role2_hit3.mp3")
+			Global.add_sound(self, "res://Music/Hero/60_Role2_hit3.mp3")
 		5:
-			Global.addSound_(self, "res://Music/Hero/51_Role2_hit10.mp3")
+			Global.add_sound(self, "res://Music/Hero/51_Role2_hit10.mp3")
 		6:
-			Global.addSound_(self, "res://Music/Hero/11_Role2_hit4.mp3")
+			Global.add_sound(self, "res://Music/Hero/11_Role2_hit4.mp3")
 		7:
-			Global.addSound_(self, "res://Music/Hero/effect8.mp3")
+			Global.add_sound(self, "res://Music/Hero/effect8.mp3")
 		8:
-			Global.addSound_(self, "res://Music/Hero/Role5/attack_repeat.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/attack_repeat.mp3")
 
 
 func _is_summon_or_pet_target(target: Node) -> bool:
@@ -410,7 +410,7 @@ func _apply_tllz_awaken_effect(target: BaseMonster) -> void:
 	):
 		return
 
-	Global.AddBuff(
+	Global.add_buff(
 		target.buff,
 		{
 			"Name": "DefeReduce",
@@ -523,7 +523,7 @@ func _on_hit_box_body_exited(body: Node2D) -> void:
 
 
 func AddslzBuff():
-	Global.AddBuff(
+	Global.add_buff(
 		RoleProp.SourcePlayer.buff,
 		{
 			"Name": "slzbuff",
@@ -538,7 +538,7 @@ func AddslzBuff():
 
 
 func AddtszBuff():
-	Global.AddBuff(
+	Global.add_buff(
 		RoleProp.SourcePlayer.buff,
 		{
 			"Name": "tszbuff",
@@ -556,8 +556,8 @@ func ADDTQZBuff():
 	if not IsCanCure:
 		return
 	Global.RemoveAllBuff()
-	Global.add_SpecialEffect(RoleProp.SourcePlayer, Vector2(0, 0), "tqzbuff", Vector2(1, 1), false, 1)
-	Global.AddBuff(
+	Global.add_special_effect(RoleProp.SourcePlayer, Vector2(0, 0), "tqzbuff", Vector2(1, 1), false, 1)
+	Global.add_buff(
 		RoleProp.SourcePlayer.buff,
 		{
 			"Name": "SuperArmor",

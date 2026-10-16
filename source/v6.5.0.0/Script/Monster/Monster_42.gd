@@ -179,18 +179,18 @@ func call_sfjmFire():
 		Vector2(self.position.x + 360, self.position.y - 20)
 	]
 	for i in range(5):
-		Global.add_Bullet("Monster42Bullet", self.bullet, false, 2, FirePosition[i], "sfjm", self.objattackDic["sfjm"])
+		Global.add_bullet("Monster42Bullet", self.bullet, false, 2, FirePosition[i], "sfjm", self.objattackDic["sfjm"])
 
 
 func call_xmhd():
 	if not self.MonsterDirection:
-		var hd = Global.add_SpecialEffect(self, Vector2(-50, -5), "Monster42Bullet_1", Vector2(0.5, 0.9), false, 0.9)
-		var xw = Global.add_SpecialEffect(self, Vector2(-50, -5), "Monster42Bullet_2", Vector2(0.5, 0.9), false, 0.9)
+		var hd = Global.add_special_effect(self, Vector2(-50, -5), "Monster42Bullet_1", Vector2(0.5, 0.9), false, 0.9)
+		var xw = Global.add_special_effect(self, Vector2(-50, -5), "Monster42Bullet_2", Vector2(0.5, 0.9), false, 0.9)
 		hd.set_rotation_degrees(-20)
 		xw.set_rotation_degrees(-20)
 	else:
-		var hd = Global.add_SpecialEffect(self, Vector2(50, -5), "Monster42Bullet_1", Vector2(0.5, 0.9), false, 0.9)
-		var xw = Global.add_SpecialEffect(self, Vector2(50, -5), "Monster42Bullet_2", Vector2(0.5, 0.9), false, 0.9)
+		var hd = Global.add_special_effect(self, Vector2(50, -5), "Monster42Bullet_1", Vector2(0.5, 0.9), false, 0.9)
+		var xw = Global.add_special_effect(self, Vector2(50, -5), "Monster42Bullet_2", Vector2(0.5, 0.9), false, 0.9)
 		hd.set_rotation_degrees(20)
 		xw.set_rotation_degrees(20)
 	(

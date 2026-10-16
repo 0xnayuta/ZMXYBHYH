@@ -544,7 +544,7 @@ func _fire_arrow() -> void:
 	var shoots_right := monster_dir.scale.x < 0.0
 	var offset := Vector2(33.0 if shoots_right else -33.0, -20.0)
 
-	var arrow = Global.add_Bullet(
+	var arrow = Global.add_bullet(
 		"JiuhuaPineArrow", bullet, shoots_right, 1.0, position + offset, "arrow", objattackDic["arrow"]
 	)
 	if (

@@ -215,7 +215,7 @@ func _call_fs_deferred() -> void:
 	if get_parent().get_children().size() >= 6:
 		Should_FS = false
 		return
-	var FS = Global.Create_Monster(63, get_parent(), position)
+	var FS = Global.create_monster(63, get_parent(), position)
 	if FS == null:
 		Should_FS = false
 		return
@@ -260,7 +260,7 @@ func CallBullet2():
 			Position = Vector2(-100, randi_range(-65, 35))
 		else:
 			Position = Vector2(100, randi_range(-65, 35))
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster63Bullet1",
 			self.bullet,
 			!MonsterDirection,

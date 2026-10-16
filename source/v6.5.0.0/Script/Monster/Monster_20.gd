@@ -111,9 +111,9 @@ func Monster_Intelligence():
 	if not is_firstLowHp:
 		if Low_Hp():
 			if self.MonsterDirection:
-				my_shark = Global.Create_Monster(19, get_parent(), Vector2(self.position.x, self.position.y - 30))
+				my_shark = Global.create_monster(19, get_parent(), Vector2(self.position.x, self.position.y - 30))
 			else:
-				my_shark = Global.Create_Monster(19, get_parent(), Vector2(self.position.x, self.position.y - 30))
+				my_shark = Global.create_monster(19, get_parent(), Vector2(self.position.x, self.position.y - 30))
 			is_firstLowHp = true
 
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
@@ -187,12 +187,12 @@ func call_pp():
 		RoleProp.get_nearest_monster_target_position(global_position).x,
 		RoleProp.get_nearest_monster_target_position(global_position).y - 110
 	)
-	var par = Global.add_SpecialEffect(
+	var par = Global.add_special_effect(
 		get_parent().get_parent(), Vector2(first_position), "Monster20Bullet_1", Vector2(1, 1), false, 1
 	)
 	var second_position = par.position + Vector2(0, 70)
 	await get_tree().create_timer(0.8, false).timeout
-	Global.add_Bullet(
+	Global.add_bullet(
 		"Monster20Bullet_1", self.bullet, self.MonsterDirection, 1, second_position, "spzd", self.objattackDic["spzd"]
 	)
 

@@ -191,7 +191,7 @@ func _apply_target_damage(node: BaseMonster) -> void:
 		node.add_lj(damage)
 		Global.TotalRoleHit += damage
 		Global.TotalMagHit += damage
-		Global.addSound_(node, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
+		Global.add_sound(node, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 		if not node.is_miss and not node.is_boss_protecting():
 			node.HurtSpecialEffect = Global.add_mr_hurt(node.pz, Vector2.ZERO)
 		if not node.is_control_immune():

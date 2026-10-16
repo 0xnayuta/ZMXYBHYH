@@ -108,11 +108,11 @@ func CallBullet1():
 		bullet_parent = get_tree().current_scene
 	var hit_data: Dictionary = self.objattackDic["hit2"].duplicate(true)
 	if self.MonsterDirection:
-		Bullets = Global.add_Bullet(
+		Bullets = Global.add_bullet(
 			"Monster118Bullet2", bullet_parent, false, 1, Vector2(35, 25) + global_position, "hit2", hit_data
 		)
 	else:
-		Bullets = Global.add_Bullet(
+		Bullets = Global.add_bullet(
 			"Monster118Bullet2", bullet_parent, false, 1, Vector2(-35, 25) + global_position, "hit2", hit_data
 		)
 	if Bullets != null and get_Player != null:

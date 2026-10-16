@@ -179,11 +179,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				"CanRemove": false,
 				"AttackKind": ""
 			}
-			Global.AddBuff(target.buff, stun_buff)
+			Global.add_buff(target.buff, stun_buff)
 
 		if objattackDic.has("addeffect") and objattackDic["addeffect"].size() != 0:
 			if randi_range(0, 100) < Rnd:
-				Global.AddBuff(target.buff, objattackDic["addeffect"])
+				Global.add_buff(target.buff, objattackDic["addeffect"])
 
 		if name_ == "wdsfBullet1" or name_ == "wdshBullet1" or name_ == "wdstBullet1" or name_ == "wdslBullet1":
 			if target == target_monster:

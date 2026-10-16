@@ -51,7 +51,7 @@ func _ready() -> void:
 
 func Monster_Intelligence():
 	if Myfather == null:
-		Myfather = Global.Create_Monster(67, get_parent(), position)
+		Myfather = Global.create_monster(67, get_parent(), position)
 	if Is_Stick:
 		StickCount += 1
 		$BaseDamageBox/HurtBox/HurtBox.disabled = true

@@ -98,7 +98,7 @@ func _physics_process(delta: float) -> void:
 	if Hp > 0 and not is_resurrecting and not resurrection_completed:
 		CreateCount -= 1
 		if CreateCount <= 0:
-			var Shallow = Global.Create_Monster(133, get_parent(), position) as Monster133
+			var Shallow = Global.create_monster(133, get_parent(), position) as Monster133
 			if Shallow:
 				Shallow.MyParent = self
 				CreateCount = randi_range(600, 720)
@@ -397,7 +397,7 @@ func CallBullet():
 		var NewRotation = 360.0 / MaxCount * Num
 		var rad = deg_to_rad(NewRotation)
 		var stabPosition = Vector2(self.position.x + sin(rad) * 300, self.position.y - 15 - cos(rad) * 300)
-		var Arrow = Global.add_Bullet(
+		var Arrow = Global.add_bullet(
 			"Monster132Bullet", self.bullet, false, 1, stabPosition, "hit2", self.objattackDic["hit2"]
 		)
 		if Arrow:
@@ -415,7 +415,7 @@ func _on_hurt_box_area_entered(area: Area2D):
 
 	var Bl: float = 0.02 + RelifTimes * 0.01
 	if IsStrength:
-		Global.AddBuff(
+		Global.add_buff(
 			RoleProp.SourcePlayer.buff,
 			{
 				"Name": "Fire",

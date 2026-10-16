@@ -67,7 +67,7 @@ func monster_33():
 
 func _ready() -> void:
 	super._ready()
-	Global.add_SpecialEffect(mr_ani, Vector2(0, 0), "mw", Vector2(2.4, 2.4), false, 0.8)
+	Global.add_special_effect(mr_ani, Vector2(0, 0), "mw", Vector2(2.4, 2.4), false, 0.8)
 
 	Skill_1_CD = 10
 	monster_33()
@@ -102,10 +102,10 @@ func Monster_Intelligence():
 	if not is_set:
 		if hand_1 == null:
 			var position_left = Vector2(self.position.x - 115, self.position.y - 45)
-			hand_1 = Global.Create_Monster(35, get_parent(), position_left)
+			hand_1 = Global.create_monster(35, get_parent(), position_left)
 		if hand_2 == null:
 			var position_right = Vector2(self.position.x + 195, self.position.y - 70)
-			hand_2 = Global.Create_Monster(36, get_parent(), position_right)
+			hand_2 = Global.create_monster(36, get_parent(), position_right)
 
 		is_set = true
 	if self.Hp <= 0:
@@ -139,8 +139,8 @@ func qgw_local(need_loc):
 
 
 func add_eyes():
-	var eye_1 = Global.add_SpecialEffect(self, Vector2(15, -75), "green_eyes", Vector2(1, 1), true, 0.8)
-	var eye_2 = Global.add_SpecialEffect(self, Vector2(-50, -75), "green_eyes", Vector2(1, 1), false, 0.8)
+	var eye_1 = Global.add_special_effect(self, Vector2(15, -75), "green_eyes", Vector2(1, 1), true, 0.8)
+	var eye_2 = Global.add_special_effect(self, Vector2(-50, -75), "green_eyes", Vector2(1, 1), false, 0.8)
 
 
 func _on_add_eyes_timeout() -> void:
@@ -186,19 +186,19 @@ func call_wling():
 	randomize()
 	for i in range(randi_range(2, 4)):
 		var list = [26, 27, 28, 30, 31]
-		Global.Create_Monster(list[randi_range(0, 4)], get_parent(), Vector2(self.position.x, self.position.y + 100))
+		Global.create_monster(list[randi_range(0, 4)], get_parent(), Vector2(self.position.x, self.position.y + 100))
 
 
 func call_left():
 	if hand_1 == null:
 		var position_left = Vector2(self.position.x - 115, self.position.y - 15)
-		hand_1 = Global.Create_Monster(35, get_parent(), position_left)
+		hand_1 = Global.create_monster(35, get_parent(), position_left)
 
 
 func call_right():
 	if hand_2 == null:
 		var position_right = Vector2(self.position.x + 195, self.position.y - 40)
-		hand_2 = Global.Create_Monster(36, get_parent(), position_right)
+		hand_2 = Global.create_monster(36, get_parent(), position_right)
 
 
 func _on_left_timeout() -> void:

@@ -149,7 +149,7 @@ func get_death():
 
 func _on_call_bai_timeout() -> void:
 	var par = get_parent()
-	var White = Global.Create_Monster(31, par, Vector2(self.position.x, self.position.y))
+	var White = Global.create_monster(31, par, Vector2(self.position.x, self.position.y))
 	var BaseLevel_ = get_parent().get_parent() as BaseLevel
 	BaseLevel_.MonsterArray.push_back(White)
 	$call_bai.stop()

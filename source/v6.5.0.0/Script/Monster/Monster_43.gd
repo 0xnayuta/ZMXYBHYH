@@ -106,7 +106,7 @@ func Monster_Intelligence():
 	if Hp < SHp * 0.8:
 		if not firstdoor:
 			do_hit_3()
-			Global.Create_Monster(
+			Global.create_monster(
 				44,
 				get_parent(),
 				Vector2(
@@ -118,7 +118,7 @@ func Monster_Intelligence():
 	if Hp < SHp * 0.6:
 		if not seconddoor:
 			do_hit_3()
-			Global.Create_Monster(
+			Global.create_monster(
 				45,
 				get_parent(),
 				Vector2(
@@ -130,7 +130,7 @@ func Monster_Intelligence():
 	if Hp < SHp * 0.4:
 		if not thirddoor:
 			do_hit_3()
-			Global.Create_Monster(
+			Global.create_monster(
 				46,
 				get_parent(),
 				Vector2(

@@ -1,6 +1,6 @@
 # ZMXYBHYH 全工程资产拓扑与死代码审计报告 (Phase 1)
 
-> 生成时间: 2026-10-16 17:00:19  
+> 生成时间: 2026-10-16 18:07:19  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
 > 引擎环境: `Godot 4.7.2 Headless`
 
@@ -77,7 +77,7 @@
 | 29 | `res://Test/BackpackLevelLayoutProbe.gd` | 1,112 | 历史遗留孤立脚本 |
 | 30 | `res://Test/PetInterfaceEquipmentProbe.gd` | 350 | 历史遗留孤立脚本 |
 | 31 | `res://Test/verify_active_skill_upgrade.gd` | 5,977 | 历史遗留孤立脚本 |
-| 32 | `res://Test/verify_esbxx_popup.gd` | 3,066 | 历史遗留孤立脚本 |
+| 32 | `res://Test/verify_esbxx_popup.gd` | 3,068 | 历史遗留孤立脚本 |
 | 33 | `res://Test/verify_level49_skill_book_drop.gd` | 5,661 | 历史遗留孤立脚本 |
 | 34 | `res://Test/verify_mount_unlock_material_drop_preview.gd` | 3,498 | 历史遗留孤立脚本 |
 | 35 | `res://Test/verify_mount_unlock_material_drops.gd` | 6,061 | 历史遗留孤立脚本 |

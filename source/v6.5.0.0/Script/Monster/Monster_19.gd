@@ -90,7 +90,7 @@ func do_hit_2():
 
 
 func call_ljf():
-	var par = Global.add_SpecialEffect(
+	var par = Global.add_special_effect(
 		get_parent().get_parent(),
 		Vector2(
 			RoleProp.get_nearest_monster_target_position(global_position).x,
@@ -103,14 +103,14 @@ func call_ljf():
 	)
 	var xx = par.position + Vector2(0, 150)
 	await get_tree().create_timer(1.7, false).timeout
-	Global.add_Bullet(
+	Global.add_bullet(
 		"Monster19Bullet", self.bullet, self.MonsterDirection, 1, xx - Vector2(0, 125), "slj", self.objattackDic["slj"]
 	)
 
 
 func call_sylj():
 	var pp = self.position - Vector2(0, 20)
-	Global.add_Bullet("Monster19Bullet_1", self.bullet, self.MonsterDirection, 1, pp, "sytx", self.objattackDic["sytx"])
+	Global.add_bullet("Monster19Bullet_1", self.bullet, self.MonsterDirection, 1, pp, "sytx", self.objattackDic["sytx"])
 
 
 func have_target():
@@ -130,4 +130,4 @@ func have_target():
 
 func call_boom():
 	var pp = self.position - Vector2(0, 0)
-	Global.add_Bullet("Monster19Bullet_2", self.bullet, self.MonsterDirection, 1, pp, "slj", self.objattackDic["slj"])
+	Global.add_bullet("Monster19Bullet_2", self.bullet, self.MonsterDirection, 1, pp, "slj", self.objattackDic["slj"])

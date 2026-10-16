@@ -194,7 +194,7 @@ func _set_requirement_color(label: Label, enough: bool) -> void:
 
 func _show_message(message: String) -> void:
 	var parent_node: Node = Global.Windows_ if is_instance_valid(Global.Windows_) else get_parent()
-	Global.AddMessageShow(parent_node, message, 1.5, Vector2(470, 295))
+	Global.add_message_show(parent_node, message, 1.5, Vector2(470, 295))
 
 
 func _refresh_backpack() -> void:

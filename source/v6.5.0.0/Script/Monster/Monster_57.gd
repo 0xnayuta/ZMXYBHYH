@@ -274,7 +274,7 @@ func CallRound():
 	var RoundPositionList = []
 	var tween = get_tree().create_tween().set_parallel(true)
 	for i in range(RoundThrowCOUNT):
-		var round = Global.add_Bullet(
+		var round = Global.add_bullet(
 			"Monster57Bullet", bullet, false, 1, position, "dmzhl", self.objattackDic["dmzhl"]
 		)
 		RoundList.push_back(round)
@@ -319,9 +319,9 @@ func normalBullet():
 func CallMonster():
 	if get_parent().get_parent() is Level21:
 		if Boss_2 == null:
-			Boss_2 = Global.Create_Monster(55, get_parent(), Vector2(1450, 320)) as Monster55
+			Boss_2 = Global.create_monster(55, get_parent(), Vector2(1450, 320)) as Monster55
 			var BaseLevel_ = get_parent().get_parent() as BaseLevel
 	elif get_parent().get_parent() is LevelZLDHDGQ:
 		if Boss_2 == null:
-			Boss_2 = Global.Create_Monster(55, get_parent(), Vector2(750, 320)) as Monster55
+			Boss_2 = Global.create_monster(55, get_parent(), Vector2(750, 320)) as Monster55
 			var BaseLevel_ = get_parent().get_parent() as BaseLevel

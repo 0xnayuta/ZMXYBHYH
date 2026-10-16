@@ -426,7 +426,7 @@ func do_slz():
 	super.get_hit_data("slz")
 	is_attacking = true
 	role_action_player.play("slz")
-	Global.addSound_(self, "res://Music/Hero/17_Role1_hit6.mp3")
+	Global.add_sound(self, "res://Music/Hero/17_Role1_hit6.mp3")
 	await role_action_player.animation_finished
 	turn_to_wait()
 	is_attacking = false
@@ -445,7 +445,7 @@ func do_hytj():
 	super.get_hit_data("hytj")
 	is_attacking = true
 	role_action_player.play("hytj")
-	Global.addSound_(self, "res://Music/Hero/8_Role1_hit6.mp3")
+	Global.add_sound(self, "res://Music/Hero/8_Role1_hit6.mp3")
 	await role_action_player.animation_finished
 	turn_to_wait()
 	is_attacking = false
@@ -474,7 +474,7 @@ func do_lys():
 	super.get_hit_data("lys")
 	is_attacking = true
 	role_action_player.play("lys")
-	Global.addSound_(self, "res://Music/Hero/11_Role1_hit7.mp3")
+	Global.add_sound(self, "res://Music/Hero/11_Role1_hit7.mp3")
 	await role_action_player.animation_finished
 	if lys_awaken_up:
 		$Action/SpecialEffect.rotation = 0.0
@@ -502,7 +502,7 @@ func do_lyfb():
 		get_parent().add_child(awaken_effect)
 	is_attacking = true
 	role_action_player.play("lyfb")
-	Global.addSound_(self, "res://Music/Hero/1_Role1_hit9.mp3")
+	Global.add_sound(self, "res://Music/Hero/1_Role1_hit9.mp3")
 	await role_action_player.animation_finished
 	if lyfb_awaken_active:
 		lyfb_original_effect.visible = true
@@ -539,7 +539,7 @@ func do_gsrs():
 	super.get_hit_data("gsrs")
 	is_attacking = true
 	role_action_player.play(GSRS_ZZ_ACTION if _prepare_gsrs_zz_action() else &"gsrs")
-	Global.addSound_(self, "res://Music/Hero/00_Role1_gsrs.mp3")
+	Global.add_sound(self, "res://Music/Hero/00_Role1_gsrs.mp3")
 	await role_action_player.animation_finished
 	turn_to_wait()
 	is_attacking = false
@@ -701,14 +701,14 @@ func do_hmz_one():
 	is_attacking = true
 	super.get_hit_data("hmz_1")
 
-	Global.addSound_(self, "res://Music/Hero/36_Role1_hit10_2.mp3")
+	Global.add_sound(self, "res://Music/Hero/36_Role1_hit10_2.mp3")
 
 	const FRONT_OFFSET = 100
 	const UP_OFFSET = 100
 
 	var abc
 	if PlayerDir:
-		abc = Global.add_SpecialEffectBullet(
+		abc = Global.add_special_effectBullet(
 			self.Bullet,
 			Vector2(position.x + FRONT_OFFSET, position.y - UP_OFFSET),
 			Vector2(1.17, 1.17),
@@ -716,7 +716,7 @@ func do_hmz_one():
 			PlayerDir
 		)
 	else:
-		abc = Global.add_SpecialEffectBullet(
+		abc = Global.add_special_effectBullet(
 			self.Bullet,
 			Vector2(position.x - FRONT_OFFSET, position.y - UP_OFFSET),
 			Vector2(1.17, 1.17),
@@ -803,7 +803,7 @@ func do_hmz_two():
 
 	get_action = "hmz"
 	is_attacking = true
-	Global.addSound_(self, "res://Music/Hero/37_Role1_hit10_4.mp3")
+	Global.add_sound(self, "res://Music/Hero/37_Role1_hit10_4.mp3")
 
 	velocity = Vector2.ZERO
 
@@ -842,11 +842,11 @@ func do_hmz_two():
 	else:
 		var abc
 		if PlayerDir:
-			abc = Global.add_SpecialEffectBullet(
+			abc = Global.add_special_effectBullet(
 				self.Bullet, Vector2(position.x + 0, position.y), Vector2(sc_x, sc_y), "hmz_2", PlayerDir
 			)
 		else:
-			abc = Global.add_SpecialEffectBullet(
+			abc = Global.add_special_effectBullet(
 				self.Bullet, Vector2(position.x - 0, position.y), Vector2(sc_x, sc_y), "hmz_2", PlayerDir
 			)
 		abc.tt = self
@@ -882,11 +882,11 @@ func do_hmz_pro_old():
 	get_action = "hmz"
 	is_using_skills = true
 	is_using_hmz = true
-	Global.addSound_(self, "res://Music/Hero/35_Role1_hit10_1.mp3")
+	Global.add_sound(self, "res://Music/Hero/35_Role1_hit10_1.mp3")
 	var abc
 	var x = 0
 	if PlayerDir:
-		abc = Global.add_SpecialEffectBullet(
+		abc = Global.add_special_effectBullet(
 			self.Bullet, Vector2(position.x + 25, position.y - 80), Vector2(1.15, 1.15), "hmz_pro", !PlayerDir
 		)
 		if position.x < abc.position.x + 70:
@@ -898,7 +898,7 @@ func do_hmz_pro_old():
 		else:
 			velocity.y = 0
 	else:
-		abc = Global.add_SpecialEffectBullet(
+		abc = Global.add_special_effectBullet(
 			self.Bullet, Vector2(position.x - 25, position.y - 80), Vector2(1.15, 1.15), "hmz_pro", !PlayerDir
 		)
 		if position.x > abc.position.x - 70:
@@ -929,15 +929,15 @@ func do_hmz_one_old():
 	get_action = "hmz"
 	is_attacking = true
 	super.get_hit_data("hmz-1")
-	Global.addSound_(self, "res://Music/Hero/36_Role1_hit10_2.mp3")
+	Global.add_sound(self, "res://Music/Hero/36_Role1_hit10_2.mp3")
 	role_action_player.play("hmz__")
 	var abc
 	if PlayerDir:
-		abc = Global.add_SpecialEffectBullet(
+		abc = Global.add_special_effectBullet(
 			self.Bullet, Vector2(position.x - 25, position.y + 45), Vector2(1.17, 1.17), "hmz-1", PlayerDir
 		)
 	else:
-		abc = Global.add_SpecialEffectBullet(
+		abc = Global.add_special_effectBullet(
 			self.Bullet, Vector2(position.x + 25, position.y + 45), Vector2(1.17, 1.17), "hmz-1", PlayerDir
 		)
 	abc.tt = self
@@ -960,11 +960,11 @@ func do_hmz_flush_old():
 	else:
 		velocity.x = walk_speed * 2.7
 	if PlayerDir:
-		abc = Global.add_SpecialEffectBullet(
+		abc = Global.add_special_effectBullet(
 			self.Bullet, Vector2(position.x + 65, position.y + 90), Vector2(1.1, 1.1), "hmz_flush", !PlayerDir
 		)
 	else:
-		abc = Global.add_SpecialEffectBullet(
+		abc = Global.add_special_effectBullet(
 			self.Bullet, Vector2(position.x - 65, position.y + 90), Vector2(1.1, 1.1), "hmz_flush", !PlayerDir
 		)
 	abc.tt = self
@@ -980,7 +980,7 @@ func do_hmz_two_old():
 	role_action_player.play("hmz__")
 	get_action = "hmz"
 	is_attacking = true
-	Global.addSound_(self, "res://Music/Hero/37_Role1_hit10_4.mp3")
+	Global.add_sound(self, "res://Music/Hero/37_Role1_hit10_4.mp3")
 	velocity.x = 0
 	velocity.y = 0
 	super.get_hit_data("hmz_3")
@@ -1000,11 +1000,11 @@ func do_hmz_two_old():
 		sc_x = 1.5
 		sc_y = 2.2
 	if PlayerDir:
-		abc = Global.add_SpecialEffectBullet(
+		abc = Global.add_special_effectBullet(
 			self.Bullet, Vector2(position.x + 0, position.y), Vector2(sc_x, sc_y), "hmz-2", PlayerDir
 		)
 	else:
-		abc = Global.add_SpecialEffectBullet(
+		abc = Global.add_special_effectBullet(
 			self.Bullet, Vector2(position.x - 0, position.y), Vector2(sc_x, sc_y), "hmz-2", PlayerDir
 		)
 	abc.tt = self
@@ -1037,21 +1037,21 @@ func reset():
 func add_music(idx):
 	match idx:
 		0:
-			Global.addSound_(self, "res://Music/Hero/40_Role1_hit1AndHit2.mp3")
+			Global.add_sound(self, "res://Music/Hero/40_Role1_hit1AndHit2.mp3")
 		1:
-			Global.addSound_(self, "res://Music/Hero/39_Role1_hit3AndHit4.mp3")
+			Global.add_sound(self, "res://Music/Hero/39_Role1_hit3AndHit4.mp3")
 		2:
-			Global.addSound_(self, "res://Music/Hero/38_Role1_hit5.mp3")
+			Global.add_sound(self, "res://Music/Hero/38_Role1_hit5.mp3")
 		3:
-			Global.addSound_(self, "res://Music/Hero/18_Role1_hit14.mp3")
+			Global.add_sound(self, "res://Music/Hero/18_Role1_hit14.mp3")
 		4:
-			Global.addSound_(self, "res://Music/Hero/45_Role1_hit12_1.mp3")
+			Global.add_sound(self, "res://Music/Hero/45_Role1_hit12_1.mp3")
 		5:
-			Global.addSound_(self, "res://Music/Hero/42_Role1_hit11.mp3")
+			Global.add_sound(self, "res://Music/Hero/42_Role1_hit11.mp3")
 		6:
-			Global.addSound_(self, "res://Music/Hero/26_Role1_hit13_1.mp3")
+			Global.add_sound(self, "res://Music/Hero/26_Role1_hit13_1.mp3")
 		7:
-			Global.addSound_(self, "res://Music/Hero/59_Role1_dead.mp3")
+			Global.add_sound(self, "res://Music/Hero/59_Role1_dead.mp3")
 
 
 func call_hyjj():

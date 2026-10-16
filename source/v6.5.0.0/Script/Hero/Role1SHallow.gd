@@ -54,16 +54,16 @@ func _on_wait_timeout() -> void:
 func add_music(idx):
 	match idx:
 		0:
-			Global.addSound_(self, "res://Music/Hero/1_Role1_hit9.mp3")
+			Global.add_sound(self, "res://Music/Hero/1_Role1_hit9.mp3")
 		1:
-			Global.addSound_(self, "res://Music/Hero/39_Role1_hit3AndHit4.mp3")
+			Global.add_sound(self, "res://Music/Hero/39_Role1_hit3AndHit4.mp3")
 		2:
-			Global.addSound_(self, "res://Music/Hero/38_Role1_hit5.mp3")
+			Global.add_sound(self, "res://Music/Hero/38_Role1_hit5.mp3")
 		3:
-			Global.addSound_(self, "res://Music/Hero/18_Role1_hit14.mp3")
+			Global.add_sound(self, "res://Music/Hero/18_Role1_hit14.mp3")
 		4:
-			Global.addSound_(self, "res://Music/Hero/45_Role1_hit12_1.mp3")
+			Global.add_sound(self, "res://Music/Hero/45_Role1_hit12_1.mp3")
 		5:
-			Global.addSound_(self, "res://Music/Hero/42_Role1_hit11.mp3")
+			Global.add_sound(self, "res://Music/Hero/42_Role1_hit11.mp3")
 		6:
-			Global.addSound_(self, "res://Music/Hero/26_Role1_hit13_1.mp3")
+			Global.add_sound(self, "res://Music/Hero/26_Role1_hit13_1.mp3")

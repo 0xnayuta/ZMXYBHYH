@@ -51,7 +51,7 @@ func _ready() -> void:
 func CallBullet1():
 	var Bullets
 	if self.MonsterDirection:
-		Bullets = Global.add_Bullet(
+		Bullets = Global.add_bullet(
 			"Monster111Bullet",
 			self.bullet,
 			MonsterDirection,
@@ -61,7 +61,7 @@ func CallBullet1():
 			self.objattackDic["hit1"]
 		)
 	else:
-		Bullets = Global.add_Bullet(
+		Bullets = Global.add_bullet(
 			"Monster111Bullet",
 			self.bullet,
 			MonsterDirection,
@@ -109,7 +109,7 @@ func MonsterCureHp():
 	for i in BaseLevel_.monster.get_children():
 		if i != null:
 			if i is BaseMonster:
-				Global.add_SpecialEffect(i, Vector2(0, -45), "Monster111Bullet", Vector2(1, 1), false, 1)
+				Global.add_special_effect(i, Vector2(0, -45), "Monster111Bullet", Vector2(1, 1), false, 1)
 				i.cure_hp(i.SHp * 0.35)
 				if i.Hp >= i.SHp:
 					i.hd += i.SHp * 0.35

@@ -105,7 +105,7 @@ func set_infor() -> void:
 	Wp_name.text = str(AE.AllEquipment_.get(wp_name, {}).get("名字", wp_name))
 	Skill_name.text = str(info["skill"])
 	Skill_level.text = "Lv: " + str(PlayerData.get_mostLevel(wp_name))
-	WX_mu.visible = PlayerData.CheckHaveWX(wp_name, "木")
+	WX_mu.visible = PlayerData.check_have_wx(wp_name, "木")
 	Skill_Infor.text = str(info["desc"])
 
 
@@ -133,4 +133,4 @@ func _on_choose_pressed() -> void:
 		Global.should_change = true
 		MemoryClass.保存游戏(Global.cd_path)
 	else:
-		Global.AddMessageShow(get_parent().get_parent(), "当前法宝正在使用，无法更换！", 1.5, Vector2(0, 0))
+		Global.add_message_show(get_parent().get_parent(), "当前法宝正在使用，无法更换！", 1.5, Vector2(0, 0))

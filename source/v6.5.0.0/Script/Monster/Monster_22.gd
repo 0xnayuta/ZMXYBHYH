@@ -106,7 +106,7 @@ func _physics_process(delta: float) -> void:
 		var par = get_parent().get_parent()
 		if par is Level10 or par is LevelNMGHDGQ:
 			if boss_2 == null:
-				boss_2 = Global.Create_Monster(23, get_parent(), Vector2(self.position.x, 330))
+				boss_2 = Global.create_monster(23, get_parent(), Vector2(self.position.x, 330))
 
 
 func Monster_Intelligence():
@@ -149,5 +149,5 @@ func _on_change_dir_timeout() -> void:
 
 func call_fire():
 	var po = Vector2(self.position.x, self.position.y - 100)
-	Global.add_Bullet("Monster22Fire", self.bullet, false, 1, po, "Fire", self.objattackDic["Fire"])
+	Global.add_bullet("Monster22Fire", self.bullet, false, 1, po, "Fire", self.objattackDic["Fire"])
 	pass

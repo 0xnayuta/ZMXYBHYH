@@ -175,11 +175,11 @@ func do_hit_2():
 func call_Bullet_1():
 	if self.MonsterDirection:
 		var po = Vector2(self.position.x + 40, self.position.y + 20)
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster28Bullet_2", self.bullet, self.MonsterDirection, 1, po, "hit1", self.objattackDic["hit1"]
 		)
 		await get_tree().create_timer(0.3, false).timeout
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster28Bullet_2",
 			self.bullet,
 			self.MonsterDirection,
@@ -190,10 +190,10 @@ func call_Bullet_1():
 		)
 	else:
 		var po = Vector2(self.position.x - 40, self.position.y + 20)
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster28Bullet_2", self.bullet, self.MonsterDirection, 1, po, "hit1", self.objattackDic["hit1"]
 		)
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster28Bullet_2",
 			self.bullet,
 			self.MonsterDirection,

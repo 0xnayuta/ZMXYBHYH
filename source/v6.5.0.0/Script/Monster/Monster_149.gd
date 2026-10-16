@@ -219,11 +219,11 @@ func do_hit_3():
 func CallBullet1():
 	var Bullets
 	if self.MonsterDirection:
-		Bullets = Global.add_Bullet(
+		Bullets = Global.add_bullet(
 			"Monster147Bullet1", self.bullet, false, 1, Vector2(35, 25) + position, "hit1", self.objattackDic["hit1"]
 		)
 	else:
-		Bullets = Global.add_Bullet(
+		Bullets = Global.add_bullet(
 			"Monster147Bullet1", self.bullet, false, 1, Vector2(-35, 25) + position, "hit1", self.objattackDic["hit1"]
 		)
 	Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
@@ -235,16 +235,16 @@ func CallBullet2():
 	var PositionList3 = [Vector2(position.x + 450, 200), Vector2(position.x - 450, 200)]
 	var PositionList4 = [Vector2(position.x + 600, 0), Vector2(position.x - 600, 0)]
 	for i in PositionList1:
-		Global.add_Bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
+		Global.add_bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
 	await get_tree().create_timer(0.2, false).timeout
 	for i in PositionList2:
-		Global.add_Bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
+		Global.add_bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
 	await get_tree().create_timer(0.2, false).timeout
 	for i in PositionList3:
-		Global.add_Bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
+		Global.add_bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
 	await get_tree().create_timer(0.2, false).timeout
 	for i in PositionList4:
-		Global.add_Bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
+		Global.add_bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
 	await get_tree().create_timer(0.2, false).timeout
 
 
@@ -252,7 +252,7 @@ func CallBullet3():
 	var PositionList = [{"position": Vector2(125, 50), "dir": true}, {"position": Vector2(-125, 50), "dir": false}]
 	for i in range(1):
 		for u in PositionList:
-			Global.add_Bullet(
+			Global.add_bullet(
 				"Monster149Bullet2",
 				self.bullet,
 				u["dir"],

@@ -901,7 +901,7 @@ func _summon(skill: Dictionary, key: String) -> void:
 		if model == 3431:
 			origin.x = global_position.x + 20 * ordinal
 		ordinal += 1
-		var son := Global.Create_Monster(int(id_value), level_node.monster, origin)
+		var son := Global.create_monster(int(id_value), level_node.monster, origin)
 		if son == null:
 			continue
 		son.set_meta("allow_position_y_over_800", true)
@@ -1031,7 +1031,7 @@ func _apply_source_buffs(_projectile: WutaiMinghaiProjectile, target: BaseHero, 
 				var direction := target.global_position.direction_to(global_position)
 				target.velocity = direction * float(record["attributeV1"]) * 3
 		if not name.is_empty():
-			Global.AddBuff(
+			Global.add_buff(
 				target.buff,
 				{
 					"Name": name,

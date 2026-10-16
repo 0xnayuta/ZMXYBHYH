@@ -106,4 +106,4 @@ func RoleReduceHp():
 
 
 func RoleAddDeBuff():
-	Global.AddBuff(get_Player.buff, DeBuffList[randi_range(0, 3)])
+	Global.add_buff(get_Player.buff, DeBuffList[randi_range(0, 3)])

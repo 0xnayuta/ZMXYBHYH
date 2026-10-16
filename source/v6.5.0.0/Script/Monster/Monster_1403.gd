@@ -264,7 +264,7 @@ func apply_real_stun(stun_time: float):
 		"CanRemove": false,
 	}
 
-	Global.AddBuff(player.buff, stun_effect)
+	Global.add_buff(player.buff, stun_effect)
 
 
 func MovePlayer1():

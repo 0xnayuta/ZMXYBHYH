@@ -175,7 +175,7 @@ func CallBullet1():
 	else:
 		PositionList = [Vector2(-55, 0), Vector2(-25, -45), Vector2(-25, 45)]
 	for i in PositionList:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster107Bullet1", self.bullet, MonsterDirection, 1.5, i + position, "hit1", self.objattackDic["hit1"]
 		)
 
@@ -187,7 +187,7 @@ func CallBullet2():
 	else:
 		PositionList = [Vector2(0, 0), Vector2(75, 45), Vector2(-50, 45), Vector2(75, -105), Vector2(-75, 25)]
 	for i in PositionList:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster107Bullet2", self.bullet, MonsterDirection, 1, i + position, "hit3", self.objattackDic["hit3"]
 		)
 		await get_tree().create_timer(0.1, false).timeout

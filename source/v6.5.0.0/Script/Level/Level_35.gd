@@ -24,7 +24,7 @@ func _ready() -> void:
 	load("res://Scene/Monster/Monster_123.tscn")
 	load("res://Scene/Monster/Monster_1404.tscn")
 	Global.CurrentLevel = "仙音岛"
-	Global.addBGM_(self, "res://Music/level/Floor1_3.mp3")
+	Global.add_bgm(self, "res://Music/level/Floor1_3.mp3")
 	self.level_stage = 40
 	self.is_two_scene = true
 
@@ -238,7 +238,7 @@ func spawn_final_boss():
 
 
 func show_puzzle_hint(text: String, duration: float = 2.0):
-	Global.AddMessageShow(self, text, duration, Vector2(470, 300))
+	Global.add_message_show(self, text, duration, Vector2(470, 300))
 
 
 func update_puzzle_hint():

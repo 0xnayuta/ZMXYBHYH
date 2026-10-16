@@ -108,7 +108,7 @@ func do_hit_2():
 func CallRound():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
-	Round = Global.add_Bullet("Monster76Bullet2", bullet, false, 1, pp, "hit2", self.objattackDic["hit2"])
+	Round = Global.add_bullet("Monster76Bullet2", bullet, false, 1, pp, "hit2", self.objattackDic["hit2"])
 	tween.tween_property(Round, "position", setposition(), 0.5)
 	await get_tree().create_timer(2.5, false).timeout
 	return_()
@@ -136,4 +136,4 @@ func CallKnife():
 		po = Vector2(70, -20)
 	else:
 		po = Vector2(-70, -20)
-	Global.add_Bullet("Monster76Bullet1", bullet, MonsterDirection, 1, position + po, "hit1", self.objattackDic["hit1"])
+	Global.add_bullet("Monster76Bullet1", bullet, MonsterDirection, 1, position + po, "hit1", self.objattackDic["hit1"])

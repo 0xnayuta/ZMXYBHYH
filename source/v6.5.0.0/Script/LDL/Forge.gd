@@ -484,10 +484,10 @@ func _clear_children_now(parent: Node) -> void:
 
 func _on_froge_pressed_legacy() -> void:
 	if zzs.get_children().size() == 0:
-		Global.AddMessageShow(Global.Windows_, "请先放入制作书！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "请先放入制作书！！", 1.5, Vector2(500, 305))
 		return
 	if PlayerData.get_soul() < 5000:
-		Global.AddMessageShow(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
 		return
 
 	if CheckFullMaterial():
@@ -532,34 +532,34 @@ func _on_froge_pressed_legacy() -> void:
 
 		RemoveAll()
 		PlayerData.spend_soul(5000)
-		Global.AddMessageShow(Global.Windows_, "打造成功！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "打造成功！！", 1.5, Vector2(500, 305))
 	else:
-		Global.AddMessageShow(Global.Windows_, "材料不足！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "材料不足！！", 1.5, Vector2(500, 305))
 
 
 func _on_froge_pressed() -> void:
 	if zzs == null or zzs.get_child_count() != 1:
-		Global.AddMessageShow(Global.Windows_, "请先放入制作书！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "请先放入制作书！！", 1.5, Vector2(500, 305))
 		return
 
 	var book_box: Node = zzs.get_child(0)
 	var book_name := _get_current_book_name()
 	var item_name := book_name.split("zzs")[0] if book_name != "" else ""
 	if book_name == "" or item_name == "" or not ItemMaterialList.has(book_name) or not AE.AllEquipment_.has(item_name):
-		Global.AddMessageShow(Global.Windows_, "制作书数据异常，无法打造！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "制作书数据异常，无法打造！！", 1.5, Vector2(500, 305))
 		return
 	if PlayerData.get_soul() < 5000:
-		Global.AddMessageShow(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
 		return
 	if not CheckFullMaterial():
-		Global.AddMessageShow(Global.Windows_, "材料或制作书不足！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "材料或制作书不足！！", 1.5, Vector2(500, 305))
 		return
 
 	var item_data: Dictionary = AE.AllEquipment_[item_name] as Dictionary
 	var equipment_type := str(item_data.get("类型", ""))
 	var jewels_value: Variant = PlayerData.player_data.get("宝珠列表", [])
 	if not jewels_value is Array:
-		Global.AddMessageShow(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
 		return
 
 	var snapshot: Dictionary = PlayerData.player_data.duplicate(true)
@@ -573,16 +573,16 @@ func _on_froge_pressed() -> void:
 	var jewels: Array = jewels_value
 	for jewel_value in jewels:
 		if not jewel_value is Dictionary:
-			Global.AddMessageShow(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
 			return
 		var jewel: Dictionary = jewel_value
 		var jewel_name := str(jewel.get("名字", ""))
 		if jewel_name == "" or not AE.AllEquipment_.has(jewel_name):
-			Global.AddMessageShow(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
 			return
 		var jewel_data_value: Variant = AE.AllEquipment_.get(jewel_name, {})
 		if not jewel_data_value is Dictionary:
-			Global.AddMessageShow(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "宝珠数据异常，无法打造！！", 1.5, Vector2(500, 305))
 			return
 		var jewel_data: Dictionary = jewel_data_value
 		for prop in AE.PropListName:
@@ -601,21 +601,21 @@ func _on_froge_pressed() -> void:
 		"武器", "防具", "饰品", "神骨", "时装", "头衔", "翅膀":
 			added = PlayerData.add_zb(item_name, 0, new_equip_data)
 		_:
-			Global.AddMessageShow(Global.Windows_, "该制作书的装备类型不支持打造！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "该制作书的装备类型不支持打造！！", 1.5, Vector2(500, 305))
 			return
 	if not added:
-		Global.AddMessageShow(Global.Windows_, "装备栏已满或装备数据无效，未扣除材料！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "装备栏已满或装备数据无效，未扣除材料！！", 1.5, Vector2(500, 305))
 		return
 
 	if not RemoveAll() or not PlayerData.spend_soul(5000):
 		_restore_forge_state(snapshot, book_name, book_level, book_props)
-		Global.AddMessageShow(Global.Windows_, "打造失败，材料未扣除！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "打造失败，材料未扣除！！", 1.5, Vector2(500, 305))
 		return
 	if not MemoryClass.保存游戏(Global.cd_path):
 		_restore_forge_state(snapshot, book_name, book_level, book_props)
-		Global.AddMessageShow(Global.Windows_, "存档保存失败，本次打造已撤销！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "存档保存失败，本次打造已撤销！！", 1.5, Vector2(500, 305))
 		return
-	Global.AddMessageShow(Global.Windows_, "打造成功！！", 1.5, Vector2(500, 305))
+	Global.add_message_show(Global.Windows_, "打造成功！！", 1.5, Vector2(500, 305))
 
 
 func _get_material_list(book_name: String) -> Dictionary:

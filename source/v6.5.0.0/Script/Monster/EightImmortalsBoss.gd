@@ -833,7 +833,7 @@ func _apply_165_sleep(target: Node, sleep_damage: int) -> void:
 		buff_node = target.get_node_or_null("buff")
 	if buff_node == null:
 		return
-	Global.AddBuff(
+	Global.add_buff(
 		buff_node,
 		{
 			"Name": "Immobilize",
@@ -845,7 +845,7 @@ func _apply_165_sleep(target: Node, sleep_damage: int) -> void:
 			"DeBuff": true
 		}
 	)
-	Global.AddBuff(
+	Global.add_buff(
 		buff_node,
 		{
 			"Name": "hanxiangzisleep",

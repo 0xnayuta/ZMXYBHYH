@@ -144,7 +144,7 @@ func do_hit_2():
 
 func CallBullet1():
 	if self.MonsterDirection:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster112Bullet1",
 			self.bullet,
 			MonsterDirection,
@@ -154,7 +154,7 @@ func CallBullet1():
 			self.objattackDic["hit2"]
 		)
 	else:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster112Bullet1",
 			self.bullet,
 			MonsterDirection,
@@ -167,7 +167,7 @@ func CallBullet1():
 
 func CallBullet2():
 	if self.MonsterDirection:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster112Bullet2",
 			self.bullet,
 			MonsterDirection,
@@ -177,7 +177,7 @@ func CallBullet2():
 			self.objattackDic["hit1"]
 		)
 	else:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster112Bullet2",
 			self.bullet,
 			MonsterDirection,
@@ -194,14 +194,14 @@ func CallBullet3():
 	var PositionList3 = [Vector2(position.x + 450, 200), Vector2(position.x - 450, 200)]
 	var PositionList4 = [Vector2(position.x + 600, 0), Vector2(position.x - 600, 0)]
 	for i in PositionList1:
-		Global.add_Bullet("Monster112Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
+		Global.add_bullet("Monster112Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 	await get_tree().create_timer(0.2, false).timeout
 	for i in PositionList2:
-		Global.add_Bullet("Monster112Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
+		Global.add_bullet("Monster112Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 	await get_tree().create_timer(0.2, false).timeout
 	for i in PositionList3:
-		Global.add_Bullet("Monster112Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
+		Global.add_bullet("Monster112Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 	await get_tree().create_timer(0.2, false).timeout
 	for i in PositionList4:
-		Global.add_Bullet("Monster112Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
+		Global.add_bullet("Monster112Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 	await get_tree().create_timer(0.2, false).timeout

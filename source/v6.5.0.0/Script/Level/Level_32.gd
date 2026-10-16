@@ -10,7 +10,7 @@ func _ready() -> void:
 	load("res://Scene/Monster/Monster_119.tscn")
 
 	Global.CurrentLevel = "九龙岛"
-	Global.addBGM_(self, "res://Music/level/34_bg5.mp3")
+	Global.add_bgm(self, "res://Music/level/34_bg5.mp3")
 	self.level_stage = 37
 	super._ready()
 	Monster_group = {

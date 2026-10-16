@@ -15,7 +15,7 @@ func _ready() -> void:
 	MainSet.set_data["LevelInfo"] = false
 	Global.SelectedConstellationLevel = 0
 
-	var popup = Global.AddLevelInfo(self, "挑战28星宿", Vector2.ZERO, LEVEL_PATH)
+	var popup = Global.add_level_info(self, "挑战28星宿", Vector2.ZERO, LEVEL_PATH)
 	_check(popup != null, "星宿入口应强制打开关卡信息选择页")
 	if popup == null:
 		_finish()

@@ -26,7 +26,7 @@ func _ready() -> void:
 	if not get_viewport().size_changed.is_connected(_fit_to_window):
 		get_viewport().size_changed.connect(_fit_to_window)
 	Global.removeAllBuff()
-	Global.addBGM_(self, "res://Music/level/13_Game_Victory.mp3")
+	Global.add_bgm(self, "res://Music/level/13_Game_Victory.mp3")
 	get_tree().paused = false
 	Global.LevelEndTime = ""
 	Global.LevelEndTime = Time.get_datetime_string_from_system(false, true) as String
@@ -43,7 +43,7 @@ func _ready() -> void:
 		if not MainSet.set_data["LevelHYS"]:
 			MainSet.set_data["LevelHYS"] = true
 			MemoryClass.main_bc()
-			Global.AddMessageShow(Global.Windows_, "恭喜通关火焰山，解锁角色“猪八戒”！！", 1.5, Vector2(470, 300))
+			Global.add_message_show(Global.Windows_, "恭喜通关火焰山，解锁角色“猪八戒”！！", 1.5, Vector2(470, 300))
 	begin_time.text = "开始时间：" + Global.LevelBeginTime
 	end_time.text = "结束时间：" + Global.LevelEndTime
 	use_time.text = (
@@ -56,7 +56,7 @@ func _ready() -> void:
 			if PDpj() >= 4:
 				MainSet.set_data["Music4"] = true
 				MemoryClass.main_bc()
-				Global.AddMessageShow(Global.Windows_, "触发彩蛋，恭喜开启图四音乐！！！", 1.5, Vector2(470, 300))
+				Global.add_message_show(Global.Windows_, "触发彩蛋，恭喜开启图四音乐！！！", 1.5, Vector2(470, 300))
 	if Global.CurrentLevel != "":
 		var PJ = PDpj()
 		if PlayerData.player_data["关卡评价"].has(Global.CurrentLevel):
@@ -148,8 +148,8 @@ var _is_rechallenging := false
 
 
 func _reset_role_state_for_rechallenge() -> void:
-	RoleProp.set_full_Hp()
-	RoleProp.set_full_Mp()
+	RoleProp.set_full_hp()
+	RoleProp.set_full_mp()
 	RoleProp.CurrentHp = int(RoleProp.roleprop.Hp)
 	RoleProp.CurrentMp = int(RoleProp.roleprop.Mp)
 	RoleProp.ws_value = 0
@@ -161,7 +161,7 @@ func _on_rechallenge_pressed() -> void:
 	if _is_rechallenging:
 		return
 	if Global.LastLevelPath == "":
-		Global.AddMessageShow(Global.Windows_, "获取关卡信息时出现错误，请手动更换关卡！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "获取关卡信息时出现错误，请手动更换关卡！！", 1.5, Vector2(470, 300))
 		return
 	_is_rechallenging = true
 	_reset_role_state_for_rechallenge()

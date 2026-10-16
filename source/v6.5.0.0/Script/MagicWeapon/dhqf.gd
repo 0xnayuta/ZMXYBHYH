@@ -48,7 +48,7 @@ func ShowSkill():
 			"CanAdd": false,
 			"DeBuff": false
 		}
-		Global.AddBuff(Player.buff, super_armor_buff)
+		Global.add_buff(Player.buff, super_armor_buff)
 
 	def_timer = Timer.new()
 	def_timer.one_shot = true
@@ -58,7 +58,7 @@ func ShowSkill():
 	def_timer.start()
 
 	var cd_seconds = 20 - level
-	if PlayerData.CheckHaveWX("dhqf", "木"):
+	if PlayerData.check_have_wx("dhqf", "木"):
 		cd_seconds = 15
 
 	cd_seconds = max(cd_seconds, 1)

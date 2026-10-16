@@ -70,7 +70,7 @@ func MonsterCall():
 	var BaseLevel_ = get_parent().get_parent() as BaseLevel
 	if BaseLevel_.monster.get_children().size() < 6:
 		var ChlidMonster = MonsterList[randi_range(0, MonsterList.size() - 1)]
-		var mm = Global.Create_Monster(ChlidMonster, get_parent(), Vector2(self.position.x, self.position.y - 30))
+		var mm = Global.create_monster(ChlidMonster, get_parent(), Vector2(self.position.x, self.position.y - 30))
 		if mm is BaseMonster:
 			if mm.is_boss:
 				mm.is_boss = false

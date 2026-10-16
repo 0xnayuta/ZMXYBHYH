@@ -48,31 +48,31 @@ func _on_change_pressed() -> void:
 		if PlayerData.has_acquired_equipment(SelfName_):
 			if Lx == "武器":
 				PlayerData.player_data["幻化列表"]["武器"] = SelfName_
-				Global.AddMessageShow(Global.Windows_, "武器幻化为：" + str(Name) + "！！", 1.5, Vector2(470, 295))
+				Global.add_message_show(Global.Windows_, "武器幻化为：" + str(Name) + "！！", 1.5, Vector2(470, 295))
 			elif Lx == "防具":
 				PlayerData.player_data["幻化列表"]["防具"] = SelfName_
-				Global.AddMessageShow(Global.Windows_, "防具幻化为：" + str(Name) + "！！", 1.5, Vector2(470, 295))
+				Global.add_message_show(Global.Windows_, "防具幻化为：" + str(Name) + "！！", 1.5, Vector2(470, 295))
 			elif Lx == "时装":
 				PlayerData.player_data["幻化列表"]["防具"] = SelfName_
-				Global.AddMessageShow(Global.Windows_, "时装幻化为：" + str(Name) + "！！", 1.5, Vector2(470, 295))
+				Global.add_message_show(Global.Windows_, "时装幻化为：" + str(Name) + "！！", 1.5, Vector2(470, 295))
 			elif Lx == "翅膀":
 				PlayerData.player_data["幻化列表"]["翅膀"] = SelfName_
-				Global.AddMessageShow(Global.Windows_, "翅膀幻化为：" + str(Name) + "！！", 1.5, Vector2(470, 295))
+				Global.add_message_show(Global.Windows_, "翅膀幻化为：" + str(Name) + "！！", 1.5, Vector2(470, 295))
 		else:
-			Global.AddMessageShow(Global.Windows_, "您还未获得过" + str(Name) + "！！", 1.5, Vector2(470, 295))
+			Global.add_message_show(Global.Windows_, "您还未获得过" + str(Name) + "！！", 1.5, Vector2(470, 295))
 	elif cdorxx.text == "卸下":
 		if Lx == "武器":
 			PlayerData.player_data["幻化列表"]["武器"] = ""
-			Global.AddMessageShow(Global.Windows_, "取消武器：" + str(Name) + "的幻化！！", 1.5, Vector2(470, 295))
+			Global.add_message_show(Global.Windows_, "取消武器：" + str(Name) + "的幻化！！", 1.5, Vector2(470, 295))
 		elif Lx == "防具":
 			PlayerData.player_data["幻化列表"]["防具"] = ""
-			Global.AddMessageShow(Global.Windows_, "取消防具：" + str(Name) + "的幻化！！", 1.5, Vector2(470, 295))
+			Global.add_message_show(Global.Windows_, "取消防具：" + str(Name) + "的幻化！！", 1.5, Vector2(470, 295))
 		elif Lx == "时装":
 			PlayerData.player_data["幻化列表"]["防具"] = ""
-			Global.AddMessageShow(Global.Windows_, "取消时装：" + str(Name) + "的幻化！！", 1.5, Vector2(470, 295))
+			Global.add_message_show(Global.Windows_, "取消时装：" + str(Name) + "的幻化！！", 1.5, Vector2(470, 295))
 		elif Lx == "翅膀":
 			PlayerData.player_data["幻化列表"]["翅膀"] = ""
-			Global.AddMessageShow(Global.Windows_, "取消翅膀：" + str(Name) + "的幻化！！", 1.5, Vector2(470, 295))
+			Global.add_message_show(Global.Windows_, "取消翅膀：" + str(Name) + "的幻化！！", 1.5, Vector2(470, 295))
 	Transmogrified_.onEqchange()
 	if is_instance_valid(RoleProp.SourcePlayer) and RoleProp.SourcePlayer.has_method("onEqchange"):
 		RoleProp.SourcePlayer.onEqchange()

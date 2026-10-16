@@ -100,7 +100,7 @@ func _ready() -> void:
 
 func Monster_Intelligence():
 	if Dog == null and not CallDog:
-		Dog = Global.Create_Monster(72, get_parent(), position)
+		Dog = Global.create_monster(72, get_parent(), position)
 		Dog.SHp = 70000
 		Dog.Hp = Dog.SHp
 		Dog.IsCall = true
@@ -202,14 +202,14 @@ func ADDBullet():
 		PositionList = [Vector2(10, -315), Vector2(-70, -70), Vector2(65, -70)]
 		Position2 = Vector2(10, -160)
 	for i in PositionList:
-		var Line = Global.add_Bullet(
+		var Line = Global.add_bullet(
 			"Monster93Bullet", self.bullet, MonsterDirection, 1.6, i + position, "hit5", self.objattackDic["hit5"]
 		)
 		if MonsterDirection:
 			Tween_.tween_property(Line, "rotation_degrees", 45, 2)
 		else:
 			Tween_.tween_property(Line, "rotation_degrees", -45, 2)
-	var Line2 = Global.add_Bullet(
+	var Line2 = Global.add_bullet(
 		"Monster93Bullet", self.bullet, MonsterDirection, 1.6, Position2 + position, "hit5", self.objattackDic["hit5"]
 	)
 	Line2.scale.y = 2.2

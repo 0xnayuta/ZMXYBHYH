@@ -138,6 +138,6 @@ func AddChild2():
 		po = Vector2(60, 5)
 	else:
 		po = Vector2(-60, 5)
-	var child = Global.add_Bullet(
+	var child = Global.add_bullet(
 		"Monster78Bullet", bullet, MonsterDirection, 2, position + po, "hit1", self.objattackDic["hit1"]
 	)

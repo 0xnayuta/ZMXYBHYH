@@ -79,7 +79,7 @@ func CallFish():
 	for i in range(2):
 		var Position = Vector2(randi_range(-90, 90), randi_range(140, 200)) + self.position
 		if randi_range(0, 100) < 50:
-			Global.add_Bullet("Fish_1", bullet, false, 1, Position, hit_name_, self.objattackDic[hit_name_])
+			Global.add_bullet("Fish_1", bullet, false, 1, Position, hit_name_, self.objattackDic[hit_name_])
 		else:
-			Global.add_Bullet("Fish_2", bullet, false, 1, Position, hit_name_, self.objattackDic[hit_name_])
+			Global.add_bullet("Fish_2", bullet, false, 1, Position, hit_name_, self.objattackDic[hit_name_])
 	FishCount = randi_range(80, 160)

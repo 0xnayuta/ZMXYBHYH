@@ -7,7 +7,7 @@ var CallCount: int = 0
 
 func _ready() -> void:
 	Global.CurrentLevel = "九重天"
-	Global.addBGM_(self, "res://Music/level/Floor1_3.mp3")
+	Global.add_bgm(self, "res://Music/level/Floor1_3.mp3")
 	self.level_stage = 1
 	super._ready()
 	Monster_group = {
@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	CallCount += 1
 	if CallCount % 360 == 0:
 		for i in range(randi_range(1, 2)):
-			Global.Create_Monster(73, monster, Role_.position + Vector2(randi_range(-120, 102), randi_range(-125, 155)))
+			Global.create_monster(73, monster, Role_.position + Vector2(randi_range(-120, 102), randi_range(-125, 155)))
 	if Role_.position.y <= -4900:
 		my_camera.max_bottom = -4835
 	super._physics_process(delta)

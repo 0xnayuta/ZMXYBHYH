@@ -129,7 +129,7 @@ func _toggle_scene(current_page: Variant, scene_path: String, setup_backpack := 
 		return null
 	var page_scene := Global.load_ui_scene(scene_path)
 	if page_scene == null:
-		Global.AddMessageShow(_ui_parent(), "页面加载失败", 1.5, Vector2(470, 300))
+		Global.add_message_show(_ui_parent(), "页面加载失败", 1.5, Vector2(470, 300))
 		return null
 	var page := page_scene.instantiate()
 	Global.register_ui_runtime_instance(page, scene_path)
@@ -145,7 +145,7 @@ func _toggle_scene(current_page: Variant, scene_path: String, setup_backpack := 
 
 
 func _show_unavailable(feature_name: String) -> void:
-	Global.AddMessageShow(_ui_parent(), "%s暂未开放" % feature_name, 1.5, Vector2(470, 300))
+	Global.add_message_show(_ui_parent(), "%s暂未开放" % feature_name, 1.5, Vector2(470, 300))
 
 
 func _change_map(scene_path: String) -> void:
@@ -156,7 +156,7 @@ func _change_map(scene_path: String) -> void:
 func _require_map_clear(level_name: String, message: String) -> bool:
 	if bool(PlayerData.player_data.get(level_name, false)):
 		return true
-	Global.AddMessageShow(_ui_parent(), message, 1.5, Vector2(470, 300))
+	Global.add_message_show(_ui_parent(), message, 1.5, Vector2(470, 300))
 	return false
 
 
@@ -224,7 +224,7 @@ func _on_magic_weapon_pressed() -> void:
 
 func _on_mount_pressed() -> void:
 	if not PlayerData.is_mount_system_unlocked():
-		Global.AddMessageShow(_ui_parent(), "通关碧游宫开放坐骑", 1.5, Vector2(470, 300))
+		Global.add_message_show(_ui_parent(), "通关碧游宫开放坐骑", 1.5, Vector2(470, 300))
 		return
 	mount_page = _toggle_scene(mount_page, MOUNT_SCENE_PATH)
 

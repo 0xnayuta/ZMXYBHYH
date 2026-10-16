@@ -313,12 +313,12 @@ func CallHit1Bullet() -> void:
 		_stage_value(60.0, 120.0, 130.0, 130.0), _stage_value(-25.0, -80.0, -70.0, -70.0)
 	)
 	var bullet_name := "PetTiger1Bullet1" if tiger_stage == 1 else "PetTiger2Bullet1"
-	Global.add_Bullet(bullet_name, bullet, MonsterDirection, 1.0, position + offset, "hit1", objattackDic["hit1"])
+	Global.add_bullet(bullet_name, bullet, MonsterDirection, 1.0, position + offset, "hit1", objattackDic["hit1"])
 
 
 func CallHyBullet() -> void:
 	var offset: Vector2 = _front_offset(_stage_value(150.0, 190.0, 190.0, 190.0), -80.0)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"PetTiger1Bullet2", bullet, MonsterDirection, 1.0, position + offset, SKILL_HY, objattackDic[SKILL_HY]
 	)
 
@@ -327,7 +327,7 @@ func CallSxhzHit() -> void:
 	var main_offset: Vector2 = _front_offset(50.0, _stage_value(-45.0, -45.0, -45.0, -65.0))
 	var air_stun_offset: Vector2 = _front_offset(200.0, -200.0)
 	var air_stun_position := position + air_stun_offset
-	Global.add_Bullet(
+	Global.add_bullet(
 		"PetTiger2Bullet3_1",
 		bullet,
 		MonsterDirection,
@@ -336,7 +336,7 @@ func CallSxhzHit() -> void:
 		SKILL_SXHZ,
 		objattackDic[SKILL_SXHZ]
 	)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"PetTiger2Bullet3_2", bullet, MonsterDirection, 1.0, air_stun_position, SKILL_SXHZ, objattackDic[SKILL_SXHZ]
 	)
 	_apply_sxhz_air_stun(air_stun_position)
@@ -346,12 +346,12 @@ func CallHsqjBullet() -> void:
 	var disabled_offset: Vector2 = _front_offset(85.0, -130.0)
 	var hit_offset: Vector2 = _front_offset(105.0, -2.0)
 	var mark_position := position + disabled_offset
-	var visual_bullet = Global.add_Bullet(
+	var visual_bullet = Global.add_bullet(
 		"PetTiger3Bullet4_1", bullet, MonsterDirection, 1.0, mark_position, SKILL_HSQJ, objattackDic[SKILL_HSQJ]
 	)
 	if visual_bullet != null:
 		visual_bullet.set_meta("pet_tiger_disabled", true)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"PetTiger3Bullet4_2", bullet, MonsterDirection, 1.0, position + hit_offset, SKILL_HSQJ, objattackDic[SKILL_HSQJ]
 	)
 
@@ -364,7 +364,7 @@ func _apply_sxhz_air_stun(air_stun_position: Vector2) -> void:
 		return
 	var stun_time := 3.0
 	if "buff" in target and target.buff != null:
-		Global.AddBuff(
+		Global.add_buff(
 			target.buff,
 			{
 				"Name": "stun",
@@ -435,7 +435,7 @@ func CallBhaoyiHit() -> void:
 	var dic: Dictionary = objattackDic[SKILL_BHAOYI].duplicate(true)
 	dic["power"] = int(dic["power"] * 1.3)
 	var offset: Vector2 = _front_offset(130.0, -70.0)
-	Global.add_Bullet("PetTiger2Bullet1", bullet, MonsterDirection, 1.25, position + offset, SKILL_BHAOYI, dic)
+	Global.add_bullet("PetTiger2Bullet1", bullet, MonsterDirection, 1.25, position + offset, SKILL_BHAOYI, dic)
 
 
 func _front_offset(x: float, y: float) -> Vector2:

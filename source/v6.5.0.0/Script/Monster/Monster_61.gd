@@ -204,7 +204,7 @@ func get_current_summon_count() -> int:
 func _summon_monster_62():
 	var offset_x = randf_range(-200.0, 500.0)
 	var summon_pos = Vector2(position.x + offset_x, position.y)
-	var summoned = Global.Create_Monster(62, get_parent(), summon_pos)
+	var summoned = Global.create_monster(62, get_parent(), summon_pos)
 	if summoned != null:
 		summoned.direction = self.direction
 
@@ -215,7 +215,7 @@ func CallBullet1():
 		po = Vector2(50, 50)
 	else:
 		po = Vector2(-50, 50)
-	var child = Global.add_Bullet(
+	var child = Global.add_bullet(
 		"Monster61WGW", bullet, MonsterDirection, 1, position + po, "hit1", self.objattackDic["hit1"]
 	)
 
@@ -241,7 +241,7 @@ func CallBullet2():
 			angle = -angle
 		var rad = deg_to_rad(angle)
 
-		var bullet = Global.add_Bullet(
+		var bullet = Global.add_bullet(
 			"Monster61Bullet2", get_parent(), base_dir, 1.3, spawn_pos, "hit2", objattackDic["hit2"]
 		)
 		if bullet:
@@ -254,6 +254,6 @@ func CallBullet3():
 		po = Vector2(300, 0)
 	else:
 		po = Vector2(-300, 0)
-	var child = Global.add_Bullet(
+	var child = Global.add_bullet(
 		"Monster61Bullet3", bullet, MonsterDirection, 1, position + po, "hit4", self.objattackDic["hit4"]
 	)

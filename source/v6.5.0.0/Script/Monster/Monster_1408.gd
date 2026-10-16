@@ -222,7 +222,7 @@ func CallParasiticLarva():
 			await get_tree().process_frame
 			break
 
-	var larva = Global.Create_Monster(140801, monster_container, position + Vector2(0, -50)) as Monster140801
+	var larva = Global.create_monster(140801, monster_container, position + Vector2(0, -50)) as Monster140801
 
 	if larva:
 		larva.name = "ParasiticLarva"
@@ -300,7 +300,7 @@ func state_death():
 			mr_player.play("death")
 
 		await get_tree().create_timer(3.0).timeout
-		Global.add_SpecialEffect(get_parent(), global_position, "Relife", Vector2(2, 2), false, 1)
+		Global.add_special_effect(get_parent(), global_position, "Relife", Vector2(2, 2), false, 1)
 
 		self.Hp = self.SHp
 		self.is_death = false

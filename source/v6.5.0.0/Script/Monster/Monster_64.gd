@@ -409,7 +409,7 @@ func CallBullet():
 	else:
 		PositionList = [Vector2(-280, 240), Vector2(280, 240), Vector2(0, 240), Vector2(620, 240), Vector2(-620, 240)]
 	for i in PositionList:
-		var bb = Global.add_Bullet(
+		var bb = Global.add_bullet(
 			"Monster63Bullet", self.bullet, false, 1, i + self.position, "tsyd", self.objattackDic["tsyd"]
 		)
 		if First:

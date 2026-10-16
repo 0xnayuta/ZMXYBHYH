@@ -72,7 +72,7 @@ func _on_xq_pressed() -> void:
 		remove_onekey_jm()
 		add_xq_jm()
 	else:
-		Global.AddMessageShow(Global.Windows_, "通关南天门后开启镶嵌功能！", 1.5, Vector2(470, 285))
+		Global.add_message_show(Global.Windows_, "通关南天门后开启镶嵌功能！", 1.5, Vector2(470, 285))
 
 
 func _on_return_pressed() -> void:

@@ -155,10 +155,10 @@ func _on_up_level_pressed() -> void:
 			PlayerData.player_data["法宝"][0]["强化等级"] += 1
 			MemoryClass.保存游戏(Global.cd_path)
 		else:
-			Global.AddMessageShow(self, "灵魂不足！！", 1.5, Vector2(0, 0))
+			Global.add_message_show(self, "灵魂不足！！", 1.5, Vector2(0, 0))
 			MemoryClass.保存游戏(Global.cd_path)
 	else:
-		Global.AddMessageShow(self, "法宝已经满级了！", 1.5, Vector2(0, 0))
+		Global.add_message_show(self, "法宝已经满级了！", 1.5, Vector2(0, 0))
 		MemoryClass.保存游戏(Global.cd_path)
 
 
@@ -214,9 +214,9 @@ func LowWX() -> void:
 	if PlayerData.get_item_data("wxxls") >= 1:
 		PlayerData.player_data["法宝"][0]["五行"] = Global.get_wx(0)
 		PlayerData.remove_dj("wxxls", PlayerData.get_dj_page("wxxls"), 1)
-		Global.AddMessageShow(get_parent(), "法宝五行已重置！！", 1.5, Vector2(490, 280))
+		Global.add_message_show(get_parent(), "法宝五行已重置！！", 1.5, Vector2(490, 280))
 	else:
-		Global.AddMessageShow(get_parent(), "五行洗炼石数量不足！", 1.5, Vector2(490, 280))
+		Global.add_message_show(get_parent(), "五行洗炼石数量不足！", 1.5, Vector2(490, 280))
 
 
 func HighWX() -> void:
@@ -234,18 +234,18 @@ func HighWX() -> void:
 			4:
 				PlayerData.player_data["法宝"][0]["五行"] = Global.get_wx(5)
 		PlayerData.remove_dj("wxxls", PlayerData.get_dj_page("wxxls"), wx_num)
-		Global.AddMessageShow(get_parent(), "法宝五行已重置！！", 1.5, Vector2(490, 280))
+		Global.add_message_show(get_parent(), "法宝五行已重置！！", 1.5, Vector2(490, 280))
 	else:
-		Global.AddMessageShow(get_parent(), "五行洗炼石数量不足！", 1.5, Vector2(490, 280))
+		Global.add_message_show(get_parent(), "五行洗炼石数量不足！", 1.5, Vector2(490, 280))
 
 
 func CZL() -> void:
 	if PlayerData.get_item_data("czlxls") >= 1:
 		PlayerData.player_data["法宝"][0]["Data"]["成长率"] = MagicWeaponCZL(PlayerData.player_data["法宝"][0]["名字"])
 		PlayerData.remove_dj("czlxls", PlayerData.get_dj_page("czlxls"), 1)
-		Global.AddMessageShow(get_parent(), "法宝成长已重置！！", 1.5, Vector2(490, 280))
+		Global.add_message_show(get_parent(), "法宝成长已重置！！", 1.5, Vector2(490, 280))
 	else:
-		Global.AddMessageShow(get_parent(), "成长率洗炼石数量不足！", 1.5, Vector2(490, 280))
+		Global.add_message_show(get_parent(), "成长率洗炼石数量不足！", 1.5, Vector2(490, 280))
 
 
 func _on_wxxl_pressed() -> void:

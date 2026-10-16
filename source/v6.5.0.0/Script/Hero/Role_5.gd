@@ -751,43 +751,43 @@ func CallYGTHAwakenBullet():
 func add_music(idx: int):
 	match idx:
 		0:
-			Global.addSound_(self, "res://Music/Hero/Role5/attack1.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/attack1.mp3")
 		1:
-			Global.addSound_(self, "res://Music/Hero/Role5/attack2.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/attack2.mp3")
 		2:
-			Global.addSound_(self, "res://Music/Hero/Role5/attack3.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/attack3.mp3")
 		3:
-			Global.addSound_(self, "res://Music/Hero/Role5/attack4.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/attack4.mp3")
 		4:
-			Global.addSound_(self, "res://Music/Hero/Role5/jumpAttack.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/jumpAttack.mp3")
 		5:
-			Global.addSound_(self, "res://Music/Hero/Role5/effect3.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/effect3.mp3")
 		6:
-			Global.addSound_(self, "res://Music/Hero/Role5/effect4.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/effect4.mp3")
 		7:
-			Global.addSound_(self, "res://Music/Hero/Role5/effect2.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/effect2.mp3")
 		8:
-			Global.addSound_(self, "res://Music/Hero/Role5/effect1_1.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/effect1_1.mp3")
 		9:
-			Global.addSound_(self, "res://Music/Hero/Role5/effect1_2.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/effect1_2.mp3")
 		10:
-			Global.addSound_(self, "res://Music/Hero/Role5/effect6.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/effect6.mp3")
 		11:
-			Global.addSound_(self, "res://Music/Hero/Role5/effect8_1.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/effect8_1.mp3")
 		12:
-			Global.addSound_(self, "res://Music/Hero/Role5/effect8_2.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/effect8_2.mp3")
 		13:
-			Global.addSound_(self, "res://Music/Hero/Role5/effect9_1.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/effect9_1.mp3")
 		14:
-			Global.addSound_(self, "res://Music/Hero/Role5/effect9_2.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/effect9_2.mp3")
 		15:
-			Global.addSound_(self, "res://Music/Hero/Role5/effect7_1.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/effect7_1.mp3")
 		16:
-			Global.addSound_(self, "res://Music/Hero/Role5/effect7_2.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/effect7_2.mp3")
 		17:
-			Global.addSound_(self, "res://Music/Hero/Role5/attack.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/attack.mp3")
 		18:
-			Global.addSound_(self, "res://Music/Hero/Role5/13_hurtStand.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/13_hurtStand.mp3")
 
 
 func _prepare_hit_reaction() -> void:
@@ -803,4 +803,4 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			var Monster = area.get_parent().get_parent()
 			if Monster != null:
 				if Monster is BaseMonster and not _is_summon_or_pet_target(Monster):
-					Global.AddBuff(Monster.buff, objattackDic[get_action]["addeffect"])
+					Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])

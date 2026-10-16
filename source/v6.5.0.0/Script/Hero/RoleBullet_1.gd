@@ -35,7 +35,7 @@ func call_hyjj():
 		self.position = Monster.position
 
 		bullet_player.play(name_)
-		Global.addSound_(self, "res://Music/Hero/44_Role1_hit12_2.mp3")
+		Global.add_sound(self, "res://Music/Hero/44_Role1_hit12_2.mp3")
 
 		await bullet_player.animation_finished
 		await get_tree().create_timer(0.55, false).timeout

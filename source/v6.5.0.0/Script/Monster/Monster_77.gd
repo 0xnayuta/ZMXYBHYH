@@ -153,14 +153,14 @@ func AddChild1():
 		]
 		Rotation = 11
 		Rotation2 = -40
-	var child = Global.add_Bullet(
+	var child = Global.add_bullet(
 		"Monster77Bullet2", bullet, MonsterDirection, 2, position + po, "hit2", self.objattackDic["hit2"]
 	)
 	child.rotation_degrees = Rotation
 	var dir = MonsterDirection
 	await get_tree().create_timer(1, false).timeout
 	for i in PositionList:
-		child = Global.add_Bullet("Monster77Bullet3", bullet, dir, 2, position + i, "hit3", self.objattackDic["hit3"])
+		child = Global.add_bullet("Monster77Bullet3", bullet, dir, 2, position + i, "hit3", self.objattackDic["hit3"])
 		child.rotation_degrees = Rotation2
 		await get_tree().create_timer(0.5, false).timeout
 
@@ -171,6 +171,6 @@ func AddChild2():
 		po = Vector2(50, 0)
 	else:
 		po = Vector2(-50, 0)
-	var child = Global.add_Bullet(
+	var child = Global.add_bullet(
 		"Monster77Bullet1", bullet, MonsterDirection, 2, position + po, "hit1", self.objattackDic["hit1"]
 	)

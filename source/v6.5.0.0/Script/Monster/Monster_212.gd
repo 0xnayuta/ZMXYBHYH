@@ -281,7 +281,7 @@ func _use_hit_4() -> void:
 
 func CallBullet1() -> void:
 	var offset := Vector2(58, -72) if MonsterDirection else Vector2(-58, -72)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"Monster212Bullet1", bullet, MonsterDirection, 1.0, position + offset, "hit1", objattackDic["hit1"]
 	)
 
@@ -299,12 +299,12 @@ func _spawn_bullet2_at_role() -> void:
 		RoleProp.get_nearest_monster_target_position(global_position).x,
 		RoleProp.get_nearest_monster_target_position(global_position).y
 	)
-	Global.add_Bullet("Monster212Bullet2", bullet, MonsterDirection, 1.0, target_pos, "hit2", objattackDic["hit2"])
+	Global.add_bullet("Monster212Bullet2", bullet, MonsterDirection, 1.0, target_pos, "hit2", objattackDic["hit2"])
 
 
 func CallBullet3() -> void:
 	var offset := Vector2(650, -136) if MonsterDirection else Vector2(-650, -136)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"Monster212Bullet3", bullet, MonsterDirection, 1.0, position + offset, "hit3", objattackDic["hit3"]
 	)
 
@@ -319,7 +319,7 @@ func CallBullet4() -> void:
 			RoleProp.get_nearest_monster_target_position(global_position).x,
 			RoleProp.get_nearest_monster_target_position(global_position).y
 		)
-		Global.add_Bullet("Monster212Bullet4", bullet, MonsterDirection, 1.0, target_pos, "hit4", objattackDic["hit4"])
+		Global.add_bullet("Monster212Bullet4", bullet, MonsterDirection, 1.0, target_pos, "hit4", objattackDic["hit4"])
 
 
 func little_blood_bar_control():

@@ -644,7 +644,7 @@ func set_Skill_LH():
 
 func UpLevel():
 	if TargetSkill <= 0:
-		Global.AddMessageShow(self, "技能信息获取失败，无法升级！！", 1.5, Vector2(395, 180))
+		Global.add_message_show(self, "技能信息获取失败，无法升级！！", 1.5, Vector2(395, 180))
 		return
 
 	var role_key = get_role_key()
@@ -659,10 +659,10 @@ func UpLevel():
 		&& role_key != "角色4"
 		and role_key != "角色5"
 	):
-		Global.AddMessageShow(self, "该角色无此技能！！", 1.5, Vector2(395, 180))
+		Global.add_message_show(self, "该角色无此技能！！", 1.5, Vector2(395, 180))
 		return
 	if TargetSkill > max_skill:
-		Global.AddMessageShow(self, "技能不存在！！", 1.5, Vector2(395, 180))
+		Global.add_message_show(self, "技能不存在！！", 1.5, Vector2(395, 180))
 		return
 
 	var target_internal: String = str(skill_list[TargetSkill - 1])
@@ -671,13 +671,13 @@ func UpLevel():
 	var level: int = int(PlayerData.player_data["技能学习"]["技能" + str(target_storage_index)]["等级"])
 
 	if level >= get_skill_max_level(target_internal):
-		Global.AddMessageShow(self, "技能已经满级！！", 1.5, Vector2(395, 180))
+		Global.add_message_show(self, "技能已经满级！！", 1.5, Vector2(395, 180))
 		return
 
 	if target_internal not in PASSIVE_SKILLS and level >= SKILL_BOOK_START_LEVEL:
 		var book_need := get_skill_book_need(level)
 		if not _consume_skill_book(level):
-			Global.AddMessageShow(
+			Global.add_message_show(
 				self, get_skill_book_name(level) + "不足，需" + str(book_need) + "个！！", 1.5, Vector2(395, 180)
 			)
 			return
@@ -693,9 +693,9 @@ func UpLevel():
 				PlayerData.spend_soul(need)
 				PlayerData.player_data["技能学习"]["技能" + str(target_storage_index)]["等级"] += 1
 			else:
-				Global.AddMessageShow(self, "灵魂不足！！", 1.5, Vector2(395, 180))
+				Global.add_message_show(self, "灵魂不足！！", 1.5, Vector2(395, 180))
 		else:
-			Global.AddMessageShow(self, "等级不足，需达到：" + str(NeedLevel) + "级！！", 1.5, Vector2(395, 180))
+			Global.add_message_show(self, "等级不足，需达到：" + str(NeedLevel) + "级！！", 1.5, Vector2(395, 180))
 
 	else:
 		var i = TargetSkill - 1
@@ -704,7 +704,7 @@ func UpLevel():
 			PlayerData.spend_soul(need)
 			PlayerData.player_data["技能学习"]["技能" + str(target_storage_index)]["等级"] += 1
 		else:
-			Global.AddMessageShow(self, "灵魂不足！！", 1.5, Vector2(395, 180))
+			Global.add_message_show(self, "灵魂不足！！", 1.5, Vector2(395, 180))
 
 	RefreshInfor()
 
@@ -887,7 +887,7 @@ func _on_ski_11_pressed():
 	if role_key == "角色1" or role_key == "角色2" or role_key == "角色3" or role_key == "角色4" or role_key == "角色5":
 		_set_key(10)
 	else:
-		Global.AddMessageShow(self, "该角色无此技能！！", 1.5, Vector2(395, 180))
+		Global.add_message_show(self, "该角色无此技能！！", 1.5, Vector2(395, 180))
 
 
 func _on_ski_12_pressed() -> void:
@@ -901,14 +901,14 @@ func _on_ski_13_pressed() -> void:
 func _set_key(index):
 	var skill_list = Skill_list[get_role_key()]
 	if index >= skill_list.size():
-		Global.AddMessageShow(self, "该角色无此技能！！", 1.5, Vector2(395, 180))
+		Global.add_message_show(self, "该角色无此技能！！", 1.5, Vector2(395, 180))
 		return
 	if skill_list[index] in ["sx", "sjt", "rj", "mds", "yyb"]:
-		Global.AddMessageShow(self, "被动技能不可以设置按键！！", 1.5, Vector2(395, 180))
+		Global.add_message_show(self, "被动技能不可以设置按键！！", 1.5, Vector2(395, 180))
 		return
 	var level = get_skill_level_by_index(index)
 	if level == 0:
-		Global.AddMessageShow(self, "先学习技能才能设置按键！！", 1.5, Vector2(395, 180))
+		Global.add_message_show(self, "先学习技能才能设置按键！！", 1.5, Vector2(395, 180))
 		return
 	var name = skill_list[index]
 	Global.addSkillKeySet(self, Vector2(350, 140), name)

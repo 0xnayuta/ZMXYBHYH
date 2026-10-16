@@ -177,9 +177,9 @@ func _on_speed_up_timeout() -> void:
 
 func add_speed_up_specialbullet():
 	if self.MonsterDirection:
-		Global.add_SpecialEffect(self, Vector2(0, 55), "SpeedUp", Vector2(1, 1), true, 1)
+		Global.add_special_effect(self, Vector2(0, 55), "SpeedUp", Vector2(1, 1), true, 1)
 	else:
-		Global.add_SpecialEffect(self, Vector2(0, 55), "SpeedUp", Vector2(1, 1), true, 1)
+		Global.add_special_effect(self, Vector2(0, 55), "SpeedUp", Vector2(1, 1), true, 1)
 
 
 func call_fly_bullet():

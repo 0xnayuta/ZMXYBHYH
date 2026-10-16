@@ -169,7 +169,7 @@ func AddTotalList():
 
 func _on_challenge_pressed() -> void:
 	if Global.LHHJBossList.size() <= 0:
-		Global.AddMessageShow(get_parent(), "请至少添加一个boss！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请至少添加一个boss！！", 1.5, Vector2(470, 300))
 		return
 	var scene_tree := get_tree()
 	if scene_tree == null:
@@ -181,7 +181,7 @@ func _on_challenge_pressed() -> void:
 
 func AddBoss(Name, Num):
 	if Global.LHHJBossList.has(Name):
-		Global.AddMessageShow(get_parent(), "重复添加", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "重复添加", 1.5, Vector2(470, 300))
 		return
 	Global.LHHJBossList[Name] = {
 		"Num": Num,
@@ -232,12 +232,12 @@ func _on_remove_boss_pressed() -> void:
 	if TargetBoss != null:
 		if TargetBoss != "":
 			Global.LHHJBossList.erase(TargetBoss)
-			Global.AddMessageShow(get_parent(), "取消召唤" + str(TargetBoss) + "！！", 1.5, Vector2(470, 300))
+			Global.add_message_show(get_parent(), "取消召唤" + str(TargetBoss) + "！！", 1.5, Vector2(470, 300))
 		else:
-			Global.AddMessageShow(get_parent(), "请选择要清除的boss！", 1.5, Vector2(470, 300))
+			Global.add_message_show(get_parent(), "请选择要清除的boss！", 1.5, Vector2(470, 300))
 			return
 	else:
-		Global.AddMessageShow(get_parent(), "请选择要清除的boss！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请选择要清除的boss！", 1.5, Vector2(470, 300))
 		return
 	for i in boss_list.get_children():
 		if i != null:
@@ -258,43 +258,43 @@ func _on_remove_all_pressed() -> void:
 			boss_list.remove_child(i)
 			i.queue_free()
 	TargetBoss = ""
-	Global.AddMessageShow(get_parent(), "目标召唤列表已全部清除！！", 1.5, Vector2(470, 300))
+	Global.add_message_show(get_parent(), "目标召唤列表已全部清除！！", 1.5, Vector2(470, 300))
 
 
 func _on_remove_prop_pressed() -> void:
 	if TargetBoss == null:
-		Global.AddMessageShow(get_parent(), "请选择要清除属性的boss！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请选择要清除属性的boss！", 1.5, Vector2(470, 300))
 		return
 	if TargetBoss == "":
-		Global.AddMessageShow(get_parent(), "请选择要清除属性的boss！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请选择要清除属性的boss！", 1.5, Vector2(470, 300))
 		return
 
 	for i in Global.LHHJBossList[TargetBoss]:
 		if i != "Num":
 			Global.LHHJBossList[TargetBoss][i] = 0
-	Global.AddMessageShow(get_parent(), str(TargetBoss) + "属性已重置为基础属性！！", 1.5, Vector2(470, 300))
+	Global.add_message_show(get_parent(), str(TargetBoss) + "属性已重置为基础属性！！", 1.5, Vector2(470, 300))
 
 
 func SetProp(TargetProp: String, Prop):
 	if TargetBoss == null:
-		Global.AddMessageShow(get_parent(), "请选择要设置属性的boss！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请选择要设置属性的boss！", 1.5, Vector2(470, 300))
 		return
 	if TargetBoss == "":
-		Global.AddMessageShow(get_parent(), "请选择要设置属性的boss！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请选择要设置属性的boss！", 1.5, Vector2(470, 300))
 		return
 	if TargetProp != "Name" and TargetProp != "ebol":
 		if not typeof(Prop) == TYPE_INT:
-			Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+			Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 			return
 		if Prop < 0:
-			Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+			Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 			return
 	elif TargetProp == "ebol":
 		if not typeof(Prop) == TYPE_FLOAT and not typeof(Prop) == TYPE_INT:
-			Global.AddMessageShow(get_parent(), "请输入整数或小数！", 1.5, Vector2(470, 300))
+			Global.add_message_show(get_parent(), "请输入整数或小数！", 1.5, Vector2(470, 300))
 			return
 		if Prop < 0:
-			Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数或小数！", 1.5, Vector2(470, 300))
+			Global.add_message_show(get_parent(), "请输入大于或等于0的整数或小数！", 1.5, Vector2(470, 300))
 			return
 	Global.LHHJBossList[TargetBoss][TargetProp] = Prop
 
@@ -302,10 +302,10 @@ func SetProp(TargetProp: String, Prop):
 func _on_dj_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("Level", int(new_text))
 
@@ -313,10 +313,10 @@ func _on_dj_text_changed(new_text: String) -> void:
 func _on_hp_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("SHp", int(new_text))
 
@@ -324,10 +324,10 @@ func _on_hp_text_changed(new_text: String) -> void:
 func _on_def_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("def", int(new_text))
 
@@ -335,10 +335,10 @@ func _on_def_text_changed(new_text: String) -> void:
 func _on_mdef_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("mdef", int(new_text))
 
@@ -346,10 +346,10 @@ func _on_mdef_text_changed(new_text: String) -> void:
 func _on_crit_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("crit", int(new_text))
 
@@ -357,10 +357,10 @@ func _on_crit_text_changed(new_text: String) -> void:
 func _on_miss_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("miss", int(new_text))
 
@@ -368,10 +368,10 @@ func _on_miss_text_changed(new_text: String) -> void:
 func _on_power_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("power", int(new_text))
 
@@ -379,10 +379,10 @@ func _on_power_text_changed(new_text: String) -> void:
 func _on_lucky_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("lucky", int(new_text))
 
@@ -390,10 +390,10 @@ func _on_lucky_text_changed(new_text: String) -> void:
 func _on_critreduce_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("Critreduce", int(new_text))
 
@@ -401,10 +401,10 @@ func _on_critreduce_text_changed(new_text: String) -> void:
 func _on_toughness_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("Toughness", int(new_text))
 
@@ -412,10 +412,10 @@ func _on_toughness_text_changed(new_text: String) -> void:
 func _on_ar_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("ar", int(new_text))
 
@@ -423,10 +423,10 @@ func _on_ar_text_changed(new_text: String) -> void:
 func _on_sp_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("sp", int(new_text))
 
@@ -434,10 +434,10 @@ func _on_sp_text_changed(new_text: String) -> void:
 func _on_speed_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("speed", int(new_text))
 
@@ -445,10 +445,10 @@ func _on_speed_text_changed(new_text: String) -> void:
 func _on_self_rhp_text_changed(new_text: String) -> void:
 	var Prop = int(new_text)
 	if not typeof(Prop) == TYPE_INT:
-		Global.AddMessageShow(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入整数！", 1.5, Vector2(470, 300))
 		return
 	if Prop < 0:
-		Global.AddMessageShow(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "请输入大于或等于0的整数！", 1.5, Vector2(470, 300))
 		return
 	SetProp("self_rhp", int(new_text))
 

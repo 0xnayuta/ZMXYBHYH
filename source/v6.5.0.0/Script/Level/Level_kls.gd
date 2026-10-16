@@ -4,7 +4,7 @@ var WangWang: Monster144
 
 
 func _ready() -> void:
-	Global.addBGM_(self, "res://Music/level/BGM_Normal.mp3")
+	Global.add_bgm(self, "res://Music/level/BGM_Normal.mp3")
 	Global.CurrentLevel = ""
 	self.level_stage = 0
 	super._ready()

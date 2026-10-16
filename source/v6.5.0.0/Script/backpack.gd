@@ -183,7 +183,7 @@ func _toggle_pet() -> void:
 
 func _toggle_magic(role_) -> void:
 	if PlayerData.player_data.get("法宝", []).size() == 0:
-		Global.AddMessageShow(cur_level, "您还未装备法宝！！！", 1.5, Vector2(460, 255))
+		Global.add_message_show(cur_level, "您还未装备法宝！！！", 1.5, Vector2(460, 255))
 		return
 	_cleanup_targets()
 	if _is_alive(magic_weapon_target):

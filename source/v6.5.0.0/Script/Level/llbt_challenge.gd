@@ -93,7 +93,7 @@ func _on_tztxs_pressed() -> void:
 		Global.LLBTCGMS = false
 		_enter_llbt_level()
 	else:
-		Global.AddMessageShow(Global.Windows_, "请先至少到达第7层！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "请先至少到达第7层！！", 1.5, Vector2(470, 300))
 
 
 func _on_tslzz_pressed() -> void:
@@ -104,7 +104,7 @@ func _on_tslzz_pressed() -> void:
 		Global.LLBTCGMS = false
 		_enter_llbt_level()
 	else:
-		Global.AddMessageShow(Global.Windows_, "请先至少到达第13层！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "请先至少到达第13层！！", 1.5, Vector2(470, 300))
 
 
 func _on_tznz_pressed() -> void:
@@ -115,7 +115,7 @@ func _on_tznz_pressed() -> void:
 		Global.LLBTCGMS = false
 		_enter_llbt_level()
 	else:
-		Global.AddMessageShow(Global.Windows_, "请先至少到达第19层！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "请先至少到达第19层！！", 1.5, Vector2(470, 300))
 
 
 func _on_tztttw_pressed() -> void:
@@ -126,7 +126,7 @@ func _on_tztttw_pressed() -> void:
 		Global.LLBTCGMS = false
 		_enter_llbt_level()
 	else:
-		Global.AddMessageShow(Global.Windows_, "请先通关玲珑塔！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "请先通关玲珑塔！！", 1.5, Vector2(470, 300))
 
 
 func _on_close_pressed() -> void:
@@ -134,30 +134,30 @@ func _on_close_pressed() -> void:
 
 
 func _on_help_pressed() -> void:
-	Global.AddMessageShow(Global.Windows_, "玲珑塔帮助还没做！！", 1.5, Vector2(470, 300))
+	Global.add_message_show(Global.Windows_, "玲珑塔帮助还没做！！", 1.5, Vector2(470, 300))
 	pass
 
 
 func _on_cure_pressed() -> void:
 	if CurrentCengShu >= _llbt_reached_level() or CurrentCengShu >= 24:
-		Global.AddMessageShow(Global.Windows_, "已达当前通关最高层数！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "已达当前通关最高层数！！", 1.5, Vector2(470, 300))
 		return
 	CurrentCengShu += 1
 
 
 func _on_reduce_pressed() -> void:
 	if CurrentCengShu <= 1:
-		Global.AddMessageShow(Global.Windows_, "最低传送至1层！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "最低传送至1层！！", 1.5, Vector2(470, 300))
 		return
 	CurrentCengShu -= 1
 
 
 func _on_change_pressed() -> void:
 	if CurrentCengShu > _llbt_reached_level():
-		Global.AddMessageShow(Global.Windows_, "超出最高限制层数！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "超出最高限制层数！！", 1.5, Vector2(470, 300))
 		return
 	if CurrentCengShu < 1:
-		Global.AddMessageShow(Global.Windows_, "低于最低限制层数！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "低于最低限制层数！！", 1.5, Vector2(470, 300))
 		return
 	Global.LLBTCGMS = true
 	Global.LLBTLevel = CurrentCengShu

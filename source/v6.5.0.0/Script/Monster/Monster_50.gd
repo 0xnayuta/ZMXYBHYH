@@ -170,7 +170,7 @@ func CreateMonster():
 			var Get_list = CallMonsterList["List_" + str(CallMonsterID)]
 			var MonsterID: int = Get_list[randi_range(0, Get_list.size() - 1)]
 			if CallMonster == null:
-				CallMonster = Global.Create_Monster(20, get_parent(), self.position)
+				CallMonster = Global.create_monster(20, get_parent(), self.position)
 			StrenghBoss()
 			is_stop = true
 			mr_player.play("wait")
@@ -184,7 +184,7 @@ func CreateMonster():
 			var Get_list = CallMonsterList["List_" + str(CallMonsterID)]
 			var MonsterID: int = Get_list[randi_range(0, Get_list.size() - 1)]
 			if CallMonster == null:
-				CallMonster = Global.Create_Monster(43, get_parent(), self.position)
+				CallMonster = Global.create_monster(43, get_parent(), self.position)
 			StrenghBoss()
 			CallMonsterID = 2
 

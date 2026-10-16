@@ -110,7 +110,7 @@ func do_hit_2():
 
 func call_Knife():
 	if self.MonsterDirection:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Knife",
 			self.bullet,
 			self.MonsterDirection,
@@ -120,7 +120,7 @@ func call_Knife():
 			self.objattackDic["dmfd"]
 		)
 	else:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Knife",
 			self.bullet,
 			self.MonsterDirection,

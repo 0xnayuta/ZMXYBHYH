@@ -238,7 +238,7 @@ func _apply_voodoo_if_learned(target: BaseMonster) -> void:
 		return
 	if int(PlayerData.player_data["技能学习"]["技能10"]["等级"]) <= 0 or Global.CheckWD(target) >= 7:
 		return
-	Global.AddBuff(
+	Global.add_buff(
 		target.buff,
 		{
 			"Name": "Voodoo",

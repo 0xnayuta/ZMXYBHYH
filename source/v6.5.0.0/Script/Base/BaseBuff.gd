@@ -229,7 +229,7 @@ func AddBuffEffectFirst():
 			InterTime = BuffInfo.get("SpecialEffectAddInterval", 1.0)
 
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 0), "SanXianHuTi", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 0), "SanXianHuTi", Vector2(1, 1), false, 1)
 			)
 
 		"ReverseMove":
@@ -237,7 +237,7 @@ func AddBuffEffectFirst():
 			if GetObj is BaseHero:
 				GetObj.IsReverseMove = true
 				BuffEffectList.push_back(
-					Global.add_SpecialEffect(GetObj, Vector2(-20, -35), "ReverseMove", Vector2(1, 1), false, 1)
+					Global.add_special_effect(GetObj, Vector2(-20, -35), "ReverseMove", Vector2(1, 1), false, 1)
 				)
 			else:
 				self.queue_free()
@@ -253,13 +253,13 @@ func AddBuffEffectFirst():
 
 		"flls":
 			InterTime = 1
-			BuffEffectList.push_back(Global.add_SpecialEffect(GetObj, Vector2(0, 0), "flls", Vector2(1, 1), false, 1))
+			BuffEffectList.push_back(Global.add_special_effect(GetObj, Vector2(0, 0), "flls", Vector2(1, 1), false, 1))
 
 		"LifeManaLock":
 			InterTime = 1
 
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, -50), "jinliao", Vector2(1.5, 1.5), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, -50), "jinliao", Vector2(1.5, 1.5), false, 1)
 			)
 
 		"NoDeBuff":
@@ -278,7 +278,7 @@ func AddBuffEffectFirst():
 				GetObj.xrbl = 1 - LastValue
 			InterTime = 0.5
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 5), "lpzbuff", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 5), "lpzbuff", Vector2(1, 1), false, 1)
 			)
 		"tszbuff":
 			if GetObj is BaseHero:
@@ -286,25 +286,25 @@ func AddBuffEffectFirst():
 				GetObj.tszzs = Levellpz * 0.015
 			InterTime = 0.6
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 5), "tszbuff", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 5), "tszbuff", Vector2(1, 1), false, 1)
 			)
 		"Scary":
 			InterTime = 1
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, -35), "Scary", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, -35), "Scary", Vector2(1, 1), false, 1)
 			)
 		"Ice":
 			InterTime = 1.29
-			BuffEffectList.push_back(Global.add_Bullet("bd", GetObj, false, 1, _ice_effect_offset(), "", ""))
+			BuffEffectList.push_back(Global.add_bullet("bd", GetObj, false, 1, _ice_effect_offset(), "", ""))
 		"BloodFix":
 			InterTime = 1
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 15), "ThreeEyesFix", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 15), "ThreeEyesFix", Vector2(1, 1), false, 1)
 			)
 		"LifeManaLock":
 			InterTime = 1
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, -50), "jinliao", Vector2(1.5, 1.5), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, -50), "jinliao", Vector2(1.5, 1.5), false, 1)
 			)
 		"DefeReduce":
 			InterTime = 0.49
@@ -313,53 +313,57 @@ func AddBuffEffectFirst():
 			elif GetObj is BaseHero:
 				GetObj.DefeReduce = LastValue
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(-5, -45), "DefeReduce", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(-5, -45), "DefeReduce", Vector2(1, 1), false, 1)
 			)
 		"Bleed":
 			InterTime = 0.36
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 25), "BloodReduce", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 25), "BloodReduce", Vector2(1, 1), false, 1)
 			)
 		"poision":
 			InterTime = 1
-			BuffEffectList.push_back(Global.add_Bullet("poision", GetObj, false, 1, Vector2(-20, -55), "", ""))
-			BuffEffectList.push_back(Global.add_Bullet("posion_fire", GetObj, false, 1, Vector2(10, -40), "", ""))
+			BuffEffectList.push_back(Global.add_bullet("poision", GetObj, false, 1, Vector2(-20, -55), "", ""))
+			BuffEffectList.push_back(Global.add_bullet("posion_fire", GetObj, false, 1, Vector2(10, -40), "", ""))
 		"Fire":
 			InterTime = 0.81
-			BuffEffectList.push_back(Global.add_SpecialEffect(GetObj, Vector2(10, 10), "Fire", Vector2(1, 1), false, 1))
+			BuffEffectList.push_back(
+				Global.add_special_effect(GetObj, Vector2(10, 10), "Fire", Vector2(1, 1), false, 1)
+			)
 		"stun":
 			InterTime = 0.81
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, -50), "Stun", Vector2(0.7, 0.7), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, -50), "Stun", Vector2(0.7, 0.7), false, 1)
 			)
 		"EyeFix":
 			InterTime = 0.45
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, -35), "EyeFix", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, -35), "EyeFix", Vector2(1, 1), false, 1)
 			)
 		"DeadLink":
 			InterTime = 1.39
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 0), "DeadLink_2", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 0), "DeadLink_2", Vector2(1, 1), false, 1)
 			)
 		"nlls":
 			InterTime = 1.01
 			OldPosition = GetObj.position.x
-			BuffEffectList.push_back(Global.add_SpecialEffect(GetObj, Vector2(40, 35), "nlls", Vector2(1, 1), false, 1))
+			BuffEffectList.push_back(
+				Global.add_special_effect(GetObj, Vector2(40, 35), "nlls", Vector2(1, 1), false, 1)
+			)
 		"silent":
 			InterTime = 0.99
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(40, -35), "silent", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(40, -35), "silent", Vector2(1, 1), false, 1)
 			)
 		"Boundground":
 			InterTime = 0.99
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(-5, 55), "GroundFloor", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(-5, 55), "GroundFloor", Vector2(1, 1), false, 1)
 			)
 		"speed_down":
 			InterTime = 0.61
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 20), "SpeedDown", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 20), "SpeedDown", Vector2(1, 1), false, 1)
 			)
 			apply_slow_speed()
 		"slzbuff":
@@ -368,24 +372,24 @@ func AddBuffEffectFirst():
 				GetObj.slzjs2 = Levelslz * 0.02
 			InterTime = 0.875
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 0), "slzbuff", Vector2(0.5, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 0), "slzbuff", Vector2(0.5, 1), false, 1)
 			)
 		"Immobilize":
 			InterTime = 0.69
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 0), "Immobilize", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 0), "Immobilize", Vector2(1, 1), false, 1)
 			)
 		"SuperArmor":
 			pass
 		"Indestructible":
 			InterTime = 1
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 0), "Indestructible", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 0), "Indestructible", Vector2(1, 1), false, 1)
 			)
 		"Indestructible1":
 			InterTime = 1
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 0), "Indestructible1", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 0), "Indestructible1", Vector2(1, 1), false, 1)
 			)
 		"Voodoo":
 			InterTime = 0.9
@@ -395,7 +399,7 @@ func AddBuffEffectFirst():
 		"PoisionBody":
 			InterTime = 0.5
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, -10), "wdzt", Vector2(0.7, 0.7), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, -10), "wdzt", Vector2(0.7, 0.7), false, 1)
 			)
 		"yxbuff":
 			InterTime = 0.8
@@ -406,7 +410,7 @@ func AddBuffEffectFirst():
 				GetObj.effect_reducehp(half_hp, "real")
 
 				BuffEffectList.push_back(
-					Global.add_SpecialEffect(GetObj, Vector2(0, 0), "yxbuff", Vector2(1, 1), false, 1)
+					Global.add_special_effect(GetObj, Vector2(0, 0), "yxbuff", Vector2(1, 1), false, 1)
 				)
 
 		"HealOverTime":
@@ -510,14 +514,14 @@ func _on_special_effect_add_time_timeout() -> void:
 			InterTime = BuffInfo.get("SpecialEffectAddInterval", 1.0)
 
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 0), "SanXianHuTi", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 0), "SanXianHuTi", Vector2(1, 1), false, 1)
 			)
 
 		"ReverseMove":
 			InterTime = 1.0
 			if GetObj is BaseHero:
 				BuffEffectList.push_back(
-					Global.add_SpecialEffect(GetObj, Vector2(-20, -35), "ReverseMove", Vector2(1, 1), false, 1)
+					Global.add_special_effect(GetObj, Vector2(-20, -35), "ReverseMove", Vector2(1, 1), false, 1)
 				)
 				pass
 
@@ -526,85 +530,89 @@ func _on_special_effect_add_time_timeout() -> void:
 
 		"flls":
 			InterTime = 1
-			BuffEffectList.push_back(Global.add_SpecialEffect(GetObj, Vector2(0, 0), "flls", Vector2(1, 1), false, 1))
+			BuffEffectList.push_back(Global.add_special_effect(GetObj, Vector2(0, 0), "flls", Vector2(1, 1), false, 1))
 
 		"tszbuff":
 			InterTime = 0.6
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 5), "tszbuff", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 5), "tszbuff", Vector2(1, 1), false, 1)
 			)
 		"lpzbuff":
 			InterTime = 0.5
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 5), "lpzbuff", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 5), "lpzbuff", Vector2(1, 1), false, 1)
 			)
 		"Ice":
-			BuffEffectList.push_back(Global.add_Bullet("bd", GetObj, false, 1, _ice_effect_offset(), "", ""))
+			BuffEffectList.push_back(Global.add_bullet("bd", GetObj, false, 1, _ice_effect_offset(), "", ""))
 		"BloodFix":
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 15), "ThreeEyesFix2", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 15), "ThreeEyesFix2", Vector2(1, 1), false, 1)
 			)
 		"LifeManaLock":
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, -50), "jinliao", Vector2(1.5, 1.5), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, -50), "jinliao", Vector2(1.5, 1.5), false, 1)
 			)
 		"Bleed":
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 25), "BloodReduce", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 25), "BloodReduce", Vector2(1, 1), false, 1)
 			)
 		"poision":
-			BuffEffectList.push_back(Global.add_Bullet("posion_fire", GetObj, false, 1, Vector2(10, -40), "", ""))
+			BuffEffectList.push_back(Global.add_bullet("posion_fire", GetObj, false, 1, Vector2(10, -40), "", ""))
 		"Fire":
-			BuffEffectList.push_back(Global.add_SpecialEffect(GetObj, Vector2(10, 10), "Fire", Vector2(1, 1), false, 1))
+			BuffEffectList.push_back(
+				Global.add_special_effect(GetObj, Vector2(10, 10), "Fire", Vector2(1, 1), false, 1)
+			)
 		"stun":
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, -50), "Stun", Vector2(0.7, 0.7), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, -50), "Stun", Vector2(0.7, 0.7), false, 1)
 			)
 		"EyeFix":
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, -35), "EyeFix", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, -35), "EyeFix", Vector2(1, 1), false, 1)
 			)
 		"DeadLink":
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 0), "DeadLink_2", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 0), "DeadLink_2", Vector2(1, 1), false, 1)
 			)
 		"nlls":
-			BuffEffectList.push_back(Global.add_SpecialEffect(GetObj, Vector2(40, 35), "nlls", Vector2(1, 1), false, 1))
+			BuffEffectList.push_back(
+				Global.add_special_effect(GetObj, Vector2(40, 35), "nlls", Vector2(1, 1), false, 1)
+			)
 		"speed_down":
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 20), "SpeedDown", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 20), "SpeedDown", Vector2(1, 1), false, 1)
 			)
 		"silent":
 			InterTime = 1.01
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(40, -35), "silent", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(40, -35), "silent", Vector2(1, 1), false, 1)
 			)
 		"Boundground":
 			InterTime = 1.01
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(-5, 55), "GroundFloor", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(-5, 55), "GroundFloor", Vector2(1, 1), false, 1)
 			)
 		"Immobilize":
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 0), "Immobilize", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 0), "Immobilize", Vector2(1, 1), false, 1)
 			)
 		"Scary":
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, -35), "Scary", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, -35), "Scary", Vector2(1, 1), false, 1)
 			)
 		"DefeReduce":
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(-5, -45), "DefeReduce", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(-5, -45), "DefeReduce", Vector2(1, 1), false, 1)
 			)
 		"SuperArmor":
 			pass
 		"Indestructible":
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 0), "Indestructible", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 0), "Indestructible", Vector2(1, 1), false, 1)
 			)
 		"Indestructible1":
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 0), "Indestructible1", Vector2(1, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 0), "Indestructible1", Vector2(1, 1), false, 1)
 			)
 		"DoubleFallPro":
 			pass
@@ -612,16 +620,18 @@ func _on_special_effect_add_time_timeout() -> void:
 			_add_voodoo_visual_once()
 		"PoisionBody":
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, -10), "wdzt", Vector2(0.7, 0.7), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, -10), "wdzt", Vector2(0.7, 0.7), false, 1)
 			)
 		"slzbuff":
 			InterTime = 0.875
 			BuffEffectList.push_back(
-				Global.add_SpecialEffect(GetObj, Vector2(0, 0), "slzbuff", Vector2(0.5, 1), false, 1)
+				Global.add_special_effect(GetObj, Vector2(0, 0), "slzbuff", Vector2(0.5, 1), false, 1)
 			)
 		"yxbuff":
 			InterTime = 0.8
-			BuffEffectList.push_back(Global.add_SpecialEffect(GetObj, Vector2(0, 0), "yxbuff", Vector2(1, 1), false, 1))
+			BuffEffectList.push_back(
+				Global.add_special_effect(GetObj, Vector2(0, 0), "yxbuff", Vector2(1, 1), false, 1)
+			)
 
 		"HealOverTime":
 			pass
@@ -648,7 +658,7 @@ func AddBuffIcon():
 				Icon = existing_icon
 				break
 		if Icon == null:
-			Icon = Global.AddBuffIcon(Global.buff_box, BuffInfo)
+			Icon = Global.add_buffIcon(Global.buff_box, BuffInfo)
 		if Icon == null:
 			return
 		Icon.FatherBuff = self
@@ -663,7 +673,7 @@ func AddBuffIcon():
 			for i in GetObj.MyBlood.buff_list.get_children():
 				if i.BuffName == BuffInfo["Name"]:
 					i.queue_free()
-			var Icon = Global.AddBuffIcon(GetObj.MyBlood.buff_list, BuffInfo)
+			var Icon = Global.add_buffIcon(GetObj.MyBlood.buff_list, BuffInfo)
 			Icon.FatherBuff = self
 			Icon.TotalTimes = TotalTimes
 			Icon.LastHurt = LastValue
@@ -702,7 +712,7 @@ func _add_voodoo_visual_once() -> void:
 	var visual_active: bool = is_instance_valid(existing) and not existing.is_queued_for_deletion()
 	if visual_active:
 		return
-	var effect: Node = Global.add_SpecialEffect(GetObj, Vector2(0, -35), "Voodoo", Vector2(1, 1), false, 1) as Node
+	var effect: Node = Global.add_special_effect(GetObj, Vector2(0, -35), "Voodoo", Vector2(1, 1), false, 1) as Node
 	if effect == null:
 		return
 	_voodoo_visual = effect

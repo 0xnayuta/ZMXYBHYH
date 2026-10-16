@@ -151,7 +151,7 @@ func do_hit_2():
 func CallAex():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
-	Aex = Global.add_Bullet("Monster110Bullet", bullet, false, 1, pp, "hit2", self.objattackDic["hit2"])
+	Aex = Global.add_bullet("Monster110Bullet", bullet, false, 1, pp, "hit2", self.objattackDic["hit2"])
 	tween.tween_property(Aex, "position", RoleProp.get_nearest_monster_target_position(global_position), 0.5)
 	await get_tree().create_timer(2.5, false).timeout
 
@@ -173,7 +173,7 @@ func call_gc():
 	else:
 		PositionList = [Vector2(-40, 55), Vector2(-140, 55), Vector2(-240, 55), Vector2(-340, 55), Vector2(-440, 55)]
 	for i in PositionList:
-		gc = Global.add_Bullet(
+		gc = Global.add_bullet(
 			"Monster32Bullet", self.bullet, MonsterDirection, 1, i + position, "hit1", self.objattackDic["hit1"]
 		)
 		gc.scale = Vector2(1.2, 1)

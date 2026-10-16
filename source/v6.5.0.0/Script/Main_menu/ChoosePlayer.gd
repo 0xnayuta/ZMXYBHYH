@@ -196,7 +196,7 @@ func _on_qued_pressed() -> void:
 
 	PlayerData.player_data["Myself"] = current_choose
 	if not MemoryClass.保存游戏(Global.cd_path):
-		Global.AddMessageShow(self, "存档保存失败，请重试", 1.5, Vector2(470, 340))
+		Global.add_message_show(self, "存档保存失败，请重试", 1.5, Vector2(470, 340))
 		return
 	await Global.begin_archive_session()
 	Global.userGlobal.gotoMap()

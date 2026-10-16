@@ -621,7 +621,7 @@ func _fire_arrow() -> void:
 	hit_name = "arrow"
 	_refresh_damage()
 	var offset := Vector2(100 if MonsterDirection else -100, -60)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"XuanwuGateArrow", bullet, MonsterDirection, 1.0, position + offset, "arrow", objattackDic["arrow"]
 	)
 

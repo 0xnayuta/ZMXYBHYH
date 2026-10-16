@@ -37,7 +37,7 @@ func _ready() -> void:
 	load("res://Scene/Monster/Monster_122.tscn")
 
 	Global.CurrentLevel = "蓬莱岛"
-	Global.addBGM_(self, "res://Music/level/34_bg5.mp3")
+	Global.add_bgm(self, "res://Music/level/34_bg5.mp3")
 	self.level_stage = 43
 	super._ready()
 
@@ -437,7 +437,7 @@ func _on_check_area_entered(area: Area2D) -> void:
 func _on_tp_body_entered(body: Node2D) -> void:
 	if body is BaseHero:
 		can_through = true
-		Global.AddMessageShow(Global.get_player, "按 W 键传送", 1.5, Vector2(0, -200))
+		Global.add_message_show(Global.get_player, "按 W 键传送", 1.5, Vector2(0, -200))
 
 
 func _on_tp_body_exited(body: Node2D) -> void:

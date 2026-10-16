@@ -165,7 +165,7 @@ func call_poision():
 		]
 		for i in range(5):
 			var po = Vector2(position_x_list[i], position_y)
-			var poision = Global.add_Bullet(
+			var poision = Global.add_bullet(
 				"PoisionBullet", self.bullet, self.MonsterDirection, 0.7, po, "kldw", self.objattackDic["kldw"]
 			)
 			poision.scale = Vector2(1.2, 1.2)
@@ -182,7 +182,7 @@ func call_poision():
 		]
 		for i in range(5):
 			var po = Vector2(position_x_list[i], position_y)
-			var poision = Global.add_Bullet(
+			var poision = Global.add_bullet(
 				"PoisionBullet", self.bullet, self.MonsterDirection, 0.7, po, "kldw", self.objattackDic["kldw"]
 			)
 			poision.scale = Vector2(1.2, 1.2)
@@ -192,15 +192,15 @@ func call_poision():
 
 func call_pp():
 	if self.MonsterDirection:
-		Global.add_SpecialEffect(self, Vector2(150, 30), "Poisionpp", Vector2(2, 2), false, 1)
+		Global.add_special_effect(self, Vector2(150, 30), "Poisionpp", Vector2(2, 2), false, 1)
 	else:
-		Global.add_SpecialEffect(self, Vector2(-150, 30), "Poisionpp", Vector2(2, 2), false, 1)
+		Global.add_special_effect(self, Vector2(-150, 30), "Poisionpp", Vector2(2, 2), false, 1)
 
 
 func CallYSYB():
 	var PositionList = [Vector2(0, 90), Vector2(-120, -20), Vector2(120, -20)]
 	for i in PositionList:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster11Bullet", self.bullet, self.MonsterDirection, 1, i + position, "ysyb", self.objattackDic["ysyb"]
 		)
 		await get_tree().create_timer(0.6, false).timeout

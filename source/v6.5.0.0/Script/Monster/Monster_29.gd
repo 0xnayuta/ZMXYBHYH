@@ -176,4 +176,4 @@ func CallLXHJQ():
 		Po = Vector2(90, -15) + position
 	else:
 		Po = Vector2(-90, -15) + position
-	Global.add_Bullet("Monster29Bullet", self.bullet, self.MonsterDirection, 1, Po, "lxhjq", self.objattackDic["lxhjq"])
+	Global.add_bullet("Monster29Bullet", self.bullet, self.MonsterDirection, 1, Po, "lxhjq", self.objattackDic["lxhjq"])

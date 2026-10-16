@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	needMp = 30 + self.FB_Level * 10
 	_hit_data["power"] = 10 + 10 * self.FB_Level
 	var add_effect: Dictionary = _hit_data["addeffect"]
-	if PlayerData.CheckHaveWX("lsys", "木"):
+	if PlayerData.check_have_wx("lsys", "木"):
 		add_effect["value"] = int(RoleProp.roleprop.power * (0.04 + 0.04 * self.FB_Level))
 	else:
 		add_effect["value"] = int(RoleProp.roleprop.power * (0.04 + 0.01 * self.FB_Level))

@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 		self.position = Player.position - Vector2(0, 200)
 	self.FB_Level = PlayerData.get_mostLevel("kyl") + 1
 	needMp = 50 + self.FB_Level * 5
-	if PlayerData.CheckHaveWX("kyl", "木"):
+	if PlayerData.check_have_wx("kyl", "木"):
 		_hit_data["power"] = 100 + int(RoleProp.roleprop.SHp * (randf_range(0.02, 0.05)) + 0.02 * self.FB_Level)
 	else:
 		_hit_data["power"] = 50 + int(RoleProp.roleprop.SHp * (randf_range(0.01, 0.02)) + 0.01 * self.FB_Level)

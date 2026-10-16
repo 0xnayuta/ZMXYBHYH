@@ -75,18 +75,18 @@ func _on_dh_pressed() -> void:
 	TotalTimes = lhTimes + lpTimes
 	if TotalTimes > 0:
 		if int(PlayerData.get_item_data("smlp")) < lpTimes:
-			Global.AddMessageShow(Global.Windows_, "令牌不足！！", 1.5, Vector2(470, 300))
+			Global.add_message_show(Global.Windows_, "令牌不足！！", 1.5, Vector2(470, 300))
 			return
 		if lhTimes > _get_max_lh_times():
-			Global.AddMessageShow(Global.Windows_, "灵魂不足！！", 1.5, Vector2(470, 300))
+			Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(470, 300))
 			return
 		PlayerData.remove_dj("smlp", PlayerData.get_dj_page("smlp"), lpTimes)
 		PlayerData.spend_soul(Lhdhvalue * lhTimes)
 		PlayerData.player_data["购买次数"] += TotalTimes
 		MemoryClass.保存游戏(Global.cd_path)
-		Global.AddMessageShow(Global.Windows_, "成功兑换" + str(TotalTimes) + "次购买次数！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "成功兑换" + str(TotalTimes) + "次购买次数！！", 1.5, Vector2(470, 300))
 	else:
-		Global.AddMessageShow(Global.Windows_, "兑换次数为0！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "兑换次数为0！！", 1.5, Vector2(470, 300))
 
 
 func _on_close_pressed() -> void:

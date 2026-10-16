@@ -183,7 +183,7 @@ func _physics_process(delta: float) -> void:
 		_monster_snapshot_version = monster_version
 		MonsterList = _get_active_monster_snapshot()
 	self.FB_Level = PlayerData.get_mostLevel("bsyj") + 1
-	var has_wood: bool = bool(PlayerData.CheckHaveWX("bsyj", "木"))
+	var has_wood: bool = bool(PlayerData.check_have_wx("bsyj", "木"))
 	var attack_signature := "%d:%s:%d" % [self.FB_Level, str(has_wood), int(RoleProp.roleprop.SHp)]
 	if attack_signature != _attack_signature:
 		_attack_signature = attack_signature
@@ -241,7 +241,7 @@ func _physics_process(delta: float) -> void:
 					FixTime = 0
 				else:
 					if FixTarget != null and FixTarget is BaseMonster:
-						Global.AddBuff(FixTarget.buff, objattackDic["hit1"]["addeffect"])
+						Global.add_buff(FixTarget.buff, objattackDic["hit1"]["addeffect"])
 						TotalHp += reduceHp()
 					else:
 						FixTime = 0
@@ -339,7 +339,7 @@ func free() -> void:
 
 
 func addSpecialEffect():
-	Global.add_SpecialEffect(self, Vector2(0, 45), "MirrorHpSteal", Vector2(1, 1), false, 1.0)
+	Global.add_special_effect(self, Vector2(0, 45), "MirrorHpSteal", Vector2(1, 1), false, 1.0)
 
 
 func _on_timer_timeout() -> void:

@@ -72,7 +72,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 
 func AddBullet():
-	Global.add_Bullet(
+	Global.add_bullet(
 		"Monster112Bullet",
 		self.bullet,
 		false,

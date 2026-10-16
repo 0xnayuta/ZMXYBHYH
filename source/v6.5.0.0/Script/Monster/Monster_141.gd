@@ -120,7 +120,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	WHSCount += 1
 	if WHSCount % 600 == 0:
-		var bullet = Global.add_Bullet(
+		var bullet = Global.add_bullet(
 			"Monster141Bullet4", self, true, 1, Vector2(0, -30), "hit6", self.objattackDic["hit6"]
 		)
 		bullet.scale = Vector2(2, 2)
@@ -223,7 +223,7 @@ func CallBullet_1():
 	for i in range(8):
 		var Bullet
 		var Position = Vector2(position.x + randi_range(-450, 500), -300)
-		Bullet = Global.add_Bullet(
+		Bullet = Global.add_bullet(
 			"Monster141Bullet3", self.bullet, false, 0.15, Position, "hit3", self.objattackDic["hit3"]
 		)
 		var lasthp = (float(SHp) - float(Hp)) / float(SHp)
@@ -240,11 +240,11 @@ func CallBullet_2():
 		return
 	var bb
 	if self.MonsterDirection:
-		bb = Global.add_Bullet(
+		bb = Global.add_bullet(
 			"Monster141Bullet2", self.bullet, false, 2, Vector2(20, 0) + position, "hit1", self.objattackDic["hit1"]
 		)
 	else:
-		bb = Global.add_Bullet(
+		bb = Global.add_bullet(
 			"Monster141Bullet2", self.bullet, false, 2, Vector2(-20, 0) + position, "hit1", self.objattackDic["hit1"]
 		)
 	bb.look_at(RoleProp.get_nearest_monster_target_position(global_position))
@@ -261,13 +261,13 @@ func CallBullet_3():
 		Vector2(300 + position.x, 370),
 	]
 	for i in PositionList:
-		Global.add_Bullet("Monster22Fire", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
+		Global.add_bullet("Monster22Fire", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
 
 
 func CallBullet_4():
-	Global.add_Bullet(
+	Global.add_bullet(
 		"Monster141Bullet1", self.bullet, false, 1, Vector2(position.x - 1000, 450), "hit4", self.objattackDic["hit4"]
 	)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"Monster141Bullet1", self.bullet, true, 1, Vector2(position.x + 1000, 450), "hit4", self.objattackDic["hit4"]
 	)

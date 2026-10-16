@@ -232,7 +232,7 @@ func _get_cloud_response_message(response: Dictionary) -> String:
 
 func _on_cloud_upload_pressed() -> void:
 	if cloud_access_token.is_empty() or cloud_user_id.is_empty():
-		Global.AddMessageShow(self, "登录状态无效，请退出后重新登录", 1.5, Vector2(470, 300))
+		Global.add_message_show(self, "登录状态无效，请退出后重新登录", 1.5, Vector2(470, 300))
 		return
 	cloud_upload_confirm.show()
 
@@ -244,11 +244,11 @@ func _on_cloud_upload_cancel_pressed() -> void:
 func _confirm_cloud_upload() -> void:
 	cloud_upload_confirm.hide()
 	if not cloud_request_action.is_empty():
-		Global.AddMessageShow(self, "已有请求正在处理中，请稍候", 1.5, Vector2(470, 300))
+		Global.add_message_show(self, "已有请求正在处理中，请稍候", 1.5, Vector2(470, 300))
 		return
 	var prepare_result := _prepare_cloud_upload_zip()
 	if not bool(prepare_result.get("ok", false)):
-		Global.AddMessageShow(self, str(prepare_result.get("message", "存档打包失败")), 2.0, Vector2(470, 300))
+		Global.add_message_show(self, str(prepare_result.get("message", "存档打包失败")), 2.0, Vector2(470, 300))
 		_cleanup_cloud_upload_files()
 		return
 	var send_error := _send_cloud_upload_request()
@@ -257,7 +257,7 @@ func _confirm_cloud_upload() -> void:
 		cloud_upload_button.disabled = false
 		cloud_upload_button.text = "上传存档"
 		_cleanup_cloud_upload_files()
-		Global.AddMessageShow(self, "上传请求发送失败，请检查网络", 2.0, Vector2(470, 300))
+		Global.add_message_show(self, "上传请求发送失败，请检查网络", 2.0, Vector2(470, 300))
 
 
 func _prepare_cloud_upload_zip() -> Dictionary:
@@ -427,16 +427,16 @@ func _handle_cloud_upload_completed(result: int, response_code: int, body: Packe
 	cloud_upload_button.text = "上传存档"
 	_cleanup_cloud_upload_files()
 	if result != HTTPRequest.RESULT_SUCCESS:
-		Global.AddMessageShow(self, "上传失败，请稍后重试", 2.0, Vector2(470, 300))
+		Global.add_message_show(self, "上传失败，请稍后重试", 2.0, Vector2(470, 300))
 		return
 	var response = JSON.parse_string(body.get_string_from_utf8())
 	if not response is Dictionary:
-		Global.AddMessageShow(self, "上传失败，请稍后重试", 2.0, Vector2(470, 300))
+		Global.add_message_show(self, "上传失败，请稍后重试", 2.0, Vector2(470, 300))
 		return
 	if response_code < 200 or response_code >= 300:
-		Global.AddMessageShow(self, "上传失败，请稍后重试", 2.0, Vector2(470, 300))
+		Global.add_message_show(self, "上传失败，请稍后重试", 2.0, Vector2(470, 300))
 		return
-	Global.AddMessageShow(self, "上传成功", 2.0, Vector2(470, 300))
+	Global.add_message_show(self, "上传成功", 2.0, Vector2(470, 300))
 
 
 func _cleanup_cloud_upload_files() -> void:
@@ -451,7 +451,7 @@ func _cleanup_cloud_upload_files() -> void:
 
 func _on_cloud_import_pressed() -> void:
 	if cloud_access_token.is_empty() or cloud_user_id.is_empty():
-		Global.AddMessageShow(self, "登录状态无效，请退出后重新登录", 1.5, Vector2(470, 300))
+		Global.add_message_show(self, "登录状态无效，请退出后重新登录", 1.5, Vector2(470, 300))
 		return
 	cloud_import_confirm.show()
 
@@ -466,7 +466,7 @@ func _on_cloud_import_help_close_pressed() -> void:
 
 func _on_cloud_download_link_copy_pressed() -> void:
 	DisplayServer.clipboard_set(CLOUD_SAVE_DOWNLOAD_URL)
-	Global.AddMessageShow(self, "存档下载链接已复制", 1.5, Vector2(470, 300))
+	Global.add_message_show(self, "存档下载链接已复制", 1.5, Vector2(470, 300))
 
 
 func _on_cloud_import_cancel_pressed() -> void:
@@ -476,7 +476,7 @@ func _on_cloud_import_cancel_pressed() -> void:
 func _confirm_cloud_import() -> void:
 	cloud_import_confirm.hide()
 	if cloud_account_name.is_empty():
-		Global.AddMessageShow(self, "缺少登录账号，请退出后重新登录", 2.0, Vector2(470, 300))
+		Global.add_message_show(self, "缺少登录账号，请退出后重新登录", 2.0, Vector2(470, 300))
 		return
 	var downloads_path := OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS)
 	if OS.get_name() == "Android":
@@ -489,7 +489,7 @@ func _confirm_cloud_import() -> void:
 
 func _on_cloud_import_file_selected(path: String) -> void:
 	var import_result := _import_cloud_save_zip(path)
-	Global.AddMessageShow(self, str(import_result.get("message", "导入失败")), 2.0, Vector2(470, 300))
+	Global.add_message_show(self, str(import_result.get("message", "导入失败")), 2.0, Vector2(470, 300))
 	if bool(import_result.get("ok", false)):
 		MemoryClass.main_dq()
 		AddAr()
@@ -620,7 +620,7 @@ func _on_cloud_copy_uid_pressed() -> void:
 	if cloud_uid_md5.is_empty():
 		return
 	DisplayServer.clipboard_set(_cloud_folder_name())
-	Global.AddMessageShow(self, "文件夹名已复制", 1.5, Vector2(470, 300))
+	Global.add_message_show(self, "文件夹名已复制", 1.5, Vector2(470, 300))
 
 
 func _on_cloud_logout_pressed() -> void:
@@ -641,10 +641,10 @@ func _on_cloud_logout_pressed() -> void:
 
 func _on_delete_pressed() -> void:
 	if int(cd_number.text) > GetNeedBox() or int(cd_number.text) <= 0:
-		Global.AddMessageShow(self, "找不到存档" + str(cd_number.text) + "的信息，请确保正确输入了存档号！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(self, "找不到存档" + str(cd_number.text) + "的信息，请确保正确输入了存档号！！", 1.5, Vector2(470, 300))
 		return
 	if cd_number.text == "":
-		Global.AddMessageShow(self, "找不到存档信息，请确保正确输入了存档号！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(self, "找不到存档信息，请确保正确输入了存档号！！", 1.5, Vector2(470, 300))
 		return
 	else:
 		Signals.ConnectChooseBoxSignal(self, "remove_data_")
@@ -655,10 +655,10 @@ func remove_data_():
 	remove_data()
 	var archive_path: String = "user://MyAr_" + cd_number.text + ".json"
 	if not MemoryClass.安全写入存档(archive_path, Initialized_Data):
-		Global.AddMessageShow(self, "存档重置失败，请重试", 1.5, Vector2(470, 300))
+		Global.add_message_show(self, "存档重置失败，请重试", 1.5, Vector2(470, 300))
 		return
 	AddAr()
-	Global.AddMessageShow(self, "存档" + cd_number.text + "已重置为初始状态！！", 1.5, Vector2(470, 300))
+	Global.add_message_show(self, "存档" + cd_number.text + "已重置为初始状态！！", 1.5, Vector2(470, 300))
 
 
 func remove_data():
@@ -686,14 +686,14 @@ func get_time():
 
 func _on_addcd_pressed() -> void:
 	MainSet.set_data["CdNum"] += 1
-	Global.AddMessageShow(self, "添加成功，不要添加过多，以防卡顿！！", 1.5, Vector2(470, 300))
+	Global.add_message_show(self, "添加成功，不要添加过多，以防卡顿！！", 1.5, Vector2(470, 300))
 	MemoryClass.main_bc()
 	AddAr()
 
 
 func _on_removecd_pressed() -> void:
 	if MainSet.set_data["CdNum"] <= 6:
-		Global.AddMessageShow(self, "最少保留6个存档格子！！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(self, "最少保留6个存档格子！！！", 1.5, Vector2(470, 300))
 		return
 	MainSet.set_data["CdNum"] -= 1
 	MemoryClass.main_bc()

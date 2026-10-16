@@ -568,7 +568,7 @@ func remove_play_data():
 
 
 func Remove():
-	Global.AddMessageShow(Global.Windows_, "数据不正常哦，拜拜啦~", 4, Vector2(485, 295))
+	Global.add_message_show(Global.Windows_, "数据不正常哦，拜拜啦~", 4, Vector2(485, 295))
 	remove_data()
 	MainSet.set_data["xg"] = true
 	安全写入存档(str(Global.cd_path), Initialized_Data)

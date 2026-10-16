@@ -343,6 +343,6 @@ func Useover() -> void:
 	is_use = false
 	Global.FB_CD = 1
 	usecd = COOLDOWN_DURATION
-	if PlayerData.CheckHaveWX("dzyl", "木"):
+	if PlayerData.check_have_wx("dzyl", "木"):
 		usecd *= 0.8
 	skill_cd.start(usecd)

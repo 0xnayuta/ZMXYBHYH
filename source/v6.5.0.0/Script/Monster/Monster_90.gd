@@ -56,6 +56,6 @@ func ADDBullet():
 		Position = Vector2(50, 5)
 	else:
 		Position = Vector2(-50, 5)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"Monster90Bullet", self.bullet, MonsterDirection, 1, Position + position, "hit1", self.objattackDic["hit1"]
 	)

@@ -590,7 +590,7 @@ func _apply_hit(target: BaseMonster) -> void:
 		Global.TotalRoleHit += damage
 		if str(hit_data.get("attackKind", "")) == "magic":
 			Global.TotalMagHit += damage
-		Global.addSound_(target, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
+		Global.add_sound(target, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 		if not target.is_miss and not target.is_boss_protecting():
 			target.HurtSpecialEffect = Global.add_mr_hurt(target.pz, Vector2(0, 0))
 		if not target.is_control_immune():
@@ -619,7 +619,7 @@ func _apply_voodoo_if_learned(target: Node) -> void:
 	var skill_level := int(PlayerData.player_data["技能学习"]["技能10"]["等级"])
 	if skill_level <= 0 or Global.CheckWD(target) >= 7:
 		return
-	Global.AddBuff(
+	Global.add_buff(
 		target.buff,
 		{
 			"Name": "Voodoo",

@@ -4027,7 +4027,7 @@ func remove_zb(page: int, local: int) -> Dictionary:
 	return result_item
 
 
-func GetzbData(page: int, local: int) -> Dictionary:
+func get_zb_data(page: int, local: int) -> Dictionary:
 	var page_key: String = "页码" + str(page)
 	var pages: Variant = player_data.get("装备列表", {})
 	if not pages is Dictionary or not pages.has(page_key):
@@ -4156,7 +4156,7 @@ func zl_zb():
 			add_fb(i.名字, i.强化等级, i.五行, i.Data)
 
 
-func ChekEqzb(Type, need_):
+func check_eq_zb(Type, need_):
 	if Type == "法宝":
 		return player_data["实战法宝"] == need_
 
@@ -4190,14 +4190,14 @@ func check_zb(need_: String) -> Array:
 	return get_infor
 
 
-func checkHaveZB(need_: String) -> Array:
+func check_have_zb(need_: String) -> Array:
 	var found: Array = check_zb(need_)
 	if found.size() > 0:
 		return [true, found.size()]
 	return [false, 0]
 
 
-func CheckHaveWX(need_, wx):
+func check_have_wx(need_, wx):
 	var list = check_zb(need_)
 	var new_list = []
 	if list == []:
@@ -4211,7 +4211,7 @@ func CheckHaveWX(need_, wx):
 	return false
 
 
-func GetAllItem():
+func get_all_item():
 	var list = []
 	for i in range(player_data["装备列表"].size()):
 		var u = i + 1
@@ -4235,7 +4235,7 @@ func GetAllItem():
 	return list
 
 
-func CheckWXNUM():
+func check_wx_num():
 	var list = GetAllItem()
 	if list == []:
 		return false
@@ -4250,7 +4250,7 @@ func CheckWXNUM():
 	return false
 
 
-func get_mostLevel(need_):
+func get_most_level(need_):
 	var LevelList = []
 	if PlayerData.check_zb(need_).size() != 0:
 		for i in PlayerData.check_zb(need_):
@@ -4532,7 +4532,7 @@ func migrate_consumables_from_dj_to_xhp() -> void:
 		add_xhp(item["名字"], int(item["数量"]), bool(item.get("锁定", false)))
 
 
-func CheckCanUsePage(Target):
+func check_can_use_page(Target):
 	for i in range(player_data[Target].size()):
 		var u = i + 1
 		if player_data[Target]["页码" + str(u)].size() < 25:
@@ -4540,7 +4540,7 @@ func CheckCanUsePage(Target):
 	return 0
 
 
-func CheckFashionClothes(NeedName: String):
+func check_fashion_clothes(NeedName: String):
 	if player_data["时装"].size() <= 0:
 		return false
 	if PlayerData.player_data["时装"][0]["名字"] == NeedName:
@@ -4576,7 +4576,7 @@ func _process(_delta: float) -> void:
 	if MainSet.set_data["xg"] and not _invalid_data_exit_started:
 		_invalid_data_exit_started = true
 		if Global != null:
-			Global.AddMessageShow(Global.Windows_, "数据不正常哦，我退出啦~", 4, Vector2(485, 295))
+			Global.add_message_show(Global.Windows_, "数据不正常哦，我退出啦~", 4, Vector2(485, 295))
 		await get_tree().create_timer(2, false).timeout
 		get_tree().quit()
 
@@ -4593,7 +4593,7 @@ func removedata():
 	Global.change_scene("res://Scene/Main_menu/Main_Menu.tscn")
 
 
-func CheckNextDay():
+func check_next_day():
 	var Dic = Time.get_datetime_dict_from_system()
 	var MyDic = PlayerData.player_data["MyTime"]
 	if MyDic == {}:
@@ -4616,13 +4616,13 @@ func CheckNextDay():
 				return false
 
 
-func ADDIniBuff():
+func add_ini_buff():
 	if player_data["初始Buff"].size() != 0:
 		for i in player_data["初始Buff"]:
-			Global.AddBuff(RoleProp.SourcePlayer.buff, i)
+			Global.add_buff(RoleProp.SourcePlayer.buff, i)
 
 
-func CheckSameIniBuff(Need):
+func check_same_ini_buff(Need):
 	if player_data["初始Buff"].size() != 0:
 		for i in player_data["初始Buff"]:
 			if i["Name"] == Need:
@@ -4631,7 +4631,7 @@ func CheckSameIniBuff(Need):
 	return false
 
 
-func CheckPass(Local):
+func check_pass(Local):
 	if bool(player_data.get("隐藏地图全开", false)):
 		return true
 	match Local:
@@ -4645,3 +4645,68 @@ func CheckPass(Local):
 			if player_data["玩家等级"] >= 60 and get_item_data("ttsl") != 0 and player_data["碧游宫"]:
 				return true
 	return false
+
+
+## [兼容代理] 保持旧接口兼容
+func GetzbData(page: int, local: int):
+	return get_zb_data(page, local)
+
+
+## [兼容代理] 保持旧接口兼容
+func ChekEqzb(Type, need_):
+	return check_eq_zb(Type, need_)
+
+
+## [兼容代理] 保持旧接口兼容
+func checkHaveZB(need_: String):
+	return check_have_zb(need_)
+
+
+## [兼容代理] 保持旧接口兼容
+func CheckHaveWX(need_, wx):
+	return check_have_wx(need_, wx)
+
+
+## [兼容代理] 保持旧接口兼容
+func GetAllItem():
+	return get_all_item()
+
+
+## [兼容代理] 保持旧接口兼容
+func CheckWXNUM():
+	return check_wx_num()
+
+
+## [兼容代理] 保持旧接口兼容
+func get_mostLevel(need_):
+	return get_most_level(need_)
+
+
+## [兼容代理] 保持旧接口兼容
+func CheckCanUsePage(Target):
+	return check_can_use_page(Target)
+
+
+## [兼容代理] 保持旧接口兼容
+func CheckFashionClothes(NeedName: String):
+	return check_fashion_clothes(NeedName)
+
+
+## [兼容代理] 保持旧接口兼容
+func CheckNextDay():
+	return check_next_day()
+
+
+## [兼容代理] 保持旧接口兼容
+func ADDIniBuff():
+	return add_ini_buff()
+
+
+## [兼容代理] 保持旧接口兼容
+func CheckSameIniBuff(Need):
+	return check_same_ini_buff(Need)
+
+
+## [兼容代理] 保持旧接口兼容
+func CheckPass(Local):
+	return check_pass(Local)

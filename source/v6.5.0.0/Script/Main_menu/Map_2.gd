@@ -148,8 +148,8 @@ func _ready():
 	Global.LLBTBOSSMS = false
 	Global.LLBTCGMS = false
 	Global.LLBTWXMS = false
-	RoleProp.set_full_Hp()
-	RoleProp.set_full_Mp()
+	RoleProp.set_full_hp()
+	RoleProp.set_full_mp()
 	RoleProp.CurrentHp = RoleProp.roleprop.Hp
 	RoleProp.CurrentMp = RoleProp.roleprop.Mp
 	for i in range(11):
@@ -159,7 +159,7 @@ func _ready():
 		MemoryClass.main_bc()
 	Global.CurrentLevel = ""
 	if not Global.IsFrist:
-		Global.AddMessageShow(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
 		Global.IsFrist = true
 	Global.PlayerBeHitCount = 0
 	Global.LastLevelPath = ""
@@ -207,7 +207,7 @@ func _on_boss_treasure_toggled():
 	MemoryClass.main_bc()
 
 	var mode_text = "普通掉落模式" if not is_chest_mode else "宝箱掉落模式（Boss 将掉落自选宝箱）"
-	Global.AddMessageShow(Global.Windows_, mode_text, 1.5, Vector2(470, 300))
+	Global.add_message_show(Global.Windows_, mode_text, 1.5, Vector2(470, 300))
 
 
 func _on_changetomain_pressed() -> void:
@@ -221,7 +221,7 @@ func _on_ld_l_pressed() -> void:
 
 func _on_memory_game_pressed() -> void:
 	MemoryClass.保存游戏(Global.cd_path)
-	Global.AddMessageShow(get_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
+	Global.add_message_show(get_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
 
 
 func check_music():
@@ -229,19 +229,19 @@ func check_music():
 		if my_music != null:
 			my_music.queue_free()
 
-		my_music = Global.addBGM_(self, "res://Music/MainSceneMusic/zmxy_1BGM.mp3")
+		my_music = Global.add_bgm(self, "res://Music/MainSceneMusic/zmxy_1BGM.mp3")
 	elif MainSet.set_data["music"] == 2:
 		if my_music != null:
 			my_music.queue_free()
-		my_music = Global.addBGM_(self, "res://Music/MainSceneMusic/zmxy_2BGM.mp3")
+		my_music = Global.add_bgm(self, "res://Music/MainSceneMusic/zmxy_2BGM.mp3")
 	elif MainSet.set_data["music"] == 3:
 		if my_music != null:
 			my_music.queue_free()
-		my_music = Global.addBGM_(self, "res://Music/MainSceneMusic/44_begin.mp3")
+		my_music = Global.add_bgm(self, "res://Music/MainSceneMusic/44_begin.mp3")
 	elif MainSet.set_data["music"] == 4:
 		if my_music != null:
 			my_music.queue_free()
-		my_music = Global.addBGM_(self, "res://Music/MainSceneMusic/zmxy4bg.mp3")
+		my_music = Global.add_bgm(self, "res://Music/MainSceneMusic/zmxy4bg.mp3")
 
 
 func check_pass_level():
@@ -306,47 +306,47 @@ func _on_button_pressed() -> void:
 
 
 func _on_level_11_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "鬼城", Vector2(0, 0), "res://Scene/Level/Level_11.tscn")
+	Global.add_level_info(_ui_parent(), "鬼城", Vector2(0, 0), "res://Scene/Level/Level_11.tscn")
 
 
 func _on_level_12_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "无常巷", Vector2(0, 0), "res://Scene/Level/Level_12.tscn")
+	Global.add_level_info(_ui_parent(), "无常巷", Vector2(0, 0), "res://Scene/Level/Level_12.tscn")
 
 
 func _on_level_13_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "鬼门关", Vector2(0, 0), "res://Scene/Level/Level_13.tscn")
+	Global.add_level_info(_ui_parent(), "鬼门关", Vector2(0, 0), "res://Scene/Level/Level_13.tscn")
 
 
 func _on_level_14_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "接引院", Vector2(0, 0), "res://Scene/Level/Level_14.tscn")
+	Global.add_level_info(_ui_parent(), "接引院", Vector2(0, 0), "res://Scene/Level/Level_14.tscn")
 
 
 func _on_level_15_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "判官府", Vector2(0, 0), "res://Scene/Level/Level_15.tscn")
+	Global.add_level_info(_ui_parent(), "判官府", Vector2(0, 0), "res://Scene/Level/Level_15.tscn")
 
 
 func _on_level_16_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "阎罗殿", Vector2(0, 0), "res://Scene/Level/Level_16.tscn")
+	Global.add_level_info(_ui_parent(), "阎罗殿", Vector2(0, 0), "res://Scene/Level/Level_16.tscn")
 
 
 func _on_level_17_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "忘川河", Vector2(0, 0), "res://Scene/Level/Level_17.tscn")
+	Global.add_level_info(_ui_parent(), "忘川河", Vector2(0, 0), "res://Scene/Level/Level_17.tscn")
 
 
 func _on_level_18_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "奈何桥", Vector2(0, 0), "res://Scene/Level/Level_18.tscn")
+	Global.add_level_info(_ui_parent(), "奈何桥", Vector2(0, 0), "res://Scene/Level/Level_18.tscn")
 
 
 func _on_level_19_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "望乡台", Vector2(0, 0), "res://Scene/Level/Level_19.tscn")
+	Global.add_level_info(_ui_parent(), "望乡台", Vector2(0, 0), "res://Scene/Level/Level_19.tscn")
 
 
 func _on_level_20_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "转轮殿", Vector2(0, 0), "res://Scene/Level/Level_21.tscn")
+	Global.add_level_info(_ui_parent(), "转轮殿", Vector2(0, 0), "res://Scene/Level/Level_21.tscn")
 
 
 func _on_level_nmg_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "火焰山", Vector2(0, 0), "res://Scene/Level/Level_nmg.tscn")
+	Global.add_level_info(_ui_parent(), "火焰山", Vector2(0, 0), "res://Scene/Level/Level_nmg.tscn")
 
 
 func _on_level_lxdy_pressed() -> void:
@@ -434,9 +434,9 @@ func _on_changetott_pressed() -> void:
 		Global.change_scene("res://Scene/Main_menu/Map_3.tscn")
 	else:
 		if PlayerData.player_data.转轮殿 != 1:
-			Global.AddMessageShow(get_parent(), "需要通关转轮殿！！", 1.5, Vector2(470, 300))
+			Global.add_message_show(get_parent(), "需要通关转轮殿！！", 1.5, Vector2(470, 300))
 		elif PlayerData.get_item_data("ttlp") == 0:
-			Global.AddMessageShow(get_parent(), "需要通天令牌！！", 1.5, Vector2(470, 300))
+			Global.add_message_show(get_parent(), "需要通天令牌！！", 1.5, Vector2(470, 300))
 
 
 func _on_game_an_pressed() -> void:

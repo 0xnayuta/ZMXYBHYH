@@ -133,7 +133,7 @@ func do_hit_3():
 
 func call_fhjl():
 	if self.MonsterDirection:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster18Bullet_1",
 			self.bullet,
 			self.MonsterDirection,
@@ -143,7 +143,7 @@ func call_fhjl():
 			self.objattackDic["fhjl"]
 		)
 	else:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster18Bullet_1",
 			self.bullet,
 			self.MonsterDirection,
@@ -173,7 +173,7 @@ func call_dtsz():
 			Vector2(self.position.x + 720, self.position.y - 250)
 		]
 	for i in range(5):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster18Bullet_2",
 			self.bullet,
 			self.MonsterDirection,

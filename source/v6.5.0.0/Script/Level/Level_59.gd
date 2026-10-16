@@ -557,7 +557,7 @@ func _spawn_birth_point_unit(point: Dictionary, state: Dictionary) -> bool:
 	var point_id := int(point["point"])
 	var monster_id := int(point["monster"])
 	var spawn_position: Vector2 = point["position"]
-	var created := Global.Create_Monster(monster_id, monster, spawn_position)
+	var created := Global.create_monster(monster_id, monster, spawn_position)
 	if created == null:
 		if not _missing_scene_reported.has(monster_id):
 			_missing_scene_reported[monster_id] = true

@@ -181,7 +181,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	WHSCount += 1
 	if WHSCount % 600 == 0:
-		var bullet = Global.add_Bullet(
+		var bullet = Global.add_bullet(
 			"Monster141Bullet4", self, true, 1, Vector2(0, -30), "hit6", objattackDic["hit6"]
 		)
 		if bullet:
@@ -332,7 +332,7 @@ func state_hurt(attacker: Node) -> void:
 func CallBullet_1() -> void:
 	for i in range(8):
 		var pos = Vector2(position.x + randi_range(-450, 500), -300)
-		var bullet_instance = Global.add_Bullet(
+		var bullet_instance = Global.add_bullet(
 			"Monster141Bullet3", bullet, false, 0.15, pos, "hit3", objattackDic["hit3"]
 		)
 		if bullet_instance:
@@ -357,11 +357,11 @@ func CallBullet_2() -> void:
 		return
 	var bullet_instance
 	if MonsterDirection:
-		bullet_instance = Global.add_Bullet(
+		bullet_instance = Global.add_bullet(
 			"Monster141Bullet2", bullet, false, 2, Vector2(20, 0) + position, "hit1", objattackDic["hit1"]
 		)
 	else:
-		bullet_instance = Global.add_Bullet(
+		bullet_instance = Global.add_bullet(
 			"Monster141Bullet2", bullet, false, 2, Vector2(-20, 0) + position, "hit1", objattackDic["hit1"]
 		)
 	if bullet_instance:
@@ -373,16 +373,16 @@ func CallBullet_3() -> void:
 	var x_offsets = [-300, -200, -100, 0, 100, 200, 300]
 	for offset_x in x_offsets:
 		var pos = Vector2(position.x + offset_x, 370)
-		var bullet_instance = Global.add_Bullet("Monster22Fire", bullet, false, 1, pos, "hit2", objattackDic["hit2"])
+		var bullet_instance = Global.add_bullet("Monster22Fire", bullet, false, 1, pos, "hit2", objattackDic["hit2"])
 		if bullet_instance:
 			setup_bullet_collision(bullet_instance)
 
 
 func CallBullet_4() -> void:
-	var bullet1 = Global.add_Bullet(
+	var bullet1 = Global.add_bullet(
 		"Monster141Bullet1", bullet, false, 1, Vector2(position.x - 1000, 450), "hit4", objattackDic["hit4"]
 	)
-	var bullet2 = Global.add_Bullet(
+	var bullet2 = Global.add_bullet(
 		"Monster141Bullet1", bullet, true, 1, Vector2(position.x + 1000, 450), "hit4", objattackDic["hit4"]
 	)
 	if bullet1:

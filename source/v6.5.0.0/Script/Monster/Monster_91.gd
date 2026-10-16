@@ -251,7 +251,7 @@ func ADDBullet2():
 	else:
 		PositionList = Vector2(-25, -30)
 	for i in range(randi_range(3, 5)):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster91Bullet2",
 			self.bullet,
 			MonsterDirection,
@@ -270,7 +270,7 @@ func AddBullet():
 	else:
 		PositionList = [Vector2(-100, 75), Vector2(-180, 75), Vector2(-260, 75), Vector2(-340, 75)]
 	for i in PositionList:
-		var lt = Global.add_Bullet(
+		var lt = Global.add_bullet(
 			"Monster91Bullet1", self.bullet, MonsterDirection, 2, i + position, "hit2", self.objattackDic["hit2"]
 		)
 		lt.scale.y = 1.5
@@ -280,7 +280,7 @@ func AddBullet():
 
 func CallSelf():
 	if Fs == null:
-		Fs = Global.Create_Monster(91, get_parent(), position)
+		Fs = Global.create_monster(91, get_parent(), position)
 		Fs.IsFs = true
 		Fs.my_mr_name = "袁洪·分身"
 		Fs.SHp = int(self.SHp * 0.5)

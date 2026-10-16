@@ -295,8 +295,8 @@ func _ready() -> void:
 	RoleProp.baseroleprop.Level = PlayerData.player_data.玩家等级
 	RoleProp.baseroleprop.exp = PlayerData.player_data.玩家当前经验
 	RoleProp.set_basic_prop()
-	RoleProp.set_full_Hp()
-	RoleProp.set_full_Mp()
+	RoleProp.set_full_hp()
+	RoleProp.set_full_mp()
 	_ensure_title_animation("htd", "res://Art/AllTX/htd.png")
 	_ensure_title_animation("ymqzq", "res://Art/AllTX/ymqzq.png")
 	AddTx()
@@ -388,7 +388,7 @@ func _add_role_hit_effect_throttled() -> void:
 	if now - _last_role_hit_effect_msec < 55:
 		return
 	_last_role_hit_effect_msec = now
-	Global.add_SpecialEffect(self, Vector2(0, 0), "RoleBeHit", Vector2(1, 1), false, 1)
+	Global.add_special_effect(self, Vector2(0, 0), "RoleBeHit", Vector2(1, 1), false, 1)
 
 
 func NullSZFBCase():
@@ -508,7 +508,7 @@ func WSSkill() -> bool:
 			smsrsz_timer.start(1.0)
 
 			if Pz == "shishi" or Pz == "xieling":
-				Global.AddBuff(
+				Global.add_buff(
 					self.buff,
 					{
 						"Name": "NoDeBuff",
@@ -526,7 +526,7 @@ func WSSkill() -> bool:
 					if child is BaseBuff and child.BuffInfo.get("DeBuff", false):
 						child.queue_free()
 
-				Global.AddBuff(
+				Global.add_buff(
 					self.buff,
 					{
 						"Name": "NoDeBuff",
@@ -587,7 +587,7 @@ func _physics_process(delta: float) -> void:
 				"DeBuff": false,
 				"SpecialEffectAddInterval": 1.0
 			}
-			Global.AddBuff(self.buff, sxht_buff_info)
+			Global.add_buff(self.buff, sxht_buff_info)
 
 	for i in Role1SkillInter:
 		if Role1SkillInter[i] > 0:
@@ -1684,7 +1684,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if Target.objattackDic.size() == 0:
 		return
 	if str(Target.get("skill_name")) == "Monster118Bullet2":
-		Global.AddBuff(
+		Global.add_buff(
 			self.buff,
 			{
 				"Name": "poision",
@@ -1719,13 +1719,13 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	Global.TotalRoleHurt += int(last_hit)
 	if not is_miss:
 		if self is Role1Hero:
-			Global.addSound_(self, "res://Music/Hero/49_Role1_beAttack.mp3")
+			Global.add_sound(self, "res://Music/Hero/49_Role1_beAttack.mp3")
 		elif self is Role2Hero:
-			Global.addSound_(self, "res://Music/Hero/62_Role2_beAttack.mp3")
+			Global.add_sound(self, "res://Music/Hero/62_Role2_beAttack.mp3")
 		elif self is Role5Hero:
-			Global.addSound_(self, "res://Music/Hero/Role5/13_hurtStand.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role5/13_hurtStand.mp3")
 		else:
-			Global.addSound_(self, "res://Music/Hero/68_Role3_beAttack.mp3")
+			Global.add_sound(self, "res://Music/Hero/68_Role3_beAttack.mp3")
 		_add_role_hit_effect_throttled()
 		if not IsTMc:
 			_add_role_protect(randi_range(3, 7))
@@ -3007,15 +3007,15 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 					if self is Role4Hero:
 						if objattackDic[get_action]["addeffect"]["Name"] == "Voodoo":
 							if Global.CheckWD(Monster) < 10:
-								Global.AddBuff(Monster.buff, objattackDic[get_action]["addeffect"])
+								Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
 						else:
-							Global.AddBuff(Monster.buff, objattackDic[get_action]["addeffect"])
+							Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
 					else:
-						Global.AddBuff(Monster.buff, objattackDic[get_action]["addeffect"])
+						Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
 	if self is Role1Hero:
 		if get_action == "qsez":
 			velocity.x = 0
-			Global.addSound_(self, "res://Music/Hero/27_Role1_hit13_2.mp3")
+			Global.add_sound(self, "res://Music/Hero/27_Role1_hit13_2.mp3")
 			if not is_call:
 				is_call = true
 				var pp = [

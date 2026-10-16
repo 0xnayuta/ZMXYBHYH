@@ -99,8 +99,8 @@ func use_Skill_1():
 
 
 func call_monster():
-	Global.add_SpecialEffect(self, Vector2(21, -46), "red_eyes", Vector2(1, 1), false, 1)
-	Global.add_SpecialEffect(self, Vector2(-27, -46), "red_eyes", Vector2(1, 1), true, 1)
+	Global.add_special_effect(self, Vector2(21, -46), "red_eyes", Vector2(1, 1), false, 1)
+	Global.add_special_effect(self, Vector2(-27, -46), "red_eyes", Vector2(1, 1), true, 1)
 	create_bf(randi_range(3, 6))
 
 
@@ -108,7 +108,7 @@ func create_bf(get_number):
 	for i in range(get_number):
 		var pp_x = self.position.x + randi_range(-200, 200)
 		var pp_y = self.position.y + randi_range(-50, -350)
-		var bf = Global.Create_Monster(7, get_parent(), Vector2(pp_x, pp_y))
+		var bf = Global.create_monster(7, get_parent(), Vector2(pp_x, pp_y))
 		bf.def += 10
 		bf.mdef += 10
 		bf.SHp = bf.SHp * 1.5
@@ -129,7 +129,7 @@ func _on_create_rd_timeout():
 		RD_node.queue_free()
 		RD_node = null
 
-	RD_node = Global.add_SpecialEffect(self, rd_pos, "rd", Vector2(1, 1), false, 1)
+	RD_node = Global.add_special_effect(self, rd_pos, "rd", Vector2(1, 1), false, 1)
 	rd.position = rd_pos
 	rrd.disabled = false
 

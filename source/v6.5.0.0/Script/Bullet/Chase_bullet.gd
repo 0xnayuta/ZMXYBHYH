@@ -156,7 +156,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 	var target = area.get_parent().get_parent()
 
 	if objattackDic[hit_name].has("addeffect"):
-		Global.AddBuff(target.buff, objattackDic[hit_name]["addeffect"])
+		Global.add_buff(target.buff, objattackDic[hit_name]["addeffect"])
 
 	if name_ != "Monster1402Bullet2" and name_ != "Monster1402Bullet3" and name_ != "Monster1408Bullet2":
 		add_otherBullet()
@@ -169,13 +169,13 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 func add_otherBullet():
 	match name_:
 		"Monster33Bullet":
-			Global.add_Bullet(
+			Global.add_bullet(
 				"Monster33Bullet", get_parent(), false, 1, Vector2(self.position.x, self.position.y), hit_name, AttList
 			)
 		"Monster37Bullet":
-			Global.add_Bullet(
+			Global.add_bullet(
 				"Monster37Bullet", get_parent(), false, 1, Vector2(self.position.x, self.position.y), hit_name, AttList
 			)
-			Global.add_Bullet(
+			Global.add_bullet(
 				"PoisionBullet", get_parent(), false, 1, Vector2(self.position.x, self.position.y), hit_name, AttList
 			)

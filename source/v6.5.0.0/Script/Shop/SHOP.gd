@@ -495,7 +495,7 @@ func _on_close_pressed() -> void:
 
 
 func _on_charge_pressed() -> void:
-	Global.AddMessageShow(Global.Windows_, "充值渠道已关闭，无法充值，请使用灵魂购买商品。", 1.5, Vector2(485, 295))
+	Global.add_message_show(Global.Windows_, "充值渠道已关闭，无法充值，请使用灵魂购买商品。", 1.5, Vector2(485, 295))
 
 
 func _on_total_pressed() -> void:

@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 	ADDTime = 10
 	CooldownTime = 20
 
-	if PlayerData.CheckHaveWX("yx", "木"):
+	if PlayerData.check_have_wx("yx", "木"):
 		ADDTime += self.FB_Level * 0.25
 		CooldownTime -= self.FB_Level * 0.25
 		if CooldownTime < ADDTime + 1:
@@ -36,7 +36,7 @@ func ShowSkill():
 	var percentage_rate = 0.2 + (0.3 * min(base_level, max_level) / max_level)
 
 	if Player != null:
-		Global.AddBuff(
+		Global.add_buff(
 			Player.buff,
 			{
 				"Name": "yxbuff",

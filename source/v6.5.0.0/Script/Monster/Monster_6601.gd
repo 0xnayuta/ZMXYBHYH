@@ -273,13 +273,13 @@ func ChangeSkill():
 
 func CallMUbei():
 	if MUbei == null:
-		MUbei = Global.Create_Monster(6602, get_parent(), Vector2(490, 260))
+		MUbei = Global.create_monster(6602, get_parent(), Vector2(490, 260))
 
 
 func CallWGWbULLET():
 	for i in range(randi_range(4, 6)):
 		var Position = Vector2(self.position.x, self.position.y) + Vector2(0, randi_range(-180, 80))
-		var bullet_ = Global.add_Bullet(
+		var bullet_ = Global.add_bullet(
 			"Monster61WGW", self.bullet, MonsterDirection, 1, Position, "skill_1_4", self.objattackDic["skill_1_4"]
 		)
 		await get_tree().create_timer(0.1, false).timeout
@@ -292,7 +292,7 @@ func CallTSWBullet():
 	]
 	for i in range(5):
 		var Position = PositionList[i]
-		var bullet_ = Global.add_Bullet(
+		var bullet_ = Global.add_bullet(
 			"Monster61TSw", self.bullet, MonsterDirection, 1.7, Position, "skill_1_3", self.objattackDic["skill_1_3"]
 		)
 		if bullet_:
@@ -305,7 +305,7 @@ func CallBCWBullet():
 		PoSITION = self.position + Vector2(200, -30)
 	else:
 		PoSITION = self.position + Vector2(-200, -30)
-	var bullet_instance = Global.add_Bullet(
+	var bullet_instance = Global.add_bullet(
 		"Monster61BCW", self.bullet, MonsterDirection, 1, PoSITION, "skill_1_1", self.objattackDic["skill_1_1"]
 	)
 	if bullet_instance:
@@ -318,7 +318,7 @@ func CallDSWBullet():
 		PoSITION = self.position + Vector2(300, -50)
 	else:
 		PoSITION = self.position + Vector2(-300, -50)
-	var bullet_instance = Global.add_Bullet(
+	var bullet_instance = Global.add_bullet(
 		"Monster61DSW", self.bullet, MonsterDirection, 1, PoSITION, "skill_1_2", self.objattackDic["skill_1_2"]
 	)
 	if bullet_instance:
@@ -331,7 +331,7 @@ func CallBullet4():
 		PoSITION = self.position + Vector2(300, 0)
 	else:
 		PoSITION = self.position + Vector2(-300, 0)
-	var bullet_instance = Global.add_Bullet(
+	var bullet_instance = Global.add_bullet(
 		"Monster66bull4", self.bullet, MonsterDirection, 1, PoSITION, "skill_4", self.objattackDic["skill_4"]
 	)
 
@@ -384,6 +384,6 @@ func CallBJ():
 	]
 	for offset in base_offsets:
 		var final_pos = P + offset + Vector2(0, 40)
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster_61Bullet", self.bullet, MonsterDirection, 1, final_pos, "skill_3", self.objattackDic["skill_3"]
 		)

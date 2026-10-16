@@ -122,7 +122,7 @@ func CreateMonster():
 			$BaseDamageBox/HurtBox/HurtBox.disabled = true
 			var Get_list = CallMonsterList["List_" + str(CallMonsterID)]
 			var MonsterID: int = Get_list[randi_range(0, Get_list.size() - 1)]
-			CallMonster = Global.Create_Monster(18, get_parent(), self.position)
+			CallMonster = Global.create_monster(18, get_parent(), self.position)
 			StrenghBoss()
 			is_stop = true
 			mr_player.play("wait")
@@ -135,7 +135,7 @@ func CreateMonster():
 			$BaseDamageBox/HurtBox/HurtBox.disabled = true
 			var Get_list = CallMonsterList["List_" + str(CallMonsterID)]
 			var MonsterID: int = Get_list[randi_range(0, Get_list.size() - 1)]
-			CallMonster = Global.Create_Monster(37, get_parent(), self.position)
+			CallMonster = Global.create_monster(37, get_parent(), self.position)
 			StrenghBoss()
 			CallMonsterID = 2
 

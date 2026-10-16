@@ -213,7 +213,7 @@ func Drop():
 		Is_Top = false
 		velocity = Vector2.ZERO
 		return
-	var Shallow = Global.add_SpecialEffect(
+	var Shallow = Global.add_special_effect(
 		self.bullet, Vector2(self.position.x, 500), "Shallow", Vector2(1, 1), false, 1
 	)
 	Shallow.scale = Vector2(0.4, 0.4)
@@ -239,17 +239,17 @@ func call_sfjmFire():
 		Vector2(self.position.x - 240, self.position.y + 30), Vector2(self.position.x + 240, self.position.y + 30)
 	]
 	for i in range(2):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster42Bullet", self.bullet, false, 1.3, FirePosition1[i], "sfjm", self.objattackDic["sfjm"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster42Bullet", self.bullet, false, 1.3, FirePosition2[i], "sfjm", self.objattackDic["sfjm"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster42Bullet", self.bullet, false, 1.3, FirePosition3[i], "sfjm", self.objattackDic["sfjm"]
 		)
 
@@ -303,10 +303,10 @@ func CallHands():
 		OtherPo = [Vector2(-37, 55), Vector2(-67, 45), Vector2(-27, 25)]
 		PositionList = [Vector2(-37, -35), Vector2(-67, -65), Vector2(-27, -5)]
 	for i in PositionList:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster60Bullet", self, MonsterDirection, randf_range(1.1, 1.3), i, "mykl", self.objattackDic["mykl"]
 		)
 		await get_tree().create_timer(0.06, false).timeout
 	await get_tree().create_timer(0.06, false).timeout
 	for i in OtherPo:
-		Global.add_Bullet("Monster60Bullet", self, MonsterDirection, 1.35, i, "mykl", self.objattackDic["mykl"])
+		Global.add_bullet("Monster60Bullet", self, MonsterDirection, 1.35, i, "mykl", self.objattackDic["mykl"])

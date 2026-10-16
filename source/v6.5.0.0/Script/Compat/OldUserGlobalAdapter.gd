@@ -63,7 +63,7 @@ func change_secen(target: String) -> void:
 
 
 func AddLevelInfo(parent, name, position, path):
-	return Global.AddLevelInfo(parent, name, position, path)
+	return Global.add_level_info(parent, name, position, path)
 
 
 func AddStar(parent, type):
@@ -115,11 +115,11 @@ func ADDFont_(parent, show_text, font_, font_size, font_color, outline_size, out
 
 
 func addBGM_(parent, target):
-	return Global.addBGM_(parent, target)
+	return Global.add_bgm(parent, target)
 
 
 func addSound_(parent, target):
-	return Global.addSound_(parent, target)
+	return Global.add_sound(parent, target)
 
 
 func add_music_set(parent, position):

@@ -198,7 +198,7 @@ func CallArrow1():
 	PositionList.shuffle()
 	for i in PositionList:
 		var desired_angle
-		var Arrow = Global.add_Bullet(
+		var Arrow = Global.add_bullet(
 			"Monster83Bullet", self.bullet, false, 2, i + position, "hit4", self.objattackDic["hit4"]
 		)
 		Arrow.scale = Vector2(0.7, 0.7)
@@ -221,7 +221,7 @@ func CallArrow2():
 	randomize()
 	PositionList.shuffle()
 	for i in PositionList:
-		var Arrow = Global.add_Bullet(
+		var Arrow = Global.add_bullet(
 			"Monster83Bullet", self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"]
 		)
 		Arrow.scale = Vector2(0.9, 0.9)
@@ -265,7 +265,7 @@ func CallArrow3():
 	randomize()
 	PositionList.shuffle()
 	for i in PositionList:
-		var Arrow = Global.add_Bullet(
+		var Arrow = Global.add_bullet(
 			"Monster83Bullet", self.bullet, false, 3.5, i + position, "hit3", self.objattackDic["hit3"]
 		)
 		Arrow.scale = Vector2(1, 1)

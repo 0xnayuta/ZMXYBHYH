@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 		_monster_refresh_elapsed = 0.0
 		MonsterList = _get_active_monster_snapshot()
 	self.FB_Level = PlayerData.get_mostLevel("xhmt") + 1
-	if PlayerData.CheckHaveWX("xhmt", "木"):
+	if PlayerData.check_have_wx("xhmt", "木"):
 		_hit_data["power"] = int(25 + RoleProp.roleprop.power * (0.15 + (self.FB_Level * 0.03)))
 		MaxTimes = 5 + int(self.FB_Level / 3)
 	else:
@@ -155,7 +155,7 @@ func Useover():
 	HitTimes = 0
 	isBegin = false
 	is_use = false
-	if PlayerData.CheckHaveWX("xhmt", "木"):
+	if PlayerData.check_have_wx("xhmt", "木"):
 		self.usecd = 6
 		skill_cd.start(6)
 	else:

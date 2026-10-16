@@ -149,11 +149,11 @@ func SetBox():
 
 func _on_purchase_pressed() -> void:
 	if PlayerData.player_data["购买次数"] <= 0:
-		Global.AddMessageShow(Global.Windows_, "购买次数不足！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "购买次数不足！！", 1.5, Vector2(470, 300))
 		return
 	var Need: int = NewList["Need"]
 	if PlayerData.get_soul() < Need:
-		Global.AddMessageShow(Global.Windows_, "灵魂不足！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(470, 300))
 		return
 	PlayerData.spend_soul(Need)
 	PlayerData.player_data["购买次数"] -= 1
@@ -170,7 +170,7 @@ func _on_purchase_pressed() -> void:
 			PlayerData.add_dj(NewList["Name"], NewList["Value"])
 		"消耗品":
 			PlayerData.add_xhp(NewList["Name"], NewList["Value"])
-	Global.AddMessageShow(Global.Windows_, "购买成功", 1.5, Vector2(520, 340))
+	Global.add_message_show(Global.Windows_, "购买成功", 1.5, Vector2(520, 340))
 	OpenAndCloseBox()
 	MemoryClass.保存游戏(Global.cd_path)
 

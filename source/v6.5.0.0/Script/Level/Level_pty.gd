@@ -9,7 +9,7 @@ class_name Levelpty
 
 func _ready() -> void:
 	Global.CurrentLevel = "蟠桃园"
-	Global.addBGM_(self, "res://Music/level/BGM_Normal.mp3")
+	Global.add_bgm(self, "res://Music/level/BGM_Normal.mp3")
 	self.level_stage = 1
 	super._ready()
 	Monster_group = {

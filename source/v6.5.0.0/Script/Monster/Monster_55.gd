@@ -273,7 +273,7 @@ func CallRound():
 	var tween = get_tree().create_tween()
 	if CurrentRound > 0:
 		tween.set_parallel(false)
-		var Round = Global.add_Bullet("Monster55Bullet", bullet, false, 1, pp, "wqml", self.objattackDic["wqml"])
+		var Round = Global.add_bullet("Monster55Bullet", bullet, false, 1, pp, "wqml", self.objattackDic["wqml"])
 		RoundList.push_back(Round)
 		Round.IsThrow = true
 		tween.tween_property(Round, "position", setposition(), 1.5)
@@ -300,16 +300,16 @@ func CallBullet():
 	if MonsterDirection:
 		pp = Vector2(-60, -10)
 		pp_1 = Vector2(75, -28)
-		zz_1 = Global.add_Bullet("Monster55Bullet_2", self, false, 1, pp, "zlls", self.objattackDic["zlls"])
-		zz_2 = Global.add_Bullet("Monster55Bullet_2", self, false, 1, pp_1, "zlls", self.objattackDic["zlls"])
+		zz_1 = Global.add_bullet("Monster55Bullet_2", self, false, 1, pp, "zlls", self.objattackDic["zlls"])
+		zz_2 = Global.add_bullet("Monster55Bullet_2", self, false, 1, pp_1, "zlls", self.objattackDic["zlls"])
 		zz_1.scale.x = -1
 		zz_2.scale.x = -1
 		zz_2.z_index = -1
 	else:
 		pp = Vector2(60, 0)
 		pp_1 = Vector2(-55, -25)
-		zz_1 = Global.add_Bullet("Monster55Bullet_2", self, false, 1, pp, "zlls", self.objattackDic["zlls"])
-		zz_2 = Global.add_Bullet("Monster55Bullet_2", self, false, 1, pp_1, "zlls", self.objattackDic["zlls"])
+		zz_1 = Global.add_bullet("Monster55Bullet_2", self, false, 1, pp, "zlls", self.objattackDic["zlls"])
+		zz_2 = Global.add_bullet("Monster55Bullet_2", self, false, 1, pp_1, "zlls", self.objattackDic["zlls"])
 		zz_2.z_index = -1
 
 
@@ -332,9 +332,9 @@ func CallRound_():
 func CallMonster():
 	if get_parent().get_parent() is Level21:
 		if Boss_3 == null:
-			Boss_3 = Global.Create_Monster(56, get_parent(), Vector2(1450, 320)) as Monster56
+			Boss_3 = Global.create_monster(56, get_parent(), Vector2(1450, 320)) as Monster56
 			var BaseLevel_ = get_parent().get_parent() as BaseLevel
 	elif get_parent().get_parent() is LevelZLDHDGQ:
 		if Boss_3 == null:
-			Boss_3 = Global.Create_Monster(56, get_parent(), Vector2(470, 320)) as Monster56
+			Boss_3 = Global.create_monster(56, get_parent(), Vector2(470, 320)) as Monster56
 			var BaseLevel_ = get_parent().get_parent() as BaseLevel

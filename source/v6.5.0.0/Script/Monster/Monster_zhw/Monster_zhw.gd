@@ -304,7 +304,7 @@ func do_hit_5():
 func CallBullet1():
 	if not current_target or not is_instance_valid(current_target):
 		return
-	var Round = Global.add_Bullet(
+	var Round = Global.add_bullet(
 		"Monster142Bullet1", self.bullet, false, 1, position, "hit1", self.objattackDic["hit1"]
 	)
 	setup_bullet_collision(Round)
@@ -325,7 +325,7 @@ func CallBullet3():
 		Vector2(400 + position.x, 490)
 	]
 	for i in PositionList:
-		var bullet = Global.add_Bullet("Monster56Bullet", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
+		var bullet = Global.add_bullet("Monster56Bullet", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 		setup_bullet_collision(bullet)
 
 
@@ -345,7 +345,7 @@ func CallBullet4():
 	if not MonsterDirection:
 		PositionList.reverse()
 	for i in PositionList:
-		var stab = Global.add_Bullet("Monster142Bullet2", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
+		var stab = Global.add_bullet("Monster142Bullet2", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
 		setup_bullet_collision(stab)
 		await get_tree().create_timer(0.2, false).timeout
 
@@ -367,7 +367,7 @@ func CallBullet5():
 	var CountTime = PositionList.size() * 0.1
 	PositionList.shuffle()
 	for i in PositionList:
-		var Round = Global.add_Bullet(
+		var Round = Global.add_bullet(
 			"Monster55Bullet", self.bullet, false, 1, position, "hit5", self.objattackDic["hit5"]
 		)
 		setup_bullet_collision(Round)

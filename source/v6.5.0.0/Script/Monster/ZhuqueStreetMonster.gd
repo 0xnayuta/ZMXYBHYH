@@ -485,7 +485,7 @@ func _fire_arrow() -> void:
 	if death():
 		return
 	var offset := Vector2(56.0 if MonsterDirection else -56.0, -32.0)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"ZhuqueTigerArrow", bullet, MonsterDirection, 1.0, position + offset, "arrow", objattackDic["arrow"]
 	)
 

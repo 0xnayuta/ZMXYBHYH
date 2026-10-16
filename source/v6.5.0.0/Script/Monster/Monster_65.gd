@@ -276,4 +276,4 @@ func CallWang():
 
 func CallZZ():
 	for i in range(randi_range(2, 4)):
-		Global.Create_Monster(66, get_parent(), position + Vector2(randi_range(-200, 200), 0))
+		Global.create_monster(66, get_parent(), position + Vector2(randi_range(-200, 200), 0))

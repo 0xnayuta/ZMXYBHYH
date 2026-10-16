@@ -113,7 +113,7 @@ func call_dd():
 
 
 func call_death():
-	Global.add_Bullet(
+	Global.add_bullet(
 		"Monster38Bullet",
 		get_parent(),
 		false,

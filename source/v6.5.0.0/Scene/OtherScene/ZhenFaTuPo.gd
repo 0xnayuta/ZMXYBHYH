@@ -158,18 +158,18 @@ func _on_tupo_pressed() -> void:
 	var NeedLh = int(Level) * 10000 + 1000
 	var CurrentNum := int(PlayerData.get_item_data(Name))
 	if Level >= 10:
-		Global.AddMessageShow(Global.Windows_, "阵法已满级！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "阵法已满级！！", 1.5, Vector2(500, 305))
 		return
 	if CurrentNum < MaterialNeedValue:
-		Global.AddMessageShow(Global.Windows_, "材料不足！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "材料不足！！", 1.5, Vector2(500, 305))
 		return
 	if PlayerData.get_soul() < NeedLh:
-		Global.AddMessageShow(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
 		return
 	if not CheckFullLevel():
-		Global.AddMessageShow(Global.Windows_, "还有阵法未达到指定要求！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "还有阵法未达到指定要求！！", 1.5, Vector2(500, 305))
 		return
 	PlayerData.spend_soul(NeedLh)
 	PlayerData.remove_dj(Name, PlayerData.get_dj_page(Name), MaterialNeedValue)
 	PlayerData.player_data[RealName]["Level"] += 1
-	Global.AddMessageShow(Global.Windows_, "阵法突破成功！！", 1.5, Vector2(500, 305))
+	Global.add_message_show(Global.Windows_, "阵法突破成功！！", 1.5, Vector2(500, 305))

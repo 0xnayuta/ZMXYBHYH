@@ -194,17 +194,17 @@ func CallBullet1():
 		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x + 420, 500)
 	]
 	for i in positionList:
-		Global.add_Bullet("Monster101Bullet", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
+		Global.add_bullet("Monster101Bullet", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
 
 
 func CallBullet2():
 	var Bullets
 	if self.MonsterDirection:
-		Bullets = Global.add_Bullet(
+		Bullets = Global.add_bullet(
 			"Monster101Bullet1", self.bullet, false, 1, Vector2(35, 25) + position, "hit1", self.objattackDic["hit1"]
 		)
 	else:
-		Bullets = Global.add_Bullet(
+		Bullets = Global.add_bullet(
 			"Monster101Bullet1", self.bullet, false, 1, Vector2(-35, 25) + position, "hit1", self.objattackDic["hit1"]
 		)
 	Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
@@ -212,7 +212,7 @@ func CallBullet2():
 
 func CallBullet3():
 	if MyChild == null:
-		MyChild = Global.add_Bullet(
+		MyChild = Global.add_bullet(
 			"Monster101Bullet2", self.bullet, false, 1, position, "hit2", self.objattackDic["hit2"]
 		)
 

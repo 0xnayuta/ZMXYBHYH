@@ -251,17 +251,17 @@ func call_ltwj():
 	var FirePosition2 = [Vector2(self.position.x - 200, 240), Vector2(self.position.x + 200, 240)]
 	var FirePosition3 = [Vector2(self.position.x - 320, 240), Vector2(self.position.x + 320, 240)]
 	for i in range(2):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster85Bullet1", self.bullet, false, 1.3, FirePosition1[i], "hit3", self.objattackDic["hit3"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster85Bullet1", self.bullet, false, 1.3, FirePosition2[i], "hit3", self.objattackDic["hit3"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster85Bullet1", self.bullet, false, 1.3, FirePosition3[i], "hit3", self.objattackDic["hit3"]
 		)
 
@@ -272,7 +272,7 @@ func ADDBullet():
 		TargetPosition = Vector2(55, 5)
 	else:
 		TargetPosition = Vector2(-55, 5)
-	var Arrow = Global.add_Bullet(
+	var Arrow = Global.add_bullet(
 		"Monster85Bullet3",
 		self.bullet,
 		MonsterDirection,
@@ -286,7 +286,7 @@ func ADDBullet():
 func ADDsd():
 	var PositionList = [Vector2(-380, -45), Vector2(-190, -45), Vector2(0, -45), Vector2(190, -45), Vector2(380, -45)]
 	for i in PositionList:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster85Bullet2", self.bullet, MonsterDirection, 1, i + position, "hit5", self.objattackDic["hit5"]
 		)
 

@@ -87,7 +87,7 @@ func _play_level_bgm(bgm_path: String) -> void:
 	var bgm_stream := Global.get_cached_audio(bgm_path)
 	if bgm_stream is AudioStreamMP3:
 		bgm_stream.loop = true
-	Global.addBGM_(self, bgm_path)
+	Global.add_bgm(self, bgm_path)
 
 
 func _configure_level_monsters() -> void:
@@ -255,7 +255,7 @@ func _spawn_birth_point_unit(point: Dictionary, state: Dictionary) -> bool:
 	var point_id := int(point["point"])
 	var monster_id := int(point["monster"])
 	var spawn_position: Vector2 = point["position"]
-	var created := Global.Create_Monster(monster_id, monster, spawn_position)
+	var created := Global.create_monster(monster_id, monster, spawn_position)
 	if created == null:
 		return false
 

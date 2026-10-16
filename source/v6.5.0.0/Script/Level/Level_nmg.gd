@@ -4,7 +4,7 @@ var is_cc = false
 
 
 func _ready() -> void:
-	Global.addBGM_(self, "res://Music/level/17_bg6.mp3")
+	Global.add_bgm(self, "res://Music/level/17_bg6.mp3")
 	load("res://Scene/Monster/Monster_29.tscn")
 	Global.CurrentLevel = "火焰山"
 	self.level_stage = 10

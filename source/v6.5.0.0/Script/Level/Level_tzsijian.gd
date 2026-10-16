@@ -54,7 +54,7 @@ var _endless_restart_pending := false
 
 func _ready() -> void:
 	Global.CurrentLevel = "鎸戞垬鍥涘墤"
-	Global.addBGM_(self, "res://Music/level/10_bg4.mp3")
+	Global.add_bgm(self, "res://Music/level/10_bg4.mp3")
 	self.is_two_scene = true
 	self.level_stage = 10
 	Global.GameOver = 1
@@ -142,7 +142,7 @@ func level_create_monster(stage) -> void:
 		spawn_position.x = float(Monster_position_x[stage_key].pop_front())
 	if Monster_position_y[stage_key].size() > 0:
 		spawn_position.y = float(Monster_position_y[stage_key].pop_front())
-	var target: Node = Global.Create_Monster(boss_id, monster, spawn_position)
+	var target: Node = Global.create_monster(boss_id, monster, spawn_position)
 	if target != null:
 		if not _spawned_bosses.has(boss_id):
 			_spawned_bosses[boss_id] = []

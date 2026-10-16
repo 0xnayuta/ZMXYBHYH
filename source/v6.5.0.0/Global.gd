@@ -3105,7 +3105,7 @@ func AddllbtChallenge(parent, position):
 	return target
 
 
-func AddBasicPellet_(parent, position):
+func add_basic_pellet(parent, position):
 	if not BasicPellet_:
 		BasicPellet_ = _load_scene("res://Scene/Pellet/BasicPellet.tscn")
 	var target = instance_scene(BasicPellet_, parent)
@@ -3113,7 +3113,7 @@ func AddBasicPellet_(parent, position):
 	return target
 
 
-func AddGameAnnouncement(parent, position):
+func add_game_announcement(parent, position):
 	if not GameAnnouncement:
 		GameAnnouncement = _load_scene("res://Scene/Main_menu/GameAnnouncement.tscn")
 	var target = instance_scene(GameAnnouncement, parent)
@@ -3150,7 +3150,7 @@ func AddTaskReward(parent, ItemName, TotalNum):
 	return target
 
 
-func AddBasicTask_(parent, position):
+func add_basic_task(parent, position):
 	if not BasicTask_:
 		BasicTask_ = _load_scene("res://Scene/Task/BasicTask.tscn")
 	var target = instance_scene(BasicTask_, parent)
@@ -3466,7 +3466,7 @@ func viewport_center_for_parent(parent_node: Node) -> Vector2:
 	return center
 
 
-func AddRewardInfo(parent, position, List, UseItemName, UseNum):
+func add_reward_info(parent, position, List, UseItemName, UseNum):
 	if not RewardInfo:
 		RewardInfo = _load_scene("res://Scene/OtherScene/RewardInterface.tscn")
 	var target = instance_scene(RewardInfo, parent)
@@ -3506,7 +3506,7 @@ func Add_Decompose_(parent, position):
 	return target
 
 
-func AddZZTWTrap(parent, Name, position):
+func add_zztw_trap(parent, Name, position):
 	if not zztwtrap:
 		zztwtrap = _load_scene("res://Scene/Level/zztw_trap.tscn")
 	var target = instance_scene(zztwtrap, parent)
@@ -3596,7 +3596,7 @@ func _enter_level_without_info(parent, path):
 	return null
 
 
-func AddLevelInfo(parent, Name, position, path):
+func add_level_info(parent, Name, position, path):
 	CurrentLevel = Name
 	var show_level_info := bool(MainSet.set_data.get("LevelInfo", false))
 	if (
@@ -3737,7 +3737,7 @@ func addRole2Shallow(parent, position, Dir):
 	return target
 
 
-func addRoleSpecialEffect_(parent, position, Dir, name_):
+func add_role_special_effect(parent, position, Dir, name_):
 	var effect_name := str(name_)
 	var scene = null
 	if effect_name in ["sd", "sd2"]:
@@ -3758,7 +3758,7 @@ func addRoleSpecialEffect_(parent, position, Dir, name_):
 	return target
 
 
-func addRoleBullet_(parent, position, Dir, name_, Dic):
+func add_role_bullet(parent, position, Dir, name_, Dic):
 	var bullet_name := str(name_)
 	var scene = null
 	if bullet_name in ["Role3Bullet2", "TtzsszBullet"]:
@@ -3839,7 +3839,7 @@ func is_monster_control_buff(buff_name: Variant) -> bool:
 	return str(buff_name) in MONSTER_CONTROL_BUFF_NAMES
 
 
-func AddBuff(parent, BuffInfo):
+func add_buff(parent, BuffInfo):
 	if parent == null or not (BuffInfo is Dictionary):
 		return null
 	var Target = parent.get_parent()
@@ -4052,7 +4052,7 @@ var _damage_text_count: int = 0
 var _active_damage_texts: Dictionary = {}
 
 
-func addDamageText(parent, position, value, Type, is_crit, tar):
+func add_damage_text(parent, position, value, Type, is_crit, tar):
 	if not bool(MainSet.set_data.get("ShowDamageText", true)):
 		return null
 	if _damage_text_count >= 80:
@@ -4124,7 +4124,7 @@ func addSkillKeySet(parent, position, name_):
 	return target
 
 
-func Add_GameSet_(parent, position):
+func add_game_set(parent, position):
 	if not GameSet_:
 		GameSet_ = _load_scene("res://Scene/Main_menu/GameSet.tscn")
 	var target = instance_scene(GameSet_, parent)
@@ -4141,7 +4141,7 @@ func Add_GameSet_(parent, position):
 	return target
 
 
-func addBGM_(parent, target_):
+func add_bgm(parent, target_):
 	if not BGM_:
 		BGM_ = _load_scene("res://Scene/AllSound/BGM.tscn")
 	var target = instance_scene(BGM_, parent)
@@ -4157,7 +4157,7 @@ func Add_Mosaic_(parent, position):
 	return target
 
 
-func addSound_(parent, target_, priority: int = 0):
+func add_sound(parent, target_, priority: int = 0):
 	if not is_instance_valid(parent) or parent.is_queued_for_deletion():
 		return null
 	if not bool(MainSet.set_data.get("RoleOrMonsterHit", true)):
@@ -4219,7 +4219,7 @@ func addSkillSelect(parent, position, name_):
 	return target
 
 
-func addWeaponBullet_(parent, position, name_, List, dir, Rand):
+func add_weapon_bullet(parent, position, name_, List, dir, Rand):
 	var scene_path := str(ADD_WEAPON_BULLET_PATHS.get(str(name_), ""))
 	if scene_path.is_empty() or not ResourceLoader.exists(scene_path):
 		push_error("Missing lazy weapon bullet scene for: " + str(name_))
@@ -4568,7 +4568,7 @@ func addMagicWeapon(parent, name_, position):
 	return target
 
 
-func AddMessageShow(Parent, NeedText: String, Time_: float, Position: Vector2):
+func add_message_show(Parent, NeedText: String, Time_: float, Position: Vector2):
 	var target = instance_scene(_cached_scene(&"MessageShow", MESSAGE_SHOW_PATH), Parent)
 	if target == null:
 		return null
@@ -4590,7 +4590,7 @@ func add_WS_Effect(parent):
 	return target
 
 
-func add_Choose_Item(parent, position, List, name_, page):
+func add_choose_item(parent, position, List, name_, page):
 	if not Choose_Item:
 		Choose_Item = _load_scene("res://Scene/Shop/Choose_item.tscn")
 	var target = instance_scene(Choose_Item, parent)
@@ -4614,7 +4614,7 @@ func add_s_y_nHelp(parent, position):
 	return target
 
 
-func add_SHOP(parent, position):
+func add_shop(parent, position):
 	if not SHop:
 		SHop = _load_scene("res://Scene/Shop/SHOP.tscn")
 	var target = instance_scene(SHop, parent)
@@ -4681,7 +4681,7 @@ func create_hands(parent, direction, position):
 	return target
 
 
-func CallChaseBullet(parent, name_, speed, time: float, dir, position, hit_name, dic):
+func call_chase_bullet(parent, name_, speed, time: float, dir, position, hit_name, dic):
 	var target = instance_scene(_cached_scene(&"ChaseBullet_", CHASE_BULLET_PATH), parent)
 	if target == null:
 		print("Error: failed to instantiate ChaseBullet_, check resource path")
@@ -4703,7 +4703,7 @@ func CallChaseBullet(parent, name_, speed, time: float, dir, position, hit_name,
 	return target
 
 
-func CallFlyBullet(parent, name_, dir, position, distance, speed, hit_name, dic):
+func call_fly_bullet(parent, name_, dir, position, distance, speed, hit_name, dic):
 	var target = instance_scene(load_fly_bullet_scene(str(name_)), parent)
 	if target == null:
 		return null
@@ -4726,7 +4726,7 @@ func add_LJ(parent, position_):
 	return target
 
 
-func add_Trap(parent, position_, name_):
+func add_trap(parent, position_, name_):
 	if not Trap_:
 		Trap_ = _load_scene("res://Scene/Level/trap.tscn")
 	var target = instance_scene(Trap_, parent)
@@ -4745,7 +4745,7 @@ func add_BuffIcon(parent, text_):
 	return target
 
 
-func add_SpecialEffect(parent, position_, name_, scale_, direction, speed_):
+func add_special_effect(parent, position_, name_, scale_, direction, speed_):
 	if str(name_) == "RoleBeHit":
 		var role_hit = _take_pooled_node(_pool_data["role_be_hit"], ROLE_BE_HIT_EFFECT_PATH)
 		if role_hit == null:
@@ -4783,7 +4783,7 @@ func add_choose_text(parent, position_, text_, calm_time):
 	return target
 
 
-func add_SpecialEffectBullet(parent, position_, scale_, name_, dir):
+func add_special_effect_bullet(parent, position_, scale_, name_, dir):
 	if not SpecialEffectBullet:
 		SpecialEffectBullet = _load_scene("res://Scene/Hero/Role_1/hmz_effect/SpecialEffectBullet.tscn")
 	var target = instance_scene(SpecialEffectBullet, parent)
@@ -5102,7 +5102,7 @@ func add_back_pack(parent, position):
 	return target
 
 
-func Create_Monster(M_id: int, parent, position_: Vector2) -> BaseMonster:
+func create_monster(M_id: int, parent, position_: Vector2) -> BaseMonster:
 	var scene_id := _canonical_monster_scene_id(M_id)
 	var path := _monster_scene_path(scene_id)
 	var scene = load_level_monster_scene(path)
@@ -5318,7 +5318,7 @@ func instance_scene(target_scene_, parent):
 	return target
 
 
-func add_Bullet(bullet_name: String, parent, direction: bool, show_speed, position, hit_name_, list):
+func add_bullet(bullet_name: String, parent, direction: bool, show_speed, position, hit_name_, list):
 	var target = instance_scene(load_monster_bullet_scene(bullet_name), parent)
 	if target == null:
 		return null
@@ -5606,7 +5606,7 @@ func OnFresh():
 				return false
 
 
-func CheckWD(OBJ):
+func check_wd(OBJ):
 	var Count: int = 0
 	for i in OBJ.buff.get_children():
 		if i != null:
@@ -5672,3 +5672,128 @@ func _on_monster_exited(monster: Node):
 	print("[Global monitor] Monster deleted: ", monster)
 	print_stack()
 	print("  delete frame: ", Engine.get_process_frames())
+
+
+## [兼容代理] 保持旧接口兼容
+func AddMessageShow(Parent, NeedText: String, Time_: float, Position: Vector2):
+	return add_message_show(Parent, NeedText, Time_, Position)
+
+
+## [兼容代理] 保持旧接口兼容
+func add_Bullet(bullet_name: String, parent, direction: bool, show_speed, position, hit_name_, list):
+	return add_bullet(bullet_name, parent, direction, show_speed, position, hit_name_, list)
+
+
+## [兼容代理] 保持旧接口兼容
+func addSound_(parent, target_, priority: int = 0):
+	return add_sound(parent, target_, priority)
+
+
+## [兼容代理] 保持旧接口兼容
+func addBGM_(parent, target_):
+	return add_bgm(parent, target_)
+
+
+## [兼容代理] 保持旧接口兼容
+func add_Trap(parent, position_, name_):
+	return add_trap(parent, position_, name_)
+
+
+## [兼容代理] 保持旧接口兼容
+func add_SpecialEffect(parent, position_, name_, scale_, direction, speed_):
+	return add_special_effect(parent, position_, name_, scale_, direction, speed_)
+
+
+## [兼容代理] 保持旧接口兼容
+func AddBuff(parent, BuffInfo):
+	return add_buff(parent, BuffInfo)
+
+
+## [兼容代理] 保持旧接口兼容
+func Create_Monster(M_id: int, parent, position_: Vector2):
+	return create_monster(M_id, parent, position_)
+
+
+## [兼容代理] 保持旧接口兼容
+func AddLevelInfo(parent, Name, position, path):
+	return add_level_info(parent, Name, position, path)
+
+
+## [兼容代理] 保持旧接口兼容
+func add_Choose_Item(parent, position, List, name_, page):
+	return add_choose_item(parent, position, List, name_, page)
+
+
+## [兼容代理] 保持旧接口兼容
+func addRoleBullet_(parent, position, Dir, name_, Dic):
+	return add_role_bullet(parent, position, Dir, name_, Dic)
+
+
+## [兼容代理] 保持旧接口兼容
+func CallFlyBullet(parent, name_, dir, position, distance, speed, hit_name, dic):
+	return call_fly_bullet(parent, name_, dir, position, distance, speed, hit_name, dic)
+
+
+## [兼容代理] 保持旧接口兼容
+func AddZZTWTrap(parent, Name, position):
+	return add_zztw_trap(parent, Name, position)
+
+
+## [兼容代理] 保持旧接口兼容
+func addWeaponBullet_(parent, position, name_, List, dir, Rand):
+	return add_weapon_bullet(parent, position, name_, List, dir, Rand)
+
+
+## [兼容代理] 保持旧接口兼容
+func CallChaseBullet(parent, name_, speed, time: float, dir, position, hit_name, dic):
+	return call_chase_bullet(parent, name_, speed, time, dir, position, hit_name, dic)
+
+
+## [兼容代理] 保持旧接口兼容
+func addDamageText(parent, position, value, Type, is_crit, tar):
+	return add_damage_text(parent, position, value, Type, is_crit, tar)
+
+
+## [兼容代理] 保持旧接口兼容
+func addRoleSpecialEffect_(parent, position, Dir, name_):
+	return add_role_special_effect(parent, position, Dir, name_)
+
+
+## [兼容代理] 保持旧接口兼容
+func AddGameAnnouncement(parent, position):
+	return add_game_announcement(parent, position)
+
+
+## [兼容代理] 保持旧接口兼容
+func AddBasicTask_(parent, position):
+	return add_basic_task(parent, position)
+
+
+## [兼容代理] 保持旧接口兼容
+func add_SHOP(parent, position):
+	return add_shop(parent, position)
+
+
+## [兼容代理] 保持旧接口兼容
+func add_SpecialEffectBullet(parent, position_, scale_, name_, dir):
+	return add_special_effect_bullet(parent, position_, scale_, name_, dir)
+
+
+## [兼容代理] 保持旧接口兼容
+func AddRewardInfo(parent, position, List, UseItemName, UseNum):
+	return add_reward_info(parent, position, List, UseItemName, UseNum)
+
+
+## [兼容代理] 保持旧接口兼容
+func Add_GameSet_(parent, position):
+	return add_game_set(parent, position)
+
+
+## [兼容代理] 保持旧接口兼容
+func AddBasicPellet_(parent, position):
+	return add_basic_pellet(parent, position)
+
+
+## [兼容代理] 保持旧接口兼容
+func CheckWD(OBJ):
+	return check_wd(OBJ)

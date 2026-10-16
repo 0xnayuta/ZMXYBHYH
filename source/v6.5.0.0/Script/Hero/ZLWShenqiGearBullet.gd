@@ -107,7 +107,7 @@ func _try_hurt_monster(target: BaseMonster) -> void:
 	if target.is_boss_protecting():
 		return
 	if HitDic.has("addeffect") and randi_range(1, 100) <= int(HitDic.get("stun_chance", 100)):
-		Global.AddBuff(target.buff, HitDic["addeffect"])
+		Global.add_buff(target.buff, HitDic["addeffect"])
 
 
 func _find_monster_from_area(area: Area2D) -> BaseMonster:
@@ -144,7 +144,7 @@ func _hurt_monster(monster: BaseMonster) -> void:
 		return
 	monster.Hp -= hurt
 	monster.total_hurt += hurt
-	Global.addSound_(monster, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
+	Global.add_sound(monster, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 	Global.TotalRoleHit += hurt
 	if attack_kind == "physics":
 		Global.TotalPhyHit += hurt

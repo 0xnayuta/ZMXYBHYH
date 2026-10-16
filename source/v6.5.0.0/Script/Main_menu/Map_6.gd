@@ -115,8 +115,8 @@ func _ready() -> void:
 	Global.LLBTBOSSMS = false
 	Global.LLBTCGMS = false
 	Global.LLBTWXMS = false
-	RoleProp.set_full_Hp()
-	RoleProp.set_full_Mp()
+	RoleProp.set_full_hp()
+	RoleProp.set_full_mp()
 	RoleProp.CurrentHp = RoleProp.roleprop.Hp
 	RoleProp.CurrentMp = RoleProp.roleprop.Mp
 
@@ -128,7 +128,7 @@ func _ready() -> void:
 		MainMusic.ADDMusic()
 	Global.CurrentLevel = ""
 	if not Global.IsFrist:
-		Global.AddMessageShow(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
 		Global.IsFrist = true
 	Global.PlayerBeHitCount = 0
 	Global.LastLevelPath = ""
@@ -209,23 +209,23 @@ func _set_level_highlight_width(width: float, highlight_material: ShaderMaterial
 func _on_map_level_pressed(level_number: int) -> void:
 	var level_name: String = MAP_LEVEL_NAMES.get(level_number, "南瞻部洲关卡")
 	if level_number > LAST_OPEN_LEVEL:
-		Global.AddMessageShow(_ui_parent(), "%s暂未开放" % level_name, 1.5, Vector2(470, 300))
+		Global.add_message_show(_ui_parent(), "%s暂未开放" % level_name, 1.5, Vector2(470, 300))
 		return
 	if not _has_map6_prerequisite(level_number):
 		var prerequisite_name: String = MAP_LEVEL_NAMES.get(level_number - 1, "前置关卡")
-		Global.AddMessageShow(_ui_parent(), "需要先通关%s！" % prerequisite_name, 1.5, Vector2(470, 300))
+		Global.add_message_show(_ui_parent(), "需要先通关%s！" % prerequisite_name, 1.5, Vector2(470, 300))
 		return
 	var level_path := "res://Scene/Level/Level_%d.tscn" % level_number
 	if ResourceLoader.exists(level_path):
-		Global.AddLevelInfo(_ui_parent(), level_name, Vector2.ZERO, level_path)
+		Global.add_level_info(_ui_parent(), level_name, Vector2.ZERO, level_path)
 		return
-	Global.AddMessageShow(_ui_parent(), "%s尚未接入，敬请期待！" % level_name, 1.5, Vector2(470, 300))
+	Global.add_message_show(_ui_parent(), "%s尚未接入，敬请期待！" % level_name, 1.5, Vector2(470, 300))
 
 
 func _on_memory_class_pressed() -> void:
 	if not Global.cd_path.is_empty():
 		MemoryClass.保存游戏(Global.cd_path)
-	Global.AddMessageShow(_ui_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
+	Global.add_message_show(_ui_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
 
 
 func _on_shop_pressed() -> void:
@@ -244,7 +244,7 @@ func _on_skill_pressed() -> void:
 
 
 func _on_activity_pressed() -> void:
-	Global.AddMessageShow(_ui_parent(), "敬请期待！！！！", 1.5, Vector2(470, 300))
+	Global.add_message_show(_ui_parent(), "敬请期待！！！！", 1.5, Vector2(470, 300))
 
 
 func _on_task_pressed() -> void:

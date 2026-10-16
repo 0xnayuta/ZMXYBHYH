@@ -174,7 +174,7 @@ func _damage_node(damage_node: Dictionary) -> void:
 		var delta := monster.global_position - hit_center
 		if absf(delta.x) <= hit_half_size.x and absf(delta.y) <= hit_half_size.y:
 			monster.receive_friendly_damage(damage_per_node, "magic", source if is_instance_valid(source) else null)
-			Global.addSound_(self, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
+			Global.add_sound(self, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 			_apply_skill_debuffs_once(monster)
 
 

@@ -149,7 +149,7 @@ func call_wling():
 	randomize()
 	for i in range(randi_range(1, 2)):
 		var list = [26, 27, 28, 30, 31]
-		Global.Create_Monster(list[randi_range(0, 4)], get_parent(), Vector2(self.position.x, self.position.y + 100))
+		Global.create_monster(list[randi_range(0, 4)], get_parent(), Vector2(self.position.x, self.position.y + 100))
 
 
 func CallFL():
@@ -164,7 +164,7 @@ func CallFL():
 	]
 	NewList.shuffle()
 	for i in NewList:
-		var fl = Global.add_Bullet(
+		var fl = Global.add_bullet(
 			"Monster33Bullet2", self.bullet, true, 1, i["Position"] + position, "wl", self.objattackDic["wl"]
 		)
 		fl.rotation_degrees = i["Ratation"]

@@ -124,7 +124,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 	if SpecialEffectName == "zznh":
 		if _can_control_monster(body):
-			Global.AddBuff(body.buff, _get_zznh_buff_info())
+			Global.add_buff(body.buff, _get_zznh_buff_info())
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
@@ -202,7 +202,7 @@ func _apply_jgz_to_monster(body: Node) -> void:
 	if MonsterList.has(body):
 		return
 	MonsterList.push_back(body)
-	Global.AddBuff(
+	Global.add_buff(
 		body.buff,
 		{
 			"Name": "jgz",
@@ -258,7 +258,7 @@ func MoveMonsterToPlayer():
 		if _can_control_monster(i) and (not i.CannotAttract or _allows_role_special_control(i)):
 			valid_monsters.append(i)
 			if SpecialEffectName == "zznh":
-				Global.AddBuff(i.buff, _get_zznh_buff_info())
+				Global.add_buff(i.buff, _get_zznh_buff_info())
 
 	if valid_monsters.size() == 0:
 		return

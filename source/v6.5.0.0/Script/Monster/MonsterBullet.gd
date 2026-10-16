@@ -2438,7 +2438,7 @@ func _hold_pet_tiger_sxhz_target(target: Node, duration: float) -> void:
 			"CanRemove": false,
 			"PetTigerSxhz": true
 		}
-		Global.AddBuff(target.get_node("Buff"), stun_effect)
+		Global.add_buff(target.get_node("Buff"), stun_effect)
 
 
 func _cure_pet_tiger_summoner(summon_owner, value: int) -> void:
@@ -2463,7 +2463,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				"DeBuff": true,
 				"CanRemove": false
 			}
-			Global.AddBuff(role.buff, stun_effect)
+			Global.add_buff(role.buff, stun_effect)
 
 			if not clone_spawned and MyFather and MyFather.has_method("spawn_clone"):
 				clone_spawned = true
@@ -2498,12 +2498,12 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				var effect = hit_data["addeffect"]
 				if skill_name == "Monster83Bullet":
 					if randi_range(0, 100) < 65:
-						Global.AddBuff(role.buff, effect)
+						Global.add_buff(role.buff, effect)
 				else:
-					Global.AddBuff(role.buff, effect)
+					Global.add_buff(role.buff, effect)
 				applied_add_effect = true
 	if skill_name == "Monster118Bullet2" and not applied_add_effect:
-		Global.AddBuff(
+		Global.add_buff(
 			role.buff,
 			{
 				"Name": "poision",
@@ -2574,7 +2574,7 @@ func Monster70Bullet2():
 		else:
 			po = Vector2(168, 140)
 		if ShowMonster71:
-			Global.add_Bullet(
+			Global.add_bullet(
 				"Monster70Bullet2", get_parent().get_parent().bullet, dir, 1, po + position, hit_name, objattackDic
 			)
 
@@ -2593,7 +2593,7 @@ func TweenToPlayer():
 
 
 func CallMonster114Bullet():
-	var Bullet = Global.add_Bullet(
+	var Bullet = Global.add_bullet(
 		"Monster114Bullet2",
 		get_parent().get_parent().bullet,
 		false,
@@ -2625,7 +2625,7 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 
 
 func CallMonster137Bullet2():
-	var Bullet = Global.add_Bullet(
+	var Bullet = Global.add_bullet(
 		"Monster137Bullet2",
 		get_parent().get_parent().bullet,
 		false,

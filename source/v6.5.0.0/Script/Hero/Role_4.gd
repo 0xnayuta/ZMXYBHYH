@@ -36,7 +36,7 @@ func _exit_tree() -> void:
 	temp_power_bonus_rate = 0.0
 	if RoleProp.SourcePlayer == self:
 		RoleProp.get_last_prop()
-		RoleProp.check_Hp()
+		RoleProp.check_hp()
 	super._exit_tree()
 
 
@@ -509,7 +509,7 @@ func CallWDWW():
 	if targets.is_empty():
 		return
 	var Target: BaseMonster = targets[0]
-	WDWW = Global.Create_Monster(138, get_parent().get_parent().monster, position + Position) as Monster138
+	WDWW = Global.create_monster(138, get_parent().get_parent().monster, position + Position) as Monster138
 	if WDWW == null:
 		return
 	WDWW.SHp = Target.SHp * (0.25 + PlayerData.player_data["技能学习"]["技能9"]["等级"] * 0.02)
@@ -600,7 +600,7 @@ func _add_lhsq_awaken_stack() -> void:
 	lhsq_awaken_stacks += 1
 	_refresh_lhsq_awaken_stats()
 	RoleProp.roleprop.Hp += maxi(0, int(RoleProp.roleprop.SHp) - old_max_hp)
-	RoleProp.check_Hp()
+	RoleProp.check_hp()
 
 
 func _process_lhsq_awaken(delta: float) -> void:
@@ -627,7 +627,7 @@ func _clear_lhsq_awaken_bonus() -> void:
 	temp_max_hp_bonus_rate = 0.0
 	temp_power_bonus_rate = 0.0
 	RoleProp.get_last_prop()
-	RoleProp.check_Hp()
+	RoleProp.check_hp()
 
 
 func _is_lhsq_awaken_active() -> bool:
@@ -692,43 +692,43 @@ func _is_valid_role4_skill_target(target: Node) -> bool:
 func ADDMusic(num: int):
 	match int(num):
 		1:
-			Global.addSound_(self, "res://Music/Hero/Role4/ShovelHit1.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/ShovelHit1.mp3")
 		2:
-			Global.addSound_(self, "res://Music/Hero/Role4/ShovelHit2.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/ShovelHit2.mp3")
 		3:
-			Global.addSound_(self, "res://Music/Hero/Role4/ShovelHit3.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/ShovelHit3.mp3")
 		4:
-			Global.addSound_(self, "res://Music/Hero/Role4/ArrowHit1.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/ArrowHit1.mp3")
 		5:
-			Global.addSound_(self, "res://Music/Hero/Role4/ArrowHit2.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/ArrowHit2.mp3")
 		6:
-			Global.addSound_(self, "res://Music/Hero/Role4/Shovelqlj.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/Shovelqlj.mp3")
 		7:
-			Global.addSound_(self, "res://Music/Hero/Role4/Arrowqlj.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/Arrowqlj.mp3")
 		8:
-			Global.addSound_(self, "res://Music/Hero/Role4/Shoveldcj.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/Shoveldcj.mp3")
 		9:
-			Global.addSound_(self, "res://Music/Hero/Role4/Arrowdcj.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/Arrowdcj.mp3")
 		10:
-			Global.addSound_(self, "res://Music/Hero/Role4/Shovelmmw.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/Shovelmmw.mp3")
 		11:
-			Global.addSound_(self, "res://Music/Hero/Role4/Arrowmmw.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/Arrowmmw.mp3")
 		12:
-			Global.addSound_(self, "res://Music/Hero/Role4/Shovelzq.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/Shovelzq.mp3")
 		13:
-			Global.addSound_(self, "res://Music/Hero/Role4/Arrowzq.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/Arrowzq.mp3")
 		14:
-			Global.addSound_(self, "res://Music/Hero/Role4/Arrowtkj.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/Arrowtkj.mp3")
 		15:
-			Global.addSound_(self, "res://Music/Hero/Role4/jdz.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/jdz.mp3")
 		16:
-			Global.addSound_(self, "res://Music/Hero/Role4/lhsq.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/lhsq.mp3")
 		17:
-			Global.addSound_(self, "res://Music/Hero/Role4/mds.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/mds.mp3")
 		18:
-			Global.addSound_(self, "res://Music/Hero/Role4/wdww.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/wdww.mp3")
 		19:
-			Global.addSound_(self, "res://Music/Hero/Role4/effect6_repeat.mp3")
+			Global.add_sound(self, "res://Music/Hero/Role4/effect6_repeat.mp3")
 
 
 func _on_nor_mal_hit_interv_timeout() -> void:
@@ -811,7 +811,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 			Global.AddMonster141Aura(self.Bullet, self.position, MonsterTarget)
 		if self.IsWDZT:
 			if Global.CheckWD(MonsterTarget) < 7:
-				Global.AddBuff(
+				Global.add_buff(
 					MonsterTarget.buff,
 					{
 						"Name": "Voodoo",
@@ -826,7 +826,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 				)
 	Global.TotalRoleHurt += int(last_hit)
 	if not is_miss:
-		Global.addSound_(self, "res://Music/Hero/68_Role3_beAttack.mp3")
+		Global.add_sound(self, "res://Music/Hero/68_Role3_beAttack.mp3")
 		Global.add_mr_hurt(pz, Vector2(5, -20))
 		if not IsTMc:
 			_add_role_protect(randi_range(3, 7))
@@ -865,9 +865,9 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				if Monster is BaseMonster and not _is_summon_or_pet_target(Monster):
 					if objattackDic[get_action]["addeffect"]["Name"] == "Voodoo":
 						if Global.CheckWD(Monster) < 7:
-							Global.AddBuff(Monster.buff, objattackDic[get_action]["addeffect"])
+							Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
 					else:
-						Global.AddBuff(Monster.buff, objattackDic[get_action]["addeffect"])
+						Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
 
 
 func _is_skill_awakened(skill_id: String) -> bool:

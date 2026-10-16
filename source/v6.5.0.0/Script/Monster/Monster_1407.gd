@@ -294,7 +294,7 @@ func CallBullet1():
 	for i in range(3):
 		if i > 0:
 			await get_tree().create_timer(0.3).timeout
-		var Bullets = Global.add_Bullet(
+		var Bullets = Global.add_bullet(
 			"Monster1407Bullet1", self.bullet, false, 1.5, position, "hit1", self.objattackDic["hit1"]
 		)
 		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
@@ -302,7 +302,7 @@ func CallBullet1():
 
 func CallBullet3():
 	for i in range(1):
-		var Bullets = Global.add_Bullet(
+		var Bullets = Global.add_bullet(
 			"Monster1407Bullet3", self.bullet, false, 1.5, position, "hit3", self.objattackDic["hit3"]
 		)
 		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
@@ -321,7 +321,7 @@ func CallBullet4():
 			RoleProp.get_nearest_monster_target_position(global_position).y - 100
 		)
 
-		var bullet = Global.add_Bullet(
+		var bullet = Global.add_bullet(
 			"Monster1407Bullet4", self.bullet, false, 1, spawn_position, "hit4", self.objattackDic["hit4"]
 		)
 		if i < 9:
@@ -330,7 +330,7 @@ func CallBullet4():
 
 func CallBullet5():
 	if MyChild == null:
-		MyChild = Global.add_Bullet(
+		MyChild = Global.add_bullet(
 			"Monster1407Bullet5", self.bullet, false, 1, Vector2(500, -270), "hit5", self.objattackDic["hit5"]
 		)
 		Count = 0

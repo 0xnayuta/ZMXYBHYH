@@ -2751,25 +2751,25 @@ func _on_challenge_pressed() -> void:
 	if TargetStagePath != "":
 		var nightmare_block_message := _get_nightmare_entry_block_message()
 		if nightmare_block_message != "":
-			Global.AddMessageShow(_popup_parent(), nightmare_block_message, 1.5, Vector2(470, 300))
+			Global.add_message_show(_popup_parent(), nightmare_block_message, 1.5, Vector2(470, 300))
 			return
 		if (
 			TargetStagePath == "res://Scene/Level/Level_stz.tscn"
 			and Global.SelectedThreePrinceId not in [4401, 4402, 4403]
 		):
-			Global.AddMessageShow(_popup_parent(), "请选择要挑战的太子！", 1.5, Vector2(470, 300))
+			Global.add_message_show(_popup_parent(), "请选择要挑战的太子！", 1.5, Vector2(470, 300))
 			return
 		if (
 			TargetStagePath == "res://Scene/Level/Level_esbxx.tscn"
 			and Global.SelectedConstellationLevel not in range(1, 15)
 		):
-			Global.AddMessageShow(_popup_parent(), "请选择要挑战的星宿！", 1.5, Vector2(470, 300))
+			Global.add_message_show(_popup_parent(), "请选择要挑战的星宿！", 1.5, Vector2(470, 300))
 			return
 		if (
 			TargetStagePath == "res://Scene/Level/Level_bxgh.tscn"
 			and Global.SelectedEightImmortalId not in EIGHT_IMMORTAL_IDS
 		):
-			Global.AddMessageShow(_popup_parent(), "请选择要挑战的八仙 Boss！", 1.5, Vector2(470, 300))
+			Global.add_message_show(_popup_parent(), "请选择要挑战的八仙 Boss！", 1.5, Vector2(470, 300))
 			return
 		if TargetStagePath == "res://Scene/Level/Level_llbt.tscn":
 			_open_special_level_popup(TargetStagePath)
@@ -2799,7 +2799,7 @@ func _on_challenge_pressed() -> void:
 		Global.cleanup_transient_ui()
 		Global.change_scene(TargetStagePath)
 	else:
-		Global.AddMessageShow(Global.Windows_, "获取关卡信息时出现错误，请手动更换关卡！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "获取关卡信息时出现错误，请手动更换关卡！！", 1.5, Vector2(470, 300))
 
 
 func _on_boss_self_select_check_box_toggled(_toggled_on: bool) -> void:

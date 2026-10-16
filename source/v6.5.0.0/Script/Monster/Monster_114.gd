@@ -163,11 +163,11 @@ func do_hit_3():
 
 func CallBullet():
 	if self.MonsterDirection:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster114Bullet1", self.bullet, false, 1, Vector2(65, 50) + position, "hit3", self.objattackDic["hit3"]
 		)
 	else:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster114Bullet1", self.bullet, false, 1, Vector2(-65, 50) + position, "hit3", self.objattackDic["hit3"]
 		)
 
@@ -179,16 +179,16 @@ func CallBullet2():
 	var PositionList4 = [Vector2(position.x + 600, 500), Vector2(position.x - 600, 500)]
 	var PositionList5 = [Vector2(position.x + 750, 500), Vector2(position.x - 750, 500)]
 	for i in PositionList1:
-		Global.add_Bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
+		Global.add_bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
 	await get_tree().create_timer(0.2, false).timeout
 	for i in PositionList2:
-		Global.add_Bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
+		Global.add_bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
 	await get_tree().create_timer(0.2, false).timeout
 	for i in PositionList3:
-		Global.add_Bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
+		Global.add_bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
 	await get_tree().create_timer(0.2, false).timeout
 	for i in PositionList4:
-		Global.add_Bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
+		Global.add_bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
 	await get_tree().create_timer(0.2, false).timeout
 	for i in PositionList5:
-		Global.add_Bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
+		Global.add_bullet("Monster114Bullet3", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])

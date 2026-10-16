@@ -188,17 +188,17 @@ func CallBullet1():
 func CallBullet2():
 	var BoolList = [true, false]
 	for i in BoolList:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster103Bullet3", self.bullet, i, 2, Vector2(0, -50) + position, "hit2", self.objattackDic["hit2"]
 		)
 	await get_tree().create_timer(0.4, false).timeout
 	for i in BoolList:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster103Bullet3", self.bullet, i, 2, Vector2(0, -50) + position, "hit2", self.objattackDic["hit2"]
 		)
 	await get_tree().create_timer(0.4, false).timeout
 	for i in BoolList:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster103Bullet3", self.bullet, i, 2, Vector2(0, -50) + position, "hit2", self.objattackDic["hit2"]
 		)
 	await get_tree().create_timer(0.4, false).timeout
@@ -208,13 +208,13 @@ func CallBullet3():
 	await get_tree().create_timer(4, false).timeout
 	var po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 70)
 	await get_tree().create_timer(0.2, false).timeout
-	Global.add_Bullet("Monster103Bullet1", self.bullet, false, 1, po, "hit3", self.objattackDic["hit3"])
+	Global.add_bullet("Monster103Bullet1", self.bullet, false, 1, po, "hit3", self.objattackDic["hit3"])
 
 
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 	if hit_name == "hit4":
 		if is_instance_valid(get_Player) and objattackDic != null and objattackDic.has("hit4"):
-			Global.add_Bullet(
+			Global.add_bullet(
 				"Monster103Bullet2",
 				self.bullet,
 				false,

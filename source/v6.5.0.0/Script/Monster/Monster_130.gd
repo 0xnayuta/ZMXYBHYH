@@ -296,7 +296,7 @@ func _spawn_moonlight_on_random_target() -> void:
 
 
 func _spawn_effect(effect_name: String, spawn_position: Vector2, attack_name: String, attack_data: Dictionary):
-	var effect = Global.add_Bullet(effect_name, bullet, MonsterDirection, 1.0, spawn_position, attack_name, attack_data)
+	var effect = Global.add_bullet(effect_name, bullet, MonsterDirection, 1.0, spawn_position, attack_name, attack_data)
 	if effect != null:
 		if effect is Node2D:
 			effect.set_as_top_level(true)
@@ -397,5 +397,5 @@ func _try_unlock_pet_rabbit() -> void:
 		return
 	if not PlayerData.has_method("unlock_pet_rabbit") or not PlayerData.unlock_pet_rabbit():
 		return
-	Global.AddMessageShow(Global.Windows_, "击败嫦娥，成功解锁宠物月兔！", 2.0, Vector2(500, 305))
+	Global.add_message_show(Global.Windows_, "击败嫦娥，成功解锁宠物月兔！", 2.0, Vector2(500, 305))
 	MemoryClass.保存游戏(Global.cd_path)

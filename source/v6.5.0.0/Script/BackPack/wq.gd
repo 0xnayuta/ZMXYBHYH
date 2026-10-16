@@ -130,8 +130,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	if PlayerData.CheckCanUsePage("装备列表") == 0:
-		Global.AddMessageShow(Global.get_parent_(self, 5), "背包已满，无法卸下！！", 1.5, Vector2(80, 0))
+	if PlayerData.check_can_use_page("装备列表") == 0:
+		Global.add_message_show(Global.get_parent_(self, 5), "背包已满，无法卸下！！", 1.5, Vector2(80, 0))
 		return
 	match str(self.name):
 		"wq":
@@ -216,7 +216,7 @@ func _on_pressed() -> void:
 					set_button_icon(load("res://Art/BackPack/fb.png"))
 				PlayerData.player_data["法宝"].clear()
 			else:
-				Global.AddMessageShow(Global.get_parent_(self, 5), "当前法宝正在使用，无法更换！！", 1.5, Vector2(80, 0))
+				Global.add_message_show(Global.get_parent_(self, 5), "当前法宝正在使用，无法更换！！", 1.5, Vector2(80, 0))
 	qh_level = 0
 	RoleProp.get_equ_last_pro()
 	RoleProp.get_last_prop()

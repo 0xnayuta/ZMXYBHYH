@@ -225,7 +225,7 @@ func _spawn_locked_tornado() -> void:
 func _spawn_wind(monster_id: int, offset: Vector2, direction: float, lifetime: float) -> void:
 	if get_parent() == null:
 		return
-	var wind := Global.Create_Monster(monster_id, get_parent(), position + offset)
+	var wind := Global.create_monster(monster_id, get_parent(), position + offset)
 	if not wind is BaseMonster:
 		push_error("WutaiEarthAncestor3077 failed to create wind %d" % monster_id)
 		return
@@ -354,7 +354,7 @@ func state_death() -> void:
 		return
 	_death_started = true
 	_transition_attempted = true
-	var next_form := Global.Create_Monster(NEXT_FORM_ID, get_parent(), position + Vector2(0.0, -10.0))
+	var next_form := Global.create_monster(NEXT_FORM_ID, get_parent(), position + Vector2(0.0, -10.0))
 	if not next_form is BaseMonster:
 		push_error("WutaiEarthAncestor3077 failed to create third form 3078")
 		return

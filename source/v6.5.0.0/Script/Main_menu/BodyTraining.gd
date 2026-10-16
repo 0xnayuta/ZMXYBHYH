@@ -120,4 +120,4 @@ func _ui_parent() -> Node:
 
 
 func _show_message(message: String) -> void:
-	Global.AddMessageShow(_ui_parent(), message, 1.2, Vector2.ZERO)
+	Global.add_message_show(_ui_parent(), message, 1.2, Vector2.ZERO)

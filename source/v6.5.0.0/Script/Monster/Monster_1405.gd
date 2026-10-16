@@ -198,7 +198,7 @@ func CallBullet2():
 	var player = get_Player if get_Player else null
 
 	for i in PositionList1:
-		var bullet = Global.add_Bullet(
+		var bullet = Global.add_bullet(
 			"Monster1405Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"]
 		)
 		if bullet and player:
@@ -206,7 +206,7 @@ func CallBullet2():
 			bullet.look_at(player.position)
 
 	for i in PositionList2:
-		var bullet = Global.add_Bullet(
+		var bullet = Global.add_bullet(
 			"Monster1405Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"]
 		)
 		if bullet and player:
@@ -223,7 +223,7 @@ func CallBullet3():
 	var player = get_Player if get_Player else null
 
 	for i in PositionList1:
-		var bullet = Global.add_Bullet(
+		var bullet = Global.add_bullet(
 			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
 		)
 		if bullet and player:
@@ -231,7 +231,7 @@ func CallBullet3():
 	await get_tree().create_timer(0.2, false).timeout
 
 	for i in PositionList2:
-		var bullet = Global.add_Bullet(
+		var bullet = Global.add_bullet(
 			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
 		)
 		if bullet and player:
@@ -239,7 +239,7 @@ func CallBullet3():
 	await get_tree().create_timer(0.2, false).timeout
 
 	for i in PositionList3:
-		var bullet = Global.add_Bullet(
+		var bullet = Global.add_bullet(
 			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
 		)
 		if bullet and player:
@@ -247,7 +247,7 @@ func CallBullet3():
 	await get_tree().create_timer(0.2, false).timeout
 
 	for i in PositionList4:
-		var bullet = Global.add_Bullet(
+		var bullet = Global.add_bullet(
 			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
 		)
 		if bullet and player:
@@ -256,7 +256,7 @@ func CallBullet3():
 
 
 func ADDFire():
-	Global.add_Bullet("Monster1405Bullet4", self, false, 1, Vector2(-20, -50), "hit4", self.objattackDic["hit4"])
+	Global.add_bullet("Monster1405Bullet4", self, false, 1, Vector2(-20, -50), "hit4", self.objattackDic["hit4"])
 
 	var player = RoleProp.SourcePlayer
 	var stun_effect = {
@@ -268,4 +268,4 @@ func ADDFire():
 		"AttackKind": "",
 	}
 
-	Global.AddBuff(player.buff, stun_effect)
+	Global.add_buff(player.buff, stun_effect)

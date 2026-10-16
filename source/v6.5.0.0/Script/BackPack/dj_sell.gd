@@ -114,7 +114,7 @@ func _get_sell_count() -> int:
 
 func _on_sell_pressed() -> void:
 	if _is_locked():
-		Global.AddMessageShow(Global.get_ui_popup_layer(), "该物品已锁定，请先解锁后再出售！", 1.5, Vector2.ZERO)
+		Global.add_message_show(Global.get_ui_popup_layer(), "该物品已锁定，请先解锁后再出售！", 1.5, Vector2.ZERO)
 		return
 	be_number = _get_sell_count()
 	var Type = AE.AllEquipment_[my_name]["类型"]
@@ -124,7 +124,7 @@ func _on_sell_pressed() -> void:
 			if be_number > 0 and int(get_list["获得灵魂"]) > 0:
 				var name_ = AE.AllEquipment_[my_name]["名字"]
 				var parent = get_parent().get_parent().get_parent()
-				Global.AddMessageShow(
+				Global.add_message_show(
 					parent,
 					"丢弃：" + str(get_list["卖出数量"]) + "个" + str(name_) + "。  获得：" + str(get_list["获得灵魂"]) + "灵魂。",
 					1.5,
@@ -138,7 +138,7 @@ func _on_sell_pressed() -> void:
 			if be_number > 0 and int(get_list["获得灵魂"]) > 0:
 				var name_ = AE.AllEquipment_[my_name]["名字"]
 				var parent = get_parent().get_parent().get_parent()
-				Global.AddMessageShow(
+				Global.add_message_show(
 					parent,
 					"丢弃：" + str(get_list["卖出数量"]) + "个" + str(name_) + "。  获得：" + str(get_list["获得灵魂"]) + "灵魂。",
 					1.5,
@@ -169,7 +169,7 @@ func UseMpyj():
 				PlayerData.player_data["技能学习"][i]["等级"] = 1
 	PlayerData.remove_xhp(my_name, my_page, 1)
 	var parent = get_parent().get_parent().get_parent()
-	Global.AddMessageShow(parent, "技能等级已重置！。", 1.5, Vector2(450, 300))
+	Global.add_message_show(parent, "技能等级已重置！。", 1.5, Vector2(450, 300))
 	queue_free()
 
 
@@ -183,7 +183,7 @@ func use_xhp():
 				return
 			else:
 				var parent = get_parent().get_parent().get_parent()
-				Global.AddMessageShow(parent, "需通关“奈何桥“！！。", 1.5, Vector2(450, 300))
+				Global.add_message_show(parent, "需通关“奈何桥“！！。", 1.5, Vector2(450, 300))
 		"mpyj":
 			self.visible = false
 			Signals.ConnectChooseBoxSignal(self, "UseMpyj")
@@ -586,9 +586,9 @@ func use_xhp():
 						"DeBuff": false
 					}
 				)
-				Global.AddMessageShow(parent, "获得两小时双倍掉率Buff，重进关卡生效。", 1.5, Vector2.ZERO)
+				Global.add_message_show(parent, "获得两小时双倍掉率Buff，重进关卡生效。", 1.5, Vector2.ZERO)
 			else:
-				Global.AddMessageShow(parent, "当前已有双倍掉率Buff!!!。", 1.5, Vector2.ZERO)
+				Global.add_message_show(parent, "当前已有双倍掉率Buff!!!。", 1.5, Vector2.ZERO)
 			queue_free()
 
 		"txd":
@@ -612,11 +612,11 @@ func use_xhp():
 					"DeBuff": true
 				}
 
-				Global.AddBuff(player.buff, buff_data)
+				Global.add_buff(player.buff, buff_data)
 
-				Global.AddMessageShow(parent, "获得特效：" + target_buff_name + "，持续10秒！", 1.5, Vector2(450, 300))
+				Global.add_message_show(parent, "获得特效：" + target_buff_name + "，持续10秒！", 1.5, Vector2(450, 300))
 			else:
-				Global.AddMessageShow(parent, "请在关卡中使用此道具！", 1.5, Vector2(450, 300))
+				Global.add_message_show(parent, "请在关卡中使用此道具！", 1.5, Vector2(450, 300))
 				return
 
 			queue_free()
@@ -766,7 +766,7 @@ func use_xhp():
 			var parent = get_parent().get_parent().get_parent()
 			PlayerData.add_soul(150000 * be_number)
 			PlayerData.remove_xhp("xlhys", PlayerData.get_xhp_page("xlhys"), be_number)
-			Global.AddMessageShow(
+			Global.add_message_show(
 				parent, "使用" + str(be_number) + "个小灵魂药水获得" + str(be_number * 15) + "w灵魂。", 1.5, Vector2(450, 300)
 			)
 			MemoryClass.保存游戏(Global.cd_path)
@@ -775,7 +775,7 @@ func use_xhp():
 			var parent = get_parent().get_parent().get_parent()
 			PlayerData.add_soul(600000 * be_number)
 			PlayerData.remove_xhp("dlhys", PlayerData.get_xhp_page("dlhys"), be_number)
-			Global.AddMessageShow(
+			Global.add_message_show(
 				parent, "使用" + str(be_number) + "个大灵魂药水获得" + str(be_number * 60) + "w灵魂。", 1.5, Vector2(450, 300)
 			)
 			MemoryClass.保存游戏(Global.cd_path)
@@ -786,7 +786,7 @@ func use_xhp():
 			var player_level_cap := int(PlayerData.PLAYER_MAX_LEVEL)
 			if int(PlayerData.player_data["玩家等级"]) >= player_level_cap:
 				PlayerData.enforce_level_caps()
-				Global.AddMessageShow(parent, "人物等级已达到%d级上限。" % player_level_cap, 1.5, Vector2(450, 300))
+				Global.add_message_show(parent, "人物等级已达到%d级上限。" % player_level_cap, 1.5, Vector2(450, 300))
 				queue_free()
 				return
 			var exp_gain = 99999 * be_number
@@ -866,6 +866,6 @@ func use_xhp():
 			msg += " 当前等级: " + str(current_level) + " 经验: " + str(current_exp) + "/" + str(max_exp)
 			if level_up_count > 0:
 				msg += " 连续升级: " + str(level_up_count) + "级！"
-			Global.AddMessageShow(parent, msg, 3.0, Vector2(450, 300))
+			Global.add_message_show(parent, msg, 3.0, Vector2(450, 300))
 			MemoryClass.保存游戏(Global.cd_path)
 			queue_free()

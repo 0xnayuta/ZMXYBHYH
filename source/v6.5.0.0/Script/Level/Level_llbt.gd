@@ -39,7 +39,7 @@ func _ready() -> void:
 		if Global.LLBTLevel == 24:
 			self.level_stage = 30
 	Global.CurrentLevel = "玲珑宝塔"
-	Global.addBGM_(self, "res://Music/level/music_emsd.mp3")
+	Global.add_bgm(self, "res://Music/level/music_emsd.mp3")
 
 	lz_node.visible = false
 	lz_collision.disabled = true
@@ -178,8 +178,8 @@ func _restart_level_for_auto_battle() -> bool:
 	if Global.LastLevelPath == "":
 		return false
 	_save_auto_battle_progress()
-	RoleProp.set_full_Hp()
-	RoleProp.set_full_Mp()
+	RoleProp.set_full_hp()
+	RoleProp.set_full_mp()
 	RoleProp.CurrentHp = int(RoleProp.roleprop.Hp)
 	RoleProp.CurrentMp = int(RoleProp.roleprop.Mp)
 	RoleProp.ws_value = 0

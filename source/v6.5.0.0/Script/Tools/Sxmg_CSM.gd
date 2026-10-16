@@ -3,7 +3,7 @@ extends Area2D
 
 func _ready() -> void:
 	if ResourceLoader.exists("res://Art/2_6_0_0/Level_sxmg/csm/csm.wav"):
-		Global.addBGM_(self, "res://Art/2_6_0_0/Level_sxmg/csm/csm.wav")
+		Global.add_bgm(self, "res://Art/2_6_0_0/Level_sxmg/csm/csm.wav")
 
 
 func _on_body_entered(body: Node2D) -> void:

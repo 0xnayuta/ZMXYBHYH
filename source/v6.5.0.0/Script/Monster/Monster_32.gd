@@ -256,7 +256,7 @@ func call_gc():
 	else:
 		PositionList = [Vector2(-40, 55), Vector2(-140, 55), Vector2(-240, 55), Vector2(-340, 55), Vector2(-440, 55)]
 	for i in PositionList:
-		gc = Global.add_Bullet(
+		gc = Global.add_bullet(
 			"Monster32Bullet", self.bullet, MonsterDirection, 0.8, i + position, "dmlhc", self.objattackDic["dmlhc"]
 		)
 		match self.current_:

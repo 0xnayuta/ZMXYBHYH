@@ -132,45 +132,45 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_begin_game_pressed() -> void:
-	Global.addBGM_(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
 
 	if ar_infer.get_child_count() == 0:
 		cd_jm = Global.add_cd_jm(ar_infer, Vector2(0, 0))
 
 
 func _on_music_pressed() -> void:
-	Global.addBGM_(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
 	music_jm = Global.add_music_set(Music_set, Vector2(0, 0))
 
 
 func _on_gmae_help_pressed() -> void:
-	Global.addBGM_(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
 	Global.add_gm_infor(_menu_content_parent(), Vector2(0, 0))
 
 
 func _on_tiaoguo_pressed() -> void:
-	Global.addBGM_(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
 	if MainSet.set_data["剧情跳过"]:
 		MainSet.set_data["剧情跳过"] = false
-		Global.AddMessageShow(get_parent(), "将不会跳过结束剧情！！", 1.5, Vector2(470, 340))
+		Global.add_message_show(get_parent(), "将不会跳过结束剧情！！", 1.5, Vector2(470, 340))
 	else:
 		MainSet.set_data["剧情跳过"] = true
-		Global.AddMessageShow(get_parent(), "将会跳过结束剧情！！", 1.5, Vector2(470, 340))
+		Global.add_message_show(get_parent(), "将会跳过结束剧情！！", 1.5, Vector2(470, 340))
 	MemoryClass.main_bc()
 
 
 func _on_change_bg_pressed() -> void:
-	Global.addBGM_(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
 	Global.add_change_bg(BGset, Vector2(0, 0))
 
 
 func _on_game_set_pressed() -> void:
-	Global.addBGM_(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
 	GameSet_ = Global.Add_GameSet_(_menu_content_parent(), Vector2(0, 0))
 
 
 func _on_game_warn_pressed() -> void:
-	Global.addBGM_(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
 	Global.addGameNeedKnow(_menu_content_parent(), Vector2(0, 0))
 
 
@@ -180,7 +180,7 @@ func CheckTime():
 		push_error("在HTTP请求中发生了一个错误。")
 	Times += 1
 	if Times >= 15:
-		Global.AddMessageShow(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
+		Global.add_message_show(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
 
 
 func _on_body_received(request, body):
@@ -188,19 +188,19 @@ func _on_body_received(request, body):
 	if time_str == "":
 		print("无法获取时间1！！")
 		CheckTime()
-		Global.AddMessageShow(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
+		Global.add_message_show(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
 		return null
 	var utc_time = JSON.parse_string(time_str)
 	if utc_time == null:
 		print("无法获取时间2！！")
 		CheckTime()
-		Global.AddMessageShow(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
+		Global.add_message_show(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
 		return null
 	var TImeUnix = int(utc_time["sysTime2"])
 	if TImeUnix == null or str(TImeUnix) == "":
 		print("无法获取时间3！！")
 		CheckTime()
-		Global.AddMessageShow(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
+		Global.add_message_show(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
 		return null
 	return TImeUnix
 
@@ -250,5 +250,5 @@ func RefreshTime(DataList):
 
 
 func _on_letter_pressed() -> void:
-	Global.addBGM_(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
 	Global.AddLetterForPlayer(_menu_content_parent(), Vector2(0, 0))

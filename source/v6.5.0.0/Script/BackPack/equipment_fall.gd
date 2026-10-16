@@ -78,27 +78,27 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func PickUpItems(body):
 	if MainSet.set_data["PickUpItemsMusic"]:
-		Global.addSound_(self, "res://Music/level/86_pickup.mp3")
+		Global.add_sound(self, "res://Music/level/86_pickup.mp3")
 	if item_name != "peach" and item_name != "Bble" and item_name != "radish":
 		var get_type = AE.AllEquipment_[item_name]["类型"]
 		match get_type:
 			"武器", "防具", "饰品", "翅膀", "时装", "头衔":
-				if not PlayerData.CheckCanUsePage("装备列表") == 0:
+				if not PlayerData.check_can_use_page("装备列表") == 0:
 					PlayerData.add_zb(item_name, 0, {})
 				else:
 					return
 			"法宝":
-				if not PlayerData.CheckCanUsePage("装备列表") == 0:
+				if not PlayerData.check_can_use_page("装备列表") == 0:
 					PlayerData.add_fb(item_name, 0, AE.get_wx(), {})
 				else:
 					return
 			"道具":
-				if PlayerData.get_dj_page(item_name) != 0 or not PlayerData.CheckCanUsePage("道具列表") == 0:
+				if PlayerData.get_dj_page(item_name) != 0 or not PlayerData.check_can_use_page("道具列表") == 0:
 					PlayerData.add_dj(item_name, max(1, num_))
 				else:
 					return
 			"消耗品":
-				if PlayerData.get_xhp_page(item_name) != 0 or not PlayerData.CheckCanUsePage("消耗品列表") == 0:
+				if PlayerData.get_xhp_page(item_name) != 0 or not PlayerData.check_can_use_page("消耗品列表") == 0:
 					PlayerData.add_xhp(item_name, num_)
 				else:
 					return

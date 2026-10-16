@@ -6,7 +6,7 @@ var is_set = false
 
 
 func _ready() -> void:
-	Global.addBGM_(self, "res://Music/level/sdtw.mp3")
+	Global.add_bgm(self, "res://Music/level/sdtw.mp3")
 	self.is_two_scene = true
 	self.level_stage = 1
 	super._ready()

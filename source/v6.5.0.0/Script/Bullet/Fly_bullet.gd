@@ -64,7 +64,7 @@ func _on_hit_area_area_entered(area: Area2D) -> void:
 	if target is BossXieShaSengWdww:
 		return
 	if objattackDic[hit_name].has("addeffect"):
-		Global.AddBuff(target.buff, objattackDic[hit_name]["addeffect"])
+		Global.add_buff(target.buff, objattackDic[hit_name]["addeffect"])
 
 	if name_ == "Monster14Bullet" or name_ == "Monster41Bullet":
 		queue_free()

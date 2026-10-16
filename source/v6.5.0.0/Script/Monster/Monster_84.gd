@@ -212,7 +212,7 @@ func TweenToTop():
 
 
 func ADDFire():
-	Global.add_Bullet("Monster84Bullet3", self, false, 1, Vector2(0, 0), "hit6", self.objattackDic["hit6"])
+	Global.add_bullet("Monster84Bullet3", self, false, 1, Vector2(0, 0), "hit6", self.objattackDic["hit6"])
 
 
 func call_sfjmFire():
@@ -220,17 +220,17 @@ func call_sfjmFire():
 	var FirePosition2 = [Vector2(self.position.x - 200, 440), Vector2(self.position.x + 200, 440)]
 	var FirePosition3 = [Vector2(self.position.x - 320, 440), Vector2(self.position.x + 320, 440)]
 	for i in range(2):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster42Bullet", self.bullet, false, 1.3, FirePosition1[i], "hit3", self.objattackDic["hit3"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster42Bullet", self.bullet, false, 1.3, FirePosition2[i], "hit3", self.objattackDic["hit3"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster42Bullet", self.bullet, false, 1.3, FirePosition3[i], "hit3", self.objattackDic["hit3"]
 		)
 
@@ -241,7 +241,7 @@ func CallHL():
 		Position = Vector2(250, -35)
 	else:
 		Position = Vector2(-250, -35)
-	var hl = Global.add_Bullet(
+	var hl = Global.add_bullet(
 		"Monster84Bullet2", self.bullet, MonsterDirection, 1, Position + position, "hit4", self.objattackDic["hit4"]
 	)
 	hl.scale = Vector2(0.88, 0.88)
@@ -253,7 +253,7 @@ func CallFL():
 		Position = Vector2(40, -30)
 	else:
 		Position = Vector2(-40, -30)
-	var fl = Global.add_Bullet(
+	var fl = Global.add_bullet(
 		"Monster84Bullet1", self.bullet, MonsterDirection, 1, Position + position, "hit5", self.objattackDic["hit5"]
 	)
 	fl.scale = Vector2(0.7, 0.7)

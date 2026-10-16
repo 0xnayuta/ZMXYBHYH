@@ -13,7 +13,7 @@ func _ready() -> void:
 	load("res://Scene/Monster/Monster_57.tscn")
 	load("res://Scene/Monster/Monster_58.tscn")
 	Global.CurrentLevel = "转轮殿"
-	Global.addBGM_(self, "res://Music/level/2_bg4.mp3")
+	Global.add_bgm(self, "res://Music/level/2_bg4.mp3")
 	self.is_two_scene = true
 	self.level_stage = 20
 	Global.GameOver = 2

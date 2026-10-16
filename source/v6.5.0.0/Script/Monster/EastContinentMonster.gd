@@ -3666,7 +3666,7 @@ func settle_death_drops_and_free() -> void:
 		set_meta("transformed_to_3125", true)
 		var parent := get_parent()
 		if parent != null and is_instance_valid(parent):
-			var replacement := Global.Create_Monster(3125, parent, global_position)
+			var replacement := Global.create_monster(3125, parent, global_position)
 			if replacement != null:
 				replacement.set_meta("source_birth_point", get_meta("source_birth_point", -1))
 				replacement.set_meta("source_stage", get_meta("source_stage", 0))

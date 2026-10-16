@@ -66,7 +66,7 @@ func ADDBullet():
 			Vector2(-5, -45),
 		]
 	for i in PositionList:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster87Bullet", self.bullet, MonsterDirection, 1, i + position, "hit1", self.objattackDic["hit1"]
 		)
 		await get_tree().create_timer(0.2, false).timeout

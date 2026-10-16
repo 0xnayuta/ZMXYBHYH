@@ -9,7 +9,7 @@ extends BaseLevel
 func _ready() -> void:
 	Global.CurrentLevel = "鬼门关"
 	sd.start(randi_range(2, 3))
-	Global.addBGM_(self, "res://Music/level/26_bg1.mp3")
+	Global.add_bgm(self, "res://Music/level/26_bg1.mp3")
 	self.level_stage = 13
 	super._ready()
 	Monster_group = {

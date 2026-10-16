@@ -24,7 +24,7 @@ func _ready() -> void:
 	Global.CurrentLevel = "望乡台"
 	var ppx = [1685, 2160, 2640]
 	check_hero.position = Vector2(ppx[randi_num], 35)
-	Global.addBGM_(self, "res://Music/level/9_bg3.mp3")
+	Global.add_bgm(self, "res://Music/level/9_bg3.mp3")
 	self.level_stage = 19
 	super._ready()
 	Monster_group = {
@@ -376,7 +376,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if body is BaseHero:
 			if CanPass:
 				if mm == null:
-					mm = Global.Create_Monster(50, monster, check_hero.position) as Monster50
+					mm = Global.create_monster(50, monster, check_hero.position) as Monster50
 					ck_hero.set_deferred("disabled", true)
 					can_exit = false
 					exit.visible = false

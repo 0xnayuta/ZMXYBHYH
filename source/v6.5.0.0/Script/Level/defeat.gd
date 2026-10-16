@@ -58,7 +58,7 @@ func _ready() -> void:
 	else:
 		player.play("dh_6")
 		text.text = ""
-	Global.addBGM_(self, "res://Music/level/12_over.mp3")
+	Global.add_bgm(self, "res://Music/level/12_over.mp3")
 	box_1.is_in_ldl_gz = true
 	box_1.is_in_hhgz = true
 	box_1.set_button_icon(load_("xczg"))
@@ -116,8 +116,8 @@ var _is_rechallenging := false
 
 
 func _reset_role_state_for_rechallenge() -> void:
-	RoleProp.set_full_Hp()
-	RoleProp.set_full_Mp()
+	RoleProp.set_full_hp()
+	RoleProp.set_full_mp()
 	RoleProp.CurrentHp = int(RoleProp.roleprop.Hp)
 	RoleProp.CurrentMp = int(RoleProp.roleprop.Mp)
 	RoleProp.ws_value = 0
@@ -129,7 +129,7 @@ func _on_re_challenge_pressed() -> void:
 	if _is_rechallenging:
 		return
 	if Global.LastLevelPath == "":
-		Global.AddMessageShow(Global.Windows_, "获取关卡信息时出现错误，请手动更换关卡！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "获取关卡信息时出现错误，请手动更换关卡！！", 1.5, Vector2(470, 300))
 		return
 	_is_rechallenging = true
 	_reset_role_state_for_rechallenge()

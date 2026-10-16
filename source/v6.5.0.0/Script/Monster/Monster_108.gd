@@ -207,7 +207,7 @@ func CallBullet1():
 			{"position": Vector2(-130, 0), "Scale": Vector2(1, 1)}
 		]
 	for i in PositionList:
-		var Bullet = Global.add_Bullet(
+		var Bullet = Global.add_bullet(
 			"Monster108Bullet2", self, MonsterDirection, 1, i["position"], "hit4", self.objattackDic["hit4"]
 		)
 		Bullet.scale = i["Scale"]
@@ -217,11 +217,11 @@ func CallBullet1():
 func CallBullet2():
 	var Bullet
 	if self.MonsterDirection:
-		Bullet = Global.add_Bullet(
+		Bullet = Global.add_bullet(
 			"Monster108Bullet1", self.bullet, false, 1, Vector2(100, 25) + position, "hit1", self.objattackDic["hit1"]
 		)
 	else:
-		Bullet = Global.add_Bullet(
+		Bullet = Global.add_bullet(
 			"Monster108Bullet1", self.bullet, false, 1, Vector2(-100, 25) + position, "hit1", self.objattackDic["hit1"]
 		)
 	Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))

@@ -183,7 +183,7 @@ func Monster_Intelligence():
 
 
 func ADDBullet():
-	Global.add_Bullet(
+	Global.add_bullet(
 		"Monster88Bullet2",
 		self.bullet,
 		MonsterDirection,
@@ -196,7 +196,7 @@ func ADDBullet():
 	var PositionList = [[-180, 180], [-360, 360], [-540, 540]]
 	for i in PositionList:
 		for u in i:
-			Global.add_Bullet(
+			Global.add_bullet(
 				"Monster88Bullet2",
 				self.bullet,
 				MonsterDirection,
@@ -210,7 +210,7 @@ func ADDBullet():
 
 func CallBullet3():
 	for i in range(1):
-		var Bullets = Global.add_Bullet(
+		var Bullets = Global.add_bullet(
 			"Monster89Bullet3", self.bullet, false, 1.5, position, "hit3", self.objattackDic["hit3"]
 		)
 		Bullets.look_at(RoleProp.get_nearest_monster_target_position(global_position))
@@ -227,7 +227,7 @@ func _on_get_hd_timeout() -> void:
 func _on_remove_hd_and_cure_timeout() -> void:
 	if hd > 0:
 		self.objattackDic["hit4"]["power"] = int(hd)
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster88Bullet3", self.bullet, MonsterDirection, 1, position, "hit4", self.objattackDic["hit4"]
 		)
 		ChangeHdCureHp(1)

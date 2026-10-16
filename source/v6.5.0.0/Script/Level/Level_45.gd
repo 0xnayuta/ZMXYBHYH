@@ -9,7 +9,7 @@ extends BaseLevel
 
 func _ready() -> void:
 	Global.CurrentLevel = "绝境宫"
-	Global.addBGM_(self, "res://Music/level/10_bg4.mp3")
+	Global.add_bgm(self, "res://Music/level/10_bg4.mp3")
 	self.level_stage = 47
 	Global.GameOver = 1
 	super._ready()

@@ -567,8 +567,8 @@ func get_attacker_damage(attacker: Node) -> int:
 
 
 func state_hurt(_attacker: Node) -> void:
-	Global.add_SpecialEffect(self, Vector2.ZERO, "RoleBeHit", Vector2.ONE, false, 1)
-	Global.addSound_(self, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
+	Global.add_special_effect(self, Vector2.ZERO, "RoleBeHit", Vector2.ONE, false, 1)
+	Global.add_sound(self, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 
 
 func calculate_attack_damage(target: BaseMonster, base_damage: int, attack_kind: String) -> int:
@@ -988,7 +988,7 @@ func _apply_attack_effect(target: BaseMonster, effect: Dictionary) -> void:
 		var buff_node = Node.new()
 		buff_node.name = "Buff"
 		target.add_child(buff_node)
-	Global.AddBuff(target.get_node("Buff"), effect)
+	Global.add_buff(target.get_node("Buff"), effect)
 
 
 func _on_summon_bullet_hit(area: Area2D, bullet_instance) -> void:
@@ -1182,7 +1182,7 @@ func apply_stun_to_target(target: BaseMonster, duration: float = 3.0) -> void:
 	if not target.has_node("Buff"):
 		target.add_child(Node.new())
 		target.get_node("Buff").name = "Buff"
-	Global.AddBuff(target.get_node("Buff"), stun_buff)
+	Global.add_buff(target.get_node("Buff"), stun_buff)
 
 
 func apply_defense_reduce_to_target(target: BaseMonster, duration: float = 20.0, reduce_value: float = 1.0) -> void:
@@ -1200,7 +1200,7 @@ func apply_defense_reduce_to_target(target: BaseMonster, duration: float = 20.0,
 	if not target.has_node("Buff"):
 		target.add_child(Node.new())
 		target.get_node("Buff").name = "Buff"
-	Global.AddBuff(target.get_node("Buff"), defense_reduce_buff)
+	Global.add_buff(target.get_node("Buff"), defense_reduce_buff)
 
 
 func get_level_node() -> Node:

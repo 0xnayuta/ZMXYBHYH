@@ -149,9 +149,9 @@ func call_dd():
 
 func call_wdww():
 	for i in range(randi_range(6, 10)):
-		Global.Create_Monster(38, get_parent(), Vector2(self.position.x + randi_range(0, 100), self.position.y - 200))
+		Global.create_monster(38, get_parent(), Vector2(self.position.x + randi_range(0, 100), self.position.y - 200))
 
 
 func _on_add_deadlink_timeout() -> void:
 	if not Global.is_DeadLink:
-		Global.AddBuff(get_Player.buff, objattackDic["Dead"]["addeffect"])
+		Global.add_buff(get_Player.buff, objattackDic["Dead"]["addeffect"])

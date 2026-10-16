@@ -53,7 +53,7 @@ func _ready() -> void:
 			"stage_4": [340],
 		}
 	Global.CurrentLevel = "神兽森林"
-	Global.addBGM_(self, "res://Music/level/music_emsd.mp3")
+	Global.add_bgm(self, "res://Music/level/music_emsd.mp3")
 	self.level_stage = 45
 	super._ready()
 
@@ -139,7 +139,7 @@ func level_create_monster(stage):
 		mr.set_meta("sssl_special_boss", true)
 		mr.set_meta("sssl_stage", stage)
 		if stage > 1:
-			Global.AddMessageShow(self, str(mr.my_mr_name) + " 出现", 1.2, Vector2(470, 300))
+			Global.add_message_show(self, str(mr.my_mr_name) + " 出现", 1.2, Vector2(470, 300))
 
 
 func _on_create_control_timeout() -> void:

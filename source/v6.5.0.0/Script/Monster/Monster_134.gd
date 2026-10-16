@@ -141,7 +141,7 @@ func do_hit_2():
 
 func CallBullet1():
 	if self.MonsterDirection:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster134Bullet",
 			self.bullet,
 			MonsterDirection,
@@ -151,7 +151,7 @@ func CallBullet1():
 			self.objattackDic["hit2"]
 		)
 	else:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster134Bullet",
 			self.bullet,
 			MonsterDirection,
@@ -166,7 +166,7 @@ func CallBullet2():
 	var PositionList = [{"position": Vector2(125, 50), "dir": true}, {"position": Vector2(-125, 50), "dir": false}]
 	for i in range(3):
 		for u in PositionList:
-			Global.add_Bullet(
+			Global.add_bullet(
 				"Monster134Bullet",
 				self.bullet,
 				u["dir"],

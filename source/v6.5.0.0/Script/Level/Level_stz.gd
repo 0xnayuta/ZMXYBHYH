@@ -40,7 +40,7 @@ func _ready() -> void:
 	Global.GameOver = 1
 	level_stage = 44
 	_set_selected_background()
-	Global.addBGM_(self, "res://Music/level/music_emsd.mp3")
+	Global.add_bgm(self, "res://Music/level/music_emsd.mp3")
 	super._ready()
 
 

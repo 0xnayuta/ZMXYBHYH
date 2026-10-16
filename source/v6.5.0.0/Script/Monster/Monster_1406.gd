@@ -257,7 +257,7 @@ func CallBullet1():
 		if i > 0:
 			await get_tree().create_timer(0.3).timeout
 
-		var Bullets = Global.add_Bullet(
+		var Bullets = Global.add_bullet(
 			"Monster1406Bullet1", self.bullet, false, 1.5, position, "hit1", self.objattackDic["hit1"]
 		)
 
@@ -270,7 +270,7 @@ func CallBullet2():
 		var x_offset = randi_range(50, 400)
 		var spawn_position = Vector2(position.x - x_offset if is_left else position.x + x_offset, position.y)
 
-		var bullet = Global.add_Bullet(
+		var bullet = Global.add_bullet(
 			"Monster1406Bullet2", self.bullet, false, 1, spawn_position, "hit2", self.objattackDic["hit2"]
 		)
 		if i < 9:
@@ -313,11 +313,11 @@ func apply_control_reverse(reverse_time: float):
 		"CanAdd": false
 	}
 
-	Global.AddBuff(player.buff, reverse_effect)
+	Global.add_buff(player.buff, reverse_effect)
 
 
 func ADDHelp():
-	Global.add_Bullet("Monster1406Bullet4", self, false, 1, Vector2(15, -30), "hit4", self.objattackDic["hit4"])
+	Global.add_bullet("Monster1406Bullet4", self, false, 1, Vector2(15, -30), "hit4", self.objattackDic["hit4"])
 
 	if Hp <= SHp * 0.5 and not has_summoned_1404:
 		_summon_monster_1404()
@@ -335,7 +335,7 @@ func _apply_shield(value: int):
 
 func _summon_monster_1404():
 	if not has_summoned_1404:
-		var summoned_monster = Global.Create_Monster(1404, get_parent(), position)
+		var summoned_monster = Global.create_monster(1404, get_parent(), position)
 		if summoned_monster != null:
 			summoned_monster.direction = self.direction
 		has_summoned_1404 = true

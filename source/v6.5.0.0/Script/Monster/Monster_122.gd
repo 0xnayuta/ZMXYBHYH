@@ -101,7 +101,7 @@ func do_hit_2():
 
 
 func CallBullet2():
-	Global.add_Bullet(
+	Global.add_bullet(
 		"Monster122Bullet2",
 		self.bullet,
 		false,

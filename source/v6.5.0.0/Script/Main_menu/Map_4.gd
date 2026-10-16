@@ -154,14 +154,14 @@ func _ready() -> void:
 		get_viewport().size_changed.connect(_fit_to_fullscreen)
 	if not MainSet.set_data["LevelTT"]:
 		MainSet.set_data["LevelTT"] = true
-		Global.AddMessageShow(Global.Windows_, "恭喜通到达天庭，解锁角色“沙悟净”！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "恭喜通到达天庭，解锁角色“沙悟净”！！", 1.5, Vector2(470, 300))
 		MemoryClass.main_bc()
 	Global.LLBTLevel = 1
 	Global.LLBTBOSSMS = false
 	Global.LLBTCGMS = false
 	Global.LLBTWXMS = false
-	RoleProp.set_full_Hp()
-	RoleProp.set_full_Mp()
+	RoleProp.set_full_hp()
+	RoleProp.set_full_mp()
 	RoleProp.CurrentHp = RoleProp.roleprop.Hp
 	RoleProp.CurrentMp = RoleProp.roleprop.Mp
 
@@ -175,7 +175,7 @@ func _ready() -> void:
 		MainMusic.ADDMusic()
 	Global.CurrentLevel = ""
 	if not Global.IsFrist:
-		Global.AddMessageShow(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
 		Global.IsFrist = true
 	Global.PlayerBeHitCount = 0
 	Global.LastLevelPath = ""
@@ -199,39 +199,39 @@ func _ready() -> void:
 
 
 func _on_level_31_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "火龙岛", Vector2(0, 0), "res://Scene/Level/Level_31.tscn")
+	Global.add_level_info(_ui_parent(), "火龙岛", Vector2(0, 0), "res://Scene/Level/Level_31.tscn")
 
 
 func _on_level_32_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "九龙岛", Vector2(0, 0), "res://Scene/Level/Level_32.tscn")
+	Global.add_level_info(_ui_parent(), "九龙岛", Vector2(0, 0), "res://Scene/Level/Level_32.tscn")
 
 
 func _on_level_33_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "龙脊山", Vector2(0, 0), "res://Scene/Level/Level_33.tscn")
+	Global.add_level_info(_ui_parent(), "龙脊山", Vector2(0, 0), "res://Scene/Level/Level_33.tscn")
 
 
 func _on_level_34_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "尾妖林", Vector2(0, 0), "res://Scene/Level/Level_34.tscn")
+	Global.add_level_info(_ui_parent(), "尾妖林", Vector2(0, 0), "res://Scene/Level/Level_34.tscn")
 
 
 func _on_level_35_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "仙音岛", Vector2(0, 0), "res://Scene/Level/Level_35.tscn")
+	Global.add_level_info(_ui_parent(), "仙音岛", Vector2(0, 0), "res://Scene/Level/Level_35.tscn")
 
 
 func _on_level_36_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "仙幻岛", Vector2(0, 0), "res://Scene/Level/Level_36.tscn")
+	Global.add_level_info(_ui_parent(), "仙幻岛", Vector2(0, 0), "res://Scene/Level/Level_36.tscn")
 
 
 func _on_level_37_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "仙树岛", Vector2(0, 0), "res://Scene/Level/Level_37.tscn")
+	Global.add_level_info(_ui_parent(), "仙树岛", Vector2(0, 0), "res://Scene/Level/Level_37.tscn")
 
 
 func _on_level_38_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "蓬莱岛", Vector2(0, 0), "res://Scene/Level/Level_38.tscn")
+	Global.add_level_info(_ui_parent(), "蓬莱岛", Vector2(0, 0), "res://Scene/Level/Level_38.tscn")
 
 
 func _on_level_39_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "蓬莱仙境", Vector2(0, 0), "res://Scene/Level/Level_39.tscn")
+	Global.add_level_info(_ui_parent(), "蓬莱仙境", Vector2(0, 0), "res://Scene/Level/Level_39.tscn")
 
 
 func _on_level_byg_pressed() -> void:
@@ -240,11 +240,11 @@ func _on_level_byg_pressed() -> void:
 		Global.change_scene("res://Scene/Main_menu/Map_5.tscn")
 	else:
 		if PlayerData.player_data["蓬莱仙境"] != 1:
-			Global.AddMessageShow(get_parent(), "需要通关蓬莱仙境！！", 1.5, Vector2(470, 300))
+			Global.add_message_show(get_parent(), "需要通关蓬莱仙境！！", 1.5, Vector2(470, 300))
 		elif PlayerData.player_data["玩家等级"] < 60:
-			Global.AddMessageShow(get_parent(), "需要等级达到60级！！", 1.5, Vector2(470, 300))
+			Global.add_message_show(get_parent(), "需要等级达到60级！！", 1.5, Vector2(470, 300))
 		elif PlayerData.get_item_data("ttsl") == 0:
-			Global.AddMessageShow(get_parent(), "需要通天赦令！！", 1.5, Vector2(470, 300))
+			Global.add_message_show(get_parent(), "需要通天赦令！！", 1.5, Vector2(470, 300))
 		else:
 			PlayerData.player_data["碧游宫"] = true
 			Global.cleanup_transient_ui()
@@ -253,17 +253,17 @@ func _on_level_byg_pressed() -> void:
 
 func _on_level_esbxx_pressed() -> void:
 	if PlayerData.player_data["玩家等级"] < 60:
-		Global.AddMessageShow(get_parent(), "玩家等级达60级开启！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "玩家等级达60级开启！！", 1.5, Vector2(470, 300))
 		return
 	if PlayerData.player_data["尾妖林"] == 0:
-		Global.AddMessageShow(get_parent(), "需通关尾妖林！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "需通关尾妖林！！", 1.5, Vector2(470, 300))
 		return
 	Global.SelectedConstellationLevel = 0
-	Global.AddLevelInfo(_ui_parent(), "挑战28星宿", Vector2.ZERO, "res://Scene/Level/Level_esbxx.tscn")
+	Global.add_level_info(_ui_parent(), "挑战28星宿", Vector2.ZERO, "res://Scene/Level/Level_esbxx.tscn")
 
 
 func _on_level_znyy_pressed() -> void:
-	Global.AddMessageShow(get_parent(), "敬请期待！！！！", 1.5, Vector2(470, 300))
+	Global.add_message_show(get_parent(), "敬请期待！！！！", 1.5, Vector2(470, 300))
 	return
 
 
@@ -273,7 +273,7 @@ func _on_hdzm_pressed() -> void:
 
 func _on_memory_class_pressed() -> void:
 	MemoryClass.保存游戏(Global.cd_path)
-	Global.AddMessageShow(get_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
+	Global.add_message_show(get_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
 
 
 func _on_shop_pressed() -> void:
@@ -292,7 +292,7 @@ func _on_skill_pressed() -> void:
 
 
 func _on_activity_pressed() -> void:
-	Global.AddMessageShow(get_parent(), "敬请期待！！！！", 1.5, Vector2(470, 300))
+	Global.add_message_show(get_parent(), "敬请期待！！！！", 1.5, Vector2(470, 300))
 
 
 func _on_task_pressed() -> void:

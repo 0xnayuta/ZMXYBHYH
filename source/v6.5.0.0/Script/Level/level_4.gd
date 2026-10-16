@@ -16,7 +16,7 @@ var trap_sky_10
 
 func _ready() -> void:
 	Global.CurrentLevel = "蝙蝠窟"
-	bgm_node = Global.addBGM_(self, "res://Music/level/7_bg2.mp3")
+	bgm_node = Global.add_bgm(self, "res://Music/level/7_bg2.mp3")
 	add_trap_sky()
 	set_trap_floor()
 	self.level_stage = 4
@@ -72,45 +72,45 @@ func set_through():
 				bgm_node.queue_free()
 				bgm_node = null
 
-			bgm_node = Global.addBGM_(self, "res://Music/level/7_bg3.mp3")
+			bgm_node = Global.add_bgm(self, "res://Music/level/7_bg3.mp3")
 
 
 func set_trap_floor():
-	Global.add_Trap(self, Vector2(350, 400), "Trap_2")
-	Global.add_Trap(self, Vector2(400, 400), "Trap_2")
-	Global.add_Trap(self, Vector2(450, 400), "Trap_2")
-	Global.add_Trap(self, Vector2(500, 400), "Trap_2")
-	Global.add_Trap(self, Vector2(550, 400), "Trap_2")
+	Global.add_trap(self, Vector2(350, 400), "Trap_2")
+	Global.add_trap(self, Vector2(400, 400), "Trap_2")
+	Global.add_trap(self, Vector2(450, 400), "Trap_2")
+	Global.add_trap(self, Vector2(500, 400), "Trap_2")
+	Global.add_trap(self, Vector2(550, 400), "Trap_2")
 
-	Global.add_Trap(self, Vector2(1500, 400), "Trap_2")
-	Global.add_Trap(self, Vector2(1550, 400), "Trap_2")
-	Global.add_Trap(self, Vector2(1600, 400), "Trap_2")
-	Global.add_Trap(self, Vector2(1650, 400), "Trap_2")
+	Global.add_trap(self, Vector2(1500, 400), "Trap_2")
+	Global.add_trap(self, Vector2(1550, 400), "Trap_2")
+	Global.add_trap(self, Vector2(1600, 400), "Trap_2")
+	Global.add_trap(self, Vector2(1650, 400), "Trap_2")
 
-	Global.add_Trap(self, Vector2(1800, 400), "Trap_2")
-	Global.add_Trap(self, Vector2(1850, 400), "Trap_2")
-	Global.add_Trap(self, Vector2(1900, 400), "Trap_2")
-	Global.add_Trap(self, Vector2(1950, 400), "Trap_2")
+	Global.add_trap(self, Vector2(1800, 400), "Trap_2")
+	Global.add_trap(self, Vector2(1850, 400), "Trap_2")
+	Global.add_trap(self, Vector2(1900, 400), "Trap_2")
+	Global.add_trap(self, Vector2(1950, 400), "Trap_2")
 
 
 func add_trap_sky():
 	if trap_sky_1 == null:
-		trap_sky_1 = Global.add_Trap(self, Vector2(1000, -100), "Trap_1")
+		trap_sky_1 = Global.add_trap(self, Vector2(1000, -100), "Trap_1")
 	if trap_sky_2 == null:
-		trap_sky_2 = Global.add_Trap(self, Vector2(1150, -100), "Trap_1")
+		trap_sky_2 = Global.add_trap(self, Vector2(1150, -100), "Trap_1")
 	if trap_sky_3 == null:
-		trap_sky_3 = Global.add_Trap(self, Vector2(1300, -100), "Trap_1")
+		trap_sky_3 = Global.add_trap(self, Vector2(1300, -100), "Trap_1")
 	if trap_sky_4 == null:
-		trap_sky_4 = Global.add_Trap(self, Vector2(2750, -100), "Trap_1")
+		trap_sky_4 = Global.add_trap(self, Vector2(2750, -100), "Trap_1")
 	if trap_sky_5 == null:
-		trap_sky_5 = Global.add_Trap(self, Vector2(2900, -100), "Trap_1")
+		trap_sky_5 = Global.add_trap(self, Vector2(2900, -100), "Trap_1")
 	if trap_sky_6 == null:
-		trap_sky_6 = Global.add_Trap(self, Vector2(3050, -100), "Trap_1")
+		trap_sky_6 = Global.add_trap(self, Vector2(3050, -100), "Trap_1")
 	if trap_sky_7 == null:
-		trap_sky_7 = Global.add_Trap(self, Vector2(3750, -100), "Trap_1")
+		trap_sky_7 = Global.add_trap(self, Vector2(3750, -100), "Trap_1")
 	if trap_sky_8 == null:
-		trap_sky_8 = Global.add_Trap(self, Vector2(3950, -100), "Trap_1")
+		trap_sky_8 = Global.add_trap(self, Vector2(3950, -100), "Trap_1")
 	if trap_sky_9 == null:
-		trap_sky_9 = Global.add_Trap(self, Vector2(4100, -100), "Trap_1")
+		trap_sky_9 = Global.add_trap(self, Vector2(4100, -100), "Trap_1")
 	if trap_sky_10 == null:
-		trap_sky_10 = Global.add_Trap(self, Vector2(3650, -100), "Trap_1")
+		trap_sky_10 = Global.add_trap(self, Vector2(3650, -100), "Trap_1")

@@ -202,7 +202,7 @@ func CallBullet1():
 
 		var final_rotation = deg_to_rad(angle_offset)
 
-		var Bullets = Global.add_Bullet(
+		var Bullets = Global.add_bullet(
 			"Monster1404Bullet1",
 			self.bullet,
 			false,

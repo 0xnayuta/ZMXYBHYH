@@ -8,7 +8,7 @@ extends BaseLevel
 
 func _ready() -> void:
 	Global.CurrentLevel = "御马监"
-	Global.addBGM_(self, "res://Music/level/BGM_ymj.mp3")
+	Global.add_bgm(self, "res://Music/level/BGM_ymj.mp3")
 	self.level_stage = 1
 	super._ready()
 	Monster_group = {

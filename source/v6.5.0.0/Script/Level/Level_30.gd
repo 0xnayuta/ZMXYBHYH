@@ -7,7 +7,7 @@ extends BaseLevel
 
 func _ready() -> void:
 	Global.CurrentLevel = "凌霄宝殿"
-	Global.addBGM_(self, "res://Music/level/Floor_7-10.mp3")
+	Global.add_bgm(self, "res://Music/level/Floor_7-10.mp3")
 	self.level_stage = 29
 	super._ready()
 	Monster_group = {

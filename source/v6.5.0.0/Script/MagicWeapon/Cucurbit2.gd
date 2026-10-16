@@ -7,7 +7,7 @@ var ADDBl: float = 1
 func _physics_process(delta: float) -> void:
 	self.FB_Level = PlayerData.get_mostLevel("xhhl") + 1
 	needMp = 50 + self.FB_Level * 5
-	if PlayerData.CheckHaveWX("xhhl", "木"):
+	if PlayerData.check_have_wx("xhhl", "木"):
 		ADDTime = self.FB_Level * 0.1 + 3
 	else:
 		ADDTime = 3

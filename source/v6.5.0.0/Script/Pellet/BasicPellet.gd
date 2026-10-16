@@ -153,80 +153,80 @@ func _on_eat_1_pressed() -> void:
 		if PlayerData.get_dj_page(str(CurrentInType) + "1") != 0:
 			PlayerData.player_data[CurrentPelletType + "丹1"] += 1
 			PlayerData.remove_dj(str(CurrentInType) + "1", PlayerData.get_dj_page(str(CurrentInType) + "1"), 1)
-			Global.AddMessageShow(Global.Windows_, "成功服用一品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "成功服用一品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
 		else:
-			Global.AddMessageShow(Global.Windows_, "一品" + str(CurrentPelletType) + "丹不足！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "一品" + str(CurrentPelletType) + "丹不足！！", 1.5, Vector2(500, 305))
 	else:
-		Global.AddMessageShow(Global.Windows_, "一品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "一品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
 	set_Info()
 
 
 func _on_eat_2_pressed() -> void:
 	if PlayerData.player_data[CurrentPelletType + "丹1"] < 5:
-		Global.AddMessageShow(Global.Windows_, "请先服用完一品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "请先服用完一品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
 		return
 	if PlayerData.player_data[CurrentPelletType + "丹2"] < 5:
 		if PlayerData.get_dj_page(str(CurrentInType) + "2") != 0:
 			PlayerData.player_data[CurrentPelletType + "丹2"] += 1
 			PlayerData.remove_dj(str(CurrentInType) + "2", PlayerData.get_dj_page(str(CurrentInType) + "2"), 1)
-			Global.AddMessageShow(Global.Windows_, "成功服用二品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "成功服用二品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
 		else:
-			Global.AddMessageShow(Global.Windows_, "二品" + str(CurrentPelletType) + "丹不足！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "二品" + str(CurrentPelletType) + "丹不足！！", 1.5, Vector2(500, 305))
 	else:
-		Global.AddMessageShow(Global.Windows_, "二品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "二品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
 
 	set_Info()
 
 
 func _on_eat_3_pressed() -> void:
 	if PlayerData.player_data[CurrentPelletType + "丹2"] < 5:
-		Global.AddMessageShow(Global.Windows_, "请先服用完二品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "请先服用完二品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
 		return
 	if PlayerData.player_data[CurrentPelletType + "丹3"] < 5:
 		if PlayerData.get_dj_page(str(CurrentInType) + "3") != 0:
 			PlayerData.player_data[CurrentPelletType + "丹3"] += 1
 			PlayerData.remove_dj(str(CurrentInType) + "3", PlayerData.get_dj_page(str(CurrentInType) + "3"), 1)
-			Global.AddMessageShow(Global.Windows_, "成功服用三品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "成功服用三品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
 		else:
-			Global.AddMessageShow(Global.Windows_, "三品" + str(CurrentPelletType) + "丹不足！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "三品" + str(CurrentPelletType) + "丹不足！！", 1.5, Vector2(500, 305))
 	else:
-		Global.AddMessageShow(Global.Windows_, "三品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "三品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
 
 	set_Info()
 
 
 func _on_eat_4_pressed() -> void:
 	if PlayerData.player_data[CurrentPelletType + "丹3"] < 5:
-		Global.AddMessageShow(Global.Windows_, "请先服用完三品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "请先服用完三品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
 		return
 
 	if PlayerData.player_data[CurrentPelletType + "丹4"] < 5:
 		if PlayerData.get_dj_page(str(CurrentInType) + "4") != 0:
 			PlayerData.player_data[CurrentPelletType + "丹4"] += 1
 			PlayerData.remove_dj(str(CurrentInType) + "4", PlayerData.get_dj_page(str(CurrentInType) + "4"), 1)
-			Global.AddMessageShow(Global.Windows_, "成功服用四品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "成功服用四品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
 		else:
-			Global.AddMessageShow(Global.Windows_, "四品" + str(CurrentPelletType) + "丹不足！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "四品" + str(CurrentPelletType) + "丹不足！！", 1.5, Vector2(500, 305))
 	else:
-		Global.AddMessageShow(Global.Windows_, "四品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "四品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
 
 	set_Info()
 
 
 func _on_eat_5_pressed() -> void:
 	if PlayerData.player_data[CurrentPelletType + "丹4"] < 5:
-		Global.AddMessageShow(Global.Windows_, "请先服用完四品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "请先服用完四品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
 		return
 
 	if PlayerData.player_data[CurrentPelletType + "丹5"] < 5:
 		if PlayerData.get_dj_page(str(CurrentInType) + "5") != 0:
 			PlayerData.player_data[CurrentPelletType + "丹5"] += 1
 			PlayerData.remove_dj(str(CurrentInType) + "5", PlayerData.get_dj_page(str(CurrentInType) + "5"), 1)
-			Global.AddMessageShow(Global.Windows_, "成功服用五品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "成功服用五品" + str(CurrentPelletType) + "丹！！", 1.5, Vector2(500, 305))
 		else:
-			Global.AddMessageShow(Global.Windows_, "五品" + str(CurrentPelletType) + "丹不足！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "五品" + str(CurrentPelletType) + "丹不足！！", 1.5, Vector2(500, 305))
 	else:
-		Global.AddMessageShow(Global.Windows_, "五品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "五品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
 
 	set_Info()
 
@@ -257,7 +257,7 @@ func _on_one_key_auto_eat_pressed() -> void:
 			var prev_grade_key = CurrentPelletType + "丹" + str(current_grade - 1)
 			if PlayerData.player_data[prev_grade_key] < 5:
 				can_continue = false
-				Global.AddMessageShow(
+				Global.add_message_show(
 					Global.Windows_,
 					"无法继续：请先服用完" + str(current_grade - 1) + "品" + CurrentPelletType + "丹",
 					1.5,
@@ -285,9 +285,9 @@ func _on_one_key_auto_eat_pressed() -> void:
 		else:
 			message = "已服用" + str(total_eaten) + "颗" + CurrentPelletType + "丹"
 
-		Global.AddMessageShow(Global.Windows_, message, 2.0, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, message, 2.0, Vector2(500, 305))
 		set_Info()
 	elif total_eaten == 0 and not can_continue:
 		pass
 	else:
-		Global.AddMessageShow(Global.Windows_, "没有可服用的" + CurrentPelletType + "丹", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "没有可服用的" + CurrentPelletType + "丹", 1.5, Vector2(500, 305))

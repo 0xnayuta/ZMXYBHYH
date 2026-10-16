@@ -99,4 +99,4 @@ func do_hit_2():
 
 func call_boom():
 	var po = self.position
-	Global.add_Bullet("Monster15Bullet", self.bullet, self.MonsterDirection, 0.7, po, "qlzg", self.objattackDic["qlzg"])
+	Global.add_bullet("Monster15Bullet", self.bullet, self.MonsterDirection, 0.7, po, "qlzg", self.objattackDic["qlzg"])

@@ -304,7 +304,7 @@ func _spawn_next_tower_monster() -> void:
 	Monster_group["stage_1"] = _pending_monsters.duplicate()
 	var monster_id := int(spawn_data["monster"])
 	var spawn_position: Vector2 = spawn_data["position"]
-	var created := Global.Create_Monster(monster_id, monster, spawn_position)
+	var created := Global.create_monster(monster_id, monster, spawn_position)
 	if created == null:
 		push_error("镇妖塔无法创建怪物场景: %d" % monster_id)
 		return

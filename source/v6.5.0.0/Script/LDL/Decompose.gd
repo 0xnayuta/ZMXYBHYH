@@ -201,13 +201,13 @@ func set_remove_itemsProperies():
 
 func _on_decompose_button_pressed() -> void:
 	if not CanDe:
-		Global.AddMessageShow(Global.Windows_, "点击过快！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "点击过快！", 1.5, Vector2(500, 305))
 		return
 	else:
 		CanDe = false
 		wait.start(0.1)
 	if PlayerData.get_soul() < NeedLh:
-		Global.AddMessageShow(Global.Windows_, "灵魂不足！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "灵魂不足！", 1.5, Vector2(500, 305))
 		return
 
 	if PlayerData.player_data["分解列表"].size() != 0:
@@ -224,7 +224,7 @@ func _on_decompose_button_pressed() -> void:
 		else:
 			Global.add_choose_text(Global.get_parent_(self, 3), Vector2(0, 0), "确定要分解" + str(ItemName_) + "吗？", 0)
 	else:
-		Global.AddMessageShow(Global.Windows_, "先放点什么吧~", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "先放点什么吧~", 1.5, Vector2(500, 305))
 
 
 func fj():
@@ -262,10 +262,10 @@ func fj():
 								)
 								PlayerData.player_data["分解列表"].clear()
 					Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), list, null, null)
-					Global.AddMessageShow(Global.Windows_, "分解成功！！", 1.5, Vector2(500, 305))
+					Global.add_message_show(Global.Windows_, "分解成功！！", 1.5, Vector2(500, 305))
 					PlayerData.spend_soul(NeedLh)
 				else:
-					Global.AddMessageShow(
+					Global.add_message_show(
 						Global.Windows_, str(Typee) + str(ItemName_) + "不会分解出任何物品！！", 1.5, Vector2(500, 305)
 					)
 
@@ -274,7 +274,9 @@ func fj():
 				if not NormalItems.has(Name_):
 					var name_ = AE.AllEquipment_[Name_]["名字"]
 					var Type = AE.AllEquipment_[Name_]["类型"]
-					Global.AddMessageShow(Global.Windows_, str(Type) + str(name_) + "不可以进行分解！！", 1.5, Vector2(500, 305))
+					Global.add_message_show(
+						Global.Windows_, str(Type) + str(name_) + "不可以进行分解！！", 1.5, Vector2(500, 305)
+					)
 					return
 				else:
 					PlayerData.spend_soul(NeedLh)
@@ -284,7 +286,7 @@ func fj():
 						list.push_back({"Name": Name, "Value": Num, "Prop": [], "WX": [], "StrengthValue": 0})
 					Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), list, null, null)
 					PlayerData.player_data["分解列表"].clear()
-					Global.AddMessageShow(Global.Windows_, "分解成功！！", 1.5, Vector2(500, 305))
+					Global.add_message_show(Global.Windows_, "分解成功！！", 1.5, Vector2(500, 305))
 
 
 func remove_infomation():

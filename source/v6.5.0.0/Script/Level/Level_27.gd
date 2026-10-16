@@ -12,7 +12,7 @@ var CanThrough: bool
 
 func _ready() -> void:
 	Global.CurrentLevel = "北天王殿"
-	bgm_node = Global.addBGM_(self, "res://Music/level/sdtw.mp3")
+	bgm_node = Global.add_bgm(self, "res://Music/level/sdtw.mp3")
 	self.level_stage = 26
 	super._ready()
 	Monster_group = {
@@ -356,7 +356,7 @@ func set_through():
 				bgm_node.queue_free()
 				bgm_node = null
 
-			bgm_node = Global.addBGM_(self, "res://Music/level/twdboss.mp3")
+			bgm_node = Global.add_bgm(self, "res://Music/level/twdboss.mp3")
 
 
 func _on_door_check_area_entered(area: Area2D) -> void:

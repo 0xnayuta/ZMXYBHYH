@@ -230,7 +230,7 @@ func CallBullet2():
 
 		for offset in wave_offsets[wave_idx]:
 			var bullet_pos = position + offset
-			var bullet_instance = Global.add_Bullet(
+			var bullet_instance = Global.add_bullet(
 				"Monster1409Bullet2", self.bullet, false, 1, bullet_pos, "hit2", attack_data
 			)
 			if bullet_instance and player:

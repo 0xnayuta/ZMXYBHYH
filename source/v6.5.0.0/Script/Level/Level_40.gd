@@ -9,7 +9,7 @@ var is_set = false
 
 func _ready() -> void:
 	Global.CurrentLevel = "绝仙门"
-	Global.addBGM_(self, "res://Music/level/10_bg4.mp3")
+	Global.add_bgm(self, "res://Music/level/10_bg4.mp3")
 	self.is_two_scene = true
 	self.level_stage = 44
 	Global.GameOver = 1

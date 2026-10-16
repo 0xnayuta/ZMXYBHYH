@@ -377,7 +377,7 @@ func _emit_dragon_projectile(side: int, locked_target_position: Vector2) -> void
 	var aim_direction := mouth_world_position.direction_to(locked_target_position)
 	if aim_direction.is_zero_approx():
 		aim_direction = Vector2.RIGHT
-	var projectile = Global.add_Bullet(
+	var projectile = Global.add_bullet(
 		"WeiyangBossBullet1", bullet, true, 1.0, mouth_world_position, "hit%d" % side, objattackDic["hit%d" % side]
 	)
 	if projectile != null and projectile.has_method("configure_trajectory"):
@@ -387,7 +387,7 @@ func _emit_dragon_projectile(side: int, locked_target_position: Vector2) -> void
 func _spawn_original_axe() -> void:
 	if _has_active_axe():
 		return
-	var created := Global.Create_Monster(3012, get_parent(), position + AXE_SUMMON_OFFSET)
+	var created := Global.create_monster(3012, get_parent(), position + AXE_SUMMON_OFFSET)
 	if created is WeiyangFlyingAxe:
 		_active_axe = created as WeiyangFlyingAxe
 		_active_axe.source_boss = self

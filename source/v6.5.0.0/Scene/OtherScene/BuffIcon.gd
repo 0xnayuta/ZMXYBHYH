@@ -95,7 +95,7 @@ func _show_buff_info() -> void:
 	if DataList == {}:
 		return
 	if BuffInfo == null or not is_instance_valid(BuffInfo):
-		BuffInfo = Global.AddBuffinfor(
+		BuffInfo = Global.add_buffinfor(
 			Global.get_ui_popup_layer(), Global.screen_popup_position(Vector2(18, 22)), DataList
 		)
 		if BuffInfo == null:

@@ -68,7 +68,7 @@ func ADDBullet():
 		TargetPosition = Vector2(30, 5)
 	else:
 		TargetPosition = Vector2(-30, 5)
-	var Arrow = Global.add_Bullet(
+	var Arrow = Global.add_bullet(
 		"Monster82Bullet",
 		self.bullet,
 		MonsterDirection,

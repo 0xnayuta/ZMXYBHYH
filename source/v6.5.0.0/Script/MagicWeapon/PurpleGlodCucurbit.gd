@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	needMp = 50 + self.FB_Level * 12
 	var Power: int
 	var playerPower = RoleProp.roleprop.power
-	if PlayerData.CheckHaveWX("zjhl", "木"):
+	if PlayerData.check_have_wx("zjhl", "木"):
 		Power = int(playerPower * randf_range(0.15, 0.2)) + int(playerPower * (randf_range(0.08, 0.1) * self.FB_Level))
 	else:
 		Power = int(playerPower * randf_range(0.08, 0.1)) + int(playerPower * (randf_range(0.05, 0.07) * self.FB_Level))
@@ -40,7 +40,7 @@ func ShowSkill():
 func Useover():
 	Global.FB_CD = 1
 	is_use = false
-	if PlayerData.CheckHaveWX("zjhl", "木"):
+	if PlayerData.check_have_wx("zjhl", "木"):
 		self.usecd = 12
 		skill_cd.start(12)
 	else:

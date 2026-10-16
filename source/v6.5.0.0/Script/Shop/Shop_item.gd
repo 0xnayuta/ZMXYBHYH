@@ -84,7 +84,7 @@ func _get_backpack_list_name(item_type: String) -> String:
 func _get_free_item_capacity(item_type: String, list_name: String) -> int:
 	if item_type == "宠物装备":
 		return maxi(0, 40 - PlayerData.ensure_shared_pet_backpack().size())
-	return int(PlayerData.CheckCanUsePage(list_name))
+	return int(PlayerData.check_can_use_page(list_name))
 
 
 func _on_cure_num_pressed() -> void:
@@ -111,7 +111,7 @@ func _on_goumai_pressed() -> void:
 	var parent_ = Global.get_parent_(self, 3)
 	var buy_num := _get_safe_buy_num()
 	if not _can_pay_for_count(buy_num):
-		Global.AddMessageShow(parent_, "灵魂不足！", 1.5, Vector2(485, 295))
+		Global.add_message_show(parent_, "灵魂不足！", 1.5, Vector2(485, 295))
 		return
 	Signals.ConnectChooseBoxSignal(self, "GM")
 	choose_jm = Global.add_choose_text(
@@ -125,7 +125,7 @@ func _on_goumai_pressed() -> void:
 func add_item_toplayer(times):
 	var parent_ = Global.get_parent_(self, 3)
 	if item_name_ == "" or not AE.AllEquipment_.has(item_name_):
-		Global.AddMessageShow(parent_, "商品信息错误！", 1.5, Vector2(485, 295))
+		Global.add_message_show(parent_, "商品信息错误！", 1.5, Vector2(485, 295))
 		return
 
 	var buy_num := clampi(int(times), 1, MAX_SHOP_BUY_NUM)
@@ -135,15 +135,15 @@ func add_item_toplayer(times):
 	var cklb := _get_backpack_list_name(lx)
 
 	if not _can_pay_for_count(buy_num):
-		Global.AddMessageShow(parent_, "灵魂不足！", 1.5, Vector2(485, 295))
+		Global.add_message_show(parent_, "灵魂不足！", 1.5, Vector2(485, 295))
 		return
 
 	var free_page_count := _get_free_item_capacity(lx, cklb)
 	if free_page_count == 0:
-		Global.AddMessageShow(parent_, "背包已满！", 1.5, Vector2(485, 295))
+		Global.add_message_show(parent_, "背包已满！", 1.5, Vector2(485, 295))
 		return
 	if lx in ["武器", "防具", "饰品", "翅膀", "头衔", "时装", "法宝", "宠物装备"] and buy_num > free_page_count:
-		Global.AddMessageShow(parent_, "背包空位不足！", 1.5, Vector2(485, 295))
+		Global.add_message_show(parent_, "背包空位不足！", 1.5, Vector2(485, 295))
 		return
 
 	PlayerData.spend_soul(_get_safe_total_cost(buy_num))
@@ -165,7 +165,7 @@ func add_item_toplayer(times):
 			for i in range(buy_num):
 				PlayerData.add_zb(item_name_, 0, {})
 
-	Global.AddMessageShow(parent_, "购买成功！", 1.5, Vector2(485, 295))
+	Global.add_message_show(parent_, "购买成功！", 1.5, Vector2(485, 295))
 
 
 func load_(name_):

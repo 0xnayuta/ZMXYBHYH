@@ -172,7 +172,7 @@ func _activate_owner_skills() -> void:
 			buff_info["magic_value"] = active_scaled_bonus(
 				int(magic_defense) if magic_defense != null else base_value, level, root_bone
 			)
-		Global.AddBuff(buff_parent, buff_info)
+		Global.add_buff(buff_parent, buff_info)
 
 
 func _owner_bonus_base_value(pet: Node, skill_name: String) -> int:

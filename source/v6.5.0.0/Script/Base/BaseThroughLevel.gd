@@ -1361,8 +1361,8 @@ func _restart_level_for_auto_battle() -> bool:
 		push_warning("自动重战保存失败：当前存档路径为空")
 	elif not MemoryClass.保存游戏(archive_path):
 		push_warning("自动重战保存失败：%s" % archive_path)
-	RoleProp.set_full_Hp()
-	RoleProp.set_full_Mp()
+	RoleProp.set_full_hp()
+	RoleProp.set_full_mp()
 	RoleProp.CurrentHp = int(RoleProp.roleprop.Hp)
 	RoleProp.CurrentMp = int(RoleProp.roleprop.Mp)
 	RoleProp.ws_value = 0
@@ -1488,7 +1488,7 @@ func level_create_monster(stage):
 	Monster_position_x[stage_key].remove_at(0)
 	Monster_position_y[stage_key].remove_at(0)
 	if mr_num <= Monster_group[stage_key].size():
-		mr = Global.Create_Monster(mr_xh, monster, Vector2(mr_loc_x, mr_loc_y))
+		mr = Global.create_monster(mr_xh, monster, Vector2(mr_loc_x, mr_loc_y))
 		can_create = false
 
 

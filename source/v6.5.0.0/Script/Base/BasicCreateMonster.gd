@@ -52,7 +52,7 @@ func Check():
 
 
 func CreateMonster(Id: int, Po: Vector2):
-	Global.Create_Monster(Id, BaseLevel_.monster, Po)
+	Global.create_monster(Id, BaseLevel_.monster, Po)
 
 
 func _on_create_monster_timeout() -> void:

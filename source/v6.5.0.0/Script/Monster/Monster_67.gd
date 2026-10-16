@@ -157,7 +157,7 @@ func CallBullet():
 				Vector2(580, 70)
 			]
 		for i in PositionList:
-			Global.add_Bullet(
+			Global.add_bullet(
 				"Monster67Bullet", self.bullet, MonsterDirection, 1, i + position, "hit3", self.objattackDic["hit3"]
 			)
 			await get_tree().create_timer(0.2, false).timeout
@@ -172,7 +172,7 @@ func CallBullet():
 			Vector2(1850, 510)
 		]
 		for i in PositionList:
-			Global.add_Bullet("Monster67Bullet", self.bullet, MonsterDirection, 1, i, "hit3", self.objattackDic["hit3"])
+			Global.add_bullet("Monster67Bullet", self.bullet, MonsterDirection, 1, i, "hit3", self.objattackDic["hit3"])
 		await get_tree().create_timer(2, false).timeout
 		PositionList = [
 			Vector2(1110, 510),
@@ -185,9 +185,9 @@ func CallBullet():
 			Vector2(2020, 510)
 		]
 		for i in PositionList:
-			Global.add_Bullet("Monster67Bullet", self.bullet, MonsterDirection, 1, i, "hit3", self.objattackDic["hit3"])
+			Global.add_bullet("Monster67Bullet", self.bullet, MonsterDirection, 1, i, "hit3", self.objattackDic["hit3"])
 
 
 func CallSZ():
-	var SZ = Global.Create_Monster(68, get_parent(), position) as Monster68
+	var SZ = Global.create_monster(68, get_parent(), position) as Monster68
 	SZ.Myfather = self

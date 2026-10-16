@@ -254,7 +254,7 @@ func _damage_area(center: Vector2, target_ids: Array[int]) -> void:
 func _apply_stun(target: BaseMonster) -> void:
 	if not _is_valid_target(target) or target.buff == null:
 		return
-	Global.AddBuff(
+	Global.add_buff(
 		target.buff,
 		{
 			"Name": "stun",
@@ -298,5 +298,5 @@ func _apply_hit(target: BaseMonster) -> void:
 		target.add_lj(damage)
 		Global.TotalRoleHit += damage
 		Global.TotalMagHit += damage
-		Global.addSound_(target, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
+		Global.add_sound(target, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 	owner_player.HitDic = old_hit_data

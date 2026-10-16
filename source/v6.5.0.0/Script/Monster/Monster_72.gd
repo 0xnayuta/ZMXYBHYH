@@ -131,7 +131,7 @@ func CallMonsterBullet():
 	var Position
 	var PositionList = [Vector2(0, 0), Vector2(0, -75), Vector2(0, 75)]
 	for i in PositionList:
-		Global.add_Bullet(BulletName, self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"])
+		Global.add_bullet(BulletName, self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"])
 		await get_tree().create_timer(0.3, false).timeout
 
 
@@ -155,7 +155,7 @@ func StrengthObj():
 
 func CallMonster():
 	if not IsCall:
-		var Self = Global.Create_Monster(72, get_parent(), position)
+		var Self = Global.create_monster(72, get_parent(), position)
 		Self.SHp = SHp * 1.5
 		Self.Hp = Self.SHp
 		Self.def = def * 1.2

@@ -229,7 +229,7 @@ func _spawn_stone_walls() -> void:
 		{"offset": -WALL_OFFSET_X, "direction": 1.0},
 		{"offset": WALL_OFFSET_X, "direction": -1.0},
 	]:
-		var wall := Global.Create_Monster(WALL_ID, get_parent(), position + Vector2(float(wall_data["offset"]), 0.0))
+		var wall := Global.create_monster(WALL_ID, get_parent(), position + Vector2(float(wall_data["offset"]), 0.0))
 		if not wall is BaseMonster:
 			push_error("WutaiEarthAncestor3078 failed to create stone wall 3082")
 			continue

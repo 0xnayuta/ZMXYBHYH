@@ -167,7 +167,7 @@ func summon_enhanced_monsters():
 
 	for i in range(5):
 		var summon_pos = self.position + summon_positions[i]
-		var enhanced_monster = Global.Create_Monster(122, get_parent(), summon_pos)
+		var enhanced_monster = Global.create_monster(122, get_parent(), summon_pos)
 
 		if enhanced_monster != null:
 			enhance_monster_122(enhanced_monster)
@@ -241,7 +241,7 @@ func CallBullet3():
 		"AttackKind": "cure",
 		"CanAdd": false
 	}
-	Global.AddBuff(self.buff, heal_buff)
+	Global.add_buff(self.buff, heal_buff)
 
 
 func _exit_tree() -> void:

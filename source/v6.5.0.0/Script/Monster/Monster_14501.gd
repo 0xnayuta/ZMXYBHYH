@@ -352,7 +352,7 @@ func _summon_next_stage():
 
 	get_parent().add_child(next_boss)
 
-	Global.AddMessageShow(
+	Global.add_message_show(
 		get_parent(),
 		"召唤了%s！" % ["初阶-邪·沙僧", "二阶-邪·沙僧", "三阶-邪·沙僧", "四阶-邪·沙僧", "五阶-邪·沙僧"][next_boss.current_stage - 1],
 		2.0,

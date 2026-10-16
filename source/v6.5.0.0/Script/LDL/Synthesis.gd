@@ -142,13 +142,13 @@ func _on_syn_pressed() -> void:
 			PlayerData.player_data["放入列表"]["物品1"].clear()
 			PlayerData.player_data["放入列表"]["物品2"].clear()
 			PlayerData.player_data["放入列表"]["物品3"].clear()
-			Global.AddMessageShow(
+			Global.add_message_show(
 				get_parent(), "合成成功！获得：" + str(AE.AllEquipment_[item_]["名字"]) + " * 1 !!", 1.5, Vector2(15, -45)
 			)
 		else:
-			Global.AddMessageShow(get_parent(), "灵魂不足！！！", 1.5, Vector2(15, -45))
+			Global.add_message_show(get_parent(), "灵魂不足！！！", 1.5, Vector2(15, -45))
 	else:
-		Global.AddMessageShow(get_parent(), "合成公式错误！", 1.5, Vector2(15, -45))
+		Global.add_message_show(get_parent(), "合成公式错误！", 1.5, Vector2(15, -45))
 	MemoryClass.保存游戏(Global.cd_path)
 
 

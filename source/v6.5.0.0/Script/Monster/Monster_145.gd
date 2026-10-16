@@ -139,11 +139,11 @@ func CallBullet1():
 	var bb
 	var sp = 1 + Rolelevel * 0.015
 	if self.MonsterDirection:
-		bb = Global.add_Bullet(
+		bb = Global.add_bullet(
 			"Monster145Bullet1", self.bullet, false, sp, Vector2(20, 0) + position, "hit1", self.objattackDic["hit1"]
 		)
 	else:
-		bb = Global.add_Bullet(
+		bb = Global.add_bullet(
 			"Monster145Bullet1", self.bullet, false, sp, Vector2(-20, 0) + position, "hit1", self.objattackDic["hit1"]
 		)
 	bb.scale = Vector2(2, 2)
@@ -156,7 +156,7 @@ func CallBullet2():
 	for i in range(5):
 		var Bullet
 		var Position = Vector2(position.x + randi_range(-450, 500), -800)
-		Bullet = Global.add_Bullet(
+		Bullet = Global.add_bullet(
 			"Monster145Bullet2", self.bullet, false, sp, Position, "hit2", self.objattackDic["hit2"]
 		)
 		Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))
@@ -167,7 +167,7 @@ func CallBullet3():
 	var sp = 1 + Rolelevel * 0.02
 	var bb
 	if self.MonsterDirection:
-		bb = Global.add_Bullet(
+		bb = Global.add_bullet(
 			"Monster145Bullet2",
 			self.bullet,
 			!self.MonsterDirection,
@@ -178,7 +178,7 @@ func CallBullet3():
 		)
 		bb.rotation_degrees = -45
 	else:
-		bb = Global.add_Bullet(
+		bb = Global.add_bullet(
 			"Monster145Bullet2",
 			self.bullet,
 			!self.MonsterDirection,
@@ -194,7 +194,7 @@ func CallBullet4():
 	var sp = 0.5 + Rolelevel * 0.01
 	var bb
 	if self.MonsterDirection:
-		bb = Global.add_Bullet(
+		bb = Global.add_bullet(
 			"Monster145Bullet3",
 			self.bullet,
 			!self.MonsterDirection,
@@ -204,7 +204,7 @@ func CallBullet4():
 			self.objattackDic["hit3"]
 		)
 	else:
-		bb = Global.add_Bullet(
+		bb = Global.add_bullet(
 			"Monster145Bullet3",
 			self.bullet,
 			!self.MonsterDirection,

@@ -347,7 +347,7 @@ func CallBullet1():
 	for i in range(bullet_count):
 		var Bullets
 		if self.MonsterDirection:
-			Bullets = Global.add_Bullet(
+			Bullets = Global.add_bullet(
 				"Monster1410Bullet1",
 				self.bullet,
 				false,
@@ -357,7 +357,7 @@ func CallBullet1():
 				self.objattackDic["hit1"]
 			)
 		else:
-			Bullets = Global.add_Bullet(
+			Bullets = Global.add_bullet(
 				"Monster1410Bullet1",
 				self.bullet,
 				false,
@@ -396,7 +396,7 @@ func revive():
 	set_meta("counts_as_alive_for_stage_clear", true)
 	MonsterBullet.clear_all_1410_bullets()
 	await get_tree().create_timer(2.0, false).timeout
-	Global.add_SpecialEffect(get_parent(), global_position, "Relife", Vector2(2, 2), false, 1)
+	Global.add_special_effect(get_parent(), global_position, "Relife", Vector2(2, 2), false, 1)
 	await get_tree().create_timer(0.3, false).timeout
 	self.Hp = self.SHp
 	self.is_death = false

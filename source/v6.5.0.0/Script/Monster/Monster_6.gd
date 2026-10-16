@@ -220,7 +220,7 @@ func CallBFX():
 		GetPo.push_back(i + RoleProp.get_nearest_monster_target_position(global_position))
 	await get_tree().create_timer(1.6, false).timeout
 	for i in GetPo:
-		Global.add_Bullet("Monster6Bullet3", self.bullet, false, 1, i, "qnbx", self.objattackDic["qnbx"])
+		Global.add_bullet("Monster6Bullet3", self.bullet, false, 1, i, "qnbx", self.objattackDic["qnbx"])
 
 
 func m6_hb_effect_2():
@@ -236,35 +236,35 @@ func m6_hb_effect_2():
 		self.position.x - 510,
 		self.position.x + 510
 	]
-	Global.add_Bullet(
+	Global.add_bullet(
 		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[0], self.position.y), "qnhb", self.objattackDic["qnhb"]
 	)
 	await get_tree().create_timer(0.2).timeout
-	Global.add_Bullet(
+	Global.add_bullet(
 		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[1], self.position.y), "qnhb", self.objattackDic["qnhb"]
 	)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[2], self.position.y), "qnhb", self.objattackDic["qnhb"]
 	)
 	await get_tree().create_timer(0.2).timeout
-	Global.add_Bullet(
+	Global.add_bullet(
 		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[3], self.position.y), "qnhb", self.objattackDic["qnhb"]
 	)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[4], self.position.y), "qnhb", self.objattackDic["qnhb"]
 	)
 	await get_tree().create_timer(0.2).timeout
-	Global.add_Bullet(
+	Global.add_bullet(
 		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[5], self.position.y), "qnhb", self.objattackDic["qnhb"]
 	)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[6], self.position.y), "qnhb", self.objattackDic["qnhb"]
 	)
 	await get_tree().create_timer(0.2).timeout
-	Global.add_Bullet(
+	Global.add_bullet(
 		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[7], self.position.y), "qnhb", self.objattackDic["qnhb"]
 	)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[8], self.position.y), "qnhb", self.objattackDic["qnhb"]
 	)
 
@@ -272,7 +272,7 @@ func m6_hb_effect_2():
 func m6_hb_effect_3():
 	var dir = self.MonsterDirection
 	if dir:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"htsl",
 			self.bullet,
 			dir,
@@ -282,7 +282,7 @@ func m6_hb_effect_3():
 			self.objattackDic["htsl"]
 		)
 	else:
-		Global.add_Bullet(
+		Global.add_bullet(
 			"htsl",
 			self.bullet,
 			dir,

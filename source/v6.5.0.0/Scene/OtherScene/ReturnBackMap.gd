@@ -37,7 +37,7 @@ func _on_close_pressed() -> void:
 
 func _on_challenge_pressed() -> void:
 	if TargetMap == null or TargetMap == "":
-		Global.AddMessageShow(Global.Windows_, "请先选择穿越地点！！", 1.5, Vector2(500, 305))
+		Global.add_message_show(Global.Windows_, "请先选择穿越地点！！", 1.5, Vector2(500, 305))
 		return
 	match TargetMap:
 		"nmg":
@@ -45,4 +45,4 @@ func _on_challenge_pressed() -> void:
 		"zld":
 			Global.change_scene("res://Scene/Level/Level_hdgqzld.tscn")
 		"sssl":
-			Global.AddMessageShow(Global.Windows_, "青龙之森暂未开放！！", 1.5, Vector2(500, 305))
+			Global.add_message_show(Global.Windows_, "青龙之森暂未开放！！", 1.5, Vector2(500, 305))

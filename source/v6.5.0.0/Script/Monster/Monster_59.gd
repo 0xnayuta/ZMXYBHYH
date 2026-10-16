@@ -148,10 +148,10 @@ func Call_ZZZY():
 	var Position
 	if MonsterDirection:
 		Position = Vector2(420, randi_range(-130, 130)) + self.position
-		Global.add_Bullet(BulletName, self.bullet, true, 1, Position, "zzzy", self.objattackDic["zzzy"])
+		Global.add_bullet(BulletName, self.bullet, true, 1, Position, "zzzy", self.objattackDic["zzzy"])
 	else:
 		Position = Vector2(-420, randi_range(-130, 130)) + self.position
-		Global.add_Bullet(BulletName, self.bullet, false, 1, Position, "zzzy", self.objattackDic["zzzy"])
+		Global.add_bullet(BulletName, self.bullet, false, 1, Position, "zzzy", self.objattackDic["zzzy"])
 
 
 func CallZZHY():
@@ -160,7 +160,7 @@ func CallZZHY():
 		var Position = Vector2(
 			RoleProp.get_nearest_monster_target_position(global_position).x + randi_range(-140, 140), 500
 		)
-		Global.add_Bullet("Monster59Bullet_2", self.bullet, false, 1, Position, "zmhy", self.objattackDic["zmhy"])
+		Global.add_bullet("Monster59Bullet_2", self.bullet, false, 1, Position, "zmhy", self.objattackDic["zmhy"])
 
 
 func state_hurt():

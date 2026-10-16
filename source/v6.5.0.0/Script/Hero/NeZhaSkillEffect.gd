@@ -77,7 +77,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 	var target := _get_monster_from_hit_area(area)
 	if target == null or _is_summon_or_pet_target(target) or target.buff == null:
 		return
-	Global.AddBuff(target.buff, HitDic["addeffect"])
+	Global.add_buff(target.buff, HitDic["addeffect"])
 
 
 func _physics_process(delta: float) -> void:

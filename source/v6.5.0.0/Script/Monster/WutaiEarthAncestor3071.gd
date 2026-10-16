@@ -153,7 +153,7 @@ func _spawn_guardians() -> void:
 		return
 	_spawn_completed = true
 	for offset in GUARDIAN_OFFSETS:
-		var guardian := Global.Create_Monster(GUARDIAN_ID, get_parent(), position + offset)
+		var guardian := Global.create_monster(GUARDIAN_ID, get_parent(), position + offset)
 		if guardian is BaseMonster:
 			guardian.set_meta("earth_ancestor_guardian", true)
 			_guardians.append(guardian)
@@ -199,7 +199,7 @@ func _begin_guardian_transition() -> void:
 	if _transition_spawned or _transition_attempted or get_parent() == null:
 		return
 	_transition_attempted = true
-	var next_form := Global.Create_Monster(NEXT_FORM_ID, get_parent(), position)
+	var next_form := Global.create_monster(NEXT_FORM_ID, get_parent(), position)
 	if not next_form is BaseMonster:
 		push_error("WutaiEarthAncestor3071 failed to create second form 3077")
 		return

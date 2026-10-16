@@ -56,7 +56,7 @@ var _game4_level_config_providers: Dictionary = {}
 
 func _ready() -> void:
 	Global.CurrentLevel = ""
-	Global.addBGM_(self, "res://Music/level/szzw.mp3")
+	Global.add_bgm(self, "res://Music/level/szzw.mp3")
 
 	self.level_stage = 1
 	super._ready()
@@ -117,7 +117,7 @@ func _physics_process(delta: float) -> void:
 			var Local = Vector2(1100, 400)
 			if Id == 33 or Id == 24 or Id == 56:
 				Local = Vector2(700, 390)
-			Monster = Global.Create_Monster(i["Num"], monster, Local)
+			Monster = Global.create_monster(i["Num"], monster, Local)
 			if Monster == null:
 				continue
 			if i["Name"] != null and str(i["Name"]) != "":

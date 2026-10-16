@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 		summon_attribute_scale = 0.1 + (weapon_level - 1) * 0.1
 
 	needMp = 50 + self.FB_Level * 5
-	if PlayerData.CheckHaveWX("sqzlw", "木"):
+	if PlayerData.check_have_wx("sqzlw", "木"):
 		ADDTime = self.FB_Level * 0.1 + 3
 	else:
 		ADDTime = 3

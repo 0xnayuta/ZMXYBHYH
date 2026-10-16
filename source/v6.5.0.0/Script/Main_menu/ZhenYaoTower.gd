@@ -145,7 +145,7 @@ func _refresh_stats() -> void:
 
 func _show_unavailable(feature_name: String) -> void:
 	if Global != null and Global.has_method("AddMessageShow"):
-		Global.AddMessageShow(self, "%s暂未开放" % feature_name, 1.2, Vector2(470, 300))
+		Global.add_message_show(self, "%s暂未开放" % feature_name, 1.2, Vector2(470, 300))
 
 
 func _on_achievement_shop_pressed() -> void:
@@ -657,7 +657,7 @@ func _purchase_shop_item(
 	if points < total_price:
 		_show_shop_message("镇妖塔积分不足")
 		return
-	if PlayerData.get_dj_page(item_id) == 0 and int(PlayerData.CheckCanUsePage("道具列表")) == 0:
+	if PlayerData.get_dj_page(item_id) == 0 and int(PlayerData.check_can_use_page("道具列表")) == 0:
 		_show_shop_message("道具背包已满")
 		return
 	PlayerData.player_data[TOWER_POINTS_KEY] = points - total_price
@@ -674,7 +674,7 @@ func _purchase_shop_item(
 
 func _show_shop_message(message: String) -> void:
 	if Global != null and Global.has_method("AddMessageShow"):
-		Global.AddMessageShow(self, message, 1.2, Vector2.ZERO)
+		Global.add_message_show(self, message, 1.2, Vector2.ZERO)
 
 
 func _save_tower_data() -> void:

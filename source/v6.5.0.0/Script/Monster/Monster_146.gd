@@ -261,7 +261,7 @@ func CallBullet_2():
 	var sp = 1 + RoleProp.baseroleprop.Level * 0.02
 	var bullet_name = "Monster146Bullet"
 
-	var bb = Global.add_Bullet(
+	var bb = Global.add_bullet(
 		bullet_name, self.bullet, !self.MonsterDirection, sp, Vector2(0, 0) + position, "hit2", attack_config
 	)
 

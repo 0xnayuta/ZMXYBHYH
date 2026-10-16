@@ -349,8 +349,8 @@ func _get_level(sword_id: String) -> int:
 func _apply_role_prop() -> void:
 	if RoleProp != null:
 		RoleProp.set_basic_prop()
-		RoleProp.check_Hp()
-		RoleProp.check_Mp()
+		RoleProp.check_hp()
+		RoleProp.check_mp()
 		if RoleProp.SourcePlayer != null and RoleProp.SourcePlayer.has_method("jsfzsy"):
 			RoleProp.SourcePlayer.jsfzsy()
 
@@ -367,4 +367,4 @@ func _show_message(message: String) -> void:
 	var parent: Node = self
 	if Global.Windows_ != null:
 		parent = Global.Windows_
-	Global.AddMessageShow(parent, message, 1.2, get_viewport().get_visible_rect().size * 0.5)
+	Global.add_message_show(parent, message, 1.2, get_viewport().get_visible_rect().size * 0.5)

@@ -23,7 +23,7 @@ var fi_o = false
 func _ready() -> void:
 	np.play("ini")
 	Global.CurrentLevel = "螺旋地狱"
-	Global.addBGM_(self, "res://Music/level/2_bg4.mp3")
+	Global.add_bgm(self, "res://Music/level/2_bg4.mp3")
 	self.level_stage = 1
 	super._ready()
 	Monster_group = {

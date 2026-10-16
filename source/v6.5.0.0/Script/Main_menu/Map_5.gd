@@ -157,8 +157,8 @@ func _ready() -> void:
 	Global.LLBTBOSSMS = false
 	Global.LLBTCGMS = false
 	Global.LLBTWXMS = false
-	RoleProp.set_full_Hp()
-	RoleProp.set_full_Mp()
+	RoleProp.set_full_hp()
+	RoleProp.set_full_mp()
 	RoleProp.CurrentHp = RoleProp.roleprop.Hp
 	RoleProp.CurrentMp = RoleProp.roleprop.Mp
 
@@ -171,7 +171,7 @@ func _ready() -> void:
 	Global.CurrentLevel = ""
 
 	if not Global.IsFrist:
-		Global.AddMessageShow(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
 		Global.IsFrist = true
 
 	Global.PlayerBeHitCount = 0
@@ -208,7 +208,7 @@ func _require_map5_prerequisite(level_name: String, message: String = "") -> boo
 	if _is_map5_level_cleared(level_name):
 		return true
 	var prompt := message if message != "" else "需要先通关" + level_name + "！"
-	Global.AddMessageShow(_ui_parent(), prompt, 1.5, Vector2(470, 300))
+	Global.add_message_show(_ui_parent(), prompt, 1.5, Vector2(470, 300))
 	return false
 
 
@@ -243,43 +243,43 @@ func check_pass_level() -> void:
 
 
 func _on_level_40_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "绝仙门", Vector2(0, 0), "res://Scene/Level/Level_40.tscn")
+	Global.add_level_info(_ui_parent(), "绝仙门", Vector2(0, 0), "res://Scene/Level/Level_40.tscn")
 
 
 func _on_level_41_pressed() -> void:
 	if not _require_map5_prerequisite("绝仙门"):
 		return
-	Global.AddLevelInfo(_ui_parent(), "紫晶门", Vector2(0, 0), "res://Scene/Level/Level_41.tscn")
+	Global.add_level_info(_ui_parent(), "紫晶门", Vector2(0, 0), "res://Scene/Level/Level_41.tscn")
 
 
 func _on_level_42_pressed() -> void:
 	if not _require_map5_prerequisite("紫晶门"):
 		return
-	Global.AddLevelInfo(_ui_parent(), "戮仙门", Vector2(0, 0), "res://Scene/Level/Level_42.tscn")
+	Global.add_level_info(_ui_parent(), "戮仙门", Vector2(0, 0), "res://Scene/Level/Level_42.tscn")
 
 
 func _on_level_43_pressed() -> void:
 	if not _require_map5_prerequisite("戮仙门"):
 		return
-	Global.AddLevelInfo(_ui_parent(), "指景宫", Vector2(0, 0), "res://Scene/Level/Level_43.tscn")
+	Global.add_level_info(_ui_parent(), "指景宫", Vector2(0, 0), "res://Scene/Level/Level_43.tscn")
 
 
 func _on_level_44_pressed() -> void:
 	if not _require_map5_prerequisite("指景宫"):
 		return
-	Global.AddLevelInfo(_ui_parent(), "陷仙门", Vector2(0, 0), "res://Scene/Level/Level_44.tscn")
+	Global.add_level_info(_ui_parent(), "陷仙门", Vector2(0, 0), "res://Scene/Level/Level_44.tscn")
 
 
 func _on_level_45_pressed() -> void:
 	if not _require_map5_prerequisite("陷仙门"):
 		return
-	Global.AddLevelInfo(_ui_parent(), "绝境宫", Vector2(0, 0), "res://Scene/Level/Level_45.tscn")
+	Global.add_level_info(_ui_parent(), "绝境宫", Vector2(0, 0), "res://Scene/Level/Level_45.tscn")
 
 
 func _on_level_46_pressed() -> void:
 	if not _require_map5_prerequisite("绝境宫"):
 		return
-	Global.AddLevelInfo(_ui_parent(), "通天教主", Vector2(0, 0), "res://Scene/Level/Level_46.tscn")
+	Global.add_level_info(_ui_parent(), "通天教主", Vector2(0, 0), "res://Scene/Level/Level_46.tscn")
 
 
 func _on_hdzm_pressed() -> void:
@@ -288,7 +288,7 @@ func _on_hdzm_pressed() -> void:
 
 func _on_memory_class_pressed() -> void:
 	MemoryClass.保存游戏(Global.cd_path)
-	Global.AddMessageShow(get_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
+	Global.add_message_show(get_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
 
 
 func _on_shop_pressed() -> void:
@@ -307,7 +307,7 @@ func _on_skill_pressed() -> void:
 
 
 func _on_activity_pressed() -> void:
-	Global.AddMessageShow(get_parent(), "敬请期待！！！！", 1.5, Vector2(470, 300))
+	Global.add_message_show(get_parent(), "敬请期待！！！！", 1.5, Vector2(470, 300))
 
 
 func _on_task_pressed() -> void:

@@ -75,7 +75,7 @@ func do_hit_1():
 
 func CallBullet():
 	var Bullet
-	Bullet = Global.add_Bullet(
+	Bullet = Global.add_bullet(
 		"Monster116Bullet", self.bullet, false, 2.5, Vector2(0, 0) + position, "hit1", self.objattackDic["hit1"]
 	)
 	Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))

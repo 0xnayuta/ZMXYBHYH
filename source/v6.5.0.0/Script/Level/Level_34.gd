@@ -26,7 +26,7 @@ func _ready() -> void:
 	load("res://Scene/Monster/Monster_122.tscn")
 	load("res://Scene/Monster/Monster_118.tscn")
 	Global.CurrentLevel = "尾妖林"
-	Global.addBGM_(self, "res://Music/level/34_bg5.mp3")
+	Global.add_bgm(self, "res://Music/level/34_bg5.mp3")
 	self.level_stage = 39
 	super._ready()
 
@@ -445,7 +445,7 @@ func _on_all_lights_on():
 	IsPlay = true
 	lights_on = true
 
-	Global.AddMessageShow(self, "所有灯已点亮！", 2.5, Vector2(500, 300))
+	Global.add_message_show(self, "所有灯已点亮！", 2.5, Vector2(500, 300))
 
 	$Check/check.disabled = false
 
@@ -483,7 +483,7 @@ func _on_check_area_entered(area: Area2D) -> void:
 		if HurtCount >= 3 and not is_transporting:
 			is_transporting = true
 
-			Global.AddMessageShow(self, "传送开启！", 1.5, Vector2(500, 200))
+			Global.add_message_show(self, "传送开启！", 1.5, Vector2(500, 200))
 
 			call_deferred("_transport_to_hidden_level")
 

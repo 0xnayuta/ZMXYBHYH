@@ -131,7 +131,7 @@ func _physics_process(delta: float) -> void:
 	if self.Hp <= 0:
 		if get_parent().get_parent() is LevelNMGHDGQ:
 			if boos_4 == null:
-				boos_4 = Global.Create_Monster(141, get_parent(), Vector2(700, 430))
+				boos_4 = Global.create_monster(141, get_parent(), Vector2(700, 430))
 
 
 func Monster_Intelligence():
@@ -162,7 +162,7 @@ func call_fire_1():
 	var ppx = [-450, -350, -250, -150, -50, 50, 150, 250, 350]
 	var ppy = [370, 370, 370, 370, 370, 370, 370, 370, 370]
 	for i in range(9):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster22Fire",
 			self.bullet,
 			false,
@@ -180,7 +180,7 @@ func call_fire_2():
 	var ppx = [570, 470, 370, 270, 170, 70, -30, -130, -230]
 	var ppy = [370, 370, 370, 370, 370, 370, 370, 370, 370]
 	for i in range(9):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster22Fire",
 			self.bullet,
 			false,
@@ -199,7 +199,7 @@ func call_fire_3():
 
 	var ppy = [370, 370, 370, 370, 370, 370, 370]
 	for i in range(7):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster22Fire",
 			self.bullet,
 			false,
@@ -216,7 +216,7 @@ func call_fire_4():
 	var ppx = [-450, -250, -50, 150, 350, 550, 750]
 	var ppy = [370, 370, 370, 370, 370, 370, 370]
 	for i in range(7):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster22Fire",
 			self.bullet,
 			false,
@@ -231,7 +231,7 @@ func call_fire_4():
 
 func _on_fire_timeout() -> void:
 	for i in range(3, 10):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster22Fire",
 			self.bullet,
 			false,

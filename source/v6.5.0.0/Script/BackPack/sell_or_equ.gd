@@ -158,7 +158,7 @@ func _on_equ_pressed() -> void:
 		if _call_pet_action("pet_equip_from_popup"):
 			queue_free()
 		return
-	var new_list = PlayerData.GetzbData(page, number)
+	var new_list = PlayerData.get_zb_data(page, number)
 	if not CheckCanEquipment(new_list["名字"]):
 		return
 	match AE.AllEquipment_[new_list["名字"]]["类型"]:
@@ -296,7 +296,7 @@ func _on_equ_pressed() -> void:
 				EQ_prop = new_list["Data"]
 				PlayerData.add_fb(mz, ql, wx, EQ_prop)
 				var parent = Global.get_parent_(self, 3)
-				Global.AddMessageShow(parent, "当前法宝正在使用，无法更换！！", 1.5, Vector2(485, 240))
+				Global.add_message_show(parent, "当前法宝正在使用，无法更换！！", 1.5, Vector2(485, 240))
 	RoleProp.get_equ_last_pro()
 	RoleProp.get_last_prop()
 	if is_instance_valid(RoleProp.SourcePlayer):
@@ -312,7 +312,7 @@ func _on_sell_pressed() -> void:
 		return
 	if _is_locked():
 		lock_button.grab_focus()
-		Global.AddMessageShow(Global.get_ui_popup_layer(), "该物品已锁定，请先解锁后再出售！", 1.5, Vector2.ZERO)
+		Global.add_message_show(Global.get_ui_popup_layer(), "该物品已锁定，请先解锁后再出售！", 1.5, Vector2.ZERO)
 		return
 	if EQ_prop == null:
 		PlayerData.remove_zb(page, number)
@@ -328,11 +328,11 @@ func _on_sell_pressed() -> void:
 				pass
 			else:
 				var parent = Global.get_parent_(self, 3)
-				Global.AddMessageShow(parent, "请先卸下该装备上的宝石！！", 1.5, Vector2(485, 240))
+				Global.add_message_show(parent, "请先卸下该装备上的宝石！！", 1.5, Vector2(485, 240))
 				return
-	var abc = PlayerData.GetzbData(page, number)
+	var abc = PlayerData.get_zb_data(page, number)
 
-	var Name = PlayerData.GetzbData(page, number)["Data"]["名字"]
+	var Name = PlayerData.get_zb_data(page, number)["Data"]["名字"]
 	if pz == "传说" or pz == "玄冥" or pz == "魂器" or pz == "神器" or pz == "邪灵":
 		_show_sell_confirm("确定要卖出" + str(pz) + "品质的" + str(Name) + "吗？（此装备已强化至+" + str(abc["强化等级"]) + "。）")
 		return
@@ -457,5 +457,5 @@ func CheckCanEquipment(EquipmentName):
 			RoleBase = "哪吒"
 			if EqBase == "哪吒":
 				return true
-	Global.AddMessageShow(parent, Name_ + "属于" + EqBase + "，" + RoleBase + "无法穿戴！！", 1.5, Vector2(485, 240))
+	Global.add_message_show(parent, Name_ + "属于" + EqBase + "，" + RoleBase + "无法穿戴！！", 1.5, Vector2(485, 240))
 	return false

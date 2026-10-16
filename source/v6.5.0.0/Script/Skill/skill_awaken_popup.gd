@@ -161,12 +161,12 @@ func _on_confirm_pressed() -> void:
 		and skill_id != "fhf"
 		and skill_id != "ygth"
 	):
-		Global.AddMessageShow(self, "当前技能觉醒暂未开启", 1.5, Vector2(470, 270))
+		Global.add_message_show(self, "当前技能觉醒暂未开启", 1.5, Vector2(470, 270))
 		return
 	if _is_skill_awakened(skill_id):
 		return
 	if not _consume_awaken_stones(15):
-		Global.AddMessageShow(self, "一阶觉醒石不足15个", 1.5, Vector2(470, 270))
+		Global.add_message_show(self, "一阶觉醒石不足15个", 1.5, Vector2(470, 270))
 		return
 	var awaken_data_value: Variant = PlayerData.player_data.get("技能觉醒", {})
 	var awaken_data: Dictionary = awaken_data_value if awaken_data_value is Dictionary else {}
@@ -258,7 +258,7 @@ func _on_confirm_pressed() -> void:
 		skill_display_name = "灵魂摄取"
 	elif skill_id == "tjgl":
 		skill_display_name = "天降甘露"
-	Global.AddMessageShow(self, skill_display_name + "觉醒成功", 1.5, Vector2(470, 270))
+	Global.add_message_show(self, skill_display_name + "觉醒成功", 1.5, Vector2(470, 270))
 
 
 func _count_awaken_stones() -> int:

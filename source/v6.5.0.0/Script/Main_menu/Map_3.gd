@@ -199,8 +199,8 @@ func _ready():
 	Global.LLBTBOSSMS = false
 	Global.LLBTCGMS = false
 	Global.LLBTWXMS = false
-	RoleProp.set_full_Hp()
-	RoleProp.set_full_Mp()
+	RoleProp.set_full_hp()
+	RoleProp.set_full_mp()
 	RoleProp.CurrentHp = RoleProp.roleprop.Hp
 	RoleProp.CurrentMp = RoleProp.roleprop.Mp
 	for i in range(11):
@@ -214,7 +214,7 @@ func _ready():
 	if Global.Windows_ == null:
 		Global.Windows_ = _ui_parent()
 	if not Global.IsFrist:
-		Global.AddMessageShow(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "欢迎进入游戏！作者：造梦青川，作品完全免费！！", 1.5, Vector2(470, 300))
 		Global.IsFrist = true
 	Global.PlayerBeHitCount = 0
 	Global.LastLevelPath = ""
@@ -272,26 +272,26 @@ func _on_boss_treasure_toggled():
 	MemoryClass.main_bc()
 
 	var mode_text = "普通掉落模式" if not is_chest_mode else "宝箱掉落模式（Boss 将掉落自选宝箱）"
-	Global.AddMessageShow(Global.Windows_, mode_text, 1.5, Vector2(470, 300))
+	Global.add_message_show(Global.Windows_, mode_text, 1.5, Vector2(470, 300))
 
 
 func check_music():
 	if MainSet.set_data["music"] == 1:
 		if my_music != null:
 			my_music.queue_free()
-		my_music = Global.addBGM_(self, "res://Music/MainSceneMusic/zmxy_1BGM.mp3")
+		my_music = Global.add_bgm(self, "res://Music/MainSceneMusic/zmxy_1BGM.mp3")
 	elif MainSet.set_data["music"] == 2:
 		if my_music != null:
 			my_music.queue_free()
-		my_music = Global.addBGM_(self, "res://Music/MainSceneMusic/zmxy_2BGM.mp3")
+		my_music = Global.add_bgm(self, "res://Music/MainSceneMusic/zmxy_2BGM.mp3")
 	elif MainSet.set_data["music"] == 3:
 		if my_music != null:
 			my_music.queue_free()
-		my_music = Global.addBGM_(self, "res://Music/MainSceneMusic/44_begin.mp3")
+		my_music = Global.add_bgm(self, "res://Music/MainSceneMusic/44_begin.mp3")
 	elif MainSet.set_data["music"] == 4:
 		if my_music != null:
 			my_music.queue_free()
-		my_music = Global.addBGM_(self, "res://Music/MainSceneMusic/zmxy4bg.mp3")
+		my_music = Global.add_bgm(self, "res://Music/MainSceneMusic/zmxy4bg.mp3")
 
 
 func check_pass_level():
@@ -376,66 +376,66 @@ func check_pass_level():
 
 
 func _on_level_21_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "九重天", Vector2(0, 0), "res://Scene/Level/Level_22.tscn")
+	Global.add_level_info(_ui_parent(), "九重天", Vector2(0, 0), "res://Scene/Level/Level_22.tscn")
 
 
 func _on_level_22_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "天宫道", Vector2(0, 0), "res://Scene/Level/Level_23.tscn")
+	Global.add_level_info(_ui_parent(), "天宫道", Vector2(0, 0), "res://Scene/Level/Level_23.tscn")
 
 
 func _on_level_23_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "南天门", Vector2(0, 0), "res://Scene/Level/Level_24.tscn")
+	Global.add_level_info(_ui_parent(), "南天门", Vector2(0, 0), "res://Scene/Level/Level_24.tscn")
 
 
 func _on_level_24_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "南天王殿", Vector2(0, 0), "res://Scene/Level/Level_25.tscn")
+	Global.add_level_info(_ui_parent(), "南天王殿", Vector2(0, 0), "res://Scene/Level/Level_25.tscn")
 
 
 func _on_level_25_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "西天王殿", Vector2(0, 0), "res://Scene/Level/Level_26.tscn")
+	Global.add_level_info(_ui_parent(), "西天王殿", Vector2(0, 0), "res://Scene/Level/Level_26.tscn")
 
 
 func _on_level_26_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "北天王殿", Vector2(0, 0), "res://Scene/Level/Level_27.tscn")
+	Global.add_level_info(_ui_parent(), "北天王殿", Vector2(0, 0), "res://Scene/Level/Level_27.tscn")
 
 
 func _on_level_27_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "彩虹楼", Vector2(0, 0), "res://Scene/Level/Level_28.tscn")
+	Global.add_level_info(_ui_parent(), "彩虹楼", Vector2(0, 0), "res://Scene/Level/Level_28.tscn")
 
 
 func _on_level_28_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "朝会殿", Vector2(0, 0), "res://Scene/Level/Level_29.tscn")
+	Global.add_level_info(_ui_parent(), "朝会殿", Vector2(0, 0), "res://Scene/Level/Level_29.tscn")
 
 
 func _on_level_29_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "凌霄宝殿", Vector2(0, 0), "res://Scene/Level/Level_30.tscn")
+	Global.add_level_info(_ui_parent(), "凌霄宝殿", Vector2(0, 0), "res://Scene/Level/Level_30.tscn")
 
 
 func _on_level_30_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "玲珑宝塔", Vector2(0, 0), "res://Scene/Level/Level_llbt.tscn")
+	Global.add_level_info(_ui_parent(), "玲珑宝塔", Vector2(0, 0), "res://Scene/Level/Level_llbt.tscn")
 
 
 func _on_level_stz_pressed() -> void:
 	Global.SelectedThreePrinceId = 0
-	Global.AddLevelInfo(_ui_parent(), "挑战三太子", Vector2(0, 0), "res://Scene/Level/Level_stz.tscn")
+	Global.add_level_info(_ui_parent(), "挑战三太子", Vector2(0, 0), "res://Scene/Level/Level_stz.tscn")
 
 
 func _on_level_dsg_pressed() -> void:
 	if int(PlayerData.player_data.get("兜率宫", 0)) == 0:
-		Global.AddMessageShow(get_parent(), "需通关玲珑宝塔！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "需通关玲珑宝塔！", 1.5, Vector2(470, 300))
 	else:
-		Global.AddLevelInfo(_ui_parent(), "兜率宫", Vector2(0, 0), "兜率宫")
+		Global.add_level_info(_ui_parent(), "兜率宫", Vector2(0, 0), "兜率宫")
 
 
 func _on_level_hdzm_pressed() -> void:
 	if PlayerData.player_data.截教天镜 == false:
-		Global.AddMessageShow(get_parent(), "需通关兜率宫！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "需通关兜率宫！", 1.5, Vector2(470, 300))
 	else:
 		Global.AddHDZM(_ui_parent(), self)
 
 
 func _on_level_sssl_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "神兽森林", Vector2(0, 0), "res://Scene/Level/Level_sssl.tscn")
+	Global.add_level_info(_ui_parent(), "神兽森林", Vector2(0, 0), "res://Scene/Level/Level_sssl.tscn")
 
 
 func _on_smdp_pressed() -> void:
@@ -452,24 +452,24 @@ func _on_kls_pressed() -> void:
 
 
 func _on_ghg_pressed() -> void:
-	Global.AddLevelInfo(_ui_parent(), "广寒宫", Vector2(0, 0), "res://Scene/Level/Level_ghg.tscn")
+	Global.add_level_info(_ui_parent(), "广寒宫", Vector2(0, 0), "res://Scene/Level/Level_ghg.tscn")
 
 
 func _on_bxgh_pressed() -> void:
 	Global.SelectedEightImmortalId = 0
-	Global.AddLevelInfo(_ui_parent(), "八仙过海", Vector2(0, 0), "res://Scene/Level/Level_bxgh.tscn")
+	Global.add_level_info(_ui_parent(), "八仙过海", Vector2(0, 0), "res://Scene/Level/Level_bxgh.tscn")
 
 
 func _on_tzhy_pressed() -> void:
 	if PlayerData.player_data["玩家等级"] < 40:
-		Global.AddMessageShow(get_parent(), "需要角色等级大于等于40级！", 1.5, Vector2(470, 300))
+		Global.add_message_show(get_parent(), "需要角色等级大于等于40级！", 1.5, Vector2(470, 300))
 		return
 	Global.change_scene("res://Scene/Level/Level_tzhy.tscn")
 
 
 func _on_memory_game_pressed() -> void:
 	MemoryClass.保存游戏(Global.cd_path)
-	Global.AddMessageShow(get_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
+	Global.add_message_show(get_parent(), "保存成功！本作品完全免费，谨防受骗上当！", 1.5, Vector2(470, 300))
 
 
 func _on_shop_pressed() -> void:
@@ -488,7 +488,7 @@ func _on_learn_skill_pressed() -> void:
 
 
 func _on_actity_pressed() -> void:
-	Global.AddMessageShow(get_parent(), "敬请期待！！！！", 1.5, Vector2(470, 300))
+	Global.add_message_show(get_parent(), "敬请期待！！！！", 1.5, Vector2(470, 300))
 
 
 func _on_task_pressed() -> void:
@@ -534,7 +534,7 @@ func _on_zhu_xian_sword_pressed() -> void:
 		return
 	var page_scene := load(ZHUXIAN_SWORD_PAGE_PATH) as PackedScene
 	if page_scene == null:
-		Global.AddMessageShow(_ui_parent(), "诛仙剑阵页面加载失败", 1.5, Vector2(470, 300))
+		Global.add_message_show(_ui_parent(), "诛仙剑阵页面加载失败", 1.5, Vector2(470, 300))
 		return
 	zhuxian_sword_page = page_scene.instantiate()
 	var popup_parent := Global.get_ui_popup_layer() if Global.has_method("get_ui_popup_layer") else _ui_parent()
@@ -543,7 +543,7 @@ func _on_zhu_xian_sword_pressed() -> void:
 
 func _on_challenge_four_swords_pressed() -> void:
 	_hide_challenge_four_swords_panel()
-	Global.AddLevelInfo(_ui_parent(), "挑战四剑", Vector2(0, 0), "res://Scene/Level/Level_tzsijian.tscn")
+	Global.add_level_info(_ui_parent(), "挑战四剑", Vector2(0, 0), "res://Scene/Level/Level_tzsijian.tscn")
 
 
 func _on_challenge_four_swords_close_pressed() -> void:
@@ -558,10 +558,10 @@ func _enter_challenge_four_swords(level_name: String, level_path: String) -> voi
 	}
 	var prerequisite := str(prerequisites.get(level_name, ""))
 	if prerequisite != "" and not bool(PlayerData.player_data.get(prerequisite, false)):
-		Global.AddMessageShow(_ui_parent(), "需要先通关" + prerequisite + "！", 1.5, Vector2(470, 300))
+		Global.add_message_show(_ui_parent(), "需要先通关" + prerequisite + "！", 1.5, Vector2(470, 300))
 		return
 	_hide_challenge_four_swords_panel()
-	Global.AddLevelInfo(_ui_parent(), level_name, Vector2(0, 0), level_path)
+	Global.add_level_info(_ui_parent(), level_name, Vector2(0, 0), level_path)
 
 
 func _hide_challenge_four_swords_panel() -> void:

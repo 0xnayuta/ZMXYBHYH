@@ -268,7 +268,7 @@ func CallBullet2():
 
 		var bullet_dir = !MonsterDirection
 
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster63Bullet1",
 			bullet,
 			bullet_dir,

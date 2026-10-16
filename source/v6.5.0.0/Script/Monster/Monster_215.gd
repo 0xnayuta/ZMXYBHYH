@@ -199,7 +199,7 @@ func _use_attack(action: StringName) -> void:
 func CallBullet1() -> void:
 	_sync_attack_power(&"hit1")
 	var offset := Vector2(65, -55) if MonsterDirection else Vector2(-65, -55)
-	Global.add_Bullet(
+	Global.add_bullet(
 		"Monster215Bullet1", bullet, MonsterDirection, 1.0, position + offset, "hit1", objattackDic["hit1"]
 	)
 
@@ -209,7 +209,7 @@ func CallBullet2() -> void:
 	var direction_sign := 1.0 if MonsterDirection else -1.0
 	for offset in [Vector2(150, 0), Vector2(170, -30), Vector2(150, -65)]:
 		var directed_offset := Vector2(offset.x * direction_sign, offset.y)
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster215Bullet2", bullet, MonsterDirection, 1.0, position + directed_offset, "hit2", objattackDic["hit2"]
 		)
 

@@ -141,7 +141,7 @@ func _physics_process(delta: float) -> void:
 	if get_parent().get_parent() is LevelZLDHDGQ:
 		if Hp <= 0:
 			if Boss_4 == null:
-				Boss_4 = Global.Create_Monster(142, get_parent(), Vector2(750, 320)) as Monster142
+				Boss_4 = Global.create_monster(142, get_parent(), Vector2(750, 320)) as Monster142
 	if is_on_floor():
 		velocity.y = 0
 	velocity.x = 0
@@ -208,7 +208,7 @@ func ThrowRound(value):
 
 	for u in range(value):
 		if CurrentRound > 0:
-			var Round = Global.add_Bullet(
+			var Round = Global.add_bullet(
 				"Monster55Bullet", bullet, false, 1, position, "hit1", self.objattackDic["hit1"]
 			)
 			RoundList.push_back(Round)
@@ -302,7 +302,7 @@ func CallJG(lx):
 			jg = 0.4
 			list.reverse()
 			for i in list:
-				Global.add_Bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
+				Global.add_bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
 				await get_tree().create_timer(jg, false).timeout
 			await get_tree().create_timer(1.8, false).timeout
 			list = [
@@ -315,7 +315,7 @@ func CallJG(lx):
 				Vector2(310, 325)
 			]
 			for i in list:
-				Global.add_Bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
+				Global.add_bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
 				await get_tree().create_timer(jg, false).timeout
 			await get_tree().create_timer(1.8, false).timeout
 			list = [
@@ -327,7 +327,7 @@ func CallJG(lx):
 				Vector2(425, 325)
 			]
 			for i in list:
-				Global.add_Bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
+				Global.add_bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
 				await get_tree().create_timer(0, false).timeout
 			await get_tree().create_timer(1.8, false).timeout
 			list = [
@@ -339,13 +339,13 @@ func CallJG(lx):
 				Vector2(310, 325)
 			]
 			for i in list:
-				Global.add_Bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
+				Global.add_bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
 				await get_tree().create_timer(0, false).timeout
 			await get_tree().create_timer(2, false).timeout
 			Throw = true
 			return
 	for i in list:
-		Global.add_Bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
+		Global.add_bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
 		await get_tree().create_timer(jg, false).timeout
 	Throw = true
 	pass
@@ -353,7 +353,7 @@ func CallJG(lx):
 
 func Otherjg():
 	for i in range(randi_range(3, throw_cout * 2)):
-		Global.add_Bullet(
+		Global.add_bullet(
 			"Monster56Bullet",
 			bullet,
 			false,

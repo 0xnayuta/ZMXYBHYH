@@ -15,7 +15,7 @@ var can_through: bool = false
 
 func _ready() -> void:
 	Global.CurrentLevel = "天宫道"
-	Global.addBGM_(self, "res://Music/level/Floor1_3.mp3")
+	Global.add_bgm(self, "res://Music/level/Floor1_3.mp3")
 	self.level_stage = 22
 	super._ready()
 
@@ -377,7 +377,7 @@ func _on_check_area_entered(area: Area2D) -> void:
 func _on_tp_body_entered(body: Node2D) -> void:
 	if body is BaseHero:
 		can_through = true
-		Global.AddMessageShow(Global.get_player, "按 W 传送", 1.5, Vector2(0, -200))
+		Global.add_message_show(Global.get_player, "按 W 传送", 1.5, Vector2(0, -200))
 
 
 func _on_tp_body_exited(body: Node2D) -> void:

@@ -112,5 +112,5 @@ func CallYYZL():
 	MonsterBullet.wait_for_monster5_stream_images()
 	if not is_inside_tree() or is_queued_for_deletion():
 		return
-	var ly = Global.add_Bullet("Monster5Bullet", self.bullet, false, 1, Po, "yyzl", self.objattackDic["yyzl"])
+	var ly = Global.add_bullet("Monster5Bullet", self.bullet, false, 1, Po, "yyzl", self.objattackDic["yyzl"])
 	ly.scale = Vector2(0.57, 0.7)

@@ -125,9 +125,9 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if not IsCall:
 		if Sword_ == null:
-			Sword_ = Global.Create_Monster(117, get_parent(), self.position)
+			Sword_ = Global.create_monster(117, get_parent(), self.position)
 		if FireRound == null:
-			FireRound = Global.Create_Monster(116, get_parent(), self.position)
+			FireRound = Global.create_monster(116, get_parent(), self.position)
 		IsCall = true
 	if Sword_ != null or FireRound != null:
 		ebol = 10
@@ -281,11 +281,11 @@ func Drop():
 func CallBullet_1():
 	var bb
 	if self.MonsterDirection:
-		bb = Global.add_Bullet(
+		bb = Global.add_bullet(
 			"Monster140Bullet1", self.bullet, true, 2.5, Vector2(20, 0) + position, "hit1", self.objattackDic["hit1"]
 		)
 	else:
-		bb = Global.add_Bullet(
+		bb = Global.add_bullet(
 			"Monster140Bullet1", self.bullet, true, 2.5, Vector2(-20, 0) + position, "hit1", self.objattackDic["hit1"]
 		)
 	bb.look_at(RoleProp.get_nearest_monster_target_position(global_position))
@@ -295,11 +295,11 @@ func CallBullet_2():
 	var Bullet
 	var dir = self.MonsterDirection
 	if dir:
-		Bullet = Global.add_Bullet(
+		Bullet = Global.add_bullet(
 			"Monster140Bullet2", self.bullet, false, 0.3, Vector2(80, 0) + position, "hit2", self.objattackDic["hit2"]
 		)
 	else:
-		Bullet = Global.add_Bullet(
+		Bullet = Global.add_bullet(
 			"Monster140Bullet2", self.bullet, false, 0.3, Vector2(-80, 0) + position, "hit2", self.objattackDic["hit2"]
 		)
 
@@ -314,7 +314,7 @@ func CallBullet_3():
 	for i in range(12):
 		var Bullet
 		var Position = Vector2(position.x + randi_range(-450, 500), -300)
-		Bullet = Global.add_Bullet(
+		Bullet = Global.add_bullet(
 			"Monster140Bullet3", self.bullet, false, 0.58, Position, "hit4", self.objattackDic["hit4"]
 		)
 		Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))
@@ -335,7 +335,7 @@ func CallBullet_4():
 		Vector2(500 + position.x, 500)
 	]
 	for i in PositionList:
-		Global.add_Bullet("Monster140Bullet4", self.bullet, false, 1, i, "hit5", self.objattackDic["hit5"])
+		Global.add_bullet("Monster140Bullet4", self.bullet, false, 1, i, "hit5", self.objattackDic["hit5"])
 
 
 func ToSky():

@@ -228,12 +228,12 @@ func perform_onekey_synthesis(target_dan_name: String, times: int):
 
 	for mat in materials_needed:
 		if not PlayerData.remove_item(mat, materials_needed[mat]):
-			Global.AddMessageShow(Global.Windows_, "材料不足，扣除失败！", 1.5, Vector2(470, 300))
+			Global.add_message_show(Global.Windows_, "材料不足，扣除失败！", 1.5, Vector2(470, 300))
 			return
 
 	PlayerData.add_dj(target_dan_name, times)
 	MemoryClass.保存游戏(Global.cd_path)
-	Global.AddMessageShow(
+	Global.add_message_show(
 		Global.Windows_,
 		"一键合成成功！获得 " + AE.AllEquipment_[target_dan_name]["名字"] + " x" + str(times),
 		1.5,
@@ -271,7 +271,7 @@ func _on_target_dan_selected(index: int):
 func _on_onekey_syn_pressed():
 	var idx: int = selected_target_index
 	if idx < 0:
-		Global.AddMessageShow(Global.Windows_, "请选择目标丹药！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "请选择目标丹药！", 1.5, Vector2(470, 300))
 		return
 
 	var target = target_keys[idx]
@@ -288,10 +288,10 @@ func _on_onekey_syn_pressed():
 	var max_times = get_max_synthesis(target, stock)
 
 	if times <= 0:
-		Global.AddMessageShow(Global.Windows_, "次数必须大于0！", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "次数必须大于0！", 1.5, Vector2(470, 300))
 		return
 	if times > max_times:
-		Global.AddMessageShow(Global.Windows_, "材料不足，最多合成 " + str(max_times) + " 次", 1.5, Vector2(470, 300))
+		Global.add_message_show(Global.Windows_, "材料不足，最多合成 " + str(max_times) + " 次", 1.5, Vector2(470, 300))
 		times = max_times
 		spin_box.value = times
 

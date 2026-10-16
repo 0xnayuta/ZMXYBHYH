@@ -160,21 +160,21 @@ func get_nearest_monster_target_position(origin: Vector2) -> Vector2:
 	return nearest_position
 
 
-func GetZFLocProp(Name, loc):
+func get_zf_loc_prop(Name, loc):
 	var Level = int(PlayerData.player_data[Name][str(loc)]["Level"])
 	var Dic = ZhenFaProps[Name]
 	var Prop = int(Dic[str(loc)]["Value"]) * Level
 	return Prop
 
 
-func GetNextLevelProp(Name, loc):
+func get_next_level_prop(Name, loc):
 	var Level = int(PlayerData.player_data[Name][str(loc)]["Level"]) + 1
 	var Dic = ZhenFaProps[Name]
 	var Prop = int(Dic[str(loc)]["Value"]) * Level
 	return Prop
 
 
-func GetZFProp(Name):
+func get_zf_prop(Name):
 	match Name:
 		"生命":
 			return GetZFLocProp("太清阵", 1) + GetZFLocProp("腾蛇阵", 1)
@@ -197,7 +197,7 @@ func GetZFProp(Name):
 	return 0
 
 
-func GetMainSwordArrayProp(Name):
+func get_main_sword_array_prop(Name):
 	var active := str(PlayerData.player_data.get("主线剑阵出战", ""))
 	if active == "":
 		return 0
@@ -520,7 +520,7 @@ func _ready() -> void:
 	}
 
 
-func GetPelletProp():
+func get_pellet_prop():
 	var Hp: int = 0
 	var Mp: int = 0
 	var Att: int = 0
@@ -844,11 +844,11 @@ func set_basic_prop():
 	set_full_Mp()
 
 
-func set_full_Hp():
+func set_full_hp():
 	roleprop.Hp = roleprop.SHp
 
 
-func set_full_Mp():
+func set_full_mp():
 	roleprop.Mp = roleprop.SMp
 
 
@@ -883,7 +883,7 @@ func _physics_process(_delta: float) -> void:
 	get_last_prop()
 
 
-func check_Hp():
+func check_hp():
 	roleprop.SHp = maxi(1, int(roleprop.SHp))
 	if roleprop.Hp >= roleprop.SHp:
 		roleprop.Hp = roleprop.SHp
@@ -891,7 +891,7 @@ func check_Hp():
 		roleprop.Hp = 0
 
 
-func check_Mp():
+func check_mp():
 	if roleprop.Mp >= roleprop.SMp:
 		roleprop.Mp = roleprop.SMp
 	if roleprop.Mp <= 0:
@@ -1004,7 +1004,7 @@ func get_equ_properies():
 	get_BsTxProperies()
 
 
-func get_BsWqProperies():
+func get_bs_wq_properties():
 	for property_name in WqBs_prop:
 		WqBs_prop[property_name] = 0
 	if PlayerData.player_data["武器"].size() != 0:
@@ -1014,7 +1014,7 @@ func get_BsWqProperies():
 			WqBs_prop[property_name] = gem_properties.get(property_name, 0)
 
 
-func get_BsFjProperies():
+func get_bs_fj_properties():
 	for property_name in FjBs_prop:
 		FjBs_prop[property_name] = 0
 	if PlayerData.player_data["防具"].size() != 0:
@@ -1024,7 +1024,7 @@ func get_BsFjProperies():
 			FjBs_prop[property_name] = gem_properties.get(property_name, 0)
 
 
-func get_BsSpProperies():
+func get_bs_sp_properties():
 	for property_name in SpBs_prop:
 		SpBs_prop[property_name] = 0
 	if PlayerData.player_data["饰品"].size() != 0:
@@ -1034,15 +1034,15 @@ func get_BsSpProperies():
 			SpBs_prop[property_name] = gem_properties.get(property_name, 0)
 
 
-func get_BsCbProperies():
+func get_bs_cb_properties():
 	_set_slot_gem_properties("翅膀", CbBs_prop)
 
 
-func get_BsSzProperies():
+func get_bs_sz_properties():
 	_set_slot_gem_properties("时装", SzBs_prop)
 
 
-func get_BsTxProperies():
+func get_bs_tx_properties():
 	_set_slot_gem_properties("头衔", TxBs_prop)
 
 
@@ -1222,7 +1222,7 @@ func remove_tx_pro():
 	tx_prop.sp = 0
 
 
-func removeWqBs():
+func remove_wq_bs():
 	WqBs_prop.SHp = 0
 	WqBs_prop.SMp = 0
 	WqBs_prop.power = 0
@@ -1241,7 +1241,7 @@ func removeWqBs():
 	WqBs_prop.sp = 0
 
 
-func removeFjBs():
+func remove_fj_bs():
 	FjBs_prop.SHp = 0
 	FjBs_prop.SMp = 0
 	FjBs_prop.power = 0
@@ -1260,7 +1260,7 @@ func removeFjBs():
 	FjBs_prop.sp = 0
 
 
-func removeSpBs():
+func remove_sp_bs():
 	SpBs_prop.SHp = 0
 	SpBs_prop.SMp = 0
 	SpBs_prop.power = 0
@@ -1279,7 +1279,7 @@ func removeSpBs():
 	SpBs_prop.sp = 0
 
 
-func removeCbBs():
+func remove_cb_bs():
 	CbBs_prop.SHp = 0
 	CbBs_prop.SMp = 0
 	CbBs_prop.power = 0
@@ -1298,7 +1298,7 @@ func removeCbBs():
 	CbBs_prop.sp = 0
 
 
-func removeSzBs():
+func remove_sz_bs():
 	SzBs_prop.SHp = 0
 	SzBs_prop.SMp = 0
 	SzBs_prop.power = 0
@@ -1317,7 +1317,7 @@ func removeSzBs():
 	SzBs_prop.sp = 0
 
 
-func removeTxBs():
+func remove_tx_bs():
 	TxBs_prop.SHp = 0
 	TxBs_prop.SMp = 0
 	TxBs_prop.power = 0
@@ -1336,7 +1336,7 @@ func removeTxBs():
 	TxBs_prop.sp = 0
 
 
-func CureExp(Exp: int):
+func cure_exp(Exp: int):
 	if baseroleprop.Level >= int(PlayerData.PLAYER_MAX_LEVEL):
 		baseroleprop.Level = int(PlayerData.PLAYER_MAX_LEVEL)
 		baseroleprop.exp = 0
@@ -1347,7 +1347,7 @@ func CureExp(Exp: int):
 	PlayerData.player_data.玩家当前经验 = RoleProp.baseroleprop.exp
 
 
-func CureLevel():
+func cure_level():
 	if baseroleprop.Level >= int(PlayerData.PLAYER_MAX_LEVEL):
 		baseroleprop.Level = int(PlayerData.PLAYER_MAX_LEVEL)
 		baseroleprop.exp = 0
@@ -1360,3 +1360,118 @@ func CureLevel():
 	PlayerData.player_data.玩家当前经验 = 0
 	MemoryClass.保存游戏(Global.cd_path)
 	set_basic_prop()
+
+
+## [兼容代理] 保持旧接口兼容
+func GetZFLocProp(Name, loc):
+	return get_zf_loc_prop(Name, loc)
+
+
+## [兼容代理] 保持旧接口兼容
+func GetNextLevelProp(Name, loc):
+	return get_next_level_prop(Name, loc)
+
+
+## [兼容代理] 保持旧接口兼容
+func GetZFProp(Name):
+	return get_zf_prop(Name)
+
+
+## [兼容代理] 保持旧接口兼容
+func GetMainSwordArrayProp(Name):
+	return get_main_sword_array_prop(Name)
+
+
+## [兼容代理] 保持旧接口兼容
+func GetPelletProp():
+	return get_pellet_prop()
+
+
+## [兼容代理] 保持旧接口兼容
+func set_full_Hp():
+	return set_full_hp()
+
+
+## [兼容代理] 保持旧接口兼容
+func set_full_Mp():
+	return set_full_mp()
+
+
+## [兼容代理] 保持旧接口兼容
+func check_Hp():
+	return check_hp()
+
+
+## [兼容代理] 保持旧接口兼容
+func check_Mp():
+	return check_mp()
+
+
+## [兼容代理] 保持旧接口兼容
+func get_BsWqProperies():
+	return get_bs_wq_properties()
+
+
+## [兼容代理] 保持旧接口兼容
+func get_BsFjProperies():
+	return get_bs_fj_properties()
+
+
+## [兼容代理] 保持旧接口兼容
+func get_BsSpProperies():
+	return get_bs_sp_properties()
+
+
+## [兼容代理] 保持旧接口兼容
+func get_BsCbProperies():
+	return get_bs_cb_properties()
+
+
+## [兼容代理] 保持旧接口兼容
+func get_BsSzProperies():
+	return get_bs_sz_properties()
+
+
+## [兼容代理] 保持旧接口兼容
+func get_BsTxProperies():
+	return get_bs_tx_properties()
+
+
+## [兼容代理] 保持旧接口兼容
+func removeWqBs():
+	return remove_wq_bs()
+
+
+## [兼容代理] 保持旧接口兼容
+func removeFjBs():
+	return remove_fj_bs()
+
+
+## [兼容代理] 保持旧接口兼容
+func removeSpBs():
+	return remove_sp_bs()
+
+
+## [兼容代理] 保持旧接口兼容
+func removeCbBs():
+	return remove_cb_bs()
+
+
+## [兼容代理] 保持旧接口兼容
+func removeSzBs():
+	return remove_sz_bs()
+
+
+## [兼容代理] 保持旧接口兼容
+func removeTxBs():
+	return remove_tx_bs()
+
+
+## [兼容代理] 保持旧接口兼容
+func CureExp(Exp: int):
+	return cure_exp(Exp)
+
+
+## [兼容代理] 保持旧接口兼容
+func CureLevel():
+	return cure_level()

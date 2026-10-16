@@ -136,7 +136,7 @@ func EnoughMp() -> bool:
 
 
 func _has_wood() -> bool:
-	return bool(PlayerData.CheckHaveWX(weapon_id, "木"))
+	return bool(PlayerData.check_have_wx(weapon_id, "木"))
 
 
 func _level_node() -> Node:
@@ -252,7 +252,7 @@ func _use_flute() -> void:
 		monster.is_stun = true
 		var buff_node: Node = monster.get_node_or_null("Buff")
 		if buff_node != null:
-			Global.AddBuff(
+			Global.add_buff(
 				buff_node,
 				{
 					"Name": "stun",
@@ -452,7 +452,7 @@ func _damage_near_entity(entity: Node2D, radius: float) -> void:
 			monster.receive_friendly_damage(int(entity.get_meta("damage", 1)), "magic", Player)
 		)
 		if actual_damage > 0:
-			Global.add_SpecialEffect(monster, Vector2.ZERO, "RoleBeHit", Vector2.ONE, false, 1)
+			Global.add_special_effect(monster, Vector2.ZERO, "RoleBeHit", Vector2.ONE, false, 1)
 		hit[id] = Time.get_ticks_msec()
 	entity.set_meta("hit", hit)
 

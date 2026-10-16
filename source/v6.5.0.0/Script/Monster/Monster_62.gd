@@ -104,7 +104,7 @@ func CallBullet1():
 		po = Vector2(50, -40)
 	else:
 		po = Vector2(-50, -40)
-	var child = Global.add_Bullet(
+	var child = Global.add_bullet(
 		"Monster62bull1", bullet, MonsterDirection, 2, position + po, "hit1", self.objattackDic["hit1"]
 	)
 

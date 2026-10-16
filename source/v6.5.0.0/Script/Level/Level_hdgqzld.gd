@@ -5,7 +5,7 @@ var is_cc = false
 
 
 func _ready() -> void:
-	Global.addBGM_(self, "res://Music/level/2_bg4.mp3")
+	Global.add_bgm(self, "res://Music/level/2_bg4.mp3")
 	load("res://Scene/Monster/Monster_142.tscn")
 	load("res://Scene/Monster/Monster_55.tscn")
 	load("res://Scene/Monster/Monster_36.tscn")

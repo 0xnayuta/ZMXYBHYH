@@ -127,10 +127,10 @@ func _on_qh__pressed() -> void:
 		bool(selected_data.get("不可强化", template_data.get("不可强化", false)))
 		and selected_name not in ["cjxianjie", "cdxianjie", "zhxianjie"]
 	):
-		Global.AddMessageShow(get_parent(), "该装备无法强化！", 1.5, Vector2(15, -45))
+		Global.add_message_show(get_parent(), "该装备无法强化！", 1.5, Vector2(15, -45))
 		return
 	if old_zb_name == "empty" or new_zb_name == "empty" or selected_name == "":
-		Global.AddMessageShow(Global.Windows_, "请先选择一件装备！！！", 1.5, Vector2(470, 295))
+		Global.add_message_show(Global.Windows_, "请先选择一件装备！！！", 1.5, Vector2(470, 295))
 		return
 	var position_index: int = int(MLdl.qh_list.get("位置", -1))
 	var equipment: Variant = _get_selected_equipment(position_index)
@@ -143,7 +143,7 @@ func _on_qh__pressed() -> void:
 	var Type = AE.AllEquipment_.get(MLdl.qh_list["名字"], {}).get("品质", "")
 	var MaxLevel: int = _get_strength_max_level(MLdl.qh_list["名字"])
 	if current_level >= MaxLevel:
-		Global.AddMessageShow(get_parent(), str(Type) + "品质装备最高强化" + str(MaxLevel) + "级！！", 1.5, Vector2(15, -45))
+		Global.add_message_show(get_parent(), str(Type) + "品质装备最高强化" + str(MaxLevel) + "级！！", 1.5, Vector2(15, -45))
 		return
 	old_zb_name = MLdl.qh_list["名字"]
 	if PlayerData.get_item_data(qhs_1_name) >= qhs_1_num and PlayerData.get_item_data(qhs_2_name) >= qhs_2_num:
@@ -161,11 +161,11 @@ func _on_qh__pressed() -> void:
 				RoleProp.get_last_prop()
 				if is_instance_valid(RoleProp.SourcePlayer):
 					RoleProp.SourcePlayer.onEqchange()
-			Global.AddMessageShow(get_parent(), "强化成功！！", 1.5, Vector2(15, -45))
+			Global.add_message_show(get_parent(), "强化成功！！", 1.5, Vector2(15, -45))
 		else:
-			Global.AddMessageShow(get_parent(), "灵魂不足！无法强化！！", 1.5, Vector2(15, -45))
+			Global.add_message_show(get_parent(), "灵魂不足！无法强化！！", 1.5, Vector2(15, -45))
 	else:
-		Global.AddMessageShow(get_parent(), "强化石数量不足！！", 1.5, Vector2(15, -45))
+		Global.add_message_show(get_parent(), "强化石数量不足！！", 1.5, Vector2(15, -45))
 	MemoryClass.保存游戏(Global.cd_path)
 
 
@@ -202,7 +202,7 @@ func _get_selected_equipment(position_index: int) -> Variant:
 
 
 func _show_invalid_strength_selection() -> void:
-	Global.AddMessageShow(Global.Windows_, "装备位置已变化，请重新选择装备！", 1.5, Vector2(470, 295))
+	Global.add_message_show(Global.Windows_, "装备位置已变化，请重新选择装备！", 1.5, Vector2(470, 295))
 	remove_infomation()
 
 

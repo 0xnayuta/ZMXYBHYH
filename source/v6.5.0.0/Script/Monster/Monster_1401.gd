@@ -207,7 +207,7 @@ func do_hit_3():
 	mr_player.play("hit3")
 	await mr_player.animation_finished
 
-	Global.AddBuff(get_Player.buff, objattackDic["hit3"]["addeffect"])
+	Global.add_buff(get_Player.buff, objattackDic["hit3"]["addeffect"])
 
 	is_attacking = false
 	stop_move()

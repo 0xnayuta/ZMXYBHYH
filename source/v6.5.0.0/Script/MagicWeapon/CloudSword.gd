@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	var BasicHit
 	BasicHit = self.FB_Level * 0.07
 	var add_effect: Dictionary = _hit_data["addeffect"]
-	if PlayerData.CheckHaveWX("qyj", "木"):
+	if PlayerData.check_have_wx("qyj", "木"):
 		BasicHit = self.FB_Level * 0.1
 		_hit_data["power"] = 100 + int(RoleProp.roleprop.power * BasicHit)
 		add_effect["value"] = 0.09 + (0.01 * FB_Level)
