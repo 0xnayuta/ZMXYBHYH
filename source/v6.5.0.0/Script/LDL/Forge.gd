@@ -124,9 +124,9 @@ var ItemMaterialList = {
 
 func _ready() -> void:
 	Global.Forge_ = self
-	ADDBZPIC()
+	addbzpic()
 	lh.text = str(5000)
-	RemoveNameAndNeed()
+	remove_name_and_need()
 
 	scw.is_in_ldl_gz = true
 	scw.HideProp = false
@@ -140,16 +140,16 @@ func _physics_process(_delta):
 		var book_name := _get_current_book_name()
 		if book_name != current_book:
 			current_book = book_name
-			LoadMaterialBox()
-			ADDItemBox()
+			load_material_box()
+			add_item_box()
 	elif current_book != "":
 		current_book = ""
-		RmoveBox()
-		RemoveMaterialBox()
-		RemoveNameAndNeed()
+		rmove_box()
+		remove_material_box()
+		remove_name_and_need()
 
 
-func LoadMaterialBox():
+func load_material_box():
 	if zzs.get_children().size() == 0:
 		return
 	_clear_children_now(basic_material)
@@ -168,38 +168,38 @@ func LoadMaterialBox():
 		basic_material.add_theme_constant_override("separation", 15)
 
 
-func ADDItemBox():
+func add_item_box():
 	var book_name := _get_current_book_name()
 	var ItemName := book_name.split("zzs")[0] if book_name != "" else ""
 	if ItemName == "" or not AE.AllEquipment_.has(ItemName):
 		scw.get_item_name = "empty"
 		scw.icon = load_("empty")
 		scw.EQ_prop = {}
-		RemoveNameAndNeed()
+		remove_name_and_need()
 		return
 
 	if PlayerData.player_data["宝珠列表"].size() <= 0:
-		ItemData = GetEqProp()
+		ItemData = get_eq_prop()
 	else:
-		ItemData = GetBZProp()
+		ItemData = get_bz_prop()
 
 	scw.get_item_name = ItemName
 	scw.icon = load_(str(ItemName))
 	scw.EQ_prop = ItemData
 	scw.is_in_ldl_gz = true
 
-	RefreshName()
+	refresh_name()
 
 
-func RefreshName():
+func refresh_name():
 	if zzs.get_children().size() == 0:
-		RemoveNameAndNeed()
+		remove_name_and_need()
 		return
 
 	var book_name := _get_current_book_name()
 	var ItemName := book_name.split("zzs")[0] if book_name != "" else ""
 	if ItemName == "" or not AE.AllEquipment_.has(ItemName):
-		RemoveNameAndNeed()
+		remove_name_and_need()
 		return
 	var item_name = AE.AllEquipment_[ItemName][DataKeys.NAME]
 	var Color_ = AE.AllEquipment_[ItemName]["颜色"]
@@ -207,8 +207,8 @@ func RefreshName():
 	item_name.add_theme_color_override("font_color", Color_)
 
 
-func ADDBZPIC():
-	RemoveAllBspic()
+func addbzpic():
+	remove_all_bspic()
 	var bz_value: Variant = PlayerData.player_data.get("宝珠列表", [])
 	if not bz_value is Array:
 		return
@@ -230,7 +230,7 @@ func ADDBZPIC():
 		ItemBox.is_in_ldl_gz = true
 
 
-func RemoveBSPIC(id: int):
+func remove_bspic(id: int):
 	var bz_value: Variant = PlayerData.player_data.get("宝珠列表", [])
 	if not bz_value is Array:
 		return
@@ -254,11 +254,11 @@ func RemoveBSPIC(id: int):
 			bs_box.remove_child(child)
 			child.queue_free()
 	else:
-		ADDBZPIC()
+		addbzpic()
 		return
 	PlayerData.add_dj(jewel_name, 1)
 	bz_list.remove_at(id)
-	ADDBZPIC()
+	addbzpic()
 
 
 func remove_infomation():
@@ -277,7 +277,7 @@ func remove_infomation():
 	MemoryClass.save_game(Global.cd_path)
 
 
-func RemoveAllBspic():
+func remove_all_bspic():
 	_clear_children_now(bs_box)
 
 
@@ -286,7 +286,7 @@ func load_(name_):
 	return abc
 
 
-func CheckFullMaterial() -> bool:
+func check_full_material() -> bool:
 	if zzs == null or zzs.get_child_count() != 1:
 		return false
 	var book_name := _get_current_book_name()
@@ -364,15 +364,15 @@ func _restore_player_data(snapshot: Dictionary) -> void:
 func _restore_forge_state(snapshot: Dictionary, book_name: String, book_level: int, book_props: Dictionary) -> void:
 	_restore_player_data(snapshot)
 	replace_book(book_name, book_level, book_props)
-	ADDBZPIC()
+	addbzpic()
 
 
-func RemoveZZSBox():
+func remove_zzs_box():
 	_clear_children_now(zzs)
 	current_book = ""
 
 
-func RemoveMaterialBox():
+func remove_material_box():
 	_clear_children_now(basic_material)
 	for i in range(4):
 		_add_forge_material_box(basic_material, "", 0)
@@ -384,17 +384,17 @@ func RemoveMaterialBox():
 		basic_material.add_theme_constant_override("separation", 15)
 
 
-func RmoveBox():
+func rmove_box():
 	scw.get_item_name = "empty"
 	scw.icon = load_("empty")
 	scw.EQ_prop = {}
 
 
-func RemoveNameAndNeed():
+func remove_name_and_need():
 	item_name.text = ""
 
 
-func RemoveAll() -> bool:
+func remove_all() -> bool:
 	var book_name := _get_current_book_name()
 	if book_name == "":
 		return false
@@ -417,10 +417,10 @@ func RemoveAll() -> bool:
 		return false
 	var jewels: Array = jewels_value
 	jewels.clear()
-	ADDBZPIC()
+	addbzpic()
 	ItemData = {}
-	RemoveZZSBox()
-	RemoveMaterialBox()
+	remove_zzs_box()
+	remove_material_box()
 	return true
 
 
@@ -432,8 +432,8 @@ func replace_book(book_name: String, level: int, props: Dictionary) -> void:
 	if book_box != null and is_instance_valid(book_box):
 		book_box.set("position", Vector2(8, 8))
 	current_book = book_name
-	LoadMaterialBox()
-	ADDItemBox()
+	load_material_box()
+	add_item_box()
 
 
 func _add_forge_item_box(
@@ -490,8 +490,8 @@ func _on_froge_pressed_legacy() -> void:
 		Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
 		return
 
-	if CheckFullMaterial():
-		ADDItemBox()
+	if check_full_material():
+		add_item_box()
 		var ItemName: String
 		if zzs.get_children().size() == 1:
 			ItemName = str(zzs.get_children()[0].get_item_name).split("zzs")[0]
@@ -530,7 +530,7 @@ func _on_froge_pressed_legacy() -> void:
 			"武器", "防具", "饰品", "时装", "头衔", "翅膀":
 				PlayerData.add_zb(ItemName, 0, new_equip_data)
 
-		RemoveAll()
+		remove_all()
 		PlayerData.spend_soul(5000)
 		Global.add_message_show(Global.Windows_, "打造成功！！", 1.5, Vector2(500, 305))
 	else:
@@ -551,7 +551,7 @@ func _on_froge_pressed() -> void:
 	if PlayerData.get_soul() < 5000:
 		Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
 		return
-	if not CheckFullMaterial():
+	if not check_full_material():
 		Global.add_message_show(Global.Windows_, "材料或制作书不足！！", 1.5, Vector2(500, 305))
 		return
 
@@ -607,7 +607,7 @@ func _on_froge_pressed() -> void:
 		Global.add_message_show(Global.Windows_, "装备栏已满或装备数据无效，未扣除材料！！", 1.5, Vector2(500, 305))
 		return
 
-	if not RemoveAll() or not PlayerData.spend_soul(5000):
+	if not remove_all() or not PlayerData.spend_soul(5000):
 		_restore_forge_state(snapshot, book_name, book_level, book_props)
 		Global.add_message_show(Global.Windows_, "打造失败，材料未扣除！！", 1.5, Vector2(500, 305))
 		return
@@ -637,7 +637,7 @@ func _get_current_book_name() -> String:
 	return book_name
 
 
-func GetBZProp_legacy():
+func get_bz_prop_legacy():
 	if PlayerData.player_data["宝珠列表"].size() <= 0:
 		return
 	var BZProp = {}
@@ -659,7 +659,7 @@ func GetBZProp_legacy():
 	return PropList
 
 
-func GetBZProp() -> Dictionary:
+func get_bz_prop() -> Dictionary:
 	var jewels_value: Variant = PlayerData.player_data.get("宝珠列表", [])
 	if not jewels_value is Array:
 		return {}
@@ -696,7 +696,7 @@ func GetBZProp() -> Dictionary:
 	return prop_list
 
 
-func GetEqProp():
+func get_eq_prop():
 	var book_name := _get_current_book_name()
 	if book_name == "":
 		return

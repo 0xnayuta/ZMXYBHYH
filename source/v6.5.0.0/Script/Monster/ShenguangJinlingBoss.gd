@@ -464,7 +464,7 @@ func apply_poison_buff(role: BaseHero) -> void:
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	_enforce_fixed_state()
-	var paused_by_control := Hp > 0 and IsMovementLockedByControl()
+	var paused_by_control := Hp > 0 and is_movement_locked_by_control()
 	if mr_player != null:
 		mr_player.speed_scale = 0.0 if paused_by_control else 1.0
 	if _body_stream != null and is_instance_valid(_body_stream):

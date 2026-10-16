@@ -53,7 +53,7 @@ var move_direction: int = 0
 var move_duration: float = 2.0
 
 
-func WDHurt():
+func wd_hurt():
 	pass
 
 
@@ -153,7 +153,7 @@ func _physics_process(delta: float) -> void:
 			base_damage_box.scale.x = 1
 			monster_dir.scale.x = 1
 
-	WDHurt()
+	wd_hurt()
 
 	move_and_slide()
 

@@ -107,11 +107,11 @@ var MonsterSkillInfoList = {
 
 
 func _physics_process(delta: float) -> void:
-	ADDInfo()
+	add_info()
 	set_physics_process(false)
 
 
-func ADDInfo():
+func add_info():
 	if MonsterSkillInfoList.has(MonsterName):
 		title.text = MonsterSkillInfoList[MonsterName]["MonsterName"] + str("Boss")
 		for i in MonsterSkillInfoList[MonsterName]["SkillList"]:

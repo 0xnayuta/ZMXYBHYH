@@ -49,7 +49,7 @@ var _props_refresh_timer: float = 0.0
 
 
 func _ready() -> void:
-	IniShowWingTxButton()
+	init_show_wing_tx_button()
 	match int(PlayerData.player_data["Myself"]):
 		1:
 			$background/Player.play("wait")
@@ -544,7 +544,7 @@ func _on_name_text_changed(new_text: String) -> void:
 	MemoryClass.main_bc()
 
 
-func set_RoleWwings():
+func set_role_wings():
 	var WingsList = PlayerData.player_data[DataKeys.WINGS]
 	if WingsList.size() <= 0:
 		wings.visible = false
@@ -602,7 +602,7 @@ func change_eq(name_):
 	Role_Eq.texture = Global.load_role1_eq(name_)
 
 
-func IniShowWingTxButton():
+func init_show_wing_tx_button():
 	if PlayerData.player_data["翅膀显示"]:
 		WingsShowButton.set_button_icon(load("res://Art/BackPack/IsChoose.png"))
 		wing_show.text = "显示"

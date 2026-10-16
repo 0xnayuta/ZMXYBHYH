@@ -166,7 +166,7 @@ func _ready() -> void:
 	RoleProp.CurrentMp = RoleProp.roleprop.Mp
 
 	for i in range(1, 11):
-		PlayAn(i)
+		play_an(i)
 
 	if MainSet.set_data["CurrentLevelPage"] <= MaxPage:
 		MainSet.set_data["CurrentLevelPage"] = MaxPage
@@ -340,10 +340,10 @@ func check_pass_level():
 	level_znyy.disabled = true
 
 	for i in range(1, 11):
-		PlayAn(i)
+		play_an(i)
 
 
-func PlayAn(Level):
+func play_an(Level):
 	match int(Level):
 		1:
 			if PlayerData.get_item_data("ttlp") and PlayerData.player_data.玲珑宝塔 == 1:

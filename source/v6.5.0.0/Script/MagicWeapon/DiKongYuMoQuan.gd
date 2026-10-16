@@ -82,7 +82,7 @@ func get_field_duration() -> float:
 
 func show_skill() -> void:
 	if Player == null or not is_instance_valid(Player):
-		Useover()
+		use_over()
 		return
 
 	_effect_token += 1
@@ -107,7 +107,7 @@ func show_skill() -> void:
 
 	await get_tree().create_timer(get_field_duration(), false).timeout
 	if is_inside_tree() and current_token == _effect_token:
-		Useover()
+		use_over()
 
 
 func _place_fixed_field() -> void:
@@ -233,15 +233,6 @@ func _exit_tree() -> void:
 	_field_active = false
 	_set_player_protected(false)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func ShowSkill() -> void:
-	await show_skill()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func Useover() -> void:
-	use_over()

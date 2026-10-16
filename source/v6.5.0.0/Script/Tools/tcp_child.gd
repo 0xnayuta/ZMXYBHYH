@@ -44,12 +44,12 @@ func _physics_process(delta) -> void:
 			if dataLen != 0:
 				var data: PackedByteArray = tcpChild.get_data(sendLen)[1]
 				if data != null && data.size() == sendLen:
-					call_deferred("setTextuer", data.decompress(dataLen, 3))
+					call_deferred("set_texture", data.decompress(dataLen, 3))
 			else:
 				get_tree().quit()
 
 
-func setTextuer(data: PackedByteArray) -> void:
+func set_texture(data: PackedByteArray) -> void:
 	var img_: Image = Image.new()
 	img_.load_jpg_from_buffer(data)
 

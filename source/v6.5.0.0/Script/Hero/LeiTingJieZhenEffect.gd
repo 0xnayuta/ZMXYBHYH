@@ -171,15 +171,15 @@ func _is_valid_target(target: Node) -> bool:
 func _apply_hit(target: BaseMonster) -> void:
 	var old_hit_data: Dictionary = owner_player.HitDic
 	owner_player.HitDic = hit_data
-	var damage := int(target.get_Role_last_hurt(owner_player))
+	var damage := int(target.get_role_last_hurt(owner_player))
 	if damage > 0:
-		target.HurtReduceHp(damage, owner_player)
+		target.hurt_reduce_hp(damage, owner_player)
 		if MainSet.set_data["MonsterLittleBlood"]:
 			if target.monster_blood_bar == null:
 				target.monster_blood_bar = Global.add_monster_blood(
 					target, Vector2(-30, -90), target.Hp / float(target.SHp), target.Hp
 				)
-		target.Role5Bullet(damage, owner_player)
+		target.role5_bullet(damage, owner_player)
 		Global.TotalRoleHit += damage
 		Global.TotalMagHit += damage
 		Global.add_sound(target, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")

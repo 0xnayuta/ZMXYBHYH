@@ -187,7 +187,7 @@ func do_hit_4():
 	mr_player.play("hit4")
 	await mr_player.animation_finished
 	is_attacking = false
-	CallParasiticLarva()
+	call_parasitic_larva()
 	stop_move()
 
 
@@ -207,7 +207,7 @@ func do_hit_5():
 	stop_move()
 
 
-func CallParasiticLarva():
+func call_parasitic_larva():
 	var target = get_Player
 
 	var player_max_hp = 0

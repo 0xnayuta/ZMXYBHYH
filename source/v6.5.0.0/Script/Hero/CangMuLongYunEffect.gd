@@ -563,7 +563,7 @@ func _apply_hit(target: BaseMonster) -> void:
 	else:
 		source_player.tszzs = 0.0
 
-	var base_damage := float(target.get_Role_last_hurt(source_player))
+	var base_damage := float(target.get_role_last_hurt(source_player))
 
 	var damage_scale := float(target.llrdzs)
 	if is_nan(damage_scale) or is_inf(damage_scale) or damage_scale <= 0.0:
@@ -581,9 +581,9 @@ func _apply_hit(target: BaseMonster) -> void:
 		)
 	)
 	target.GetHurt = damage
-	target.cureWSValue()
+	target.cure_ws_value()
 	if damage > 0:
-		target.HurtReduceHp(damage, owner_player)
+		target.hurt_reduce_hp(damage, owner_player)
 		if target is Monster138:
 			target.transfer_linked_damage(damage)
 		target.add_lj(damage)
@@ -599,7 +599,7 @@ func _apply_hit(target: BaseMonster) -> void:
 			_apply_voodoo_if_learned(target)
 		if not RoleProp.is_ws_state:
 			RoleProp.ws_value += int(hit_data.get("WSValue", 4))
-		target.Role5Bullet(damage, owner_player)
+		target.role5_bullet(damage, owner_player)
 	target.get_target = old_target
 	source_player.HitDic = old_hit_data
 	source_player.tszzs = old_tszzs

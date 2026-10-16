@@ -93,7 +93,7 @@ func ai_think():
 			normal_state()
 		else:
 			if Skill_2_CD <= 0:
-				whencandoHit3()
+				whencando_hit3()
 				return
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
 				have_target()
@@ -185,7 +185,7 @@ func call_dtsz():
 		await get_tree().create_timer(0.32, false).timeout
 
 
-func whencandoHit3():
+func whencando_hit3():
 	var pp = get_parent().get_parent()
 	if Skill_1_CD <= 0:
 		do_hit_2()

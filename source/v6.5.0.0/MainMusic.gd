@@ -2,7 +2,7 @@ extends Node
 var MyMainMusic
 
 
-func RemoveMusic():
+func remove_music():
 	if MyMainMusic != null:
 		MyMainMusic.queue_free()
 

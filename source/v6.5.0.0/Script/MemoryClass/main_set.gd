@@ -40,7 +40,7 @@ var set_data: Dictionary = {
 	"NoShowMonsterBody": true,
 	"HpBarDelay": false,
 	"FristGame": true,
-	"AutomaticallyPickUpItems": false,
+	"automatically_pick_up_items": false,
 	"PickUpItemsMusic": false,
 	"CurrentLevelPage": 0,
 	"CreateMonsterSpeed": 1.2,

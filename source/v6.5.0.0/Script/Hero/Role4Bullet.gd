@@ -10,7 +10,7 @@ var IsSet: bool
 
 func _physics_process(delta: float) -> void:
 	if not IsSet:
-		TargetMonster = CheckMonster()
+		TargetMonster = check_monster()
 		OldMonster = TargetMonster
 		IsSet = true
 	if TargetMonster != null:
@@ -25,7 +25,7 @@ func _on_queue_timer_timeout() -> void:
 	queue_free()
 
 
-func CheckMonster():
+func check_monster():
 	var MrList = []
 	if Player is BaseHero:
 		MrList = Player.get_parent().get_parent().monster.get_children()
@@ -90,4 +90,4 @@ func _on_check_body_entered(body: Node2D) -> void:
 					}
 				)
 			)
-			TargetMonster = CheckMonster()
+			TargetMonster = check_monster()

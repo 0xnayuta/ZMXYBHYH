@@ -418,7 +418,7 @@ func _enforce_original_fixed_state() -> void:
 	NoGrav = true
 
 
-func toWalk() -> void:
+func to_walk() -> void:
 	velocity = Vector2.ZERO
 
 

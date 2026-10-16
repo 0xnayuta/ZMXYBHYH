@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 				tween.tween_property(self, "position", FollowTarget.position - changepp, 0.25)
 				isBegin = true
 		else:
-			Useover()
+			use_over()
 		if isBegin:
 			mg_player.play("hit")
 			await mg_player.animation_finished
@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 			isBegin = false
 			get_target()
 			if HitTimes <= 0:
-				Useover()
+				use_over()
 
 
 func change_dir():
@@ -74,7 +74,7 @@ func show_skill():
 	var a_2 = 0
 	var Monster_2: BaseMonster = null
 	var a_3
-	Global.RemoveAllBuff()
+	Global.remove_all_active_buffs()
 	mg_player.play("Show")
 	await mg_player.animation_finished
 	a_1 = 5000
@@ -83,11 +83,11 @@ func show_skill():
 		if MonsterList[a_2] != null and MonsterList[a_2] is BaseMonster:
 			Monster_2 = MonsterList[a_2]
 		else:
-			Useover()
+			use_over()
 			FollowTarget = null
 			return null
 		if Monster_2 == null:
-			Useover()
+			use_over()
 			FollowTarget = null
 			return null
 		if Monster_2 is Monster138:
@@ -98,7 +98,7 @@ func show_skill():
 			a_1 = a_3
 			if Monster_2 is Monster48:
 				if Monster_2.ChangeBody:
-					Useover()
+					use_over()
 					FollowTarget = null
 					return null
 			Monster = Monster_2
@@ -110,7 +110,7 @@ func show_skill():
 	change_dir()
 	if FollowTarget == null:
 		RoleProp.roleprop.Mp += needMp
-		Useover()
+		use_over()
 
 
 func get_target():
@@ -125,11 +125,11 @@ func get_target():
 		if MonsterList[a_2] != null and MonsterList[a_2] is BaseMonster:
 			Monster_2 = MonsterList[a_2]
 		else:
-			Useover()
+			use_over()
 			FollowTarget = null
 			return null
 		if Monster_2 == null:
-			Useover()
+			use_over()
 			FollowTarget = null
 			return null
 		if Monster_2 is Monster138:
@@ -141,7 +141,7 @@ func get_target():
 			if Monster_2 is Monster48:
 				if Monster_2.ChangeBody:
 					FollowTarget = null
-					Useover()
+					use_over()
 					return null
 			Monster = Monster_2
 		a_2 += 1
@@ -205,15 +205,6 @@ func _on_skill_cd_timeout() -> void:
 	super._on_skill_cd_timeout()
 	self.visible = true
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func ShowSkill():
-	return await show_skill()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func Useover():
-	return use_over()

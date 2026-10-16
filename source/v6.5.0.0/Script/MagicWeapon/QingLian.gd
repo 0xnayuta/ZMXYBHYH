@@ -266,7 +266,7 @@ func _get_alpha_threshold_rect(image: Image, alpha_threshold: int) -> Rect2i:
 
 func show_skill() -> void:
 	if Player == null or not is_instance_valid(Player):
-		Useover()
+		use_over()
 		return
 	_previous_damage_reduction = Player.wdsl_damage_reduction
 	Player.wdsl_damage_reduction += 0.5
@@ -292,7 +292,7 @@ func show_skill() -> void:
 	_show_skill_effect()
 	await get_tree().create_timer(ACTIVATION_DURATION, false).timeout
 	if is_inside_tree() and effect_token == _effect_token:
-		Useover()
+		use_over()
 	await get_tree().create_timer(BUFF_DURATION - ACTIVATION_DURATION, false).timeout
 	if is_inside_tree() and effect_token == _effect_token:
 		_clear_skill_effect()
@@ -347,15 +347,6 @@ func use_over() -> void:
 		usecd *= 0.8
 	skill_cd.start(usecd)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func ShowSkill() -> void:
-	await show_skill()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func Useover() -> void:
-	use_over()

@@ -109,7 +109,7 @@ func ai_think():
 			my_shark.Hp = -100
 			my_shark.state = my_shark.State.Death
 	if not is_firstLowHp:
-		if Low_Hp():
+		if low_hp():
 			if self.MonsterDirection:
 				my_shark = Global.create_monster(19, get_parent(), Vector2(self.position.x, self.position.y - 30))
 			else:
@@ -148,7 +148,7 @@ func attack_target():
 	if not is_Fly:
 		velocity.x = 0
 	is_attacking = true
-	if not Low_Hp():
+	if not low_hp():
 		mr_player.play("hit1_1")
 	else:
 		mr_player.play("hit1_2")
@@ -161,7 +161,7 @@ func do_hit_2():
 	hit_name = "sxks"
 	velocity.x = 0
 	is_attacking = true
-	if not Low_Hp():
+	if not low_hp():
 		mr_player.play("sxks_1")
 	else:
 		mr_player.play("sxks_2")
@@ -174,7 +174,7 @@ func do_hit_3():
 	velocity.x = 0
 	hit_name = "spzd"
 	is_attacking = true
-	if not Low_Hp():
+	if not low_hp():
 		mr_player.play("spzd_1")
 	else:
 		mr_player.play("spzd_2")
@@ -234,7 +234,7 @@ func call_shark():
 				sprite.flip_h = false
 
 
-func Low_Hp():
+func low_hp():
 	return self.Hp <= self.SHp * 0.7
 
 
@@ -242,7 +242,7 @@ func move_left():
 	monster_dir.scale.x = 1
 	base_damage_box.scale.x = 1
 	velocity.x = -speed * 10
-	if not Low_Hp():
+	if not low_hp():
 		mr_player.play("walk_1")
 	else:
 		mr_player.play("walk_2")
@@ -252,7 +252,7 @@ func move_right():
 	monster_dir.scale.x = -1
 	base_damage_box.scale.x = -1
 	velocity.x = speed * 10
-	if not Low_Hp():
+	if not low_hp():
 		mr_player.play("walk_1")
 	else:
 		mr_player.play("walk_2")
@@ -260,7 +260,7 @@ func move_right():
 
 func stop_move():
 	velocity.x = 0
-	if not Low_Hp():
+	if not low_hp():
 		mr_player.play("wait_1")
 	else:
 		mr_player.play("wait_2")
@@ -273,7 +273,7 @@ func state_hurt():
 		velocity.x = 0
 		if not is_quiescent:
 			super.be_hit_back(self.get_target)
-			if not Low_Hp():
+			if not low_hp():
 				mr_player.play("hurt_1")
 			else:
 				mr_player.play("hurt_2")
@@ -281,8 +281,8 @@ func state_hurt():
 			is_be_attacking = false
 
 
-func changeHit():
-	if not Low_Hp():
+func change_hit():
+	if not low_hp():
 		self.objattackDic["hit1"] = {"power": 245, "hurtBack": [-5, -9], "attackKind": "real"}
 		self.objattackDic["sxks"] = {
 			"power": 50,

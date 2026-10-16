@@ -219,14 +219,14 @@ func blood_fix():
 	if self.position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
 		if Global.get_player.PlayerDir:
 			if not MonsterDirection:
-				ADDBloodFix()
+				add_blood_fix()
 	else:
 		if not Global.get_player.PlayerDir:
 			if MonsterDirection:
-				ADDBloodFix()
+				add_blood_fix()
 
 
-func ADDBloodFix():
+func add_blood_fix():
 	(
 		Global
 		. add_buff(

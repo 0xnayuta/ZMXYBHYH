@@ -113,7 +113,7 @@ func _on_goumai_pressed() -> void:
 	if not _can_pay_for_count(buy_num):
 		Global.add_message_show(parent_, "灵魂不足！", 1.5, Vector2(485, 295))
 		return
-	Signals.ConnectChooseBoxSignal(self, "GM")
+	Signals.connect_choose_box_signal(self, "gm")
 	choose_jm = Global.add_choose_text(
 		parent_,
 		Vector2(0, 0),
@@ -172,5 +172,5 @@ func load_(name_):
 	return load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
 
 
-func GM():
+func gm():
 	add_item_toplayer(total_num)

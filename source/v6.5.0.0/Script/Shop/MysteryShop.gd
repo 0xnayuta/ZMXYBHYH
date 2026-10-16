@@ -21,15 +21,15 @@ func _ready() -> void:
 	item_4.MyFather = self
 	item_5.MyFather = self
 	item_1.MyNum = 1
-	item_1.Open()
+	item_1.open()
 	item_2.MyNum = 2
-	item_2.Close()
+	item_2.close()
 	item_3.MyNum = 3
-	item_3.Close()
+	item_3.close()
 	item_4.MyNum = 4
-	item_4.Close()
+	item_4.close()
 	item_5.MyNum = 5
-	item_5.Close()
+	item_5.close()
 
 
 func _physics_process(delta: float) -> void:

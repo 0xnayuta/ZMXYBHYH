@@ -157,7 +157,7 @@ func _ready() -> void:
 		control_.visible = true
 		curNode = keyList[0]
 
-	setJPNG(7, "t")
+	set_jpng(7, "t")
 	init()
 
 
@@ -166,7 +166,7 @@ func init() -> void:
 	var index: int = int(playerData.get("Myself", 1))
 	if index < 1 or index > UserStr.size():
 		index = 1
-	setJPNG(6, UserStr[index - 1])
+	set_jpng(6, UserStr[index - 1])
 
 	if FileAccess.file_exists(keyPath):
 		var data: String = FileAccess.get_file_as_string(keyPath)
@@ -187,14 +187,14 @@ func init() -> void:
 	for i in range(KEY_BUTTON_COUNT):
 		var obj: Dictionary = keys[i]
 		var node = keyList[i]
-		setDic(obj, node)
+		set_dic(obj, node)
 		node.Text = obj["key"]
 		node.TextKey.text = node.Text
 		node.action = obj["ClickKey"]
 		if node.has_method("_ensure_ws_effect"):
 			node._ensure_ws_effect()
 	_update_mount_button()
-	setDic(keys[JOY_CONFIG_INDEX], joy_left)
+	set_dic(keys[JOY_CONFIG_INDEX], joy_left)
 	apply_global_scale(_touch_icon_scale())
 
 
@@ -240,10 +240,10 @@ func _physics_process(_delta: float) -> void:
 			userKey.SkillName = mount_skill_id
 			if mount_skill_id != "":
 				userKey.TextKey.visible = false
-				setTexture2D(userKey, MOUNT_CATALOG.get_icon_path(mount_skill_id))
+				set_texture2_d(userKey, MOUNT_CATALOG.get_icon_path(mount_skill_id))
 			else:
 				userKey.TextKey.visible = true
-				setTexture2D(userKey, "res://Art/2_5_9_0/key/p.png")
+				set_texture2_d(userKey, "res://Art/2_5_9_0/key/p.png")
 			continue
 		if int(userKey.mount_skill_slot) != -1:
 			userKey.mount_skill_slot = -1
@@ -252,7 +252,7 @@ func _physics_process(_delta: float) -> void:
 		userKey.SkillName = skill_name
 		if skill_name != "":
 			userKey.TextKey.visible = false
-			setTexture2D(
+			set_texture2_d(
 				userKey,
 				_first_existing(
 					[
@@ -263,7 +263,7 @@ func _physics_process(_delta: float) -> void:
 			)
 		else:
 			userKey.TextKey.visible = true
-			setTexture2D(userKey, "res://Art/2_5_9_0/key/p.png")
+			set_texture2_d(userKey, "res://Art/2_5_9_0/key/p.png")
 
 	var fbStr: String = str(playerData.get("实战法宝", ""))
 	var userKey_ = keyList[5]
@@ -271,10 +271,10 @@ func _physics_process(_delta: float) -> void:
 		userKey_.SkillName = fbStr
 		if fbStr == "":
 			userKey_.TextKey.visible = true
-			setTexture2D(userKey_, "res://Art/2_5_9_0/key/p.png")
+			set_texture2_d(userKey_, "res://Art/2_5_9_0/key/p.png")
 		else:
 			userKey_.TextKey.visible = false
-			setTexture2D(
+			set_texture2_d(
 				userKey_,
 				_first_existing(
 					[
@@ -290,7 +290,7 @@ func _physics_process(_delta: float) -> void:
 	if not _dynamic_icons_initialized or wsKey.res_ == "":
 		wsKey.SkillName = ""
 		wsKey.TextKey.visible = false
-		setTexture2D(wsKey, "res://Art/RoleInfoIcon/416.png")
+		set_texture2_d(wsKey, "res://Art/RoleInfoIcon/416.png")
 
 	var swordKey = keyList[9]
 	var active_sword: String = _active_main_sword_array_id()
@@ -302,10 +302,10 @@ func _physics_process(_delta: float) -> void:
 		if active_sword == "":
 			swordKey.TextKey.visible = true
 			if isSet:
-				setTexture2D(swordKey, "res://Art/2_5_9_0/key/p.png")
+				set_texture2_d(swordKey, "res://Art/2_5_9_0/key/p.png")
 		else:
 			swordKey.TextKey.visible = false
-			setTexture2D(swordKey, _main_sword_array_icon_path(active_sword))
+			set_texture2_d(swordKey, _main_sword_array_icon_path(active_sword))
 
 	_update_mount_button()
 	_dynamic_icons_initialized = true
@@ -321,7 +321,7 @@ func _update_mount_button() -> void:
 		mount_key.TextKey.text = "Z"
 		mount_key.TextKey.visible = true
 		if mount_key.res_ == "":
-			setTexture2D(mount_key, "res://Art/2_5_9_0/key/p.png")
+			set_texture2_d(mount_key, "res://Art/2_5_9_0/key/p.png")
 	mount_key.visible = mount_visible
 
 
@@ -349,7 +349,7 @@ func _main_sword_array_icon_path(sword_id: String) -> String:
 	return _first_existing(MAIN_SWORD_ARRAY_ICON_PATHS.get(sword_id, []))
 
 
-func setTexture2D(userKey, path: String) -> void:
+func set_texture2_d(userKey, path: String) -> void:
 	if path == "":
 		path = "res://Art/2_5_9_0/key/p.png"
 	var is_magic_weapon_icon := (
@@ -388,8 +388,8 @@ func setTexture2D(userKey, path: String) -> void:
 
 func _on_button_pressed() -> void:
 	for i in range(KEY_BUTTON_COUNT):
-		getDic(keys[i], keyList[i])
-	getDic(keys[JOY_CONFIG_INDEX], joy_left)
+		get_dic(keys[i], keyList[i])
+	get_dic(keys[JOY_CONFIG_INDEX], joy_left)
 	_save_keys_config()
 	get_tree().call_group("TouchControlSetCom", "init")
 	if Global.has_method("add_message_show"):
@@ -416,19 +416,19 @@ func _apply_keys_to_nodes() -> void:
 	for i in range(KEY_BUTTON_COUNT):
 		var obj: Dictionary = keys[i]
 		var node = keyList[i]
-		setDic(obj, node)
+		set_dic(obj, node)
 		node.Text = obj["key"]
 		node.TextKey.text = node.Text
 		node.action = obj["ClickKey"]
 		node.res_ = ""
 		if node.has_method("_ensure_ws_effect"):
 			node._ensure_ws_effect()
-	setDic(keys[JOY_CONFIG_INDEX], joy_left)
+	set_dic(keys[JOY_CONFIG_INDEX], joy_left)
 	curNode = keyList[0] if keyList.size() > 0 else null
 	apply_global_scale(_touch_icon_scale())
 
 
-func getDic(obj: Dictionary, node: CanvasItem) -> void:
+func get_dic(obj: Dictionary, node: CanvasItem) -> void:
 	var pos_: Dictionary = obj["position"]
 	var size__: Dictionary = obj["size"]
 	pos_["x"] = node.position.x
@@ -440,7 +440,7 @@ func getDic(obj: Dictionary, node: CanvasItem) -> void:
 	obj["curSize"] = node.get("curSize") if node.get("curSize") != null else max(nodeSize.x, nodeSize.y)
 
 
-func setDic(obj: Dictionary, node: CanvasItem) -> void:
+func set_dic(obj: Dictionary, node: CanvasItem) -> void:
 	var size__: Dictionary = obj["size"]
 	if node.get("size_") != null:
 		node.set("size_", Vector2(float(size__.get("x", 70)), float(size__.get("y", 70))))
@@ -456,12 +456,12 @@ func _on_button_2_pressed() -> void:
 	queue_free()
 
 
-func setJPNG(index: int, str_: String) -> void:
+func set_jpng(index: int, str_: String) -> void:
 	if index < 0 or index >= keyList.size():
 		return
 	var node = keyList[index]
 	node.TextKey.visible = false
-	setTexture2D(node, _first_existing(["res://Art/2_5_9_0/png/" + str_ + ".png"]))
+	set_texture2_d(node, _first_existing(["res://Art/2_5_9_0/png/" + str_ + ".png"]))
 
 
 func _on_button_button_down() -> void:

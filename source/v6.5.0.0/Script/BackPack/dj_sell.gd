@@ -162,7 +162,7 @@ func _on_panel_mouse_exited() -> void:
 	queue_free()
 
 
-func UseMpyj():
+func use_mpyj():
 	for i in PlayerData.player_data[DataKeys.SKILL_LEARNED]:
 		if PlayerData.player_data[DataKeys.SKILL_LEARNED][i].has(DataKeys.LEVEL):
 			if PlayerData.player_data[DataKeys.SKILL_LEARNED][i][DataKeys.LEVEL] > 1:
@@ -186,7 +186,7 @@ func use_xhp():
 				Global.add_message_show(parent, "需通关“奈何桥“！！。", 1.5, Vector2(450, 300))
 		"mpyj":
 			self.visible = false
-			Signals.ConnectChooseBoxSignal(self, "UseMpyj")
+			Signals.connect_choose_box_signal(self, "use_mpyj")
 			ChooseJM = Global.add_choose_text(
 				Global.get_parent_(self, 3), Vector2(0, 0), "确定使用孟婆药剂吗，所有高于1级的技能等级将清除为1（不返还灵魂）？", 0
 			)

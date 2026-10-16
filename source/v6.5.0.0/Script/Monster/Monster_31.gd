@@ -120,7 +120,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if follow_Hero():
+			if follow_hero():
 				have_target()
 			elif count % 60 == 0:
 				var rad = randi_range(0, 100)

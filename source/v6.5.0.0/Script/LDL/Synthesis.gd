@@ -96,7 +96,7 @@ func get_name_():
 					else:
 						match result_item:
 							"dzjj", "huayan", "cjjj":
-								item_4.EQ_prop = GetEquipmentProp(result_item)
+								item_4.EQ_prop = get_equipment_prop(result_item)
 								return
 						item_4.EQ_prop = AE.AllEquipment_[result_item]
 		else:
@@ -238,7 +238,7 @@ func get_recipe(n_1: String, n_2: String, n_3: String) -> Array:
 	mats.sort()
 	for recipe in RecipeData.RECIPES:
 		if recipe.has("use_same_type") and recipe["use_same_type"]:
-			if GetSameType(n_1, n_2, n_3, recipe["result"]):
+			if get_same_type(n_1, n_2, n_3, recipe["result"]):
 				return [true, recipe["result"], recipe["cost"]]
 
 		var recipe_mats = recipe["materials"].duplicate()
@@ -289,7 +289,7 @@ func get_fb_prop(name1):
 	return proplist
 
 
-func GetEquipmentProp(name_1):
+func get_equipment_prop(name_1):
 	var List_1 = PlayerData.player_data["放入列表"]["物品1"]
 	var List_2 = PlayerData.player_data["放入列表"]["物品2"]
 	var List_3 = PlayerData.player_data["放入列表"]["物品3"]
@@ -298,9 +298,9 @@ func GetEquipmentProp(name_1):
 	var PropOld = {}
 
 	for i in NamePropList:
-		var v1 = GetProp(List_1, i)
-		var v2 = GetProp(List_2, i)
-		var v3 = GetProp(List_3, i)
+		var v1 = get_prop(List_1, i)
+		var v2 = get_prop(List_2, i)
+		var v3 = get_prop(List_3, i)
 		var sum = v1 + v2 + v3
 
 		if name_1 == "dzjj":
@@ -369,7 +369,7 @@ func check_same(_1, _2, _3, _4, _5, _6, need: String):
 	return false
 
 
-func GetSameType(Name_1, Name_2, Name_3, need: String):
+func get_same_type(Name_1, Name_2, Name_3, need: String):
 	if Name_1 == null or Name_2 == null or Name_3 == null:
 		return false
 	if Name_1 == "" or Name_2 == "" or Name_3 == "":
@@ -385,7 +385,7 @@ func GetSameType(Name_1, Name_2, Name_3, need: String):
 	return false
 
 
-func GetProp(List, need):
+func get_prop(List, need):
 	var QHlevel: int
 	if AE.AllEquipment_[List[0]][DataKeys.TYPE] == "道具":
 		QHlevel = 0

@@ -11,12 +11,12 @@ func _physics_process(delta: float) -> void:
 	if NeedNum == 0:
 		NeedAndHave.text = ""
 	else:
-		SetBox()
-		SetText()
+		set_box()
+		set_text()
 	set_physics_process(false)
 
 
-func SetText():
+func set_text():
 	if NeedNum != 0:
 		if PlayerData.get_item_data(ItemName) >= NeedNum:
 			NeedAndHave.add_theme_color_override("font_color", "00ff00")
@@ -25,7 +25,7 @@ func SetText():
 		NeedAndHave.text = str(PlayerData.get_item_data(ItemName)) + "/" + str(NeedNum)
 
 
-func SetBox():
+func set_box():
 	var ItemBox = Global.add_item_box(box, true, true, ItemName, 0, 1, [], AE.AllEquipment_[ItemName])
 	if ItemBox == null or not is_instance_valid(ItemBox):
 		return

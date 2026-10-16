@@ -37,8 +37,8 @@ func ensure_loaded() -> void:
 	_get_data().ensure_loaded()
 
 
-func All_equ() -> void:
-	_get_data().All_equ()
+func all_equ() -> void:
+	_get_data().all_equ()
 
 
 func get_last_equ_pro(name_, qh_level, data):

@@ -107,7 +107,7 @@ func _get_setting_state_mask() -> int:
 		state_mask |= 1 << 7
 	if bool(MainSet.set_data["HpBarDelay"]):
 		state_mask |= 1 << 8
-	if bool(MainSet.set_data["AutomaticallyPickUpItems"]):
+	if bool(MainSet.set_data["automatically_pick_up_items"]):
 		state_mask |= 1 << 9
 	if bool(MainSet.set_data["PickUpItemsMusic"]):
 		state_mask |= 1 << 10
@@ -165,7 +165,7 @@ func _physics_process(_delta: float) -> void:
 		yes_or_not.text = "开启中"
 	else:
 		yes_or_not.text = "关闭中"
-	if MainSet.set_data["AutomaticallyPickUpItems"]:
+	if MainSet.set_data["automatically_pick_up_items"]:
 		yes_or_nots.text = "开启中"
 	else:
 		yes_or_nots.text = "关闭中"
@@ -314,10 +314,10 @@ func _on_yes_or_not_pressed() -> void:
 
 
 func _on_yes_or_nots_pressed() -> void:
-	if MainSet.set_data["AutomaticallyPickUpItems"]:
-		MainSet.set_data["AutomaticallyPickUpItems"] = false
+	if MainSet.set_data["automatically_pick_up_items"]:
+		MainSet.set_data["automatically_pick_up_items"] = false
 	else:
-		MainSet.set_data["AutomaticallyPickUpItems"] = true
+		MainSet.set_data["automatically_pick_up_items"] = true
 	MemoryClass.main_bc()
 
 

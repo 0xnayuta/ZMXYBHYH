@@ -1159,7 +1159,7 @@ func _apply_sword_hit_feedback(monster: BaseMonster, value: int, source: RoleBul
 			monster.monster_blood_bar = Global.add_monster_blood(
 				monster, Vector2(-30, -90), monster.Hp / float(monster.SHp), monster.Hp
 			)
-	monster.Role5Bullet(value, source)
+	monster.role5_bullet(value, source)
 	Global.add_sound(monster, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 	if (
 		not monster.is_miss
@@ -1172,7 +1172,7 @@ func _apply_sword_hit_feedback(monster: BaseMonster, value: int, source: RoleBul
 func _play_sword_hurt_animation(monster: BaseMonster) -> void:
 	if monster == null or not is_instance_valid(monster):
 		return
-	if monster.Monster_18_protect() or monster.Monster102Protect() or monster.is_control_immune():
+	if monster.monster_18_protect() or monster.monster102_protect() or monster.is_control_immune():
 		return
 	monster.set_meta("sword_array_hit_token", Time.get_ticks_msec())
 	monster.is_be_attacking = true

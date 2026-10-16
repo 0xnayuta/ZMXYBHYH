@@ -15,12 +15,12 @@ var Father
 
 func _physics_process(delta: float) -> void:
 	if Father != null:
-		SetBoxInfo()
-		SetLevelInfo()
-		SetNeedAndLhInfo()
+		set_box_info()
+		set_level_info()
+		set_need_and_lh_info()
 
 
-func SetLevelInfo():
+func set_level_info():
 	ZhenFaType = Father.CurrentZhenFaName
 	match ZhenFaType:
 		"slz":
@@ -47,7 +47,7 @@ func SetLevelInfo():
 		level_info_new.text = "已满级"
 
 
-func SetNeedAndLhInfo():
+func set_need_and_lh_info():
 	var cur_level = int(PlayerData.player_data[RealName][str(Father.CurrentNum)]["Level"])
 	var item_name = PlayerData.player_data[RealName][str(Father.CurrentNum)]["InName"]
 	var MaterialNeedValue = int(cur_level / 5) + 1
@@ -61,7 +61,7 @@ func SetNeedAndLhInfo():
 	needlh.text = "灵魂：" + str(NeedLh)
 
 
-func SetBoxInfo():
+func set_box_info():
 	up_button.Father = Father
 	up_button.NotShow = true
 	up_button.LocNum = Father.CurrentNum

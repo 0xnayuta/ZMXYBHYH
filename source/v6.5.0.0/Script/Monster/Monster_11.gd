@@ -87,7 +87,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	if super.CheckPlayerHaveDebuff("poision"):
+	if super.check_player_have_debuff("poision"):
 		if CureCount % 60 == 0:
 			cure_hp(200)
 		CureCount += 1

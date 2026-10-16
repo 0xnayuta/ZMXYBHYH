@@ -28,7 +28,7 @@ var myhc
 func _ready() -> void:
 	super._ready()
 	super.on_eqchange()
-	Role_2()
+	role_2_handler()
 
 	if not is_in_group("Player"):
 		add_to_group("Player")
@@ -45,7 +45,7 @@ func _prewarm_role2_skill_effects() -> void:
 		Global.preload_scene_path("res://Scene/Monster/Monster_zhw/Monster_143_zhw.tscn")
 
 
-func Role_2():
+func role_2_handler():
 	RoleProp.Role1SXBJ = 0
 	RoleProp.Role1SXxx = 0
 	var level_1 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能1"][DataKeys.LEVEL] + 1
@@ -155,7 +155,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		self.gravity = -980
 
-	Role_2()
+	role_2_handler()
 	super._physics_process(delta)
 
 	if no_limit_buff():
@@ -420,7 +420,7 @@ func _on_bingyu_effect_exited(effect: Node) -> void:
 	bingyu_effects.erase(effect)
 
 
-func Skill_Zfjg():
+func skill_zfjg():
 	var cd_time = 5
 	self.Role1SkillInter["zfjg"] = cd_time
 	velocity.x = 0
@@ -591,7 +591,7 @@ func add_shallow():
 			MyShallow.queue_free()
 
 
-func SelfCure():
+func self_cure():
 	var level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
 	var TotalValue = int(RoleProp.roleprop.SHp * 0.2 + level * 0.02)
 	CureValue = 0.6 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) + 1

@@ -202,7 +202,7 @@ func _ready() -> void:
 
 
 func ai_think():
-	ChangeProperies()
+	change_properies()
 	if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
 	if not is_ice and not is_sleep and not is_stun and not cannotchangestatewhenattorbeatt():
@@ -210,8 +210,8 @@ func ai_think():
 			normal_state()
 		else:
 			if Skill_1_CD <= 0:
-				UseSkill()
-			elif follow_Hero():
+				use_skill()
+			elif follow_hero():
 				have_target()
 			elif count % attack_in == 0:
 				attack_target()
@@ -219,7 +219,7 @@ func ai_think():
 				normal_state()
 
 
-func NormalHit():
+func normal_hit():
 	super.to_hero()
 	hit_name = "hit1"
 	velocity.x = 0
@@ -230,7 +230,7 @@ func NormalHit():
 	stop_move()
 
 
-func UseSkill():
+func use_skill():
 	super.to_hero()
 	Skill_1_CD = randi_range(10, 14)
 	hit_name = "dmzhl"
@@ -242,7 +242,7 @@ func UseSkill():
 	stop_move()
 
 
-func ChangeProperies():
+func change_properies():
 	if Hp >= SHp * 0.8 and Hp <= SHp:
 		attack_in = 180
 		RoundSpeed = 230

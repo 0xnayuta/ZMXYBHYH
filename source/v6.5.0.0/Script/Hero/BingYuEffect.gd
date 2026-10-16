@@ -218,7 +218,7 @@ func _apply_hit(target: BaseMonster) -> void:
 		RoleProp.SourcePlayer.tszzs = tsz_level * 0.015
 	else:
 		RoleProp.SourcePlayer.tszzs = 0.0
-	var base_damage := float(target.get_Role_last_hurt(owner_player))
+	var base_damage := float(target.get_role_last_hurt(owner_player))
 	var damage := int(
 		(
 			base_damage
@@ -233,7 +233,7 @@ func _apply_hit(target: BaseMonster) -> void:
 	)
 	if damage > 0:
 		target.GetHurt = damage
-		target.HurtReduceHp(damage, owner_player)
+		target.hurt_reduce_hp(damage, owner_player)
 		if MainSet.set_data["MonsterLittleBlood"]:
 			if target.monster_blood_bar == null:
 				target.monster_blood_bar = Global.add_monster_blood(
@@ -247,7 +247,7 @@ func _apply_hit(target: BaseMonster) -> void:
 			target.HurtSpecialEffect = Global.add_mr_hurt(target.pz, Vector2(0, 0))
 		if not target.is_control_immune():
 			_apply_hit_stun(target)
-		target.Role5Bullet(damage, owner_player)
+		target.role5_bullet(damage, owner_player)
 		if not target.is_control_immune() and randf() < FREEZE_CHANCE:
 			Global.add_buff(
 				target.buff,

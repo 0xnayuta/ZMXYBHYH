@@ -73,7 +73,7 @@ func show_skill():
 
 	_remove_floor()
 	_create_floor()
-	Useover()
+	use_over()
 
 
 func _create_floor():
@@ -304,15 +304,6 @@ func _exit_tree():
 	if follow_timer.timeout.is_connected(_on_follow_timeout):
 		follow_timer.timeout.disconnect(_on_follow_timeout)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func ShowSkill():
-	return await show_skill()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func Useover():
-	return use_over()

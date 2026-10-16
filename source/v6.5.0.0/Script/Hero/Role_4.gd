@@ -28,7 +28,7 @@ func _ready() -> void:
 
 	add_to_group("Player")
 	super.on_eqchange()
-	Role_4()
+	role_4()
 
 
 func _exit_tree() -> void:
@@ -64,7 +64,7 @@ func _is_auto_battle_skill_active(skill_id: String) -> bool:
 	return skill_id == WDZT_SKILL_ID and _wdzt_awaken_enabled
 
 
-func Role_4():
+func role_4():
 	RoleProp.Role1SXBJ = 0
 	RoleProp.Role1SXxx = 0
 
@@ -229,7 +229,7 @@ func _physics_process(delta: float) -> void:
 		gravity = 0
 	else:
 		gravity = -980.0
-	Role_4()
+	role_4()
 	super._physics_process(delta)
 	if _wdzt_toggle_locked and not _is_any_skill_action_pressed():
 		_wdzt_toggle_locked = false
@@ -245,14 +245,14 @@ func _physics_process(delta: float) -> void:
 		):
 			match hit_count:
 				0:
-					ShovelHit_1()
+					shovel_hit_1()
 				1:
-					ShovelHit_2()
+					shovel_hit_2()
 				2:
-					ShovelHit_3()
+					shovel_hit_3()
 
 
-func ShovelHit_1():
+func shovel_hit_1():
 	super.get_hit_data("hit1")
 	get_action = "hit1"
 	velocity.x = 0
@@ -265,7 +265,7 @@ func ShovelHit_1():
 	return
 
 
-func ShovelHit_2():
+func shovel_hit_2():
 	super.get_hit_data("hit2")
 	get_action = "hit2"
 	is_can_move_attack_in_sky()
@@ -278,7 +278,7 @@ func ShovelHit_2():
 	return
 
 
-func ShovelHit_3():
+func shovel_hit_3():
 	super.get_hit_data("hit3")
 	get_action = "hit3"
 	if PlayerDir:
@@ -396,7 +396,7 @@ func shovel_wdww():
 	is_using_skills = false
 
 
-func ShovelBYLT():
+func shovel_bylt():
 	self.Role1SkillInter["bylt"] = 6.0
 	velocity.x = 0
 	get_action = "bylt"
@@ -413,7 +413,7 @@ func ShovelBYLT():
 	is_using_skills = false
 
 
-func ShovelCMLY():
+func shovel_cmly():
 	self.Role1SkillInter["cmly"] = 3.0
 	velocity.x = 0
 	get_action = "cmly"
@@ -490,7 +490,7 @@ func add_shovel_effect_1():
 		Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role4Bullet3", objattackDic["mmw"])
 
 
-func ADDMBYJ():
+func addmbyj():
 	Global.add_role4_bullet(self.Bullet, self, position)
 
 
@@ -641,7 +641,7 @@ func _is_any_skill_action_pressed() -> bool:
 	return false
 
 
-func GetMonster():
+func get_monster():
 	var targets := _get_wdww_targets(1)
 	return targets[0] if not targets.is_empty() else null
 

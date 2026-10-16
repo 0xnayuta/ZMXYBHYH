@@ -260,7 +260,7 @@ func tweentotop():
 	ShouldInSky = true
 
 
-func NotMovePlayer():
+func not_move_player():
 	if _movement_command_is_blocked() or get_Player == null:
 		velocity.x = 0
 		return
@@ -398,7 +398,7 @@ func hurt_reduce_hp(value, target):
 	if Sword_ != null or FireRound != null:
 		if value > 0:
 			value *= 0.5
-	return super.HurtReduceHp(value, target)
+	return super.hurt_reduce_hp(value, target)
 
 
 # ==============================================================================
@@ -407,8 +407,3 @@ func hurt_reduce_hp(value, target):
 ## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
 func call_bullet_2():
 	return call_bullet_alt2()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func HurtReduceHp(value, target):
-	return hurt_reduce_hp(value, target)

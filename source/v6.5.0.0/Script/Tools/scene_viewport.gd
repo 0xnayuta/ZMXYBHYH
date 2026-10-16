@@ -21,10 +21,10 @@ func _ready() -> void:
 			Global.add_message_show(self, "服务器创建成功！", 1.5, Vector2(470, 300))
 
 
-func loopServer() -> void:
+func loop_server() -> void:
 	if tcpNum > 0:
 		var img_: Image = viewport.get_texture().get_image()
-		sendTexture(img_)
+		send_texture(img_)
 	if tcpNum < maxNum && tcpServer.is_listening():
 		var tcp: StreamPeerTCP = tcpServer.take_connection()
 		if tcp != null:
@@ -32,7 +32,7 @@ func loopServer() -> void:
 			TCPlist.append(tcp)
 
 
-func getClientCom(i: StreamPeerTCP) -> void:
+func get_client_com(i: StreamPeerTCP) -> void:
 	if i.get_available_bytes() > 5:
 		var com: int = i.get_data(1)[1][0]
 		var dataLen := i.get_data(4)[1] as PackedByteArray
@@ -44,20 +44,20 @@ func getClientCom(i: StreamPeerTCP) -> void:
 			Input.action_release(ClientCom)
 
 
-func sendTexture(sendImg: Image) -> void:
-	var sendData: PackedByteArray = getImageData(sendImg)
+func send_texture(sendImg: Image) -> void:
+	var sendData: PackedByteArray = get_image_data(sendImg)
 	var removeList: Array[StreamPeerTCP] = []
 	for i: StreamPeerTCP in TCPlist:
 		i.poll()
 		if i.get_status() == StreamPeerTCP.STATUS_NONE:
 			removeList.append(i)
 		else:
-			getClientCom(i)
+			get_client_com(i)
 			i.put_data(sendData)
-	removeClient(removeList)
+	remove_client(removeList)
 
 
-func getImageData(sendImg: Image) -> PackedByteArray:
+func get_image_data(sendImg: Image) -> PackedByteArray:
 	var img: PackedByteArray = sendImg.save_jpg_to_buffer(0.5)
 	var imgLen: int = img.size()
 	var b: PackedByteArray = []
@@ -68,7 +68,7 @@ func getImageData(sendImg: Image) -> PackedByteArray:
 	return b + data
 
 
-func removeClient(removeList: Array[StreamPeerTCP]) -> void:
+func remove_client(removeList: Array[StreamPeerTCP]) -> void:
 	for i: StreamPeerTCP in removeList:
 		tcpNum -= 1
 		TCPlist.erase(i)
@@ -79,7 +79,7 @@ func _physics_process(delta):
 		sendTime += delta
 		if sendTime >= 0.02:
 			sendTime = 0
-			loopServer()
+			loop_server()
 
 
 func _on_tree_exited():

@@ -183,7 +183,7 @@ func _end_moonlight():
 
 func hurt_reduce_hp(value, target):
 	if is_phantom:
-		return super.HurtReduceHp(value, target)
+		return super.hurt_reduce_hp(value, target)
 
 	if moonlight_active and value > 0 and not is_miss:
 		var player_x = RoleProp.get_nearest_monster_target_position(global_position).x
@@ -194,7 +194,7 @@ func hurt_reduce_hp(value, target):
 		value = int(value * 0.5)
 		to_hero()
 
-	return super.HurtReduceHp(value, target)
+	return super.hurt_reduce_hp(value, target)
 
 
 func do_hit_1():
@@ -320,9 +320,6 @@ func _handle_death_events():
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func HurtReduceHp(value, target):
-	return hurt_reduce_hp(value, target)
 
 
 ## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常

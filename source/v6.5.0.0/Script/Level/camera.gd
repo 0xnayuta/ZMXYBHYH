@@ -17,7 +17,7 @@ func disturb_offset(strength: float):
 	offset = Vector2(randf_range(-strength, strength), randf_range(-strength, strength))
 
 
-func Shake(strength: float, times: int, interv: float):
+func shake(strength: float, times: int, interv: float):
 	for i in range(times):
 		if not is_inside_tree():
 			return

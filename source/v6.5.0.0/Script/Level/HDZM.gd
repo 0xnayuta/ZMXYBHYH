@@ -39,7 +39,7 @@ func _on_csm_pressed() -> void:
 			Global.add_message_show(get_parent(), "前置关卡要求未达到！", 1.5, Vector2(470, 300))
 		else:
 			if PlayerData.player_data["FristJiejiao"]:
-				Signals.ConnectChooseBoxSignal(self, "challenge")
+				Signals.connect_choose_box_signal(self, "challenge")
 				Global.add_choose_text(self, Vector2(0, 0), "后面关卡可能非常难，需要极高的耐心和技术，确定继续挑战吗？（截教部分关卡无法使用修成正果头衔！）", 0)
 			else:
 				get_tree().change_scene_to_file("res://Scene/main_menu/Map_4.tscn")

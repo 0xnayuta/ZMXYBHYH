@@ -43,7 +43,7 @@ func _layout_labels_for_normal_bar() -> void:
 var BigBarHpCHange:
 	set(vl):
 		BigBarHpCHange = vl
-		on_HpChange(BigBarHpCHange)
+		on_hp_change(BigBarHpCHange)
 
 
 func _ready() -> void:
@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 		return
 	_collect_buff_info()
 	for buff_name in Global.AllBuffList:
-		SetBuffIconInfo(buff_name)
+		set_buff_icon_info(buff_name)
 	var hp := int(GetObj.Hp)
 	var shp := int(GetObj.SHp)
 	var display_name := str(GetObj.my_mr_name)
@@ -71,10 +71,10 @@ func _physics_process(delta: float) -> void:
 	if display_name != _last_name:
 		_last_name = display_name
 		monster_name.text = display_name + " "
-	ProtectBarControl()
+	protect_bar_control()
 
 
-func on_HpChange(value_):
+func on_hp_change(value_):
 	if not MainSet.set_data["HpBarDelay"]:
 		blood_uder_bar.value = 0
 		return
@@ -88,7 +88,7 @@ func on_HpChange(value_):
 	_delay_tween.tween_property(blood_uder_bar, "value", ratio, 0.7)
 
 
-func ProtectBarControl():
+func protect_bar_control():
 	if GetObj == null or not GetObj.is_boss:
 		if protect_bar.visible:
 			protect_bar.visible = false
@@ -193,7 +193,7 @@ func _add_flag_buff_info(buff_name: String, is_active: bool, value: float) -> vo
 		buff_icon.start_timer(1.0)
 
 
-func SetBuffIconInfo(Name: String):
+func set_buff_icon_info(Name: String):
 	var buff_icon = get_or_create_buff_icon(Name)
 	if buff_icon == null:
 		return

@@ -188,7 +188,7 @@ func destroy():
 					"DeBuff": true,
 				}
 			}
-			set_fullHp()
+			set_full_hp()
 			is_death = false
 			hurt_box.set_deferred("disabled", false)
 			set_meta("counts_as_alive_for_stage_clear", false)
@@ -232,7 +232,7 @@ func destroy():
 					"DeBuff": true,
 				}
 			}
-			set_fullHp()
+			set_full_hp()
 			is_death = false
 			hurt_box.set_deferred("disabled", false)
 			set_meta("counts_as_alive_for_stage_clear", false)

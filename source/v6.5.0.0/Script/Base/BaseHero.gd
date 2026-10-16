@@ -461,9 +461,9 @@ func _sync_main_sword_array_weapon() -> void:
 func use_fb():
 	if Mgtarget == null or not is_instance_valid(Mgtarget) or Mgtarget.is_queued_for_deletion():
 		return
-	if not Mgtarget.has_method("EnoughMp"):
+	if not Mgtarget.has_method("enough_mp"):
 		return
-	if bool(Mgtarget.call("EnoughMp")) and bool(Mgtarget.get("is_canuse")):
+	if bool(Mgtarget.call("enough_mp")) and bool(Mgtarget.get("is_canuse")):
 		Mgtarget.set("is_use", true)
 
 
@@ -3402,7 +3402,7 @@ func get_skill(name1):
 					RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 			"zfjg":
 				if Role1SkillInter["zfjg"] <= 0:
-					call("Skill_Zfjg")
+					call("skill_zfjg")
 					RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 	elif self is Role3Hero:
 		if name1 == "tmc2":
@@ -3474,10 +3474,10 @@ func get_skill(name1):
 					shovel_wdww()
 			"bylt":
 				if Role1SkillInter["bylt"] <= 0:
-					call("ShovelBYLT")
+					call("shovel_bylt")
 			"cmly":
 				if Role1SkillInter["cmly"] <= 0:
-					call("ShovelCMLY")
+					call("shovel_cmly")
 			"lhsq":
 				if Role1SkillInter["lhsq"] <= 0:
 					shovel_mbyj()
@@ -3519,7 +3519,7 @@ func get_skill(name1):
 					use_fhf()
 			"ltjz":
 				if Role1SkillInter["ltjz"] <= 0:
-					call("UseLTJZ")
+					call("use_ltjz")
 
 
 func improve_self_recovery_when_idle():

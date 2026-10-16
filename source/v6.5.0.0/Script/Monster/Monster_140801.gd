@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	super._physics_process(delta)
-	ResetPro()
+	reset_pro()
 
 	if MyTarget == null:
 		self.Hp = -100
@@ -88,15 +88,15 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	else:
 		return
 
-	var last_hurt = get_Role_last_hurt(get_target) * RoleProp.ws_up_power
+	var last_hurt = get_role_last_hurt(get_target) * RoleProp.ws_up_power
 	GetHurt = last_hurt
 
 	if get_Player is BaseHero:
 		if get_Player.is_DeadLink:
 			get_Player.effect_reducehp(last_hurt, "real")
 
-	cureWSValue()
-	HurtReduceHp(last_hurt, get_target)
+	cure_ws_value()
+	hurt_reduce_hp(last_hurt, get_target)
 
 	if MyTarget != null and last_hurt > 0:
 		MyTarget.effect_reducehp(last_hurt, "real")
@@ -129,7 +129,7 @@ func ai_think():
 	pass
 
 
-func ResetPro():
+func reset_pro():
 	pass
 
 
@@ -137,5 +137,5 @@ func cure_hp(value: int):
 	pass
 
 
-func WDHurt():
+func wd_hurt():
 	pass

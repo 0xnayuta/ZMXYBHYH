@@ -230,7 +230,7 @@ func _on_remove_hd_and_cure_timeout() -> void:
 		Global.add_bullet(
 			"Monster88Bullet3", self.bullet, MonsterDirection, 1, position, "hit4", self.objattackDic["hit4"]
 		)
-		ChangeHdCureHp(1)
+		change_hd_cure_hp(1)
 	gethd.start(8)
 
 # ==============================================================================

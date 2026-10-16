@@ -116,7 +116,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 	if Hp <= SHp * 0.5 and not has_summoned_1404:
-		ADDHelp()
+		add_help()
 
 
 func ai_think():
@@ -316,7 +316,7 @@ func apply_control_reverse(reverse_time: float):
 	Global.add_buff(player.buff, reverse_effect)
 
 
-func ADDHelp():
+func add_help():
 	Global.add_bullet("Monster1406Bullet4", self, false, 1, Vector2(15, -30), "hit4", self.objattackDic["hit4"])
 
 	if Hp <= SHp * 0.5 and not has_summoned_1404:

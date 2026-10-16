@@ -273,7 +273,7 @@ func _is_valid_target(target: Variant) -> bool:
 func _apply_hit(target: BaseMonster, damage_multiplier: float = 1.0) -> void:
 	var old_hit_data: Dictionary = owner_player.HitDic
 	owner_player.HitDic = hit_data
-	var base_damage := float(target.get_Role_last_hurt(owner_player))
+	var base_damage := float(target.get_role_last_hurt(owner_player))
 	var damage := int(
 		(
 			base_damage
@@ -289,7 +289,7 @@ func _apply_hit(target: BaseMonster, damage_multiplier: float = 1.0) -> void:
 	)
 	if damage > 0:
 		target.GetHurt = damage
-		target.HurtReduceHp(damage, owner_player)
+		target.hurt_reduce_hp(damage, owner_player)
 		if MainSet.set_data["MonsterLittleBlood"]:
 			if target.monster_blood_bar == null:
 				target.monster_blood_bar = Global.add_monster_blood(

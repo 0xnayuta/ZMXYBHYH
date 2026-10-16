@@ -13,10 +13,10 @@ var is_set: bool
 
 func _ready() -> void:
 	walk_speed = 360
-	Role_2()
+	role_2_handler()
 
 
-func Role_2():
+func role_2_handler():
 	var level_1 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能1"][DataKeys.LEVEL] + 1
 	var level_2 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能2"][DataKeys.LEVEL] + 1
 	var level_3 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能3"][DataKeys.LEVEL] + 1
@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		hit_count = 0
 		velocity.y -= gravity * delta
-	Role_2()
+	role_2_handler()
 	if not ShouldUseSkill:
 		if Dir:
 			$Action.scale.x = -1
@@ -60,12 +60,12 @@ func _physics_process(delta: float) -> void:
 			_play_locomotion_animation(&"run")
 	else:
 		if not is_set:
-			UseSkill()
+			use_skill()
 			is_set = true
 	move_and_slide()
 
 
-func UseSkill():
+func use_skill():
 	match SkillName:
 		"xbz":
 			skill_tjgl()

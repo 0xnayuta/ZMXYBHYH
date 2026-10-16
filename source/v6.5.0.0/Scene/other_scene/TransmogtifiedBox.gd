@@ -28,7 +28,7 @@ func _physics_process(_delta: float) -> void:
 	else:
 		cdinfor.visible = false
 		cdorxx.text = str("穿戴")
-	if AlreadyHave(SelfName_):
+	if already_have(SelfName_):
 		have_or_not.text = "已解锁"
 		have_or_not.add_theme_color_override("font_color", "00ff00")
 		have_or_not.add_theme_color_override("font_outline_color", "00ff00")
@@ -45,7 +45,7 @@ func load_(name_):
 	return abc
 
 
-func AlreadyHave(Name):
+func already_have(Name):
 	return PlayerData.has_acquired_equipment(str(Name))
 
 
@@ -55,7 +55,7 @@ func _on_change_pressed() -> void:
 		Lx = "防具"
 	var item_name = AE.AllEquipment_[SelfName_][DataKeys.NAME]
 	if cdorxx.text == "穿戴":
-		if AlreadyHave(SelfName_):
+		if already_have(SelfName_):
 			PlayerData.player_data[DataKeys.TRANSMOG_LIST][Lx] = SelfName_
 			Global.add_message_show(Global.Windows_, str(Lx) + "幻化为：" + str(item_name) + "！！", 1.5, Vector2(470, 295))
 		else:

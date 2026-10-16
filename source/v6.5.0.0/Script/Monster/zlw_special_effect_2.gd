@@ -11,11 +11,11 @@ extends Node2D
 var CurrentCount: int = 8:
 	set(value):
 		CurrentCount = value
-		_onroundChange()
+		_on_round_change()
 var Speed: float = 1:
 	set(value):
 		Speed = value
-		Set_Speed()
+		set_speed()
 var LunziList: Array = []
 
 
@@ -23,7 +23,7 @@ func _ready() -> void:
 	LunziList = [lz_1, lz_2, lz_3, lz_4, lz_5, lz_6, lz_7, lz_8]
 
 
-func _onroundChange():
+func _on_round_change():
 	if CurrentCount == 6:
 		lz_1.visible = true
 		lz_2.visible = true
@@ -107,7 +107,7 @@ func _onroundChange():
 		lz_8.visible = true
 
 
-func Set_Speed():
+func set_speed():
 	var num: int = 0
 	for i in LunziList:
 		if Speed != 1:

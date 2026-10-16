@@ -127,7 +127,7 @@ var _stable_key_loaded: bool = false
 var _main_settings_loaded: bool = false
 
 
-func CheckOutTime():
+func check_out_time():
 	var Dic = LimitTime
 	var MyDic = MainSet.set_data["MyTime"]
 	if MyDic == {}:
@@ -554,7 +554,7 @@ func get_cd_number():
 
 func remove_data():
 	Initialized_Data = PlayerData.Initialized_Data.duplicate(true)
-	RemoveMainData(get_cd_number())
+	remove_main_data(get_cd_number())
 
 	MemoryClass.main_bc()
 
@@ -567,7 +567,7 @@ func remove_play_data():
 	pass
 
 
-func Remove():
+func remove():
 	Global.add_message_show(Global.Windows_, "数据不正常哦，拜拜啦~", 4, Vector2(485, 295))
 	remove_data()
 	MainSet.set_data["xg"] = true
@@ -575,7 +575,7 @@ func Remove():
 	MemoryClass.save_game(Global.cd_path)
 
 
-func RemoveMainData(Num: int):
+func remove_main_data(Num: int):
 	if Num <= 6:
 		MainSet.set_data["name" + str(Num)] = ""
 		MainSet.set_data["time" + str(Num)] = ""

@@ -187,10 +187,10 @@ func hurt_reduce_hp(value, target):
 	)
 	if value > 0:
 		remove_all_hurt.start(4)
-	if Monster_18_protect():
+	if monster_18_protect():
 		cure_hp(value * 1)
 		return 0
-	if Monster102Protect():
+	if monster102_protect():
 		cure_hp(value)
 		return 0
 	if IsIndestructible:
@@ -208,10 +208,10 @@ func hurt_reduce_hp(value, target):
 	EveryHurt += last_value
 	AllHurt += last_value
 	if last_value > 0:
-		addHurtText(last_value, target)
+		add_hurt_text(last_value, target)
 	else:
 		if is_miss:
-			addHurtText(last_value, target)
+			add_hurt_text(last_value, target)
 	is_crit = false
 	is_miss = false
 	return int(last_value)
@@ -221,10 +221,10 @@ func reduce_hp(value: int):
 	IsAttacking = true
 	if value > 0:
 		remove_all_hurt.start(4)
-	if Monster_18_protect():
+	if monster_18_protect():
 		cure_hp(value * 1)
 		return 0
-	if Monster102Protect():
+	if monster102_protect():
 		cure_hp(value)
 		return 0
 	if IsIndestructible:
@@ -256,10 +256,6 @@ func _on_remove_all_hurt_timeout() -> void:
 func _on_every_second_timeout() -> void:
 	EveryHurt = 0
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func HurtReduceHp(value, target):
-	return hurt_reduce_hp(value, target)

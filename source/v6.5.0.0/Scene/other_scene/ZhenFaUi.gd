@@ -32,10 +32,10 @@ func _ready() -> void:
 			cur_name.text = "太清阵"
 		"":
 			cur_name.text = ""
-	AddTotalZhenfaButton()
-	SetZhenfaBasicInfo()
-	SetRightInfo()
-	AddZhenyanButton()
+	add_total_zhenfa_button()
+	set_zhenfa_basic_info()
+	set_right_info()
+	add_zhenyan_button()
 
 
 func _physics_process(delta: float) -> void:
@@ -51,7 +51,7 @@ func _refresh_use_button_icon() -> void:
 	UseButton.set_button_icon(Global.get_cached_texture("res://Art/TwentyEightConstellations/" + icon_name + ".png"))
 
 
-func AddZhenyanButton():
+func add_zhenyan_button():
 	var PostionList = [Vector2(120, 25), Vector2(210, 185), Vector2(40, 185)]
 	match CurrentZhenFaName:
 		"slz", "lpz":
@@ -68,7 +68,7 @@ func AddZhenyanButton():
 		Num += 1
 
 
-func SetZhenfaBasicInfo():
+func set_zhenfa_basic_info():
 	zhenfaicon.texture = Global.get_cached_texture(
 		"res://Art/TwentyEightConstellations/" + str(CurrentZhenFaName) + ".png"
 	)
@@ -89,12 +89,12 @@ func SetZhenfaBasicInfo():
 	_refresh_use_button_icon()
 
 
-func AddTotalZhenfaButton():
+func add_total_zhenfa_button():
 	for i in CurrentZFList:
 		Global.add_zhenfalxbutton(zhen_fa_button_list, i, self)
 
 
-func SetRightInfo():
+func set_right_info():
 	match CurrentUseType:
 		"阵法详情":
 			if Infomation != null:
@@ -110,9 +110,9 @@ func SetRightInfo():
 			Infomation = Global.add_zhen_fa_tu_po(bg, Vector2(70, -120), self)
 
 
-func OnChangeName():
-	SetZhenfaBasicInfo()
-	SetRightInfo()
+func on_change_name():
+	set_zhenfa_basic_info()
+	set_right_info()
 
 
 func _on_close_pressed() -> void:
@@ -121,17 +121,17 @@ func _on_close_pressed() -> void:
 
 func _on_zfxq_pressed() -> void:
 	CurrentUseType = "阵法详情"
-	SetRightInfo()
+	set_right_info()
 
 
 func _on_zysj_pressed() -> void:
 	CurrentUseType = "阵眼升级"
-	SetRightInfo()
+	set_right_info()
 
 
 func _on_zftp_pressed() -> void:
 	CurrentUseType = "阵法突破"
-	SetRightInfo()
+	set_right_info()
 
 
 func _on_use_pressed() -> void:

@@ -71,7 +71,7 @@ func get_hurt_lx(hit_name):
 	return hurt_kind
 
 
-func CheckFashionAndAddFallPro():
+func check_fashion_and_add_fall_pro():
 	if PlayerData.player_data[DataKeys.FASHION].size() <= 0:
 		return 0.0
 	else:

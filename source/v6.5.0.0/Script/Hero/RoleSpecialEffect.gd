@@ -88,7 +88,7 @@ func _physics_process(delta: float) -> void:
 	if SpecialEffectName == "myhc":
 		myhccount += 1
 		if myhccount % 60 == 0:
-			MYHCCure()
+			myhc_cure()
 
 	if SpecialEffectName == "jgz":
 		_apply_jgz_to_overlapping_bodies()
@@ -112,7 +112,7 @@ func _physics_process(delta: float) -> void:
 
 	if SpecialEffectName == "sd2":
 		if CureCount % 60 == 0:
-			Role3SdCure()
+			role3_sd_cure()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -175,7 +175,7 @@ func tjgl_cure():
 					print("[护盾·唐僧] 水幻影天降甘露过量治疗 → 本体护盾 %d/%d" % [real_player.hd, max_hp])
 
 
-func MYHCCure():
+func myhc_cure():
 	for i in RoleList:
 		if i != null and is_instance_valid(i):
 			if i is BaseHero:
@@ -244,7 +244,7 @@ func add_role_3_cure_effect():
 	Player.My_SD.push_back(Global.add_role_special_effect(Player, Vector2(0, -20), false, "sd2"))
 
 
-func AddRole2CureEffect():
+func add_role2_cure_effect():
 	var Player = get_parent()
 	Player.My_SD.push_back(Global.add_role_special_effect(Player, Vector2(0, -20), false, "tjgl"))
 
@@ -282,7 +282,7 @@ func _get_zznh_buff_info() -> Dictionary:
 	}
 
 
-func Role3SdCure():
+func role3_sd_cure():
 	var Player = get_parent()
 	if Player is Role3Hero:
 		var cur_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能6"][DataKeys.LEVEL] + 1

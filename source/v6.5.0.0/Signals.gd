@@ -2,7 +2,7 @@ extends Node
 signal choose_pressed
 
 
-func ConnectChooseBoxSignal(Obj: Object, funcName: String):
+func connect_choose_box_signal(Obj: Object, funcName: String):
 	for i in choose_pressed.get_connections():
 		var RemoveCallable = i["callable"]
 		disconnect("choose_pressed", RemoveCallable)

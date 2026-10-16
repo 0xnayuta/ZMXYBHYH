@@ -34,5 +34,5 @@ func _on_pressed() -> void:
 		Father.CurrentZhenFaName = zhenfaName
 		if Father.CurrentNum > Num:
 			Father.CurrentNum = 1
-		Father.OnChangeName()
-		Father.AddZhenyanButton()
+		Father.on_change_name()
+		Father.add_zhenyan_button()

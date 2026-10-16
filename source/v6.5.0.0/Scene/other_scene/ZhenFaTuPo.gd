@@ -25,13 +25,13 @@ func _physics_process(delta: float) -> void:
 				RealName = "腾蛇阵"
 			"tqz":
 				RealName = "太清阵"
-		SetItemPic()
-		SetNeedAndLhInfo()
-		SetSkillInfo()
-		SetAddPropText()
+		set_item_pic()
+		set_need_and_lh_info()
+		set_skill_info()
+		set_add_prop_text()
 
 
-func SetItemPic():
+func set_item_pic():
 	var item_name = "zftps"
 	item.is_in_hhgz = true
 	item.set_button_icon(load_(item_name))
@@ -45,7 +45,7 @@ func load_(name_):
 	return abc
 
 
-func SetAddPropText():
+func set_add_prop_text():
 	var cur_level = PlayerData.player_data[RealName]["Level"]
 	old_text.text = "阵法等级：Lv." + str(cur_level)
 	if cur_level + 1 < 10:
@@ -79,7 +79,7 @@ func SetAddPropText():
 				add_prop_new.text = ""
 
 
-func SetSkillInfo():
+func set_skill_info():
 	var cur_level = PlayerData.player_data[RealName]["Level"]
 	match RealName:
 		"森罗阵":
@@ -130,7 +130,7 @@ func SetSkillInfo():
 				skill_info_new.text = ""
 
 
-func SetNeedAndLhInfo():
+func set_need_and_lh_info():
 	var cur_level = PlayerData.player_data[RealName]["Level"]
 	var item_name = "zftps"
 	var MaterialNeedValue = int(cur_level) * 10 + 10
@@ -144,7 +144,7 @@ func SetNeedAndLhInfo():
 	needlh.text = "灵魂：" + str(NeedLh)
 
 
-func CheckFullLevel():
+func check_full_level():
 	var List = PlayerData.player_data[RealName]
 	var cur_level = PlayerData.player_data[RealName]["Level"]
 	var NeedLevel = 5 + cur_level * 5
@@ -170,7 +170,7 @@ func _on_tupo_pressed() -> void:
 	if PlayerData.get_soul() < NeedLh:
 		Global.add_message_show(Global.Windows_, "灵魂不足！！", 1.5, Vector2(500, 305))
 		return
-	if not CheckFullLevel():
+	if not check_full_level():
 		Global.add_message_show(Global.Windows_, "还有阵法未达到指定要求！！", 1.5, Vector2(500, 305))
 		return
 	PlayerData.spend_soul(NeedLh)

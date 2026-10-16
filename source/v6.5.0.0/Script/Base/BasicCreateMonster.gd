@@ -1,6 +1,6 @@
 extends Node2D
 var BaseLevel_: BaseLevel
-@onready var create_monster: Timer = $CreateMonster
+@onready var create_monster_timer: Timer = $CreateMonster
 
 @export var MonsterIdList: Array[int]
 @export var MonsterPosition: Array[Vector2]
@@ -14,7 +14,7 @@ var CanChcek: bool
 func _physics_process(_delta: float) -> void:
 	if MonsterIdList.is_empty() or MonsterPosition.is_empty():
 		set_physics_process(false)
-		create_monster.stop()
+		create_monster_timer.stop()
 		return
 	var monster_count := BaseLevel_.monster.get_child_count()
 	if monster_count > 4 and monster_count < 6:
@@ -22,15 +22,15 @@ func _physics_process(_delta: float) -> void:
 	elif monster_count < 4:
 		CanCreate = true
 	if CanChcek:
-		Check()
+		check()
 		CanChcek = false
 	if CanCreate:
-		if create_monster.is_stopped():
-			create_monster.start(CreateInter)
+		if create_monster_timer.is_stopped():
+			create_monster_timer.start(CreateInter)
 		CanCreate = false
 
 
-func Check():
+func check():
 	match Stage:
 		1:
 			for i in BaseLevel_.create_1.get_children():
@@ -51,7 +51,7 @@ func Check():
 	CanCreate = true
 
 
-func CreateMonster(Id: int, Po: Vector2):
+func create_monster(Id: int, Po: Vector2):
 	Global.create_monster(Id, BaseLevel_.monster, Po)
 
 
@@ -59,6 +59,6 @@ func _on_create_monster_timeout() -> void:
 	if MonsterIdList.is_empty() or MonsterPosition.is_empty():
 		set_physics_process(false)
 		return
-	CreateMonster(MonsterIdList[0], MonsterPosition[0])
+	create_monster(MonsterIdList[0], MonsterPosition[0])
 	MonsterIdList.remove_at(0)
 	MonsterPosition.remove_at(0)

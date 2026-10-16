@@ -148,7 +148,7 @@ func get_prop():
 
 func _on_que_timeout() -> void:
 	if name_ != "Monster1402Bullet2" and name_ != "Monster1402Bullet3" and name_ != "Monster1408Bullet2":
-		add_otherBullet()
+		add_other_bullet()
 		queue_free()
 
 
@@ -159,14 +159,14 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		Global.add_buff(target.buff, objattackDic[hit_name]["addeffect"])
 
 	if name_ != "Monster1402Bullet2" and name_ != "Monster1402Bullet3" and name_ != "Monster1408Bullet2":
-		add_otherBullet()
+		add_other_bullet()
 		queue_free()
 
 	if name_ == "Monster1402Bullet3" and owner_monster != null and target == owner_monster:
 		return
 
 
-func add_otherBullet():
+func add_other_bullet():
 	match name_:
 		"Monster33Bullet":
 			Global.add_bullet(

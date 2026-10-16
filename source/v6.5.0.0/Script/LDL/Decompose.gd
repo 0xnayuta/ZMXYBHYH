@@ -19,26 +19,26 @@ var Is_set: bool
 
 
 func _ready() -> void:
-	Signals.ConnectChooseBoxSignal(self, "fj")
+	Signals.connect_choose_box_signal(self, "fj")
 	remove_items.is_in_ldl_gz = true
 
 
 func _physics_process(delta: float) -> void:
 	if PlayerData.player_data[DataKeys.DECOMPOSE_LIST].size() != 0:
 		Is_set = false
-		set_remove_itemsProperies()
+		set_remove_items_properies()
 		if Global.NeedChangeItem:
-			ChangeItemList()
+			change_item_list()
 			Global.NeedChangeItem = false
 	else:
 		if not Is_set:
-			RemoveLIst()
-			AddEmpty()
+			remove_l_ist()
+			add_empty()
 			Is_set = true
 		remove_infomation()
 
 
-func Pushqhs(Name_, Level):
+func pushqhs(Name_, Level):
 	var TotalNum: int
 	match Level:
 		0:
@@ -61,12 +61,12 @@ func Pushqhs(Name_, Level):
 		ItemList_.push_back({"name": "qhs_1", "num": TotalNum})
 
 
-func AddEmpty():
+func add_empty():
 	for i in range(8):
 		Global.add_item_box(item_list, true, true, "empty", 0, 0, [], [])
 
 
-func PushBS(Name_, Type):
+func push_bs(Name_, Type):
 	match Type:
 		"传说", "神器":
 			if randi_range(0, 100) < 30:
@@ -78,7 +78,7 @@ func PushBS(Name_, Type):
 					ItemList_.push_back({"name": BSList[randi_range(0, BSList.size() - 1)], "num": 1})
 
 
-func PushBasicItem(Type):
+func push_basic_item(Type):
 	var BasicItemList_ = ["xuantie", "sichou", "tanmu"]
 	match Type:
 		"普通":
@@ -102,7 +102,7 @@ func PushBasicItem(Type):
 		ItemList_.push_back({"name": BasicItemList_[randi_range(0, 2)], "num": randi_range(5, 10)})
 
 
-func BsFj(Name_):
+func bs_fj(Name_):
 	var Base = AE.AllEquipment_[Name_]["所属"]
 	if Base != "宝石":
 		return
@@ -118,8 +118,8 @@ func BsFj(Name_):
 		NormalItems[Name_]["Value"].push_back({"name": str(item_name) + "_" + str(int(cur_level) - 1), "num": 1})
 
 
-func ChangeItemList():
-	RemoveLIst()
+func change_item_list():
+	remove_l_ist()
 	ItemList_ = []
 
 	if PlayerData.player_data[DataKeys.DECOMPOSE_LIST].size() != 0:
@@ -140,9 +140,9 @@ func ChangeItemList():
 		var num: int = 0
 		match get_tt:
 			"武器", "饰品", "防具":
-				Pushqhs(Name_, cur_level)
-				PushBS(Name_, AE.AllEquipment_[Name_][DataKeys.QUALITY])
-				PushBasicItem(AE.AllEquipment_[Name_][DataKeys.QUALITY])
+				pushqhs(Name_, cur_level)
+				push_bs(Name_, AE.AllEquipment_[Name_][DataKeys.QUALITY])
+				push_basic_item(AE.AllEquipment_[Name_][DataKeys.QUALITY])
 				if ItemList_.size() != 0:
 					for i in ItemList_:
 						var ItemName = i["name"]
@@ -169,7 +169,7 @@ func ChangeItemList():
 						Global.add_item_box(item_list, true, true, "empty", 0, 0, [], [])
 
 			"道具":
-				BsFj(Name_)
+				bs_fj(Name_)
 				if not NormalItems.has(Name_):
 					for i in range(8):
 						Global.add_item_box(item_list, true, true, "empty", 0, 0, [], [])
@@ -186,14 +186,14 @@ func ChangeItemList():
 							Global.add_item_box(item_list, true, true, "empty", 0, 0, [], [])
 
 
-func RemoveLIst():
+func remove_l_ist():
 	ItemList_ = []
 	for i in item_list.get_children():
 		if i != null:
 			i.free()
 
 
-func set_remove_itemsProperies():
+func set_remove_items_properies():
 	remove_items.set_button_icon(load_(str(PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME])))
 	remove_items.qh_level = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.ENHANCE_LEVEL]
 	remove_items.EQ_prop = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0]["Data"]
@@ -270,7 +270,7 @@ func fj():
 					)
 
 			"道具":
-				BsFj(Name_)
+				bs_fj(Name_)
 				if not NormalItems.has(Name_):
 					var name_ = AE.AllEquipment_[Name_][DataKeys.NAME]
 					var Type = AE.AllEquipment_[Name_][DataKeys.TYPE]

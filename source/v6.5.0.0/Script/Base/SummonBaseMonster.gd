@@ -137,7 +137,7 @@ const GXP_DAMAGE_MULTIPLIER: float = 2.0
 const GXP_AFTERIMAGE_INTERVAL: float = 0.12
 
 
-func turnToGxp(duration: int) -> void:
+func turn_to_gxp(duration: int) -> void:
 	_gxp_serial += 1
 	var token := _gxp_serial
 	if not isGXP:
@@ -168,10 +168,10 @@ func _spawn_gxp_afterimage(token: int) -> void:
 func _finish_gxp(token: int) -> void:
 	if token != _gxp_serial or not isGXP:
 		return
-	cancelGxp()
+	cancel_gxp()
 
 
-func cancelGxp() -> void:
+func cancel_gxp() -> void:
 	if not isGXP:
 		return
 	isGXP = false

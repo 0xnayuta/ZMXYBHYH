@@ -175,9 +175,9 @@ func _is_valid_target(target: Node) -> bool:
 func _apply_hit(target: BaseMonster) -> void:
 	var old_hit_data: Dictionary = owner_player.HitDic
 	owner_player.HitDic = hit_data
-	var damage := int(target.get_Role_last_hurt(owner_player))
+	var damage := int(target.get_role_last_hurt(owner_player))
 	if damage > 0:
-		target.HurtReduceHp(damage, owner_player)
+		target.hurt_reduce_hp(damage, owner_player)
 		if target is Monster138:
 			target.transfer_linked_damage(damage)
 		if MainSet.set_data["MonsterLittleBlood"]:

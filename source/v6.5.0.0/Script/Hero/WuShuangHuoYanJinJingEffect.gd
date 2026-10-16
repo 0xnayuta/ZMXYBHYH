@@ -274,7 +274,7 @@ func _is_valid_target(target: Variant) -> bool:
 func _apply_hit(target: BaseMonster) -> void:
 	var old_hit_data: Dictionary = owner_player.HitDic
 	owner_player.HitDic = hit_data
-	var base_damage := float(target.get_Role_last_hurt(owner_player))
+	var base_damage := float(target.get_role_last_hurt(owner_player))
 	var late_frame_multiplier := 2.0 if _beam != null and _current_frame > 25 else 1.0
 	var damage := int(
 		(
@@ -291,7 +291,7 @@ func _apply_hit(target: BaseMonster) -> void:
 	)
 	if damage > 0:
 		target.GetHurt = damage
-		target.HurtReduceHp(damage, owner_player)
+		target.hurt_reduce_hp(damage, owner_player)
 		if MainSet.set_data["MonsterLittleBlood"]:
 			if target.monster_blood_bar == null:
 				target.monster_blood_bar = Global.add_monster_blood(
@@ -304,7 +304,7 @@ func _apply_hit(target: BaseMonster) -> void:
 		if not target.is_miss and not target.is_boss_protecting():
 			target.HurtSpecialEffect = Global.add_mr_hurt(target.pz, Vector2(0, 0))
 
-		target.Role5Bullet(damage, owner_player)
+		target.role5_bullet(damage, owner_player)
 		if not RoleProp.is_ws_state:
 			RoleProp.ws_value += int(hit_data.get("WSValue", 4))
 	owner_player.HitDic = old_hit_data

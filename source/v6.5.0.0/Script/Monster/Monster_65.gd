@@ -146,7 +146,7 @@ func ai_think():
 				if Skill_1_CD <= 0:
 					do_hit_1()
 				if Skill_2_CD <= 0:
-					DoSkill_2_1()
+					do_skill_2_1()
 				if (
 					count % 60 == 0
 					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 250
@@ -159,7 +159,7 @@ func ai_think():
 				if Skill_1_CD <= 0:
 					do_hit_1()
 				if Skill_2_CD <= 0:
-					DoSkill_2_1()
+					do_skill_2_1()
 				if (
 					count % 60 == 0
 					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 250
@@ -169,7 +169,7 @@ func ai_think():
 					do_hit_3()
 
 
-func ReturnBody():
+func return_body():
 	mr_ani.position = Vector2(0, 0)
 
 
@@ -177,7 +177,7 @@ func await_t_otop():
 	Is_Top = true
 	Is_Drop = false
 	self.position = Vector2(self.position.x, 0)
-	ReturnBody()
+	return_body()
 
 
 func fall():
@@ -188,7 +188,7 @@ func fall():
 
 
 func return_normal():
-	ReturnBody()
+	return_body()
 	Is_Top = false
 	Is_Drop = false
 
@@ -204,7 +204,7 @@ func do_hit_1():
 	is_attacking = false
 
 
-func DoSkill_2_1():
+func do_skill_2_1():
 	super.to_hero()
 	Skill_2_CD = randi_range(15, 20)
 	hit_name = "zhzz"
@@ -214,10 +214,10 @@ func DoSkill_2_1():
 	await mr_player.animation_finished
 	is_attacking = false
 	await get_tree().create_timer(randi_range(0.5, 2), false).timeout
-	DoSkill_2_2()
+	do_skill_2_2()
 
 
-func DoSkill_2_2():
+func do_skill_2_2():
 	super.to_hero()
 	velocity.x = 0
 	is_attacking = true
@@ -243,7 +243,7 @@ func do_hit_3():
 	is_attacking = false
 
 
-func MoveToPlayerLocal():
+func move_to_player_local():
 	self.position = RoleProp.get_nearest_monster_target_position(global_position)
 
 

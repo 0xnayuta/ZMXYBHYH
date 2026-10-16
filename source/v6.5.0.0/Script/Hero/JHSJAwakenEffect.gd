@@ -175,7 +175,7 @@ func _apply_target_damage(node: BaseMonster) -> void:
 	node.miss = 0
 	var damage := int(
 		(
-			float(node.get_Role_last_hurt(owner_player))
+			float(node.get_role_last_hurt(owner_player))
 			* RoleProp.ws_up_power
 			* node.jgz_bl
 			* node.zznh_bl
@@ -187,7 +187,7 @@ func _apply_target_damage(node: BaseMonster) -> void:
 	)
 	if damage > 0:
 		node.GetHurt = damage
-		node.HurtReduceHp(damage, owner_player)
+		node.hurt_reduce_hp(damage, owner_player)
 		node.add_lj(damage)
 		Global.TotalRoleHit += damage
 		Global.TotalMagHit += damage
@@ -196,7 +196,7 @@ func _apply_target_damage(node: BaseMonster) -> void:
 			node.HurtSpecialEffect = Global.add_mr_hurt(node.pz, Vector2.ZERO)
 		if not node.is_control_immune():
 			_apply_hit_stun(node)
-		node.Role5Bullet(damage, owner_player)
+		node.role5_bullet(damage, owner_player)
 	node.miss = old_miss
 	owner_player.HitDic = old_hit_data
 

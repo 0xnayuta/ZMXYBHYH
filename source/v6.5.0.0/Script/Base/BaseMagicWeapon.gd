@@ -48,7 +48,7 @@ func _physics_process(_delta: float) -> void:
 		mg_player.play("wait")
 	if is_use:
 		if is_canuse:
-			UseSkill()
+			use_skill()
 
 			if is_use:
 				is_canuse = false
@@ -56,16 +56,16 @@ func _physics_process(_delta: float) -> void:
 		is_canuse = false
 	set_count += 1
 	if set_count % 30 == 0 and not is_use:
-		FixHero()
+		fix_hero()
 
 
-func UseSkill():
-	if EnoughMp():
+func use_skill():
+	if enough_mp():
 		RoleProp.roleprop.Mp -= needMp
-		ShowSkill()
+		show_skill()
 
 
-func EnoughMp():
+func enough_mp():
 	return RoleProp.roleprop.Mp > needMp
 
 
@@ -73,7 +73,7 @@ func show_skill():
 	pass
 
 
-func FixHero():
+func fix_hero():
 	var get_Roleposition = Vector2(RoleProp.role_pos_x, RoleProp.role_pos_y)
 	var newposition: Vector2
 	if RoleProp.Directon:
@@ -98,15 +98,6 @@ func _on_skill_cd_timeout() -> void:
 	is_canuse = true
 	skill_cd.stop()
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func ShowSkill():
-	return show_skill()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func Useover():
-	return use_over()

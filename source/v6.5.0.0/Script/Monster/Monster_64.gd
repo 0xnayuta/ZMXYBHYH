@@ -361,10 +361,10 @@ func _on_timer_timeout() -> void:
 	else:
 		FS = false
 		change_timer.start(randi_range(22, 25))
-	ChangeSelfColor()
+	change_self_color()
 
 
-func ChangeSelfColor():
+func change_self_color():
 	var TWEEN = get_tree().create_tween()
 
 	if FS:

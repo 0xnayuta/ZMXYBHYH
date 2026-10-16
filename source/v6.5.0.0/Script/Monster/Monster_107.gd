@@ -161,7 +161,7 @@ func do_hit_3():
 	stop_move()
 
 
-func AddLine():
+func add_line():
 	if randi_range(0, 100) < 50:
 		Global.add_line(self, self, "Red")
 	else:

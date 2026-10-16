@@ -122,17 +122,17 @@ func show_skill() -> void:
 			pass
 	if weapon_id == "yyzlj":
 		_update_dragon_sword_model()
-		Useover()
+		use_over()
 		return
 	mg_action.play("hit")
 	await get_tree().create_timer(0.12).timeout
-	Useover()
+	use_over()
 
 
-func EnoughMp() -> bool:
+func enough_mp() -> bool:
 	if weapon_id == "yyzlj":
 		return RoleProp.roleprop != null and int(RoleProp.roleprop.Mp) >= int(skill_cost)
-	return super.EnoughMp()
+	return super.enough_mp()
 
 
 func _has_wood() -> bool:
@@ -341,8 +341,8 @@ func _use_yunyang_board() -> void:
 	_pet_speed_serial += 1
 	var token := _pet_speed_serial
 	const duration := 8.0
-	if pet.has_method("turnToGxp"):
-		pet.turnToGxp(int(duration))
+	if pet.has_method("turn_to_gxp"):
+		pet.turn_to_gxp(int(duration))
 	else:
 		var old_speed := float(pet.get("speed"))
 		var old_ini_speed := float(pet.get("iniSpeed"))
@@ -557,15 +557,6 @@ func _exit_tree() -> void:
 			fan_entity.queue_free()
 	_fan_entities.clear()
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func ShowSkill() -> void:
-	await show_skill()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func Useover() -> void:
-	use_over()

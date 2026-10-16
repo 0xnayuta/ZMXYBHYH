@@ -93,7 +93,7 @@ func _physics_process(delta: float) -> void:
 		mr_player.play("death")
 		return
 	super._physics_process(delta)
-	ResetPro()
+	reset_pro()
 	var primary_target := _get_primary_target()
 	if primary_target == null:
 		self.Hp = -100
@@ -123,7 +123,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		get_target = area.get_parent().get_parent()
 	else:
 		return
-	var last_hurt = get_Role_last_hurt(get_target) * RoleProp.ws_up_power
+	var last_hurt = get_role_last_hurt(get_target) * RoleProp.ws_up_power
 	last_hurt *= (0.8 + PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] * 0.005)
 	if last_hurt >= Hp:
 		last_hurt = Hp
@@ -131,8 +131,8 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if get_Player is BaseHero:
 		if get_Player.is_DeadLink:
 			get_Player.effect_reducehp(last_hurt, "real")
-	cureWSValue()
-	HurtReduceHp(last_hurt, get_target)
+	cure_ws_value()
+	hurt_reduce_hp(last_hurt, get_target)
 	transfer_linked_damage(last_hurt)
 	Global.TotalRoleHit += last_hurt
 	if get_target is BaseHero or get_target is MgHit or get_target is Role1Shallow or get_target is RoleBullet:
@@ -152,7 +152,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	get_target = null
 
 
-func ResetPro():
+func reset_pro():
 	var primary_target := _get_primary_target()
 	if primary_target != null:
 		self.Toughness = primary_target.Toughness
@@ -170,5 +170,5 @@ func _on_death_count_timeout() -> void:
 	Hp = -100
 
 
-func WDHurt():
+func wd_hurt():
 	pass

@@ -34,7 +34,7 @@ func _is_divine_forged(item: Dictionary) -> bool:
 
 func _physics_process(_delta: float) -> void:
 	page = int($MarginContainer/VBoxContainer/page_.text)
-	SetbuttonDisabled()
+	setbutton_disabled()
 
 
 func _on_qd_pressed() -> void:
@@ -219,7 +219,7 @@ func _on_close_pressed() -> void:
 	queue_free()
 
 
-func SetbuttonDisabled():
+func setbutton_disabled():
 	if not Global.ChooseMs:
 		pt.disabled = false
 		yx.disabled = false

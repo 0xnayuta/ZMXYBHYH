@@ -91,7 +91,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if follow_Hero():
+			if follow_hero():
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()

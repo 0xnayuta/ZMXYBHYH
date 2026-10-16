@@ -355,7 +355,7 @@ func _ready() -> void:
 		get_viewport().size_changed.connect(_layout_fullscreen)
 	PlayeId = int(PlayerData.player_data["Myself"])
 	_load_custom_shop_items()
-	set_RoleName()
+	set_role_name()
 	page.text = str(current_page) + "/" + str(max_page)
 	add_shop_item()
 	if not line_edit.text_changed.is_connected(_on_line_edit_text_changed):
@@ -402,7 +402,7 @@ func _is_shop_item_visible(item) -> bool:
 	return true
 
 
-func SetCurrentPageTypeItems():
+func set_current_page_type_items():
 	var GetTargetList = []
 	if GET_ItemName != "":
 		var keyword = GET_ItemName.strip_edges().to_lower()
@@ -442,7 +442,7 @@ func _physics_process(_delta: float) -> void:
 	$BG/lh_bg/lh_.text = str(PlayerData.get_soul())
 
 
-func set_RoleName():
+func set_role_name():
 	match PlayeId:
 		1:
 			role.text = "角色：悟空"
@@ -479,7 +479,7 @@ func change_page():
 
 
 func add_shop_item():
-	var page_items = SetCurrentPageTypeItems()
+	var page_items = set_current_page_type_items()
 	var key = "Page_" + str(current_page)
 	if page_items.has(key):
 		var items = page_items[key]

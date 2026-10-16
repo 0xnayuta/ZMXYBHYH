@@ -33,5 +33,5 @@ func _on_pressed() -> void:
 			role_id = 4
 		"xbl":
 			role_id = 5
-	if role_id > 0 and MyFather and MyFather.has_method("SetRole"):
-		MyFather.SetRole(role_id)
+	if role_id > 0 and MyFather and MyFather.has_method("set_role"):
+		MyFather.set_role(role_id)

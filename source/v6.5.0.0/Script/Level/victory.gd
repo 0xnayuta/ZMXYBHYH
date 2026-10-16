@@ -53,12 +53,12 @@ func _ready() -> void:
 	most_lj_text.text = "最高连击：" + str(Global.MostLianji)
 	if not MainSet.set_data["Music4"]:
 		if randf_range(0, 1) <= 0.05:
-			if PDpj() >= 4:
+			if p_dpj() >= 4:
 				MainSet.set_data["Music4"] = true
 				MemoryClass.main_bc()
 				Global.add_message_show(Global.Windows_, "触发彩蛋，恭喜开启图四音乐！！！", 1.5, Vector2(470, 300))
 	if Global.CurrentLevel != "":
-		var PJ = PDpj()
+		var PJ = p_dpj()
 		if PlayerData.player_data["关卡评价"].has(Global.CurrentLevel):
 			if PJ >= PlayerData.player_data["关卡评价"][Global.CurrentLevel]:
 				PlayerData.player_data["关卡评价"][Global.CurrentLevel] = PJ
@@ -174,7 +174,7 @@ func _auto_rechallenge() -> void:
 		_on_rechallenge_pressed()
 
 
-func PDpj():
+func p_dpj():
 	var CurrentZT = int(snapped(float(RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) * 100, 0.01))
 	if Last_Time["分钟"] <= 2 and Global.TotalHurtCount == 0 and CurrentZT >= 95:
 		return 5
@@ -249,7 +249,7 @@ func PDpj():
 func add_pj():
 	var ping_jia_size := PING_JIA_TEXTURE_SIZE * PING_JIA_FINAL_SCALE
 
-	Global.add_pj(self, Vector2(65, 65), PDpj())
+	Global.add_pj(self, Vector2(65, 65), p_dpj())
 
 
 func _exit_tree() -> void:

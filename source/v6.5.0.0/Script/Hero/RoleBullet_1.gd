@@ -86,18 +86,18 @@ func _on_area_entered(_area: Area2D) -> void:
 	if name_ == "qsez" or name_ == "qsez_1":
 		var num = randi_range(0, 4)
 
-		if Player.ShallowList.size() < GetMaxMinShallowNum()[0]:
-			for i in range(GetMaxMinShallowNum()[0]):
-				if Player.ShallowList.size() > GetMaxMinShallowNum()[1]:
+		if Player.ShallowList.size() < get_max_min_shallow_num()[0]:
+			for i in range(get_max_min_shallow_num()[0]):
+				if Player.ShallowList.size() > get_max_min_shallow_num()[1]:
 					return
 				Global.add_role1_shallow(Player.get_parent(), Player.position, Player.action.scale.x, num)
-		if Player.ShallowList.size() >= GetMaxMinShallowNum()[1]:
+		if Player.ShallowList.size() >= get_max_min_shallow_num()[1]:
 			return
 		if randi_range(0, 100) < 45 + (PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1) * 3:
 			Global.add_role1_shallow(Player.get_parent(), Player.position + Vector2(0, -20), Player.action.scale.x, num)
 
 
-func GetMaxMinShallowNum():
+func get_max_min_shallow_num():
 	var GetLevel = int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL])
 
 	if GetLevel <= 2:

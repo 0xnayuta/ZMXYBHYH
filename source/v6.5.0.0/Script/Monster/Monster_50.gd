@@ -89,13 +89,13 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if not is_stop:
-		CreateMonster()
-		Move()
+		create_monster()
+		move()
 		self.self_rhp = 0
 	else:
 		self.self_rhp = randi_range(150, 250)
-		CheckCallMonsterDeath()
-		Stop()
+		check_call_monster_death()
+		stop()
 
 
 func ai_think():
@@ -152,17 +152,17 @@ func do_hit_3():
 	is_attacking = false
 
 
-func Stop():
+func stop():
 	mr_player.play("wait")
 	$BaseDamageBox/HurtBox/HurtBox.disabled = true
 	self.modulate = Color(1, 1, 1, 0.5)
 
 
-func Move():
+func move():
 	self.modulate = Color(1, 1, 1, 1)
 
 
-func CreateMonster():
+func create_monster():
 	if CallMonsterID == 0:
 		if Hp < SHp * 0.5:
 			self.modulate = Color(1, 1, 1, 0.5)
@@ -171,7 +171,7 @@ func CreateMonster():
 			var MonsterID: int = Get_list[randi_range(0, Get_list.size() - 1)]
 			if CallMonster == null:
 				CallMonster = Global.create_monster(20, get_parent(), self.position)
-			StrenghBoss()
+			strength_boss()
 			is_stop = true
 			mr_player.play("wait")
 			CallMonsterID = 1
@@ -185,11 +185,11 @@ func CreateMonster():
 			var MonsterID: int = Get_list[randi_range(0, Get_list.size() - 1)]
 			if CallMonster == null:
 				CallMonster = Global.create_monster(43, get_parent(), self.position)
-			StrenghBoss()
+			strength_boss()
 			CallMonsterID = 2
 
 
-func CheckCallMonsterDeath():
+func check_call_monster_death():
 	if CallMonster != null:
 		if CallMonster.is_death:
 			is_stop = false
@@ -251,7 +251,7 @@ func call_bullet():
 	Bullet_.scale = Vector2(2, 2)
 
 
-func StrenghBoss():
+func strength_boss():
 	if CallMonster != null:
 		if CallMonster is Monster43:
 			CallMonster.SHp = SHp

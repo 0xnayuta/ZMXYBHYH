@@ -28,7 +28,7 @@ func _ready() -> void:
 		"stage_3": [],
 		"stage_4": [],
 	}
-	AddStage()
+	add_stage()
 	Is_set = true
 	my_camera.max_top = -5426
 	my_camera.max_right = 940
@@ -57,7 +57,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	pass
 
 
-func AddStage():
+func add_stage():
 	randomize()
 	var StageInfo = [
 		{"Type": "an_" + str(randi_range(1, 5)), "Position": Vector2(randi_range(335, 395), 190)},

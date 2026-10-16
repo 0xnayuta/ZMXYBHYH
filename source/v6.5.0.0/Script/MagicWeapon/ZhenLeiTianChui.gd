@@ -70,7 +70,7 @@ func _get_weapon_level() -> int:
 func show_skill() -> void:
 	var casting_hero := _get_casting_hero()
 	if casting_hero == null:
-		Useover()
+		use_over()
 		return
 
 	_cast_token += 1
@@ -91,7 +91,7 @@ func show_skill() -> void:
 	var remaining_duration := float(EFFECT_FRAME_COUNT - HIT_FRAMES[-1] + 1) / ANIMATION_SPEED
 	await get_tree().create_timer(remaining_duration, false).timeout
 	if is_inside_tree() and current_token == _cast_token:
-		Useover()
+		use_over()
 
 
 func _get_casting_hero() -> BaseHero:
@@ -214,15 +214,6 @@ func use_over() -> void:
 func _exit_tree() -> void:
 	_cast_token += 1
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func ShowSkill() -> void:
-	await show_skill()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func Useover() -> void:
-	use_over()

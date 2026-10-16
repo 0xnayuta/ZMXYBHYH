@@ -42,8 +42,8 @@ func _physics_process(delta: float) -> void:
 func show_skill():
 	mg_player.play("hit")
 	await mg_player.animation_finished
-	SummonZlw()
-	Useover()
+	summon_zlw()
+	use_over()
 
 
 func use_over():
@@ -53,7 +53,7 @@ func use_over():
 	skill_cd.start(5)
 
 
-func SummonZlw():
+func summon_zlw():
 	if Global.current_magic_summon and is_instance_valid(Global.current_magic_summon):
 		Global.current_magic_summon.queue_free()
 		Global.current_magic_summon = null
@@ -86,15 +86,6 @@ func _on_summon_timeout():
 		Global.current_magic_summon.queue_free()
 		Global.current_magic_summon = null
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func ShowSkill():
-	return await show_skill()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func Useover():
-	return use_over()

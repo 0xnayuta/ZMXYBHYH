@@ -204,7 +204,7 @@ func _ready():
 	RoleProp.CurrentHp = RoleProp.roleprop.Hp
 	RoleProp.CurrentMp = RoleProp.roleprop.Mp
 	for i in range(11):
-		PlayAn(i)
+		play_an(i)
 	if MainSet.set_data["CurrentLevelPage"] <= MaxPage:
 		MainSet.set_data["CurrentLevelPage"] = MaxPage
 		MemoryClass.main_bc()
@@ -585,7 +585,7 @@ func _on_challenge_zjg_pressed() -> void:
 	_enter_challenge_four_swords("指景宫", "res://Scene/Level/Level_43.tscn")
 
 
-func PlayAn(Level):
+func play_an(Level):
 	match int(Level):
 		1:
 			if PlayerData.get_item_data("ttlp"):

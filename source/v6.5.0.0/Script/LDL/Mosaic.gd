@@ -15,16 +15,16 @@ const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/Pet/PetPageResources/PetI
 
 
 func _physics_process(_delta: float) -> void:
-	setBoxInLdL()
+	set_box_in_ld_l()
 
 	if PlayerData.player_data[DataKeys.INLAY_LIST].size() != 0:
-		set_ZBProperies()
-		set_OtherProp()
+		set_zb_properies()
+		set_other_prop()
 	else:
 		remove_infomation()
 
 
-func setBoxInLdL():
+func set_box_in_ld_l():
 	bs_1.is_in_ldl_gz = true
 	bs_2.is_in_ldl_gz = true
 	bs_3.is_in_ldl_gz = true
@@ -37,7 +37,7 @@ func setBoxInLdL():
 	bs_8.is_in_ldl_gz = true
 
 
-func set_ZBProperies():
+func set_zb_properies():
 	var selected: Dictionary = PlayerData.player_data[DataKeys.INLAY_LIST][0]
 	Zb.qh_level = int(selected[DataKeys.ENHANCE_LEVEL])
 	Zb.get_item_name = str(selected[DataKeys.NAME])
@@ -53,7 +53,7 @@ func set_ZBProperies():
 		Zb.EQ_prop = selected["Data"]
 
 
-func set_OtherProp():
+func set_other_prop():
 	var BSsize = PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"][DataKeys.GEM].size()
 	var bs_list = [bs_1, bs_2, bs_3, bs_4, bs_5, bs_6, bs_7, bs_8]
 	for i in range(bs_list.size()):

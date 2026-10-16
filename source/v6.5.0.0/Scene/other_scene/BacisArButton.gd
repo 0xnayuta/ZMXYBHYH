@@ -9,11 +9,11 @@ var MyNum: int
 
 
 func _physics_process(_delta: float) -> void:
-	SetNormalInfo()
+	set_normal_info()
 	set_physics_process(false)
 
 
-func SetNormalInfo() -> void:
+func set_normal_info() -> void:
 	my_num.text = str(MyNum)
 	var archive_data: Dictionary = MemoryClass.peek_archive_data(_archive_path(MyNum))
 	var role_id: int = int(archive_data.get("Myself", 0))

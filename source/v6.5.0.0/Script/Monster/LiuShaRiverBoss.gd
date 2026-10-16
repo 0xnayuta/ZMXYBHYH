@@ -441,7 +441,7 @@ func _physics_process(delta: float) -> void:
 	_tick_gxp(delta)
 	_update_shadows(delta)
 	_tick_skill_motion(delta)
-	if _gxp_active and not is_on_floor() and CanSetGra():
+	if _gxp_active and not is_on_floor() and can_set_gra():
 		velocity.y += 980.0 * (GXP_GRAVITY_SCALE - 1.0) * delta
 	super._physics_process(delta)
 	if boss_kind == 34:
@@ -451,12 +451,12 @@ func _physics_process(delta: float) -> void:
 		IsSuperArmor = true
 
 
-func CanSetGra():
+func can_set_gra():
 	if boss_kind == 31 and _water_float_left > 0.0:
 		return false
 	if boss_kind == 31 and is_attacking and _active_skill in ["hit3", "hit4_1", "hit4_2", "hit8", "hit9"]:
 		return false
-	return super.CanSetGra()
+	return super.can_set_gra()
 
 
 func _tick_cooldowns(delta: float) -> void:
@@ -575,7 +575,7 @@ func ai_think() -> void:
 	var distance := absf(target_position.x - global_position.x)
 	if distance < mysee:
 		has_target = true
-	if IsLimitBuff() or cannotchangestatewhenattorbeatt() or _skill_busy:
+	if is_limit_buff() or cannotchangestatewhenattorbeatt() or _skill_busy:
 		return
 	if not has_target:
 		normal_state()

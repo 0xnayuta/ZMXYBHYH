@@ -63,7 +63,7 @@ func _physics_process(_delta: float) -> void:
 		if DataList.has("HaveCount"):
 			_cached_buff_count = int(DataList["HaveCount"])
 		else:
-			_cached_buff_count = GetBuffCount()
+			_cached_buff_count = get_buff_count()
 	var count_text := str(_cached_buff_count) if _cached_buff_count > 1 else ""
 	if add_times.text != count_text:
 		add_times.text = count_text
@@ -122,7 +122,7 @@ func _on_mouse_exited() -> void:
 	_hide_buff_info()
 
 
-func GetBuffCount():
+func get_buff_count():
 	var Count: int = 0
 	if Parent != null and Parent.get("buff") != null:
 		var buff_parent: Node = Parent.buff

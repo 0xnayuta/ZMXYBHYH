@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 func show_skill():
 	mg_player.play("hit")
 	await mg_player.animation_finished
-	Useover()
+	use_over()
 
 
 func use_over():
@@ -45,15 +45,6 @@ func move_monster_and_add_buff():
 				i.HurtBl = ADDBl
 				i.remove_hurt_bl.start(ADDTime)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func ShowSkill():
-	return await show_skill()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func Useover():
-	return use_over()

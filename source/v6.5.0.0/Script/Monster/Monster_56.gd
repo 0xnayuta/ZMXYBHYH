@@ -193,13 +193,13 @@ func ai_think():
 	velocity.x = 0
 	if Throw:
 		if Skill_1_CD <= 0:
-			ThrowRound(throw_cout)
+			throw_round(throw_cout)
 	else:
 		if Skill_1_CD <= 0:
-			ReturnAllRound()
+			return_all_round()
 
 
-func ThrowRound(value):
+func throw_round(value):
 	isCall = false
 	Skill_1_CD = randi_range(3, 5)
 	var i = 0
@@ -237,7 +237,7 @@ func ThrowRound(value):
 		CurrentRound = 0
 
 
-func ReturnAllRound():
+func return_all_round():
 	Skill_1_CD = randi_range(3, 5)
 	IdxList = [0, 1, 2, 3, 4, 5, 6, 7]
 	var tween = get_tree().create_tween().set_parallel(true)
@@ -254,12 +254,12 @@ func ReturnAllRound():
 	RoundList.clear()
 	if not isCall:
 		isCall = true
-		CallJG(throw_cout)
+		call_jg(throw_cout)
 	CurrentRound = 8
 	zlw_special_effect_2.CurrentCount = 8
 
 
-func CallJG(lx):
+func call_jg(lx):
 	JGPP = [
 		Vector2(-370, 325),
 		Vector2(-255, 325),
@@ -351,7 +351,7 @@ func CallJG(lx):
 	pass
 
 
-func Otherjg():
+func otherjg():
 	for i in range(randi_range(3, throw_cout * 2)):
 		Global.add_bullet(
 			"Monster56Bullet",

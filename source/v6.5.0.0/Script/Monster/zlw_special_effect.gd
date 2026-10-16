@@ -9,15 +9,15 @@ extends Node2D
 var CurrentCount: int = 6:
 	set(value):
 		CurrentCount = value
-		_onroundChange()
+		_on_round_change()
 var State: bool = false:
 	set(value):
 		State = value
-		ChangePOSITION()
+		change_position()
 var Speed: float = 1:
 	set(value):
 		Speed = value
-		Set_Speed()
+		set_speed()
 var RoundPosition_1 = [Vector2(0, 0), Vector2(0, 0), Vector2(35, 0), Vector2(60, 0), Vector2(35, -100), Vector2(60, 60)]
 var RoundPosition_2 = [
 	Vector2(0, -90), Vector2(0, -90), Vector2(50, -85), Vector2(-45, -135), Vector2(65, -130), Vector2(35, -160)
@@ -29,7 +29,7 @@ func _ready() -> void:
 	LunziList = [lunzi_1, lunzi_2, lunzi_3, lunzi_4, lunzi_5, lunzi_6]
 
 
-func _onroundChange():
+func _on_round_change():
 	if CurrentCount == 6:
 		lunzi_1.visible = true
 		lunzi_2.visible = true
@@ -81,7 +81,7 @@ func _onroundChange():
 		lunzi_6.visible = false
 
 
-func ChangePOSITION():
+func change_position():
 	var count: int = 0
 	var List: Array
 	if State:
@@ -93,7 +93,7 @@ func ChangePOSITION():
 		count += 1
 
 
-func Set_Speed():
+func set_speed():
 	var num: int = 0
 	var SpeedList = [-0.8, 1.5, 1.2, -1.4, 1.8, 3]
 	for i in LunziList:

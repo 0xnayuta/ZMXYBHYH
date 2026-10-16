@@ -42,7 +42,7 @@ func _ready():
 	super.on_eqchange()
 
 	use_new_hmz = false
-	Role_1()
+	role_1()
 	_prepare_hyjj_pose_animation()
 	_prepare_gsrs_zz_action()
 
@@ -152,7 +152,7 @@ func get_hmz_ws_hit_data(action_name: String = "hmz_3") -> Dictionary:
 	return attack_data.duplicate(true) if attack_data is Dictionary else {}
 
 
-func Role_1():
+func role_1():
 	if not is_in_group("Player"):
 		add_to_group("Player")
 
@@ -286,8 +286,8 @@ func Role_1():
 
 
 func _physics_process(delta: float) -> void:
-	Role_1()
-	Add_Shallow()
+	role_1()
+	add_shallow()
 	if use_hmz:
 		velocity.x = 0
 		velocity.y = -10
@@ -489,7 +489,7 @@ func do_lyfb():
 	if is_on_floor():
 		velocity.x = 0
 	get_action = "lyfb"
-	setShallowaction("lyfb")
+	set_shallowaction("lyfb")
 	is_using_skills = true
 	super.get_hit_data("lyfb")
 	var lyfb_awaken_active := _is_skill_awakened("lyfb") and _is_skill_awaken_enabled("lyfb")
@@ -517,7 +517,7 @@ func do_zz():
 	self.Role1SkillInter["zz"] = 1.2
 	velocity.x = 0
 	get_action = "zz"
-	setShallowaction("zz")
+	set_shallowaction("zz")
 	is_using_skills = true
 	super.get_hit_data("zz")
 	is_attacking = true
@@ -534,7 +534,7 @@ func do_gsrs():
 	self.Role1SkillInter["gsrs"] = 1.2
 	velocity.x = 0
 	get_action = "gsrs"
-	setShallowaction("gsrs")
+	set_shallowaction("gsrs")
 	is_using_skills = true
 	super.get_hit_data("gsrs")
 	is_attacking = true
@@ -1062,12 +1062,12 @@ func call_hyjj():
 		Hyjj.push_back(Global.add_role_bullet_1(self.Bullet, Vector2(100, 0), "hyjj", self.objattackDic["hyjj"]))
 
 
-func Add_Shallow():
+func add_shallow():
 	var pp = self.get_parent()
 	ShallowList = pp.get_children()
 
 
-func setShallowaction(action_: String):
+func set_shallowaction(action_: String):
 	var power = (
 		self.objattackDic[action_]["power"]
 		* (0.7 + (PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1) * 0.03)

@@ -92,7 +92,7 @@ func ai_think():
 				self.mdef = 150
 				self.speed = 8
 				if float(Hp) / float(SHp) <= 0.7:
-					ChangeBody_()
+					change_body()
 				elif not is_be_attacking:
 					super.ai_think()
 			else:
@@ -152,7 +152,7 @@ func attack_target():
 	is_attacking = false
 
 
-func ChangeBody_():
+func change_body():
 	velocity.x = 0
 	mr_player.play("changeBody")
 	await mr_player.animation_finished

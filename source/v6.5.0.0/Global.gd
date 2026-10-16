@@ -3919,7 +3919,7 @@ func add_buff(parent, BuffInfo):
 	var node_instance = instance_scene(_cached_scene(&"BaseBuff_", BASE_BUFF_PATH), parent)
 	if node_instance == null:
 		return null
-	if node_instance.has_method("StartBuff"):
+	if node_instance.has_method("start_buff"):
 		var buff_instance = node_instance
 		buff_instance.BuffInfo = BuffInfo.duplicate(true)
 		if (
@@ -4736,7 +4736,7 @@ func add_trap(parent, position_, name_):
 	return target
 
 
-func add_BuffIcon(parent, text_):
+func add_buff_icon_text(parent, text_):
 	if not BuffIcon:
 		BuffIcon = _load_scene("res://Scene/BackPack/buff.tscn")
 	var target = instance_scene(BuffIcon, parent)
@@ -5563,7 +5563,7 @@ func get_all_item_num(List, Num, NumRange):
 	return ll
 
 
-func RemoveAllBuff():
+func remove_all_active_buffs():
 	for i in RoleProp.SourcePlayer.buff.get_children():
 		if i != null:
 			if i.BuffInfo["AddTime"] < 999:

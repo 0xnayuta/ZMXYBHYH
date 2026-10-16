@@ -13,7 +13,7 @@ func _ready() -> void:
 
 	bgm_node = Global.add_bgm(self, "res://Music/level/sdtw.mp3")
 	self.level_stage = 24
-	AddTrap()
+	add_trap()
 	super._ready()
 
 	Monster_group = {
@@ -356,7 +356,7 @@ func set_through():
 			bgm_node = Global.add_bgm(self, "res://Music/level/twdboss.mp3")
 
 
-func AddTrap():
+func add_trap():
 	Global.add_zztw_trap(trap, "Trap1", Vector2(135, 120))
 	Global.add_zztw_trap(trap, "Trap1", Vector2(180, 120))
 	Global.add_zztw_trap(trap, "Trap1", Vector2(225, 120))

@@ -4636,7 +4636,7 @@ func _process(_delta: float) -> void:
 
 
 func removedata():
-	MemoryClass.Remove()
+	MemoryClass.remove()
 	Global.change_scene("res://Scene/main_menu/Main_Menu.tscn")
 
 

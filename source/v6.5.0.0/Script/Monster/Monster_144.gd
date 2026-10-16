@@ -77,7 +77,7 @@ func ai_think():
 		WangWang.QBMoveRight:
 			move_right()
 		WangWang.Jump:
-			Jump()
+			jump()
 		WangWang.Smile:
 			attack_target()
 		WangWang.Cry:
@@ -106,11 +106,11 @@ func move_right():
 
 func have_target():
 	if not $RayCast2D.get_collider():
-		Jump()
+		jump()
 	if can_jumpqb.get_collider():
-		Jump()
+		jump()
 	if randi_range(0, 100) < 25 and jumpcd.time_left <= 0:
-		Jump()
+		jump()
 	else:
 		if RoleProp.get_nearest_monster_target_position(global_position).x > position.x + randi_range(65, 85):
 			move_right()
@@ -120,7 +120,7 @@ func have_target():
 			stop_move()
 
 
-func Jump():
+func jump():
 	if jumpcd.time_left <= 0:
 		randomize()
 		jumpcd.start(randi_range(1, 4))
@@ -138,11 +138,11 @@ func Jump():
 
 func normal_state():
 	if not $RayCast2D.get_collider():
-		Jump()
+		jump()
 	if can_jumpqb.get_collider():
-		Jump()
+		jump()
 	if randi_range(0, 100) < 25 and jumpcd.time_left <= 0:
-		Jump()
+		jump()
 	else:
 		if ran_num < 10:
 			stop_move()
@@ -156,7 +156,7 @@ func qb():
 	return jcqb.get_collider()
 
 
-func CheckHp(i: float):
+func check_hp_ratio(i: float):
 	return Hp >= SHp * i
 
 
@@ -255,10 +255,6 @@ func reduce_hp(value: int):
 func hurt_reduce_hp(value, target):
 	return 0
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func HurtReduceHp(value, target):
-	return hurt_reduce_hp(value, target)

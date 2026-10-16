@@ -121,7 +121,7 @@ func _refresh_role_cards() -> void:
 		selected_player_icon.visible = false
 
 
-func SetRole(role_id: int) -> void:
+func set_role(role_id: int) -> void:
 	if role_id <= 0 or role_id > role_name_list.size():
 		return
 	current_choose = role_id
@@ -162,7 +162,7 @@ func _add_stars(parent: Node, filled: int) -> void:
 
 
 func _on_role_card_pressed(role_id: int) -> void:
-	SetRole(role_id)
+	set_role(role_id)
 
 
 func _set_hover_icon(role_id: int, show_icon: bool) -> void:

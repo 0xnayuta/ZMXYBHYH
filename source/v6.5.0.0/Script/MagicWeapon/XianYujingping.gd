@@ -27,12 +27,12 @@ func _prewarm_scene() -> void:
 	_prewarm_done = true
 
 
-func UseSkill() -> void:
-	if not EnoughMp():
+func use_skill() -> void:
+	if not enough_mp():
 		is_use = false
 		return
 	RoleProp.roleprop.Mp -= SUMMON_MP_COST
-	ShowSkill()
+	show_skill()
 
 
 func show_skill() -> void:
@@ -108,10 +108,6 @@ func _on_guanyin_tree_exited(exited_summon: Node) -> void:
 func _exit_tree() -> void:
 	_clear_current_summon()
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func ShowSkill() -> void:
-	show_skill()

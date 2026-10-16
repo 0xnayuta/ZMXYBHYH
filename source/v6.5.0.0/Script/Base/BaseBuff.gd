@@ -86,18 +86,18 @@ func _physics_process(_delta: float) -> void:
 			self.queue_free()
 			return
 
-		SetValue()
-		AddBuffEffectFirst()
-		StartBuff()
+		set_value()
+		add_buff_effect_first()
+		start_buff()
 		IsSet = true
 
 		if BuffInfo["Name"] == "lljybuff" and GetObj != null:
 			GetObj.velocity.x = 0
 
-	SetSpecialBuffTime()
+	set_special_buff_time()
 
 
-func SetValue():
+func set_value():
 	if BuffInfo["Name"] == "speed_down":
 		LastValue = normalize_slow_ratio(LastValue)
 		for other in GetAllBuff.get_children():
@@ -216,7 +216,7 @@ func apply_slow_speed() -> void:
 		GetObj.walk_speed = base_speed * multiplier
 
 
-func AddBuffEffectFirst():
+func add_buff_effect_first():
 	match BuffInfo["Name"]:
 		"PetLifeBonus", "PetAttackBonus", "PetDefenseBonus", "PetManaBonus":
 			refresh_pet_owner_bonus(maxi(0, int(LastValue)))
@@ -440,7 +440,7 @@ func _on_buff_last_time_timeout() -> void:
 				PlayerData.player_data["初始Buff"].erase(i)
 
 	if BuffInfo["AddTime"] < 99999:
-		RemoveBuff()
+		remove_buff()
 
 
 func _on_buff_value_reduce_time_timeout() -> void:
@@ -468,8 +468,8 @@ func _on_buff_value_reduce_time_timeout() -> void:
 					if BuffInfo["Name"] == "hanxiangzisleep":
 						GetObj.reduce_pet_hp(int(LastValue), "real")
 					else:
-						var Hurt = GetObj.get_Role_last_hurt(self)
-						GetObj.HurtReduceHp(Hurt, self)
+						var Hurt = GetObj.get_role_last_hurt(self)
+						GetObj.hurt_reduce_hp(Hurt, self)
 
 		"flls":
 			if GetObj is BaseHero:
@@ -645,7 +645,7 @@ func _ice_effect_offset() -> Vector2:
 	return Vector2(0, 10)
 
 
-func AddBuffIcon():
+func add_buff_icon():
 	if GetObj is BaseHero:
 		if Global.buff_box == null:
 			return
@@ -679,7 +679,7 @@ func AddBuffIcon():
 			Icon.LastHurt = LastValue
 
 
-func RemoveBuff():
+func remove_buff():
 	_clear_pet_owner_bonus()
 
 	if BuffInfo["Name"] == "ReverseMove" and GetObj is BaseHero:
@@ -739,7 +739,7 @@ func refresh_pet_owner_bonus(value: int) -> void:
 			RoleProp.roleprop.Mp = int(RoleProp.roleprop.get("Mp", 0)) + maxi(0, bonus - old_mana)
 		_:
 			return
-	AddBuffIcon()
+	add_buff_icon()
 
 
 func _clear_pet_owner_bonus() -> void:
@@ -755,14 +755,14 @@ func _clear_pet_owner_bonus() -> void:
 			RoleProp.pet_mana_bonus = 0
 
 
-func StartBuff():
+func start_buff():
 	BuffTime.start(float(BuffInfo["AddTime"]))
 	if BuffInfo.has("ReduceInterval"):
 		BuffReduceTime.start(float(BuffInfo["ReduceInterval"]))
 	Specialeffectaddtime.start(InterTime)
 
 
-func SetSpecialBuffTime():
+func set_special_buff_time():
 	if PlayerData.player_data["初始Buff"].size() <= 0:
 		return
 	for i in PlayerData.player_data["初始Buff"]:

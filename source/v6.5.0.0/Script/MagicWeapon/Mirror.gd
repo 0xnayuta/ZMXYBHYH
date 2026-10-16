@@ -225,24 +225,24 @@ func _physics_process(delta: float) -> void:
 				FollowTarget = null
 				Speed = InitSpeed
 			elif FollowTarget == Player:
-				Useover()
+				use_over()
 				Player.f_bcure_hp(TotalHp)
 				TotalHp = 0
 			else:
-				Useover()
+				use_over()
 				FixTime = 0
 
 	if isBegin:
 		if FixTarget != null:
 			self.position = FixTarget.position - Vector2(0, 140)
 			if FixTime % 60 == 0:
-				addSpecialEffect()
+				add_special_effect()
 				if FixTarget == null or not FixTarget is BaseMonster:
 					FixTime = 0
 				else:
 					if FixTarget != null and FixTarget is BaseMonster:
 						Global.add_buff(FixTarget.buff, objattackDic["hit1"]["addeffect"])
-						TotalHp += reduceHp()
+						TotalHp += reduce_hp()
 					else:
 						FixTime = 0
 		else:
@@ -270,7 +270,7 @@ func show_skill():
 	var closest_dist = 5000
 	while a_2 < MonsterList.size():
 		if MonsterList[a_2] == null:
-			Useover()
+			use_over()
 			return
 		Monster_2 = MonsterList[a_2] as BaseMonster
 		if Monster_2 == null:
@@ -291,7 +291,7 @@ func show_skill():
 		FollowTarget = FixTarget
 	if FollowTarget == null or FixTarget == null:
 		RoleProp.roleprop.Mp += needMp
-		Useover()
+		use_over()
 	IsShowSkill = false
 
 
@@ -315,13 +315,13 @@ func _on_check_monster_body_entered(body: Node2D) -> void:
 		MonsterList.push_back(body)
 
 
-func reduceHp():
+func reduce_hp():
 	var hurt = int(objattackDic["hit1"]["power"] / 15)
 	FixTarget.reduce_hp(hurt)
 	return hurt
 
 
-func checkMonsterDeath():
+func check_monster_death():
 	for i in MonsterList:
 		if i != null:
 			if i is BaseMonster:
@@ -338,14 +338,14 @@ func free() -> void:
 	FixTarget = null
 
 
-func addSpecialEffect():
+func add_special_effect():
 	Global.add_special_effect(self, Vector2(0, 45), "MirrorHpSteal", Vector2(1, 1), false, 1.0)
 
 
 func _on_timer_timeout() -> void:
 	if not isBegin:
 		if FollowTarget == null and FixTarget == null:
-			Useover()
+			use_over()
 
 
 func _update_stream_sprite(delta: float) -> void:
@@ -420,15 +420,6 @@ func _show_stream_frame(frame_index: int) -> void:
 	var frame_offset: Vector2 = STREAM_FRAME_OFFSETS[frame_index]
 	_stream_sprite.position = mg_action.position + frame_offset * mg_action.scale
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func ShowSkill():
-	return show_skill()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func Useover():
-	return use_over()

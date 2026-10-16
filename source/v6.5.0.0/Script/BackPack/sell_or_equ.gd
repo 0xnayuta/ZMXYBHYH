@@ -159,7 +159,7 @@ func _on_equ_pressed() -> void:
 			queue_free()
 		return
 	var new_list = PlayerData.get_zb_data(page, number)
-	if not CheckCanEquipment(new_list[DataKeys.NAME]):
+	if not check_can_equipment(new_list[DataKeys.NAME]):
 		return
 	match AE.AllEquipment_[new_list[DataKeys.NAME]][DataKeys.TYPE]:
 		"武器":
@@ -363,7 +363,7 @@ func _on_sell_pressed() -> void:
 
 func _show_sell_confirm(confirm_text: String) -> void:
 	self.visible = false
-	Signals.ConnectChooseBoxSignal(self, "sell")
+	Signals.connect_choose_box_signal(self, "sell")
 	jm = Global.add_choose_text(Global.get_ui_popup_layer(), Vector2.ZERO, confirm_text, 0)
 	if jm == null:
 		return
@@ -434,7 +434,7 @@ func _on_panel_mouse_exited() -> void:
 	pass
 
 
-func CheckCanEquipment(EquipmentName):
+func check_can_equipment(EquipmentName):
 	var RoleID: int = PlayerData.player_data["Myself"]
 	var parent = Global.get_parent_(self, 3)
 	var EqBase = AE.AllEquipment_[EquipmentName]["所属"]

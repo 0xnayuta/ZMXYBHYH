@@ -13,7 +13,7 @@ var Player: BaseHero
 func _physics_process(delta: float) -> void:
 	if not Is_set2:
 		set_pic(item_name)
-		if MainSet.set_data["AutomaticallyPickUpItems"]:
+		if MainSet.set_data["automatically_pick_up_items"]:
 			get_area.disabled = true
 		else:
 			get_area.disabled = false
@@ -22,9 +22,9 @@ func _physics_process(delta: float) -> void:
 
 	if not is_on_floor():
 		velocity.y -= delta * -980
-	if MainSet.set_data["AutomaticallyPickUpItems"]:
+	if MainSet.set_data["automatically_pick_up_items"]:
 		if not IsPick:
-			AutomaticallyPickUpItems()
+			automatically_pick_up_items()
 
 	move_and_slide()
 
@@ -68,15 +68,15 @@ func load_soft(path: String) -> Texture2D:
 	return null
 
 
-func AutomaticallyPickUpItems():
-	PickUpItems(Player)
+func automatically_pick_up_items():
+	pick_up_items(Player)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	PickUpItems(body)
+	pick_up_items(body)
 
 
-func PickUpItems(body):
+func pick_up_items(body):
 	if MainSet.set_data["PickUpItemsMusic"]:
 		Global.add_sound(self, "res://Music/level/86_pickup.mp3")
 	if item_name != "peach" and item_name != "Bble" and item_name != "radish":

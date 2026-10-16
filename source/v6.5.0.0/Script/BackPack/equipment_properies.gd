@@ -212,7 +212,7 @@ func _set_pet_information() -> void:
 	eq_star_level.visible = false
 	BsProList.visible = data.get(DataKeys.GEM, []) is Array and not (data.get(DataKeys.GEM, []) as Array).is_empty()
 	if BsProList.visible:
-		setBsInfor()
+		set_bs_infor()
 	else:
 		_set_gem_resonance_information(data)
 	var strengthen_value: Variant = data.get(DataKeys.ENHANCE_PROP, {})
@@ -445,7 +445,7 @@ func _physics_process(_delta: float) -> void:
 		set_information_(nam)
 		if AE.AllEquipment_[nam][DataKeys.TYPE] != "道具" and AE.AllEquipment_[nam][DataKeys.TYPE] != "消耗品":
 			have.queue_free()
-			setBsInfor()
+			set_bs_infor()
 		else:
 			if v_box_container_3 != null:
 				v_box_container_3.queue_free()
@@ -684,7 +684,7 @@ func set_information_(name_: String):
 				eq_bm.queue_free()
 
 
-func setBsInfor():
+func set_bs_infor():
 	if not is_pet_equipment and str(AE.AllEquipment_.get(nam, {}).get(DataKeys.TYPE, "")) == "法宝":
 		BsProList.hide()
 		return
@@ -791,14 +791,14 @@ func _set_gem_resonance_information(data: Dictionary) -> void:
 
 
 func get_bs_prop(need):
-	if set_BsProp() == {}:
+	if set_bs_prop() == {}:
 		return 0
 	else:
-		var information = set_BsProp()[need]
+		var information = set_bs_prop()[need]
 		return information
 
 
-func set_BsProp():
+func set_bs_prop():
 	if EQ_prop == null or not EQ_prop.has(DataKeys.GEM):
 		return {}
 	var equipment_data_source: Node = AE._get_data()

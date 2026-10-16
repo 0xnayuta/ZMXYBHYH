@@ -208,7 +208,7 @@ func _apply_hit(target: BaseMonster) -> void:
 		damage_scale = 1.0
 	var damage := int(
 		(
-			float(target.get_Role_last_hurt(owner_player))
+			float(target.get_role_last_hurt(owner_player))
 			* RoleProp.ws_up_power
 			* target.jgz_bl
 			* target.zznh_bl
@@ -219,7 +219,7 @@ func _apply_hit(target: BaseMonster) -> void:
 	)
 	if damage > 0:
 		target.GetHurt = damage
-		target.HurtReduceHp(damage, owner_player)
+		target.hurt_reduce_hp(damage, owner_player)
 		if target is Monster138:
 			target.transfer_linked_damage(damage)
 		target.add_lj(damage)
@@ -227,7 +227,7 @@ func _apply_hit(target: BaseMonster) -> void:
 		if str(hit_data.get("attackKind", "")) == "magic":
 			Global.TotalMagHit += damage
 		_apply_voodoo_if_learned(target)
-		target.Role5Bullet(damage, owner_player)
+		target.role5_bullet(damage, owner_player)
 	target.get_target = old_target
 	owner_player.HitDic = old_hit_data
 	RoleProp.SourcePlayer = old_source_player

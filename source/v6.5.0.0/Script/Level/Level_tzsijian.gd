@@ -378,7 +378,7 @@ func _trim_endless_round_loot() -> void:
 		return
 	var loot_nodes: Array[Node] = []
 	for child in fall_it.get_children():
-		if child != null and is_instance_valid(child) and child.has_method("PickUpItems"):
+		if child != null and is_instance_valid(child) and child.has_method("pick_up_items"):
 			loot_nodes.append(child)
 	const MAX_ENDLESS_LOOT := 24
 	var remove_count := maxi(loot_nodes.size() - MAX_ENDLESS_LOOT, 0)

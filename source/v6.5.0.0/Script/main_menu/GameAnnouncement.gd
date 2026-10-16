@@ -769,7 +769,7 @@ var TextList = {
 
 
 func _ready() -> void:
-	ADDTextInfo()
+	add_text_info()
 	secret_title.mouse_filter = Control.MOUSE_FILTER_STOP
 	secret_title.gui_input.connect(_on_secret_title_gui_input)
 	secret_password_input.text_submitted.connect(_on_secret_password_submitted)
@@ -1148,8 +1148,8 @@ func _show_secret_status(message: String) -> void:
 	secret_function_status.text = message
 
 
-func ADDTextInfo():
-	RemoveAllTextInfo()
+func add_text_info():
+	remove_all_text_info()
 	bb.text = str(Verisions) + "更新详情"
 	if VerisionsName == "" or VerisionsName == null:
 		return
@@ -1164,7 +1164,7 @@ func ADDTextInfo():
 			item_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 
 
-func RemoveAllTextInfo():
+func remove_all_text_info():
 	for i in text_list.get_children():
 		i.queue_free()
 
@@ -1172,13 +1172,13 @@ func RemoveAllTextInfo():
 func _on_v_0_1_pressed() -> void:
 	VerisionsName = "V2_3"
 	Verisions = "V2.3"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_2_pressed() -> void:
 	VerisionsName = "V2_2"
 	Verisions = "V2.2"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_close_pressed() -> void:
@@ -1188,262 +1188,262 @@ func _on_close_pressed() -> void:
 func _on_v_0_3_pressed() -> void:
 	VerisionsName = "V2_1"
 	Verisions = "V2.1"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_4_pressed() -> void:
 	VerisionsName = "V2_0"
 	Verisions = "V2.0"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_5_pressed() -> void:
 	VerisionsName = "V2_4"
 	Verisions = "V2.4"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_6_pressed() -> void:
 	VerisionsName = "V2_5"
 	Verisions = "V2.5"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_7_pressed() -> void:
 	VerisionsName = "V2_6"
 	Verisions = "V2.6"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_8_pressed() -> void:
 	VerisionsName = "V2_7"
 	Verisions = "V2.7"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_9_pressed() -> void:
 	VerisionsName = "V2_8"
 	Verisions = "V2.8"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_10_pressed() -> void:
 	VerisionsName = "V2_9"
 	Verisions = "V2.9"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_11_pressed() -> void:
 	VerisionsName = "V3_0"
 	Verisions = "V3.0"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_12_pressed() -> void:
 	VerisionsName = "V3_1"
 	Verisions = "V3.1"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_13_pressed() -> void:
 	VerisionsName = "V3_2"
 	Verisions = "V3.2"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_14_pressed():
 	VerisionsName = "V3_3"
 	Verisions = "V3.3"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_15_pressed():
 	VerisionsName = "V3_4"
 	Verisions = "V3.4"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_16_pressed():
 	VerisionsName = "V3_5"
 	Verisions = "V3.5"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_17_pressed():
 	VerisionsName = "V3_6"
 	Verisions = "V3.6"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_18_pressed():
 	VerisionsName = "V3_7"
 	Verisions = "V3.7"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_19_pressed():
 	VerisionsName = "V3_8"
 	Verisions = "V3.8"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_20_pressed():
 	VerisionsName = "V3_9"
 	Verisions = "V3.9"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_21_pressed():
 	VerisionsName = "V4_0"
 	Verisions = "V4.0"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_22_pressed() -> void:
 	VerisionsName = "V4_1"
 	Verisions = "V4.1"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_23_pressed() -> void:
 	VerisionsName = "V4_2"
 	Verisions = "V4.2"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_24_pressed() -> void:
 	VerisionsName = "V4_3"
 	Verisions = "V4.3"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_25_pressed() -> void:
 	VerisionsName = "V4_4"
 	Verisions = "V4.4"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_26_pressed() -> void:
 	VerisionsName = "V4_5"
 	Verisions = "V4.5"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_27_pressed() -> void:
 	VerisionsName = "V4_6"
 	Verisions = "V4.6"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_28_pressed() -> void:
 	VerisionsName = "V4_7"
 	Verisions = "V4.7"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_29_pressed() -> void:
 	VerisionsName = "V4_8"
 	Verisions = "V4.8"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_30_pressed() -> void:
 	VerisionsName = "V4_9"
 	Verisions = "V4.9"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_31_pressed() -> void:
 	VerisionsName = "V5_0"
 	Verisions = "V5.0"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_32_pressed() -> void:
 	VerisionsName = "V5_1"
 	Verisions = "V5.1"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_33_pressed() -> void:
 	VerisionsName = "V5_2"
 	Verisions = "V5.2"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_34_pressed() -> void:
 	VerisionsName = "V5_3"
 	Verisions = "V5.3"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_35_pressed() -> void:
 	VerisionsName = "V5_4"
 	Verisions = "V5.4"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_36_pressed() -> void:
 	VerisionsName = "V5_5"
 	Verisions = "V5.5"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_37_pressed() -> void:
 	VerisionsName = "V5_6"
 	Verisions = "V5.6"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_38_pressed() -> void:
 	VerisionsName = "V5_7"
 	Verisions = "V5.7"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_39_pressed() -> void:
 	VerisionsName = "V5_8"
 	Verisions = "V5.8"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_40_pressed() -> void:
 	VerisionsName = "V5_9"
 	Verisions = "V5.9"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_41_pressed() -> void:
 	VerisionsName = "V6_0"
 	Verisions = "V6.0"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_42_pressed() -> void:
 	VerisionsName = "V6_1"
 	Verisions = "V6.1"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_43_pressed() -> void:
 	VerisionsName = "V6_2"
 	Verisions = "V6.2"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_44_pressed() -> void:
 	VerisionsName = "V6_3"
 	Verisions = "V6.3"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_45_pressed() -> void:
 	VerisionsName = "V6_4"
 	Verisions = "V6.4"
-	ADDTextInfo()
+	add_text_info()
 
 
 func _on_v_0_46_pressed() -> void:
 	VerisionsName = "V6_5"
 	Verisions = "V6.5"
-	ADDTextInfo()
+	add_text_info()

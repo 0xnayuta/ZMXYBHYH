@@ -308,7 +308,7 @@ func _apply_hit(target: BaseMonster) -> void:
 		damage_scale = 1.0
 	var damage := int(
 		(
-			float(target.get_Role_last_hurt(owner_player))
+			float(target.get_role_last_hurt(owner_player))
 			* RoleProp.ws_up_power
 			* target.jgz_bl
 			* target.zznh_bl
@@ -319,8 +319,8 @@ func _apply_hit(target: BaseMonster) -> void:
 		)
 	)
 	target.GetHurt = damage
-	target.cureWSValue()
-	target.HurtReduceHp(damage, owner_player)
+	target.cure_ws_value()
+	target.hurt_reduce_hp(damage, owner_player)
 	if damage > 0:
 		target.add_lj(damage)
 		Global.TotalRoleHit += damage
@@ -329,7 +329,7 @@ func _apply_hit(target: BaseMonster) -> void:
 		Global.add_sound(target, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 		if not target.is_miss and not target.is_boss_protecting():
 			target.HurtSpecialEffect = Global.add_mr_hurt(target.pz, Vector2.ZERO)
-		target.Role5Bullet(damage, owner_player)
+		target.role5_bullet(damage, owner_player)
 	target.get_target = old_target
 	target.miss = old_miss
 	owner_player.HitDic = old_hit_data

@@ -94,7 +94,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	checkISchoose()
+	check_i_schoose()
 
 
 func set_infor() -> void:
@@ -109,7 +109,7 @@ func set_infor() -> void:
 	Skill_Infor.text = str(info["desc"])
 
 
-func checkISchoose() -> void:
+func check_i_schoose() -> void:
 	if PlayerData.check_zb(wp_name) != []:
 		no_have.text = "已拥有"
 		if PlayerData.player_data["实战法宝"] == wp_name:

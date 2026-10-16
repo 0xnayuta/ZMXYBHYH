@@ -12,7 +12,7 @@ var _last_applied_bar_value := INF
 var Blood:
 	set(va):
 		Blood = va
-		on_Hpchange(Blood)
+		on_hp_change(Blood)
 
 
 func _ready() -> void:
@@ -44,7 +44,7 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 
-func on_Hpchange(vale):
+func on_hp_change(vale):
 	if not MainSet.set_data["HpBarDelay"]:
 		$blood_bar/blood_bar2.value = 0
 		return

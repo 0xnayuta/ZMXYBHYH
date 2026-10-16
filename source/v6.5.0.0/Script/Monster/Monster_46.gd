@@ -94,16 +94,16 @@ func ai_think():
 	if is_on_floor():
 		velocity.y = 0
 	if Curecount % 60 == 0:
-		RoleReduceHp()
+		role_reduce_hp()
 	if Curecount % 600 == 0:
-		RoleAddDeBuff()
+		role_add_de_buff()
 	Curecount += 1
 
 
-func RoleReduceHp():
+func role_reduce_hp():
 	if not PlayerData.check_eq_zb("头衔", "sxyr"):
 		get_Player.effect_reducehp(int(RoleProp.roleprop.SHp * 0.01), "real")
 
 
-func RoleAddDeBuff():
+func role_add_de_buff():
 	Global.add_buff(get_Player.buff, DeBuffList[randi_range(0, 3)])

@@ -281,7 +281,7 @@ func call_fire_fly():
 		cc.set_rotation_degrees(-30)
 
 
-func protect_Fire():
+func protect_fire():
 	var po = Vector2(
 		RoleProp.get_nearest_monster_target_position(global_position).x + 90,
 		RoleProp.get_nearest_monster_target_position(global_position).y + 120
@@ -306,7 +306,7 @@ func state_hurt():
 
 
 func _physics_process(delta: float) -> void:
-	if super.CheckPlayerHaveDebuff("Fire"):
+	if super.check_player_have_debuff("Fire"):
 		if CureCount % 60 == 0:
 			cure_hp(150)
 		CureCount += 1
@@ -322,7 +322,7 @@ func _physics_process(delta: float) -> void:
 	if Hp <= SHp * 0.2:
 		is_eggs = true
 	check_eggs()
-	if IsMovementLockedByControl():
+	if is_movement_locked_by_control():
 		is_rush = false
 		velocity_ = Vector2.ZERO
 	elif is_rush:
@@ -359,7 +359,7 @@ func check_eggs():
 			$Relive.start()
 
 
-func relive_Effect():
+func play_relive_effect():
 	if mr_ani.flip_h == false:
 		relive_effect = Global.add_special_effect(self, Vector2(20, 0), "Relife", Vector2(1, 1), false, 1)
 	else:
@@ -374,7 +374,7 @@ func _on_relive_timeout() -> void:
 	def += 10
 	mdef += 10
 	$Relive.stop()
-	relive_Effect()
+	play_relive_effect()
 	await relive_effect == null
 	is_eggs = false
 	is_play = false
@@ -382,7 +382,7 @@ func _on_relive_timeout() -> void:
 
 func _on_create_timeout() -> void:
 	if is_eggs:
-		protect_Fire()
+		protect_fire()
 
 
 func _on_change_zt_timeout() -> void:

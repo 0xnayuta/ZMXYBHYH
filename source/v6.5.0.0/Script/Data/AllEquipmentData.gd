@@ -43,10 +43,10 @@ func _ready() -> void:
 
 func ensure_loaded() -> void:
 	if not _equipment_loaded:
-		All_equ()
+		all_equ()
 
 
-func All_equ():
+func all_equ():
 	AllEquipment_ = {
 		"zqym": {"名字": "朱雀羽毛", "所属": "星宿掉落", "品质": "普通", "颜色": "FFFFFF", "类型": "道具", "描述": "朱雀掉落的羽毛。", "售价": 0},
 		"zqjy": {"名字": "朱雀精元", "所属": "星宿掉落", "品质": "普通", "颜色": "FFFFFF", "类型": "道具", "描述": "朱雀的精元。", "售价": 0},

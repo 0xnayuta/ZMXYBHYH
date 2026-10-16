@@ -2270,10 +2270,10 @@ func _physics_process(delta: float) -> void:
 		fall.text = str(info.get("LevelName", LevelName)) + "概率掉落："
 		Num = PlayerData.player_data["关卡评价"].get(LevelName, 0)
 		mybg.texture = load_2(str(info.get("SelfBg", "hgs")))
-		SetPJFontColor()
-		AddLevelFallItem()
+		set_pj_font_color()
+		add_level_fall_item()
 		_refresh_fall_pro_display()
-		AddMonsterHead()
+		add_monster_head()
 
 		var saved_diff = int(MainSet.set_data.get("Difficult", 0))
 		diffvalue.text = ["普通", "困难", "地狱", "噩梦"][clampi(saved_diff, 0, 3)]
@@ -2282,12 +2282,12 @@ func _physics_process(delta: float) -> void:
 		Is_set = true
 
 
-func SetPJFontColor():
+func set_pj_font_color():
 	my_pj.text = PjList["PjList"][Num]
 	my_pj.add_theme_color_override("font_color", FontColorList["font_colorList"][Num])
 
 
-func AddLevelFallItem() -> void:
+func add_level_fall_item() -> void:
 	if _fall_refresh_pending:
 		return
 	_fall_refresh_pending = true
@@ -2598,7 +2598,7 @@ func _refresh_fall_pro_display():
 					child.text = pro_txt
 
 
-func AddMonsterHead():
+func add_monster_head():
 	var level_info := _get_level_info()
 	var InfoDic = level_info.get("MonsterList", [])
 	for i in InfoDic:
@@ -2677,7 +2677,7 @@ func _on_three_prince_head_selected(head: Node) -> void:
 	if head.has_method("get_display_name"):
 		prince_name = str(head.call("get_display_name"))
 	Title.text = "挑战三太子 · " + prince_name
-	AddLevelFallItem()
+	add_level_fall_item()
 	_refresh_fall_pro_display()
 
 
@@ -2693,7 +2693,7 @@ func _on_eight_immortal_head_selected(head: Node) -> void:
 	if head.has_method("get_display_name"):
 		immortal_name = str(head.call("get_display_name"))
 	Title.text = "八仙过海 · " + immortal_name
-	AddLevelFallItem()
+	add_level_fall_item()
 	_refresh_fall_pro_display()
 
 
@@ -2709,7 +2709,7 @@ func _on_constellation_head_selected(head: Node) -> void:
 	if head.has_method("get_display_name"):
 		constellation_name = str(head.call("get_display_name"))
 	Title.text = "挑战28星宿 · " + constellation_name
-	AddLevelFallItem()
+	add_level_fall_item()
 	_refresh_fall_pro_display()
 
 
@@ -2871,7 +2871,7 @@ func _on_diff_pressed() -> void:
 	MainSet.set_data["Difficult"] = diff
 	diffvalue.text = ["普通", "困难", "地狱", "噩梦"][diff]
 	difftext.text = "挑战难度:"
-	AddLevelFallItem()
+	add_level_fall_item()
 	_refresh_fall_pro_display()
 	MemoryClass.main_bc()
 

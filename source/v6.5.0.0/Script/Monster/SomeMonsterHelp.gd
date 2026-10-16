@@ -4,7 +4,7 @@ extends Node2D
 var MonsterName: String:
 	set(vl):
 		MonsterName = vl
-		RefreshInfo()
+		refresh_info()
 var MonsterSkillInfoList: Dictionary = {
 	"dxx": ["主动技能：", "1.挥拳：挥出强力一拳，对玩家造成伤害。"],
 	"mhw": ["主动技能：", "1.通风旋刃：快速旋转通风灵棍，短暂蓄力后，扔出两次，对命中的玩家造成伤害并施加【减速】。", "2.飓风狂袭：自身快速旋转，引发强烈龙卷风，对敌人造成多次伤害。"],
@@ -390,7 +390,7 @@ var MonsterSkillInfoList: Dictionary = {
 }
 
 
-func RefreshInfo():
+func refresh_info():
 	if MonsterName != "":
 		if MonsterSkillInfoList.has(MonsterName):
 			for i in monster_info.get_children():

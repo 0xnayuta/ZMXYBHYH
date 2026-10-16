@@ -28,7 +28,7 @@ func _ready() -> void:
 
 	add_to_group("Player")
 	super.on_eqchange()
-	Role_5()
+	role_5()
 	_prepare_fhf_awaken_action()
 	_prepare_ygth_awaken_action()
 	_prepare_ltjz_action()
@@ -58,7 +58,7 @@ func _fix_dragon_prince_title_animation() -> void:
 	add_tx()
 
 
-func Role_5():
+func role_5():
 	PlayerData.ensure_skill_data()
 
 	if not is_in_group("Player"):
@@ -197,7 +197,7 @@ func Role_5():
 
 
 func _physics_process(delta: float) -> void:
-	Role_5()
+	role_5()
 	if InSky:
 		gravity = 0
 	else:
@@ -450,9 +450,9 @@ func _prepare_ygth_awaken_action() -> bool:
 	_add_ygth_method_key(action, 0.0, &"remove_yspeed")
 	_add_ygth_method_key(action, 0.0, &"in_the_sky")
 	_add_ygth_method_key(action, 0.0, &"add_music", [16])
-	_add_ygth_method_key(action, 0.05, &"CallYGTHAwakenBullet")
-	_add_ygth_method_key(action, 0.2, &"CallYGTHAwakenBullet")
-	_add_ygth_method_key(action, 0.35, &"CallYGTHAwakenBullet")
+	_add_ygth_method_key(action, 0.05, &"call_ygth_awaken_bullet")
+	_add_ygth_method_key(action, 0.2, &"call_ygth_awaken_bullet")
+	_add_ygth_method_key(action, 0.35, &"call_ygth_awaken_bullet")
 	_add_ygth_method_key(action, 0.59, &"role_5_skill_bt_over")
 	_add_ygth_method_key(action, 0.59, &"no_in_the_sky")
 	library.add_animation(YGTH_AWAKEN_ACTION, action)
@@ -524,7 +524,7 @@ func _remap_fhf_awaken_time(time: float) -> float:
 	return shortened_pre + active_duration + (time - FHF_ACTIVE_END) / FHF_TIMING_REDUCTION
 
 
-func UseLTJZ():
+func use_ltjz():
 	self.Role1SkillInter["ltjz"] = 6.0
 	velocity.x = 0
 	get_action = "ltjz"
@@ -733,7 +733,7 @@ func call_bullet_5():
 	Global.add_role_bullet(self.Bullet, position, !PlayerDir, "Role5Bullet5", objattackDic["ygth"])
 
 
-func CallYGTHAwakenBullet():
+func call_ygth_awaken_bullet():
 	var awaken_hit_data: Dictionary = objattackDic["ygth"].duplicate(true)
 	awaken_hit_data["power"] = float(awaken_hit_data.get("power", 0.0)) * YGTH_AWAKEN_DAMAGE_MULTIPLIER
 	var awaken_hurt_back: Array = awaken_hit_data.get("hurtBack", [0, 0]).duplicate()

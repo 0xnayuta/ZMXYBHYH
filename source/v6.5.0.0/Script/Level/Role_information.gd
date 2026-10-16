@@ -126,7 +126,7 @@ func _layout_mobile() -> void:
 		RoleP2.grey.position = RoleP1.grey.position
 
 
-func switchRole() -> void:
+func switch_role() -> void:
 	if not _is_mobile() or RoleP2 == null:
 		return
 	if curProp:

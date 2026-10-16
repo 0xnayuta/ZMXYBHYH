@@ -28,14 +28,14 @@ var SZPage: int
 var CurrentPage: int = 1:
 	set(vl):
 		CurrentPage = vl
-		ADDHelpItems()
+		add_help_items()
 
 var MaxPage: int
 
 var CurrentType: int = 0:
 	set(vl):
 		CurrentType = vl
-		OnCurrentTypeChange()
+		on_current_type_change()
 
 var ItemList_ = []
 
@@ -60,15 +60,15 @@ func _ready():
 			"时装":
 				SZlIST.append(display_recipe)
 
-	BuildPageDicts()
+	build_page_dicts()
 
-	TotalPage = GetPage(TotalList)
-	ZBPage = GetPage(ZBlIST)
-	DJPage = GetPage(DJlIST)
-	FBPage = GetPage(FBlIST)
-	SZPage = GetPage(SZlIST)
+	TotalPage = get_page(TotalList)
+	ZBPage = get_page(ZBlIST)
+	DJPage = get_page(DJlIST)
+	FBPage = get_page(FBlIST)
+	SZPage = get_page(SZlIST)
 
-	ADDHelpItems()
+	add_help_items()
 
 
 func _physics_process(delta):
@@ -86,7 +86,7 @@ func _physics_process(delta):
 	page.text = str(CurrentPage) + "/" + str(MaxPage)
 
 
-func BuildPageDicts():
+func build_page_dicts():
 	L_totalList = build_page_dict(TotalList)
 	L_zbList = build_page_dict(ZBlIST)
 	L_djList = build_page_dict(DJlIST)
@@ -105,17 +105,17 @@ func build_page_dict(list: Array) -> Dictionary:
 	return page_dict
 
 
-func GetPage(list: Array) -> int:
+func get_page(list: Array) -> int:
 	return ceil(list.size() / 4.0)
 
 
-func OnCurrentTypeChange():
+func on_current_type_change():
 	CurrentPage = 1
-	ADDHelpItems()
+	add_help_items()
 
 
-func ADDHelpItems():
-	RemoveItem()
+func add_help_items():
+	remove_item()
 	var target_count = 0
 	var target_dict
 	match CurrentType:
@@ -135,7 +135,7 @@ func ADDHelpItems():
 			target_count += 1
 
 
-func RemoveItem():
+func remove_item():
 	for i in ItemList_:
 		if i != null:
 			i.queue_free()

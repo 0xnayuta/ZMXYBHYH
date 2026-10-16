@@ -425,7 +425,7 @@ func ai_think() -> void:
 	var role_x := float(role_x_value)
 	if absf(role_x - position.x) < float(mysee):
 		has_target = true
-	if IsLimitBuff() or cannotchangestatewhenattorbeatt() or _skill_busy:
+	if is_limit_buff() or cannotchangestatewhenattorbeatt() or _skill_busy:
 		return
 	if not has_target:
 		normal_state()

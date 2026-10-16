@@ -48,7 +48,7 @@ func _ready() -> void:
 	if not lz_area.area_entered.is_connected(_on_lz_area_entered):
 		lz_area.area_entered.connect(_on_lz_area_entered)
 	print("LZ 机关初始化完成，信号已连接")
-	MonsterList_()
+	monster_list()
 	super._ready()
 	set_through()
 	if Global.LLBTCGMS:
@@ -242,7 +242,7 @@ func set_through():
 func _restart_infinite_monster_wave() -> void:
 	Global.LLBTLevel = 25
 	Global.InfiniteLevelMultiplier = 0.0
-	MonsterList_()
+	monster_list()
 	current_stage = 1
 	can_exit = false
 	exit.visible = false
@@ -258,7 +258,7 @@ func _on_create_control_timeout() -> void:
 		level_create_monster(current_stage)
 
 
-func MonsterList_():
+func monster_list():
 	if Global.LLBTWXMS:
 		Monster_group = {
 			"stage_1":

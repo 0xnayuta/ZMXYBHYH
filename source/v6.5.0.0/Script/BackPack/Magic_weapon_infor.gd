@@ -210,7 +210,7 @@ func _on_tips_pressed() -> void:
 	Global.add_magic_help($".", Vector2(0, 0))
 
 
-func LowWX() -> void:
+func low_wx() -> void:
 	if PlayerData.get_item_data("wxxls") >= 1:
 		PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS] = Global.get_wx(0)
 		PlayerData.remove_dj("wxxls", PlayerData.get_dj_page("wxxls"), 1)
@@ -219,7 +219,7 @@ func LowWX() -> void:
 		Global.add_message_show(get_parent(), "五行洗炼石数量不足！", 1.5, Vector2(490, 280))
 
 
-func HighWX() -> void:
+func high_wx() -> void:
 	var wx_num = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS].size() * 5
 	if PlayerData.get_item_data("wxxls") >= wx_num:
 		match PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS].size():
@@ -239,9 +239,9 @@ func HighWX() -> void:
 		Global.add_message_show(get_parent(), "五行洗炼石数量不足！", 1.5, Vector2(490, 280))
 
 
-func CZL() -> void:
+func czl() -> void:
 	if PlayerData.get_item_data("czlxls") >= 1:
-		PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]["成长率"] = MagicWeaponCZL(
+		PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]["成长率"] = magic_weapon_czl(
 			PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
 		)
 		PlayerData.remove_dj("czlxls", PlayerData.get_dj_page("czlxls"), 1)
@@ -251,22 +251,22 @@ func CZL() -> void:
 
 
 func _on_wxxl_pressed() -> void:
-	Signals.ConnectChooseBoxSignal(self, "LowWX")
+	Signals.connect_choose_box_signal(self, "low_wx")
 	Global.add_choose_text(get_parent(), Vector2(0, 0), "确定要使用1颗五行洗炼石洗炼法宝的五行吗？", 0)
 
 
 func _on_gjwx_pressed() -> void:
-	Signals.ConnectChooseBoxSignal(self, "HighWX")
+	Signals.connect_choose_box_signal(self, "high_wx")
 	var wx_num = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS].size() * 5
 	Global.add_choose_text(get_parent(), Vector2(0, 0), "确定要使用" + str(wx_num) + "颗五行洗炼石高级洗炼一次法宝的五行吗？", 0)
 
 
 func _on_czlxl_pressed() -> void:
-	Signals.ConnectChooseBoxSignal(self, "CZL")
+	Signals.connect_choose_box_signal(self, "czl")
 	Global.add_choose_text(get_parent(), Vector2(0, 0), "确定要使用1颗成长率洗炼石洗炼法宝的成长率吗？", 0)
 
 
-func MagicWeaponCZL(name__):
+func magic_weapon_czl(name__):
 	randomize()
 	match name__:
 		"zcld":

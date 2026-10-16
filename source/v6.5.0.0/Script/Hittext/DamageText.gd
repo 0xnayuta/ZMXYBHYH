@@ -27,7 +27,7 @@ func setup(value, type_, crit: bool, tar) -> void:
 	call_deferred("_start")
 
 
-func changeNumber():
+func change_number():
 	if target != null and not is_instance_valid(target):
 		target = null
 	var loc_2 = str(Number)
@@ -88,7 +88,7 @@ func prepare_for_pool() -> void:
 func _start() -> void:
 	if _recycled:
 		return
-	changeNumber()
+	change_number()
 	if target != null:
 		if target is BaseHero:
 			if is_crit:

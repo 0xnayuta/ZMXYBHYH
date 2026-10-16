@@ -29,7 +29,7 @@ var CurrentType: String = "全部":
 	set(vl):
 		CurrentType = vl
 		currentpage = 1
-		AddBox()
+		add_box()
 var PlayerId = int(PlayerData.player_data["Myself"])
 var currentpage: int = 1
 var maxpage: int = 4
@@ -542,7 +542,7 @@ var RoleItemList = {
 }
 
 
-func PushEqToList():
+func push_eq_to_list():
 	PlayerData.ensure_acquired_equipment_data()
 	var List = []
 	match int(PlayerData.player_data["Myself"]):
@@ -575,7 +575,7 @@ func PushEqToList():
 				PlayerData.player_data["幻化拥有列表"].push_back(i)
 
 
-func GetCurrentRoleList():
+func get_current_role_list():
 	var OtherList = []
 	match int(PlayerData.player_data["Myself"]):
 		1:
@@ -608,8 +608,8 @@ func GetCurrentRoleList():
 	return OtherList
 
 
-func GetCurrentTypeList():
-	var List = GetCurrentRoleList()
+func get_current_type_list():
+	var List = get_current_role_list()
 	var NewList = []
 	if CurrentType == "全部":
 		return List
@@ -619,18 +619,18 @@ func GetCurrentTypeList():
 	return NewList
 
 
-func GetCurrentMaxPage():
-	var CurrentList = GetCurrentTypeList()
+func get_current_max_page():
+	var CurrentList = get_current_type_list()
 	if int(CurrentList.size()) % 6 == 0:
 		return int(CurrentList.size() / 6)
 	else:
 		return int(CurrentList.size() / 6) + 1
 
 
-func GetPageList():
-	var CurrentList = GetCurrentTypeList()
+func get_page_list():
+	var CurrentList = get_current_type_list()
 	var PageDic = {}
-	for i in range(GetCurrentMaxPage()):
+	for i in range(get_current_max_page()):
 		var num = i + 1
 		PageDic["Page_" + str(num)] = []
 	var loc_1_: int = 1
@@ -648,7 +648,7 @@ func GetPageList():
 	return PageDic
 
 
-func GetFinishItemNum():
+func get_finish_item_num():
 	var target_count: int = 0
 	var List = []
 	if CurrentType == "全部":
@@ -666,15 +666,15 @@ func GetFinishItemNum():
 	return List.size()
 
 
-func AddBox():
-	RemoveBox()
-	var Dic = GetPageList()
+func add_box():
+	remove_box()
+	var Dic = get_page_list()
 	if Dic.size() > 0:
 		for i in Dic["Page_" + str(currentpage)]:
 			Global.add_trans_box(box_list, i, self)
 
 
-func RemoveBox():
+func remove_box():
 	for i in box_list.get_children():
 		i.queue_free()
 
@@ -748,8 +748,8 @@ func _ready() -> void:
 	_wing_base_scale = wings.scale
 	_wing_base_transform_initialized = true
 	_ensure_title_preview_animations()
-	PushEqToList()
-	maxpage = GetCurrentMaxPage()
+	push_eq_to_list()
+	maxpage = get_current_max_page()
 	match PlayerId:
 		1:
 			$BG/Player/Playerplay.play("Wait")
@@ -768,18 +768,20 @@ func _ready() -> void:
 			RoleItemList[DataKeys.TITLE].push_back("lwstz")
 	infor.text = str(currentpage) + "/" + str(maxpage)
 	on_eqchange()
-	AddBox()
+	add_box()
 
 
 func _physics_process(_delta: float) -> void:
 	if PlayerId == 6:
 		_update_nezha_preview(_delta)
 	set_wings_offset()
-	var target_count = GetFinishItemNum()
-	maxpage = GetCurrentMaxPage()
+	var target_count = get_finish_item_num()
+	maxpage = get_current_max_page()
 	infor.text = str(currentpage) + "/" + str(maxpage)
 
-	collect_value.text = str(CurrentType) + "收集进度：(" + str(target_count) + "/" + str(GetCurrentTypeList().size()) + ")"
+	collect_value.text = (
+		str(CurrentType) + "收集进度：(" + str(target_count) + "/" + str(get_current_type_list().size()) + ")"
+	)
 
 
 func _on_close_pressed() -> void:
@@ -789,13 +791,13 @@ func _on_close_pressed() -> void:
 func _on_last_pressed() -> void:
 	if currentpage > 1:
 		currentpage -= 1
-		AddBox()
+		add_box()
 
 
 func _on_next_pressed() -> void:
 	if currentpage < maxpage:
 		currentpage += 1
-		AddBox()
+		add_box()
 
 
 func on_eqchange():
@@ -842,7 +844,7 @@ func on_eqchange():
 	wings.flip_h = WingsList == "xyzy" or WingsList == "hhyq"
 	wings.z_index = 0
 	wings.play(WingsList)
-	ChangeTx()
+	change_tx()
 	set_box_()
 
 
@@ -998,7 +1000,7 @@ func _play_title_preview(title_name: String) -> void:
 	tx.play(title_name)
 
 
-func ChangeTx():
+func change_tx():
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.TITLE] == "":
 		if PlayerData.player_data[DataKeys.TITLE].size() == 0:
 			tx.play("Empty")

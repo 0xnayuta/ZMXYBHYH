@@ -933,7 +933,7 @@ func _physics_process(_delta: float) -> void:
 			if FlySpeed >= 5:
 				FlySpeed = 5
 			if Count % 240 == 0:
-				MovePlayerToself()
+				move_player_toself()
 			Count += 1
 		RuntimeKind.MONSTER_1407_5:
 			var player = RoleProp.SourcePlayer
@@ -2579,7 +2579,7 @@ func monster_70_bullet_2():
 			)
 
 
-func MovePlayerToself():
+func move_player_toself():
 	var tween = create_tween()
 	tween.tween_property(RoleProp.SourcePlayer, "position", position, 0.6)
 

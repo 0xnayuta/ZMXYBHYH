@@ -152,7 +152,7 @@ func _on_green_area_exited(area: Area2D) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	TQZCure()
+	tqz_cure()
 	CheckCount += 1
 
 	if not is_set:
@@ -186,7 +186,7 @@ func _physics_process(_delta: float) -> void:
 				self.position.x += 2
 			else:
 				self.position.x -= 2
-			CallJHBH1()
+			call_jhbh1()
 
 
 func move_with_reflection(current_velocity: Vector2, delta: float) -> void:
@@ -217,7 +217,7 @@ func move_with_reflection(current_velocity: Vector2, delta: float) -> void:
 		position = target_pos
 
 
-func CallJHBH1():
+func call_jhbh1():
 	if Player == null or not is_instance_valid(Player):
 		return
 	BCRotationList.reverse()
@@ -289,7 +289,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				if Target != null:
 					Target.llrdCount = 300
 					if not Target.CannotAttract:
-						TweenToLLRDCenter(Target)
+						tween_to_llrd_center(Target)
 			"SMSRBullet", "TtzsszBullet", "NMWBullet2":
 				if HitDic.has("addeffect"):
 					Global.add_buff(Target.buff, HitDic["addeffect"])
@@ -497,7 +497,7 @@ func _get_monster_aim_position(target: BaseMonster) -> Vector2:
 	return target.global_position
 
 
-func TweenToLLRDCenter(body: BaseMonster):
+func tween_to_llrd_center(body: BaseMonster):
 	if body == null or not is_instance_valid(body) or body.is_control_immune():
 		return
 	var tween = body.create_control_movement_tween()
@@ -555,7 +555,7 @@ func add_tsz_buff():
 func add_tqz_buff():
 	if not IsCanCure:
 		return
-	Global.RemoveAllBuff()
+	Global.remove_all_active_buffs()
 	Global.add_special_effect(RoleProp.SourcePlayer, Vector2(0, 0), "tqzbuff", Vector2(1, 1), false, 1)
 	Global.add_buff(
 		RoleProp.SourcePlayer.buff,
@@ -571,7 +571,7 @@ func add_tqz_buff():
 	)
 
 
-func TQZCure():
+func tqz_cure():
 	if name_ == "TQZBullet":
 		if IsCanCure:
 			if CureCount % 60 == 0 and CureCount != 0:

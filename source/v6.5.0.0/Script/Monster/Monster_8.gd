@@ -93,7 +93,7 @@ func _physics_process(delta):
 	super._physics_process(delta)
 
 
-func use_Skill_1():
+func use_skill_1():
 	Skill_1_CD = 10
 	call_monster()
 
@@ -147,7 +147,7 @@ func _on_rd_area_entered(area):
 
 func ai_think():
 	if Skill_1_CD <= 0:
-		use_Skill_1()
+		use_skill_1()
 
 
 func attack_target():

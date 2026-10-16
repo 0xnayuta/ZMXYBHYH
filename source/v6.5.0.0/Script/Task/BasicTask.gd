@@ -336,7 +336,7 @@ func _remove_black_transparent_frames(root: Node = self) -> void:
 func _ready() -> void:
 	_remove_black_transparent_frames()
 	_clear_current_task_selection()
-	ADDTaskList()
+	add_task_list()
 
 
 func _physics_process(delta: float) -> void:
@@ -385,20 +385,20 @@ func _physics_process(delta: float) -> void:
 			lqjl.disabled = not TaskIsFinish
 
 
-func ADDTaskList():
+func add_task_list():
 	match CurrentTaskType:
 		1:
-			RemoveList()
+			remove_list()
 			for i in AllActivityList:
 				Global.add_task_title(task_list, AllActivityList[i]["TaskType"], AllActivityList[i]["TaskName"], self)
 		2:
-			RemoveList()
+			remove_list()
 			for i in AllDailyList:
 				Global.add_task_title(task_list, AllDailyList[i]["TaskType"], AllDailyList[i]["TaskName"], self)
 
 
-func ADDReward():
-	RemoveReward()
+func add_reward():
+	remove_reward()
 	var task_data = _get_current_task_data()
 	if task_data.is_empty():
 		_disable_claim_button()
@@ -413,7 +413,7 @@ func _clear_current_task_selection() -> void:
 	CurrentTaskName = ""
 	TaskIsFinish = false
 	text.text = ""
-	RemoveReward()
+	remove_reward()
 	_disable_claim_button()
 
 
@@ -422,12 +422,12 @@ func _disable_claim_button() -> void:
 		lqjl.disabled = true
 
 
-func RemoveReward():
+func remove_reward():
 	for i in reward_list.get_children():
 		i.queue_free()
 
 
-func RemoveList():
+func remove_list():
 	ActivityFinishNum = 0
 	DailyFinishNum = 0
 	for i in task_list.get_children():
@@ -470,10 +470,10 @@ func _on_close_pressed() -> void:
 func _on_hd_task_pressed() -> void:
 	CurrentTaskType = 1
 	_clear_current_task_selection()
-	ADDTaskList()
+	add_task_list()
 
 
 func _on_rc_task_pressed() -> void:
 	CurrentTaskType = 2
 	_clear_current_task_selection()
-	ADDTaskList()
+	add_task_list()

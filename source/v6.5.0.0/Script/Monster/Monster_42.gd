@@ -1,7 +1,7 @@
 extends BaseMonster
 
 
-func Monster_42():
+func monster_42():
 	self.rush_speed = 900
 	self.is_boss = true
 	self.my_mr_name = "战神刑天"
@@ -74,7 +74,7 @@ func _ready() -> void:
 	Skill_1_CD = 0
 	Skill_2_CD = 0
 	Skill_3_CD = 0
-	Monster_42()
+	monster_42()
 
 
 func ai_think():

@@ -35,7 +35,7 @@ var Ps_value = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 1
 
 
 func _physics_process(_delta: float) -> void:
-	get_passiveSkill_properies()
+	get_passive_skill_properties()
 
 
 func get_unlocked_level(source_level: int) -> int:
@@ -85,7 +85,7 @@ func apply_soul_gain_bonus(base_value: int) -> int:
 	return int(float(base_value) * float(100 + get_soul_gain_bonus_percent()) / 100.0)
 
 
-func get_passiveSkill_properies():
+func get_passive_skill_properties():
 	var target = PlayerData.player_data["被动技能"]
 	RoleProp.Paslprop.SHp = get_value("热血", int(target["热血"]))
 	RoleProp.Paslprop.SMp = get_value("魔泉", int(target["魔泉"]))

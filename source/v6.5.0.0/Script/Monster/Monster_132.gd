@@ -83,7 +83,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_resurrecting or resurrection_completed:
-		if CanSetGra():
+		if can_set_gra():
 			gravity = -980
 		else:
 			gravity = 0

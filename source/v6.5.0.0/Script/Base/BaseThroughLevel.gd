@@ -70,7 +70,7 @@ func _ready() -> void:
 	if not self is Level20:
 		RoleProp.ws_value = 0
 	create_control.wait_time = float(MainSet.set_data.get("CreateMonsterSpeed", 0.3))
-	MainMusic.RemoveMusic()
+	MainMusic.remove_music()
 	if not Global.Is_Show:
 		var zm_player: AnimationPlayer = $CanvasLayer/zmPLAYER
 		if zm_player.has_animation("gdzm"):
@@ -80,7 +80,7 @@ func _ready() -> void:
 	Global.Is_Show = true
 	Global.FB_CD = -10
 	Global.LastLevelPath = str(self.scene_file_path)
-	removeAllRecords()
+	remove_all_records()
 	Global.LevelBeginTime = Time.get_datetime_string_from_system(false, true)
 	var RoleId = int(PlayerData.player_data.get("Myself", 1))
 	if RoleId <= 0:
@@ -1663,7 +1663,7 @@ func one_check_can_exit():
 	return Monster_group[stage_key].size() == 0 and _get_alive_stage_monster_count() == 0
 
 
-func alwaysCanPass():
+func always_can_pass():
 	return true
 
 
@@ -1824,10 +1824,10 @@ func add_tg(level):
 
 func shake_(strength: float, times: int, inte: float):
 	if my_camera != null:
-		my_camera.Shake(strength, times, inte)
+		my_camera.shake(strength, times, inte)
 
 
-func removeAllRecords():
+func remove_all_records():
 	Global.LevelBeginTime = ""
 	Global.MostLianji = 0
 	Global.LastPropHp = 0

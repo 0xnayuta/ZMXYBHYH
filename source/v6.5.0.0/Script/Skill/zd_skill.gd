@@ -363,12 +363,12 @@ func _ready() -> void:
 			if not up_btn.pressed.is_connected(up_cb):
 				up_btn.pressed.connect(up_cb)
 
-	set_skill_Icon()
+	set_skill_icon()
 	set_skill_mp_cost()
 	set_skill_name()
-	set_skill_Level()
-	set_skill_Infor()
-	set_Skill_LH()
+	set_skill_level()
+	set_skill_infor()
+	set_skill_lh()
 	var skill_count = Skill_list.get(role_key, []).size()
 	_resize_skill_columns(skill_count)
 	_center_upgrade_controls(skill_count)
@@ -569,7 +569,7 @@ func setup_variant_menu(skill_num: int, skill_internal: String, config: Dictiona
 	hmz_version_menu.set_meta("skill_internal", skill_internal)
 
 
-func GetSkillName(Num):
+func get_skill_name(Num):
 	var role_key = get_role_key()
 	var skill_list = Skill_list[role_key]
 	if Num - 1 >= skill_list.size():
@@ -579,14 +579,14 @@ func GetSkillName(Num):
 	return Skill_Name[role_key][Num - 1]
 
 
-func GetNeedMp():
-	var skill_name = GetName(TargetSkill - 1)
+func get_need_mp():
+	var skill_name = get_skill_list_name(TargetSkill - 1)
 	var Old = _compute_mp_cost(skill_name, false)
 	var New = _compute_mp_cost(skill_name, true)
 	return [Old, New]
 
 
-func set_skill_Icon():
+func set_skill_icon():
 	var role_key = get_role_key()
 	var skill_list = Skill_list[role_key]
 	for i in range(skill_list.size()):
@@ -605,7 +605,7 @@ func set_skill_name():
 		target.text = skill_name_list[i]
 
 
-func set_skill_Level():
+func set_skill_level():
 	var role_key = get_role_key()
 	var skill_list = Skill_list[role_key]
 	for i in range(skill_list.size()):
@@ -614,7 +614,7 @@ func set_skill_Level():
 		target.text = "Lv:" + str(SkillLevel)
 
 
-func set_skill_Infor():
+func set_skill_infor():
 	var role_key = get_role_key()
 	var skill_infor_list = Skill_Infor[role_key]
 	for i in range(skill_infor_list.size()):
@@ -622,7 +622,7 @@ func set_skill_Infor():
 		target.text = skill_infor_list[i]
 
 
-func set_Skill_LH():
+func set_skill_lh():
 	var role_key = get_role_key()
 	var skill_list = Skill_list[role_key]
 	for i in range(skill_list.size()):
@@ -642,7 +642,7 @@ func set_Skill_LH():
 			target.text = "需：" + str(need) + "灵魂"
 
 
-func UpLevel():
+func up_level():
 	if TargetSkill <= 0:
 		Global.add_message_show(self, "技能信息获取失败，无法升级！！", 1.5, Vector2(395, 180))
 		return
@@ -684,11 +684,11 @@ func UpLevel():
 			)
 			return
 		PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能" + str(target_storage_index)][DataKeys.LEVEL] += 1
-		RefreshInfor()
+		refresh_infor()
 		return
 
 	if target_internal in PASSIVE_SKILLS:
-		var NeedLevel = Skill10XZ(level)
+		var NeedLevel = skill10_xz(level)
 		if RoleProp.baseroleprop["Level"] >= NeedLevel:
 			var need = 500 + 500 * level
 			if PlayerData.get_soul() >= need:
@@ -708,17 +708,17 @@ func UpLevel():
 		else:
 			Global.add_message_show(self, "灵魂不足！！", 1.5, Vector2(395, 180))
 
-	RefreshInfor()
+	refresh_infor()
 
 
-func RefreshInfor():
-	set_skill_Level()
-	set_Skill_LH()
+func refresh_infor():
+	set_skill_level()
+	set_skill_lh()
 	set_skill_mp_cost()
 	MemoryClass.save_game(Global.cd_path)
 
 
-func Skill10XZ(Level):
+func skill10_xz(Level):
 	Level = int(Level)
 	match Level:
 		0:
@@ -746,7 +746,7 @@ func Skill10XZ(Level):
 	return 0
 
 
-func GetName(num):
+func get_skill_list_name(num):
 	return Skill_list[get_role_key()][num]
 
 
@@ -816,19 +816,19 @@ func _on_skill_13_pressed() -> void:
 
 
 func _show_tip():
-	Signals.ConnectChooseBoxSignal(self, "UpLevel")
+	Signals.connect_choose_box_signal(self, "up_level")
 
-	var skill_name = GetSkillName(TargetSkill)
+	var skill_name = get_skill_name(TargetSkill)
 	var old_mp = 0
 	var new_mp = 0
 	var player = RoleProp.SourcePlayer
 
 	if player:
-		var mp_info = GetNeedMp()
+		var mp_info = get_need_mp()
 		old_mp = mp_info[0]
 		new_mp = mp_info[1]
 	else:
-		var mp_info = GetNeedMp()
+		var mp_info = get_need_mp()
 		old_mp = mp_info[0]
 		new_mp = mp_info[1]
 

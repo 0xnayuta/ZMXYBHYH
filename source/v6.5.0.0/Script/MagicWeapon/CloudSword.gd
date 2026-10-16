@@ -50,13 +50,13 @@ func _physics_process(delta: float) -> void:
 
 
 func show_skill():
-	Target = GetMonster()
+	Target = get_monster()
 	if Target == null:
-		UseOver2()
+		use_over2()
 		return
 	mg_player.play("hit")
 	await mg_player.animation_finished
-	Useover()
+	use_over()
 
 
 func use_over():
@@ -66,7 +66,7 @@ func use_over():
 	skill_cd.start(self.usecd)
 
 
-func UseOver2():
+func use_over2():
 	self.usecd = 0
 	is_use = false
 	Global.FB_CD = 1
@@ -74,7 +74,7 @@ func UseOver2():
 	skill_cd.start(0.001)
 
 
-func GetMonster():
+func get_monster():
 	var MaxHp = 0
 	var TT: BaseMonster
 	if MonsterList.size() <= 0:
@@ -96,15 +96,6 @@ func add_sword():
 			$Bullet, Target.position + Vector2(0, 30), "CloudSwordBullet", get_attack_snapshot(), mg_action.flip_h, 100
 		)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func ShowSkill():
-	return await show_skill()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func Useover():
-	return use_over()

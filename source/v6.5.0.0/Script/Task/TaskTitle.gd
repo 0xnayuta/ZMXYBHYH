@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 		label.add_theme_color_override("font_outline_color", "00ffff")
 		set_physics_process(false)
 		return
-	if CheckTaskFinish():
+	if check_task_finish():
 		Finish = true
 		if TaskType == "DailyTask":
 			MyFather.DailyFinishNum += 1
@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	set_physics_process(false)
 
 
-func CheckTaskFinish():
+func check_task_finish():
 	match TaskType:
 		"ActivityTask":
 			match MyFather.AllActivityList[TaskName]["FinishType"]:
@@ -95,4 +95,4 @@ func _on_pressed() -> void:
 	MyFather.TaskIsFinish = Finish
 	MyFather.CurrentTaskType = 2 if TaskType == "DailyTask" else 1
 	MyFather.CurrentTaskName = TaskName
-	MyFather.ADDReward()
+	MyFather.add_reward()

@@ -364,11 +364,11 @@ func apply_tower_monster_config(config: Dictionary) -> void:
 			(attack_data as Dictionary)["power"] = tower_attack
 
 
-func SetGra():
+func set_gra():
 	gravity = -980
 
 
-func CanSetGra():
+func can_set_gra():
 	return not NoGrav and not Islljy and not ShouldInSky
 
 
@@ -481,7 +481,7 @@ func _physics_process(delta: float) -> void:
 	_process_boss_protect(delta)
 	_enforce_control_immunity_state()
 	_process_pet_tiger_sxhz_air_hold()
-	if CanSetGra():
+	if can_set_gra():
 		gravity = -980
 	else:
 		gravity = 0
@@ -506,7 +506,7 @@ func _physics_process(delta: float) -> void:
 		if fall_stone is Array:
 			fall_stone.clear()
 
-	WDHurt()
+	wd_hurt()
 
 	if MainSet.set_data["MonsterBloodSHow"]:
 		if is_boss:
@@ -521,7 +521,7 @@ func _physics_process(delta: float) -> void:
 		self.position.y = 400
 	if not is_set_:
 		if MainSet.set_data["Difficult"] > 0 and not has_meta("tower_floor"):
-			Difficult()
+			difficult()
 		iniSpeed = speed
 		is_set_ = true
 	check_add_buff()
@@ -549,9 +549,9 @@ func _physics_process(delta: float) -> void:
 			state_death()
 	if MainSet.set_data["MonsterLittleBlood"] and MainSet.set_data["NoShowMonsterBody"]:
 		little_blood_bar_control()
-	if self.Hp > 0 and not IsLimitBuff() and not _hurt_reaction_active and _should_run_ai_this_frame():
+	if self.Hp > 0 and not is_limit_buff() and not _hurt_reaction_active and _should_run_ai_this_frame():
 		ai_think()
-	if IsMovementLockedByControl():
+	if is_movement_locked_by_control():
 		interrupt_movement_for_control()
 	elif IsScary:
 		if not is_be_attacking:
@@ -585,13 +585,13 @@ func _should_run_ai_this_frame() -> bool:
 	return int(Engine.get_physics_frames() + _ai_tick_offset) % interval == 0
 
 
-func IsLimitBuff():
+func is_limit_buff():
 	if is_control_immune():
 		return false
-	return IsMovementLockedByControl() or IsScary
+	return is_movement_locked_by_control() or IsScary
 
 
-func IsMovementLockedByControl() -> bool:
+func is_movement_locked_by_control() -> bool:
 	if is_control_immune():
 		return false
 	return is_ice or is_stun or is_Immobilize or is_sleep or Islljy or is_EyeFix
@@ -672,11 +672,11 @@ func _release_control_movement_lock() -> void:
 
 
 func _movement_command_is_blocked() -> bool:
-	return _control_movement_locked or IsMovementLockedByControl() or _hurt_reaction_active
+	return _control_movement_locked or is_movement_locked_by_control() or _hurt_reaction_active
 
 
 func _recover_interrupted_combat_state() -> void:
-	if IsLimitBuff():
+	if is_limit_buff():
 		return
 	if _hurt_reaction_active:
 		return
@@ -893,7 +893,7 @@ func ai_think():
 						if randi_range(0, 100) < attackDesire:
 							attack_target()
 			else:
-				if follow_Hero():
+				if follow_hero():
 					have_target()
 					if RunHit:
 						if count % RunHitCount == 0:
@@ -911,7 +911,7 @@ func ai_think():
 							attack_target()
 
 
-func RunHit_():
+func run_hit():
 	if ran_num < 70:
 		if position.x > RoleProp.get_nearest_monster_target_position(global_position).x + randi_range(-60, 60):
 			move_left()
@@ -923,7 +923,7 @@ func RunHit_():
 		stop_move()
 
 
-func follow_Hero():
+func follow_hero():
 	return abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange
 
 
@@ -979,7 +979,7 @@ func normal_state():
 		move_right()
 
 
-func Else_haveTarget():
+func else_have_target():
 	if is_quiescent:
 		return
 	if is_Fly:
@@ -1636,7 +1636,7 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 
 	var last_hurt := int(
 		(
-			float(get_Role_last_hurt(source_target))
+			float(get_role_last_hurt(source_target))
 			* RoleProp.ws_up_power
 			* jgz_bl
 			* zznh_bl
@@ -1646,14 +1646,14 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 			* llrdzs
 		)
 	)
-	last_hurt = int(HurtReduceHp(last_hurt, source_target))
+	last_hurt = int(hurt_reduce_hp(last_hurt, source_target))
 	GetHurt = last_hurt
 	if source_player.is_DeadLink:
 		source_player.effect_reducehp(last_hurt, "real")
-	cureWSValue()
+	cure_ws_value()
 	add_lj(last_hurt)
 	Global.TotalRoleHit += last_hurt
-	Role5Bullet(last_hurt, source_target)
+	role5_bullet(last_hurt, source_target)
 	var attack_data: Variant = source_target.get("HitDic")
 	if attack_data is Dictionary:
 		match str(attack_data.get("attackKind", "")):
@@ -1671,7 +1671,7 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 			Global.add_sound(self, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 		else:
 			Global.add_sound(self, "res://Music/Hero/9_BeattackByRole2.mp3")
-		if not Monster_18_protect() and not Monster102Protect() and not is_control_immune():
+		if not monster_18_protect() and not monster102_protect() and not is_control_immune():
 			_interrupt_attack_state_on_hit()
 			state_hurt()
 		HurtSpecialEffect = Global.add_mr_hurt(pz, Vector2(0, 0))
@@ -1701,7 +1701,7 @@ func _is_summon_or_pet_hit_area(area: Area2D) -> bool:
 	return false
 
 
-func Role5Bullet(last_hurt, source_target = null):
+func role5_bullet(last_hurt, source_target = null):
 	var passive_source = source_target if source_target != null else get_target
 	if passive_source == null:
 		return
@@ -1782,7 +1782,7 @@ func _apply_damage_vampirism(target, effective_damage: int) -> void:
 	source_player.cure_hp(heal_value)
 
 
-func get_Role_last_hurt(target):
+func get_role_last_hurt(target):
 	is_crit = false
 	is_miss = false
 	var Hurt = 0
@@ -1914,10 +1914,10 @@ func reduce_hp(value: int):
 		return 0
 	if Global.is_hidden_feature_enabled(Global.HIDDEN_FEATURE_INSTANT_KILL) and value > 0:
 		value = maxi(value, Hp)
-	if Monster_18_protect():
+	if monster_18_protect():
 		cure_hp(value * 1)
 		return 0
-	if Monster102Protect():
+	if monster102_protect():
 		cure_hp(value)
 		return 0
 	if IsIndestructible:
@@ -1942,10 +1942,10 @@ func reduce_pet_hp(value: int, attack_kind: String) -> int:
 		return 0
 	if Global.is_hidden_feature_enabled(Global.HIDDEN_FEATURE_INSTANT_KILL) and value > 0:
 		value = maxi(value, Hp)
-	if Monster_18_protect():
+	if monster_18_protect():
 		cure_hp(value)
 		return 0
-	if Monster102Protect():
+	if monster102_protect():
 		cure_hp(value)
 		return 0
 	if IsIndestructible and value >= Hp:
@@ -2079,10 +2079,10 @@ func hurt_reduce_hp(value, target):
 	)
 	if Global.is_hidden_feature_enabled(Global.HIDDEN_FEATURE_INSTANT_KILL) and value > 0:
 		value = maxi(int(value), Hp)
-	if Monster_18_protect():
+	if monster_18_protect():
 		cure_hp(value * 1)
 		return 0
-	if Monster102Protect():
+	if monster102_protect():
 		cure_hp(value)
 		return 0
 	if IsIndestructible:
@@ -2098,16 +2098,16 @@ func hurt_reduce_hp(value, target):
 		total_hurt += last_value
 	_apply_damage_vampirism(target, int(last_value))
 	if last_value > 0:
-		addHurtText(last_value, target)
+		add_hurt_text(last_value, target)
 	else:
 		if is_miss:
-			addHurtText(last_value, target)
+			add_hurt_text(last_value, target)
 	is_crit = false
 	is_miss = false
 	return int(last_value)
 
 
-func addHurtText(value, target):
+func add_hurt_text(value, target):
 	if value <= 0 and not is_miss:
 		return
 	if target == null:
@@ -2175,7 +2175,7 @@ func cure_hp(value: int):
 		Global.add_damage_text(level_node, po, value, "cure", false, self)
 
 
-func remove_CD():
+func remove_cd():
 	if Skill_1_CD >= 0:
 		Skill_1_CD -= 1
 	if Skill_2_CD >= 0:
@@ -2195,7 +2195,7 @@ func remove_CD():
 
 
 func _on_cd_remove_timeout() -> void:
-	remove_CD()
+	remove_cd()
 
 
 func level_suppression(Level):
@@ -2317,7 +2317,7 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 
 	if self is Monster20:
 		var abc: Monster20 = self
-		if abc.Low_Hp():
+		if abc.low_hp():
 			cure_hp(int((SHp - Hp) * 0.07))
 
 	if rro == null:
@@ -2365,7 +2365,7 @@ func add_lj(value):
 	Global.lj_count = 0
 
 
-func Monster_18_protect():
+func monster_18_protect():
 	if self is Monster18:
 		if self.MonsterDirection == Global.Player_dir:
 			if self.MonsterDirection == false:
@@ -2431,7 +2431,7 @@ func move_playerto_boss(target: Node2D, movetime: float):
 	tween.tween_property(final_target, "position", target_pos, movetime)
 
 
-func cureWSValue():
+func cure_ws_value():
 	if not RoleProp.is_ws_state:
 		if get_target != null:
 			if get_target.HitDic.has("WSValue"):
@@ -2593,19 +2593,19 @@ func check_add_buff():
 		is_ice = false
 		is_DeadLink = false
 
-	if IsMovementLockedByControl():
+	if is_movement_locked_by_control():
 		interrupt_movement_for_control()
 	else:
 		_release_control_movement_lock()
 
 
-func ChangeHdCureHp(zhl):
+func change_hd_cure_hp(zhl):
 	cure_hp(int(hd * zhl))
 	remove_hd()
 	pass
 
 
-func Difficult():
+func difficult():
 	var mult := 1.0
 	var difficulty := int(MainSet.set_data.get("Difficult", 0))
 	if difficulty == 1:
@@ -2685,7 +2685,7 @@ func movetoplayer():
 	self.position = RoleProp.get_nearest_monster_target_position(global_position)
 
 
-func set_fullHp():
+func set_full_hp():
 	Hp = SHp
 
 
@@ -2711,7 +2711,7 @@ func when_scary():
 	pass
 
 
-func Monster102Protect():
+func monster102_protect():
 	if self is Monster102:
 		if self.MyChild != null:
 			return true
@@ -3386,7 +3386,7 @@ func _pet_matches_active_name(pet: Dictionary, active_name: String) -> bool:
 	return pet_name == active_name or pet_title == active_name or pet_type == active_name
 
 
-func CheckPlayerHaveDebuff(Target):
+func check_player_have_debuff(Target):
 	if get_Player == null:
 		return
 	for i in get_Player.buff.get_children():
@@ -3396,7 +3396,7 @@ func CheckPlayerHaveDebuff(Target):
 	return false
 
 
-func WDHurt():
+func wd_hurt():
 	if RoleProp.SourcePlayer is Role4Hero:
 		if PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] > 0:
 			var VoodooCounts = Global.check_wd(self)
@@ -3483,10 +3483,6 @@ func _deferred_play_hurt_animation():
 		mr_player.stop()
 	mr_player.play("hurt")
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func HurtReduceHp(value, target):
-	return hurt_reduce_hp(value, target)

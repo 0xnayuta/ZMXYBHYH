@@ -174,7 +174,7 @@ func _on_game_warn_pressed() -> void:
 	Global.add_game_need_know(_menu_content_parent(), Vector2(0, 0))
 
 
-func CheckTime():
+func check_time():
 	var error = http_request.request("http://quan.suning.com/getSysTime.do")
 	if error != OK:
 		push_error("在HTTP请求中发生了一个错误。")
@@ -187,19 +187,19 @@ func _on_body_received(request, body):
 	var time_str = body.get_string_from_utf8()
 	if time_str == "":
 		print("无法获取时间1！！")
-		CheckTime()
+		check_time()
 		Global.add_message_show(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
 		return null
 	var utc_time = JSON.parse_string(time_str)
 	if utc_time == null:
 		print("无法获取时间2！！")
-		CheckTime()
+		check_time()
 		Global.add_message_show(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
 		return null
 	var TImeUnix = int(utc_time["sysTime2"])
 	if TImeUnix == null or str(TImeUnix) == "":
 		print("无法获取时间3！！")
-		CheckTime()
+		check_time()
 		Global.add_message_show(get_parent(), "获取时间信息失败，网络连接可能存在问题，部分功能将无法使用！！", 1.5, Vector2(470, 340))
 		return null
 	return TImeUnix
@@ -218,10 +218,10 @@ func _on_http_request_request_completed(
 			"minute": str(abc[10] + abc[11]),
 			"second": str(abc[12] + abc[13]),
 		}
-		RefreshTime(DataList)
+		refresh_time(DataList)
 
 
-func RefreshTime(DataList):
+func refresh_time(DataList):
 	var Dic = DataList
 	var MyDic = MainSet.set_data["MyTime"]
 

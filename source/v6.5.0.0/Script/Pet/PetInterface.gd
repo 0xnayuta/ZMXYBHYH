@@ -809,8 +809,8 @@ func _ready() -> void:
 	_connect_button(restbtn, fight_click)
 	_connect_button(fightbtn, rest_click)
 	_connect_button(eatimbtn, eat_immor)
-	_connect_button(czjnbtn, pushPetSkill)
-	_connect_button(czsxbtn, pushPetAttribute)
+	_connect_button(czjnbtn, push_pet_skill)
+	_connect_button(czsxbtn, push_pet_attribute)
 	_connect_button(give_up_okbtn, ok_click)
 	_connect_button(give_up_nobtn, no_click)
 	_connect_button(pbpbtn, pet_backpack_click)
@@ -1642,7 +1642,7 @@ func eat_immor() -> void:
 	_set_visible(pet_eat_immortality, true)
 
 
-func pushPetSkill() -> void:
+func push_pet_skill() -> void:
 	var pet: Variant = _current_pet()
 	if pet == null:
 		return
@@ -1650,7 +1650,7 @@ func pushPetSkill() -> void:
 	_refresh_all()
 
 
-func pushPetAttribute() -> void:
+func push_pet_attribute() -> void:
 	var pet: Variant = _current_pet()
 	if pet == null:
 		return

@@ -33,12 +33,12 @@ func _ready() -> void:
 	_fit_to_fullscreen()
 	if not get_viewport().size_changed.is_connected(_fit_to_fullscreen):
 		get_viewport().size_changed.connect(_fit_to_fullscreen)
-	set_Info()
+	set_info()
 
 
-func set_Info():
-	SetEveryPropText()
-	ADDBox()
+func set_info():
+	set_every_prop_text()
+	add_box()
 
 
 func _physics_process(delta: float) -> void:
@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 			CurrentInType = "hmd_"
 
 
-func SetEveryPropText():
+func set_every_prop_text():
 	prop_stage_1.text = (
 		"一品提供："
 		+ str(PlayerData.player_data[str(CurrentPelletType) + "丹1"] * RoleProp.PelletProps["1品丹"][CurrentPelletType])
@@ -91,8 +91,8 @@ func SetEveryPropText():
 	emp.text = "回魔：" + str(RoleProp.get_pellet_prop()[5])
 
 
-func ADDBox():
-	RemoveBox()
+func add_box():
+	remove_box()
 	var NumList = [PlayerData.player_data[str(CurrentPelletType) + "丹1"]]
 	for i in range(6):
 		if i > 0:
@@ -104,7 +104,7 @@ func ADDBox():
 				box.set_button_icon(load_(CurrentInType + str(i)))
 
 
-func RemoveBox():
+func remove_box():
 	for i in range(6):
 		if i > 0:
 			var Parent = all_pellets_box.get_node("Stage_" + str(i))
@@ -115,37 +115,37 @@ func RemoveBox():
 func _on_hp_dy_pressed() -> void:
 	CurrentPelletType = "生命"
 	CurrentInType = "smd_"
-	set_Info()
+	set_info()
 
 
 func _on_mp_dy_pressed() -> void:
 	CurrentPelletType = "魔法"
 	CurrentInType = "fld_"
-	set_Info()
+	set_info()
 
 
 func _on_att_dy_pressed() -> void:
 	CurrentPelletType = "攻击"
 	CurrentInType = "gjd_"
-	set_Info()
+	set_info()
 
 
 func _on_crit_dy_pressed() -> void:
 	CurrentPelletType = "暴击"
 	CurrentInType = "bjd_"
-	set_Info()
+	set_info()
 
 
 func _on_lucky_dy_pressed() -> void:
 	CurrentPelletType = "幸运"
 	CurrentInType = "xyd_"
-	set_Info()
+	set_info()
 
 
 func _on_emp_dy_pressed() -> void:
 	CurrentPelletType = "回魔"
 	CurrentInType = "hmd_"
-	set_Info()
+	set_info()
 
 
 func _on_eat_1_pressed() -> void:
@@ -158,7 +158,7 @@ func _on_eat_1_pressed() -> void:
 			Global.add_message_show(Global.Windows_, "一品" + str(CurrentPelletType) + "丹不足！！", 1.5, Vector2(500, 305))
 	else:
 		Global.add_message_show(Global.Windows_, "一品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
-	set_Info()
+	set_info()
 
 
 func _on_eat_2_pressed() -> void:
@@ -175,7 +175,7 @@ func _on_eat_2_pressed() -> void:
 	else:
 		Global.add_message_show(Global.Windows_, "二品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
 
-	set_Info()
+	set_info()
 
 
 func _on_eat_3_pressed() -> void:
@@ -192,7 +192,7 @@ func _on_eat_3_pressed() -> void:
 	else:
 		Global.add_message_show(Global.Windows_, "三品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
 
-	set_Info()
+	set_info()
 
 
 func _on_eat_4_pressed() -> void:
@@ -210,7 +210,7 @@ func _on_eat_4_pressed() -> void:
 	else:
 		Global.add_message_show(Global.Windows_, "四品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
 
-	set_Info()
+	set_info()
 
 
 func _on_eat_5_pressed() -> void:
@@ -228,7 +228,7 @@ func _on_eat_5_pressed() -> void:
 	else:
 		Global.add_message_show(Global.Windows_, "五品" + str(CurrentPelletType) + "丹已达服用上限！！", 1.5, Vector2(500, 305))
 
-	set_Info()
+	set_info()
 
 
 func _on_close_pressed() -> void:
@@ -286,7 +286,7 @@ func _on_one_key_auto_eat_pressed() -> void:
 			message = "已服用" + str(total_eaten) + "颗" + CurrentPelletType + "丹"
 
 		Global.add_message_show(Global.Windows_, message, 2.0, Vector2(500, 305))
-		set_Info()
+		set_info()
 	elif total_eaten == 0 and not can_continue:
 		pass
 	else:

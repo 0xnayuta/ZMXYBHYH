@@ -369,11 +369,11 @@ func _on_bulk_sell_pressed() -> void:
 		pl_sell = Global.add_pl_sell(PlSell, Vector2(90, 0))
 		pl_sell.MainBack = self
 	elif pl_sell != null:
-		RemoveChoose()
+		remove_choose()
 		pl_sell.queue_free()
 
 
-func RemoveChoose():
+func remove_choose():
 	ChooseMs = false
 	ChooseList.clear()
 
@@ -383,7 +383,7 @@ func _on_sort_pressed() -> void:
 		return
 	if not PlayerData.organize_backpack():
 		return
-	RemoveChoose()
+	remove_choose()
 	current_page = 1
 	set_box_data()
 	MemoryClass.save_game(Global.cd_path)

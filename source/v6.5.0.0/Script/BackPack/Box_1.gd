@@ -118,7 +118,7 @@ func _physics_process(_delta: float) -> void:
 		item_number.text = ""
 
 
-func _onPressWhenInBack():
+func on_press_when_in_back():
 	var parent_ = Global.get_parent_(self, 6)
 	var Position_ = Global.popup_position_for_parent(parent_, Vector2(18, 18))
 	var number = get_number()
@@ -163,7 +163,7 @@ func _keep_click_menu_near_item(menu: Node, parent_: Node) -> void:
 		(menu as Node2D).position = local_pos
 
 
-func _onPressWhenStrength():
+func on_press_when_strength():
 	if bool(EQ_prop.get("不可强化", false)) and get_item_name not in ["cjxianjie", "cdxianjie", "zhxianjie"]:
 		var parent_ = Global.get_parent_(self, 7)
 		Global.add_message_show(parent_, "该装备不可强化！", 1.5, Vector2(500, 305))
@@ -184,7 +184,7 @@ func _onPressWhenStrength():
 			Global.add_message_show(parent_, "装备等级已达最高等级！！无法继续强化！", 1.5, Vector2(500, 305))
 
 
-func _onPressWhenDivineForge() -> void:
+func on_press_when_divine_forge() -> void:
 	var item_data: Dictionary = AE.AllEquipment_.get(get_item_name, {})
 	if (
 		bool(EQ_prop.get("不可神铸", item_data.get("不可神铸", false)))
@@ -203,7 +203,7 @@ func _onPressWhenDivineForge() -> void:
 	MLdl.qh_list["Data"] = EQ_prop.duplicate(true)
 
 
-func _onPressWhenBoneForge() -> void:
+func on_press_when_bone_forge() -> void:
 	var item_data: Dictionary = AE.AllEquipment_.get(get_item_name, {})
 	var item_type := str(EQ_prop.get(DataKeys.TYPE, item_data.get(DataKeys.TYPE, "")))
 	var next_stage := str(EQ_prop.get("下一阶段", item_data.get("下一阶段", "")))
@@ -236,7 +236,7 @@ func _has_socketed_gems(data: Dictionary) -> bool:
 	return false
 
 
-func _onPressWhenSynthesis():
+func on_press_when_synthesis():
 	if strength_source == "人物穿戴":
 		var equipped_parent = Global.get_parent_(self, 7)
 		Global.add_message_show(equipped_parent, "请先将穿戴中的装备卸下后再进行合成！", 1.5, Vector2(500, 305))
@@ -300,7 +300,7 @@ func _onPressWhenSynthesis():
 			return
 
 
-func _onPressWhenDZ():
+func on_press_when_dz():
 	if Global.Forge_ == null:
 		return
 	var item_data: Dictionary = AE.AllEquipment_.get(str(get_item_name), {})
@@ -355,13 +355,13 @@ func _onPressWhenDZ():
 
 				var BzProp = {"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
 				PlayerData.player_data["宝珠列表"].push_back(BzProp)
-				Global.Forge_.ADDBZPIC()
+				Global.Forge_.addbzpic()
 				PlayerData.remove_dj(get_item_name, PlayerData.get_dj_page(get_item_name), 1)
 				return
 			else:
 				Global.Forge_.replace_book(get_item_name, qh_level, EQ_prop)
 	else:
-		Global.Forge_.RemoveBSPIC(ForgeBZID)
+		Global.Forge_.remove_bspic(ForgeBZID)
 
 
 func _set_forge_book_box_properties(item_box) -> void:
@@ -380,7 +380,7 @@ func _set_forge_book_box_properties(item_box) -> void:
 	item_box.set("position", Vector2(8, 8))
 
 
-func _onPressWhenfj():
+func on_press_whenfj():
 	if strength_source == "人物穿戴":
 		var equipped_parent = Global.get_parent_(self, 7)
 		Global.add_message_show(equipped_parent, "穿戴中的装备不能分解，请先卸下！", 1.5, Vector2(500, 305))
@@ -451,7 +451,7 @@ func _onPressWhenfj():
 		return
 
 
-func _onPressWhenXQ():
+func on_press_when_xq():
 	if not is_in_ldl_gz:
 		var parent_ = Global.get_parent_(self, 7)
 		if strength_source == "宠物背包":
@@ -509,7 +509,7 @@ func _onPressWhenXQ():
 					return
 				"道具":
 					if Base == "宝石":
-						if Data[DataKeys.GEM].size() < get_MaxBs():
+						if Data[DataKeys.GEM].size() < get_max_bs():
 							if Data[DataKeys.GEM].size() != 0:
 								PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"][DataKeys.GEM].push_back(
 									get_item_name
@@ -523,7 +523,7 @@ func _onPressWhenXQ():
 
 						else:
 							Global.add_message_show(
-								parent_, "最多镶嵌" + str(get_MaxBs()) + "个宝石！！", 1.5, Vector2(500, 305)
+								parent_, "最多镶嵌" + str(get_max_bs()) + "个宝石！！", 1.5, Vector2(500, 305)
 							)
 							return
 					else:
@@ -574,24 +574,24 @@ func _on_pressed() -> void:
 		add_equ_box.queue_free()
 	if get_item_name != "empty" and sell_box == null:
 		if Global.is_in_ldl == false:
-			_onPressWhenInBack()
+			on_press_when_in_back()
 		elif Global.is_in_ldl == true:
 			match MLdl.loc_:
 				"强化":
-					_onPressWhenStrength()
+					on_press_when_strength()
 				"神铸":
-					_onPressWhenDivineForge()
+					on_press_when_divine_forge()
 				"淬骨":
-					_onPressWhenBoneForge()
+					on_press_when_bone_forge()
 				"合成":
-					_onPressWhenSynthesis()
+					on_press_when_synthesis()
 				"镶嵌":
-					_onPressWhenXQ()
+					on_press_when_xq()
 				"分解":
 					Global.NeedChangeItem = true
-					_onPressWhenfj()
+					on_press_whenfj()
 				"打造":
-					_onPressWhenDZ()
+					on_press_when_dz()
 	MemoryClass.save_game(Global.cd_path)
 
 
@@ -638,7 +638,7 @@ func get_parent_():
 	return LastParent
 
 
-func get_MaxBs():
+func get_max_bs():
 	if PlayerData.player_data[DataKeys.INLAY_LIST].size() == 0:
 		return 0
 	return 8

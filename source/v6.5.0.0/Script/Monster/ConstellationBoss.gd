@@ -2550,7 +2550,7 @@ func hurt_reduce_hp(value, target):
 	if _monster152_absorbing_damage():
 		cure_hp(int(value))
 		return 0
-	return super.HurtReduceHp(value, target)
+	return super.hurt_reduce_hp(value, target)
 
 
 func _monster152_absorbing_damage() -> bool:
@@ -2627,10 +2627,6 @@ func _clear_body_stream() -> void:
 func _exit_tree() -> void:
 	_clear_body_stream()
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func HurtReduceHp(value, target):
-	return hurt_reduce_hp(value, target)

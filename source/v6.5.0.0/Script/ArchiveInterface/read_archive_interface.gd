@@ -39,7 +39,7 @@ var cloud_upload_temp_files := PackedStringArray()
 
 func _ready() -> void:
 	MemoryClass.main_dq()
-	AddAr()
+	add_ar()
 	_restore_cloud_session()
 	_update_cloud_auth_buttons()
 
@@ -52,19 +52,19 @@ func _restore_cloud_session() -> void:
 	cloud_uid_hash.text = _cloud_folder_name() if not cloud_uid_md5.is_empty() else ""
 
 
-func GetNeedBox():
+func get_need_box():
 	return int(MainSet.set_data["CdNum"])
 
 
-func RemoveAr():
+func remove_ar():
 	for i in all_ar.get_children():
 		all_ar.remove_child(i)
 		i.queue_free()
 
 
-func AddAr():
-	RemoveAr()
-	for i in range(GetNeedBox()):
+func add_ar():
+	remove_ar()
+	for i in range(get_need_box()):
 		Global.add_basic_ar_button(all_ar, i + 1)
 
 
@@ -492,7 +492,7 @@ func _on_cloud_import_file_selected(path: String) -> void:
 	Global.add_message_show(self, str(import_result.get("message", "导入失败")), 2.0, Vector2(470, 300))
 	if bool(import_result.get("ok", false)):
 		MemoryClass.main_dq()
-		AddAr()
+		add_ar()
 
 
 func _import_cloud_save_zip(path: String) -> Dictionary:
@@ -640,14 +640,14 @@ func _on_cloud_logout_pressed() -> void:
 
 
 func _on_delete_pressed() -> void:
-	if int(cd_number.text) > GetNeedBox() or int(cd_number.text) <= 0:
+	if int(cd_number.text) > get_need_box() or int(cd_number.text) <= 0:
 		Global.add_message_show(self, "找不到存档" + str(cd_number.text) + "的信息，请确保正确输入了存档号！！", 1.5, Vector2(470, 300))
 		return
 	if cd_number.text == "":
 		Global.add_message_show(self, "找不到存档信息，请确保正确输入了存档号！！", 1.5, Vector2(470, 300))
 		return
 	else:
-		Signals.ConnectChooseBoxSignal(self, "remove_data_")
+		Signals.connect_choose_box_signal(self, "remove_data_")
 		Global.add_choose_text(self, Vector2(0, 0), "确定要删除存档" + str(cd_number.text) + "吗？\n（删除后无法恢复！）", 0)
 
 
@@ -657,18 +657,18 @@ func remove_data_():
 	if not MemoryClass.safe_write_archive(archive_path, Initialized_Data):
 		Global.add_message_show(self, "存档重置失败，请重试", 1.5, Vector2(470, 300))
 		return
-	AddAr()
+	add_ar()
 	Global.add_message_show(self, "存档" + cd_number.text + "已重置为初始状态！！", 1.5, Vector2(470, 300))
 
 
 func remove_data():
 	Initialized_Data = PlayerData.Initialized_Data.duplicate(true)
-	MemoryClass.RemoveMainData(int(cd_number.text))
+	MemoryClass.remove_main_data(int(cd_number.text))
 
 	MemoryClass.main_bc()
 
 
-func RemoveMainData(Num: int):
+func remove_main_data(Num: int):
 	if Num <= 6:
 		MainSet.set_data["name" + str(Num)] = ""
 		MainSet.set_data["time" + str(Num)] = ""
@@ -688,7 +688,7 @@ func _on_addcd_pressed() -> void:
 	MainSet.set_data["CdNum"] += 1
 	Global.add_message_show(self, "添加成功，不要添加过多，以防卡顿！！", 1.5, Vector2(470, 300))
 	MemoryClass.main_bc()
-	AddAr()
+	add_ar()
 
 
 func _on_removecd_pressed() -> void:
@@ -697,4 +697,4 @@ func _on_removecd_pressed() -> void:
 		return
 	MainSet.set_data["CdNum"] -= 1
 	MemoryClass.main_bc()
-	AddAr()
+	add_ar()

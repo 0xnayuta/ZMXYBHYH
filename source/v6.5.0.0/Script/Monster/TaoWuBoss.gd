@@ -201,7 +201,7 @@ func _interrupt_attack_state_on_hit() -> void:
 func ai_think() -> void:
 	if absf(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) < mysee:
 		has_target = true
-	if IsLimitBuff() or cannotchangestatewhenattorbeatt() or _skill_busy:
+	if is_limit_buff() or cannotchangestatewhenattorbeatt() or _skill_busy:
 		return
 	if not has_target:
 		normal_state()

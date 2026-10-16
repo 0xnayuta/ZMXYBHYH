@@ -10,7 +10,7 @@ var ItemInfo = {"Name": "ryjgb", "Value": 4, "Prop": {}, "WX": [], "StrengthValu
 
 
 func _process(delta: float) -> void:
-	AddItemToBackPack()
+	add_item_to_backpack()
 	if UseItemName != null and UseNum != null:
 		_remove_used_item(UseItemName, UseNum)
 	MemoryClass.save_game(Global.cd_path)
@@ -23,11 +23,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		title.text = ""
 	pl.play("pl")
-	AddBox()
+	add_box()
 	set_physics_process(false)
 
 
-func AddBox():
+func add_box():
 	var tween = create_tween()
 	for i in ItemList_:
 		var Type = AE.AllEquipment_[i["Name"]][DataKeys.TYPE]
@@ -52,7 +52,7 @@ func _remove_used_item(item_name, use_num) -> void:
 			PlayerData.remove_xhp(item_name, PlayerData.get_xhp_page(item_name), use_num)
 
 
-func AddItemToBackPack():
+func add_item_to_backpack():
 	for i in ItemList_:
 		var Type = AE.AllEquipment_[i["Name"]][DataKeys.TYPE]
 		var ItemName = i["Name"]

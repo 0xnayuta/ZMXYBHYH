@@ -15,5 +15,5 @@ func _physics_process(delta: float) -> void:
 		mg_player.play("wait")
 
 
-func UseSkill():
-	Useover()
+func use_skill():
+	use_over()

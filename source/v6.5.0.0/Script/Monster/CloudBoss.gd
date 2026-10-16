@@ -91,7 +91,7 @@ func reduce_hp(value: int):
 
 
 func hurt_reduce_hp(value, target):
-	return 0 if _dash_active else super.HurtReduceHp(value, target)
+	return 0 if _dash_active else super.hurt_reduce_hp(value, target)
 
 
 func reduce_pet_hp(value: int, kind: String) -> int:
@@ -234,10 +234,6 @@ func _finish_dash(endpoint: Vector2) -> void:
 	is_attacking = false
 	mr_player.play(&"wait")
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func HurtReduceHp(value, target):
-	return hurt_reduce_hp(value, target)

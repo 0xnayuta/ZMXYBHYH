@@ -129,30 +129,30 @@ func ai_think():
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 800:
 					if Skill_1_CD <= 0:
-						UseSkill_1()
+						use_skill_1()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 600:
 					if MUbei == null:
 						if Skill_2_CD <= 0:
-							UseSkill_2()
+							use_skill_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400:
 					if Skill_3_CD <= 0:
-						UseSkill_3()
+						use_skill_3()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400:
 					if Skill_4_CD <= 0:
 						if SHp * 0.5 >= Hp:
-							UseSkill_4()
+							use_skill_4()
 			else:
 				if Skill_3_CD <= 0:
-					UseSkill_3()
+					use_skill_3()
 				elif Skill_1_CD <= 0:
-					UseSkill_1()
+					use_skill_1()
 				elif Skill_2_CD <= 0:
 					if MUbei == null:
 						if Skill_2_CD <= 0:
-							UseSkill_2()
+							use_skill_2()
 				elif Skill_4_CD <= 0:
 					if SHp * 0.5 >= Hp:
-						UseSkill_4()
+						use_skill_4()
 					elif count % 60 == 0:
 						attack_target()
 					else:
@@ -163,7 +163,7 @@ func ai_think():
 					stop_move()
 
 
-func UseSkill_1():
+func use_skill_1():
 	super.to_hero()
 	hit_name = "skill_1_1"
 	velocity.x = 0
@@ -174,7 +174,7 @@ func UseSkill_1():
 	stop_move()
 
 
-func UseSkill_2():
+func use_skill_2():
 	Skill_2_CD = randi_range(35, 45)
 	super.to_hero()
 	hit_name = "skill_1_1"
@@ -186,7 +186,7 @@ func UseSkill_2():
 	stop_move()
 
 
-func UseSkill_3():
+func use_skill_3():
 	Skill_3_CD = randi_range(16, 20)
 	super.to_hero()
 	hit_name = "skill_3"
@@ -198,7 +198,7 @@ func UseSkill_3():
 	stop_move()
 
 
-func UseSkill_4():
+func use_skill_4():
 	Skill_4_CD = randi_range(10, 15)
 	super.to_hero()
 	hit_name = "skill_4"

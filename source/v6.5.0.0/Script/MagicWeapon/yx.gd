@@ -75,7 +75,7 @@ func show_skill():
 			print("警告：找不到角色身体或装备节点")
 
 	await mg_player.animation_finished
-	Useover()
+	use_over()
 
 
 func _restore_role_colors(body_node, equipment_node):
@@ -97,15 +97,6 @@ func use_over():
 	is_use = false
 	skill_cd.start(CooldownTime)
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func ShowSkill():
-	return await show_skill()
-
-
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func Useover():
-	return use_over()

@@ -89,7 +89,7 @@ var IsOpen: bool
 @onready var mystery_shop_item_box: TextureRect = $"."
 
 
-func Open():
+func open():
 	IsOpen = true
 	ItemBox.disabled = false
 	ItemBox.visible = true
@@ -98,12 +98,12 @@ func Open():
 	PurchaseButton.disabled = false
 	PurchaseButton.visible = true
 	mystery_shop_item_box.texture = load("res://Art/Shop/ShopItemBox.png")
-	self.SetBox()
+	self.set_box()
 	ItemNum.text = str(AE.AllEquipment_[NewList["Name"]][DataKeys.NAME]) + "×" + str(NewList["Value"])
 	NeedValue.text = str(NewList["Need"]) + "灵魂"
 
 
-func Close():
+func close():
 	IsOpen = false
 	mystery_shop_item_box.texture = load("res://Art/Shop/CloseItemBox.png")
 	ItemBox.disabled = true
@@ -117,19 +117,19 @@ func Close():
 
 
 func _ready() -> void:
-	BasicSet()
+	basic_set()
 
 
-func GetList():
+func get_list():
 	return AllItemList["Box_" + str(MyNum)]
 
 
-func BasicSet():
+func basic_set():
 	ItemBox.is_in_ldl_gz = true
 	ItemBox.is_in_hhgz = true
 
 
-func SetBox():
+func set_box():
 	var CurrentList = AllItemList["Box_" + str(MyNum)]
 	NewList = CurrentList[randi_range(0, CurrentList.size() - 1)]
 	var Type = AE.AllEquipment_[NewList["Name"]][DataKeys.TYPE]
@@ -171,39 +171,39 @@ func _on_purchase_pressed() -> void:
 		"消耗品":
 			PlayerData.add_xhp(NewList["Name"], NewList["Value"])
 	Global.add_message_show(Global.Windows_, "购买成功", 1.5, Vector2(520, 340))
-	OpenAndCloseBox()
+	open_and_close_box()
 	MemoryClass.save_game(Global.cd_path)
 
 
-func OpenAndCloseBox():
+func open_and_close_box():
 	match int(MyNum):
 		1:
 			for i in MyFather.ChildList1:
 				if i.IsOpen:
-					i.Open()
+					i.open()
 			for i in MyFather.ChildList2:
 				if i.IsOpen:
 					return
 			if randi_range(0, 100) < 50:
-				MyFather.item_2.Open()
+				MyFather.item_2.open()
 		2:
-			self.Close()
-			MyFather.item_1.Open()
+			self.close()
+			MyFather.item_1.open()
 			if randi_range(0, 100) < 50:
-				MyFather.item_3.Open()
+				MyFather.item_3.open()
 		3:
-			self.Close()
-			MyFather.item_1.Open()
+			self.close()
+			MyFather.item_1.open()
 			if randi_range(0, 100) < 40:
-				MyFather.item_4.Open()
+				MyFather.item_4.open()
 		4:
-			self.Close()
-			MyFather.item_1.Open()
+			self.close()
+			MyFather.item_1.open()
 			if randi_range(0, 100) < 10:
-				MyFather.item_5.Open()
+				MyFather.item_5.open()
 		5:
-			self.Close()
-			MyFather.item_1.Open()
+			self.close()
+			MyFather.item_1.open()
 
 
 func load_(name_):

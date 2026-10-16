@@ -34,7 +34,7 @@ func _ready() -> void:
 	super._ready()
 	add_to_group("Player")
 	super.on_eqchange()
-	Role_3()
+	role_3()
 	_prepare_bdqk_action()
 	BA_DI_QIAN_KUN_EFFECT.prewarm_frames()
 	STREAMING_ROLE_BULLET.prewarm_bullet_frames("Role3Bullet2")
@@ -54,7 +54,7 @@ func _is_auto_battle_skill_active(skill_id: String) -> bool:
 	return skill_id == SD_SKILL_ID and _sd_awaken_enabled
 
 
-func Role_3():
+func role_3():
 	RoleProp.Role1SXBJ = 0
 	RoleProp.Role1SXxx = 0
 
@@ -181,7 +181,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		if is_on_floor():
 			velocity.y = 0
-	Role_3()
+	role_3()
 	super._physics_process(delta)
 	if _sd_toggle_locked and not _is_any_skill_action_pressed():
 		_sd_toggle_locked = false

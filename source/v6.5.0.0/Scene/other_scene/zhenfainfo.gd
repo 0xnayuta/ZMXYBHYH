@@ -24,13 +24,13 @@ func _physics_process(delta: float) -> void:
 			"tqz":
 				RealName = "太清阵"
 		zhen_fa_level.text = "阵法等级：Lv." + str(PlayerData.player_data[RealName]["Level"])
-		SetPropText()
-		SetAddPropText()
-		SetSkillInfo()
+		set_prop_text()
+		set_add_prop_text()
+		set_skill_info()
 		set_physics_process(false)
 
 
-func SetAddPropText():
+func set_add_prop_text():
 	var cur_level = PlayerData.player_data[RealName]["Level"]
 	match RealName:
 		"森罗阵":
@@ -43,7 +43,7 @@ func SetAddPropText():
 			add_prop.text = "附加属性：造成爆伤增加" + str(cur_level) + "%"
 
 
-func SetSkillInfo():
+func set_skill_info():
 	var cur_level = PlayerData.player_data[RealName]["Level"]
 	match RealName:
 		"森罗阵":
@@ -64,7 +64,7 @@ func SetSkillInfo():
 			skill_info.text = "太清阵Lv." + str(cur_level) + "：每过1秒，清除处于法阵内玩家的低级负面，并恢复一定量的生命，令其1秒内不会被击退，法阵持续10秒。"
 
 
-func SetPropText():
+func set_prop_text():
 	var List = PlayerData.player_data[RealName]
 	for i in List:
 		if typeof(List[i]) == TYPE_DICTIONARY:

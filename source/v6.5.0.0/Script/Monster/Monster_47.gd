@@ -67,10 +67,10 @@ func ai_think():
 		if FishCount > 0:
 			FishCount -= 1
 		if FishCount <= 0:
-			CallFish()
+			call_fish()
 
 
-func CallFish():
+func call_fish():
 	var hit_name_: String
 	if randi_range(0, 100) < 30:
 		hit_name_ = "hit2"

@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 			DeathCount += 1
 			XYcount += 1
 			if DeathCount % 60 == 0:
-				RoleReduceProp()
+				role_reduce_prop()
 			if XYcount % 180 == 0:
 				move_playerto_boss(null, 0.3)
 				(
@@ -89,7 +89,7 @@ func ai_think():
 			DeathCount += 1
 			XYcount += 1
 			if DeathCount % 60 == 0:
-				RoleReduceProp()
+				role_reduce_prop()
 			if XYcount % 180 == 0:
 				move_playerto_boss(null, 0.3)
 				(
@@ -107,7 +107,7 @@ func ai_think():
 				)
 
 
-func RoleReduceProp():
+func role_reduce_prop():
 	if get_Player != null:
 		if get_Player is BaseHero:
 			get_Player.effect_reducehp(randi_range(100, 200), "real")

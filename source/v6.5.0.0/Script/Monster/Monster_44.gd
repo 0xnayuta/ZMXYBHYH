@@ -62,11 +62,11 @@ func _physics_process(delta: float) -> void:
 
 func ai_think():
 	if Curecount % 60 == 0:
-		MonsterCall()
+		monster_call()
 	Curecount += 1
 
 
-func MonsterCall():
+func monster_call():
 	var BaseLevel_ = get_parent().get_parent() as BaseLevel
 	if BaseLevel_.monster.get_children().size() < 6:
 		var ChlidMonster = MonsterList[randi_range(0, MonsterList.size() - 1)]

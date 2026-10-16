@@ -1453,7 +1453,7 @@ func hurt_reduce_hp(value, target):
 		or monster_kind == 3323 and _3323_skill3_invincible
 	):
 		return 0
-	return super.HurtReduceHp(value, target)
+	return super.hurt_reduce_hp(value, target)
 
 
 func reduce_pet_hp(value: int, attack_kind: String) -> int:
@@ -3683,10 +3683,6 @@ func settle_death_drops_and_free() -> void:
 		return
 	super.settle_death_drops_and_free()
 
-
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理
 # ==============================================================================
-## [Phase 7-1 兼容代理] 确保动画轨道与反射调用正常
-func HurtReduceHp(value, target):
-	return hurt_reduce_hp(value, target)
