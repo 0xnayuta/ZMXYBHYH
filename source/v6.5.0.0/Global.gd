@@ -1301,7 +1301,7 @@ func preload_combat_hit_resources() -> void:
 	var role_be_hit_scene := preload_scene_path(ROLE_BE_HIT_EFFECT_PATH)
 	var monster_hit_scene := _cached_scene(&"monster_be_hit", MONSTER_BE_HIT_PATH)
 	var monster_blood_scene := _cached_scene(&"monster_blood", MONSTER_BLOOD_PATH)
-	var sound_scene := preload_scene_path("res://Scene/AllSound/MonsterBeHit.tscn")
+	var sound_scene := preload_scene_path("res://Scene/AllSound/monster_be_hit.tscn")
 	get_cached_audio("res://Music/MonsterHurt/6_BeattackByRole1.mp3")
 	get_cached_audio("res://Music/Hero/9_BeattackByRole2.mp3")
 	get_cached_audio("res://Music/Hero/49_Role1_beAttack.mp3")
@@ -1401,7 +1401,8 @@ func _prewarm_combat_hit_rendering(monster_blood_scene: PackedScene) -> void:
 		"res://Music/Hero/9_BeattackByRole2.mp3",
 	]:
 		var sound_player = (
-			_take_pooled_node(_pool_data["sound_player"], "res://Scene/AllSound/MonsterBeHit.tscn") as AudioStreamPlayer
+			_take_pooled_node(_pool_data["sound_player"], "res://Scene/AllSound/monster_be_hit.tscn")
+			as AudioStreamPlayer
 		)
 		if sound_player == null:
 			continue
@@ -4145,7 +4146,7 @@ func add_game_set(parent, position):
 
 func add_bgm(parent, target_):
 	if not BGM_:
-		BGM_ = _load_scene("res://Scene/AllSound/BGM.tscn")
+		BGM_ = _load_scene("res://Scene/AllSound/bgm.tscn")
 	var target = instance_scene(BGM_, parent)
 	target.target = target_
 	return target
@@ -4173,7 +4174,7 @@ func add_sound(parent, target_, priority: int = 0):
 		return null
 	if get_cached_audio(sound_key) == null:
 		return null
-	var target = _take_pooled_node(_pool_data["sound_player"], "res://Scene/AllSound/MonsterBeHit.tscn")
+	var target = _take_pooled_node(_pool_data["sound_player"], "res://Scene/AllSound/monster_be_hit.tscn")
 	if target == null:
 		return null
 	_last_sound_play_msec[sound_key] = now_msec

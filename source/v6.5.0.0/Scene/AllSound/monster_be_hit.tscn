@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/AllSound/MonsterBeHit.gd" id="1"]
+[ext_resource type="Script" path="res://Script/AllSound/monster_be_hit.gd" id="1"]
 
 [resource]
 _bundled = {

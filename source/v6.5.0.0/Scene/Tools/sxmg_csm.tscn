@@ -1,6 +1,6 @@
 [gd_resource type="PackedScene" format=3]
 
-[ext_resource type="Script" path="res://Script/Tools/Sxmg_CSM.gd" id="1"]
+[ext_resource type="Script" path="res://Script/Tools/sxmg_csm.gd" id="1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l3bgk"]
 animations = [{
