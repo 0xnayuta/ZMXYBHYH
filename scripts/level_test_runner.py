@@ -21,7 +21,7 @@ import subprocess
 from typing import Dict, Any, List
 
 class LevelTestRunner:
-    def __init__(self, target_level: str = "res://Scene/Level/Level_1.tscn", time_scale: float = 3.0):
+    def __init__(self, target_level: str = "res://Scene/level/level_1.tscn", time_scale: float = 3.0):
         self.target_level = target_level
         self.time_scale = time_scale
         self.log_path = self._resolve_godot_log_path()
@@ -96,7 +96,7 @@ return "SANDBOX_RESTORED"
 
 def main():
     parser = argparse.ArgumentParser(description="ZMXYBHYH 关卡自动化极速冒烟测试夹具")
-    parser.add_argument("--level", default="res://Scene/Level/Level_1.tscn", help="目标测试关卡路径")
+    parser.add_argument("--level", default="res://Scene/level/level_1.tscn", help="目标测试关卡路径")
     parser.add_argument("--scale", type=float, default=3.0, help="物理加速倍率")
     args = parser.parse_args()
 

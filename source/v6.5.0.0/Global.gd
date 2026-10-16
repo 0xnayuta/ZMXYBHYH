@@ -995,7 +995,7 @@ func _canonical_monster_scene_id(monster_id: int) -> int:
 
 
 func _monster_scene_path(monster_id: int) -> String:
-	return "res://Scene/monster/Monster_%d.tscn" % _canonical_monster_scene_id(monster_id)
+	return "res://Scene/monster/monster_%d.tscn" % _canonical_monster_scene_id(monster_id)
 
 
 func preload_level_monster_scenes(monster_ids: Array) -> void:
@@ -1981,7 +1981,7 @@ func preload_level_monster_resources(monster_group: Dictionary) -> void:
 			if seen_monster_ids.has(monster_id):
 				continue
 			seen_monster_ids[monster_id] = true
-			var scene_path := "res://Scene/monster/Monster_" + str(monster_id) + ".tscn"
+			var scene_path := "res://Scene/monster/monster_" + str(monster_id) + ".tscn"
 			if stage_key == "stage_1" or stage_key == "stage_2":
 				_append_unique_preload_path(priority_scene_paths, scene_path)
 				priority_monster_ids.append(monster_id)
@@ -2207,7 +2207,7 @@ func preload_all_hero_skill_resources() -> void:
 		"res://Music/Hero/Role5/effect9_1.mp3",
 		"res://Music/Hero/Role5/effect9_2.mp3",
 		"res://Music/Hero/Role5/jumpAttack.mp3",
-		"res://Music/Hero/smsrsz_bullet_xc.mp3",
+		"res://Music/Hero/smsrsz_bullet_xc.MP3",
 	]
 	for audio_path in audio_paths:
 		get_cached_audio(audio_path)
@@ -2810,7 +2810,7 @@ func add_basic_ar_button(parent, Num):
 	var target = instance_scene(_cached_scene(&"BasicArButton", BASIC_AR_BUTTON_PATH), parent)
 	if target == null:
 		return null
-	target.my_num = Num
+	target.archive_num = Num
 	return target
 
 
@@ -4968,7 +4968,7 @@ func add_se_eq_jm(parent, position, name_, page_, number_):
 		sell_or_equ = _load_scene("res://Scene/back_pack/sell_or_equ.tscn")
 	var target = instance_scene(sell_or_equ, parent)
 	target.page = page_
-	target.damage_value = number_
+	target.number = number_
 	target.get_name_ = name_
 	target.z_index = 99
 	target.position = position

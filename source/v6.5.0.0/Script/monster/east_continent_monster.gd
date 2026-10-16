@@ -2691,7 +2691,7 @@ func _spawn_3223_summon(summon_id: int, source_offset: Vector2) -> void:
 		existing = existing_value as BaseMonster
 	if existing != null and is_instance_valid(existing) and not existing.death():
 		return
-	var scene := load("res://Scene/monster/Monster_%d.tscn" % summon_id) as PackedScene
+	var scene := load("res://Scene/monster/monster_%d.tscn" % summon_id) as PackedScene
 	var parent := get_parent()
 	if scene == null or parent == null or not is_instance_valid(parent):
 		return
