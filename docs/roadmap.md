@@ -213,7 +213,7 @@ flowchart TD
 
 ---
 
-## Phase 6: 全工程深度命名规范化与数据契约演进 (Deep Naming & Data Contract Modernization)
+## Phase 6: 全工程深度命名规范化与数据契约演进 (Deep Naming & Data Contract Modernization) [已完成 · Done]
 
 ### 6.1 阶段定位与目标
 - **定位**：在 Phase 5 净化全局符号底数的基础上，向代码内部深水区进军，对标现代业界工业级 GDScript 规范，分层分类治理残存的畸形全局类名、违规信号、高危撞车变量、多态 AI 决策入口及弱类型数据字典流。
@@ -221,7 +221,7 @@ flowchart TD
 
 ### 6.2 实施子阶段规划（四步走渐进方案）
 
-#### 1. Phase 6-1: 全局符号与信号微创提纯 (Global Symbols & Signals Purification) [当前进行中]
+#### 1. Phase 6-1: 全局符号与信号微创提纯 (Global Symbols & Signals Purification) [已完成 · Done]
 - **核心任务**：
   1. **规范 8 个畸形全局类名**：彻底将 `lsh` -> `Lsh`，`lxdy` -> `Lxdy`，`role6` -> `Role6`，`dhqf` -> `Dhqf`，`qlsword` -> `QlSword`，`yx` -> `Yx`，`zcld` -> `Zcld`，`Monster_59` -> `Monster59` 及其所有跨脚本引用方同步更名；
   2. **规范 3 个违规信号**：
