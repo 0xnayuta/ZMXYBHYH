@@ -282,27 +282,27 @@ flowchart TD
 
 ### 7.2 实施子阶段规划（四步走渐进方案）
 
-#### 1. Phase 7-1: 高频弹幕与状态虚函数治理 (Bullet & State Polymorphic Functions) [当前进行中]
+#### 1. Phase 7-1: 高频弹幕与状态虚函数治理 (Bullet & State Polymorphic Functions) [已完成 · Done]
 - **核心任务**：
   1. **全盘动画轨道与反射排查**：扫描全盘 1,141 个场景中的 `AnimationPlayer`，排查方法轨道绑定的函数清单，建立受保护的调用白名单；
   2. **高频弹幕函数双轨重构**：针对在 89 处怪物与法宝中定义的 `CallBullet1` ~ `CallBullet5`，规范重命名为 `call_bullet_1` ~ `call_bullet_5`，并提供原大驼峰兼容代理，保证动画帧与代码双向畅通；
   3. **高频状态与表现函数规范化**：针对 `ShowSkill`（23 处）、`Useover`（22 处）、`HurtReduceHp`（10 处）、`TweenToTop`（9 处）实施规范化重构；
 - **验收指标**：高频多态弹幕与状态函数建立现代规范实现与双轨代理，动画轨道 0 漏改，实机运行 0 ERROR 0 WARNING。
 
-#### 2. Phase 7-2: 核心高频大写变量语义化重构 (High-Frequency Uppercase Variables Normalization)
+#### 2. Phase 7-2: 核心高频大写变量语义化重构 (High-Frequency Uppercase Variables Normalization) [已完成 · Done]
 - **核心任务**：
   1. 重构 44 个脚本中的 `PositionList` -> 规范为语义明确的 `bullet_spawn_positions` / `point_array`；
   2. 重构 40 个脚本中的全大写 `LIST` / `List` -> 规范为 `item_list` / `target_list`；
   3. 重构 26 个脚本中的 `Level`、20 个脚本中的 `Bullets` / `Num`；
 - **验收指标**：全工程常用成员变量的大写与缩写存量下降 50% 以上，彻底杜绝歧义命名。
 
-#### 3. Phase 7-3: 中文字典键全盘契约化收敛 (DataKeys Comprehensive Convergence)
+#### 3. Phase 7-3: 中文字典键全盘契约化收敛 (DataKeys Comprehensive Convergence) [已完成 · Done]
 - **核心任务**：
   1. 编写专有 AST 代码转换器，将全盘 256 种、4,202 处中文字典键字面量（`["名字"]`, `["等级"]`, `["技能学习"]`）分批次批量收敛为 `DataKeys.Item.NAME` 等强类型常量；
   2. 保护玩家本地存档 JSON 的序列化契约，确保底层存储与内存类型安全兼备；
 - **验收指标**：核心业务模块中的中文字典键字面量收敛度达到 90% 以上，全面享有 IDE 代码补全与静态检查。
 
-#### 4. Phase 7-4: 文件资产与模块目录渐进收敛 (Asset Files & Directory Standardization)
+#### 4. Phase 7-4: 文件资产与模块目录渐进收敛 (Asset Files & Directory Standardization) [已完成 · Done]
 - **核心任务**：
   1. 采用“业务模块逐步收敛”策略推进 966 个场景文件与 636 个脚本文件的规范化命名；
   2. 研发自动化文件重命名流水线，原子级同步更新 `ext_resource` 路径、`uid` 映射与全盘 `load/preload` 字符串；
@@ -314,4 +314,24 @@ flowchart TD
 - ⚠️ **存档向后兼容**：严禁私自变更已序列化存档字典的底层键名字符串，防止玩家存档损坏；
 - ⚠️ **双重门禁不可逾越**：每个子阶段必须通过 `python scripts/check_all.py` 四大门禁与实机冒烟 0 ERROR 0 WARNING；
 - ⚠️ **严格本地原子提交**：按 Phase 7-1 至 7-4 独立进行规范的 Conventional Commits 本地原子提交。
+
+### 7.4 命名收敛冲刺实录（B 系列 · 已完成）
+
+Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺，将历史 Flash AS2 命名残留（大驼峰函数、兼容代理、中文标识符、目录与文件大小写混乱、标识符驼峰）彻底终结：
+
+| 轮次 | 提交 | 核心内容 | 实测指标 |
+| :--- | :--- | :--- | :--- |
+| B0 | `a584121cb` | 清障：死代码、零引用代理、兼容层与中文标识符全量清除 | — |
+| B1 | `7d29368f2` | 核心单例双轨旧名原子改名与兼容代理全量清除 | — |
+| B2 | `f6432a94f` | 动画轨道与弹幕域函数原子改名（182 个轨道方法名 / 626 处轨道 + 373 处调用 + 28 处反射字符串同批同步） | 0 编译错误 / 0 断裂引用 |
+| B3 | `ecc89e4d9` | 残余业务函数收敛与双轨代理终结 | — |
+| B4 / B4b | `5d667e30a` / `a2f732b3e` | Scene/Script 文件级与子目录 snake_case 全量收敛 | 缓存重建通过 |
+| **B5a** | `993a392b6` | **全量标识符 snake_case 规范化 + 重构误差修复**（495 文件）：单行缩进块还原、数字前缀标识符补下划线、变量/枚举消歧、子类成员覆盖治理、参数遮蔽消除、跨文件引用同步、**脚本节点引用与 `_bundled` 场景节点名对齐（21 处）** | **Parse Error 917 → 0；实机运行错误行 1486 → 0 脚本错误** |
+
+**最终门禁基线（B5a 后）**：
+- `python scripts/health_check.py`：874 脚本 0 Parse Error、0 断裂资源引用、0 死代码；
+- 实机运行（Godot 4.7.2 Forward Mobile，900 帧冒烟）：**0 脚本 ERROR / 0 脚本 WARNING**（仅剩引擎退出时 `CompressedTexture2D` 析构顺序噪声，非脚本缺陷）；
+- 动画方法轨道审计：183 个唯一轨道方法名中 179 个精确命中脚本函数；剩余 4 个（`role_4.tscn` 的 `add_arrow_*` 系列）经 `git log -S` 追溯确认**自 B2 前即无对应脚本实现**，属上游历史遗留，非本轮引入。
+
+> ⚠️ **已知遗留（后续专项）**：`source/v6.5.0.0/Scene/` 下 748/1131 个 `.tscn` 为 GDRE 导出的 `_bundled`（Godot 3 PCK 内嵌二进制）格式，节点树可加载但无法在文本层面参与重命名同步；如需彻底归一为 Godot 4 原生文本场景，应单列专项阶段（含 `uid` 重映射与导入缓存重建）。
 
