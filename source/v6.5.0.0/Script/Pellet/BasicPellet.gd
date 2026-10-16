@@ -83,12 +83,12 @@ func SetEveryPropText():
 		+ str(PlayerData.player_data[str(CurrentPelletType) + "丹5"] * RoleProp.PelletProps["5品丹"][CurrentPelletType])
 		+ str(CurrentPelletType)
 	)
-	hp.text = "生命：" + str(RoleProp.GetPelletProp()[0])
-	mp.text = "魔法：" + str(RoleProp.GetPelletProp()[1])
-	att.text = "攻击：" + str(RoleProp.GetPelletProp()[2])
-	crit.text = "暴击：" + str(RoleProp.GetPelletProp()[3])
-	lucky.text = "幸运：" + str(RoleProp.GetPelletProp()[4])
-	emp.text = "回魔：" + str(RoleProp.GetPelletProp()[5])
+	hp.text = "生命：" + str(RoleProp.get_pellet_prop()[0])
+	mp.text = "魔法：" + str(RoleProp.get_pellet_prop()[1])
+	att.text = "攻击：" + str(RoleProp.get_pellet_prop()[2])
+	crit.text = "暴击：" + str(RoleProp.get_pellet_prop()[3])
+	lucky.text = "幸运：" + str(RoleProp.get_pellet_prop()[4])
+	emp.text = "回魔：" + str(RoleProp.get_pellet_prop()[5])
 
 
 func ADDBox():
@@ -98,7 +98,7 @@ func ADDBox():
 		if i > 0:
 			for u in range(PlayerData.player_data[str(CurrentPelletType) + "丹" + str(i)]):
 				var Parent = all_pellets_box.get_node("Stage_" + str(i))
-				var box = Global.AddLevelFallBox(
+				var box = Global.add_level_fall_box(
 					Parent, true, true, CurrentInType + str(i), 0, [], AE.AllEquipment_[CurrentInType + str(i)]
 				)
 				box.set_button_icon(load_(CurrentInType + str(i)))

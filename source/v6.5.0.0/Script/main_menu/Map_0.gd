@@ -262,7 +262,7 @@ func _on_equipment_catalog_pressed() -> void:
 
 
 func _on_shop_pressed() -> void:
-	Global.add_SHOP(_ui_parent(), Vector2.ZERO)
+	Global.add_shop(_ui_parent(), Vector2.ZERO)
 
 
 func _on_alchemy_pressed() -> void:
@@ -278,11 +278,11 @@ func _on_skill_pressed() -> void:
 
 
 func _on_activity_pressed() -> void:
-	Global.AddGameAnnouncement(_ui_parent(), Vector2.ZERO)
+	Global.add_game_announcement(_ui_parent(), Vector2.ZERO)
 
 
 func _on_task_pressed() -> void:
-	Global.AddBasicTask_(_ui_parent(), Vector2.ZERO)
+	Global.add_basic_task(_ui_parent(), Vector2.ZERO)
 
 
 func _on_group_pressed() -> void:

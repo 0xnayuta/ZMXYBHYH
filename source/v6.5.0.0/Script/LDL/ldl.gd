@@ -107,7 +107,7 @@ func remove_qh_jm():
 func add_hc_jm():
 	MLdl.loc_ = "合成"
 	if Synthesis_ == null:
-		Synthesis_ = Global.add_Synthesis(bg_2, Vector2(-315, -205))
+		Synthesis_ = Global.add_synthesis(bg_2, Vector2(-315, -205))
 
 
 func remove_hc_jm():
@@ -120,7 +120,7 @@ func remove_hc_jm():
 func add_xq_jm():
 	MLdl.loc_ = "镶嵌"
 	if Mosaic_ == null:
-		Mosaic_ = Global.Add_Mosaic_(bg_2, Vector2(-315, -205))
+		Mosaic_ = Global.add_mosaic_(bg_2, Vector2(-315, -205))
 
 
 func remove_xq_jm():
@@ -139,7 +139,7 @@ func _on_hh_pressed() -> void:
 	remove_sz_jm()
 	remove_cg_jm()
 	remove_onekey_jm()
-	Global.addHHjm(self, Vector2(0, 0))
+	Global.add_h_hjm(self, Vector2(0, 0))
 
 
 func _on_fj_pressed() -> void:
@@ -157,7 +157,7 @@ func _on_fj_pressed() -> void:
 func add_fj_jm():
 	MLdl.loc_ = "分解"
 	if Decompose_ == null:
-		Decompose_ = Global.Add_Decompose_(bg_2, Vector2(-305, -200))
+		Decompose_ = Global.add_decompose_(bg_2, Vector2(-305, -200))
 
 
 func remove_fj_jm():
@@ -182,7 +182,7 @@ func _on_dz_pressed() -> void:
 func add_dz_jm():
 	MLdl.loc_ = "打造"
 	if Forge_ == null:
-		Forge_ = Global.AddForges(bg_2, Vector2(-340, -200))
+		Forge_ = Global.add_forges(bg_2, Vector2(-340, -200))
 
 
 func remove_dz_jm():

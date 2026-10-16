@@ -190,17 +190,17 @@ func _ready() -> void:
 		Role1SkillMaxInter[skill_name] = 0.0
 	Role1SkillInter[SKILL_YINYANG] = 0.0
 	Role1SkillMaxInter[SKILL_YINYANG] = 0.0
-	onEqchange()
+	on_eqchange()
 	_refresh_attack_data()
 	role_action_player.play(&"wait")
 
 
-func WSSkill() -> bool:
+func ws_skill() -> bool:
 	if RoleProp.is_ws_state or IsDeath:
 		return false
 
 	RoleProp.is_ws_state = true
-	var activated := super.WSSkill()
+	var activated := super.ws_skill()
 	if not activated:
 		RoleProp.is_ws_state = false
 		return false
@@ -284,7 +284,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	if (
 		not is_riding_mount()
-		and NoLimitBuff()
+		and no_limit_buff()
 		and Input.is_action_pressed("normalhit")
 		and not is_attacking
 		and not is_be_attacking
@@ -457,7 +457,7 @@ func _hit_data(attack: float, multiplier: float, flat_damage: float, knockback: 
 func _skill_hit_data(
 	attack: float, base_multiplier: float, level_multiplier: float, skill_index: int, knockback: Vector2
 ) -> Dictionary:
-	var level := clampi(int(get_SkillLevel(skill_index)), 1, 20)
+	var level := clampi(int(get_skill_level(skill_index)), 1, 20)
 	return _hit_data(attack, base_multiplier + level_multiplier * level, 0.0, knockback)
 
 
@@ -529,7 +529,7 @@ func _disable_melee_shape() -> void:
 
 
 func _scaled_skill_mp(base_cost: int, skill_index: int, next_level: bool = false, high_growth: bool = false) -> int:
-	var skill_level := maxi(1, int(get_SkillLevel(skill_index)))
+	var skill_level := maxi(1, int(get_skill_level(skill_index)))
 	var growth_level := skill_level if next_level else skill_level - 1
 	var growth_rate := 3 if high_growth else 2
 	return base_cost + ((3 + growth_rate * growth_level) * growth_level)
@@ -540,7 +540,7 @@ func _get_lotus_mp_per_second(next_level: bool = false) -> int:
 
 
 func _get_yinyang_mp_per_volley(next_level: bool = false) -> int:
-	var level := maxi(1, int(get_SkillLevel(6))) + (1 if next_level else 0)
+	var level := maxi(1, int(get_skill_level(6))) + (1 if next_level else 0)
 	return YINYANG_MP_VALUES[clampi(level - 1, 0, YINYANG_MP_VALUES.size() - 1)]
 
 
@@ -923,8 +923,8 @@ func _process_fire_lotus(delta: float) -> void:
 		if _lotus_heal_elapsed >= 0.3:
 			_lotus_heal_elapsed -= 0.3
 			_lotus_charge -= 1
-			var lotus_skill_level := maxi(1, int(get_SkillLevel(4)))
-			cure_Hp(int(float(RoleProp.roleprop.power) * 0.02 * lotus_skill_level + 8.0))
+			var lotus_skill_level := maxi(1, int(get_skill_level(4)))
+			cure_hp(int(float(RoleProp.roleprop.power) * 0.02 * lotus_skill_level + 8.0))
 			_update_lotus_visual(true)
 	else:
 		_lotus_heal_elapsed = 0.0
@@ -937,7 +937,7 @@ func _update_lotus_awaken_bonuses(awakened: bool) -> void:
 		_lotus_base_power = current_power
 		_lotus_awaken_stats_initialized = true
 	var charge := float(_lotus_charge) if awakened else 0.0
-	var lotus_skill_level := float(clampi(int(get_SkillLevel(4)), 1, 20))
+	var lotus_skill_level := float(clampi(int(get_skill_level(4)), 1, 20))
 	RoleProp.roleprop.power = int(round(_lotus_base_power * (1.0 + charge * lotus_skill_level * 0.01)))
 	_lotus_last_power = float(RoleProp.roleprop.power)
 
@@ -1285,7 +1285,7 @@ func _restore_enhanced_visuals() -> void:
 	_enhanced_visual_hidden = false
 
 
-func ChangeBody(_name) -> void:
+func change_body(_name) -> void:
 	var current_animation := role_action_player.current_animation
 	var current_position := 0.0
 	if current_animation != &"":
@@ -1300,7 +1300,7 @@ func ChangeBody(_name) -> void:
 		role_action_player.seek(current_position, true)
 
 
-func ChangeEq(_name) -> void:
+func change_eq(_name) -> void:
 	var current_animation := role_action_player.current_animation
 	var current_position := 0.0
 	if current_animation != &"":

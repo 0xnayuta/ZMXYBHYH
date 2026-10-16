@@ -109,7 +109,7 @@ func do_hit_2():
 	is_attacking = false
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			buff,
 			{
 				"Name": "stun",

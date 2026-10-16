@@ -314,10 +314,10 @@ func call_bullet():
 
 
 func CallRound_():
-	Global.CallFlyBullet(
+	Global.call_fly_bullet(
 		self.bullet, "Monster55Bullet", 1, Vector2(position.x, position.y), 6500, 400, "dyml", self.objattackDic["dyml"]
 	)
-	Global.CallFlyBullet(
+	Global.call_fly_bullet(
 		self.bullet,
 		"Monster55Bullet",
 		-1,

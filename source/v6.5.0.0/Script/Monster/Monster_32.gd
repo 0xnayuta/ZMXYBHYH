@@ -290,7 +290,7 @@ func eye_fix():
 func add_eye_fix():
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			get_Player.buff,
 			{
 				"Name": "EyeFix",

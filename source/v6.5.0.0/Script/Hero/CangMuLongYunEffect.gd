@@ -617,7 +617,7 @@ func _apply_hit_stun(target: BaseMonster) -> void:
 
 func _apply_voodoo_if_learned(target: Node) -> void:
 	var skill_level := int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL])
-	if skill_level <= 0 or Global.CheckWD(target) >= 7:
+	if skill_level <= 0 or Global.check_wd(target) >= 7:
 		return
 	Global.add_buff(
 		target.buff,

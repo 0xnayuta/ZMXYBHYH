@@ -58,7 +58,7 @@ func _exit_tree() -> void:
 
 
 func spawn_reflect_effect(pos: Vector2, dir_velocity: Vector2, hit_dic: Dictionary) -> void:
-	var effect_bullet = Global.addRoleBullet_(get_tree().root, pos, Direction, "Role2Bullet7_tx", hit_dic)
+	var effect_bullet = Global.add_role_bullet(get_tree().root, pos, Direction, "Role2Bullet7_tx", hit_dic)
 	if effect_bullet:
 		var anim_player = effect_bullet.get_node("Middle/BulletPlayers")
 		if anim_player:
@@ -224,7 +224,7 @@ func CallJHBH1():
 	if jhbhcount % 5 == 0:
 		if num > 11:
 			num = 0
-		var bc = Global.addRoleBullet_(
+		var bc = Global.add_role_bullet(
 			Player.Bullet, position + bullet_player.position, Player.PlayerDir, "Role2Bullet5_1", HitDic
 		)
 		bc.rotation_degrees = BCRotationList[num]
@@ -250,7 +250,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			if not is_inside_tree() or is_queued_for_deletion():
 				return
 			if is_instance_valid(Target):
-				Global.addRoleBullet_(tree.root, Target.global_position, Direction, "Role2Bullet7_1", HitDic)
+				Global.add_role_bullet(tree.root, Target.global_position, Direction, "Role2Bullet7_1", HitDic)
 
 		match name_:
 			"SwordArrayHit":
@@ -259,7 +259,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				if HitDic.has("defe_reduce"):
 					(
 						Global
-						. AddBuff(
+						. add_buff(
 							Target.buff,
 							{
 								"Name": "DefeReduce",
@@ -294,7 +294,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				if HitDic.has("addeffect"):
 					Global.add_buff(Target.buff, HitDic["addeffect"])
 			"Role4Bullet6":
-				if Global.CheckWD(Target) < 7 and HitDic.has("addeffect"):
+				if Global.check_wd(Target) < 7 and HitDic.has("addeffect"):
 					Global.add_buff(Target.buff, HitDic["addeffect"])
 				Global.add_buff(
 					Target.buff,
@@ -309,7 +309,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 					}
 				)
 			"Role4Bullet3":
-				if Global.CheckWD(Target) < 10 and HitDic.has("addeffect"):
+				if Global.check_wd(Target) < 10 and HitDic.has("addeffect"):
 					Global.add_buff(Target.buff, HitDic["addeffect"])
 			"ZLWBullet":
 				if HitDic.has("addeffect"):
@@ -432,7 +432,7 @@ func _apply_tllz_awaken_effect(target: BaseMonster) -> void:
 	if source_player.Bullet == null or not is_instance_valid(source_player.Bullet):
 		return
 	var extra_hit_data: Dictionary = HitDic.duplicate(true)
-	var extra_bullet = Global.addRoleBullet_(
+	var extra_bullet = Global.add_role_bullet(
 		source_player.Bullet, target.global_position, false, "Role5Bullet4", extra_hit_data
 	)
 	if extra_bullet == null or not is_instance_valid(extra_bullet):
@@ -577,7 +577,7 @@ func TQZCure():
 			if CureCount % 60 == 0 and CureCount != 0:
 				var Levellpz = PlayerData.player_data["太清阵"]["Level"]
 				var CureValue = int(Levellpz * 0.05 * RoleProp.roleprop.power)
-				RoleProp.SourcePlayer.cure_Hp(CureValue)
+				RoleProp.SourcePlayer.cure_hp(CureValue)
 			CureCount += 1
 		else:
 			CureCount = 0

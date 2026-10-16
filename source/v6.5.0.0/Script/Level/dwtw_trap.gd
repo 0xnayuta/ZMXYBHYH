@@ -32,7 +32,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 	if Player is BaseHero:
 		(
 			Global
-			. AddBuff(
+			. add_buff(
 				Player.buff,
 				{
 					"Name": "speed_down",

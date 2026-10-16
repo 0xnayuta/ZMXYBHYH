@@ -154,7 +154,7 @@ func _hurt_monster(monster: BaseMonster) -> void:
 		Global.TotalRealHit += hurt
 	var level_node = monster.get_level_node()
 	if level_node != null:
-		Global.addDamageText(
+		Global.add_damage_text(
 			level_node, Vector2(monster.position.x - 20, monster.position.y - 240), hurt, attack_kind, is_crit, monster
 		)
 	if not monster.Monster_18_protect() and not monster.Monster102Protect() and not monster.is_control_immune():

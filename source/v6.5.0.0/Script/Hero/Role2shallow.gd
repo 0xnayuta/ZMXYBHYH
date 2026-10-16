@@ -68,14 +68,14 @@ func _physics_process(delta: float) -> void:
 func UseSkill():
 	match SkillName:
 		"xbz":
-			Skill_Tjgl()
+			skill_tjgl()
 		"tjgl":
-			Skill_XBZ()
+			skill_xbz()
 		"jhsj":
-			Skill_JHSJ()
+			skill_jhsj()
 
 
-func Skill_XBZ():
+func skill_xbz():
 	velocity.x = 0
 	get_action = "tjgl"
 	is_using_skills = true
@@ -87,7 +87,7 @@ func Skill_XBZ():
 	is_using_skills = false
 
 
-func Skill_Tjgl():
+func skill_tjgl():
 	velocity.x = 0
 	get_action = "tjgl"
 	is_using_skills = true
@@ -99,7 +99,7 @@ func Skill_Tjgl():
 	is_using_skills = false
 
 
-func Skill_JHSJ():
+func skill_jhsj():
 	velocity.x = 0
 	get_action = "jhsj"
 	is_using_skills = true
@@ -112,7 +112,7 @@ func Skill_JHSJ():
 
 
 func AddTJGL():
-	var eff = Global.addRoleSpecialEffect_(self.Bullet, position + Vector2(0, -35), false, "tjgl")
+	var eff = Global.add_role_special_effect(self.Bullet, position + Vector2(0, -35), false, "tjgl")
 	if eff != null and my_owner != null:
 		eff.owner_player = my_owner
 
@@ -125,7 +125,7 @@ func AddXBZ():
 	else:
 		bullet_spawn_positions = [Vector2(80, -15), Vector2(175, -20), Vector2(275, -25)]
 	for i in bullet_spawn_positions.size():
-		var xbz = Global.addRoleBullet_(
+		var xbz = Global.add_role_bullet(
 			self.Bullet, bullet_spawn_positions[i] + position, Dir, "Role2Bullet3", objattackDic["xbz"]
 		)
 		xbz.scale = ScaleList[i]
@@ -135,7 +135,7 @@ func AddXBZ():
 func AddJHSJ2():
 	var bullet_pos = Vector2()
 	bullet_pos = Vector2(0, -10)
-	var jhsj_2 = Global.addRoleBullet_(self, bullet_pos, false, "Role2Bullet6", objattackDic["jhsj"])
+	var jhsj_2 = Global.add_role_bullet(self, bullet_pos, false, "Role2Bullet6", objattackDic["jhsj"])
 	jhsj_2.show_behind_parent = true
 
 

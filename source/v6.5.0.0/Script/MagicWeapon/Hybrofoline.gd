@@ -11,7 +11,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if IsCure:
 		self.position = Player.position - Vector2(0, 200)
-	self.FB_Level = PlayerData.get_mostLevel("kyl") + 1
+	self.FB_Level = PlayerData.get_most_level("kyl") + 1
 	needMp = 50 + self.FB_Level * 5
 	if PlayerData.check_have_wx("kyl", "木"):
 		_hit_data["power"] = 100 + int(RoleProp.roleprop.SHp * (randf_range(0.02, 0.05)) + 0.02 * self.FB_Level)
@@ -38,14 +38,14 @@ func use_over():
 
 func Cure():
 	if Player != null:
-		Player.cure_Hp(objattackDic["hit1"]["power"])
+		Player.cure_hp(objattackDic["hit1"]["power"])
 
 
 func ADDSuperArmor():
 	IsCure = true
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			Player.buff,
 			{
 				"Name": "SuperArmor",

@@ -57,7 +57,7 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
-"method": &"SetInsky"
+"method": &"set_insky"
 }, {
 "args": [],
 "method": &"AddJHSJ2"
@@ -181,13 +181,13 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [],
-"method": &"SetInsky"
+"method": &"set_insky"
 }, {
 "args": [],
 "method": &"AddXBZ"
 }, {
 "args": [],
-"method": &"ResetInsky"
+"method": &"reset_insky"
 }, {
 "args": [],
 "method": &"free"
@@ -223,7 +223,7 @@ tracks/1/keys = {
 "method": &"AddTJGL"
 }, {
 "args": [],
-"method": &"ResetInsky"
+"method": &"reset_insky"
 }]
 }
 tracks/2/type = "method"
@@ -237,7 +237,7 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"SetInsky"
+"method": &"set_insky"
 }, {
 "args": [],
 "method": &"free"

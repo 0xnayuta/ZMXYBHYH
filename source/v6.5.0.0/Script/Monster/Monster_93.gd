@@ -229,7 +229,7 @@ func BloodFix_():
 func ADDBloodFix():
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			get_Player.buff,
 			{
 				"Name": "BloodFix",

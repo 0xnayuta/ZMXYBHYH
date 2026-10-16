@@ -671,7 +671,7 @@ func AddBox():
 	var Dic = GetPageList()
 	if Dic.size() > 0:
 		for i in Dic["Page_" + str(currentpage)]:
-			Global.AddTransBox(box_list, i, self)
+			Global.add_trans_box(box_list, i, self)
 
 
 func RemoveBox():
@@ -767,14 +767,14 @@ func _ready() -> void:
 			$BG/Player/Playerplay.play("wait5")
 			RoleItemList[DataKeys.TITLE].push_back("lwstz")
 	infor.text = str(currentpage) + "/" + str(maxpage)
-	onEqchange()
+	on_eqchange()
 	AddBox()
 
 
 func _physics_process(_delta: float) -> void:
 	if PlayerId == 6:
 		_update_nezha_preview(_delta)
-	SetWingsOffset()
+	set_wings_offset()
 	var target_count = GetFinishItemNum()
 	maxpage = GetCurrentMaxPage()
 	infor.text = str(currentpage) + "/" + str(maxpage)
@@ -798,7 +798,7 @@ func _on_next_pressed() -> void:
 		AddBox()
 
 
-func onEqchange():
+func on_eqchange():
 	var WQ: String
 	var Fj: String
 
@@ -809,7 +809,7 @@ func onEqchange():
 			WQ = str(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME])
 	else:
 		WQ = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON])
-	ChangeEq(WQ)
+	change_eq(WQ)
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR] == "":
 		if PlayerData.player_data[DataKeys.FASHION].size() == 0:
 			if PlayerData.player_data[DataKeys.ARMOR].size() == 0:
@@ -820,8 +820,8 @@ func onEqchange():
 			Fj = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
 	else:
 		Fj = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR])
-	Fj = Global.GetName(Fj)
-	ChangeBody(Fj)
+	Fj = Global.get_clean_name(Fj)
+	change_body(Fj)
 	var WingsList
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
 		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
@@ -887,19 +887,19 @@ func _set_special_preview_tracks(disabled: bool) -> void:
 	_special_wing_tracks_disabled = false
 
 
-func ChangeBody(name_):
+func change_body(name_):
 	preload("res://Script/Hero/MoonPalaceClothesEffect.gd").sync(role_body, str(name_))
 	if PlayerId == 6:
 		_nezha_body_id = str(name_)
 		return
-	role_body.texture = Global.LoadRole1Body(name_)
+	role_body.texture = Global.load_role1_body(name_)
 
 
-func ChangeEq(name_):
+func change_eq(name_):
 	if PlayerId == 6:
 		_nezha_weapon_id = str(name_)
 		return
-	role_equipment.texture = Global.LoadRole1EQ(name_)
+	role_equipment.texture = Global.load_role1_eq(name_)
 
 
 func _update_nezha_preview(delta: float) -> void:
@@ -1033,7 +1033,7 @@ func _on_tx_pressed() -> void:
 	CurrentType = "头衔"
 
 
-func SetWingsOffset():
+func set_wings_offset():
 	var CurrentWingsName: String
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
 		if PlayerData.player_data[DataKeys.WINGS].size() == 0:

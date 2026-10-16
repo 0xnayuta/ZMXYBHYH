@@ -34,7 +34,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if PlayerData.ChekEqzb("头衔", "xczg"):
+	if PlayerData.check_eq_zb("头衔", "xczg"):
 		Global.change_scene("res://Scene/main_menu/Main_Menu.tscn")
 	if not is_cc:
 		if Role_.position.x >= 600:

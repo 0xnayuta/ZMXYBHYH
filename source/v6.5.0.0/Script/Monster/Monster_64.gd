@@ -295,7 +295,7 @@ func MoveSelfToPlayer():
 func call_fly_bullet():
 	var fz
 	if self.MonsterDirection:
-		fz = Global.CallFlyBullet(
+		fz = Global.call_fly_bullet(
 			self.bullet,
 			"Monster_63Bullet",
 			1,
@@ -306,7 +306,7 @@ func call_fly_bullet():
 			self.objattackDic["hit1"]
 		)
 	else:
-		fz = Global.CallFlyBullet(
+		fz = Global.call_fly_bullet(
 			self.bullet,
 			"Monster_63Bullet",
 			1,
@@ -326,7 +326,7 @@ func call_fly_bullet():
 func call_fly_bullet2():
 	var fz
 	if self.MonsterDirection:
-		fz = Global.CallFlyBullet(
+		fz = Global.call_fly_bullet(
 			self.bullet,
 			"Monster63Bullet",
 			1,
@@ -337,7 +337,7 @@ func call_fly_bullet2():
 			self.objattackDic["zhq_3"]
 		)
 	else:
-		fz = Global.CallFlyBullet(
+		fz = Global.call_fly_bullet(
 			self.bullet,
 			"Monster63Bullet",
 			1,

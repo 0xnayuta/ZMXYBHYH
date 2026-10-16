@@ -390,11 +390,11 @@ func ADDTaskList():
 		1:
 			RemoveList()
 			for i in AllActivityList:
-				Global.AddTaskTitle(task_list, AllActivityList[i]["TaskType"], AllActivityList[i]["TaskName"], self)
+				Global.add_task_title(task_list, AllActivityList[i]["TaskType"], AllActivityList[i]["TaskName"], self)
 		2:
 			RemoveList()
 			for i in AllDailyList:
-				Global.AddTaskTitle(task_list, AllDailyList[i]["TaskType"], AllDailyList[i]["TaskName"], self)
+				Global.add_task_title(task_list, AllDailyList[i]["TaskType"], AllDailyList[i]["TaskName"], self)
 
 
 func ADDReward():
@@ -406,7 +406,7 @@ func ADDReward():
 	for i in task_data["TaskReward"]:
 		var ItemName = i["Name"]
 		var TotalNum = i["Value"]
-		Global.AddTaskReward(reward_list, ItemName, TotalNum)
+		Global.add_task_reward(reward_list, ItemName, TotalNum)
 
 
 func _clear_current_task_selection() -> void:
@@ -448,7 +448,7 @@ func _on_lqjl_pressed() -> void:
 	if not task_data.get("UnlimitedClaim", false):
 		PlayerData.player_data[CurrentTaskName] = true
 	var list = task_data["TaskReward"]
-	Global.AddRewardInfo(Global.get_parent_(self, 1), Vector2(0, 0), list, null, null)
+	Global.add_reward_info(Global.get_parent_(self, 1), Vector2(0, 0), list, null, null)
 	MemoryClass.save_game(Global.cd_path)
 
 

@@ -47,7 +47,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		return
 	if MonsterTarget is Monster47:
 		Global.PlayerBeHitCount += 1
-	var last_hit = Global.get_player.get_Monster_last_hurt(MonsterTarget, Target)
+	var last_hit = Global.get_player.get_monster_last_hurt(MonsterTarget, Target)
 
 	if Global.get_player is Role3Hero and RoleProp.is_ws_state:
 		last_hit = int(last_hit * 0.7)
@@ -69,7 +69,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 			var cur_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
 			if cur_level > 0:
 				if not get_parent().get_parent() is Level17 and not get_parent().get_parent() is Level22:
-					Global.get_player.cure_Hp(RoleProp.roleprop.power * (0.5 + cur_level * 0.02))
+					Global.get_player.cure_hp(RoleProp.roleprop.power * (0.5 + cur_level * 0.02))
 
 	if Global.get_player is Role1Hero or Global.get_player is Role2Hero:
 		if Global.get_player.is_miss or RoleProp.is_ws_state:

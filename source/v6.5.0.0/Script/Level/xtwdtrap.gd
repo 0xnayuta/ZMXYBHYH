@@ -60,7 +60,7 @@ func _on_hix_box_area_entered(area: Area2D) -> void:
 	if target.has_node("Buff"):
 		(
 			Global
-			. AddBuff(
+			. add_buff(
 				target.get_node("Buff"),
 				{
 					"Name": "Fire",

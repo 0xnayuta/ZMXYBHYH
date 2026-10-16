@@ -185,7 +185,7 @@ func _restart_level_for_auto_battle() -> bool:
 	RoleProp.ws_value = 0
 	RoleProp.is_ws_state = false
 	Global.is_DeadLink = false
-	Global.removeAllBuff()
+	Global.remove_all_buff()
 	Global.change_scene(Global.LastLevelPath)
 	return true
 

@@ -65,9 +65,9 @@ func _on_change_pressed() -> void:
 		Global.add_message_show(
 			Global.Windows_, "取消" + str(Lx) + ":" + str(item_name) + "的幻化！！", 1.5, Vector2(470, 295)
 		)
-	Transmogrified_.onEqchange()
-	if is_instance_valid(RoleProp.SourcePlayer) and RoleProp.SourcePlayer.has_method("onEqchange"):
-		RoleProp.SourcePlayer.onEqchange()
+	Transmogrified_.on_eqchange()
+	if is_instance_valid(RoleProp.SourcePlayer) and RoleProp.SourcePlayer.has_method("on_eqchange"):
+		RoleProp.SourcePlayer.on_eqchange()
 	for i in Transmogrified_.box_list.get_children():
 		if i != null:
 			i.set_physics_process(true)

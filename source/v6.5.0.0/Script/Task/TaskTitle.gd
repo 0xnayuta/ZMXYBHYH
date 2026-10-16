@@ -56,16 +56,16 @@ func CheckTaskFinish():
 					var Target = MyFather.AllActivityList[TaskName]["TaskTarget"]
 					match int(PlayerData.player_data["Myself"]):
 						1:
-							if PlayerData.checkHaveZB("wkttzssz")[0]:
+							if PlayerData.check_have_zb("wkttzssz")[0]:
 								return true
 						2:
-							if PlayerData.checkHaveZB("tsttzssz")[0]:
+							if PlayerData.check_have_zb("tsttzssz")[0]:
 								return true
 						3:
-							if PlayerData.checkHaveZB("bjttzssz")[0]:
+							if PlayerData.check_have_zb("bjttzssz")[0]:
 								return true
 						4:
-							if PlayerData.checkHaveZB("ssttzssz")[0]:
+							if PlayerData.check_have_zb("ssttzssz")[0]:
 								return true
 					return false
 				4:

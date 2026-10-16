@@ -392,7 +392,7 @@ func _process_pet_turtle_recovery(delta: float) -> void:
 		return
 	recovery_timer -= 1.0
 	if hp_recover_per_second > 0 and Hp < SHp:
-		cure_Hp(hp_recover_per_second)
+		cure_hp(hp_recover_per_second)
 	if mp_recover_per_second > 0 and Mp < SMp:
 		Mp = mini(SMp, Mp + mp_recover_per_second)
 		pet_data[DataKeys.MP] = Mp
@@ -658,7 +658,7 @@ func receive_linked_damage(value: int) -> int:
 func receive_linked_heal(value: int) -> int:
 	if value <= 0 or Hp <= 0 or not _link_active():
 		return 0
-	return cure_Hp(value)
+	return cure_hp(value)
 
 
 func _heal_linked_hero(value: int) -> void:
@@ -666,7 +666,7 @@ func _heal_linked_hero(value: int) -> void:
 		return
 	var had_skip := bool(player_reference.get_meta("pet_turtle_skip_link_heal", false))
 	player_reference.set_meta("pet_turtle_skip_link_heal", true)
-	player_reference.cure_Hp(value)
+	player_reference.cure_hp(value)
 	if had_skip:
 		player_reference.set_meta("pet_turtle_skip_link_heal", true)
 	elif player_reference.has_meta("pet_turtle_skip_link_heal"):
@@ -676,7 +676,7 @@ func _heal_linked_hero(value: int) -> void:
 func heal_from_water_shield_damage(value: int) -> void:
 	if value <= 0:
 		return
-	cure_Hp(value)
+	cure_hp(value)
 	_heal_linked_hero(value)
 
 

@@ -205,8 +205,10 @@ func call_shark():
 	var attack_dic = objattackDic["sxks_2"]
 
 	if MonsterDirection:
-		var shark = Global.CallFlyBullet(bullet, bullet_name, 1, position_vec, 4000, speed_val, hit_name, attack_dic)
-		var shark_1 = Global.CallFlyBullet(bullet, bullet_name, 1, position_vec, 4000, -speed_val, hit_name, attack_dic)
+		var shark = Global.call_fly_bullet(bullet, bullet_name, 1, position_vec, 4000, speed_val, hit_name, attack_dic)
+		var shark_1 = Global.call_fly_bullet(
+			bullet, bullet_name, 1, position_vec, 4000, -speed_val, hit_name, attack_dic
+		)
 
 		if shark:
 			var sprite = shark.get_node("AnimatedSprite2D")
@@ -217,8 +219,10 @@ func call_shark():
 			if sprite:
 				sprite.flip_h = true
 	else:
-		var shark = Global.CallFlyBullet(bullet, bullet_name, 1, position_vec, 4000, -speed_val, hit_name, attack_dic)
-		var shark_1 = Global.CallFlyBullet(bullet, bullet_name, 1, position_vec, 4000, speed_val, hit_name, attack_dic)
+		var shark = Global.call_fly_bullet(bullet, bullet_name, 1, position_vec, 4000, -speed_val, hit_name, attack_dic)
+		var shark_1 = Global.call_fly_bullet(
+			bullet, bullet_name, 1, position_vec, 4000, speed_val, hit_name, attack_dic
+		)
 
 		if shark:
 			var sprite = shark.get_node("AnimatedSprite2D")

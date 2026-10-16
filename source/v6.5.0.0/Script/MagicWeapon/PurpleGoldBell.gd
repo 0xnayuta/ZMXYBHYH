@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	self.FB_Level = PlayerData.get_mostLevel("zjfyd") + 1
+	self.FB_Level = PlayerData.get_most_level("zjfyd") + 1
 	needMp = 50 + self.FB_Level * 15
 	if PlayerData.check_have_wx("zjfyd", "木"):
 		_hit_data["power"] = 5 + (FB_Level - 1) * 0.5
@@ -35,7 +35,7 @@ func use_over():
 func ADDSuperArmor():
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			Player.buff,
 			{
 				"Name": "Indestructible1",

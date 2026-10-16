@@ -923,12 +923,12 @@ func _physics_process(_delta: float) -> void:
 
 	match _runtime_kind:
 		RuntimeKind.MONSTER_90:
-			self.position += Global.GetPositionBetween(self, RoleProp.SourcePlayer) * FlySpeed * 0.5
+			self.position += Global.get_position_between(self, RoleProp.SourcePlayer) * FlySpeed * 0.5
 			FlySpeed += 2
 			if FlySpeed >= 10:
 				FlySpeed = 10
 		RuntimeKind.MONSTER_101_2:
-			self.position += Global.GetPositionBetween(self, RoleProp.SourcePlayer) * FlySpeed * 0.5
+			self.position += Global.get_position_between(self, RoleProp.SourcePlayer) * FlySpeed * 0.5
 			FlySpeed += 0.1
 			if FlySpeed >= 5:
 				FlySpeed = 5
@@ -2444,8 +2444,8 @@ func _hold_pet_tiger_sxhz_target(target: Node, duration: float) -> void:
 func _cure_pet_tiger_summoner(summon_owner, value: int) -> void:
 	if value <= 0:
 		return
-	if summon_owner != null and is_instance_valid(summon_owner) and summon_owner.has_method("cure_Hp"):
-		summon_owner.cure_Hp(value)
+	if summon_owner != null and is_instance_valid(summon_owner) and summon_owner.has_method("cure_hp"):
+		summon_owner.cure_hp(value)
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:

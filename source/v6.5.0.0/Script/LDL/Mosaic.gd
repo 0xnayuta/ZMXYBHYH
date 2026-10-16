@@ -111,4 +111,4 @@ func load_(name_):
 
 
 func _on_help_pressed() -> void:
-	Global.AddMosaicHelp(Global.get_parent_(self, 3), Vector2(0, 0))
+	Global.add_mosaic_help(Global.get_parent_(self, 3), Vector2(0, 0))

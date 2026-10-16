@@ -27,7 +27,7 @@ var myhc
 
 func _ready() -> void:
 	super._ready()
-	super.onEqchange()
+	super.on_eqchange()
 	Role_2()
 
 	if not is_in_group("Player"):
@@ -158,7 +158,7 @@ func _physics_process(delta: float) -> void:
 	Role_2()
 	super._physics_process(delta)
 
-	if NoLimitBuff():
+	if no_limit_buff():
 		if (
 			not is_riding_mount()
 			and Input.is_action_pressed("normalhit")
@@ -173,7 +173,7 @@ func _physics_process(delta: float) -> void:
 			if not smb_action_pressed:
 				smb_ready_for_second_press = true
 			elif smb_ready_for_second_press and _is_smb_action_just_pressed():
-				Skill_SMB2()
+				skill_smb2()
 
 
 func _is_smb_action_pressed() -> bool:
@@ -211,7 +211,7 @@ func do_normalhit_1():
 	return
 
 
-func Skill_Blb():
+func skill_blb():
 	self.Role1SkillInter["blb"] = 2.4
 	velocity.x = 0
 	get_action = "blb"
@@ -225,7 +225,7 @@ func Skill_Blb():
 	is_using_skills = false
 
 
-func Skill_XBZ():
+func skill_xbz():
 	self.Role1SkillInter["xbz"] = 1.2
 	velocity.x = 0
 	get_action = "xbz"
@@ -242,7 +242,7 @@ func Skill_XBZ():
 	is_using_skills = false
 
 
-func Skill_SGQ():
+func skill_sgq():
 	self.Role1SkillInter["sgq"] = 1.2
 	velocity.x = 0
 	get_action = "sgq"
@@ -256,7 +256,7 @@ func Skill_SGQ():
 	is_using_skills = false
 
 
-func Skill_JHSJ():
+func skill_jhsj():
 	self.Role1SkillInter["jhsj"] = 2.4
 	velocity.x = 0
 	get_action = "jhsj"
@@ -275,7 +275,7 @@ func Skill_JHSJ():
 	is_using_skills = false
 
 
-func Skill_Tjgl():
+func skill_tjgl():
 	self.Role1SkillInter["tjgl"] = 4.8
 	velocity.x = 0
 	get_action = "tjgl"
@@ -292,7 +292,7 @@ func Skill_Tjgl():
 	is_using_skills = false
 
 
-func Skill_MYHC():
+func skill_myhc():
 	self.Role1SkillInter["myhc"] = 4.8
 	velocity.x = 0
 	get_action = "myhc"
@@ -306,7 +306,7 @@ func Skill_MYHC():
 	is_using_skills = false
 
 
-func Skill_SHY():
+func skill_shy():
 	self.Role1SkillInter["shy"] = 2.4
 	get_action = "shy"
 	is_using_skills = true
@@ -319,7 +319,7 @@ func Skill_SHY():
 	is_using_skills = false
 
 
-func Skill_JGZ():
+func skill_jgz():
 	self.Role1SkillInter["jgz"] = 2.4
 	get_action = "jgz"
 	is_using_skills = true
@@ -332,7 +332,7 @@ func Skill_JGZ():
 	is_using_skills = false
 
 
-func Skill_SMB():
+func skill_smb():
 	IsUseSMB = true
 	smb_ready_for_second_press = false
 	self.Role1SkillInter["smb"] = 1.2
@@ -348,7 +348,7 @@ func Skill_SMB():
 	is_using_skills = false
 
 
-func Skill_SMB2():
+func skill_smb2():
 	IsUseSMB = false
 	smb_ready_for_second_press = false
 	self.Role1SkillInter["smb"] = 1.2
@@ -365,7 +365,7 @@ func Skill_SMB2():
 	is_using_skills = false
 
 
-func Skill_BY():
+func skill_by():
 	IsUseSMB = false
 	self.Role1SkillInter["by"] = 6.0
 	velocity.x = 0
@@ -509,7 +509,7 @@ func AddNormalHitEffect():
 		bullet_pos = Vector2(10, 15)
 	else:
 		bullet_pos = Vector2(-10, 15)
-	Global.addRoleBullet_(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet1", objattackDic["hit1"])
+	Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet1", objattackDic["hit1"])
 
 
 func AddBLb():
@@ -520,7 +520,7 @@ func AddBLb():
 		bullet_pos = Vector2(15, 0)
 	else:
 		bullet_pos = Vector2(-15, 0)
-	Global.addRoleBullet_(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet2", objattackDic["blb"])
+	Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet2", objattackDic["blb"])
 
 
 func Addsgq():
@@ -530,11 +530,11 @@ func Addsgq():
 	else:
 		bullet_pos = Vector2(-35, -20)
 	if SGQ == null:
-		SGQ = Global.addRoleBullet_(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
+		SGQ = Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
 		SGQ.scale = Vector2(2, 2)
 	else:
 		SGQ.queue_free()
-		SGQ = Global.addRoleBullet_(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
+		SGQ = Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
 		SGQ.scale = Vector2(2, 2)
 
 
@@ -546,7 +546,7 @@ func AddXBZ():
 	else:
 		bullet_spawn_positions = [Vector2(80, -15), Vector2(175, -20), Vector2(275, -25)]
 	for i in bullet_spawn_positions.size():
-		var xbz = Global.addRoleBullet_(
+		var xbz = Global.add_role_bullet(
 			self.Bullet, bullet_spawn_positions[i] + position, PlayerDir, "Role2Bullet3", objattackDic["xbz"]
 		)
 		xbz.scale = ScaleList[i]
@@ -555,18 +555,18 @@ func AddXBZ():
 
 func AddSMb_1():
 	if !PlayerDir:
-		SMB1 = Global.addSMBEffect(self.Bullet, position + Vector2(-100, 25), PlayerDir)
+		SMB1 = Global.add_smb_effect(self.Bullet, position + Vector2(-100, 25), PlayerDir)
 	else:
-		SMB1 = Global.addSMBEffect(self.Bullet, position + Vector2(100, 25), PlayerDir)
+		SMB1 = Global.add_smb_effect(self.Bullet, position + Vector2(100, 25), PlayerDir)
 
 
 func Addzfjg():
-	Global.addRoleSpecialEffect_(self.Bullet, position + Vector2(0, 0), false, "zfjg_zh")
+	Global.add_role_special_effect(self.Bullet, position + Vector2(0, 0), false, "zfjg_zh")
 	_summon_zhw()
 
 
 func AddSMb_2():
-	Global.addRoleBullet_(self.Bullet, smpox + Vector2(0, -180), PlayerDir, "Role2Bullet4", objattackDic["smb"])
+	Global.add_role_bullet(self.Bullet, smpox + Vector2(0, -180), PlayerDir, "Role2Bullet4", objattackDic["smb"])
 	if _is_skill_awakened("smb") and _is_skill_awaken_enabled("smb"):
 		_spawn_smb_awaken_extra_bursts(smpox, PlayerDir)
 
@@ -578,12 +578,12 @@ func _spawn_smb_awaken_extra_bursts(origin: Vector2, direction: bool) -> void:
 		await get_tree().create_timer(0.18 * float(burst_index + 1), false).timeout
 		if not is_instance_valid(self) or IsDeath:
 			return
-		Global.addRoleBullet_(self.Bullet, origin + Vector2(0, -180), direction, "Role2Bullet4", objattackDic["smb"])
+		Global.add_role_bullet(self.Bullet, origin + Vector2(0, -180), direction, "Role2Bullet4", objattackDic["smb"])
 
 
 func AddShallow():
 	if MyShallow == null:
-		MyShallow = Global.addRole2Shallow(self.Bullet, position, PlayerDir)
+		MyShallow = Global.add_role2_shallow(self.Bullet, position, PlayerDir)
 		MyShallow.my_owner = self
 	else:
 		if not MyShallow.ShouldUseSkill:
@@ -596,41 +596,41 @@ func SelfCure():
 	var TotalValue = int(RoleProp.roleprop.SHp * 0.2 + level * 0.02)
 	CureValue = 0.6 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) + 1
 	var Value = int(TotalValue * CureHpValue)
-	cure_Hp(Value)
+	cure_hp(Value)
 
 
 func AddTJGL():
 	if get_action == "by":
 		return
-	tjgl_effect = Global.addRoleSpecialEffect_(self.Bullet, position + Vector2(0, -35), false, "tjgl")
+	tjgl_effect = Global.add_role_special_effect(self.Bullet, position + Vector2(0, -35), false, "tjgl")
 	tjgl_effect.show_behind_parent = true
 
 
 func AddMYHC():
 	if myhc != null:
 		myhc.queue_free()
-		myhc = Global.addRoleSpecialEffect_(self, Vector2(0, -30), false, "myhc")
+		myhc = Global.add_role_special_effect(self, Vector2(0, -30), false, "myhc")
 	else:
-		myhc = Global.addRoleSpecialEffect_(self, Vector2(0, -30), false, "myhc")
+		myhc = Global.add_role_special_effect(self, Vector2(0, -30), false, "myhc")
 
 
 func AddJGZ():
 	var effect
 	if !PlayerDir:
-		effect = Global.addRoleSpecialEffect_(self.Bullet, position + Vector2(-300, 0), false, "jgz")
+		effect = Global.add_role_special_effect(self.Bullet, position + Vector2(-300, 0), false, "jgz")
 	else:
-		effect = Global.addRoleSpecialEffect_(self.Bullet, position + Vector2(300, 0), false, "jgz")
+		effect = Global.add_role_special_effect(self.Bullet, position + Vector2(300, 0), false, "jgz")
 
 	if effect:
-		var skill_level = get_SkillLevel(8)
+		var skill_level = get_skill_level(8)
 		effect.skill_level = skill_level
 
 
 func AddJHSJ():
 	if !PlayerDir:
-		jhsj_1 = Global.addRoleSpecialEffect_(self, Vector2(-20, -15), PlayerDir, "jhsj")
+		jhsj_1 = Global.add_role_special_effect(self, Vector2(-20, -15), PlayerDir, "jhsj")
 	else:
-		jhsj_1 = Global.addRoleSpecialEffect_(self, Vector2(20, -15), PlayerDir, "jhsj")
+		jhsj_1 = Global.add_role_special_effect(self, Vector2(20, -15), PlayerDir, "jhsj")
 
 
 func _is_skill_awakened(skill_id: String) -> bool:
@@ -680,7 +680,7 @@ func _spawn_jhsj_awaken_effect() -> void:
 	var effect := JHSJ_AWAKEN_EFFECT.instantiate()
 	jhsj_awaken_effect = effect
 	var awaken_hit_data: Dictionary = objattackDic["jhsj"].duplicate(true)
-	var skill_level: int = int(get_SkillLevel(9))
+	var skill_level: int = int(get_skill_level(9))
 	awaken_hit_data["power"] = RoleProp.roleprop.power * (15.0 + skill_level * 0.45)
 	effect.setup(self, awaken_hit_data, PlayerDir)
 	effect.position = position
@@ -689,7 +689,7 @@ func _spawn_jhsj_awaken_effect() -> void:
 
 func AddJHSJ2():
 	var bullet_pos = Vector2.ZERO
-	jhsj_2 = Global.addRoleBullet_(self, bullet_pos, PlayerDir, "Role2Bullet6", objattackDic["jhsj"])
+	jhsj_2 = Global.add_role_bullet(self, bullet_pos, PlayerDir, "Role2Bullet6", objattackDic["jhsj"])
 	jhsj_2.show_behind_parent = true
 
 

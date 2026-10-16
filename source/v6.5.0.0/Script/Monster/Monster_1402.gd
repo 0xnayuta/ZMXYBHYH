@@ -217,7 +217,7 @@ func call_bullet_2():
 	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 300)
 	await get_tree().create_timer(0.5, false).timeout
 
-	var ly = Global.CallChaseBullet(
+	var ly = Global.call_chase_bullet(
 		self.bullet, "Monster1402Bullet2", 250, 10.0, false, Po, "hit3", self.objattackDic["hit2"]
 	)
 	ly.scale = Vector2(1.2, 1.2)
@@ -227,7 +227,7 @@ func call_bullet_3():
 	var Po = Vector2(self.position.x, 300)
 	await get_tree().create_timer(2, false).timeout
 
-	var ly = Global.CallChaseBullet(
+	var ly = Global.call_chase_bullet(
 		self.bullet, "Monster1402Bullet3", 250, 10.0, false, Po, "hit3", self.objattackDic["hit3"]
 	)
 	ly.scale = Vector2(2.5, 2)

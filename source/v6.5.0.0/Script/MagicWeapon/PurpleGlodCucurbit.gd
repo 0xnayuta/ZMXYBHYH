@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	self.FB_Level = PlayerData.get_mostLevel("zjhl")
+	self.FB_Level = PlayerData.get_most_level("zjhl")
 	needMp = 50 + self.FB_Level * 12
 	var Power: int
 	var playerPower = RoleProp.roleprop.power
@@ -51,9 +51,9 @@ func use_over():
 func CucurbitFire():
 	var attack_data := get_attack_snapshot()
 	if self.SelfDir:
-		Global.addWeaponBullet_(self, Vector2(-30, 10), "PurpleGlodCucurbitBullet", attack_data, self.SelfDir, 10)
+		Global.add_weapon_bullet(self, Vector2(-30, 10), "PurpleGlodCucurbitBullet", attack_data, self.SelfDir, 10)
 	else:
-		Global.addWeaponBullet_(self, Vector2(-30, 10), "PurpleGlodCucurbitBullet", attack_data, !self.SelfDir, 10)
+		Global.add_weapon_bullet(self, Vector2(-30, 10), "PurpleGlodCucurbitBullet", attack_data, !self.SelfDir, 10)
 
 
 # ==============================================================================

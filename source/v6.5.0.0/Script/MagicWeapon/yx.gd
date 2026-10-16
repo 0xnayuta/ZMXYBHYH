@@ -11,7 +11,7 @@ var is_colored: bool = false
 
 
 func _physics_process(delta: float) -> void:
-	self.FB_Level = PlayerData.get_mostLevel("yx")
+	self.FB_Level = PlayerData.get_most_level("yx")
 	needMp = 50 + self.FB_Level * 5
 
 	ADDTime = 10

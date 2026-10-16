@@ -86,7 +86,7 @@ func AddStage():
 	var Stage
 	for i in StageInfo:
 		var ta = "an_" + str(randi_range(1, 5))
-		Stage = Global.AddStage(floor, "an_" + str(randi_range(1, 5)), i["Position"])
+		Stage = Global.add_stage(floor, "an_" + str(randi_range(1, 5)), i["Position"])
 		if randi_range(0, 50) > 25:
 			Stage.scale.x = -1
 		await get_tree().create_timer(randf_range(0.5, 1))

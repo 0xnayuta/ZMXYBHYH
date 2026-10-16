@@ -83,7 +83,7 @@ func _build_effect_frames() -> SpriteFrames:
 
 
 func _physics_process(delta: float) -> void:
-	FB_Level = PlayerData.get_mostLevel(weapon_id) + 1
+	FB_Level = PlayerData.get_most_level(weapon_id) + 1
 	needMp = skill_cost
 	super._physics_process(delta)
 	_process_swords(delta)
@@ -235,7 +235,7 @@ func _use_yaowang_bottle() -> void:
 	if Player == null or RoleProp.roleprop == null:
 		return
 	var missing := maxi(0, int(RoleProp.roleprop.SHp) - int(RoleProp.roleprop.Hp))
-	Player.cure_Hp(FB_Level * 100 + int(float(missing) * 0.15))
+	Player.cure_hp(FB_Level * 100 + int(float(missing) * 0.15))
 	var wait_time := 10.0 if _has_wood() else 20.0
 	_spawn_effect_for_duration(wait_time)
 
@@ -291,12 +291,12 @@ func _use_fan() -> void:
 
 
 func _use_shenxing() -> void:
-	if Player == null or not Player.has_method("fabaoJiasu"):
+	if Player == null or not Player.has_method("fabao_jiasu"):
 		return
 	_pet_speed_serial += 1
 	var token := _pet_speed_serial
 	const duration := 8.0
-	Player.fabaoJiasu()
+	Player.fabao_jiasu()
 	_spawn_effect_for_duration(maxf(1.0, duration))
 	if _effect != null and is_instance_valid(_effect) and Player != null and is_instance_valid(Player):
 		_effect.reparent(Player, false)
@@ -307,8 +307,8 @@ func _use_shenxing() -> void:
 func _reset_speed(token: int) -> void:
 	if token != _pet_speed_serial:
 		return
-	if Player != null and is_instance_valid(Player) and Player.has_method("resetFabaoJiasu"):
-		Player.resetFabaoJiasu()
+	if Player != null and is_instance_valid(Player) and Player.has_method("reset_fabao_jiasu"):
+		Player.reset_fabao_jiasu()
 
 
 func _use_flower_basket() -> void:
@@ -322,12 +322,12 @@ func _heal_flower_tick(token: int, remaining: float) -> void:
 	if token != _flower_serial:
 		return
 	if Player != null and is_instance_valid(Player):
-		Player.cure_Hp(FB_Level * 2)
-		if Player.has_method("cure_Mp"):
-			Player.cure_Mp(FB_Level)
+		Player.cure_hp(FB_Level * 2)
+		if Player.has_method("cure_mp"):
+			Player.cure_mp(FB_Level)
 	var pet := _active_pet()
-	if pet != null and pet.has_method("cure_Hp"):
-		pet.cure_Hp(FB_Level * 2)
+	if pet != null and pet.has_method("cure_hp"):
+		pet.cure_hp(FB_Level * 2)
 	if pet != null and "Mp" in pet and "SMp" in pet:
 		pet.Mp = mini(int(pet.SMp), int(pet.Mp) + FB_Level)
 	if remaining > 1.0:

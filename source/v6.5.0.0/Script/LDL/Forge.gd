@@ -708,4 +708,4 @@ func GetEqProp():
 
 
 func _on_help_pressed() -> void:
-	Global.AddForgeHelp(Global.get_parent_(self, 3), Vector2(455, 265))
+	Global.add_forge_help(Global.get_parent_(self, 3), Vector2(455, 265))

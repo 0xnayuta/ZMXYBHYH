@@ -185,7 +185,7 @@ func call_m6_bullet():
 	var fz
 	var dir = self.MonsterDirection
 	if dir:
-		fz = Global.CallFlyBullet(
+		fz = Global.call_fly_bullet(
 			self.bullet,
 			"Monster6Bullet",
 			1,
@@ -196,7 +196,7 @@ func call_m6_bullet():
 			self.objattackDic["hit1"]
 		)
 	else:
-		fz = Global.CallFlyBullet(
+		fz = Global.call_fly_bullet(
 			self.bullet,
 			"Monster6Bullet",
 			1,

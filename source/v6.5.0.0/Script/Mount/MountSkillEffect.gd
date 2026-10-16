@@ -1002,10 +1002,10 @@ func _apply_hit(target: BaseMonster, hit_combat: Dictionary = {}) -> void:
 	var damage := target.apply_role_hit(hero, hero, hit_data)
 	if damage > 0 and str(skill.get("id", "")) == "3107300":
 		var target_buff := target.get_node_or_null("Buff")
-		if target_buff != null and Global.has_method("AddBuff"):
+		if target_buff != null and Global.has_method("add_buff"):
 			(
 				Global
-				. AddBuff(
+				. add_buff(
 					target_buff,
 					{
 						"Name": "stun",

@@ -182,7 +182,7 @@ func _update_selected_equipment(selected: Dictionary, item_name: String, data: D
 		RoleProp.get_equ_last_pro()
 		RoleProp.get_last_prop()
 		if is_instance_valid(RoleProp.SourcePlayer):
-			RoleProp.SourcePlayer.onEqchange()
+			RoleProp.SourcePlayer.on_eqchange()
 		MLdl.qh_list[DataKeys.NAME] = item_name
 		MLdl.qh_list[DataKeys.ENHANCE_LEVEL] = level
 		MLdl.qh_list["页码"] = int(selected.get("page", 0))

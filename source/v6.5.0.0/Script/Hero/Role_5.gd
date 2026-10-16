@@ -27,7 +27,7 @@ func _ready() -> void:
 	_fix_dragon_prince_title_animation()
 
 	add_to_group("Player")
-	super.onEqchange()
+	super.on_eqchange()
 	Role_5()
 	_prepare_fhf_awaken_action()
 	_prepare_ygth_awaken_action()
@@ -55,7 +55,7 @@ func _fix_dragon_prince_title_animation() -> void:
 	frames.set_animation_speed(&"lwstz", 15.0)
 	frames.set_animation_loop(&"lwstz", true)
 	_last_title_name = ""
-	AddTx()
+	add_tx()
 
 
 func Role_5():
@@ -205,7 +205,7 @@ func _physics_process(delta: float) -> void:
 	if Interv > 0:
 		Interv -= 1
 	super._physics_process(delta)
-	if NoLimitBuff():
+	if no_limit_buff():
 		if (
 			not is_riding_mount()
 			and Input.is_action_pressed("normalhit")
@@ -296,7 +296,7 @@ func do_normalhit_5():
 	return
 
 
-func UseSLQ():
+func use_slq():
 	self.Role1SkillInter["slq"] = 4.8
 	velocity.x = 0
 	get_action = "slq"
@@ -310,7 +310,7 @@ func UseSLQ():
 	is_using_skills = false
 
 
-func UseCXQ():
+func use_cxq():
 	self.Role1SkillInter["cxq"] = 14
 	velocity.x = 0
 	get_action = "cxq"
@@ -324,7 +324,7 @@ func UseCXQ():
 	is_using_skills = false
 
 
-func UseBLQ():
+func use_blq():
 	self.Role1SkillInter["blq"] = 6
 	velocity.x = 0
 	get_action = "blq"
@@ -338,7 +338,7 @@ func UseBLQ():
 	is_using_skills = false
 
 
-func UseXYQ():
+func use_xyq():
 	self.Role1SkillInter["xyq"] = 6
 	velocity.x = 0
 	get_action = "xyq"
@@ -352,7 +352,7 @@ func UseXYQ():
 	is_using_skills = false
 
 
-func UseLLRD():
+func use_llrd():
 	self.Role1SkillInter["llrd"] = 6
 	velocity.x = 0
 	get_action = "llrd"
@@ -366,7 +366,7 @@ func UseLLRD():
 	is_using_skills = false
 
 
-func UseLLJY():
+func use_lljy():
 	self.Role1SkillInter["lljy"] = 12
 	velocity.x = 0
 	get_action = "lljy_1"
@@ -380,7 +380,7 @@ func UseLLJY():
 	is_using_skills = false
 
 
-func UseTLLZ():
+func use_tllz():
 	self.Role1SkillInter["tllz"] = 6
 	velocity.x = 0
 	get_action = "tllz"
@@ -394,7 +394,7 @@ func UseTLLZ():
 	is_using_skills = false
 
 
-func UseYGTH():
+func use_ygth():
 	var awakened := _is_skill_awakened("ygth") and _is_skill_awaken_enabled("ygth")
 	self.Role1SkillInter["ygth"] = YGTH_AWAKEN_COOLDOWN if awakened else YGTH_NORMAL_COOLDOWN
 	velocity.x = 0
@@ -479,7 +479,7 @@ func _add_ygth_method_key(action: Animation, time: float, method_name: StringNam
 	action.track_insert_key(track_index, time, {"method": method_name, "args": args})
 
 
-func UseFHF():
+func use_fhf():
 	var awakened := _is_skill_awakened("fhf") and _is_skill_awaken_enabled("fhf")
 	self.Role1SkillInter["fhf"] = FHF_AWAKEN_COOLDOWN if awakened else FHF_NORMAL_COOLDOWN
 	velocity.x = 0
@@ -619,7 +619,7 @@ func SlqFly():
 		bullet_pos = Vector2(100, -150)
 	else:
 		bullet_pos = Vector2(-100, -150)
-	var slq = Global.addRoleBullet_(self.Bullet, bullet_pos + position, PlayerDir, "Role5Bullet1", objattackDic["slq"])
+	var slq = Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role5Bullet1", objattackDic["slq"])
 	slq.scale = Vector2(1.4, 1.6)
 	velocity.y = -600
 
@@ -714,23 +714,23 @@ func call_bullet_2():
 		bullet_pos = Vector2(260, 180)
 	else:
 		bullet_pos = Vector2(-260, 180)
-	var llrd = Global.addRoleBullet_(self.Bullet, bullet_pos + position, false, "Role5Bullet2", objattackDic["llrd"])
+	var llrd = Global.add_role_bullet(self.Bullet, bullet_pos + position, false, "Role5Bullet2", objattackDic["llrd"])
 	llrd.scale = Vector2(1.5, 1.5)
 
 
 func call_bullet_3():
-	var lljy = Global.addRoleBullet_(self.Bullet, position, PlayerDir, "Role5Bullet3", objattackDic["lljy"])
+	var lljy = Global.add_role_bullet(self.Bullet, position, PlayerDir, "Role5Bullet3", objattackDic["lljy"])
 
 
 func call_bullet_4():
 	if tllz != null:
 		tllz.queue_free()
-	tllz = Global.addRoleBullet_(self.Bullet, position - Vector2(0, 20), false, "Role5Bullet4", objattackDic["tllz"])
+	tllz = Global.add_role_bullet(self.Bullet, position - Vector2(0, 20), false, "Role5Bullet4", objattackDic["tllz"])
 	tllz.scale = Vector2(1.4, 1.4)
 
 
 func call_bullet_5():
-	Global.addRoleBullet_(self.Bullet, position, !PlayerDir, "Role5Bullet5", objattackDic["ygth"])
+	Global.add_role_bullet(self.Bullet, position, !PlayerDir, "Role5Bullet5", objattackDic["ygth"])
 
 
 func CallYGTHAwakenBullet():
@@ -740,7 +740,7 @@ func CallYGTHAwakenBullet():
 	if not awaken_hurt_back.is_empty():
 		awaken_hurt_back[0] = -int(awaken_hurt_back[0])
 		awaken_hit_data["hurtBack"] = awaken_hurt_back
-	var hook := Global.addRoleBullet_(self.Bullet, position, !PlayerDir, "Role5Bullet5", awaken_hit_data) as RoleBullet
+	var hook := Global.add_role_bullet(self.Bullet, position, !PlayerDir, "Role5Bullet5", awaken_hit_data) as RoleBullet
 	if hook == null:
 		return
 	hook.scale = YGTH_AWAKEN_SCALE

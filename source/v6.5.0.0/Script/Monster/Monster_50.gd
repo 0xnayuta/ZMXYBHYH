@@ -201,7 +201,7 @@ func CheckCallMonsterDeath():
 func add_nlls():
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			get_Player.buff,
 			{
 				"Name": "nlls",
@@ -227,7 +227,7 @@ func call_bullet():
 		BulletName = "Monster49Bullet_2"
 		Hit_name = "mffd_2"
 	if MonsterDirection:
-		Bullet_ = Global.CallChaseBullet(
+		Bullet_ = Global.call_chase_bullet(
 			self.bullet,
 			BulletName,
 			330,
@@ -238,7 +238,7 @@ func call_bullet():
 			self.objattackDic[Hit_name]
 		)
 	else:
-		Bullet_ = Global.CallChaseBullet(
+		Bullet_ = Global.call_chase_bullet(
 			self.bullet,
 			BulletName,
 			330,
@@ -276,7 +276,7 @@ func StrenghBoss():
 
 func call_fly_bullet():
 	if MonsterDirection:
-		var pp = Global.CallFlyBullet(
+		var pp = Global.call_fly_bullet(
 			bullet, "Monster49Bulet", 1, Vector2(position.x, position.y + 30), 2500, -900, "hit1", objattackDic["hit1"]
 		)
 		if pp:
@@ -284,7 +284,7 @@ func call_fly_bullet():
 			if sprite:
 				sprite.flip_h = true
 	else:
-		Global.CallFlyBullet(
+		Global.call_fly_bullet(
 			bullet, "Monster49Bulet", 1, Vector2(position.x, position.y + 30), 2500, 900, "hit1", objattackDic["hit1"]
 		)
 

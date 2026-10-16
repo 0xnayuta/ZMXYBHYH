@@ -185,11 +185,11 @@ func add_speed_up_specialbullet():
 
 func call_fly_bullet():
 	if MonsterDirection:
-		Global.CallFlyBullet(
+		Global.call_fly_bullet(
 			bullet, "Monster41Bullet", 1, Vector2(position.x + 100, position.y), 800, -300, "hit1", objattackDic["hit1"]
 		)
 	else:
-		var fz = Global.CallFlyBullet(
+		var fz = Global.call_fly_bullet(
 			bullet, "Monster41Bullet", 1, Vector2(position.x - 100, position.y), 800, 300, "hit1", objattackDic["hit1"]
 		)
 		if fz:

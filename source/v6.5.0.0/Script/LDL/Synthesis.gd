@@ -156,7 +156,7 @@ func _on_syn_pressed() -> void:
 
 
 func _on_help_pressed() -> void:
-	Global.AddHc_Help(Global.get_parent_(self, 3), Vector2(455, 265))
+	Global.add_hc_help(Global.get_parent_(self, 3), Vector2(455, 265))
 
 
 func set_cailiao_pic():

@@ -72,10 +72,10 @@ func _physics_process(delta: float) -> void:
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 	var buff_target = super._on_hit_box_area_entered(area)
 
-	if is_instance_valid(buff_target) and buff_target.has_method("reduce_Mp"):
+	if is_instance_valid(buff_target) and buff_target.has_method("reduce_mp"):
 		if RoleProp and RoleProp.roleprop:
 			var mp_reduce = int(RoleProp.roleprop.SMp * 0.05 + 30)
-			buff_target.reduce_Mp(mp_reduce)
+			buff_target.reduce_mp(mp_reduce)
 			print("对目标 %s 扣除蓝量：%d" % [buff_target.name, mp_reduce])
 
 	if not IsShow and is_instance_valid(buff_target):
@@ -95,7 +95,7 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 		if buff_node != null:
 			(
 				Global
-				. AddBuff(
+				. add_buff(
 					buff_node,
 					{
 						"Name": "Scary",

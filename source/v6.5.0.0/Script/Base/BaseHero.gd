@@ -299,7 +299,7 @@ func _ready() -> void:
 	RoleProp.set_full_mp()
 	_ensure_title_animation("htd", "res://Art/AllTX/htd.png")
 	_ensure_title_animation("ymqzq", "res://Art/AllTX/ymqzq.png")
-	AddTx()
+	add_tx()
 	call_deferred("_load_equipped_magic_weapon_deferred")
 	call_deferred("_load_main_sword_array_weapon_deferred")
 	call_deferred("_attach_mount_runtime")
@@ -328,7 +328,7 @@ func _exit_tree() -> void:
 	_clear_visual_resources(self)
 
 
-func fabaoJiasu() -> void:
+func fabao_jiasu() -> void:
 	if is_fabao_jiasu:
 		return
 	is_fabao_jiasu = true
@@ -336,7 +336,7 @@ func fabaoJiasu() -> void:
 	walk_speed = _fabao_jiasu_base_speed * 2
 
 
-func resetFabaoJiasu() -> void:
+func reset_fabao_jiasu() -> void:
 	if not is_fabao_jiasu:
 		return
 	is_fabao_jiasu = false
@@ -380,7 +380,7 @@ func _load_equipped_magic_weapon_deferred() -> void:
 	await Global.prepare_magic_weapon_resources(equipped_weapon)
 	if not is_inside_tree() or is_queued_for_deletion():
 		return
-	addMagicWeapon()
+	add_magic_weapon()
 
 
 func _add_role_hit_effect_throttled() -> void:
@@ -391,30 +391,30 @@ func _add_role_hit_effect_throttled() -> void:
 	Global.add_special_effect(self, Vector2(0, 0), "RoleBeHit", Vector2(1, 1), false, 1)
 
 
-func NullSZFBCase():
+func null_szfb_case():
 	if PlayerData.player_data["实战法宝"] == "":
 		if Mgtarget != null:
 			Mgtarget.queue_free()
 		if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() != 0:
-			addMagicWeapon()
+			add_magic_weapon()
 
 
-func on_SZFBChange():
+func on_szfb_change():
 	if Global.should_change:
 		if Mgtarget != null:
 			Mgtarget.queue_free()
 		if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() != 0:
-			addMagicWeapon()
+			add_magic_weapon()
 		Global.should_change = false
 
 
-func CheckRemoveOrAddFB():
+func check_remove_or_add_fb():
 	if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() == 0:
 		if Mgtarget != null:
 			Mgtarget.queue_free()
 	else:
 		if Mgtarget == null:
-			addMagicWeapon()
+			add_magic_weapon()
 
 
 func _sync_main_sword_array_weapon() -> void:
@@ -458,7 +458,7 @@ func _sync_main_sword_array_weapon() -> void:
 	_last_main_sword_array_id = active
 
 
-func useFB():
+func use_fb():
 	if Mgtarget == null or not is_instance_valid(Mgtarget) or Mgtarget.is_queued_for_deletion():
 		return
 	if not Mgtarget.has_method("EnoughMp"):
@@ -467,7 +467,7 @@ func useFB():
 		Mgtarget.set("is_use", true)
 
 
-func WSSkill() -> bool:
+func ws_skill() -> bool:
 	var fashion_list: Variant = PlayerData.player_data.get(DataKeys.FASHION, [])
 	if not fashion_list is Array or fashion_list.is_empty():
 		return true
@@ -475,7 +475,7 @@ func WSSkill() -> bool:
 	if not fashion is Dictionary:
 		return true
 	var fashion_id := str(fashion.get(DataKeys.NAME, ""))
-	var SZName: String = str(Global.GetName(fashion_id))
+	var SZName: String = str(Global.get_clean_name(fashion_id))
 	var Pz := fashion_id.split(SZName)[0]
 	if Pz == "putong":
 		return true
@@ -483,17 +483,17 @@ func WSSkill() -> bool:
 		"ttzssz":
 			if not objattackDic.has("ttzs"):
 				return true
-			ADDTtzsEffect()
+			add_ttzs_effect()
 		"nmwsz":
 			if not objattackDic.has("nmw"):
 				return true
-			ADDNMWEffect()
+			addnmw_effect()
 		"zlwsz":
 			if not objattackDic.has("zlw"):
 				return true
-			ADDZLWEffect()
+			addzlw_effect()
 			if Pz == "shenqi":
-				STARTZLWShenqiEffect()
+				startzlw_shenqi_effect()
 		"smsrsz":
 			if not objattackDic.has("smsr"):
 				return true
@@ -502,9 +502,9 @@ func WSSkill() -> bool:
 				add_child(smsrsz_timer)
 				smsrsz_timer.timeout.connect(_on_smsrsz_timer_timeout)
 			if Pz == "shenqi":
-				ADDSMSRShenqiLightningRound()
+				addsmsr_shenqi_lightning_round()
 			else:
-				ADDSMSREffect()
+				addsmsr_effect()
 			smsrsz_timer.start(1.0)
 
 			if Pz == "shishi" or Pz == "xieling":
@@ -549,9 +549,9 @@ func _on_smsrsz_timer_timeout():
 		smsrsz_timer.stop()
 		return
 	if has_smsrsz_fashion and current_fashion_quality == "shenqi":
-		ADDSMSRShenqiLightningRound()
+		addsmsr_shenqi_lightning_round()
 	else:
-		ADDSMSREffect()
+		addsmsr_effect()
 
 
 func _physics_process(delta: float) -> void:
@@ -559,18 +559,18 @@ func _physics_process(delta: float) -> void:
 	_auto_battle_target_search_elapsed += delta
 	_auto_battle_jump_elapsed += delta
 	jsfzsy()
-	UseZhenFa()
-	SetWingsOffset()
-	ProcessSanXianHuTiEffect()
+	use_zhen_fa()
+	set_wings_offset()
+	process_san_xian_hu_ti_effect()
 
 	if Islljy:
 		velocity.x = 0
 
 	if not SXYRCannotCure:
-		if PlayerData.ChekEqzb("头衔", "sxyr"):
+		if PlayerData.check_eq_zb("头衔", "sxyr"):
 			SXYRCannotCure = true
 
-	if not IsSanXianHuTiUsed and PlayerData.ChekEqzb("饰品", "huayan"):
+	if not IsSanXianHuTiUsed and PlayerData.check_eq_zb("饰品", "huayan"):
 		var hp_percent = float(RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) * 100
 
 		if hp_percent <= 20.0:
@@ -611,10 +611,10 @@ func _physics_process(delta: float) -> void:
 		return
 	_update_fashion_values_if_needed()
 	_process_auto_battle(delta)
-	AddTx()
+	add_tx()
 	if RoleProp.ws_value >= RoleProp.max_ws_value:
 		if Input.is_action_just_pressed("无双"):
-			if not RoleProp.is_ws_state and WSSkill():
+			if not RoleProp.is_ws_state and ws_skill():
 				RoleProp.is_ws_state = true
 	if CureValue >= 4:
 		CureValue = 4
@@ -632,8 +632,8 @@ func _physics_process(delta: float) -> void:
 			OldIsCheck = true
 	if velocity.y <= 0:
 		OldIsCheck = false
-	ImproveSelfRecoveryWhenIdle()
-	CheckAddBuff()
+	improve_self_recovery_when_idle()
+	check_add_buff()
 
 	if action.scale.x == -1:
 		PlayerDir = true
@@ -649,11 +649,11 @@ func _physics_process(delta: float) -> void:
 		_last_archive_name = archive_name
 		name_.text = archive_name
 
-	selfProtect()
+	self_protect()
 	RoleProp.Directon = PlayerDir
-	NullSZFBCase()
-	on_SZFBChange()
-	CheckRemoveOrAddFB()
+	null_szfb_case()
+	on_szfb_change()
+	check_remove_or_add_fb()
 	if _sword_array_sync_elapsed >= 0.25:
 		_sword_array_sync_elapsed = 0.0
 		_sync_main_sword_array_weapon()
@@ -681,7 +681,7 @@ func _physics_process(delta: float) -> void:
 			get_action = "down"
 	if death() and not IsDeath:
 		IsDeath = true
-		Global.RemoveAAllBuff()
+		Global.remove_a_all_buff()
 		is_ice = false
 		is_stun = false
 		is_Immobilize = false
@@ -717,7 +717,7 @@ func _physics_process(delta: float) -> void:
 		_play_locomotion_animation(&"wait")
 		get_action = "wait"
 
-	if not NoLimitBuff() and not IsDeath:
+	if not no_limit_buff() and not IsDeath:
 		IsInSky = false
 		if not IsTMc:
 			if not IsScary:
@@ -725,25 +725,25 @@ func _physics_process(delta: float) -> void:
 				role_action_player.play("hurt")
 			else:
 				if IsScary:
-					WhenScary()
+					when_scary()
 	if Input.is_action_pressed("MagicWeapon"):
 		if not get_parent().get_parent() is Level17 and not get_parent().get_parent() is Level22:
 			if Mgtarget != null:
 				if Mgtarget is GhostDoll:
-					useFB()
+					use_fb()
 				else:
-					if NoLimitBuff():
-						useFB()
+					if no_limit_buff():
+						use_fb()
 	if is_Immobilize:
 		velocity = Vector2(0, 0)
-	if not NoLimitBuff():
+	if not no_limit_buff():
 		if has_method("_cancel_skill_for_control"):
 			call("_cancel_skill_for_control")
 		is_using_skills = false
 	var mount_runtime := get_node_or_null("MountRuntime")
 	if mount_runtime != null and bool(mount_runtime.call("process_mounted_control", delta)):
 		pass
-	elif NoLimitBuff():
+	elif no_limit_buff():
 		if IsTMc:
 			if self is Role3Hero:
 				if Input.is_action_pressed("slz"):
@@ -757,11 +757,11 @@ func _physics_process(delta: float) -> void:
 				if Input.is_action_pressed("hytj"):
 					get_skill("tmc2")
 			else:
-				if CanNormalControl():
-					NoarmalControl()
+				if can_normal_control():
+					noarmal_control()
 		else:
-			if CanNormalControl():
-				NoarmalControl()
+			if can_normal_control():
+				noarmal_control()
 
 	if was_ws_state and not RoleProp.is_ws_state and smsrsz_timer != null:
 		smsrsz_timer.stop()
@@ -773,10 +773,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _process(_delta: float) -> void:
-	SetWingsOffset()
+	set_wings_offset()
 
 
-func ProcessSanXianHuTiEffect():
+func process_san_xian_hu_ti_effect():
 	if buff == null:
 		return
 
@@ -805,14 +805,14 @@ func ProcessSanXianHuTiEffect():
 	var heal_hp = max(1, int(max_hp * frame_heal_rate))
 	var heal_mp = max(1, int(max_mp * frame_heal_rate))
 
-	cure_Hp(heal_hp)
-	cure_Mp(heal_mp)
+	cure_hp(heal_hp)
+	cure_mp(heal_mp)
 
 	if RoleProp.roleprop.Hp >= max_hp and RoleProp.roleprop.Mp >= max_mp:
 		sxht_buff.queue_free()
 
 
-func CanNormalControl():
+func can_normal_control():
 	if not self is Role5Hero:
 		if is_attacking == false and is_be_attacking == false and is_using_skills == false and not death():
 			return true
@@ -826,7 +826,7 @@ func CanNormalControl():
 	return false
 
 
-func NoarmalControl():
+func noarmal_control():
 	if IsUseSMB:
 		return
 
@@ -836,7 +836,7 @@ func NoarmalControl():
 
 	if not Islljy:
 		if not self is Role5Hero:
-			NorMalMove()
+			nor_mal_move()
 		else:
 			if CanMoveWhenUseSkill:
 				var direction_ = Input.get_axis("move_left", "move_right")
@@ -849,7 +849,7 @@ func NoarmalControl():
 				else:
 					velocity.x = move_toward(velocity.x, 0, walk_speed * 0.7 * ReverseMoveSpeedMultiplier)
 			else:
-				NorMalMove()
+				nor_mal_move()
 
 	if Input.is_action_just_pressed("jump"):
 		if not is_Bound_to_the_ground:
@@ -966,9 +966,9 @@ func _try_auto_battle_magic_weapon() -> bool:
 		return false
 	if bool(Mgtarget.get("is_use")) or not bool(Mgtarget.get("is_canuse")):
 		return false
-	if not Mgtarget is GhostDoll and not NoLimitBuff():
+	if not Mgtarget is GhostDoll and not no_limit_buff():
 		return false
-	useFB()
+	use_fb()
 	return bool(Mgtarget.get("is_use"))
 
 
@@ -985,7 +985,7 @@ func _try_auto_battle_wushuang() -> bool:
 		return false
 	if RoleProp.is_ws_state or RoleProp.ws_value < RoleProp.max_ws_value:
 		return false
-	if not WSSkill():
+	if not ws_skill():
 		return false
 	RoleProp.is_ws_state = true
 	return true
@@ -1076,7 +1076,7 @@ func _process_auto_battle_movement() -> void:
 	if IsDeath or is_silent or is_using_skills or is_attacking or is_be_attacking:
 		velocity.x = 0.0
 		return
-	if not NoLimitBuff() or is_Bound_to_the_ground:
+	if not no_limit_buff() or is_Bound_to_the_ground:
 		velocity.x = 0.0
 		return
 
@@ -1265,7 +1265,7 @@ func _is_auto_battle_skill_active(_skill_id: String) -> bool:
 	return false
 
 
-func NorMalMove():
+func nor_mal_move():
 	var direction_ = Input.get_axis("move_left", "move_right")
 
 	if IsReverseMove:
@@ -1295,7 +1295,7 @@ func NorMalMove():
 		velocity.x = move_toward(velocity.x, 0, walk_speed * RoleProp.ws_up_power * ReverseMoveSpeedMultiplier)
 
 
-func NoLimitBuff():
+func no_limit_buff():
 	return not is_ice and not is_stun and not is_EyeFix and not IsDeath and not is_Immobilize and not IsScary
 
 
@@ -1369,163 +1369,163 @@ func do_qsez():
 	pass
 
 
-func Skill_Blb():
+func skill_blb():
 	pass
 
 
-func Skill_Tjgl():
+func skill_tjgl():
 	pass
 
 
-func Skill_XBZ():
+func skill_xbz():
 	pass
 
 
-func Skill_SHY():
+func skill_shy():
 	pass
 
 
-func Skill_SMB():
+func skill_smb():
 	pass
 
 
-func Skill_SMB2():
+func skill_smb2():
 	pass
 
 
-func Skill_BY():
+func skill_by():
 	pass
 
 
-func Skill_SGQ():
+func skill_sgq():
 	pass
 
 
-func Skill_MYHC():
+func skill_myhc():
 	pass
 
 
-func Skill_JGZ():
+func skill_jgz():
 	pass
 
 
-func Skill_JHSJ():
+func skill_jhsj():
 	pass
 
 
-func Skill_SD():
+func skill_sd():
 	pass
 
 
-func Skill_ZZNH():
+func skill_zznh():
 	pass
 
 
-func Skill_SSP():
+func skill_ssp():
 	pass
 
 
-func Skill_JSP():
+func skill_jsp():
 	pass
 
 
-func Skill_DGQ():
+func skill_dgq():
 	pass
 
 
-func Skill_XGQ():
+func skill_xgq():
 	pass
 
 
-func Skill_SYZQ():
+func skill_syzq():
 	pass
 
 
-func Skill_DJ():
+func skill_dj():
 	pass
 
 
-func Skill_TMC2():
+func skill_tmc2():
 	pass
 
 
-func Skill_TMC():
+func skill_tmc():
 	pass
 
 
-func Skill_BDQK():
+func skill_bdqk():
 	pass
 
 
-func ShovelQLJ():
+func shovel_qlj():
 	pass
 
 
-func ShovelDCJ():
+func shovel_dcj():
 	pass
 
 
-func ShovelTKJ():
+func shovel_tkj():
 	pass
 
 
-func ShovelMMW():
+func shovel_mmw():
 	pass
 
 
-func ShovelZQ():
+func shovel_zq():
 	pass
 
 
-func ShovelWDWW():
+func shovel_wdww():
 	pass
 
 
-func ShovelMBYJ():
+func shovel_mbyj():
 	pass
 
 
-func ShovelJDZ():
+func shovel_jdz():
 	pass
 
 
-func ShovelWDZT():
+func shovel_wdzt():
 	pass
 
 
-func UseSLQ():
+func use_slq():
 	pass
 
 
-func UseCXQ():
+func use_cxq():
 	pass
 
 
-func UseBLQ():
+func use_blq():
 	pass
 
 
-func UseXYQ():
+func use_xyq():
 	pass
 
 
-func UseLLRD():
+func use_llrd():
 	pass
 
 
-func UseLLJY():
+func use_lljy():
 	pass
 
 
-func UseTLLZ():
+func use_tllz():
 	pass
 
 
-func UseYGTH():
+func use_ygth():
 	pass
 
 
-func UseFHF():
+func use_fhf():
 	pass
 
 
@@ -1556,7 +1556,7 @@ func check_can_wait():
 	)
 
 
-func checkCanuseSomeSkill():
+func check_canuse_some_skill():
 	return not is_attacking and not is_be_attacking and velocity.y == 0 and not death()
 
 
@@ -1623,7 +1623,7 @@ func state_behit():
 		_cancel_hit_reaction()
 		if RoleProp.roleprop.Hp <= 0 and not IsDeath:
 			IsDeath = true
-			Global.RemoveAAllBuff()
+			Global.remove_a_all_buff()
 			velocity.x = 0
 			velocity.y = 0
 			get_action = "death"
@@ -1678,7 +1678,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	Global.TotalHurtCount += 1
 	var Target = area.get_parent().get_parent()
 	var MonsterTarget: BaseMonster
-	MonsterTarget = checkMonster(area)
+	MonsterTarget = check_monster(area)
 	if Target == null or MonsterTarget == null:
 		return
 	if Target.objattackDic.size() == 0:
@@ -1699,7 +1699,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		)
 	if MonsterTarget is Monster47:
 		Global.PlayerBeHitCount += 1
-	var last_hit = get_Monster_last_hurt(MonsterTarget, Target) * (1 - slzjs) * (1 - slzjs2)
+	var last_hit = get_monster_last_hurt(MonsterTarget, Target) * (1 - slzjs) * (1 - slzjs2)
 
 	if MonsterTarget != null:
 		if MonsterTarget.IsLpz:
@@ -1715,7 +1715,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		MonsterTarget.total_hit += last_hit
 		if MonsterTarget is Monster141:
 			effect_reducehp(int(RoleProp.roleprop.SHp * 0.01), "real")
-			Global.AddMonster141Aura(self.Bullet, self.position, MonsterTarget)
+			Global.add_monster141_aura(self.Bullet, self.position, MonsterTarget)
 	Global.TotalRoleHurt += int(last_hit)
 	if not is_miss:
 		if self is Role1Hero:
@@ -1734,7 +1734,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 			var cur_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
 			if cur_level > 0:
 				if not get_parent().get_parent() is Level17 and not get_parent().get_parent() is Level22:
-					cure_Hp(RoleProp.roleprop.power * (0.5 + cur_level * 0.03))
+					cure_hp(RoleProp.roleprop.power * (0.5 + cur_level * 0.03))
 
 	if self is Role1Hero or self is Role2Hero or self is Role4Hero or self is NeZhaHero:
 		if is_miss or RoleProp.is_ws_state or IsSuperArmor or needProtect or is_knockback_immune():
@@ -1768,7 +1768,7 @@ func reduce_hp(value: int, target_boss, target_obj):
 	if is_miss:
 		var miss_parent = get_parent().get_parent()
 		var miss_position = Vector2(self.position.x, self.position.y - 110)
-		Global.addMissEffect(miss_parent, miss_position)
+		Global.add_miss_effect(miss_parent, miss_position)
 		is_crit = false
 		is_miss = false
 		return
@@ -1781,10 +1781,10 @@ func reduce_hp(value: int, target_boss, target_obj):
 
 	if not canglongremove:
 		if value >= RoleProp.roleprop.Hp:
-			if PlayerData.ChekEqzb("饰品", "canglongjie"):
+			if PlayerData.check_eq_zb("饰品", "canglongjie"):
 				(
 					Global
-					. AddBuff(
+					. add_buff(
 						self.buff,
 						{
 							"Name": "Indestructible",
@@ -1839,7 +1839,7 @@ func reduce_hp(value: int, target_boss, target_obj):
 	if value > 0:
 		var pp = get_parent().get_parent()
 		var po = Vector2(self.position.x, self.position.y - 110)
-		Global.addDamageText(pp, po, value, ATKind, is_crit, self)
+		Global.add_damage_text(pp, po, value, ATKind, is_crit, self)
 	is_crit = false
 	is_miss = false
 
@@ -1853,10 +1853,10 @@ func effect_reducehp(value, atkKind):
 
 	if not canglongremove:
 		if value >= RoleProp.roleprop.Hp:
-			if PlayerData.ChekEqzb("饰品", "canglongjie"):
+			if PlayerData.check_eq_zb("饰品", "canglongjie"):
 				(
 					Global
-					. AddBuff(
+					. add_buff(
 						self.buff,
 						{
 							"Name": "Indestructible",
@@ -1914,15 +1914,15 @@ func effect_reducehp(value, atkKind):
 	if value > 0:
 		var pp = get_parent().get_parent()
 		var po = Vector2(self.position.x, self.position.y - 110)
-		Global.addDamageText(pp, po, value, atkKind, false, self)
+		Global.add_damage_text(pp, po, value, atkKind, false, self)
 
 
-func get_Monster_last_hurt(target_boss, target_obj):
+func get_monster_last_hurt(target_boss, target_obj):
 	is_crit = false
 	is_miss = false
 	if target_boss == null or target_obj == null:
 		return 0
-	var Target = checkMonster(target_boss) as BaseMonster
+	var Target = check_monster(target_boss) as BaseMonster
 	if Target == null:
 		return 0
 	var hit_name_value = target_obj.get("hit_name")
@@ -2047,7 +2047,7 @@ func _apply_damage_vs_reduction(value: int, attacker_damage_bonus: float = 0.0) 
 	return int(float(value) * multiplier)
 
 
-func Level_suppression(target):
+func level_suppression(target):
 	return target.level - RoleProp.baseroleprop.Level > 0
 
 
@@ -2174,7 +2174,7 @@ func _on_skill_in_timeout() -> void:
 	pass
 
 
-func cure_Mp(value: int = 0):
+func cure_mp(value: int = 0):
 	if RoleProp.roleprop.Mp + value >= RoleProp.roleprop.SMp:
 		value = RoleProp.roleprop.SMp - RoleProp.roleprop.Mp
 	RoleProp.roleprop.Mp += value
@@ -2185,10 +2185,10 @@ func cure_Mp(value: int = 0):
 			po = Vector2(self.position.x - 50, self.position.y - 140)
 		else:
 			po = Vector2(self.position.x + 30, self.position.y - 140)
-		Global.addDamageText(pp, po, value, "CureMp", false, self)
+		Global.add_damage_text(pp, po, value, "CureMp", false, self)
 
 
-func reduce_Mp(value: int = 0):
+func reduce_mp(value: int = 0):
 	RoleProp.roleprop.Mp -= value
 	if value > 0:
 		var pp = get_parent().get_parent()
@@ -2197,10 +2197,10 @@ func reduce_Mp(value: int = 0):
 			po = Vector2(self.position.x - 50, self.position.y - 140)
 		else:
 			po = Vector2(self.position.x + 30, self.position.y - 140)
-		Global.addDamageText(pp, po, value, "ReduceMp", false, self)
+		Global.add_damage_text(pp, po, value, "ReduceMp", false, self)
 
 
-func cure_Hp(value: int = 0):
+func cure_hp(value: int = 0):
 	if SXYRCannotCure:
 		return 0
 	if RoleProp.roleprop.Hp <= 0:
@@ -2231,7 +2231,7 @@ func cure_Hp(value: int = 0):
 			po = Vector2(self.position.x - 50, self.position.y - 140)
 		else:
 			po = Vector2(self.position.x + 30, self.position.y - 140)
-		Global.addDamageText(pp, po, effective, "cure", is_crit, self)
+		Global.add_damage_text(pp, po, effective, "cure", is_crit, self)
 
 	return effective
 
@@ -2296,7 +2296,7 @@ func _clear_pet_turtle_link_meta() -> void:
 			remove_meta(key)
 
 
-func FBcureHp(value: int):
+func f_bcure_hp(value: int):
 	if SXYRCannotCure:
 		return
 	if get_parent().get_parent() is Level17 or get_parent().get_parent() is Level22:
@@ -2311,7 +2311,7 @@ func FBcureHp(value: int):
 			po = Vector2(self.position.x - 50, self.position.y - 140)
 		else:
 			po = Vector2(self.position.x + 30, self.position.y - 140)
-		Global.addDamageText(pp, po, value, "cure", is_crit, self)
+		Global.add_damage_text(pp, po, value, "cure", is_crit, self)
 
 
 func _on_spontaneous_recovery_timeout() -> void:
@@ -2348,235 +2348,235 @@ func get_need_mp(skill_name, bool_):
 	if not bool_:
 		match skill_name:
 			"slz":
-				return 10 + ((3 + 2 * (get_SkillLevel(1) - 1)) * (get_SkillLevel(1) - 1))
+				return 10 + ((3 + 2 * (get_skill_level(1) - 1)) * (get_skill_level(1) - 1))
 			"hytj":
-				return 8 + ((3 + 2 * (get_SkillLevel(2) - 1)) * (get_SkillLevel(2) - 1))
+				return 8 + ((3 + 2 * (get_skill_level(2) - 1)) * (get_skill_level(2) - 1))
 			"lys":
-				return 12 + ((4 + 2 * (get_SkillLevel(3) - 1)) * (get_SkillLevel(3) - 1))
+				return 12 + ((4 + 2 * (get_skill_level(3) - 1)) * (get_skill_level(3) - 1))
 			"lyfb":
-				return 35 + ((6 + 2 * (get_SkillLevel(4) - 1)) * (get_SkillLevel(4) - 1))
+				return 35 + ((6 + 2 * (get_skill_level(4) - 1)) * (get_skill_level(4) - 1))
 			"hmz":
-				return 35 + ((3 + 3 * (get_SkillLevel(5) - 1)) * (get_SkillLevel(5) - 1))
+				return 35 + ((3 + 3 * (get_skill_level(5) - 1)) * (get_skill_level(5) - 1))
 			"hmz_ws":
-				return 35 + ((3 + 3 * (get_SkillLevel(12) - 1)) * (get_SkillLevel(12) - 1))
+				return 35 + ((3 + 3 * (get_skill_level(12) - 1)) * (get_skill_level(12) - 1))
 			"hyjj_ws":
-				return 45 + ((4 + 3 * (get_SkillLevel(13) - 1)) * (get_SkillLevel(13) - 1))
+				return 45 + ((4 + 3 * (get_skill_level(13) - 1)) * (get_skill_level(13) - 1))
 			"zz":
-				return 12 + ((4 + 2 * (get_SkillLevel(6) - 1)) * (get_SkillLevel(6) - 1))
+				return 12 + ((4 + 2 * (get_skill_level(6) - 1)) * (get_skill_level(6) - 1))
 			"gsrs":
-				return 12 + ((4 + 2 * (get_SkillLevel(11) - 1)) * (get_SkillLevel(11) - 1))
+				return 12 + ((4 + 2 * (get_skill_level(11) - 1)) * (get_skill_level(11) - 1))
 			"qsez":
-				return 10 + ((8 + 2 * (get_SkillLevel(7) - 1)) * (get_SkillLevel(7) - 1))
+				return 10 + ((8 + 2 * (get_skill_level(7) - 1)) * (get_skill_level(7) - 1))
 			"jdy":
-				return 10 + ((8 + 2 * (get_SkillLevel(8) - 1)) * (get_SkillLevel(8) - 1))
+				return 10 + ((8 + 2 * (get_skill_level(8) - 1)) * (get_skill_level(8) - 1))
 			"hyjj":
-				return 22 + ((8 + 2 * (get_SkillLevel(9) - 1)) * (get_SkillLevel(9) - 1))
+				return 22 + ((8 + 2 * (get_skill_level(9) - 1)) * (get_skill_level(9) - 1))
 			"blb":
-				return 15 + ((3 + 2 * (get_SkillLevel(1) - 1)) * (get_SkillLevel(1) - 1))
+				return 15 + ((3 + 2 * (get_skill_level(1) - 1)) * (get_skill_level(1) - 1))
 			"xbz":
-				return 25 + ((3 + 2 * (get_SkillLevel(2) - 1)) * (get_SkillLevel(2) - 1))
+				return 25 + ((3 + 2 * (get_skill_level(2) - 1)) * (get_skill_level(2) - 1))
 			"tjgl":
-				return 35 + ((3 + 2 * (get_SkillLevel(4) - 1)) * (get_SkillLevel(4) - 1))
+				return 35 + ((3 + 2 * (get_skill_level(4) - 1)) * (get_skill_level(4) - 1))
 			"shy":
-				return 30 + ((3 + 2 * (get_SkillLevel(3) - 1)) * (get_SkillLevel(3) - 1))
+				return 30 + ((3 + 2 * (get_skill_level(3) - 1)) * (get_skill_level(3) - 1))
 			"smb":
-				return 60 + ((3 + 3 * (get_SkillLevel(5) - 1)) * (get_SkillLevel(5) - 1))
+				return 60 + ((3 + 3 * (get_skill_level(5) - 1)) * (get_skill_level(5) - 1))
 			"myhc":
-				return 35 + ((3 + 2 * (get_SkillLevel(7) - 1)) * (get_SkillLevel(7) - 1))
+				return 35 + ((3 + 2 * (get_skill_level(7) - 1)) * (get_skill_level(7) - 1))
 			"sgq":
-				return 40 + ((3 + 3 * (get_SkillLevel(6) - 1)) * (get_SkillLevel(6) - 1))
+				return 40 + ((3 + 3 * (get_skill_level(6) - 1)) * (get_skill_level(6) - 1))
 			"jgz":
-				return 40 + ((3 + 3 * (get_SkillLevel(8) - 1)) * (get_SkillLevel(8) - 1))
+				return 40 + ((3 + 3 * (get_skill_level(8) - 1)) * (get_skill_level(8) - 1))
 			"jhsj":
-				return 60 + ((3 + 3 * (get_SkillLevel(9) - 1)) * (get_SkillLevel(9) - 1))
+				return 60 + ((3 + 3 * (get_skill_level(9) - 1)) * (get_skill_level(9) - 1))
 			"by":
-				return 55 + ((3 + 3 * (get_SkillLevel(11) - 1)) * (get_SkillLevel(11) - 1))
+				return 55 + ((3 + 3 * (get_skill_level(11) - 1)) * (get_skill_level(11) - 1))
 			"zfjg":
-				return 80 + ((3 + 3 * (get_SkillLevel(12) - 1)) * (get_SkillLevel(12) - 1))
+				return 80 + ((3 + 3 * (get_skill_level(12) - 1)) * (get_skill_level(12) - 1))
 			"ssp":
-				return 10 + ((2 + 2 * (get_SkillLevel(1) - 1)) * (get_SkillLevel(1) - 1))
+				return 10 + ((2 + 2 * (get_skill_level(1) - 1)) * (get_skill_level(1) - 1))
 			"dj":
-				return 10 + ((3 + 2 * (get_SkillLevel(2) - 1)) * (get_SkillLevel(2) - 1))
+				return 10 + ((3 + 2 * (get_skill_level(2) - 1)) * (get_skill_level(2) - 1))
 			"dgq":
-				return 15 + ((3 + 2 * (get_SkillLevel(3) - 1)) * (get_SkillLevel(3) - 1))
+				return 15 + ((3 + 2 * (get_skill_level(3) - 1)) * (get_skill_level(3) - 1))
 			"zznh":
-				return 10 + ((3 + 2 * (get_SkillLevel(4) - 1)) * (get_SkillLevel(4) - 1))
+				return 10 + ((3 + 2 * (get_skill_level(4) - 1)) * (get_skill_level(4) - 1))
 			"tmc":
-				return 40 + ((3 + 2 * (get_SkillLevel(5) - 1)) * (get_SkillLevel(5) - 1))
+				return 40 + ((3 + 2 * (get_skill_level(5) - 1)) * (get_skill_level(5) - 1))
 			"sd":
-				return 10 + ((3 + 2 * (get_SkillLevel(6) - 1)) * (get_SkillLevel(6) - 1))
+				return 10 + ((3 + 2 * (get_skill_level(6) - 1)) * (get_skill_level(6) - 1))
 			"jsp":
-				return 20 + ((3 + 2 * (get_SkillLevel(7) - 1)) * (get_SkillLevel(7) - 1))
+				return 20 + ((3 + 2 * (get_skill_level(7) - 1)) * (get_skill_level(7) - 1))
 			"xgq":
-				return 20 + ((3 + 2 * (get_SkillLevel(8) - 1)) * (get_SkillLevel(8) - 1))
+				return 20 + ((3 + 2 * (get_skill_level(8) - 1)) * (get_skill_level(8) - 1))
 			"syzq":
-				return 20 + ((3 + 2 * (get_SkillLevel(9) - 1)) * (get_SkillLevel(9) - 1))
+				return 20 + ((3 + 2 * (get_skill_level(9) - 1)) * (get_skill_level(9) - 1))
 			"bdqk":
-				return 50 + ((3 + 3 * (get_SkillLevel(12) - 1)) * (get_SkillLevel(12) - 1))
+				return 50 + ((3 + 3 * (get_skill_level(12) - 1)) * (get_skill_level(12) - 1))
 
 			"qlj":
-				return 15 + ((2 + 2 * (get_SkillLevel(1) - 1)) * (get_SkillLevel(1) - 1))
+				return 15 + ((2 + 2 * (get_skill_level(1) - 1)) * (get_skill_level(1) - 1))
 			"dcj":
-				return 15 + ((3 + 2 * (get_SkillLevel(2) - 1)) * (get_SkillLevel(2) - 1))
+				return 15 + ((3 + 2 * (get_skill_level(2) - 1)) * (get_skill_level(2) - 1))
 			"wdzt":
-				return 15 + ((3 + 2 * (get_SkillLevel(3) - 1)) * (get_SkillLevel(3) - 1))
+				return 15 + ((3 + 2 * (get_skill_level(3) - 1)) * (get_skill_level(3) - 1))
 			"tkj":
-				return 15 + ((3 + 2 * (get_SkillLevel(4) - 1)) * (get_SkillLevel(4) - 1))
+				return 15 + ((3 + 2 * (get_skill_level(4) - 1)) * (get_skill_level(4) - 1))
 			"mmw":
-				return 25 + ((3 + 2 * (get_SkillLevel(5) - 1)) * (get_SkillLevel(5) - 1))
+				return 25 + ((3 + 2 * (get_skill_level(5) - 1)) * (get_skill_level(5) - 1))
 			"jdz":
-				return 20 + ((3 + 2 * (get_SkillLevel(6) - 1)) * (get_SkillLevel(6) - 1))
+				return 20 + ((3 + 2 * (get_skill_level(6) - 1)) * (get_skill_level(6) - 1))
 			"lhsq":
-				return 20 + ((3 + 2 * (get_SkillLevel(7) - 1)) * (get_SkillLevel(7) - 1))
+				return 20 + ((3 + 2 * (get_skill_level(7) - 1)) * (get_skill_level(7) - 1))
 			"zq":
-				return 20 + ((3 + 2 * (get_SkillLevel(8) - 1)) * (get_SkillLevel(8) - 1))
+				return 20 + ((3 + 2 * (get_skill_level(8) - 1)) * (get_skill_level(8) - 1))
 			"wdww":
-				return 10 + ((3 + 2 * (get_SkillLevel(9) - 1)) * (get_SkillLevel(9) - 1))
+				return 10 + ((3 + 2 * (get_skill_level(9) - 1)) * (get_skill_level(9) - 1))
 			"bylt":
-				return 55 + ((3 + 3 * (get_SkillLevel(11) - 1)) * (get_SkillLevel(11) - 1))
+				return 55 + ((3 + 3 * (get_skill_level(11) - 1)) * (get_skill_level(11) - 1))
 			"cmly":
-				return 55 + ((3 + 3 * (get_SkillLevel(12) - 1)) * (get_SkillLevel(12) - 1))
+				return 55 + ((3 + 3 * (get_skill_level(12) - 1)) * (get_skill_level(12) - 1))
 
 			"xyq":
-				return 15 + ((2 + 2 * (get_SkillLevel(1) - 1)) * (get_SkillLevel(1) - 1))
+				return 15 + ((2 + 2 * (get_skill_level(1) - 1)) * (get_skill_level(1) - 1))
 			"slq":
-				return 20 + ((3 + 2 * (get_SkillLevel(2) - 1)) * (get_SkillLevel(2) - 1))
+				return 20 + ((3 + 2 * (get_skill_level(2) - 1)) * (get_skill_level(2) - 1))
 			"blq":
-				return 20 + ((3 + 2 * (get_SkillLevel(3) - 1)) * (get_SkillLevel(3) - 1))
+				return 20 + ((3 + 2 * (get_skill_level(3) - 1)) * (get_skill_level(3) - 1))
 			"fhf":
-				return 20 + ((3 + 2 * (get_SkillLevel(4) - 1)) * (get_SkillLevel(4) - 1))
+				return 20 + ((3 + 2 * (get_skill_level(4) - 1)) * (get_skill_level(4) - 1))
 			"ltjz":
-				return 50 + ((3 + 3 * (get_SkillLevel(11) - 1)) * (get_SkillLevel(11) - 1))
+				return 50 + ((3 + 3 * (get_skill_level(11) - 1)) * (get_skill_level(11) - 1))
 			"cxq":
-				return 25 + ((3 + 2 * (get_SkillLevel(5) - 1)) * (get_SkillLevel(5) - 1))
+				return 25 + ((3 + 2 * (get_skill_level(5) - 1)) * (get_skill_level(5) - 1))
 			"llrd":
-				return 30 + ((3 + 2 * (get_SkillLevel(6) - 1)) * (get_SkillLevel(6) - 1))
+				return 30 + ((3 + 2 * (get_skill_level(6) - 1)) * (get_skill_level(6) - 1))
 			"lljy":
-				return 40 + ((3 + 2 * (get_SkillLevel(7) - 1)) * (get_SkillLevel(7) - 1))
+				return 40 + ((3 + 2 * (get_skill_level(7) - 1)) * (get_skill_level(7) - 1))
 			"ygth":
-				return 40 + ((3 + 2 * (get_SkillLevel(8) - 1)) * (get_SkillLevel(8) - 1))
+				return 40 + ((3 + 2 * (get_skill_level(8) - 1)) * (get_skill_level(8) - 1))
 			"tllz":
-				return 40 + ((3 + 2 * (get_SkillLevel(9) - 1)) * (get_SkillLevel(9) - 1))
+				return 40 + ((3 + 2 * (get_skill_level(9) - 1)) * (get_skill_level(9) - 1))
 			"":
 				return 0
 	else:
 		match skill_name:
 			"slz":
-				return 10 + ((3 + 2 * (get_SkillLevel(1))) * (get_SkillLevel(1)))
+				return 10 + ((3 + 2 * (get_skill_level(1))) * (get_skill_level(1)))
 			"hytj":
-				return 8 + ((3 + 2 * (get_SkillLevel(2))) * (get_SkillLevel(2)))
+				return 8 + ((3 + 2 * (get_skill_level(2))) * (get_skill_level(2)))
 			"lys":
-				return 12 + ((4 + 2 * (get_SkillLevel(3))) * (get_SkillLevel(3)))
+				return 12 + ((4 + 2 * (get_skill_level(3))) * (get_skill_level(3)))
 			"lyfb":
-				return 35 + ((6 + 2 * (get_SkillLevel(4))) * (get_SkillLevel(4)))
+				return 35 + ((6 + 2 * (get_skill_level(4))) * (get_skill_level(4)))
 			"hmz":
-				return 35 + ((3 + 3 * (get_SkillLevel(5))) * (get_SkillLevel(5)))
+				return 35 + ((3 + 3 * (get_skill_level(5))) * (get_skill_level(5)))
 			"hmz_ws":
-				return 35 + ((3 + 3 * (get_SkillLevel(12))) * (get_SkillLevel(12)))
+				return 35 + ((3 + 3 * (get_skill_level(12))) * (get_skill_level(12)))
 			"hyjj_ws":
-				return 45 + ((4 + 3 * (get_SkillLevel(13))) * (get_SkillLevel(13)))
+				return 45 + ((4 + 3 * (get_skill_level(13))) * (get_skill_level(13)))
 			"zz":
-				return 12 + ((4 + 2 * (get_SkillLevel(6))) * (get_SkillLevel(6)))
+				return 12 + ((4 + 2 * (get_skill_level(6))) * (get_skill_level(6)))
 			"gsrs":
-				return 12 + ((4 + 2 * (get_SkillLevel(11))) * (get_SkillLevel(11)))
+				return 12 + ((4 + 2 * (get_skill_level(11))) * (get_skill_level(11)))
 			"qsez":
-				return 10 + ((8 + 2 * (get_SkillLevel(7))) * (get_SkillLevel(7)))
+				return 10 + ((8 + 2 * (get_skill_level(7))) * (get_skill_level(7)))
 			"jdy":
-				return 10 + ((8 + 2 * (get_SkillLevel(8))) * (get_SkillLevel(8)))
+				return 10 + ((8 + 2 * (get_skill_level(8))) * (get_skill_level(8)))
 			"hyjj":
-				return 22 + ((8 + 2 * (get_SkillLevel(9))) * (get_SkillLevel(9)))
+				return 22 + ((8 + 2 * (get_skill_level(9))) * (get_skill_level(9)))
 			"blb":
-				return 15 + ((3 + 2 * (get_SkillLevel(1))) * (get_SkillLevel(1)))
+				return 15 + ((3 + 2 * (get_skill_level(1))) * (get_skill_level(1)))
 			"xbz":
-				return 25 + ((3 + 2 * (get_SkillLevel(2))) * (get_SkillLevel(2)))
+				return 25 + ((3 + 2 * (get_skill_level(2))) * (get_skill_level(2)))
 			"tjgl":
-				return 35 + ((3 + 2 * (get_SkillLevel(4))) * (get_SkillLevel(4)))
+				return 35 + ((3 + 2 * (get_skill_level(4))) * (get_skill_level(4)))
 			"shy":
-				return 30 + ((3 + 2 * (get_SkillLevel(3))) * (get_SkillLevel(3)))
+				return 30 + ((3 + 2 * (get_skill_level(3))) * (get_skill_level(3)))
 			"smb":
-				return 60 + ((3 + 3 * (get_SkillLevel(5))) * (get_SkillLevel(5)))
+				return 60 + ((3 + 3 * (get_skill_level(5))) * (get_skill_level(5)))
 			"myhc":
-				return 35 + ((3 + 2 * (get_SkillLevel(7))) * (get_SkillLevel(7)))
+				return 35 + ((3 + 2 * (get_skill_level(7))) * (get_skill_level(7)))
 			"sgq":
-				return 40 + ((3 + 3 * (get_SkillLevel(6))) * (get_SkillLevel(6)))
+				return 40 + ((3 + 3 * (get_skill_level(6))) * (get_skill_level(6)))
 			"jgz":
-				return 40 + ((3 + 3 * (get_SkillLevel(8))) * (get_SkillLevel(8)))
+				return 40 + ((3 + 3 * (get_skill_level(8))) * (get_skill_level(8)))
 			"jhsj":
-				return 60 + ((3 + 3 * (get_SkillLevel(9))) * (get_SkillLevel(9)))
+				return 60 + ((3 + 3 * (get_skill_level(9))) * (get_skill_level(9)))
 			"by":
-				return 55 + ((3 + 3 * (get_SkillLevel(11))) * (get_SkillLevel(11)))
+				return 55 + ((3 + 3 * (get_skill_level(11))) * (get_skill_level(11)))
 			"zfjg":
-				return 80 + ((3 + 3 * (get_SkillLevel(12))) * (get_SkillLevel(12)))
+				return 80 + ((3 + 3 * (get_skill_level(12))) * (get_skill_level(12)))
 			"ssp":
-				return 10 + ((2 + 2 * (get_SkillLevel(1))) * (get_SkillLevel(1)))
+				return 10 + ((2 + 2 * (get_skill_level(1))) * (get_skill_level(1)))
 			"dj":
-				return 10 + ((3 + 2 * (get_SkillLevel(2))) * (get_SkillLevel(2)))
+				return 10 + ((3 + 2 * (get_skill_level(2))) * (get_skill_level(2)))
 			"dgq":
-				return 15 + ((3 + 2 * (get_SkillLevel(3))) * (get_SkillLevel(3)))
+				return 15 + ((3 + 2 * (get_skill_level(3))) * (get_skill_level(3)))
 			"zznh":
-				return 10 + ((3 + 2 * (get_SkillLevel(4))) * (get_SkillLevel(4)))
+				return 10 + ((3 + 2 * (get_skill_level(4))) * (get_skill_level(4)))
 			"tmc":
-				return 40 + ((3 + 2 * (get_SkillLevel(5))) * (get_SkillLevel(5)))
+				return 40 + ((3 + 2 * (get_skill_level(5))) * (get_skill_level(5)))
 			"sd":
-				return 10 + ((3 + 2 * (get_SkillLevel(6))) * (get_SkillLevel(6)))
+				return 10 + ((3 + 2 * (get_skill_level(6))) * (get_skill_level(6)))
 			"jsp":
-				return 20 + ((3 + 2 * (get_SkillLevel(7))) * (get_SkillLevel(7)))
+				return 20 + ((3 + 2 * (get_skill_level(7))) * (get_skill_level(7)))
 			"xgq":
-				return 20 + ((3 + 2 * (get_SkillLevel(8))) * (get_SkillLevel(8)))
+				return 20 + ((3 + 2 * (get_skill_level(8))) * (get_skill_level(8)))
 			"syzq":
-				return 20 + ((3 + 2 * (get_SkillLevel(9))) * (get_SkillLevel(9)))
+				return 20 + ((3 + 2 * (get_skill_level(9))) * (get_skill_level(9)))
 			"bdqk":
-				return 50 + ((3 + 3 * (get_SkillLevel(12))) * (get_SkillLevel(12)))
+				return 50 + ((3 + 3 * (get_skill_level(12))) * (get_skill_level(12)))
 
 			"qlj":
-				return 15 + ((2 + 2 * (get_SkillLevel(1))) * (get_SkillLevel(1)))
+				return 15 + ((2 + 2 * (get_skill_level(1))) * (get_skill_level(1)))
 			"dcj":
-				return 15 + ((3 + 2 * (get_SkillLevel(2))) * (get_SkillLevel(2)))
+				return 15 + ((3 + 2 * (get_skill_level(2))) * (get_skill_level(2)))
 			"wdzt":
-				return 15 + ((3 + 2 * (get_SkillLevel(3))) * (get_SkillLevel(3)))
+				return 15 + ((3 + 2 * (get_skill_level(3))) * (get_skill_level(3)))
 			"tkj":
-				return 15 + ((3 + 2 * (get_SkillLevel(4))) * (get_SkillLevel(4)))
+				return 15 + ((3 + 2 * (get_skill_level(4))) * (get_skill_level(4)))
 			"mmw":
-				return 25 + ((3 + 2 * (get_SkillLevel(5))) * (get_SkillLevel(5)))
+				return 25 + ((3 + 2 * (get_skill_level(5))) * (get_skill_level(5)))
 			"jdz":
-				return 20 + ((3 + 2 * (get_SkillLevel(6))) * (get_SkillLevel(6)))
+				return 20 + ((3 + 2 * (get_skill_level(6))) * (get_skill_level(6)))
 			"lhsq":
-				return 20 + ((3 + 2 * (get_SkillLevel(7))) * (get_SkillLevel(7)))
+				return 20 + ((3 + 2 * (get_skill_level(7))) * (get_skill_level(7)))
 			"zq":
-				return 20 + ((3 + 2 * (get_SkillLevel(8))) * (get_SkillLevel(8)))
+				return 20 + ((3 + 2 * (get_skill_level(8))) * (get_skill_level(8)))
 			"wdww":
-				return 10 + ((3 + 2 * (get_SkillLevel(9))) * (get_SkillLevel(9)))
+				return 10 + ((3 + 2 * (get_skill_level(9))) * (get_skill_level(9)))
 			"bylt":
-				return 55 + ((3 + 3 * (get_SkillLevel(11))) * (get_SkillLevel(11)))
+				return 55 + ((3 + 3 * (get_skill_level(11))) * (get_skill_level(11)))
 			"cmly":
-				return 55 + ((3 + 3 * (get_SkillLevel(12))) * (get_SkillLevel(12)))
+				return 55 + ((3 + 3 * (get_skill_level(12))) * (get_skill_level(12)))
 
 			"xyq":
-				return 15 + ((2 + 2 * (get_SkillLevel(1))) * (get_SkillLevel(1)))
+				return 15 + ((2 + 2 * (get_skill_level(1))) * (get_skill_level(1)))
 			"slq":
-				return 20 + ((3 + 2 * (get_SkillLevel(2))) * (get_SkillLevel(2)))
+				return 20 + ((3 + 2 * (get_skill_level(2))) * (get_skill_level(2)))
 			"blq":
-				return 20 + ((3 + 2 * (get_SkillLevel(3))) * (get_SkillLevel(3)))
+				return 20 + ((3 + 2 * (get_skill_level(3))) * (get_skill_level(3)))
 			"fhf":
-				return 20 + ((3 + 2 * (get_SkillLevel(4))) * (get_SkillLevel(4)))
+				return 20 + ((3 + 2 * (get_skill_level(4))) * (get_skill_level(4)))
 			"ltjz":
-				return 50 + ((3 + 3 * (get_SkillLevel(11))) * (get_SkillLevel(11)))
+				return 50 + ((3 + 3 * (get_skill_level(11))) * (get_skill_level(11)))
 			"cxq":
-				return 25 + ((3 + 2 * (get_SkillLevel(5))) * (get_SkillLevel(5)))
+				return 25 + ((3 + 2 * (get_skill_level(5))) * (get_skill_level(5)))
 			"llrd":
-				return 30 + ((3 + 2 * (get_SkillLevel(6))) * (get_SkillLevel(6)))
+				return 30 + ((3 + 2 * (get_skill_level(6))) * (get_skill_level(6)))
 			"lljy":
-				return 40 + ((3 + 2 * (get_SkillLevel(7))) * (get_SkillLevel(7)))
+				return 40 + ((3 + 2 * (get_skill_level(7))) * (get_skill_level(7)))
 			"ygth":
-				return 40 + ((3 + 2 * (get_SkillLevel(8))) * (get_SkillLevel(8)))
+				return 40 + ((3 + 2 * (get_skill_level(8))) * (get_skill_level(8)))
 			"tllz":
-				return 40 + ((3 + 2 * (get_SkillLevel(9))) * (get_SkillLevel(9)))
+				return 40 + ((3 + 2 * (get_skill_level(9))) * (get_skill_level(9)))
 			"":
 				return 0
 	return 0
 
 
-func get_SkillLevel(num):
+func get_skill_level(num):
 	return PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能" + str(num)][DataKeys.LEVEL]
 
 
@@ -2584,7 +2584,7 @@ func death():
 	return RoleProp.roleprop.Hp <= 0
 
 
-func addMagicWeapon():
+func add_magic_weapon():
 	if is_instance_valid(Mgtarget) and not Mgtarget.is_queued_for_deletion():
 		return
 	Mgtarget = null
@@ -2594,7 +2594,7 @@ func addMagicWeapon():
 		var name1 = PlayerData.player_data["实战法宝"]
 		if name1 != "":
 			var parent = get_parent().get_parent()
-			Mgtarget = Global.addMagicWeapon(parent, name1, Vector2(0, 0))
+			Mgtarget = Global.add_magic_weapon(parent, name1, Vector2(0, 0))
 			if Mgtarget != null and Mgtarget.has_method("set_magic_weapon_player"):
 				Mgtarget.set_magic_weapon_player(self)
 			else:
@@ -2604,7 +2604,7 @@ func addMagicWeapon():
 		else:
 			PlayerData.player_data["实战法宝"] = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
 			var parent = get_parent().get_parent()
-			Mgtarget = Global.addMagicWeapon(parent, PlayerData.player_data["实战法宝"], Vector2(0, 0))
+			Mgtarget = Global.add_magic_weapon(parent, PlayerData.player_data["实战法宝"], Vector2(0, 0))
 			if Mgtarget != null and Mgtarget.has_method("set_magic_weapon_player"):
 				Mgtarget.set_magic_weapon_player(self)
 			else:
@@ -2616,12 +2616,12 @@ func addMagicWeapon():
 			Mgtarget.queue_free()
 
 
-func add_WSEffect():
+func add_ws_effect():
 	spawn_ws_effect(action, get_parent())
 
 
 func _on_ws_timer_timeout() -> void:
-	add_WSEffect()
+	add_ws_effect()
 
 
 func _add_role_protect(value: float) -> bool:
@@ -2651,7 +2651,7 @@ func _clear_role_protect() -> void:
 	_set_protect_visual(false)
 
 
-func selfProtect():
+func self_protect():
 	CurrentProtect = clampf(CurrentProtect, 0.0, MaxProtect)
 	if not needProtect and CurrentProtect >= MaxProtect:
 		_activate_role_protect()
@@ -2684,7 +2684,7 @@ func _set_protect_visual(active: bool) -> void:
 		RoleEq.self_modulate = Color(1, 1, 1, alpha)
 
 
-func onEqchange():
+func on_eqchange():
 	var WQ: String
 	var Fj: String
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON] == "":
@@ -2694,7 +2694,7 @@ func onEqchange():
 			WQ = str(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME])
 	else:
 		WQ = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON])
-	ChangeEq(WQ)
+	change_eq(WQ)
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR] == "":
 		if PlayerData.player_data[DataKeys.FASHION].size() == 0:
 			if PlayerData.player_data[DataKeys.ARMOR].size() == 0:
@@ -2705,13 +2705,13 @@ func onEqchange():
 			Fj = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
 	else:
 		Fj = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR])
-	Fj = Global.GetName(Fj)
+	Fj = Global.get_clean_name(Fj)
 
-	ChangeBody(Fj)
+	change_body(Fj)
 	var mount_runtime := get_node_or_null("MountRuntime")
 	if mount_runtime != null and mount_runtime.has_method("refresh_rider_appearance"):
 		mount_runtime.call("refresh_rider_appearance")
-	AddSpecialEffectClothes(WQ, Fj)
+	add_special_effect_clothes(WQ, Fj)
 	var WingsList
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
 		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
@@ -2742,7 +2742,7 @@ func onEqchange():
 	wings.z_index = 0
 	wings.play(WingsList)
 	_last_wings_name = ""
-	SetWingsOffset()
+	set_wings_offset()
 
 
 func _capture_wings_base_transform() -> void:
@@ -2931,16 +2931,16 @@ func _ensure_huahao_wing_animation() -> void:
 			target_frames.add_frame(&"hhyq", texture)
 
 
-func ChangeBody(name1):
-	self.RoleBody.texture = Global.LoadRole1Body(name1)
+func change_body(name1):
+	self.RoleBody.texture = Global.load_role1_body(name1)
 	preload("res://Script/Hero/MoonPalaceClothesEffect.gd").sync(RoleBody, str(name1), true)
 
 
-func ChangeEq(name1):
-	self.RoleEq.texture = Global.LoadRole1EQ(name1)
+func change_eq(name1):
+	self.RoleEq.texture = Global.load_role1_eq(name1)
 
 
-func AddSpecialEffectClothes(EqName, ClothesName):
+func add_special_effect_clothes(EqName, ClothesName):
 	var Lastname = EqName + ClothesName
 	var BodyList = [toukui, jianjia, huwan, shenti, yaodai, xiabai]
 	match Lastname:
@@ -3006,7 +3006,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				if Monster is BaseMonster and not _is_summon_or_pet_target(Monster):
 					if self is Role4Hero:
 						if objattackDic[get_action]["addeffect"]["Name"] == "Voodoo":
-							if Global.CheckWD(Monster) < 10:
+							if Global.check_wd(Monster) < 10:
 								Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
 						else:
 							Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
@@ -3027,9 +3027,9 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				]
 				for i in range(5):
 					if randi_range(0, 100) < 50:
-						Global.addRoleBullet_1_safe(self.Bullet, pp[i], "qsez", self.objattackDic["qsez"])
+						Global.add_role_bullet_1_safe(self.Bullet, pp[i], "qsez", self.objattackDic["qsez"])
 					else:
-						Global.addRoleBullet_1_safe(self.Bullet, pp[i], "qsez_1", self.objattackDic["qsez"])
+						Global.add_role_bullet_1_safe(self.Bullet, pp[i], "qsez_1", self.objattackDic["qsez"])
 					await get_tree().create_timer(0.08, false).timeout
 
 
@@ -3045,7 +3045,7 @@ func _is_summon_or_pet_target(target: Node) -> bool:
 	return false
 
 
-func checkMonster(get_tt):
+func check_monster(get_tt):
 	if not is_instance_valid(get_tt):
 		return null
 
@@ -3060,11 +3060,11 @@ func checkMonster(get_tt):
 	return null
 
 
-func get_RealTarget(get_tt):
+func get_real_target(get_tt):
 	return get_tt.get_parent().get_parent()
 
 
-func CheckAddBuff():
+func check_add_buff():
 	var not_SanXianHuTi = true
 	var not_ReverseMove = true
 	var not_magic_drain = true
@@ -3294,7 +3294,7 @@ func get_skill(name1):
 			if not IsCanUseSlz:
 				return
 		if name1 == "hyjj":
-			if not checkCanuseSomeSkill():
+			if not check_canuse_some_skill():
 				return
 		if RoleProp.roleprop.Mp >= get_need_mp(name1, false) and Role1SkillInter[cooldown_key] <= 0:
 			RoleProp.roleprop.Mp -= get_need_mp(name1, false)
@@ -3320,7 +3320,7 @@ func get_skill(name1):
 				if has_method("set_hmz_cooldown_key"):
 					call("set_hmz_cooldown_key", "hmz")
 				if has_method("set_hmz_damage_level"):
-					call("set_hmz_damage_level", get_SkillLevel(5) + 1, "hmz")
+					call("set_hmz_damage_level", get_skill_level(5) + 1, "hmz")
 				do_hmz_pro()
 			"hmz_ws":
 				if has_method("set_hmz_version"):
@@ -3328,7 +3328,7 @@ func get_skill(name1):
 				if has_method("set_hmz_cooldown_key"):
 					call("set_hmz_cooldown_key", "hmz_ws")
 				if has_method("set_hmz_damage_level"):
-					call("set_hmz_damage_level", get_SkillLevel(12) + 1, "hmz_ws")
+					call("set_hmz_damage_level", get_skill_level(12) + 1, "hmz_ws")
 				do_hmz_pro()
 			"hyjj_ws":
 				if has_method("do_wushuang_huoyan_jinjing"):
@@ -3360,45 +3360,45 @@ func get_skill(name1):
 		match name1:
 			"blb":
 				if Role1SkillInter["blb"] <= 0:
-					Skill_Blb()
+					skill_blb()
 					RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 			"tjgl":
 				if Role1SkillInter["tjgl"] <= 0:
-					Skill_Tjgl()
+					skill_tjgl()
 					RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 			"xbz":
 				if Role1SkillInter["xbz"] <= 0:
-					Skill_XBZ()
+					skill_xbz()
 					RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 			"shy":
 				if Role1SkillInter["shy"] <= 0:
-					Skill_SHY()
+					skill_shy()
 					if MyShallow == null:
 						RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 			"sgq":
 				if Role1SkillInter["sgq"] <= 0:
-					Skill_SGQ()
+					skill_sgq()
 					RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 			"myhc":
 				if Role1SkillInter["myhc"] <= 0:
-					Skill_MYHC()
+					skill_myhc()
 					RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 			"jgz":
 				if Role1SkillInter["jgz"] <= 0:
-					Skill_JGZ()
+					skill_jgz()
 					RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 			"jhsj":
 				if Role1SkillInter["jhsj"] <= 0:
-					Skill_JHSJ()
+					skill_jhsj()
 					RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 			"smb":
 				if Role1SkillInter["smb"] <= 0:
-					Skill_SMB()
+					skill_smb()
 					if SMB1 == null:
 						RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 			"by":
 				if Role1SkillInter["by"] <= 0:
-					Skill_BY()
+					skill_by()
 					RoleProp.roleprop.Mp -= get_need_mp(name1, false)
 			"zfjg":
 				if Role1SkillInter["zfjg"] <= 0:
@@ -3407,7 +3407,7 @@ func get_skill(name1):
 	elif self is Role3Hero:
 		if name1 == "tmc2":
 			if Role1SkillInter["tmc"] <= 0:
-				Skill_TMC2()
+				skill_tmc2()
 				return
 			return
 		if RoleProp.roleprop.Mp >= get_need_mp(name1, false) and Role1SkillInter[cooldown_key] <= 0:
@@ -3417,34 +3417,34 @@ func get_skill(name1):
 		match name1:
 			"sd":
 				if Role1SkillInter["sd"] <= 0:
-					Skill_SD()
+					skill_sd()
 			"ssp":
 				if Role1SkillInter["ssp"] <= 0:
-					Skill_SSP()
+					skill_ssp()
 			"jsp":
 				if Role1SkillInter["jsp"] <= 0:
-					Skill_JSP()
+					skill_jsp()
 			"zznh":
 				if Role1SkillInter["zznh"] <= 0:
-					Skill_ZZNH()
+					skill_zznh()
 			"dj":
 				if Role1SkillInter["dj"] <= 0:
-					Skill_DJ()
+					skill_dj()
 			"dgq":
 				if Role1SkillInter["dgq"] <= 0:
-					Skill_DGQ()
+					skill_dgq()
 			"xgq":
 				if Role1SkillInter["xgq"] <= 0:
-					Skill_XGQ()
+					skill_xgq()
 			"syzq":
 				if Role1SkillInter["syzq"] <= 0:
-					Skill_SYZQ()
+					skill_syzq()
 			"tmc":
 				if Role1SkillInter["tmc"] <= 0:
-					Skill_TMC()
+					skill_tmc()
 			"bdqk":
 				if Role1SkillInter["bdqk"] <= 0:
-					call("Skill_BDQK")
+					call("skill_bdqk")
 	elif self is Role4Hero:
 		if RoleProp.roleprop.Mp >= get_need_mp(name1, false) and Role1SkillInter[cooldown_key] <= 0:
 			RoleProp.roleprop.Mp -= get_need_mp(name1, false)
@@ -3453,25 +3453,25 @@ func get_skill(name1):
 		match name1:
 			"qlj":
 				if Role1SkillInter["qlj"] <= 0:
-					ShovelQLJ()
+					shovel_qlj()
 			"dcj":
 				if Role1SkillInter["dcj"] <= 0:
-					ShovelDCJ()
+					shovel_dcj()
 			"wdzt":
 				if Role1SkillInter["wdzt"] <= 0:
-					ShovelWDZT()
+					shovel_wdzt()
 			"tkj":
 				if Role1SkillInter["tkj"] <= 0:
-					ShovelTKJ()
+					shovel_tkj()
 			"mmw":
 				if Role1SkillInter["mmw"] <= 0:
-					ShovelMMW()
+					shovel_mmw()
 			"zq":
 				if Role1SkillInter["zq"] <= 0:
-					ShovelZQ()
+					shovel_zq()
 			"wdww":
 				if Role1SkillInter["wdww"] <= 0:
-					ShovelWDWW()
+					shovel_wdww()
 			"bylt":
 				if Role1SkillInter["bylt"] <= 0:
 					call("ShovelBYLT")
@@ -3480,10 +3480,10 @@ func get_skill(name1):
 					call("ShovelCMLY")
 			"lhsq":
 				if Role1SkillInter["lhsq"] <= 0:
-					ShovelMBYJ()
+					shovel_mbyj()
 			"jdz":
 				if Role1SkillInter["jdz"] <= 0:
-					ShovelJDZ()
+					shovel_jdz()
 	elif self is Role5Hero:
 		if RoleProp.roleprop.Mp >= get_need_mp(name1, false) and Role1SkillInter[cooldown_key] <= 0:
 			RoleProp.roleprop.Mp -= get_need_mp(name1, false)
@@ -3492,37 +3492,37 @@ func get_skill(name1):
 		match name1:
 			"slq":
 				if Role1SkillInter["slq"] <= 0:
-					UseSLQ()
+					use_slq()
 			"cxq":
 				if Role1SkillInter["cxq"] <= 0:
-					UseCXQ()
+					use_cxq()
 			"blq":
 				if Role1SkillInter["blq"] <= 0:
-					UseBLQ()
+					use_blq()
 			"xyq":
 				if Role1SkillInter["xyq"] <= 0:
-					UseXYQ()
+					use_xyq()
 			"llrd":
 				if Role1SkillInter["llrd"] <= 0:
-					UseLLRD()
+					use_llrd()
 			"lljy":
 				if Role1SkillInter["lljy"] <= 0:
-					UseLLJY()
+					use_lljy()
 			"tllz":
 				if Role1SkillInter["tllz"] <= 0:
-					UseTLLZ()
+					use_tllz()
 			"ygth":
 				if Role1SkillInter["ygth"] <= 0:
-					UseYGTH()
+					use_ygth()
 			"fhf":
 				if Role1SkillInter["fhf"] <= 0:
-					UseFHF()
+					use_fhf()
 			"ltjz":
 				if Role1SkillInter["ltjz"] <= 0:
 					call("UseLTJZ")
 
 
-func ImproveSelfRecoveryWhenIdle():
+func improve_self_recovery_when_idle():
 	if is_be_attacking:
 		CUreCureCount = 0
 		CureValue = 1
@@ -3538,11 +3538,11 @@ func ImproveSelfRecoveryWhenIdle():
 		CureValue += 0.5
 
 
-func ResetInsky():
+func reset_insky():
 	IsInSky = false
 
 
-func SetInsky():
+func set_insky():
 	IsInSky = true
 
 
@@ -3552,7 +3552,7 @@ func _prewarm_heavy_skill_resources() -> void:
 		zlwsz_shenqi_gear_scene = load("res://Scene/Hero/ZLWShenqiGearBullet.tscn")
 
 
-func ADDSMSRShenqiLightningRound() -> void:
+func addsmsr_shenqi_lightning_round() -> void:
 	if not RoleProp.is_ws_state or not has_smsrsz_fashion or current_fashion_quality != "shenqi":
 		return
 	if not objattackDic.has("smsr"):
@@ -3566,22 +3566,22 @@ func ADDSMSRShenqiLightningRound() -> void:
 		add_child(effect)
 
 
-func ADDSMSREffect():
+func addsmsr_effect():
 	var dic = objattackDic["smsr"].duplicate(true)
 	if PlayerDir:
 		dic["hurtBack"] = [-20, -1]
 	else:
 		dic["hurtBack"] = [20, -1]
 
-	Global.addRoleBullet_(self, Vector2(0, 20), false, "SMSRBullet", dic)
+	Global.add_role_bullet(self, Vector2(0, 20), false, "SMSRBullet", dic)
 
 
-func ADDZLWEffect():
-	Global.addRoleBullet_(self, Vector2(0, 0), false, "ZLWBullet", objattackDic["zlw"])
+func addzlw_effect():
+	Global.add_role_bullet(self, Vector2(0, 0), false, "ZLWBullet", objattackDic["zlw"])
 
 
-func STARTZLWShenqiEffect():
-	ADDZLWShenqiWheelEffect()
+func startzlw_shenqi_effect():
+	addzlw_shenqi_wheel_effect()
 	if zlwsz_shenqi_timer == null:
 		zlwsz_shenqi_timer = Timer.new()
 		add_child(zlwsz_shenqi_timer)
@@ -3591,12 +3591,12 @@ func STARTZLWShenqiEffect():
 
 func _on_zlwsz_shenqi_timer_timeout():
 	if RoleProp.is_ws_state:
-		ADDZLWShenqiWheelEffect()
+		addzlw_shenqi_wheel_effect()
 	else:
 		zlwsz_shenqi_timer.stop()
 
 
-func ADDZLWShenqiWheelEffect():
+func addzlw_shenqi_wheel_effect():
 	if not objattackDic.has("zlw_shenqi_ws"):
 		return
 	if zlwsz_shenqi_gear_scene == null:
@@ -3613,11 +3613,11 @@ func ADDZLWShenqiWheelEffect():
 		gear.global_position = self.global_position
 
 
-func ADDTtzsEffect():
-	Global.addRoleBullet_(self, Vector2(0, 0), false, "TtzsszBullet", objattackDic["ttzs"])
+func add_ttzs_effect():
+	Global.add_role_bullet(self, Vector2(0, 0), false, "TtzsszBullet", objattackDic["ttzs"])
 
 
-func ADDNMWEffect():
+func addnmw_effect():
 	var PositionList_1 = [Vector2(-65, 500), Vector2(65, 500)]
 	var PositionList_2 = [Vector2(-175, 500), Vector2(175, 500)]
 	var PositionList_3 = [Vector2(-285, 500), Vector2(285, 500)]
@@ -3644,7 +3644,7 @@ func ADDNMWEffect():
 			Vector2(385, 500)
 		],
 	}
-	var SZName = Global.GetName(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
+	var SZName = Global.get_clean_name(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
 	var Pz = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]).split(SZName)[0]
 	var Count: int = 1
 	match Pz:
@@ -3655,15 +3655,15 @@ func ADDNMWEffect():
 		"shishi":
 			Count = 3
 	for i in bullet_spawn_positions[str(Count)]:
-		Global.addRoleBullet_(self.Bullet, Vector2(i.x + position.x, 500), false, "NMWBullet2", objattackDic["nmw"])
+		Global.add_role_bullet(self.Bullet, Vector2(i.x + position.x, 500), false, "NMWBullet2", objattackDic["nmw"])
 
 
-func SetSZValue():
+func set_sz_value():
 	has_smsrsz_fashion = false
 	current_fashion_quality = ""
 	if PlayerData.player_data[DataKeys.FASHION].size() <= 0:
 		return
-	var SZName = Global.GetName(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
+	var SZName = Global.get_clean_name(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
 	var Pz = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]).split(SZName)[0]
 	var Bl = 1
 	match SZName:
@@ -3869,10 +3869,10 @@ func _update_fashion_values_if_needed() -> void:
 	_last_fashion_name = fashion_name
 	_last_fashion_power = current_power
 	_last_fashion_max_hp = current_max_hp
-	SetSZValue()
+	set_sz_value()
 
 
-func WhenScary():
+func when_scary():
 	if not IsScary or is_be_attacking:
 		return
 	if ran_num <= 20:
@@ -3892,7 +3892,7 @@ func WhenScary():
 		velocity.x = walk_speed * RoleProp.ws_up_power * 0.5
 
 
-func AddTx():
+func add_tx():
 	var title_name := "Empty"
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST].has(DataKeys.TITLE):
 		if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.TITLE] == "":
@@ -3962,7 +3962,7 @@ func jsfzsy():
 		tszbsjm = 0
 
 
-func UseZhenFa():
+func use_zhen_fa():
 	if Input.is_action_just_pressed("阵法") or Input.is_action_just_pressed("MDS"):
 		if _try_use_main_sword_array():
 			return
@@ -3972,7 +3972,7 @@ func UseZhenFa():
 			"slz":
 				if ZhenFaCd <= 0:
 					self.objattackDic["slz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic", "WSValue": 0}
-					Global.addRoleBullet_(self, Vector2(0, 30), false, "SLZBullet", objattackDic["slz"])
+					Global.add_role_bullet(self, Vector2(0, 30), false, "SLZBullet", objattackDic["slz"])
 					_start_zhen_fa_cd(30)
 			"lpz":
 				if ZhenFaCd <= 0:
@@ -3982,21 +3982,21 @@ func UseZhenFa():
 						"attackKind": "magic",
 						"WSValue": 0
 					}
-					Global.addRoleBullet_(
+					Global.add_role_bullet(
 						self.Bullet, position + Vector2(0, 40), false, "LPZBullet", objattackDic["lpz"]
 					)
 					_start_zhen_fa_cd(30)
 			"tsz":
 				if ZhenFaCd <= 0:
 					self.objattackDic["tsz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic", "WSValue": 0}
-					Global.addRoleBullet_(self, Vector2(0, 30), false, "TSZBullet", objattackDic["tsz"])
+					Global.add_role_bullet(self, Vector2(0, 30), false, "TSZBullet", objattackDic["tsz"])
 					_start_zhen_fa_cd(30)
 			"tqz":
 				if not is_on_floor():
 					return
 				if ZhenFaCd <= 0:
 					self.objattackDic["tqz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic", "WSValue": 0}
-					Global.addRoleBullet_(
+					Global.add_role_bullet(
 						self.Bullet, position + Vector2(0, 40), false, "TQZBullet", objattackDic["tqz"]
 					)
 					_start_zhen_fa_cd(35)
@@ -4047,7 +4047,7 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 	pass
 
 
-func SetWingsOffset():
+func set_wings_offset():
 	var CurrentWingsName: String
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
 		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
@@ -4134,438 +4134,9 @@ func SetWingsOffset():
 			wings.scale = Vector2.ONE
 
 
-func ResetSanXianHuTi():
+func reset_san_xian_hu_ti():
 	IsSanXianHuTiUsed = false
-
 
 # ==============================================================================
 # Phase 6-3: 现代 GDScript 规范 snake_case 双轨兼容函数入口
 # ==============================================================================
-## [现代规范接口 (Phase 6-3)]
-func fabao_jiasu() -> void:
-	fabaoJiasu()
-
-
-## [现代规范接口 (Phase 6-3)]
-func reset_fabao_jiasu() -> void:
-	resetFabaoJiasu()
-
-
-## [现代规范接口 (Phase 6-3)]
-func null_szfb_case():
-	return NullSZFBCase()
-
-
-## [现代规范接口 (Phase 6-3)]
-func on_szfb_change():
-	return on_SZFBChange()
-
-
-## [现代规范接口 (Phase 6-3)]
-func check_remove_or_add_fb():
-	return CheckRemoveOrAddFB()
-
-
-## [现代规范接口 (Phase 6-3)]
-func use_fb():
-	return useFB()
-
-
-## [现代规范接口 (Phase 6-3)]
-func ws_skill() -> bool:
-	return WSSkill()
-
-
-## [现代规范接口 (Phase 6-3)]
-func process_san_xian_hu_ti_effect():
-	return ProcessSanXianHuTiEffect()
-
-
-## [现代规范接口 (Phase 6-3)]
-func can_normal_control():
-	return CanNormalControl()
-
-
-## [现代规范接口 (Phase 6-3)]
-func noarmal_control():
-	return NoarmalControl()
-
-
-## [现代规范接口 (Phase 6-3)]
-func nor_mal_move():
-	return NorMalMove()
-
-
-## [现代规范接口 (Phase 6-3)]
-func no_limit_buff():
-	return NoLimitBuff()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_blb():
-	return Skill_Blb()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_tjgl():
-	return Skill_Tjgl()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_xbz():
-	return Skill_XBZ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_shy():
-	return Skill_SHY()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_smb():
-	return Skill_SMB()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_smb2():
-	return Skill_SMB2()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_by():
-	return Skill_BY()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_sgq():
-	return Skill_SGQ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_myhc():
-	return Skill_MYHC()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_jgz():
-	return Skill_JGZ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_jhsj():
-	return Skill_JHSJ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_sd():
-	return Skill_SD()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_zznh():
-	return Skill_ZZNH()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_ssp():
-	return Skill_SSP()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_jsp():
-	return Skill_JSP()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_dgq():
-	return Skill_DGQ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_xgq():
-	return Skill_XGQ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_syzq():
-	return Skill_SYZQ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_dj():
-	return Skill_DJ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_tmc2():
-	return Skill_TMC2()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_tmc():
-	return Skill_TMC()
-
-
-## [现代规范接口 (Phase 6-3)]
-func skill_bdqk():
-	return Skill_BDQK()
-
-
-## [现代规范接口 (Phase 6-3)]
-func shovel_qlj():
-	return ShovelQLJ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func shovel_dcj():
-	return ShovelDCJ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func shovel_tkj():
-	return ShovelTKJ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func shovel_mmw():
-	return ShovelMMW()
-
-
-## [现代规范接口 (Phase 6-3)]
-func shovel_zq():
-	return ShovelZQ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func shovel_wdww():
-	return ShovelWDWW()
-
-
-## [现代规范接口 (Phase 6-3)]
-func shovel_mbyj():
-	return ShovelMBYJ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func shovel_jdz():
-	return ShovelJDZ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func shovel_wdzt():
-	return ShovelWDZT()
-
-
-## [现代规范接口 (Phase 6-3)]
-func use_slq():
-	return UseSLQ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func use_cxq():
-	return UseCXQ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func use_blq():
-	return UseBLQ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func use_xyq():
-	return UseXYQ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func use_llrd():
-	return UseLLRD()
-
-
-## [现代规范接口 (Phase 6-3)]
-func use_lljy():
-	return UseLLJY()
-
-
-## [现代规范接口 (Phase 6-3)]
-func use_tllz():
-	return UseTLLZ()
-
-
-## [现代规范接口 (Phase 6-3)]
-func use_ygth():
-	return UseYGTH()
-
-
-## [现代规范接口 (Phase 6-3)]
-func use_fhf():
-	return UseFHF()
-
-
-## [现代规范接口 (Phase 6-3)]
-func check_canuse_some_skill():
-	return checkCanuseSomeSkill()
-
-
-## [现代规范接口 (Phase 6-3)]
-func get_monster_last_hurt(target_boss, target_obj):
-	return get_Monster_last_hurt(target_boss, target_obj)
-
-
-## [现代规范接口 (Phase 6-3)]
-func level_suppression(target):
-	return Level_suppression(target)
-
-
-## [现代规范接口 (Phase 6-3)]
-func cure_mp(value: int = 0):
-	return cure_Mp(value)
-
-
-## [现代规范接口 (Phase 6-3)]
-func reduce_mp(value: int = 0):
-	return reduce_Mp(value)
-
-
-## [现代规范接口 (Phase 6-3)]
-func cure_hp(value: int = 0):
-	return cure_Hp(value)
-
-
-## [现代规范接口 (Phase 6-3)]
-func f_bcure_hp(value: int):
-	return FBcureHp(value)
-
-
-## [现代规范接口 (Phase 6-3)]
-func get_skill_level(num):
-	return get_SkillLevel(num)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_magic_weapon():
-	return addMagicWeapon()
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_ws_effect():
-	return add_WSEffect()
-
-
-## [现代规范接口 (Phase 6-3)]
-func self_protect():
-	return selfProtect()
-
-
-## [现代规范接口 (Phase 6-3)]
-func on_eqchange():
-	return onEqchange()
-
-
-## [现代规范接口 (Phase 6-3)]
-func change_body(name1):
-	return ChangeBody(name1)
-
-
-## [现代规范接口 (Phase 6-3)]
-func change_eq(name1):
-	return ChangeEq(name1)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_special_effect_clothes(EqName, ClothesName):
-	return AddSpecialEffectClothes(EqName, ClothesName)
-
-
-## [现代规范接口 (Phase 6-3)]
-func check_monster(get_tt):
-	return checkMonster(get_tt)
-
-
-## [现代规范接口 (Phase 6-3)]
-func get_real_target(get_tt):
-	return get_RealTarget(get_tt)
-
-
-## [现代规范接口 (Phase 6-3)]
-func check_add_buff():
-	return CheckAddBuff()
-
-
-## [现代规范接口 (Phase 6-3)]
-func improve_self_recovery_when_idle():
-	return ImproveSelfRecoveryWhenIdle()
-
-
-## [现代规范接口 (Phase 6-3)]
-func reset_insky():
-	return ResetInsky()
-
-
-## [现代规范接口 (Phase 6-3)]
-func set_insky():
-	return SetInsky()
-
-
-## [现代规范接口 (Phase 6-3)]
-func addsmsr_shenqi_lightning_round() -> void:
-	ADDSMSRShenqiLightningRound()
-
-
-## [现代规范接口 (Phase 6-3)]
-func addsmsr_effect():
-	return ADDSMSREffect()
-
-
-## [现代规范接口 (Phase 6-3)]
-func addzlw_effect():
-	return ADDZLWEffect()
-
-
-## [现代规范接口 (Phase 6-3)]
-func startzlw_shenqi_effect():
-	return STARTZLWShenqiEffect()
-
-
-## [现代规范接口 (Phase 6-3)]
-func addzlw_shenqi_wheel_effect():
-	return ADDZLWShenqiWheelEffect()
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_ttzs_effect():
-	return ADDTtzsEffect()
-
-
-## [现代规范接口 (Phase 6-3)]
-func addnmw_effect():
-	return ADDNMWEffect()
-
-
-## [现代规范接口 (Phase 6-3)]
-func set_sz_value():
-	return SetSZValue()
-
-
-## [现代规范接口 (Phase 6-3)]
-func when_scary():
-	return WhenScary()
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_tx():
-	return AddTx()
-
-
-## [现代规范接口 (Phase 6-3)]
-func use_zhen_fa():
-	return UseZhenFa()
-
-
-## [现代规范接口 (Phase 6-3)]
-func set_wings_offset():
-	return SetWingsOffset()
-
-
-## [现代规范接口 (Phase 6-3)]
-func reset_san_xian_hu_ti():
-	return ResetSanXianHuTi()

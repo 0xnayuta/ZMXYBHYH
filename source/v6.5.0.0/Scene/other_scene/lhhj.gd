@@ -164,7 +164,7 @@ func AddTotalList():
 		for i in SkyList:
 			BossList.push_back(i)
 	for i in BossList:
-		Global.Addlistbutton(boss_list_1, i["Name"], self, i["Num"])
+		Global.addlistbutton(boss_list_1, i["Name"], self, i["Num"])
 
 
 func _on_challenge_pressed() -> void:
@@ -203,7 +203,7 @@ func AddBoss(Name, Num):
 		"ebol": 0,
 		"self_rhp": 0
 	}
-	Global.Addlhhjbutton(boss_list, Name, self)
+	Global.addlhhjbutton(boss_list, Name, self)
 
 
 func ShowProp():
@@ -454,7 +454,7 @@ func _on_self_rhp_text_changed(new_text: String) -> void:
 
 
 func _on_help_pressed() -> void:
-	Global.Addlhhjhelp(self, Vector2(0, 0))
+	Global.addlhhjhelp(self, Vector2(0, 0))
 
 
 func _on_add_all_pressed() -> void:

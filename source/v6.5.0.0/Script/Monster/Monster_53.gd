@@ -67,7 +67,7 @@ func check_have_sh():
 
 func call_bullet():
 	for i in range(randi_range(3, 5)):
-		Bullet = Global.CallChaseBullet(
+		Bullet = Global.call_chase_bullet(
 			self.bullet,
 			"Monster53Bullet",
 			250,

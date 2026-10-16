@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	needMp = 30 + 10 * self.FB_Level
-	self.FB_Level = PlayerData.get_mostLevel("tsgj") + 1
+	self.FB_Level = PlayerData.get_most_level("tsgj") + 1
 	var add_effect: Dictionary = _hit_data["addeffect"]
 	if PlayerData.check_have_wx("tsgj", "木"):
 		_hit_data["power"] = 100 + int(RoleProp.roleprop.power * randf_range(0.28, 0.35)) + 50 * self.FB_Level
@@ -41,35 +41,35 @@ func use_over():
 
 func addSword():
 	var attack_data := get_attack_snapshot()
-	Global.addWeaponBullet_($Bullet, Vector2(self.position.x, 0), "SwordBullet", attack_data, mg_action.flip_h, bl)
-	Global.addWeaponBullet_(
+	Global.add_weapon_bullet($Bullet, Vector2(self.position.x, 0), "SwordBullet", attack_data, mg_action.flip_h, bl)
+	Global.add_weapon_bullet(
 		$Bullet, Vector2(self.position.x - 100, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
 	)
-	Global.addWeaponBullet_(
+	Global.add_weapon_bullet(
 		$Bullet, Vector2(self.position.x + 100, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
 	)
 	await get_tree().create_timer(0.1, false).timeout
 	attack_data = get_attack_snapshot()
-	Global.addWeaponBullet_(
+	Global.add_weapon_bullet(
 		$Bullet, Vector2(self.position.x - 200, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
 	)
-	Global.addWeaponBullet_(
+	Global.add_weapon_bullet(
 		$Bullet, Vector2(self.position.x + 200, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
 	)
 	await get_tree().create_timer(0.1, false).timeout
 	attack_data = get_attack_snapshot()
-	Global.addWeaponBullet_(
+	Global.add_weapon_bullet(
 		$Bullet, Vector2(self.position.x - 300, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
 	)
-	Global.addWeaponBullet_(
+	Global.add_weapon_bullet(
 		$Bullet, Vector2(self.position.x + 300, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
 	)
 	await get_tree().create_timer(0.1, false).timeout
 	attack_data = get_attack_snapshot()
-	Global.addWeaponBullet_(
+	Global.add_weapon_bullet(
 		$Bullet, Vector2(self.position.x - 400, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
 	)
-	Global.addWeaponBullet_(
+	Global.add_weapon_bullet(
 		$Bullet, Vector2(self.position.x + 400, 0), "SwordBullet", attack_data, mg_action.flip_h, bl
 	)
 

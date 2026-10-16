@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 				move_playerto_boss(null, 0.3)
 				(
 					Global
-					. AddBuff(
+					. add_buff(
 						get_Player.buff,
 						{
 							"Name": "speed_down",
@@ -94,7 +94,7 @@ func ai_think():
 				move_playerto_boss(null, 0.3)
 				(
 					Global
-					. AddBuff(
+					. add_buff(
 						get_Player.buff,
 						{
 							"Name": "speed_down",

@@ -351,7 +351,7 @@ func CheckPlayer():
 				move_player_to_boss(0.5)
 				(
 					Global
-					. AddBuff(
+					. add_buff(
 						get_Player.buff,
 						{
 							"Name": "stun",
@@ -371,7 +371,7 @@ func CheckPlayer():
 				move_player_to_boss(0.5)
 				(
 					Global
-					. AddBuff(
+					. add_buff(
 						get_Player.buff,
 						{
 							"Name": "stun",

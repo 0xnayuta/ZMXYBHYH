@@ -33,7 +33,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	sort_button.disabled = Global.is_in_ldl or ChooseMs or is_instance_valid(pl_sell)
 	if not PlayerData.player_data["ieho"]:
-		if PlayerData.checkHaveZB("xczg")[0]:
+		if PlayerData.check_have_zb("xczg")[0]:
 			PlayerData.player_data["ieho"] = true
 	var show_pet_backpack: bool = Global.is_in_ldl == true and str(MLdl.loc_) in ["强化", "镶嵌"]
 	pet_backpack_button.visible = show_pet_backpack

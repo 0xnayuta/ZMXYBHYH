@@ -306,7 +306,7 @@ func normalBullet():
 		BulletName = "Monster57Bullet4"
 		Hit_name = "hit1_3"
 	if MonsterDirection:
-		Bullet = Global.CallChaseBullet(
+		Bullet = Global.call_chase_bullet(
 			self.bullet,
 			BulletName,
 			RoundSpeed,
@@ -317,7 +317,7 @@ func normalBullet():
 			self.objattackDic[Hit_name]
 		)
 	else:
-		Bullet = Global.CallChaseBullet(
+		Bullet = Global.call_chase_bullet(
 			self.bullet,
 			BulletName,
 			RoundSpeed,

@@ -101,7 +101,7 @@ func ai_think():
 
 
 func RoleReduceHp():
-	if not PlayerData.ChekEqzb("头衔", "sxyr"):
+	if not PlayerData.check_eq_zb("头衔", "sxyr"):
 		get_Player.effect_reducehp(int(RoleProp.roleprop.SHp * 0.01), "real")
 
 

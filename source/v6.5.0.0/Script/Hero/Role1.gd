@@ -39,7 +39,7 @@ func get_gsrs_defense_reduction(adjusted_skill_level: int) -> float:
 func _ready():
 	super._ready()
 	add_to_group("Player")
-	super.onEqchange()
+	super.on_eqchange()
 
 	use_new_hmz = false
 	Role_1()
@@ -304,7 +304,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if get_action == "lyfb" and _is_skill_awakened("lyfb") and _is_skill_awaken_enabled("lyfb"):
 		lyfb_hit_shape.set_deferred("disabled", true)
-	if NoLimitBuff():
+	if no_limit_buff():
 		if Input.is_action_pressed("Exit"):
 			remove_w.start(0.2)
 			WIsPress = true
@@ -1059,7 +1059,7 @@ func call_hyjj():
 		if i == null:
 			Hyjj.erase(i)
 	if Hyjj.size() < 3:
-		Hyjj.push_back(Global.addRoleBullet_1(self.Bullet, Vector2(100, 0), "hyjj", self.objattackDic["hyjj"]))
+		Hyjj.push_back(Global.add_role_bullet_1(self.Bullet, Vector2(100, 0), "hyjj", self.objattackDic["hyjj"]))
 
 
 func Add_Shallow():

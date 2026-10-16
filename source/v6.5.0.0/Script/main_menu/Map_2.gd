@@ -350,15 +350,15 @@ func _on_level_nmg_pressed() -> void:
 
 
 func _on_level_lxdy_pressed() -> void:
-	Global.AddLXDY(_ui_parent(), _ui_parent())
+	Global.add_lxdy(_ui_parent(), _ui_parent())
 
 
 func _on_shop_pressed() -> void:
-	Global.add_SHOP(_ui_parent(), Vector2(0, 0))
+	Global.add_shop(_ui_parent(), Vector2(0, 0))
 
 
 func _on_activity_pressed() -> void:
-	Global.AddBasicTask_(_ui_parent(), Vector2(0, 0))
+	Global.add_basic_task(_ui_parent(), Vector2(0, 0))
 
 
 func _on_learn_skill_pressed() -> void:
@@ -429,7 +429,7 @@ func PlayAn(Level):
 
 
 func _on_changetott_pressed() -> void:
-	if PlayerData.CheckPass("天庭"):
+	if PlayerData.check_pass("天庭"):
 		Global.cleanup_transient_ui()
 		Global.change_scene("res://Scene/main_menu/Map_3.tscn")
 	else:
@@ -440,8 +440,8 @@ func _on_changetott_pressed() -> void:
 
 
 func _on_game_an_pressed() -> void:
-	Global.AddGameAnnouncement(_ui_parent(), Vector2(0, 0))
+	Global.add_game_announcement(_ui_parent(), Vector2(0, 0))
 
 
 func _on_level_lhhj_pressed() -> void:
-	Global.Addlhhj(_ui_parent(), Vector2(0, 0))
+	Global.addlhhj(_ui_parent(), Vector2(0, 0))

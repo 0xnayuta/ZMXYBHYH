@@ -108,7 +108,7 @@ func add_infor():
 		return
 	var page_items: Array = fbinfor[page_key]
 	for i in page_items.size():
-		var infor = Global.addSkillSelect(bg, positionList[i], page_items[i])
+		var infor = Global.add_skill_select(bg, positionList[i], page_items[i])
 		InforList.push_back(infor)
 
 

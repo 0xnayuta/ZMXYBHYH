@@ -160,7 +160,7 @@ func _on_qh__pressed() -> void:
 				RoleProp.get_equ_last_pro()
 				RoleProp.get_last_prop()
 				if is_instance_valid(RoleProp.SourcePlayer):
-					RoleProp.SourcePlayer.onEqchange()
+					RoleProp.SourcePlayer.on_eqchange()
 			Global.add_message_show(get_parent(), "强化成功！！", 1.5, Vector2(15, -45))
 		else:
 			Global.add_message_show(get_parent(), "灵魂不足！无法强化！！", 1.5, Vector2(15, -45))

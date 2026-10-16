@@ -65,7 +65,7 @@ func RemoveAr():
 func AddAr():
 	RemoveAr()
 	for i in range(GetNeedBox()):
-		Global.AddBasicArButton(all_ar, i + 1)
+		Global.add_basic_ar_button(all_ar, i + 1)
 
 
 func _on_close_pressed() -> void:

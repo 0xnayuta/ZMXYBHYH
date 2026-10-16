@@ -112,13 +112,13 @@ func PickUpItems(body):
 					return
 	match item_name:
 		"peach":
-			body.cure_Hp(RoleProp.roleprop.SHp * 0.45)
-			body.cure_Mp(RoleProp.roleprop.SMp * 0.45)
+			body.cure_hp(RoleProp.roleprop.SHp * 0.45)
+			body.cure_mp(RoleProp.roleprop.SMp * 0.45)
 		"Bble":
-			body.cure_Mp(RoleProp.roleprop.SMp * 0.2)
+			body.cure_mp(RoleProp.roleprop.SMp * 0.2)
 
 		"radish":
-			body.cure_Hp(RoleProp.roleprop.SHp * 0.25)
+			body.cure_hp(RoleProp.roleprop.SHp * 0.25)
 	IsPick = true
 	remove_pl.play("remove")
 

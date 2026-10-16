@@ -2924,7 +2924,7 @@ func take_equipped_equipment_for_mosaic(
 	RoleProp.get_equ_last_pro()
 	RoleProp.get_last_prop()
 	if is_instance_valid(RoleProp.SourcePlayer):
-		RoleProp.SourcePlayer.onEqchange()
+		RoleProp.SourcePlayer.on_eqchange()
 	return stored_item
 
 
@@ -2995,7 +2995,7 @@ func restore_mosaic_equipment() -> bool:
 		RoleProp.get_equ_last_pro()
 		RoleProp.get_last_prop()
 		if is_instance_valid(RoleProp.SourcePlayer):
-			RoleProp.SourcePlayer.onEqchange()
+			RoleProp.SourcePlayer.on_eqchange()
 	else:
 		add_zb(
 			str(selected.get(DataKeys.NAME, "")), int(selected.get(DataKeys.ENHANCE_LEVEL, 0)), selected.get("Data", {})
@@ -4019,7 +4019,7 @@ func add_zb(name_, qh_level, Data_) -> bool:
 	if not AE.AllEquipment_.has(equipment_id):
 		return false
 
-	var page_number: int = int(CheckCanUsePage("装备列表"))
+	var page_number: int = int(check_can_use_page("装备列表"))
 	if page_number == 0:
 		return false
 	var data: Dictionary = Data_.duplicate(true) if Data_ is Dictionary else {}
@@ -4039,7 +4039,7 @@ func add_fb(name_, qh_level, wx, Data_) -> bool:
 	if not AE.AllEquipment_.has(equipment_id):
 		return false
 
-	var page_number: int = int(CheckCanUsePage("装备列表"))
+	var page_number: int = int(check_can_use_page("装备列表"))
 	if page_number == 0:
 		return false
 	var data: Dictionary = Data_.duplicate(true) if Data_ is Dictionary else {}
@@ -4281,7 +4281,7 @@ func get_all_item():
 
 
 func check_wx_num():
-	var list = GetAllItem()
+	var list = get_all_item()
 	if list == []:
 		return false
 	else:
@@ -4388,7 +4388,7 @@ func add_dj(name_, number, locked := false):
 				i["锁定"] = bool(i.get("锁定", false)) or bool(locked)
 				return
 
-	var usable_page = CheckCanUsePage("道具列表")
+	var usable_page = check_can_use_page("道具列表")
 	if usable_page == 0:
 		return
 
@@ -4521,7 +4521,7 @@ func add_xhp(name_: String, number: int, locked := false) -> void:
 				i["锁定"] = bool(i.get("锁定", false)) or bool(locked)
 				return
 
-	var new_page = CheckCanUsePage("消耗品列表")
+	var new_page = check_can_use_page("消耗品列表")
 	if new_page == 0:
 		return
 	player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(new_page)].push_back(
@@ -4627,7 +4627,7 @@ func _process(_delta: float) -> void:
 		await get_tree().create_timer(2, false).timeout
 		get_tree().quit()
 
-	if PlayerData.ChekEqzb("头衔", "xczg"):
+	if PlayerData.check_eq_zb("头衔", "xczg"):
 		PlayerData.player_data["ieho"] = true
 
 	if player_data["实战法宝"] != "":
@@ -4692,46 +4692,6 @@ func check_pass(Local):
 			if player_data[DataKeys.PLAYER_LEVEL] >= 60 and get_item_data("ttsl") != 0 and player_data["碧游宫"]:
 				return true
 	return false
-
-
-## [兼容代理] 保持旧接口兼容
-func ChekEqzb(Type, need_):
-	return check_eq_zb(Type, need_)
-
-
-## [兼容代理] 保持旧接口兼容
-func checkHaveZB(need_: String):
-	return check_have_zb(need_)
-
-
-## [兼容代理] 保持旧接口兼容
-func GetAllItem():
-	return get_all_item()
-
-
-## [兼容代理] 保持旧接口兼容
-func get_mostLevel(need_):
-	return get_most_level(need_)
-
-
-## [兼容代理] 保持旧接口兼容
-func CheckCanUsePage(Target):
-	return check_can_use_page(Target)
-
-
-## [兼容代理] 保持旧接口兼容
-func ADDIniBuff():
-	return add_ini_buff()
-
-
-## [兼容代理] 保持旧接口兼容
-func CheckSameIniBuff(Need):
-	return check_same_ini_buff(Need)
-
-
-## [兼容代理] 保持旧接口兼容
-func CheckPass(Local):
-	return check_pass(Local)
 
 
 # ==============================================================================

@@ -73,9 +73,9 @@ func _on_change_pressed() -> void:
 		elif Lx == "翅膀":
 			PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] = ""
 			Global.add_message_show(Global.Windows_, "取消翅膀：" + str(item_name) + "的幻化！！", 1.5, Vector2(470, 295))
-	Transmogrified_.onEqchange()
-	if is_instance_valid(RoleProp.SourcePlayer) and RoleProp.SourcePlayer.has_method("onEqchange"):
-		RoleProp.SourcePlayer.onEqchange()
+	Transmogrified_.on_eqchange()
+	if is_instance_valid(RoleProp.SourcePlayer) and RoleProp.SourcePlayer.has_method("on_eqchange"):
+		RoleProp.SourcePlayer.on_eqchange()
 	for i in Transmogrified_.List:
 		if i != null:
 			i.set_physics_process(true)

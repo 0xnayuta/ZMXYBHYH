@@ -273,7 +273,7 @@ func follow_player_when_idle() -> void:
 func _physics_process(delta: float) -> void:
 	gravity = _get_gravity()
 	handle_gravity_and_sky(delta)
-	CheckAddBuff()
+	check_add_buff()
 	update_timers(delta)
 
 	llrdzs = 1.3 if llrdCount > 0 else 1.0
@@ -397,7 +397,7 @@ func update_animation_and_direction() -> void:
 		monster_dir.scale.x = 1
 
 
-func CheckAddBuff() -> void:
+func check_add_buff() -> void:
 	if not buff:
 		return
 	var not_ice = true
@@ -900,10 +900,10 @@ func reduce_hp(value: int, _attacker = null) -> void:
 	if value > 0:
 		var level_node = get_level_node()
 		if level_node:
-			Global.addDamageText(level_node, Vector2(position.x, position.y - 110), value, "physics", false, self)
+			Global.add_damage_text(level_node, Vector2(position.x, position.y - 110), value, "physics", false, self)
 
 
-func cure_Hp(value: int = 0) -> int:
+func cure_hp(value: int = 0) -> int:
 	if Hp <= 0 or BloodFix or LifeManaLock:
 		return 0
 	value = int(value * (1 + Therapeutic_effects))
@@ -918,7 +918,7 @@ func cure_Hp(value: int = 0) -> int:
 
 
 func _show_heal_text(level_node, po: Vector2, value: int) -> void:
-	Global.addDamageText(level_node, po, value, "cure", false, self)
+	Global.add_damage_text(level_node, po, value, "cure", false, self)
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
@@ -950,7 +950,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		else:
 			var level_node = get_level_node()
 			if level_node:
-				Global.addDamageText(
+				Global.add_damage_text(
 					level_node, Vector2(position.x, position.y - 110), last_hurt, "physics", false, self
 				)
 	else:

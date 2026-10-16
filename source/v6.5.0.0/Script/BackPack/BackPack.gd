@@ -80,8 +80,8 @@ func _physics_process(_delta: float) -> void:
 		wings.modulate = Color(1, 1, 1, 1)
 	else:
 		wings.modulate = Color(1, 1, 1, 0)
-	onEqchange()
-	SetWingsOffset()
+	on_eqchange()
+	set_wings_offset()
 
 	_props_refresh_timer += _delta
 	if _props_refresh_timer >= 0.1:
@@ -413,7 +413,7 @@ func _on_show_backpack_pressed() -> void:
 
 func add_text(text, parent):
 	if message == null:
-		message = Global.AddBasicMonmentInfo(backpack, text, get_global_mouse_position() + Vector2(90, 40))
+		message = Global.add_basic_monment_info(backpack, text, get_global_mouse_position() + Vector2(90, 40))
 
 
 func remove_text():
@@ -555,7 +555,7 @@ func set_RoleWwings():
 	return
 
 
-func onEqchange():
+func on_eqchange():
 	var WQ: String
 	var Fj: String
 
@@ -566,7 +566,7 @@ func onEqchange():
 			WQ = str(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME])
 	else:
 		WQ = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON])
-	ChangeEq(WQ)
+	change_eq(WQ)
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR] == "":
 		if PlayerData.player_data[DataKeys.FASHION].size() == 0:
 			if PlayerData.player_data[DataKeys.ARMOR].size() == 0:
@@ -577,8 +577,8 @@ func onEqchange():
 			Fj = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
 	else:
 		Fj = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR])
-	Fj = Global.GetName(Fj)
-	ChangeBody(Fj)
+	Fj = Global.get_clean_name(Fj)
+	change_body(Fj)
 	var WingsList
 
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
@@ -594,12 +594,12 @@ func onEqchange():
 	$background/Wings.play(WingsList)
 
 
-func ChangeBody(name_):
-	Role_body.texture = Global.LoadRole1Body(name_)
+func change_body(name_):
+	Role_body.texture = Global.load_role1_body(name_)
 
 
-func ChangeEq(name_):
-	Role_Eq.texture = Global.LoadRole1EQ(name_)
+func change_eq(name_):
+	Role_Eq.texture = Global.load_role1_eq(name_)
 
 
 func IniShowWingTxButton():
@@ -644,7 +644,7 @@ func _on_head_show_pressed() -> void:
 		head_show.text = "显示"
 
 
-func SetWingsOffset():
+func set_wings_offset():
 	var CurrentWingsName: String
 
 	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
@@ -673,7 +673,7 @@ func SetWingsOffset():
 
 
 func _on_hh_pressed() -> void:
-	var new_scene = Global.addHHjm(self, Vector2(-428, -270))
+	var new_scene = Global.add_h_hjm(self, Vector2(-428, -270))
 
 	if new_scene != null:
 		new_scene.z_index = 100

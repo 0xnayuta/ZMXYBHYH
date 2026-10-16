@@ -189,7 +189,7 @@ func _process_pet_dragon_recovery(delta: float) -> void:
 		return
 	recovery_timer -= 1.0
 	if hp_recover_per_second > 0 and Hp < SHp:
-		cure_Hp(hp_recover_per_second)
+		cure_hp(hp_recover_per_second)
 	if mp_recover_per_second > 0 and Mp < SMp:
 		Mp = min(SMp, Mp + mp_recover_per_second)
 		pet_data[DataKeys.MP] = Mp
@@ -206,7 +206,7 @@ func _process_dragon_clone(delta: float) -> void:
 		return
 	dragon_clone_settled = true
 	if is_instance_valid(dragon_clone_owner) and dragon_clone_owner.Hp > 0:
-		dragon_clone_owner.cure_Hp(int(dragon_dealt_damage / 10.0))
+		dragon_clone_owner.cure_hp(int(dragon_dealt_damage / 10.0))
 		if dragon_stage >= 4:
 			dragon_clone_owner.pet_data[DataKeys.EXP] = (
 				int(dragon_clone_owner.pet_data.get(DataKeys.EXP, 0)) + int(pet_data.get(DataKeys.EXP, 0))

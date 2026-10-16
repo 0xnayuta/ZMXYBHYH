@@ -512,7 +512,7 @@ func _physics_process(delta: float) -> void:
 		if is_boss:
 			if MyBlood == null:
 				var Parent = level_node.monster_blood
-				MyBlood = Global.AddBossBlood_(Parent, self)
+				MyBlood = Global.add_boss_blood_(Parent, self)
 
 	if self.position.x <= 0:
 		self.position.x = 100
@@ -524,7 +524,7 @@ func _physics_process(delta: float) -> void:
 			Difficult()
 		iniSpeed = speed
 		is_set_ = true
-	CheckAddBuff()
+	check_add_buff()
 	_recover_interrupted_combat_state()
 	_enforce_control_immunity_state()
 	if MainSet.set_data["NoShowMonsterBody"] == false:
@@ -555,7 +555,7 @@ func _physics_process(delta: float) -> void:
 		interrupt_movement_for_control()
 	elif IsScary:
 		if not is_be_attacking:
-			WhenScary()
+			when_scary()
 	check_hp()
 	if not is_queued_for_deletion() and is_inside_tree():
 		move_and_slide()
@@ -1337,7 +1337,7 @@ func _finish_sssl_death() -> void:
 
 
 func get_zcld_multiplier() -> float:
-	if get_Player != null and PlayerData.ChekEqzb("法宝", "zcld"):
+	if get_Player != null and PlayerData.check_eq_zb("法宝", "zcld"):
 		var level = get_Player.zcld_level
 
 		var bonus = 0.2 + level * 0.08
@@ -1540,7 +1540,7 @@ func fall_medicine():
 	if _is_tower_drop_context():
 		return
 	ran_2 = randf_range(0, 1)
-	if PlayerData.ChekEqzb("头衔", "xczg"):
+	if PlayerData.check_eq_zb("头衔", "xczg"):
 		ran_2 = 0
 	if ran_2 < 0.15 and is_fall_medi == false:
 		ran_3 = randf_range(0, 1)
@@ -1563,7 +1563,7 @@ func fall_stone_():
 	if _is_tower_drop_context():
 		return
 	ran_4 = randf_range(0, 1)
-	if PlayerData.ChekEqzb("头衔", "xczg"):
+	if PlayerData.check_eq_zb("头衔", "xczg"):
 		fall_stone_pro = 100
 	if fall_stone.size() > 0:
 		var loc_1 = randi_range(0, fall_stone.size() - 1)
@@ -1721,7 +1721,7 @@ func Role5Bullet(last_hurt, source_target = null):
 	if randi_range(0, 100) > 15:
 		return
 	var HurtValue = int(last_hurt * 0.3 + (SLevel * 0.02))
-	Global.addRoleBullet_(
+	Global.add_role_bullet(
 		get_Player.Bullet,
 		Vector2(position.x, position.y + 30),
 		false,
@@ -1729,7 +1729,7 @@ func Role5Bullet(last_hurt, source_target = null):
 		{"power": HurtValue, "hurtBack": [0, 0], "attackKind": "real", "WSValue": 5}
 	)
 	var bl = 1 + (SLevel * 0.2)
-	get_Player.cure_Hp(HurtValue * bl)
+	get_Player.cure_hp(HurtValue * bl)
 
 
 func _get_damage_source_player(target) -> BaseHero:
@@ -1779,7 +1779,7 @@ func _apply_damage_vampirism(target, effective_damage: int) -> void:
 	if vampirism_rate <= 0.0:
 		return
 	var heal_value := maxi(1, int(float(effective_damage) * vampirism_rate))
-	source_player.cure_Hp(heal_value)
+	source_player.cure_hp(heal_value)
 
 
 func get_Role_last_hurt(target):
@@ -1839,7 +1839,7 @@ func get_Role_last_hurt(target):
 		var miss_bl = abs(level - cur_level) * 0.04
 		if miss_bl >= 0.9:
 			miss_bl = 0.9
-		if Level_suppression(cur_level):
+		if level_suppression(cur_level):
 			Miss = Miss * (1 + miss_bl)
 		else:
 			Miss = Miss * (1 - miss_bl)
@@ -1849,7 +1849,7 @@ func get_Role_last_hurt(target):
 		var crit_bl = abs(level - cur_level) * 0.11
 		if crit_bl >= 1:
 			crit_bl = 1
-		if Level_suppression(cur_level):
+		if level_suppression(cur_level):
 			Crit = Crit * (1 - crit_bl)
 		else:
 			Crit = Crit * (1 + crit_bl)
@@ -1867,12 +1867,12 @@ func get_Role_last_hurt(target):
 		var lucky_bl = abs(level - cur_level) * 0.07
 		if lucky_bl >= 0.7:
 			lucky_bl = 0.7
-		if Level_suppression(cur_level):
+		if level_suppression(cur_level):
 			Lucky = Lucky * (1 - lucky_bl)
 		else:
 			Lucky = Lucky * (1 + lucky_bl)
 	var bl
-	if Level_suppression(cur_level):
+	if level_suppression(cur_level):
 		Hurt = int(Hurt * (1 - is_suppression_num(cur_level) * 0.05))
 	else:
 		Hurt = int(Hurt * (1 + not_suppression_num(cur_level) * 0.05))
@@ -1932,7 +1932,7 @@ func reduce_hp(value: int):
 	var level_node = get_level_node()
 	var po = Vector2(self.position.x - 20, self.position.y - 240)
 	if last_value > 0:
-		Global.addDamageText(level_node, po, last_value, "real", false, self)
+		Global.add_damage_text(level_node, po, last_value, "real", false, self)
 	is_crit = false
 	is_miss = false
 
@@ -1966,7 +1966,7 @@ func reduce_pet_hp(value: int, attack_kind: String) -> int:
 		var level_node := get_level_node()
 		if level_node != null:
 			var text_position := Vector2(position.x - 20, position.y - 240)
-			Global.addDamageText(level_node, text_position, last_value, damage_kind, is_crit, self)
+			Global.add_damage_text(level_node, text_position, last_value, damage_kind, is_crit, self)
 	is_crit = false
 	is_miss = false
 	return last_value
@@ -2127,16 +2127,16 @@ func addHurtText(value, target):
 		if is_miss:
 			var level_node = get_level_node()
 			var po = Vector2(self.position.x - 20, self.position.y - 240)
-			Global.addMissEffect(level_node, po)
+			Global.add_miss_effect(level_node, po)
 		else:
 			var level_node = get_level_node()
 			var po = Vector2(self.position.x - 20, self.position.y - 240)
-			Global.addDamageText(level_node, po, value, HurtLx, is_crit, self)
+			Global.add_damage_text(level_node, po, value, HurtLx, is_crit, self)
 	elif target is BaseBuff:
 		var HurtLx = str(target.BuffInfo.get("AttackKind", ""))
 		var level_node = get_level_node()
 		var po = Vector2(self.position.x - 20, self.position.y - 240)
-		Global.addDamageText(level_node, po, value, HurtLx, is_crit, self)
+		Global.add_damage_text(level_node, po, value, HurtLx, is_crit, self)
 
 
 func hd_reduce(value):
@@ -2172,7 +2172,7 @@ func cure_hp(value: int):
 		Hp += value
 		var level_node = get_level_node()
 		var po = Vector2(self.position.x - 20, self.position.y - 240)
-		Global.addDamageText(level_node, po, value, "cure", false, self)
+		Global.add_damage_text(level_node, po, value, "cure", false, self)
 
 
 func remove_CD():
@@ -2198,7 +2198,7 @@ func _on_cd_remove_timeout() -> void:
 	remove_CD()
 
 
-func Level_suppression(Level):
+func level_suppression(Level):
 	return level - Level > 0
 
 
@@ -2361,7 +2361,7 @@ func add_lj(value):
 	if Global.LJ_times >= Global.MostLianji:
 		Global.MostLianji = Global.LJ_times
 	var level_node = get_level_node()
-	Global.addCombo(level_node.lj_tt, Global.LJ_times, Vector2(0, 0))
+	Global.add_combo(level_node.lj_tt, Global.LJ_times, Vector2(0, 0))
 	Global.lj_count = 0
 
 
@@ -2447,12 +2447,12 @@ func shake(strength, times, interv):
 	baselevel.shake_(strength, times, interv)
 
 
-func add_WSEffect(Object_):
+func add_ws_effect(Object_):
 	var level_node = get_level_node()
 	spawn_ws_effect(Object_, level_node)
 
 
-func CheckAddBuff():
+func check_add_buff():
 	var not_jgz = true
 	var not_zznh = true
 	var not_ice = true
@@ -2701,7 +2701,7 @@ func ADDMonsterDeathEffect():
 	Global.add_special_effect(self, Vector2(0, 0), "MonsterDeath", Vector2(1, 1), false, 1)
 
 
-func WhenScary():
+func when_scary():
 	if ran_num <= 20:
 		stop_move()
 	elif ran_num > 20 and ran_num <= 60:
@@ -2728,7 +2728,7 @@ func set_gxp():
 		var has_zcld = false
 		var zcld_level = 0
 
-		if get_Player != null and PlayerData.ChekEqzb("法宝", "zcld"):
+		if get_Player != null and PlayerData.check_eq_zb("法宝", "zcld"):
 			has_zcld = true
 			zcld_level = get_Player.zcld_level
 			mult = get_zcld_multiplier()
@@ -2752,7 +2752,7 @@ func set_gxp():
 			else:
 				color_type = 3
 
-			Global.AddAura(level_node.fall_it, pp, final_coin, color_type)
+			Global.add_aura(level_node.fall_it, pp, final_coin, color_type)
 			total_coins += final_coin
 
 		print("[金币] 怪物: ", my_mr_name, " 堆数: ", piles, " 每堆: ", final_coin, " 总计: ", total_coins)
@@ -2765,7 +2765,7 @@ func set_exp():
 		return
 	var exp_value: int = add_exp
 	if RoleProp.baseroleprop.Level < int(PlayerData.PLAYER_MAX_LEVEL):
-		RoleProp.CureExp(exp_value)
+		RoleProp.cure_exp(exp_value)
 	_cure_active_pet_exp(exp_value)
 	add_exp = 0
 
@@ -3399,7 +3399,7 @@ func CheckPlayerHaveDebuff(Target):
 func WDHurt():
 	if RoleProp.SourcePlayer is Role4Hero:
 		if PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] > 0:
-			var VoodooCounts = Global.CheckWD(self)
+			var VoodooCounts = Global.check_wd(self)
 			if VoodooCounts >= 7:
 				var SkillLevel = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
 				var Power = int(RoleProp.roleprop.power) * (0.5 + SkillLevel * 0.05)
@@ -3412,7 +3412,7 @@ func WDHurt():
 					reduce_hp(SkillPower)
 					if has_meta("mds_awaken_skip_combo"):
 						remove_meta("mds_awaken_skip_combo")
-				Global.RemoveWD(self)
+				Global.remove_wd(self)
 
 
 func _is_mds_awaken_active() -> bool:

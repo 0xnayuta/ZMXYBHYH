@@ -64,7 +64,7 @@ func _build_frames(animation_name: String, path_pattern: String, frame_count: in
 
 
 func _get_weapon_level() -> int:
-	return clampi(PlayerData.get_mostLevel(WEAPON_ID), 1, 10)
+	return clampi(PlayerData.get_most_level(WEAPON_ID), 1, 10)
 
 
 func show_skill() -> void:
@@ -164,7 +164,7 @@ func _apply_stun(monster: BaseMonster) -> void:
 		return
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			buff_node,
 			{
 				"Name": "stun",

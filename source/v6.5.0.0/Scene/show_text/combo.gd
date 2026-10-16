@@ -30,7 +30,7 @@ func _refresh_combo() -> void:
 	_last_combo_num = ComboNum
 	var digits = str(ComboNum).split("")
 	while _digit_nodes.size() < digits.size():
-		var node = Global.addComboNum(combo_box, 0)
+		var node = Global.add_combo_num(combo_box, 0)
 		if node == null:
 			return
 		_digit_nodes.append(node)

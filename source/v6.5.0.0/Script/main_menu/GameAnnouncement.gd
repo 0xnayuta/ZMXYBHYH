@@ -1082,7 +1082,7 @@ func _equip_one_click_divine_set(save_progress: bool = true) -> bool:
 	RoleProp.get_equ_last_pro()
 	RoleProp.get_last_prop()
 	if is_instance_valid(RoleProp.SourcePlayer):
-		RoleProp.SourcePlayer.onEqchange()
+		RoleProp.SourcePlayer.on_eqchange()
 	if save_progress:
 		_save_secret_progress()
 	_show_secret_status("已装备五阶满强化神器武器、防具、饰品和满级神器翅膀")
@@ -1154,7 +1154,7 @@ func ADDTextInfo():
 	if VerisionsName == "" or VerisionsName == null:
 		return
 	for i in TextList[VerisionsName]:
-		var item_label = Global.ADDFont_(text_list, i, "res://Font/华康宋体W3.ttc", 17, "FFFFFF", 2, "FFFFFF")
+		var item_label = Global.add_font_(text_list, i, "res://Font/华康宋体W3.ttc", 17, "FFFFFF", 2, "FFFFFF")
 		if item_label is Label:
 			item_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 			item_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP

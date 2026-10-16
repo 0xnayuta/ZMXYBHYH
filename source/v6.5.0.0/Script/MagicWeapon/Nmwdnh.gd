@@ -43,7 +43,7 @@ func get_summon_damage_scale() -> float:
 
 
 func _physics_process(delta: float) -> void:
-	self.FB_Level = PlayerData.get_mostLevel(weapon_name) + 1
+	self.FB_Level = PlayerData.get_most_level(weapon_name) + 1
 	weapon_level = self.FB_Level
 
 	summon_attribute_scale = get_summon_attribute_scale()

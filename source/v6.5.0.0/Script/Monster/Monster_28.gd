@@ -206,7 +206,7 @@ func call_Bullet_1():
 
 func call_Bullet_2():
 	if self.MonsterDirection:
-		Global.CallFlyBullet(
+		Global.call_fly_bullet(
 			self.bullet,
 			"Monster28Bullet_1",
 			1,
@@ -217,7 +217,7 @@ func call_Bullet_2():
 			self.objattackDic["hsg"]
 		)
 	else:
-		Global.CallFlyBullet(
+		Global.call_fly_bullet(
 			self.bullet,
 			"Monster28Bullet_1",
 			1,

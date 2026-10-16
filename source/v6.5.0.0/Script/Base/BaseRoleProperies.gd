@@ -177,23 +177,23 @@ func get_next_level_prop(Name, loc):
 func get_zf_prop(Name):
 	match Name:
 		"生命":
-			return GetZFLocProp("太清阵", 1) + GetZFLocProp("腾蛇阵", 1)
+			return get_zf_loc_prop("太清阵", 1) + get_zf_loc_prop("腾蛇阵", 1)
 		"魔法":
-			return GetZFLocProp("落魄阵", 1)
+			return get_zf_loc_prop("落魄阵", 1)
 		"攻击":
-			return GetZFLocProp("太清阵", 2) + GetZFLocProp("腾蛇阵", 2) + GetZFLocProp("落魄阵", 2)
+			return get_zf_loc_prop("太清阵", 2) + get_zf_loc_prop("腾蛇阵", 2) + get_zf_loc_prop("落魄阵", 2)
 		"物防":
-			return GetZFLocProp("森罗阵", 1)
+			return get_zf_loc_prop("森罗阵", 1)
 		"魔防":
-			return GetZFLocProp("森罗阵", 3)
+			return get_zf_loc_prop("森罗阵", 3)
 		"暴击":
-			return GetZFLocProp("森罗阵", 2) + GetZFLocProp("太清阵", 3)
+			return get_zf_loc_prop("森罗阵", 2) + get_zf_loc_prop("太清阵", 3)
 		"幸运":
-			return GetZFLocProp("太清阵", 4) + GetZFLocProp("落魄阵", 3)
+			return get_zf_loc_prop("太清阵", 4) + get_zf_loc_prop("落魄阵", 3)
 		"破甲":
-			return GetZFLocProp("腾蛇阵", 3)
+			return get_zf_loc_prop("腾蛇阵", 3)
 		"破魔":
-			return GetZFLocProp("腾蛇阵", 4)
+			return get_zf_loc_prop("腾蛇阵", 4)
 	return 0
 
 
@@ -565,28 +565,28 @@ func _refresh_static_prop_cache() -> void:
 	if signature == _static_prop_signature and not _cached_pellet_props.is_empty():
 		return
 	_static_prop_signature = signature
-	_cached_pellet_props = GetPelletProp()
+	_cached_pellet_props = get_pellet_prop()
 	_cached_zf_props = {
-		"生命": GetZFProp("生命"),
-		"魔法": GetZFProp("魔法"),
-		"攻击": GetZFProp("攻击"),
-		"暴击": GetZFProp("暴击"),
-		"幸运": GetZFProp("幸运"),
-		"物防": GetZFProp("物防"),
-		"魔防": GetZFProp("魔防"),
-		"破甲": GetZFProp("破甲"),
-		"破魔": GetZFProp("破魔")
+		"生命": get_zf_prop("生命"),
+		"魔法": get_zf_prop("魔法"),
+		"攻击": get_zf_prop("攻击"),
+		"暴击": get_zf_prop("暴击"),
+		"幸运": get_zf_prop("幸运"),
+		"物防": get_zf_prop("物防"),
+		"魔防": get_zf_prop("魔防"),
+		"破甲": get_zf_prop("破甲"),
+		"破魔": get_zf_prop("破魔")
 	}
 	_cached_sword_props = {
-		"生命": GetMainSwordArrayProp("生命"),
-		"魔法": GetMainSwordArrayProp("魔法"),
-		"攻击": GetMainSwordArrayProp("攻击"),
-		"暴击": GetMainSwordArrayProp("暴击"),
-		"幸运": GetMainSwordArrayProp("幸运"),
-		"物防": GetMainSwordArrayProp("物防"),
-		"魔防": GetMainSwordArrayProp("魔防"),
-		"闪避": GetMainSwordArrayProp("闪避"),
-		"命中": GetMainSwordArrayProp("命中")
+		"生命": get_main_sword_array_prop("生命"),
+		"魔法": get_main_sword_array_prop("魔法"),
+		"攻击": get_main_sword_array_prop("攻击"),
+		"暴击": get_main_sword_array_prop("暴击"),
+		"幸运": get_main_sword_array_prop("幸运"),
+		"物防": get_main_sword_array_prop("物防"),
+		"魔防": get_main_sword_array_prop("魔防"),
+		"闪避": get_main_sword_array_prop("闪避"),
+		"命中": get_main_sword_array_prop("命中")
 	}
 	_cached_body_props = BODY_TRAINING_DATA.get_attribute_totals(PlayerData.player_data.get("炼体", {}))
 	_cached_wanling_props = PlayerData.get_wanling_attribute_totals()
@@ -594,12 +594,12 @@ func _refresh_static_prop_cache() -> void:
 
 
 func get_last_prop():
-	if PlayerData.ChekEqzb("头衔", "xczg"):
+	if PlayerData.check_eq_zb("头衔", "xczg"):
 		if SourcePlayer != null:
 			for i in SourcePlayer.buff.get_children():
 				if i.BuffInfo.has("DeBuff") and i.BuffInfo["DeBuff"]:
 					i.queue_free()
-	var is_sxyr: bool = bool(PlayerData.ChekEqzb("头衔", "sxyr"))
+	var is_sxyr: bool = bool(PlayerData.check_eq_zb("头衔", "sxyr"))
 	if is_sxyr and SourcePlayer != null and not SourcePlayer.SXYRCannotCure:
 		roleprop.SHp = 1
 		roleprop.Hp = 1
@@ -840,8 +840,8 @@ func set_basic_prop():
 	else:
 		baseroleprop.max_exp = 5000 + 5000 * (baseroleprop.Level - 19)
 	get_last_prop()
-	set_full_Hp()
-	set_full_Mp()
+	set_full_hp()
+	set_full_mp()
 
 
 func set_full_hp():
@@ -863,8 +863,8 @@ func _physics_process(_delta: float) -> void:
 		ws_up_power = 1.5
 	else:
 		ws_up_power = 1
-	check_Hp()
-	check_Mp()
+	check_hp()
+	check_mp()
 	var equipment_signature := hash(
 		[
 			PlayerData.player_data.get(DataKeys.WEAPON, []),
@@ -907,7 +907,7 @@ func up_level():
 		return
 	if baseroleprop.exp >= baseroleprop.max_exp:
 		if baseroleprop.Level < int(PlayerData.PLAYER_MAX_LEVEL):
-			CureLevel()
+			cure_level()
 
 
 func get_equ_properies():
@@ -996,12 +996,12 @@ func get_equ_properies():
 	else:
 		remove_fb_pro()
 
-	get_BsWqProperies()
-	get_BsFjProperies()
-	get_BsSpProperies()
-	get_BsCbProperies()
-	get_BsSzProperies()
-	get_BsTxProperies()
+	get_bs_wq_properties()
+	get_bs_fj_properties()
+	get_bs_sp_properties()
+	get_bs_cb_properties()
+	get_bs_sz_properties()
+	get_bs_tx_properties()
 
 
 func get_bs_wq_properties():
@@ -1368,88 +1368,3 @@ func cure_level():
 	PlayerData.player_data.玩家当前经验 = 0
 	MemoryClass.save_game(Global.cd_path)
 	set_basic_prop()
-
-
-## [兼容代理] 保持旧接口兼容
-func GetZFLocProp(Name, loc):
-	return get_zf_loc_prop(Name, loc)
-
-
-## [兼容代理] 保持旧接口兼容
-func GetNextLevelProp(Name, loc):
-	return get_next_level_prop(Name, loc)
-
-
-## [兼容代理] 保持旧接口兼容
-func GetZFProp(Name):
-	return get_zf_prop(Name)
-
-
-## [兼容代理] 保持旧接口兼容
-func GetMainSwordArrayProp(Name):
-	return get_main_sword_array_prop(Name)
-
-
-## [兼容代理] 保持旧接口兼容
-func GetPelletProp():
-	return get_pellet_prop()
-
-
-## [兼容代理] 保持旧接口兼容
-func set_full_Hp():
-	return set_full_hp()
-
-
-## [兼容代理] 保持旧接口兼容
-func set_full_Mp():
-	return set_full_mp()
-
-
-## [兼容代理] 保持旧接口兼容
-func check_Hp():
-	return check_hp()
-
-
-## [兼容代理] 保持旧接口兼容
-func check_Mp():
-	return check_mp()
-
-
-## [兼容代理] 保持旧接口兼容
-func get_BsWqProperies():
-	return get_bs_wq_properties()
-
-
-## [兼容代理] 保持旧接口兼容
-func get_BsFjProperies():
-	return get_bs_fj_properties()
-
-
-## [兼容代理] 保持旧接口兼容
-func get_BsSpProperies():
-	return get_bs_sp_properties()
-
-
-## [兼容代理] 保持旧接口兼容
-func get_BsCbProperies():
-	return get_bs_cb_properties()
-
-
-## [兼容代理] 保持旧接口兼容
-func get_BsSzProperies():
-	return get_bs_sz_properties()
-
-
-## [兼容代理] 保持旧接口兼容
-func get_BsTxProperies():
-	return get_bs_tx_properties()
-
-
-## [兼容代理] 保持旧接口兼容
-func CureExp(Exp: int):
-	return cure_exp(Exp)
-
-
-## [兼容代理] 保持旧接口兼容
-func CureLevel():
-	return cure_level()

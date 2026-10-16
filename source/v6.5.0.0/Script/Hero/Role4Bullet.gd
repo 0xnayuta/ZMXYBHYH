@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 		OldMonster = TargetMonster
 		IsSet = true
 	if TargetMonster != null:
-		self.position += Global.GetPositionBetween(self, TargetMonster) * Speed
+		self.position += Global.get_position_between(self, TargetMonster) * Speed
 	else:
 		queue_free()
 	if TargetMonster == null or OldMonster == null:
@@ -64,7 +64,7 @@ func _on_check_body_entered(body: Node2D) -> void:
 			OldMonster = TargetMonster
 			(
 				Global
-				. AddBuff(
+				. add_buff(
 					body.buff,
 					{
 						"Name": "Voodoo",
@@ -78,7 +78,7 @@ func _on_check_body_entered(body: Node2D) -> void:
 			)
 			(
 				Global
-				. AddBuff(
+				. add_buff(
 					body.buff,
 					{
 						"Name": "stun",

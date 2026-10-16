@@ -90,11 +90,11 @@ func _on_area_entered(_area: Area2D) -> void:
 			for i in range(GetMaxMinShallowNum()[0]):
 				if Player.ShallowList.size() > GetMaxMinShallowNum()[1]:
 					return
-				Global.addRole1Shallow(Player.get_parent(), Player.position, Player.action.scale.x, num)
+				Global.add_role1_shallow(Player.get_parent(), Player.position, Player.action.scale.x, num)
 		if Player.ShallowList.size() >= GetMaxMinShallowNum()[1]:
 			return
 		if randi_range(0, 100) < 45 + (PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1) * 3:
-			Global.addRole1Shallow(Player.get_parent(), Player.position + Vector2(0, -20), Player.action.scale.x, num)
+			Global.add_role1_shallow(Player.get_parent(), Player.position + Vector2(0, -20), Player.action.scale.x, num)
 
 
 func GetMaxMinShallowNum():

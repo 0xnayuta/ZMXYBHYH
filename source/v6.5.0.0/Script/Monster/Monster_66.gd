@@ -31,7 +31,7 @@ func monster_66():
 	self.fall_coin = 0
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			self.buff,
 			{
 				"Name": "SuperArmor",

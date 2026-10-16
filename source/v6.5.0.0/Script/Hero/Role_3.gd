@@ -33,7 +33,7 @@ var _sd_awaken_effect: RoleSpecialEffect = null
 func _ready() -> void:
 	super._ready()
 	add_to_group("Player")
-	super.onEqchange()
+	super.on_eqchange()
 	Role_3()
 	_prepare_bdqk_action()
 	BA_DI_QIAN_KUN_EFFECT.prewarm_frames()
@@ -190,7 +190,7 @@ func _physics_process(delta: float) -> void:
 	_process_sd_awaken(delta)
 	_process_dgq_spikes(delta)
 	_sync_special_effect_visual()
-	if NoLimitBuff():
+	if no_limit_buff():
 		if (
 			not is_riding_mount()
 			and Input.is_action_pressed("normalhit")
@@ -283,7 +283,7 @@ func do_normalhit_3():
 	return
 
 
-func Skill_SD():
+func skill_sd():
 	self.Role1SkillInter["sd"] = 1.2
 
 	get_action = "sd"
@@ -297,7 +297,7 @@ func Skill_SD():
 	is_using_skills = false
 
 
-func Skill_ZZNH():
+func skill_zznh():
 	self.Role1SkillInter["zznh"] = 2
 
 	get_action = "zznh"
@@ -311,7 +311,7 @@ func Skill_ZZNH():
 	is_using_skills = false
 
 
-func Skill_DJ():
+func skill_dj():
 	self.Role1SkillInter["dj"] = 1.2
 	velocity.x = 0
 	get_action = "dj"
@@ -325,7 +325,7 @@ func Skill_DJ():
 	is_using_skills = false
 
 
-func Skill_JSP():
+func skill_jsp():
 	self.Role1SkillInter["jsp"] = 6
 	velocity.x = 0
 	get_action = "jsp"
@@ -339,7 +339,7 @@ func Skill_JSP():
 	is_using_skills = false
 
 
-func Skill_SSP():
+func skill_ssp():
 	self.Role1SkillInter["ssp"] = 4.8
 	velocity.x = 0
 	get_action = "ssp"
@@ -353,7 +353,7 @@ func Skill_SSP():
 	is_using_skills = false
 
 
-func Skill_XGQ():
+func skill_xgq():
 	self.Role1SkillInter["xgq"] = 6
 	velocity.x = 0
 	get_action = "xgq"
@@ -367,7 +367,7 @@ func Skill_XGQ():
 	is_using_skills = false
 
 
-func Skill_DGQ():
+func skill_dgq():
 	self.Role1SkillInter["dgq"] = 4.2
 	velocity.x = 0
 	get_action = "dgq"
@@ -384,7 +384,7 @@ func Skill_DGQ():
 	is_using_skills = false
 
 
-func Skill_TMC():
+func skill_tmc():
 	self.IsTMc = true
 	self.Role1SkillInter["tmc"] = 2.4
 	velocity.x = 0
@@ -399,7 +399,7 @@ func Skill_TMC():
 	is_using_skills = false
 
 
-func Skill_TMC2():
+func skill_tmc2():
 	self.Role1SkillInter["tmc"] = 1.2
 	velocity.x = 0
 	get_action = "tmc"
@@ -413,7 +413,7 @@ func Skill_TMC2():
 	is_using_skills = false
 
 
-func Skill_SYZQ():
+func skill_syzq():
 	self.Role1SkillInter["syzq"] = 6
 	velocity.x = 0
 	get_action = "syzq"
@@ -427,7 +427,7 @@ func Skill_SYZQ():
 	is_using_skills = false
 
 
-func Skill_BDQK():
+func skill_bdqk():
 	self.Role1SkillInter["bdqk"] = 3.0
 	velocity.x = 0
 	get_action = "bdqk"
@@ -526,16 +526,18 @@ func AddSD():
 		_sd_awaken_mp_elapsed = 0.0
 		_sd_toggle_locked = true
 		if _sd_awaken_effect == null or not is_instance_valid(_sd_awaken_effect):
-			_sd_awaken_effect = Global.addRoleSpecialEffect_(self, Vector2(0, -20), false, "sd2")
+			_sd_awaken_effect = Global.add_role_special_effect(self, Vector2(0, -20), false, "sd2")
 			if _sd_awaken_effect != null and is_instance_valid(_sd_awaken_effect):
 				_sd_awaken_effect.set_meta("persistent_sd", true)
 		return
-	Global.addRoleSpecialEffect_(self, Vector2(0, 0), false, "sd")
+	Global.add_role_special_effect(self, Vector2(0, 0), false, "sd")
 
 
 func AddZZNH():
 	var skill_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
-	var effect = Global.addRoleSpecialEffect_(self, Vector2(30, -30) if PlayerDir else Vector2(-30, -30), false, "zznh")
+	var effect = Global.add_role_special_effect(
+		self, Vector2(30, -30) if PlayerDir else Vector2(-30, -30), false, "zznh"
+	)
 	effect.skill_level = skill_level
 	effect.zznh_defense_reduction = 0.5 if _is_skill_awakened("zznh") and _is_skill_awaken_enabled("zznh") else 0.0
 
@@ -568,7 +570,7 @@ func CallSYZQ():
 		pp = Vector2(64, -70) + position
 	else:
 		pp = Vector2(-64, -70) + position
-	Global.addRoleBullet_(self.Bullet, pp, PlayerDir, "Role3Bullet1", objattackDic["syzq"])
+	Global.add_role_bullet(self.Bullet, pp, PlayerDir, "Role3Bullet1", objattackDic["syzq"])
 
 
 func AddSSP():
@@ -579,7 +581,7 @@ func AddSSP():
 	else:
 		bullet_spawn_positions = [Vector2(70, 15), Vector2(160, 10), Vector2(270, 0), Vector2(400, -10)]
 	for i in bullet_spawn_positions.size():
-		var xbz = Global.addRoleBullet_(
+		var xbz = Global.add_role_bullet(
 			self.Bullet, bullet_spawn_positions[i] + position, PlayerDir, "Role3Bullet2", objattackDic["ssp"]
 		)
 		xbz.scale = ScaleList[i]
@@ -599,7 +601,7 @@ func AddTMC():
 			self.position.x + sin(float(NewRotation) * PI / 180) * 100,
 			self.position.y - 15 - cos(float(NewRotation) * PI / 180) * 100
 		)
-		var stab = Global.addRoleBullet_(self.Bullet, stabPosition, false, "Role3Bullet3", objattackDic["tmc"])
+		var stab = Global.add_role_bullet(self.Bullet, stabPosition, false, "Role3Bullet3", objattackDic["tmc"])
 		stab.rotation_degrees = NewRotation - 90
 		stab.modulate = Color(1, 1, 1, 0)
 		tween.tween_property(stab, "modulate", Color(1, 1, 1, 1), 0.6)
@@ -619,7 +621,7 @@ func _process_dgq_spikes(delta: float) -> void:
 
 func _spawn_dgq_spike() -> void:
 	var spike_position := position + Vector2(0.0, -15.0)
-	var spike: Node = Global.addRoleBullet_(self.Bullet, spike_position, false, "Role3Bullet3", objattackDic["tmc"])
+	var spike: Node = Global.add_role_bullet(self.Bullet, spike_position, false, "Role3Bullet3", objattackDic["tmc"])
 	if spike != null and is_instance_valid(spike):
 		spike.rotation_degrees = _dgq_spike_angle - 90.0
 	_dgq_spike_angle = fmod(_dgq_spike_angle + DGQ_SPIKE_ANGLE_STEP, 360.0)
@@ -657,7 +659,7 @@ func _process_sd_awaken(delta: float) -> void:
 	if RoleProp.roleprop.Mp < mp_cost:
 		_disable_sd_awaken()
 		return
-	reduce_Mp(mp_cost)
+	reduce_mp(mp_cost)
 
 
 func _is_sd_awaken_active() -> bool:

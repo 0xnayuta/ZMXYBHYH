@@ -206,7 +206,7 @@ func _apply_freeze(target: BaseMonster) -> void:
 	if target.buff != null:
 		(
 			Global
-			. AddBuff(
+			. add_buff(
 				target.buff,
 				{
 					"Name": "Ice",

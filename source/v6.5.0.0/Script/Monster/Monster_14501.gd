@@ -211,7 +211,7 @@ func call_attack1_bullet():
 	var dir = MonsterDirection
 	var fz
 	if dir:
-		fz = Global.CallFlyBullet(
+		fz = Global.call_fly_bullet(
 			bullet,
 			"Monster_xss_Bulet2",
 			1,
@@ -222,7 +222,7 @@ func call_attack1_bullet():
 			objattackDic["hit1"]
 		)
 	else:
-		fz = Global.CallFlyBullet(
+		fz = Global.call_fly_bullet(
 			bullet,
 			"Monster_xss_Bulet2",
 			1,
@@ -245,7 +245,7 @@ func call_attack1_3bullet():
 	for offset in y_offsets:
 		var fz
 		if dir:
-			fz = Global.CallFlyBullet(
+			fz = Global.call_fly_bullet(
 				bullet,
 				"Monster_xss_Bulet2",
 				1,
@@ -256,7 +256,7 @@ func call_attack1_3bullet():
 				objattackDic["hit1"]
 			)
 		else:
-			fz = Global.CallFlyBullet(
+			fz = Global.call_fly_bullet(
 				bullet,
 				"Monster_xss_Bulet2",
 				1,
@@ -277,11 +277,11 @@ func call_attack2_bullet():
 	var dir = MonsterDirection
 	var fz
 	if dir:
-		fz = Global.CallFlyBullet(
+		fz = Global.call_fly_bullet(
 			bullet, "Monster_xss_Bulet1", 1, Vector2(position.x + 150, 500), 10, 10, "hit2", objattackDic["hit2"]
 		)
 	else:
-		fz = Global.CallFlyBullet(
+		fz = Global.call_fly_bullet(
 			bullet, "Monster_xss_Bulet1", 1, Vector2(position.x - 150, 500), 10, -10, "hit2", objattackDic["hit2"]
 		)
 	if fz:
@@ -295,11 +295,11 @@ func call_attack3_bullet():
 	var dir = MonsterDirection
 	var fz
 	if dir:
-		fz = Global.CallFlyBullet(
+		fz = Global.call_fly_bullet(
 			bullet, "Monster63Bullet", 1, Vector2(position.x + 100, 450), 1000, -3400, "hit3", objattackDic["hit3"]
 		)
 	else:
-		fz = Global.CallFlyBullet(
+		fz = Global.call_fly_bullet(
 			bullet, "Monster63Bullet", 1, Vector2(position.x - 100, 450), 1000, 3400, "hit3", objattackDic["hit3"]
 		)
 	if fz:

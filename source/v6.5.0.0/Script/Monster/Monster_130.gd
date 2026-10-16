@@ -329,7 +329,7 @@ func _apply_gaze_control() -> void:
 		if buff_node != null:
 			(
 				Global
-				. AddBuff(
+				. add_buff(
 					buff_node,
 					{
 						"Name": "EyeFix",

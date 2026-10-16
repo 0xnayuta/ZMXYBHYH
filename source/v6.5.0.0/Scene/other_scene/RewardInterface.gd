@@ -36,7 +36,7 @@ func AddBox():
 		var StrengthValue = i["StrengthValue"]
 		var Prop = i["Prop"]
 		var WX = i["WX"]
-		var box = Global.AddRewardBox(item_list, ItemName, Value)
+		var box = Global.add_reward_box(item_list, ItemName, Value)
 		box.modulate = Color(1, 1, 1, 0)
 		tween.tween_property(box, "modulate", Color(1, 1, 1, 1), 0.2)
 

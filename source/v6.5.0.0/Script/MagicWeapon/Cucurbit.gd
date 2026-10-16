@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	needMp = 50
-	self.FB_Level = PlayerData.get_mostLevel("dshl") + 1
+	self.FB_Level = PlayerData.get_most_level("dshl") + 1
 	var add_effect: Dictionary = _hit_data["addeffect"]
 	if PlayerData.check_have_wx("dshl", "木"):
 		_hit_data["power"] = 100 + int(RoleProp.roleprop.power * randf_range(0.15, 0.18)) + 70 * self.FB_Level
@@ -50,11 +50,11 @@ func use_over():
 
 func addFire():
 	var attack_data := get_attack_snapshot()
-	Global.addWeaponBullet_($Bullet, Vector2(self.position.x, 250), "CucurFire_2", attack_data, mg_action.flip_h, 100)
-	Global.addWeaponBullet_(
+	Global.add_weapon_bullet($Bullet, Vector2(self.position.x, 250), "CucurFire_2", attack_data, mg_action.flip_h, 100)
+	Global.add_weapon_bullet(
 		$Bullet, Vector2(self.position.x - 230, 250), "CucurFire_2", attack_data, mg_action.flip_h, 100
 	)
-	Global.addWeaponBullet_(
+	Global.add_weapon_bullet(
 		$Bullet, Vector2(self.position.x + 230, 250), "CucurFire_2", attack_data, mg_action.flip_h, 100
 	)
 

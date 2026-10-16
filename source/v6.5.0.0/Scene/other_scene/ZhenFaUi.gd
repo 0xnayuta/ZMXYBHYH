@@ -64,7 +64,7 @@ func AddZhenyanButton():
 			i.queue_free()
 	var Num: int = 1
 	for i in PostionList:
-		Global.Addzhenyanbutton(zhenfaicon, i, Num, self)
+		Global.addzhenyanbutton(zhenfaicon, i, Num, self)
 		Num += 1
 
 
@@ -91,7 +91,7 @@ func SetZhenfaBasicInfo():
 
 func AddTotalZhenfaButton():
 	for i in CurrentZFList:
-		Global.AddZhenfalxbutton(zhen_fa_button_list, i, self)
+		Global.add_zhenfalxbutton(zhen_fa_button_list, i, self)
 
 
 func SetRightInfo():
@@ -99,15 +99,15 @@ func SetRightInfo():
 		"阵法详情":
 			if Infomation != null:
 				Infomation.queue_free()
-			Infomation = Global.AddZhenFaInfo(bg, Vector2(70, -120), self)
+			Infomation = Global.add_zhen_fa_info(bg, Vector2(70, -120), self)
 		"阵眼升级":
 			if Infomation != null:
 				Infomation.queue_free()
-			Infomation = Global.AddZhenYanCureLevel(bg, Vector2(70, -120), self)
+			Infomation = Global.add_zhen_yan_cure_level(bg, Vector2(70, -120), self)
 		"阵法突破":
 			if Infomation != null:
 				Infomation.queue_free()
-			Infomation = Global.AddZhenFaTuPo(bg, Vector2(70, -120), self)
+			Infomation = Global.add_zhen_fa_tu_po(bg, Vector2(70, -120), self)
 
 
 func OnChangeName():
@@ -172,4 +172,4 @@ func _on_use_pressed() -> void:
 
 
 func _on_button_pressed() -> void:
-	Global.AddZhenFaHelp(self, Vector2(0, 0))
+	Global.add_zhen_fa_help(self, Vector2(0, 0))

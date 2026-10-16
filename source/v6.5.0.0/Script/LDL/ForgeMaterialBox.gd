@@ -26,7 +26,7 @@ func SetText():
 
 
 func SetBox():
-	var ItemBox = Global.AddItemBox(box, true, true, ItemName, 0, 1, [], AE.AllEquipment_[ItemName])
+	var ItemBox = Global.add_item_box(box, true, true, ItemName, 0, 1, [], AE.AllEquipment_[ItemName])
 	if ItemBox == null or not is_instance_valid(ItemBox):
 		return
 	var icon_path := "res://Art/BackPack/AllItems/%s.png" % str(ItemName)

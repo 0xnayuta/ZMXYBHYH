@@ -248,7 +248,7 @@ func AddBuffEffectFirst():
 				var current_mp = RoleProp.roleprop.Mp
 				BuffInfo["stored_mp"] = current_mp
 
-				GetObj.reduce_Mp(current_mp)
+				GetObj.reduce_mp(current_mp)
 				print("MagicDrain触发 | 扣除魔法:", current_mp)
 
 		"flls":
@@ -479,7 +479,7 @@ func _on_buff_value_reduce_time_timeout() -> void:
 				if reduce_amount < 1 and current_mp > 0:
 					reduce_amount = 1
 				print("flls触发 | 当前MP:", current_mp, " | 减少:", reduce_amount, " | 减少后:", current_mp - reduce_amount)
-				GetObj.reduce_Mp(int(reduce_amount))
+				GetObj.reduce_mp(int(reduce_amount))
 
 		"HealOverTime":
 			if GetObj is BaseHero:

@@ -587,7 +587,7 @@ func _activate_boss_guard() -> void:
 	def = roundi(float(_runtime_config["def"]) * 1.5) + BOSS_GUARD_DEF_FLAT_SCALED
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			buff,
 			{
 				"Name": "SuperArmor",

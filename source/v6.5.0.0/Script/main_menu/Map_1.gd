@@ -352,7 +352,7 @@ func _on_turn_mainmenu_pressed() -> void:
 
 
 func _on_shop_pressed() -> void:
-	Global.add_SHOP(_ui_parent(), Vector2(0, 0))
+	Global.add_shop(_ui_parent(), Vector2(0, 0))
 
 
 func add_text(text, parent):
@@ -510,12 +510,12 @@ func _on_level_10_mouse_exited() -> void:
 
 
 func _on_task_pressed() -> void:
-	Global.AddBasicTask_(_ui_parent(), Vector2(0, 0))
+	Global.add_basic_task(_ui_parent(), Vector2(0, 0))
 
 
 func _on_game_an_pressed() -> void:
-	Global.AddGameAnnouncement(_ui_parent(), Vector2(0, 0))
+	Global.add_game_announcement(_ui_parent(), Vector2(0, 0))
 
 
 func _on_level_lhhj_pressed() -> void:
-	Global.Addlhhj(_ui_parent(), Vector2(0, 0))
+	Global.addlhhj(_ui_parent(), Vector2(0, 0))

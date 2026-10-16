@@ -143,7 +143,7 @@ func do_hit_3():
 
 
 func call_ljf():
-	var ljf = Global.CallFlyBullet(
+	var ljf = Global.call_fly_bullet(
 		self.bullet,
 		"Monster17Bullet",
 		1,

@@ -441,7 +441,7 @@ func apply_poison_buff(role: BaseHero) -> void:
 		return
 	var added_buff: Variant = (
 		Global
-		. AddBuff(
+		. add_buff(
 			role.buff,
 			{
 				"Name": "poision",

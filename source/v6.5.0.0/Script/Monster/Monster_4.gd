@@ -150,6 +150,6 @@ func call_tfhx():
 	var position_: Vector2
 	position_ = Vector2(self.position.x, self.position.y)
 	if self.MonsterDirection:
-		Global.CallFlyBullet(self.bullet, skill_name, dir, position_, distance, speed, name_, hit_dic)
+		Global.call_fly_bullet(self.bullet, skill_name, dir, position_, distance, speed, name_, hit_dic)
 	else:
-		Global.CallFlyBullet(self.bullet, skill_name, dir, position_, distance, -speed, name_, hit_dic)
+		Global.call_fly_bullet(self.bullet, skill_name, dir, position_, distance, -speed, name_, hit_dic)

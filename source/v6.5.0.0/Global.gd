@@ -1644,7 +1644,7 @@ func get_current_role_equipment_preload_paths(role_id: int = 0) -> Array[String]
 		NeZhaEquipmentVisuals.get_body_front_frames(str(names.get("body", "Empty")))
 		NeZhaEquipmentVisuals.get_weapon_frames(str(names.get("weapon", "Empty")))
 		return paths
-	var body_name: String = str(GetName(str(names.get("body", "Empty"))))
+	var body_name: String = str(get_clean_name(str(names.get("body", "Empty"))))
 	var weapon_name: String = str(names.get("weapon", "Empty"))
 	var body_path := "res://Art/HeroPicture/Role%dAllEquipment/Role_%d_Body_%s.png" % [role_id, role_id, body_name]
 	var weapon_path := "res://Art/HeroPicture/Role%dAllEquipment/Role_%d_Eq_%s.png" % [role_id, role_id, weapon_name]
@@ -2328,7 +2328,7 @@ func _is_zlwsz_shenqi_equipped() -> bool:
 	if not fashion is Dictionary:
 		return false
 	var fashion_name := str((fashion as Dictionary).get(DataKeys.NAME, ""))
-	var base_name: String = str(GetName(fashion_name))
+	var base_name: String = str(get_clean_name(fashion_name))
 	return base_name == "zlwsz" and fashion_name.begins_with("shenqi")
 
 
@@ -2790,7 +2790,7 @@ var RoleButton = null
 var Star = null
 
 
-func AddStar(parent, Type):
+func add_star(parent, Type):
 	if not Star:
 		Star = _load_scene("res://Scene/other_scene/star.tscn")
 	var target = instance_scene(Star, parent)
@@ -2798,7 +2798,7 @@ func AddStar(parent, Type):
 	return target
 
 
-func AddRoleButton(parent, MyName, MyFather):
+func add_role_button(parent, MyName, MyFather):
 	if not RoleButton:
 		RoleButton = _load_scene("res://Scene/other_scene/role_button.tscn")
 	var target = instance_scene(RoleButton, parent)
@@ -2807,7 +2807,7 @@ func AddRoleButton(parent, MyName, MyFather):
 	return target
 
 
-func AddBasicArButton(parent, Num):
+func add_basic_ar_button(parent, Num):
 	var target = instance_scene(_cached_scene(&"BasicArButton", BASIC_AR_BUTTON_PATH), parent)
 	if target == null:
 		return null
@@ -2815,7 +2815,7 @@ func AddBasicArButton(parent, Num):
 	return target
 
 
-func AddZhenFaHelp(parent, position):
+func add_zhen_fa_help(parent, position):
 	if not ZhenFaHelp:
 		ZhenFaHelp = _load_scene("res://Scene/other_scene/ZhenFaHelp.tscn")
 	var target = instance_scene(ZhenFaHelp, parent)
@@ -2823,7 +2823,7 @@ func AddZhenFaHelp(parent, position):
 	return target
 
 
-func AddZhenFaTuPo(parent, position, Father):
+func add_zhen_fa_tu_po(parent, position, Father):
 	if not ZhenFaTuPo:
 		ZhenFaTuPo = _load_scene("res://Scene/other_scene/ZhenFaTuPo.tscn")
 	var target = instance_scene(ZhenFaTuPo, parent)
@@ -2832,7 +2832,7 @@ func AddZhenFaTuPo(parent, position, Father):
 	return target
 
 
-func AddZhenYanCureLevel(parent, position, Father):
+func add_zhen_yan_cure_level(parent, position, Father):
 	if not ZhenYanCureLevel:
 		ZhenYanCureLevel = _load_scene("res://Scene/other_scene/ZhenYanCureLevel.tscn")
 	var target = instance_scene(ZhenYanCureLevel, parent)
@@ -2841,7 +2841,7 @@ func AddZhenYanCureLevel(parent, position, Father):
 	return target
 
 
-func Addzhenyanbutton(parent, position, LocNum, Father):
+func addzhenyanbutton(parent, position, LocNum, Father):
 	if not zhenyanbutton:
 		zhenyanbutton = _load_scene("res://Scene/other_scene/zhenyanbutton.tscn")
 	var target = instance_scene(zhenyanbutton, parent)
@@ -2851,7 +2851,7 @@ func Addzhenyanbutton(parent, position, LocNum, Father):
 	return target
 
 
-func Add_28Ui(parent, position):
+func add_28_ui(parent, position):
 	if not _28Ui:
 		_28Ui = _load_scene("res://Scene/other_scene/TwentyEightConstellations.tscn")
 	var target = instance_scene(_28Ui, parent)
@@ -2859,7 +2859,7 @@ func Add_28Ui(parent, position):
 	return target
 
 
-func AddZhenFaUi(parent, position):
+func add_zhen_fa_ui(parent, position):
 	if not ZhenFaUi:
 		ZhenFaUi = _load_scene("res://Scene/other_scene/ZhenFaUi.tscn")
 	var target = instance_scene(ZhenFaUi, parent)
@@ -2867,7 +2867,7 @@ func AddZhenFaUi(parent, position):
 	return target
 
 
-func AddZhenFaInfo(parent, position, Father):
+func add_zhen_fa_info(parent, position, Father):
 	if not ZhenFaInfo:
 		ZhenFaInfo = _load_scene("res://Scene/other_scene/zhenfainfo.tscn")
 	var target = instance_scene(ZhenFaInfo, parent)
@@ -2876,7 +2876,7 @@ func AddZhenFaInfo(parent, position, Father):
 	return target
 
 
-func AddZhenfalxbutton(parent, zhenfaName, Father):
+func add_zhenfalxbutton(parent, zhenfaName, Father):
 	if not Zhenfalxbutton:
 		Zhenfalxbutton = _load_scene("res://Scene/other_scene/zhenfalxbutton.tscn")
 	var target = instance_scene(Zhenfalxbutton, parent)
@@ -2885,7 +2885,7 @@ func AddZhenfalxbutton(parent, zhenfaName, Father):
 	return target
 
 
-func Addhdgqmap(parent, position):
+func addhdgqmap(parent, position):
 	if not ReturnBackMap:
 		ReturnBackMap = _load_scene("res://Scene/other_scene/ReturnBackMap.tscn")
 	var target = instance_scene(ReturnBackMap, parent)
@@ -2893,7 +2893,7 @@ func Addhdgqmap(parent, position):
 	return target
 
 
-func AddMonster141Aura(parent, position_, TargetMonster):
+func add_monster141_aura(parent, position_, TargetMonster):
 	if not Monster141Aura:
 		Monster141Aura = _load_scene("res://Scene/other_scene/NMWAura.tscn")
 	var target = instance_scene(Monster141Aura, parent)
@@ -2902,7 +2902,7 @@ func AddMonster141Aura(parent, position_, TargetMonster):
 	return target
 
 
-func Addlhhjhelp(parent, position):
+func addlhhjhelp(parent, position):
 	if not lhhjhelp:
 		lhhjhelp = _load_scene("res://Scene/other_scene/lhhj_help.tscn")
 	var target = instance_scene(lhhjhelp, parent)
@@ -2910,7 +2910,7 @@ func Addlhhjhelp(parent, position):
 	return target
 
 
-func Addlistbutton(parent, selfName, Father, Num):
+func addlistbutton(parent, selfName, Father, Num):
 	if not listbutton:
 		listbutton = _load_scene("res://Scene/other_scene/list_button.tscn")
 	var target = instance_scene(listbutton, parent)
@@ -2920,7 +2920,7 @@ func Addlistbutton(parent, selfName, Father, Num):
 	return target
 
 
-func Addlhhj(parent, position):
+func addlhhj(parent, position):
 	if not Lhhj_:
 		Lhhj_ = _load_scene("res://Scene/other_scene/lhhj.tscn")
 	var target = instance_scene(Lhhj_, parent)
@@ -2932,7 +2932,7 @@ func Addlhhj(parent, position):
 	return target
 
 
-func Addlhhjbutton(parent, selfName, Father):
+func addlhhjbutton(parent, selfName, Father):
 	if not lhhjbutton:
 		lhhjbutton = _load_scene("res://Scene/other_scene/lhhj_button.tscn")
 	var target = instance_scene(lhhjbutton, parent)
@@ -2941,7 +2941,7 @@ func Addlhhjbutton(parent, selfName, Father):
 	return target
 
 
-func AddSomeMonsterHelp(parent, position):
+func add_some_monster_help(parent, position):
 	if not SomeMonsterHelp:
 		SomeMonsterHelp = _load_scene("res://Scene/Monster/SomeMonsterHelp.tscn")
 	var target = instance_scene(SomeMonsterHelp, parent)
@@ -2949,7 +2949,7 @@ func AddSomeMonsterHelp(parent, position):
 	return target
 
 
-func AddMosaicHelp(parent, position):
+func add_mosaic_help(parent, position):
 	if not MosaicHelp:
 		MosaicHelp = _load_scene("res://Scene/LDL/MosaicHelp.tscn")
 	var target = instance_scene(MosaicHelp, parent)
@@ -2957,7 +2957,7 @@ func AddMosaicHelp(parent, position):
 	return target
 
 
-func AddLetterForPlayer(parent, position):
+func add_letter_for_player(parent, position):
 	if not LetterForPlayer:
 		LetterForPlayer = _load_scene("res://Scene/other_scene/ALetterForAllPlayers.tscn")
 	var target = instance_scene(LetterForPlayer, parent)
@@ -2965,7 +2965,7 @@ func AddLetterForPlayer(parent, position):
 	return target
 
 
-func AddCureTimesBox(parent, position):
+func add_cure_times_box(parent, position):
 	if not CureTimesBox:
 		CureTimesBox = _load_scene("res://Scene/Shop/CureTimesBox.tscn")
 	var target = instance_scene(CureTimesBox, parent)
@@ -2973,7 +2973,7 @@ func AddCureTimesBox(parent, position):
 	return target
 
 
-func AddMysteryShop(parent, position):
+func add_mystery_shop(parent, position):
 	if not MysteryShop:
 		MysteryShop = _load_scene("res://Scene/Shop/MysteryShop.tscn")
 	var target = instance_scene(MysteryShop, parent)
@@ -2984,7 +2984,7 @@ func AddMysteryShop(parent, position):
 	return target
 
 
-func AddTransBox(parent, name_, Transmogrified_):
+func add_trans_box(parent, name_, Transmogrified_):
 	if not TransBox:
 		TransBox = _load_scene("res://Scene/other_scene/TransmogtifiedBox.tscn")
 	var target = instance_scene(TransBox, parent)
@@ -2993,7 +2993,7 @@ func AddTransBox(parent, name_, Transmogrified_):
 	return target
 
 
-func AddRole4Bullet(parent, Player, position: Vector2):
+func add_role4_bullet(parent, Player, position: Vector2):
 	if not Role4Bullet_:
 		Role4Bullet_ = _load_scene("res://Scene/Hero/Role_4/Role4Bullet.tscn")
 	var target = instance_scene(Role4Bullet_, parent)
@@ -3002,7 +3002,7 @@ func AddRole4Bullet(parent, Player, position: Vector2):
 	return target
 
 
-func AddLine(parent, Monster, Type):
+func add_line(parent, Monster, Type):
 	if not Line:
 		Line = _load_scene("res://Scene/Level/LineEffect.tscn")
 	var target = instance_scene(Line, parent)
@@ -3012,7 +3012,7 @@ func AddLine(parent, Monster, Type):
 	return target
 
 
-func AddDsgChoose(parent):
+func add_dsg_choose(parent):
 	if not DsgChoose:
 		DsgChoose = _load_scene("res://Scene/Level/DsgChoose.tscn")
 	var target = instance_scene(DsgChoose, parent)
@@ -3020,7 +3020,7 @@ func AddDsgChoose(parent):
 	return target
 
 
-func AddHDZM(parent, Parent):
+func add_hdzm(parent, Parent):
 	if not HDZM:
 		HDZM = _load_scene("res://Scene/Level/HDZM.tscn")
 	var target = instance_scene(HDZM, parent)
@@ -3035,7 +3035,7 @@ func AddHDZM(parent, Parent):
 	return target
 
 
-func AddLSH(parent, Parent):
+func add_lsh(parent, Parent):
 	if not LSH:
 		LSH = _load_scene("res://Scene/other_scene/lsh.tscn")
 	var target = instance_scene(LSH, parent)
@@ -3044,7 +3044,7 @@ func AddLSH(parent, Parent):
 	return target
 
 
-func AddLXDY(parent, Parent):
+func add_lxdy(parent, Parent):
 	if not LXDY:
 		LXDY = _load_scene("res://Scene/other_scene/lxdy.tscn")
 	var target = instance_scene(LXDY, parent)
@@ -3053,7 +3053,7 @@ func AddLXDY(parent, Parent):
 	return target
 
 
-func AddMonsterInfo(parent, MonsterName, position):
+func add_monster_info(parent, MonsterName, position):
 	if not MonsterInfo:
 		MonsterInfo = _load_scene("res://Scene/Monster/BossInfo.tscn")
 	var target = instance_scene(MonsterInfo, parent)
@@ -3062,7 +3062,7 @@ func AddMonsterInfo(parent, MonsterName, position):
 	return target
 
 
-func AddBasicMonmentInfo(parent, ShowText, position):
+func add_basic_monment_info(parent, ShowText, position):
 	if not BasicMonmentInfo:
 		BasicMonmentInfo = _load_scene("res://Scene/other_scene/BasicMonmentInfo.tscn")
 	var target = instance_scene(BasicMonmentInfo, parent)
@@ -3071,7 +3071,7 @@ func AddBasicMonmentInfo(parent, ShowText, position):
 	return target
 
 
-func AddForgeHelp(parent, position):
+func add_forge_help(parent, position):
 	if not ForgeHelp:
 		ForgeHelp = _load_scene("res://Scene/LDL/ForgeHelp.tscn")
 	var target = instance_scene(ForgeHelp, parent)
@@ -3079,7 +3079,7 @@ func AddForgeHelp(parent, position):
 	return target
 
 
-func AddForgeBox(parent, Name, Num):
+func add_forge_box(parent, Name, Num):
 	if not ForgeBox:
 		ForgeBox = _load_scene("res://Scene/LDL/ForgeMaterialBox.tscn")
 	var target = instance_scene(ForgeBox, parent)
@@ -3088,7 +3088,7 @@ func AddForgeBox(parent, Name, Num):
 	return target
 
 
-func AddForges(parent, position):
+func add_forges(parent, position):
 	if not Forges:
 		Forges = _load_scene("res://Scene/LDL/Forge.tscn")
 	var target = instance_scene(Forges, parent)
@@ -3096,7 +3096,7 @@ func AddForges(parent, position):
 	return target
 
 
-func AddllbtChallenge(parent, position):
+func addllbt_challenge(parent, position):
 	if not llbtChallenge:
 		llbtChallenge = _load_scene("res://Scene/Level/llbt_challenge.tscn")
 	var target = instance_scene(llbtChallenge, parent)
@@ -3123,7 +3123,7 @@ func add_game_announcement(parent, position):
 	return target
 
 
-func ADDFont_(parent, ShowText, Font_, FontSize, FontColor, OutLineSize, OutLineColor):
+func add_font_(parent, ShowText, Font_, FontSize, FontColor, OutLineSize, OutLineColor):
 	if not ADDFont:
 		ADDFont = _load_scene("res://Scene/show_text/MessageInfo.tscn")
 	var target = instance_scene(ADDFont, parent)
@@ -3139,7 +3139,7 @@ func ADDFont_(parent, ShowText, Font_, FontSize, FontColor, OutLineSize, OutLine
 	return target
 
 
-func AddTaskReward(parent, ItemName, TotalNum):
+func add_task_reward(parent, ItemName, TotalNum):
 	if not TaskReward:
 		TaskReward = _load_scene("res://Scene/Task/TaskReward.tscn")
 	var target = instance_scene(TaskReward, parent)
@@ -3160,7 +3160,7 @@ func add_basic_task(parent, position):
 	return target
 
 
-func AddTaskTitle(parent, TaskType, TaskName, MyFather):
+func add_task_title(parent, TaskType, TaskName, MyFather):
 	if not TaskTitle:
 		TaskTitle = _load_scene("res://Scene/Task/TaskTitle.tscn")
 	var target = instance_scene(TaskTitle, parent)
@@ -3480,7 +3480,7 @@ func add_reward_info(parent, position, List, UseItemName, UseNum):
 	return target
 
 
-func AddRewardBox(parent, item_id, Num):
+func add_reward_box(parent, item_id, Num):
 	if not RewardBox:
 		RewardBox = _load_scene("res://Scene/other_scene/reward_box_2.tscn")
 	var target = instance_scene(RewardBox, parent)
@@ -3490,7 +3490,7 @@ func AddRewardBox(parent, item_id, Num):
 	return target
 
 
-func Add_Decompose_Help(parent, position):
+func add_decompose_help(parent, position):
 	if not Decompose_Help:
 		Decompose_Help = _load_scene("res://Scene/LDL/DecomposeHelp.tscn")
 	var target = instance_scene(Decompose_Help, parent)
@@ -3498,7 +3498,7 @@ func Add_Decompose_Help(parent, position):
 	return target
 
 
-func Add_Decompose_(parent, position):
+func add_decompose_(parent, position):
 	if not Decompose_:
 		Decompose_ = _load_scene("res://Scene/LDL/Decompose.tscn")
 	var target = instance_scene(Decompose_, parent)
@@ -3515,7 +3515,7 @@ func add_zztw_trap(parent, Name, position):
 	return target
 
 
-func AddStage(parent, Obj, position):
+func add_stage(parent, Obj, position):
 	if not Stage:
 		Stage = _load_scene("res://Scene/Level/jctfloor_1.tscn")
 	var target = instance_scene(Stage, parent)
@@ -3524,7 +3524,7 @@ func AddStage(parent, Obj, position):
 	return target
 
 
-func AddBossBlood_(parent, Obj):
+func add_boss_blood_(parent, Obj):
 	if not BossBlood_:
 		BossBlood_ = _load_scene(BOSS_BLOOD_PATH)
 	var target = instance_scene(BossBlood_, parent)
@@ -3532,7 +3532,7 @@ func AddBossBlood_(parent, Obj):
 	return target
 
 
-func AddHc_Help(parent, position):
+func add_hc_help(parent, position):
 	if not Hc_Help:
 		Hc_Help = _load_scene("res://Scene/other_scene/hc_help.tscn")
 	var target = instance_scene(Hc_Help, parent)
@@ -3540,7 +3540,7 @@ func AddHc_Help(parent, position):
 	return target
 
 
-func AddHelpThing(parent, position, ItemInfo):
+func add_help_thing(parent, position, ItemInfo):
 	if not HelpThing:
 		HelpThing = _load_scene("res://Scene/other_scene/help_things.tscn")
 	var target = instance_scene(HelpThing, parent)
@@ -3549,7 +3549,7 @@ func AddHelpThing(parent, position, ItemInfo):
 	return target
 
 
-func AddPj(parent, position, Num):
+func add_pj(parent, position, Num):
 	if not Pj:
 		Pj = _load_scene("res://Scene/other_scene/ping_jia.tscn")
 	var target = instance_scene(Pj, parent)
@@ -3589,9 +3589,9 @@ func sync_level_drop_pro_data(level_info: Dictionary) -> void:
 
 func _enter_level_without_info(parent, path):
 	if path == "res://Scene/Level/Level_llbt.tscn":
-		return AddllbtChallenge(parent, Vector2(0, 0))
+		return addllbt_challenge(parent, Vector2(0, 0))
 	if not str(path).begins_with("res://"):
-		return AddDsgChoose(parent)
+		return add_dsg_choose(parent)
 	change_scene(path)
 	return null
 
@@ -3633,7 +3633,7 @@ func add_level_info(parent, Name, position, path):
 				nightmare_block_message = str(probe.call("_get_nightmare_entry_block_message"))
 			probe.free()
 			if nightmare_block_message != "":
-				AddMessageShow(parent, nightmare_block_message, 1.5, Vector2(470, 300))
+				add_message_show(parent, nightmare_block_message, 1.5, Vector2(470, 300))
 				return null
 		return _enter_level_without_info(parent, path)
 	var target = instance_scene(LevelInfo, parent)
@@ -3649,7 +3649,7 @@ func add_level_info(parent, Name, position, path):
 	return target
 
 
-func AddMonsterHead(parent, Name, IsBoss, ScenePath := ""):
+func add_monster_head(parent, Name, IsBoss, ScenePath := ""):
 	if not MonsterHead:
 		MonsterHead = _load_scene("res://Scene/other_scene/MonsterHeadInfo.tscn")
 	var target = instance_scene(MonsterHead, parent)
@@ -3659,7 +3659,7 @@ func AddMonsterHead(parent, Name, IsBoss, ScenePath := ""):
 	return target
 
 
-func AddLevelFallBox(parent, Inldl, Inhhgz, Name, qh_level, wx, EqProp):
+func add_level_fall_box(parent, Inldl, Inhhgz, Name, qh_level, wx, EqProp):
 	if not LevelFallBox:
 		LevelFallBox = _load_scene("res://Scene/BackPack/Box_1.tscn")
 	var target = instance_scene(LevelFallBox, parent)
@@ -3674,7 +3674,7 @@ func AddLevelFallBox(parent, Inldl, Inhhgz, Name, qh_level, wx, EqProp):
 	return target
 
 
-func AddItemBox(parent, Inldl, Inhhgz, Name, qh_level, num, wx, EqProp):
+func add_item_box(parent, Inldl, Inhhgz, Name, qh_level, num, wx, EqProp):
 	if not LevelFallBox:
 		LevelFallBox = _load_scene("res://Scene/BackPack/Box_1.tscn")
 	var target = instance_scene(LevelFallBox, parent)
@@ -3689,7 +3689,7 @@ func AddItemBox(parent, Inldl, Inhhgz, Name, qh_level, num, wx, EqProp):
 	return target
 
 
-func addGameNeedKnow(parent, position):
+func add_game_need_know(parent, position):
 	if not GameNeedKnow:
 		GameNeedKnow = _load_scene("res://Scene/other_scene/GameNeedKnow.tscn")
 	var target = instance_scene(GameNeedKnow, parent)
@@ -3697,7 +3697,7 @@ func addGameNeedKnow(parent, position):
 	return target
 
 
-func addRoleMagicNeed(parent, position, name_, Old, New):
+func add_role_magic_need(parent, position, name_, Old, New):
 	if not RoleMagicNeed:
 		RoleMagicNeed = _load_scene("res://Scene/Skill/RoleMagicNeed.tscn")
 	var target = instance_scene(RoleMagicNeed, parent)
@@ -3708,7 +3708,7 @@ func addRoleMagicNeed(parent, position, name_, Old, New):
 	return target
 
 
-func addNewBullet(parent, position, Dir, name_, Dic):
+func add_new_bullet(parent, position, Dir, name_, Dic):
 	if not NewBullet:
 		NewBullet = _load_scene("res://Scene/Hero/BulletBullet.tscn")
 	var target = instance_scene(NewBullet, parent)
@@ -3719,7 +3719,7 @@ func addNewBullet(parent, position, Dir, name_, Dic):
 	return target
 
 
-func addSMBEffect(parent, position, Dir):
+func add_smb_effect(parent, position, Dir):
 	if not SMBEffect:
 		SMBEffect = _load_scene("res://Scene/Hero/Role_2/smb_effect.tscn")
 	var target = instance_scene(SMBEffect, parent)
@@ -3728,7 +3728,7 @@ func addSMBEffect(parent, position, Dir):
 	return target
 
 
-func addRole2Shallow(parent, position, Dir):
+func add_role2_shallow(parent, position, Dir):
 	if not Role2Shallow:
 		Role2Shallow = _load_scene("res://Scene/Base/Role2shallow.tscn")
 	var target = instance_scene(Role2Shallow, parent)
@@ -3781,7 +3781,7 @@ func add_role_bullet(parent, position, Dir, name_, Dic):
 	return target
 
 
-func AddChoosePlayer(parent, position_):
+func add_choose_player(parent, position_):
 	if not ChoosePlayer:
 		ChoosePlayer = _load_scene("res://Scene/main_menu/ChoosePlayer.tscn")
 	var target = instance_scene(ChoosePlayer, parent)
@@ -3789,7 +3789,7 @@ func AddChoosePlayer(parent, position_):
 	return target
 
 
-func AddMonster65Bullet(parent, position_):
+func add_monster65_bullet(parent, position_):
 	if not Monster65Bullet:
 		Monster65Bullet = _load_scene("res://Scene/Monster/Monster65bullet.tscn")
 	var target = instance_scene(Monster65Bullet, parent)
@@ -3797,7 +3797,7 @@ func AddMonster65Bullet(parent, position_):
 	return target
 
 
-func AddAura(parent, position_, Value, color_type = 0):
+func add_aura(parent, position_, Value, color_type = 0):
 	var target = instance_scene(_cached_scene(&"Aura_", AURA_PATH), parent)
 	if target == null:
 		return null
@@ -3807,7 +3807,7 @@ func AddAura(parent, position_, Value, color_type = 0):
 	return target
 
 
-func AddBuffinfor(parent, position_, Data):
+func add_buffinfor(parent, position_, Data):
 	if not Buffinfor:
 		Buffinfor = _load_scene("res://Scene/other_scene/buff_information.tscn")
 	var target = instance_scene(Buffinfor, parent)
@@ -3817,7 +3817,7 @@ func AddBuffinfor(parent, position_, Data):
 	return target
 
 
-func AddBuffIcon(parent, Data):
+func add_buff_icon(parent, Data):
 	if parent == null or not is_instance_valid(parent) or parent.is_queued_for_deletion():
 		return null
 	var buff_scene := _cached_scene(&"BuffIcon_", BUFF_ICON_PATH)
@@ -3935,7 +3935,7 @@ func add_buff(parent, BuffInfo):
 		return null
 
 
-func addAfterLevelEnd(parent, position):
+func add_after_level_end(parent, position):
 	if not AfterLevelEnd:
 		AfterLevelEnd = _load_scene("res://Scene/other_scene/AfterLevelEnd.tscn")
 	var target = instance_scene(AfterLevelEnd, parent)
@@ -3946,7 +3946,7 @@ func addAfterLevelEnd(parent, position):
 	return target
 
 
-func addCombo(parent, ComboNum_, position):
+func add_combo(parent, ComboNum_, position):
 	for child in parent.get_children():
 		if child is Node2D and child.has_method(&"set_combo_num"):
 			child.set_combo_num(ComboNum_)
@@ -3967,7 +3967,7 @@ func addCombo(parent, ComboNum_, position):
 	return target
 
 
-func addComboNum(parent, ComboNum_):
+func add_combo_num(parent, ComboNum_):
 	var target = instance_scene(_cached_scene(&"ComboNum", COMBO_NUM_PATH), parent)
 	if target == null:
 		return null
@@ -3975,7 +3975,7 @@ func addComboNum(parent, ComboNum_):
 	return target
 
 
-func addZLw_stage(parent, position, Speed, Dir, Max, PD):
+func add_z_lw_stage(parent, position, Speed, Dir, Max, PD):
 	if not ZLw_stage:
 		ZLw_stage = _load_scene("res://Scene/Level/zlw_fly_floor.tscn")
 	var target = instance_scene(ZLw_stage, parent)
@@ -3987,7 +3987,7 @@ func addZLw_stage(parent, position, Speed, Dir, Max, PD):
 	return target
 
 
-func addHHjm(parent, position):
+func add_h_hjm(parent, position):
 	if not HHjm:
 		HHjm = _load_scene("res://Scene/other_scene/Transmogrified.tscn")
 	var target = instance_scene(HHjm, parent)
@@ -3995,7 +3995,7 @@ func addHHjm(parent, position):
 	return target
 
 
-func addChangeClothesJm(parent, position, name_, Transmogrified_):
+func add_change_clothes_jm(parent, position, name_, Transmogrified_):
 	if not ChangeClothesJm:
 		ChangeClothesJm = _load_scene("res://Scene/other_scene/c_hange_clothes_jm.tscn")
 	var target = instance_scene(ChangeClothesJm, parent)
@@ -4005,7 +4005,7 @@ func addChangeClothesJm(parent, position, name_, Transmogrified_):
 	return target
 
 
-func addMissEffect(parent, position):
+func add_miss_effect(parent, position):
 	var target = instance_scene(_cached_scene(&"MissEffect", MISS_EFFECT_PATH), parent)
 	if target == null:
 		return null
@@ -4013,7 +4013,7 @@ func addMissEffect(parent, position):
 	return target
 
 
-func addDamageNumber(parent, value, Type, is_crit, tar):
+func add_damage_number(parent, value, Type, is_crit, tar):
 	if not bool(MainSet.set_data.get("ShowDamageText", true)):
 		return null
 
@@ -4095,7 +4095,7 @@ func _on_damage_text_freed():
 		_damage_text_count = 0
 
 
-func addRole1Shallow(parent, position, dir, int_action):
+func add_role1_shallow(parent, position, dir, int_action):
 	if not Role1Shallow:
 		Role1Shallow = _load_scene("res://Scene/Hero/Role1SHallow.tscn")
 	var target = instance_scene(Role1Shallow, parent)
@@ -4105,7 +4105,7 @@ func addRole1Shallow(parent, position, dir, int_action):
 	return target
 
 
-func addRoleBullet_1(parent, position, name_, Dic):
+func add_role_bullet_1(parent, position, name_, Dic):
 	if not RoleBullet_1:
 		RoleBullet_1 = _load_scene("res://Scene/Hero/RoleBullet_1.tscn")
 	var target = instance_scene(RoleBullet_1, parent)
@@ -4115,7 +4115,7 @@ func addRoleBullet_1(parent, position, name_, Dic):
 	return target
 
 
-func addSkillKeySet(parent, position, name_):
+func add_skill_key_set(parent, position, name_):
 	if not SkillKeySet:
 		SkillKeySet = _load_scene("res://Scene/Skill/SkillKeySet.tscn")
 	var target = instance_scene(SkillKeySet, parent)
@@ -4149,7 +4149,7 @@ func add_bgm(parent, target_):
 	return target
 
 
-func Add_Mosaic_(parent, position):
+func add_mosaic_(parent, position):
 	if not Mosaic_:
 		Mosaic_ = _load_scene("res://Scene/LDL/Mosaic.tscn")
 	var target = instance_scene(Mosaic_, parent)
@@ -4188,7 +4188,7 @@ func add_sound(parent, target_, priority: int = 0):
 	return target
 
 
-func addMagicHelp(parent, position):
+func add_magic_help(parent, position):
 	if not MagicHelp:
 		MagicHelp = _load_scene("res://Scene/MagicWeapon/Magic_help.tscn")
 	var target = instance_scene(MagicHelp, parent)
@@ -4201,7 +4201,7 @@ func _get_viewport_center_position() -> Vector2:
 	return get_viewport().get_visible_rect().size * 0.5
 
 
-func addUseMagicWeapon(parent, position):
+func add_use_magic_weapon(parent, position):
 	if not UseMagicWeapon:
 		UseMagicWeapon = _load_scene("res://Scene/BackPack/Use_magic_weapon.tscn")
 	var target = instance_scene(UseMagicWeapon, parent)
@@ -4210,7 +4210,7 @@ func addUseMagicWeapon(parent, position):
 	return target
 
 
-func addSkillSelect(parent, position, name_):
+func add_skill_select(parent, position, name_):
 	if not SkillSelect:
 		SkillSelect = _load_scene("res://Scene/BackPack/skill_select.tscn")
 	var target = instance_scene(SkillSelect, parent)
@@ -4224,7 +4224,7 @@ func add_weapon_bullet(parent, position, name_, List, dir, Rand):
 	if scene_path.is_empty() or not ResourceLoader.exists(scene_path):
 		push_error("Missing lazy weapon bullet scene for: " + str(name_))
 		return null
-	var cache_key := StringName("addWeaponBullet_" + str(name_))
+	var cache_key := StringName("add_weapon_bullet_" + str(name_))
 	var target = instance_scene(_cached_scene(cache_key, scene_path), parent)
 	if target == null:
 		return null
@@ -4545,7 +4545,7 @@ func prepare_magic_weapon_resources(name_) -> void:
 	await _preload_paths_threaded([scene_path])
 
 
-func addMagicWeapon(parent, name_, position):
+func add_magic_weapon(parent, name_, position):
 	var weapon_name := str(name_)
 	if weapon_name in PlayerData.RETIRED_WUDU_MAGIC_WEAPONS:
 		return null
@@ -4583,7 +4583,7 @@ func add_message_show(Parent, NeedText: String, Time_: float, Position: Vector2)
 	return target
 
 
-func add_WS_Effect(parent):
+func add_ws_effect(parent):
 	if not WS_Effect:
 		WS_Effect = _load_scene("res://Scene/Hero/Role_1/WS_Effect.tscn")
 	var target = instance_scene(WS_Effect, parent)
@@ -4605,7 +4605,7 @@ func add_choose_item(parent, position, List, name_, page):
 	return target
 
 
-func add_s_y_nHelp(parent, position):
+func add_s_y_n_help(parent, position):
 	if not ldl_help:
 		ldl_help = _load_scene("res://Scene/LDL/s_yn_help.tscn")
 	var target = instance_scene(ldl_help, parent)
@@ -4641,7 +4641,7 @@ func add_magp_infor(parent, position):
 	return target
 
 
-func add_Synthesis(parent, position):
+func add_synthesis(parent, position):
 	if not synthesis:
 		synthesis = _load_scene("res://Scene/LDL/Synthesis.tscn")
 	var target = instance_scene(synthesis, parent)
@@ -4717,7 +4717,7 @@ func call_fly_bullet(parent, name_, dir, position, distance, speed, hit_name, di
 	return target
 
 
-func add_LJ(parent, position_):
+func add_lj(parent, position_):
 	var target = instance_scene(_cached_scene(&"lj", LIJI_PATH), parent)
 	if target == null:
 		return null
@@ -4976,7 +4976,7 @@ func add_se_eq_jm(parent, position, name_, page_, number_):
 	return target
 
 
-func add_mainBackpack(parent, position):
+func add_main_backpack(parent, position):
 	if not main_backpack:
 		main_backpack = _load_scene("res://Scene/BackPack/Main_Backpack.tscn")
 	var target = instance_scene(main_backpack, parent)
@@ -5021,7 +5021,7 @@ func add_music_set(parent, position):
 	return target
 
 
-func add_Camera(parent, position, right):
+func add_camera(parent, position, right):
 	if not mycamera:
 		mycamera = _load_scene("res://Scene/Level/camera.tscn")
 	var target = instance_scene(mycamera, parent)
@@ -5271,7 +5271,7 @@ func instance_scene_safe(target_scene_, parent):
 	return target
 
 
-func addRoleBullet_1_safe(parent, position, name_, Dic):
+func add_role_bullet_1_safe(parent, position, name_, Dic):
 	if not RoleBullet_1:
 		RoleBullet_1 = _load_scene("res://Scene/Hero/RoleBullet_1.tscn")
 	var target = RoleBullet_1.instantiate()
@@ -5282,7 +5282,7 @@ func addRoleBullet_1_safe(parent, position, name_, Dic):
 	return target
 
 
-func addBullet_safe(bullet_name, parent, direction, show_speed, position, hit_name_, list):
+func add_bullet_safe(bullet_name, parent, direction, show_speed, position, hit_name_, list):
 	var bullet_scene = load_monster_bullet_scene(str(bullet_name))
 	if bullet_scene == null:
 		return null
@@ -5381,7 +5381,7 @@ func _emit_combo_milestone_deferred(current_combo: int) -> void:
 	combo_milestone_reached.emit(current_combo)
 
 
-func GetPositionBetween(Ob_1, Ob_2):
+func get_position_between(Ob_1, Ob_2):
 	if Ob_1 == null or Ob_2 == null:
 		return Vector2(0, 0)
 	var pp_1 = Ob_2.position.x - Ob_1.position.x
@@ -5393,7 +5393,7 @@ func GetPositionBetween(Ob_1, Ob_2):
 	return pp_4
 
 
-func GetDisBetweem(Ob_1, Ob_2):
+func get_dis_betweem(Ob_1, Ob_2):
 	if Ob_1 == null or Ob_2 == null:
 		return 0
 	var pp_1 = Ob_2.position.x - Ob_1.position.x
@@ -5402,7 +5402,7 @@ func GetDisBetweem(Ob_1, Ob_2):
 	return pp_3
 
 
-func LoadRole1Body(name_):
+func load_role1_body(name_):
 	var role_id := _current_role_id()
 	var path := (
 		"res://Art/HeroPicture/Role"
@@ -5419,7 +5419,7 @@ func LoadRole1Body(name_):
 	return texture
 
 
-func LoadRole1EQ(name_):
+func load_role1_eq(name_):
 	var role_id := _current_role_id()
 	var path := (
 		"res://Art/HeroPicture/Role" + str(role_id) + "AllEquipment/Role_" + str(role_id) + "_Eq_" + str(name_) + ".png"
@@ -5491,7 +5491,7 @@ func get_random_wx(count, source_list):
 	return result
 
 
-func CheckDirBetweenTwoObj(Player, Monster):
+func check_dir_between_two_obj(Player, Monster):
 	if Player.position.x >= Monster.position.x:
 		if not Player.PlayerDir:
 			return true
@@ -5501,7 +5501,7 @@ func CheckDirBetweenTwoObj(Player, Monster):
 	return false
 
 
-func removeAllBuff():
+func remove_all_buff():
 	Global.is_Mpo = false
 	Global.is_ice = false
 	Global.is_poision = false
@@ -5519,7 +5519,7 @@ func load_(name_):
 	return abc
 
 
-func ADDAllItemNum(List, Num, NumRange):
+func add_all_item_num(List, Num, NumRange):
 	randomize()
 	var Dic = {}
 	for i in List:
@@ -5539,7 +5539,7 @@ func ADDAllItemNum(List, Num, NumRange):
 	return Dic
 
 
-func GetAllItemNum(List, Num, NumRange):
+func get_all_item_num(List, Num, NumRange):
 	randomize()
 	var Dic = {}
 	for i in List:
@@ -5574,7 +5574,7 @@ func RemoveAllBuff():
 					i.queue_free()
 
 
-func RemoveAAllBuff():
+func remove_a_all_buff():
 	for i in RoleProp.SourcePlayer.buff.get_children():
 		if i != null:
 			match i.BuffInfo["Name"]:
@@ -5583,7 +5583,7 @@ func RemoveAAllBuff():
 			i.queue_free()
 
 
-func OnFresh():
+func on_fresh():
 	var Dic = Time.get_datetime_dict_from_system()
 	var MyDic = PlayerData.player_data["MyTime"]
 	if MyDic == {}:
@@ -5615,14 +5615,14 @@ func check_wd(OBJ):
 	return Count
 
 
-func RemoveWD(OBJ):
+func remove_wd(OBJ):
 	for i in OBJ.buff.get_children():
 		if i != null:
 			if i.BuffInfo["Name"] == "Voodoo":
 				i.queue_free()
 
 
-func GetName(Name: String):
+func get_clean_name(Name: String):
 	var xianyu_body_name_map := {
 		"xyfjwk": "wkxysz",
 		"xyfjts": "tsxysz",
@@ -5651,7 +5651,7 @@ func GetName(Name: String):
 	return Name
 
 
-func NormalFacePlayer(OBJ, dir, Player):
+func normal_face_player(OBJ, dir, Player):
 	if dir:
 		OBJ.look_at(Player.position)
 	else:
@@ -5673,625 +5673,6 @@ func _on_monster_exited(monster: Node):
 	print_stack()
 	print("  delete frame: ", Engine.get_process_frames())
 
-
-## [兼容代理] 保持旧接口兼容
-func AddMessageShow(Parent, NeedText: String, Time_: float, Position: Vector2):
-	return add_message_show(Parent, NeedText, Time_, Position)
-
-
-## [兼容代理] 保持旧接口兼容
-func addSound_(parent, target_, priority: int = 0):
-	return add_sound(parent, target_, priority)
-
-
-## [兼容代理] 保持旧接口兼容
-func addBGM_(parent, target_):
-	return add_bgm(parent, target_)
-
-
-## [兼容代理] 保持旧接口兼容
-func AddBuff(parent, BuffInfo):
-	return add_buff(parent, BuffInfo)
-
-
-## [兼容代理] 保持旧接口兼容
-func AddLevelInfo(parent, Name, position, path):
-	return add_level_info(parent, Name, position, path)
-
-
-## [兼容代理] 保持旧接口兼容
-func add_Choose_Item(parent, position, List, name_, page):
-	return add_choose_item(parent, position, List, name_, page)
-
-
-## [兼容代理] 保持旧接口兼容
-func addRoleBullet_(parent, position, Dir, name_, Dic):
-	return add_role_bullet(parent, position, Dir, name_, Dic)
-
-
-## [兼容代理] 保持旧接口兼容
-func CallFlyBullet(parent, name_, dir, position, distance, speed, hit_name, dic):
-	return call_fly_bullet(parent, name_, dir, position, distance, speed, hit_name, dic)
-
-
-## [兼容代理] 保持旧接口兼容
-func AddZZTWTrap(parent, Name, position):
-	return add_zztw_trap(parent, Name, position)
-
-
-## [兼容代理] 保持旧接口兼容
-func addWeaponBullet_(parent, position, name_, List, dir, Rand):
-	return add_weapon_bullet(parent, position, name_, List, dir, Rand)
-
-
-## [兼容代理] 保持旧接口兼容
-func CallChaseBullet(parent, name_, speed, time: float, dir, position, hit_name, dic):
-	return call_chase_bullet(parent, name_, speed, time, dir, position, hit_name, dic)
-
-
-## [兼容代理] 保持旧接口兼容
-func addDamageText(parent, position, value, Type, is_crit, tar):
-	return add_damage_text(parent, position, value, Type, is_crit, tar)
-
-
-## [兼容代理] 保持旧接口兼容
-func addRoleSpecialEffect_(parent, position, Dir, name_):
-	return add_role_special_effect(parent, position, Dir, name_)
-
-
-## [兼容代理] 保持旧接口兼容
-func AddGameAnnouncement(parent, position):
-	return add_game_announcement(parent, position)
-
-
-## [兼容代理] 保持旧接口兼容
-func AddBasicTask_(parent, position):
-	return add_basic_task(parent, position)
-
-
-## [兼容代理] 保持旧接口兼容
-func add_SHOP(parent, position):
-	return add_shop(parent, position)
-
-
-## [兼容代理] 保持旧接口兼容
-func AddRewardInfo(parent, position, List, UseItemName, UseNum):
-	return add_reward_info(parent, position, List, UseItemName, UseNum)
-
-
-## [兼容代理] 保持旧接口兼容
-func Add_GameSet_(parent, position):
-	return add_game_set(parent, position)
-
-
-## [兼容代理] 保持旧接口兼容
-func AddBasicPellet_(parent, position):
-	return add_basic_pellet(parent, position)
-
-
-## [兼容代理] 保持旧接口兼容
-func CheckWD(OBJ):
-	return check_wd(OBJ)
-
-
 # ==============================================================================
 # Phase 6-3: 现代 GDScript 规范 snake_case 双轨兼容函数入口
 # ==============================================================================
-## [现代规范接口 (Phase 6-3)]
-func add_star(parent, Type):
-	return AddStar(parent, Type)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_role_button(parent, MyName, MyFather):
-	return AddRoleButton(parent, MyName, MyFather)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_basic_ar_button(parent, Num):
-	return AddBasicArButton(parent, Num)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_zhen_fa_help(parent, position):
-	return AddZhenFaHelp(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_zhen_fa_tu_po(parent, position, Father):
-	return AddZhenFaTuPo(parent, position, Father)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_zhen_yan_cure_level(parent, position, Father):
-	return AddZhenYanCureLevel(parent, position, Father)
-
-
-## [现代规范接口 (Phase 6-3)]
-func addzhenyanbutton(parent, position, LocNum, Father):
-	return Addzhenyanbutton(parent, position, LocNum, Father)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_28_ui(parent, position):
-	return Add_28Ui(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_zhen_fa_ui(parent, position):
-	return AddZhenFaUi(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_zhen_fa_info(parent, position, Father):
-	return AddZhenFaInfo(parent, position, Father)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_zhenfalxbutton(parent, zhenfaName, Father):
-	return AddZhenfalxbutton(parent, zhenfaName, Father)
-
-
-## [现代规范接口 (Phase 6-3)]
-func addhdgqmap(parent, position):
-	return Addhdgqmap(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_monster141_aura(parent, position_, TargetMonster):
-	return AddMonster141Aura(parent, position_, TargetMonster)
-
-
-## [现代规范接口 (Phase 6-3)]
-func addlhhjhelp(parent, position):
-	return Addlhhjhelp(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func addlistbutton(parent, selfName, Father, Num):
-	return Addlistbutton(parent, selfName, Father, Num)
-
-
-## [现代规范接口 (Phase 6-3)]
-func addlhhj(parent, position):
-	return Addlhhj(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func addlhhjbutton(parent, selfName, Father):
-	return Addlhhjbutton(parent, selfName, Father)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_some_monster_help(parent, position):
-	return AddSomeMonsterHelp(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_mosaic_help(parent, position):
-	return AddMosaicHelp(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_letter_for_player(parent, position):
-	return AddLetterForPlayer(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_cure_times_box(parent, position):
-	return AddCureTimesBox(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_mystery_shop(parent, position):
-	return AddMysteryShop(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_trans_box(parent, name_, Transmogrified_):
-	return AddTransBox(parent, name_, Transmogrified_)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_role4_bullet(parent, Player, position: Vector2):
-	return AddRole4Bullet(parent, Player, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_line(parent, Monster, Type):
-	return AddLine(parent, Monster, Type)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_dsg_choose(parent):
-	return AddDsgChoose(parent)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_hdzm(parent, Parent):
-	return AddHDZM(parent, Parent)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_lsh(parent, Parent):
-	return AddLSH(parent, Parent)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_lxdy(parent, Parent):
-	return AddLXDY(parent, Parent)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_monster_info(parent, MonsterName, position):
-	return AddMonsterInfo(parent, MonsterName, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_basic_monment_info(parent, ShowText, position):
-	return AddBasicMonmentInfo(parent, ShowText, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_forge_help(parent, position):
-	return AddForgeHelp(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_forge_box(parent, Name, Num):
-	return AddForgeBox(parent, Name, Num)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_forges(parent, position):
-	return AddForges(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func addllbt_challenge(parent, position):
-	return AddllbtChallenge(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_font_(parent, ShowText, Font_, FontSize, FontColor, OutLineSize, OutLineColor):
-	return ADDFont_(parent, ShowText, Font_, FontSize, FontColor, OutLineSize, OutLineColor)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_task_reward(parent, ItemName, TotalNum):
-	return AddTaskReward(parent, ItemName, TotalNum)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_task_title(parent, TaskType, TaskName, MyFather):
-	return AddTaskTitle(parent, TaskType, TaskName, MyFather)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_reward_box(parent, item_id, Num):
-	return AddRewardBox(parent, item_id, Num)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_decompose_help(parent, position):
-	return Add_Decompose_Help(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_decompose_(parent, position):
-	return Add_Decompose_(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_stage(parent, Obj, position):
-	return AddStage(parent, Obj, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_boss_blood_(parent, Obj):
-	return AddBossBlood_(parent, Obj)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_hc_help(parent, position):
-	return AddHc_Help(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_help_thing(parent, position, ItemInfo):
-	return AddHelpThing(parent, position, ItemInfo)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_pj(parent, position, Num):
-	return AddPj(parent, position, Num)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_monster_head(parent, Name, IsBoss, ScenePath := ""):
-	return AddMonsterHead(parent, Name, IsBoss, ScenePath)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_level_fall_box(parent, Inldl, Inhhgz, Name, qh_level, wx, EqProp):
-	return AddLevelFallBox(parent, Inldl, Inhhgz, Name, qh_level, wx, EqProp)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_item_box(parent, Inldl, Inhhgz, Name, qh_level, num, wx, EqProp):
-	return AddItemBox(parent, Inldl, Inhhgz, Name, qh_level, num, wx, EqProp)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_game_need_know(parent, position):
-	return addGameNeedKnow(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_role_magic_need(parent, position, name_, Old, New):
-	return addRoleMagicNeed(parent, position, name_, Old, New)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_new_bullet(parent, position, Dir, name_, Dic):
-	return addNewBullet(parent, position, Dir, name_, Dic)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_smb_effect(parent, position, Dir):
-	return addSMBEffect(parent, position, Dir)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_role2_shallow(parent, position, Dir):
-	return addRole2Shallow(parent, position, Dir)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_choose_player(parent, position_):
-	return AddChoosePlayer(parent, position_)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_monster65_bullet(parent, position_):
-	return AddMonster65Bullet(parent, position_)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_aura(parent, position_, Value, color_type = 0):
-	return AddAura(parent, position_, Value, color_type)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_buffinfor(parent, position_, Data):
-	return AddBuffinfor(parent, position_, Data)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_buff_icon(parent, Data):
-	return AddBuffIcon(parent, Data)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_after_level_end(parent, position):
-	return addAfterLevelEnd(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_combo(parent, ComboNum_, position):
-	return addCombo(parent, ComboNum_, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_combo_num(parent, ComboNum_):
-	return addComboNum(parent, ComboNum_)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_z_lw_stage(parent, position, Speed, Dir, Max, PD):
-	return addZLw_stage(parent, position, Speed, Dir, Max, PD)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_h_hjm(parent, position):
-	return addHHjm(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_change_clothes_jm(parent, position, name_, Transmogrified_):
-	return addChangeClothesJm(parent, position, name_, Transmogrified_)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_miss_effect(parent, position):
-	return addMissEffect(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_damage_number(parent, value, Type, is_crit, tar):
-	return addDamageNumber(parent, value, Type, is_crit, tar)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_role1_shallow(parent, position, dir, int_action):
-	return addRole1Shallow(parent, position, dir, int_action)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_role_bullet_1(parent, position, name_, Dic):
-	return addRoleBullet_1(parent, position, name_, Dic)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_skill_key_set(parent, position, name_):
-	return addSkillKeySet(parent, position, name_)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_mosaic_(parent, position):
-	return Add_Mosaic_(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_magic_help(parent, position):
-	return addMagicHelp(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_use_magic_weapon(parent, position):
-	return addUseMagicWeapon(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_skill_select(parent, position, name_):
-	return addSkillSelect(parent, position, name_)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_magic_weapon(parent, name_, position):
-	return addMagicWeapon(parent, name_, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_ws_effect(parent):
-	return add_WS_Effect(parent)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_s_y_n_help(parent, position):
-	return add_s_y_nHelp(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_synthesis(parent, position):
-	return add_Synthesis(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_lj(parent, position_):
-	return add_LJ(parent, position_)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_main_backpack(parent, position):
-	return add_mainBackpack(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_camera(parent, position, right):
-	return add_Camera(parent, position, right)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_role_bullet_1_safe(parent, position, name_, Dic):
-	return addRoleBullet_1_safe(parent, position, name_, Dic)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_bullet_safe(bullet_name, parent, direction, show_speed, position, hit_name_, list):
-	return addBullet_safe(bullet_name, parent, direction, show_speed, position, hit_name_, list)
-
-
-## [现代规范接口 (Phase 6-3)]
-func get_position_between(Ob_1, Ob_2):
-	return GetPositionBetween(Ob_1, Ob_2)
-
-
-## [现代规范接口 (Phase 6-3)]
-func get_dis_betweem(Ob_1, Ob_2):
-	return GetDisBetweem(Ob_1, Ob_2)
-
-
-## [现代规范接口 (Phase 6-3)]
-func load_role1_body(name_):
-	return LoadRole1Body(name_)
-
-
-## [现代规范接口 (Phase 6-3)]
-func load_role1_eq(name_):
-	return LoadRole1EQ(name_)
-
-
-## [现代规范接口 (Phase 6-3)]
-func check_dir_between_two_obj(Player, Monster):
-	return CheckDirBetweenTwoObj(Player, Monster)
-
-
-## [现代规范接口 (Phase 6-3)]
-func remove_all_buff():
-	return removeAllBuff()
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_all_item_num(List, Num, NumRange):
-	return ADDAllItemNum(List, Num, NumRange)
-
-
-## [现代规范接口 (Phase 6-3)]
-func get_all_item_num(List, Num, NumRange):
-	return GetAllItemNum(List, Num, NumRange)
-
-
-## [现代规范接口 (Phase 6-3)]
-func remove_a_all_buff():
-	return RemoveAAllBuff()
-
-
-## [现代规范接口 (Phase 6-3)]
-func on_fresh():
-	return OnFresh()
-
-
-## [现代规范接口 (Phase 6-3)]
-func remove_wd(OBJ):
-	return RemoveWD(OBJ)
-
-
-## [现代规范接口 (Phase 6-3)]
-func get_clean_name(item_name_str: String):
-	return GetName(item_name_str)
-
-
-## [现代规范接口 (Phase 6-3)]
-func normal_face_player(OBJ, dir, Player):
-	return NormalFacePlayer(OBJ, dir, Player)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_sound_(parent, target_, priority: int = 0):
-	return addSound_(parent, target_, priority)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_bgm_(parent, target_):
-	return addBGM_(parent, target_)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_role_bullet_(parent, position, Dir, name_, Dic):
-	return addRoleBullet_(parent, position, Dir, name_, Dic)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_weapon_bullet_(parent, position, name_, List, dir, Rand):
-	return addWeaponBullet_(parent, position, name_, List, dir, Rand)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_role_special_effect_(parent, position, Dir, name_):
-	return addRoleSpecialEffect_(parent, position, Dir, name_)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_basic_task_(parent, position):
-	return AddBasicTask_(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_game_set_(parent, position):
-	return Add_GameSet_(parent, position)
-
-
-## [现代规范接口 (Phase 6-3)]
-func add_basic_pellet_(parent, position):
-	return AddBasicPellet_(parent, position)

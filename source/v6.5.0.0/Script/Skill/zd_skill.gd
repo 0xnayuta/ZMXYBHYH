@@ -913,7 +913,7 @@ func _set_key(index):
 		Global.add_message_show(self, "先学习技能才能设置按键！！", 1.5, Vector2(395, 180))
 		return
 	var name = skill_list[index]
-	Global.addSkillKeySet(self, Vector2(350, 140), name)
+	Global.add_skill_key_set(self, Vector2(350, 140), name)
 
 
 func _on_ski_1_mouse_entered() -> void:

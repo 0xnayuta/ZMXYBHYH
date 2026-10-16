@@ -26,7 +26,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	self.FB_Level = PlayerData.get_mostLevel("lsys") + 1
+	self.FB_Level = PlayerData.get_most_level("lsys") + 1
 	needMp = 30 + self.FB_Level * 10
 	_hit_data["power"] = 10 + 10 * self.FB_Level
 	var add_effect: Dictionary = _hit_data["addeffect"]
@@ -54,7 +54,7 @@ func use_over():
 func addBullet():
 	var attack_data := get_attack_snapshot()
 	for i in range(21):
-		var stab = Global.addWeaponBullet_(
+		var stab = Global.add_weapon_bullet(
 			$Bullet,
 			Vector2(self.position.x + bullet_spawn_positions[i], self.position.y),
 			"MagicUmbrellaBullet",

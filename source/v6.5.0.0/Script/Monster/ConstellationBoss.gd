@@ -1721,8 +1721,8 @@ func _monster151_drain_target(target: Node2D) -> void:
 	for tick in range(3):
 		if not _is_alive_constellation_player(target):
 			return
-		if target.has_method("reduce_Mp"):
-			target.call("reduce_Mp", drain_value)
+		if target.has_method("reduce_mp"):
+			target.call("reduce_mp", drain_value)
 		if target.has_method("effect_reducehp"):
 			target.call("effect_reducehp", drain_value, "real")
 		if tick < 2:

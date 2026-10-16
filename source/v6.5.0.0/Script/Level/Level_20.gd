@@ -25,7 +25,7 @@ func _ready() -> void:
 	Global.add_bgm(self, "res://Music/level/9_bg3.mp3")
 	self.level_stage = 1
 	if Role_ != null:
-		my_camera = Global.add_Camera(Role_, Vector2(0, 0), 1200)
+		my_camera = Global.add_camera(Role_, Vector2(0, 0), 1200)
 		my_camera.max_left = 0
 		my_camera.max_top = 0
 		my_camera.max_bottom = 590

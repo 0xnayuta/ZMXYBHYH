@@ -27,7 +27,7 @@ func _ready() -> void:
 	super._ready()
 
 	add_to_group("Player")
-	super.onEqchange()
+	super.on_eqchange()
 	Role_4()
 
 
@@ -40,11 +40,11 @@ func _exit_tree() -> void:
 	super._exit_tree()
 
 
-func WSSkill() -> bool:
+func ws_skill() -> bool:
 	if RoleProp.is_ws_state:
 		return false
 	RoleProp.is_ws_state = true
-	var activated := super.WSSkill()
+	var activated := super.ws_skill()
 	if not activated:
 		RoleProp.is_ws_state = false
 	return activated
@@ -235,7 +235,7 @@ func _physics_process(delta: float) -> void:
 		_wdzt_toggle_locked = false
 	_process_wdzt_awaken(delta)
 	_process_lhsq_awaken(delta)
-	if NoLimitBuff():
+	if no_limit_buff():
 		if (
 			not is_riding_mount()
 			and Input.is_action_pressed("normalhit")
@@ -294,7 +294,7 @@ func ShovelHit_3():
 	return
 
 
-func ShovelQLJ():
+func shovel_qlj():
 	self.Role1SkillInter["qlj"] = 4.8
 	velocity.x = 0
 	get_action = "qlj"
@@ -308,7 +308,7 @@ func ShovelQLJ():
 	is_using_skills = false
 
 
-func ShovelDCJ():
+func shovel_dcj():
 	self.Role1SkillInter["dcj"] = 4.8
 	velocity.x = 0
 	get_action = "dcj"
@@ -322,7 +322,7 @@ func ShovelDCJ():
 	is_using_skills = false
 
 
-func ShovelTKJ():
+func shovel_tkj():
 	self.Role1SkillInter["tkj"] = 2.4
 	var tkj_awakened: bool = _is_skill_awakened("tkj") and _is_skill_awaken_enabled("tkj")
 	tkj_awaken_mode = 2 if tkj_awakened and Input.is_action_pressed("Exit") else (1 if tkj_awakened else 0)
@@ -354,7 +354,7 @@ func ShovelTKJ():
 	is_using_skills = false
 
 
-func ShovelMMW():
+func shovel_mmw():
 	self.Role1SkillInter["mmw"] = 3
 	velocity.x = 0
 	get_action = "mmw"
@@ -368,7 +368,7 @@ func ShovelMMW():
 	is_using_skills = false
 
 
-func ShovelZQ():
+func shovel_zq():
 	self.Role1SkillInter["zq"] = 4.8
 	velocity.x = 0
 	get_action = "zq"
@@ -382,7 +382,7 @@ func ShovelZQ():
 	is_using_skills = false
 
 
-func ShovelWDWW():
+func shovel_wdww():
 	self.Role1SkillInter["wdww"] = 4.8
 	if is_on_floor():
 		velocity.x = 0
@@ -433,7 +433,7 @@ func ShovelCMLY():
 	is_using_skills = false
 
 
-func ShovelMBYJ():
+func shovel_mbyj():
 	self.Role1SkillInter["lhsq"] = 4.8
 	velocity.x = 0
 	get_action = "lhsq"
@@ -447,7 +447,7 @@ func ShovelMBYJ():
 	is_using_skills = false
 
 
-func ShovelJDZ():
+func shovel_jdz():
 	self.Role1SkillInter["jdz"] = 6
 	velocity.x = 0
 	get_action = "jdz"
@@ -461,7 +461,7 @@ func ShovelJDZ():
 	is_using_skills = false
 
 
-func ShovelWDZT():
+func shovel_wdzt():
 	self.Role1SkillInter["wdzt"] = 4
 	if is_on_floor():
 		velocity.x = 0
@@ -485,13 +485,13 @@ func AddShovelEffect1():
 		bullet_pos = Vector2(35, 0)
 	else:
 		bullet_pos = Vector2(-35, 0)
-	Global.addRoleBullet_(self.Bullet, bullet_pos + position, !PlayerDir, "Role4Bullet3", objattackDic["mmw"])
+	Global.add_role_bullet(self.Bullet, bullet_pos + position, !PlayerDir, "Role4Bullet3", objattackDic["mmw"])
 	if _is_skill_awakened("mmw") and _is_skill_awaken_enabled("mmw"):
-		Global.addRoleBullet_(self.Bullet, bullet_pos + position, PlayerDir, "Role4Bullet3", objattackDic["mmw"])
+		Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role4Bullet3", objattackDic["mmw"])
 
 
 func ADDMBYJ():
-	Global.AddRole4Bullet(self.Bullet, self, position)
+	Global.add_role4_bullet(self.Bullet, self, position)
 
 
 func CallWDWW():
@@ -522,7 +522,7 @@ func CallJDZ():
 		return
 	if JDZ != null:
 		JDZ.queue_free()
-	JDZ = Global.addRoleBullet_(self.Bullet, position + Vector2(0, 30), false, "Role4Bullet6", objattackDic["jdz"])
+	JDZ = Global.add_role_bullet(self.Bullet, position + Vector2(0, 30), false, "Role4Bullet6", objattackDic["jdz"])
 	if JDZ != null:
 		JDZ.start_auto_free(10)
 		if _is_skill_awakened("jdz") and _is_skill_awaken_enabled("jdz"):
@@ -539,7 +539,7 @@ func AddWDZT():
 				i.queue_free()
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			self.buff,
 			{
 				"Name": "PoisionBody",
@@ -568,7 +568,7 @@ func _process_wdzt_awaken(delta: float) -> void:
 	if RoleProp.roleprop.Mp < mp_cost:
 		_disable_wdzt_awaken()
 		return
-	reduce_Mp(mp_cost)
+	reduce_mp(mp_cost)
 
 
 func _disable_wdzt_awaken() -> void:
@@ -783,14 +783,14 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	Global.TotalHurtCount += 1
 	var Target = area.get_parent().get_parent()
 	var MonsterTarget: BaseMonster
-	MonsterTarget = checkMonster(area)
+	MonsterTarget = check_monster(area)
 	if Target == null or MonsterTarget == null:
 		return
 	if Target.objattackDic.size() == 0:
 		return
 	if MonsterTarget is Monster47:
 		Global.PlayerBeHitCount += 1
-	var last_hit = get_Monster_last_hurt(MonsterTarget, Target) * (1 - slzjs) * (1 - slzjs2)
+	var last_hit = get_monster_last_hurt(MonsterTarget, Target) * (1 - slzjs) * (1 - slzjs2)
 	if MonsterTarget != null:
 		if MonsterTarget.IsLpz:
 			var Levellpz = PlayerData.player_data["落魄阵"]["Level"]
@@ -805,14 +805,14 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		var CureHurt = last_hit - ReduecHurt
 		last_hit = ReduecHurt
 		if randi_range(0, 100) < 20:
-			cure_Hp(CureHurt)
+			cure_hp(CureHurt)
 	if MonsterTarget != null:
 		MonsterTarget.total_hit += last_hit
 		if MonsterTarget is Monster141:
 			effect_reducehp(int(RoleProp.roleprop.SHp * 0.01), "real")
-			Global.AddMonster141Aura(self.Bullet, self.position, MonsterTarget)
+			Global.add_monster141_aura(self.Bullet, self.position, MonsterTarget)
 		if self.IsWDZT:
-			if Global.CheckWD(MonsterTarget) < 7:
+			if Global.check_wd(MonsterTarget) < 7:
 				Global.add_buff(
 					MonsterTarget.buff,
 					{
@@ -860,7 +860,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				* (0.2 + (PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL]) * 0.03)
 				* CureValue
 			)
-			cure_Hp(CurePower)
+			cure_hp(CurePower)
 			_add_lhsq_awaken_stack()
 	if objattackDic.has(get_action):
 		if objattackDic[get_action].has("addeffect"):
@@ -868,7 +868,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			if Monster != null:
 				if Monster is BaseMonster and not _is_summon_or_pet_target(Monster):
 					if objattackDic[get_action]["addeffect"]["Name"] == "Voodoo":
-						if Global.CheckWD(Monster) < 7:
+						if Global.check_wd(Monster) < 7:
 							Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
 					else:
 						Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])

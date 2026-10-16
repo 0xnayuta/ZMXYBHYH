@@ -139,7 +139,7 @@ func _process_pet_tiger_recovery(delta: float) -> void:
 		return
 	recovery_timer -= 1.0
 	if hp_recover_per_second > 0 and Hp < SHp:
-		cure_Hp(hp_recover_per_second)
+		cure_hp(hp_recover_per_second)
 	if mp_recover_per_second > 0 and Mp < SMp:
 		Mp = min(SMp, Mp + mp_recover_per_second)
 		pet_data[DataKeys.MP] = Mp
@@ -432,7 +432,7 @@ func do_sxhz() -> void:
 	is_attacking = true
 	await _play_attack_animation("hit3_2", Callable(self, "CallSxhzHit"))
 	if not is_queued_for_deletion() and Hp > 0:
-		cure_Hp(max(1, int(SHp * 0.025)))
+		cure_hp(max(1, int(SHp * 0.025)))
 	is_attacking = false
 
 

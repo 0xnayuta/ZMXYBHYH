@@ -94,7 +94,7 @@ func _ready() -> void:
 		call_deferred("_spawn_active_pet_deferred")
 		Role_.action.scale.x = -1
 		Role_.base_damagebox.scale.x = -1
-		my_camera = Global.add_Camera(Role_, Vector2(0, 0), 1200)
+		my_camera = Global.add_camera(Role_, Vector2(0, 0), 1200)
 		my_camera.max_left = 0
 		my_camera.max_top = 0
 		my_camera.max_bottom = 590
@@ -102,7 +102,7 @@ func _ready() -> void:
 
 		my_camera.limit_smoothed = true
 		my_camera.position_smoothing_enabled = true
-	PlayerData.ADDIniBuff()
+	PlayerData.add_ini_buff()
 
 	call_deferred("_prepare_level_runtime_resources")
 
@@ -1379,7 +1379,7 @@ func _restart_level_for_auto_battle() -> bool:
 	RoleProp.ws_value = 0
 	RoleProp.is_ws_state = false
 	Global.is_DeadLink = false
-	Global.removeAllBuff()
+	Global.remove_all_buff()
 	Global.change_scene(Global.LastLevelPath)
 	return true
 

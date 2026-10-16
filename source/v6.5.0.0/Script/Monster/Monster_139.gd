@@ -241,7 +241,7 @@ func reduce_hp(value: int):
 	var pp = get_parent().get_parent()
 	var po = Vector2(self.position.x - 20, self.position.y - 240)
 	if last_value > 0:
-		Global.addDamageText(pp, po, last_value, "real", false, self)
+		Global.add_damage_text(pp, po, last_value, "real", false, self)
 	is_crit = false
 	is_miss = false
 

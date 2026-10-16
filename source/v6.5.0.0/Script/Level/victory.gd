@@ -25,7 +25,7 @@ func _ready() -> void:
 	_fit_to_window()
 	if not get_viewport().size_changed.is_connected(_fit_to_window):
 		get_viewport().size_changed.connect(_fit_to_window)
-	Global.removeAllBuff()
+	Global.remove_all_buff()
 	Global.add_bgm(self, "res://Music/level/13_Game_Victory.mp3")
 	get_tree().paused = false
 	Global.LevelEndTime = ""
@@ -141,7 +141,7 @@ func get_lasttime(Num):
 
 
 func _on_more_informaition_pressed() -> void:
-	Global.addAfterLevelEnd(self, Vector2(0, 0))
+	Global.add_after_level_end(self, Vector2(0, 0))
 
 
 var _is_rechallenging := false
@@ -249,7 +249,7 @@ func PDpj():
 func ADDpj():
 	var ping_jia_size := PING_JIA_TEXTURE_SIZE * PING_JIA_FINAL_SCALE
 
-	Global.AddPj(self, Vector2(65, 65), PDpj())
+	Global.add_pj(self, Vector2(65, 65), PDpj())
 
 
 func _exit_tree() -> void:

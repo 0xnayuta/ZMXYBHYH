@@ -203,11 +203,11 @@ func get_wx() -> String:
 
 
 func _on_szfb_pressed() -> void:
-	Global.addUseMagicWeapon($".", Vector2(0, 0))
+	Global.add_use_magic_weapon($".", Vector2(0, 0))
 
 
 func _on_tips_pressed() -> void:
-	Global.addMagicHelp($".", Vector2(0, 0))
+	Global.add_magic_help($".", Vector2(0, 0))
 
 
 func LowWX() -> void:

@@ -150,7 +150,7 @@ func TJGLCure():
 			var TotalValue = int(RoleProp.roleprop.SHp * 0.2)
 			var CureValue = 0.6 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) + 1
 			var heal_value = int(TotalValue * CureValue)
-			var effective_heal = i.cure_Hp(heal_value)
+			var effective_heal = i.cure_hp(heal_value)
 
 			if i == real_player and real_player is Role2Hero:
 				var max_hp = RoleProp.roleprop.SHp
@@ -158,7 +158,7 @@ func TJGLCure():
 				if excess > 0:
 					if real_player.shield_effect != null:
 						real_player.shield_effect.queue_free()
-					real_player.shield_effect = Global.addRoleSpecialEffect_(
+					real_player.shield_effect = Global.add_role_special_effect(
 						real_player, Vector2(0, 0), false, "tjgl_hd"
 					)
 
@@ -181,7 +181,7 @@ func MYHCCure():
 			if i is BaseHero:
 				var level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1
 				var Value = int(RoleProp.roleprop.SHp * randf_range(0.04, 0.05))
-				i.cure_Hp(Value)
+				i.cure_hp(Value)
 
 
 func _apply_jgz_to_overlapping_bodies() -> void:
@@ -241,12 +241,12 @@ func _is_inside_jgz_rect(monster: BaseMonster, center: Vector2) -> bool:
 
 func AddRole3CureEffect():
 	var Player = get_parent()
-	Player.My_SD.push_back(Global.addRoleSpecialEffect_(Player, Vector2(0, -20), false, "sd2"))
+	Player.My_SD.push_back(Global.add_role_special_effect(Player, Vector2(0, -20), false, "sd2"))
 
 
 func AddRole2CureEffect():
 	var Player = get_parent()
-	Player.My_SD.push_back(Global.addRoleSpecialEffect_(Player, Vector2(0, -20), false, "tjgl"))
+	Player.My_SD.push_back(Global.add_role_special_effect(Player, Vector2(0, -20), false, "tjgl"))
 
 
 func MoveMonsterToPlayer():
@@ -287,7 +287,7 @@ func Role3SdCure():
 	if Player is Role3Hero:
 		var cur_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能6"][DataKeys.LEVEL] + 1
 		var CureValue = int(6 + RoleProp.roleprop.SHp * (0.004 + cur_level * 0.001))
-		Player.cure_Hp(CureValue)
+		Player.cure_hp(CureValue)
 
 
 func Role3RemoveBuff():

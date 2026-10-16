@@ -42,4 +42,4 @@ func _on_close_pressed() -> void:
 
 
 func _on_purchase_purchase_times_pressed() -> void:
-	Global.AddCureTimesBox(self, Vector2(350, 130))
+	Global.add_cure_times_box(self, Vector2(350, 130))

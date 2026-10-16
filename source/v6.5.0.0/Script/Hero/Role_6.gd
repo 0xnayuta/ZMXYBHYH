@@ -372,10 +372,10 @@ func reduce_hp(value: int, target_boss, target_obj):
 
 
 func _show_damage_text(level_node, po: Vector2, value: int, type: String, is_crit: bool):
-	Global.addDamageText(level_node, po, value, type, is_crit, self)
+	Global.add_damage_text(level_node, po, value, type, is_crit, self)
 
 
-func cure_Hp(value: int = 0):
+func cure_hp(value: int = 0):
 	if self.Hp <= 0:
 		return
 	if self.Hp + value >= self.SHp:
@@ -391,7 +391,7 @@ func cure_Hp(value: int = 0):
 
 
 func _show_heal_text(level_node, po: Vector2, value: int):
-	Global.addDamageText(level_node, po, value, "cure", false, self)
+	Global.add_damage_text(level_node, po, value, "cure", false, self)
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:

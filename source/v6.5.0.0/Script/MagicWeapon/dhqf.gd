@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 
 
 func show_skill():
-	var level = PlayerData.get_mostLevel("dhqf") + 1
+	var level = PlayerData.get_most_level("dhqf") + 1
 	level = clamp(level, 0, 10)
 	needMp = 20 + level * 6
 
@@ -22,8 +22,8 @@ func show_skill():
 	var heal_mp = int(max_mp * percent)
 
 	if Player != null:
-		Player.cure_Hp(heal_hp)
-		Player.cure_Mp(heal_mp)
+		Player.cure_hp(heal_hp)
+		Player.cure_mp(heal_mp)
 
 	var def_increase = int(round(20 + level * 5.0))
 

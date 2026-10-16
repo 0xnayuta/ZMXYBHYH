@@ -431,7 +431,7 @@ func _on_level_hdzm_pressed() -> void:
 	if PlayerData.player_data.截教天镜 == false:
 		Global.add_message_show(get_parent(), "需通关兜率宫！", 1.5, Vector2(470, 300))
 	else:
-		Global.AddHDZM(_ui_parent(), self)
+		Global.add_hdzm(_ui_parent(), self)
 
 
 func _on_level_sssl_pressed() -> void:
@@ -439,11 +439,11 @@ func _on_level_sssl_pressed() -> void:
 
 
 func _on_smdp_pressed() -> void:
-	Global.AddMysteryShop(_ui_parent(), Vector2(0, 0))
+	Global.add_mystery_shop(_ui_parent(), Vector2(0, 0))
 
 
 func _on_lsh_pressed() -> void:
-	Global.AddLSH(_ui_parent(), _ui_parent())
+	Global.add_lsh(_ui_parent(), _ui_parent())
 
 
 func _on_kls_pressed() -> void:
@@ -473,7 +473,7 @@ func _on_memory_game_pressed() -> void:
 
 
 func _on_shop_pressed() -> void:
-	Global.add_SHOP(_ui_parent(), Vector2(0, 0))
+	Global.add_shop(_ui_parent(), Vector2(0, 0))
 
 
 func _on_ldl_pressed() -> void:
@@ -492,7 +492,7 @@ func _on_actity_pressed() -> void:
 
 
 func _on_task_pressed() -> void:
-	Global.AddBasicTask_(_ui_parent(), Vector2(0, 0))
+	Global.add_basic_task(_ui_parent(), Vector2(0, 0))
 
 
 func _on_return_to_main_menu_pressed() -> void:
@@ -501,7 +501,7 @@ func _on_return_to_main_menu_pressed() -> void:
 
 
 func _on_game_set_pressed() -> void:
-	Global.Add_GameSet_(_ui_parent(), Vector2(0, 0))
+	Global.add_game_set(_ui_parent(), Vector2(0, 0))
 
 
 func _on_next_pressed() -> void:
@@ -520,11 +520,11 @@ func _on_button_pressed() -> void:
 
 
 func _on_game_an_pressed() -> void:
-	Global.AddGameAnnouncement(_ui_parent(), Vector2(0, 0))
+	Global.add_game_announcement(_ui_parent(), Vector2(0, 0))
 
 
 func _on_pellet_pressed() -> void:
-	Global.AddBasicPellet_(_ui_parent(), Vector2(0, 0))
+	Global.add_basic_pellet(_ui_parent(), Vector2(0, 0))
 
 
 func _on_zhu_xian_sword_pressed() -> void:
@@ -647,4 +647,4 @@ func PlayAn(Level):
 
 
 func _on_level_lhhj_pressed() -> void:
-	Global.Addlhhj(_ui_parent(), Vector2(0, 0))
+	Global.addlhhj(_ui_parent(), Vector2(0, 0))

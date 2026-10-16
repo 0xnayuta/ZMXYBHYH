@@ -165,7 +165,7 @@ func hide_qgw():
 
 
 func add_zd():
-	var zd_ = Global.CallChaseBullet(
+	var zd_ = Global.call_chase_bullet(
 		self.bullet,
 		"Monster33Bullet",
 		300,

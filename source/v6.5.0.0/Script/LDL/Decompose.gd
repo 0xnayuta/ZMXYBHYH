@@ -63,7 +63,7 @@ func Pushqhs(Name_, Level):
 
 func AddEmpty():
 	for i in range(8):
-		Global.AddItemBox(item_list, true, true, "empty", 0, 0, [], [])
+		Global.add_item_box(item_list, true, true, "empty", 0, 0, [], [])
 
 
 func PushBS(Name_, Type):
@@ -151,39 +151,39 @@ func ChangeItemList():
 						var box
 						match Type:
 							"武器", "饰品", "防具":
-								box = Global.AddItemBox(
+								box = Global.add_item_box(
 									item_list, true, true, ItemName, target_count, 0, [], AE.AllEquipment_[ItemName]
 								)
 								box.set_button_icon(load_(ItemName))
 							"道具":
-								box = Global.AddItemBox(
+								box = Global.add_item_box(
 									item_list, true, true, ItemName, 0, target_count, [], AE.AllEquipment_[ItemName]
 								)
 								box.set_button_icon(load_(ItemName))
 						num += 1
 					if 8 - num > 0:
 						for i in range(8 - num):
-							Global.AddItemBox(item_list, true, true, "empty", 0, 0, [], [])
+							Global.add_item_box(item_list, true, true, "empty", 0, 0, [], [])
 				else:
 					for i in range(8):
-						Global.AddItemBox(item_list, true, true, "empty", 0, 0, [], [])
+						Global.add_item_box(item_list, true, true, "empty", 0, 0, [], [])
 
 			"道具":
 				BsFj(Name_)
 				if not NormalItems.has(Name_):
 					for i in range(8):
-						Global.AddItemBox(item_list, true, true, "empty", 0, 0, [], [])
+						Global.add_item_box(item_list, true, true, "empty", 0, 0, [], [])
 					return
 				else:
 					for i in NormalItems[Name_]["Value"]:
-						var box = Global.AddItemBox(
+						var box = Global.add_item_box(
 							item_list, true, true, i["name"], 0, i["num"], [], AE.AllEquipment_[i["name"]]
 						)
 						box.set_button_icon(load_(i["name"]))
 						num += 1
 					if 8 - num > 0:
 						for i in range(8 - num):
-							Global.AddItemBox(item_list, true, true, "empty", 0, 0, [], [])
+							Global.add_item_box(item_list, true, true, "empty", 0, 0, [], [])
 
 
 func RemoveLIst():
@@ -261,7 +261,7 @@ func fj():
 									{"Name": ItemName, "Value": target_count, "Prop": [], "WX": [], "StrengthValue": 0}
 								)
 								PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
-					Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), list, null, null)
+					Global.add_reward_info(Global.get_parent_(self, 3), Vector2(0, 0), list, null, null)
 					Global.add_message_show(Global.Windows_, "分解成功！！", 1.5, Vector2(500, 305))
 					PlayerData.spend_soul(NeedLh)
 				else:
@@ -286,7 +286,7 @@ func fj():
 						list.push_back(
 							{"Name": item_name, "Value": target_count, "Prop": [], "WX": [], "StrengthValue": 0}
 						)
-					Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), list, null, null)
+					Global.add_reward_info(Global.get_parent_(self, 3), Vector2(0, 0), list, null, null)
 					PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
 					Global.add_message_show(Global.Windows_, "分解成功！！", 1.5, Vector2(500, 305))
 
@@ -313,7 +313,7 @@ func load_(name_):
 
 
 func _on_help_pressed() -> void:
-	Global.Add_Decompose_Help(Global.get_parent_(self, 3), Vector2(485, 290))
+	Global.add_decompose_help(Global.get_parent_(self, 3), Vector2(485, 290))
 
 
 func _on_wait_timeout() -> void:

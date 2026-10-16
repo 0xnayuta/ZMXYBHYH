@@ -54,7 +54,7 @@ func _setup_sword_sprite_frames() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	self.FB_Level = PlayerData.get_mostLevel("qlsword") + 1
+	self.FB_Level = PlayerData.get_most_level("qlsword") + 1
 	weapon_level = self.FB_Level
 
 	super._physics_process(delta)

@@ -234,7 +234,7 @@ func CallBullet_1():
 
 
 func call_bullet_alt2():
-	var Dis = int(Global.GetDisBetweem(self, RoleProp.SourcePlayer))
+	var Dis = int(Global.get_dis_betweem(self, RoleProp.SourcePlayer))
 	if Dis < attackRange:
 		return
 	var bb

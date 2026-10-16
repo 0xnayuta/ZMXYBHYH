@@ -225,7 +225,7 @@ func _on_pressed() -> void:
 	RoleProp.get_equ_last_pro()
 	RoleProp.get_last_prop()
 	if is_instance_valid(RoleProp.SourcePlayer):
-		RoleProp.SourcePlayer.onEqchange()
+		RoleProp.SourcePlayer.on_eqchange()
 	MemoryClass.save_game(Global.cd_path)
 
 

@@ -35,13 +35,13 @@ func SetLevelInfo():
 	var PropType = RoleProp.ZhenFaProps[RealName][str(Father.CurrentNum)]["Type"]
 	if int(cur_level) <= 50:
 		level_info_old.text = "Lv." + str(cur_level)
-		prop_info_old.text = str(PropType) + "+" + str(RoleProp.GetZFLocProp(RealName, Father.CurrentNum))
+		prop_info_old.text = str(PropType) + "+" + str(RoleProp.get_zf_loc_prop(RealName, Father.CurrentNum))
 	else:
 		level_info_old.text = "已满级"
 		prop_info_old.text = "已满级"
 	if int(cur_level) + 1 <= 50:
 		level_info_new.text = "Lv." + str(cur_level + 1)
-		prop_info_new.text = str(PropType) + "+" + str(RoleProp.GetNextLevelProp(RealName, Father.CurrentNum))
+		prop_info_new.text = str(PropType) + "+" + str(RoleProp.get_next_level_prop(RealName, Father.CurrentNum))
 	else:
 		prop_info_new.text = "已满级"
 		level_info_new.text = "已满级"

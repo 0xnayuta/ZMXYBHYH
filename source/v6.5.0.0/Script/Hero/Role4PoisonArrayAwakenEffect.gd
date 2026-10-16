@@ -236,7 +236,7 @@ func _apply_hit(target: BaseMonster) -> void:
 func _apply_voodoo_if_learned(target: BaseMonster) -> void:
 	if target == null or not is_instance_valid(target) or target.is_boss_protecting():
 		return
-	if int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]) <= 0 or Global.CheckWD(target) >= 7:
+	if int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]) <= 0 or Global.check_wd(target) >= 7:
 		return
 	Global.add_buff(
 		target.buff,

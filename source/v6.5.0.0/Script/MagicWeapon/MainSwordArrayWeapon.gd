@@ -1117,7 +1117,7 @@ func _add_defe_reduce(monster: BaseMonster) -> void:
 		return
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			monster.buff,
 			{
 				"Name": "DefeReduce",
@@ -1136,7 +1136,7 @@ func _add_short_stun(monster: BaseMonster, stun_time: float) -> void:
 		return
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			monster.buff,
 			{
 				"Name": "stun",

@@ -66,7 +66,7 @@ var _texture_bounds_cache: Dictionary = {}
 
 
 func _ready() -> void:
-	FB_Level = clampi(PlayerData.get_mostLevel("dzyl"), 1, 10)
+	FB_Level = clampi(PlayerData.get_most_level("dzyl"), 1, 10)
 	mg_action.sprite_frames = _build_frames("wait", IDLE_FRAMES, true, 12.0)
 	special_effect.sprite_frames = _build_frames("effect", EFFECT_FRAMES, false, 30.0)
 	aura_effect.sprite_frames = _build_frames("effect", AURA_FRAMES, true, 10.0)
@@ -76,7 +76,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	FB_Level = clampi(PlayerData.get_mostLevel("dzyl"), 1, 10)
+	FB_Level = clampi(PlayerData.get_most_level("dzyl"), 1, 10)
 	needMp = 50
 	super._physics_process(delta)
 	if is_use:
@@ -273,7 +273,7 @@ func show_skill() -> void:
 	_damage_reduction_applied = true
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			Player.buff,
 			{
 				"Name": "SuperArmor",

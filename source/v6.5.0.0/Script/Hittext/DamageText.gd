@@ -54,7 +54,7 @@ func changeNumber():
 func _get_digit_node(index: int) -> TextureRect:
 	if index < _digit_nodes.size():
 		return _digit_nodes[index]
-	var digit = Global.addDamageNumber(number, 0, Type, is_crit, target if is_instance_valid(target) else null)
+	var digit = Global.add_damage_number(number, 0, Type, is_crit, target if is_instance_valid(target) else null)
 	if digit == null:
 		return null
 	digit.set_physics_process(false)

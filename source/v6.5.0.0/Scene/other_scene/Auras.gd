@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 		Idle = false
 
 	if not Idle:
-		self.position += Global.GetPositionBetween(self, RoleProp.SourcePlayer) * Speed * 0.5
+		self.position += Global.get_position_between(self, RoleProp.SourcePlayer) * Speed * 0.5
 		check.disabled = false
 		Speed += 0.2
 		if Speed >= 20:
@@ -57,9 +57,9 @@ func _on_check_body_entered(body: Node2D) -> void:
 			ColorType.YELLOW:
 				RoleProp.ws_value += 5
 			ColorType.BLUE:
-				hero.cure_Mp(10)
+				hero.cure_mp(10)
 			ColorType.RED:
-				hero.cure_Hp(10)
+				hero.cure_hp(10)
 			_:
 				pass
 

@@ -156,9 +156,9 @@ func _clear_children(parent: Node) -> void:
 
 func _add_stars(parent: Node, filled: int) -> void:
 	for i in range(filled):
-		Global.AddStar(parent, 2)
+		Global.add_star(parent, 2)
 	for i in range(5 - filled):
-		Global.AddStar(parent, 1)
+		Global.add_star(parent, 1)
 
 
 func _on_role_card_pressed(role_id: int) -> void:

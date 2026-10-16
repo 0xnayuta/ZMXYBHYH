@@ -396,7 +396,7 @@ func _spawn_mouse_effect(
 
 
 func on_mouse_dash_hit(heal_value: int) -> void:
-	cure_Hp(maxi(1, heal_value))
+	cure_hp(maxi(1, heal_value))
 
 
 func queue_mouse_boomerang_followup(
@@ -433,7 +433,7 @@ func queue_mouse_boomerang_followup(
 func on_mouse_boomerang_hit(actual_damage: int) -> void:
 	var heal_value := int(float(actual_damage) * 0.05)
 	if heal_value > 0:
-		cure_Hp(heal_value)
+		cure_hp(heal_value)
 
 
 func _mouse_role_origin() -> Vector2:

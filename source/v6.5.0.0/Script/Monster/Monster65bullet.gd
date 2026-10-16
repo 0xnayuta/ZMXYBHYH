@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 		if GetPlayer != null:
 			(
 				Global
-				. AddBuff(
+				. add_buff(
 					GetPlayer.buff,
 					{
 						"Name": "speed_down",
@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 
 			(
 				Global
-				. AddBuff(
+				. add_buff(
 					GetPlayer.buff,
 					{
 						"Name": "silent",
@@ -54,7 +54,7 @@ func _on_check_body_entered(body: Node2D) -> void:
 
 		(
 			Global
-			. AddBuff(
+			. add_buff(
 				body.buff,
 				{
 					"Name": "speed_down",
@@ -68,7 +68,7 @@ func _on_check_body_entered(body: Node2D) -> void:
 
 		(
 			Global
-			. AddBuff(
+			. add_buff(
 				body.buff,
 				{
 					"Name": "silent",

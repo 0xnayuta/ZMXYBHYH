@@ -65,7 +65,7 @@ func ai_think():
 				get_Player.effect_reducehp(objattackDic["hit1"]["power"], objattackDic["hit1"]["attackKind"])
 				(
 					Global
-					. AddBuff(
+					. add_buff(
 						get_Player.buff,
 						{
 							"Name": "speed_down",

@@ -252,7 +252,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if randi_range(0, 100) < 5:
 		(
 			Global
-			. AddBuff(
+			. add_buff(
 				get_Player.buff,
 				{
 					"Name": "poision",
@@ -269,9 +269,9 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 func CallWang():
 	if MonsterDirection:
-		Global.AddMonster65Bullet(self.bullet, position + Vector2(240, -55))
+		Global.add_monster65_bullet(self.bullet, position + Vector2(240, -55))
 	else:
-		Global.AddMonster65Bullet(self.bullet, position + Vector2(-240, -55))
+		Global.add_monster65_bullet(self.bullet, position + Vector2(-240, -55))
 
 
 func CallZZ():

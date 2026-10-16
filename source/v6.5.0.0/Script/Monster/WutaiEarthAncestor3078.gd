@@ -206,7 +206,7 @@ func _on_claw_hit(_projectile: Node, role: BaseHero) -> void:
 	for buff_name in ["Immobilize", "silent"]:
 		(
 			Global
-			. AddBuff(
+			. add_buff(
 				role.buff,
 				{
 					"Name": buff_name,

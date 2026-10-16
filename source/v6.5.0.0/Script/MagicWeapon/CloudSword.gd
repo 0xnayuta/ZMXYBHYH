@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	if _monster_refresh_elapsed >= 0.1 or MonsterList.is_empty():
 		_monster_refresh_elapsed = 0.0
 		MonsterList = _get_active_monster_snapshot()
-	self.FB_Level = PlayerData.get_mostLevel("qyj") + 1
+	self.FB_Level = PlayerData.get_most_level("qyj") + 1
 	needMp = 80 + self.FB_Level * 5
 	var BasicHit
 	BasicHit = self.FB_Level * 0.07
@@ -92,7 +92,7 @@ func GetMonster():
 
 func AddSword():
 	if Target != null:
-		Global.addWeaponBullet_(
+		Global.add_weapon_bullet(
 			$Bullet, Target.position + Vector2(0, 30), "CloudSwordBullet", get_attack_snapshot(), mg_action.flip_h, 100
 		)
 

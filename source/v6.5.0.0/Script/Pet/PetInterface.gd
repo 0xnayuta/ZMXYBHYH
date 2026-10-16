@@ -801,24 +801,24 @@ func _ready() -> void:
 	_connect_button(close_button, queue_free)
 	_connect_button(nextPage, _next_pet)
 	_connect_button(prePage, _previous_pet)
-	_connect_button(atebtn, ateClick)
-	_connect_button(eipbtn, eipClick)
-	_connect_button(grmmc, groomClick)
-	_connect_button(releasebtn, releaseClick)
+	_connect_button(atebtn, ate_click)
+	_connect_button(eipbtn, eip_click)
+	_connect_button(grmmc, groom_click)
+	_connect_button(releasebtn, release_click)
 
-	_connect_button(restbtn, fightClick)
-	_connect_button(fightbtn, restClick)
-	_connect_button(eatimbtn, eatImmor)
+	_connect_button(restbtn, fight_click)
+	_connect_button(fightbtn, rest_click)
+	_connect_button(eatimbtn, eat_immor)
 	_connect_button(czjnbtn, pushPetSkill)
 	_connect_button(czsxbtn, pushPetAttribute)
-	_connect_button(give_up_okbtn, okClick)
-	_connect_button(give_up_nobtn, noClick)
-	_connect_button(pbpbtn, petBackPackClick)
-	_connect_button(pstrbtn, petStrengthClick)
-	_connect_button(wxplus, wxplusClick)
-	_connect_button(ggplus, ggplusClick)
-	_connect_button(llplus, llplusClick)
-	_connect_button(qplus, qplusClick)
+	_connect_button(give_up_okbtn, ok_click)
+	_connect_button(give_up_nobtn, no_click)
+	_connect_button(pbpbtn, pet_backpack_click)
+	_connect_button(pstrbtn, pet_strength_click)
+	_connect_button(wxplus, wxplus_click)
+	_connect_button(ggplus, ggplus_click)
+	_connect_button(llplus, llplus_click)
+	_connect_button(qplus, qplus_click)
 	_connect_quality_feed_button(hpzizhibtn, "生命资质", "生命资质上限", "zizhiguo")
 	_connect_quality_feed_button(mpzizhibtn, "魔法资质", "魔法资质上限", "zizhiguo")
 	_connect_quality_feed_button(atkzizhibtn, "攻击资质", "攻击资质上限", "zizhiguo")
@@ -826,8 +826,8 @@ func _ready() -> void:
 	_connect_button(wuxingbtn, _on_develop_fruit_pressed.bind("悟性"))
 	_connect_button(gengubtn, _on_develop_fruit_pressed.bind("根骨"))
 	_connect_button(linglibtn, _on_develop_fruit_pressed.bind("灵力"))
-	_connect_button(sbtn, superClick)
-	_connect_button(nbtn, aoyiClick)
+	_connect_button(sbtn, super_click)
+	_connect_button(nbtn, aoyi_click)
 	_connect_button(pet_eat_close, _close_eat_window)
 	_connect_button(learn_skill_button, _on_learn_skill_pressed)
 	_connect_button(pet_formation_button, _on_pet_formation_pressed)
@@ -860,7 +860,7 @@ func _ready() -> void:
 			get_node_or_null("PetDevelopInterface/PetEatImmortality/mc%d" % i) as BaseButton,
 			_on_eat_item_pressed.bind(i)
 		)
-	ateClick()
+	ate_click()
 	_refresh_all()
 	_register_pet_scrolls_in_tree(self)
 
@@ -940,7 +940,7 @@ func _process(delta: float) -> void:
 	_process_pet_passive_hold(delta)
 
 
-func ateClick() -> void:
+func ate_click() -> void:
 	current_page = PetPage.ATTRIBUTE
 	_set_visible(pet_attribute_show, true)
 	_set_visible(pet_backpack_show, false)
@@ -950,7 +950,7 @@ func ateClick() -> void:
 	_refresh_all()
 
 
-func eipClick() -> void:
+func eip_click() -> void:
 	_ensure_pet_storage()
 	current_page = PetPage.BACKPACK
 	_set_visible(pet_attribute_show, false)
@@ -961,7 +961,7 @@ func eipClick() -> void:
 	_refresh_all()
 
 
-func groomClick() -> void:
+func groom_click() -> void:
 	current_page = PetPage.DEVELOP
 	_set_visible(pet_attribute_show, false)
 	_set_visible(pet_backpack_show, false)
@@ -971,7 +971,7 @@ func groomClick() -> void:
 	_refresh_all()
 
 
-func releaseClick() -> void:
+func release_click() -> void:
 	var pet: Variant = _current_pet()
 	if pet == null:
 		_show_tip("当前没有宠物")
@@ -1039,7 +1039,7 @@ func _clear_pet_active_state(pet: Dictionary) -> void:
 	data["出战宠物"] = str(data.get(active_key, ""))
 
 
-func fightClick() -> void:
+func fight_click() -> void:
 	var pet: Variant = _current_pet()
 	if pet == null:
 		_show_tip("当前没有宠物")
@@ -1097,7 +1097,7 @@ func fightClick() -> void:
 	_spawn_active_pet_now()
 
 
-func restClick() -> void:
+func rest_click() -> void:
 	var pet: Variant = _current_pet()
 	if pet == null:
 		_show_tip("当前没有宠物")
@@ -1637,8 +1637,8 @@ func _previous_pet() -> void:
 	_refresh_all()
 
 
-func eatImmor() -> void:
-	groomClick()
+func eat_immor() -> void:
+	groom_click()
 	_set_visible(pet_eat_immortality, true)
 
 
@@ -1664,7 +1664,7 @@ func pushPetAttribute() -> void:
 	_refresh_all()
 
 
-func okClick() -> void:
+func ok_click() -> void:
 	var pets := _pet_list()
 	if current_pet_index >= 0 and current_pet_index < pets.size():
 		if pets[current_pet_index] is Dictionary and _is_pet_rabbit(pets[current_pet_index]):
@@ -1677,42 +1677,42 @@ func okClick() -> void:
 	_refresh_all()
 
 
-func noClick() -> void:
-	_set_visible(give_up_this_pet, false)
-
-
-func petBackPackClick() -> void:
+func pet_backpack_click() -> void:
 	_ensure_pet_storage()
-	eipClick()
+	eip_click()
 	_set_visible(pet_strength_interface, false)
 
 
-func petStrengthClick() -> void:
+func no_click() -> void:
+	_set_visible(give_up_this_pet, false)
+
+
+func pet_strength_click() -> void:
 	_set_visible(pet_strength_interface, true)
 	_refresh_strength()
 
 
-func wxplusClick() -> void:
+func wxplus_click() -> void:
 	_add_develop_point("悟性")
 
 
-func ggplusClick() -> void:
+func ggplus_click() -> void:
 	_add_develop_point("根骨")
 
 
-func llplusClick() -> void:
+func llplus_click() -> void:
 	_add_develop_point("灵力")
 
 
-func qplusClick() -> void:
+func qplus_click() -> void:
 	_add_potential_limit()
 
 
-func superClick() -> void:
+func super_click() -> void:
 	_set_label(ntxt, "超进化")
 
 
-func aoyiClick() -> void:
+func aoyi_click() -> void:
 	_set_label(dtxt, "奥义")
 
 

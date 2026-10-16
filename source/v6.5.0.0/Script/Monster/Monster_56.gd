@@ -152,8 +152,8 @@ func ai_think():
 	if not Call_stage:
 		var pp = get_parent().get_parent()
 		if not pp is Lhhj and not pp is LevelZLDHDGQ:
-			Global.addZLw_stage(pp, Vector2(815, 210), 1, 1, 2060, true)
-			Global.addZLw_stage(pp, Vector2(2100, 55), 1, -1, 860, false)
+			Global.add_z_lw_stage(pp, Vector2(815, 210), 1, 1, 2060, true)
+			Global.add_z_lw_stage(pp, Vector2(2100, 55), 1, -1, 860, false)
 		Call_stage = true
 	if Hp <= SHp and Hp > SHp * 0.8:
 		throw_cout = 1

@@ -248,7 +248,7 @@ func CallParasiticLarva():
 func call_bullet_2():
 	var Po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 380)
 	await get_tree().create_timer(0.3, false).timeout
-	var ly = Global.CallChaseBullet(
+	var ly = Global.call_chase_bullet(
 		self.bullet, "Monster1408Bullet2", 150, 5.0, false, Po, "hit2", self.objattackDic["hit2"]
 	)
 	ly.scale = Vector2(1.5, 1.5)

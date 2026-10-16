@@ -163,9 +163,9 @@ func do_hit_3():
 
 func AddLine():
 	if randi_range(0, 100) < 50:
-		Global.AddLine(self, self, "Red")
+		Global.add_line(self, self, "Red")
 	else:
-		Global.AddLine(self, self, "Blue")
+		Global.add_line(self, self, "Blue")
 
 
 func call_bullet_1():

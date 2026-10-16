@@ -131,7 +131,7 @@ func ADDHelpItems():
 			target_dict = L_szList
 	if target_dict.has("page" + str(CurrentPage)):
 		for recipe in target_dict["page" + str(CurrentPage)]:
-			ItemList_.append(Global.AddHelpThing(self, PositonList[target_count], recipe))
+			ItemList_.append(Global.add_help_thing(self, PositonList[target_count], recipe))
 			target_count += 1
 
 
@@ -178,7 +178,7 @@ func _on_close_pressed():
 
 func add_text(text, parent):
 	if message == null:
-		message = Global.AddBasicMonmentInfo(parent, text, get_global_mouse_position() + Vector2(40, 40))
+		message = Global.add_basic_monment_info(parent, text, get_global_mouse_position() + Vector2(40, 40))
 
 
 func remove_text():

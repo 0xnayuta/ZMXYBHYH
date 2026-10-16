@@ -234,11 +234,13 @@ func call_bullet_2():
 	var PositionList4 = [Vector2(position.x + 600, 0), Vector2(position.x - 600, 0)]
 
 	for i in PositionList1:
-		Global.CallChaseBullet(self.bullet, "Monster1404Bullet2_1", 250, 6, false, i, "hit2", self.objattackDic["hit2"])
+		Global.call_chase_bullet(
+			self.bullet, "Monster1404Bullet2_1", 250, 6, false, i, "hit2", self.objattackDic["hit2"]
+		)
 	await get_tree().create_timer(0.2, false).timeout
 
 	for i in PositionList2:
-		Global.CallChaseBullet(self.bullet, "Monster1404Bullet2", 250, 6, false, i, "hit2", self.objattackDic["hit2"])
+		Global.call_chase_bullet(self.bullet, "Monster1404Bullet2", 250, 6, false, i, "hit2", self.objattackDic["hit2"])
 	await get_tree().create_timer(0.2, false).timeout
 
 

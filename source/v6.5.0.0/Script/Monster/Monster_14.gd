@@ -101,7 +101,7 @@ func do_hit_1():
 
 func call_fly_bullet():
 	if self.MonsterDirection:
-		Global.CallFlyBullet(
+		Global.call_fly_bullet(
 			self.bullet,
 			"Monster14Bullet",
 			-1,
@@ -112,7 +112,7 @@ func call_fly_bullet():
 			self.objattackDic["hit1"]
 		)
 	else:
-		Global.CallFlyBullet(
+		Global.call_fly_bullet(
 			self.bullet,
 			"Monster14Bullet",
 			1,

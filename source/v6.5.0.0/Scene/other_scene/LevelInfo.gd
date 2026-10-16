@@ -2045,9 +2045,9 @@ func _open_special_level_popup(target_path: String) -> void:
 	var parent_node := _popup_parent()
 	var popup = null
 	if target_path == "res://Scene/Level/Level_llbt.tscn":
-		popup = Global.AddllbtChallenge(parent_node, Vector2(0, 0))
+		popup = Global.addllbt_challenge(parent_node, Vector2(0, 0))
 	elif target_path == "兜率宫":
-		popup = Global.AddDsgChoose(parent_node)
+		popup = Global.add_dsg_choose(parent_node)
 	if popup != null:
 		popup.SourcePopup = self
 	process_mode = Node.PROCESS_MODE_DISABLED
@@ -2320,7 +2320,7 @@ func _rebuild_level_fall_items() -> void:
 				if fixed_probability
 				else _get_fall_pro_text(int(item_probability[i]))
 			)
-		var box = Global.AddLevelFallBox(fall_list, true, true, i, 0, [], AE.AllEquipment_[i])
+		var box = Global.add_level_fall_box(fall_list, true, true, i, 0, [], AE.AllEquipment_[i])
 		box.set_button_icon(load_(i))
 		box.set_meta("fall_item_name", i)
 		if pro_txt != "":
@@ -2552,7 +2552,7 @@ func _sync_hell_extra_fall_display():
 
 	if int(MainSet.set_data.get("Difficult", 0)) == 2:
 		if existing_qhsbx == null and AE.AllEquipment_.has("qhsbx"):
-			var qhsbx_box = Global.AddLevelFallBox(fall_list, true, true, "qhsbx", 0, [], AE.AllEquipment_["qhsbx"])
+			var qhsbx_box = Global.add_level_fall_box(fall_list, true, true, "qhsbx", 0, [], AE.AllEquipment_["qhsbx"])
 			qhsbx_box.set_button_icon(load_("qhsbx"))
 			qhsbx_box.set_meta("fall_item_name", "qhsbx")
 			qhsbx_box.set_meta("hell_qhsbx", true)
@@ -2602,7 +2602,7 @@ func AddMonsterHead():
 	var level_info := _get_level_info()
 	var InfoDic = level_info.get("MonsterList", [])
 	for i in InfoDic:
-		var head = Global.AddMonsterHead(monster_list, i["Name"], i["IsBoss"], str(i.get("ScenePath", "")))
+		var head = Global.add_monster_head(monster_list, i["Name"], i["IsBoss"], str(i.get("ScenePath", "")))
 		if head != null:
 			head.LevelPath = TargetStagePath
 			var constellation_level := int(i.get("SelectConstellationLevel", 0))

@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	if _monster_refresh_elapsed >= 0.1 or MonsterList.is_empty():
 		_monster_refresh_elapsed = 0.0
 		MonsterList = _get_active_monster_snapshot()
-	self.FB_Level = PlayerData.get_mostLevel("xhmt") + 1
+	self.FB_Level = PlayerData.get_most_level("xhmt") + 1
 	if PlayerData.check_have_wx("xhmt", "木"):
 		_hit_data["power"] = int(25 + RoleProp.roleprop.power * (0.15 + (self.FB_Level * 0.03)))
 		MaxTimes = 5 + int(self.FB_Level / 3)
@@ -93,7 +93,7 @@ func show_skill():
 		if Monster_2 is Monster138:
 			a_2 += 1
 			continue
-		a_3 = Global.GetDisBetweem(Player, Monster_2)
+		a_3 = Global.get_dis_betweem(Player, Monster_2)
 		if a_3 <= a_1:
 			a_1 = a_3
 			if Monster_2 is Monster48:
@@ -135,7 +135,7 @@ func get_target():
 		if Monster_2 is Monster138:
 			a_2 += 1
 			continue
-		a_3 = Global.GetDisBetweem(Player, Monster_2)
+		a_3 = Global.get_dis_betweem(Player, Monster_2)
 		if a_3 <= a_1:
 			a_1 = a_3
 			if Monster_2 is Monster48:
@@ -172,25 +172,25 @@ func GhostBullet_1():
 	var Gh_1
 	var attack_data := get_attack_snapshot()
 	if self.SelfDir:
-		Gh_1 = Global.addWeaponBullet_(self, Vector2(-60, 0), "GhostDollBullet_1", attack_data, self.SelfDir, 100)
+		Gh_1 = Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_1", attack_data, self.SelfDir, 100)
 	else:
-		Gh_1 = Global.addWeaponBullet_(self, Vector2(-60, 0), "GhostDollBullet_1", attack_data, !self.SelfDir, 100)
+		Gh_1 = Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_1", attack_data, !self.SelfDir, 100)
 
 
 func GhostBullet_2():
 	var attack_data := get_attack_snapshot()
 	if self.SelfDir:
-		Global.addWeaponBullet_(self, Vector2(-60, 0), "GhostDollBullet_2", attack_data, self.SelfDir, 100)
+		Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_2", attack_data, self.SelfDir, 100)
 	else:
-		Global.addWeaponBullet_(self, Vector2(-60, 0), "GhostDollBullet_2", attack_data, !self.SelfDir, 100)
+		Global.add_weapon_bullet(self, Vector2(-60, 0), "GhostDollBullet_2", attack_data, !self.SelfDir, 100)
 
 
 func GhostBullet_3():
 	var attack_data := get_attack_snapshot()
 	if self.SelfDir:
-		Global.addWeaponBullet_(self, Vector2(-60, 30), "GhostDollBullet_3", attack_data, !self.SelfDir, 100)
+		Global.add_weapon_bullet(self, Vector2(-60, 30), "GhostDollBullet_3", attack_data, !self.SelfDir, 100)
 	else:
-		Global.addWeaponBullet_(self, Vector2(-60, 30), "GhostDollBullet_3", attack_data, self.SelfDir, 100)
+		Global.add_weapon_bullet(self, Vector2(-60, 30), "GhostDollBullet_3", attack_data, self.SelfDir, 100)
 
 
 func _on_check_monster_body_entered(body: Node2D) -> void:

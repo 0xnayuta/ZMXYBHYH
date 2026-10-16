@@ -115,6 +115,6 @@ func ADDInfo():
 	if MonsterSkillInfoList.has(MonsterName):
 		title.text = MonsterSkillInfoList[MonsterName]["MonsterName"] + str("Boss")
 		for i in MonsterSkillInfoList[MonsterName]["SkillList"]:
-			Global.ADDFont_(text_list, i, "res://Font/华康宋体W3.ttc", 17, "FFFFFF", 1, "FFFFFF")
+			Global.add_font_(text_list, i, "res://Font/华康宋体W3.ttc", 17, "FFFFFF", 1, "FFFFFF")
 	else:
 		queue_free()

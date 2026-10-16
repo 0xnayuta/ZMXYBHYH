@@ -283,7 +283,7 @@ func _on_level_46_pressed() -> void:
 
 
 func _on_hdzm_pressed() -> void:
-	Global.AddHDZM(_ui_parent(), self)
+	Global.add_hdzm(_ui_parent(), self)
 
 
 func _on_memory_class_pressed() -> void:
@@ -292,7 +292,7 @@ func _on_memory_class_pressed() -> void:
 
 
 func _on_shop_pressed() -> void:
-	Global.add_SHOP(_ui_parent(), Vector2(0, 0))
+	Global.add_shop(_ui_parent(), Vector2(0, 0))
 
 
 func _on_ldl_2_pressed() -> void:
@@ -311,7 +311,7 @@ func _on_activity_pressed() -> void:
 
 
 func _on_task_pressed() -> void:
-	Global.AddBasicTask_(_ui_parent(), Vector2(0, 0))
+	Global.add_basic_task(_ui_parent(), Vector2(0, 0))
 
 
 func _on_return_pressed() -> void:
@@ -320,15 +320,15 @@ func _on_return_pressed() -> void:
 
 
 func _on_game_set_pressed() -> void:
-	Global.Add_GameSet_(_ui_parent(), Vector2(0, 0))
+	Global.add_game_set(_ui_parent(), Vector2(0, 0))
 
 
 func _on_game_an_pressed() -> void:
-	Global.AddGameAnnouncement(_ui_parent(), Vector2(0, 0))
+	Global.add_game_announcement(_ui_parent(), Vector2(0, 0))
 
 
 func _on_pellet_pressed() -> void:
-	Global.AddBasicPellet_(_ui_parent(), Vector2(0, 0))
+	Global.add_basic_pellet(_ui_parent(), Vector2(0, 0))
 
 
 func _on_jjtj_pressed() -> void:

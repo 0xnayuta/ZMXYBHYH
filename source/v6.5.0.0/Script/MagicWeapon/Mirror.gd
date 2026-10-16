@@ -182,7 +182,7 @@ func _physics_process(delta: float) -> void:
 	if monster_version != _monster_snapshot_version:
 		_monster_snapshot_version = monster_version
 		MonsterList = _get_active_monster_snapshot()
-	self.FB_Level = PlayerData.get_mostLevel("bsyj") + 1
+	self.FB_Level = PlayerData.get_most_level("bsyj") + 1
 	var has_wood: bool = bool(PlayerData.check_have_wx("bsyj", "木"))
 	var attack_signature := "%d:%s:%d" % [self.FB_Level, str(has_wood), int(RoleProp.roleprop.SHp)]
 	if attack_signature != _attack_signature:
@@ -226,7 +226,7 @@ func _physics_process(delta: float) -> void:
 				Speed = InitSpeed
 			elif FollowTarget == Player:
 				Useover()
-				Player.FBcureHp(TotalHp)
+				Player.f_bcure_hp(TotalHp)
 				TotalHp = 0
 			else:
 				Useover()
@@ -276,7 +276,7 @@ func show_skill():
 		if Monster_2 == null:
 			a_2 += 1
 			continue
-		a_3 = Global.GetDisBetweem(Player, Monster_2)
+		a_3 = Global.get_dis_betweem(Player, Monster_2)
 		if a_3 <= closest_dist:
 			closest_dist = a_3
 		if Monster_2 is Monster49 or Monster_2 is Monster50:

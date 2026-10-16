@@ -20,7 +20,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	self.FB_Level = PlayerData.get_mostLevel("zlwdah") + 1
+	self.FB_Level = PlayerData.get_most_level("zlwdah") + 1
 	weapon_level = self.FB_Level
 
 	if weapon_level >= 10:

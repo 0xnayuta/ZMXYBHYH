@@ -1031,7 +1031,7 @@ func _try_stun_166_attacker(target: Variant) -> void:
 		return
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			attacker.buff,
 			{
 				"Name": "stun",

@@ -12,7 +12,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_ttzstz_pressed() -> void:
-	if PlayerData.ChekEqzb("头衔", "xczg"):
+	if PlayerData.check_eq_zb("头衔", "xczg"):
 		Global.add_message_show(get_parent(), "本副本不允许使用修成正果头衔！", 1.5, Vector2(470, 300))
 		return
 	if PlayerData.player_data[DataKeys.PLAYER_LEVEL] <= 50:
@@ -54,7 +54,7 @@ func challenge():
 
 
 func _on_hdgq_pressed() -> void:
-	if PlayerData.ChekEqzb("头衔", "xczg"):
+	if PlayerData.check_eq_zb("头衔", "xczg"):
 		Global.add_message_show(get_parent(), "本副本不允许使用修成正果头衔！", 1.5, Vector2(470, 300))
 		return
 	if PlayerData.player_data[DataKeys.PLAYER_LEVEL] <= 50:
@@ -66,7 +66,7 @@ func _on_hdgq_pressed() -> void:
 	elif not PlayerData.player_data["截教天镜"]:
 		Global.add_message_show(get_parent(), "前置关卡要求未达到！", 1.5, Vector2(470, 300))
 		return
-	Global.Addhdgqmap(self, Vector2(0, 0))
+	Global.addhdgqmap(self, Vector2(0, 0))
 
 
 func _on_close_pressed() -> void:

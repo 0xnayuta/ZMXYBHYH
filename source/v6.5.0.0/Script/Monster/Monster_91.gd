@@ -307,7 +307,7 @@ func state_death():
 	if not _is_tower_drop_context() and fall_coin > 0:
 		for i in range(1, 4):
 			var pp = position + Vector2(randi_range(-15, 15), randi_range(-15, 15))
-			Global.AddAura(get_parent().get_parent().fall_it, pp, fall_coin)
+			Global.add_aura(get_parent().get_parent().fall_it, pp, fall_coin)
 		fall_coin = 0
 	velocity.x = 0
 	if IsFs:

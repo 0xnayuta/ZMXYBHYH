@@ -73,7 +73,7 @@ func _build_frames(
 
 
 func _get_official_level() -> int:
-	return clampi(PlayerData.get_mostLevel(WEAPON_ID), 1, 10)
+	return clampi(PlayerData.get_most_level(WEAPON_ID), 1, 10)
 
 
 func get_field_duration() -> float:

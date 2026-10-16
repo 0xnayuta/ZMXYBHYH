@@ -398,11 +398,11 @@ func RefreshInfo():
 					i.queue_free()
 			for i in MonsterSkillInfoList[MonsterName]:
 				if i == "主动技能：" or i == "被动技能：":
-					Global.ADDFont_(
+					Global.add_font_(
 						monster_info, i, "res://Font/Aa梦里掏花对月饮_mianfeiziti.com.ttf", 25, "FFFFFF", 1, "FFFFFF"
 					)
 				else:
-					Global.ADDFont_(monster_info, i, "res://Font/华康宋体W3.ttc", 15, "FFFFFF", 1, "FFFFFF")
+					Global.add_font_(monster_info, i, "res://Font/华康宋体W3.ttc", 15, "FFFFFF", 1, "FFFFFF")
 
 
 func _on_dxx_pressed() -> void:

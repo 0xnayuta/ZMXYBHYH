@@ -282,7 +282,7 @@ func _process_rabbit_buffs(delta: float) -> void:
 		var heal_multiplier := PET_SKILL_PROGRESSION.damage_multiplier(
 			PET_SKILL_PROGRESSION.get_level(pet_data, RABBIT_SKILL_NAMES[SKILL_YSAOYI])
 		)
-		cure_Hp(maxi(1, int(float(SHp) * 0.1 * heal_multiplier)))
+		cure_hp(maxi(1, int(float(SHp) * 0.1 * heal_multiplier)))
 		_heal_rabbit_aoyi_player()
 
 
@@ -296,7 +296,7 @@ func _heal_rabbit_aoyi_player() -> void:
 	var heal_multiplier := PET_SKILL_PROGRESSION.damage_multiplier(
 		PET_SKILL_PROGRESSION.get_level(pet_data, RABBIT_SKILL_NAMES[SKILL_YSAOYI])
 	)
-	player_reference.cure_Hp(maxi(1, int(float(RoleProp.roleprop.SHp) * 0.1 * heal_multiplier)))
+	player_reference.cure_hp(maxi(1, int(float(RoleProp.roleprop.SHp) * 0.1 * heal_multiplier)))
 
 
 func _jifeng_active() -> bool:

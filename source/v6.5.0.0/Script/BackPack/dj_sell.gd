@@ -191,11 +191,11 @@ func use_xhp():
 				Global.get_parent_(self, 3), Vector2(0, 0), "确定使用孟婆药剂吗，所有高于1级的技能等级将清除为1（不返还灵魂）？", 0
 			)
 		"qhsbx":
-			var a = Global.GetAllItemNum(["qhs_1", "qhs_2", "qhs_3", "qhs_4"], be_number, randi_range(3, 4))
-			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
+			var a = Global.get_all_item_num(["qhs_1", "qhs_2", "qhs_3", "qhs_4"], be_number, randi_range(3, 4))
+			Global.add_reward_info(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 		"hhbx":
-			var a = Global.GetAllItemNum(
+			var a = Global.get_all_item_num(
 				[
 					"qhs_1",
 					"qhs_2",
@@ -222,7 +222,7 @@ func use_xhp():
 				be_number,
 				randi_range(1, 1)
 			)
-			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
+			Global.add_reward_info(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 
 		"jsbx_1":
@@ -231,7 +231,7 @@ func use_xhp():
 				{"名字": "smjs_1", "num": 6, "五行": []},
 				{"名字": "mfjs_1", "num": 6, "五行": []},
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -241,7 +241,7 @@ func use_xhp():
 				{"名字": "smjs_2", "num": 6, "五行": []},
 				{"名字": "mfjs_2", "num": 6, "五行": []},
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -251,7 +251,7 @@ func use_xhp():
 				{"名字": "smjs_3", "num": 6, "五行": []},
 				{"名字": "mfjs_3", "num": 6, "五行": []},
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -263,7 +263,7 @@ func use_xhp():
 				{"名字": "qhs_3", "num": 1, "五行": []},
 				{"名字": "qhs_4", "num": 1, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -281,7 +281,7 @@ func use_xhp():
 				{"名字": "jlxmc", "num": 0, "五行": []},
 				{"名字": "qthbq", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -299,7 +299,7 @@ func use_xhp():
 				{"名字": "jlxmc", "num": 0, "五行": []},
 				{"名字": "qthbq", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -311,7 +311,7 @@ func use_xhp():
 				{"名字": "dslj", "num": 0, "五行": []},
 				{"名字": "210007001", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -322,7 +322,7 @@ func use_xhp():
 				{"名字": "jmc", "num": 0, "五行": []},
 				{"名字": "zhj", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -333,7 +333,7 @@ func use_xhp():
 				{"名字": "bsp", "num": 0, "五行": []},
 				{"名字": "211007001", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -343,7 +343,7 @@ func use_xhp():
 				{"名字": "jcbj", "num": 0, "五行": []},
 				{"名字": "jcmc", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -354,7 +354,7 @@ func use_xhp():
 				{"名字": "jclj", "num": 0, "五行": []},
 				{"名字": "210007002", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -365,7 +365,7 @@ func use_xhp():
 				{"名字": "bxp", "num": 0, "五行": []},
 				{"名字": "211007002", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -373,14 +373,14 @@ func use_xhp():
 			var choice_item_list = [
 				{"名字": "qlp", "num": 0, "五行": []}, {"名字": "zqj", "num": 0, "五行": []}, {"名字": "ttj", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
 
 		"hhebx":
 			var choice_item_list = [{"名字": "jgj", "num": 0, "五行": []}, {"名字": "ssj", "num": 0, "五行": []}]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -391,14 +391,14 @@ func use_xhp():
 				{"名字": "lzp", "num": 0, "五行": []},
 				{"名字": "221007001", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
 
 		"hbwcbx":
 			var choice_item_list = [{"名字": "yhj", "num": 0, "五行": []}, {"名字": "tsgl", "num": 0, "五行": []}]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -410,7 +410,7 @@ func use_xhp():
 				{"名字": "bsbc", "num": 0, "五行": []},
 				{"名字": "bshq", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -423,13 +423,13 @@ func use_xhp():
 				{"名字": "bshq", "num": 0, "五行": []},
 				{"名字": "csgs", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
 		"klwbx":
 			var choice_item_list = [{"名字": "lcgy", "num": 0, "五行": []}, {"名字": "tsgp", "num": 0, "五行": []}]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -439,13 +439,13 @@ func use_xhp():
 				{"名字": "gtc", "num": 0, "五行": []},
 				{"名字": "220007001", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
 		"pgbx":
 			var choice_item_list = [{"名字": "tsyp", "num": 0, "五行": []}, {"名字": "lcld", "num": 0, "五行": []}]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -455,7 +455,7 @@ func use_xhp():
 				{"名字": "lchp", "num": 0, "五行": []},
 				{"名字": "221007002", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -466,7 +466,7 @@ func use_xhp():
 				{"名字": "xhxc", "num": 0, "五行": []},
 				{"名字": "220007002", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -477,7 +477,7 @@ func use_xhp():
 				{"名字": "xhymk", "num": 0, "五行": []},
 				{"名字": "xhyk", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -489,7 +489,7 @@ func use_xhp():
 				{"名字": "shyc", "num": 0, "五行": []},
 				{"名字": "xyq", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -506,7 +506,7 @@ func use_xhp():
 				{"名字": "ylhq", "num": 0, "五行": []},
 				{"名字": "yljj", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -519,7 +519,7 @@ func use_xhp():
 				{"名字": "xhz", "num": 0, "五行": []},
 				{"名字": "231007001", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -530,7 +530,7 @@ func use_xhp():
 				{"名字": "xhj", "num": 0, "五行": []},
 				{"名字": "230007001", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -540,13 +540,13 @@ func use_xhp():
 				{"名字": "qyfp", "num": 0, "五行": []},
 				{"名字": "qysq", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
 		"gmtwbx":
 			var choice_item_list = [{"名字": "hylk", "num": 0, "五行": []}, {"名字": "qysz", "num": 0, "五行": []}]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -556,7 +556,7 @@ func use_xhp():
 				{"名字": "hylc", "num": 0, "五行": []},
 				{"名字": "231007002", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -569,7 +569,7 @@ func use_xhp():
 				{"名字": "hljhzzs", "num": 0, "五行": []},
 				{"名字": "230007002", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -581,7 +581,7 @@ func use_xhp():
 				{"名字": "wsjgzzs", "num": 0, "五行": []},
 				{"名字": "blmqzzs", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -592,7 +592,7 @@ func use_xhp():
 				{"名字": "yjzzs", "num": 0, "五行": []},
 				{"名字": "zezzs", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -603,7 +603,7 @@ func use_xhp():
 				{"名字": "thzzs", "num": 0, "五行": []},
 				{"名字": "tqzzs", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -615,7 +615,7 @@ func use_xhp():
 				{"名字": "230007003zzs", "num": 0, "五行": []},
 				{"名字": "231007003zzs", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -628,7 +628,7 @@ func use_xhp():
 				{"名字": "tljzzs", "num": 0, "五行": []},
 				{"名字": "231007004zzs", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -641,14 +641,14 @@ func use_xhp():
 				{"名字": "tlqzzs", "num": 0, "五行": []},
 				{"名字": "230007004zzs", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
 
 		"xydxq":
 			var parent = get_parent().get_parent().get_parent()
-			if not PlayerData.CheckSameIniBuff("DoubleFallPro"):
+			if not PlayerData.check_same_ini_buff("DoubleFallPro"):
 				PlayerData.remove_xhp(my_name, my_page, 1)
 				PlayerData.player_data["初始Buff"].push_back(
 					{
@@ -705,7 +705,7 @@ func use_xhp():
 				{"名字": "sslzyf", "num": 0, "五行": []},
 				{"名字": "bllzyf", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
@@ -717,12 +717,12 @@ func use_xhp():
 				{"名字": "sshzyf", "num": 0, "五行": []},
 				{"名字": "blhzyf", "num": 0, "五行": []}
 			]
-			Global.add_Choose_Item(
+			Global.add_choose_item(
 				Global.get_parent_(get_parent(), 2), Vector2(460, 260), choice_item_list, my_name, my_page
 			)
 			queue_free()
 		"bsd_1":
-			var a = Global.GetAllItemNum(
+			var a = Global.get_all_item_num(
 				[
 					"sms_1",
 					"fls_1",
@@ -743,11 +743,11 @@ func use_xhp():
 				be_number,
 				1
 			)
-			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
+			Global.add_reward_info(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 
 		"bsd_2":
-			var a = Global.GetAllItemNum(
+			var a = Global.get_all_item_num(
 				[
 					"sms_2",
 					"fls_2",
@@ -768,10 +768,10 @@ func use_xhp():
 				be_number,
 				1
 			)
-			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
+			Global.add_reward_info(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 		"bsd_3":
-			var a = Global.GetAllItemNum(
+			var a = Global.get_all_item_num(
 				[
 					"sms_3",
 					"fls_3",
@@ -792,10 +792,10 @@ func use_xhp():
 				be_number,
 				1
 			)
-			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
+			Global.add_reward_info(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 		"bsd_4":
-			var a = Global.GetAllItemNum(
+			var a = Global.get_all_item_num(
 				[
 					"sms_4",
 					"fls_4",
@@ -816,10 +816,10 @@ func use_xhp():
 				be_number,
 				1
 			)
-			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
+			Global.add_reward_info(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 		"bsd_5":
-			var a = Global.GetAllItemNum(
+			var a = Global.get_all_item_num(
 				[
 					"sms_5",
 					"fls_5",
@@ -840,7 +840,7 @@ func use_xhp():
 				be_number,
 				1
 			)
-			Global.AddRewardInfo(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
+			Global.add_reward_info(Global.get_parent_(self, 3), Vector2(0, 0), a, my_name, be_number)
 			queue_free()
 		"xlhys":
 			var parent = get_parent().get_parent().get_parent()

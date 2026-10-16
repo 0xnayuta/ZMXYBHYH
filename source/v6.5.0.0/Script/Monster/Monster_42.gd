@@ -195,7 +195,7 @@ func call_xmhd():
 		xw.set_rotation_degrees(20)
 	(
 		Global
-		. AddBuff(
+		. add_buff(
 			get_Player.buff,
 			{
 				"Name": "speed_down",

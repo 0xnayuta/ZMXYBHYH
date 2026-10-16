@@ -89,7 +89,7 @@ func do_hit_2():
 
 func call_dd():
 	if self.MonsterDirection:
-		Global.CallChaseBullet(
+		Global.call_chase_bullet(
 			self.bullet,
 			"Monster37Bullet",
 			220,
@@ -100,7 +100,7 @@ func call_dd():
 			self.objattackDic["hit1"]
 		)
 	else:
-		Global.CallChaseBullet(
+		Global.call_chase_bullet(
 			self.bullet,
 			"Monster37Bullet",
 			220,
