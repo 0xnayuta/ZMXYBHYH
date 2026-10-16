@@ -232,7 +232,7 @@ func _layout_fullscreen() -> void:
 
 
 func _read_custom_item_name(item: Dictionary) -> String:
-	return str(item.get("名字", item.get("id", item.get("name", ""))))
+	return str(item.get(DataKeys.NAME, item.get("id", item.get("name", ""))))
 
 
 func _read_custom_item_price(item: Dictionary) -> int:
@@ -244,7 +244,7 @@ func _read_custom_item_price(item: Dictionary) -> int:
 		return int(item["cost"])
 	var item_name := _read_custom_item_name(item)
 	if AE.AllEquipment_.has(item_name):
-		return get_price_by_quality(str(AE.AllEquipment_[item_name].get("品质", "")))
+		return get_price_by_quality(str(AE.AllEquipment_[item_name].get(DataKeys.QUALITY, "")))
 	return 0
 
 
@@ -286,11 +286,13 @@ func _append_all_equipment_items() -> void:
 		var item_data: Variant = AE.AllEquipment_.get(item_id, {})
 		if not (item_data is Dictionary):
 			continue
-		var category := _shop_category_for_type(str(item_data.get("类型", "")))
+		var category := _shop_category_for_type(str(item_data.get(DataKeys.TYPE, "")))
 		if category == "":
 			continue
 		_custom_shop_item_types[item_id] = category
-		TotalItemList.push_back({"id": item_id, "price": get_price_by_quality(str(item_data.get("品质", "")))})
+		TotalItemList.push_back(
+			{"id": item_id, "price": get_price_by_quality(str(item_data.get(DataKeys.QUALITY, "")))}
+		)
 
 
 func _shop_category_for_type(item_type: String) -> String:
@@ -308,7 +310,7 @@ func _shop_category_for_type(item_type: String) -> String:
 
 
 func _shop_item_id(item: Dictionary) -> String:
-	return str(item.get("id", item.get("名字", "")))
+	return str(item.get("id", item.get(DataKeys.NAME, "")))
 
 
 func _shop_item_price(item: Dictionary) -> int:
@@ -407,7 +409,7 @@ func SetCurrentPageTypeItems():
 		for item in TotalItemList:
 			if _is_shop_item_visible(item):
 				var item_id := _shop_item_id(item)
-				var item_name = str(AE.AllEquipment_[item_id].get("名字", item_id)).to_lower()
+				var item_name = str(AE.AllEquipment_[item_id].get(DataKeys.NAME, item_id)).to_lower()
 				if keyword in item_name:
 					GetTargetList.append(item)
 	else:

@@ -179,19 +179,19 @@ func update_icons(target: String):
 	item_1.tooltip_text = material_names[0] if material_names[0] != "" else "无"
 	item_2.tooltip_text = material_names[1] if material_names[1] != "" else "无"
 	item_3.tooltip_text = material_names[2] if material_names[2] != "" else "无"
-	item_4.tooltip_text = AE.AllEquipment_[target]["名字"] if AE.AllEquipment_.has(target) else target
+	item_4.tooltip_text = AE.AllEquipment_[target][DataKeys.NAME] if AE.AllEquipment_.has(target) else target
 
 
 func get_item_count(item_name: String) -> int:
 	var total = 0
-	for page in PlayerData.player_data["消耗品列表"].values():
+	for page in PlayerData.player_data[DataKeys.CONSUMABLE_LIST].values():
 		for item in page:
-			if item["名字"] == item_name:
-				total += item["数量"]
-	for page in PlayerData.player_data["道具列表"].values():
+			if item[DataKeys.NAME] == item_name:
+				total += item[DataKeys.COUNT]
+	for page in PlayerData.player_data[DataKeys.ITEM_LIST].values():
 		for item in page:
-			if item["名字"] == item_name:
-				total += item["数量"]
+			if item[DataKeys.NAME] == item_name:
+				total += item[DataKeys.COUNT]
 	return total
 
 
@@ -235,7 +235,7 @@ func perform_onekey_synthesis(target_dan_name: String, times: int):
 	MemoryClass.保存游戏(Global.cd_path)
 	Global.add_message_show(
 		Global.Windows_,
-		"一键合成成功！获得 " + AE.AllEquipment_[target_dan_name]["名字"] + " x" + str(times),
+		"一键合成成功！获得 " + AE.AllEquipment_[target_dan_name][DataKeys.NAME] + " x" + str(times),
 		1.5,
 		Vector2(470, 300)
 	)

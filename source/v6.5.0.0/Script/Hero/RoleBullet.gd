@@ -333,9 +333,9 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 						}
 					)
 
-		if PlayerData.player_data["技能学习"]["技能10"]["等级"] <= 0:
+		if PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] <= 0:
 			return
-		var level_10 = PlayerData.player_data["技能学习"]["技能10"]["等级"]
+		var level_10 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
 		var threshold = 0.0
 		if name_ == "Role2Bullet3":
 			threshold = 3 + level_10 * 0.5

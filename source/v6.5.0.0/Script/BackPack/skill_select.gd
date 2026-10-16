@@ -102,7 +102,7 @@ func set_infor() -> void:
 	if info.is_empty():
 		return
 	Skill_Icon.texture = load(str(info["icon"]))
-	Wp_name.text = str(AE.AllEquipment_.get(wp_name, {}).get("名字", wp_name))
+	Wp_name.text = str(AE.AllEquipment_.get(wp_name, {}).get(DataKeys.NAME, wp_name))
 	Skill_name.text = str(info["skill"])
 	Skill_level.text = "Lv: " + str(PlayerData.get_mostLevel(wp_name))
 	WX_mu.visible = PlayerData.check_have_wx(wp_name, "木")

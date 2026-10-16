@@ -144,9 +144,9 @@ func refresh_hmz_damage_data(level_: int = -1):
 
 
 func get_hmz_ws_hit_data(action_name: String = "hmz_3") -> Dictionary:
-	var skill_data: Variant = PlayerData.player_data.get("技能学习", {})
+	var skill_data: Variant = PlayerData.player_data.get(DataKeys.SKILL_LEARNED, {})
 	var ws_data: Variant = skill_data.get("技能12", {}) if skill_data is Dictionary else {}
-	var ws_level := int(ws_data.get("等级", 0)) + 1 if ws_data is Dictionary else 1
+	var ws_level := int(ws_data.get(DataKeys.LEVEL, 0)) + 1 if ws_data is Dictionary else 1
 	set_hmz_damage_level(ws_level, "hmz_ws")
 	var attack_data: Variant = objattackDic.get(action_name, {})
 	return attack_data.duplicate(true) if attack_data is Dictionary else {}
@@ -156,18 +156,18 @@ func Role_1():
 	if not is_in_group("Player"):
 		add_to_group("Player")
 
-	var level_1 = PlayerData.player_data["技能学习"]["技能1"]["等级"] + 1
-	var level_2 = PlayerData.player_data["技能学习"]["技能2"]["等级"] + 1
-	var level_3 = PlayerData.player_data["技能学习"]["技能3"]["等级"] + 1
-	var level_4 = PlayerData.player_data["技能学习"]["技能4"]["等级"] + 1
-	var level_5 = PlayerData.player_data["技能学习"]["技能5"]["等级"] + 1
-	var level_6 = PlayerData.player_data["技能学习"]["技能6"]["等级"] + 1
-	var level_7 = PlayerData.player_data["技能学习"]["技能7"]["等级"] + 1
-	var level_8 = PlayerData.player_data["技能学习"]["技能8"]["等级"] + 1
-	var level_9 = PlayerData.player_data["技能学习"]["技能9"]["等级"] + 1
-	var level_10 = PlayerData.player_data["技能学习"]["技能10"]["等级"]
-	var level_11 = PlayerData.player_data["技能学习"]["技能11"]["等级"] + 1
-	var level_12 = PlayerData.player_data["技能学习"]["技能12"]["等级"] + 1
+	var level_1 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能1"][DataKeys.LEVEL] + 1
+	var level_2 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能2"][DataKeys.LEVEL] + 1
+	var level_3 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能3"][DataKeys.LEVEL] + 1
+	var level_4 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
+	var level_5 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能5"][DataKeys.LEVEL] + 1
+	var level_6 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能6"][DataKeys.LEVEL] + 1
+	var level_7 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1
+	var level_8 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能8"][DataKeys.LEVEL] + 1
+	var level_9 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] + 1
+	var level_10 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
+	var level_11 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能11"][DataKeys.LEVEL] + 1
+	var level_12 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能12"][DataKeys.LEVEL] + 1
 	hmz_ws_damage_level = max(1, level_12)
 	if level_10 == 0:
 		RoleProp.Role1SXBJ = 0
@@ -276,7 +276,7 @@ func Role_1():
 		"attackKind": "magic",
 		"WSValue": randi_range(8, 10)
 	}
-	var level_13 = PlayerData.player_data["技能学习"]["技能13"]["等级"] + 1
+	var level_13 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能13"][DataKeys.LEVEL] + 1
 	self.objattackDic["hyjj_ws"] = {
 		"power": RoleProp.roleprop.power * (0.6 + (level_13 * 0.12)),
 		"hurtBack": [0, 0],
@@ -319,27 +319,27 @@ func _physics_process(delta: float) -> void:
 				get_skill("slz")
 				return
 			elif Input.is_action_pressed("slz") and not is_be_attacking and not is_using_skills and Interv <= 0:
-				var Skill_name = PlayerData.player_data["技能学习"]["技能键位"]["Y"]
+				var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["Y"]
 				if Skill_name == "jdy":
 					get_skill("jdy2")
 					return
 			elif Input.is_action_pressed("lys") and not is_be_attacking and not is_using_skills and Interv <= 0:
-				var Skill_name = PlayerData.player_data["技能学习"]["技能键位"]["U"]
+				var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["U"]
 				if Skill_name == "jdy":
 					get_skill("jdy2")
 					return
 			elif Input.is_action_pressed("lyfb") and not is_be_attacking and not is_using_skills and Interv <= 0:
-				var Skill_name = PlayerData.player_data["技能学习"]["技能键位"]["I"]
+				var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["I"]
 				if Skill_name == "jdy":
 					get_skill("jdy2")
 					return
 			elif Input.is_action_pressed("hmz") and not is_be_attacking and not is_using_skills and Interv <= 0:
-				var Skill_name = PlayerData.player_data["技能学习"]["技能键位"]["O"]
+				var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["O"]
 				if Skill_name == "jdy":
 					get_skill("jdy2")
 					return
 			elif Input.is_action_pressed("hytj") and not is_be_attacking and not is_using_skills and Interv <= 0:
-				var Skill_name = PlayerData.player_data["技能学习"]["技能键位"]["L"]
+				var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["L"]
 				if Skill_name == "jdy":
 					get_skill("jdy2")
 					return
@@ -1068,7 +1068,10 @@ func Add_Shallow():
 
 
 func setShallowaction(action_: String):
-	var power = self.objattackDic[action_]["power"] * (0.7 + (PlayerData.player_data["技能学习"]["技能7"]["等级"] + 1) * 0.03)
+	var power = (
+		self.objattackDic[action_]["power"]
+		* (0.7 + (PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1) * 0.03)
+	)
 	if ShallowList.size() != 0:
 		for i in ShallowList:
 			if i != null:

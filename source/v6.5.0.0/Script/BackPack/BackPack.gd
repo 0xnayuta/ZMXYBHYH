@@ -317,65 +317,65 @@ func set_backpack_properies():
 
 func set_icon():
 	var current_snapshot = [
-		PlayerData.player_data.get("武器", []),
-		PlayerData.player_data.get("防具", []),
+		PlayerData.player_data.get(DataKeys.WEAPON, []),
+		PlayerData.player_data.get(DataKeys.ARMOR, []),
 		PlayerData.player_data.get("饰品", []),
-		PlayerData.player_data.get("头衔", []),
-		PlayerData.player_data.get("时装", []),
-		PlayerData.player_data.get("翅膀", []),
-		PlayerData.player_data.get("法宝", [])
+		PlayerData.player_data.get(DataKeys.TITLE, []),
+		PlayerData.player_data.get(DataKeys.FASHION, []),
+		PlayerData.player_data.get(DataKeys.WINGS, []),
+		PlayerData.player_data.get(DataKeys.MAGIC_WEAPON, [])
 	]
 	if current_snapshot == _last_equipped_snapshot:
 		return
 	_last_equipped_snapshot = current_snapshot.duplicate(true)
-	if PlayerData.player_data["武器"].size() != 0:
-		wq.get_item_name = PlayerData.player_data["武器"][0]["名字"]
-		wq.set_button_icon(load_(PlayerData.player_data["武器"][0]["名字"]))
-		wq.qh_level = PlayerData.player_data["武器"][0]["强化等级"]
-		wq.EQ_prop = PlayerData.player_data["武器"][0]["Data"]
+	if PlayerData.player_data[DataKeys.WEAPON].size() != 0:
+		wq.get_item_name = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME]
+		wq.set_button_icon(load_(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME]))
+		wq.qh_level = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.ENHANCE_LEVEL]
+		wq.EQ_prop = PlayerData.player_data[DataKeys.WEAPON][0]["Data"]
 	else:
 		wq.set_button_icon(load_("wq"))
-	if PlayerData.player_data["防具"].size() != 0:
-		fj.get_item_name = PlayerData.player_data["防具"][0]["名字"]
-		fj.set_button_icon(load_(PlayerData.player_data["防具"][0]["名字"]))
-		fj.qh_level = PlayerData.player_data["防具"][0]["强化等级"]
-		fj.EQ_prop = PlayerData.player_data["防具"][0]["Data"]
+	if PlayerData.player_data[DataKeys.ARMOR].size() != 0:
+		fj.get_item_name = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME]
+		fj.set_button_icon(load_(PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME]))
+		fj.qh_level = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.ENHANCE_LEVEL]
+		fj.EQ_prop = PlayerData.player_data[DataKeys.ARMOR][0]["Data"]
 	else:
 		fj.set_button_icon(load_("fj"))
 	if PlayerData.player_data["饰品"].size() != 0:
-		sp.get_item_name = PlayerData.player_data["饰品"][0]["名字"]
-		sp.set_button_icon(load_(PlayerData.player_data["饰品"][0]["名字"]))
-		sp.qh_level = PlayerData.player_data["饰品"][0]["强化等级"]
+		sp.get_item_name = PlayerData.player_data["饰品"][0][DataKeys.NAME]
+		sp.set_button_icon(load_(PlayerData.player_data["饰品"][0][DataKeys.NAME]))
+		sp.qh_level = PlayerData.player_data["饰品"][0][DataKeys.ENHANCE_LEVEL]
 		sp.EQ_prop = PlayerData.player_data["饰品"][0]["Data"]
 	else:
 		sp.set_button_icon(load_("sp"))
-	if PlayerData.player_data["头衔"].size() != 0:
-		tx.get_item_name = PlayerData.player_data["头衔"][0]["名字"]
-		tx.set_button_icon(load_(PlayerData.player_data["头衔"][0]["名字"]))
-		tx.qh_level = PlayerData.player_data["头衔"][0]["强化等级"]
-		tx.EQ_prop = PlayerData.player_data["头衔"][0]["Data"]
+	if PlayerData.player_data[DataKeys.TITLE].size() != 0:
+		tx.get_item_name = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.NAME]
+		tx.set_button_icon(load_(PlayerData.player_data[DataKeys.TITLE][0][DataKeys.NAME]))
+		tx.qh_level = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.ENHANCE_LEVEL]
+		tx.EQ_prop = PlayerData.player_data[DataKeys.TITLE][0]["Data"]
 	else:
 		tx.set_button_icon(load_("tx"))
-	if PlayerData.player_data["时装"].size() != 0:
-		sz.get_item_name = PlayerData.player_data["时装"][0]["名字"]
-		sz.set_button_icon(load_(PlayerData.player_data["时装"][0]["名字"]))
-		sz.qh_level = PlayerData.player_data["时装"][0]["强化等级"]
-		sz.EQ_prop = PlayerData.player_data["时装"][0]["Data"]
+	if PlayerData.player_data[DataKeys.FASHION].size() != 0:
+		sz.get_item_name = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]
+		sz.set_button_icon(load_(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]))
+		sz.qh_level = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.ENHANCE_LEVEL]
+		sz.EQ_prop = PlayerData.player_data[DataKeys.FASHION][0]["Data"]
 	else:
 		sz.set_button_icon(load_("sz"))
-	if PlayerData.player_data["翅膀"].size() != 0:
-		cb.get_item_name = PlayerData.player_data["翅膀"][0]["名字"]
-		cb.set_button_icon(load_(PlayerData.player_data["翅膀"][0]["名字"]))
-		cb.qh_level = PlayerData.player_data["翅膀"][0]["强化等级"]
-		cb.EQ_prop = PlayerData.player_data["翅膀"][0]["Data"]
+	if PlayerData.player_data[DataKeys.WINGS].size() != 0:
+		cb.get_item_name = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
+		cb.set_button_icon(load_(PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]))
+		cb.qh_level = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.ENHANCE_LEVEL]
+		cb.EQ_prop = PlayerData.player_data[DataKeys.WINGS][0]["Data"]
 	else:
 		cb.set_button_icon(load_("cb"))
-	if PlayerData.player_data["法宝"].size() != 0:
-		fb.get_item_name = PlayerData.player_data["法宝"][0]["名字"]
-		fb.set_button_icon(load_(PlayerData.player_data["法宝"][0]["名字"]))
-		fb.qh_level = PlayerData.player_data["法宝"][0]["强化等级"]
-		fb.EQ_prop = PlayerData.player_data["法宝"][0]["Data"]
-		fb.wx = PlayerData.player_data["法宝"][0]["五行"]
+	if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() != 0:
+		fb.get_item_name = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
+		fb.set_button_icon(load_(PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]))
+		fb.qh_level = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL]
+		fb.EQ_prop = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
+		fb.wx = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS]
 	else:
 		fb.set_button_icon(load_("fb"))
 
@@ -545,12 +545,12 @@ func _on_name_text_changed(new_text: String) -> void:
 
 
 func set_RoleWwings():
-	var WingsList = PlayerData.player_data["翅膀"]
+	var WingsList = PlayerData.player_data[DataKeys.WINGS]
 	if WingsList.size() <= 0:
 		wings.visible = false
 		wings.play("empty")
 		return
-	var get_WingsName = WingsList[0]["名字"]
+	var get_WingsName = WingsList[0][DataKeys.NAME]
 	wings.play(get_WingsName)
 	return
 
@@ -559,38 +559,38 @@ func onEqchange():
 	var WQ: String
 	var Fj: String
 
-	if PlayerData.player_data["幻化列表"]["武器"] == "":
-		if PlayerData.player_data["武器"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON] == "":
+		if PlayerData.player_data[DataKeys.WEAPON].size() == 0:
 			WQ = "Empty"
 		else:
-			WQ = str(PlayerData.player_data["武器"][0]["名字"])
+			WQ = str(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME])
 	else:
-		WQ = str(PlayerData.player_data["幻化列表"]["武器"])
+		WQ = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON])
 	ChangeEq(WQ)
-	if PlayerData.player_data["幻化列表"]["防具"] == "":
-		if PlayerData.player_data["时装"].size() == 0:
-			if PlayerData.player_data["防具"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR] == "":
+		if PlayerData.player_data[DataKeys.FASHION].size() == 0:
+			if PlayerData.player_data[DataKeys.ARMOR].size() == 0:
 				Fj = "Empty"
 			else:
-				Fj = str(PlayerData.player_data["防具"][0]["名字"])
+				Fj = str(PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME])
 		else:
-			Fj = str(PlayerData.player_data["时装"][0]["名字"])
+			Fj = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
 	else:
-		Fj = str(PlayerData.player_data["幻化列表"]["防具"])
+		Fj = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR])
 	Fj = Global.GetName(Fj)
 	ChangeBody(Fj)
 	var WingsList
 
-	if PlayerData.player_data["幻化列表"]["翅膀"] == "":
-		if PlayerData.player_data["翅膀"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
+		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
 			wings.visible = false
 			WingsList = "empty"
 		else:
 			wings.visible = true
-			WingsList = PlayerData.player_data["翅膀"][0]["名字"]
+			WingsList = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 	else:
 		wings.visible = true
-		WingsList = PlayerData.player_data["幻化列表"]["翅膀"]
+		WingsList = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
 	$background/Wings.play(WingsList)
 
 
@@ -647,13 +647,13 @@ func _on_head_show_pressed() -> void:
 func SetWingsOffset():
 	var CurrentWingsName: String
 
-	if PlayerData.player_data["幻化列表"]["翅膀"] == "":
-		if PlayerData.player_data["翅膀"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
+		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
 			CurrentWingsName = "empty"
 		else:
-			CurrentWingsName = PlayerData.player_data["翅膀"][0]["名字"]
+			CurrentWingsName = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 	else:
-		CurrentWingsName = PlayerData.player_data["幻化列表"]["翅膀"]
+		CurrentWingsName = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
 	match CurrentWingsName:
 		"xtzy", "ttzy":
 			wings.offset = Vector2(0, 0)

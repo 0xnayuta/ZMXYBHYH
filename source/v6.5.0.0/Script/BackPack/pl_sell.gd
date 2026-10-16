@@ -46,8 +46,8 @@ func _on_qd_pressed() -> void:
 		return
 	var coin_number: int = 0
 	for u in range(15):
-		for i in PlayerData.player_data["装备列表"]["页码" + str(page)]:
-			var Type = AE.AllEquipment_[i["名字"]]["类型"]
+		for i in PlayerData.player_data[DataKeys.EQUIPMENT_LIST]["页码" + str(page)]:
+			var Type = AE.AllEquipment_[i[DataKeys.NAME]][DataKeys.TYPE]
 			if Type == "时装" or Type == "法宝" or Type == "头衔":
 				continue
 			if _is_divine_forged(i):
@@ -57,12 +57,12 @@ func _on_qd_pressed() -> void:
 				or (i.get("Data", {}) is Dictionary and bool((i.get("Data", {}) as Dictionary).get("锁定", false)))
 			):
 				continue
-			var get_pz = AE.AllEquipment_[i["名字"]]["品质"]
-			var value = AE.AllEquipment_[i["名字"]]["售价"]
-			var qh_level = i["强化等级"]
-			var bs_size = i["Data"]["宝石"].size()
+			var get_pz = AE.AllEquipment_[i[DataKeys.NAME]][DataKeys.QUALITY]
+			var value = AE.AllEquipment_[i[DataKeys.NAME]]["售价"]
+			var qh_level = i[DataKeys.ENHANCE_LEVEL]
+			var bs_size = i["Data"][DataKeys.GEM].size()
 			if sell_pz.has(get_pz) and qh_level == 0 and bs_size == 0:
-				PlayerData.player_data["装备列表"]["页码" + str(page)].erase(i)
+				PlayerData.player_data[DataKeys.EQUIPMENT_LIST]["页码" + str(page)].erase(i)
 				PlayerData.add_soul(value)
 				coin_number += value
 	if coin_number > 0:
@@ -171,16 +171,16 @@ func _on_sell_all_pressed():
 	for page_idx in range(1, 21):
 		var page_key = "页码" + str(page_idx)
 
-		if not PlayerData.player_data["装备列表"].has(page_key):
+		if not PlayerData.player_data[DataKeys.EQUIPMENT_LIST].has(page_key):
 			continue
 
-		var equip_list = PlayerData.player_data["装备列表"][page_key]
+		var equip_list = PlayerData.player_data[DataKeys.EQUIPMENT_LIST][page_key]
 		var i = equip_list.size() - 1
 		while i >= 0:
 			var item = equip_list[i]
-			var item_name = item["名字"]
+			var item_name = item[DataKeys.NAME]
 
-			var item_type = AE.AllEquipment_[item_name]["类型"]
+			var item_type = AE.AllEquipment_[item_name][DataKeys.TYPE]
 			if item_type == "时装" or item_type == "法宝" or item_type == "头衔":
 				i -= 1
 				continue
@@ -194,10 +194,10 @@ func _on_sell_all_pressed():
 				i -= 1
 				continue
 
-			var quality = AE.AllEquipment_[item_name]["品质"]
+			var quality = AE.AllEquipment_[item_name][DataKeys.QUALITY]
 			var price = AE.AllEquipment_[item_name]["售价"]
-			var qh_level = item["强化等级"]
-			var gem_count = item["Data"]["宝石"].size()
+			var qh_level = item[DataKeys.ENHANCE_LEVEL]
+			var gem_count = item["Data"][DataKeys.GEM].size()
 
 			if sell_pz.has(quality) && qh_level == 0 && gem_count == 0:
 				PlayerData.record_acquired_equipment(str(item_name))

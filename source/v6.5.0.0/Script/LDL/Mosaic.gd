@@ -17,7 +17,7 @@ const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/Pet/PetPageResources/PetI
 func _physics_process(_delta: float) -> void:
 	setBoxInLdL()
 
-	if PlayerData.player_data["镶嵌列表"].size() != 0:
+	if PlayerData.player_data[DataKeys.INLAY_LIST].size() != 0:
 		set_ZBProperies()
 		set_OtherProp()
 	else:
@@ -38,9 +38,9 @@ func setBoxInLdL():
 
 
 func set_ZBProperies():
-	var selected: Dictionary = PlayerData.player_data["镶嵌列表"][0]
-	Zb.qh_level = int(selected["强化等级"])
-	Zb.get_item_name = str(selected["名字"])
+	var selected: Dictionary = PlayerData.player_data[DataKeys.INLAY_LIST][0]
+	Zb.qh_level = int(selected[DataKeys.ENHANCE_LEVEL])
+	Zb.get_item_name = str(selected[DataKeys.NAME])
 	Zb.strength_source = str(selected.get("来源", "装备背包"))
 	Zb.strength_index = int(selected.get("位置", -1))
 	Zb.set_meta("equipped_type", str(selected.get("穿戴栏", "")))
@@ -54,11 +54,13 @@ func set_ZBProperies():
 
 
 func set_OtherProp():
-	var BSsize = PlayerData.player_data["镶嵌列表"][0]["Data"]["宝石"].size()
+	var BSsize = PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"][DataKeys.GEM].size()
 	var bs_list = [bs_1, bs_2, bs_3, bs_4, bs_5, bs_6, bs_7, bs_8]
 	for i in range(bs_list.size()):
 		if i < BSsize:
-			bs_list[i].set_button_icon(load_(str(PlayerData.player_data["镶嵌列表"][0]["Data"]["宝石"][i])))
+			bs_list[i].set_button_icon(
+				load_(str(PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"][DataKeys.GEM][i]))
+			)
 		else:
 			bs_list[i].set_button_icon(load_(str("empty")))
 
@@ -81,7 +83,7 @@ func remove_infomation():
 	bs_6.set_button_icon(load_(str("empty")))
 	bs_7.set_button_icon(load_(str("empty")))
 	bs_8.set_button_icon(load_(str("empty")))
-	PlayerData.player_data["镶嵌列表"].clear()
+	PlayerData.player_data[DataKeys.INLAY_LIST].clear()
 
 
 func _pet_item_icon(item: Dictionary, item_id: String) -> Texture2D:

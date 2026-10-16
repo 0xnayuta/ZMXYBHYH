@@ -146,7 +146,7 @@ func TJGLCure():
 
 	for i in RoleList:
 		if i != null and is_instance_valid(i) and i is BaseHero:
-			var level = PlayerData.player_data["技能学习"]["技能4"]["等级"] + 1
+			var level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
 			var TotalValue = int(RoleProp.roleprop.SHp * 0.2)
 			var CureValue = 0.6 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) + 1
 			var heal_value = int(TotalValue * CureValue)
@@ -179,7 +179,7 @@ func MYHCCure():
 	for i in RoleList:
 		if i != null and is_instance_valid(i):
 			if i is BaseHero:
-				var level = PlayerData.player_data["技能学习"]["技能7"]["等级"] + 1
+				var level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1
 				var Value = int(RoleProp.roleprop.SHp * randf_range(0.04, 0.05))
 				i.cure_Hp(Value)
 
@@ -285,7 +285,7 @@ func _get_zznh_buff_info() -> Dictionary:
 func Role3SdCure():
 	var Player = get_parent()
 	if Player is Role3Hero:
-		var cur_level = PlayerData.player_data["技能学习"]["技能6"]["等级"] + 1
+		var cur_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能6"][DataKeys.LEVEL] + 1
 		var CureValue = int(6 + RoleProp.roleprop.SHp * (0.004 + cur_level * 0.001))
 		Player.cure_Hp(CureValue)
 

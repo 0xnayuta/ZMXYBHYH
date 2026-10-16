@@ -9,7 +9,7 @@ func monster_140801():
 	self.is_boss = false
 	self.my_mr_name = "寄生孑孓"
 	self.attack_in = 90
-	self.level = PlayerData.player_data["玩家等级"]
+	self.level = PlayerData.player_data[DataKeys.PLAYER_LEVEL]
 	self.SHp = 100
 	self.Hp = self.SHp
 	self.def = 0

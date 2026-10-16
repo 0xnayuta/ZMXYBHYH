@@ -17,16 +17,16 @@ func _ready() -> void:
 
 
 func Role_2():
-	var level_1 = PlayerData.player_data["技能学习"]["技能1"]["等级"] + 1
-	var level_2 = PlayerData.player_data["技能学习"]["技能2"]["等级"] + 1
-	var level_3 = PlayerData.player_data["技能学习"]["技能3"]["等级"] + 1
-	var level_4 = PlayerData.player_data["技能学习"]["技能4"]["等级"] + 1
-	var level_5 = PlayerData.player_data["技能学习"]["技能5"]["等级"] + 1
-	var level_6 = PlayerData.player_data["技能学习"]["技能6"]["等级"] + 1
-	var level_7 = PlayerData.player_data["技能学习"]["技能7"]["等级"] + 1
-	var level_8 = PlayerData.player_data["技能学习"]["技能8"]["等级"] + 1
-	var level_9 = PlayerData.player_data["技能学习"]["技能9"]["等级"] + 1
-	var level_10 = PlayerData.player_data["技能学习"]["技能10"]["等级"]
+	var level_1 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能1"][DataKeys.LEVEL] + 1
+	var level_2 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能2"][DataKeys.LEVEL] + 1
+	var level_3 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能3"][DataKeys.LEVEL] + 1
+	var level_4 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
+	var level_5 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能5"][DataKeys.LEVEL] + 1
+	var level_6 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能6"][DataKeys.LEVEL] + 1
+	var level_7 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1
+	var level_8 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能8"][DataKeys.LEVEL] + 1
+	var level_9 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] + 1
+	var level_10 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
 	self.objattackDic["xbz"] = {
 		"power": RoleProp.roleprop.power * (0.55 + (level_2 * 0.055)), "hurtBack": [8, -13], "attackKind": "magic"
 	}

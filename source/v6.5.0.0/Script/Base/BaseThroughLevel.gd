@@ -249,17 +249,17 @@ func _spawn_active_pet() -> void:
 	PlayerData.clamp_pet_level_to_player(pet_data)
 	var pet_name := _pet_active_name(pet_data)
 	if _is_active_pet_dead_this_level(pet_name):
-		pet_data["出战"] = false
+		pet_data[DataKeys.DEPLOYED] = false
 		if str(PlayerData.player_data.get(_active_pet_name_key(), "")) == pet_name:
 			PlayerData.player_data[_active_pet_name_key()] = ""
 			PlayerData.player_data["出战宠物"] = ""
 		return
-	if int(pet_data.get("生命", 0)) <= 0:
+	if int(pet_data.get(DataKeys.HP, 0)) <= 0:
 		var hp_max := int(pet_data.get("生命上限", 1))
-		pet_data["生命"] = hp_max
-	if int(pet_data.get("魔法", 0)) <= 0:
+		pet_data[DataKeys.HP] = hp_max
+	if int(pet_data.get(DataKeys.MP, 0)) <= 0:
 		var mp_max := int(pet_data.get("魔法上限", 1))
-		pet_data["魔法"] = mp_max
+		pet_data[DataKeys.MP] = mp_max
 	var learned_custom_skills: Array = PET_LIFE_BONUS_RUNTIME.learned_skill_names(pet_data)
 	var learned_custom_levels: Dictionary = {}
 	for learned_skill in learned_custom_skills:
@@ -464,24 +464,24 @@ func _pet_dragon_stage_skills(stage: int) -> Array:
 
 
 func _normalize_pet_dragon_spawn_data(pet: Dictionary) -> void:
-	pet["类型"] = "PetDragon"
-	if not pet.has("名称"):
-		pet["名称"] = "龙仔"
+	pet[DataKeys.TYPE] = "PetDragon"
+	if not pet.has(DataKeys.ALT_NAME):
+		pet[DataKeys.ALT_NAME] = "龙仔"
 	if not pet.has("阶段"):
 		pet["阶段"] = 1
-	if not pet.has("等级"):
-		pet["等级"] = int(pet.get("阶段", 1))
-	pet["出战"] = bool(pet.get("出战", true))
+	if not pet.has(DataKeys.LEVEL):
+		pet[DataKeys.LEVEL] = int(pet.get("阶段", 1))
+	pet[DataKeys.DEPLOYED] = bool(pet.get(DataKeys.DEPLOYED, true))
 
 
 func _update_pet_dragon_evolution(pet: Dictionary) -> void:
 	if not _is_pet_dragon_data(pet):
 		return
 	_normalize_pet_dragon_spawn_data(pet)
-	var stage := _pet_dragon_stage_for_level(int(pet.get("等级", 1)))
+	var stage := _pet_dragon_stage_for_level(int(pet.get(DataKeys.LEVEL, 1)))
 	pet["阶段"] = stage
-	pet["名称"] = _pet_dragon_stage_name(stage)
-	pet["类型"] = "PetDragon"
+	pet[DataKeys.ALT_NAME] = _pet_dragon_stage_name(stage)
+	pet[DataKeys.TYPE] = "PetDragon"
 	pet["技能"] = _pet_dragon_stage_skills(stage)
 	if _pet_is_fighting(pet):
 		PlayerData.player_data[_active_pet_name_key()] = "PetDragon"
@@ -493,11 +493,11 @@ func _pet_dragon_scene_path(stage: int) -> String:
 
 
 func _is_pet_dragon_data(pet: Dictionary) -> bool:
-	var pet_name := str(pet.get("名称", ""))
-	var pet_title := str(pet.get("名字", ""))
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, ""))
+	var pet_title := str(pet.get(DataKeys.NAME, ""))
 	if _is_pet_phoenix_name(pet_name) or _is_pet_phoenix_name(pet_title):
 		return false
-	if str(pet.get("类型", "")) == "PetDragon":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetDragon":
 		return true
 	return pet_name.begins_with("辰龙") or pet_name in ["龙仔", "绿英龙", "青龙将军", "青龙妖圣"]
 
@@ -538,19 +538,20 @@ func _pet_turtle_stage_skills(stage: int) -> Array:
 
 func _normalize_pet_turtle_spawn_data(pet: Dictionary) -> void:
 	var keep_fighting := (
-		bool(pet.get("出战", false)) or str(PlayerData.player_data.get(_active_pet_name_key(), "")) == "PetTurtle"
+		bool(pet.get(DataKeys.DEPLOYED, false))
+		or str(PlayerData.player_data.get(_active_pet_name_key(), "")) == "PetTurtle"
 	)
-	var stage := _pet_turtle_stage_for_level(int(pet.get("等级", 1)))
-	pet["类型"] = "PetTurtle"
+	var stage := _pet_turtle_stage_for_level(int(pet.get(DataKeys.LEVEL, 1)))
+	pet[DataKeys.TYPE] = "PetTurtle"
 	pet["阶段"] = stage
-	pet["名称"] = _pet_turtle_stage_name(stage)
-	pet["名字"] = _pet_turtle_stage_name(stage)
+	pet[DataKeys.ALT_NAME] = _pet_turtle_stage_name(stage)
+	pet[DataKeys.NAME] = _pet_turtle_stage_name(stage)
 	pet["技能"] = _pet_turtle_stage_skills(stage)
 	pet["生命资质基础上限"] = 4000
 	pet["魔法资质基础上限"] = 1800
 	pet["攻击资质基础上限"] = 1500
 	pet["防御资质基础上限"] = 4000
-	pet["出战"] = keep_fighting
+	pet[DataKeys.DEPLOYED] = keep_fighting
 
 
 func _update_pet_turtle_evolution(pet: Dictionary) -> void:
@@ -567,16 +568,16 @@ func _pet_turtle_scene_path(stage: int) -> String:
 
 
 func _is_pet_turtle_data(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetTurtle":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetTurtle":
 		return true
-	var pet_name := str(pet.get("名称", pet.get("名字", ""))).strip_edges()
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, ""))).strip_edges()
 	return pet_name.begins_with("玄武") or pet_name in ["龟布", "墨玄龟", "玄武将军", "玄武大帝"]
 
 
 func _is_pet_rabbit_data(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetRabbit":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetRabbit":
 		return true
-	var pet_name := str(pet.get("名称", pet.get("名字", ""))).strip_edges()
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, ""))).strip_edges()
 	return pet_name in ["月兔", "疾风兔", "寒冰玉兔", "冰霜月神"]
 
 
@@ -598,19 +599,20 @@ func _pet_rabbit_stage_skills(stage: int) -> Array:
 
 func _normalize_pet_rabbit_spawn_data(pet: Dictionary) -> void:
 	var keep_fighting := (
-		bool(pet.get("出战", false)) or str(PlayerData.player_data.get(_active_pet_name_key(), "")) == "PetRabbit"
+		bool(pet.get(DataKeys.DEPLOYED, false))
+		or str(PlayerData.player_data.get(_active_pet_name_key(), "")) == "PetRabbit"
 	)
-	var stage := _pet_tiger_stage_for_level(int(pet.get("等级", 1)))
-	pet["类型"] = "PetRabbit"
+	var stage := _pet_tiger_stage_for_level(int(pet.get(DataKeys.LEVEL, 1)))
+	pet[DataKeys.TYPE] = "PetRabbit"
 	pet["阶段"] = stage
-	pet["名称"] = _pet_rabbit_stage_name(stage)
-	pet["名字"] = _pet_rabbit_stage_name(stage)
+	pet[DataKeys.ALT_NAME] = _pet_rabbit_stage_name(stage)
+	pet[DataKeys.NAME] = _pet_rabbit_stage_name(stage)
 	pet["技能"] = _pet_rabbit_stage_skills(stage)
 	pet["生命资质基础上限"] = 2500
 	pet["魔法资质基础上限"] = 3000
 	pet["攻击资质基础上限"] = 2800
 	pet["防御资质基础上限"] = 1800
-	pet["出战"] = keep_fighting
+	pet[DataKeys.DEPLOYED] = keep_fighting
 
 
 func _update_pet_rabbit_evolution(pet: Dictionary) -> void:
@@ -627,10 +629,10 @@ func _pet_rabbit_scene_path(stage: int) -> String:
 
 
 func _is_pet_mouse_data(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetMouse":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetMouse":
 		return true
-	var pet_name := str(pet.get("名称", "")).strip_edges()
-	var pet_title := str(pet.get("名字", "")).strip_edges()
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, "")).strip_edges()
+	var pet_title := str(pet.get(DataKeys.NAME, "")).strip_edges()
 	return (
 		pet_name.begins_with("子鼠")
 		or pet_title.begins_with("子鼠")
@@ -657,18 +659,20 @@ func _pet_mouse_skills_for_level(pet_level: int) -> Array:
 
 func _normalize_pet_mouse_spawn_data(pet: Dictionary) -> void:
 	var active_name := str(PlayerData.player_data.get(_active_pet_name_key(), ""))
-	var keep_fighting := bool(pet.get("出战", false)) or active_name == "PetMouse" or active_name in ["子鼠元帅", "子鼠大元帅"]
-	var stage := _pet_mouse_stage_for_level(int(pet.get("等级", 1)))
-	pet["类型"] = "PetMouse"
+	var keep_fighting := (
+		bool(pet.get(DataKeys.DEPLOYED, false)) or active_name == "PetMouse" or active_name in ["子鼠元帅", "子鼠大元帅"]
+	)
+	var stage := _pet_mouse_stage_for_level(int(pet.get(DataKeys.LEVEL, 1)))
+	pet[DataKeys.TYPE] = "PetMouse"
 	pet["阶段"] = stage
-	pet["名称"] = _pet_mouse_stage_name(stage)
-	pet["名字"] = _pet_mouse_stage_name(stage)
-	pet["技能"] = _pet_mouse_skills_for_level(int(pet.get("等级", 1)))
+	pet[DataKeys.ALT_NAME] = _pet_mouse_stage_name(stage)
+	pet[DataKeys.NAME] = _pet_mouse_stage_name(stage)
+	pet["技能"] = _pet_mouse_skills_for_level(int(pet.get(DataKeys.LEVEL, 1)))
 	pet["生命资质基础上限"] = 2500
 	pet["魔法资质基础上限"] = 1800
 	pet["攻击资质基础上限"] = 3000
 	pet["防御资质基础上限"] = 1800
-	pet["出战"] = keep_fighting
+	pet[DataKeys.DEPLOYED] = keep_fighting
 
 
 func _update_pet_mouse_evolution(pet: Dictionary) -> void:
@@ -685,9 +689,9 @@ func _pet_mouse_scene_path(stage: int) -> String:
 
 
 func _is_pet_neat_data(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetNeat":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetNeat":
 		return true
-	var name := str(pet.get("名称", pet.get("名字", ""))).strip_edges()
+	var name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, ""))).strip_edges()
 	return name in ["丑牛", "丑牛元帅", "丑牛大元帅"]
 
 
@@ -712,15 +716,15 @@ func _pet_neat_stage_skills(stage: int) -> Array:
 func _normalize_pet_neat_spawn_data(pet: Dictionary) -> void:
 	var active_name := str(PlayerData.player_data.get(_active_pet_name_key(), ""))
 	var keep_fighting := (
-		bool(pet.get("出战", false)) or active_name == "PetNeat" or active_name in ["丑牛", "丑牛元帅", "丑牛大元帅"]
+		bool(pet.get(DataKeys.DEPLOYED, false)) or active_name == "PetNeat" or active_name in ["丑牛", "丑牛元帅", "丑牛大元帅"]
 	)
-	var stage := _pet_neat_stage_for_level(int(pet.get("等级", 1)))
-	pet["类型"] = "PetNeat"
+	var stage := _pet_neat_stage_for_level(int(pet.get(DataKeys.LEVEL, 1)))
+	pet[DataKeys.TYPE] = "PetNeat"
 	pet["阶段"] = stage
-	pet["名称"] = _pet_neat_stage_name(stage)
-	pet["名字"] = _pet_neat_stage_name(stage)
+	pet[DataKeys.ALT_NAME] = _pet_neat_stage_name(stage)
+	pet[DataKeys.NAME] = _pet_neat_stage_name(stage)
 	pet["技能"] = _pet_neat_stage_skills(stage)
-	pet["出战"] = keep_fighting
+	pet[DataKeys.DEPLOYED] = keep_fighting
 
 
 func _update_pet_neat_evolution(pet: Dictionary) -> void:
@@ -737,9 +741,9 @@ func _pet_neat_scene_path(stage: int) -> String:
 
 
 func _is_pet_yin_tiger_data(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetYinTiger":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetYinTiger":
 		return true
-	var pet_name := str(pet.get("名称", pet.get("名字", ""))).strip_edges()
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, ""))).strip_edges()
 	return pet_name in ["寅虎", "银角虎", "寅虎元帅", "寅虎大元帅"]
 
 
@@ -758,19 +762,21 @@ func _pet_yin_tiger_stage_skills(stage: int) -> Array:
 func _normalize_pet_yin_tiger_spawn_data(pet: Dictionary) -> void:
 	var active_name := str(PlayerData.player_data.get(_active_pet_name_key(), ""))
 	var keep_fighting := (
-		bool(pet.get("出战", false)) or active_name == "PetYinTiger" or active_name in ["寅虎", "银角虎", "寅虎元帅", "寅虎大元帅"]
+		bool(pet.get(DataKeys.DEPLOYED, false))
+		or active_name == "PetYinTiger"
+		or active_name in ["寅虎", "银角虎", "寅虎元帅", "寅虎大元帅"]
 	)
-	var stage := _pet_yin_tiger_stage_for_level(int(pet.get("等级", 1)))
-	pet["类型"] = "PetYinTiger"
+	var stage := _pet_yin_tiger_stage_for_level(int(pet.get(DataKeys.LEVEL, 1)))
+	pet[DataKeys.TYPE] = "PetYinTiger"
 	pet["阶段"] = stage
-	pet["名称"] = _pet_yin_tiger_stage_name(stage)
-	pet["名字"] = pet["名称"]
+	pet[DataKeys.ALT_NAME] = _pet_yin_tiger_stage_name(stage)
+	pet[DataKeys.NAME] = pet[DataKeys.ALT_NAME]
 	pet["技能"] = _pet_yin_tiger_stage_skills(stage)
 	pet["生命资质基础上限"] = 2800
 	pet["魔法资质基础上限"] = 2200
 	pet["攻击资质基础上限"] = 3200
 	pet["防御资质基础上限"] = 2200
-	pet["出战"] = keep_fighting
+	pet[DataKeys.DEPLOYED] = keep_fighting
 
 
 func _update_pet_yin_tiger_evolution(pet: Dictionary) -> void:
@@ -819,14 +825,14 @@ func _pet_tiger_stage_skills(stage: int) -> Array:
 
 
 func _normalize_pet_tiger_spawn_data(pet: Dictionary) -> void:
-	pet["类型"] = "PetTiger"
-	if not pet.has("名称"):
-		pet["名称"] = "虎丸"
+	pet[DataKeys.TYPE] = "PetTiger"
+	if not pet.has(DataKeys.ALT_NAME):
+		pet[DataKeys.ALT_NAME] = "虎丸"
 	if not pet.has("阶段"):
 		pet["阶段"] = 1
-	if not pet.has("等级"):
-		pet["等级"] = int(pet.get("阶段", 1))
-	pet["出战"] = bool(pet.get("出战", true))
+	if not pet.has(DataKeys.LEVEL):
+		pet[DataKeys.LEVEL] = int(pet.get("阶段", 1))
+	pet[DataKeys.DEPLOYED] = bool(pet.get(DataKeys.DEPLOYED, true))
 
 
 func _ensure_pet_growth_fields_for_spawn(pet: Dictionary) -> void:
@@ -864,7 +870,7 @@ func _ensure_pet_growth_fields_for_spawn(pet: Dictionary) -> void:
 
 func _recalculate_active_pet_growth_stats(pet: Dictionary) -> void:
 	_ensure_pet_growth_fields_for_spawn(pet)
-	var level_count: int = max(0, int(pet.get("等级", 1)) - 1)
+	var level_count: int = max(0, int(pet.get(DataKeys.LEVEL, 1)) - 1)
 	var hp_gain: int = int(round(float(pet.get("生命资质", 1000)) * 0.09))
 	var mp_gain: int = int(round(float(pet.get("魔法资质", 1000)) * 0.04))
 	var attack_gain: int = int(round(float(pet.get("攻击资质", 1000)) * 0.02))
@@ -875,38 +881,42 @@ func _recalculate_active_pet_growth_stats(pet: Dictionary) -> void:
 	var new_mp_max: int = 180 + level_count * mp_gain
 	pet["生命上限"] = new_hp_max
 	pet["魔法上限"] = new_mp_max
-	pet["攻击"] = 65 + level_count * attack_gain
-	pet["防御"] = 60 + level_count * defense_gain
-	pet["物防"] = int(pet.get("防御", 0))
-	pet["防"] = int(pet.get("防御", 0))
-	pet["魔抗"] = int(pet.get("防御", 0))
-	pet["魔防"] = int(pet.get("防御", 0))
+	pet[DataKeys.ATTACK] = 65 + level_count * attack_gain
+	pet[DataKeys.DEFENSE] = 60 + level_count * defense_gain
+	pet["物防"] = int(pet.get(DataKeys.DEFENSE, 0))
+	pet["防"] = int(pet.get(DataKeys.DEFENSE, 0))
+	pet["魔抗"] = int(pet.get(DataKeys.DEFENSE, 0))
+	pet["魔防"] = int(pet.get(DataKeys.DEFENSE, 0))
 	pet["回血"] = 2 + level_count * hp_recover_gain
 	pet["回魔"] = 1 + level_count * mp_recover_gain
-	pet["生命"] = (
-		new_hp_max if int(pet.get("生命", new_hp_max)) <= 0 else clampi(int(pet.get("生命", new_hp_max)), 0, new_hp_max)
+	pet[DataKeys.HP] = (
+		new_hp_max
+		if int(pet.get(DataKeys.HP, new_hp_max)) <= 0
+		else clampi(int(pet.get(DataKeys.HP, new_hp_max)), 0, new_hp_max)
 	)
-	pet["魔法"] = (
-		new_mp_max if int(pet.get("魔法", new_mp_max)) <= 0 else clampi(int(pet.get("魔法", new_mp_max)), 0, new_mp_max)
+	pet[DataKeys.MP] = (
+		new_mp_max
+		if int(pet.get(DataKeys.MP, new_mp_max)) <= 0
+		else clampi(int(pet.get(DataKeys.MP, new_mp_max)), 0, new_mp_max)
 	)
 
 
 func _restore_active_pet_for_level_start(pet: Dictionary) -> void:
 	var hp_max: int = max(1, int(pet.get("生命上限", 1)))
 	var mp_max: int = max(1, int(pet.get("魔法上限", 1)))
-	pet["生命"] = hp_max
-	pet["魔法"] = mp_max
+	pet[DataKeys.HP] = hp_max
+	pet[DataKeys.MP] = mp_max
 
 
 func _update_pet_tiger_evolution(pet: Dictionary) -> void:
 	if not _is_pet_tiger_data(pet):
 		return
 	_normalize_pet_tiger_spawn_data(pet)
-	var stage := _pet_tiger_stage_for_level(int(pet.get("等级", 1)))
+	var stage := _pet_tiger_stage_for_level(int(pet.get(DataKeys.LEVEL, 1)))
 	pet["阶段"] = stage
 	var stage_name := _pet_tiger_stage_name(stage)
-	pet["名称"] = stage_name
-	pet["类型"] = "PetTiger"
+	pet[DataKeys.ALT_NAME] = stage_name
+	pet[DataKeys.TYPE] = "PetTiger"
 	var stage_skills := _pet_tiger_stage_skills(stage)
 	pet["技能"] = stage_skills
 	if _pet_is_fighting(pet):
@@ -920,19 +930,19 @@ func _pet_tiger_scene_path(stage: int) -> String:
 
 func _active_pet_stage_from_data(pet: Dictionary) -> int:
 	if _is_pet_mouse_data(pet):
-		return _pet_mouse_stage_for_level(int(pet.get("等级", 1)))
+		return _pet_mouse_stage_for_level(int(pet.get(DataKeys.LEVEL, 1)))
 	var stage := int(pet.get("阶段", pet.get("pet_stage", 0)))
 	if stage <= 0:
-		var pet_level := int(pet.get("等级", 1))
+		var pet_level := int(pet.get(DataKeys.LEVEL, 1))
 		stage = 4 if pet_level >= 50 else 3 if pet_level >= 30 else 2 if pet_level >= 15 else 1
 	return clampi(stage, 1, 4)
 
 
 func _is_pet_phoenix_data(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetPhoenix":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetPhoenix":
 		return true
-	var pet_name := str(pet.get("名称", ""))
-	var pet_title := str(pet.get("名字", ""))
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, ""))
+	var pet_title := str(pet.get(DataKeys.NAME, ""))
 	return _is_pet_phoenix_name(pet_name) or _is_pet_phoenix_name(pet_title)
 
 
@@ -943,15 +953,16 @@ func _is_pet_phoenix_name(pet_name: String) -> bool:
 
 func _normalize_pet_phoenix_spawn_data(pet: Dictionary) -> void:
 	var keep_fighting := (
-		bool(pet.get("出战", false)) or str(PlayerData.player_data.get(_active_pet_name_key(), "")) == "PetPhoenix"
+		bool(pet.get(DataKeys.DEPLOYED, false))
+		or str(PlayerData.player_data.get(_active_pet_name_key(), "")) == "PetPhoenix"
 	)
 	var stage := clampi(int(pet.get("阶段", 1)), 1, 4)
-	pet["类型"] = "PetPhoenix"
+	pet[DataKeys.TYPE] = "PetPhoenix"
 	pet["阶段"] = stage
-	pet["名称"] = _pet_phoenix_stage_name(stage)
-	pet["名字"] = _pet_phoenix_stage_name(stage)
+	pet[DataKeys.ALT_NAME] = _pet_phoenix_stage_name(stage)
+	pet[DataKeys.NAME] = _pet_phoenix_stage_name(stage)
 	pet["技能"] = _pet_phoenix_stage_skills(stage)
-	pet["出战"] = keep_fighting
+	pet[DataKeys.DEPLOYED] = keep_fighting
 
 
 func _pet_phoenix_stage_for_level(level: int) -> int:
@@ -991,12 +1002,12 @@ func _pet_phoenix_stage_skills(stage: int) -> Array:
 func _update_pet_phoenix_evolution(pet: Dictionary) -> void:
 	if not _is_pet_phoenix_data(pet):
 		return
-	var level := int(pet.get("等级", 1))
+	var level := int(pet.get(DataKeys.LEVEL, 1))
 	var stage := _pet_phoenix_stage_for_level(level)
-	pet["类型"] = "PetPhoenix"
+	pet[DataKeys.TYPE] = "PetPhoenix"
 	pet["阶段"] = stage
-	pet["名称"] = _pet_phoenix_stage_name(stage)
-	pet["名字"] = _pet_phoenix_stage_name(stage)
+	pet[DataKeys.ALT_NAME] = _pet_phoenix_stage_name(stage)
+	pet[DataKeys.NAME] = _pet_phoenix_stage_name(stage)
 	pet["技能"] = _pet_phoenix_stage_skills(stage)
 	if _pet_is_fighting(pet):
 		PlayerData.player_data[_active_pet_name_key()] = "PetPhoenix"
@@ -1057,7 +1068,7 @@ func _active_pet_name_key() -> String:
 
 
 func _pet_active_name(pet: Dictionary) -> String:
-	var type_name := str(pet.get("类型", ""))
+	var type_name := str(pet.get(DataKeys.TYPE, ""))
 	if type_name == "PetNeat" or _is_pet_neat_data(pet):
 		return "PetNeat"
 	if type_name == "PetYinTiger" or _is_pet_yin_tiger_data(pet):
@@ -1074,18 +1085,18 @@ func _pet_active_name(pet: Dictionary) -> String:
 		return "PetTiger"
 	if type_name == "PetDragon" or _is_pet_dragon_data(pet):
 		return "PetDragon"
-	return str(pet.get("名称", ""))
+	return str(pet.get(DataKeys.ALT_NAME, ""))
 
 
 func _pet_is_fighting(pet: Dictionary) -> bool:
-	return bool(pet.get("出战", false))
+	return bool(pet.get(DataKeys.DEPLOYED, false))
 
 
 func _set_only_active_pet(pets: Array, target_pet: Dictionary, data: Dictionary, active_name: String) -> void:
 	for item in pets:
 		if item is Dictionary:
-			item["出战"] = false
-	target_pet["出战"] = true
+			item[DataKeys.DEPLOYED] = false
+	target_pet[DataKeys.DEPLOYED] = true
 	data[_active_pet_name_key()] = active_name
 	data["出战宠物"] = active_name
 
@@ -1194,9 +1205,9 @@ func _canonicalize_active_pet_data(data: Dictionary, pets: Array, active_name: S
 
 
 func _is_pet_tiger_data(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetTiger":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetTiger":
 		return true
-	var name := str(pet.get("名称", ""))
+	var name := str(pet.get(DataKeys.ALT_NAME, ""))
 	return name == "虎丸" or name == "白灵虎" or name == "白虎将军" or name == "白虎战神" or name == "白虎"
 
 
@@ -1231,8 +1242,8 @@ func _get_active_pet_data() -> Dictionary:
 			if _is_pet_phoenix_data(pet):
 				for item in pets:
 					if item is Dictionary:
-						item["出战"] = false
-				pet["出战"] = true
+						item[DataKeys.DEPLOYED] = false
+				pet[DataKeys.DEPLOYED] = true
 				_normalize_pet_phoenix_spawn_data(pet)
 				data[active_key] = "PetPhoenix"
 				data["出战宠物"] = "PetPhoenix"
@@ -1243,14 +1254,14 @@ func _get_active_pet_data() -> Dictionary:
 			continue
 		var pet_name := _pet_active_name(pet)
 		var matches_active_name := (
-			active_name != "" and (pet_name == active_name or str(pet.get("名称", "")) == active_name)
+			active_name != "" and (pet_name == active_name or str(pet.get(DataKeys.ALT_NAME, "")) == active_name)
 		)
 		if not _pet_is_fighting(pet) and not matches_active_name:
 			continue
-		pet["出战"] = true
+		pet[DataKeys.DEPLOYED] = true
 		if first_active_pet.is_empty():
 			first_active_pet = pet
-		if active_name == "" or pet_name == active_name or str(pet.get("名称", "")) == active_name:
+		if active_name == "" or pet_name == active_name or str(pet.get(DataKeys.ALT_NAME, "")) == active_name:
 			return pet
 	return first_active_pet
 

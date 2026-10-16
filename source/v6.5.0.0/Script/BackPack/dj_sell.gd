@@ -52,8 +52,8 @@ func _control_has_point(control: Control, screen_position: Vector2) -> bool:
 
 
 func _physics_process(_delta: float) -> void:
-	infor.text = "名字：" + str(AE.AllEquipment_[my_name]["名字"])
-	if AE.AllEquipment_[my_name]["类型"] == "道具" and is_set == false:
+	infor.text = "名字：" + str(AE.AllEquipment_[my_name][DataKeys.NAME])
+	if AE.AllEquipment_[my_name][DataKeys.TYPE] == "道具" and is_set == false:
 		use.disabled = true
 		is_set = true
 	be_number = int(sell_number.text)
@@ -61,7 +61,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _get_inventory_entry() -> Dictionary:
-	var list_name := "道具列表" if AE.AllEquipment_[my_name]["类型"] == "道具" else "消耗品列表"
+	var list_name := "道具列表" if AE.AllEquipment_[my_name][DataKeys.TYPE] == "道具" else "消耗品列表"
 	var pages: Variant = PlayerData.player_data.get(list_name, {})
 	if not pages is Dictionary:
 		return {}
@@ -69,7 +69,7 @@ func _get_inventory_entry() -> Dictionary:
 	if not items is Array:
 		return {}
 	for item in items as Array:
-		if item is Dictionary and str(item.get("名字", "")) == str(my_name):
+		if item is Dictionary and str(item.get(DataKeys.NAME, "")) == str(my_name):
 			return item as Dictionary
 	return {}
 
@@ -108,7 +108,7 @@ func _on_sell_number_text_change_rejected(rejected_substring: String) -> void:
 func _get_sell_count() -> int:
 	var requested_text := sell_number.text.strip_edges()
 	if requested_text.is_empty():
-		return maxi(0, int(_get_inventory_entry().get("数量", 0)))
+		return maxi(0, int(_get_inventory_entry().get(DataKeys.COUNT, 0)))
 	return maxi(0, int(requested_text))
 
 
@@ -117,12 +117,12 @@ func _on_sell_pressed() -> void:
 		Global.add_message_show(Global.get_ui_popup_layer(), "该物品已锁定，请先解锁后再出售！", 1.5, Vector2.ZERO)
 		return
 	be_number = _get_sell_count()
-	var Type = AE.AllEquipment_[my_name]["类型"]
+	var Type = AE.AllEquipment_[my_name][DataKeys.TYPE]
 	match Type:
 		"道具":
 			var get_list = PlayerData.remove_dj(my_name, my_page, be_number)
 			if be_number > 0 and int(get_list["获得灵魂"]) > 0:
-				var name_ = AE.AllEquipment_[my_name]["名字"]
+				var name_ = AE.AllEquipment_[my_name][DataKeys.NAME]
 				var parent = get_parent().get_parent().get_parent()
 				Global.add_message_show(
 					parent,
@@ -136,7 +136,7 @@ func _on_sell_pressed() -> void:
 		"消耗品":
 			var get_list = PlayerData.remove_xhp(my_name, my_page, be_number)
 			if be_number > 0 and int(get_list["获得灵魂"]) > 0:
-				var name_ = AE.AllEquipment_[my_name]["名字"]
+				var name_ = AE.AllEquipment_[my_name][DataKeys.NAME]
 				var parent = get_parent().get_parent().get_parent()
 				Global.add_message_show(
 					parent,
@@ -163,10 +163,10 @@ func _on_panel_mouse_exited() -> void:
 
 
 func UseMpyj():
-	for i in PlayerData.player_data["技能学习"]:
-		if PlayerData.player_data["技能学习"][i].has("等级"):
-			if PlayerData.player_data["技能学习"][i]["等级"] > 1:
-				PlayerData.player_data["技能学习"][i]["等级"] = 1
+	for i in PlayerData.player_data[DataKeys.SKILL_LEARNED]:
+		if PlayerData.player_data[DataKeys.SKILL_LEARNED][i].has(DataKeys.LEVEL):
+			if PlayerData.player_data[DataKeys.SKILL_LEARNED][i][DataKeys.LEVEL] > 1:
+				PlayerData.player_data[DataKeys.SKILL_LEARNED][i][DataKeys.LEVEL] = 1
 	PlayerData.remove_xhp(my_name, my_page, 1)
 	var parent = get_parent().get_parent().get_parent()
 	Global.add_message_show(parent, "技能等级已重置！。", 1.5, Vector2(450, 300))
@@ -864,7 +864,7 @@ func use_xhp():
 		"djyys":
 			var parent = get_parent().get_parent().get_parent()
 			var player_level_cap := int(PlayerData.PLAYER_MAX_LEVEL)
-			if int(PlayerData.player_data["玩家等级"]) >= player_level_cap:
+			if int(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) >= player_level_cap:
 				PlayerData.enforce_level_caps()
 				Global.add_message_show(parent, "人物等级已达到%d级上限。" % player_level_cap, 1.5, Vector2(450, 300))
 				queue_free()
@@ -876,7 +876,7 @@ func use_xhp():
 			PlayerData.remove_xhp(my_name, PlayerData.get_xhp_page(my_name), be_number)
 
 			var current_exp = PlayerData.player_data["玩家当前经验"]
-			var current_level = PlayerData.player_data["玩家等级"]
+			var current_level = PlayerData.player_data[DataKeys.PLAYER_LEVEL]
 
 			var max_exp_list = [
 				140,
@@ -920,7 +920,7 @@ func use_xhp():
 				current_exp = 0
 
 			PlayerData.player_data["玩家当前经验"] = current_exp
-			PlayerData.player_data["玩家等级"] = current_level
+			PlayerData.player_data[DataKeys.PLAYER_LEVEL] = current_level
 
 			if RoleProp and RoleProp.baseroleprop:
 				RoleProp.baseroleprop.Level = current_level

@@ -21,14 +21,14 @@ var _elapsed: float = 0.0
 
 
 func _equipped_name(slot_name: String) -> String:
-	var transmog_value: Variant = PlayerData.player_data.get("幻化列表", {}).get(slot_name, "")
+	var transmog_value: Variant = PlayerData.player_data.get(DataKeys.TRANSMOG_LIST, {}).get(slot_name, "")
 	if str(transmog_value) != "":
 		return str(transmog_value)
 	var slot_value: Variant = PlayerData.player_data.get(slot_name, [])
 	if slot_value is Array and not (slot_value as Array).is_empty():
 		var item_value: Variant = (slot_value as Array)[0]
 		if item_value is Dictionary:
-			return str((item_value as Dictionary).get("名字", "Empty"))
+			return str((item_value as Dictionary).get(DataKeys.NAME, "Empty"))
 	return "Empty"
 
 

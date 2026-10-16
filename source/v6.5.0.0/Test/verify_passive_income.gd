@@ -1,4 +1,5 @@
 extends Node
+const DataKeys := preload("res://Script/Base/DataKeys.gd")
 
 var failures: Array[String] = []
 
@@ -9,7 +10,7 @@ func _ready() -> void:
 	var global_node = get_node("/root/Global")
 	var original_player_data: Dictionary = player_data_node.player_data
 	player_data_node.player_data = original_player_data.duplicate(true)
-	player_data_node.player_data["玩家等级"] = 9
+	player_data_node.player_data[DataKeys.PLAYER_LEVEL] = 9
 	player_data_node.player_data["coin_num"] = 100000
 	player_data_node.player_data["被动技能"] = {
 		"热血": 0,

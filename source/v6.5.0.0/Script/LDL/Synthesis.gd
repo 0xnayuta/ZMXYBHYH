@@ -50,7 +50,7 @@ func remove_infomation():
 	for i in PlayerData.player_data["放入列表"]:
 		if PlayerData.player_data["放入列表"][i].size() != 0:
 			var new_list = PlayerData.player_data["放入列表"][i]
-			var get_tt = AE.AllEquipment_[new_list[0]]["类型"]
+			var get_tt = AE.AllEquipment_[new_list[0]][DataKeys.TYPE]
 			if get_tt == "武器" or get_tt == "防具" or get_tt == "饰品" or get_tt == "翅膀" or get_tt == "头衔" or get_tt == "时装":
 				PlayerData.add_zb(new_list[0], new_list[3], new_list[4])
 			elif get_tt == "道具" or get_tt == "消耗品":
@@ -80,9 +80,9 @@ func get_name_():
 		if recipe_info[0]:
 			var result_item = recipe_info[1]
 
-			name_.text = str(AE.AllEquipment_[result_item]["名字"])
+			name_.text = str(AE.AllEquipment_[result_item][DataKeys.NAME])
 			item_4.set_button_icon(load_(str(result_item)))
-			var lx = AE.AllEquipment_[result_item]["类型"]
+			var lx = AE.AllEquipment_[result_item][DataKeys.TYPE]
 			need_lh.text = str(recipe_info[2])
 
 			match lx:
@@ -130,7 +130,7 @@ func _on_syn_pressed() -> void:
 		if PlayerData.get_soul() >= nn_lh:
 			PlayerData.spend_soul(nn_lh)
 			var item_ = recipe_info[1]
-			var get_tt = AE.AllEquipment_[item_]["类型"]
+			var get_tt = AE.AllEquipment_[item_][DataKeys.TYPE]
 
 			if get_tt == "武器" or get_tt == "防具" or get_tt == "饰品" or get_tt == "时装" or get_tt == "头衔" or get_tt == "翅膀":
 				PlayerData.add_zb(item_, 0, item_4.EQ_prop)
@@ -143,7 +143,10 @@ func _on_syn_pressed() -> void:
 			PlayerData.player_data["放入列表"]["物品2"].clear()
 			PlayerData.player_data["放入列表"]["物品3"].clear()
 			Global.add_message_show(
-				get_parent(), "合成成功！获得：" + str(AE.AllEquipment_[item_]["名字"]) + " * 1 !!", 1.5, Vector2(15, -45)
+				get_parent(),
+				"合成成功！获得：" + str(AE.AllEquipment_[item_][DataKeys.NAME]) + " * 1 !!",
+				1.5,
+				Vector2(15, -45)
 			)
 		else:
 			Global.add_message_show(get_parent(), "灵魂不足！！！", 1.5, Vector2(15, -45))
@@ -225,7 +228,7 @@ func get_xianjie_prop(result_item: String) -> Dictionary:
 	var current_properties: Dictionary = AE.get_divine_forge_properties(source_name, source_level, source_data, true)
 	for property_name in PropListName:
 		result[property_name] = current_properties.get(property_name, 0) * 2
-	result["宝石"] = []
+	result[DataKeys.GEM] = []
 	result.erase("神铸阶段")
 	return result
 
@@ -384,7 +387,7 @@ func GetSameType(Name_1, Name_2, Name_3, need: String):
 
 func GetProp(List, need):
 	var QHlevel: int
-	if AE.AllEquipment_[List[0]]["类型"] == "道具":
+	if AE.AllEquipment_[List[0]][DataKeys.TYPE] == "道具":
 		QHlevel = 0
 	else:
 		QHlevel = List[3]

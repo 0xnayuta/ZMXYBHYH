@@ -205,9 +205,9 @@ func 提前数据(路径) -> Dictionary:
 
 func 得到数据(路径) -> int:
 	var archive_data: Dictionary = 提前数据(路径)
-	if not archive_data.has("玩家等级"):
+	if not archive_data.has(DataKeys.PLAYER_LEVEL):
 		return 1
-	return clampi(int(archive_data["玩家等级"]), 1, int(PlayerData.PLAYER_MAX_LEVEL))
+	return clampi(int(archive_data[DataKeys.PLAYER_LEVEL]), 1, int(PlayerData.PLAYER_MAX_LEVEL))
 
 
 func 读取存档时间(路径) -> String:
@@ -330,7 +330,7 @@ func 安全写入存档(path: String, data: Dictionary) -> bool:
 
 
 func _is_valid_player_archive_data(data: Dictionary) -> bool:
-	if data.is_empty() or not data.has("玩家等级") or not data.has("Myself"):
+	if data.is_empty() or not data.has(DataKeys.PLAYER_LEVEL) or not data.has("Myself"):
 		return false
 	for key in ARCHIVE_CONTAINER_KEYS:
 		var container_value: Variant = data.get(key, null)

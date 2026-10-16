@@ -461,7 +461,7 @@ func _on_bxgh_pressed() -> void:
 
 
 func _on_tzhy_pressed() -> void:
-	if PlayerData.player_data["玩家等级"] < 40:
+	if PlayerData.player_data[DataKeys.PLAYER_LEVEL] < 40:
 		Global.add_message_show(get_parent(), "需要角色等级大于等于40级！", 1.5, Vector2(470, 300))
 		return
 	Global.change_scene("res://Scene/Level/Level_tzhy.tscn")

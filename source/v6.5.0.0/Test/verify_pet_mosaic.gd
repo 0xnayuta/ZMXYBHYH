@@ -1,4 +1,5 @@
 extends Node
+const DataKeys := preload("res://Script/Base/DataKeys.gd")
 
 const TEST_ITEM_ID := "pet_mosaic_test"
 const TEST_GEM_ID := "gjs_1"
@@ -40,21 +41,21 @@ func _ready() -> void:
 	_check(PlayerData.player_data["宠物列表"][0]["装备"]["zbjn"].is_empty(), "宠物身上装备的宠物护符应被删除")
 
 	var pet_item: Dictionary = PlayerData.player_data["宠物背包"][0]
-	var role_equipment_before: String = JSON.stringify(PlayerData.player_data["装备列表"])
+	var role_equipment_before: String = JSON.stringify(PlayerData.player_data[DataKeys.EQUIPMENT_LIST])
 	_check(PlayerData.take_pet_equipment_for_mosaic(0, pet_item, TEST_ITEM_ID), "宠物装备应能从共享背包取出")
 	_check(PlayerData.player_data["宠物背包"].size() == 1, "取出后宠物背包应减少一件")
-	_check(JSON.stringify(PlayerData.player_data["装备列表"]) == role_equipment_before, "取出宠物装备不应修改角色装备背包")
-	_check(PlayerData.player_data["镶嵌列表"][0]["来源"] == "宠物背包", "镶嵌槽应记录宠物背包来源")
-	PlayerData.player_data["镶嵌列表"][0]["Data"]["宝石"].append(TEST_GEM_ID)
+	_check(JSON.stringify(PlayerData.player_data[DataKeys.EQUIPMENT_LIST]) == role_equipment_before, "取出宠物装备不应修改角色装备背包")
+	_check(PlayerData.player_data[DataKeys.INLAY_LIST][0]["来源"] == "宠物背包", "镶嵌槽应记录宠物背包来源")
+	PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"][DataKeys.GEM].append(TEST_GEM_ID)
 
-	var selected_item: Dictionary = PlayerData.player_data["镶嵌列表"][0]["宠物装备"]
+	var selected_item: Dictionary = PlayerData.player_data[DataKeys.INLAY_LIST][0]["宠物装备"]
 	var pet := {"装备": {"zbjn": selected_item}}
 	_check(PlayerData.get_pet_equipment_stat(pet, "攻击") == 15, "1级攻击石应给宠物装备增加5点攻击")
 	_check(PlayerData.restore_mosaic_equipment(), "宠物装备应能从镶嵌槽恢复")
 	_check(PlayerData.player_data["宠物背包"].size() == 2, "恢复后宠物背包数量应还原")
 	_check(is_same(PlayerData.player_data["宠物背包"][0], pet_item), "宠物装备应恢复到原索引")
-	_check(PlayerData.player_data["宠物背包"][0]["Data"]["宝石"] == [TEST_GEM_ID], "恢复后的宠物装备应保留宝石")
-	_check(JSON.stringify(PlayerData.player_data["装备列表"]) == role_equipment_before, "恢复宠物装备不应修改角色装备背包")
+	_check(PlayerData.player_data["宠物背包"][0]["Data"][DataKeys.GEM] == [TEST_GEM_ID], "恢复后的宠物装备应保留宝石")
+	_check(JSON.stringify(PlayerData.player_data[DataKeys.EQUIPMENT_LIST]) == role_equipment_before, "恢复宠物装备不应修改角色装备背包")
 
 	_check(PlayerData.get_equipment_strength_max_level({"Data": {"品质": "神器"}}) == 30, "神器宠物装备最高应强化30级")
 	_check(PlayerData.get_equipment_strength_max_level({"Data": {"品质": "玄冥"}}) == 50, "玄冥宠物装备最高应强化50级")
@@ -186,7 +187,7 @@ func _ready() -> void:
 	PlayerData.player_data["宠物列表"] = [sale_pet]
 	PlayerData.player_data["宠物背包"] = [gemmed_item, strengthened_item]
 	PlayerData.player_data["coin_num"] = 5000
-	PlayerData.player_data["消耗品列表"]["页码1"].append({"名字": "zizhiguo", "数量": 1})
+	PlayerData.player_data[DataKeys.CONSUMABLE_LIST]["页码1"].append({"名字": "zizhiguo", "数量": 1})
 	var equipment_bonuses := PlayerData.get_pet_equipment_bonuses(sale_pet)
 	for canonical in PlayerData.PET_EQUIPMENT_STAT_KEYS:
 		_check(
@@ -331,7 +332,10 @@ func _ready() -> void:
 	_check(attack_quality_added >= 10 and attack_quality_added <= 30, "资质果必须正常增加10至30点攻击资质")
 	_check(int(pet_interface.call("_item_count", "zizhiguo")) == 0, "使用资质果后必须扣除一个道具")
 	_check(int(pet_interface.get("equipment_bonus_call_count")) == 1, "使用资质果刷新界面时装备属性只能完整汇总一次")
-	var expected_attack := int(sale_pet.get("攻击", 0)) + int(PlayerData.get_pet_equipment_bonuses(sale_pet).get("攻击", 0))
+	var expected_attack := (
+		int(sale_pet.get(DataKeys.ATTACK, 0))
+		+ int(PlayerData.get_pet_equipment_bonuses(sale_pet).get(DataKeys.ATTACK, 0))
+	)
 	var attack_label := pet_interface.get("atktxt") as Label
 	_check(attack_label != null and attack_label.text == str(expected_attack), "资质果刷新后攻击显示必须继续包含装备加成")
 	await get_tree().process_frame
@@ -467,10 +471,10 @@ func _test_player_data(original: Dictionary) -> Dictionary:
 		{"名字": "末尾装备", "强化等级": 0, "类型": "zbjn", "Data": {"宝石": []}},
 	]
 	result["宠物列表"] = []
-	result["镶嵌列表"] = []
-	result["装备列表"] = equipment_pages
-	result["道具列表"] = item_pages
-	result["消耗品列表"] = consumable_pages
+	result[DataKeys.INLAY_LIST] = []
+	result[DataKeys.EQUIPMENT_LIST] = equipment_pages
+	result[DataKeys.ITEM_LIST] = item_pages
+	result[DataKeys.CONSUMABLE_LIST] = consumable_pages
 	result["ieho"] = true
 	result["coin_num"] = 0
 	return result

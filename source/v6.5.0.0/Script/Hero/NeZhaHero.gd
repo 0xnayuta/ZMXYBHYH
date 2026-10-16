@@ -225,7 +225,7 @@ func _get_yinyang_effect_scene() -> PackedScene:
 
 
 func _ensure_special_skills_in_normal_slots() -> void:
-	var skill_data_value: Variant = PlayerData.player_data.get("技能学习", {})
+	var skill_data_value: Variant = PlayerData.player_data.get(DataKeys.SKILL_LEARNED, {})
 	if not skill_data_value is Dictionary:
 		return
 	var skill_data: Dictionary = skill_data_value
@@ -246,7 +246,7 @@ func _ensure_learned_skill_binding(
 	bindings: Dictionary, skill_data: Dictionary, skill_name: String, skill_index: int, preferred_slot: String
 ) -> void:
 	var level_data: Variant = skill_data.get("技能" + str(skill_index), {})
-	if not level_data is Dictionary or int(level_data.get("等级", 0)) <= 0:
+	if not level_data is Dictionary or int(level_data.get(DataKeys.LEVEL, 0)) <= 0:
 		return
 	if skill_name in bindings.values():
 		return
@@ -1152,7 +1152,7 @@ func _is_any_skill_action_pressed() -> bool:
 
 
 func _is_lotus_action_just_pressed() -> bool:
-	var skill_data: Variant = PlayerData.player_data.get("技能学习", {})
+	var skill_data: Variant = PlayerData.player_data.get(DataKeys.SKILL_LEARNED, {})
 	if not skill_data is Dictionary:
 		return false
 	var skill_bindings: Variant = skill_data.get("技能键位", {})
@@ -1168,7 +1168,7 @@ func _is_lotus_action_just_pressed() -> bool:
 
 
 func _is_yinyang_action_just_pressed() -> bool:
-	var skill_data: Variant = PlayerData.player_data.get("技能学习", {})
+	var skill_data: Variant = PlayerData.player_data.get(DataKeys.SKILL_LEARNED, {})
 	if not skill_data is Dictionary:
 		return false
 	var skill_bindings: Variant = skill_data.get("技能键位", {})

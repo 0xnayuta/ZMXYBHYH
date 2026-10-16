@@ -60,16 +60,16 @@ func Role_3():
 
 	if not is_in_group("Player"):
 		add_to_group("Player")
-	var level_1 = PlayerData.player_data["技能学习"]["技能1"]["等级"] + 1
-	var level_2 = PlayerData.player_data["技能学习"]["技能2"]["等级"] + 1
-	var level_3 = PlayerData.player_data["技能学习"]["技能3"]["等级"] + 1
-	var level_4 = PlayerData.player_data["技能学习"]["技能4"]["等级"] + 1
-	var level_5 = PlayerData.player_data["技能学习"]["技能5"]["等级"] + 1
-	var level_6 = PlayerData.player_data["技能学习"]["技能6"]["等级"] + 1
-	var level_7 = PlayerData.player_data["技能学习"]["技能7"]["等级"] + 1
-	var level_8 = PlayerData.player_data["技能学习"]["技能8"]["等级"] + 1
-	var level_9 = PlayerData.player_data["技能学习"]["技能9"]["等级"] + 1
-	var level_10 = PlayerData.player_data["技能学习"]["技能10"]["等级"]
+	var level_1 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能1"][DataKeys.LEVEL] + 1
+	var level_2 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能2"][DataKeys.LEVEL] + 1
+	var level_3 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能3"][DataKeys.LEVEL] + 1
+	var level_4 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
+	var level_5 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能5"][DataKeys.LEVEL] + 1
+	var level_6 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能6"][DataKeys.LEVEL] + 1
+	var level_7 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1
+	var level_8 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能8"][DataKeys.LEVEL] + 1
+	var level_9 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] + 1
+	var level_10 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
 	self.objattackDic["hit1"] = {
 		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1),
 		"hurtBack": [3, -8],
@@ -162,7 +162,7 @@ func Role_3():
 		"attackKind": "magic",
 		"WSValue": randi_range(5, 7),
 	}
-	var level_12 = PlayerData.player_data["技能学习"]["技能12"]["等级"] + 1
+	var level_12 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能12"][DataKeys.LEVEL] + 1
 	self.objattackDic["bdqk"] = {
 		"power": RoleProp.roleprop.SHp * (0.16 + level_12 * 0.04) + RoleProp.roleprop.power * (0.7 + level_12 * 0.14),
 		"hurtBack": [22, -16],
@@ -534,7 +534,7 @@ func AddSD():
 
 
 func AddZZNH():
-	var skill_level = PlayerData.player_data["技能学习"]["技能4"]["等级"] + 1
+	var skill_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
 	var effect = Global.addRoleSpecialEffect_(self, Vector2(30, -30) if PlayerDir else Vector2(-30, -30), false, "zznh")
 	effect.skill_level = skill_level
 	effect.zznh_defense_reduction = 0.5 if _is_skill_awakened("zznh") and _is_skill_awaken_enabled("zznh") else 0.0
@@ -545,16 +545,16 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 	if Target is BaseMonster:
 		if _is_summon_or_pet_target(Target):
 			return
-		if PlayerData.player_data["技能学习"]["技能10"]["等级"] <= 0:
+		if PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] <= 0:
 			return
 		if get_action == "dj":
-			if randi_range(0, 100) > 10 + PlayerData.player_data["技能学习"]["技能10"]["等级"] * 1:
+			if randi_range(0, 100) > 10 + PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] * 1:
 				return
 		elif get_action == "jsp":
-			if randi_range(0, 100) > PlayerData.player_data["技能学习"]["技能10"]["等级"] * 0.4:
+			if randi_range(0, 100) > PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] * 0.4:
 				return
 		elif get_action == "syzq":
-			if randi_range(0, 100) > 8 + PlayerData.player_data["技能学习"]["技能10"]["等级"] * 0.5:
+			if randi_range(0, 100) > 8 + PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] * 0.5:
 				return
 		else:
 			return

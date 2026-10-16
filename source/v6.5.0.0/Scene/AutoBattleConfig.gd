@@ -144,7 +144,7 @@ func _get_skill_storage_index(index: int, skill_id: String) -> int:
 
 func _get_learned_skills() -> Array[String]:
 	var result: Array[String] = []
-	var skill_data_value: Variant = PlayerData.player_data.get("技能学习", {})
+	var skill_data_value: Variant = PlayerData.player_data.get(DataKeys.SKILL_LEARNED, {})
 	if not skill_data_value is Dictionary:
 		return result
 	var skill_data: Dictionary = skill_data_value
@@ -158,7 +158,7 @@ func _get_learned_skills() -> Array[String]:
 		if not entry_value is Dictionary:
 			continue
 		var entry: Dictionary = entry_value
-		if int(entry.get("学习", 0)) > 0 or int(entry.get("等级", 0)) > 0:
+		if int(entry.get("学习", 0)) > 0 or int(entry.get(DataKeys.LEVEL, 0)) > 0:
 			result.append(skill_id)
 	return result
 

@@ -159,37 +159,37 @@ func _phoenix_stage_skill_names(stage: int) -> Array:
 func setup_pet_phoenix(stage: int) -> void:
 	phoenix_stage = clampi(stage, 1, 4)
 	pet_data["阶段"] = phoenix_stage
-	pet_data["类型"] = "PetPhoenix"
-	pet_data["名称"] = PHOENIX_STAGE_NAMES[phoenix_stage]
-	pet_data["名字"] = PHOENIX_STAGE_NAMES[phoenix_stage]
+	pet_data[DataKeys.TYPE] = "PetPhoenix"
+	pet_data[DataKeys.ALT_NAME] = PHOENIX_STAGE_NAMES[phoenix_stage]
+	pet_data[DataKeys.NAME] = PHOENIX_STAGE_NAMES[phoenix_stage]
 	pet_data["技能"] = _phoenix_stage_skill_names(phoenix_stage)
 	var level_from_pet := int(_pet_get(pet_data, ["等级", "Level", "level"], 1))
-	var attack_from_pet := int(_pet_get(pet_data, ["攻击"], 70))
+	var attack_from_pet := int(_pet_get(pet_data, [DataKeys.ATTACK], 70))
 	var hp_from_pet := int(_pet_get(pet_data, ["生命上限"], 620))
 	var equipment_bonus: Dictionary = {}
 	if PlayerData.has_method("get_pet_equipment_bonuses"):
 		equipment_bonus = PlayerData.get_pet_equipment_bonuses(pet_data)
-	var hp_bonus := int(equipment_bonus.get("生命", 0))
-	var mp_bonus := int(equipment_bonus.get("魔法", 0))
+	var hp_bonus := int(equipment_bonus.get(DataKeys.HP, 0))
+	var mp_bonus := int(equipment_bonus.get(DataKeys.MP, 0))
 	var passive_value = _pet_get(pet_data, ["被动技能"], {})
 	var passive: Dictionary = passive_value if passive_value is Dictionary else {}
 	var passive_hp := _pet_passive_value("热血", int(passive.get("热血", 0)))
 	var passive_mp := _pet_passive_value("魔泉", int(passive.get("魔泉", 0)))
-	my_mr_name = str(_pet_get(pet_data, ["名称"], PHOENIX_STAGE_NAMES[phoenix_stage]))
-	attack_in = max(1, attack_from_pet + int(equipment_bonus.get("攻击", 0)))
+	my_mr_name = str(_pet_get(pet_data, [DataKeys.ALT_NAME], PHOENIX_STAGE_NAMES[phoenix_stage]))
+	attack_in = max(1, attack_from_pet + int(equipment_bonus.get(DataKeys.ATTACK, 0)))
 	attack_in += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "天生蛮力", attack_in)
 	pet_skill_cooldown_multiplier = 1.0 - float(clampi(int(_pet_get(pet_data, ["灵力"], 0)), 0, 25)) * 0.02
 	level = max(1, level_from_pet)
 	SHp = max(1, hp_from_pet + hp_bonus + passive_hp)
 	var learned_hp_bonus := PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "生命祝福", SHp)
 	SHp += learned_hp_bonus
-	var base_current_hp := int(_pet_get(pet_data, ["生命"], hp_from_pet))
+	var base_current_hp := int(_pet_get(pet_data, [DataKeys.HP], hp_from_pet))
 	Hp = 0 if base_current_hp <= 0 else clampi(base_current_hp + hp_bonus + passive_hp + learned_hp_bonus, 0, SHp)
 	var base_mp_max := int(_pet_get(pet_data, ["魔法上限"], 180))
 	SMp = max(1, base_mp_max + mp_bonus + passive_mp)
 	var learned_mp_bonus := PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "魔法庇佑", SMp)
 	SMp += learned_mp_bonus
-	var base_current_mp := int(_pet_get(pet_data, ["魔法"], base_mp_max))
+	var base_current_mp := int(_pet_get(pet_data, [DataKeys.MP], base_mp_max))
 	Mp = 0 if base_current_mp <= 0 else clampi(base_current_mp + mp_bonus + passive_mp + learned_mp_bonus, 0, SMp)
 	hp_recover_per_second = (
 		int(_pet_get(pet_data, ["回血"], 2))
@@ -202,7 +202,7 @@ func setup_pet_phoenix(stage: int) -> void:
 		+ int(PaSkill.get_value("辉煌", int(passive.get("辉煌", 0))))
 	)
 	self_rhp = hp_recover_per_second
-	def = int(_pet_get(pet_data, ["物防", "防御"], 60)) + int(equipment_bonus.get("防御", 0))
+	def = int(_pet_get(pet_data, ["物防", "防御"], 60)) + int(equipment_bonus.get(DataKeys.DEFENSE, 0))
 	def += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "自然守护", def)
 	mdef = int(_pet_get(pet_data, ["魔防", "魔抗"], 60)) + int(equipment_bonus.get("魔防", 0))
 	mdef += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "自然守护", mdef)
@@ -257,7 +257,7 @@ func _process_pet_phoenix_recovery(delta: float) -> void:
 		cure_Hp(hp_recover_per_second)
 	if mp_recover_per_second > 0 and Mp < SMp:
 		Mp = min(SMp, Mp + mp_recover_per_second)
-		pet_data["魔法"] = Mp
+		pet_data[DataKeys.MP] = Mp
 
 
 func _process_phoenix_nirvana(delta: float) -> void:
@@ -294,7 +294,7 @@ func _apply_phoenix_nirvana_heal(value: int) -> int:
 		return 0
 	var old_hp: int = Hp
 	Hp = mini(SHp, Hp + value)
-	pet_data["生命"] = Hp
+	pet_data[DataKeys.HP] = Hp
 	var actual_heal: int = Hp - old_hp
 	if actual_heal > 0:
 		var level_node: Node = get_level_node()
@@ -421,7 +421,7 @@ func _consume_pet_mp(cost: int) -> bool:
 	if Mp < cost:
 		return false
 	Mp -= cost
-	pet_data["魔法"] = Mp
+	pet_data[DataKeys.MP] = Mp
 	return true
 
 

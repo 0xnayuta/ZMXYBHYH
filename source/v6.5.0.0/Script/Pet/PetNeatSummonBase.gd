@@ -83,8 +83,8 @@ func _ready() -> void:
 func _pet_stage_from_data(data: Dictionary, fallback: int) -> int:
 	var level_stage := (
 		4
-		if int(data.get("等级", 1)) >= 50
-		else 3 if int(data.get("等级", 1)) >= 30 else 2 if int(data.get("等级", 1)) >= 15 else 1
+		if int(data.get(DataKeys.LEVEL, 1)) >= 50
+		else 3 if int(data.get(DataKeys.LEVEL, 1)) >= 30 else 2 if int(data.get(DataKeys.LEVEL, 1)) >= 15 else 1
 	)
 	return maxi(level_stage, clampi(int(data.get("阶段", fallback)), 1, 4))
 
@@ -93,9 +93,9 @@ func setup_pet_turtle(stage: int) -> void:
 	super.setup_pet_turtle(clampi(stage, 1, 4))
 	turtle_stage = clampi(stage, 1, 4)
 	pet_data["阶段"] = turtle_stage
-	pet_data["类型"] = "PetNeat"
-	pet_data["名称"] = STAGE_NAMES[turtle_stage]
-	pet_data["名字"] = STAGE_NAMES[turtle_stage]
+	pet_data[DataKeys.TYPE] = "PetNeat"
+	pet_data[DataKeys.ALT_NAME] = STAGE_NAMES[turtle_stage]
+	pet_data[DataKeys.NAME] = STAGE_NAMES[turtle_stage]
 	pet_data["技能"] = (STAGE_SKILLS[turtle_stage] as Array).duplicate(true)
 	my_mr_name = str(STAGE_NAMES[turtle_stage])
 	speed = 14
@@ -278,7 +278,7 @@ func do_neat_rush(without_mana: bool = false, set_cooldown: bool = true) -> void
 		if Mp < cost:
 			return
 		Mp -= cost
-		pet_data["魔法"] = Mp
+		pet_data[DataKeys.MP] = Mp
 	_face_current_target()
 	if set_cooldown:
 		Skill_1_CD = SKILL_CDS[SKILL_MNCZ] * pet_skill_cooldown_multiplier
@@ -292,7 +292,7 @@ func do_neat_stomp(without_mana: bool = false, set_cooldown: bool = true) -> voi
 		if Mp < cost:
 			return
 		Mp -= cost
-		pet_data["魔法"] = Mp
+		pet_data[DataKeys.MP] = Mp
 	_face_current_target()
 	if set_cooldown:
 		Skill_2_CD = SKILL_CDS[SKILL_MLJT] * pet_skill_cooldown_multiplier
@@ -305,7 +305,7 @@ func do_neat_aoyi() -> void:
 	if Mp < cost:
 		return
 	Mp -= cost
-	pet_data["魔法"] = Mp
+	pet_data[DataKeys.MP] = Mp
 	Skill_3_CD = SKILL_CDS[SKILL_CNAOYI] * pet_skill_cooldown_multiplier
 	_aoyi_step = 0
 	_neat_aoyi_stomp = true

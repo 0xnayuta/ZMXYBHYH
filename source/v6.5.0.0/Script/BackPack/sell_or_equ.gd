@@ -60,7 +60,7 @@ func _control_has_point(control: Control, screen_position: Vector2) -> bool:
 func _get_inventory_entry() -> Dictionary:
 	if page <= 0 or number < 0:
 		return {}
-	var pages: Variant = PlayerData.player_data.get("装备列表", {})
+	var pages: Variant = PlayerData.player_data.get(DataKeys.EQUIPMENT_LIST, {})
 	if not pages is Dictionary:
 		return {}
 	var items: Variant = pages.get("页码" + str(page), [])
@@ -129,7 +129,7 @@ func setup_pet_action(owner: Node, source: Variant, index: int, slot_type: Strin
 func _pet_item_name(source: Variant) -> String:
 	if source is Dictionary:
 		var item := source as Dictionary
-		return str(item.get("名字", item.get("名称", "宠物装备")))
+		return str(item.get(DataKeys.NAME, item.get(DataKeys.ALT_NAME, "宠物装备")))
 	return str(source)
 
 
@@ -159,43 +159,43 @@ func _on_equ_pressed() -> void:
 			queue_free()
 		return
 	var new_list = PlayerData.get_zb_data(page, number)
-	if not CheckCanEquipment(new_list["名字"]):
+	if not CheckCanEquipment(new_list[DataKeys.NAME]):
 		return
-	match AE.AllEquipment_[new_list["名字"]]["类型"]:
+	match AE.AllEquipment_[new_list[DataKeys.NAME]][DataKeys.TYPE]:
 		"武器":
 			PlayerData.remove_zb(page, number)
-			if PlayerData.player_data["武器"].size() != 0:
-				var mz = PlayerData.player_data["武器"][0]["名字"]
-				var ql = PlayerData.player_data["武器"][0]["强化等级"]
-				EQ_prop = PlayerData.player_data["武器"][0]["Data"]
-				PlayerData.player_data["武器"].clear()
-				PlayerData.player_data["武器"].push_back(new_list)
+			if PlayerData.player_data[DataKeys.WEAPON].size() != 0:
+				var mz = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME]
+				var ql = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.ENHANCE_LEVEL]
+				EQ_prop = PlayerData.player_data[DataKeys.WEAPON][0]["Data"]
+				PlayerData.player_data[DataKeys.WEAPON].clear()
+				PlayerData.player_data[DataKeys.WEAPON].push_back(new_list)
 				PlayerData.zl_zb()
 				PlayerData.add_zb(mz, ql, EQ_prop)
 			else:
-				PlayerData.player_data["武器"].clear()
-				PlayerData.player_data["武器"].push_back(new_list)
+				PlayerData.player_data[DataKeys.WEAPON].clear()
+				PlayerData.player_data[DataKeys.WEAPON].push_back(new_list)
 				PlayerData.zl_zb()
 		"防具":
 			PlayerData.remove_zb(page, number)
-			if PlayerData.player_data["防具"].size() != 0:
-				var mz = PlayerData.player_data["防具"][0]["名字"]
-				var ql = PlayerData.player_data["防具"][0]["强化等级"]
-				EQ_prop = PlayerData.player_data["防具"][0]["Data"]
-				PlayerData.player_data["防具"].clear()
-				PlayerData.player_data["防具"].push_back(new_list)
+			if PlayerData.player_data[DataKeys.ARMOR].size() != 0:
+				var mz = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME]
+				var ql = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.ENHANCE_LEVEL]
+				EQ_prop = PlayerData.player_data[DataKeys.ARMOR][0]["Data"]
+				PlayerData.player_data[DataKeys.ARMOR].clear()
+				PlayerData.player_data[DataKeys.ARMOR].push_back(new_list)
 				PlayerData.zl_zb()
 				PlayerData.add_zb(mz, ql, EQ_prop)
 
 			else:
-				PlayerData.player_data["防具"].clear()
-				PlayerData.player_data["防具"].push_back(new_list)
+				PlayerData.player_data[DataKeys.ARMOR].clear()
+				PlayerData.player_data[DataKeys.ARMOR].push_back(new_list)
 				PlayerData.zl_zb()
 		"饰品":
 			PlayerData.remove_zb(page, number)
 			if PlayerData.player_data["饰品"].size() != 0:
-				var mz = PlayerData.player_data["饰品"][0]["名字"]
-				var ql = PlayerData.player_data["饰品"][0]["强化等级"]
+				var mz = PlayerData.player_data["饰品"][0][DataKeys.NAME]
+				var ql = PlayerData.player_data["饰品"][0][DataKeys.ENHANCE_LEVEL]
 				EQ_prop = PlayerData.player_data["饰品"][0]["Data"]
 				PlayerData.player_data["饰品"].clear()
 				PlayerData.player_data["饰品"].push_back(new_list)
@@ -213,23 +213,27 @@ func _on_equ_pressed() -> void:
 				equipped_shengu.clear()
 				equipped_shengu.push_back(new_list)
 				PlayerData.zl_zb()
-				PlayerData.add_zb(str(old_item.get("名字", "")), int(old_item.get("强化等级", 0)), old_item.get("Data", {}))
+				PlayerData.add_zb(
+					str(old_item.get(DataKeys.NAME, "")),
+					int(old_item.get(DataKeys.ENHANCE_LEVEL, 0)),
+					old_item.get("Data", {})
+				)
 			else:
 				equipped_shengu.push_back(new_list)
 				PlayerData.zl_zb()
 		"头衔":
 			PlayerData.remove_zb(page, number)
-			if PlayerData.player_data["头衔"].size() != 0:
-				var mz = PlayerData.player_data["头衔"][0]["名字"]
-				var ql = PlayerData.player_data["头衔"][0]["强化等级"]
-				EQ_prop = PlayerData.player_data["头衔"][0]["Data"]
-				PlayerData.player_data["头衔"].clear()
-				PlayerData.player_data["头衔"].push_back(new_list)
+			if PlayerData.player_data[DataKeys.TITLE].size() != 0:
+				var mz = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.NAME]
+				var ql = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.ENHANCE_LEVEL]
+				EQ_prop = PlayerData.player_data[DataKeys.TITLE][0]["Data"]
+				PlayerData.player_data[DataKeys.TITLE].clear()
+				PlayerData.player_data[DataKeys.TITLE].push_back(new_list)
 				PlayerData.zl_zb()
 				PlayerData.add_zb(mz, ql, EQ_prop)
 			else:
-				PlayerData.player_data["头衔"].clear()
-				PlayerData.player_data["头衔"].push_back(new_list)
+				PlayerData.player_data[DataKeys.TITLE].clear()
+				PlayerData.player_data[DataKeys.TITLE].push_back(new_list)
 				PlayerData.zl_zb()
 		"头像框":
 			PlayerData.remove_zb(page, number)
@@ -239,60 +243,64 @@ func _on_equ_pressed() -> void:
 				equipped_avatar_frames.clear()
 				equipped_avatar_frames.push_back(new_list)
 				PlayerData.zl_zb()
-				PlayerData.add_zb(str(old_item.get("名字", "")), int(old_item.get("强化等级", 0)), old_item.get("Data", {}))
+				PlayerData.add_zb(
+					str(old_item.get(DataKeys.NAME, "")),
+					int(old_item.get(DataKeys.ENHANCE_LEVEL, 0)),
+					old_item.get("Data", {})
+				)
 			else:
 				equipped_avatar_frames.clear()
 				equipped_avatar_frames.push_back(new_list)
 				PlayerData.zl_zb()
 		"时装":
 			PlayerData.remove_zb(page, number)
-			if PlayerData.player_data["时装"].size() != 0:
-				var mz = PlayerData.player_data["时装"][0]["名字"]
-				var ql = PlayerData.player_data["时装"][0]["强化等级"]
-				EQ_prop = PlayerData.player_data["时装"][0]["Data"]
-				PlayerData.player_data["时装"].clear()
-				PlayerData.player_data["时装"].push_back(new_list)
+			if PlayerData.player_data[DataKeys.FASHION].size() != 0:
+				var mz = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]
+				var ql = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.ENHANCE_LEVEL]
+				EQ_prop = PlayerData.player_data[DataKeys.FASHION][0]["Data"]
+				PlayerData.player_data[DataKeys.FASHION].clear()
+				PlayerData.player_data[DataKeys.FASHION].push_back(new_list)
 				PlayerData.zl_zb()
 				PlayerData.add_zb(mz, ql, EQ_prop)
 
 			else:
-				PlayerData.player_data["时装"].clear()
-				PlayerData.player_data["时装"].push_back(new_list)
+				PlayerData.player_data[DataKeys.FASHION].clear()
+				PlayerData.player_data[DataKeys.FASHION].push_back(new_list)
 				PlayerData.zl_zb()
 		"翅膀":
 			PlayerData.remove_zb(page, number)
-			if PlayerData.player_data["翅膀"].size() != 0:
-				var mz = PlayerData.player_data["翅膀"][0]["名字"]
-				var ql = PlayerData.player_data["翅膀"][0]["强化等级"]
-				EQ_prop = PlayerData.player_data["翅膀"][0]["Data"]
-				PlayerData.player_data["翅膀"].clear()
-				PlayerData.player_data["翅膀"].push_back(new_list)
+			if PlayerData.player_data[DataKeys.WINGS].size() != 0:
+				var mz = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
+				var ql = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.ENHANCE_LEVEL]
+				EQ_prop = PlayerData.player_data[DataKeys.WINGS][0]["Data"]
+				PlayerData.player_data[DataKeys.WINGS].clear()
+				PlayerData.player_data[DataKeys.WINGS].push_back(new_list)
 				PlayerData.zl_zb()
 				PlayerData.add_zb(mz, ql, EQ_prop)
 			else:
-				PlayerData.player_data["翅膀"].clear()
-				PlayerData.player_data["翅膀"].push_back(new_list)
+				PlayerData.player_data[DataKeys.WINGS].clear()
+				PlayerData.player_data[DataKeys.WINGS].push_back(new_list)
 				PlayerData.zl_zb()
 		"法宝":
 			PlayerData.remove_zb(page, number)
 			if Global.FB_CD <= 0:
-				if PlayerData.player_data["法宝"].size() != 0:
-					var mz = PlayerData.player_data["法宝"][0]["名字"]
-					var ql = PlayerData.player_data["法宝"][0]["强化等级"]
-					var wx = PlayerData.player_data["法宝"][0]["五行"]
-					EQ_prop = PlayerData.player_data["法宝"][0]["Data"]
-					PlayerData.player_data["法宝"].clear()
-					PlayerData.player_data["法宝"].push_back(new_list)
+				if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() != 0:
+					var mz = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
+					var ql = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL]
+					var wx = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS]
+					EQ_prop = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
+					PlayerData.player_data[DataKeys.MAGIC_WEAPON].clear()
+					PlayerData.player_data[DataKeys.MAGIC_WEAPON].push_back(new_list)
 					PlayerData.zl_zb()
 					PlayerData.add_fb(mz, ql, wx, EQ_prop)
 				else:
-					PlayerData.player_data["法宝"].clear()
-					PlayerData.player_data["法宝"].push_back(new_list)
+					PlayerData.player_data[DataKeys.MAGIC_WEAPON].clear()
+					PlayerData.player_data[DataKeys.MAGIC_WEAPON].push_back(new_list)
 					PlayerData.zl_zb()
 			else:
-				var mz = new_list["名字"]
-				var ql = new_list["强化等级"]
-				var wx = new_list["五行"]
+				var mz = new_list[DataKeys.NAME]
+				var ql = new_list[DataKeys.ENHANCE_LEVEL]
+				var wx = new_list[DataKeys.FIVE_ELEMENTS]
 				EQ_prop = new_list["Data"]
 				PlayerData.add_fb(mz, ql, wx, EQ_prop)
 				var parent = Global.get_parent_(self, 3)
@@ -317,14 +325,14 @@ func _on_sell_pressed() -> void:
 	if EQ_prop == null:
 		PlayerData.remove_zb(page, number)
 		return
-	if not EQ_prop.has("类型"):
+	if not EQ_prop.has(DataKeys.TYPE):
 		PlayerData.remove_zb(page, number)
 		return
-	var Lx = EQ_prop["类型"]
-	var pz = EQ_prop["品质"]
+	var Lx = EQ_prop[DataKeys.TYPE]
+	var pz = EQ_prop[DataKeys.QUALITY]
 	match Lx:
 		"武器", "防具", "饰品":
-			if EQ_prop["宝石"].size() == 0:
+			if EQ_prop[DataKeys.GEM].size() == 0:
 				pass
 			else:
 				var parent = Global.get_parent_(self, 3)
@@ -332,15 +340,17 @@ func _on_sell_pressed() -> void:
 				return
 	var abc = PlayerData.get_zb_data(page, number)
 
-	var item_name = PlayerData.get_zb_data(page, number)["Data"]["名字"]
+	var item_name = PlayerData.get_zb_data(page, number)["Data"][DataKeys.NAME]
 	if pz == "传说" or pz == "玄冥" or pz == "魂器" or pz == "神器" or pz == "邪灵":
-		_show_sell_confirm("确定要卖出" + str(pz) + "品质的" + str(item_name) + "吗？（此装备已强化至+" + str(abc["强化等级"]) + "。）")
+		_show_sell_confirm(
+			"确定要卖出" + str(pz) + "品质的" + str(item_name) + "吗？（此装备已强化至+" + str(abc[DataKeys.ENHANCE_LEVEL]) + "。）"
+		)
 		return
 	if Lx == "法宝":
-		_show_sell_confirm("确定要卖出" + str(Lx) + str(item_name) + "吗？（此装备已强化至+" + str(abc["强化等级"]) + "。）")
+		_show_sell_confirm("确定要卖出" + str(Lx) + str(item_name) + "吗？（此装备已强化至+" + str(abc[DataKeys.ENHANCE_LEVEL]) + "。）")
 		return
-	if abc["强化等级"] > 0:
-		_show_sell_confirm("确定要卖出" + str(Lx) + str(item_name) + "吗？（此装备已强化至+" + str(abc["强化等级"]) + "。）")
+	if abc[DataKeys.ENHANCE_LEVEL] > 0:
+		_show_sell_confirm("确定要卖出" + str(Lx) + str(item_name) + "吗？（此装备已强化至+" + str(abc[DataKeys.ENHANCE_LEVEL]) + "。）")
 		return
 
 	var get_value = AE.AllEquipment_[get_name_]["售价"]
@@ -428,7 +438,7 @@ func CheckCanEquipment(EquipmentName):
 	var RoleID: int = PlayerData.player_data["Myself"]
 	var parent = Global.get_parent_(self, 3)
 	var EqBase = AE.AllEquipment_[EquipmentName]["所属"]
-	var Name_ = AE.AllEquipment_[EquipmentName]["名字"] as String
+	var Name_ = AE.AllEquipment_[EquipmentName][DataKeys.NAME] as String
 	var RoleBase: String
 	if EqBase == "通用":
 		return true

@@ -274,8 +274,8 @@ func _set_pet_values() -> void:
 		return
 	pet_panel.visible = true
 	var pet_unit: Node = _get_cached_active_pet_unit()
-	var max_hp: int = max(1, int(pet.get("生命上限", pet.get("生命", 1))))
-	var hp: int = int(pet.get("生命", max_hp))
+	var max_hp: int = max(1, int(pet.get("生命上限", pet.get(DataKeys.HP, 1))))
+	var hp: int = int(pet.get(DataKeys.HP, max_hp))
 	if pet_unit != null:
 		var unit_max_hp = pet_unit.get("SHp")
 		var unit_hp = pet_unit.get("Hp")
@@ -283,10 +283,10 @@ func _set_pet_values() -> void:
 			max_hp = max(1, int(unit_max_hp))
 		if unit_hp != null:
 			hp = clampi(int(unit_hp), 0, max_hp)
-	elif _is_pet_dead_in_current_level(str(pet.get("名称", ""))):
+	elif _is_pet_dead_in_current_level(str(pet.get(DataKeys.ALT_NAME, ""))):
 		hp = 0
-	var max_mp: int = max(1, int(pet.get("魔法上限", pet.get("魔法", 1))))
-	var mp: int = clampi(int(pet.get("魔法", max_mp)), 0, max_mp)
+	var max_mp: int = max(1, int(pet.get("魔法上限", pet.get(DataKeys.MP, 1))))
+	var mp: int = clampi(int(pet.get(DataKeys.MP, max_mp)), 0, max_mp)
 	var max_protect: int = max(1, int(pet.get("MaxProtect", 100)))
 	var current_protect: int = clampi(int(pet.get("CurrentProtect", 0)), 0, max_protect)
 	var hp_recover: int = int(pet.get("回血", 0))
@@ -306,9 +306,9 @@ func _set_pet_values() -> void:
 		if unit_current_protect != null:
 			current_protect = clampi(int(unit_current_protect), 0, max_protect)
 	var max_exp: int = max(1, int(pet.get("下级经验", 100)))
-	var exp_value: int = clampi(int(pet.get("经验", 0)), 0, max_exp)
+	var exp_value: int = clampi(int(pet.get(DataKeys.EXP, 0)), 0, max_exp)
 	if pet_level != null:
-		pet_level.text = str(int(pet.get("等级", 1)))
+		pet_level.text = str(int(pet.get(DataKeys.LEVEL, 1)))
 	if pet_hp_bar != null:
 		pet_hp_bar.value = float(hp) / float(max_hp)
 	if pet_hp_text != null:
@@ -340,11 +340,11 @@ func _active_pet_data() -> Dictionary:
 		return {}
 	var first_active_pet: Dictionary = {}
 	for pet in pets:
-		if not (pet is Dictionary) or not bool(pet.get("出战", false)):
+		if not (pet is Dictionary) or not bool(pet.get(DataKeys.DEPLOYED, false)):
 			continue
 		if first_active_pet.is_empty():
 			first_active_pet = pet
-		if active_name != "" and str(pet.get("名称", "")) == active_name:
+		if active_name != "" and str(pet.get(DataKeys.ALT_NAME, "")) == active_name:
 			return pet
 		if active_name == "PetDragon" and _is_pet_dragon_hud_data(pet, null):
 			return pet
@@ -828,7 +828,7 @@ func _active_pet_skill_stage(pet: Dictionary, pet_unit: Node) -> int:
 				return clampi(int(mouse_unit_stage), 1, 2)
 		if pet.has("阶段"):
 			return clampi(int(pet.get("阶段", 1)), 1, 2)
-		return 2 if int(pet.get("等级", 1)) >= 50 else 1
+		return 2 if int(pet.get(DataKeys.LEVEL, 1)) >= 50 else 1
 	if pet_unit != null:
 		var turtle_unit_stage = pet_unit.get("turtle_stage")
 		if turtle_unit_stage != null:
@@ -847,7 +847,7 @@ func _active_pet_skill_stage(pet: Dictionary, pet_unit: Node) -> int:
 	var skill_stage := _pet_tiger_stage_from_skill_data(pet)
 	if skill_stage > 0:
 		return skill_stage
-	var level := int(pet.get("等级", pet.get("Level", pet.get("level", 1))))
+	var level := int(pet.get(DataKeys.LEVEL, pet.get("Level", pet.get("level", 1))))
 	if level >= 50:
 		return 4
 	if level >= 30:
@@ -927,7 +927,7 @@ func _pet_skill_icon_names_for_pet(pet: Dictionary, pet_unit: Node, stage: int) 
 				return ["mncz"]
 	if _is_pet_mouse_hud_data(pet, pet_unit):
 		var mouse_skill_names: Array[String] = ["sc"]
-		var pet_level := int(pet.get("等级", 1))
+		var pet_level := int(pet.get(DataKeys.LEVEL, 1))
 		if pet_level >= 30:
 			mouse_skill_names.append("hxfb")
 		if pet_level >= 50:
@@ -977,9 +977,11 @@ func _pet_skill_icon_names_for_pet(pet: Dictionary, pet_unit: Node, stage: int) 
 
 
 func _is_pet_dragon_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name := str(pet.get("名称", ""))
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, ""))
 	var is_dragon := (
-		str(pet.get("类型", "")) == "PetDragon" or pet_name.begins_with("辰龙") or pet_name in ["龙仔", "绿英龙", "青龙将军", "青龙妖圣"]
+		str(pet.get(DataKeys.TYPE, "")) == "PetDragon"
+		or pet_name.begins_with("辰龙")
+		or pet_name in ["龙仔", "绿英龙", "青龙将军", "青龙妖圣"]
 	)
 	if pet_unit != null and bool(pet_unit.get_meta("pet_dragon_unit", false)):
 		is_dragon = true
@@ -987,9 +989,9 @@ func _is_pet_dragon_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
 
 
 func _is_pet_phoenix_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name := str(pet.get("名称", pet.get("名字", "")))
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, "")))
 	var is_phoenix := (
-		str(pet.get("类型", "")) == "PetPhoenix"
+		str(pet.get(DataKeys.TYPE, "")) == "PetPhoenix"
 		or pet_name.begins_with("朱雀")
 		or pet_name in ["雀蛋", "炎皇雀", "朱雀将军", "朱雀女皇", "朱雀幼灵", "赤羽朱雀", "朱雀神君"]
 	)
@@ -999,9 +1001,11 @@ func _is_pet_phoenix_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
 
 
 func _is_pet_turtle_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name := str(pet.get("名称", pet.get("名字", "")))
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, "")))
 	var is_turtle := (
-		str(pet.get("类型", "")) == "PetTurtle" or pet_name.begins_with("玄武") or pet_name in ["龟布", "墨玄龟", "玄武将军", "玄武大帝"]
+		str(pet.get(DataKeys.TYPE, "")) == "PetTurtle"
+		or pet_name.begins_with("玄武")
+		or pet_name in ["龟布", "墨玄龟", "玄武将军", "玄武大帝"]
 	)
 	if pet_unit != null and bool(pet_unit.get_meta("pet_turtle_unit", false)):
 		is_turtle = true
@@ -1009,32 +1013,34 @@ func _is_pet_turtle_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
 
 
 func _is_pet_rabbit_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name := str(pet.get("名称", pet.get("名字", "")))
-	var is_rabbit := str(pet.get("类型", "")) == "PetRabbit" or pet_name in ["月兔", "疾风兔", "寒冰玉兔", "冰霜月神"]
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, "")))
+	var is_rabbit := str(pet.get(DataKeys.TYPE, "")) == "PetRabbit" or pet_name in ["月兔", "疾风兔", "寒冰玉兔", "冰霜月神"]
 	if pet_unit != null and bool(pet_unit.get_meta("pet_rabbit_unit", false)):
 		is_rabbit = true
 	return is_rabbit
 
 
 func _is_pet_mouse_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name := str(pet.get("名称", pet.get("名字", "")))
-	var is_mouse := str(pet.get("类型", "")) == "PetMouse" or pet_name.begins_with("子鼠") or pet_name in ["子鼠元帅", "子鼠大元帅"]
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, "")))
+	var is_mouse := (
+		str(pet.get(DataKeys.TYPE, "")) == "PetMouse" or pet_name.begins_with("子鼠") or pet_name in ["子鼠元帅", "子鼠大元帅"]
+	)
 	if pet_unit != null and bool(pet_unit.get_meta("pet_mouse_unit", false)):
 		is_mouse = true
 	return is_mouse
 
 
 func _is_pet_neat_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name := str(pet.get("名称", pet.get("名字", "")))
-	var is_neat := str(pet.get("类型", "")) == "PetNeat" or pet_name in ["丑牛", "丑牛元帅", "丑牛大元帅"]
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, "")))
+	var is_neat := str(pet.get(DataKeys.TYPE, "")) == "PetNeat" or pet_name in ["丑牛", "丑牛元帅", "丑牛大元帅"]
 	if pet_unit != null and bool(pet_unit.get_meta("pet_neat_unit", false)):
 		is_neat = true
 	return is_neat
 
 
 func _is_pet_yin_tiger_hud_data(pet: Dictionary, pet_unit: Node) -> bool:
-	var pet_name := str(pet.get("名称", pet.get("名字", "")))
-	var is_yin_tiger := str(pet.get("类型", "")) == "PetYinTiger" or pet_name in ["寅虎", "银角虎", "寅虎元帅", "寅虎大元帅"]
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, "")))
+	var is_yin_tiger := str(pet.get(DataKeys.TYPE, "")) == "PetYinTiger" or pet_name in ["寅虎", "银角虎", "寅虎元帅", "寅虎大元帅"]
 	if pet_unit != null and bool(pet_unit.get_meta("pet_yin_tiger_unit", false)):
 		is_yin_tiger = true
 	return is_yin_tiger
@@ -1053,7 +1059,7 @@ func is_full_ws() -> bool:
 
 
 func _set_skill_pic() -> void:
-	var skill_data = PlayerData.player_data.get("技能学习", {})
+	var skill_data = PlayerData.player_data.get(DataKeys.SKILL_LEARNED, {})
 	var skill_keys = skill_data.get("技能键位", {}) if skill_data is Dictionary else {}
 	var skill_levels := _get_skill_level_snapshot(skill_data)
 	var mount_runtime := _current_mount_runtime()
@@ -1127,8 +1133,8 @@ func _get_skill_level_snapshot(skill_data: Variant) -> Dictionary:
 		return levels
 	for key in skill_data:
 		var entry: Variant = skill_data[key]
-		if entry is Dictionary and entry.has("等级"):
-			levels[str(key)] = int(entry["等级"])
+		if entry is Dictionary and entry.has(DataKeys.LEVEL):
+			levels[str(key)] = int(entry[DataKeys.LEVEL])
 	return levels
 
 

@@ -548,24 +548,24 @@ func PushEqToList():
 	match int(PlayerData.player_data["Myself"]):
 		1:
 			List = RoleItemList["悟空"]
-			RoleItemList["头衔"].push_back("qtds")
+			RoleItemList[DataKeys.TITLE].push_back("qtds")
 		2:
 			List = RoleItemList["唐僧"]
-			RoleItemList["头衔"].push_back("jcz")
+			RoleItemList[DataKeys.TITLE].push_back("jcz")
 		3:
 			List = RoleItemList["八戒"]
-			RoleItemList["头衔"].push_back("tpys")
+			RoleItemList[DataKeys.TITLE].push_back("tpys")
 		4:
 			List = RoleItemList["沙僧"]
-			RoleItemList["头衔"].push_back("jldj")
+			RoleItemList[DataKeys.TITLE].push_back("jldj")
 		5:
 			List = RoleItemList["白龙"]
-			RoleItemList["头衔"].push_back("lwstz")
+			RoleItemList[DataKeys.TITLE].push_back("lwstz")
 		6:
 			List = RoleItemList["哪吒"]
-	for i in RoleItemList["翅膀"]:
+	for i in RoleItemList[DataKeys.WINGS]:
 		List.push_back(i)
-	for i in RoleItemList["头衔"]:
+	for i in RoleItemList[DataKeys.TITLE]:
 		List.push_back(i)
 	for i in List:
 		if not _is_transmog_item_visible(str(i)):
@@ -614,7 +614,7 @@ func GetCurrentTypeList():
 	if CurrentType == "全部":
 		return List
 	for i in List:
-		if AE.AllEquipment_.has(i) and AE.AllEquipment_[i]["类型"] == CurrentType:
+		if AE.AllEquipment_.has(i) and AE.AllEquipment_[i][DataKeys.TYPE] == CurrentType:
 			NewList.push_back(i)
 	return NewList
 
@@ -657,7 +657,11 @@ func GetFinishItemNum():
 				target_count += 1
 		return target_count
 	for i in PlayerData.player_data["幻化拥有列表"]:
-		if _is_transmog_item_visible(str(i)) and AE.AllEquipment_.has(i) and AE.AllEquipment_[i]["类型"] == CurrentType:
+		if (
+			_is_transmog_item_visible(str(i))
+			and AE.AllEquipment_.has(i)
+			and AE.AllEquipment_[i][DataKeys.TYPE] == CurrentType
+		):
 			List.push_back(i)
 	return List.size()
 
@@ -676,18 +680,18 @@ func RemoveBox():
 
 
 func set_box_():
-	if PlayerData.player_data["幻化列表"]["武器"] == "":
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON] == "":
 		wqq.get_item_name = "empty"
 	else:
-		wqq.get_item_name = PlayerData.player_data["幻化列表"]["武器"]
-	if PlayerData.player_data["幻化列表"]["防具"] == "":
+		wqq.get_item_name = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON]
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR] == "":
 		fjj.get_item_name = "empty"
 	else:
-		fjj.get_item_name = PlayerData.player_data["幻化列表"]["防具"]
-	if PlayerData.player_data["幻化列表"]["翅膀"] == "":
+		fjj.get_item_name = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR]
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
 		cbb.get_item_name = "empty"
 	else:
-		cbb.get_item_name = PlayerData.player_data["幻化列表"]["翅膀"]
+		cbb.get_item_name = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
 	if wqq.get_item_name == "empty":
 		wqq.set_button_icon(load_("empty"))
 		wq.visible = true
@@ -695,12 +699,12 @@ func set_box_():
 		wq.visible = false
 		wqq.is_in_ldl_gz = true
 		wqq.is_in_hh = true
-		if PlayerData.player_data["幻化列表"]["武器"] == "":
+		if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON] == "":
 			wqq.set_button_icon(load_("empty"))
 			wqq.EQ_prop = {}
 		else:
-			wqq.set_button_icon(load_(PlayerData.player_data["幻化列表"]["武器"]))
-			wqq.EQ_prop = AE.AllEquipment_[PlayerData.player_data["幻化列表"]["武器"]]
+			wqq.set_button_icon(load_(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON]))
+			wqq.EQ_prop = AE.AllEquipment_[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON]]
 		wqq.qh_level = 0
 		wqq.wx = []
 	if fjj.get_item_name == "empty":
@@ -710,12 +714,12 @@ func set_box_():
 		fj_2.visible = false
 		fjj.is_in_ldl_gz = true
 		fjj.is_in_hh = true
-		if PlayerData.player_data["幻化列表"]["防具"] == "":
+		if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR] == "":
 			fjj.set_button_icon(load_("empty"))
 			fjj.EQ_prop = {}
 		else:
-			fjj.set_button_icon(load_(PlayerData.player_data["幻化列表"]["防具"]))
-			fjj.EQ_prop = AE.AllEquipment_[PlayerData.player_data["幻化列表"]["防具"]]
+			fjj.set_button_icon(load_(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR]))
+			fjj.EQ_prop = AE.AllEquipment_[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR]]
 		fjj.qh_level = 0
 		fjj.wx = []
 	if cbb.get_item_name == "empty":
@@ -725,12 +729,12 @@ func set_box_():
 		cb.visible = false
 		cbb.is_in_ldl_gz = true
 		cbb.is_in_hh = true
-		if PlayerData.player_data["幻化列表"]["翅膀"] == "":
+		if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
 			cbb.set_button_icon(load_("empty"))
 			cbb.EQ_prop = {}
 		else:
-			cbb.set_button_icon(load_(PlayerData.player_data["幻化列表"]["翅膀"]))
-			cbb.EQ_prop = AE.AllEquipment_[PlayerData.player_data["幻化列表"]["翅膀"]]
+			cbb.set_button_icon(load_(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]))
+			cbb.EQ_prop = AE.AllEquipment_[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]]
 		cbb.qh_level = 0
 		cbb.wx = []
 
@@ -749,19 +753,19 @@ func _ready() -> void:
 	match PlayerId:
 		1:
 			$BG/Player/Playerplay.play("Wait")
-			RoleItemList["头衔"].push_back("qtds")
+			RoleItemList[DataKeys.TITLE].push_back("qtds")
 		2:
 			$BG/Player/Playerplay.play("Wait2")
-			RoleItemList["头衔"].push_back("jcz")
+			RoleItemList[DataKeys.TITLE].push_back("jcz")
 		3:
 			$BG/Player/Playerplay.play("Wait3")
-			RoleItemList["头衔"].push_back("tpys")
+			RoleItemList[DataKeys.TITLE].push_back("tpys")
 		4:
 			$BG/Player/Playerplay.play("wait4")
-			RoleItemList["头衔"].push_back("jldj")
+			RoleItemList[DataKeys.TITLE].push_back("jldj")
 		5:
 			$BG/Player/Playerplay.play("wait5")
-			RoleItemList["头衔"].push_back("lwstz")
+			RoleItemList[DataKeys.TITLE].push_back("lwstz")
 	infor.text = str(currentpage) + "/" + str(maxpage)
 	onEqchange()
 	AddBox()
@@ -798,37 +802,37 @@ func onEqchange():
 	var WQ: String
 	var Fj: String
 
-	if PlayerData.player_data["幻化列表"]["武器"] == "":
-		if PlayerData.player_data["武器"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON] == "":
+		if PlayerData.player_data[DataKeys.WEAPON].size() == 0:
 			WQ = "Empty"
 		else:
-			WQ = str(PlayerData.player_data["武器"][0]["名字"])
+			WQ = str(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME])
 	else:
-		WQ = str(PlayerData.player_data["幻化列表"]["武器"])
+		WQ = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON])
 	ChangeEq(WQ)
-	if PlayerData.player_data["幻化列表"]["防具"] == "":
-		if PlayerData.player_data["时装"].size() == 0:
-			if PlayerData.player_data["防具"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR] == "":
+		if PlayerData.player_data[DataKeys.FASHION].size() == 0:
+			if PlayerData.player_data[DataKeys.ARMOR].size() == 0:
 				Fj = "Empty"
 			else:
-				Fj = str(PlayerData.player_data["防具"][0]["名字"])
+				Fj = str(PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME])
 		else:
-			Fj = str(PlayerData.player_data["时装"][0]["名字"])
+			Fj = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
 	else:
-		Fj = str(PlayerData.player_data["幻化列表"]["防具"])
+		Fj = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR])
 	Fj = Global.GetName(Fj)
 	ChangeBody(Fj)
 	var WingsList
-	if PlayerData.player_data["幻化列表"]["翅膀"] == "":
-		if PlayerData.player_data["翅膀"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
+		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
 			wings.visible = false
 			WingsList = "empty"
 		else:
 			wings.visible = true
-			WingsList = PlayerData.player_data["翅膀"][0]["名字"]
+			WingsList = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 	else:
 		wings.visible = true
-		WingsList = PlayerData.player_data["幻化列表"]["翅膀"]
+		WingsList = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
 
 	if WingsList == "xyzy":
 		_ensure_xianyu_wing_animation()
@@ -995,14 +999,14 @@ func _play_title_preview(title_name: String) -> void:
 
 
 func ChangeTx():
-	if PlayerData.player_data["幻化列表"]["头衔"] == "":
-		if PlayerData.player_data["头衔"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.TITLE] == "":
+		if PlayerData.player_data[DataKeys.TITLE].size() == 0:
 			tx.play("Empty")
 		else:
-			var mz = PlayerData.player_data["头衔"][0]["名字"]
+			var mz = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.NAME]
 			_play_title_preview(mz)
 	else:
-		_play_title_preview(PlayerData.player_data["幻化列表"]["头衔"])
+		_play_title_preview(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.TITLE])
 
 
 func _on_total_pressed() -> void:
@@ -1031,13 +1035,13 @@ func _on_tx_pressed() -> void:
 
 func SetWingsOffset():
 	var CurrentWingsName: String
-	if PlayerData.player_data["幻化列表"]["翅膀"] == "":
-		if PlayerData.player_data["翅膀"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
+		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
 			CurrentWingsName = "empty"
 		else:
-			CurrentWingsName = PlayerData.player_data["翅膀"][0]["名字"]
+			CurrentWingsName = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 	else:
-		CurrentWingsName = PlayerData.player_data["幻化列表"]["翅膀"]
+		CurrentWingsName = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
 	if PlayerId == 2:
 		wings.position = Vector2(41, -4)
 	elif _wing_base_transform_initialized:

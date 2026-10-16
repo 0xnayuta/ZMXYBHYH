@@ -99,7 +99,7 @@ func Open():
 	PurchaseButton.visible = true
 	mystery_shop_item_box.texture = load("res://Art/Shop/ShopItemBox.png")
 	self.SetBox()
-	ItemNum.text = str(AE.AllEquipment_[NewList["Name"]]["名字"]) + "×" + str(NewList["Value"])
+	ItemNum.text = str(AE.AllEquipment_[NewList["Name"]][DataKeys.NAME]) + "×" + str(NewList["Value"])
 	NeedValue.text = str(NewList["Need"]) + "灵魂"
 
 
@@ -132,7 +132,7 @@ func BasicSet():
 func SetBox():
 	var CurrentList = AllItemList["Box_" + str(MyNum)]
 	NewList = CurrentList[randi_range(0, CurrentList.size() - 1)]
-	var Type = AE.AllEquipment_[NewList["Name"]]["类型"]
+	var Type = AE.AllEquipment_[NewList["Name"]][DataKeys.TYPE]
 	match Type:
 		"武器", "饰品", "防具", "时装", "头衔":
 			ItemBox.qh_level = NewList["Level"]
@@ -157,7 +157,7 @@ func _on_purchase_pressed() -> void:
 		return
 	PlayerData.spend_soul(Need)
 	PlayerData.player_data["购买次数"] -= 1
-	var Type = AE.AllEquipment_[NewList["Name"]]["类型"]
+	var Type = AE.AllEquipment_[NewList["Name"]][DataKeys.TYPE]
 	match Type:
 		"武器", "饰品", "防具", "时装", "头衔":
 			PlayerData.add_zb(NewList["Name"], NewList["Level"], {})

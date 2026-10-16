@@ -85,10 +85,10 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if is_boss:
 		if (
-			PlayerData.player_data["武器"].size() == 0
-			and PlayerData.player_data["防具"].size() == 0
+			PlayerData.player_data[DataKeys.WEAPON].size() == 0
+			and PlayerData.player_data[DataKeys.ARMOR].size() == 0
 			and PlayerData.player_data["饰品"].size() == 0
-			and PlayerData.player_data["法宝"].size() == 0
+			and PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() == 0
 		):
 			if PlayerData.get_dj_page("ttlp1") != 0 and PlayerData.get_dj_page("ttlp2") != 0:
 				if Global.TotalHurtCount == 0 and PlayerData.player_data["天庭"]:

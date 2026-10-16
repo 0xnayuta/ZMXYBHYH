@@ -250,7 +250,7 @@ func refresh_items() -> void:
 	for key in catalog.equipment:
 		var item_id := str(key)
 		var data: Dictionary = catalog.equipment[key]
-		var type_name := str(data.get("类型", ""))
+		var type_name := str(data.get(DataKeys.TYPE, ""))
 		if item_id in CATALOG_DATA.HIDDEN_ITEM_IDS:
 			continue
 		if (
@@ -274,12 +274,12 @@ func refresh_items() -> void:
 		func(a, b):
 			var a_data: Dictionary = catalog.equipment[a]
 			var b_data: Dictionary = catalog.equipment[b]
-			var a_quality := QUALITY_ORDER.find(str(a_data.get("品质", "")))
-			var b_quality := QUALITY_ORDER.find(str(b_data.get("品质", "")))
+			var a_quality := QUALITY_ORDER.find(str(a_data.get(DataKeys.QUALITY, "")))
+			var b_quality := QUALITY_ORDER.find(str(b_data.get(DataKeys.QUALITY, "")))
 			if a_quality != b_quality:
 				return a_quality < b_quality
-			var a_type := str(a_data.get("类型", ""))
-			var b_type := str(b_data.get("类型", ""))
+			var a_type := str(a_data.get(DataKeys.TYPE, ""))
+			var b_type := str(b_data.get(DataKeys.TYPE, ""))
 			if a_type != b_type:
 				return a_type < b_type
 			return catalog.item_name(a) < catalog.item_name(b)
@@ -336,7 +336,9 @@ func select_item(item_id: String) -> void:
 	name_label.add_theme_font_size_override("font_size", 28)
 	identity.add_child(name_label)
 	var metadata := Label.new()
-	metadata.text = "%s  /  %s  /  %s" % [data.get("品质", ""), data.get("类型", ""), data.get("所属", "")]
+	metadata.text = (
+		"%s  /  %s  /  %s" % [data.get(DataKeys.QUALITY, ""), data.get(DataKeys.TYPE, ""), data.get("所属", "")]
+	)
 	metadata.add_theme_font_size_override("font_size", 19)
 	metadata.add_theme_color_override("font_color", Color("bbae91"))
 	identity.add_child(metadata)

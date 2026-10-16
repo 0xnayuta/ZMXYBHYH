@@ -1,4 +1,5 @@
 extends Node
+const DataKeys := preload("res://Script/Base/DataKeys.gd")
 
 const ACTIVE_SKILL_SCENE_PATH := "res://Scene/Skill/zd_skill.tscn"
 const ACTIVE_SKILL_PROBE_PATH := "res://Test/ActiveSkillUpgradeProbe.gd"
@@ -16,8 +17,8 @@ func _ready() -> void:
 	AE.ensure_loaded()
 
 	var item_data: Dictionary = AE.AllEquipment_.get("1_jns", {})
-	_check(item_data.get("名字", "") == "一阶技能书", "技能书名称应正确")
-	_check(item_data.get("品质", "") == "神器", "技能书品质应为神器")
+	_check(item_data.get(DataKeys.NAME, "") == "一阶技能书", "技能书名称应正确")
+	_check(item_data.get(DataKeys.QUALITY, "") == "神器", "技能书品质应为神器")
 	_check(item_data.get("描述", "") == "技能11-20级升级材料", "技能书描述应正确")
 	_check(ResourceLoader.exists("res://Art/BackPack/AllItems/1_jns.png"), "技能书图标应可加载")
 
@@ -100,18 +101,18 @@ func _ready() -> void:
 
 
 func _set_skill_level(index: int, level: int) -> void:
-	PlayerData.player_data["技能学习"]["技能" + str(index)]["等级"] = level
+	PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能" + str(index)][DataKeys.LEVEL] = level
 
 
 func _get_skill_level(index: int) -> int:
-	return int(PlayerData.player_data["技能学习"]["技能" + str(index)]["等级"])
+	return int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能" + str(index)][DataKeys.LEVEL])
 
 
 func _remove_skill_books() -> void:
-	for page_key in PlayerData.player_data["道具列表"]:
-		var page: Array = PlayerData.player_data["道具列表"][page_key]
+	for page_key in PlayerData.player_data[DataKeys.ITEM_LIST]:
+		var page: Array = PlayerData.player_data[DataKeys.ITEM_LIST][page_key]
 		for index in range(page.size() - 1, -1, -1):
-			if page[index].get("名字", "") == "1_jns":
+			if page[index].get(DataKeys.NAME, "") == "1_jns":
 				page.remove_at(index)
 
 

@@ -140,9 +140,9 @@ func _refresh() -> void:
 	var active_id := str(PlayerData.player_data.get(PlayerData.ACTIVE_MOUNT_KEY, ""))
 	var active := active_id == selected_mount_id
 	var unlocked := PlayerData.is_mount_unlocked(selected_mount_id)
-	var level := int(mount.get("等级", 1))
+	var level := int(mount.get(DataKeys.LEVEL, 1))
 	var level_limit := PlayerData.get_mount_level_limit()
-	name_label.text = str(mount.get("名称", "坐骑"))
+	name_label.text = str(mount.get(DataKeys.ALT_NAME, "坐骑"))
 	state_label.text = "未解锁" if not unlocked else "出战中" if active else "休息中"
 	state_label.add_theme_color_override(
 		"font_color", Color("aab1b6") if not unlocked else Color("ffcf75") if active else Color("9fe3ff")
@@ -191,7 +191,7 @@ func _build_attribute_page(page: VBoxContainer, mount: Dictionary) -> void:
 	if not bool(mount.get(PlayerData.MOUNT_UNLOCKED_KEY, false)):
 		var requirement := PlayerData.get_mount_unlock_requirement(str(mount.get("ID", "")))
 		var item_id := str(requirement.get("物品", ""))
-		var needed := maxi(1, int(requirement.get("数量", 1)))
+		var needed := maxi(1, int(requirement.get(DataKeys.COUNT, 1)))
 		var item_data_value: Variant = AE.AllEquipment_.get(item_id, {})
 		var item_data: Dictionary = item_data_value if item_data_value is Dictionary else {}
 		var owned := PlayerData.get_inventory_item_count(item_id)
@@ -211,7 +211,7 @@ func _build_attribute_page(page: VBoxContainer, mount: Dictionary) -> void:
 		info.add_theme_constant_override("separation", 2)
 		info.add_child(
 			_label(
-				"解锁材料：%s  %d/%d" % [str(item_data.get("名字", item_id)), owned, needed],
+				"解锁材料：%s  %d/%d" % [str(item_data.get(DataKeys.NAME, item_id)), owned, needed],
 				Vector2.ZERO,
 				Vector2(420, 26),
 				15,
@@ -242,7 +242,7 @@ func _build_attribute_page(page: VBoxContainer, mount: Dictionary) -> void:
 	summary.add_child(_label("基础属性", Vector2.ZERO, Vector2(170, 34), 19, Color("ffe3a5"), HORIZONTAL_ALIGNMENT_LEFT))
 	summary.add_child(
 		_label(
-			"等级  Lv.%d" % int(mount.get("等级", 1)),
+			"等级  Lv.%d" % int(mount.get(DataKeys.LEVEL, 1)),
 			Vector2.ZERO,
 			Vector2(130, 34),
 			15,
@@ -257,8 +257,8 @@ func _build_attribute_page(page: VBoxContainer, mount: Dictionary) -> void:
 	grid.add_theme_constant_override("h_separation", 20)
 	grid.add_theme_constant_override("v_separation", 5)
 	var stats := {
-		"生命": mount.get("生命", 0),
-		"攻击": mount.get("攻击", 0),
+		"生命": mount.get(DataKeys.HP, 0),
+		"攻击": mount.get(DataKeys.ATTACK, 0),
 		"物防": mount.get("物防", 0),
 		"魔防": mount.get("魔防", 0),
 		"回血": mount.get("回血", 0),
@@ -293,7 +293,7 @@ func _build_attribute_page(page: VBoxContainer, mount: Dictionary) -> void:
 	var material_id := str(requirement.get("物品", ""))
 	var material_data_value: Variant = AE.AllEquipment_.get(material_id, {})
 	var material_data: Dictionary = material_data_value if material_data_value is Dictionary else {}
-	var material_name := str(material_data.get("名字", material_id))
+	var material_name := str(material_data.get(DataKeys.NAME, material_id))
 	var material_count := PlayerData.get_inventory_item_count(material_id)
 	var material_label := _label(
 		"%s：%d" % [material_name, material_count],
@@ -684,7 +684,7 @@ func _refresh_mount_list() -> void:
 			if id == active_id
 			else "  [未解锁]" if not bool(mount.get(PlayerData.MOUNT_UNLOCKED_KEY, false)) else ""
 		)
-		mount_list_labels[index].text = "%s%s" % [str(mount.get("名称", "坐骑")), suffix]
+		mount_list_labels[index].text = "%s%s" % [str(mount.get(DataKeys.ALT_NAME, "坐骑")), suffix]
 		row.modulate = Color("ffe19a") if id == selected_mount_id else Color.WHITE
 
 
@@ -716,10 +716,10 @@ func _toggle_active_mount() -> void:
 	if not PlayerData.is_mount_unlocked(selected_mount_id):
 		var requirement := PlayerData.get_mount_unlock_requirement(selected_mount_id)
 		var item_id := str(requirement.get("物品", ""))
-		var needed := maxi(1, int(requirement.get("数量", 1)))
+		var needed := maxi(1, int(requirement.get(DataKeys.COUNT, 1)))
 		var item_data_value: Variant = AE.AllEquipment_.get(item_id, {})
 		var item_data: Dictionary = item_data_value if item_data_value is Dictionary else {}
-		var item_name := str(item_data.get("名字", item_id))
+		var item_name := str(item_data.get(DataKeys.NAME, item_id))
 		var owned := PlayerData.get_inventory_item_count(item_id)
 		if item_id == "":
 			_show_message("该坐骑暂未配置解锁材料")
@@ -728,7 +728,7 @@ func _toggle_active_mount() -> void:
 			_show_message("缺少%s（%d/%d）" % [item_name, owned, needed])
 			return
 		if PlayerData.unlock_mount(selected_mount_id):
-			_show_message("%s解锁成功" % str(mount.get("名称", "坐骑")))
+			_show_message("%s解锁成功" % str(mount.get(DataKeys.ALT_NAME, "坐骑")))
 		else:
 			_show_message("坐骑解锁失败")
 		_refresh()
@@ -746,7 +746,7 @@ func _train_mount() -> void:
 	if not PlayerData.is_mount_unlocked(selected_mount_id):
 		_show_message("请先解锁坐骑")
 		return
-	var level := int(mount.get("等级", 1))
+	var level := int(mount.get(DataKeys.LEVEL, 1))
 	var level_limit := PlayerData.get_mount_level_limit()
 	if level >= level_limit:
 		_show_message("坐骑等级不能超过人物当前等级")
@@ -757,7 +757,7 @@ func _train_mount() -> void:
 		return
 	PlayerData.set_soul(PlayerData.get_soul() - cost)
 	PlayerData.add_mount_exp(
-		selected_mount_id, maxi(1, PlayerData.mount_exp_for_level(level) - int(mount.get("经验", 0)))
+		selected_mount_id, maxi(1, PlayerData.mount_exp_for_level(level) - int(mount.get(DataKeys.EXP, 0)))
 	)
 	_show_message("升级成功，属性已更新")
 	_refresh()
@@ -813,7 +813,7 @@ func _train_mount_qualification() -> void:
 	var material_id := str(requirement.get("物品", result.get("item_id", "")))
 	var material_data_value: Variant = AE.AllEquipment_.get(material_id, {})
 	var material_data: Dictionary = material_data_value if material_data_value is Dictionary else {}
-	_show_message("缺少%s" % str(material_data.get("名字", material_id)))
+	_show_message("缺少%s" % str(material_data.get(DataKeys.NAME, material_id)))
 
 
 func _show_message(text_value: String) -> void:

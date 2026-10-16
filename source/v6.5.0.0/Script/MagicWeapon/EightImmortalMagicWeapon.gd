@@ -374,16 +374,20 @@ func _use_miaolian() -> void:
 	for pet in pets:
 		if not (pet is Dictionary):
 			continue
-		if bool(pet.get("出战", false)) or dead_name == "" or str(pet.get("名称", "")) == dead_name:
-			if int(pet.get("生命", 0)) <= 0:
+		if (
+			bool(pet.get(DataKeys.DEPLOYED, false))
+			or dead_name == ""
+			or str(pet.get(DataKeys.ALT_NAME, "")) == dead_name
+		):
+			if int(pet.get(DataKeys.HP, 0)) <= 0:
 				target_pet = pet
 				break
 	if target_pet.is_empty():
 		return
 	var percent := float(FB_Level * 5 + (25 if _has_wood() else 0)) / 100.0
-	target_pet["生命"] = maxi(1, int(float(target_pet.get("生命上限", 1)) * percent))
-	target_pet["出战"] = true
-	PlayerData.player_data["出战宠物"] = str(target_pet.get("名称", ""))
+	target_pet[DataKeys.HP] = maxi(1, int(float(target_pet.get("生命上限", 1)) * percent))
+	target_pet[DataKeys.DEPLOYED] = true
+	PlayerData.player_data["出战宠物"] = str(target_pet.get(DataKeys.ALT_NAME, ""))
 	level.set_meta("active_pet_dead_this_level", false)
 	level.set_meta("active_pet_dead_keys", [])
 	level.set_meta("active_pet_dead_name", "")

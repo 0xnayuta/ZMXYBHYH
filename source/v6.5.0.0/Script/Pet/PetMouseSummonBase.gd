@@ -61,7 +61,7 @@ func _ready() -> void:
 	setup_skills()
 	_setup_turtle_model_frames()
 	_get_mouse_stage_scene(turtle_stage)
-	PetMouseBullet.warm_pet_mouse_frames(int(pet_data.get("等级", 1)))
+	PetMouseBullet.warm_pet_mouse_frames(int(pet_data.get(DataKeys.LEVEL, 1)))
 	if hurt_box != null:
 		hurt_box.disabled = false
 	if hit_box != null:
@@ -73,17 +73,17 @@ func _process(delta: float) -> void:
 
 
 func _pet_stage_from_data(data: Dictionary, _fallback: int) -> int:
-	return 2 if int(data.get("等级", 1)) >= 50 else 1
+	return 2 if int(data.get(DataKeys.LEVEL, 1)) >= 50 else 1
 
 
 func setup_pet_turtle(stage: int) -> void:
 	super.setup_pet_turtle(clampi(stage, 1, 2))
 	turtle_stage = clampi(stage, 1, 2)
 	pet_data["阶段"] = turtle_stage
-	pet_data["类型"] = "PetMouse"
-	pet_data["名称"] = MOUSE_STAGE_NAMES[turtle_stage]
-	pet_data["名字"] = MOUSE_STAGE_NAMES[turtle_stage]
-	pet_data["技能"] = _mouse_skills_for_level(int(pet_data.get("等级", 1)))
+	pet_data[DataKeys.TYPE] = "PetMouse"
+	pet_data[DataKeys.ALT_NAME] = MOUSE_STAGE_NAMES[turtle_stage]
+	pet_data[DataKeys.NAME] = MOUSE_STAGE_NAMES[turtle_stage]
+	pet_data["技能"] = _mouse_skills_for_level(int(pet_data.get(DataKeys.LEVEL, 1)))
 	my_mr_name = str(MOUSE_STAGE_NAMES[turtle_stage])
 	speed = 12
 	iniSpeed = speed

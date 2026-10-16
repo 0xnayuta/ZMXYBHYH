@@ -29,7 +29,7 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	var equipment: Dictionary = selected.get("item", {})
-	var item_name := str(equipment.get("名字", ""))
+	var item_name := str(equipment.get(DataKeys.NAME, ""))
 	var item_data: Dictionary = equipment.get("Data", {})
 	var selected_source := str(selected.get("source", MLdl.qh_list.get("来源", "装备背包")))
 	var selected_page := int(selected.get("page", 0))
@@ -37,7 +37,7 @@ func _physics_process(_delta: float) -> void:
 	var equipped_type := str(selected.get("穿戴栏", MLdl.qh_list.get("穿戴栏", "")))
 	var current_stage := AE.get_divine_forge_stage(item_data)
 	var target_stage: int = min(current_stage + 1, MAX_STAGE)
-	var qh_level := int(equipment.get("强化等级", 0))
+	var qh_level := int(equipment.get(DataKeys.ENHANCE_LEVEL, 0))
 	var target_data: Dictionary = item_data.duplicate(true)
 	target_data["神铸阶段"] = target_stage
 
@@ -98,7 +98,7 @@ func _on_sz_pressed() -> void:
 		_show_message("请先选择一件装备！")
 		return
 	var equipment: Dictionary = selected["item"]
-	var item_name := str(equipment.get("名字", ""))
+	var item_name := str(equipment.get(DataKeys.NAME, ""))
 	var item_data: Dictionary = equipment.get("Data", {})
 	if not AE.can_divine_forge(item_name, item_data):
 		_show_message("只有神器及以上品质的武器、防具和饰品可以神铸！")
@@ -110,7 +110,7 @@ func _on_sz_pressed() -> void:
 	var target_stage := current_stage + 1
 	var stone_id := _stone_id(target_stage)
 	if _count_item_all_pages(stone_id) < STONES_PER_STAGE:
-		_show_message(str(AE.AllEquipment_[stone_id]["名字"]) + "不足，需要20颗！")
+		_show_message(str(AE.AllEquipment_[stone_id][DataKeys.NAME]) + "不足，需要20颗！")
 		return
 	_consume_item_all_pages(stone_id, STONES_PER_STAGE)
 	var upgraded_data := item_data.duplicate(true)
@@ -128,7 +128,7 @@ func _on_sz_pressed() -> void:
 
 
 func _get_selected_slot() -> Dictionary:
-	var selected_name := str(MLdl.qh_list.get("名字", ""))
+	var selected_name := str(MLdl.qh_list.get(DataKeys.NAME, ""))
 	var source := str(MLdl.qh_list.get("来源", "装备背包"))
 	var page_number := int(MLdl.qh_list.get("页码", 0))
 	var index := int(MLdl.qh_list.get("位置", -1))
@@ -143,11 +143,11 @@ func _get_selected_slot() -> Dictionary:
 	else:
 		if page_number < 1:
 			return {}
-		items = PlayerData.player_data.get("装备列表", {}).get("页码%d" % page_number, [])
+		items = PlayerData.player_data.get(DataKeys.EQUIPMENT_LIST, {}).get("页码%d" % page_number, [])
 	if not items is Array or index >= items.size():
 		return {}
 	var item: Variant = items[index]
-	if not item is Dictionary or str(item.get("名字", "")) != selected_name:
+	if not item is Dictionary or str(item.get(DataKeys.NAME, "")) != selected_name:
 		return {}
 	return {"item": item, "source": source, "page": page_number, "index": index, "穿戴栏": slot_type}
 
@@ -158,20 +158,20 @@ func _stone_id(stage: int) -> String:
 
 func _count_item_all_pages(item_name: String) -> int:
 	var count := 0
-	var pages: Dictionary = PlayerData.player_data.get("道具列表", {})
+	var pages: Dictionary = PlayerData.player_data.get(DataKeys.ITEM_LIST, {})
 	for page_number in range(1, 21):
 		var page: Variant = pages.get("页码%d" % page_number, [])
 		if not page is Array:
 			continue
 		for item in page:
-			if item is Dictionary and str(item.get("名字", "")) == item_name:
-				count += int(item.get("数量", 0))
+			if item is Dictionary and str(item.get(DataKeys.NAME, "")) == item_name:
+				count += int(item.get(DataKeys.COUNT, 0))
 	return count
 
 
 func _consume_item_all_pages(item_name: String, count: int) -> void:
 	var remaining := count
-	var pages: Dictionary = PlayerData.player_data.get("道具列表", {})
+	var pages: Dictionary = PlayerData.player_data.get(DataKeys.ITEM_LIST, {})
 	for page_number in range(1, 21):
 		var page: Variant = pages.get("页码%d" % page_number, [])
 		if not page is Array:
@@ -180,11 +180,11 @@ func _consume_item_all_pages(item_name: String, count: int) -> void:
 			if remaining <= 0:
 				return
 			var item: Variant = page[index]
-			if item is Dictionary and str(item.get("名字", "")) == item_name:
-				var taken := mini(int(item.get("数量", 0)), remaining)
-				item["数量"] -= taken
+			if item is Dictionary and str(item.get(DataKeys.NAME, "")) == item_name:
+				var taken := mini(int(item.get(DataKeys.COUNT, 0)), remaining)
+				item[DataKeys.COUNT] -= taken
 				remaining -= taken
-				if int(item["数量"]) <= 0:
+				if int(item[DataKeys.COUNT]) <= 0:
 					page.remove_at(index)
 
 
@@ -223,8 +223,8 @@ func _clear_display() -> void:
 
 func remove_infomation() -> void:
 	_clear_display()
-	MLdl.qh_list["名字"] = ""
-	MLdl.qh_list["强化等级"] = -1
+	MLdl.qh_list[DataKeys.NAME] = ""
+	MLdl.qh_list[DataKeys.ENHANCE_LEVEL] = -1
 	MLdl.qh_list["页码"] = 0
 	MLdl.qh_list["位置"] = 0
 	MLdl.qh_list["来源"] = "装备背包"

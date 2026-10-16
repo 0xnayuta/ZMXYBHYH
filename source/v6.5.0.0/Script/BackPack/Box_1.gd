@@ -83,7 +83,7 @@ func _physics_process(_delta: float) -> void:
 		item_number.text = "+%d" % qh_level if qh_level > 0 else ""
 	elif get_item_name != "empty":
 		if AE.AllEquipment_.has(get_item_name):
-			get_type = AE.AllEquipment_[get_item_name]["类型"]
+			get_type = AE.AllEquipment_[get_item_name][DataKeys.TYPE]
 			match get_type:
 				"武器":
 					item_number.text = ""
@@ -168,12 +168,12 @@ func _onPressWhenStrength():
 		var parent_ = Global.get_parent_(self, 7)
 		Global.add_message_show(parent_, "该装备不可强化！", 1.5, Vector2(500, 305))
 		return
-	var get_tt = "宠物装备" if strength_source == "宠物背包" else AE.AllEquipment_[get_item_name]["类型"]
+	var get_tt = "宠物装备" if strength_source == "宠物背包" else AE.AllEquipment_[get_item_name][DataKeys.TYPE]
 	if get_tt != "道具" and get_tt != "消耗品" and get_tt != "法宝":
 		var max_level = _get_strength_max_level(get_item_name)
 		if qh_level < max_level:
-			MLdl.qh_list["名字"] = get_item_name
-			MLdl.qh_list["强化等级"] = qh_level
+			MLdl.qh_list[DataKeys.NAME] = get_item_name
+			MLdl.qh_list[DataKeys.ENHANCE_LEVEL] = qh_level
 			MLdl.qh_list["页码"] = current_page
 			MLdl.qh_list["位置"] = strength_index if strength_index >= 0 else int(str(self.name).split("_")[1]) - 1
 			MLdl.qh_list["来源"] = strength_source
@@ -194,8 +194,8 @@ func _onPressWhenDivineForge() -> void:
 		var parent_ = Global.get_parent_(self, 7)
 		Global.add_message_show(parent_, "只有神器及以上品质的武器、防具和饰品可以神铸！", 1.5, Vector2(500, 305))
 		return
-	MLdl.qh_list["名字"] = get_item_name
-	MLdl.qh_list["强化等级"] = qh_level
+	MLdl.qh_list[DataKeys.NAME] = get_item_name
+	MLdl.qh_list[DataKeys.ENHANCE_LEVEL] = qh_level
 	MLdl.qh_list["页码"] = _get_equipment_source_page()
 	MLdl.qh_list["位置"] = _get_equipment_source_index()
 	MLdl.qh_list["来源"] = strength_source
@@ -205,14 +205,14 @@ func _onPressWhenDivineForge() -> void:
 
 func _onPressWhenBoneForge() -> void:
 	var item_data: Dictionary = AE.AllEquipment_.get(get_item_name, {})
-	var item_type := str(EQ_prop.get("类型", item_data.get("类型", "")))
+	var item_type := str(EQ_prop.get(DataKeys.TYPE, item_data.get(DataKeys.TYPE, "")))
 	var next_stage := str(EQ_prop.get("下一阶段", item_data.get("下一阶段", "")))
 	if item_data.is_empty() or item_type != "神骨" or next_stage == "":
 		var parent_ = Global.get_parent_(self, 7)
 		Global.add_message_show(parent_, "只有设置了下一阶段的神骨装备才可以淬骨！", 1.5, Vector2(500, 305))
 		return
-	MLdl.qh_list["名字"] = get_item_name
-	MLdl.qh_list["强化等级"] = qh_level
+	MLdl.qh_list[DataKeys.NAME] = get_item_name
+	MLdl.qh_list[DataKeys.ENHANCE_LEVEL] = qh_level
 	MLdl.qh_list["页码"] = _get_equipment_source_page()
 	MLdl.qh_list["位置"] = _get_equipment_source_index()
 	MLdl.qh_list["来源"] = strength_source
@@ -247,7 +247,7 @@ func _onPressWhenSynthesis():
 		for i in PlayerData.player_data["放入列表"]:
 			var mylist = PlayerData.player_data["放入列表"][i]
 			if mylist.size() == 0:
-				var get_tt = AE.AllEquipment_[get_item_name]["类型"]
+				var get_tt = AE.AllEquipment_[get_item_name][DataKeys.TYPE]
 				if get_tt == "法宝":
 					Global.add_message_show(parent_, "法宝无法参与合成！！！", 1.5, Vector2(500, 305))
 					return
@@ -286,7 +286,7 @@ func _onPressWhenSynthesis():
 			return
 		var list = PlayerData.player_data["放入列表"]["物品" + str(num)]
 		if list.has(str(get_item_name)):
-			var get_tt = AE.AllEquipment_[list[0]]["类型"]
+			var get_tt = AE.AllEquipment_[list[0]][DataKeys.TYPE]
 			if get_tt == "武器" or get_tt == "防具" or get_tt == "饰品" or get_tt == "翅膀" or get_tt == "时装" or get_tt == "头衔":
 				PlayerData.add_zb(get_item_name, list[3], EQ_prop)
 			elif get_tt == "道具":
@@ -306,9 +306,9 @@ func _onPressWhenDZ():
 	var item_data: Dictionary = AE.AllEquipment_.get(str(get_item_name), {})
 	if item_data.is_empty():
 		return
-	var Type := str(item_data.get("类型", ""))
+	var Type := str(item_data.get(DataKeys.TYPE, ""))
 	var Have := str(item_data.get("所属", ""))
-	var item_name := str(item_data.get("名字", ""))
+	var item_name := str(item_data.get(DataKeys.NAME, ""))
 	if Type == "" or Have == "" or item_name == "":
 		Global.add_message_show(Global.get_parent_(self, 7), "物品数据异常，无法参与打造！", 1.5, Vector2(500, 305))
 		return
@@ -335,7 +335,7 @@ func _onPressWhenDZ():
 					if not item_value is Dictionary:
 						continue
 					var item: Dictionary = item_value
-					var jewel_name := str(item.get("名字", ""))
+					var jewel_name := str(item.get(DataKeys.NAME, ""))
 					var jewel_data: Variant = AE.AllEquipment_.get(jewel_name, {})
 					if not jewel_data is Dictionary:
 						continue
@@ -387,22 +387,22 @@ func _onPressWhenfj():
 		return
 	if not is_in_ldl_gz:
 		var parent_ = Global.get_parent_(self, 7)
-		var get_tt = AE.AllEquipment_[get_item_name]["类型"]
+		var get_tt = AE.AllEquipment_[get_item_name][DataKeys.TYPE]
 		var Base = AE.AllEquipment_[get_item_name]["所属"]
 		var Name_
-		if PlayerData.player_data["分解列表"].size() != 0:
-			Name_ = PlayerData.player_data["分解列表"][0]["名字"]
-			var cur_level = PlayerData.player_data["分解列表"][0]["强化等级"]
-			var Data = PlayerData.player_data["分解列表"][0]["Data"]
-			get_tt = AE.AllEquipment_[Name_]["类型"]
+		if PlayerData.player_data[DataKeys.DECOMPOSE_LIST].size() != 0:
+			Name_ = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
+			var cur_level = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.ENHANCE_LEVEL]
+			var Data = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0]["Data"]
+			get_tt = AE.AllEquipment_[Name_][DataKeys.TYPE]
 			match get_tt:
 				"武器", "饰品", "防具":
 					PlayerData.add_zb(Name_, cur_level, Data)
-					PlayerData.player_data["分解列表"].clear()
+					PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
 				"道具":
 					PlayerData.add_dj(Name_, 1)
-					PlayerData.player_data["分解列表"].clear()
-		var get_tt2 = AE.AllEquipment_[get_item_name]["类型"]
+					PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
+		var get_tt2 = AE.AllEquipment_[get_item_name][DataKeys.TYPE]
 		match get_tt2:
 			"法宝":
 				Global.add_message_show(parent_, "法宝不可以分解！！", 1.5, Vector2(500, 305))
@@ -420,7 +420,7 @@ func _onPressWhenfj():
 				Global.add_message_show(parent_, "头衔不可以分解！！", 1.5, Vector2(500, 305))
 				return
 			"道具":
-				PlayerData.player_data["分解列表"].push_back(
+				PlayerData.player_data[DataKeys.DECOMPOSE_LIST].push_back(
 					{"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
 				)
 				PlayerData.remove_dj(get_item_name, current_page, 1)
@@ -428,7 +428,7 @@ func _onPressWhenfj():
 				if _has_socketed_gems(EQ_prop):
 					Global.add_message_show(parent_, "请先卸下该装备上的宝石！！！", 1.5, Vector2(500, 305))
 					return
-				PlayerData.player_data["分解列表"].push_back(
+				PlayerData.player_data[DataKeys.DECOMPOSE_LIST].push_back(
 					{"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
 				)
 				PlayerData.remove_zb(_get_equipment_source_page(), _get_equipment_source_index())
@@ -436,18 +436,18 @@ func _onPressWhenfj():
 				Global.add_message_show(parent_, "错误？？！！", 1.5, Vector2(500, 305))
 				return
 	else:
-		if PlayerData.player_data["分解列表"].size() != 0:
-			var Name_ = PlayerData.player_data["分解列表"][0]["名字"]
-			var cur_level = PlayerData.player_data["分解列表"][0]["强化等级"]
-			var Data = PlayerData.player_data["分解列表"][0]["Data"]
-			get_tt = AE.AllEquipment_[Name_]["类型"]
+		if PlayerData.player_data[DataKeys.DECOMPOSE_LIST].size() != 0:
+			var Name_ = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
+			var cur_level = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.ENHANCE_LEVEL]
+			var Data = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0]["Data"]
+			get_tt = AE.AllEquipment_[Name_][DataKeys.TYPE]
 			match get_tt:
 				"武器", "饰品", "防具":
 					PlayerData.add_zb(Name_, cur_level, Data)
-					PlayerData.player_data["分解列表"].clear()
+					PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
 				"道具":
 					PlayerData.add_dj(Name_, 1)
-					PlayerData.player_data["分解列表"].clear()
+					PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
 		return
 
 
@@ -455,15 +455,15 @@ func _onPressWhenXQ():
 	if not is_in_ldl_gz:
 		var parent_ = Global.get_parent_(self, 7)
 		if strength_source == "宠物背包":
-			if PlayerData.player_data["镶嵌列表"].size() != 0:
+			if PlayerData.player_data[DataKeys.INLAY_LIST].size() != 0:
 				Global.add_message_show(parent_, "请先将镶嵌格子内装备卸下！！", 1.5, Vector2(500, 305))
 				return
 			if not PlayerData.take_pet_equipment_for_mosaic(strength_index, EQ_prop, get_item_name):
 				Global.add_message_show(parent_, "宠物装备位置已变化，请重新选择！！", 1.5, Vector2(500, 305))
 			return
-		var get_tt = AE.AllEquipment_[get_item_name]["类型"]
+		var get_tt = AE.AllEquipment_[get_item_name][DataKeys.TYPE]
 		var Base = AE.AllEquipment_[get_item_name]["所属"]
-		if PlayerData.player_data["镶嵌列表"].size() == 0:
+		if PlayerData.player_data[DataKeys.INLAY_LIST].size() == 0:
 			match get_tt:
 				"法宝":
 					Global.add_message_show(parent_, "法宝不可以镶嵌宝石！！", 1.5, Vector2(500, 305))
@@ -474,7 +474,7 @@ func _onPressWhenXQ():
 
 				"道具":
 					if Base == "宝石":
-						if PlayerData.player_data["镶嵌列表"].size() == 0:
+						if PlayerData.player_data[DataKeys.INLAY_LIST].size() == 0:
 							Global.add_message_show(parent_, "请先放入装备！！", 1.5, Vector2(500, 305))
 					else:
 						Global.add_message_show(parent_, "该道具不可用于镶嵌！！", 1.5, Vector2(500, 305))
@@ -489,7 +489,7 @@ func _onPressWhenXQ():
 							Global.add_message_show(parent_, "穿戴装备位置已变化，请重新选择！", 1.5, Vector2(500, 305))
 							return
 					else:
-						PlayerData.player_data["镶嵌列表"].push_back(
+						PlayerData.player_data[DataKeys.INLAY_LIST].push_back(
 							{"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
 						)
 						PlayerData.remove_zb(_get_equipment_source_page(), _get_equipment_source_index())
@@ -499,7 +499,7 @@ func _onPressWhenXQ():
 					Global.add_message_show(parent_, "错误？？！！", 1.5, Vector2(500, 305))
 					return
 		else:
-			var Data = PlayerData.player_data["镶嵌列表"][0]["Data"]
+			var Data = PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"]
 			match get_tt:
 				"法宝":
 					Global.add_message_show(parent_, "法宝不可以镶嵌宝石！！", 1.5, Vector2(500, 305))
@@ -509,12 +509,16 @@ func _onPressWhenXQ():
 					return
 				"道具":
 					if Base == "宝石":
-						if Data["宝石"].size() < get_MaxBs():
-							if Data["宝石"].size() != 0:
-								PlayerData.player_data["镶嵌列表"][0]["Data"]["宝石"].push_back(get_item_name)
+						if Data[DataKeys.GEM].size() < get_MaxBs():
+							if Data[DataKeys.GEM].size() != 0:
+								PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"][DataKeys.GEM].push_back(
+									get_item_name
+								)
 								PlayerData.remove_dj(get_item_name, current_page, 1)
 							else:
-								PlayerData.player_data["镶嵌列表"][0]["Data"]["宝石"].push_back(get_item_name)
+								PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"][DataKeys.GEM].push_back(
+									get_item_name
+								)
 								PlayerData.remove_dj(get_item_name, current_page, 1)
 
 						else:
@@ -532,16 +536,16 @@ func _onPressWhenXQ():
 					Global.add_message_show(parent_, "错误？？！！", 1.5, Vector2(500, 305))
 					return
 	else:
-		if PlayerData.player_data["镶嵌列表"].size() != 0:
+		if PlayerData.player_data[DataKeys.INLAY_LIST].size() != 0:
 			if strength_source == "宠物背包":
 				PlayerData.restore_mosaic_equipment()
 				return
-			var get_tt = AE.AllEquipment_[get_item_name]["类型"]
+			var get_tt = AE.AllEquipment_[get_item_name][DataKeys.TYPE]
 			match get_tt:
 				"武器", "饰品", "防具", "神骨", "翅膀", "时装", "头衔":
 					PlayerData.restore_mosaic_equipment()
 				"道具":
-					PlayerData.player_data["镶嵌列表"][0]["Data"]["宝石"].erase(get_item_name)
+					PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"][DataKeys.GEM].erase(get_item_name)
 					PlayerData.add_dj(get_item_name, 1)
 				"":
 					pass
@@ -635,7 +639,7 @@ func get_parent_():
 
 
 func get_MaxBs():
-	if PlayerData.player_data["镶嵌列表"].size() == 0:
+	if PlayerData.player_data[DataKeys.INLAY_LIST].size() == 0:
 		return 0
 	return 8
 

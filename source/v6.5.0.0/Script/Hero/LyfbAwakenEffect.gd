@@ -289,7 +289,7 @@ func _apply_hit(target: BaseMonster) -> void:
 	var old_tszzs: float = owner_player.tszzs
 
 	var awakening_hit_data := hit_data.duplicate(true)
-	var skill_level := int(PlayerData.player_data["技能学习"]["技能4"]["等级"]) + 1
+	var skill_level := int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL]) + 1
 	awakening_hit_data["power"] = RoleProp.roleprop.power * (1.8 + skill_level * 0.25)
 	owner_player.HitDic = awakening_hit_data
 	target.get_target = owner_player

@@ -60,8 +60,8 @@ func _sync_avatar_frame_equipment(force := false) -> void:
 		signature = (
 			"%s:%d:%s"
 			% [
-				str(item.get("名字", "")),
-				int(item.get("强化等级", 0)),
+				str(item.get(DataKeys.NAME, "")),
+				int(item.get(DataKeys.ENHANCE_LEVEL, 0)),
 				str(item.get("Data", {})),
 			]
 		)
@@ -75,8 +75,8 @@ func _sync_avatar_frame_equipment(force := false) -> void:
 		set_button_icon(load("res://Art/BackPack/AllItems/empty.png"))
 		return
 	var item: Dictionary = equipped[0]
-	get_item_name = str(item.get("名字", ""))
-	qh_level = int(item.get("强化等级", 0))
+	get_item_name = str(item.get(DataKeys.NAME, ""))
+	qh_level = int(item.get(DataKeys.ENHANCE_LEVEL, 0))
 	EQ_prop = item.get("Data", {})
 	var item_icon_path: String = "res://Art/BackPack/AllItems/" + str(get_item_name) + ".png"
 	var item_icon = (
@@ -102,8 +102,8 @@ func _sync_shengu_equipment(force := false) -> void:
 		set_button_icon(load("res://Art/BackPack/AllItems/empty.png"))
 		return
 	var item: Dictionary = equipped[0]
-	get_item_name = str(item.get("名字", ""))
-	qh_level = int(item.get("强化等级", 0))
+	get_item_name = str(item.get(DataKeys.NAME, ""))
+	qh_level = int(item.get(DataKeys.ENHANCE_LEVEL, 0))
 	EQ_prop = item.get("Data", {})
 	var item_icon_path: String = "res://Art/BackPack/AllItems/" + str(get_item_name) + ".png"
 	set_button_icon(
@@ -135,27 +135,27 @@ func _on_pressed() -> void:
 		return
 	match str(self.name):
 		"wq":
-			if PlayerData.player_data["武器"].size() != 0:
-				var name_ = PlayerData.player_data["武器"][0]["名字"]
-				var ql = PlayerData.player_data["武器"][0]["强化等级"]
-				EQ_prop = PlayerData.player_data["武器"][0]["Data"]
+			if PlayerData.player_data[DataKeys.WEAPON].size() != 0:
+				var name_ = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME]
+				var ql = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.ENHANCE_LEVEL]
+				EQ_prop = PlayerData.player_data[DataKeys.WEAPON][0]["Data"]
 				PlayerData.add_zb(name_, ql, EQ_prop)
 			else:
 				set_button_icon(load("res://Art/BackPack/wq.png"))
-			PlayerData.player_data["武器"].clear()
+			PlayerData.player_data[DataKeys.WEAPON].clear()
 		"fj":
-			if PlayerData.player_data["防具"].size() != 0:
-				var name_ = PlayerData.player_data["防具"][0]["名字"]
-				var ql = PlayerData.player_data["防具"][0]["强化等级"]
-				EQ_prop = PlayerData.player_data["防具"][0]["Data"]
+			if PlayerData.player_data[DataKeys.ARMOR].size() != 0:
+				var name_ = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME]
+				var ql = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.ENHANCE_LEVEL]
+				EQ_prop = PlayerData.player_data[DataKeys.ARMOR][0]["Data"]
 				PlayerData.add_zb(name_, ql, EQ_prop)
 			else:
 				set_button_icon(load("res://Art/BackPack/fj.png"))
-			PlayerData.player_data["防具"].clear()
+			PlayerData.player_data[DataKeys.ARMOR].clear()
 		"sp":
 			if PlayerData.player_data["饰品"].size() != 0:
-				var name_ = PlayerData.player_data["饰品"][0]["名字"]
-				var ql = PlayerData.player_data["饰品"][0]["强化等级"]
+				var name_ = PlayerData.player_data["饰品"][0][DataKeys.NAME]
+				var ql = PlayerData.player_data["饰品"][0][DataKeys.ENHANCE_LEVEL]
 				EQ_prop = PlayerData.player_data["饰品"][0]["Data"]
 				PlayerData.add_zb(name_, ql, EQ_prop)
 			else:
@@ -165,56 +165,60 @@ func _on_pressed() -> void:
 			var equipped: Array = PlayerData.ensure_shengu_slot()
 			if not equipped.is_empty() and equipped[0] is Dictionary:
 				var item: Dictionary = equipped[0]
-				PlayerData.add_zb(str(item.get("名字", "")), int(item.get("强化等级", 0)), item.get("Data", {}))
+				PlayerData.add_zb(
+					str(item.get(DataKeys.NAME, "")), int(item.get(DataKeys.ENHANCE_LEVEL, 0)), item.get("Data", {})
+				)
 			equipped.clear()
 			_shengu_signature = ""
 			_sync_shengu_equipment(true)
 		"tx":
-			if PlayerData.player_data["头衔"].size() != 0:
-				var name_ = PlayerData.player_data["头衔"][0]["名字"]
-				var ql = PlayerData.player_data["头衔"][0]["强化等级"]
-				EQ_prop = PlayerData.player_data["头衔"][0]["Data"]
+			if PlayerData.player_data[DataKeys.TITLE].size() != 0:
+				var name_ = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.NAME]
+				var ql = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.ENHANCE_LEVEL]
+				EQ_prop = PlayerData.player_data[DataKeys.TITLE][0]["Data"]
 				PlayerData.add_zb(name_, ql, EQ_prop)
 			else:
 				set_button_icon(load("res://Art/BackPack/AllItems/tx.png"))
-			PlayerData.player_data["头衔"].clear()
+			PlayerData.player_data[DataKeys.TITLE].clear()
 		"txk":
 			var equipped: Array = PlayerData.ensure_avatar_frame_slot()
 			if not equipped.is_empty() and equipped[0] is Dictionary:
 				var item: Dictionary = equipped[0]
-				PlayerData.add_zb(str(item.get("名字", "")), int(item.get("强化等级", 0)), item.get("Data", {}))
+				PlayerData.add_zb(
+					str(item.get(DataKeys.NAME, "")), int(item.get(DataKeys.ENHANCE_LEVEL, 0)), item.get("Data", {})
+				)
 			equipped.clear()
 			_avatar_frame_signature = ""
 			_sync_avatar_frame_equipment(true)
 		"sz":
-			if PlayerData.player_data["时装"].size() != 0:
-				var name_ = PlayerData.player_data["时装"][0]["名字"]
-				var ql = PlayerData.player_data["时装"][0]["强化等级"]
-				EQ_prop = PlayerData.player_data["时装"][0]["Data"]
+			if PlayerData.player_data[DataKeys.FASHION].size() != 0:
+				var name_ = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]
+				var ql = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.ENHANCE_LEVEL]
+				EQ_prop = PlayerData.player_data[DataKeys.FASHION][0]["Data"]
 				PlayerData.add_zb(name_, ql, EQ_prop)
 			else:
 				set_button_icon(load("res://Art/BackPack/sz.png"))
-			PlayerData.player_data["时装"].clear()
+			PlayerData.player_data[DataKeys.FASHION].clear()
 		"cb":
-			if PlayerData.player_data["翅膀"].size() != 0:
-				var name_ = PlayerData.player_data["翅膀"][0]["名字"]
-				var ql = PlayerData.player_data["翅膀"][0]["强化等级"]
-				EQ_prop = PlayerData.player_data["翅膀"][0]["Data"]
+			if PlayerData.player_data[DataKeys.WINGS].size() != 0:
+				var name_ = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
+				var ql = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.ENHANCE_LEVEL]
+				EQ_prop = PlayerData.player_data[DataKeys.WINGS][0]["Data"]
 				PlayerData.add_zb(name_, ql, EQ_prop)
 			else:
 				set_button_icon(load("res://Art/BackPack/cb.png"))
-			PlayerData.player_data["翅膀"].clear()
+			PlayerData.player_data[DataKeys.WINGS].clear()
 		"fb":
 			if Global.FB_CD <= 0:
-				if PlayerData.player_data["法宝"].size() != 0:
-					var name_ = PlayerData.player_data["法宝"][0]["名字"]
-					var ql = PlayerData.player_data["法宝"][0]["强化等级"]
-					var wx = PlayerData.player_data["法宝"][0]["五行"]
-					EQ_prop = PlayerData.player_data["法宝"][0]["Data"]
+				if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() != 0:
+					var name_ = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
+					var ql = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL]
+					var wx = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS]
+					EQ_prop = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
 					PlayerData.add_fb(name_, ql, wx, EQ_prop)
 				else:
 					set_button_icon(load("res://Art/BackPack/fb.png"))
-				PlayerData.player_data["法宝"].clear()
+				PlayerData.player_data[DataKeys.MAGIC_WEAPON].clear()
 			else:
 				Global.add_message_show(Global.get_parent_(self, 5), "当前法宝正在使用，无法更换！！", 1.5, Vector2(80, 0))
 	qh_level = 0

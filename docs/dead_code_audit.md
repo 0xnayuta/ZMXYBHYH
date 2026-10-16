@@ -1,6 +1,6 @@
 # ZMXYBHYH 全工程资产拓扑与死代码审计报告 (Phase 1)
 
-> 生成时间: 2026-10-16 20:23:55  
+> 生成时间: 2026-10-16 20:34:25  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
 > 引擎环境: `Godot 4.7.2 Headless`
 
@@ -48,7 +48,7 @@
 |:---|:---|:---|:---|
 | 1 | `res://BuffInfo.gd` | 491 | 历史遗留孤立脚本 |
 | 2 | `res://MagicWeapon.gd` | 33 | 历史遗留孤立脚本 |
-| 3 | `res://Scene/other_scene/load_scene.gd` | 27,954 | 历史遗留孤立脚本 |
+| 3 | `res://Scene/other_scene/load_scene.gd` | 28,055 | 历史遗留孤立脚本 |
 | 4 | `res://Script/Base/BaseMap.gd` | 1,285 | 历史遗留孤立脚本 |
 | 5 | `res://Script/Base/BaseMonsterProperies.gd` | 152 | 历史遗留孤立脚本 |
 | 6 | `res://Script/Data/AllEquipmentData.gd` | 401,957 | 历史遗留孤立脚本 |
@@ -76,14 +76,14 @@
 | 28 | `res://Test/ActiveSkillUpgradeProbe.gd` | 108 | 历史遗留孤立脚本 |
 | 29 | `res://Test/BackpackLevelLayoutProbe.gd` | 1,112 | 历史遗留孤立脚本 |
 | 30 | `res://Test/PetInterfaceEquipmentProbe.gd` | 350 | 历史遗留孤立脚本 |
-| 31 | `res://Test/verify_active_skill_upgrade.gd` | 5,977 | 历史遗留孤立脚本 |
+| 31 | `res://Test/verify_active_skill_upgrade.gd` | 6,090 | 历史遗留孤立脚本 |
 | 32 | `res://Test/verify_esbxx_popup.gd` | 3,068 | 历史遗留孤立脚本 |
-| 33 | `res://Test/verify_level49_skill_book_drop.gd` | 5,662 | 历史遗留孤立脚本 |
+| 33 | `res://Test/verify_level49_skill_book_drop.gd` | 5,726 | 历史遗留孤立脚本 |
 | 34 | `res://Test/verify_mount_unlock_material_drop_preview.gd` | 3,499 | 历史遗留孤立脚本 |
 | 35 | `res://Test/verify_mount_unlock_material_drops.gd` | 6,061 | 历史遗留孤立脚本 |
-| 36 | `res://Test/verify_passive_income.gd` | 4,087 | 历史遗留孤立脚本 |
-| 37 | `res://Test/verify_pet_mosaic.gd` | 26,768 | 历史遗留孤立脚本 |
-| 38 | `res://Test/verify_pet_mouse.gd` | 23,861 | 历史遗留孤立脚本 |
+| 36 | `res://Test/verify_passive_income.gd` | 4,153 | 历史遗留孤立脚本 |
+| 37 | `res://Test/verify_pet_mosaic.gd` | 26,932 | 历史遗留孤立脚本 |
+| 38 | `res://Test/verify_pet_mouse.gd` | 24,094 | 历史遗留孤立脚本 |
 
 ---
 

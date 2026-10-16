@@ -54,11 +54,11 @@ func _process(_delta: float) -> void:
 
 static func equipped_body() -> String:
 	var data: Dictionary = PlayerData.player_data
-	var appearance := str(data.get("幻化列表", {}).get("防具", ""))
+	var appearance := str(data.get(DataKeys.TRANSMOG_LIST, {}).get(DataKeys.ARMOR, ""))
 	if appearance != "":
 		return appearance
 	for slot in ["时装", "防具"]:
 		var items: Array = data.get(slot, [])
 		if not items.is_empty() and items[0] is Dictionary:
-			return str(items[0].get("名字", "Empty"))
+			return str(items[0].get(DataKeys.NAME, "Empty"))
 	return "Empty"

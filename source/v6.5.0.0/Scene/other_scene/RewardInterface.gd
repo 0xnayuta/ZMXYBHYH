@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if UseItemName != null and UseNum != null:
-		title.text = "本次使用：" + str(AE.AllEquipment_[UseItemName]["名字"]) + " * " + str(UseNum)
+		title.text = "本次使用：" + str(AE.AllEquipment_[UseItemName][DataKeys.NAME]) + " * " + str(UseNum)
 	else:
 		title.text = ""
 	pl.play("pl")
@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 func AddBox():
 	var tween = create_tween()
 	for i in ItemList_:
-		var Type = AE.AllEquipment_[i["Name"]]["类型"]
+		var Type = AE.AllEquipment_[i["Name"]][DataKeys.TYPE]
 		var ItemName = i["Name"]
 		var Value = i["Value"]
 		var StrengthValue = i["StrengthValue"]
@@ -44,7 +44,7 @@ func AddBox():
 func _remove_used_item(item_name, use_num) -> void:
 	if not AE.AllEquipment_.has(item_name):
 		return
-	var item_type = AE.AllEquipment_[item_name]["类型"]
+	var item_type = AE.AllEquipment_[item_name][DataKeys.TYPE]
 	match item_type:
 		"道具":
 			PlayerData.remove_dj(item_name, PlayerData.get_dj_page(item_name), use_num)
@@ -54,7 +54,7 @@ func _remove_used_item(item_name, use_num) -> void:
 
 func AddItemToBackPack():
 	for i in ItemList_:
-		var Type = AE.AllEquipment_[i["Name"]]["类型"]
+		var Type = AE.AllEquipment_[i["Name"]][DataKeys.TYPE]
 		var ItemName = i["Name"]
 		var Value = i["Value"]
 		var StrengthValue = i["StrengthValue"]

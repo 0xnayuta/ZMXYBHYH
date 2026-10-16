@@ -126,7 +126,7 @@ func _apply_table_layout() -> void:
 
 
 func get_current_max_level() -> int:
-	var role_level = int(PlayerData.player_data.get("玩家等级", RoleProp.baseroleprop.get("Level", 1)))
+	var role_level = int(PlayerData.player_data.get(DataKeys.PLAYER_LEVEL, RoleProp.baseroleprop.get("Level", 1)))
 	return PaSkill.get_unlocked_level(role_level)
 
 

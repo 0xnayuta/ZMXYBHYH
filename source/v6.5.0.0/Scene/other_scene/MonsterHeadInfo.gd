@@ -790,9 +790,9 @@ func _create_monster_attr_panel() -> Control:
 		)
 		_add_attr_label(list, "免伤：" + nightmare_reduction_text, 14, "ffffff")
 
-	if data.has("攻击"):
+	if data.has(DataKeys.ATTACK):
 		_add_attr_label(list, "攻击伤害：", 14, "ffdf7e")
-		for attack in data["攻击"]:
+		for attack in data[DataKeys.ATTACK]:
 			if not attack.has("power"):
 				continue
 			var attack_mult: float = 1.0 if bool(attack.get("difficulty_scaled", false)) else mult
@@ -813,7 +813,7 @@ func _create_monster_attr_panel() -> Control:
 				continue
 			var item_name := item_id
 			if AE.AllEquipment_.has(item_id):
-				item_name = str(AE.AllEquipment_[item_id].get("名字", item_id))
+				item_name = str(AE.AllEquipment_[item_id].get(DataKeys.NAME, item_id))
 			var chance := _get_drop_chance_text(
 				float(drop.get("chance", 0.0)), diff, bool(drop.get("fixed_chance", false))
 			)
@@ -965,7 +965,7 @@ func _get_scene_attr_data() -> Dictionary:
 					)
 				)
 	if not attacks.is_empty():
-		data["攻击"] = attacks
+		data[DataKeys.ATTACK] = attacks
 	var drops: Array = []
 	var independent_drops = _read_monster_value(monster, "independent_fall_list", [])
 	if (
@@ -1043,7 +1043,7 @@ func _get_level_config_attr_data() -> Dictionary:
 					)
 				)
 	if not attacks.is_empty():
-		data["攻击"] = attacks
+		data[DataKeys.ATTACK] = attacks
 
 	var drops: Array = []
 	for drop_group_value in [
@@ -1077,7 +1077,7 @@ func _get_level_config_attr_data() -> Dictionary:
 func _is_scene_attr_data_valid(data: Dictionary) -> bool:
 	if data.is_empty():
 		return false
-	return float(data.get("生命", 0)) > 0.0 or int(data.get("等级", 0)) > 0
+	return float(data.get(DataKeys.HP, 0)) > 0.0 or int(data.get(DataKeys.LEVEL, 0)) > 0
 
 
 func _read_monster_value(monster: Object, property_name: String, fallback):

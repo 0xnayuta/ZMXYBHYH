@@ -120,8 +120,12 @@ func setup_pet_equipment(item: Dictionary, sale_price: int = 0) -> void:
 	pet_sale_price = maxi(0, sale_price)
 	var data: Dictionary = item.get("Data", {}) if item.get("Data", {}) is Dictionary else {}
 	EQ_prop = data
-	nam = str(item.get("名字", item.get("名称", data.get("名字", data.get("名称", "宠物装备")))))
-	qh_level = int(item.get("强化等级", data.get("强化等级", 0)))
+	nam = str(
+		item.get(
+			DataKeys.NAME, item.get(DataKeys.ALT_NAME, data.get(DataKeys.NAME, data.get(DataKeys.ALT_NAME, "宠物装备")))
+		)
+	)
+	qh_level = int(item.get(DataKeys.ENHANCE_LEVEL, data.get(DataKeys.ENHANCE_LEVEL, 0)))
 
 
 func _pet_merged_data() -> Dictionary:
@@ -170,13 +174,13 @@ func _pet_quality_color(quality: String) -> Color:
 
 func _set_pet_information() -> void:
 	var data := _pet_merged_data()
-	var item_name := str(data.get("名字", data.get("名称", nam))).strip_edges()
+	var item_name := str(data.get(DataKeys.NAME, data.get(DataKeys.ALT_NAME, nam))).strip_edges()
 	if item_name == "":
 		item_name = "宠物装备"
-	var quality := str(data.get("品质", "普通"))
+	var quality := str(data.get(DataKeys.QUALITY, "普通"))
 	eq_name.text = "%s(+%d)" % [item_name, qh_level] if qh_level > 0 else item_name
 	eq_pz.text = "品质：%s" % quality
-	var raw_type := str(data.get("类型", data.get("装备类型", ""))).strip_edges()
+	var raw_type := str(data.get(DataKeys.TYPE, data.get("装备类型", ""))).strip_edges()
 	var slot_name := str(
 		(
 			{
@@ -206,12 +210,12 @@ func _set_pet_information() -> void:
 	have.visible = false
 	eq_czl.visible = false
 	eq_star_level.visible = false
-	BsProList.visible = data.get("宝石", []) is Array and not (data.get("宝石", []) as Array).is_empty()
+	BsProList.visible = data.get(DataKeys.GEM, []) is Array and not (data.get(DataKeys.GEM, []) as Array).is_empty()
 	if BsProList.visible:
 		setBsInfor()
 	else:
 		_set_gem_resonance_information(data)
-	var strengthen_value: Variant = data.get("强化属性", {})
+	var strengthen_value: Variant = data.get(DataKeys.ENHANCE_PROP, {})
 	var strengthen: Dictionary = strengthen_value if strengthen_value is Dictionary else {}
 	var rows := [
 		[eq_hp, "生命", ["生命", "生命上限", "SHp"]],
@@ -259,7 +263,7 @@ func _set_pet_information() -> void:
 			var stat_name := str(PET_RANDOM_STAT_NAMES.get(stat_key, stat_key))
 			var base_value := _pet_value(random_stat.get("数值", random_stat.get("基础值", random_stat.get("value", 0))))
 			var strengthen_per_level := _pet_value(
-				random_stat.get("强化属性", random_stat.get("强化值", random_stat.get("strength", 0)))
+				random_stat.get(DataKeys.ENHANCE_PROP, random_stat.get("强化值", random_stat.get("strength", 0)))
 			)
 			var line := "  %s+%s" % [stat_name, _pet_number_text(base_value)]
 			if not is_zero_approx(strengthen_per_level):
@@ -330,8 +334,8 @@ func _call_divine_helper(method_names: Array, args: Array):
 
 func _is_divine_eligible(name_: String, data: Dictionary) -> bool:
 	var template: Dictionary = AE.AllEquipment_.get(name_, {})
-	var item_type := str(data.get("类型", template.get("类型", "")))
-	var quality := str(data.get("品质", template.get("品质", "")))
+	var item_type := str(data.get(DataKeys.TYPE, template.get(DataKeys.TYPE, "")))
+	var quality := str(data.get(DataKeys.QUALITY, template.get(DataKeys.QUALITY, "")))
 	var quality_rank := {
 		"普通": 0, "优秀": 1, "精良": 2, "史诗": 3, "邪灵": 4, "魂器": 5, "传说": 6, "神器": 7, "玄冥": 8, "黑神话": 9, "无敌": 10
 	}
@@ -367,7 +371,7 @@ func _get_divine_display_name(name_: String) -> String:
 	)
 	if display_name != null:
 		return str(display_name)
-	var base_name := str(EQ_prop.get("名字", AE.AllEquipment_.get(name_, {}).get("名字", name_)))
+	var base_name := str(EQ_prop.get(DataKeys.NAME, AE.AllEquipment_.get(name_, {}).get(DataKeys.NAME, name_)))
 	var prefixes := ["", "一阶·", "二阶·", "三阶·", "四阶·", "五阶·", "六阶·", "七阶·", "八阶·", "九阶·"]
 	return prefixes[_get_divine_stage(EQ_prop)] + base_name if _is_divine_eligible(name_, EQ_prop) else base_name
 
@@ -390,9 +394,9 @@ func _get_divine_gem_properties(name_: String, data: Dictionary) -> Dictionary:
 	var result := {}
 	for property_name in DIVINE_PROPERTY_NAMES:
 		result[property_name] = 0
-	if not data.has("宝石") or not data["宝石"] is Array:
+	if not data.has(DataKeys.GEM) or not data[DataKeys.GEM] is Array:
 		return result
-	for gem_name in data["宝石"]:
+	for gem_name in data[DataKeys.GEM]:
 		var gem_data: Dictionary = AE.AllEquipment_.get(str(gem_name), {})
 		for property_name in DIVINE_PROPERTY_NAMES:
 			if gem_data.has(property_name):
@@ -432,14 +436,14 @@ func _physics_process(_delta: float) -> void:
 	color_rect.size = $pro_wk/information.size
 	if BsProList != null:
 		if EQ_prop != {}:
-			if EQ_prop.has("宝石"):
-				if EQ_prop["宝石"].size() == 0:
+			if EQ_prop.has(DataKeys.GEM):
+				if EQ_prop[DataKeys.GEM].size() == 0:
 					BsProList.queue_free()
 	if not is_set:
 		create_tween().tween_property(self, "modulate", Color(1, 1, 1, 1), 0.2)
 		set_some_pro_color(nam)
 		set_information_(nam)
-		if AE.AllEquipment_[nam]["类型"] != "道具" and AE.AllEquipment_[nam]["类型"] != "消耗品":
+		if AE.AllEquipment_[nam][DataKeys.TYPE] != "道具" and AE.AllEquipment_[nam][DataKeys.TYPE] != "消耗品":
 			have.queue_free()
 			setBsInfor()
 		else:
@@ -451,7 +455,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func set_some_pro_color(name_):
-	if str(AE.AllEquipment_[name_].get("品质", "")) == "黑神话":
+	if str(AE.AllEquipment_[name_].get(DataKeys.QUALITY, "")) == "黑神话":
 		_apply_black_myth_text_style(eq_name)
 		_apply_black_myth_text_style(eq_pz)
 		return
@@ -466,17 +470,19 @@ func _apply_black_myth_text_style(label: Label) -> void:
 
 
 func set_information_(name_: String):
-	if AE.AllEquipment_[name_]["类型"] == "道具" or AE.AllEquipment_[name_]["类型"] == "消耗品":
-		eq_name.text = str(AE.AllEquipment_[name_]["名字"])
-		eq_pz.text = "品质：" + str(AE.AllEquipment_[name_]["品质"])
+	if AE.AllEquipment_[name_][DataKeys.TYPE] == "道具" or AE.AllEquipment_[name_][DataKeys.TYPE] == "消耗品":
+		eq_name.text = str(AE.AllEquipment_[name_][DataKeys.NAME])
+		eq_pz.text = "品质：" + str(AE.AllEquipment_[name_][DataKeys.QUALITY])
 		if AE.AllEquipment_[name_].has("所属"):
 			if AE.AllEquipment_[name_]["所属"] != "" and AE.AllEquipment_[name_]["所属"] != "无":
-				eq_lx.text = "类型：" + str(AE.AllEquipment_[name_]["类型"]) + "·" + str(AE.AllEquipment_[name_]["所属"])
+				eq_lx.text = (
+					"类型：" + str(AE.AllEquipment_[name_][DataKeys.TYPE]) + "·" + str(AE.AllEquipment_[name_]["所属"])
+				)
 			else:
-				eq_lx.text = "类型：" + str(AE.AllEquipment_[name_]["类型"])
+				eq_lx.text = "类型：" + str(AE.AllEquipment_[name_][DataKeys.TYPE])
 		else:
-			eq_lx.text = "类型：" + str(AE.AllEquipment_[name_]["类型"])
-		if str(AE.AllEquipment_[name_]["类型"]) == "消耗品":
+			eq_lx.text = "类型：" + str(AE.AllEquipment_[name_][DataKeys.TYPE])
+		if str(AE.AllEquipment_[name_][DataKeys.TYPE]) == "消耗品":
 			have.text = "拥有：" + str(PlayerData.get_xhp_data(name_)) + " 个"
 		else:
 			have.text = "拥有：" + str(PlayerData.get_item_data(name_)) + " 个"
@@ -497,7 +503,7 @@ func set_information_(name_: String):
 	eq_lx.text = "类型：" + str(get_properies(name_, "类型")[0]) + "·" + str(get_properies(name_, "所属")[0])
 	match get_properies(name_, "类型")[0]:
 		"法宝":
-			if not AE.AllEquipment_[name_].has("五行") and eq_star_level != null:
+			if not AE.AllEquipment_[name_].has(DataKeys.FIVE_ELEMENTS) and eq_star_level != null:
 				eq_star_level.queue_free()
 			else:
 				if get_wx() == "":
@@ -593,7 +599,7 @@ func set_information_(name_: String):
 			else:
 				eq_ms.text = "描述:" + str(AE.AllEquipment_[name_]["描述"])
 		"武器", "防具", "饰品", "神骨", "头衔", "时装", "翅膀":
-			if not AE.AllEquipment_[name_].has("五行") and eq_star_level != null:
+			if not AE.AllEquipment_[name_].has(DataKeys.FIVE_ELEMENTS) and eq_star_level != null:
 				eq_star_level.queue_free()
 			else:
 				eq_star_level.text = "五行：" + str(get_wx())
@@ -679,16 +685,16 @@ func set_information_(name_: String):
 
 
 func setBsInfor():
-	if not is_pet_equipment and str(AE.AllEquipment_.get(nam, {}).get("类型", "")) == "法宝":
+	if not is_pet_equipment and str(AE.AllEquipment_.get(nam, {}).get(DataKeys.TYPE, "")) == "法宝":
 		BsProList.hide()
 		return
-	if not EQ_prop.has("宝石"):
+	if not EQ_prop.has(DataKeys.GEM):
 		self.queue_free()
 		return
 	_set_gem_resonance_information(EQ_prop)
 	for child in BsProList.get_children():
 		child.queue_free()
-	if EQ_prop["宝石"].size() == 0:
+	if EQ_prop[DataKeys.GEM].size() == 0:
 		return
 
 	var prop_names = {
@@ -711,12 +717,12 @@ func setBsInfor():
 	}
 
 	var equipment_data_source: Node = AE._get_data()
-	for i in EQ_prop["宝石"]:
+	for i in EQ_prop[DataKeys.GEM]:
 		var gem_data = AE.AllEquipment_.get(i)
 		if gem_data == null:
 			continue
 
-		var gem_name = gem_data.get("名字", str(i))
+		var gem_name = gem_data.get(DataKeys.NAME, str(i))
 
 		var props_text = ""
 		for u in [
@@ -762,7 +768,7 @@ func setBsInfor():
 
 
 func _set_gem_resonance_information(data: Dictionary) -> void:
-	var gems: Variant = data.get("宝石", null)
+	var gems: Variant = data.get(DataKeys.GEM, null)
 	if not gems is Array:
 		return
 	var resonance := AE.get_gem_resonance_level(data)
@@ -793,13 +799,13 @@ func get_bs_prop(need):
 
 
 func set_BsProp():
-	if EQ_prop == null or not EQ_prop.has("宝石"):
+	if EQ_prop == null or not EQ_prop.has(DataKeys.GEM):
 		return {}
 	var equipment_data_source: Node = AE._get_data()
 	var divine_gem_properties: Dictionary = equipment_data_source.get_divine_forge_gem_properties(nam, EQ_prop)
 	for property_name in Bs_prop:
 		Bs_prop[property_name] = divine_gem_properties.get(property_name, 0)
-	if EQ_prop["宝石"].is_empty():
+	if EQ_prop[DataKeys.GEM].is_empty():
 		return {}
 	return Bs_prop
 
@@ -821,10 +827,13 @@ func get_properies(name_, need):
 		target_count = infomation
 
 		var strengthen_val = 0
-		if EQ_prop.has("强化属性") and EQ_prop["强化属性"].has(need):
-			strengthen_val = EQ_prop["强化属性"][need]
-		elif AE.AllEquipment_[name_].has("强化属性") and AE.AllEquipment_[name_]["强化属性"].has(need):
-			strengthen_val = AE.AllEquipment_[name_]["强化属性"][need]
+		if EQ_prop.has(DataKeys.ENHANCE_PROP) and EQ_prop[DataKeys.ENHANCE_PROP].has(need):
+			strengthen_val = EQ_prop[DataKeys.ENHANCE_PROP][need]
+		elif (
+			AE.AllEquipment_[name_].has(DataKeys.ENHANCE_PROP)
+			and AE.AllEquipment_[name_][DataKeys.ENHANCE_PROP].has(need)
+		):
+			strengthen_val = AE.AllEquipment_[name_][DataKeys.ENHANCE_PROP][need]
 
 		var equipment_data_source: Node = AE._get_data()
 		var base_value = EQ_prop.get(need, AE.AllEquipment_[name_].get(need, 0))

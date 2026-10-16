@@ -375,8 +375,8 @@ func _load_equipped_magic_weapon_deferred() -> void:
 	if not is_inside_tree() or is_queued_for_deletion():
 		return
 	var equipped_weapon = PlayerData.player_data.get("实战法宝", "")
-	if str(equipped_weapon) == "" and PlayerData.player_data.get("法宝", []).size() > 0:
-		equipped_weapon = PlayerData.player_data["法宝"][0].get("名字", "")
+	if str(equipped_weapon) == "" and PlayerData.player_data.get(DataKeys.MAGIC_WEAPON, []).size() > 0:
+		equipped_weapon = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0].get(DataKeys.NAME, "")
 	await Global.prepare_magic_weapon_resources(equipped_weapon)
 	if not is_inside_tree() or is_queued_for_deletion():
 		return
@@ -395,7 +395,7 @@ func NullSZFBCase():
 	if PlayerData.player_data["实战法宝"] == "":
 		if Mgtarget != null:
 			Mgtarget.queue_free()
-		if PlayerData.player_data["法宝"].size() != 0:
+		if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() != 0:
 			addMagicWeapon()
 
 
@@ -403,13 +403,13 @@ func on_SZFBChange():
 	if Global.should_change:
 		if Mgtarget != null:
 			Mgtarget.queue_free()
-		if PlayerData.player_data["法宝"].size() != 0:
+		if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() != 0:
 			addMagicWeapon()
 		Global.should_change = false
 
 
 func CheckRemoveOrAddFB():
-	if PlayerData.player_data["法宝"].size() == 0:
+	if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() == 0:
 		if Mgtarget != null:
 			Mgtarget.queue_free()
 	else:
@@ -468,13 +468,13 @@ func useFB():
 
 
 func WSSkill() -> bool:
-	var fashion_list: Variant = PlayerData.player_data.get("时装", [])
+	var fashion_list: Variant = PlayerData.player_data.get(DataKeys.FASHION, [])
 	if not fashion_list is Array or fashion_list.is_empty():
 		return true
 	var fashion: Variant = fashion_list[0]
 	if not fashion is Dictionary:
 		return true
-	var fashion_id := str(fashion.get("名字", ""))
+	var fashion_id := str(fashion.get(DataKeys.NAME, ""))
 	var SZName: String = str(Global.GetName(fashion_id))
 	var Pz := fashion_id.split(SZName)[0]
 	if Pz == "putong":
@@ -855,19 +855,19 @@ func NoarmalControl():
 		if not is_Bound_to_the_ground:
 			jump()
 	if Input.is_action_pressed("slz") and not is_using_skills:
-		var Skill_name = PlayerData.player_data["技能学习"]["技能键位"]["Y"]
+		var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["Y"]
 		get_skill(Skill_name)
 	if Input.is_action_pressed("lys") and not is_using_skills:
-		var Skill_name = PlayerData.player_data["技能学习"]["技能键位"]["U"]
+		var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["U"]
 		get_skill(Skill_name)
 	if Input.is_action_pressed("lyfb") and not is_using_skills:
-		var Skill_name = PlayerData.player_data["技能学习"]["技能键位"]["I"]
+		var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["I"]
 		get_skill(Skill_name)
 	if Input.is_action_pressed("hmz") and not is_using_skills:
-		var Skill_name = PlayerData.player_data["技能学习"]["技能键位"]["O"]
+		var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["O"]
 		get_skill(Skill_name)
 	if Input.is_action_pressed("hytj") and not is_using_skills:
-		var Skill_name = PlayerData.player_data["技能学习"]["技能键位"]["L"]
+		var Skill_name = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]["L"]
 		get_skill(Skill_name)
 
 
@@ -1730,8 +1730,8 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		if not IsTMc:
 			_add_role_protect(randi_range(3, 7))
 	if self is Role3Hero:
-		if randi_range(0, 100) <= 2 + PlayerData.player_data["技能学习"]["技能10"]["等级"] * 0.5:
-			var cur_level = PlayerData.player_data["技能学习"]["技能10"]["等级"]
+		if randi_range(0, 100) <= 2 + PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] * 0.5:
+			var cur_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
 			if cur_level > 0:
 				if not get_parent().get_parent() is Level17 and not get_parent().get_parent() is Level22:
 					cure_Hp(RoleProp.roleprop.power * (0.5 + cur_level * 0.03))
@@ -2017,7 +2017,7 @@ func get_Monster_last_hurt(target_boss, target_obj):
 			if Hurt > 0:
 				if target_boss != null:
 					if target_boss is BaseMonster:
-						var cur_level = PlayerData.player_data["技能学习"]["技能5"]["等级"] + 1
+						var cur_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能5"][DataKeys.LEVEL] + 1
 						var LastHurt = int(IniHurt * (2 + cur_level * 0.2))
 						target_boss.receive_reflected_damage(LastHurt, "magic", int(RoleProp.roleprop.sp))
 	return Hurt
@@ -2577,7 +2577,7 @@ func get_need_mp(skill_name, bool_):
 
 
 func get_SkillLevel(num):
-	return PlayerData.player_data["技能学习"]["技能" + str(num)]["等级"]
+	return PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能" + str(num)][DataKeys.LEVEL]
 
 
 func death():
@@ -2590,7 +2590,7 @@ func addMagicWeapon():
 	Mgtarget = null
 	if str(PlayerData.player_data.get("实战法宝", "")) in PlayerData.RETIRED_WUDU_MAGIC_WEAPONS:
 		PlayerData.player_data["实战法宝"] = ""
-	if PlayerData.player_data["法宝"].size() != 0:
+	if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() != 0:
 		var name1 = PlayerData.player_data["实战法宝"]
 		if name1 != "":
 			var parent = get_parent().get_parent()
@@ -2602,7 +2602,7 @@ func addMagicWeapon():
 					Mgtarget.queue_free()
 				Mgtarget = null
 		else:
-			PlayerData.player_data["实战法宝"] = PlayerData.player_data["法宝"][0]["名字"]
+			PlayerData.player_data["实战法宝"] = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
 			var parent = get_parent().get_parent()
 			Mgtarget = Global.addMagicWeapon(parent, PlayerData.player_data["实战法宝"], Vector2(0, 0))
 			if Mgtarget != null and Mgtarget.has_method("set_magic_weapon_player"):
@@ -2687,24 +2687,24 @@ func _set_protect_visual(active: bool) -> void:
 func onEqchange():
 	var WQ: String
 	var Fj: String
-	if PlayerData.player_data["幻化列表"]["武器"] == "":
-		if PlayerData.player_data["武器"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON] == "":
+		if PlayerData.player_data[DataKeys.WEAPON].size() == 0:
 			WQ = "Empty"
 		else:
-			WQ = str(PlayerData.player_data["武器"][0]["名字"])
+			WQ = str(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME])
 	else:
-		WQ = str(PlayerData.player_data["幻化列表"]["武器"])
+		WQ = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON])
 	ChangeEq(WQ)
-	if PlayerData.player_data["幻化列表"]["防具"] == "":
-		if PlayerData.player_data["时装"].size() == 0:
-			if PlayerData.player_data["防具"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR] == "":
+		if PlayerData.player_data[DataKeys.FASHION].size() == 0:
+			if PlayerData.player_data[DataKeys.ARMOR].size() == 0:
 				Fj = "Empty"
 			else:
-				Fj = str(PlayerData.player_data["防具"][0]["名字"])
+				Fj = str(PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME])
 		else:
-			Fj = str(PlayerData.player_data["时装"][0]["名字"])
+			Fj = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
 	else:
-		Fj = str(PlayerData.player_data["幻化列表"]["防具"])
+		Fj = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR])
 	Fj = Global.GetName(Fj)
 
 	ChangeBody(Fj)
@@ -2713,14 +2713,14 @@ func onEqchange():
 		mount_runtime.call("refresh_rider_appearance")
 	AddSpecialEffectClothes(WQ, Fj)
 	var WingsList
-	if PlayerData.player_data["幻化列表"]["翅膀"] == "":
-		if PlayerData.player_data["翅膀"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
+		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
 			wings.visible = false
 			WingsList = "empty"
 		else:
-			WingsList = PlayerData.player_data["翅膀"][0]["名字"]
+			WingsList = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 	else:
-		WingsList = PlayerData.player_data["幻化列表"]["翅膀"]
+		WingsList = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
 	var show_wings: bool = (
 		WingsList != "empty"
 		and bool(PlayerData.player_data.get("翅膀显示", true))
@@ -2760,12 +2760,12 @@ func _scan_late_static_wing_tracks() -> void:
 	if not is_inside_tree():
 		return
 	var current_wings_name := ""
-	var transmog_data: Variant = PlayerData.player_data.get("幻化列表", {})
-	var transmog_wings := str(transmog_data.get("翅膀", "")) if transmog_data is Dictionary else ""
+	var transmog_data: Variant = PlayerData.player_data.get(DataKeys.TRANSMOG_LIST, {})
+	var transmog_wings := str(transmog_data.get(DataKeys.WINGS, "")) if transmog_data is Dictionary else ""
 	if transmog_wings != "":
 		current_wings_name = transmog_wings
-	elif PlayerData.player_data.get("翅膀", []).size() > 0:
-		current_wings_name = str(PlayerData.player_data["翅膀"][0].get("名字", ""))
+	elif PlayerData.player_data.get(DataKeys.WINGS, []).size() > 0:
+		current_wings_name = str(PlayerData.player_data[DataKeys.WINGS][0].get(DataKeys.NAME, ""))
 	_set_static_wing_animation_tracks(current_wings_name == "hhyq" or current_wings_name == "xyzy")
 
 
@@ -3288,8 +3288,8 @@ func get_skill(name1):
 	if self is Role1Hero:
 		var IsCanUseSlz = false
 		if name1 == "slz":
-			for i in PlayerData.player_data["技能学习"]["技能键位"]:
-				if str(PlayerData.player_data["技能学习"]["技能键位"][i]) == "slz":
+			for i in PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"]:
+				if str(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"][i]) == "slz":
 					IsCanUseSlz = true
 			if not IsCanUseSlz:
 				return
@@ -3644,8 +3644,8 @@ func ADDNMWEffect():
 			Vector2(385, 500)
 		],
 	}
-	var SZName = Global.GetName(PlayerData.player_data["时装"][0]["名字"])
-	var Pz = str(PlayerData.player_data["时装"][0]["名字"]).split(SZName)[0]
+	var SZName = Global.GetName(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
+	var Pz = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]).split(SZName)[0]
 	var Count: int = 1
 	match Pz:
 		"youxiu":
@@ -3661,10 +3661,10 @@ func ADDNMWEffect():
 func SetSZValue():
 	has_smsrsz_fashion = false
 	current_fashion_quality = ""
-	if PlayerData.player_data["时装"].size() <= 0:
+	if PlayerData.player_data[DataKeys.FASHION].size() <= 0:
 		return
-	var SZName = Global.GetName(PlayerData.player_data["时装"][0]["名字"])
-	var Pz = str(PlayerData.player_data["时装"][0]["名字"]).split(SZName)[0]
+	var SZName = Global.GetName(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME])
+	var Pz = str(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]).split(SZName)[0]
 	var Bl = 1
 	match SZName:
 		"ttzssz":
@@ -3854,8 +3854,8 @@ func SetSZValue():
 
 func _update_fashion_values_if_needed() -> void:
 	var fashion_name := ""
-	if not PlayerData.player_data["时装"].is_empty():
-		fashion_name = str(PlayerData.player_data["时装"][0].get("名字", ""))
+	if not PlayerData.player_data[DataKeys.FASHION].is_empty():
+		fashion_name = str(PlayerData.player_data[DataKeys.FASHION][0].get(DataKeys.NAME, ""))
 	var current_power := int(RoleProp.roleprop.power)
 	var current_max_hp := int(RoleProp.roleprop.SHp)
 	if (
@@ -3894,14 +3894,14 @@ func WhenScary():
 
 func AddTx():
 	var title_name := "Empty"
-	if PlayerData.player_data["幻化列表"].has("头衔"):
-		if PlayerData.player_data["幻化列表"]["头衔"] == "":
-			if PlayerData.player_data["头衔"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST].has(DataKeys.TITLE):
+		if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.TITLE] == "":
+			if PlayerData.player_data[DataKeys.TITLE].size() == 0:
 				title_name = "Empty"
 			else:
-				title_name = str(PlayerData.player_data["头衔"][0]["名字"])
+				title_name = str(PlayerData.player_data[DataKeys.TITLE][0][DataKeys.NAME])
 		else:
-			title_name = str(PlayerData.player_data["幻化列表"]["头衔"])
+			title_name = str(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.TITLE])
 	if title_name == _last_title_name:
 		return
 	_last_title_name = title_name
@@ -4049,13 +4049,13 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 
 func SetWingsOffset():
 	var CurrentWingsName: String
-	if PlayerData.player_data["幻化列表"]["翅膀"] == "":
-		if PlayerData.player_data["翅膀"].size() == 0:
+	if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
+		if PlayerData.player_data[DataKeys.WINGS].size() == 0:
 			CurrentWingsName = "empty"
 		else:
-			CurrentWingsName = PlayerData.player_data["翅膀"][0]["名字"]
+			CurrentWingsName = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 	else:
-		CurrentWingsName = PlayerData.player_data["幻化列表"]["翅膀"]
+		CurrentWingsName = PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]
 	var special_wing_position := Vector2(41, -4) if self is Role1Hero else _wings_base_position
 	var special_wing_offset_y := (
 		0.0 if self is Role1Hero or self is Role4Hero or self is Role5Hero or self is NeZhaHero else -25.0

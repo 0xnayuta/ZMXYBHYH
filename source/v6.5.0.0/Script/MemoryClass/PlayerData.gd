@@ -1889,11 +1889,11 @@ func _mount_default_data(mount_id: String) -> Dictionary:
 		template["%s上限" % qualification_key] = MOUNT_QUALIFICATION_MAX
 		template[qualification_key] = clampi(int(template.get(qualification_key, 0)), 0, MOUNT_QUALIFICATION_MAX)
 	template["ID"] = mount_id
-	template["等级"] = 1
-	template["经验"] = 0
+	template[DataKeys.LEVEL] = 1
+	template[DataKeys.EXP] = 0
 	template["下级经验"] = mount_exp_for_level(1)
 	template["疲劳"] = int(template.get("疲劳上限", 2400))
-	template["出战"] = false
+	template[DataKeys.DEPLOYED] = false
 	template[MOUNT_UNLOCKED_KEY] = not MOUNT_UNLOCK_REQUIREMENTS.has(mount_id)
 	template["图标"] = "res://Art/Mount/Icons/%s.png" % mount_id
 	template["立绘"] = "res://Art/Mount/Portraits/%s.png" % mount_id
@@ -1907,8 +1907,8 @@ func _mount_default_data(mount_id: String) -> Dictionary:
 	template["技能等级"] = skill_levels
 
 	template["坐骑初始属性"] = {
-		"生命": int(template.get("生命", 0)),
-		"攻击": int(template.get("攻击", 0)),
+		"生命": int(template.get(DataKeys.HP, 0)),
+		"攻击": int(template.get(DataKeys.ATTACK, 0)),
 		"物防": int(template.get("物防", 0)),
 		"魔防": int(template.get("魔防", 0)),
 		"回血": int(template.get("回血", 0)),
@@ -1937,8 +1937,8 @@ func ensure_mount_data() -> Array:
 		if not (mount.get("坐骑初始属性", null) is Dictionary):
 			mount["坐骑初始属性"] = (defaults.get("坐骑初始属性", {}) as Dictionary).duplicate(true)
 
-		if mount_id == "1002200" and str(mount.get("名称", "")) in ["", "白虎"]:
-			mount["名称"] = "西灵圣虎"
+		if mount_id == "1002200" and str(mount.get(DataKeys.ALT_NAME, "")) in ["", "白虎"]:
+			mount[DataKeys.ALT_NAME] = "西灵圣虎"
 			mount["描述"] = "西灵圣虎"
 		mount["技能"] = MOUNT_CATALOG.get_skills(mount_id)
 		var stored_skill_levels_value: Variant = mount.get("技能等级", {})
@@ -1958,11 +1958,11 @@ func ensure_mount_data() -> Array:
 		for qualification_key in MOUNT_QUALIFICATION_KEYS:
 			mount["%s上限" % qualification_key] = MOUNT_QUALIFICATION_MAX
 			mount[qualification_key] = clampi(int(mount.get(qualification_key, 0)), 0, MOUNT_QUALIFICATION_MAX)
-		mount["等级"] = clampi(int(mount.get("等级", 1)), 1, mount_level_limit)
-		mount["经验"] = maxi(0, int(mount.get("经验", 0)))
-		if int(mount["等级"]) >= mount_level_limit:
-			mount["经验"] = 0
-		mount["下级经验"] = mount_exp_for_level(int(mount["等级"]))
+		mount[DataKeys.LEVEL] = clampi(int(mount.get(DataKeys.LEVEL, 1)), 1, mount_level_limit)
+		mount[DataKeys.EXP] = maxi(0, int(mount.get(DataKeys.EXP, 0)))
+		if int(mount[DataKeys.LEVEL]) >= mount_level_limit:
+			mount[DataKeys.EXP] = 0
+		mount["下级经验"] = mount_exp_for_level(int(mount[DataKeys.LEVEL]))
 		mount["疲劳"] = clampi(int(mount.get("疲劳", mount.get("疲劳上限", 2400))), 0, int(mount.get("疲劳上限", 2400)))
 		by_id[mount_id] = mount
 	mounts.clear()
@@ -1981,7 +1981,7 @@ func ensure_mount_data() -> Array:
 	player_data[MOUNT_RIDING_KEY] = bool(player_data.get(MOUNT_RIDING_KEY, false)) and active_id != ""
 	player_data[MOUNT_AUTO_RIDE_KEY] = bool(player_data.get(MOUNT_AUTO_RIDE_KEY, false))
 	for mount in mounts:
-		mount["出战"] = str(mount.get("ID", "")) == active_id
+		mount[DataKeys.DEPLOYED] = str(mount.get("ID", "")) == active_id
 	return mounts
 
 
@@ -2087,8 +2087,8 @@ func get_inventory_item_count(item_id: String) -> int:
 			if not (page_value is Array):
 				continue
 			for item_value in page_value:
-				if item_value is Dictionary and str((item_value as Dictionary).get("名字", "")) == item_id:
-					total += int((item_value as Dictionary).get("数量", 0))
+				if item_value is Dictionary and str((item_value as Dictionary).get(DataKeys.NAME, "")) == item_id:
+					total += int((item_value as Dictionary).get(DataKeys.COUNT, 0))
 	return total
 
 
@@ -2100,7 +2100,7 @@ func unlock_mount(mount_id: String) -> bool:
 		return true
 	var requirement := get_mount_unlock_requirement(mount_id)
 	var item_id := str(requirement.get("物品", ""))
-	var count := maxi(1, int(requirement.get("数量", 1)))
+	var count := maxi(1, int(requirement.get(DataKeys.COUNT, 1)))
 	if item_id == "" or get_inventory_item_count(item_id) < count:
 		return false
 	if not remove_item(item_id, count):
@@ -2163,7 +2163,7 @@ func set_active_mount(mount_id: String) -> bool:
 		player_data[MOUNT_RIDING_KEY] = false
 	for mount_value in player_data[MOUNT_LIST_KEY]:
 		if mount_value is Dictionary:
-			mount_value["出战"] = str(mount_value.get("ID", "")) == mount_id
+			mount_value[DataKeys.DEPLOYED] = str(mount_value.get("ID", "")) == mount_id
 	return true
 
 
@@ -2182,31 +2182,31 @@ func set_mount_auto_ride(enabled: bool) -> void:
 func add_mount_exp(mount_id: String, amount: int) -> int:
 	var mount := get_mount_by_id(mount_id)
 	if mount.is_empty() or not bool(mount.get(MOUNT_UNLOCKED_KEY, false)) or amount <= 0:
-		return int(mount.get("等级", 0))
+		return int(mount.get(DataKeys.LEVEL, 0))
 	var level_limit := get_mount_level_limit()
-	if int(mount.get("等级", 1)) >= level_limit:
-		mount["经验"] = 0
-		mount["下级经验"] = mount_exp_for_level(int(mount.get("等级", 1)))
-		return int(mount.get("等级", 1))
-	mount["经验"] = int(mount.get("经验", 0)) + amount
-	while int(mount.get("等级", 1)) < level_limit:
-		var need := mount_exp_for_level(int(mount["等级"]))
-		if int(mount["经验"]) < need:
+	if int(mount.get(DataKeys.LEVEL, 1)) >= level_limit:
+		mount[DataKeys.EXP] = 0
+		mount["下级经验"] = mount_exp_for_level(int(mount.get(DataKeys.LEVEL, 1)))
+		return int(mount.get(DataKeys.LEVEL, 1))
+	mount[DataKeys.EXP] = int(mount.get(DataKeys.EXP, 0)) + amount
+	while int(mount.get(DataKeys.LEVEL, 1)) < level_limit:
+		var need := mount_exp_for_level(int(mount[DataKeys.LEVEL]))
+		if int(mount[DataKeys.EXP]) < need:
 			break
-		mount["经验"] = int(mount["经验"]) - need
-		mount["等级"] = int(mount["等级"]) + 1
-	if int(mount.get("等级", 1)) >= level_limit:
-		mount["经验"] = 0
-	mount["下级经验"] = mount_exp_for_level(int(mount["等级"]))
+		mount[DataKeys.EXP] = int(mount[DataKeys.EXP]) - need
+		mount[DataKeys.LEVEL] = int(mount[DataKeys.LEVEL]) + 1
+	if int(mount.get(DataKeys.LEVEL, 1)) >= level_limit:
+		mount[DataKeys.EXP] = 0
+	mount["下级经验"] = mount_exp_for_level(int(mount[DataKeys.LEVEL]))
 	_recalculate_mount_stats(mount)
-	return int(mount["等级"])
+	return int(mount[DataKeys.LEVEL])
 
 
 func upgrade_mount_to_level_limit(mount_id: String) -> Dictionary:
 	var mount := get_mount_by_id(mount_id)
 	if mount.is_empty() or not bool(mount.get(MOUNT_UNLOCKED_KEY, false)):
 		return {"success": false, "reason": "locked"}
-	var old_level := int(mount.get("等级", 1))
+	var old_level := int(mount.get(DataKeys.LEVEL, 1))
 	var level_limit := get_mount_level_limit()
 	if old_level >= level_limit:
 		return {"success": false, "reason": "max", "level": old_level}
@@ -2228,8 +2228,8 @@ func upgrade_mount_to_level_limit(mount_id: String) -> Dictionary:
 		}
 	if not spend_soul(total_cost):
 		return {"success": false, "reason": "soul", "level": old_level}
-	mount["等级"] = target_level
-	mount["经验"] = 0
+	mount[DataKeys.LEVEL] = target_level
+	mount[DataKeys.EXP] = 0
 	mount["下级经验"] = mount_exp_for_level(target_level)
 	_recalculate_mount_stats(mount)
 	return {
@@ -2244,12 +2244,16 @@ func upgrade_mount_to_level_limit(mount_id: String) -> Dictionary:
 func _recalculate_mount_stats(mount: Dictionary) -> void:
 	var base_value: Variant = mount.get("坐骑初始属性", {})
 	var base: Dictionary = base_value if base_value is Dictionary else {}
-	var level_count := maxi(0, int(mount.get("等级", 1)) - 1)
+	var level_count := maxi(0, int(mount.get(DataKeys.LEVEL, 1)) - 1)
 	var life_quality := float(mount.get("生命资质", 0))
 	var attack_quality := float(mount.get("攻击资质", 0))
 	var defense_quality := float(mount.get("防御资质", 0))
-	mount["生命"] = int(round(float(base.get("生命", mount.get("生命", 0))) + level_count * life_quality * 1.67415))
-	mount["攻击"] = int(round(float(base.get("攻击", mount.get("攻击", 0))) + level_count * attack_quality * 0.058305))
+	mount[DataKeys.HP] = int(
+		round(float(base.get(DataKeys.HP, mount.get(DataKeys.HP, 0))) + level_count * life_quality * 1.67415)
+	)
+	mount[DataKeys.ATTACK] = int(
+		round(float(base.get(DataKeys.ATTACK, mount.get(DataKeys.ATTACK, 0))) + level_count * attack_quality * 0.058305)
+	)
 	mount["物防"] = int(round(float(base.get("物防", mount.get("物防", 0))) + level_count * defense_quality * 0.004679))
 	mount["魔防"] = int(round(float(base.get("魔防", mount.get("魔防", 0))) + level_count * defense_quality * 0.004679))
 	mount["回血"] = int(round(float(base.get("回血", mount.get("回血", 0))) + level_count * life_quality * 0.0068))
@@ -2263,8 +2267,8 @@ func get_active_mount_attribute_bonuses() -> Dictionary:
 		return {}
 
 	return {
-		"SHp": int(mount.get("生命", 0)),
-		"power": int(mount.get("攻击", 0)),
+		"SHp": int(mount.get(DataKeys.HP, 0)),
+		"power": int(mount.get(DataKeys.ATTACK, 0)),
 		"Def": int(mount.get("物防", 0)),
 		"Mdef": int(mount.get("魔防", 0)),
 		"Crit": int(mount.get("暴击", 0)),
@@ -2355,7 +2359,7 @@ func get_wanling_soul_crystal_count(monster_id: int) -> int:
 	if not WANLING_HUMAN_MONSTER_IDS.has(monster_id):
 		return 0
 	var item_id := "human_soul_crystal_%d" % monster_id
-	var inventory_value: Variant = player_data.get("道具列表", {})
+	var inventory_value: Variant = player_data.get(DataKeys.ITEM_LIST, {})
 	if not (inventory_value is Dictionary):
 		return 0
 	var total := 0
@@ -2363,8 +2367,8 @@ func get_wanling_soul_crystal_count(monster_id: int) -> int:
 		if not (page_value is Array):
 			continue
 		for item_value in page_value:
-			if item_value is Dictionary and str(item_value.get("名字", "")) == item_id:
-				total += max(0, int(item_value.get("数量", 0)))
+			if item_value is Dictionary and str(item_value.get(DataKeys.NAME, "")) == item_id:
+				total += max(0, int(item_value.get(DataKeys.COUNT, 0)))
 	return total
 
 
@@ -2407,7 +2411,7 @@ func get_wanling_underworld_soul_crystal_count(monster_id: int) -> int:
 	if not WANLING_UNDERWORLD_MONSTER_IDS.has(monster_id):
 		return 0
 	var item_id := "underworld_soul_crystal_%d" % monster_id
-	var inventory_value: Variant = player_data.get("道具列表", {})
+	var inventory_value: Variant = player_data.get(DataKeys.ITEM_LIST, {})
 	if not (inventory_value is Dictionary):
 		return 0
 	var total := 0
@@ -2415,8 +2419,8 @@ func get_wanling_underworld_soul_crystal_count(monster_id: int) -> int:
 		if not (page_value is Array):
 			continue
 		for item_value in page_value:
-			if item_value is Dictionary and str(item_value.get("名字", "")) == item_id:
-				total += max(0, int(item_value.get("数量", 0)))
+			if item_value is Dictionary and str(item_value.get(DataKeys.NAME, "")) == item_id:
+				total += max(0, int(item_value.get(DataKeys.COUNT, 0)))
 	return total
 
 
@@ -2459,7 +2463,7 @@ func get_wanling_heaven_soul_crystal_count(monster_id: int) -> int:
 	if not WANLING_HEAVEN_MONSTER_IDS.has(monster_id):
 		return 0
 	var item_id := "heaven_soul_crystal_%d" % monster_id
-	var inventory_value: Variant = player_data.get("道具列表", {})
+	var inventory_value: Variant = player_data.get(DataKeys.ITEM_LIST, {})
 	if not (inventory_value is Dictionary):
 		return 0
 	var total := 0
@@ -2467,8 +2471,8 @@ func get_wanling_heaven_soul_crystal_count(monster_id: int) -> int:
 		if not (page_value is Array):
 			continue
 		for item_value in page_value:
-			if item_value is Dictionary and str(item_value.get("名字", "")) == item_id:
-				total += max(0, int(item_value.get("数量", 0)))
+			if item_value is Dictionary and str(item_value.get(DataKeys.NAME, "")) == item_id:
+				total += max(0, int(item_value.get(DataKeys.COUNT, 0)))
 	return total
 
 
@@ -2585,7 +2589,7 @@ func _ensure_pet_equipment_random_stats(value: Variant) -> void:
 	var data_value: Variant = item.get("Data", {})
 	var data: Dictionary = data_value if data_value is Dictionary else {}
 	var belongs_to := str(item.get("所属", data.get("所属", ""))).strip_edges()
-	var data_type := str(data.get("类型", "")).strip_edges()
+	var data_type := str(data.get(DataKeys.TYPE, "")).strip_edges()
 	if belongs_to != "宠物装备" and data_type != "宠物装备":
 		return
 
@@ -2627,10 +2631,10 @@ func add_pet_backpack_item(item_id: String, amount: int = 1, data_override: Dict
 	if item_data.is_empty():
 		return 0
 
-	var item_name := str(item_data.get("名字", item_data.get("名称", item_id))).strip_edges()
+	var item_name := str(item_data.get(DataKeys.NAME, item_data.get(DataKeys.ALT_NAME, item_id))).strip_edges()
 	if item_name == "":
 		item_name = item_id
-	var slot_type := str(item_data.get("装备类型", item_data.get("类型", ""))).strip_edges()
+	var slot_type := str(item_data.get("装备类型", item_data.get(DataKeys.TYPE, ""))).strip_edges()
 	if slot_type == "宠物装备":
 		slot_type = str(item_data.get("装备类型", "")).strip_edges()
 	if slot_type == "":
@@ -2658,22 +2662,24 @@ func get_equipment_strength_max_level(item: Dictionary = {}, item_id: String = "
 	var nested: Dictionary = item.get("Data", {}) if item.get("Data", {}) is Dictionary else {}
 	var resolved_item_id := item_id.strip_edges()
 	if resolved_item_id == "":
-		resolved_item_id = str(item.get("ID", item.get("id", item.get("名字", item.get("名称", ""))))).strip_edges()
+		resolved_item_id = (
+			str(item.get("ID", item.get("id", item.get(DataKeys.NAME, item.get(DataKeys.ALT_NAME, ""))))).strip_edges()
+		)
 	if (
 		bool(item.get("不可强化", nested.get("不可强化", false)))
 		and resolved_item_id not in ["cjxianjie", "cdxianjie", "zhxianjie"]
 	):
 		return 0
-	var quality := str(item.get("品质", nested.get("品质", ""))).strip_edges()
+	var quality := str(item.get(DataKeys.QUALITY, nested.get(DataKeys.QUALITY, ""))).strip_edges()
 	if quality == "" and AE != null and AE.AllEquipment_.has(resolved_item_id):
-		quality = str(AE.AllEquipment_[resolved_item_id].get("品质", "")).strip_edges()
+		quality = str(AE.AllEquipment_[resolved_item_id].get(DataKeys.QUALITY, "")).strip_edges()
 	if quality == "" or STANDARD_STRENGTH_QUALITIES.has(quality):
 		return 30
 	return PET_EQUIPMENT_MAX_STRENGTH_LEVEL
 
 
 func _generate_pet_equipment_random_stats(item_data: Dictionary) -> Array:
-	var strengthen_value: Variant = item_data.get("强化属性", {})
+	var strengthen_value: Variant = item_data.get(DataKeys.ENHANCE_PROP, {})
 	var strengthen: Dictionary = strengthen_value if strengthen_value is Dictionary else {}
 	var candidates: Array[String] = []
 	for stat_key in PET_EQUIPMENT_TEMPLATE_STAT_KEYS:
@@ -2833,14 +2839,14 @@ func _pet_equipment_gem_properties(sources: Array) -> Dictionary:
 		if not (source_value is Dictionary):
 			continue
 		var source: Dictionary = source_value
-		if not (source.get("宝石", null) is Array):
+		if not (source.get(DataKeys.GEM, null) is Array):
 			continue
 		return AE.get_divine_forge_gem_properties("", source)
 	return {}
 
 
 func take_pet_equipment_for_mosaic(index: int, expected_item: Variant, item_id: String) -> bool:
-	var mosaic_value: Variant = player_data.get("镶嵌列表", [])
+	var mosaic_value: Variant = player_data.get(DataKeys.INLAY_LIST, [])
 	if not (mosaic_value is Array) or not (mosaic_value as Array).is_empty():
 		return false
 	var shared := ensure_shared_pet_backpack()
@@ -2854,14 +2860,14 @@ func take_pet_equipment_for_mosaic(index: int, expected_item: Variant, item_id: 
 	if not (data_value is Dictionary):
 		item["Data"] = {}
 	var data: Dictionary = item["Data"]
-	if not data.has("宝石") or not (data["宝石"] is Array):
-		data["宝石"] = []
+	if not data.has(DataKeys.GEM) or not (data[DataKeys.GEM] is Array):
+		data[DataKeys.GEM] = []
 	(
 		(mosaic_value as Array)
 		. push_back(
 			{
 				"名字": item_id,
-				"强化等级": int(item.get("强化等级", 0)),
+				"强化等级": int(item.get(DataKeys.ENHANCE_LEVEL, 0)),
 				"Data": data,
 				"来源": "宠物背包",
 				"位置": index,
@@ -2876,7 +2882,7 @@ func take_pet_equipment_for_mosaic(index: int, expected_item: Variant, item_id: 
 func take_equipped_equipment_for_mosaic(
 	slot_type: String, expected_name: String, _expected_data: Dictionary
 ) -> Dictionary:
-	var mosaic_value: Variant = player_data.get("镶嵌列表", [])
+	var mosaic_value: Variant = player_data.get(DataKeys.INLAY_LIST, [])
 	if not (mosaic_value is Array) or not (mosaic_value as Array).is_empty():
 		return {}
 	if slot_type == "":
@@ -2889,15 +2895,15 @@ func take_equipped_equipment_for_mosaic(
 	if not (item_value is Dictionary):
 		return {}
 	var item: Dictionary = item_value
-	if str(item.get("名字", "")) != expected_name:
+	if str(item.get(DataKeys.NAME, "")) != expected_name:
 		return {}
 
 	var data: Dictionary = {}
 	var data_value: Variant = item.get("Data", {})
 	if data_value is Dictionary:
 		data = (data_value as Dictionary).duplicate(true)
-	if not data.has("宝石") or not (data["宝石"] is Array):
-		data["宝石"] = []
+	if not data.has(DataKeys.GEM) or not (data[DataKeys.GEM] is Array):
+		data[DataKeys.GEM] = []
 	var stored_item: Dictionary = item.duplicate(true)
 	stored_item["Data"] = data
 	(
@@ -2905,7 +2911,7 @@ func take_equipped_equipment_for_mosaic(
 		. push_back(
 			{
 				"名字": expected_name,
-				"强化等级": int(item.get("强化等级", 0)),
+				"强化等级": int(item.get(DataKeys.ENHANCE_LEVEL, 0)),
 				"Data": data,
 				"来源": "人物穿戴",
 				"位置": 0,
@@ -2923,7 +2929,7 @@ func take_equipped_equipment_for_mosaic(
 
 
 func restore_mosaic_equipment() -> bool:
-	var mosaic_value: Variant = player_data.get("镶嵌列表", [])
+	var mosaic_value: Variant = player_data.get(DataKeys.INLAY_LIST, [])
 	if not (mosaic_value is Array) or (mosaic_value as Array).is_empty():
 		return false
 	var mosaic_list: Array = mosaic_value
@@ -2939,7 +2945,9 @@ func restore_mosaic_equipment() -> bool:
 			var data_value: Variant = selected.get("Data", {})
 			if data_value is Dictionary:
 				item["Data"] = data_value
-			item["强化等级"] = int(selected.get("强化等级", item.get("强化等级", 0)))
+			item[DataKeys.ENHANCE_LEVEL] = int(
+				selected.get(DataKeys.ENHANCE_LEVEL, item.get(DataKeys.ENHANCE_LEVEL, 0))
+			)
 			var shared := ensure_shared_pet_backpack()
 			var already_returned := false
 			for shared_item in shared:
@@ -2955,8 +2963,10 @@ func restore_mosaic_equipment() -> bool:
 		var item_value: Variant = selected.get("穿戴装备", {})
 		if item_value is Dictionary:
 			restored_item = (item_value as Dictionary).duplicate(true)
-		restored_item["名字"] = str(selected.get("名字", restored_item.get("名字", "")))
-		restored_item["强化等级"] = int(selected.get("强化等级", restored_item.get("强化等级", 0)))
+		restored_item[DataKeys.NAME] = str(selected.get(DataKeys.NAME, restored_item.get(DataKeys.NAME, "")))
+		restored_item[DataKeys.ENHANCE_LEVEL] = int(
+			selected.get(DataKeys.ENHANCE_LEVEL, restored_item.get(DataKeys.ENHANCE_LEVEL, 0))
+		)
 		var data_value: Variant = selected.get("Data", restored_item.get("Data", {}))
 		restored_item["Data"] = (data_value as Dictionary).duplicate(true) if data_value is Dictionary else {}
 		if slot_type != "":
@@ -2965,20 +2975,31 @@ func restore_mosaic_equipment() -> bool:
 			var equipped: Array = player_data[slot_type]
 			if equipped.is_empty():
 				equipped.push_back(restored_item)
-			elif equipped[0] is Dictionary and str(equipped[0].get("名字", "")) == str(restored_item.get("名字", "")):
+			elif (
+				equipped[0] is Dictionary
+				and str(equipped[0].get(DataKeys.NAME, "")) == str(restored_item.get(DataKeys.NAME, ""))
+			):
 				equipped[0] = restored_item
 			else:
 				add_zb(
-					str(restored_item.get("名字", "")), int(restored_item.get("强化等级", 0)), restored_item.get("Data", {})
+					str(restored_item.get(DataKeys.NAME, "")),
+					int(restored_item.get(DataKeys.ENHANCE_LEVEL, 0)),
+					restored_item.get("Data", {})
 				)
 		else:
-			add_zb(str(restored_item.get("名字", "")), int(restored_item.get("强化等级", 0)), restored_item.get("Data", {}))
+			add_zb(
+				str(restored_item.get(DataKeys.NAME, "")),
+				int(restored_item.get(DataKeys.ENHANCE_LEVEL, 0)),
+				restored_item.get("Data", {})
+			)
 		RoleProp.get_equ_last_pro()
 		RoleProp.get_last_prop()
 		if is_instance_valid(RoleProp.SourcePlayer):
 			RoleProp.SourcePlayer.onEqchange()
 	else:
-		add_zb(str(selected.get("名字", "")), int(selected.get("强化等级", 0)), selected.get("Data", {}))
+		add_zb(
+			str(selected.get(DataKeys.NAME, "")), int(selected.get(DataKeys.ENHANCE_LEVEL, 0)), selected.get("Data", {})
+		)
 	mosaic_list.clear()
 	return true
 
@@ -3010,7 +3031,7 @@ func _pet_equipment_random_stat_total(random_stats: Array, aliases: Array, level
 			random_stat.get("数值", random_stat.get("基础值", random_stat.get("value", random_stat.get("base", 0))))
 		)
 		var strengthen_value := _pet_equipment_numeric_value(
-			random_stat.get("强化属性", random_stat.get("强化值", random_stat.get("strength", 0)))
+			random_stat.get(DataKeys.ENHANCE_PROP, random_stat.get("强化值", random_stat.get("strength", 0)))
 		)
 		total += base_value + strengthen_value * level
 	return total
@@ -3046,7 +3067,7 @@ func _pet_equipment_strength_from_sources(sources: Array, aliases: Array) -> flo
 		if not (source_value is Dictionary):
 			continue
 		var source: Dictionary = source_value
-		var strengthen_value: Variant = source.get("强化属性", {})
+		var strengthen_value: Variant = source.get(DataKeys.ENHANCE_PROP, {})
 		if not (strengthen_value is Dictionary):
 			continue
 		var value := _pet_equipment_number_from_sources([strengthen_value], aliases)
@@ -3079,16 +3100,23 @@ func _is_retired_test_pet_equipment(value: Variant) -> bool:
 	var item: Dictionary = value
 	var data_value: Variant = item.get("Data", {})
 	var data: Dictionary = data_value if data_value is Dictionary else {}
-	return str(item.get("名字", item.get("名称", data.get("名字", data.get("名称", ""))))) == "宠物护符"
+	return (
+		str(
+			item.get(
+				DataKeys.NAME, item.get(DataKeys.ALT_NAME, data.get(DataKeys.NAME, data.get(DataKeys.ALT_NAME, "")))
+			)
+		)
+		== "宠物护符"
+	)
 
 
 func get_capped_player_level() -> int:
-	return clampi(int(player_data.get("玩家等级", 1)), 1, PLAYER_MAX_LEVEL)
+	return clampi(int(player_data.get(DataKeys.PLAYER_LEVEL, 1)), 1, PLAYER_MAX_LEVEL)
 
 
 func enforce_level_caps() -> void:
 	var player_level := get_capped_player_level()
-	player_data["玩家等级"] = player_level
+	player_data[DataKeys.PLAYER_LEVEL] = player_level
 	player_data["玩家当前经验"] = 0 if player_level >= PLAYER_MAX_LEVEL else max(0, int(player_data.get("玩家当前经验", 0)))
 	var pets_value: Variant = player_data.get(PET_LIST_KEY, [])
 	if not (pets_value is Array):
@@ -3100,17 +3128,17 @@ func enforce_level_caps() -> void:
 
 func clamp_pet_level_to_player(pet: Dictionary, player_level: int = -1) -> bool:
 	var level_limit := get_capped_player_level() if player_level < 1 else clampi(player_level, 1, PLAYER_MAX_LEVEL)
-	var previous_level := int(pet.get("等级", 1))
+	var previous_level := int(pet.get(DataKeys.LEVEL, 1))
 	var pet_level := clampi(previous_level, 1, level_limit)
-	pet["等级"] = pet_level
+	pet[DataKeys.LEVEL] = pet_level
 	var next_exp := _pet_level_exp_requirement(pet_level)
 	pet["下级经验"] = next_exp
 	if pet.has("经验上限"):
 		pet["经验上限"] = next_exp
 	if pet_level >= level_limit:
-		pet["经验"] = 0
+		pet[DataKeys.EXP] = 0
 	else:
-		pet["经验"] = max(0, int(pet.get("经验", 0)))
+		pet[DataKeys.EXP] = max(0, int(pet.get(DataKeys.EXP, 0)))
 	if pet_level != previous_level:
 		_recalculate_pet_stats_after_level_clamp(pet)
 		return true
@@ -3127,7 +3155,7 @@ func _pet_level_exp_requirement(level: int) -> int:
 
 
 func _recalculate_pet_stats_after_level_clamp(pet: Dictionary) -> void:
-	var level_count: int = maxi(0, int(pet.get("等级", 1)) - 1)
+	var level_count: int = maxi(0, int(pet.get(DataKeys.LEVEL, 1)) - 1)
 	var hp_gain: int = int(round(float(pet.get("生命资质", 1000)) * 0.09))
 	var mp_gain: int = int(round(float(pet.get("魔法资质", 1000)) * 0.04))
 	var attack_gain: int = int(round(float(pet.get("攻击资质", 1000)) * 0.02))
@@ -3138,19 +3166,23 @@ func _recalculate_pet_stats_after_level_clamp(pet: Dictionary) -> void:
 	var new_mp_max: int = 180 + level_count * mp_gain
 	pet["生命上限"] = new_hp_max
 	pet["魔法上限"] = new_mp_max
-	pet["攻击"] = 65 + level_count * attack_gain
-	pet["防御"] = 60 + level_count * defense_gain
-	pet["物防"] = int(pet["防御"])
-	pet["防"] = int(pet["防御"])
-	pet["魔抗"] = int(pet["防御"])
-	pet["魔防"] = int(pet["防御"])
+	pet[DataKeys.ATTACK] = 65 + level_count * attack_gain
+	pet[DataKeys.DEFENSE] = 60 + level_count * defense_gain
+	pet["物防"] = int(pet[DataKeys.DEFENSE])
+	pet["防"] = int(pet[DataKeys.DEFENSE])
+	pet["魔抗"] = int(pet[DataKeys.DEFENSE])
+	pet["魔防"] = int(pet[DataKeys.DEFENSE])
 	pet["回血"] = 2 + level_count * hp_recover_gain
 	pet["回魔"] = 1 + level_count * mp_recover_gain
-	pet["生命"] = (
-		new_hp_max if int(pet.get("生命", new_hp_max)) <= 0 else clampi(int(pet.get("生命", new_hp_max)), 0, new_hp_max)
+	pet[DataKeys.HP] = (
+		new_hp_max
+		if int(pet.get(DataKeys.HP, new_hp_max)) <= 0
+		else clampi(int(pet.get(DataKeys.HP, new_hp_max)), 0, new_hp_max)
 	)
-	pet["魔法"] = (
-		new_mp_max if int(pet.get("魔法", new_mp_max)) <= 0 else clampi(int(pet.get("魔法", new_mp_max)), 0, new_mp_max)
+	pet[DataKeys.MP] = (
+		new_mp_max
+		if int(pet.get(DataKeys.MP, new_mp_max)) <= 0
+		else clampi(int(pet.get(DataKeys.MP, new_mp_max)), 0, new_mp_max)
 	)
 
 
@@ -3199,10 +3231,10 @@ func can_main_sword_array_battle(sword_id: String) -> bool:
 
 
 func ensure_skill_data() -> void:
-	var skill_data: Variant = player_data.get("技能学习", {})
+	var skill_data: Variant = player_data.get(DataKeys.SKILL_LEARNED, {})
 	if not (skill_data is Dictionary):
 		skill_data = {}
-		player_data["技能学习"] = skill_data
+		player_data[DataKeys.SKILL_LEARNED] = skill_data
 	for skill_number in range(1, 14):
 		var skill_key := "技能" + str(skill_number)
 		if not skill_data.has(skill_key) or not (skill_data[skill_key] is Dictionary):
@@ -3210,8 +3242,8 @@ func ensure_skill_data() -> void:
 		else:
 			if not skill_data[skill_key].has("学习"):
 				skill_data[skill_key]["学习"] = 0
-			if not skill_data[skill_key].has("等级"):
-				skill_data[skill_key]["等级"] = 0
+			if not skill_data[skill_key].has(DataKeys.LEVEL):
+				skill_data[skill_key][DataKeys.LEVEL] = 0
 	if not skill_data.has("技能键位") or not (skill_data["技能键位"] is Dictionary):
 		skill_data["技能键位"] = {"Y": "", "U": "", "I": "", "O": "", "L": ""}
 
@@ -3276,19 +3308,19 @@ func record_constellation_defeated_tier(constellation_level: int, tier: int) -> 
 func _remove_retired_wudu_magic_weapons() -> void:
 	if str(player_data.get("实战法宝", "")) in RETIRED_WUDU_MAGIC_WEAPONS:
 		player_data["实战法宝"] = ""
-	if player_data.get("法宝", []) is Array:
-		for index in range(player_data["法宝"].size() - 1, -1, -1):
-			var item = player_data["法宝"][index]
-			if item is Dictionary and str(item.get("名字", "")) in RETIRED_WUDU_MAGIC_WEAPONS:
-				player_data["法宝"].remove_at(index)
-	var equipment_pages = player_data.get("装备列表", {})
+	if player_data.get(DataKeys.MAGIC_WEAPON, []) is Array:
+		for index in range(player_data[DataKeys.MAGIC_WEAPON].size() - 1, -1, -1):
+			var item = player_data[DataKeys.MAGIC_WEAPON][index]
+			if item is Dictionary and str(item.get(DataKeys.NAME, "")) in RETIRED_WUDU_MAGIC_WEAPONS:
+				player_data[DataKeys.MAGIC_WEAPON].remove_at(index)
+	var equipment_pages = player_data.get(DataKeys.EQUIPMENT_LIST, {})
 	if equipment_pages is Dictionary:
 		for page in equipment_pages.values():
 			if not (page is Array):
 				continue
 			for index in range(page.size() - 1, -1, -1):
 				var item = page[index]
-				if item is Dictionary and str(item.get("名字", "")) in RETIRED_WUDU_MAGIC_WEAPONS:
+				if item is Dictionary and str(item.get(DataKeys.NAME, "")) in RETIRED_WUDU_MAGIC_WEAPONS:
 					page.remove_at(index)
 	_migrate_retired_xianyu_equipment()
 
@@ -3303,13 +3335,13 @@ func _remove_retired_classic_and_merchant_equipment() -> void:
 		if slot_items is Array:
 			_remove_retired_equipment_items(slot_items)
 
-	var equipment_pages = player_data.get("装备列表", {})
+	var equipment_pages = player_data.get(DataKeys.EQUIPMENT_LIST, {})
 	if equipment_pages is Dictionary:
 		for page in equipment_pages.values():
 			if page is Array:
 				_remove_retired_equipment_items(page)
 
-	var transmog = player_data.get("幻化列表", {})
+	var transmog = player_data.get(DataKeys.TRANSMOG_LIST, {})
 	if transmog is Dictionary:
 		for key in transmog.keys():
 			if _is_removed_equipment_id(str(transmog[key])):
@@ -3325,7 +3357,7 @@ func _remove_retired_classic_and_merchant_equipment() -> void:
 func _remove_retired_equipment_items(items: Array) -> void:
 	for index in range(items.size() - 1, -1, -1):
 		var item = items[index]
-		if item is Dictionary and _is_removed_equipment_id(str(item.get("名字", ""))):
+		if item is Dictionary and _is_removed_equipment_id(str(item.get(DataKeys.NAME, ""))):
 			items.remove_at(index)
 
 
@@ -3335,7 +3367,7 @@ func _migrate_retired_xianyu_equipment() -> void:
 		var slot_items = player_data.get(slot_name, [])
 		if slot_items is Array:
 			_migrate_retired_xianyu_item_array(slot_items)
-	var equipment_pages = player_data.get("装备列表", {})
+	var equipment_pages = player_data.get(DataKeys.EQUIPMENT_LIST, {})
 	if equipment_pages is Dictionary:
 		for page in equipment_pages.values():
 			if page is Array:
@@ -3343,7 +3375,7 @@ func _migrate_retired_xianyu_equipment() -> void:
 
 
 func _migrate_retired_xianyu_transmog() -> void:
-	var transmog = player_data.get("幻化列表", {})
+	var transmog = player_data.get(DataKeys.TRANSMOG_LIST, {})
 	if transmog is Dictionary:
 		for key in transmog.keys():
 			var old_id := str(transmog[key])
@@ -3370,7 +3402,7 @@ func _migrate_retired_xianyu_item_array(items: Array) -> void:
 		var item = items[index]
 		if not (item is Dictionary):
 			continue
-		var old_id := str(item.get("名字", ""))
+		var old_id := str(item.get(DataKeys.NAME, ""))
 		if old_id in RETIRED_XIANYU_REMOVE_IDS:
 			items.remove_at(index)
 		elif RETIRED_XIANYU_EQUIPMENT_MAP.has(old_id):
@@ -3382,9 +3414,9 @@ func _replace_retired_xianyu_item_data(item: Dictionary, new_id: String) -> void
 		return
 	var old_data = item.get("Data", {})
 	var new_data = AE.AllEquipment_[new_id].duplicate(true)
-	if old_data is Dictionary and old_data.has("宝石"):
-		new_data["宝石"] = old_data["宝石"].duplicate(true)
-	item["名字"] = new_id
+	if old_data is Dictionary and old_data.has(DataKeys.GEM):
+		new_data[DataKeys.GEM] = old_data[DataKeys.GEM].duplicate(true)
+	item[DataKeys.NAME] = new_id
 	item["Data"] = new_data
 
 
@@ -3418,15 +3450,15 @@ func _normalize_pet_passives(pet: Dictionary) -> void:
 
 
 func _is_pet_tiger(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetTiger":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetTiger":
 		return true
-	var name := str(pet.get("名称", ""))
+	var name := str(pet.get(DataKeys.ALT_NAME, ""))
 	return name == "虎丸" or name == "白灵虎" or name == "白虎将军" or name == "白虎战神" or name == "白虎"
 
 
 func _normalize_pet_tiger(pet: Dictionary) -> void:
 	var tiger_data := PET_TIGER_PET.duplicate(true)
-	var keep_fighting := bool(pet.get("出战", false))
+	var keep_fighting := bool(pet.get(DataKeys.DEPLOYED, false))
 	for key in tiger_data.keys():
 		if not pet.has(key):
 			pet[key] = (
@@ -3450,8 +3482,8 @@ func _normalize_pet_tiger(pet: Dictionary) -> void:
 	pet["魔法资质"] = clampi(int(pet.get("魔法资质", 1000)), 0, int(pet["魔法资质上限"]))
 	pet["攻击资质"] = clampi(int(pet.get("攻击资质", 1000)), 0, int(pet["攻击资质上限"]))
 	pet["防御资质"] = clampi(int(pet.get("防御资质", 1000)), 0, int(pet["防御资质上限"]))
-	pet["类型"] = "PetTiger"
-	pet["出战"] = keep_fighting
+	pet[DataKeys.TYPE] = "PetTiger"
+	pet[DataKeys.DEPLOYED] = keep_fighting
 
 
 func ensure_pet_dragon() -> bool:
@@ -3476,18 +3508,18 @@ func ensure_pet_dragon() -> bool:
 
 
 func _is_pet_dragon(pet: Dictionary) -> bool:
-	var pet_name := str(pet.get("名称", ""))
-	var pet_title := str(pet.get("名字", ""))
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, ""))
+	var pet_title := str(pet.get(DataKeys.NAME, ""))
 	if _is_pet_phoenix_name(pet_name) or _is_pet_phoenix_name(pet_title):
 		return false
-	if str(pet.get("类型", "")) == "PetDragon":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetDragon":
 		return true
 	return pet_name.begins_with("辰龙") or PET_DRAGON_STAGE_NAMES.values().has(pet_name)
 
 
 func _normalize_pet_dragon(pet: Dictionary) -> void:
 	var dragon_data := PET_DRAGON_PET.duplicate(true)
-	var keep_fighting := bool(pet.get("出战", false))
+	var keep_fighting := bool(pet.get(DataKeys.DEPLOYED, false))
 	for key in dragon_data.keys():
 		if not pet.has(key):
 			pet[key] = (
@@ -3507,19 +3539,19 @@ func _normalize_pet_dragon(pet: Dictionary) -> void:
 	pet["魔法资质上限"] = 1800 + wisdom_bonus
 	pet["攻击资质上限"] = 3000 + wisdom_bonus
 	pet["防御资质上限"] = 1800 + wisdom_bonus
-	pet["类型"] = "PetDragon"
-	var dragon_level := int(pet.get("等级", 1))
+	pet[DataKeys.TYPE] = "PetDragon"
+	var dragon_level := int(pet.get(DataKeys.LEVEL, 1))
 	var dragon_stage := 4 if dragon_level >= 50 else 3 if dragon_level >= 30 else 2 if dragon_level >= 15 else 1
 	pet["阶段"] = dragon_stage
-	pet["名称"] = str(PET_DRAGON_STAGE_NAMES[dragon_stage])
+	pet[DataKeys.ALT_NAME] = str(PET_DRAGON_STAGE_NAMES[dragon_stage])
 	pet["技能"] = (PET_DRAGON_STAGE_SKILLS.get(dragon_stage, []) as Array).duplicate(true)
-	if bool(pet.get("出战", false)):
+	if bool(pet.get(DataKeys.DEPLOYED, false)):
 		var active_name := str(player_data.get(ACTIVE_PET_KEY, ""))
 		if active_name == "" or active_name == "PetDragon" or PET_DRAGON_STAGE_NAMES.values().has(active_name):
 			player_data[ACTIVE_PET_KEY] = "PetDragon"
-	if not PET_DRAGON_STAGE_NAMES.values().has(str(pet.get("名称", ""))):
-		pet["名称"] = str(dragon_data.get("名称", "龙仔"))
-	pet["出战"] = keep_fighting or bool(pet.get("出战", false))
+	if not PET_DRAGON_STAGE_NAMES.values().has(str(pet.get(DataKeys.ALT_NAME, ""))):
+		pet[DataKeys.ALT_NAME] = str(dragon_data.get(DataKeys.ALT_NAME, "龙仔"))
+	pet[DataKeys.DEPLOYED] = keep_fighting or bool(pet.get(DataKeys.DEPLOYED, false))
 
 
 func ensure_pet_turtle() -> bool:
@@ -3544,15 +3576,17 @@ func ensure_pet_turtle() -> bool:
 
 
 func _is_pet_turtle(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetTurtle":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetTurtle":
 		return true
-	var pet_name := str(pet.get("名称", pet.get("名字", ""))).strip_edges()
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, ""))).strip_edges()
 	return PET_TURTLE_STAGE_NAMES.values().has(pet_name) or pet_name.begins_with("玄武")
 
 
 func _normalize_pet_turtle(pet: Dictionary) -> void:
 	var turtle_data := PET_TURTLE_PET.duplicate(true)
-	var keep_fighting := bool(pet.get("出战", false)) or str(player_data.get(ACTIVE_PET_KEY, "")) == "PetTurtle"
+	var keep_fighting := (
+		bool(pet.get(DataKeys.DEPLOYED, false)) or str(player_data.get(ACTIVE_PET_KEY, "")) == "PetTurtle"
+	)
 	for key in turtle_data.keys():
 		if not pet.has(key):
 			pet[key] = (
@@ -3576,14 +3610,14 @@ func _normalize_pet_turtle(pet: Dictionary) -> void:
 	pet["魔法资质"] = clampi(int(pet.get("魔法资质", 1000)), 0, int(pet["魔法资质上限"]))
 	pet["攻击资质"] = clampi(int(pet.get("攻击资质", 1000)), 0, int(pet["攻击资质上限"]))
 	pet["防御资质"] = clampi(int(pet.get("防御资质", 1000)), 0, int(pet["防御资质上限"]))
-	var turtle_level := int(pet.get("等级", 1))
+	var turtle_level := int(pet.get(DataKeys.LEVEL, 1))
 	var stage := 4 if turtle_level >= 50 else 3 if turtle_level >= 30 else 2 if turtle_level >= 15 else 1
-	pet["类型"] = "PetTurtle"
+	pet[DataKeys.TYPE] = "PetTurtle"
 	pet["阶段"] = stage
-	pet["名称"] = str(PET_TURTLE_STAGE_NAMES[stage])
-	pet["名字"] = str(PET_TURTLE_STAGE_NAMES[stage])
+	pet[DataKeys.ALT_NAME] = str(PET_TURTLE_STAGE_NAMES[stage])
+	pet[DataKeys.NAME] = str(PET_TURTLE_STAGE_NAMES[stage])
 	pet["技能"] = (PET_TURTLE_STAGE_SKILLS[stage] as Array).duplicate(true)
-	pet["出战"] = keep_fighting
+	pet[DataKeys.DEPLOYED] = keep_fighting
 	if keep_fighting:
 		player_data[ACTIVE_PET_KEY] = "PetTurtle"
 
@@ -3632,15 +3666,17 @@ func unlock_pet_rabbit() -> bool:
 
 
 func _is_pet_rabbit(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetRabbit":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetRabbit":
 		return true
-	var pet_name := str(pet.get("名称", pet.get("名字", ""))).strip_edges()
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, ""))).strip_edges()
 	return PET_RABBIT_STAGE_NAMES.values().has(pet_name)
 
 
 func _normalize_pet_rabbit(pet: Dictionary) -> void:
 	var base := PET_RABBIT_PET.duplicate(true)
-	var keep_fighting := bool(pet.get("出战", false)) or str(player_data.get(ACTIVE_PET_KEY, "")) == "PetRabbit"
+	var keep_fighting := (
+		bool(pet.get(DataKeys.DEPLOYED, false)) or str(player_data.get(ACTIVE_PET_KEY, "")) == "PetRabbit"
+	)
 	for key in base.keys():
 		if not pet.has(key):
 			pet[key] = base[key].duplicate(true) if base[key] is Dictionary or base[key] is Array else base[key]
@@ -3656,14 +3692,14 @@ func _normalize_pet_rabbit(pet: Dictionary) -> void:
 		var base_max := int(pet[str(key) + "基础上限"])
 		pet[str(key) + "上限"] = base_max + wisdom_bonus
 		pet[key] = clampi(int(pet.get(key, 1000)), 0, int(pet[str(key) + "上限"]))
-	var pet_level := int(pet.get("等级", 1))
+	var pet_level := int(pet.get(DataKeys.LEVEL, 1))
 	var stage := 4 if pet_level >= 50 else 3 if pet_level >= 30 else 2 if pet_level >= 15 else 1
-	pet["类型"] = "PetRabbit"
+	pet[DataKeys.TYPE] = "PetRabbit"
 	pet["阶段"] = stage
-	pet["名称"] = str(PET_RABBIT_STAGE_NAMES[stage])
-	pet["名字"] = str(PET_RABBIT_STAGE_NAMES[stage])
+	pet[DataKeys.ALT_NAME] = str(PET_RABBIT_STAGE_NAMES[stage])
+	pet[DataKeys.NAME] = str(PET_RABBIT_STAGE_NAMES[stage])
 	pet["技能"] = (PET_RABBIT_STAGE_SKILLS[stage] as Array).duplicate(true)
-	pet["出战"] = keep_fighting
+	pet[DataKeys.DEPLOYED] = keep_fighting
 	if keep_fighting:
 		player_data[ACTIVE_PET_KEY] = "PetRabbit"
 
@@ -3690,10 +3726,10 @@ func ensure_pet_mouse() -> bool:
 
 
 func _is_pet_mouse(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetMouse":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetMouse":
 		return true
-	var pet_name := str(pet.get("名称", "")).strip_edges()
-	var pet_title := str(pet.get("名字", "")).strip_edges()
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, "")).strip_edges()
+	var pet_title := str(pet.get(DataKeys.NAME, "")).strip_edges()
 	return PET_MOUSE_STAGE_NAMES.values().has(pet_name) or PET_MOUSE_STAGE_NAMES.values().has(pet_title)
 
 
@@ -3701,7 +3737,9 @@ func _normalize_pet_mouse(pet: Dictionary) -> void:
 	var base := PET_MOUSE_PET.duplicate(true)
 	var active_name := str(player_data.get(ACTIVE_PET_KEY, ""))
 	var keep_fighting := (
-		bool(pet.get("出战", false)) or active_name == "PetMouse" or PET_MOUSE_STAGE_NAMES.values().has(active_name)
+		bool(pet.get(DataKeys.DEPLOYED, false))
+		or active_name == "PetMouse"
+		or PET_MOUSE_STAGE_NAMES.values().has(active_name)
 	)
 	for key in base.keys():
 		if not pet.has(key):
@@ -3718,14 +3756,14 @@ func _normalize_pet_mouse(pet: Dictionary) -> void:
 		var base_max := int(pet[str(key) + "基础上限"])
 		pet[str(key) + "上限"] = base_max + wisdom_bonus
 		pet[key] = clampi(int(pet.get(key, 1000)), 0, int(pet[str(key) + "上限"]))
-	var pet_level := int(pet.get("等级", 1))
+	var pet_level := int(pet.get(DataKeys.LEVEL, 1))
 	var stage := 2 if pet_level >= 50 else 1
-	pet["类型"] = "PetMouse"
+	pet[DataKeys.TYPE] = "PetMouse"
 	pet["阶段"] = stage
-	pet["名称"] = str(PET_MOUSE_STAGE_NAMES[stage])
-	pet["名字"] = str(PET_MOUSE_STAGE_NAMES[stage])
+	pet[DataKeys.ALT_NAME] = str(PET_MOUSE_STAGE_NAMES[stage])
+	pet[DataKeys.NAME] = str(PET_MOUSE_STAGE_NAMES[stage])
 	pet["技能"] = _pet_mouse_skills_for_level(pet_level)
-	pet["出战"] = keep_fighting
+	pet[DataKeys.DEPLOYED] = keep_fighting
 	if keep_fighting:
 		player_data[ACTIVE_PET_KEY] = "PetMouse"
 
@@ -3778,9 +3816,9 @@ func ensure_pet_yin_tiger() -> bool:
 
 
 func _is_pet_yin_tiger(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetYinTiger":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetYinTiger":
 		return true
-	var name := str(pet.get("名称", pet.get("名字", ""))).strip_edges()
+	var name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, ""))).strip_edges()
 	return PET_YIN_TIGER_STAGE_NAMES.values().has(name) or name in ["寅虎", "银角虎"]
 
 
@@ -3788,7 +3826,7 @@ func _normalize_pet_yin_tiger(pet: Dictionary) -> void:
 	var base := PET_YIN_TIGER_PET.duplicate(true)
 	var active_name := str(player_data.get(ACTIVE_PET_KEY, ""))
 	var keep_fighting := (
-		bool(pet.get("出战", false))
+		bool(pet.get(DataKeys.DEPLOYED, false))
 		or active_name == "PetYinTiger"
 		or PET_YIN_TIGER_STAGE_NAMES.values().has(active_name)
 	)
@@ -3806,22 +3844,22 @@ func _normalize_pet_yin_tiger(pet: Dictionary) -> void:
 		pet[base_key] = int(base.get(base_key, pet.get(base_key, 2000)))
 		pet[max_key] = int(pet[base_key]) + wisdom_bonus
 		pet[quality_key] = clampi(int(pet.get(quality_key, 1000)), 0, int(pet[max_key]))
-	var pet_level := int(pet.get("等级", 1))
+	var pet_level := int(pet.get(DataKeys.LEVEL, 1))
 	var stage := 4 if pet_level >= 50 else 3 if pet_level >= 30 else 2 if pet_level >= 15 else 1
-	pet["类型"] = "PetYinTiger"
+	pet[DataKeys.TYPE] = "PetYinTiger"
 	pet["阶段"] = stage
-	pet["名称"] = str(PET_YIN_TIGER_STAGE_NAMES[stage])
-	pet["名字"] = str(PET_YIN_TIGER_STAGE_NAMES[stage])
+	pet[DataKeys.ALT_NAME] = str(PET_YIN_TIGER_STAGE_NAMES[stage])
+	pet[DataKeys.NAME] = str(PET_YIN_TIGER_STAGE_NAMES[stage])
 	pet["技能"] = (PET_YIN_TIGER_STAGE_SKILLS[stage] as Array).duplicate(true)
-	pet["出战"] = keep_fighting
+	pet[DataKeys.DEPLOYED] = keep_fighting
 	if keep_fighting:
 		player_data[ACTIVE_PET_KEY] = "PetYinTiger"
 
 
 func _is_pet_neat(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetNeat":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetNeat":
 		return true
-	var name := str(pet.get("名称", pet.get("名字", ""))).strip_edges()
+	var name := str(pet.get(DataKeys.ALT_NAME, pet.get(DataKeys.NAME, ""))).strip_edges()
 	return name in PET_NEAT_STAGE_NAMES.values() or name in ["丑牛", "丑牛元帅", "丑牛大元帅"]
 
 
@@ -3829,19 +3867,21 @@ func _normalize_pet_neat(pet: Dictionary) -> void:
 	var base := PET_NEAT_PET.duplicate(true)
 	var active_name := str(player_data.get(ACTIVE_PET_KEY, ""))
 	var keep_fighting := (
-		bool(pet.get("出战", false)) or active_name == "PetNeat" or active_name in PET_NEAT_STAGE_NAMES.values()
+		bool(pet.get(DataKeys.DEPLOYED, false))
+		or active_name == "PetNeat"
+		or active_name in PET_NEAT_STAGE_NAMES.values()
 	)
 	for key in base.keys():
 		if not pet.has(key):
 			pet[key] = base[key].duplicate(true) if base[key] is Dictionary or base[key] is Array else base[key]
-	var level := int(pet.get("等级", 1))
+	var level := int(pet.get(DataKeys.LEVEL, 1))
 	var stage := 4 if level >= 50 else 3 if level >= 30 else 2 if level >= 15 else 1
-	pet["类型"] = "PetNeat"
+	pet[DataKeys.TYPE] = "PetNeat"
 	pet["阶段"] = stage
-	pet["名称"] = PET_NEAT_STAGE_NAMES[stage]
-	pet["名字"] = PET_NEAT_STAGE_NAMES[stage]
+	pet[DataKeys.ALT_NAME] = PET_NEAT_STAGE_NAMES[stage]
+	pet[DataKeys.NAME] = PET_NEAT_STAGE_NAMES[stage]
 	pet["技能"] = (PET_NEAT_STAGE_SKILLS[stage] as Array).duplicate(true)
-	pet["出战"] = keep_fighting
+	pet[DataKeys.DEPLOYED] = keep_fighting
 	if keep_fighting:
 		player_data[ACTIVE_PET_KEY] = "PetNeat"
 
@@ -3868,10 +3908,10 @@ func ensure_pet_phoenix() -> bool:
 
 
 func _is_pet_phoenix(pet: Dictionary) -> bool:
-	if str(pet.get("类型", "")) == "PetPhoenix":
+	if str(pet.get(DataKeys.TYPE, "")) == "PetPhoenix":
 		return true
-	var pet_name := str(pet.get("名称", ""))
-	var pet_title := str(pet.get("名字", ""))
+	var pet_name := str(pet.get(DataKeys.ALT_NAME, ""))
+	var pet_title := str(pet.get(DataKeys.NAME, ""))
 	return _is_pet_phoenix_name(pet_name) or _is_pet_phoenix_name(pet_title)
 
 
@@ -3886,7 +3926,9 @@ func _is_pet_phoenix_name(pet_name: String) -> bool:
 
 func _normalize_pet_phoenix(pet: Dictionary) -> void:
 	var phoenix_data := PET_PHOENIX_PET.duplicate(true)
-	var keep_fighting := bool(pet.get("出战", false)) or str(player_data.get(ACTIVE_PET_KEY, "")) == "PetPhoenix"
+	var keep_fighting := (
+		bool(pet.get(DataKeys.DEPLOYED, false)) or str(player_data.get(ACTIVE_PET_KEY, "")) == "PetPhoenix"
+	)
 	for key in phoenix_data.keys():
 		if not pet.has(key):
 			pet[key] = (
@@ -3906,14 +3948,14 @@ func _normalize_pet_phoenix(pet: Dictionary) -> void:
 	pet["魔法资质上限"] = 1800 + wisdom_bonus
 	pet["攻击资质上限"] = 3000 + wisdom_bonus
 	pet["防御资质上限"] = 1800 + wisdom_bonus
-	pet["类型"] = "PetPhoenix"
-	var phoenix_level := int(pet.get("等级", 1))
+	pet[DataKeys.TYPE] = "PetPhoenix"
+	var phoenix_level := int(pet.get(DataKeys.LEVEL, 1))
 	var phoenix_stage := 4 if phoenix_level >= 50 else 3 if phoenix_level >= 30 else 2 if phoenix_level >= 15 else 1
 	pet["阶段"] = phoenix_stage
-	pet["名称"] = str(PET_PHOENIX_STAGE_NAMES[phoenix_stage])
-	pet["名字"] = str(PET_PHOENIX_STAGE_NAMES[phoenix_stage])
+	pet[DataKeys.ALT_NAME] = str(PET_PHOENIX_STAGE_NAMES[phoenix_stage])
+	pet[DataKeys.NAME] = str(PET_PHOENIX_STAGE_NAMES[phoenix_stage])
 	pet["技能"] = (PET_PHOENIX_STAGE_SKILLS.get(phoenix_stage, []) as Array).duplicate(true)
-	pet["出战"] = keep_fighting
+	pet[DataKeys.DEPLOYED] = keep_fighting
 	if keep_fighting:
 		player_data[ACTIVE_PET_KEY] = "PetPhoenix"
 
@@ -3925,9 +3967,9 @@ var SynList = {
 
 func get_total_zb_list():
 	var list = []
-	for i in range(player_data["装备列表"].size()):
+	for i in range(player_data[DataKeys.EQUIPMENT_LIST].size()):
 		var u = i + 1
-		for z in player_data["装备列表"]["页码" + str(u)]:
+		for z in player_data[DataKeys.EQUIPMENT_LIST]["页码" + str(u)]:
 			list.push_back(z)
 	return list
 
@@ -3935,7 +3977,7 @@ func get_total_zb_list():
 func record_acquired_equipment(item_id: String) -> void:
 	if not AE.AllEquipment_.has(item_id) or _is_removed_equipment_id(item_id):
 		return
-	if str(AE.AllEquipment_[item_id].get("类型", "")) not in ["武器", "防具", "时装", "翅膀", "头衔"]:
+	if str(AE.AllEquipment_[item_id].get(DataKeys.TYPE, "")) not in ["武器", "防具", "时装", "翅膀", "头衔"]:
 		return
 	var acquired_value: Variant = player_data.get("已获取装备列表", [])
 	var acquired: Array = acquired_value if acquired_value is Array else []
@@ -3949,18 +3991,18 @@ func ensure_acquired_equipment_data() -> void:
 		player_data["已获取装备列表"] = []
 	for item in get_total_zb_list():
 		if item is Dictionary:
-			record_acquired_equipment(str(item.get("名字", "")))
+			record_acquired_equipment(str(item.get(DataKeys.NAME, "")))
 	for slot in ["武器", "防具", "时装", "翅膀", "头衔"]:
 		for item in player_data.get(slot, []):
 			if item is Dictionary:
-				record_acquired_equipment(str(item.get("名字", "")))
+				record_acquired_equipment(str(item.get(DataKeys.NAME, "")))
 	var owned_value: Variant = player_data.get("幻化拥有列表", [])
 	if owned_value is Array:
 		for item_id in owned_value:
 			record_acquired_equipment(str(item_id))
 	else:
 		player_data["幻化拥有列表"] = []
-	var transmog_value: Variant = player_data.get("幻化列表", {})
+	var transmog_value: Variant = player_data.get(DataKeys.TRANSMOG_LIST, {})
 	if transmog_value is Dictionary:
 		for item_id in transmog_value.values():
 			record_acquired_equipment(str(item_id))
@@ -3983,7 +4025,9 @@ func add_zb(name_, qh_level, Data_) -> bool:
 	var data: Dictionary = Data_.duplicate(true) if Data_ is Dictionary else {}
 	if data.is_empty():
 		data = (AE.AllEquipment_[equipment_id] as Dictionary).duplicate(true)
-	player_data["装备列表"]["页码" + str(page_number)].push_back({"名字": equipment_id, "强化等级": qh_level, "Data": data})
+	player_data[DataKeys.EQUIPMENT_LIST]["页码" + str(page_number)].push_back(
+		{"名字": equipment_id, "强化等级": qh_level, "Data": data}
+	)
 	record_acquired_equipment(equipment_id)
 	return true
 
@@ -4001,7 +4045,7 @@ func add_fb(name_, qh_level, wx, Data_) -> bool:
 	var data: Dictionary = Data_.duplicate(true) if Data_ is Dictionary else {}
 	if data.is_empty():
 		data = (AE.AllEquipment_[equipment_id] as Dictionary).duplicate(true)
-	player_data["装备列表"]["页码" + str(page_number)].push_back(
+	player_data[DataKeys.EQUIPMENT_LIST]["页码" + str(page_number)].push_back(
 		{"名字": equipment_id, "强化等级": qh_level, "五行": wx, "Data": data}
 	)
 	return true
@@ -4011,18 +4055,18 @@ func remove_zb(page: int, local: int) -> Dictionary:
 	if page <= 0:
 		return {}
 	var page_key: String = "页码" + str(page)
-	var pages: Variant = player_data.get("装备列表", {})
+	var pages: Variant = player_data.get(DataKeys.EQUIPMENT_LIST, {})
 	if not pages is Dictionary or not pages.has(page_key):
 		return {}
 	var page_items: Variant = pages.get(page_key, [])
 	if not page_items is Array or local >= page_items.size():
 		return {}
 	var item: Dictionary = page_items[local]
-	var name_ = item.get("名字", "")
+	var name_ = item.get(DataKeys.NAME, "")
 	record_acquired_equipment(str(name_))
-	var qh_level = item.get("强化等级", 0)
+	var qh_level = item.get(DataKeys.ENHANCE_LEVEL, 0)
 	var Data = item.get("Data", {})
-	var wx = item.get("五行", [])
+	var wx = item.get(DataKeys.FIVE_ELEMENTS, [])
 	var result_item: Dictionary = {"名字": name_, "强化等级": qh_level, "五行": wx, "Data": Data}
 	page_items.remove_at(local)
 	return result_item
@@ -4030,17 +4074,17 @@ func remove_zb(page: int, local: int) -> Dictionary:
 
 func get_zb_data(page: int, local: int) -> Dictionary:
 	var page_key: String = "页码" + str(page)
-	var pages: Variant = player_data.get("装备列表", {})
+	var pages: Variant = player_data.get(DataKeys.EQUIPMENT_LIST, {})
 	if not pages is Dictionary or not pages.has(page_key):
 		return {}
 	var page_items: Variant = pages.get(page_key, [])
 	if not page_items is Array or local >= page_items.size():
 		return {}
 	var item: Dictionary = page_items[local]
-	var name_ = item.get("名字", "")
-	var qh_level = item.get("强化等级", 0)
+	var name_ = item.get(DataKeys.NAME, "")
+	var qh_level = item.get(DataKeys.ENHANCE_LEVEL, 0)
 	var Data = item.get("Data", {})
-	var wx = item.get("五行", [])
+	var wx = item.get(DataKeys.FIVE_ELEMENTS, [])
 	return {"名字": name_, "强化等级": qh_level, "五行": wx, "Data": Data}
 
 
@@ -4078,9 +4122,9 @@ func organize_backpack() -> bool:
 
 
 func _backpack_material_group(item: Dictionary) -> Array:
-	var item_id := str(item.get("名字", ""))
+	var item_id := str(item.get(DataKeys.NAME, ""))
 	var template: Dictionary = AE.AllEquipment_.get(item_id, {})
-	var item_name := str(template.get("名字", item_id))
+	var item_name := str(template.get(DataKeys.NAME, item_id))
 	var group := str(template.get("所属", ""))
 	var family := item_name
 	var tier := 0
@@ -4117,40 +4161,40 @@ func _backpack_material_before(a: Dictionary, b: Dictionary) -> bool:
 
 func _backpack_item_before(a: Dictionary, b: Dictionary) -> bool:
 	var quality_order := ["普通", "优秀", "精良", "史诗", "邪灵", "魂器", "传说", "神器", "玄冥", "黑神话", "无敌"]
-	var a_id := str(a.get("名字", ""))
-	var b_id := str(b.get("名字", ""))
+	var a_id := str(a.get(DataKeys.NAME, ""))
+	var b_id := str(b.get(DataKeys.NAME, ""))
 	var a_template: Dictionary = AE.AllEquipment_.get(a_id, {})
 	var b_template: Dictionary = AE.AllEquipment_.get(b_id, {})
 	var a_data: Dictionary = a.get("Data", {}) if a.get("Data", {}) is Dictionary else {}
 	var b_data: Dictionary = b.get("Data", {}) if b.get("Data", {}) is Dictionary else {}
-	var a_rank := quality_order.find(str(a_data.get("品质", a_template.get("品质", ""))))
-	var b_rank := quality_order.find(str(b_data.get("品质", b_template.get("品质", ""))))
+	var a_rank := quality_order.find(str(a_data.get(DataKeys.QUALITY, a_template.get(DataKeys.QUALITY, ""))))
+	var b_rank := quality_order.find(str(b_data.get(DataKeys.QUALITY, b_template.get(DataKeys.QUALITY, ""))))
 	if a_rank != b_rank:
 		return a_rank < b_rank
-	var a_type := str(a_data.get("类型", a_template.get("类型", "")))
-	var b_type := str(b_data.get("类型", b_template.get("类型", "")))
+	var a_type := str(a_data.get(DataKeys.TYPE, a_template.get(DataKeys.TYPE, "")))
+	var b_type := str(b_data.get(DataKeys.TYPE, b_template.get(DataKeys.TYPE, "")))
 	if a_type != b_type:
 		return a_type < b_type
-	var a_name := str(a_template.get("名字", a_id))
-	var b_name := str(b_template.get("名字", b_id))
+	var a_name := str(a_template.get(DataKeys.NAME, a_id))
+	var b_name := str(b_template.get(DataKeys.NAME, b_id))
 	if a_name != b_name:
 		return a_name < b_name
 	if a_id != b_id:
 		return a_id < b_id
 	if int(a_data.get("神铸阶段", 0)) != int(b_data.get("神铸阶段", 0)):
 		return int(a_data.get("神铸阶段", 0)) > int(b_data.get("神铸阶段", 0))
-	return int(a.get("强化等级", 0)) > int(b.get("强化等级", 0))
+	return int(a.get(DataKeys.ENHANCE_LEVEL, 0)) > int(b.get(DataKeys.ENHANCE_LEVEL, 0))
 
 
 func zl_zb():
 	var list = []
-	for i in range(player_data["装备列表"].size()):
+	for i in range(player_data[DataKeys.EQUIPMENT_LIST].size()):
 		var u = i + 1
-		for z in player_data["装备列表"]["页码" + str(u)]:
+		for z in player_data[DataKeys.EQUIPMENT_LIST]["页码" + str(u)]:
 			list.push_back(z)
-		player_data["装备列表"]["页码" + str(u)].clear()
+		player_data[DataKeys.EQUIPMENT_LIST]["页码" + str(u)].clear()
 	for i in list:
-		var lx = AE.AllEquipment_[i.名字]["类型"]
+		var lx = AE.AllEquipment_[i.名字][DataKeys.TYPE]
 		if lx != "法宝":
 			add_zb(i.名字, i.强化等级, i.Data)
 		else:
@@ -4163,7 +4207,7 @@ func check_eq_zb(Type, need_):
 
 	var list = player_data[Type]
 	if list.size() != 0:
-		var name_ = list[0]["名字"]
+		var name_ = list[0][DataKeys.NAME]
 		return str(name_) == str(need_)
 	return false
 
@@ -4171,7 +4215,7 @@ func check_eq_zb(Type, need_):
 func check_zb(need_: String) -> Array:
 	var list: Array = []
 	var get_infor: Array = []
-	var zb_pages: Variant = player_data.get("装备列表", {})
+	var zb_pages: Variant = player_data.get(DataKeys.EQUIPMENT_LIST, {})
 	if zb_pages is Dictionary:
 		for i in range(zb_pages.size()):
 			var page_items: Variant = zb_pages.get("页码" + str(i + 1), [])
@@ -4186,7 +4230,7 @@ func check_zb(need_: String) -> Array:
 	if shengu.size() > 0:
 		list.push_back(shengu[0])
 	for item in list:
-		if item is Dictionary and str(item.get("名字", "")) == need_:
+		if item is Dictionary and str(item.get(DataKeys.NAME, "")) == need_:
 			get_infor.push_back({"data": item})
 	return get_infor
 
@@ -4206,7 +4250,7 @@ func check_have_wx(need_, wx):
 	else:
 		for i in list:
 			var get_data = i["data"]
-			var get_wx = get_data["五行"]
+			var get_wx = get_data[DataKeys.FIVE_ELEMENTS]
 			if get_wx.has(wx):
 				return true
 	return false
@@ -4214,25 +4258,25 @@ func check_have_wx(need_, wx):
 
 func get_all_item():
 	var list = []
-	for i in range(player_data["装备列表"].size()):
+	for i in range(player_data[DataKeys.EQUIPMENT_LIST].size()):
 		var u = i + 1
-		for z in player_data["装备列表"]["页码" + str(u)]:
+		for z in player_data[DataKeys.EQUIPMENT_LIST]["页码" + str(u)]:
 			list.push_back(z)
 
-	if player_data["武器"].size() != 0:
-		list.push_back(player_data["武器"][0])
-	if player_data["防具"].size() != 0:
-		list.push_back(player_data["防具"][0])
+	if player_data[DataKeys.WEAPON].size() != 0:
+		list.push_back(player_data[DataKeys.WEAPON][0])
+	if player_data[DataKeys.ARMOR].size() != 0:
+		list.push_back(player_data[DataKeys.ARMOR][0])
 	if player_data["饰品"].size() != 0:
 		list.push_back(player_data["饰品"][0])
-	if player_data["法宝"].size() != 0:
-		list.push_back(player_data["法宝"][0])
-	if player_data["时装"].size() != 0:
-		list.push_back(player_data["时装"][0])
-	if player_data["头衔"].size() != 0:
-		list.push_back(player_data["头衔"][0])
-	if player_data["翅膀"].size() != 0:
-		list.push_back(player_data["翅膀"][0])
+	if player_data[DataKeys.MAGIC_WEAPON].size() != 0:
+		list.push_back(player_data[DataKeys.MAGIC_WEAPON][0])
+	if player_data[DataKeys.FASHION].size() != 0:
+		list.push_back(player_data[DataKeys.FASHION][0])
+	if player_data[DataKeys.TITLE].size() != 0:
+		list.push_back(player_data[DataKeys.TITLE][0])
+	if player_data[DataKeys.WINGS].size() != 0:
+		list.push_back(player_data[DataKeys.WINGS][0])
 	return list
 
 
@@ -4245,8 +4289,8 @@ func check_wx_num():
 			var get_data = i["Data"]
 			var get_wx
 
-			if get_data["类型"] == "法宝":
-				get_wx = get_data["五行"]
+			if get_data[DataKeys.TYPE] == "法宝":
+				get_wx = get_data[DataKeys.FIVE_ELEMENTS]
 
 	return false
 
@@ -4256,7 +4300,7 @@ func get_most_level(need_):
 	if PlayerData.check_zb(need_).size() != 0:
 		for i in PlayerData.check_zb(need_):
 			var get_data = i["data"]
-			var get_level = get_data["强化等级"]
+			var get_level = get_data[DataKeys.ENHANCE_LEVEL]
 			LevelList.push_back(get_level)
 		LevelList.sort()
 		LevelList.reverse()
@@ -4270,18 +4314,18 @@ func get_item_data(need_name):
 	var is_empty_ = true
 	var get_number: int
 	var x = 1
-	for i in player_data["道具列表"]:
-		if player_data["道具列表"][i].size() == 0:
+	for i in player_data[DataKeys.ITEM_LIST]:
+		if player_data[DataKeys.ITEM_LIST][i].size() == 0:
 			continue
 		else:
 			is_empty_ = false
 			break
 	if is_empty_ == true:
 		return 0
-	while x <= player_data["道具列表"].size():
-		for i in player_data["道具列表"]["页码" + str(x)]:
-			if i["名字"] == need_name:
-				get_number = i["数量"]
+	while x <= player_data[DataKeys.ITEM_LIST].size():
+		for i in player_data[DataKeys.ITEM_LIST]["页码" + str(x)]:
+			if i[DataKeys.NAME] == need_name:
+				get_number = i[DataKeys.COUNT]
 				return get_number
 		x += 1
 	return 0
@@ -4293,18 +4337,18 @@ func get_xhp_data(need_name):
 	var is_empty_ = true
 	var get_number: int
 	var x = 1
-	for i in player_data["消耗品列表"]:
-		if player_data["消耗品列表"][i].size() == 0:
+	for i in player_data[DataKeys.CONSUMABLE_LIST]:
+		if player_data[DataKeys.CONSUMABLE_LIST][i].size() == 0:
 			continue
 		else:
 			is_empty_ = false
 			break
 	if is_empty_ == true:
 		return 0
-	while x <= player_data["消耗品列表"].size():
-		for i in player_data["消耗品列表"]["页码" + str(x)]:
-			if i["名字"] == need_name:
-				get_number = i["数量"]
+	while x <= player_data[DataKeys.CONSUMABLE_LIST].size():
+		for i in player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(x)]:
+			if i[DataKeys.NAME] == need_name:
+				get_number = i[DataKeys.COUNT]
 				return get_number
 		x += 1
 	return 0
@@ -4313,18 +4357,18 @@ func get_xhp_data(need_name):
 func get_dj_page(need_name):
 	if need_name == "empty":
 		return 0
-	for page_num in range(1, player_data["道具列表"].size() + 1):
-		for u in player_data["道具列表"]["页码" + str(page_num)]:
-			if u["名字"] == need_name:
+	for page_num in range(1, player_data[DataKeys.ITEM_LIST].size() + 1):
+		for u in player_data[DataKeys.ITEM_LIST]["页码" + str(page_num)]:
+			if u[DataKeys.NAME] == need_name:
 				return page_num
 	return 0
 
 
 func get_total_dj_list():
 	var list = []
-	for i in range(player_data["道具列表"].size()):
+	for i in range(player_data[DataKeys.ITEM_LIST].size()):
 		var u = i + 1
-		for z in player_data["道具列表"]["页码" + str(u)]:
+		for z in player_data[DataKeys.ITEM_LIST]["页码" + str(u)]:
 			list.push_back(z)
 	return list
 
@@ -4337,10 +4381,10 @@ func add_dj(name_, number, locked := false):
 
 	var existing_page = get_dj_page(name_)
 	if existing_page != 0:
-		var existing_list = player_data["道具列表"]["页码" + str(existing_page)]
+		var existing_list = player_data[DataKeys.ITEM_LIST]["页码" + str(existing_page)]
 		for i in existing_list:
-			if name_ == i["名字"]:
-				i["数量"] += number
+			if name_ == i[DataKeys.NAME]:
+				i[DataKeys.COUNT] += number
 				i["锁定"] = bool(i.get("锁定", false)) or bool(locked)
 				return
 
@@ -4349,29 +4393,29 @@ func add_dj(name_, number, locked := false):
 		return
 
 	var Data_ = AE.AllEquipment_[name_]
-	player_data["道具列表"]["页码" + str(usable_page)].push_back(
+	player_data[DataKeys.ITEM_LIST]["页码" + str(usable_page)].push_back(
 		{"名字": name_, "数量": number, "Data": Data_, "锁定": bool(locked)}
 	)
 
 
 func zl_dj():
 	var list = []
-	for i in range(player_data["道具列表"].size()):
+	for i in range(player_data[DataKeys.ITEM_LIST].size()):
 		var u = i + 1
-		for z in player_data["道具列表"]["页码" + str(u)]:
+		for z in player_data[DataKeys.ITEM_LIST]["页码" + str(u)]:
 			list.push_back(z)
-		player_data["道具列表"]["页码" + str(u)].clear()
+		player_data[DataKeys.ITEM_LIST]["页码" + str(u)].clear()
 	for i in list:
 		add_dj(i.名字, i.数量, bool(i.get("锁定", false)))
 
 
 func zl_xhp():
 	var list = []
-	for i in range(player_data["消耗品列表"].size()):
+	for i in range(player_data[DataKeys.CONSUMABLE_LIST].size()):
 		var u = i + 1
-		for z in player_data["消耗品列表"]["页码" + str(u)]:
+		for z in player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(u)]:
 			list.push_back(z)
-		player_data["消耗品列表"]["页码" + str(u)].clear()
+		player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(u)].clear()
 	for i in list:
 		add_xhp(i.名字, i.数量, bool(i.get("锁定", false)))
 
@@ -4386,16 +4430,16 @@ func remove_dj(name_, page, num):
 	var all_coin: int
 	while name_ != get_name_:
 		x += 1
-		if x > player_data["道具列表"]["页码" + str(page)].size() - 1:
+		if x > player_data[DataKeys.ITEM_LIST]["页码" + str(page)].size() - 1:
 			return {"名字": name_, "数量": 0, "获得灵魂": 0, "卖出数量": 0}
-		get_name_ = player_data["道具列表"]["页码" + str(page)][x]["名字"]
-	if player_data["道具列表"]["页码" + str(page)][x]["数量"] <= num:
-		num = player_data["道具列表"]["页码" + str(page)][x]["数量"]
-	var last_num = player_data["道具列表"]["页码" + str(page)][x]["数量"] - num
+		get_name_ = player_data[DataKeys.ITEM_LIST]["页码" + str(page)][x][DataKeys.NAME]
+	if player_data[DataKeys.ITEM_LIST]["页码" + str(page)][x][DataKeys.COUNT] <= num:
+		num = player_data[DataKeys.ITEM_LIST]["页码" + str(page)][x][DataKeys.COUNT]
+	var last_num = player_data[DataKeys.ITEM_LIST]["页码" + str(page)][x][DataKeys.COUNT] - num
 
-	player_data["道具列表"]["页码" + str(page)][x]["数量"] -= num
+	player_data[DataKeys.ITEM_LIST]["页码" + str(page)][x][DataKeys.COUNT] -= num
 	if last_num <= 0:
-		player_data["道具列表"]["页码" + str(page)].remove_at(x)
+		player_data[DataKeys.ITEM_LIST]["页码" + str(page)].remove_at(x)
 	if not Global.is_in_ldl:
 		all_coin = AE.AllEquipment_[name_]["售价"] * num
 		add_soul(all_coin)
@@ -4406,16 +4450,16 @@ func remove_dj(name_, page, num):
 func remove_item(item_name: String, count: int) -> bool:
 	var remaining = count
 
-	for page_key in player_data["消耗品列表"].keys():
-		var page = player_data["消耗品列表"][page_key]
+	for page_key in player_data[DataKeys.CONSUMABLE_LIST].keys():
+		var page = player_data[DataKeys.CONSUMABLE_LIST][page_key]
 		var i = 0
 		while i < page.size() and remaining > 0:
-			if page[i]["名字"] == item_name:
-				var have = page[i]["数量"]
+			if page[i][DataKeys.NAME] == item_name:
+				var have = page[i][DataKeys.COUNT]
 				if have >= remaining:
-					page[i]["数量"] -= remaining
+					page[i][DataKeys.COUNT] -= remaining
 					remaining = 0
-					if page[i]["数量"] == 0:
+					if page[i][DataKeys.COUNT] == 0:
 						page.remove_at(i)
 
 						continue
@@ -4430,16 +4474,16 @@ func remove_item(item_name: String, count: int) -> bool:
 			break
 
 	if remaining > 0:
-		for page_key in player_data["道具列表"].keys():
-			var page = player_data["道具列表"][page_key]
+		for page_key in player_data[DataKeys.ITEM_LIST].keys():
+			var page = player_data[DataKeys.ITEM_LIST][page_key]
 			var i = 0
 			while i < page.size() and remaining > 0:
-				if page[i]["名字"] == item_name:
-					var have = page[i]["数量"]
+				if page[i][DataKeys.NAME] == item_name:
+					var have = page[i][DataKeys.COUNT]
 					if have >= remaining:
-						page[i]["数量"] -= remaining
+						page[i][DataKeys.COUNT] -= remaining
 						remaining = 0
-						if page[i]["数量"] == 0:
+						if page[i][DataKeys.COUNT] == 0:
 							page.remove_at(i)
 							continue
 						else:
@@ -4457,9 +4501,9 @@ func remove_item(item_name: String, count: int) -> bool:
 
 func get_total_xhp_list():
 	var list = []
-	for i in range(player_data["消耗品列表"].size()):
+	for i in range(player_data[DataKeys.CONSUMABLE_LIST].size()):
 		var u = i + 1
-		for z in player_data["消耗品列表"]["页码" + str(u)]:
+		for z in player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(u)]:
 			list.push_back(z)
 	return list
 
@@ -4470,25 +4514,27 @@ func add_xhp(name_: String, number: int, locked := false) -> void:
 
 	var page_num = get_xhp_page(name_)
 	if page_num != 0:
-		var list = player_data["消耗品列表"]["页码" + str(page_num)]
+		var list = player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(page_num)]
 		for i in list:
-			if i["名字"] == name_:
-				i["数量"] += number
+			if i[DataKeys.NAME] == name_:
+				i[DataKeys.COUNT] += number
 				i["锁定"] = bool(i.get("锁定", false)) or bool(locked)
 				return
 
 	var new_page = CheckCanUsePage("消耗品列表")
 	if new_page == 0:
 		return
-	player_data["消耗品列表"]["页码" + str(new_page)].push_back({"名字": name_, "数量": number, "锁定": bool(locked)})
+	player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(new_page)].push_back(
+		{"名字": name_, "数量": number, "锁定": bool(locked)}
+	)
 
 
 func get_xhp_page(need_name):
 	if need_name == "empty":
 		return 0
-	for page_num in range(1, player_data["消耗品列表"].size() + 1):
-		for u in player_data["消耗品列表"]["页码" + str(page_num)]:
-			if u["名字"] == need_name:
+	for page_num in range(1, player_data[DataKeys.CONSUMABLE_LIST].size() + 1):
+		for u in player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(page_num)]:
+			if u[DataKeys.NAME] == need_name:
 				return page_num
 	return 0
 
@@ -4501,13 +4547,13 @@ func remove_xhp(name_, page, num):
 	var all_coin: int
 	while name_ != get_name_:
 		x += 1
-		get_name_ = player_data["消耗品列表"]["页码" + str(page)][x]["名字"]
-	if player_data["消耗品列表"]["页码" + str(page)][x]["数量"] <= num:
-		num = player_data["消耗品列表"]["页码" + str(page)][x]["数量"]
-	var last_num = player_data["消耗品列表"]["页码" + str(page)][x]["数量"] - num
-	player_data["消耗品列表"]["页码" + str(page)][x]["数量"] -= num
+		get_name_ = player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(page)][x][DataKeys.NAME]
+	if player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(page)][x][DataKeys.COUNT] <= num:
+		num = player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(page)][x][DataKeys.COUNT]
+	var last_num = player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(page)][x][DataKeys.COUNT] - num
+	player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(page)][x][DataKeys.COUNT] -= num
 	if last_num <= 0:
-		player_data["消耗品列表"]["页码" + str(page)].remove_at(x)
+		player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(page)].remove_at(x)
 	if not Global.is_in_ldl:
 		all_coin = AE.AllEquipment_[name_]["售价"] * num
 		add_soul(all_coin)
@@ -4517,20 +4563,20 @@ func remove_xhp(name_, page, num):
 
 func migrate_consumables_from_dj_to_xhp() -> void:
 	var move_list := []
-	for page_key in player_data["道具列表"]:
-		var page = player_data["道具列表"][page_key]
+	for page_key in player_data[DataKeys.ITEM_LIST]:
+		var page = player_data[DataKeys.ITEM_LIST][page_key]
 		var x: int = int(page.size()) - 1
 		while x >= 0:
 			var item = page[x]
-			if item.has("名字"):
-				var item_name = item["名字"]
-				if AE.AllEquipment_.has(item_name) and AE.AllEquipment_[item_name]["类型"] == "消耗品":
-					var item_num = int(item["数量"]) if item.has("数量") else 1
+			if item.has(DataKeys.NAME):
+				var item_name = item[DataKeys.NAME]
+				if AE.AllEquipment_.has(item_name) and AE.AllEquipment_[item_name][DataKeys.TYPE] == "消耗品":
+					var item_num = int(item[DataKeys.COUNT]) if item.has(DataKeys.COUNT) else 1
 					page.remove_at(x)
 					move_list.push_back({"名字": item_name, "数量": item_num, "锁定": bool(item.get("锁定", false))})
 			x -= 1
 	for item in move_list:
-		add_xhp(item["名字"], int(item["数量"]), bool(item.get("锁定", false)))
+		add_xhp(item[DataKeys.NAME], int(item[DataKeys.COUNT]), bool(item.get("锁定", false)))
 
 
 func check_can_use_page(Target):
@@ -4542,9 +4588,9 @@ func check_can_use_page(Target):
 
 
 func check_fashion_clothes(NeedName: String):
-	if player_data["时装"].size() <= 0:
+	if player_data[DataKeys.FASHION].size() <= 0:
 		return false
-	if PlayerData.player_data["时装"][0]["名字"] == NeedName:
+	if PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME] == NeedName:
 		return true
 	return false
 
@@ -4556,13 +4602,13 @@ func _process(_delta: float) -> void:
 		return
 	_check_zb_elapsed = 0.0
 
-	if not player_data["技能学习"].has("技能11"):
-		player_data["技能学习"]["技能11"] = {"学习": 0, "等级": 0}
-	if not player_data["技能学习"].has("技能12"):
-		player_data["技能学习"]["技能12"] = {"学习": 0, "等级": 0}
-	if not player_data["技能学习"].has("技能13"):
-		player_data["技能学习"]["技能13"] = {"学习": 0, "等级": 0}
-	var skill_keys: Variant = player_data["技能学习"].get("技能键位", {})
+	if not player_data[DataKeys.SKILL_LEARNED].has("技能11"):
+		player_data[DataKeys.SKILL_LEARNED]["技能11"] = {"学习": 0, "等级": 0}
+	if not player_data[DataKeys.SKILL_LEARNED].has("技能12"):
+		player_data[DataKeys.SKILL_LEARNED]["技能12"] = {"学习": 0, "等级": 0}
+	if not player_data[DataKeys.SKILL_LEARNED].has("技能13"):
+		player_data[DataKeys.SKILL_LEARNED]["技能13"] = {"学习": 0, "等级": 0}
+	var skill_keys: Variant = player_data[DataKeys.SKILL_LEARNED].get("技能键位", {})
 	if skill_keys is Dictionary:
 		for key_name in skill_keys.keys():
 			if str(skill_keys[key_name]) == "hdzc":
@@ -4640,10 +4686,10 @@ func check_pass(Local):
 			if player_data["转轮殿"] == 1 and get_item_data("ttlp") != 0 and player_data["天庭"]:
 				return true
 		"截教":
-			if player_data["玩家等级"] >= 50 and get_item_data("ttlp") != 0 and player_data["截教天镜"]:
+			if player_data[DataKeys.PLAYER_LEVEL] >= 50 and get_item_data("ttlp") != 0 and player_data["截教天镜"]:
 				return true
 		"碧游宫":
-			if player_data["玩家等级"] >= 60 and get_item_data("ttsl") != 0 and player_data["碧游宫"]:
+			if player_data[DataKeys.PLAYER_LEVEL] >= 60 and get_item_data("ttsl") != 0 and player_data["碧游宫"]:
 				return true
 	return false
 

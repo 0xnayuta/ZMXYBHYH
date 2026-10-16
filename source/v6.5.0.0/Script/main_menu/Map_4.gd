@@ -241,7 +241,7 @@ func _on_level_byg_pressed() -> void:
 	else:
 		if PlayerData.player_data["蓬莱仙境"] != 1:
 			Global.add_message_show(get_parent(), "需要通关蓬莱仙境！！", 1.5, Vector2(470, 300))
-		elif PlayerData.player_data["玩家等级"] < 60:
+		elif PlayerData.player_data[DataKeys.PLAYER_LEVEL] < 60:
 			Global.add_message_show(get_parent(), "需要等级达到60级！！", 1.5, Vector2(470, 300))
 		elif PlayerData.get_item_data("ttsl") == 0:
 			Global.add_message_show(get_parent(), "需要通天赦令！！", 1.5, Vector2(470, 300))
@@ -252,7 +252,7 @@ func _on_level_byg_pressed() -> void:
 
 
 func _on_level_esbxx_pressed() -> void:
-	if PlayerData.player_data["玩家等级"] < 60:
+	if PlayerData.player_data[DataKeys.PLAYER_LEVEL] < 60:
 		Global.add_message_show(get_parent(), "玩家等级达60级开启！！", 1.5, Vector2(470, 300))
 		return
 	if PlayerData.player_data["尾妖林"] == 0:
@@ -335,7 +335,7 @@ func check_pass_level():
 
 	level_esbxx.disabled = not (
 		bool(PlayerData.player_data.get("隐藏地图全开", false))
-		or (PlayerData.player_data["玩家等级"] >= 60 and PlayerData.player_data["尾妖林"] == 1)
+		or (PlayerData.player_data[DataKeys.PLAYER_LEVEL] >= 60 and PlayerData.player_data["尾妖林"] == 1)
 	)
 	level_znyy.disabled = true
 

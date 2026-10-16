@@ -142,7 +142,7 @@ func _process_pet_tiger_recovery(delta: float) -> void:
 		cure_Hp(hp_recover_per_second)
 	if mp_recover_per_second > 0 and Mp < SMp:
 		Mp = min(SMp, Mp + mp_recover_per_second)
-		pet_data["魔法"] = Mp
+		pet_data[DataKeys.MP] = Mp
 
 
 func _get_gravity() -> float:
@@ -223,32 +223,32 @@ func apply_pet_develop_effects(data: Dictionary) -> void:
 
 func setup_pet_tiger(stage: int) -> void:
 	tiger_stage = clampi(stage, 1, 4)
-	var level_from_pet := int(pet_data.get("等级", 40 + tiger_stage * 5))
-	var attack_from_pet := int(pet_data.get("攻击", 65))
+	var level_from_pet := int(pet_data.get(DataKeys.LEVEL, 40 + tiger_stage * 5))
+	var attack_from_pet := int(pet_data.get(DataKeys.ATTACK, 65))
 	var hp_from_pet := int(pet_data.get("生命上限", 1200))
 	var equipment_bonus: Dictionary = {}
 	if PlayerData.has_method("get_pet_equipment_bonuses"):
 		equipment_bonus = PlayerData.get_pet_equipment_bonuses(pet_data)
-	var hp_bonus := int(equipment_bonus.get("生命", 0))
-	var mp_bonus := int(equipment_bonus.get("魔法", 0))
-	my_mr_name = str(pet_data.get("名字", _tiger_stage_name(tiger_stage)))
+	var hp_bonus := int(equipment_bonus.get(DataKeys.HP, 0))
+	var mp_bonus := int(equipment_bonus.get(DataKeys.MP, 0))
+	my_mr_name = str(pet_data.get(DataKeys.NAME, _tiger_stage_name(tiger_stage)))
 	var passive: Dictionary = pet_data.get("被动技能", {}) if pet_data.get("被动技能", {}) is Dictionary else {}
 	var passive_hp := int(PaSkill.get_value("热血", int(passive.get("热血", 0))))
 	var passive_mp := int(PaSkill.get_value("魔泉", int(passive.get("魔泉", 0))))
-	attack_in = max(1, attack_from_pet + int(equipment_bonus.get("攻击", 0)))
+	attack_in = max(1, attack_from_pet + int(equipment_bonus.get(DataKeys.ATTACK, 0)))
 	attack_in += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "天生蛮力", attack_in)
 	pet_skill_cooldown_multiplier = 1.0 - float(clampi(int(pet_data.get("灵力", 0)), 0, 25)) * 0.02
 	level = max(1, level_from_pet)
 	SHp = max(1, hp_from_pet + hp_bonus + passive_hp)
 	var learned_hp_bonus := PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "生命祝福", SHp)
 	SHp += learned_hp_bonus
-	var base_current_hp := int(pet_data.get("生命", hp_from_pet))
+	var base_current_hp := int(pet_data.get(DataKeys.HP, hp_from_pet))
 	Hp = 0 if base_current_hp <= 0 else clampi(base_current_hp + hp_bonus + passive_hp + learned_hp_bonus, 0, SHp)
-	var base_mp_max := int(pet_data.get("魔法上限", pet_data.get("魔法", 1)))
+	var base_mp_max := int(pet_data.get("魔法上限", pet_data.get(DataKeys.MP, 1)))
 	SMp = max(1, base_mp_max + mp_bonus + passive_mp)
 	var learned_mp_bonus := PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "魔法庇佑", SMp)
 	SMp += learned_mp_bonus
-	var base_current_mp := int(pet_data.get("魔法", base_mp_max))
+	var base_current_mp := int(pet_data.get(DataKeys.MP, base_mp_max))
 	Mp = 0 if base_current_mp <= 0 else clampi(base_current_mp + mp_bonus + passive_mp + learned_mp_bonus, 0, SMp)
 	hp_recover_per_second = (
 		int(pet_data.get("回血", 0))
@@ -261,7 +261,7 @@ func setup_pet_tiger(stage: int) -> void:
 		+ int(PaSkill.get_value("辉煌", int(passive.get("辉煌", 0))))
 	)
 	self_rhp = hp_recover_per_second
-	def = int(pet_data.get("防御", pet_data.get("物防", 120))) + int(equipment_bonus.get("防御", 0))
+	def = int(pet_data.get(DataKeys.DEFENSE, pet_data.get("物防", 120))) + int(equipment_bonus.get(DataKeys.DEFENSE, 0))
 	def += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "自然守护", def)
 	mdef = int(pet_data.get("魔防", pet_data.get("魔抗", 120))) + int(equipment_bonus.get("魔防", 0))
 	mdef += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "自然守护", mdef)
@@ -385,7 +385,7 @@ func _consume_pet_skill_mp(cost: int) -> bool:
 	if not _can_use_pet_skill(cost):
 		return false
 	Mp = max(0, Mp - cost)
-	pet_data["魔法"] = Mp
+	pet_data[DataKeys.MP] = Mp
 	return true
 
 

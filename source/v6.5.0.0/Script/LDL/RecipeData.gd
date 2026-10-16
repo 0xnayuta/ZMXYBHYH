@@ -208,13 +208,13 @@ var RECIPES_BY_TYPE = {"装备": [], "道具": [], "法宝": [], "时装": []}
 
 func _ready():
 	for recipe in RECIPES:
-		var type = AE.AllEquipment_[recipe["result"]]["类型"]
+		var type = AE.AllEquipment_[recipe["result"]][DataKeys.TYPE]
 		match type:
 			"武器", "防具", "饰品", "头衔":
 				RECIPES_BY_TYPE["装备"].append(recipe)
 			"道具", "消耗品":
 				RECIPES_BY_TYPE["道具"].append(recipe)
 			"法宝":
-				RECIPES_BY_TYPE["法宝"].append(recipe)
+				RECIPES_BY_TYPE[DataKeys.MAGIC_WEAPON].append(recipe)
 			"时装":
-				RECIPES_BY_TYPE["时装"].append(recipe)
+				RECIPES_BY_TYPE[DataKeys.FASHION].append(recipe)

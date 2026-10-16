@@ -216,7 +216,9 @@ func _configure_monster() -> void:
 
 
 func _configure_stats() -> void:
-	var average_level := int(_config.get("level", clampi(int(PlayerData.player_data.get("玩家等级", 1)), 1, 85)))
+	var average_level := int(
+		_config.get("level", clampi(int(PlayerData.player_data.get(DataKeys.PLAYER_LEVEL, 1)), 1, 85))
+	)
 	var level_step := ceili(float(average_level) / 10.0)
 	is_boss = bool(_config.get("is_boss", true))
 	CannotAttract = true

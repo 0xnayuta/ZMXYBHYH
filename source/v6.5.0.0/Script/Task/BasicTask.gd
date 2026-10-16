@@ -24,7 +24,7 @@ var AllDailyList = {
 	{
 		"TaskName": "至尊骨养成一",
 		"TaskType": "DailyTask",
-		"TaskInfo": "玩家等级达到1级就可以领取\n（" + str(PlayerData.player_data["玩家等级"]) + "/1）",
+		"TaskInfo": "玩家等级达到1级就可以领取\n（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/1）",
 		"TaskReward": [{"Name": "psdzzg", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0}],
 		"UnlimitedClaim": true,
 	},
@@ -34,7 +34,7 @@ var AllActivityList = {
 	{
 		"TaskName": "新的旅途",
 		"TaskType": "ActivityTask",
-		"TaskInfo": "玩家等级达10级\n" + "（" + str(PlayerData.player_data["玩家等级"]) + "/1）",
+		"TaskInfo": "玩家等级达10级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/1）",
 		"TaskTarget": {"玩家等级": 1},
 		"FinishType": 2,
 		"TaskReward":
@@ -84,7 +84,7 @@ var AllActivityList = {
 	{
 		"TaskName": "成长礼包1",
 		"TaskType": "ActivityTask",
-		"TaskInfo": "玩家等级达10级\n" + "（" + str(PlayerData.player_data["玩家等级"]) + "/10）",
+		"TaskInfo": "玩家等级达10级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/10）",
 		"TaskTarget": {"玩家等级": 10},
 		"FinishType": 2,
 		"TaskReward":
@@ -99,7 +99,7 @@ var AllActivityList = {
 	{
 		"TaskName": "成长礼包2",
 		"TaskType": "ActivityTask",
-		"TaskInfo": "玩家等级达20级\n" + "（" + str(PlayerData.player_data["玩家等级"]) + "/20）",
+		"TaskInfo": "玩家等级达20级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/20）",
 		"TaskTarget": {"玩家等级": 20},
 		"FinishType": 2,
 		"TaskReward":
@@ -117,7 +117,7 @@ var AllActivityList = {
 	{
 		"TaskName": "成长礼包3",
 		"TaskType": "ActivityTask",
-		"TaskInfo": "玩家等级达30级\n" + "（" + str(PlayerData.player_data["玩家等级"]) + "/30）",
+		"TaskInfo": "玩家等级达30级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/30）",
 		"TaskTarget": {"玩家等级": 30},
 		"FinishType": 2,
 		"TaskReward":
@@ -142,7 +142,7 @@ var AllActivityList = {
 	{
 		"TaskName": "成长礼包4",
 		"TaskType": "ActivityTask",
-		"TaskInfo": "玩家等级达40级\n" + "（" + str(PlayerData.player_data["玩家等级"]) + "/40）",
+		"TaskInfo": "玩家等级达40级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/40）",
 		"TaskTarget": {"玩家等级": 40},
 		"FinishType": 2,
 		"TaskReward":
@@ -201,7 +201,7 @@ var AllActivityList = {
 			+ str(PlayerData.player_data["战神刑天"])
 			+ "/10）玩家等级达50级"
 			+ "（"
-			+ str(PlayerData.player_data["玩家等级"])
+			+ str(PlayerData.player_data[DataKeys.PLAYER_LEVEL])
 			+ "/50）"
 		),
 		"TaskReward":

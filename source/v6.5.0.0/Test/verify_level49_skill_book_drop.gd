@@ -1,4 +1,5 @@
 extends Node
+const DataKeys := preload("res://Script/Base/DataKeys.gd")
 
 const LEVEL_SCRIPT_PATH := "res://Script/Level/Level_49.gd"
 const BOSS_SCENE_PATH := "res://Scene/Monster/Monster_3007.tscn"
@@ -13,7 +14,7 @@ func _ready() -> void:
 	MainSet.set_data["Difficult"] = 0
 	MainSet.set_data["MonsterBloodSHow"] = false
 	AE.ensure_loaded()
-	_check(AE.AllEquipment_.get("1_jns", {}).get("名字", "") == "一阶技能书", "掉落物ID应对应一阶技能书")
+	_check(AE.AllEquipment_.get("1_jns", {}).get(DataKeys.NAME, "") == "一阶技能书", "掉落物ID应对应一阶技能书")
 
 	var level_script: GDScript = load(LEVEL_SCRIPT_PATH)
 	var level = level_script.new()

@@ -15,7 +15,7 @@ func _on_ttzstz_pressed() -> void:
 	if PlayerData.ChekEqzb("头衔", "xczg"):
 		Global.add_message_show(get_parent(), "本副本不允许使用修成正果头衔！", 1.5, Vector2(470, 300))
 		return
-	if PlayerData.player_data["玩家等级"] <= 50:
+	if PlayerData.player_data[DataKeys.PLAYER_LEVEL] <= 50:
 		Global.add_message_show(get_parent(), "需要角色等级大于50级！", 1.5, Vector2(470, 300))
 		return
 	elif PlayerData.get_item_data("ttlp") == 0:
@@ -31,7 +31,7 @@ func _on_csm_pressed() -> void:
 	if Parent == null:
 		return
 	if Parent is Map3:
-		if PlayerData.player_data["玩家等级"] < 50:
+		if PlayerData.player_data[DataKeys.PLAYER_LEVEL] < 50:
 			Global.add_message_show(get_parent(), "需要角色等级大于等于50级！", 1.5, Vector2(470, 300))
 		elif PlayerData.get_item_data("ttlp") == 0:
 			Global.add_message_show(get_parent(), "需要拥有通天令牌！", 1.5, Vector2(470, 300))
@@ -57,7 +57,7 @@ func _on_hdgq_pressed() -> void:
 	if PlayerData.ChekEqzb("头衔", "xczg"):
 		Global.add_message_show(get_parent(), "本副本不允许使用修成正果头衔！", 1.5, Vector2(470, 300))
 		return
-	if PlayerData.player_data["玩家等级"] <= 50:
+	if PlayerData.player_data[DataKeys.PLAYER_LEVEL] <= 50:
 		Global.add_message_show(get_parent(), "需要角色等级大于50级！", 1.5, Vector2(470, 300))
 		return
 	elif PlayerData.get_item_data("ttlp") == 0:

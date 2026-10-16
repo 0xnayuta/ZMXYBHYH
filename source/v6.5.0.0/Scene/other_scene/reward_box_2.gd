@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 		items.total_number = 1
 	else:
 		items.total_number = Num
-	name_.text = AE.AllEquipment_[item_id]["名字"]
+	name_.text = AE.AllEquipment_[item_id][DataKeys.NAME]
 	var color = AE.AllEquipment_[item_id]["颜色"]
 	name_.add_theme_color_override("font_color", color)
 	name_.add_theme_color_override("font_outline_color", color)

@@ -23,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func call_hyjj():
-	var cur_level = PlayerData.player_data["技能学习"]["技能9"]["等级"] + 1
+	var cur_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] + 1
 
 	for i in range(3):
 		var Monster = get_monster()
@@ -93,12 +93,12 @@ func _on_area_entered(_area: Area2D) -> void:
 				Global.addRole1Shallow(Player.get_parent(), Player.position, Player.action.scale.x, num)
 		if Player.ShallowList.size() >= GetMaxMinShallowNum()[1]:
 			return
-		if randi_range(0, 100) < 45 + (PlayerData.player_data["技能学习"]["技能7"]["等级"] + 1) * 3:
+		if randi_range(0, 100) < 45 + (PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1) * 3:
 			Global.addRole1Shallow(Player.get_parent(), Player.position + Vector2(0, -20), Player.action.scale.x, num)
 
 
 func GetMaxMinShallowNum():
-	var GetLevel = int(PlayerData.player_data["技能学习"]["技能7"]["等级"])
+	var GetLevel = int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL])
 
 	if GetLevel <= 2:
 		return [1, 5]

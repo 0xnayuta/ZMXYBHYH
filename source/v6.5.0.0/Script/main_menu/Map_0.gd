@@ -73,7 +73,7 @@ func _update_player_head() -> void:
 func _update_player_level() -> void:
 	var level_label := get_node_or_null("PlayerLevel") as Label
 	if level_label != null:
-		level_label.text = str(PlayerData.player_data.get("玩家等级", 1))
+		level_label.text = str(PlayerData.player_data.get(DataKeys.PLAYER_LEVEL, 1))
 
 
 func _fit_to_fullscreen() -> void:

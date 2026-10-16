@@ -210,7 +210,7 @@ func _physics_process(_delta: float) -> void:
 		if not is_equal_approx(tmBar_.value, alpha_value):
 			tmBar_.value = alpha_value
 
-	var skill_data = playerData.get("技能学习", {})
+	var skill_data = playerData.get(DataKeys.SKILL_LEARNED, {})
 	keyObj = skill_data.get("技能键位", {}) if skill_data is Dictionary else {}
 
 	if isClick:

@@ -1,4 +1,5 @@
 extends Node2D
+const DataKeys := preload("res://Script/Base/DataKeys.gd")
 
 const MOUSE_SCENE := "res://Scene/Pet/PetMouseSummon_%d.tscn"
 const MOUSE_BULLET_SCENE := preload("res://Scene/Pet/PetMouseBullet.tscn")
@@ -72,26 +73,26 @@ func _draw() -> void:
 func _verify_save_migration() -> void:
 	var old_mouse := _mouse_data(49)
 	old_mouse["阶段"] = 4
-	old_mouse["名称"] = "子鼠大元帅"
-	old_mouse["名字"] = "子鼠大元帅"
+	old_mouse[DataKeys.ALT_NAME] = "子鼠大元帅"
+	old_mouse[DataKeys.NAME] = "子鼠大元帅"
 	old_mouse["技能"] = ["鼠窜", "回旋飞镖", "子鼠奥义"]
 	old_mouse.erase("装备")
 	PlayerData.player_data[PlayerData.PET_LIST_KEY] = [old_mouse]
 	PlayerData.player_data[PlayerData.ACTIVE_PET_KEY] = "PetMouse"
 	PlayerData.ensure_pet_mouse()
 	_check(int(old_mouse.get("阶段", 0)) == 1, "49级旧档子鼠必须归一化为第一形态")
-	_check(str(old_mouse.get("名称", "")) == "子鼠元帅", "49级旧档子鼠名称必须恢复为子鼠元帅")
+	_check(str(old_mouse.get(DataKeys.ALT_NAME, "")) == "子鼠元帅", "49级旧档子鼠名称必须恢复为子鼠元帅")
 	_check(old_mouse.get("技能", []) == ["鼠窜", "回旋飞镖"], "49级第一形态必须保留30级领悟的回旋飞镖")
 	_check(old_mouse.get("装备", {}) is Dictionary, "旧档子鼠必须补齐宠物装备字段")
-	old_mouse["等级"] = 29
+	old_mouse[DataKeys.LEVEL] = 29
 	PlayerData.ensure_pet_mouse()
 	_check(int(old_mouse.get("阶段", 0)) == 1, "29级子鼠必须保持第一形态")
 	_check(old_mouse.get("技能", []) == ["鼠窜"], "29级子鼠不能提前领悟回旋飞镖")
-	old_mouse["等级"] = 30
+	old_mouse[DataKeys.LEVEL] = 30
 	PlayerData.ensure_pet_mouse()
 	_check(int(old_mouse.get("阶段", 0)) == 1, "30级子鼠领悟技能时不能提前进化")
 	_check(old_mouse.get("技能", []) == ["鼠窜", "回旋飞镖"], "30级子鼠必须领悟回旋飞镖")
-	old_mouse["等级"] = 50
+	old_mouse[DataKeys.LEVEL] = 50
 	PlayerData.ensure_pet_mouse()
 	_check(int(old_mouse.get("阶段", 0)) == 2, "50级旧档子鼠必须归一化为第二形态")
 	_check(old_mouse.get("技能", []) == ["鼠窜", "回旋飞镖", "子鼠奥义"], "50级子鼠必须领悟子鼠奥义")
@@ -99,7 +100,7 @@ func _verify_save_migration() -> void:
 
 func _verify_pet_interface_fight() -> void:
 	var mouse := _mouse_data(30)
-	PlayerData.player_data["玩家等级"] = 30
+	PlayerData.player_data[DataKeys.PLAYER_LEVEL] = 30
 	PlayerData.player_data[PlayerData.PET_LIST_KEY] = [mouse]
 	PlayerData.player_data[PlayerData.ACTIVE_PET_KEY] = ""
 	var packed := load("res://Scene/Pet/PetInterface.tscn") as PackedScene
@@ -113,7 +114,7 @@ func _verify_pet_interface_fight() -> void:
 	var mouse_index := -1
 	for index in pets.size():
 		var pet_value: Variant = pets[index]
-		if pet_value is Dictionary and str(pet_value.get("类型", "")) == "PetMouse":
+		if pet_value is Dictionary and str(pet_value.get(DataKeys.TYPE, "")) == "PetMouse":
 			mouse_index = index
 			break
 	_check(mouse_index >= 0, "宠物界面必须列出子鼠")
@@ -121,7 +122,7 @@ func _verify_pet_interface_fight() -> void:
 		pet_interface.set("current_pet_index", mouse_index)
 		pet_interface.call("fightClick")
 		var selected: Dictionary = pets[mouse_index]
-		_check(bool(selected.get("出战", false)), "子鼠点击出战后必须进入出战状态")
+		_check(bool(selected.get(DataKeys.DEPLOYED, false)), "子鼠点击出战后必须进入出战状态")
 		_check(str(PlayerData.player_data.get(PlayerData.ACTIVE_PET_KEY, "")) == "PetMouse", "子鼠出战键必须写入PetMouse")
 		_check(int(selected.get("阶段", 0)) == 1, "宠物页30级子鼠必须保持第一形态")
 		_check(selected.get("技能", []) == ["鼠窜", "回旋飞镖"], "宠物页30级子鼠必须显示已领悟的回旋飞镖")
@@ -189,13 +190,13 @@ func _verify_runtime_resources() -> void:
 		)
 	PlayerData.player_data[PlayerData.PET_LIST_KEY] = [_mouse_data(30)]
 	PlayerData.player_data[PlayerData.ACTIVE_PET_KEY] = "PetMouse"
-	PlayerData.player_data[PlayerData.PET_LIST_KEY][0]["出战"] = true
+	PlayerData.player_data[PlayerData.PET_LIST_KEY][0][DataKeys.DEPLOYED] = true
 	var preload_paths := Global.get_active_pet_preload_paths()
 	_check(MOUSE_SCENE % 1 in preload_paths and MOUSE_MODEL % 1 in preload_paths, "30级子鼠预热必须仍使用第一形态资源")
 	_check("res://Art/Pet/skillicon/hxfb.png" in preload_paths, "30级子鼠预热必须包含回旋飞镖图标")
 	_check("res://Art/Pet/skillicon/aoyi.png" not in preload_paths, "30级子鼠不能提前预热奥义图标")
 	PlayerData.player_data[PlayerData.PET_LIST_KEY] = [_mouse_data(50)]
-	PlayerData.player_data[PlayerData.PET_LIST_KEY][0]["出战"] = true
+	PlayerData.player_data[PlayerData.PET_LIST_KEY][0][DataKeys.DEPLOYED] = true
 	preload_paths = Global.get_active_pet_preload_paths()
 	for required_path in [
 		MOUSE_SCENE % 2,
@@ -243,9 +244,9 @@ func _verify_combat_level_up() -> void:
 	if source_scene == null:
 		return
 	var level_30_mouse := _mouse_data(29)
-	level_30_mouse["出战"] = true
-	level_30_mouse["经验"] = 0
-	PlayerData.player_data["玩家等级"] = 30
+	level_30_mouse[DataKeys.DEPLOYED] = true
+	level_30_mouse[DataKeys.EXP] = 0
+	PlayerData.player_data[DataKeys.PLAYER_LEVEL] = 30
 	PlayerData.player_data[PlayerData.PET_LIST_KEY] = [level_30_mouse]
 	PlayerData.player_data[PlayerData.ACTIVE_PET_KEY] = "PetMouse"
 	var first_form := _instantiate_mouse(1, level_30_mouse, Vector2(-1000, 400))
@@ -255,7 +256,7 @@ func _verify_combat_level_up() -> void:
 	level_30_source.process_mode = Node.PROCESS_MODE_DISABLED
 	add_child(level_30_source)
 	level_30_source.call("_cure_active_pet_exp", 1000000)
-	_check(int(level_30_mouse.get("等级", 0)) == 30, "战斗经验必须让29级子鼠升到30级")
+	_check(int(level_30_mouse.get(DataKeys.LEVEL, 0)) == 30, "战斗经验必须让29级子鼠升到30级")
 	_check(int(level_30_mouse.get("阶段", 0)) == 1 and int(first_form.get("turtle_stage")) == 1, "30级领悟飞镖时必须保持第一形态")
 	var first_form_sprite := first_form.get_node("MonsterDir/mr_ani") as AnimatedSprite2D
 	_check(first_form_sprite.sprite_frames.resource_path == MOUSE_MODEL % 1, "30级领悟飞镖时不能替换第二形态模型")
@@ -265,9 +266,9 @@ func _verify_combat_level_up() -> void:
 	first_form.free()
 
 	var active_mouse := _mouse_data(49)
-	active_mouse["出战"] = true
-	active_mouse["经验"] = 0
-	PlayerData.player_data["玩家等级"] = 50
+	active_mouse[DataKeys.DEPLOYED] = true
+	active_mouse[DataKeys.EXP] = 0
+	PlayerData.player_data[DataKeys.PLAYER_LEVEL] = 50
 	PlayerData.player_data[PlayerData.PET_LIST_KEY] = [active_mouse]
 	PlayerData.player_data[PlayerData.ACTIVE_PET_KEY] = "PetMouse"
 	var mouse := _instantiate_mouse(1, active_mouse, Vector2(-1000, 400))
@@ -277,7 +278,7 @@ func _verify_combat_level_up() -> void:
 	source.process_mode = Node.PROCESS_MODE_DISABLED
 	add_child(source)
 	source.call("_cure_active_pet_exp", 1000000)
-	_check(int(active_mouse.get("等级", 0)) == 50, "战斗经验必须让49级子鼠升到50级")
+	_check(int(active_mouse.get(DataKeys.LEVEL, 0)) == 50, "战斗经验必须让49级子鼠升到50级")
 	_check(int(active_mouse.get("阶段", 0)) == 2, "战斗升级必须写入第二形态阶段")
 	_check(int(mouse.get("turtle_stage")) == 2, "战斗升级必须即时刷新现有子鼠实例阶段")
 	var sprite := mouse.get_node("MonsterDir/mr_ani") as AnimatedSprite2D
@@ -290,7 +291,7 @@ func _verify_combat_level_up() -> void:
 
 func _verify_boomerang_damage() -> void:
 	var data := _mouse_data(50)
-	data["攻击"] = 100
+	data[DataKeys.ATTACK] = 100
 	data["根骨"] = 25
 	data["法术能量"] = 20
 	var mouse := _instantiate_mouse(2, data, Vector2(-1000, 400))
@@ -461,13 +462,13 @@ func _instantiate_mouse(stage: int, data: Dictionary, at_position: Vector2) -> N
 func _mouse_data(level: int) -> Dictionary:
 	var data: Dictionary = PlayerData.PET_MOUSE_PET.duplicate(true)
 	var stage := 2 if level >= 50 else 1
-	data["等级"] = level
+	data[DataKeys.LEVEL] = level
 	data["阶段"] = stage
-	data["名称"] = "子鼠大元帅" if stage == 2 else "子鼠元帅"
-	data["名字"] = data["名称"]
+	data[DataKeys.ALT_NAME] = "子鼠大元帅" if stage == 2 else "子鼠元帅"
+	data[DataKeys.NAME] = data[DataKeys.ALT_NAME]
 	data["技能"] = ["鼠窜", "回旋飞镖", "子鼠奥义"] if level >= 50 else ["鼠窜", "回旋飞镖"] if level >= 30 else ["鼠窜"]
-	data["生命"] = int(data.get("生命上限", 620))
-	data["魔法"] = int(data.get("魔法上限", 180))
+	data[DataKeys.HP] = int(data.get("生命上限", 620))
+	data[DataKeys.MP] = int(data.get("魔法上限", 180))
 	return data
 
 

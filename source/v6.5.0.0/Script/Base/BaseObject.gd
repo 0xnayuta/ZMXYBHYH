@@ -72,7 +72,7 @@ func get_hurt_lx(hit_name):
 
 
 func CheckFashionAndAddFallPro():
-	if PlayerData.player_data["时装"].size() <= 0:
+	if PlayerData.player_data[DataKeys.FASHION].size() <= 0:
 		return 0.0
 	else:
 		if (

@@ -45,7 +45,7 @@ func monster_138():
 	self.is_boss = false
 	self.my_mr_name = "巫毒娃娃"
 	self.attack_in = 90
-	self.level = PlayerData.player_data["玩家等级"]
+	self.level = PlayerData.player_data[DataKeys.PLAYER_LEVEL]
 	if self.SHp == 0:
 		self.SHp = 100
 		self.Hp = self.SHp
@@ -124,7 +124,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	else:
 		return
 	var last_hurt = get_Role_last_hurt(get_target) * RoleProp.ws_up_power
-	last_hurt *= (0.8 + PlayerData.player_data["技能学习"]["技能9"]["等级"] * 0.005)
+	last_hurt *= (0.8 + PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] * 0.005)
 	if last_hurt >= Hp:
 		last_hurt = Hp
 	GetHurt = last_hurt

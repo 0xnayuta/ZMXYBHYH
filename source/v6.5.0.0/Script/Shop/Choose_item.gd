@@ -20,15 +20,15 @@ func add_item_():
 
 func get_item(idx):
 	var name__
-	name__ = list_[idx]["名字"]
+	name__ = list_[idx][DataKeys.NAME]
 	return name__
 
 
 func get_item_name(idx):
 	var name__
-	name__ = list_[idx]["名字"]
-	var name_text = AE.AllEquipment_[name__]["名字"]
-	var lx = AE.AllEquipment_[name__]["类型"]
+	name__ = list_[idx][DataKeys.NAME]
+	var name_text = AE.AllEquipment_[name__][DataKeys.NAME]
+	var lx = AE.AllEquipment_[name__][DataKeys.TYPE]
 	var get_num = get_item_num(idx)
 	var wxx = get_wx_text(idx)
 
@@ -55,7 +55,7 @@ func get_item_name(idx):
 
 func get_wx_text(idx):
 	var get_xx
-	get_xx = list_[idx]["五行"]
+	get_xx = list_[idx][DataKeys.FIVE_ELEMENTS]
 	var wx: String = ""
 	if get_xx.size() > 0:
 		if get_xx.size() == 1:
@@ -68,7 +68,7 @@ func get_wx_text(idx):
 
 func get_wx(idx):
 	var get_wx_
-	get_wx_ = list_[idx]["五行"]
+	get_wx_ = list_[idx][DataKeys.FIVE_ELEMENTS]
 	if get_wx_.size() == 0:
 		get_wx_ = get_wx_()
 	return get_wx_
@@ -91,8 +91,8 @@ func _on_item_list_item_selected(index: int) -> void:
 func _on_qd_pressed() -> void:
 	if current_choose >= 0:
 		var names
-		names = list_[current_choose]["名字"]
-		var lx = AE.AllEquipment_[names]["类型"]
+		names = list_[current_choose][DataKeys.NAME]
+		var lx = AE.AllEquipment_[names][DataKeys.TYPE]
 		var get_num = get_item_num(current_choose)
 		var get_wx_ = get_wx(current_choose)
 		var list = [{"Name": names, "Value": get_num, "Prop": {}, "WX": Global.get_wx(0), "StrengthValue": 0}]

@@ -177,8 +177,8 @@ func _build_archive_preload_paths() -> Array[String]:
 	for monster_path in _get_target_first_wave_monster_scene_paths():
 		_append_preload_path(unique, monster_path)
 	var equipped_magic_weapon := str(PlayerData.player_data.get("实战法宝", ""))
-	if equipped_magic_weapon == "" and PlayerData.player_data.get("法宝", []).size() > 0:
-		equipped_magic_weapon = str(PlayerData.player_data["法宝"][0].get("名字", ""))
+	if equipped_magic_weapon == "" and PlayerData.player_data.get(DataKeys.MAGIC_WEAPON, []).size() > 0:
+		equipped_magic_weapon = str(PlayerData.player_data[DataKeys.MAGIC_WEAPON][0].get(DataKeys.NAME, ""))
 	for magic_weapon_path in Global.get_magic_weapon_preload_paths(equipped_magic_weapon):
 		_append_preload_path(unique, magic_weapon_path)
 	var result: Array[String] = []
@@ -394,12 +394,12 @@ func _finish_loading() -> void:
 		return
 	_finishing = true
 	var equipped_magic_weapon := str(PlayerData.player_data.get("实战法宝", ""))
-	if equipped_magic_weapon == "" and PlayerData.player_data.get("法宝", []).size() > 0:
-		equipped_magic_weapon = str(PlayerData.player_data["法宝"][0].get("名字", ""))
+	if equipped_magic_weapon == "" and PlayerData.player_data.get(DataKeys.MAGIC_WEAPON, []).size() > 0:
+		equipped_magic_weapon = str(PlayerData.player_data[DataKeys.MAGIC_WEAPON][0].get(DataKeys.NAME, ""))
 	var is_battle_target := _is_battle_target_scene()
 	var needs_magic_weapon_prewarm := is_battle_target and equipped_magic_weapon in ["xianyjp", "bsyj"]
 	var role_id := int(PlayerData.player_data.get("Myself", 1))
-	var skill_keys: Variant = PlayerData.player_data.get("技能学习", {}).get("技能键位", {})
+	var skill_keys: Variant = PlayerData.player_data.get(DataKeys.SKILL_LEARNED, {}).get("技能键位", {})
 	var equipped_skills: Array = skill_keys.values() if skill_keys is Dictionary else []
 	if is_battle_target:
 		await RenderingServer.frame_post_draw
@@ -462,8 +462,8 @@ func _finish_loading() -> void:
 		elif role_id == 5 and equipped_skills.has("ltjz"):
 			LEITING_EFFECT_SCRIPT.prewarm_frames()
 			await get_tree().process_frame
-		var fashions: Variant = PlayerData.player_data.get("时装", [])
-		if fashions is Array and not fashions.is_empty() and str(fashions[0].get("名字", "")) == "shenqismsrsz":
+		var fashions: Variant = PlayerData.player_data.get(DataKeys.FASHION, [])
+		if fashions is Array and not fashions.is_empty() and str(fashions[0].get(DataKeys.NAME, "")) == "shenqismsrsz":
 			SMSR_EFFECT_SCRIPT.prewarm_frames()
 			await get_tree().process_frame
 		loading_text.text = "正在准备副本怪物资源..."
@@ -506,15 +506,15 @@ func _is_skill_awaken_active(skill_id: String) -> bool:
 
 
 func _has_active_ttzssz_fashion() -> bool:
-	var fashions: Variant = PlayerData.player_data.get("时装", [])
+	var fashions: Variant = PlayerData.player_data.get(DataKeys.FASHION, [])
 	if not fashions is Array or (fashions as Array).is_empty():
 		return false
 	var fashion: Variant = (fashions as Array)[0]
 	if not fashion is Dictionary:
 		return false
 	return (
-		Global.GetName(str((fashion as Dictionary).get("名字", ""))) == "ttzssz"
-		and str((fashion as Dictionary).get("名字", "")) != "putongttzssz"
+		Global.GetName(str((fashion as Dictionary).get(DataKeys.NAME, ""))) == "ttzssz"
+		and str((fashion as Dictionary).get(DataKeys.NAME, "")) != "putongttzssz"
 	)
 
 

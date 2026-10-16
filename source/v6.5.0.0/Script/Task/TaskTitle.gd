@@ -49,7 +49,7 @@ func CheckTaskFinish():
 				2:
 					var Target = MyFather.AllActivityList[TaskName]["TaskTarget"]
 					for i in Target:
-						if PlayerData.player_data["玩家等级"] < Target[i]:
+						if PlayerData.player_data[DataKeys.PLAYER_LEVEL] < Target[i]:
 							return false
 					return true
 				3:

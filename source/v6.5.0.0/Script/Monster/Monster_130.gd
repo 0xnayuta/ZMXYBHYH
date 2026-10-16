@@ -37,7 +37,7 @@ func _ready() -> void:
 
 
 func _configure_stats() -> void:
-	var average_level := clampi(int(PlayerData.player_data.get("玩家等级", 1)), 1, 80)
+	var average_level := clampi(int(PlayerData.player_data.get(DataKeys.PLAYER_LEVEL, 1)), 1, 80)
 	var level_step := ceili(float(average_level) / 10.0)
 	var attack_power := 3000
 

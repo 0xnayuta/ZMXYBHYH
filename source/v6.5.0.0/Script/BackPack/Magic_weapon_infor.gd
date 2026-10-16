@@ -105,14 +105,14 @@ func _exit_tree() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if PlayerData.player_data.get("法宝", []).is_empty():
+	if PlayerData.player_data.get(DataKeys.MAGIC_WEAPON, []).is_empty():
 		return
 	_refresh_weapon_visual_if_needed()
 	lh_bar.value = float(PlayerData.get_soul()) / float(get_need_lh())
 	lh_value.text = str(PlayerData.get_soul()) + "/" + str(get_need_lh())
-	m_level.text = str(PlayerData.player_data["法宝"][0]["强化等级"])
+	m_level.text = str(PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL])
 	m_wx.text = str(get_wx())
-	var nn_name = PlayerData.player_data["法宝"][0]["名字"]
+	var nn_name = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
 	m_czl.text = "%.1f" % get_fb_pro(nn_name, "成长率")
 	m_hp.text = "%.1f" % get_fb_pro(nn_name, "SHp")
 	m_mp.text = "%.1f" % get_fb_pro(nn_name, "SMp")
@@ -122,13 +122,13 @@ func _physics_process(_delta: float) -> void:
 
 
 func _refresh_weapon_visual_if_needed() -> void:
-	if PlayerData.player_data.get("法宝", []).is_empty():
+	if PlayerData.player_data.get(DataKeys.MAGIC_WEAPON, []).is_empty():
 		return
-	var nn_name := str(PlayerData.player_data["法宝"][0]["名字"])
+	var nn_name := str(PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME])
 	if nn_name == _displayed_weapon_name:
 		return
 	_displayed_weapon_name = nn_name
-	name_.text = str(AE.AllEquipment_[nn_name]["名字"])
+	name_.text = str(AE.AllEquipment_[nn_name][DataKeys.NAME])
 	set_skill_info(nn_name)
 	_show_lazy_preview(nn_name)
 
@@ -149,10 +149,10 @@ func _load_preview_texture(path: String) -> Texture2D:
 
 
 func _on_up_level_pressed() -> void:
-	if PlayerData.player_data["法宝"][0]["强化等级"] < 15:
+	if PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL] < 15:
 		if PlayerData.get_soul() >= get_need_lh():
 			PlayerData.spend_soul(get_need_lh())
-			PlayerData.player_data["法宝"][0]["强化等级"] += 1
+			PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL] += 1
 			MemoryClass.保存游戏(Global.cd_path)
 		else:
 			Global.add_message_show(self, "灵魂不足！！", 1.5, Vector2(0, 0))
@@ -163,10 +163,10 @@ func _on_up_level_pressed() -> void:
 
 
 func set_skill_info(weapon_name: String = "") -> void:
-	if PlayerData.player_data["法宝"].is_empty():
+	if PlayerData.player_data[DataKeys.MAGIC_WEAPON].is_empty():
 		return
 	if weapon_name == "":
-		weapon_name = str(PlayerData.player_data["法宝"][0]["名字"])
+		weapon_name = str(PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME])
 	var info: Dictionary = SKILL_INFO.get(weapon_name, {})
 	icon_.texture = Global.get_cached_texture(str(PREVIEW_ICONS.get(weapon_name, "")))
 	magic_weapon_skill_title.text = str(info.get("title", ""))
@@ -181,21 +181,21 @@ func _on_close_pressed() -> void:
 
 func get_need_lh() -> int:
 	var current_level: int = 0
-	if PlayerData.player_data["法宝"].size() != 0:
-		current_level = PlayerData.player_data["法宝"][0]["强化等级"]
+	if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() != 0:
+		current_level = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL]
 	return 1000 * int(pow(current_level + 1, 2))
 
 
 func get_fb_pro(name__, need):
-	var wx = PlayerData.player_data["法宝"][0]["五行"]
-	var level_ = PlayerData.player_data["法宝"][0]["强化等级"]
-	var Data = PlayerData.player_data["法宝"][0]["Data"]
+	var wx = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS]
+	var level_ = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL]
+	var Data = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
 	var infomation = AE.get_fb_last_equ_pro(name__, level_, wx, Data)[need]
 	return infomation
 
 
 func get_wx() -> String:
-	var wx = PlayerData.player_data["法宝"][0]["五行"]
+	var wx = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS]
 	var a = ""
 	for i in wx:
 		a = a + str(i)
@@ -212,7 +212,7 @@ func _on_tips_pressed() -> void:
 
 func LowWX() -> void:
 	if PlayerData.get_item_data("wxxls") >= 1:
-		PlayerData.player_data["法宝"][0]["五行"] = Global.get_wx(0)
+		PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS] = Global.get_wx(0)
 		PlayerData.remove_dj("wxxls", PlayerData.get_dj_page("wxxls"), 1)
 		Global.add_message_show(get_parent(), "法宝五行已重置！！", 1.5, Vector2(490, 280))
 	else:
@@ -220,19 +220,19 @@ func LowWX() -> void:
 
 
 func HighWX() -> void:
-	var wx_num = PlayerData.player_data["法宝"][0]["五行"].size() * 5
+	var wx_num = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS].size() * 5
 	if PlayerData.get_item_data("wxxls") >= wx_num:
-		match PlayerData.player_data["法宝"][0]["五行"].size():
+		match PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS].size():
 			0:
-				PlayerData.player_data["法宝"][0]["五行"] = Global.get_wx(0)
+				PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS] = Global.get_wx(0)
 			1:
-				PlayerData.player_data["法宝"][0]["五行"] = Global.get_wx(2)
+				PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS] = Global.get_wx(2)
 			2:
-				PlayerData.player_data["法宝"][0]["五行"] = Global.get_wx(3)
+				PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS] = Global.get_wx(3)
 			3:
-				PlayerData.player_data["法宝"][0]["五行"] = Global.get_wx(4)
+				PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS] = Global.get_wx(4)
 			4:
-				PlayerData.player_data["法宝"][0]["五行"] = Global.get_wx(5)
+				PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS] = Global.get_wx(5)
 		PlayerData.remove_dj("wxxls", PlayerData.get_dj_page("wxxls"), wx_num)
 		Global.add_message_show(get_parent(), "法宝五行已重置！！", 1.5, Vector2(490, 280))
 	else:
@@ -241,7 +241,9 @@ func HighWX() -> void:
 
 func CZL() -> void:
 	if PlayerData.get_item_data("czlxls") >= 1:
-		PlayerData.player_data["法宝"][0]["Data"]["成长率"] = MagicWeaponCZL(PlayerData.player_data["法宝"][0]["名字"])
+		PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]["成长率"] = MagicWeaponCZL(
+			PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
+		)
 		PlayerData.remove_dj("czlxls", PlayerData.get_dj_page("czlxls"), 1)
 		Global.add_message_show(get_parent(), "法宝成长已重置！！", 1.5, Vector2(490, 280))
 	else:
@@ -255,7 +257,7 @@ func _on_wxxl_pressed() -> void:
 
 func _on_gjwx_pressed() -> void:
 	Signals.ConnectChooseBoxSignal(self, "HighWX")
-	var wx_num = PlayerData.player_data["法宝"][0]["五行"].size() * 5
+	var wx_num = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS].size() * 5
 	Global.add_choose_text(get_parent(), Vector2(0, 0), "确定要使用" + str(wx_num) + "颗五行洗炼石高级洗炼一次法宝的五行吗？", 0)
 
 

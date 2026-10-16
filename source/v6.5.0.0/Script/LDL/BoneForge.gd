@@ -25,12 +25,12 @@ func _physics_process(_delta: float) -> void:
 		_clear_display()
 		return
 	var equipment: Dictionary = selected.get("item", {})
-	var item_name := str(equipment.get("名字", ""))
+	var item_name := str(equipment.get(DataKeys.NAME, ""))
 	var data: Dictionary = equipment.get("Data", {}) if equipment.get("Data", {}) is Dictionary else {}
 	var template: Dictionary = AE.AllEquipment_.get(item_name, {})
 	var stage := int(data.get("淬骨次数", 0))
 	var next_id := str(data.get("下一阶段", template.get("下一阶段", "")))
-	var qh_level := int(equipment.get("强化等级", 0))
+	var qh_level := int(equipment.get(DataKeys.ENHANCE_LEVEL, 0))
 	old_zb_name = item_name
 
 	var preview_id := item_name
@@ -41,11 +41,11 @@ func _physics_process(_delta: float) -> void:
 		_bake_bone_strength_into_base(preview_data, qh_level, 2.0)
 		_normalize_bone_attribute_signs(preview_data)
 		preview_id = next_id
-		new_zb_name = str(AE.AllEquipment_.get(next_id, {}).get("名字", item_name))
+		new_zb_name = str(AE.AllEquipment_.get(next_id, {}).get(DataKeys.NAME, item_name))
 		var preview_template: Dictionary = AE.AllEquipment_.get(next_id, {}).duplicate(true)
 		for preview_key in preview_data:
 			preview_template[preview_key] = preview_data[preview_key]
-		preview_template["名字"] = str(AE.AllEquipment_.get(next_id, {}).get("名字", item_name))
+		preview_template[DataKeys.NAME] = str(AE.AllEquipment_.get(next_id, {}).get(DataKeys.NAME, item_name))
 		preview_template["淬骨次数"] = BONE_MAX_COUNT
 		preview_template.erase("下一阶段")
 		preview_data = preview_template
@@ -68,7 +68,11 @@ func _physics_process(_delta: float) -> void:
 		slot.strength_index = selected_index
 	if stage + 1 >= BONE_MAX_COUNT:
 		new_zb.qh_level = 0
-	var valid := str(data.get("类型", template.get("类型", ""))) == "神骨" and next_id != "" and stage < BONE_MAX_COUNT
+	var valid := (
+		str(data.get(DataKeys.TYPE, template.get(DataKeys.TYPE, ""))) == "神骨"
+		and next_id != ""
+		and stage < BONE_MAX_COUNT
+	)
 	if not valid:
 		n_q_1.set_button_icon(load_("empty"))
 		n_q_1.get_item_name = "empty"
@@ -107,12 +111,12 @@ func _on_sz_pressed() -> void:
 		_show_message("请先选择一件神骨装备！")
 		return
 	var equipment: Dictionary = selected.get("item", {})
-	var item_name := str(equipment.get("名字", ""))
+	var item_name := str(equipment.get(DataKeys.NAME, ""))
 	var data: Dictionary = equipment.get("Data", {}) if equipment.get("Data", {}) is Dictionary else {}
 	var template: Dictionary = AE.AllEquipment_.get(item_name, {})
 	var next_id := str(data.get("下一阶段", template.get("下一阶段", "")))
 	var stage := int(data.get("淬骨次数", 0))
-	if str(data.get("类型", template.get("类型", ""))) != "神骨" or next_id == "":
+	if str(data.get(DataKeys.TYPE, template.get(DataKeys.TYPE, ""))) != "神骨" or next_id == "":
 		_show_message("只有设置了下一阶段的神骨装备才可以淬骨！")
 		return
 	if stage >= BONE_MAX_COUNT:
@@ -134,11 +138,13 @@ func _on_sz_pressed() -> void:
 		upgraded_data["下一阶段"] = next_id
 		_scale_bone_attributes(upgraded_data, 1.2)
 		if stage + 1 >= BONE_MAX_COUNT:
-			upgraded_data = _promote_bone(upgraded_data, next_id, item_name, int(current.get("强化等级", 0)))
+			upgraded_data = _promote_bone(
+				upgraded_data, next_id, item_name, int(current.get(DataKeys.ENHANCE_LEVEL, 0))
+			)
 			_update_selected_equipment(selected, next_id, upgraded_data, 0)
 			_show_message("淬骨成功，已进阶为完整的至尊骨！")
 		else:
-			_update_selected_equipment(selected, item_name, upgraded_data, int(current.get("强化等级", 0)))
+			_update_selected_equipment(selected, item_name, upgraded_data, int(current.get(DataKeys.ENHANCE_LEVEL, 0)))
 			_show_message("淬骨成功！")
 	else:
 		_show_message("淬骨失败，材料已消耗。")
@@ -153,7 +159,7 @@ func _read_selected_equipment(selected: Dictionary) -> Dictionary:
 		if equipped is Array and not equipped.is_empty() and equipped[0] is Dictionary:
 			return (equipped[0] as Dictionary).duplicate(true)
 		return {}
-	var pages: Dictionary = PlayerData.player_data.get("装备列表", {})
+	var pages: Dictionary = PlayerData.player_data.get(DataKeys.EQUIPMENT_LIST, {})
 	var page_key := "页码" + str(int(selected.get("page", 0)))
 	var page: Variant = pages.get(page_key, [])
 	var index := int(selected.get("index", -1))
@@ -168,8 +174,8 @@ func _update_selected_equipment(selected: Dictionary, item_name: String, data: D
 		var equipped: Variant = PlayerData.player_data.get(slot_type, [])
 		if equipped is Array and not equipped.is_empty() and equipped[0] is Dictionary:
 			var item: Dictionary = equipped[0]
-			item["名字"] = item_name
-			item["强化等级"] = level
+			item[DataKeys.NAME] = item_name
+			item[DataKeys.ENHANCE_LEVEL] = level
 			item["Data"] = data
 			equipped[0] = item
 			PlayerData.player_data[slot_type] = equipped
@@ -177,26 +183,26 @@ func _update_selected_equipment(selected: Dictionary, item_name: String, data: D
 		RoleProp.get_last_prop()
 		if is_instance_valid(RoleProp.SourcePlayer):
 			RoleProp.SourcePlayer.onEqchange()
-		MLdl.qh_list["名字"] = item_name
-		MLdl.qh_list["强化等级"] = level
+		MLdl.qh_list[DataKeys.NAME] = item_name
+		MLdl.qh_list[DataKeys.ENHANCE_LEVEL] = level
 		MLdl.qh_list["页码"] = int(selected.get("page", 0))
 		MLdl.qh_list["位置"] = int(selected.get("index", -1))
 		MLdl.qh_list["来源"] = str(selected.get("source", "装备背包"))
 		MLdl.qh_list["穿戴栏"] = str(selected.get("穿戴栏", ""))
 		MLdl.qh_list["Data"] = data
 		return
-	var pages: Dictionary = PlayerData.player_data.get("装备列表", {})
+	var pages: Dictionary = PlayerData.player_data.get(DataKeys.EQUIPMENT_LIST, {})
 	var page_key := "页码" + str(int(selected.get("page", 0)))
 	var page: Variant = pages.get(page_key, [])
 	var index := int(selected.get("index", -1))
 	if page is Array and index >= 0 and index < (page as Array).size() and (page as Array)[index] is Dictionary:
 		var item: Dictionary = (page as Array)[index]
-		item["名字"] = item_name
-		item["强化等级"] = level
+		item[DataKeys.NAME] = item_name
+		item[DataKeys.ENHANCE_LEVEL] = level
 		item["Data"] = data
 		(page as Array)[index] = item
-		MLdl.qh_list["名字"] = item_name
-		MLdl.qh_list["强化等级"] = level
+		MLdl.qh_list[DataKeys.NAME] = item_name
+		MLdl.qh_list[DataKeys.ENHANCE_LEVEL] = level
 		MLdl.qh_list["页码"] = int(selected.get("page", 0))
 		MLdl.qh_list["位置"] = index
 		MLdl.qh_list["来源"] = "装备背包"
@@ -211,7 +217,7 @@ func _scale_bone_attributes(data: Dictionary, multiplier: float) -> void:
 			continue
 		if data[key] is int or data[key] is float:
 			data[key] = data[key] * multiplier
-	var strength: Variant = data.get("强化属性", {})
+	var strength: Variant = data.get(DataKeys.ENHANCE_PROP, {})
 	if strength is Dictionary:
 		for key in (strength as Dictionary).keys():
 			if strength[key] is int or strength[key] is float:
@@ -219,17 +225,17 @@ func _scale_bone_attributes(data: Dictionary, multiplier: float) -> void:
 
 
 func _ensure_bone_strength_data(data: Dictionary, source_id: String) -> void:
-	var strength: Variant = data.get("强化属性", null)
+	var strength: Variant = data.get(DataKeys.ENHANCE_PROP, null)
 	if strength is Dictionary and not (strength as Dictionary).is_empty():
 		return
 	var source_template: Dictionary = AE.AllEquipment_.get(source_id, {})
-	var template_strength: Variant = source_template.get("强化属性", {})
+	var template_strength: Variant = source_template.get(DataKeys.ENHANCE_PROP, {})
 	if template_strength is Dictionary:
-		data["强化属性"] = (template_strength as Dictionary).duplicate(true)
+		data[DataKeys.ENHANCE_PROP] = (template_strength as Dictionary).duplicate(true)
 
 
 func _bake_bone_strength_into_base(data: Dictionary, qh_level: int, multiplier: float) -> void:
-	var strength: Variant = data.get("强化属性", {})
+	var strength: Variant = data.get(DataKeys.ENHANCE_PROP, {})
 	var strength_data: Dictionary = strength if strength is Dictionary else {}
 	const metadata_keys := ["售价", "淬骨次数", "神铸阶段"]
 	for key in data.keys():
@@ -243,7 +249,7 @@ func _bake_bone_strength_into_base(data: Dictionary, qh_level: int, multiplier: 
 	for key in strength_data.keys():
 		if strength_data[key] is int or strength_data[key] is float:
 			strength_data[key] = strength_data[key] * multiplier
-	data["强化属性"] = strength_data
+	data[DataKeys.ENHANCE_PROP] = strength_data
 
 
 func _promote_bone(data: Dictionary, next_id: String, source_id: String = "", qh_level: int = 0) -> Dictionary:
@@ -255,8 +261,12 @@ func _promote_bone(data: Dictionary, next_id: String, source_id: String = "", qh
 	for key in ["品质", "类型", "颜色", "所属", "描述", "图标"]:
 		if template.has(key):
 			promoted[key] = template[key]
-	promoted["名字"] = str(template.get("名字", "完整的至尊骨"))
-	promoted["宝石"] = data.get("宝石", []).duplicate(true) if data.get("宝石", []) is Array else data.get("宝石", {})
+	promoted[DataKeys.NAME] = str(template.get(DataKeys.NAME, "完整的至尊骨"))
+	promoted[DataKeys.GEM] = (
+		data.get(DataKeys.GEM, []).duplicate(true)
+		if data.get(DataKeys.GEM, []) is Array
+		else data.get(DataKeys.GEM, {})
+	)
 	promoted["淬骨次数"] = 3
 	promoted.erase("下一阶段")
 	return promoted
@@ -269,7 +279,7 @@ func _normalize_bone_attribute_signs(data: Dictionary) -> void:
 			continue
 		if data[key] is int or data[key] is float:
 			data[key] = abs(float(data[key]))
-	var strength: Variant = data.get("强化属性", {})
+	var strength: Variant = data.get(DataKeys.ENHANCE_PROP, {})
 	if strength is Dictionary:
 		for key in (strength as Dictionary).keys():
 			if strength[key] is int or strength[key] is float:

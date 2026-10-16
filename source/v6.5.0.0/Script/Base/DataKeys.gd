@@ -1,6 +1,6 @@
 class_name DataKeys
 extends RefCounted
-## ZMXYBHYH 领域数据字典键契约类 (Phase 6-4)
+## ZMXYBHYH 领域数据字典键契约类 (Phase 6-4 / Phase 7-3)
 ##
 ## 本类集中定义全工程核心字典键的强类型常量契约，
 ## 彻底收敛早期直接使用硬编码中文字符串传参的弱类型风险，
@@ -14,6 +14,7 @@ extends RefCounted
 ## 装备与物品元数据契约
 class Item:
 	const NAME = "名字"
+	const ALT_NAME = "名称"
 	const TYPE = "类型"
 	const QUALITY = "品质"
 	const DESC = "描述"
@@ -73,6 +74,7 @@ class Attr:
 ## 宠物与资质培养契约
 class Pet:
 	const ACTIVE_PET = "出战宠物"
+	const DEPLOYED = "出战"
 	const STAGE = "阶段"
 	const SAVVY = "悟性"
 	const BONE = "根骨"
@@ -101,10 +103,12 @@ class Skill:
 # ==============================================================================
 
 const NAME = "名字"
+const ALT_NAME = "名称"
 const TYPE = "类型"
 const QUALITY = "品质"
 const LEVEL = "等级"
 const PLAYER_LEVEL = "玩家等级"
+const COUNT = "数量"
 const WEAPON = "武器"
 const ARMOR = "防具"
 const ACCESSORY = "饰品"
@@ -113,11 +117,22 @@ const MAGIC_WEAPON = "法宝"
 const WINGS = "翅膀"
 const TITLE = "头衔"
 const GEM = "宝石"
+const DEPLOYED = "出战"
 const EQUIPMENT_LIST = "装备列表"
 const ITEM_LIST = "道具列表"
 const CONSUMABLE_LIST = "消耗品列表"
 const TRANSMOG_LIST = "幻化列表"
 const ENHANCE_LEVEL = "强化等级"
+const ENHANCE_PROP = "强化属性"
+const FIVE_ELEMENTS = "五行"
+const INLAY_LIST = "镶嵌列表"
+const DECOMPOSE_LIST = "分解列表"
+const SKILL_LEARNED = "技能学习"
+const HP = "生命"
+const MP = "魔法"
+const ATTACK = "攻击"
+const DEFENSE = "防御"
+const EXP = "经验"
 
 # ==============================================================================
 # 3. 契约安全访问与校验工具函数

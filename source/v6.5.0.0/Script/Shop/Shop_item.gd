@@ -26,7 +26,7 @@ func _physics_process(_delta: float) -> void:
 		elif total_num > MAX_SHOP_BUY_NUM:
 			_set_total_num(MAX_SHOP_BUY_NUM)
 	if item_name_ != "" and AE.AllEquipment_.has(item_name_):
-		item_name.text = str(AE.AllEquipment_[item_name_].get("名字", item_name_))
+		item_name.text = str(AE.AllEquipment_[item_name_].get(DataKeys.NAME, item_name_))
 		items.set_button_icon(load_(item_name_))
 		items.qh_level = 0
 		items.wx = []
@@ -131,7 +131,7 @@ func add_item_toplayer(times):
 	var buy_num := clampi(int(times), 1, MAX_SHOP_BUY_NUM)
 	_set_total_num(buy_num)
 	var item_data: Dictionary = AE.AllEquipment_[item_name_]
-	var lx = str(item_data.get("类型", ""))
+	var lx = str(item_data.get(DataKeys.TYPE, ""))
 	var cklb := _get_backpack_list_name(lx)
 
 	if not _can_pay_for_count(buy_num):

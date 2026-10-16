@@ -68,7 +68,7 @@ func _set_pet_box_item(box, item: Dictionary, item_index: int) -> void:
 	box.set_button_icon(_pet_item_icon(item, item_id))
 	box.get_item_name = item_id
 	box.set_meta("item_name", item_id)
-	box.qh_level = int(item.get("强化等级", 0))
+	box.qh_level = int(item.get(DataKeys.ENHANCE_LEVEL, 0))
 	box.total_number = 0
 	box.EQ_prop = item
 	box.item_locked = false
@@ -89,13 +89,20 @@ func _pet_item_id(item: Dictionary) -> String:
 			var candidate := str(source.get(key, "")).get_file().get_basename()
 			if AE.AllEquipment_.has(candidate):
 				return candidate
-	var stored_name := str(item.get("名字", item.get("名称", data.get("名字", data.get("名称", ""))))).strip_edges()
+	var stored_name := (
+		str(
+			item.get(
+				DataKeys.NAME, item.get(DataKeys.ALT_NAME, data.get(DataKeys.NAME, data.get(DataKeys.ALT_NAME, "")))
+			)
+		)
+		. strip_edges()
+	)
 	if AE.AllEquipment_.has(stored_name):
 		return stored_name
 	if pet_item_id_cache.has(stored_name):
 		return str(pet_item_id_cache[stored_name])
 	for item_id in AE.AllEquipment_:
-		if str(AE.AllEquipment_[item_id].get("名字", "")) == stored_name:
+		if str(AE.AllEquipment_[item_id].get(DataKeys.NAME, "")) == stored_name:
 			pet_item_id_cache[stored_name] = str(item_id)
 			return str(item_id)
 	var fallback := stored_name if stored_name != "" else "宠物装备"
@@ -154,10 +161,10 @@ func _get_ldl_equipment_entries() -> Array:
 		var equipped_item: Variant = (equipped_value as Array)[0]
 		if not (equipped_item is Dictionary):
 			continue
-		var item_name := str((equipped_item as Dictionary).get("名字", ""))
+		var item_name := str((equipped_item as Dictionary).get(DataKeys.NAME, ""))
 		if item_name == "" or not AE.AllEquipment_.has(item_name):
 			continue
-		if ldl_type_filter != "" and str(AE.AllEquipment_[item_name].get("类型", "")) != ldl_type_filter:
+		if ldl_type_filter != "" and str(AE.AllEquipment_[item_name].get(DataKeys.TYPE, "")) != ldl_type_filter:
 			continue
 		(
 			entries
@@ -172,7 +179,7 @@ func _get_ldl_equipment_entries() -> Array:
 			)
 		)
 
-	var equipment_pages: Variant = PlayerData.player_data.get("装备列表", {})
+	var equipment_pages: Variant = PlayerData.player_data.get(DataKeys.EQUIPMENT_LIST, {})
 	if equipment_pages is Dictionary:
 		for page_index in range(equipment_pages.size()):
 			var page_number: int = page_index + 1
@@ -183,12 +190,12 @@ func _get_ldl_equipment_entries() -> Array:
 			for item_index in range(page.size()):
 				var item_value: Variant = page[item_index]
 				if item_value is Dictionary:
-					var item_name := str((item_value as Dictionary).get("名字", ""))
+					var item_name := str((item_value as Dictionary).get(DataKeys.NAME, ""))
 					if (
 						ldl_type_filter != ""
 						and (
 							not AE.AllEquipment_.has(item_name)
-							or str(AE.AllEquipment_[item_name].get("类型", "")) != ldl_type_filter
+							or str(AE.AllEquipment_[item_name].get(DataKeys.TYPE, "")) != ldl_type_filter
 						)
 					):
 						continue
@@ -216,14 +223,14 @@ func _set_ldl_equipment_box_data() -> void:
 	for entry_index in range(first_index, last_index):
 		var entry: Dictionary = entries[entry_index]
 		var item: Dictionary = entry.get("item", {})
-		var item_name := str(item.get("名字", ""))
+		var item_name := str(item.get(DataKeys.NAME, ""))
 		if item_name == "" or not AE.AllEquipment_.has(item_name):
 			continue
 		var item_data: Dictionary = item.get("Data", {}) if item.get("Data", {}) is Dictionary else {}
-		var item_type := str(AE.AllEquipment_[item_name].get("类型", ""))
-		var wx_list: Variant = item.get("五行", []) if item_type == "法宝" else []
+		var item_type := str(AE.AllEquipment_[item_name].get(DataKeys.TYPE, ""))
+		var wx_list: Variant = item.get(DataKeys.FIVE_ELEMENTS, []) if item_type == "法宝" else []
 		var box = target_box(x)
-		_set_box_item(box, item_name, int(item.get("强化等级", 0)), 0, item_data, wx_list)
+		_set_box_item(box, item_name, int(item.get(DataKeys.ENHANCE_LEVEL, 0)), 0, item_data, wx_list)
 		box.current_page = int(entry.get("page", 0))
 		box.strength_source = str(entry.get("source", "装备背包"))
 		box.strength_index = int(entry.get("index", -1))
@@ -245,14 +252,14 @@ func set_box_data():
 				return
 			title.text = "装备背包"
 			var x = 1
-			for i in PlayerData.player_data["装备列表"]["页码" + str(current_page)]:
+			for i in PlayerData.player_data[DataKeys.EQUIPMENT_LIST]["页码" + str(current_page)]:
 				target_box(x).set_button_icon(load_(str(i.名字)))
 				target_box(x).get_item_name = str(i.名字)
 				target_box(x).set_meta("item_name", str(i.名字))
 				target_box(x).qh_level = i.强化等级
 				target_box(x).EQ_prop = i.Data
 				target_box(x).item_locked = bool(i.Data.get("锁定", false))
-				if AE.AllEquipment_[i.名字]["类型"] == "法宝":
+				if AE.AllEquipment_[i.名字][DataKeys.TYPE] == "法宝":
 					target_box(x).wx = i.五行
 				else:
 					target_box(x).wx = []
@@ -267,7 +274,7 @@ func set_box_data():
 		1:
 			title.text = "道具背包"
 			var x = 1
-			for i in PlayerData.player_data["道具列表"]["页码" + str(current_page)]:
+			for i in PlayerData.player_data[DataKeys.ITEM_LIST]["页码" + str(current_page)]:
 				target_box(x).set_button_icon(load_(str(i.名字)))
 				target_box(x).get_item_name = str(i.名字)
 				target_box(x).set_meta("item_name", str(i.名字))
@@ -286,7 +293,7 @@ func set_box_data():
 		2:
 			title.text = "消耗品背包"
 			var x = 1
-			for i in PlayerData.player_data["消耗品列表"]["页码" + str(current_page)]:
+			for i in PlayerData.player_data[DataKeys.CONSUMABLE_LIST]["页码" + str(current_page)]:
 				target_box(x).set_button_icon(load_(str(i.名字)))
 				target_box(x).get_item_name = str(i.名字)
 				target_box(x).set_meta("item_name", str(i.名字))

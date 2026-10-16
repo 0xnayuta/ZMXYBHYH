@@ -529,9 +529,9 @@ func get_pellet_prop():
 	var Emp: float = 0
 	for i in range(6):
 		if i > 0:
-			Hp += PlayerData.player_data["生命丹" + str(i)] * PelletProps[str(i) + "品丹"]["生命"]
-			Mp += PlayerData.player_data["魔法丹" + str(i)] * PelletProps[str(i) + "品丹"]["魔法"]
-			Att += PlayerData.player_data["攻击丹" + str(i)] * PelletProps[str(i) + "品丹"]["攻击"]
+			Hp += PlayerData.player_data["生命丹" + str(i)] * PelletProps[str(i) + "品丹"][DataKeys.HP]
+			Mp += PlayerData.player_data["魔法丹" + str(i)] * PelletProps[str(i) + "品丹"][DataKeys.MP]
+			Att += PlayerData.player_data["攻击丹" + str(i)] * PelletProps[str(i) + "品丹"][DataKeys.ATTACK]
 			Crit += PlayerData.player_data["暴击丹" + str(i)] * PelletProps[str(i) + "品丹"]["暴击"]
 			Lucky += PlayerData.player_data["幸运丹" + str(i)] * PelletProps[str(i) + "品丹"]["幸运"]
 			Emp += PlayerData.player_data["回魔丹" + str(i)] * PelletProps[str(i) + "品丹"]["回魔"]
@@ -556,7 +556,7 @@ func _get_static_prop_signature() -> int:
 	values.append(PlayerData.player_data.get(PlayerData.WANLING_CATALOG_LEVELS_KEY, {}))
 	values.append(PlayerData.player_data.get(PlayerData.ACTIVE_MOUNT_KEY, ""))
 	var active_mount := PlayerData.get_active_mount()
-	values.append(active_mount.get("等级", 0))
+	values.append(active_mount.get(DataKeys.LEVEL, 0))
 	return hash(values)
 
 
@@ -610,18 +610,18 @@ func get_last_prop():
 
 	_refresh_static_prop_cache()
 	var pellet: Array = _cached_pellet_props
-	var zf_hp = _cached_zf_props["生命"]
-	var zf_mp = _cached_zf_props["魔法"]
-	var zf_power = _cached_zf_props["攻击"]
+	var zf_hp = _cached_zf_props[DataKeys.HP]
+	var zf_mp = _cached_zf_props[DataKeys.MP]
+	var zf_power = _cached_zf_props[DataKeys.ATTACK]
 	var zf_crit = _cached_zf_props["暴击"]
 	var zf_lucky = _cached_zf_props["幸运"]
 	var zf_def = _cached_zf_props["物防"]
 	var zf_mdef = _cached_zf_props["魔防"]
 	var zf_ar = _cached_zf_props["破甲"]
 	var zf_sp = _cached_zf_props["破魔"]
-	var sword_hp = _cached_sword_props["生命"]
-	var sword_mp = _cached_sword_props["魔法"]
-	var sword_power = _cached_sword_props["攻击"]
+	var sword_hp = _cached_sword_props[DataKeys.HP]
+	var sword_mp = _cached_sword_props[DataKeys.MP]
+	var sword_power = _cached_sword_props[DataKeys.ATTACK]
 	var sword_crit = _cached_sword_props["暴击"]
 	var sword_lucky = _cached_sword_props["幸运"]
 	var sword_def = _cached_sword_props["物防"]
@@ -867,14 +867,14 @@ func _physics_process(_delta: float) -> void:
 	check_Mp()
 	var equipment_signature := hash(
 		[
-			PlayerData.player_data.get("武器", []),
-			PlayerData.player_data.get("防具", []),
+			PlayerData.player_data.get(DataKeys.WEAPON, []),
+			PlayerData.player_data.get(DataKeys.ARMOR, []),
 			PlayerData.player_data.get("饰品", []),
-			PlayerData.player_data.get("时装", []),
+			PlayerData.player_data.get(DataKeys.FASHION, []),
 			PlayerData.player_data.get("神骨", []),
-			PlayerData.player_data.get("头衔", []),
-			PlayerData.player_data.get("翅膀", []),
-			PlayerData.player_data.get("法宝", [])
+			PlayerData.player_data.get(DataKeys.TITLE, []),
+			PlayerData.player_data.get(DataKeys.WINGS, []),
+			PlayerData.player_data.get(DataKeys.MAGIC_WEAPON, [])
 		]
 	)
 	if equipment_signature != _equipment_signature:
@@ -911,10 +911,10 @@ func up_level():
 
 
 func get_equ_properies():
-	if PlayerData.player_data["武器"].size() != 0:
-		var name_ = PlayerData.player_data["武器"][0]["名字"]
-		var qh_level = PlayerData.player_data["武器"][0]["强化等级"]
-		var Data = PlayerData.player_data["武器"][0]["Data"]
+	if PlayerData.player_data[DataKeys.WEAPON].size() != 0:
+		var name_ = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME]
+		var qh_level = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.ENHANCE_LEVEL]
+		var Data = PlayerData.player_data[DataKeys.WEAPON][0]["Data"]
 		var wq_list: Dictionary = AE.get_divine_forge_properties(name_, qh_level, Data)
 		for i in wq_list.size():
 			var loc_1 = wq_list.keys()[i]
@@ -923,10 +923,10 @@ func get_equ_properies():
 	else:
 		remove_wq_pro()
 
-	if PlayerData.player_data["防具"].size() != 0:
-		var name_ = PlayerData.player_data["防具"][0]["名字"]
-		var qh_level = PlayerData.player_data["防具"][0]["强化等级"]
-		var Data = PlayerData.player_data["防具"][0]["Data"]
+	if PlayerData.player_data[DataKeys.ARMOR].size() != 0:
+		var name_ = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME]
+		var qh_level = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.ENHANCE_LEVEL]
+		var Data = PlayerData.player_data[DataKeys.ARMOR][0]["Data"]
 		var fj_list: Dictionary = AE.get_divine_forge_properties(name_, qh_level, Data)
 		for i in fj_list.size():
 			var loc_1 = fj_list.keys()[i]
@@ -936,8 +936,8 @@ func get_equ_properies():
 		remove_fj_pro()
 
 	if PlayerData.player_data["饰品"].size() != 0:
-		var name_ = PlayerData.player_data["饰品"][0]["名字"]
-		var qh_level = PlayerData.player_data["饰品"][0]["强化等级"]
+		var name_ = PlayerData.player_data["饰品"][0][DataKeys.NAME]
+		var qh_level = PlayerData.player_data["饰品"][0][DataKeys.ENHANCE_LEVEL]
 		var Data = PlayerData.player_data["饰品"][0]["Data"]
 		var sp_list: Dictionary = AE.get_divine_forge_properties(name_, qh_level, Data)
 		for i in sp_list.size():
@@ -947,10 +947,10 @@ func get_equ_properies():
 	else:
 		remove_sp_pro()
 
-	if PlayerData.player_data["时装"].size() != 0:
-		var name_ = PlayerData.player_data["时装"][0]["名字"]
-		var qh_level = PlayerData.player_data["时装"][0]["强化等级"]
-		var Data = PlayerData.player_data["时装"][0]["Data"]
+	if PlayerData.player_data[DataKeys.FASHION].size() != 0:
+		var name_ = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]
+		var qh_level = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.ENHANCE_LEVEL]
+		var Data = PlayerData.player_data[DataKeys.FASHION][0]["Data"]
 		var sz_list = AE.get_last_equ_pro(name_, qh_level, Data)
 		for i in sz_list.size():
 			var loc_1 = sz_list.keys()[i]
@@ -959,10 +959,10 @@ func get_equ_properies():
 	else:
 		remove_sz_pro()
 
-	if PlayerData.player_data["头衔"].size() != 0:
-		var name_ = PlayerData.player_data["头衔"][0]["名字"]
-		var qh_level = PlayerData.player_data["头衔"][0]["强化等级"]
-		var Data = PlayerData.player_data["头衔"][0]["Data"]
+	if PlayerData.player_data[DataKeys.TITLE].size() != 0:
+		var name_ = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.NAME]
+		var qh_level = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.ENHANCE_LEVEL]
+		var Data = PlayerData.player_data[DataKeys.TITLE][0]["Data"]
 		var tx_list = AE.get_last_equ_pro(name_, qh_level, Data)
 		for i in tx_list.size():
 			var loc_1 = tx_list.keys()[i]
@@ -971,10 +971,10 @@ func get_equ_properies():
 	else:
 		remove_tx_pro()
 
-	if PlayerData.player_data["翅膀"].size() != 0:
-		var name_ = PlayerData.player_data["翅膀"][0]["名字"]
-		var qh_level = PlayerData.player_data["翅膀"][0]["强化等级"]
-		var Data = PlayerData.player_data["翅膀"][0]["Data"]
+	if PlayerData.player_data[DataKeys.WINGS].size() != 0:
+		var name_ = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
+		var qh_level = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.ENHANCE_LEVEL]
+		var Data = PlayerData.player_data[DataKeys.WINGS][0]["Data"]
 		var cb_list = AE.get_last_equ_pro(name_, qh_level, Data)
 		for i in cb_list.size():
 			var loc_1 = cb_list.keys()[i]
@@ -983,11 +983,11 @@ func get_equ_properies():
 	else:
 		remove_cb_pro()
 
-	if PlayerData.player_data["法宝"].size() != 0:
-		var name_ = PlayerData.player_data["法宝"][0]["名字"]
-		var qh_level = PlayerData.player_data["法宝"][0]["强化等级"]
-		var wxlist = PlayerData.player_data["法宝"][0]["五行"]
-		var Data = PlayerData.player_data["法宝"][0]["Data"]
+	if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() != 0:
+		var name_ = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
+		var qh_level = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL]
+		var wxlist = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS]
+		var Data = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
 		var fb_list = AE.get_fb_last_equ_pro(name_, qh_level, wxlist, Data)
 		for i in fb_list.size():
 			var loc_1 = fb_list.keys()[i]
@@ -1007,9 +1007,11 @@ func get_equ_properies():
 func get_bs_wq_properties():
 	for property_name in WqBs_prop:
 		WqBs_prop[property_name] = 0
-	if PlayerData.player_data["武器"].size() != 0:
-		var equipment: Dictionary = PlayerData.player_data["武器"][0]
-		var gem_properties: Dictionary = AE.get_divine_forge_gem_properties(str(equipment["名字"]), equipment["Data"])
+	if PlayerData.player_data[DataKeys.WEAPON].size() != 0:
+		var equipment: Dictionary = PlayerData.player_data[DataKeys.WEAPON][0]
+		var gem_properties: Dictionary = AE.get_divine_forge_gem_properties(
+			str(equipment[DataKeys.NAME]), equipment["Data"]
+		)
 		for property_name in WqBs_prop:
 			WqBs_prop[property_name] = gem_properties.get(property_name, 0)
 
@@ -1017,9 +1019,11 @@ func get_bs_wq_properties():
 func get_bs_fj_properties():
 	for property_name in FjBs_prop:
 		FjBs_prop[property_name] = 0
-	if PlayerData.player_data["防具"].size() != 0:
-		var equipment: Dictionary = PlayerData.player_data["防具"][0]
-		var gem_properties: Dictionary = AE.get_divine_forge_gem_properties(str(equipment["名字"]), equipment["Data"])
+	if PlayerData.player_data[DataKeys.ARMOR].size() != 0:
+		var equipment: Dictionary = PlayerData.player_data[DataKeys.ARMOR][0]
+		var gem_properties: Dictionary = AE.get_divine_forge_gem_properties(
+			str(equipment[DataKeys.NAME]), equipment["Data"]
+		)
 		for property_name in FjBs_prop:
 			FjBs_prop[property_name] = gem_properties.get(property_name, 0)
 
@@ -1029,7 +1033,9 @@ func get_bs_sp_properties():
 		SpBs_prop[property_name] = 0
 	if PlayerData.player_data["饰品"].size() != 0:
 		var equipment: Dictionary = PlayerData.player_data["饰品"][0]
-		var gem_properties: Dictionary = AE.get_divine_forge_gem_properties(str(equipment["名字"]), equipment["Data"])
+		var gem_properties: Dictionary = AE.get_divine_forge_gem_properties(
+			str(equipment[DataKeys.NAME]), equipment["Data"]
+		)
 		for property_name in SpBs_prop:
 			SpBs_prop[property_name] = gem_properties.get(property_name, 0)
 
@@ -1053,7 +1059,9 @@ func _set_slot_gem_properties(slot_name: String, properties: Dictionary) -> void
 	if equipped.is_empty():
 		return
 	var equipment: Dictionary = equipped[0]
-	var gem_properties := AE.get_divine_forge_gem_properties(str(equipment.get("名字", "")), equipment.get("Data", {}))
+	var gem_properties := AE.get_divine_forge_gem_properties(
+		str(equipment.get(DataKeys.NAME, "")), equipment.get("Data", {})
+	)
 	for property_name in properties:
 		properties[property_name] = gem_properties.get(property_name, 0)
 
@@ -1065,7 +1073,7 @@ func get_equ_last_pro():
 	if not equipped_shengu.is_empty() and equipped_shengu[0] is Dictionary:
 		var item: Dictionary = equipped_shengu[0]
 		shengu_properties = AE.get_divine_forge_properties(
-			str(item.get("名字", "")), int(item.get("强化等级", 0)), item.get("Data", {}), true
+			str(item.get(DataKeys.NAME, "")), int(item.get(DataKeys.ENHANCE_LEVEL, 0)), item.get("Data", {}), true
 		)
 	for i in equprop.keys():
 		equprop[i] = (

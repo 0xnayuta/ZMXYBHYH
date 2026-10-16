@@ -36,9 +36,9 @@ func _physics_process(_delta: float) -> void:
 	n_q_2.is_in_ldl_gz = true
 	old_zb.is_in_ldl_gz = true
 	new_zb.is_in_ldl_gz = true
-	if MLdl.qh_list["名字"] != "":
-		old_zb_name = MLdl.qh_list["名字"]
-	qh_level = MLdl.qh_list["强化等级"]
+	if MLdl.qh_list[DataKeys.NAME] != "":
+		old_zb_name = MLdl.qh_list[DataKeys.NAME]
+	qh_level = MLdl.qh_list[DataKeys.ENHANCE_LEVEL]
 	Data = MLdl.qh_list["Data"]
 	get_qhs_name()
 	set_color()
@@ -120,7 +120,7 @@ func set_color():
 
 
 func _on_qh__pressed() -> void:
-	var selected_name: String = str(MLdl.qh_list.get("名字", ""))
+	var selected_name: String = str(MLdl.qh_list.get(DataKeys.NAME, ""))
 	var selected_data: Dictionary = MLdl.qh_list.get("Data", {}) if MLdl.qh_list.get("Data", {}) is Dictionary else {}
 	var template_data: Dictionary = AE.AllEquipment_.get(selected_name, {})
 	if (
@@ -137,19 +137,19 @@ func _on_qh__pressed() -> void:
 	if not (equipment is Dictionary):
 		_show_invalid_strength_selection()
 		return
-	var current_level = int(equipment.get("强化等级", 0))
-	MLdl.qh_list["强化等级"] = current_level
+	var current_level = int(equipment.get(DataKeys.ENHANCE_LEVEL, 0))
+	MLdl.qh_list[DataKeys.ENHANCE_LEVEL] = current_level
 	qh_level = current_level
-	var Type = AE.AllEquipment_.get(MLdl.qh_list["名字"], {}).get("品质", "")
-	var MaxLevel: int = _get_strength_max_level(MLdl.qh_list["名字"])
+	var Type = AE.AllEquipment_.get(MLdl.qh_list[DataKeys.NAME], {}).get(DataKeys.QUALITY, "")
+	var MaxLevel: int = _get_strength_max_level(MLdl.qh_list[DataKeys.NAME])
 	if current_level >= MaxLevel:
 		Global.add_message_show(get_parent(), str(Type) + "品质装备最高强化" + str(MaxLevel) + "级！！", 1.5, Vector2(15, -45))
 		return
-	old_zb_name = MLdl.qh_list["名字"]
+	old_zb_name = MLdl.qh_list[DataKeys.NAME]
 	if PlayerData.get_item_data(qhs_1_name) >= qhs_1_num and PlayerData.get_item_data(qhs_2_name) >= qhs_2_num:
 		if PlayerData.get_soul() >= need_lh:
-			equipment["强化等级"] = current_level + 1
-			MLdl.qh_list["强化等级"] = current_level + 1
+			equipment[DataKeys.ENHANCE_LEVEL] = current_level + 1
+			MLdl.qh_list[DataKeys.ENHANCE_LEVEL] = current_level + 1
 			qh_level = current_level + 1
 			PlayerData.spend_soul(need_lh)
 			PlayerData.remove_dj(qhs_1_name, PlayerData.get_dj_page(qhs_1_name), qhs_1_num)
@@ -182,7 +182,7 @@ func _get_selected_equipment(position_index: int) -> Variant:
 		equipment_list = equipped_value
 		position_index = 0
 	else:
-		var equipment_pages: Variant = PlayerData.player_data.get("装备列表", {})
+		var equipment_pages: Variant = PlayerData.player_data.get(DataKeys.EQUIPMENT_LIST, {})
 		var page_number: int = int(MLdl.qh_list.get("页码", 0))
 		var page_key := "页码" + str(page_number)
 		if page_number < 1 or not (equipment_pages is Dictionary) or not equipment_pages.has(page_key):
@@ -196,7 +196,7 @@ func _get_selected_equipment(position_index: int) -> Variant:
 	if source == "宠物背包":
 		if not is_same(equipment, MLdl.qh_list.get("Data", {})):
 			return null
-	elif str(equipment.get("名字", "")) != str(MLdl.qh_list.get("名字", "")):
+	elif str(equipment.get(DataKeys.NAME, "")) != str(MLdl.qh_list.get(DataKeys.NAME, "")):
 		return null
 	return equipment
 
@@ -265,8 +265,8 @@ func remove_infomation():
 	qh_level = -1
 	qhs_1_num = 0
 	qhs_2_num = 0
-	MLdl.qh_list["名字"] = ""
-	MLdl.qh_list["强化等级"] = -1
+	MLdl.qh_list[DataKeys.NAME] = ""
+	MLdl.qh_list[DataKeys.ENHANCE_LEVEL] = -1
 	MLdl.qh_list["页码"] = 0
 	MLdl.qh_list["位置"] = 0
 	MLdl.qh_list["来源"] = "装备背包"

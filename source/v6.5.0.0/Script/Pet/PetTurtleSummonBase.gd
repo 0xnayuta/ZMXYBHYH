@@ -200,7 +200,7 @@ func apply_pet_data(data: Dictionary) -> void:
 
 
 func _pet_stage_from_data(data: Dictionary, fallback: int) -> int:
-	var pet_level := int(data.get("等级", fallback))
+	var pet_level := int(data.get(DataKeys.LEVEL, fallback))
 	var level_stage := 4 if pet_level >= 50 else 3 if pet_level >= 30 else 2 if pet_level >= 15 else 1
 	return maxi(level_stage, clampi(int(data.get("阶段", fallback)), 1, 4))
 
@@ -208,35 +208,35 @@ func _pet_stage_from_data(data: Dictionary, fallback: int) -> int:
 func setup_pet_turtle(stage: int) -> void:
 	turtle_stage = clampi(stage, 1, 4)
 	pet_data["阶段"] = turtle_stage
-	pet_data["类型"] = "PetTurtle"
-	pet_data["名称"] = TURTLE_STAGE_NAMES[turtle_stage]
-	pet_data["名字"] = TURTLE_STAGE_NAMES[turtle_stage]
+	pet_data[DataKeys.TYPE] = "PetTurtle"
+	pet_data[DataKeys.ALT_NAME] = TURTLE_STAGE_NAMES[turtle_stage]
+	pet_data[DataKeys.NAME] = TURTLE_STAGE_NAMES[turtle_stage]
 	pet_data["技能"] = (TURTLE_STAGE_SKILLS[turtle_stage] as Array).duplicate(true)
-	var pet_level := int(pet_data.get("等级", 1))
+	var pet_level := int(pet_data.get(DataKeys.LEVEL, 1))
 	var hp_max := int(pet_data.get("生命上限", 620))
 	var mp_max := int(pet_data.get("魔法上限", 180))
 	var equipment_bonus: Dictionary = {}
 	if PlayerData.has_method("get_pet_equipment_bonuses"):
 		equipment_bonus = PlayerData.get_pet_equipment_bonuses(pet_data)
-	var hp_bonus := int(equipment_bonus.get("生命", 0))
-	var mp_bonus := int(equipment_bonus.get("魔法", 0))
+	var hp_bonus := int(equipment_bonus.get(DataKeys.HP, 0))
+	var mp_bonus := int(equipment_bonus.get(DataKeys.MP, 0))
 	var passive_value = pet_data.get("被动技能", {})
 	var passive: Dictionary = passive_value if passive_value is Dictionary else {}
 	var passive_hp := int(PaSkill.get_value("热血", int(passive.get("热血", 0))))
 	var passive_mp := int(PaSkill.get_value("魔泉", int(passive.get("魔泉", 0))))
 	level = maxi(1, pet_level)
 	my_mr_name = str(TURTLE_STAGE_NAMES[turtle_stage])
-	attack_in = maxi(1, int(pet_data.get("攻击", 65)) + int(equipment_bonus.get("攻击", 0)))
+	attack_in = maxi(1, int(pet_data.get(DataKeys.ATTACK, 65)) + int(equipment_bonus.get(DataKeys.ATTACK, 0)))
 	attack_in += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "天生蛮力", attack_in)
 	SHp = maxi(1, hp_max + hp_bonus + passive_hp)
 	var learned_hp_bonus := PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "生命祝福", SHp)
 	SHp += learned_hp_bonus
-	var current_hp := int(pet_data.get("生命", hp_max))
+	var current_hp := int(pet_data.get(DataKeys.HP, hp_max))
 	Hp = 0 if current_hp <= 0 else clampi(current_hp + hp_bonus + passive_hp + learned_hp_bonus, 0, SHp)
 	SMp = maxi(1, mp_max + mp_bonus + passive_mp)
 	var learned_mp_bonus := PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "魔法庇佑", SMp)
 	SMp += learned_mp_bonus
-	var current_mp := int(pet_data.get("魔法", mp_max))
+	var current_mp := int(pet_data.get(DataKeys.MP, mp_max))
 	Mp = 0 if current_mp <= 0 else clampi(current_mp + mp_bonus + passive_mp + learned_mp_bonus, 0, SMp)
 	hp_recover_per_second = (
 		int(pet_data.get("回血", 2))
@@ -249,10 +249,10 @@ func setup_pet_turtle(stage: int) -> void:
 		+ int(PaSkill.get_value("辉煌", int(passive.get("辉煌", 0))))
 	)
 	self_rhp = hp_recover_per_second
-	def = int(pet_data.get("防御", pet_data.get("物防", 60))) + int(equipment_bonus.get("防御", 0))
+	def = int(pet_data.get(DataKeys.DEFENSE, pet_data.get("物防", 60))) + int(equipment_bonus.get(DataKeys.DEFENSE, 0))
 	def += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "自然守护", def)
 	mdef = (
-		int(pet_data.get("魔防", pet_data.get("魔抗", pet_data.get("防御", pet_data.get("物防", 60)))))
+		int(pet_data.get("魔防", pet_data.get("魔抗", pet_data.get(DataKeys.DEFENSE, pet_data.get("物防", 60)))))
 		+ int(equipment_bonus.get("魔防", 0))
 	)
 	mdef += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "自然守护", mdef)
@@ -380,7 +380,7 @@ func _consume_skill(skill_id: String) -> bool:
 	if Mp < cost:
 		return false
 	Mp -= cost
-	pet_data["魔法"] = Mp
+	pet_data[DataKeys.MP] = Mp
 	return true
 
 
@@ -395,7 +395,7 @@ func _process_pet_turtle_recovery(delta: float) -> void:
 		cure_Hp(hp_recover_per_second)
 	if mp_recover_per_second > 0 and Mp < SMp:
 		Mp = mini(SMp, Mp + mp_recover_per_second)
-		pet_data["魔法"] = Mp
+		pet_data[DataKeys.MP] = Mp
 
 
 func try_use_skills() -> void:

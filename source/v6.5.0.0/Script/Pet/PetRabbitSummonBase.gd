@@ -102,9 +102,9 @@ func _physics_process(delta: float) -> void:
 
 func setup_pet_turtle(stage: int) -> void:
 	super.setup_pet_turtle(stage)
-	pet_data["类型"] = "PetRabbit"
-	pet_data["名称"] = RABBIT_STAGE_NAMES[turtle_stage]
-	pet_data["名字"] = RABBIT_STAGE_NAMES[turtle_stage]
+	pet_data[DataKeys.TYPE] = "PetRabbit"
+	pet_data[DataKeys.ALT_NAME] = RABBIT_STAGE_NAMES[turtle_stage]
+	pet_data[DataKeys.NAME] = RABBIT_STAGE_NAMES[turtle_stage]
 	pet_data["技能"] = (RABBIT_STAGE_SKILLS[turtle_stage] as Array).duplicate(true)
 	my_mr_name = str(RABBIT_STAGE_NAMES[turtle_stage])
 	attackRange = 350
@@ -172,7 +172,7 @@ func _consume_skill(skill_id: String) -> bool:
 	if Mp < cost:
 		return false
 	Mp -= cost
-	pet_data["魔法"] = Mp
+	pet_data[DataKeys.MP] = Mp
 	return true
 
 

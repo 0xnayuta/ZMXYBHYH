@@ -41,7 +41,7 @@ func _process(_delta: float) -> void:
 
 func _refresh_level() -> void:
 	position = Vector2.ZERO
-	var level_text := str(clampi(int(PlayerData.player_data.get("玩家等级", 1)), 1, 999))
+	var level_text := str(clampi(int(PlayerData.player_data.get(DataKeys.PLAYER_LEVEL, 1)), 1, 999))
 	var step: float = DIGIT_SIZE.x + DIGIT_SEPARATION
 	var background := get_parent() as Sprite2D
 	var max_width: float = 83.0

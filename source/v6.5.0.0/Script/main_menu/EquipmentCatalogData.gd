@@ -61,7 +61,7 @@ func initialize(all_equipment: Dictionary) -> void:
 	var shop = load("res://Script/Shop/SHOP.gd").new()
 	for category in shop.CUSTOM_SHOP_ITEMS.values():
 		for item in category:
-			shop_items[str(item.get("名字", ""))] = true
+			shop_items[str(item.get(DataKeys.NAME, ""))] = true
 	shop.free()
 
 
@@ -75,7 +75,7 @@ func _register_level(level_name: String, info: Dictionary) -> void:
 
 
 func item_name(item_id: String) -> String:
-	var name_text := str(equipment.get(item_id, {}).get("名字", "")).strip_edges()
+	var name_text := str(equipment.get(item_id, {}).get(DataKeys.NAME, "")).strip_edges()
 	return name_text if name_text != "" else "未登记物品"
 
 

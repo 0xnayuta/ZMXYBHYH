@@ -446,7 +446,7 @@ func _create_shop_item_row(
 	name_label.custom_minimum_size = Vector2(66.0 if show_quantity else 92.0, 0)
 	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	name_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	name_label.text = str(data.get("名字", item_id))
+	name_label.text = str(data.get(DataKeys.NAME, item_id))
 	name_label.tooltip_text = str(data.get("描述", name_label.text))
 	_style_shop_label(name_label, 15)
 	line.add_child(name_label)
@@ -531,15 +531,15 @@ func _create_shop_item_row(
 
 func _item_count(item_id: String) -> int:
 	var total := 0
-	var pages: Variant = PlayerData.player_data.get("道具列表", {})
+	var pages: Variant = PlayerData.player_data.get(DataKeys.ITEM_LIST, {})
 	if not pages is Dictionary:
 		return 0
 	for page_value in (pages as Dictionary).values():
 		if not page_value is Array:
 			continue
 		for item_value in page_value:
-			if item_value is Dictionary and str(item_value.get("名字", "")) == item_id:
-				total += int(item_value.get("数量", 0))
+			if item_value is Dictionary and str(item_value.get(DataKeys.NAME, "")) == item_id:
+				total += int(item_value.get(DataKeys.COUNT, 0))
 	return total
 
 

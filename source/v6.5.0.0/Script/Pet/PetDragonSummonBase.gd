@@ -192,7 +192,7 @@ func _process_pet_dragon_recovery(delta: float) -> void:
 		cure_Hp(hp_recover_per_second)
 	if mp_recover_per_second > 0 and Mp < SMp:
 		Mp = min(SMp, Mp + mp_recover_per_second)
-		pet_data["魔法"] = Mp
+		pet_data[DataKeys.MP] = Mp
 
 
 func _process_dragon_clone(delta: float) -> void:
@@ -208,8 +208,8 @@ func _process_dragon_clone(delta: float) -> void:
 	if is_instance_valid(dragon_clone_owner) and dragon_clone_owner.Hp > 0:
 		dragon_clone_owner.cure_Hp(int(dragon_dealt_damage / 10.0))
 		if dragon_stage >= 4:
-			dragon_clone_owner.pet_data["经验"] = (
-				int(dragon_clone_owner.pet_data.get("经验", 0)) + int(pet_data.get("经验", 0))
+			dragon_clone_owner.pet_data[DataKeys.EXP] = (
+				int(dragon_clone_owner.pet_data.get(DataKeys.EXP, 0)) + int(pet_data.get(DataKeys.EXP, 0))
 			)
 	var tween := create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 1.0)
@@ -352,19 +352,19 @@ func apply_pet_develop_effects(data: Dictionary) -> void:
 
 func setup_pet_dragon(stage: int) -> void:
 	dragon_stage = clampi(stage, 1, 4)
-	var level_from_pet := int(pet_data.get("等级", 40 + dragon_stage * 5))
-	var attack_from_pet := int(pet_data.get("攻击", 65))
+	var level_from_pet := int(pet_data.get(DataKeys.LEVEL, 40 + dragon_stage * 5))
+	var attack_from_pet := int(pet_data.get(DataKeys.ATTACK, 65))
 	var hp_from_pet := int(pet_data.get("生命上限", 1200))
 	var equipment_bonus: Dictionary = {}
 	if not is_dragon_clone and PlayerData.has_method("get_pet_equipment_bonuses"):
 		equipment_bonus = PlayerData.get_pet_equipment_bonuses(pet_data)
-	var hp_bonus := int(equipment_bonus.get("生命", 0))
-	var mp_bonus := int(equipment_bonus.get("魔法", 0))
-	my_mr_name = str(pet_data.get("名称", _dragon_stage_name(dragon_stage)))
+	var hp_bonus := int(equipment_bonus.get(DataKeys.HP, 0))
+	var mp_bonus := int(equipment_bonus.get(DataKeys.MP, 0))
+	my_mr_name = str(pet_data.get(DataKeys.ALT_NAME, _dragon_stage_name(dragon_stage)))
 	var passive: Dictionary = pet_data.get("被动技能", {}) if pet_data.get("被动技能", {}) is Dictionary else {}
 	var passive_hp := int(PaSkill.get_value("热血", int(passive.get("热血", 0))))
 	var passive_mp := int(PaSkill.get_value("魔泉", int(passive.get("魔泉", 0))))
-	attack_in = max(1, attack_from_pet + int(equipment_bonus.get("攻击", 0)))
+	attack_in = max(1, attack_from_pet + int(equipment_bonus.get(DataKeys.ATTACK, 0)))
 	if not is_dragon_clone:
 		attack_in += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "天生蛮力", attack_in)
 	pet_skill_cooldown_multiplier = 1.0 - float(clampi(int(pet_data.get("灵力", 0)), 0, 25)) * 0.02
@@ -374,15 +374,15 @@ func setup_pet_dragon(stage: int) -> void:
 		0 if is_dragon_clone else PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "生命祝福", SHp)
 	)
 	SHp += learned_hp_bonus
-	var current_hp := int(pet_data.get("生命", hp_from_pet))
+	var current_hp := int(pet_data.get(DataKeys.HP, hp_from_pet))
 	Hp = 0 if current_hp <= 0 else clampi(current_hp + hp_bonus + passive_hp + learned_hp_bonus, 0, SHp)
-	var mp_max := int(pet_data.get("魔法上限", pet_data.get("魔法", 1)))
+	var mp_max := int(pet_data.get("魔法上限", pet_data.get(DataKeys.MP, 1)))
 	SMp = max(1, mp_max + mp_bonus + passive_mp)
 	var learned_mp_bonus := (
 		0 if is_dragon_clone else PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "魔法庇佑", SMp)
 	)
 	SMp += learned_mp_bonus
-	var current_mp := int(pet_data.get("魔法", mp_max))
+	var current_mp := int(pet_data.get(DataKeys.MP, mp_max))
 	Mp = 0 if current_mp <= 0 else clampi(current_mp + mp_bonus + passive_mp + learned_mp_bonus, 0, SMp)
 	if is_dragon_clone:
 		var clone_hp: int = maxi(1, int(pet_data.get("_dragon_clone_hp", Hp)))
@@ -402,7 +402,7 @@ func setup_pet_dragon(stage: int) -> void:
 		+ int(PaSkill.get_value("辉煌", int(passive.get("辉煌", 0))))
 	)
 	self_rhp = hp_recover_per_second
-	def = int(pet_data.get("防御", 120)) + int(equipment_bonus.get("防御", 0))
+	def = int(pet_data.get(DataKeys.DEFENSE, 120)) + int(equipment_bonus.get(DataKeys.DEFENSE, 0))
 	if not is_dragon_clone:
 		def += PET_LEARNED_SKILL_RUNTIME.permanent_stat_bonus(pet_data, "自然守护", def)
 	mdef = int(pet_data.get("魔防", 120)) + int(equipment_bonus.get("魔防", 0))
@@ -494,7 +494,7 @@ func _consume_skill(skill_id: String) -> bool:
 	if Mp < cost:
 		return false
 	Mp -= cost
-	pet_data["魔法"] = Mp
+	pet_data[DataKeys.MP] = Mp
 	return true
 
 
@@ -797,13 +797,13 @@ func _spawn_dragon_clone() -> PetDragonSummonBase:
 	clone.dragon_clone_lifetime = 10.0 if dragon_stage <= 2 else 12.0
 	clone.dragon_stage = dragon_stage
 	clone.pet_data = pet_data.duplicate(true)
-	clone.pet_data["生命"] = Hp
+	clone.pet_data[DataKeys.HP] = Hp
 	clone.pet_data["生命上限"] = Hp
-	clone.pet_data["魔法"] = Mp
+	clone.pet_data[DataKeys.MP] = Mp
 	clone.pet_data["魔法上限"] = Mp
 	clone.pet_data["_dragon_clone_hp"] = Hp
 	clone.pet_data["_dragon_clone_mp"] = Mp
-	clone.pet_data["攻击"] = int(
+	clone.pet_data[DataKeys.ATTACK] = int(
 		round(
 			(
 				float(attack_in)
@@ -816,7 +816,7 @@ func _spawn_dragon_clone() -> PetDragonSummonBase:
 	clone.pet_data["技能"] = _learned_skills().duplicate(true) if dragon_stage >= 2 else []
 	clone.pet_data["isFight"] = 1
 	if dragon_stage >= 4:
-		clone.pet_data["经验"] = 0
+		clone.pet_data[DataKeys.EXP] = 0
 	get_parent().add_child(clone)
 	clone.global_position = global_position + Vector2(randf_range(-150.0, 150.0), -50.0)
 	clone.modulate.a = 0.5

@@ -1076,8 +1076,8 @@ func _persist_active_pet_death() -> void:
 	var pet_display_name := ""
 	var data_value: Variant = get("pet_data")
 	if data_value is Dictionary:
-		data_value["生命"] = 0
-		pet_display_name = str(data_value.get("名称", ""))
+		data_value[DataKeys.HP] = 0
+		pet_display_name = str(data_value.get(DataKeys.ALT_NAME, ""))
 	if pet_display_name == "":
 		pet_display_name = str(PlayerData.player_data.get("出战宠物", ""))
 	var dead_pet_keys_value: Variant = level_node.get_meta("active_pet_dead_keys", [])
@@ -1271,10 +1271,14 @@ func set_summon_properties(summoner_node: Node, duration: float = 60.0) -> void:
 	if summoner_node is BaseHero:
 		player_reference = summoner_node
 		var summoner_level = summoner_node.get("level")
-		level = int(summoner_level) if summoner_level != null else int(PlayerData.player_data.get("玩家等级", level))
+		level = (
+			int(summoner_level)
+			if summoner_level != null
+			else int(PlayerData.player_data.get(DataKeys.PLAYER_LEVEL, level))
+		)
 	else:
 		find_player_reference()
-		level = int(PlayerData.player_data.get("玩家等级", level))
+		level = int(PlayerData.player_data.get(DataKeys.PLAYER_LEVEL, level))
 
 
 func tween_to_top() -> void:

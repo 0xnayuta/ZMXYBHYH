@@ -967,7 +967,7 @@ func _clear_selected_map_progress(save_progress: bool = true) -> bool:
 
 
 func _set_player_max_level() -> void:
-	PlayerData.player_data["玩家等级"] = PlayerData.PLAYER_MAX_LEVEL
+	PlayerData.player_data[DataKeys.PLAYER_LEVEL] = PlayerData.PLAYER_MAX_LEVEL
 	PlayerData.player_data["玩家当前经验"] = 0
 	RoleProp.baseroleprop.Level = PlayerData.PLAYER_MAX_LEVEL
 	RoleProp.baseroleprop.exp = 0
@@ -984,8 +984,8 @@ func _set_all_pets_max_level() -> void:
 			if not (pet_value is Dictionary):
 				continue
 			var pet: Dictionary = pet_value
-			pet["等级"] = PlayerData.PLAYER_MAX_LEVEL
-			pet["经验"] = 0
+			pet[DataKeys.LEVEL] = PlayerData.PLAYER_MAX_LEVEL
+			pet[DataKeys.EXP] = 0
 			pet["下级经验"] = PlayerData._pet_level_exp_requirement(PlayerData.PLAYER_MAX_LEVEL)
 			if pet.has("经验上限"):
 				pet["经验上限"] = pet["下级经验"]
@@ -1105,7 +1105,7 @@ func _build_secret_equipment(item_id: String, divine_forge: bool) -> Dictionary:
 	var gems: Array[String] = []
 	for _socket_index in range(SECRET_GEM_SOCKET_COUNT):
 		gems.push_back(SECRET_ATTACK_GEM_ID)
-	data["宝石"] = gems
+	data[DataKeys.GEM] = gems
 	if divine_forge:
 		data["神铸阶段"] = SECRET_DIVINE_FORGE_STAGE
 	return {
@@ -1116,7 +1116,7 @@ func _build_secret_equipment(item_id: String, divine_forge: bool) -> Dictionary:
 
 
 func _get_equipment_backpack_free_slots() -> int:
-	var equipment_pages: Variant = PlayerData.player_data.get("装备列表", {})
+	var equipment_pages: Variant = PlayerData.player_data.get(DataKeys.EQUIPMENT_LIST, {})
 	if not (equipment_pages is Dictionary):
 		return 0
 	var free_slots := 0
@@ -1132,7 +1132,9 @@ func _move_equipped_item_to_backpack(slot_name: String) -> void:
 		return
 	var old_item: Variant = (equipped as Array)[0]
 	if old_item is Dictionary:
-		PlayerData.add_zb(str(old_item.get("名字", "")), int(old_item.get("强化等级", 0)), old_item.get("Data", {}))
+		PlayerData.add_zb(
+			str(old_item.get(DataKeys.NAME, "")), int(old_item.get(DataKeys.ENHANCE_LEVEL, 0)), old_item.get("Data", {})
+		)
 
 
 func _save_secret_progress() -> void:

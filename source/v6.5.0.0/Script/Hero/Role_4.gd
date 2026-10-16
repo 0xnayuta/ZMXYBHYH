@@ -70,18 +70,18 @@ func Role_4():
 
 	if not is_in_group("Player"):
 		add_to_group("Player")
-	var level_1 = PlayerData.player_data["技能学习"]["技能1"]["等级"] + 1
-	var level_2 = PlayerData.player_data["技能学习"]["技能2"]["等级"] + 1
-	var level_3 = PlayerData.player_data["技能学习"]["技能3"]["等级"] + 1
-	var level_4 = PlayerData.player_data["技能学习"]["技能4"]["等级"] + 1
-	var level_5 = PlayerData.player_data["技能学习"]["技能5"]["等级"] + 1
-	var level_6 = PlayerData.player_data["技能学习"]["技能6"]["等级"] + 1
-	var level_7 = PlayerData.player_data["技能学习"]["技能7"]["等级"] + 1
-	var level_8 = PlayerData.player_data["技能学习"]["技能8"]["等级"] + 1
-	var level_9 = PlayerData.player_data["技能学习"]["技能9"]["等级"] + 1
-	var level_10 = PlayerData.player_data["技能学习"]["技能10"]["等级"]
-	var level_11 = max(1, int(PlayerData.player_data["技能学习"]["技能11"]["等级"]))
-	var level_12 = max(1, int(PlayerData.player_data["技能学习"]["技能12"]["等级"]))
+	var level_1 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能1"][DataKeys.LEVEL] + 1
+	var level_2 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能2"][DataKeys.LEVEL] + 1
+	var level_3 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能3"][DataKeys.LEVEL] + 1
+	var level_4 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
+	var level_5 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能5"][DataKeys.LEVEL] + 1
+	var level_6 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能6"][DataKeys.LEVEL] + 1
+	var level_7 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1
+	var level_8 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能8"][DataKeys.LEVEL] + 1
+	var level_9 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] + 1
+	var level_10 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
+	var level_11 = max(1, int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能11"][DataKeys.LEVEL]))
+	var level_12 = max(1, int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能12"][DataKeys.LEVEL]))
 	self.objattackDic["hit1"] = {
 		"power": RoleProp.roleprop.power * randf_range(1, 1.2),
 		"hurtBack": [2, 0],
@@ -130,7 +130,7 @@ func Role_4():
 	if (
 		_is_skill_awakened("mmw")
 		and _is_skill_awaken_enabled("mmw")
-		and PlayerData.player_data["技能学习"]["技能10"]["等级"] > 0
+		and PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] > 0
 	):
 		mmw_attack["addeffect"] = {
 			"Name": "Voodoo",
@@ -154,7 +154,7 @@ func Role_4():
 		"attackKind": "magic",
 		"WSValue": 4
 	}
-	if PlayerData.player_data["技能学习"]["技能10"]["等级"] > 0:
+	if PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] > 0:
 		self.objattackDic["jdz"] = {
 			"power": RoleProp.roleprop.power * (1.5 + (level_6 * 0.1)),
 			"hurtBack": [0, 0],
@@ -512,7 +512,7 @@ func CallWDWW():
 	WDWW = Global.create_monster(138, get_parent().get_parent().monster, position + bullet_pos) as Monster138
 	if WDWW == null:
 		return
-	WDWW.SHp = Target.SHp * (0.25 + PlayerData.player_data["技能学习"]["技能9"]["等级"] * 0.02)
+	WDWW.SHp = Target.SHp * (0.25 + PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] * 0.02)
 	WDWW.Hp = WDWW.SHp
 	WDWW.set_linked_targets(targets)
 
@@ -799,7 +799,9 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	var TotalCureMonster = int(MonsterTarget.ebol * last_hit)
 	MonsterTarget.cure_hp(TotalCureMonster)
 	if self.IsWDZT:
-		var ReduecHurt = int(last_hit * (0.7 - PlayerData.player_data["技能学习"]["技能3"]["等级"] * 0.02))
+		var ReduecHurt = int(
+			last_hit * (0.7 - PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能3"][DataKeys.LEVEL] * 0.02)
+		)
 		var CureHurt = last_hit - ReduecHurt
 		last_hit = ReduecHurt
 		if randi_range(0, 100) < 20:
@@ -854,7 +856,9 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		CureValue += 0.3 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp)
 		if mm is BaseMonster and not _is_summon_or_pet_target(mm):
 			var CurePower = (
-				objattackDic["lhsq"]["power"] * (0.2 + (PlayerData.player_data["技能学习"]["技能7"]["等级"]) * 0.03) * CureValue
+				objattackDic["lhsq"]["power"]
+				* (0.2 + (PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL]) * 0.03)
+				* CureValue
 			)
 			cure_Hp(CurePower)
 			_add_lhsq_awaken_stack()

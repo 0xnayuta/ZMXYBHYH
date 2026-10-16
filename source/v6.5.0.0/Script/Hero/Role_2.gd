@@ -48,17 +48,17 @@ func _prewarm_role2_skill_effects() -> void:
 func Role_2():
 	RoleProp.Role1SXBJ = 0
 	RoleProp.Role1SXxx = 0
-	var level_1 = PlayerData.player_data["技能学习"]["技能1"]["等级"] + 1
-	var level_2 = PlayerData.player_data["技能学习"]["技能2"]["等级"] + 1
-	var level_3 = PlayerData.player_data["技能学习"]["技能3"]["等级"] + 1
-	var level_4 = PlayerData.player_data["技能学习"]["技能4"]["等级"] + 1
-	var level_5 = PlayerData.player_data["技能学习"]["技能5"]["等级"] + 1
-	var level_6 = PlayerData.player_data["技能学习"]["技能6"]["等级"] + 1
-	var level_7 = PlayerData.player_data["技能学习"]["技能7"]["等级"] + 1
-	var level_8 = PlayerData.player_data["技能学习"]["技能8"]["等级"] + 1
-	var level_9 = PlayerData.player_data["技能学习"]["技能9"]["等级"] + 1
-	var level_10 = PlayerData.player_data["技能学习"]["技能10"]["等级"]
-	var level_11 = PlayerData.player_data["技能学习"]["技能11"]["等级"]
+	var level_1 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能1"][DataKeys.LEVEL] + 1
+	var level_2 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能2"][DataKeys.LEVEL] + 1
+	var level_3 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能3"][DataKeys.LEVEL] + 1
+	var level_4 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
+	var level_5 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能5"][DataKeys.LEVEL] + 1
+	var level_6 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能6"][DataKeys.LEVEL] + 1
+	var level_7 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1
+	var level_8 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能8"][DataKeys.LEVEL] + 1
+	var level_9 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] + 1
+	var level_10 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
+	var level_11 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能11"][DataKeys.LEVEL]
 	self.objattackDic["hit1"] = {
 		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1),
 		"hurtBack": [4, -6],
@@ -180,7 +180,7 @@ func _is_smb_action_pressed() -> bool:
 	var action_map = {"Y": "slz", "U": "lys", "I": "lyfb", "O": "hmz", "L": "hytj"}
 	for key_id in action_map:
 		if (
-			PlayerData.player_data["技能学习"]["技能键位"].get(key_id, "") == "smb"
+			PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"].get(key_id, "") == "smb"
 			and Input.is_action_pressed(action_map[key_id])
 		):
 			return true
@@ -191,7 +191,7 @@ func _is_smb_action_just_pressed() -> bool:
 	var action_map = {"Y": "slz", "U": "lys", "I": "lyfb", "O": "hmz", "L": "hytj"}
 	for key_id in action_map:
 		if (
-			PlayerData.player_data["技能学习"]["技能键位"].get(key_id, "") == "smb"
+			PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能键位"].get(key_id, "") == "smb"
 			and Input.is_action_just_pressed(action_map[key_id])
 		):
 			return true
@@ -592,7 +592,7 @@ func AddShallow():
 
 
 func SelfCure():
-	var level = PlayerData.player_data["技能学习"]["技能4"]["等级"] + 1
+	var level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
 	var TotalValue = int(RoleProp.roleprop.SHp * 0.2 + level * 0.02)
 	CureValue = 0.6 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp) + 1
 	var Value = int(TotalValue * CureHpValue)
@@ -765,7 +765,7 @@ func _on_shield_timer_timeout():
 
 
 func get_zfjg_duration() -> float:
-	var lv12 = PlayerData.player_data["技能学习"]["技能12"]["等级"]
+	var lv12 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能12"][DataKeys.LEVEL]
 	var base = 20.0
 	var add = (40.0 - base) / 10.0
 	return base + lv12 * add

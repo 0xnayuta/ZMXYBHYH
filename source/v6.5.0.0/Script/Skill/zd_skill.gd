@@ -287,7 +287,7 @@ func get_level_storage_index(index: int) -> int:
 
 func get_skill_level_by_index(index: int) -> int:
 	var storage_index = get_level_storage_index(index)
-	return PlayerData.player_data["技能学习"]["技能" + str(storage_index)]["等级"]
+	return PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能" + str(storage_index)][DataKeys.LEVEL]
 
 
 func get_skill_max_level(skill_internal: String) -> int:
@@ -668,7 +668,9 @@ func UpLevel():
 	var target_internal: String = str(skill_list[TargetSkill - 1])
 	var target_storage_index = get_level_storage_index(TargetSkill - 1)
 
-	var level: int = int(PlayerData.player_data["技能学习"]["技能" + str(target_storage_index)]["等级"])
+	var level: int = int(
+		PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能" + str(target_storage_index)][DataKeys.LEVEL]
+	)
 
 	if level >= get_skill_max_level(target_internal):
 		Global.add_message_show(self, "技能已经满级！！", 1.5, Vector2(395, 180))
@@ -681,7 +683,7 @@ func UpLevel():
 				self, get_skill_book_name(level) + "不足，需" + str(book_need) + "个！！", 1.5, Vector2(395, 180)
 			)
 			return
-		PlayerData.player_data["技能学习"]["技能" + str(target_storage_index)]["等级"] += 1
+		PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能" + str(target_storage_index)][DataKeys.LEVEL] += 1
 		RefreshInfor()
 		return
 
@@ -691,7 +693,7 @@ func UpLevel():
 			var need = 500 + 500 * level
 			if PlayerData.get_soul() >= need:
 				PlayerData.spend_soul(need)
-				PlayerData.player_data["技能学习"]["技能" + str(target_storage_index)]["等级"] += 1
+				PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能" + str(target_storage_index)][DataKeys.LEVEL] += 1
 			else:
 				Global.add_message_show(self, "灵魂不足！！", 1.5, Vector2(395, 180))
 		else:
@@ -702,7 +704,7 @@ func UpLevel():
 		var need = 100 + (i * 300) + 500 * level
 		if PlayerData.get_soul() >= need:
 			PlayerData.spend_soul(need)
-			PlayerData.player_data["技能学习"]["技能" + str(target_storage_index)]["等级"] += 1
+			PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能" + str(target_storage_index)][DataKeys.LEVEL] += 1
 		else:
 			Global.add_message_show(self, "灵魂不足！！", 1.5, Vector2(395, 180))
 

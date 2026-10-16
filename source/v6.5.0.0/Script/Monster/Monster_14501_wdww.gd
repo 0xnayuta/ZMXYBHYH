@@ -65,8 +65,8 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		if not Global.get_player.IsTMc:
 			Global.get_player.CurrentProtect += randi_range(3, 7)
 	if Global.get_player is Role3Hero:
-		if randi_range(0, 100) <= 4 + PlayerData.player_data["技能学习"]["技能10"]["等级"] * 0.5:
-			var cur_level = PlayerData.player_data["技能学习"]["技能10"]["等级"]
+		if randi_range(0, 100) <= 4 + PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] * 0.5:
+			var cur_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
 			if cur_level > 0:
 				if not get_parent().get_parent() is Level17 and not get_parent().get_parent() is Level22:
 					Global.get_player.cure_Hp(RoleProp.roleprop.power * (0.5 + cur_level * 0.02))

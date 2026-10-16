@@ -1,4 +1,5 @@
 extends Node
+const DataKeys := preload("res://Script/Base/DataKeys.gd")
 
 signal combo_milestone_reached(milestone: int)
 signal sound_settings_changed
@@ -1616,22 +1617,22 @@ func _role_scene_path(role_id: int) -> String:
 func _current_visual_equipment_names() -> Dictionary:
 	var weapon_name := "Empty"
 	var body_name := "Empty"
-	var transmog: Variant = PlayerData.player_data.get("幻化列表", {})
-	var weapon_transmog := str(transmog.get("武器", "")) if transmog is Dictionary else ""
-	var body_transmog := str(transmog.get("防具", "")) if transmog is Dictionary else ""
-	var weapons: Variant = PlayerData.player_data.get("武器", [])
-	var fashions: Variant = PlayerData.player_data.get("时装", [])
-	var armors: Variant = PlayerData.player_data.get("防具", [])
+	var transmog: Variant = PlayerData.player_data.get(DataKeys.TRANSMOG_LIST, {})
+	var weapon_transmog := str(transmog.get(DataKeys.WEAPON, "")) if transmog is Dictionary else ""
+	var body_transmog := str(transmog.get(DataKeys.ARMOR, "")) if transmog is Dictionary else ""
+	var weapons: Variant = PlayerData.player_data.get(DataKeys.WEAPON, [])
+	var fashions: Variant = PlayerData.player_data.get(DataKeys.FASHION, [])
+	var armors: Variant = PlayerData.player_data.get(DataKeys.ARMOR, [])
 	if weapon_transmog != "":
 		weapon_name = weapon_transmog
 	elif weapons is Array and not weapons.is_empty() and weapons[0] is Dictionary:
-		weapon_name = str((weapons[0] as Dictionary).get("名字", "Empty"))
+		weapon_name = str((weapons[0] as Dictionary).get(DataKeys.NAME, "Empty"))
 	if body_transmog != "":
 		body_name = body_transmog
 	elif fashions is Array and not fashions.is_empty() and fashions[0] is Dictionary:
-		body_name = str((fashions[0] as Dictionary).get("名字", "Empty"))
+		body_name = str((fashions[0] as Dictionary).get(DataKeys.NAME, "Empty"))
 	elif armors is Array and not armors.is_empty() and armors[0] is Dictionary:
-		body_name = str((armors[0] as Dictionary).get("名字", "Empty"))
+		body_name = str((armors[0] as Dictionary).get(DataKeys.NAME, "Empty"))
 	return {"weapon": weapon_name, "body": body_name}
 
 
@@ -2216,7 +2217,7 @@ func preload_all_hero_skill_resources() -> void:
 
 
 func _equipped_role_skill_names() -> Array:
-	var skill_data: Variant = PlayerData.player_data.get("技能学习", {})
+	var skill_data: Variant = PlayerData.player_data.get(DataKeys.SKILL_LEARNED, {})
 	var skill_keys: Variant = skill_data.get("技能键位", {}) if skill_data is Dictionary else {}
 	return skill_keys.values() if skill_keys is Dictionary else []
 
@@ -2322,13 +2323,13 @@ func _role_skill_scene_paths(role_id: int) -> Array[String]:
 
 
 func _is_zlwsz_shenqi_equipped() -> bool:
-	var fashions: Variant = PlayerData.player_data.get("时装", [])
+	var fashions: Variant = PlayerData.player_data.get(DataKeys.FASHION, [])
 	if not fashions is Array or (fashions as Array).is_empty():
 		return false
 	var fashion: Variant = (fashions as Array)[0]
 	if not fashion is Dictionary:
 		return false
-	var fashion_name := str((fashion as Dictionary).get("名字", ""))
+	var fashion_name := str((fashion as Dictionary).get(DataKeys.NAME, ""))
 	var base_name: String = str(GetName(fashion_name))
 	return base_name == "zlwsz" and fashion_name.begins_with("shenqi")
 
@@ -2458,8 +2459,8 @@ func _role_heavy_effect_paths(role_id: int) -> Array[String]:
 
 func get_current_role_heavy_effect_paths() -> Array[String]:
 	var paths := _role_heavy_effect_paths(_current_role_id())
-	var fashions: Variant = PlayerData.player_data.get("时装", [])
-	if fashions is Array and not fashions.is_empty() and str(fashions[0].get("名字", "")) == "shenqismsrsz":
+	var fashions: Variant = PlayerData.player_data.get(DataKeys.FASHION, [])
+	if fashions is Array and not fashions.is_empty() and str(fashions[0].get(DataKeys.NAME, "")) == "shenqismsrsz":
 		_append_numbered_resource_paths(paths, "res://Art/HeroPicture/SMSRShenqiLightning/lightning/d_%05d.png", 9)
 		_append_numbered_resource_paths(
 			paths, "res://Art/HeroPicture/SMSRShenqiLightning/hit_mesh/hit_%05d.png", 10, 0, 2
@@ -4257,10 +4258,10 @@ func get_active_pet_preload_data() -> Dictionary:
 	var selected_pet: Dictionary = {}
 	var selected_type := ""
 	for pet in pets:
-		if not (pet is Dictionary) or not bool(pet.get("出战", false)):
+		if not (pet is Dictionary) or not bool(pet.get(DataKeys.DEPLOYED, false)):
 			continue
-		var type_name := str(pet.get("类型", ""))
-		var pet_name := str(pet.get("名称", ""))
+		var type_name := str(pet.get(DataKeys.TYPE, ""))
+		var pet_name := str(pet.get(DataKeys.ALT_NAME, ""))
 		var is_dragon := (
 			type_name == "PetDragon" or pet_name.begins_with("辰龙") or pet_name in ["龙仔", "绿英龙", "青龙将军", "青龙妖圣"]
 		)
@@ -4313,7 +4314,7 @@ func get_active_pet_preload_data() -> Dictionary:
 	if selected_pet.is_empty():
 		return {}
 	var stage := int(selected_pet.get("阶段", 0))
-	var pet_level := int(selected_pet.get("等级", 1))
+	var pet_level := int(selected_pet.get(DataKeys.LEVEL, 1))
 	if selected_type == "PetMouse":
 		stage = 2 if pet_level >= 50 else 1
 	elif stage <= 0:
@@ -4940,12 +4941,12 @@ func add_equ_propeties_box(parent, position, name_, qh_level, wx, Data):
 	var template: Dictionary = AE.AllEquipment_.get(str(name_), {})
 	if item_data.is_empty() and str(template.get("所属", "")) == "宠物装备":
 		item_data = template.duplicate(true)
-	var item_type := str(item_data.get("类型", template.get("类型", "")))
+	var item_type := str(item_data.get(DataKeys.TYPE, template.get(DataKeys.TYPE, "")))
 	var belongs_to := str(item_data.get("所属", template.get("所属", "")))
 	if (item_type == "宠物装备" or belongs_to == "宠物装备") and target.has_method("setup_pet_equipment"):
 		var slot_type := str(item_data.get("装备类型", template.get("装备类型", ""))).strip_edges()
 		var pet_instance := {
-			"名字": str(item_data.get("名字", template.get("名字", name_))),
+			"名字": str(item_data.get(DataKeys.NAME, template.get(DataKeys.NAME, name_))),
 			"强化等级": int(qh_level),
 			"类型": slot_type,
 			"装备类型": slot_type,

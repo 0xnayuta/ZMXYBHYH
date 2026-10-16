@@ -19,8 +19,8 @@ func _physics_process(delta: float) -> void:
 	items.set_button_icon(load_(ItemName))
 	if TotalNum <= 1:
 		TotalNum = 1
-	var item_name = AE.AllEquipment_[ItemName]["名字"]
-	match AE.AllEquipment_[ItemName]["类型"]:
+	var item_name = AE.AllEquipment_[ItemName][DataKeys.NAME]
+	match AE.AllEquipment_[ItemName][DataKeys.TYPE]:
 		"道具", "消耗品":
 			if TotalNum == null:
 				items.total_number = 1

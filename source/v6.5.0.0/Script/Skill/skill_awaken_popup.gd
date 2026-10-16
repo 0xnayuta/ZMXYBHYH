@@ -263,15 +263,15 @@ func _on_confirm_pressed() -> void:
 
 func _count_awaken_stones() -> int:
 	var total := 0
-	var pages: Variant = PlayerData.player_data.get("道具列表", {})
+	var pages: Variant = PlayerData.player_data.get(DataKeys.ITEM_LIST, {})
 	if not pages is Dictionary:
 		return 0
 	for page in pages.values():
 		if not page is Array:
 			continue
 		for item in page:
-			if item is Dictionary and str(item.get("名字", "")) == "tjs":
-				total += int(item.get("数量", 0))
+			if item is Dictionary and str(item.get(DataKeys.NAME, "")) == "tjs":
+				total += int(item.get(DataKeys.COUNT, 0))
 	return total
 
 
@@ -279,7 +279,7 @@ func _consume_awaken_stones(amount: int) -> bool:
 	if _count_awaken_stones() < amount:
 		return false
 	var remaining := amount
-	var pages: Variant = PlayerData.player_data.get("道具列表", {})
+	var pages: Variant = PlayerData.player_data.get(DataKeys.ITEM_LIST, {})
 	if not pages is Dictionary:
 		return false
 	for page_key in pages.keys():
@@ -292,12 +292,12 @@ func _consume_awaken_stones(amount: int) -> bool:
 			if remaining <= 0:
 				break
 			var item: Variant = page[index]
-			if not item is Dictionary or str(item.get("名字", "")) != "tjs":
+			if not item is Dictionary or str(item.get(DataKeys.NAME, "")) != "tjs":
 				continue
-			var taken := mini(int(item.get("数量", 0)), remaining)
-			item["数量"] = int(item.get("数量", 0)) - taken
+			var taken := mini(int(item.get(DataKeys.COUNT, 0)), remaining)
+			item[DataKeys.COUNT] = int(item.get(DataKeys.COUNT, 0)) - taken
 			remaining -= taken
-			if int(item.get("数量", 0)) <= 0:
+			if int(item.get(DataKeys.COUNT, 0)) <= 0:
 				page.remove_at(index)
 	return remaining == 0
 
