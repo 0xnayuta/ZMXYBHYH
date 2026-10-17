@@ -1298,7 +1298,7 @@ func preload_combat_hit_resources() -> void:
 	var monster_hit_scene := _cached_scene(&"monster_be_hit", MONSTER_BE_HIT_PATH)
 	var monster_blood_scene := _cached_scene(&"monster_blood", MONSTER_BLOOD_PATH)
 	var sound_scene := preload_scene_path("res://Scene/all_sound/monster_be_hit.tscn")
-	get_cached_audio("res://Music/MonsterHurt/6_BeattackByRole1.mp3")
+	get_cached_audio("res://Music/monster_hurt/6_BeattackByRole1.mp3")
 	get_cached_audio("res://Music/Hero/9_BeattackByRole2.mp3")
 	get_cached_audio("res://Music/Hero/49_Role1_beAttack.mp3")
 	get_cached_audio("res://Music/Hero/62_Role2_beAttack.mp3")
@@ -1393,7 +1393,7 @@ func _prewarm_combat_hit_rendering(monster_blood_scene: PackedScene) -> void:
 
 	var sound_players: Array[AudioStreamPlayer] = []
 	for sound_path in [
-		"res://Music/MonsterHurt/6_BeattackByRole1.mp3",
+		"res://Music/monster_hurt/6_BeattackByRole1.mp3",
 		"res://Music/Hero/9_BeattackByRole2.mp3",
 	]:
 		var sound_player = (
@@ -1520,7 +1520,7 @@ func clear_combat_runtime_cache() -> void:
 		_audio_cache,
 		[
 			"res://Music/Hero/",
-			"res://Music/MonsterHurt/",
+			"res://Music/monster_hurt/",
 			"res://Music/level/",
 		]
 	)
@@ -2031,7 +2031,7 @@ func preload_level_monster_resources(monster_group: Dictionary) -> void:
 		)
 	)
 	var audio_paths: Array = [
-		"res://Music/MonsterHurt/6_BeattackByRole1.mp3",
+		"res://Music/monster_hurt/6_BeattackByRole1.mp3",
 		"res://Music/Hero/9_BeattackByRole2.mp3",
 		"res://Music/Hero/49_Role1_beAttack.mp3",
 		"res://Music/Hero/62_Role2_beAttack.mp3",

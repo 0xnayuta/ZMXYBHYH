@@ -186,7 +186,7 @@ func play_hit_effect(attacker = null) -> void:
 	_interrupt_attack_state_on_hit()
 	Global.add_special_effect(self, Vector2(0, -92), "RoleBeHit", Vector2(1, 1), false, 1)
 	if PlayerData.player_data["Myself"] != 2:
-		Global.add_sound(self, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
+		Global.add_sound(self, "res://Music/monster_hurt/6_BeattackByRole1.mp3")
 	else:
 		Global.add_sound(self, "res://Music/Hero/9_BeattackByRole2.mp3")
 	if not death() and mr_player.has_animation("hurt"):
