@@ -1,8 +1,8 @@
 extends Node2D
 class_name HmzAwakenEffect
 
-const ATLAS_PATH := "res://Art/HeroPicture/Role2/JHSJAwaken/runtime/HeroF_6030_skill.atlas"
-const SKELETON_PATH := "res://Art/HeroPicture/Role2/JHSJAwaken/runtime/HeroF_6030_skill01_2_1.spine-json"
+const ATLAS_PATH := "res://Art/hero_picture/Role2/JHSJAwaken/runtime/HeroF_6030_skill.atlas"
+const SKELETON_PATH := "res://Art/hero_picture/Role2/JHSJAwaken/runtime/HeroF_6030_skill01_2_1.spine-json"
 const SPINE_SCALE := Vector2(0.2, 0.2)
 const SPINE_DURATION := 1.35
 

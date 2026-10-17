@@ -2,7 +2,7 @@ extends "res://Script/monster/monster_bullet.gd"
 class_name PetRabbitBullet
 
 const EFFECT_FPS := 24.0
-const EFFECT_ROOT := "res://Art/Pet/PetRabbit/effects"
+const EFFECT_ROOT := "res://Art/pet/PetRabbit/effects"
 const EFFECT_COUNTS := {
 	"PetPetRabbitBullet1": 1,
 	"PetPetRabbitJFBuff": 16,

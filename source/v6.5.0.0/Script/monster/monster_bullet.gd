@@ -96,8 +96,8 @@ static func clear_runtime_resource_caches() -> void:
 const PET_TIGER_BULLET_FPS := 24.0
 const PET_TIGER_EFFECT_DIR := "res://Art/Monster/PetTigerBoss/effects"
 const PET_TIGER_SHAPE_EFFECT_DIR := "res://Art/Monster/PetTigerBoss/effects/swf_shapes"
-const PET_DRAGON_EFFECT_DIR := "res://Art/Pet/PetDragon/effects"
-const PET_PHOENIX_EFFECT_DIR := "res://Art/Pet/PetPhoenix/effects"
+const PET_DRAGON_EFFECT_DIR := "res://Art/pet/PetDragon/effects"
+const PET_PHOENIX_EFFECT_DIR := "res://Art/pet/PetPhoenix/effects"
 const PET_PHOENIX_EFFECT_FRAME_COUNTS := {
 	"PetPhoenix1Bullet1": 15,
 	"PetPhoenix1Bullet2_1": 25,
@@ -110,7 +110,7 @@ const PET_PHOENIX_EFFECT_FRAME_COUNTS := {
 }
 const PET_DRAGON_DASH_DAMAGE_INTERVAL_MS := 120
 const PET_DRAGON_KNOCKBACK_LOCK_TIME := 0.16
-const PET_DRAGON_ULTIMATE_DIR := "res://Art/Pet/PetDragon/effects/PetDragonBullet4Cropped"
+const PET_DRAGON_ULTIMATE_DIR := "res://Art/pet/PetDragon/effects/PetDragonBullet4Cropped"
 const PET_DRAGON_ULTIMATE_OFFSETS := [
 	Vector2(-6.5, 0.5),
 	Vector2(-3.5, 0.5),

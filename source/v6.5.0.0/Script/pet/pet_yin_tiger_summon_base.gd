@@ -33,7 +33,7 @@ const ACTIONS := {
 		"hit3": [3, 3, 3, 20]
 	},
 }
-const MODEL_ROOT := "res://Art/Pet/PetYinTiger/model/actions"
+const MODEL_ROOT := "res://Art/pet/PetYinTiger/model/actions"
 const MODEL_MAP := {
 	1: {"wait": "wait", "walk": "walk", "hurt": "hurt", "death": "death", "hit1": "hit1", "hit2": "hit2"},
 	4:

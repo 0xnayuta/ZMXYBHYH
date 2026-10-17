@@ -1,0 +1,1841 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" uid="uid://c8s7pqkxgdx0m" path="res://Art/hero_picture/Role6/equipment_atlas/y42_body_front/y42_body_front_00.png" id="1"]
+
+[sub_resource type="AtlasTexture" id="frame_18"]
+atlas = ExtResource("1")
+region = Rect2(2190, 2, 95, 113)
+margin = Rect2(440, 573, 929, 911)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_19"]
+atlas = ExtResource("1")
+region = Rect2(1474, 2, 113, 114)
+margin = Rect2(424, 578, 911, 910)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_20"]
+atlas = ExtResource("1")
+region = Rect2(1367, 129, 114, 107)
+margin = Rect2(426, 604, 910, 917)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_21"]
+atlas = ExtResource("1")
+region = Rect2(3402, 129, 114, 90)
+margin = Rect2(429, 628, 910, 934)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_22"]
+atlas = ExtResource("1")
+region = Rect2(3287, 129, 111, 91)
+margin = Rect2(431, 647, 913, 933)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_23"]
+atlas = ExtResource("1")
+region = Rect2(3520, 129, 116, 89)
+margin = Rect2(428, 634, 908, 935)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_24"]
+atlas = ExtResource("1")
+region = Rect2(2941, 129, 113, 92)
+margin = Rect2(431, 653, 911, 932)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_25"]
+atlas = ExtResource("1")
+region = Rect2(3170, 129, 113, 91)
+margin = Rect2(431, 653, 911, 933)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_27"]
+atlas = ExtResource("1")
+region = Rect2(1780, 2, 88, 114)
+margin = Rect2(476, 565, 936, 910)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_36"]
+atlas = ExtResource("1")
+region = Rect2(3383, 2, 98, 112)
+margin = Rect2(443, 574, 926, 912)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_37"]
+atlas = ExtResource("1")
+region = Rect2(438, 129, 102, 110)
+margin = Rect2(431, 578, 922, 914)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_38"]
+atlas = ExtResource("1")
+region = Rect2(4070, 2, 1, 1)
+margin = Rect2(0, 0, 1023, 1023)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_39"]
+atlas = ExtResource("1")
+region = Rect2(3281, 2, 98, 112)
+margin = Rect2(452, 568, 926, 912)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_40"]
+atlas = ExtResource("1")
+region = Rect2(544, 129, 100, 110)
+margin = Rect2(444, 563, 924, 914)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_41"]
+atlas = ExtResource("1")
+region = Rect2(3757, 129, 44, 57)
+margin = Rect2(530, 611, 980, 967)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_42"]
+atlas = ExtResource("1")
+region = Rect2(3700, 129, 53, 57)
+margin = Rect2(495, 610, 971, 967)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_43"]
+atlas = ExtResource("1")
+region = Rect2(843, 129, 90, 110)
+margin = Rect2(483, 577, 934, 914)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_44"]
+atlas = ExtResource("1")
+region = Rect2(3067, 2, 107, 112)
+margin = Rect2(423, 577, 917, 912)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_45"]
+atlas = ExtResource("1")
+region = Rect2(1152, 129, 108, 108)
+margin = Rect2(480, 585, 916, 916)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_46"]
+atlas = ExtResource("1")
+region = Rect2(2278, 129, 107, 106)
+margin = Rect2(486, 586, 917, 918)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_47"]
+atlas = ExtResource("1")
+region = Rect2(1595, 129, 106, 107)
+margin = Rect2(486, 586, 918, 917)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_32"]
+atlas = ExtResource("1")
+region = Rect2(1082, 2, 106, 115)
+margin = Rect2(427, 573, 918, 909)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_33"]
+atlas = ExtResource("1")
+region = Rect2(217, 2, 111, 116)
+margin = Rect2(421, 574, 913, 908)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_34"]
+atlas = ExtResource("1")
+region = Rect2(2490, 129, 115, 105)
+margin = Rect2(476, 590, 909, 919)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_35"]
+atlas = ExtResource("1")
+region = Rect2(2, 2, 117, 123)
+margin = Rect2(476, 572, 907, 901)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_26"]
+atlas = ExtResource("1")
+region = Rect2(1982, 2, 103, 113)
+margin = Rect2(431, 573, 921, 911)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_28"]
+atlas = ExtResource("1")
+region = Rect2(1485, 129, 106, 107)
+margin = Rect2(460, 566, 918, 917)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_29"]
+atlas = ExtResource("1")
+region = Rect2(2829, 129, 108, 98)
+margin = Rect2(472, 592, 916, 926)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_30"]
+atlas = ExtResource("1")
+region = Rect2(1264, 129, 99, 108)
+margin = Rect2(468, 590, 925, 916)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_31"]
+atlas = ExtResource("1")
+region = Rect2(3058, 129, 108, 92)
+margin = Rect2(443, 589, 916, 932)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_10"]
+atlas = ExtResource("1")
+region = Rect2(2571, 2, 90, 113)
+margin = Rect2(479, 575, 934, 911)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_11"]
+atlas = ExtResource("1")
+region = Rect2(2477, 2, 90, 113)
+margin = Rect2(479, 574, 934, 911)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_12"]
+atlas = ExtResource("1")
+region = Rect2(2852, 2, 89, 113)
+margin = Rect2(479, 573, 935, 911)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_13"]
+atlas = ExtResource("1")
+region = Rect2(2289, 2, 90, 113)
+margin = Rect2(478, 572, 934, 911)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_14"]
+atlas = ExtResource("1")
+region = Rect2(1686, 2, 90, 114)
+margin = Rect2(478, 571, 934, 910)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_15"]
+atlas = ExtResource("1")
+region = Rect2(2383, 2, 90, 113)
+margin = Rect2(478, 572, 934, 911)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_16"]
+atlas = ExtResource("1")
+region = Rect2(2759, 2, 89, 113)
+margin = Rect2(479, 573, 935, 911)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_17"]
+atlas = ExtResource("1")
+region = Rect2(2665, 2, 90, 113)
+margin = Rect2(479, 574, 934, 911)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_0"]
+atlas = ExtResource("1")
+region = Rect2(896, 2, 89, 116)
+margin = Rect2(456, 570, 935, 908)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_48"]
+atlas = ExtResource("1")
+region = Rect2(746, 129, 93, 110)
+margin = Rect2(478, 577, 931, 914)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_49"]
+atlas = ExtResource("1")
+region = Rect2(1046, 129, 102, 109)
+margin = Rect2(440, 580, 922, 915)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_50"]
+atlas = ExtResource("1")
+region = Rect2(3772, 2, 92, 111)
+margin = Rect2(455, 548, 932, 913)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_51"]
+atlas = ExtResource("1")
+region = Rect2(1805, 129, 120, 106)
+margin = Rect2(471, 550, 904, 918)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_52"]
+atlas = ExtResource("1")
+region = Rect2(2389, 129, 97, 106)
+margin = Rect2(490, 587, 927, 918)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_53"]
+atlas = ExtResource("1")
+region = Rect2(1705, 129, 96, 107)
+margin = Rect2(490, 586, 928, 917)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_54"]
+atlas = ExtResource("1")
+region = Rect2(123, 2, 90, 121)
+margin = Rect2(446, 567, 934, 903)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_55"]
+atlas = ExtResource("1")
+region = Rect2(329, 129, 105, 110)
+margin = Rect2(478, 579, 919, 914)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_56"]
+atlas = ExtResource("1")
+region = Rect2(220, 129, 105, 110)
+margin = Rect2(478, 579, 919, 914)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_57"]
+atlas = ExtResource("1")
+region = Rect2(111, 129, 105, 110)
+margin = Rect2(477, 579, 919, 914)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_58"]
+atlas = ExtResource("1")
+region = Rect2(2, 129, 105, 110)
+margin = Rect2(477, 579, 919, 914)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_59"]
+atlas = ExtResource("1")
+region = Rect2(3961, 2, 105, 110)
+margin = Rect2(477, 579, 919, 914)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_60"]
+atlas = ExtResource("1")
+region = Rect2(937, 129, 105, 109)
+margin = Rect2(478, 579, 919, 915)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_61"]
+atlas = ExtResource("1")
+region = Rect2(1591, 2, 91, 114)
+margin = Rect2(446, 571, 933, 910)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_62"]
+atlas = ExtResource("1")
+region = Rect2(3178, 2, 99, 112)
+margin = Rect2(438, 573, 925, 912)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_63"]
+atlas = ExtResource("1")
+region = Rect2(3582, 2, 90, 112)
+margin = Rect2(458, 573, 934, 912)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_64"]
+atlas = ExtResource("1")
+region = Rect2(648, 129, 94, 110)
+margin = Rect2(475, 577, 930, 914)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_65"]
+atlas = ExtResource("1")
+region = Rect2(1286, 2, 90, 115)
+margin = Rect2(447, 571, 934, 909)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_66"]
+atlas = ExtResource("1")
+region = Rect2(2089, 2, 97, 113)
+margin = Rect2(439, 573, 927, 911)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_67"]
+atlas = ExtResource("1")
+region = Rect2(3868, 2, 89, 111)
+margin = Rect2(451, 577, 935, 913)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_68"]
+atlas = ExtResource("1")
+region = Rect2(3640, 129, 56, 61)
+margin = Rect2(491, 617, 968, 963)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_69"]
+atlas = ExtResource("1")
+region = Rect2(3805, 129, 67, 49)
+margin = Rect2(458, 609, 957, 975)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_70"]
+atlas = ExtResource("1")
+region = Rect2(1929, 129, 113, 106)
+margin = Rect2(479, 587, 911, 918)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_71"]
+atlas = ExtResource("1")
+region = Rect2(2046, 129, 112, 106)
+margin = Rect2(478, 584, 912, 918)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_72"]
+atlas = ExtResource("1")
+region = Rect2(2162, 129, 112, 106)
+margin = Rect2(478, 584, 912, 918)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_73"]
+atlas = ExtResource("1")
+region = Rect2(3485, 2, 93, 112)
+margin = Rect2(487, 573, 931, 912)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_74"]
+atlas = ExtResource("1")
+region = Rect2(3676, 2, 92, 111)
+margin = Rect2(450, 556, 932, 913)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_75"]
+atlas = ExtResource("1")
+region = Rect2(1872, 2, 106, 113)
+margin = Rect2(428, 569, 918, 911)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_76"]
+atlas = ExtResource("1")
+region = Rect2(2945, 2, 118, 112)
+margin = Rect2(421, 577, 906, 912)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_77"]
+atlas = ExtResource("1")
+region = Rect2(2718, 129, 107, 103)
+margin = Rect2(476, 589, 917, 921)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_78"]
+atlas = ExtResource("1")
+region = Rect2(2609, 129, 105, 105)
+margin = Rect2(476, 586, 919, 919)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_1"]
+atlas = ExtResource("1")
+region = Rect2(332, 2, 90, 116)
+margin = Rect2(455, 569, 934, 908)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_2"]
+atlas = ExtResource("1")
+region = Rect2(426, 2, 90, 116)
+margin = Rect2(455, 568, 934, 908)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_3"]
+atlas = ExtResource("1")
+region = Rect2(989, 2, 89, 116)
+margin = Rect2(455, 567, 935, 908)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_4"]
+atlas = ExtResource("1")
+region = Rect2(1192, 2, 90, 115)
+margin = Rect2(454, 567, 934, 909)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_5"]
+atlas = ExtResource("1")
+region = Rect2(1380, 2, 90, 115)
+margin = Rect2(454, 566, 934, 909)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_6"]
+atlas = ExtResource("1")
+region = Rect2(614, 2, 90, 116)
+margin = Rect2(454, 566, 934, 908)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_7"]
+atlas = ExtResource("1")
+region = Rect2(708, 2, 90, 116)
+margin = Rect2(454, 567, 934, 908)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_8"]
+atlas = ExtResource("1")
+region = Rect2(802, 2, 90, 116)
+margin = Rect2(455, 568, 934, 908)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="frame_9"]
+atlas = ExtResource("1")
+region = Rect2(520, 2, 90, 116)
+margin = Rect2(455, 569, 934, 908)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_19")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_19")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_19")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_20")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_20")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_21")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_21")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_21")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_22")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_22")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_23")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_23")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_23")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_24")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_24")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_25")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_27")
+}],
+"loop": 1,
+"name": &"drop",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_36")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_36")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_36")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_37")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}],
+"loop": 0,
+"name": &"hit1",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_39")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_40")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_40")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}],
+"loop": 0,
+"name": &"hit2",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_41")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_42")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_42")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}],
+"loop": 0,
+"name": &"hit3",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_43")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_43")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_43")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_44")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_44")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_44")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_45")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_45")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_46")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_46")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_47")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_47")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_47")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_47")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_47")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_47")
+}],
+"loop": 0,
+"name": &"hit4",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_32")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_32")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_32")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_33")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_33")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_34")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_34")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_35")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_35")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_35")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_35")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_35")
+}],
+"loop": 0,
+"name": &"hit5",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_18")
+}],
+"loop": 0,
+"name": &"hurt",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_26")
+}],
+"loop": 0,
+"name": &"jump1",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_28")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_28")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_28")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_29")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_29")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_29")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_29")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_30")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_30")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_31")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_31")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_31")
+}],
+"loop": 0,
+"name": &"jump2",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_11")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_11")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_13")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_13")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_13")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_14")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_14")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_15")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_15")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_16")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_16")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_17")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_17")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_48")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_48")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_48")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}],
+"loop": 0,
+"name": &"skill1",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_49")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_49")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_49")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_50")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_50")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_50")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_50")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_51")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_51")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_50")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_50")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_50")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_50")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_51")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_51")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_51")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_50")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_50")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_51")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_51")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_51")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_52")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_52")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_52")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_53")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_53")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_53")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_53")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_53")
+}],
+"loop": 0,
+"name": &"skill1_air",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_54")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_54")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_55")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_55")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_56")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_56")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_57")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_57")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_58")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_58")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_59")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_59")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_60")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_60")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_55")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_55")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_56")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_56")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_57")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_57")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_58")
+}],
+"loop": 0,
+"name": &"skill2",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_61")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_61")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_61")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_62")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_62")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_62")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_62")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_63")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_63")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_64")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_64")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_64")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_64")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_64")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_64")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_64")
+}],
+"loop": 0,
+"name": &"skill3",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_65")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_65")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_65")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_66")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_66")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_66")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_67")
+}],
+"loop": 0,
+"name": &"skill4",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_68")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_68")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_68")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_69")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_69")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_70")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_70")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_70")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_71")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_71")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_71")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_70")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_70")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_71")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_70")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_72")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_70")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_71")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_71")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_73")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_73")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_74")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_74")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_74")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_74")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_75")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_75")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_75")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_76")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_76")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_77")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_77")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_78")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_78")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_78")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_78")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_78")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_78")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_78")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_78")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_78")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_78")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_78")
+}],
+"loop": 0,
+"name": &"skill5",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_38")
+}],
+"loop": 0,
+"name": &"skill5_enhanced",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_9")
+}],
+"loop": 1,
+"name": &"wait",
+"speed": 30.0
+}]

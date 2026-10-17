@@ -49,7 +49,7 @@ static func _build_frames(folder: String, prefix: String, count: int, fps: float
 	frames.set_animation_speed("default", fps)
 	frames.set_animation_loop("default", false)
 	for index in range(count):
-		var path := "res://Art/HeroPicture/Role5/LeiTingJieZhen/%s/%s_%02d.png" % [folder, prefix, index]
+		var path := "res://Art/hero_picture/Role5/LeiTingJieZhen/%s/%s_%02d.png" % [folder, prefix, index]
 		var texture := load(path) as Texture2D
 		if texture != null:
 			frames.add_frame("default", texture)

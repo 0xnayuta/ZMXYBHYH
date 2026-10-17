@@ -3,9 +3,9 @@ class_name PetPhoenixSummonBase
 
 @export var phoenix_stage: int = 1
 
-const PHOENIX_MODEL_FRAMES_RES := "res://Art/Pet/PetPhoenix/model/pet_phoenix_stage%d_frames.tres"
+const PHOENIX_MODEL_FRAMES_RES := "res://Art/pet/PetPhoenix/model/pet_phoenix_stage%d_frames.tres"
 const PHOENIX_SCENE_RES := "res://Scene/pet/PetPhoenixSummon_%d.tscn"
-const PHOENIX_EFFECT_DIR := "res://Art/Pet/PetPhoenix/effects"
+const PHOENIX_EFFECT_DIR := "res://Art/pet/PetPhoenix/effects"
 const PET_PHOENIX_BULLET_SCENE := preload("res://Scene/pet/pet_tiger_bullet.tscn")
 const PET_SKILL_PROGRESSION := preload("res://Script/pet/pet_skill_progression.gd")
 const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/pet/pet_life_bonus_runtime.gd")

@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/pet/pet_neat_summon_base.gd" id="1"]
-[ext_resource type="SpriteFrames" path="res://Art/Pet/PetNeat/model/pet_neat_stage4_frames.tres" id="2"]
+[ext_resource type="SpriteFrames" path="res://Art/pet/PetNeat/model/pet_neat_stage4_frames.tres" id="2"]
 
 [sub_resource type="RectangleShape2D" id="shape"]
 size = Vector2(52, 104)

@@ -9,7 +9,7 @@ extends Control
 @onready var sort_button: Button = $SortButton
 
 const PET_ITEMS_PER_PAGE := 25
-const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/Pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
+const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
 const EQUIPMENT_ITEMS_PER_PAGE := 25
 const LDL_EQUIPPED_SLOT_TYPES := ["武器", "防具", "饰品", "神骨", "法宝", "头衔", "时装", "翅膀"]
 var current_fl = 0

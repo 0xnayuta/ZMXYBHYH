@@ -40,7 +40,7 @@ static func _get_lightning_frames() -> SpriteFrames:
 	frames.set_animation_speed("default", 60.0)
 	frames.set_animation_loop("default", false)
 	for index in range(9):
-		var path := "res://Art/HeroPicture/SMSRShenqiLightning/lightning/d_%05d.png" % index
+		var path := "res://Art/hero_picture/SMSRShenqiLightning/lightning/d_%05d.png" % index
 		var texture := load(path) as Texture2D
 		if texture != null:
 			frames.add_frame("default", texture)
@@ -55,7 +55,7 @@ static func _get_hit_frames() -> SpriteFrames:
 	frames.set_animation_speed("default", 30.0)
 	frames.set_animation_loop("default", false)
 	for index in range(0, 20, 2):
-		var path := "res://Art/HeroPicture/SMSRShenqiLightning/hit_mesh/hit_%05d.png" % index
+		var path := "res://Art/hero_picture/SMSRShenqiLightning/hit_mesh/hit_%05d.png" % index
 		var texture := load(path) as Texture2D
 		if texture != null:
 			frames.add_frame("default", texture, 2.0 if index >= 16 else 1.0)

@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" path="res://Scene/hero/role_bullet.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/hero/bullet_bullet.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/Role2Bullet.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/Role2Skill_blb-0.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/Role2Skill_xbz.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/Role2Skill_smb2.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/sgqbullet2.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/Role2Skill_jhsj2.png" id="8"]
-[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/sgqbullet1.png" id="9"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/Role2/Role2Bullet.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/Role2/Role2Skill_blb-0.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/Role2/Role2Skill_xbz.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/Role2/Role2Skill_smb2.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/Role2/sgqbullet2.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/Role2/Role2Skill_jhsj2.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/Role2/sgqbullet1.png" id="9"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("3")

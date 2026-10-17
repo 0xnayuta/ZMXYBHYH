@@ -1,0 +1,95 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" uid="uid://cwpj4pd1unla8" path="res://Art/hero_picture/Wings/xyzy/role5/1.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://brypomlvn5jhq" path="res://Art/hero_picture/Wings/xyzy/role5/4.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dgycl61syxh2g" path="res://Art/hero_picture/Wings/xyzy/role5/7.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dxs1fm2kib0e8" path="res://Art/hero_picture/Wings/xyzy/role5/10.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cocxqv73202kd" path="res://Art/hero_picture/Wings/xyzy/role5/14.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://k306wa7ou4ku" path="res://Art/hero_picture/Wings/xyzy/role5/20.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://dvpmchkx8f8yr" path="res://Art/hero_picture/Wings/xyzy/role5/23.png" id="7"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}],
+"loop": 1,
+"name": &"xyzy",
+"speed": 30.0
+}]

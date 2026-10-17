@@ -11,7 +11,7 @@ class_name Mosaic
 @onready var bs_8: Button = $bs_8/bs_8
 @onready var zb: Button = $zb/Zb
 
-const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/Pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
+const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
 
 
 func _physics_process(_delta: float) -> void:

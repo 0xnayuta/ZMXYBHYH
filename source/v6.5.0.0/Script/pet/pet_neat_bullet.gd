@@ -2,7 +2,7 @@ extends "res://Script/monster/monster_bullet.gd"
 class_name PetNeatBullet
 
 const FPS := 24.0
-const ROOT := "res://Art/Pet/PetNeat/effects"
+const ROOT := "res://Art/pet/PetNeat/effects"
 const COUNTS := {"PetNeat1Bullet1": 20, "PetNeat1Bullet2": 1, "PetNeat4Bullet3": 22}
 const ACTIVE_FRAME_END := {"PetNeat1Bullet1": 14, "PetNeat1Bullet2": 0, "PetNeat4Bullet3": 14}
 const STOMP_DAMAGE_REPEAT_COUNT := 3

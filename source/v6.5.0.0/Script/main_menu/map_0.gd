@@ -23,12 +23,12 @@ const HEAVEN_PATH := "res://Scene/main_menu/map_3.tscn"
 const HEAVEN_JIEJIAO_PATH := "res://Scene/main_menu/map_4.tscn"
 const HEAVEN_BIYOU_PATH := "res://Scene/main_menu/map_5.tscn"
 const ROLE_HEAD_PATHS := {
-	1: "res://Art/HeroPicture/RoleProperiesBox/hud_swk.png",
-	2: "res://Art/HeroPicture/RoleProperiesBox/hud_tsz.png",
-	3: "res://Art/HeroPicture/RoleProperiesBox/hud_zbj.png",
-	4: "res://Art/HeroPicture/RoleProperiesBox/hud_shs.png",
-	5: "res://Art/HeroPicture/RoleProperiesBox/hud_blm.png",
-	6: "res://Art/HeroPicture/RoleProperiesBox/hud_nz.png",
+	1: "res://Art/hero_picture/RoleProperiesBox/hud_swk.png",
+	2: "res://Art/hero_picture/RoleProperiesBox/hud_tsz.png",
+	3: "res://Art/hero_picture/RoleProperiesBox/hud_zbj.png",
+	4: "res://Art/hero_picture/RoleProperiesBox/hud_shs.png",
+	5: "res://Art/hero_picture/RoleProperiesBox/hud_blm.png",
+	6: "res://Art/hero_picture/RoleProperiesBox/hud_nz.png",
 }
 
 var backpack_page: Node = null

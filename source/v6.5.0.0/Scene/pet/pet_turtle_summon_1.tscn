@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/pet/pet_turtle_summon_base.gd" id="1"]
-[ext_resource type="SpriteFrames" path="res://Art/Pet/PetTurtle/model/pet_turtle_stage1_frames.tres" id="2"]
+[ext_resource type="SpriteFrames" path="res://Art/pet/PetTurtle/model/pet_turtle_stage1_frames.tres" id="2"]
 
 [sub_resource type="Animation" id="anim_reset"]
 resource_name = "RESET"

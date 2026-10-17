@@ -18,7 +18,7 @@ const RABBIT_STAGE_SKILLS := {
 	3: ["月光", "疾风", "冰陨"],
 	4: ["月光", "疾风", "冰陨", "月神奥义"],
 }
-const RABBIT_MODEL_FRAMES_RES := "res://Art/Pet/PetRabbit/model/pet_rabbit_stage%d_frames.tres"
+const RABBIT_MODEL_FRAMES_RES := "res://Art/pet/PetRabbit/model/pet_rabbit_stage%d_frames.tres"
 const RABBIT_SCENE_RES := "res://Scene/pet/PetRabbitSummon_%d.tscn"
 const PET_RABBIT_BULLET_SCENE := preload("res://Scene/pet/pet_rabbit_bullet.tscn")
 const RABBIT_ACTIONS := {

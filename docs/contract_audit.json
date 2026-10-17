@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "scan_time": "2026-10-17 23:44:49",
+    "scan_time": "2026-10-18 00:27:43",
     "project_dir": "G:\\source\\repos\\ZMXYBHYH\\source\\v6.5.0.0",
     "stats": {
       "total_findings": 1967,
@@ -13,7 +13,7 @@
         "reflection": 13,
         "dict_key": 1797
       },
-      "duration_seconds": 5.98,
+      "duration_seconds": 5.04,
       "scripts_scanned": 722,
       "scenes_scanned": 1132
     }
@@ -444,7 +444,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 5404,
-      "literal": "res://Art/HeroPicture/Role",
+      "literal": "res://Art/hero_picture/Role",
       "message": "资源文件或目录不存在: 分段不存在: Role",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -454,7 +454,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 5421,
-      "literal": "res://Art/HeroPicture/Role",
+      "literal": "res://Art/hero_picture/Role",
       "message": "资源文件或目录不存在: 分段不存在: Role",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -874,7 +874,7 @@
       "severity": "WARNING",
       "file": "Script/monster/monster_bullet.gd",
       "line": 99,
-      "literal": "res://Art/Pet/PetDragon/effects",
+      "literal": "res://Art/pet/PetDragon/effects",
       "message": "资源文件或目录不存在: 分段不存在: effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -884,7 +884,7 @@
       "severity": "WARNING",
       "file": "Script/monster/monster_bullet.gd",
       "line": 100,
-      "literal": "res://Art/Pet/PetPhoenix/effects",
+      "literal": "res://Art/pet/PetPhoenix/effects",
       "message": "资源文件或目录不存在: 分段不存在: effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -894,7 +894,7 @@
       "severity": "WARNING",
       "file": "Script/monster/monster_bullet.gd",
       "line": 113,
-      "literal": "res://Art/Pet/PetDragon/effects/PetDragonBullet4Cropped",
+      "literal": "res://Art/pet/PetDragon/effects/PetDragonBullet4Cropped",
       "message": "资源文件或目录不存在: 分段不存在: effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -974,7 +974,7 @@
       "severity": "WARNING",
       "file": "Script/pet/pet_phoenix_summon_base.gd",
       "line": 8,
-      "literal": "res://Art/Pet/PetPhoenix/effects",
+      "literal": "res://Art/pet/PetPhoenix/effects",
       "message": "资源文件或目录不存在: 分段不存在: effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"

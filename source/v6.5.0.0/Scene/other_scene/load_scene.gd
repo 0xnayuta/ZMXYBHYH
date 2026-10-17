@@ -36,14 +36,14 @@ const TZSIJIAN_BG_ROOT := "res://Art/Level/Game3Level/Level_tzsijian/96/bg961_pa
 const TZSIJIAN_BOSS_IDS := [951, 952, 953, 954]
 
 const EXTRA_PRELOAD_PATHS := [
-	"res://Art/Pet/skillicon/hy.png",
-	"res://Art/Pet/skillicon/sxhz.png",
-	"res://Art/Pet/skillicon/hsqj.png",
-	"res://Art/Pet/skillicon/aoyi.png",
-	"res://Art/Pet/PetTiger/model/pet_tiger_stage1_frames.tres",
-	"res://Art/Pet/PetTiger/model/pet_tiger_stage2_frames.tres",
-	"res://Art/Pet/PetTiger/model/pet_tiger_stage3_frames.tres",
-	"res://Art/Pet/PetTiger/model/pet_tiger_stage4_frames.tres",
+	"res://Art/pet/skillicon/hy.png",
+	"res://Art/pet/skillicon/sxhz.png",
+	"res://Art/pet/skillicon/hsqj.png",
+	"res://Art/pet/skillicon/aoyi.png",
+	"res://Art/pet/PetTiger/model/pet_tiger_stage1_frames.tres",
+	"res://Art/pet/PetTiger/model/pet_tiger_stage2_frames.tres",
+	"res://Art/pet/PetTiger/model/pet_tiger_stage3_frames.tres",
+	"res://Art/pet/PetTiger/model/pet_tiger_stage4_frames.tres",
 ]
 
 @onready var loading_bar: TextureProgressBar = $PanelContainer/loading_bar

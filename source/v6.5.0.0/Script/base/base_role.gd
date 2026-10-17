@@ -96,17 +96,17 @@ func _physics_process(_delta: float) -> void:
 func _set_role_head() -> void:
 	match int(PlayerData.player_data.get("Myself", 1)):
 		1:
-			role_head.texture = load("res://Art/HeroPicture/RoleProperiesBox/hud_swk.png")
+			role_head.texture = load("res://Art/hero_picture/RoleProperiesBox/hud_swk.png")
 		2:
-			role_head.texture = load("res://Art/HeroPicture/RoleProperiesBox/hud_tsz.png")
+			role_head.texture = load("res://Art/hero_picture/RoleProperiesBox/hud_tsz.png")
 		3:
-			role_head.texture = load("res://Art/HeroPicture/RoleProperiesBox/hud_zbj.png")
+			role_head.texture = load("res://Art/hero_picture/RoleProperiesBox/hud_zbj.png")
 		4:
-			role_head.texture = load("res://Art/HeroPicture/RoleProperiesBox/hud_shs.png")
+			role_head.texture = load("res://Art/hero_picture/RoleProperiesBox/hud_shs.png")
 		5:
-			role_head.texture = load("res://Art/HeroPicture/RoleProperiesBox/hud_blm.png")
+			role_head.texture = load("res://Art/hero_picture/RoleProperiesBox/hud_blm.png")
 		6:
-			role_head.texture = load("res://Art/HeroPicture/RoleProperiesBox/hud_nz.png")
+			role_head.texture = load("res://Art/hero_picture/RoleProperiesBox/hud_nz.png")
 
 
 func _load_skill_icons() -> void:
@@ -571,36 +571,36 @@ func _update_pet_head(pet: Dictionary, pet_unit: Node) -> void:
 
 
 func _pet_tiger_head_texture(stage: int) -> Texture2D:
-	return Global.get_cached_texture("res://Art/Pet/PetTiger/model/actions/stage%d/wait/icon.png" % clampi(stage, 1, 4))
+	return Global.get_cached_texture("res://Art/pet/PetTiger/model/actions/stage%d/wait/icon.png" % clampi(stage, 1, 4))
 
 
 func _pet_dragon_head_texture(stage: int) -> Texture2D:
-	return Global.get_cached_texture("res://Art/Pet/PetDragon/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4))
+	return Global.get_cached_texture("res://Art/pet/PetDragon/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4))
 
 
 func _pet_phoenix_head_texture(stage: int) -> Texture2D:
-	return Global.get_cached_texture("res://Art/Pet/PetPhoenix/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4))
+	return Global.get_cached_texture("res://Art/pet/PetPhoenix/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4))
 
 
 func _pet_turtle_head_texture(stage: int) -> Texture2D:
-	return load("res://Art/Pet/PetTurtle/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4)) as Texture2D
+	return load("res://Art/pet/PetTurtle/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4)) as Texture2D
 
 
 func _pet_rabbit_head_texture(stage: int) -> Texture2D:
-	return load("res://Art/Pet/PetRabbit/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4)) as Texture2D
+	return load("res://Art/pet/PetRabbit/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4)) as Texture2D
 
 
 func _pet_mouse_head_texture(stage: int) -> Texture2D:
-	return load("res://Art/Pet/PetMouse/model/actions/stage%d/wait/head.png" % clampi(stage, 1, 2)) as Texture2D
+	return load("res://Art/pet/PetMouse/model/actions/stage%d/wait/head.png" % clampi(stage, 1, 2)) as Texture2D
 
 
 func _pet_neat_head_texture(stage: int) -> Texture2D:
-	return load("res://Art/Pet/PetNeat/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4)) as Texture2D
+	return load("res://Art/pet/PetNeat/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4)) as Texture2D
 
 
 func _pet_yin_tiger_head_texture(stage: int) -> Texture2D:
 	var source_stage := 2 if stage >= 4 else 1
-	var path := "res://Art/Pet/PetYinTiger/model/actions/stage%d/wait/1.png" % source_stage
+	var path := "res://Art/pet/PetYinTiger/model/actions/stage%d/wait/1.png" % source_stage
 	return load(path) as Texture2D
 
 
@@ -630,7 +630,7 @@ func _update_pet_skill_icons(pet: Dictionary, pet_unit: Node) -> void:
 		if skill_names_changed or str(icon.name) != skill_name:
 			icon.name = skill_name
 			var icon_file := "aoyi" if skill_name in ["xwaoyi", "ysaoyi", "zsaoyi"] else skill_name
-			icon.texture = load("res://Art/Pet/skillicon/%s.png" % icon_file)
+			icon.texture = load("res://Art/pet/skillicon/%s.png" % icon_file)
 			icon.visible = icon.texture != null
 		_set_pet_skill_cooldown(icon, skill_name, pet_unit)
 

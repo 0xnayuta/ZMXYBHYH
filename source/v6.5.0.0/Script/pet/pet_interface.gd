@@ -112,47 +112,47 @@ const PET_PASSIVE_KEYS := ["热血", "魔泉", "狂暴", "永恒", "辉煌", "�
 const PET_PASSIVE_EFFECT_NAMES := {"热血": "生命上限", "魔泉": "魔法上限", "狂暴": "暴击", "永恒": "回血", "辉煌": "回魔", "敏锐": "命中"}
 
 const PET_SKILL_ICON_PATHS := {
-	"生命加成": "res://Art/Pet/skillicon/smjc.png",
-	"攻击加成": "res://Art/Pet/skillicon/gjjc.png",
-	"防御加成": "res://Art/Pet/skillicon/fyjc.png",
-	"魔法庇佑": "res://Art/Pet/skillicon/mfby.png",
-	"嗜血狂爆": "res://Art/Pet/skillicon/sxkb.png",
-	"法术能量": "res://Art/Pet/skillicon/fsnl.png",
-	"天生蛮力": "res://Art/Pet/skillicon/tsml.png",
-	"自然守护": "res://Art/Pet/skillicon/zrsh.png",
-	"生命祝福": "res://Art/Pet/skillicon/smzf.png",
-	"魔法加成": "res://Art/Pet/skillicon/mfjc.png",
-	"猛扑": "res://Art/Pet/skillicon/hy.png",
-	"虎啸": "res://Art/Pet/skillicon/hy.png",
-	"嗜血虎爪": "res://Art/Pet/skillicon/sxhz.png",
-	"横扫千军": "res://Art/Pet/skillicon/hsqj.png",
-	"奥义": "res://Art/Pet/skillicon/aoyi.png",
-	"分身": "res://Art/Pet/skillicon/fs.png",
-	"闪电冲刺": "res://Art/Pet/skillicon/sdcc.png",
-	"雷霆万钧": "res://Art/Pet/skillicon/ltwj.png",
-	"青龙奥义": "res://Art/Pet/skillicon/aoyi.png",
-	"水疗盾": "res://Art/Pet/skillicon/sld.png",
-	"同心链接": "res://Art/Pet/skillicon/txlj.png",
-	"水湮八荒": "res://Art/Pet/skillicon/sybh.png",
-	"玄武奥义": "res://Art/Pet/skillicon/aoyi.png",
-	"月光": "res://Art/Pet/skillicon/yg.png",
-	"疾风": "res://Art/Pet/skillicon/jf.png",
-	"冰陨": "res://Art/Pet/skillicon/bs.png",
-	"月神奥义": "res://Art/Pet/skillicon/aoyi.png",
-	"鼠窜": "res://Art/Pet/skillicon/sc.png",
-	"回旋飞镖": "res://Art/Pet/skillicon/hxfb.png",
-	"子鼠奥义": "res://Art/Pet/skillicon/aoyi.png",
-	"蛮牛冲撞": "res://Art/Pet/skillicon/mncz.png",
-	"蛮力践踏": "res://Art/Pet/skillicon/mljt.png",
-	"丑牛奥义": "res://Art/Pet/skillicon/cnaoyi.png",
-	"猛虎下山": "res://Art/Pet/skillicon/hsqj.png",
-	"寅虎奥义": "res://Art/Pet/skillicon/aoyi.png"
+	"生命加成": "res://Art/pet/skillicon/smjc.png",
+	"攻击加成": "res://Art/pet/skillicon/gjjc.png",
+	"防御加成": "res://Art/pet/skillicon/fyjc.png",
+	"魔法庇佑": "res://Art/pet/skillicon/mfby.png",
+	"嗜血狂爆": "res://Art/pet/skillicon/sxkb.png",
+	"法术能量": "res://Art/pet/skillicon/fsnl.png",
+	"天生蛮力": "res://Art/pet/skillicon/tsml.png",
+	"自然守护": "res://Art/pet/skillicon/zrsh.png",
+	"生命祝福": "res://Art/pet/skillicon/smzf.png",
+	"魔法加成": "res://Art/pet/skillicon/mfjc.png",
+	"猛扑": "res://Art/pet/skillicon/hy.png",
+	"虎啸": "res://Art/pet/skillicon/hy.png",
+	"嗜血虎爪": "res://Art/pet/skillicon/sxhz.png",
+	"横扫千军": "res://Art/pet/skillicon/hsqj.png",
+	"奥义": "res://Art/pet/skillicon/aoyi.png",
+	"分身": "res://Art/pet/skillicon/fs.png",
+	"闪电冲刺": "res://Art/pet/skillicon/sdcc.png",
+	"雷霆万钧": "res://Art/pet/skillicon/ltwj.png",
+	"青龙奥义": "res://Art/pet/skillicon/aoyi.png",
+	"水疗盾": "res://Art/pet/skillicon/sld.png",
+	"同心链接": "res://Art/pet/skillicon/txlj.png",
+	"水湮八荒": "res://Art/pet/skillicon/sybh.png",
+	"玄武奥义": "res://Art/pet/skillicon/aoyi.png",
+	"月光": "res://Art/pet/skillicon/yg.png",
+	"疾风": "res://Art/pet/skillicon/jf.png",
+	"冰陨": "res://Art/pet/skillicon/bs.png",
+	"月神奥义": "res://Art/pet/skillicon/aoyi.png",
+	"鼠窜": "res://Art/pet/skillicon/sc.png",
+	"回旋飞镖": "res://Art/pet/skillicon/hxfb.png",
+	"子鼠奥义": "res://Art/pet/skillicon/aoyi.png",
+	"蛮牛冲撞": "res://Art/pet/skillicon/mncz.png",
+	"蛮力践踏": "res://Art/pet/skillicon/mljt.png",
+	"丑牛奥义": "res://Art/pet/skillicon/cnaoyi.png",
+	"猛虎下山": "res://Art/pet/skillicon/hsqj.png",
+	"寅虎奥义": "res://Art/pet/skillicon/aoyi.png"
 }
 const PET_SKILL_SLOT_COUNT := 40
 const PET_SKILL_SLOT_SIZE := 57
 const PET_SKILL_SLOT_GAP := 8
-const PET_SKILL_SLOT_FRAME := "res://Art/Pet/PetPageResources/PetInterfacev1270_id202_lossless_54x54.png"
-const PET_EQUIPMENT_SLOT_FRAME := preload("res://Art/Pet/PetPageResources/PetInterfacev1270_id202_lossless_54x54.png")
+const PET_SKILL_SLOT_FRAME := "res://Art/pet/PetPageResources/PetInterfacev1270_id202_lossless_54x54.png"
+const PET_EQUIPMENT_SLOT_FRAME := preload("res://Art/pet/PetPageResources/PetInterfacev1270_id202_lossless_54x54.png")
 const PET_EQUIPMENT_STRENGTH_FONT := preload("res://Font/8_FZCuYuan-M03S.ttf")
 const PET_ATTRIBUTE_PAGES := [
 	[
@@ -212,7 +212,7 @@ const PET_ITEM_STAT_DISPLAY_NAMES := {
 const PET_BATCH_SELL_STAT_OPTIONS := [
 	"生命", "魔法", "攻击", "物防", "魔防", "暴击", "闪避", "幸运", "回血", "回魔", "命中", "破甲", "破魔", "韧性", "吸血", "暴免"
 ]
-const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/Pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
+const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
 const PET_SKILL_MP_COSTS := {
 	"猛扑": 0,
 	"虎啸": 25,
@@ -1353,7 +1353,7 @@ func _refresh_pet_skill_learn_popup() -> void:
 		var book_label := row.get_node_or_null("Content/BookCount") as Label
 		var learn_button := row.get_node_or_null("Content/LearnButton") as Button
 		if icon != null:
-			icon.texture = load("res://Art/Pet/skillicon/%s.png" % str(definition["icon"])) as Texture2D
+			icon.texture = load("res://Art/pet/skillicon/%s.png" % str(definition["icon"])) as Texture2D
 		_set_label(name_label, skill_name)
 		_set_label(description_label, str(definition["description"]))
 		_set_label(book_label, "技能书：%d" % _item_count(book_id))
@@ -2183,21 +2183,21 @@ func _pet_skill_icon_path(skill_name: String, pet: Variant = null) -> String:
 	match skill_name:
 		"虎啸":
 			if pet is Dictionary and _is_pet_yin_tiger(pet):
-				return "res://Art/Pet/skillicon/hx.png"
+				return "res://Art/pet/skillicon/hx.png"
 
-			return "res://Art/Pet/skillicon/hy.png"
+			return "res://Art/pet/skillicon/hy.png"
 		"猛虎下山":
-			return "res://Art/Pet/skillicon/mhxs.png"
+			return "res://Art/pet/skillicon/mhxs.png"
 		"寅虎奥义":
-			return "res://Art/Pet/skillicon/yhaoyi.png"
+			return "res://Art/pet/skillicon/yhaoyi.png"
 		"涅槃":
-			return "res://Art/Pet/skillicon/np.png"
+			return "res://Art/pet/skillicon/np.png"
 		"不死火鸟":
-			return "res://Art/Pet/skillicon/bshn.png"
+			return "res://Art/pet/skillicon/bshn.png"
 		"地火燎原":
-			return "res://Art/Pet/skillicon/dhly.png"
+			return "res://Art/pet/skillicon/dhly.png"
 		"朱雀奥义":
-			return "res://Art/Pet/skillicon/aoyi.png"
+			return "res://Art/pet/skillicon/aoyi.png"
 	return PET_SKILL_ICON_PATHS.get(skill_name, "")
 
 
@@ -4941,23 +4941,23 @@ func _refresh_pet_model_preview(pet: Dictionary) -> void:
 		pet_model_preview.visible = pet_model_preview.sprite_frames != null
 		return
 	if _is_pet_mouse(pet):
-		frames_path = "res://Art/Pet/PetMouse/model/pet_mouse_stage%d_frames.tres" % clampi(stage, 1, 2)
+		frames_path = "res://Art/pet/PetMouse/model/pet_mouse_stage%d_frames.tres" % clampi(stage, 1, 2)
 		pet_model_preview.offset = PET_MOUSE_PREVIEW_OFFSET
 	elif _is_pet_neat(pet):
-		frames_path = "res://Art/Pet/PetNeat/model/pet_neat_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/PetNeat/model/pet_neat_stage%d_frames.tres" % stage
 		pet_model_preview.offset = Vector2(10, -25) if stage < 4 else Vector2(10, -20)
 	elif _is_pet_rabbit(pet):
-		frames_path = "res://Art/Pet/PetRabbit/model/pet_rabbit_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/PetRabbit/model/pet_rabbit_stage%d_frames.tres" % stage
 		pet_model_preview.offset = PET_RABBIT_PREVIEW_OFFSETS.get(stage, Vector2.ZERO)
 	elif _is_pet_phoenix(pet):
-		frames_path = "res://Art/Pet/PetPhoenix/model/pet_phoenix_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/PetPhoenix/model/pet_phoenix_stage%d_frames.tres" % stage
 	elif _is_pet_turtle(pet):
-		frames_path = "res://Art/Pet/PetTurtle/model/pet_turtle_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/PetTurtle/model/pet_turtle_stage%d_frames.tres" % stage
 	elif _is_pet_tiger(pet):
-		frames_path = "res://Art/Pet/PetTiger/model/pet_tiger_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/PetTiger/model/pet_tiger_stage%d_frames.tres" % stage
 		pet_model_preview.offset = PET_TIGER_PREVIEW_OFFSETS.get(stage, Vector2.ZERO)
 	elif _is_pet_dragon(pet):
-		frames_path = "res://Art/Pet/PetDragon/model/pet_dragon_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/PetDragon/model/pet_dragon_stage%d_frames.tres" % stage
 	else:
 		pet_model_preview.visible = false
 		return
@@ -4979,7 +4979,7 @@ func _build_yin_tiger_preview_frames(stage: int) -> SpriteFrames:
 	frames.add_animation("wait")
 	frames.set_animation_speed("wait", 24.0)
 	frames.set_animation_loop("wait", true)
-	var root := "res://Art/Pet/PetYinTiger/model/actions/stage%d/wait" % source_stage
+	var root := "res://Art/pet/PetYinTiger/model/actions/stage%d/wait" % source_stage
 	var stop_counts := [2.0, 2.0, 2.0, 3.0, 2.0, 4.0]
 	for frame_index in range(1, 7):
 		var texture := load(root.path_join("%d.png" % frame_index)) as Texture2D

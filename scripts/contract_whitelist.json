@@ -17,9 +17,13 @@
     "res://Art/add_effect/Buff_icon/mp_poision.png",
     "res://Art/Monster/GuanyinSpine/",
     "res://Art/HeroPicture/Role2/BingYu/runtime/",
+    "res://Art/hero_picture/Role2/BingYu/runtime/",
     "res://Art/HeroPicture/Role4/CangMuLongYun/runtime/",
+    "res://Art/hero_picture/Role4/CangMuLongYun/runtime/",
     "res://Art/HeroPicture/Role2/JHSJAwaken/runtime/",
+    "res://Art/hero_picture/Role2/JHSJAwaken/runtime/",
     "res://Art/HeroPicture/Role2/LYFBAwaken/runtime/",
+    "res://Art/hero_picture/Role2/LYFBAwaken/runtime/",
     "res://Art/2_6_0_0/Level_sxmg/csm/csm.wav",
     "res://Scene/level/Level_sxmg.tscn"
   ],

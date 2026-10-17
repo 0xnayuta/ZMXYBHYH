@@ -12,10 +12,10 @@ static func _paths_for(bullet_name: String) -> Array[String]:
 	var paths: Array[String] = []
 	if bullet_name == "TtzsszBullet":
 		for index in range(23):
-			paths.append("res://Art/HeroPicture/TtzsszBulletCropped/%d.png" % (index + 1))
+			paths.append("res://Art/hero_picture/TtzsszBulletCropped/%d.png" % (index + 1))
 	elif bullet_name == "Role3Bullet2":
 		for index in range(27):
-			paths.append("res://Art/HeroPicture/Role3/Role3Bullet2Stream/%02d.png" % index)
+			paths.append("res://Art/hero_picture/Role3/Role3Bullet2Stream/%02d.png" % index)
 	return paths
 
 
@@ -144,7 +144,7 @@ func _setup_ttzssz() -> void:
 		Rect2(0, 0, 1, 1)
 	]
 	for i in range(boxes.size()):
-		_frame_paths.append("res://Art/HeroPicture/TtzsszBulletCropped/%d.png" % (i + 1))
+		_frame_paths.append("res://Art/hero_picture/TtzsszBulletCropped/%d.png" % (i + 1))
 		var box: Rect2 = boxes[i]
 		_frame_offsets.append(box.position + box.size * 0.5 - original_size * 0.5)
 		_frame_times.append(float(i) / 24.0)
@@ -195,7 +195,7 @@ func _setup_role3_bullet2() -> void:
 	_frame_offsets.clear()
 	_frame_times = [0.0, 1.2]
 	for i in range(meta.size()):
-		_frame_paths.append("res://Art/HeroPicture/Role3/Role3Bullet2Stream/%02d.png" % i)
+		_frame_paths.append("res://Art/hero_picture/Role3/Role3Bullet2Stream/%02d.png" % i)
 		_frame_offsets.append(Vector2(float(meta[i][2]), float(meta[i][3])) + Vector2(0, -130))
 	var shape := RectangleShape2D.new()
 	shape.size = Vector2(53, 102.365)

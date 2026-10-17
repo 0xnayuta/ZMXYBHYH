@@ -3,7 +3,7 @@ class_name PetMouseBullet
 
 const EFFECT_FPS := 24.0
 const BOOMERANG_DAMAGE_INTERVAL := 2.0 / EFFECT_FPS
-const EFFECT_ROOT := "res://Art/Pet/PetMouse/effects"
+const EFFECT_ROOT := "res://Art/pet/PetMouse/effects"
 const EFFECT_COUNTS := {
 	"PetMouse1Bullet1": 20,
 	"PetMouse1Bullet2": 25,

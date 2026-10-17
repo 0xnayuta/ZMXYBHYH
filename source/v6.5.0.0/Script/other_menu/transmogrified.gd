@@ -1,7 +1,7 @@
 extends Node2D
 class_name Transmogrified
-const XIANYU_WING_PATH_FORMAT := "res://Art/HeroPicture/Wings/xyzy/role%d.tres"
-const HUAHAO_WING_FRAME_DIR := "res://Art/HeroPicture/Wings/hhyq"
+const XIANYU_WING_PATH_FORMAT := "res://Art/hero_picture/Wings/xyzy/role%d.tres"
+const HUAHAO_WING_FRAME_DIR := "res://Art/hero_picture/Wings/hhyq"
 @onready var bg_2: Sprite2D = $BG/BG2
 @onready var infor: Label = $BG/ChangePage/Infor
 @onready var role_body: Sprite2D = $BG/Player/RoleBody

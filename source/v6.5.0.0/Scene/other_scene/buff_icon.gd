@@ -48,7 +48,7 @@ func _physics_process(_delta: float) -> void:
 		_last_icon_name = icon_name
 		var icon_texture = Global.get_cached_texture("res://Art/add_effect/Buff_icon/" + icon_name + ".png")
 		if icon_texture == null and icon_name == "PetLifeBonus":
-			icon_texture = Global.get_cached_texture("res://Art/Pet/skillicon/smjc.png")
+			icon_texture = Global.get_cached_texture("res://Art/pet/skillicon/smjc.png")
 		if icon_texture == null and icon_name == "DoubleFallPro":
 			icon_texture = Global.get_cached_texture("res://Art/item_icon/xydxq.png")
 		texture = icon_texture

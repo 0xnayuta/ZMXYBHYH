@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_hero.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/hero/ne_zha_hero.gd" id="2"]
-[ext_resource type="SpriteFrames" path="res://Art/HeroPicture/Wings/StandardWings.tres" id="3"]
-[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role6AllEquipment/Role_6_Body_Empty.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role6AllEquipment/Role_6_Eq_Empty.png" id="5"]
+[ext_resource type="SpriteFrames" path="res://Art/hero_picture/Wings/StandardWings.tres" id="3"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/Role6AllEquipment/Role_6_Body_Empty.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/Role6AllEquipment/Role_6_Eq_Empty.png" id="5"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(180, 100)

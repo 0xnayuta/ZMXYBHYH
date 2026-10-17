@@ -1,10 +1,10 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/hero/role1_s_hallow.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role_1Shallow.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role1SpecialEffect/Role1LYFB.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role1SpecialEffect/Role1ZZ_1.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/HeroPicture/Role1SpecialEffect/Role1zz.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/Role_1Shallow.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/Role1SpecialEffect/Role1LYFB.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/Role1SpecialEffect/Role1ZZ_1.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/Role1SpecialEffect/Role1zz.png" id="5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2idrr"]
 atlas = ExtResource("3")

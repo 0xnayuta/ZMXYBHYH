@@ -1,0 +1,143 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" uid="uid://cu3g5ynf8y200" path="res://Art/pet/PetRabbit/model/actions/stage4/death/death_0.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dtu637isy08fw" path="res://Art/pet/PetRabbit/model/actions/stage4/death/death_1.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cvl43u86gxj2j" path="res://Art/pet/PetRabbit/model/actions/stage4/death/death_2.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dnxlnkm8c1lsu" path="res://Art/pet/PetRabbit/model/actions/stage4/death/death_3.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://b3k5e57n2rhwm" path="res://Art/pet/PetRabbit/model/actions/stage4/death/death_4.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://drtyuhdfop10k" path="res://Art/pet/PetRabbit/model/actions/stage4/hit1/hit1_0.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://8nv1lp66jg4c" path="res://Art/pet/PetRabbit/model/actions/stage4/hit1/hit1_1.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://bddfhoiecnh41" path="res://Art/pet/PetRabbit/model/actions/stage4/hit1/hit1_2.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://d1uue00c7khqk" path="res://Art/pet/PetRabbit/model/actions/stage4/hit1/hit1_3.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://b0a2klq871ksc" path="res://Art/pet/PetRabbit/model/actions/stage4/hit1/hit1_4.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://xvvbrvh0weoc" path="res://Art/pet/PetRabbit/model/actions/stage4/hit2/hit2_0.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://bbtikjdqbmuls" path="res://Art/pet/PetRabbit/model/actions/stage4/hit2/hit2_1.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://blx7g48xxw1pj" path="res://Art/pet/PetRabbit/model/actions/stage4/hit2/hit2_2.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://d380qr7almjok" path="res://Art/pet/PetRabbit/model/actions/stage4/hit2/hit2_3.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://bjt8fngc1s17a" path="res://Art/pet/PetRabbit/model/actions/stage4/hit2/hit2_4.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://b1c48bt1v3kw2" path="res://Art/pet/PetRabbit/model/actions/stage4/hit2/hit2_5.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://b8t0rsvxyy06m" path="res://Art/pet/PetRabbit/model/actions/stage4/hurt/hurt_0.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://luhs72224vfg" path="res://Art/pet/PetRabbit/model/actions/stage4/wait/wait_0.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://jhllbspky4q4" path="res://Art/pet/PetRabbit/model/actions/stage4/wait/wait_1.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://ctaagvyllk667" path="res://Art/pet/PetRabbit/model/actions/stage4/wait/wait_2.png" id="20"]
+[ext_resource type="Texture2D" uid="uid://bbghwuci4a226" path="res://Art/pet/PetRabbit/model/actions/stage4/wait/wait_3.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://dv63v1wprv6ww" path="res://Art/pet/PetRabbit/model/actions/stage4/wait/wait_4.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://dam7mu64au4un" path="res://Art/pet/PetRabbit/model/actions/stage4/wait/wait_5.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://dja7tnbcqtlya" path="res://Art/pet/PetRabbit/model/actions/stage4/walk/walk_0.png" id="24"]
+[ext_resource type="Texture2D" uid="uid://knunnbxnnw2b" path="res://Art/pet/PetRabbit/model/actions/stage4/walk/walk_1.png" id="25"]
+[ext_resource type="Texture2D" uid="uid://dlky302a0uf4c" path="res://Art/pet/PetRabbit/model/actions/stage4/walk/walk_2.png" id="26"]
+[ext_resource type="Texture2D" uid="uid://psj7epjpot37" path="res://Art/pet/PetRabbit/model/actions/stage4/walk/walk_3.png" id="27"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("1")
+}, {
+"duration": 2.0,
+"texture": ExtResource("2")
+}, {
+"duration": 2.0,
+"texture": ExtResource("3")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4")
+}, {
+"duration": 10.0,
+"texture": ExtResource("5")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("6")
+}, {
+"duration": 2.0,
+"texture": ExtResource("7")
+}, {
+"duration": 2.0,
+"texture": ExtResource("8")
+}, {
+"duration": 2.0,
+"texture": ExtResource("9")
+}, {
+"duration": 2.0,
+"texture": ExtResource("10")
+}],
+"loop": 0,
+"name": &"hit1",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 7.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 40.0,
+"texture": ExtResource("16")
+}],
+"loop": 0,
+"name": &"hit2",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 8.0,
+"texture": ExtResource("17")
+}],
+"loop": 0,
+"name": &"hurt",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("18")
+}, {
+"duration": 2.0,
+"texture": ExtResource("19")
+}, {
+"duration": 2.0,
+"texture": ExtResource("20")
+}, {
+"duration": 3.0,
+"texture": ExtResource("21")
+}, {
+"duration": 2.0,
+"texture": ExtResource("22")
+}, {
+"duration": 4.0,
+"texture": ExtResource("23")
+}],
+"loop": 1,
+"name": &"wait",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 4.0,
+"texture": ExtResource("24")
+}, {
+"duration": 4.0,
+"texture": ExtResource("25")
+}, {
+"duration": 4.0,
+"texture": ExtResource("26")
+}, {
+"duration": 4.0,
+"texture": ExtResource("27")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 24.0
+}]

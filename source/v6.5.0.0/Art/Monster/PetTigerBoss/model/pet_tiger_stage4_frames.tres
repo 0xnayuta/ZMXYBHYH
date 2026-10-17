@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://4n86rrubopdc" path="res://Art/Monster/PetTigerBoss/atlas/pages/atlas_030.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://dnymdjib67etc" path="res://Art/Monster/PetTigerBoss/atlas/pages/atlas_031.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://du78mvjfejuti" path="res://Art/Monster/PetTigerBoss/atlas/pages/atlas_032.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://bmcsnlllsf0sn" path="res://Art/Pet/PetTiger/model/actions/stage4/hurt/hurt_0.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://bmcsnlllsf0sn" path="res://Art/pet/PetTiger/model/actions/stage4/hurt/hurt_0.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://c07ogg72ctpvs" path="res://Art/Monster/PetTigerBoss/atlas/pages/atlas_033.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://b0qj6kj27p055" path="res://Art/Monster/PetTigerBoss/atlas/pages/atlas_034.png" id="9"]
 

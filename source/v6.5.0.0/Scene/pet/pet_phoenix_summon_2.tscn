@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/pet/pet_phoenix_summon_base.gd" id="1"]
-[ext_resource type="SpriteFrames" path="res://Art/Pet/PetPhoenix/model/pet_phoenix_stage2_frames.tres" id="2"]
+[ext_resource type="SpriteFrames" path="res://Art/pet/PetPhoenix/model/pet_phoenix_stage2_frames.tres" id="2"]
 
 [sub_resource type="Animation" id="anim_death"]
 resource_name = "death"

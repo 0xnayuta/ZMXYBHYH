@@ -10,14 +10,14 @@ const SMSR_SHENQI_LIGHTNING_EFFECT := preload("res://Script/hero/smsr_shenqi_lig
 const MOUNT_RUNTIME_SCRIPT := preload("res://Script/mount/mount_runtime.gd")
 const MAIN_SWORD_ARRAY_WEAPON_SCENE_PATH := "res://Scene/magic_weapon/main_sword_array_weapon.tscn"
 const XIANYU_WING_PATHS := {
-	"res://Script/hero/role1.gd": "res://Art/HeroPicture/Wings/xyzy/role1.tres",
-	"res://Script/hero/role_2.gd": "res://Art/HeroPicture/Wings/xyzy/role2.tres",
-	"res://Script/hero/role_3.gd": "res://Art/HeroPicture/Wings/xyzy/role3.tres",
-	"res://Script/hero/role_4.gd": "res://Art/HeroPicture/Wings/xyzy/role4.tres",
-	"res://Script/hero/role_5.gd": "res://Art/HeroPicture/Wings/xyzy/role5.tres",
-	"res://Script/hero/ne_zha_hero.gd": "res://Art/HeroPicture/Wings/xyzy/role6.tres",
+	"res://Script/hero/role1.gd": "res://Art/hero_picture/Wings/xyzy/role1.tres",
+	"res://Script/hero/role_2.gd": "res://Art/hero_picture/Wings/xyzy/role2.tres",
+	"res://Script/hero/role_3.gd": "res://Art/hero_picture/Wings/xyzy/role3.tres",
+	"res://Script/hero/role_4.gd": "res://Art/hero_picture/Wings/xyzy/role4.tres",
+	"res://Script/hero/role_5.gd": "res://Art/hero_picture/Wings/xyzy/role5.tres",
+	"res://Script/hero/ne_zha_hero.gd": "res://Art/hero_picture/Wings/xyzy/role6.tres",
 }
-const HUAHAO_WING_FRAME_DIR := "res://Art/HeroPicture/Wings/hhyq"
+const HUAHAO_WING_FRAME_DIR := "res://Art/hero_picture/Wings/hhyq"
 var zlwsz_shenqi_timer: Timer
 var zlwsz_shenqi_gear_scene: PackedScene
 var zlwsz_shenqi_gears: Array = []

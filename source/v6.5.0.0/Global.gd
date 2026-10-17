@@ -297,7 +297,7 @@ const DYNAMIC_MONSTER_TEXTURE_PATHS := {
 	4402:
 	[
 		"res://Art/Monster/Game3Monster/ThreePrince/muzha",
-		"res://Art/HeroPicture/Role3/BaDiQianKunSmooth",
+		"res://Art/hero_picture/Role3/BaDiQianKunSmooth",
 	],
 	4403: ["res://Art/Monster/Game3Monster/ThreePrince/jinzha"],
 }
@@ -1501,10 +1501,10 @@ func clear_combat_runtime_cache() -> void:
 	_current_role_body_texture_path = ""
 	_current_role_equipment_texture_path = ""
 	var combat_prefixes := [
-		"res://Art/HeroPicture/",
+		"res://Art/hero_picture/",
 		"res://Art/Monster/",
 		"res://Art/Level/",
-		"res://Art/Pet/",
+		"res://Art/pet/",
 		"res://Art/magic_weapon/",
 		"res://Art/zhuxianjianzhen/",
 		"res://Art/add_effect/",
@@ -1645,8 +1645,8 @@ func get_current_role_equipment_preload_paths(role_id: int = 0) -> Array[String]
 		return paths
 	var body_name: String = str(get_clean_name(str(names.get("body", "Empty"))))
 	var weapon_name: String = str(names.get("weapon", "Empty"))
-	var body_path := "res://Art/HeroPicture/Role%dAllEquipment/role_%d_Body_%s.png" % [role_id, role_id, body_name]
-	var weapon_path := "res://Art/HeroPicture/Role%dAllEquipment/role_%d_Eq_%s.png" % [role_id, role_id, weapon_name]
+	var body_path := "res://Art/hero_picture/Role%dAllEquipment/role_%d_Body_%s.png" % [role_id, role_id, body_name]
+	var weapon_path := "res://Art/hero_picture/Role%dAllEquipment/role_%d_Eq_%s.png" % [role_id, role_id, weapon_name]
 	if ResourceLoader.exists(body_path):
 		paths.append(body_path)
 	if ResourceLoader.exists(weapon_path):
@@ -1709,8 +1709,8 @@ func release_role_runtime_resources() -> void:
 	CANG_MU_LONG_YUN_EFFECT_SCRIPT.clear_cached_data()
 	ROLE4_POISON_ARRAY_AWAKEN_EFFECT_SCRIPT.clear_cached_data()
 	STREAMING_ROLE_BULLET_SCRIPT.clear_cached_frames()
-	_erase_cached_paths_by_prefix(_resource_cache, ["res://Art/HeroPicture/", "res://Scene/hero/"])
-	_erase_cached_paths_by_prefix(_texture_cache, ["res://Art/HeroPicture/"])
+	_erase_cached_paths_by_prefix(_resource_cache, ["res://Art/hero_picture/", "res://Scene/hero/"])
+	_erase_cached_paths_by_prefix(_texture_cache, ["res://Art/hero_picture/"])
 	_erase_cached_paths_by_prefix(_audio_cache, ["res://Music/hero/"])
 	special_effect_bullet = null
 	role_bullet = null
@@ -2307,9 +2307,9 @@ func _role_skill_scene_paths(role_id: int) -> Array[String]:
 				paths
 				. append_array(
 					[
-						"res://Art/HeroPicture/Role6/equipment_atlas/default_body/default_body.tres",
-						"res://Art/HeroPicture/Role6/equipment_atlas/default_body_front/default_body_front.tres",
-						"res://Art/HeroPicture/Role6/equipment_atlas/default_weapon/default_weapon.tres",
+						"res://Art/hero_picture/Role6/equipment_atlas/default_body/default_body.tres",
+						"res://Art/hero_picture/Role6/equipment_atlas/default_body_front/default_body_front.tres",
+						"res://Art/hero_picture/Role6/equipment_atlas/default_weapon/default_weapon.tres",
 						"res://Scene/hero/role_6/ne_zha_skill_effect.tscn",
 					]
 				)
@@ -2442,14 +2442,14 @@ func _role_heavy_effect_paths(role_id: int) -> Array[String]:
 	var equipped_skills := _equipped_role_skill_names()
 	var paths: Array[String] = []
 	if role_id == 4 and equipped_skills.has("bylt"):
-		_append_numbered_resource_paths(paths, "res://Art/HeroPicture/Role4/BiLuoTian/cast/cast_%02d.png", 51)
-		_append_numbered_resource_paths(paths, "res://Art/HeroPicture/Role4/BiLuoTian/hit/hit_%02d.png", 11)
+		_append_numbered_resource_paths(paths, "res://Art/hero_picture/Role4/BiLuoTian/cast/cast_%02d.png", 51)
+		_append_numbered_resource_paths(paths, "res://Art/hero_picture/Role4/BiLuoTian/hit/hit_%02d.png", 11)
 	elif role_id == 5 and equipped_skills.has("ltjz"):
 		_append_numbered_resource_paths(
-			paths, "res://Art/HeroPicture/Role5/LeiTingJieZhen/formation_spine/formation_%02d.png", 66
+			paths, "res://Art/hero_picture/Role5/LeiTingJieZhen/formation_spine/formation_%02d.png", 66
 		)
 		_append_numbered_resource_paths(
-			paths, "res://Art/HeroPicture/Role5/LeiTingJieZhen/lightning_spine/lightning_%02d.png", 47
+			paths, "res://Art/hero_picture/Role5/LeiTingJieZhen/lightning_spine/lightning_%02d.png", 47
 		)
 	return paths
 
@@ -2458,9 +2458,9 @@ func get_current_role_heavy_effect_paths() -> Array[String]:
 	var paths := _role_heavy_effect_paths(_current_role_id())
 	var fashions: Variant = PlayerData.player_data.get(DataKeys.FASHION, [])
 	if fashions is Array and not fashions.is_empty() and str(fashions[0].get(DataKeys.NAME, "")) == "shenqismsrsz":
-		_append_numbered_resource_paths(paths, "res://Art/HeroPicture/SMSRShenqiLightning/lightning/d_%05d.png", 9)
+		_append_numbered_resource_paths(paths, "res://Art/hero_picture/SMSRShenqiLightning/lightning/d_%05d.png", 9)
 		_append_numbered_resource_paths(
-			paths, "res://Art/HeroPicture/SMSRShenqiLightning/hit_mesh/hit_%05d.png", 10, 0, 2
+			paths, "res://Art/hero_picture/SMSRShenqiLightning/hit_mesh/hit_%05d.png", 10, 0, 2
 		)
 	return paths
 
@@ -3267,7 +3267,7 @@ func configure_backpack_role_preview(page: Node, player: Variant = null) -> void
 	if role_body != null:
 		role_body.texture = (
 			ResourceLoader.load(
-				"res://Art/HeroPicture/Role%dAllEquipment/Role_%d_Body_Empty.png" % [role_id, role_id],
+				"res://Art/hero_picture/Role%dAllEquipment/Role_%d_Body_Empty.png" % [role_id, role_id],
 				"Texture2D",
 				ResourceLoader.CACHE_MODE_IGNORE
 			)
@@ -3276,7 +3276,7 @@ func configure_backpack_role_preview(page: Node, player: Variant = null) -> void
 	if role_equipment != null:
 		role_equipment.texture = (
 			ResourceLoader.load(
-				"res://Art/HeroPicture/Role%dAllEquipment/Role_%d_Eq_Empty.png" % [role_id, role_id],
+				"res://Art/hero_picture/Role%dAllEquipment/Role_%d_Eq_Empty.png" % [role_id, role_id],
 				"Texture2D",
 				ResourceLoader.CACHE_MODE_IGNORE
 			)
@@ -3334,7 +3334,7 @@ func release_ui_runtime_cache(release_permanent: bool = false) -> void:
 				"res://Art/skill/",
 				"res://Art/shop/",
 				"res://Art/ldl/",
-				"res://Art/Pet/PetPageResources/",
+				"res://Art/pet/PetPageResources/",
 				"res://Art/main_menu/BodyTraining/",
 				"res://Art/lianti/",
 				"res://Art/zhenyaota/",
@@ -3394,7 +3394,7 @@ func _ui_art_prefixes_for_scene(scene_path: String) -> Array:
 	if scene_path.begins_with("res://Scene/back_pack/"):
 		return ["res://Art/backpack/"]
 	if scene_path == "res://Scene/pet/pet_interface.tscn":
-		return ["res://Art/Pet/PetPageResources/"]
+		return ["res://Art/pet/PetPageResources/"]
 	if scene_path.begins_with("res://Scene/ldl/"):
 		return ["res://Art/ldl/"]
 	if (
@@ -4337,99 +4337,99 @@ func get_active_pet_preload_paths() -> Array[String]:
 		return (
 			[
 				"res://Scene/pet/PetNeatSummon_%d.tscn" % stage,
-				"res://Art/Pet/PetNeat/model/pet_neat_stage%d_frames.tres" % stage,
+				"res://Art/pet/PetNeat/model/pet_neat_stage%d_frames.tres" % stage,
 				"res://Scene/pet/pet_neat_bullet.tscn",
-				"res://Art/Pet/PetNeat/model/actions/stage%d/wait/头像.png" % stage,
-				"res://Art/Pet/skillicon/mncz.png",
+				"res://Art/pet/PetNeat/model/actions/stage%d/wait/头像.png" % stage,
+				"res://Art/pet/skillicon/mncz.png",
 			]
-			+ (["res://Art/Pet/skillicon/mljt.png"] if stage >= 3 else [])
-			+ (["res://Art/Pet/skillicon/cnaoyi.png"] if stage >= 4 else [])
+			+ (["res://Art/pet/skillicon/mljt.png"] if stage >= 3 else [])
+			+ (["res://Art/pet/skillicon/cnaoyi.png"] if stage >= 4 else [])
 		)
 	if pet_type == "PetMouse":
 		var mouse_paths: Array[String] = [
 			"res://Scene/pet/PetMouseSummon_%d.tscn" % stage,
-			"res://Art/Pet/PetMouse/model/pet_mouse_stage%d_frames.tres" % stage,
+			"res://Art/pet/PetMouse/model/pet_mouse_stage%d_frames.tres" % stage,
 			"res://Scene/pet/pet_mouse_bullet.tscn",
-			"res://Art/Pet/PetMouse/model/actions/stage%d/wait/head.png" % stage,
-			"res://Art/Pet/skillicon/sc.png",
+			"res://Art/pet/PetMouse/model/actions/stage%d/wait/head.png" % stage,
+			"res://Art/pet/skillicon/sc.png",
 		]
 		if pet_level >= 30:
-			mouse_paths.append("res://Art/Pet/skillicon/hxfb.png")
+			mouse_paths.append("res://Art/pet/skillicon/hxfb.png")
 		if pet_level >= 50:
-			mouse_paths.append("res://Art/Pet/skillicon/aoyi.png")
+			mouse_paths.append("res://Art/pet/skillicon/aoyi.png")
 		return mouse_paths
 	if pet_type == "PetTiger":
 		var tiger_paths: Array[String] = [
 			"res://Scene/pet/PetTigerSummon_%d.tscn" % stage,
-			"res://Art/Pet/PetTiger/model/pet_tiger_stage%d_frames.tres" % stage,
+			"res://Art/pet/PetTiger/model/pet_tiger_stage%d_frames.tres" % stage,
 			"res://Scene/pet/pet_tiger_bullet.tscn",
-			"res://Art/Pet/PetTiger/model/actions/stage%d/wait/icon.png" % stage,
-			"res://Art/Pet/skillicon/hy.png",
+			"res://Art/pet/PetTiger/model/actions/stage%d/wait/icon.png" % stage,
+			"res://Art/pet/skillicon/hy.png",
 		]
 		if stage >= 2:
-			tiger_paths.append("res://Art/Pet/skillicon/sxhz.png")
+			tiger_paths.append("res://Art/pet/skillicon/sxhz.png")
 		if stage >= 3:
-			tiger_paths.append("res://Art/Pet/skillicon/hsqj.png")
+			tiger_paths.append("res://Art/pet/skillicon/hsqj.png")
 		if stage >= 4:
-			tiger_paths.append("res://Art/Pet/skillicon/aoyi.png")
+			tiger_paths.append("res://Art/pet/skillicon/aoyi.png")
 		return tiger_paths
 	if pet_type == "PetPhoenix":
 		var phoenix_paths: Array[String] = [
 			"res://Scene/pet/PetPhoenixSummon_%d.tscn" % stage,
-			"res://Art/Pet/PetPhoenix/model/pet_phoenix_stage%d_frames.tres" % stage,
-			"res://Art/Pet/PetPhoenix/model/actions/stage%d/wait/头像.png" % stage,
-			"res://Art/Pet/skillicon/np.png",
+			"res://Art/pet/PetPhoenix/model/pet_phoenix_stage%d_frames.tres" % stage,
+			"res://Art/pet/PetPhoenix/model/actions/stage%d/wait/头像.png" % stage,
+			"res://Art/pet/skillicon/np.png",
 		]
 		if stage >= 2:
-			phoenix_paths.append("res://Art/Pet/skillicon/bshn.png")
+			phoenix_paths.append("res://Art/pet/skillicon/bshn.png")
 		if stage >= 3:
-			phoenix_paths.append("res://Art/Pet/skillicon/dhly.png")
+			phoenix_paths.append("res://Art/pet/skillicon/dhly.png")
 		if stage >= 4:
-			phoenix_paths.append("res://Art/Pet/skillicon/aoyi.png")
+			phoenix_paths.append("res://Art/pet/skillicon/aoyi.png")
 		return phoenix_paths
 	if pet_type == "PetTurtle":
 		var turtle_paths: Array[String] = [
 			"res://Scene/pet/PetTurtleSummon_%d.tscn" % stage,
-			"res://Art/Pet/PetTurtle/model/pet_turtle_stage%d_frames.tres" % stage,
+			"res://Art/pet/PetTurtle/model/pet_turtle_stage%d_frames.tres" % stage,
 			"res://Scene/pet/pet_turtle_bullet.tscn",
-			"res://Art/Pet/PetTurtle/model/actions/stage%d/wait/头像.png" % stage,
-			"res://Art/Pet/skillicon/sld.png",
+			"res://Art/pet/PetTurtle/model/actions/stage%d/wait/头像.png" % stage,
+			"res://Art/pet/skillicon/sld.png",
 		]
 		if stage >= 2:
-			turtle_paths.append("res://Art/Pet/skillicon/txlj.png")
+			turtle_paths.append("res://Art/pet/skillicon/txlj.png")
 		if stage >= 3:
-			turtle_paths.append("res://Art/Pet/skillicon/sybh.png")
+			turtle_paths.append("res://Art/pet/skillicon/sybh.png")
 		if stage >= 4:
-			turtle_paths.append("res://Art/Pet/skillicon/aoyi.png")
+			turtle_paths.append("res://Art/pet/skillicon/aoyi.png")
 		return turtle_paths
 	if pet_type == "PetRabbit":
 		var rabbit_paths: Array[String] = [
 			"res://Scene/pet/PetRabbitSummon_%d.tscn" % stage,
-			"res://Art/Pet/PetRabbit/model/pet_rabbit_stage%d_frames.tres" % stage,
+			"res://Art/pet/PetRabbit/model/pet_rabbit_stage%d_frames.tres" % stage,
 			"res://Scene/pet/pet_rabbit_bullet.tscn",
-			"res://Art/Pet/PetRabbit/model/actions/stage%d/wait/头像.png" % stage,
-			"res://Art/Pet/skillicon/yg.png",
+			"res://Art/pet/PetRabbit/model/actions/stage%d/wait/头像.png" % stage,
+			"res://Art/pet/skillicon/yg.png",
 		]
 		if stage >= 2:
-			rabbit_paths.append("res://Art/Pet/skillicon/jf.png")
+			rabbit_paths.append("res://Art/pet/skillicon/jf.png")
 		if stage >= 3:
-			rabbit_paths.append("res://Art/Pet/skillicon/bs.png")
+			rabbit_paths.append("res://Art/pet/skillicon/bs.png")
 		if stage >= 4:
-			rabbit_paths.append("res://Art/Pet/skillicon/aoyi.png")
+			rabbit_paths.append("res://Art/pet/skillicon/aoyi.png")
 		return rabbit_paths
 	var paths: Array[String] = [
 		"res://Scene/pet/PetDragonSummon_%d.tscn" % stage,
-		"res://Art/Pet/PetDragon/model/pet_dragon_stage%d_frames.tres" % stage,
+		"res://Art/pet/PetDragon/model/pet_dragon_stage%d_frames.tres" % stage,
 		"res://Scene/pet/pet_dragon_bullet.tscn",
-		"res://Art/Pet/PetDragon/model/actions/stage%d/wait/头像.png" % stage,
-		"res://Art/Pet/skillicon/fs.png",
+		"res://Art/pet/PetDragon/model/actions/stage%d/wait/头像.png" % stage,
+		"res://Art/pet/skillicon/fs.png",
 	]
 	if stage >= 2:
-		paths.append("res://Art/Pet/skillicon/sdcc.png")
+		paths.append("res://Art/pet/skillicon/sdcc.png")
 	if stage >= 3:
-		paths.append("res://Art/Pet/skillicon/ltwj.png")
+		paths.append("res://Art/pet/skillicon/ltwj.png")
 	if stage >= 4:
-		paths.append("res://Art/Pet/skillicon/aoyi.png")
+		paths.append("res://Art/pet/skillicon/aoyi.png")
 	return paths
 
 
@@ -4463,31 +4463,31 @@ func prewarm_active_pet_runtime_resources() -> void:
 	var bullet_scene_path := ""
 	if pet_type == "PetNeat":
 		scene_path = "res://Scene/pet/PetNeatSummon_%d.tscn" % stage
-		frames_path = "res://Art/Pet/PetNeat/model/pet_neat_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/PetNeat/model/pet_neat_stage%d_frames.tres" % stage
 		bullet_scene_path = "res://Scene/pet/pet_neat_bullet.tscn"
 	elif pet_type == "PetMouse":
 		scene_path = "res://Scene/pet/PetMouseSummon_%d.tscn" % stage
-		frames_path = "res://Art/Pet/PetMouse/model/pet_mouse_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/PetMouse/model/pet_mouse_stage%d_frames.tres" % stage
 		bullet_scene_path = "res://Scene/pet/pet_mouse_bullet.tscn"
 	elif pet_type == "PetTiger":
 		scene_path = "res://Scene/pet/PetTigerSummon_%d.tscn" % stage
-		frames_path = "res://Art/Pet/PetTiger/model/pet_tiger_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/PetTiger/model/pet_tiger_stage%d_frames.tres" % stage
 		bullet_scene_path = "res://Scene/pet/pet_tiger_bullet.tscn"
 	elif pet_type == "PetPhoenix":
 		scene_path = "res://Scene/pet/PetPhoenixSummon_%d.tscn" % stage
-		frames_path = "res://Art/Pet/PetPhoenix/model/pet_phoenix_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/PetPhoenix/model/pet_phoenix_stage%d_frames.tres" % stage
 		bullet_scene_path = "res://Scene/pet/pet_tiger_bullet.tscn"
 	elif pet_type == "PetTurtle":
 		scene_path = "res://Scene/pet/PetTurtleSummon_%d.tscn" % stage
-		frames_path = "res://Art/Pet/PetTurtle/model/pet_turtle_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/PetTurtle/model/pet_turtle_stage%d_frames.tres" % stage
 		bullet_scene_path = "res://Scene/pet/pet_turtle_bullet.tscn"
 	elif pet_type == "PetRabbit":
 		scene_path = "res://Scene/pet/PetRabbitSummon_%d.tscn" % stage
-		frames_path = "res://Art/Pet/PetRabbit/model/pet_rabbit_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/PetRabbit/model/pet_rabbit_stage%d_frames.tres" % stage
 		bullet_scene_path = "res://Scene/pet/pet_rabbit_bullet.tscn"
 	else:
 		scene_path = "res://Scene/pet/PetDragonSummon_%d.tscn" % stage
-		frames_path = "res://Art/Pet/PetDragon/model/pet_dragon_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/PetDragon/model/pet_dragon_stage%d_frames.tres" % stage
 		bullet_scene_path = "res://Scene/pet/pet_dragon_bullet.tscn"
 	_warm_scene_instance(preload_scene_path(scene_path))
 	var bullet_scene := preload_scene_path(bullet_scene_path)
@@ -5401,7 +5401,7 @@ func get_dis_betweem(Ob_1, Ob_2):
 func load_role1_body(name_):
 	var role_id := _current_role_id()
 	var path := (
-		"res://Art/HeroPicture/Role"
+		"res://Art/hero_picture/Role"
 		+ str(role_id)
 		+ "AllEquipment/Role_"
 		+ str(role_id)
@@ -5418,7 +5418,13 @@ func load_role1_body(name_):
 func load_role1_eq(name_):
 	var role_id := _current_role_id()
 	var path := (
-		"res://Art/HeroPicture/Role" + str(role_id) + "AllEquipment/Role_" + str(role_id) + "_Eq_" + str(name_) + ".png"
+		"res://Art/hero_picture/Role"
+		+ str(role_id)
+		+ "AllEquipment/Role_"
+		+ str(role_id)
+		+ "_Eq_"
+		+ str(name_)
+		+ ".png"
 	)
 	var texture := _load_current_role_texture(path, false)
 	if texture == null:

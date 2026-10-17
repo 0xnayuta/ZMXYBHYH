@@ -281,20 +281,20 @@
       "manifest": "res://Art/Monster/QiongQi/atlas/manifest.json"
     },
     {
-      "root": "res://Art/Pet/PetPhoenix",
-      "manifest": "res://Art/Pet/PetPhoenix/atlas/manifest.json"
+      "root": "res://Art/pet/PetPhoenix",
+      "manifest": "res://Art/pet/PetPhoenix/atlas/manifest.json"
     },
     {
-      "root": "res://Art/Pet/PetDragon",
-      "manifest": "res://Art/Pet/PetDragon/atlas/manifest.json"
+      "root": "res://Art/pet/PetDragon",
+      "manifest": "res://Art/pet/PetDragon/atlas/manifest.json"
     },
     {
       "root": "res://Art/Monster/TaoWu",
       "manifest": "res://Art/Monster/TaoWu/atlas/manifest.json"
     },
     {
-      "root": "res://Art/Pet/PetTiger",
-      "manifest": "res://Art/Pet/PetTiger/atlas/manifest.json"
+      "root": "res://Art/pet/PetTiger",
+      "manifest": "res://Art/pet/PetTiger/atlas/manifest.json"
     }
   ]
 }
