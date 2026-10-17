@@ -457,7 +457,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 
 ---
 
-## Phase 9: 代码内命名彻底收尾 (In-Code Naming Finalization) [规划中 · Planned]
+## Phase 9: 代码内命名彻底收尾 (In-Code Naming Finalization) [已完成 · Done]
 
 ### 9.1 阶段定位与目标
 
@@ -486,7 +486,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 - **清单**：`Script/monster/east_continent_monster.gd` 的 `_3182_attack_is_current`、`_3120_screen_bounds`（数字前缀段破坏 snake 结构）。
 - **验收指标**：规范为语义化 `snake_case`（如 `_attack_3182_is_current`），调用点 100% 同步。
 
-#### 4. Phase 9-4: `Scene/` 文件命名例外收敛（49 处）
+#### 4. Phase 9-4: `Scene/` 文件命名例外收敛（49 处） [已完成 · Done]
 - **清单**：48 个纯数字场景名（`Scene/mount/rider_adjustments/role{1..6}/<坐骑ID>.tscn`）+ 1 个连字符场景（`Scene/hero/role_1/hmz_effect/special_effect_bullet-1.tscn`）。
 - **策略**：
   1. 连字符场景直接改名 `special_effect_bullet_1.tscn`，引用点同步；
@@ -609,7 +609,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 ```mermaid
 flowchart LR
     P8["Phase 8 · 契约诊断与地基修复 [已完成]<br/>扫描器 + 修复 + 迁移引擎 + 门禁第5维"] --> P85["Phase 8.5 · 规范宪章前置固化 [已完成]<br/>docs/naming_standard.md + AGENTS.md 宪章"]
-    P85 --> P9["Phase 9 · 代码内命名彻底收尾 [规划中]<br/>50 camel + 309 Pascal + 2 函数 + 49 场景文件"]
+    P85 --> P9["Phase 9 · 代码内命名彻底收尾 [已完成]<br/>50 camel + 309 Pascal + 2 函数 + 49 场景文件"]
     P9 --> P10["Phase 10 · 资产目录彻底规范化 [规划中]<br/>Music 6 → Art 顶层 39 → Art 深层分级"]
     P10 --> P11["Phase 11 · 命名标准化终局验收与 CI 固化 [规划中]<br/>合规终审 + 白名单冻结 + CI 闭环 + 跨平台回归"]
     P85 -.->|"唯一裁判依据与红线"| P9

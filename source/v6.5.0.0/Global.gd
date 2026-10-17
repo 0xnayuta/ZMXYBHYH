@@ -2109,7 +2109,7 @@ func preload_all_hero_skill_resources() -> void:
 		"res://Scene/hero/role_bullet_1.tscn",
 		"res://Scene/hero/role1_s_hallow.tscn",
 		"res://Scene/hero/role_1/hmz_effect/special_effect_bullet.tscn",
-		"res://Scene/hero/role_1/hmz_effect/special_effect_bullet-1.tscn",
+		"res://Scene/hero/role_1/hmz_effect/special_effect_bullet_1.tscn",
 		"res://Scene/hero/role_1/ws_effect.tscn",
 		"res://Scene/hero/role_2/smb_effect.tscn",
 		"res://Scene/hero/role_4/role4_bullet.tscn",

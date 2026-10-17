@@ -40,5 +40,12 @@
   ],
   "unresolved_node_patterns": [
     "/root/"
+  ],
+  "numeric_scene_allowlist": [
+    {
+      "pattern": "^Scene/mount/rider_adjustments/role[1-6]/[0-9]+\\.tscn$",
+      "count": 48,
+      "reason": "数值策划坐骑 ID (Mount ID) 驱动的骑乘 2D 姿势调整预制体，由 mount_runtime.gd 动态通过 %s/Role%d/%s.tscn 拼接加载，必须与策划表 mount_id 严格一致"
+    }
   ]
 }
