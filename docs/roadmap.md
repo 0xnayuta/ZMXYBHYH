@@ -57,9 +57,35 @@ flowchart TD
         G3 --> G4[Phase 7-4: 文件资产与模块目录渐进收敛]
     end
 
+    subgraph P8 [Phase 8: 命名契约诊断与 Phase 5-7 遗留损伤修复]
+        direction TB
+        H1[Phase 8.1: 字面量契约全量扫描器] --> H2[Phase 8.2: 契约失配系统修复]
+        H2 --> H3[Phase 8.3: 原子路径迁移引擎]
+        H3 --> H4[Phase 8.4: 命名规范门禁第5维上线]
+    end
+
+    subgraph P9 [Phase 9: 代码内命名彻底收尾]
+        direction TB
+        I1[camel/Pascal 变量清零] --> I2[残余函数与场景文件收敛]
+    end
+
+    subgraph P10 [Phase 10: 资产目录彻底规范化]
+        direction TB
+        J1[Music 目录全量收敛] --> J2[Art 二级与深层目录分级迁移]
+    end
+
+    subgraph P11 [Phase 11: 命名标准化终局验收与规范固化]
+        direction TB
+        K1[全工程合规终审] --> K2[规范文档固化与门禁常态化]
+    end
+
     P4 -->|资产纯净排版合规| P5
     P5 -->|全局符号底数扎实| P6
     P6 -->|基线稳固规范成型| P7
+    P7 -->|地基巩固契约闭环| P8
+    P8 -->|引擎交付门禁完备| P9
+    P9 -->|代码纯净边界清晰| P10
+    P10 -->|资产标准命名收官| P11
 ```
 
 ---
@@ -356,7 +382,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 
 ---
 
-## Phase 8: 命名契约诊断与 Phase 5-7 遗留损伤修复 (Contract Diagnostics & Legacy Damage Repair) [规划中 · Planned]
+## Phase 8: 命名契约诊断与 Phase 5-7 遗留损伤修复 (Contract Diagnostics & Legacy Damage Repair) [已完成 · Done]
 
 ### 8.1 阶段定位与目标
 
@@ -369,7 +395,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 
 ### 8.2 实施子阶段规划（四步走）
 
-#### 1. Phase 8-1: 字面量契约全量扫描器交付 (Contract Scanner)
+#### 1. Phase 8-1: 字面量契约全量扫描器交付 (Contract Scanner) [已完成 · Done]
 - **核心任务**：
   1. **资源路径契约**：提取全部 `.gd/.tscn/.tres/.import/project.godot` 的 `res://` 字面量，与磁盘真值做**逐段大小写精确**比对（Windows 文件系统大小写不敏感会掩盖断裂，必须用 `os.listdir` 逐段核对真实名称）；
   2. **节点路径契约**：提取 `get_node("…")` / `get_node_or_null("…")` / `NodePath("…")` / `$Path` 字面量，与对应 `.tscn` 节点树比对（含 `parent=` 相对路径、场景继承链与 `ExtResource` 实例化子树）；
@@ -381,7 +407,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
   - 874 脚本 + 1,131 场景全量扫描耗时 ≤ 30 秒；
   - 误报白名单机制可用（运行时动态拼接、合法的运行时 `get_node` 等）。
 
-#### 2. Phase 8-2: Phase 5-7 遗留损伤系统修复 (Legacy Damage Repair)
+#### 2. Phase 8-2: Phase 5-7 遗留损伤系统修复 (Legacy Damage Repair) [已完成 · Done]
 - **核心任务**：
   1. 依据 8-1 报告，按"**资源路径 → 节点路径 → 属性/方法名 → 动画轨道 → 字典键**"顺序逐类修复；
   2. 已知样本回归确认（本轮已修）：`role_body` → `RoleBody`（11 处，跨 7 个文件）、`is_choose.png` → `IsChoose.png`（4 处）、`moon_palace_clothes_effect.sync()` 空 body 守卫、`basic_monment_info.show_text` 契约恢复；
@@ -390,7 +416,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
   - 五类契约失配**全部归零**（白名单除外）；
   - `health_check.py` 0 Parse Error；实机（花果山全流程 + 背包 + 商城）0 ERROR 0 WARNING。
 
-#### 3. Phase 8-3: 原子路径迁移引擎 `scripts/rename_path.py` (Rename Engine)
+#### 3. Phase 8-3: 原子路径迁移引擎 `scripts/rename_path.py` (Rename Engine) [已完成 · Done]
 - **核心任务**：
   1. **引擎能力**：`git mv` 目录/文件（保留历史）→ 全量字面量替换（含**动态拼接前缀**，实测样本如 `"res://Art/BackPack/AllItems/" + name_`、`"res://Art/ItemIcon/" + str(name_)`）→ `.import` 的 `source_file` 与 `path` 重写 → `.uid` 跟随 → 触发重新导入 → 门禁校验；
   2. **幂等与可回滚**：`--dry-run` 输出完整变更清单；任一步失败自动 `git checkout` 回滚；
@@ -398,7 +424,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
   4. **UID 锚定保护**：利用全项目 866 处 `uid://` 引用在路径变更后自动跟随的特性降低 `.tscn` 断裂风险；对仅以 `path` 引用（无 uid）的条目逐条复核。
 - **验收指标**：工具交付并在 3 个最小试点目录完成实测——`Art/zhuxianjianzhen`（64 引用）、`Art/AllNumber`（58）、`Art/Main_menu`（62）；0 断裂引用、门禁全绿、实机资源加载正常。
 
-#### 4. Phase 8-4: 命名规范门禁维度上线 (Naming Gate)
+#### 4. Phase 8-4: 命名规范门禁维度上线 (Naming Gate) [已完成 · Done]
 - **核心任务**：
   1. `scripts/check_all.py` 增加第 5 维度"命名规范校验"：
      - 目录/文件名 `snake_case` + 例外白名单（资源 ID 目录、Flash/TexturePacker 机器导出结构）；

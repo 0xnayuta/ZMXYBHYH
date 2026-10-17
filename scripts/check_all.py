@@ -60,6 +60,11 @@ def main():
         help="跳过 Godot 引擎 Headless 深度编译检查 (用于轻量环境)"
     )
     parser.add_argument(
+        "--skip-contract",
+        action="store_true",
+        help="跳过五大字面量契约与命名规范检查 (contract_scan.py)"
+    )
+    parser.add_argument(
         "--fix",
         action="store_true",
         help="自动修复模式：若发现行尾或格式未对齐，自动执行写入修复"
@@ -67,19 +72,18 @@ def main():
 
     args = parser.parse_args()
 
-    print_header("ZMXYBHYH 现代工程质量流水线总门禁 (Phase 4.4)")
+    print_header("ZMXYBHYH 现代工程质量流水线总门禁 (Phase 8-4 五位一体总门禁)")
     print(f"[*] 工作根目录: {os.getcwd()}")
     print(f"[*] 执行模式: {'快速模式 (--fast)' if args.fast else '全量深度体检'}")
     if args.fix:
         print(f"[*] 自动修复: 开启 (--fix)")
-
     results = []
     overall_start = time.time()
 
     # --------------------------------------------------------------------------
     # 维度 1: 行尾序列与空白合规性 (LF Check)
     # --------------------------------------------------------------------------
-    print(f"\n{BOLD}[维度 1/4] 跨平台行尾序列归一化检查 (LF Normalization Check){RESET}")
+    print(f"\n{BOLD}[维度 1/5] 跨平台行尾序列归一化检查 (LF Normalization Check){RESET}")
     if args.fix:
         ok, elapsed, out = run_step(
             "行尾自动清洗 (normalize_eol.py)",
@@ -103,7 +107,7 @@ def main():
     # --------------------------------------------------------------------------
     # 维度 2: 代码格式规范校验 (gdformat Check)
     # --------------------------------------------------------------------------
-    print(f"\n{BOLD}[维度 2/4] GDScript 代码风格规范检查 (gdformat Check){RESET}")
+    print(f"\n{BOLD}[维度 2/5] GDScript 代码风格规范检查 (gdformat Check){RESET}")
     if args.fix:
         ok, elapsed, out = run_step(
             "代码自动格式化 (format_all.py)",
@@ -127,7 +131,7 @@ def main():
     # --------------------------------------------------------------------------
     # 维度 3: 静态代码异味与语法树审查 (gdlint Check)
     # --------------------------------------------------------------------------
-    print(f"\n{BOLD}[维度 3/4] GDScript 静态异味与语法树审查 (gdlint Check){RESET}")
+    print(f"\n{BOLD}[维度 3/5] GDScript 静态异味与语法树审查 (gdlint Check){RESET}")
     # 针对核心架构模块执行高价值异味扫描
     core_scripts = [
         "source/v6.5.0.0/Global.gd",
@@ -156,10 +160,10 @@ def main():
     # 维度 4: Godot 4 引擎编译级深度体检 (health_check.py)
     # --------------------------------------------------------------------------
     if args.fast or args.skip_engine:
-        print(f"\n{YELLOW}[跳过维度 4/4] 已根据参数跳过 Godot 引擎 Headless 深度编译检查{RESET}")
+        print(f"\n{YELLOW}[跳过维度 4/5] 已根据参数跳过 Godot 引擎 Headless 深度编译检查{RESET}")
         results.append(("4. Godot 4 引擎静态编译全量门禁", True, 0.0, "已跳过 (Fast Mode)"))
     else:
-        print(f"\n{BOLD}[维度 4/4] Godot 4 引擎编译级深度体检 (health_check.py){RESET}")
+        print(f"\n{BOLD}[维度 4/5] Godot 4 引擎编译级深度体检 (health_check.py){RESET}")
         ok, elapsed, out = run_step(
             "全盘场景依赖与 874 脚本编译扫描",
             [sys.executable, "scripts/health_check.py"]
@@ -172,6 +176,51 @@ def main():
             print(f" -> {RED}[FAIL]{RESET} 引擎静态编译扫描发现错误！({elapsed:.2f}s)")
             results.append(("4. Godot 4 引擎静态编译全量门禁", False, elapsed, "编译报错，详情查看 docs/dead_code_audit.md"))
 
+    # --------------------------------------------------------------------------
+    # 维度 5: 全工程命名规范与字面量契约门禁 (contract_scan.py)
+    # --------------------------------------------------------------------------
+    if args.skip_contract:
+        print(f"\n{YELLOW}[跳过维度 5/5] 已根据参数跳过字面量契约与命名规范检查{RESET}")
+        results.append(("5. 全工程命名规范与字面量契约门禁", True, 0.0, "已跳过 (--skip-contract)"))
+    else:
+        print(f"\n{BOLD}[维度 5/5] 全工程命名规范与字面量契约门禁 (contract_scan.py){RESET}")
+        ok, elapsed, out = run_step(
+            "五位一体字面量契约与命名基线扫描 (contract_scan.py --fail-on-error)",
+            [sys.executable, "scripts/contract_scan.py", "--fail-on-error"]
+        )
+
+        # 检查结构化报告元数据与基线阈值
+        contract_passed = False
+        err_note = ""
+        json_path = os.path.join(os.getcwd(), "docs", "contract_audit.json")
+        if ok and os.path.exists(json_path):
+            try:
+                import json
+                with open(json_path, "r", encoding="utf-8") as jf:
+                    cdata = json.load(jf)
+                c_stats = cdata.get("metadata", {}).get("stats", {})
+                sev_stats = c_stats.get("by_severity", {})
+                err_cnt = sev_stats.get("ERROR", 0)
+                warn_cnt = sev_stats.get("WARNING", 0)
+
+                # 递减式基线判定规则：
+                # 1. 严重阻断项 ERROR 必须为 0；
+                # 2. 存量告警 WARNING 不得出现恶化反弹 (当前基线上限设为 1,050)。
+                if err_cnt == 0 and warn_cnt <= 1050:
+                    contract_passed = True
+                else:
+                    err_note = f"契约超标: ERROR={err_cnt} (必须=0), WARNING={warn_cnt} (上限=1050)"
+            except Exception as e:
+                err_note = f"解析契约报告异常: {e}"
+        else:
+            err_note = "契约扫描命令执行失败或未生成报告"
+
+        if contract_passed:
+            print(f" -> {GREEN}[PASS]{RESET} 五大字面量契约完全合规，严重阻断项为 0 ({elapsed:.2f}s)")
+            results.append(("5. 全工程命名规范与字面量契约门禁", True, elapsed, ""))
+        else:
+            print(f" -> {RED}[FAIL]{RESET} 检测到字面量契约失配或严重阻断错误！({elapsed:.2f}s)")
+            results.append(("5. 全工程命名规范与字面量契约门禁", False, elapsed, err_note or "详情查看 docs/contract_audit.md"))
     # --------------------------------------------------------------------------
     # 汇总质量报告仪表板
     # --------------------------------------------------------------------------
