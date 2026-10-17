@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/level/boat.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_11/Boat.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_11/sw.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_11/Boat.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_11/sw.png" id="3"]
 [ext_resource type="PackedScene" path="res://Scene/monster/monster_47.tscn" id="4"]
 
 [sub_resource type="AtlasTexture" id="1"]

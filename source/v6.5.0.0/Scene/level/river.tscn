@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/level/river.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/Level/level_2/220.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Level/level_2/River.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/level/level_2/220.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/level/level_2/River.png" id="3"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "River"

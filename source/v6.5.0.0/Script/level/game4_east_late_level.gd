@@ -117,7 +117,7 @@ func _create_imported_background(data: Dictionary) -> void:
 		75:
 			layer_names = ["bg10", "bg11"]
 	for layer_name in layer_names:
-		var texture_path := "res://Art/Level/Game4Level/Imported/maps/%s/background/%s.png" % [map_name, layer_name]
+		var texture_path := "res://Art/level/Game4Level/Imported/maps/%s/background/%s.png" % [map_name, layer_name]
 		var texture := load(texture_path) as Texture2D
 		if texture == null:
 			continue

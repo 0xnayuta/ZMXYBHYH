@@ -1503,7 +1503,7 @@ func clear_combat_runtime_cache() -> void:
 	var combat_prefixes := [
 		"res://Art/hero_picture/",
 		"res://Art/Monster/",
-		"res://Art/Level/",
+		"res://Art/level/",
 		"res://Art/pet/",
 		"res://Art/magic_weapon/",
 		"res://Art/zhuxianjianzhen/",

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "scan_time": "2026-10-18 00:27:43",
+    "scan_time": "2026-10-18 00:33:44",
     "project_dir": "G:\\source\\repos\\ZMXYBHYH\\source\\v6.5.0.0",
     "stats": {
       "total_findings": 1967,
@@ -13,7 +13,7 @@
         "reflection": 13,
         "dict_key": 1797
       },
-      "duration_seconds": 5.04,
+      "duration_seconds": 4.76,
       "scripts_scanned": 722,
       "scenes_scanned": 1132
     }
@@ -514,7 +514,7 @@
       "severity": "WARNING",
       "file": "Scene/other_scene/ping_jia.gd",
       "line": 16,
-      "literal": "res://Art/Level/Challenge/ui_beizhan_pj_",
+      "literal": "res://Art/level/Challenge/ui_beizhan_pj_",
       "message": "资源文件或目录不存在: 分段不存在: ui_beizhan_pj_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"

@@ -1,0 +1,1900 @@
+{
+  "source": "Dungeon.xml 33; map/shenlouchengV1.swf + .dat",
+  "number": 79,
+  "nightmare": false,
+  "dungeon": {
+    "id": "33",
+    "name": "蜃楼城",
+    "bossName": "独角兕大王",
+    "dropName": "缠星藻、青铜石、镜魂丝、帝空防具制作书",
+    "shareDungeonID": "",
+    "ticket": "",
+    "classType": "",
+    "dungeonItem": "",
+    "monsterID": "3399;3400;3401;3402",
+    "monsterNum": "30;20;1;1",
+    "dropId": "107,108,109,110;107,108,109,110;1161,1260;-1",
+    "comefromId": "-1",
+    "fromId": "32",
+    "prevId": "32",
+    "needLevel": "1",
+    "nextId": "34",
+    "mapURL": "shenlouchengV1",
+    "manhua": "",
+    "icon": "",
+    "noticeId": "",
+    "screenWidth": "2000",
+    "width": "2000",
+    "height": "2000",
+    "sceneStart": "0",
+    "birthPoint": "90,1700",
+    "boss": "1",
+    "dailyCountMax": "-1",
+    "weekCountMax": "-1",
+    "maxCount": "-1",
+    "time": "-1",
+    "avgClearTime": "180",
+    "dungeonProp": "-1",
+    "equips": "",
+    "horseId": "-1",
+    "horseId2": "",
+    "horse2Probability": "",
+    "petIds": "-1",
+    "bgMusic": "9",
+    "totalNum": "51",
+    "isHide": "0",
+    "specialDoor": "0",
+    "clearType": "2",
+    "bossId": "3401",
+    "challengeAgain": "1",
+    "consumePointTicket": "0",
+    "difficult": "0",
+    "consumePower": "-1",
+    "showItemId": "-1",
+    "resurrection": "1",
+    "freeResurrection": "1",
+    "canEquipSword": "1",
+    "resurrectionPlace": "",
+    "fixedAttribute": "0",
+    "resurrectionTime": "-1",
+    "order": "",
+    "completeTime": "",
+    "videoRole2001": "http://my.4399.com/forums/mtag-82186",
+    "videoRole2002": "http://my.4399.com/forums/mtag-82186",
+    "videoRole2003": "http://my.4399.com/forums/mtag-82186",
+    "videoRole2004": "http://my.4399.com/forums/mtag-82186",
+    "videoRole2005": "http://my.4399.com/forums/mtag-82186",
+    "videoRole20001": "http://my.4399.com/forums/mtag-82186",
+    "videoRole20002": "http://my.4399.com/forums/mtag-82186",
+    "videoRole": "http://my.4399.com/forums/mtag-82186",
+    "take": "1;1;1",
+    "closeSkill": "",
+    "closeSys": "",
+    "param": "",
+    "challengeAgainByTicket": "0",
+    "levelMosters": "",
+    "cheatScore": "",
+    "canCarryItemIds": "",
+    "itemBagLimit": "-1",
+    "petCrystal": "0"
+  },
+  "name": "蜃楼城",
+  "width": 2000.0,
+  "height": 2000.0,
+  "grounds": [
+    {
+      "symbol": "ground",
+      "rect": [
+        -2.1349760000000515,
+        1892.7736076800002,
+        2095.669952,
+        81.23880159999999
+      ],
+      "one_way": false
+    },
+    {
+      "symbol": "ground",
+      "rect": [
+        230.414178,
+        857.6586912,
+        1930.171644,
+        32.25964399999998
+      ],
+      "one_way": false
+    },
+    {
+      "symbol": "ground",
+      "rect": [
+        -38.285774999999944,
+        1402.7586912000002,
+        1841.4715499999998,
+        32.25964399999998
+      ],
+      "one_way": false
+    },
+    {
+      "symbol": "floor22",
+      "rect": [
+        0.0,
+        872.4,
+        658.0,
+        507.0000000000001
+      ],
+      "one_way": true,
+      "polygon": [
+        [
+          6.0,
+          872.4
+        ],
+        [
+          12.0,
+          872.4
+        ],
+        [
+          18.0,
+          872.4
+        ],
+        [
+          24.0,
+          872.4
+        ],
+        [
+          30.0,
+          872.4
+        ],
+        [
+          36.0,
+          873.4
+        ],
+        [
+          42.0,
+          877.4
+        ],
+        [
+          48.0,
+          882.4
+        ],
+        [
+          54.0,
+          887.4
+        ],
+        [
+          60.0,
+          892.4
+        ],
+        [
+          66.0,
+          897.4
+        ],
+        [
+          72.0,
+          902.4
+        ],
+        [
+          78.0,
+          907.4
+        ],
+        [
+          84.0,
+          912.4
+        ],
+        [
+          90.0,
+          917.4
+        ],
+        [
+          96.0,
+          922.4
+        ],
+        [
+          102.0,
+          927.4
+        ],
+        [
+          108.0,
+          931.4
+        ],
+        [
+          114.0,
+          936.4
+        ],
+        [
+          120.0,
+          941.4
+        ],
+        [
+          126.0,
+          946.4
+        ],
+        [
+          132.0,
+          951.4
+        ],
+        [
+          138.0,
+          956.4
+        ],
+        [
+          144.0,
+          960.4
+        ],
+        [
+          150.0,
+          965.4
+        ],
+        [
+          156.0,
+          970.4
+        ],
+        [
+          162.0,
+          975.4
+        ],
+        [
+          168.0,
+          980.4
+        ],
+        [
+          174.0,
+          985.4
+        ],
+        [
+          180.0,
+          990.4
+        ],
+        [
+          186.0,
+          995.4
+        ],
+        [
+          192.0,
+          1000.4
+        ],
+        [
+          198.0,
+          1004.4
+        ],
+        [
+          204.0,
+          1009.4
+        ],
+        [
+          210.0,
+          1014.4
+        ],
+        [
+          216.0,
+          1019.4
+        ],
+        [
+          222.0,
+          1024.4
+        ],
+        [
+          228.0,
+          1029.4
+        ],
+        [
+          234.0,
+          1034.4
+        ],
+        [
+          240.0,
+          1039.4
+        ],
+        [
+          246.0,
+          1044.4
+        ],
+        [
+          252.0,
+          1049.4
+        ],
+        [
+          258.0,
+          1054.4
+        ],
+        [
+          264.0,
+          1058.4
+        ],
+        [
+          270.0,
+          1063.4
+        ],
+        [
+          276.0,
+          1068.4
+        ],
+        [
+          282.0,
+          1073.4
+        ],
+        [
+          288.0,
+          1078.4
+        ],
+        [
+          294.0,
+          1083.4
+        ],
+        [
+          300.0,
+          1088.4
+        ],
+        [
+          306.0,
+          1093.4
+        ],
+        [
+          312.0,
+          1098.4
+        ],
+        [
+          318.0,
+          1103.4
+        ],
+        [
+          324.0,
+          1108.4
+        ],
+        [
+          330.0,
+          1113.4
+        ],
+        [
+          336.0,
+          1117.4
+        ],
+        [
+          342.0,
+          1122.4
+        ],
+        [
+          348.0,
+          1127.4
+        ],
+        [
+          354.0,
+          1132.4
+        ],
+        [
+          360.0,
+          1137.4
+        ],
+        [
+          366.0,
+          1142.4
+        ],
+        [
+          372.0,
+          1147.4
+        ],
+        [
+          378.0,
+          1152.4
+        ],
+        [
+          384.0,
+          1157.4
+        ],
+        [
+          390.0,
+          1161.4
+        ],
+        [
+          396.0,
+          1166.4
+        ],
+        [
+          402.0,
+          1171.4
+        ],
+        [
+          408.0,
+          1176.4
+        ],
+        [
+          414.0,
+          1181.4
+        ],
+        [
+          420.0,
+          1186.4
+        ],
+        [
+          426.0,
+          1190.4
+        ],
+        [
+          432.0,
+          1195.4
+        ],
+        [
+          438.0,
+          1200.4
+        ],
+        [
+          444.0,
+          1205.4
+        ],
+        [
+          450.0,
+          1210.4
+        ],
+        [
+          456.0,
+          1215.4
+        ],
+        [
+          462.0,
+          1220.4
+        ],
+        [
+          468.0,
+          1225.4
+        ],
+        [
+          474.0,
+          1230.4
+        ],
+        [
+          480.0,
+          1235.4
+        ],
+        [
+          486.0,
+          1239.4
+        ],
+        [
+          492.0,
+          1244.4
+        ],
+        [
+          498.0,
+          1249.4
+        ],
+        [
+          504.0,
+          1254.4
+        ],
+        [
+          510.0,
+          1259.4
+        ],
+        [
+          516.0,
+          1264.4
+        ],
+        [
+          522.0,
+          1269.4
+        ],
+        [
+          528.0,
+          1274.4
+        ],
+        [
+          534.0,
+          1279.4
+        ],
+        [
+          540.0,
+          1284.4
+        ],
+        [
+          546.0,
+          1288.4
+        ],
+        [
+          552.0,
+          1293.4
+        ],
+        [
+          558.0,
+          1298.4
+        ],
+        [
+          564.0,
+          1303.4
+        ],
+        [
+          570.0,
+          1308.4
+        ],
+        [
+          576.0,
+          1313.4
+        ],
+        [
+          582.0,
+          1318.4
+        ],
+        [
+          588.0,
+          1323.4
+        ],
+        [
+          594.0,
+          1328.4
+        ],
+        [
+          600.0,
+          1333.4
+        ],
+        [
+          606.0,
+          1337.4
+        ],
+        [
+          612.0,
+          1342.4
+        ],
+        [
+          618.0,
+          1347.4
+        ],
+        [
+          624.0,
+          1352.4
+        ],
+        [
+          630.0,
+          1357.4
+        ],
+        [
+          636.0,
+          1362.4
+        ],
+        [
+          642.0,
+          1367.4
+        ],
+        [
+          648.0,
+          1372.4
+        ],
+        [
+          654.0,
+          1377.4
+        ],
+        [
+          658.0,
+          1379.4
+        ],
+        [
+          0.0,
+          1379.4
+        ]
+      ]
+    },
+    {
+      "symbol": "floor",
+      "rect": [
+        -49.28518356000001,
+        857.65,
+        280.87036712,
+        38.0
+      ],
+      "one_way": true
+    },
+    {
+      "symbol": "floor",
+      "rect": [
+        1803.37011725,
+        1401.8,
+        204.85976549999987,
+        38.0
+      ],
+      "one_way": true
+    },
+    {
+      "symbol": "floor21",
+      "rect": [
+        1432.75,
+        1420.65,
+        589.0,
+        451.0
+      ],
+      "one_way": true,
+      "polygon": [
+        [
+          1438.75,
+          1866.65
+        ],
+        [
+          1444.75,
+          1861.65
+        ],
+        [
+          1450.75,
+          1856.65
+        ],
+        [
+          1456.75,
+          1851.65
+        ],
+        [
+          1462.75,
+          1846.65
+        ],
+        [
+          1468.75,
+          1842.65
+        ],
+        [
+          1474.75,
+          1837.65
+        ],
+        [
+          1480.75,
+          1832.65
+        ],
+        [
+          1486.75,
+          1827.65
+        ],
+        [
+          1492.75,
+          1822.65
+        ],
+        [
+          1498.75,
+          1817.65
+        ],
+        [
+          1504.75,
+          1812.65
+        ],
+        [
+          1510.75,
+          1807.65
+        ],
+        [
+          1516.75,
+          1802.65
+        ],
+        [
+          1522.75,
+          1797.65
+        ],
+        [
+          1528.75,
+          1793.65
+        ],
+        [
+          1534.75,
+          1788.65
+        ],
+        [
+          1540.75,
+          1783.65
+        ],
+        [
+          1546.75,
+          1778.65
+        ],
+        [
+          1552.75,
+          1773.65
+        ],
+        [
+          1558.75,
+          1768.65
+        ],
+        [
+          1564.75,
+          1763.65
+        ],
+        [
+          1570.75,
+          1758.65
+        ],
+        [
+          1576.75,
+          1753.65
+        ],
+        [
+          1582.75,
+          1748.65
+        ],
+        [
+          1588.75,
+          1743.65
+        ],
+        [
+          1594.75,
+          1739.65
+        ],
+        [
+          1600.75,
+          1734.65
+        ],
+        [
+          1606.75,
+          1729.65
+        ],
+        [
+          1612.75,
+          1724.65
+        ],
+        [
+          1618.75,
+          1719.65
+        ],
+        [
+          1624.75,
+          1714.65
+        ],
+        [
+          1630.75,
+          1709.65
+        ],
+        [
+          1636.75,
+          1704.65
+        ],
+        [
+          1642.75,
+          1699.65
+        ],
+        [
+          1648.75,
+          1694.65
+        ],
+        [
+          1654.75,
+          1690.65
+        ],
+        [
+          1660.75,
+          1685.65
+        ],
+        [
+          1666.75,
+          1680.65
+        ],
+        [
+          1672.75,
+          1675.65
+        ],
+        [
+          1678.75,
+          1670.65
+        ],
+        [
+          1684.75,
+          1665.65
+        ],
+        [
+          1690.75,
+          1660.65
+        ],
+        [
+          1696.75,
+          1655.65
+        ],
+        [
+          1702.75,
+          1650.65
+        ],
+        [
+          1708.75,
+          1645.65
+        ],
+        [
+          1714.75,
+          1641.65
+        ],
+        [
+          1720.75,
+          1636.65
+        ],
+        [
+          1726.75,
+          1631.65
+        ],
+        [
+          1732.75,
+          1626.65
+        ],
+        [
+          1738.75,
+          1621.65
+        ],
+        [
+          1744.75,
+          1616.65
+        ],
+        [
+          1750.75,
+          1611.65
+        ],
+        [
+          1756.75,
+          1606.65
+        ],
+        [
+          1762.75,
+          1601.65
+        ],
+        [
+          1768.75,
+          1597.65
+        ],
+        [
+          1774.75,
+          1592.65
+        ],
+        [
+          1780.75,
+          1587.65
+        ],
+        [
+          1786.75,
+          1582.65
+        ],
+        [
+          1792.75,
+          1577.65
+        ],
+        [
+          1798.75,
+          1572.65
+        ],
+        [
+          1804.75,
+          1567.65
+        ],
+        [
+          1810.75,
+          1562.65
+        ],
+        [
+          1816.75,
+          1557.65
+        ],
+        [
+          1822.75,
+          1552.65
+        ],
+        [
+          1828.75,
+          1547.65
+        ],
+        [
+          1834.75,
+          1543.65
+        ],
+        [
+          1840.75,
+          1538.65
+        ],
+        [
+          1846.75,
+          1533.65
+        ],
+        [
+          1852.75,
+          1528.65
+        ],
+        [
+          1858.75,
+          1523.65
+        ],
+        [
+          1864.75,
+          1518.65
+        ],
+        [
+          1870.75,
+          1514.65
+        ],
+        [
+          1876.75,
+          1509.65
+        ],
+        [
+          1882.75,
+          1504.65
+        ],
+        [
+          1888.75,
+          1499.65
+        ],
+        [
+          1894.75,
+          1494.65
+        ],
+        [
+          1900.75,
+          1489.65
+        ],
+        [
+          1906.75,
+          1484.65
+        ],
+        [
+          1912.75,
+          1479.65
+        ],
+        [
+          1918.75,
+          1475.65
+        ],
+        [
+          1924.75,
+          1470.65
+        ],
+        [
+          1930.75,
+          1465.65
+        ],
+        [
+          1936.75,
+          1460.65
+        ],
+        [
+          1942.75,
+          1455.65
+        ],
+        [
+          1948.75,
+          1450.65
+        ],
+        [
+          1954.75,
+          1445.65
+        ],
+        [
+          1960.75,
+          1440.65
+        ],
+        [
+          1966.75,
+          1435.65
+        ],
+        [
+          1972.75,
+          1430.65
+        ],
+        [
+          1978.75,
+          1425.65
+        ],
+        [
+          1984.75,
+          1421.65
+        ],
+        [
+          1990.75,
+          1420.65
+        ],
+        [
+          1996.75,
+          1420.65
+        ],
+        [
+          2002.75,
+          1420.65
+        ],
+        [
+          2008.75,
+          1420.65
+        ],
+        [
+          2014.75,
+          1420.65
+        ],
+        [
+          2021.75,
+          1871.65
+        ],
+        [
+          1432.75,
+          1871.65
+        ]
+      ]
+    }
+  ],
+  "backgrounds": [
+    {
+      "name": "bg10",
+      "path": "res://Art/level/Game4Level/NorthOriginal/maps/shenlouchengV1/bg10.png",
+      "origin": [
+        0,
+        0
+      ],
+      "properties": {},
+      "position": [
+        0.0,
+        0.0
+      ],
+      "visible": true
+    }
+  ],
+  "objects": [
+    {
+      "id": 18,
+      "type": "HurtEntity",
+      "rect": [
+        274.0,
+        881.0,
+        1724.0,
+        18.0
+      ],
+      "properties": {
+        "atk": "1169",
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "ground",
+        "itemId": "1148",
+        "scaleX": "1",
+        "skillId": "5000200",
+        "type": "viewers.entitys.others.HurtEntity"
+      }
+    },
+    {
+      "id": 19,
+      "type": "HurtEntity",
+      "rect": [
+        0.0,
+        1426.0,
+        1763.0,
+        18.0
+      ],
+      "properties": {
+        "atk": "1169",
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "ground",
+        "itemId": "1148",
+        "scaleX": "1",
+        "skillId": "5000200",
+        "type": "viewers.entitys.others.HurtEntity"
+      }
+    },
+    {
+      "id": 23,
+      "type": "HurtEntity",
+      "rect": [
+        826.0,
+        1770.5,
+        80.0,
+        88.0
+      ],
+      "properties": {
+        "atk": "1169",
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "edgeRole",
+        "itemId": "1146",
+        "scaleX": "1",
+        "skillId": "5003500",
+        "type": "viewers.entitys.others.HurtEntity"
+      }
+    },
+    {
+      "id": 24,
+      "type": "StagePortTrigger",
+      "rect": [
+        656.0,
+        -15.0,
+        118.0,
+        912.0
+      ],
+      "properties": {
+        "body": "1",
+        "bodyType": "static",
+        "campId": "0",
+        "createBodyAtInit": "1",
+        "deletedAtTriggerAfter": "1",
+        "groupType": "createJITrigger",
+        "stageRec": "400,0,1200,950",
+        "type": "viewers.entitys.others.StagePortTrigger",
+        "whoChange": "role|horse"
+      }
+    },
+    {
+      "id": 25,
+      "type": "HurtEntity",
+      "rect": [
+        1183.0,
+        1861.5,
+        150.0,
+        35.0
+      ],
+      "properties": {
+        "atk": "1169",
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "edgeRole",
+        "itemId": "1145",
+        "scaleX": "1",
+        "skillId": "5003400",
+        "type": "viewers.entitys.others.HurtEntity"
+      }
+    },
+    {
+      "id": 28,
+      "type": "HurtEntity",
+      "rect": [
+        1344.0,
+        1282.0,
+        80.0,
+        88.0
+      ],
+      "properties": {
+        "atk": "1169",
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "edgeRole",
+        "itemId": "1146",
+        "scaleX": "1",
+        "skillId": "5003500",
+        "type": "viewers.entitys.others.HurtEntity"
+      }
+    },
+    {
+      "id": 29,
+      "type": "HurtEntity",
+      "rect": [
+        854.0,
+        1282.0,
+        80.0,
+        88.0
+      ],
+      "properties": {
+        "atk": "1169",
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "edgeRole",
+        "itemId": "1146",
+        "scaleX": "1",
+        "skillId": "5003500",
+        "type": "viewers.entitys.others.HurtEntity"
+      }
+    },
+    {
+      "id": 32,
+      "type": "HurtEntity",
+      "rect": [
+        214.0,
+        1373.5,
+        150.0,
+        35.0
+      ],
+      "properties": {
+        "atk": "1169",
+        "body": "1",
+        "bodyType": "static",
+        "campId": "2",
+        "groupType": "edgeRole",
+        "itemId": "1145",
+        "scaleX": "1",
+        "skillId": "5003400",
+        "type": "viewers.entitys.others.HurtEntity"
+      }
+    }
+  ],
+  "points": [
+    {
+      "point": 1,
+      "monster": 3399,
+      "position": [
+        672.0,
+        1762.0
+      ],
+      "total": 2,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "1",
+        "total": "2"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3399",
+        "view": "5"
+      },
+      "stage": 1,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 2,
+      "monster": 3400,
+      "position": [
+        428.0,
+        1761.0
+      ],
+      "total": 2,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "2",
+        "total": "2"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3400",
+        "view": "5"
+      },
+      "stage": 1,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 3,
+      "monster": 3399,
+      "position": [
+        995.0,
+        1763.0
+      ],
+      "total": 2,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "3",
+        "total": "2"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3399",
+        "view": "5"
+      },
+      "stage": 4,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 4,
+      "monster": 3400,
+      "position": [
+        1377.0,
+        1761.0
+      ],
+      "total": 2,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "4",
+        "total": "2"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3400",
+        "view": "5"
+      },
+      "stage": 4,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 5,
+      "monster": 3399,
+      "position": [
+        1823.0,
+        1790.0
+      ],
+      "total": 2,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "5",
+        "total": "2"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3399",
+        "view": "5"
+      },
+      "stage": 4,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 6,
+      "monster": 3399,
+      "position": [
+        1305.0,
+        1270.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "6",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3399",
+        "view": "5"
+      },
+      "stage": 2,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 7,
+      "monster": 3400,
+      "position": [
+        1457.0,
+        1273.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "7",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3400",
+        "view": "5"
+      },
+      "stage": 2,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 8,
+      "monster": 3399,
+      "position": [
+        1047.0,
+        1281.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "8",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3399",
+        "view": "5"
+      },
+      "stage": 5,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 9,
+      "monster": 3400,
+      "position": [
+        640.0,
+        1285.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "9",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3400",
+        "view": "5"
+      },
+      "stage": 5,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 10,
+      "monster": 3399,
+      "position": [
+        207.0,
+        1293.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "10",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3399",
+        "view": "5"
+      },
+      "stage": 5,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 22,
+      "monster": 3399,
+      "position": [
+        428.0,
+        1665.0
+      ],
+      "total": 2,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 2,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "2",
+        "id": "22",
+        "total": "2"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3399",
+        "view": "5"
+      },
+      "stage": 1,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 21,
+      "monster": 3400,
+      "position": [
+        670.0,
+        1670.0
+      ],
+      "total": 2,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 1,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "1",
+        "id": "21",
+        "total": "2"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3400",
+        "view": "5"
+      },
+      "stage": 1,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 24,
+      "monster": 3399,
+      "position": [
+        1366.0,
+        1679.0
+      ],
+      "total": 2,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 3,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "3",
+        "id": "24",
+        "total": "2"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3399",
+        "view": "5"
+      },
+      "stage": 4,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 23,
+      "monster": 3400,
+      "position": [
+        990.0,
+        1667.0
+      ],
+      "total": 2,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 3,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "3",
+        "id": "23",
+        "total": "2"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3400",
+        "view": "5"
+      },
+      "stage": 4,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 25,
+      "monster": 3399,
+      "position": [
+        1819.0,
+        1689.0
+      ],
+      "total": 2,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 5,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "5",
+        "id": "25",
+        "total": "2"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3399",
+        "view": "5"
+      },
+      "stage": 4,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 26,
+      "monster": 3399,
+      "position": [
+        1455.0,
+        1205.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 6,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "6",
+        "id": "26",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3399",
+        "view": "5"
+      },
+      "stage": 2,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 27,
+      "monster": 3400,
+      "position": [
+        1308.0,
+        1201.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 7,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "7",
+        "id": "27",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3400",
+        "view": "5"
+      },
+      "stage": 2,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 28,
+      "monster": 3399,
+      "position": [
+        640.0,
+        1204.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 8,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "8",
+        "id": "28",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3399",
+        "view": "5"
+      },
+      "stage": 5,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 29,
+      "monster": 3400,
+      "position": [
+        1043.0,
+        1203.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 9,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "9",
+        "id": "29",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3400",
+        "view": "5"
+      },
+      "stage": 5,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 30,
+      "monster": 3399,
+      "position": [
+        204.0,
+        1204.0
+      ],
+      "total": 3,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 10,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "10",
+        "id": "30",
+        "total": "3"
+      },
+      "tile": {
+        "birthInterval": "1",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3399",
+        "view": "5"
+      },
+      "stage": 5,
+      "ignore_count_multiplier": true
+    },
+    {
+      "point": 50,
+      "monster": 3401,
+      "position": [
+        1110.0,
+        709.0
+      ],
+      "total": 1,
+      "face": -1.0,
+      "after_spawn": 0,
+      "after_dead": 0,
+      "after_all_dead": [],
+      "properties": {
+        "createAfterPoint": "0",
+        "createAfterPointDealAll": "0",
+        "id": "50",
+        "total": "1"
+      },
+      "tile": {
+        "birthInterval": "0",
+        "dropIds1P": "1;2;3;4;5",
+        "dropIds2P": "1;2;3;4;5",
+        "level": "3",
+        "monsterId": "3401",
+        "view": "1"
+      },
+      "stage": 3,
+      "ignore_count_multiplier": true
+    }
+  ],
+  "triggers": [
+    {
+      "rect": [
+        74.0,
+        1436.0,
+        109.0,
+        567.0
+      ],
+      "points": [
+        1,
+        2,
+        21,
+        22
+      ],
+      "properties": {
+        "point": "1,2,21,22"
+      }
+    },
+    {
+      "rect": [
+        1779.5,
+        894.5,
+        109.0,
+        472.5
+      ],
+      "points": [
+        6,
+        7,
+        26,
+        27
+      ],
+      "properties": {
+        "point": "6,7,26,27"
+      }
+    },
+    {
+      "rect": [
+        654.5,
+        55.5,
+        109.0,
+        826.5
+      ],
+      "points": [
+        50
+      ],
+      "properties": {
+        "point": "50"
+      }
+    },
+    {
+      "rect": [
+        731.5,
+        1458.5,
+        109.0,
+        567.0
+      ],
+      "points": [
+        3,
+        4,
+        5,
+        23,
+        24,
+        25
+      ],
+      "properties": {
+        "point": "3,4,5,23,24,25"
+      }
+    },
+    {
+      "rect": [
+        1174.5,
+        928.75,
+        109.0,
+        472.5
+      ],
+      "points": [
+        8,
+        9,
+        10,
+        28,
+        29,
+        30
+      ],
+      "properties": {
+        "point": "8,9,10,28,29,30"
+      }
+    }
+  ],
+  "exits": [
+    {
+      "rect": [
+        954.0,
+        824.0,
+        118.0,
+        30.0
+      ],
+      "properties": {
+        "bId": "0",
+        "itemId": "1001",
+        "visible": "0"
+      }
+    }
+  ]
+}

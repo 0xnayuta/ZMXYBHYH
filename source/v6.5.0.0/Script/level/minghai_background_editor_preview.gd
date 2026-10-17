@@ -1,7 +1,7 @@
 @tool
 extends Node2D
 
-const PREVIEW_TEXTURE := "res://Art/Level/Game4Level/Imported/pool/0cc682431ce0a30065cd5750497b07b22ce60b57520e35da57c11aa301522ce2.png"
+const PREVIEW_TEXTURE := "res://Art/level/Game4Level/Imported/pool/0cc682431ce0a30065cd5750497b07b22ce60b57520e35da57c11aa301522ce2.png"
 
 
 func _ready() -> void:

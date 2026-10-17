@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://Script/level/level_2.gd" id="2"]
 [ext_resource type="PackedScene" path="res://Scene/level/xp.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Scene/level/stage.tscn" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_1/19_1.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/Level/level_2/50.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_1/19_1.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/level/level_2/50.png" id="6"]
 [ext_resource type="PackedScene" path="res://Scene/level/river.tscn" id="7"]
-[ext_resource type="Texture2D" path="res://Art/Level/level_2/227.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/level/level_2/227.png" id="8"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(1887, 84)

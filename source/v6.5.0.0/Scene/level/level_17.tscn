@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" path="res://Scene/base/base_through_level.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/level/level_17.gd" id="2"]
 [ext_resource type="PackedScene" path="res://Scene/level/boat.tscn" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_11/1_floorBg3.jpg" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_11/wch.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_11/1_floorBg3.jpg" id="4"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_11/wch.png" id="5"]
 [ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="6"]
 
 [sub_resource type="RectangleShape2D" id="1"]

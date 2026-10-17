@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_through_level.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/level/level_16.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_11/1_floorBg2.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_11/yld.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_11/186.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_11/1_floorBg2.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_11/yld.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_11/186.png" id="5"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(6138, 947)

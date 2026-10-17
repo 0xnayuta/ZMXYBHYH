@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="2"]
 [ext_resource type="Texture2D" path="res://Art/ldl/scw.png" id="3"]
 [ext_resource type="PackedScene" path="res://Scene/back_pack/box_1.tscn" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Level/Challenge/ui_beizhan_diaoluodi.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/level/Challenge/ui_beizhan_diaoluodi.png" id="5"]
 [ext_resource type="Texture2D" path="res://Art/ldl/171.png" id="6"]
 [ext_resource type="Texture2D" path="res://Art/ldl/fjbuton1.png" id="7"]
 [ext_resource type="Texture2D" path="res://Art/ldl/fjbuton2.png" id="8"]

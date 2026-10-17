@@ -1,7 +1,7 @@
 extends RefCounted
 class_name NorthOriginalData
 
-const ROOT := "res://Art/Level/Game4Level/NorthOriginal/"
+const ROOT := "res://Art/level/Game4Level/NorthOriginal/"
 static var _monsters: Dictionary = {}
 static var _skills: Dictionary = {}
 static var _sky: Dictionary = {}

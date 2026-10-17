@@ -1,6 +1,6 @@
 extends Area2D
 
-const PROJECTILE_TEXTURE := preload("res://Art/Level/Level59_60Terrain/hazard_1022_projectile.png")
+const PROJECTILE_TEXTURE := preload("res://Art/level/Level59_60Terrain/hazard_1022_projectile.png")
 const HIT_BOX_SIZE := Vector2(40.0, 16.0)
 
 var _spawn_global_position := Vector2.ZERO

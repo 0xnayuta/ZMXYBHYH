@@ -1,6 +1,6 @@
 extends BaseLevel
 
-const TUTORIAL_BACKGROUND_ROOT := "res://Art/Level/Game3Level/Level_xinshou"
+const TUTORIAL_BACKGROUND_ROOT := "res://Art/level/Game3Level/Level_xinshou"
 const SECOND_WAVE_TRIGGER_RECT := Rect2(1760.0, 0.0, 450.0, 500.0)
 const BOSS_STAGE := 2
 const BOSS_MONSTER_ID := 1460

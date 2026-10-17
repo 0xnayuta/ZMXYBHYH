@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/level/trap_2_dwtw.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_2_3/xj.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_2_3/xj.png" id="2"]
 [ext_resource type="PackedScene" path="res://Scene/level/dwtw_trap.tscn" id="3"]
 
 [node name="Trap2dwtw" type="Node2D" unique_id=303905229]

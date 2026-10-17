@@ -1,6 +1,6 @@
 extends Game4ImportedLevel
 
-const MINGHAI_BACKGROUND_MANIFEST := "res://Art/Level/Game4Level/RuntimeAtlas/Level62Background/manifest.json"
+const MINGHAI_BACKGROUND_MANIFEST := "res://Art/level/Game4Level/RuntimeAtlas/Level62Background/manifest.json"
 const MINGHAI_BACKGROUND_SEAM_SHADER := preload("res://Shader/MinghaiBackgroundSeam.gdshader")
 const MINGHAI_TRIGGER_X := [0.0]
 const MINGHAI_BIRTH_POINTS := [

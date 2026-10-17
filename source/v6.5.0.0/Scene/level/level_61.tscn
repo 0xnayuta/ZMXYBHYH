@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/game4_imported_level_base.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/level/level_61.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/59209916f5252df9e220ee72d6c65346ec1ec68dfd7ce3758a8f210cdb20be79.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/cb10692efca54908ca0f4b623cf3b00844ae9dc584c1b202240b13bdc65f1375.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/ea0ffe29b72c14ea10dac2ee232133f83c1486d65ea61631a6dd0c937cee12f6.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/d760e960a22b528d7e44a1da1c03d37f8ca9408c85aa7763849964faa42fd2e5.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/Imported/pool/59209916f5252df9e220ee72d6c65346ec1ec68dfd7ce3758a8f210cdb20be79.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/Imported/pool/cb10692efca54908ca0f4b623cf3b00844ae9dc584c1b202240b13bdc65f1375.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/Imported/pool/ea0ffe29b72c14ea10dac2ee232133f83c1486d65ea61631a6dd0c937cee12f6.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/Imported/pool/d760e960a22b528d7e44a1da1c03d37f8ca9408c85aa7763849964faa42fd2e5.png" id="6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape_floor_1"]
 size = Vector2(4620, 500)

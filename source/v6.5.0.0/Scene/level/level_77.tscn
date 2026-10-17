@@ -3,12 +3,12 @@
 [ext_resource type="PackedScene" path="res://Scene/base/game4_imported_level_base.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/level/level_77.gd" id="2"]
 [ext_resource type="Script" path="res://Script/level/north_continent_terrain.gd" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/NorthOriginal/maps/hanshanpoV2/bg10.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/NorthOriginal/maps/hanshanpoV2/bg30.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/NorthOriginal/items/1128/dead.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/NorthOriginal/items/1128/idle.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/NorthOriginal/items/1129/dead.png" id="8"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/NorthOriginal/items/1129/idle.png" id="9"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/NorthOriginal/maps/hanshanpoV2/bg10.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/NorthOriginal/maps/hanshanpoV2/bg30.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/NorthOriginal/items/1128/dead.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/NorthOriginal/items/1128/idle.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/NorthOriginal/items/1129/dead.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/NorthOriginal/items/1129/idle.png" id="9"]
 
 [sub_resource type="AtlasTexture" id="terrain_AtlasTexture_2nwlo"]
 atlas = ExtResource("6")

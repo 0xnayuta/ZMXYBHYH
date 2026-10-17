@@ -1,14 +1,14 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/level/yf_list.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/01.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/02.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/03.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/04.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/05.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/06.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/07.png" id="8"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/414.png" id="9"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_35/01.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_35/02.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_35/03.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_35/04.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_35/05.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_35/06.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_35/07.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_35/414.png" id="9"]
 
 [node name="yf_list" type="Node2D" unique_id=1099585188]
 position = Vector2(752, 112)

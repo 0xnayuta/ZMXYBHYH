@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/game4_imported_level_base.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/level/level_51.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/RuntimeAtlas/Level50_52/pages/levels_50_51_52_000.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/RuntimeAtlas/Level50_52/pages/levels_51_52_000.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/RuntimeAtlas/Level50_52/pages/levels_51_000.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/RuntimeAtlas/Level50_52/pages/levels_50_51_000.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/RuntimeAtlas/Level50_52/pages/levels_50_51_52_000.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/RuntimeAtlas/Level50_52/pages/levels_51_52_000.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/RuntimeAtlas/Level50_52/pages/levels_51_000.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/RuntimeAtlas/Level50_52/pages/levels_50_51_000.png" id="6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape_floor"]
 size = Vector2(5485, 500)

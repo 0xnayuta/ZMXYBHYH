@@ -32,7 +32,7 @@ const ZHENYAO_TOWER_LEVEL_SCENE := "res://Scene/level/level_zhen_yao_tower.tscn"
 const WANFO_LEVEL_SCRIPT_PATH := "res://Script/level/level_61.gd"
 const WANFO_RUNTIME_MONSTER_IDS := [3071, 3076, 3077, 3078, 3080, 3081, 3082]
 const ZHENYAO_TOWER_LEVEL_SCRIPT := preload("res://Script/level/level_zhen_yao_tower.gd")
-const TZSIJIAN_BG_ROOT := "res://Art/Level/Game3Level/Level_tzsijian/96/bg961_parts"
+const TZSIJIAN_BG_ROOT := "res://Art/level/Game3Level/Level_tzsijian/96/bg961_parts"
 const TZSIJIAN_BOSS_IDS := [951, 952, 953, 954]
 
 const EXTRA_PRELOAD_PATHS := [

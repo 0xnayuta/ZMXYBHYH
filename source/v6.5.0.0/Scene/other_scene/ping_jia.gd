@@ -13,5 +13,5 @@ func _physics_process(delta: float) -> void:
 
 
 func load_(name_):
-	var abc = load("res://Art/Level/Challenge/ui_beizhan_pj_" + str(name_) + ".png")
+	var abc = load("res://Art/level/Challenge/ui_beizhan_pj_" + str(name_) + ".png")
 	return abc

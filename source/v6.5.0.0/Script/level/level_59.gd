@@ -350,21 +350,21 @@ const STONE_HIT_INTERVAL_MSEC := 334
 const STONE_TERRAIN_RELEASE_X := 100.0
 const STONE_GROUP := "level_59_stones"
 const STONE_TEXTURES := [
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_01.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_01.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_01.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_04.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_04.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_04.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_07.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_07.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_07.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_10.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_10.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_10.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_13.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_13.png"),
-	preload("res://Art/Level/Level59_60Terrain/stone_1021_idle_13.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_01.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_01.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_01.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_04.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_04.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_04.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_07.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_07.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_07.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_10.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_10.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_10.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_13.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_13.png"),
+	preload("res://Art/level/Level59_60Terrain/stone_1021_idle_13.png"),
 ]
 
 const STONE_FACTORIES := [

@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" path="res://Scene/base/base_through_level.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/level/level_28.gd" id="2"]
 [ext_resource type="PackedScene" path="res://Scene/level/light.tscn" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_3_3/SpecialEffect_2.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_3_3/chl.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_3_3/chlfloor.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_3_3/flooradd.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_3_3/stage_1.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_3_3/SpecialEffect_2.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_3_3/chl.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_3_3/chlfloor.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_3_3/flooradd.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_3_3/stage_1.png" id="8"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(3791, 395)

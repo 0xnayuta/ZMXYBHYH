@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_through_level.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/level/level_hdgqnmg.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_10/250.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_10/125.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_10/230.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_10/250.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_10/125.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_10/230.png" id="5"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(1302, 1764)

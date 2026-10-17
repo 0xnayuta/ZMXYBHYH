@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/level/xyd_stage.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_35/s1.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_35/s1.png" id="2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbyqj"]
 size = Vector2(100, 75)

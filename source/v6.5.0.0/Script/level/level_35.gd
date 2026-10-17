@@ -98,13 +98,13 @@ func _physics_process(delta: float) -> void:
 
 func create_xyd_stages():
 	var stage_data = [
-		{"pos": Vector2(0, 0), "texture": "res://Art/Level/Game3Level/Level_35/s1.png"},
-		{"pos": Vector2(160, 0), "texture": "res://Art/Level/Game3Level/Level_35/s2.png"},
-		{"pos": Vector2(320, 0), "texture": "res://Art/Level/Game3Level/Level_35/s3.png"},
-		{"pos": Vector2(480, 0), "texture": "res://Art/Level/Game3Level/Level_35/s4.png"},
-		{"pos": Vector2(640, 0), "texture": "res://Art/Level/Game3Level/Level_35/s5.png"},
-		{"pos": Vector2(800, 0), "texture": "res://Art/Level/Game3Level/Level_35/s6.png"},
-		{"pos": Vector2(960, 0), "texture": "res://Art/Level/Game3Level/Level_35/s7.png"},
+		{"pos": Vector2(0, 0), "texture": "res://Art/level/Game3Level/Level_35/s1.png"},
+		{"pos": Vector2(160, 0), "texture": "res://Art/level/Game3Level/Level_35/s2.png"},
+		{"pos": Vector2(320, 0), "texture": "res://Art/level/Game3Level/Level_35/s3.png"},
+		{"pos": Vector2(480, 0), "texture": "res://Art/level/Game3Level/Level_35/s4.png"},
+		{"pos": Vector2(640, 0), "texture": "res://Art/level/Game3Level/Level_35/s5.png"},
+		{"pos": Vector2(800, 0), "texture": "res://Art/level/Game3Level/Level_35/s6.png"},
+		{"pos": Vector2(960, 0), "texture": "res://Art/level/Game3Level/Level_35/s7.png"},
 	]
 
 	var stage_parent = $Stage

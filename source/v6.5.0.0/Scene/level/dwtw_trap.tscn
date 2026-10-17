@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/level/dwtw_trap.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_2_3/fc.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_2_3/fc.png" id="2"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("2")

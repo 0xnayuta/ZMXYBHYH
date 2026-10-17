@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/level/bai_gu_level.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_11/BaiGu.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_11/88.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_11/BaiGu.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_11/88.png" id="3"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(76.5, 40.5)

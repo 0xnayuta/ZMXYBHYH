@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/game4_imported_level_base.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/level/level_59.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/af3685bc21e8dd168766a0063f4619463bb8d0b7ef184d9fd8e378eb6a809ca2.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/eebfb4e428c66ea7ae67fdb0e6e1ef7e67e144c890bffe552aaaaa8d7b252a73.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/c168c9e057549dc5490dd86d0681dcb29c7d0fc9e3165e1e14a9a3fd412a5621.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/70dcd6c97d9816305bf9a080512ad02c066250b48eb11efbee7cb803d0271f75.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/284ac434a56ce11d515bd6d14629fd9086a4fb7c039bcbe87d2b1b2d9e3b6b27.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/Imported/pool/798451bb0ccdeae1fa5372a5abf1e5ede2c9e219aefb222cc032090fec1af190.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/Imported/pool/af3685bc21e8dd168766a0063f4619463bb8d0b7ef184d9fd8e378eb6a809ca2.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/Imported/pool/eebfb4e428c66ea7ae67fdb0e6e1ef7e67e144c890bffe552aaaaa8d7b252a73.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/Imported/pool/c168c9e057549dc5490dd86d0681dcb29c7d0fc9e3165e1e14a9a3fd412a5621.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/Imported/pool/70dcd6c97d9816305bf9a080512ad02c066250b48eb11efbee7cb803d0271f75.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/Imported/pool/284ac434a56ce11d515bd6d14629fd9086a4fb7c039bcbe87d2b1b2d9e3b6b27.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/Imported/pool/798451bb0ccdeae1fa5372a5abf1e5ede2c9e219aefb222cc032090fec1af190.png" id="8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape_right"]
 size = Vector2(120, 2400)

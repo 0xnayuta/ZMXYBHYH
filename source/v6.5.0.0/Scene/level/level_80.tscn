@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" path="res://Scene/base/game4_imported_level_base.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/level/level_80.gd" id="2"]
 [ext_resource type="Script" path="res://Script/level/north_continent_terrain.gd" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/NorthOriginal/maps/huanjinggeV2/bg10.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Level/Game4Level/NorthOriginal/maps/huanjinggeV2/bg11.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/Level/Export.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/NorthOriginal/maps/huanjinggeV2/bg10.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/level/Game4Level/NorthOriginal/maps/huanjinggeV2/bg11.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/level/Export.png" id="6"]
 
 [sub_resource type="RectangleShape2D" id="terrain_RectangleShape2D_06obr"]
 size = Vector2(1247.2186, 38)

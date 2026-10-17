@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/level/bsz.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/Level/Level_11/BSZ.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/level/Level_11/BSZ.png" id="2"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 13.0384

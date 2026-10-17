@@ -1,6 +1,6 @@
 extends Node2D
 
-const ASSET_ROOT := "res://Art/Level/Game4Level/Imported/terrain/"
+const ASSET_ROOT := "res://Art/level/Game4Level/Imported/terrain/"
 var source_data: Dictionary = {}
 var _level: Game4EastLateLevel
 var _hidden_platforms: Array[Dictionary] = []

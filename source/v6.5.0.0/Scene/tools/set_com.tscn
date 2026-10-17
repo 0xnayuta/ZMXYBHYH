@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/tools/set_com.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/Level/Settlement/结算.jpg" id="2"]
+[ext_resource type="Texture2D" path="res://Art/level/Settlement/结算.jpg" id="2"]
 [ext_resource type="Script" path="res://Script/tools/joy_left.gd" id="3"]
 [ext_resource type="Texture2D" path="res://Art/2_5_9_0/png/b.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/2_5_9_0/png/q.png" id="5"]
