@@ -204,12 +204,12 @@ const STREAMING_ROLE_BULLET_PATH := "res://Scene/hero/streaming_role_bullet.tscn
 const ROLE3_BULLET3_SLIM_PATH := "res://Scene/hero/role3_bullet3_slim.tscn"
 const ROLE3_SD_SLIM_PATH := "res://Scene/hero/role3_sd_slim.tscn"
 const ROLE3_ZZNH_SLIM_PATH := "res://Scene/hero/role3_zznh_slim.tscn"
-const ROLE_SPECIAL_EFFECT_SLIM_DIR := "res://Scene/hero/RoleSpecialEffectSlim"
+const ROLE_SPECIAL_EFFECT_SLIM_DIR := "res://Scene/hero/role_special_effect_slim"
 const TTZSSZ_BULLET_SLIM_PATH := "res://Scene/hero/ttzssz_bullet_slim.tscn"
-const MONSTER_BULLET_SLIM_DIR := "res://Scene/monster/MonsterBulletSlim"
-const MONSTER_BULLET_PATH := "res://Scene/monster/MonsterBullet.tscn"
+const MONSTER_BULLET_SLIM_DIR := "res://Scene/monster/monster_bullet_slim"
+const MONSTER_BULLET_PATH := "res://Scene/monster/monster65bullet.tscn"
 const FLY_BULLET_PATH := "res://Scene/bullet/fly_bullet.tscn"
-const FLY_BULLET_SLIM_DIR := "res://Scene/bullet/FlyBulletSlim"
+const FLY_BULLET_SLIM_DIR := "res://Scene/bullet/fly_bullet_slim"
 const CHASE_BULLET_PATH := "res://Scene/bullet/chase_bullet.tscn"
 const STREAMED_PNG_EFFECT_SCRIPT = preload("res://Script/monster/streamed_png_effect.gd")
 const MONSTER_212_BULLET_SCRIPTS := [
@@ -4687,8 +4687,6 @@ func call_chase_bullet(parent, name_, speed, time: float, dir, position, hit_nam
 		return null
 	if target.has_node("Chaseani"):
 		target.chase_ani = target.get_node("Chaseani")
-	elif target.has_node("ChaseAni"):
-		target.chase_ani = target.get_node("ChaseAni")
 	if target.chase_ani:
 		target.chase_ani.flip_h = dir
 	else:

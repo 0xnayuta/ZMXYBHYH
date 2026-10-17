@@ -9,7 +9,18 @@
   ],
   "missing_asset_known_allowlist": [
     "res://.godot/",
-    "res://godot/"
+    "res://godot/",
+    "res://Art/Monster/Game3Monster/ThreePrince/nezha/idle/1.png",
+    "res://Art/Monster/QiongQi/Effects/BuffGreen.png",
+    "res://Art/Monster/QiongQi/Effects/BuffBlue.png",
+    "res://Art/AddEffect/Buff_icon/mp_poision.png",
+    "res://Art/Monster/GuanyinSpine/",
+    "res://Art/HeroPicture/Role2/BingYu/runtime/",
+    "res://Art/HeroPicture/Role4/CangMuLongYun/runtime/",
+    "res://Art/HeroPicture/Role2/JHSJAwaken/runtime/",
+    "res://Art/HeroPicture/Role2/LYFBAwaken/runtime/",
+    "res://Art/2_6_0_0/Level_sxmg/csm/csm.wav",
+    "res://Scene/level/Level_sxmg.tscn"
   ],
   "known_extension_methods": [
     "set_skeleton_data_res",

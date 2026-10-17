@@ -47,14 +47,13 @@ const SKILL_INFO := {
 		"desc": "拥有【伏妖神火】技能，朝前方喷出火焰，造成物理伤害，并有10%概率施加一层灼烧。"
 	},
 	"wdsf":
-	{"icon": "res://Art/MagicWeapon/skill_icon/wdsf.png", "skill": "风卷毒澜", "desc": "拥有【风卷毒澜】技能，召唤持续增大的龙卷风，吸引敌人进入毒沼。"},
-	"wdsh":
-	{"icon": "res://Art/MagicWeapon/skill_icon/wdsh.png", "skill": "烈焰焚爆", "desc": "拥有【烈焰焚爆】技能，持续喷射烈焰，灼烧并眩晕敌人。"},
+	{"icon": "res://Art/MagicWeapon/Skill_Icon/wds.png", "skill": "风卷毒澜", "desc": "拥有【风卷毒澜】技能，召唤持续增大的龙卷风，吸引敌人进入毒沼。"},
+	"wdsh": {"icon": "res://Art/MagicWeapon/Skill_Icon/wds.png", "skill": "烈焰焚爆", "desc": "拥有【烈焰焚爆】技能，持续喷射烈焰，灼烧并眩晕敌人。"},
 	"wdst":
-	{"icon": "res://Art/MagicWeapon/skill_icon/wdst.png", "skill": "地焚天星", "desc": "拥有【地焚天星】技能，召唤重山推开敌人，天星持续砸击。"},
+	{"icon": "res://Art/MagicWeapon/Skill_Icon/wds.png", "skill": "地焚天星", "desc": "拥有【地焚天星】技能，召唤重山推开敌人，天星持续砸击。"},
 	"wdsl":
 	{
-		"icon": "res://Art/MagicWeapon/skill_icon/wdsl.png",
+		"icon": "res://Art/MagicWeapon/Skill_Icon/wds.png",
 		"skill": "雷域玄盾",
 		"desc": "拥有【雷域玄盾】技能，周身凝聚雷霆领域持续伤敌，同时生成护盾减免受到的伤害。"
 	},

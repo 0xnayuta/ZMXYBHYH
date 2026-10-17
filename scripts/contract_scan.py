@@ -505,11 +505,10 @@ class ContractScanner:
                     if raw_res.startswith("res://.godot/") or raw_res.startswith("res://godot/"):
                         continue
 
-                    # 仅在有文件扩展名或明确为目录时检查
+                    # 如果有文件扩展名、以/结尾、或者看起来是跨级目录路径，均予校验
                     base_name = os.path.basename(raw_res)
-                    if "." not in base_name and not raw_res.endswith("/"):
+                    if "." not in base_name and not raw_res.endswith("/") and "/" not in raw_res.replace("res://", ""):
                         continue
-
                     status, exact_res, reason = self.disk_case_index.resolve_res_path(raw_res)
                     if status == "CASE_MISMATCH":
                         finding = ContractFinding(
@@ -784,21 +783,25 @@ class ContractScanner:
                 prop_part = track_path.split(":")[1].strip() if ":" in track_path else ""
 
                 if node_part not in ("", "."):
-                    matched_case = self._find_node_case_mismatch(node_part, nodes_in_scene)
-                    if matched_case:
-                        new_track = f"{matched_case}:{prop_part}" if prop_part else matched_case
-                        finding = ContractFinding(
-                            category="anim_track",
-                            severity="ERROR",
-                            file_path=rel_p,
-                            line=0,
-                            literal=track_path,
-                            message=f"动画轨道绑定节点大小写失配: 实际节点路径为 '{matched_case}'",
-                            suggested_fix=new_track,
-                            rule_id="ANIM_TRACK_NODE_MISMATCH"
-                        )
-                        if not self.whitelist.is_suppressed(finding):
-                            self.findings.append(finding)
+                    if node_part in nodes_in_scene:
+                        # 节点在场景中精确存在，不属于失配
+                        pass
+                    else:
+                        matched_case = self._find_node_case_mismatch(node_part, nodes_in_scene)
+                        if matched_case:
+                            new_track = f"{matched_case}:{prop_part}" if prop_part else matched_case
+                            finding = ContractFinding(
+                                category="anim_track",
+                                severity="ERROR",
+                                file_path=rel_p,
+                                line=0,
+                                literal=track_path,
+                                message=f"动画轨道绑定节点大小写失配: 实际节点路径为 '{matched_case}'",
+                                suggested_fix=new_track,
+                                rule_id="ANIM_TRACK_NODE_MISMATCH"
+                            )
+                            if not self.whitelist.is_suppressed(finding):
+                                self.findings.append(finding)
 
                 # 2. 检查 method 轨道对应函数
                 if track_type == "method" and keys_block:

@@ -1,8 +1,8 @@
 # ZMXYBHYH 全工程字面量契约诊断审计报告 (Phase 8-1)
 
-> 生成时间: 2026-10-17 14:59:43  
+> 生成时间: 2026-10-17 15:24:50  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
-> 扫描耗时: `5.08 秒`（指标要求 ≤ 30 秒）  
+> 扫描耗时: `4.49 秒`（指标要求 ≤ 30 秒）  
 > 覆盖资产: 脚本 `722 个` / 场景 `1132 个`  
 
 ---
@@ -11,70 +11,67 @@
 
 | 契约类别 (Category) | 严重错误 (ERROR) | 告警/建议 (WARNING) | 待收敛 (INFO) | 合计条目 | 健康状态 |
 |:---|:---:|:---:|:---:|:---:|:---:|
-| **1. 资源路径契约 (Resource Path)** | **75** | 0 | 0 | **75** | 🔴 待修复 |
-| **2. 节点路径契约 (Node Path)** | **1** | 1 | 0 | **2** | 🔴 待修复 |
+| **1. 资源路径契约 (Resource Path)** | **0** | 157 | 0 | **157** | 🟡 需关注 |
+| **2. 节点路径契约 (Node Path)** | **0** | 0 | 0 | **0** | 🟢 契约完好 |
 | **3. 动态反射契约 (Reflection)** | **0** | 0 | 13 | **13** | 🟢 契约完好 |
-| **4. 动画轨道契约 (Anim Track)** | **2** | 0 | 0 | **2** | 🔴 待修复 |
+| **4. 动画轨道契约 (Anim Track)** | **0** | 0 | 0 | **0** | 🟢 契约完好 |
 | **5. 中文字典键契约 (Dict Key)** | **0** | 872 | 925 | **1797** | 🟡 需关注 |
 
-**总计缺陷与待收敛项**: `1889 个`（ERROR: `78` / WARNING: `873` / INFO: `938`）
+**总计缺陷与待收敛项**: `1967 个`（ERROR: `0` / WARNING: `1029` / INFO: `938`）
 
 ---
 
-## 二、1. 资源路径契约 (Resource Path) 详细清单 (75 条)
+## 二、1. 资源路径契约 (Resource Path) 详细清单 (157 条)
 
 | 严重等级 | 文件位置 | 字面量内容 | 诊断原因与修复建议 |
 |:---:|:---|:---|:---|
-| `ERROR` | `Global.gd:210` | `res://Scene/monster/MonsterBullet.tscn` | 资源文件或目录不存在: 分段不存在: MonsterBullet.tscn |
-| `ERROR` | `Global.gd:253` | `res://Art/Monster/QiongQi/Effects/BuffGreen.png` | 资源文件或目录不存在: 分段不存在: Effects |
-| `ERROR` | `Global.gd:254` | `res://Art/Monster/QiongQi/Effects/BuffBlue.png` | 资源文件或目录不存在: 分段不存在: Effects |
-| `ERROR` | `Global.gd:2016` | `res://Art/AddEffect/Buff_icon/mp_poision.png` | 资源文件或目录不存在: 分段不存在: mp_poision.png |
-| `ERROR` | `Global.gd:2048` | `res://Art/AddEffect/Buff_icon/mp_poision.png` | 资源文件或目录不存在: 分段不存在: mp_poision.png |
-| `ERROR` | `Global.gd:2171` | `res://Music/Hero/Role4/Arrowdcj.mp3` | 资源文件或目录不存在: 分段不存在: Arrowdcj.mp3 |
-| `ERROR` | `Global.gd:2172` | `res://Music/Hero/Role4/ArrowHit1.mp3` | 资源文件或目录不存在: 分段不存在: ArrowHit1.mp3 |
-| `ERROR` | `Global.gd:2173` | `res://Music/Hero/Role4/ArrowHit2.mp3` | 资源文件或目录不存在: 分段不存在: ArrowHit2.mp3 |
-| `ERROR` | `Global.gd:2174` | `res://Music/Hero/Role4/Arrowmmw.mp3` | 资源文件或目录不存在: 分段不存在: Arrowmmw.mp3 |
-| `ERROR` | `Global.gd:2175` | `res://Music/Hero/Role4/Arrowqlj.mp3` | 资源文件或目录不存在: 分段不存在: Arrowqlj.mp3 |
-| `ERROR` | `Global.gd:2176` | `res://Music/Hero/Role4/Arrowtkj.mp3` | 资源文件或目录不存在: 分段不存在: Arrowtkj.mp3 |
-| `ERROR` | `Global.gd:2177` | `res://Music/Hero/Role4/Arrowzq.mp3` | 资源文件或目录不存在: 分段不存在: Arrowzq.mp3 |
-| `ERROR` | `Global.gd:2201` | `res://Music/Hero/Role5/effect4.mp3` | 资源文件或目录不存在: 分段不存在: effect4.mp3 |
-| `ERROR` | `Global.gd:2389` | `res://Music/Hero/Role4/ArrowHit1.mp3` | 资源文件或目录不存在: 分段不存在: ArrowHit1.mp3 |
-| `ERROR` | `Global.gd:2390` | `res://Music/Hero/Role4/ArrowHit2.mp3` | 资源文件或目录不存在: 分段不存在: ArrowHit2.mp3 |
-| `ERROR` | `Global.gd:2392` | `res://Music/Hero/Role4/Arrowqlj.mp3` | 资源文件或目录不存在: 分段不存在: Arrowqlj.mp3 |
-| `ERROR` | `Global.gd:2394` | `res://Music/Hero/Role4/Arrowdcj.mp3` | 资源文件或目录不存在: 分段不存在: Arrowdcj.mp3 |
-| `ERROR` | `Global.gd:2396` | `res://Music/Hero/Role4/Arrowmmw.mp3` | 资源文件或目录不存在: 分段不存在: Arrowmmw.mp3 |
-| `ERROR` | `Global.gd:2398` | `res://Music/Hero/Role4/Arrowzq.mp3` | 资源文件或目录不存在: 分段不存在: Arrowzq.mp3 |
-| `ERROR` | `Global.gd:2399` | `res://Music/Hero/Role4/Arrowtkj.mp3` | 资源文件或目录不存在: 分段不存在: Arrowtkj.mp3 |
-| `ERROR` | `Global.gd:2414` | `res://Music/Hero/Role5/effect4.mp3` | 资源文件或目录不存在: 分段不存在: effect4.mp3 |
-| `ERROR` | `Global.gd:2589` | `res://Music/Hero/Role4/ArrowHit1.mp3` | 资源文件或目录不存在: 分段不存在: ArrowHit1.mp3 |
-| `ERROR` | `Global.gd:2590` | `res://Music/Hero/Role4/ArrowHit2.mp3` | 资源文件或目录不存在: 分段不存在: ArrowHit2.mp3 |
-| `ERROR` | `Global.gd:2592` | `res://Music/Hero/Role4/Arrowqlj.mp3` | 资源文件或目录不存在: 分段不存在: Arrowqlj.mp3 |
-| `ERROR` | `Global.gd:2594` | `res://Music/Hero/Role4/Arrowdcj.mp3` | 资源文件或目录不存在: 分段不存在: Arrowdcj.mp3 |
-| `ERROR` | `Global.gd:2596` | `res://Music/Hero/Role4/Arrowmmw.mp3` | 资源文件或目录不存在: 分段不存在: Arrowmmw.mp3 |
-| `ERROR` | `Global.gd:2598` | `res://Music/Hero/Role4/Arrowzq.mp3` | 资源文件或目录不存在: 分段不存在: Arrowzq.mp3 |
-| `ERROR` | `Global.gd:2599` | `res://Music/Hero/Role4/Arrowtkj.mp3` | 资源文件或目录不存在: 分段不存在: Arrowtkj.mp3 |
-| `ERROR` | `Global.gd:2614` | `res://Music/Hero/Role5/effect4.mp3` | 资源文件或目录不存在: 分段不存在: effect4.mp3 |
-| `ERROR` | `Global.gd:4526` | `res://Art/Monster/GuanyinSpine/skeleton.atlas` | 资源文件或目录不存在: 分段不存在: skeleton.atlas |
-| `ERROR` | `Global.gd:4527` | `res://Art/Monster/GuanyinSpine/guanyin.spine-json` | 资源文件或目录不存在: 分段不存在: guanyin.spine-json |
-| `ERROR` | `Scene/other_scene/load_scene.gd:43` | `res://Art/Pet/PetTiger/model/actions/stage1/wait/icon.png` | 资源文件或目录不存在: 分段不存在: wait |
-| `ERROR` | `Scene/other_scene/load_scene.gd:44` | `res://Art/Pet/PetTiger/model/actions/stage2/wait/icon.png` | 资源文件或目录不存在: 分段不存在: wait |
-| `ERROR` | `Scene/other_scene/load_scene.gd:45` | `res://Art/Pet/PetTiger/model/actions/stage3/wait/icon.png` | 资源文件或目录不存在: 分段不存在: wait |
-| `ERROR` | `Scene/other_scene/load_scene.gd:46` | `res://Art/Pet/PetTiger/model/actions/stage4/wait/icon.png` | 资源文件或目录不存在: 分段不存在: wait |
-| `ERROR` | `Scene/other_scene/monster_head_info.gd:6` | `res://Art/Monster/Game3Monster/ThreePrince/nezha/idle/1.png` | 资源文件或目录不存在: 分段不存在: idle |
-| `ERROR` | `Script/back_pack/equipment_fall.gd:81` | `res://Music/level/86_pickup.mp3` | 资源文件或目录不存在: 分段不存在: 86_pickup.mp3 |
-| `ERROR` | `Script/back_pack/skill_select.gd:50` | `res://Art/MagicWeapon/skill_icon/wdsf.png` | 资源文件或目录不存在: 分段不存在: wdsf.png |
-| `ERROR` | `Script/back_pack/skill_select.gd:52` | `res://Art/MagicWeapon/skill_icon/wdsh.png` | 资源文件或目录不存在: 分段不存在: wdsh.png |
-| `ERROR` | `Script/back_pack/skill_select.gd:54` | `res://Art/MagicWeapon/skill_icon/wdst.png` | 资源文件或目录不存在: 分段不存在: wdst.png |
+| `WARNING` | `Global.gd:190` | `res://Scene/base/SpecialAffectSlim` | 资源文件或目录不存在: 分段不存在: SpecialAffectSlim |
+| `WARNING` | `Global.gd:202` | `res://Scene/hero/RoleBulletSlim` | 资源文件或目录不存在: 分段不存在: RoleBulletSlim |
+| `WARNING` | `Global.gd:252` | `res://Art/Monster/QiongQi/Monster42FramesCenteredCropped` | 资源文件或目录不存在: 分段不存在: Monster42FramesCenteredCropped |
+| `WARNING` | `Global.gd:256` | `res://Art/Monster/TaoWu/Monster47FramesCenteredCropped` | 资源文件或目录不存在: 分段不存在: Monster47FramesCenteredCropped |
+| `WARNING` | `Global.gd:278` | `res://Art/Monster/PetTigerBoss/model/frames/stage1` | 资源文件或目录不存在: 分段不存在: frames |
+| `WARNING` | `Global.gd:279` | `res://Art/Monster/PetTigerBoss/effects` | 资源文件或目录不存在: 分段不存在: effects |
+| `WARNING` | `Global.gd:283` | `res://Art/Monster/PetTigerBoss/model/frames/stage2` | 资源文件或目录不存在: 分段不存在: frames |
+| `WARNING` | `Global.gd:284` | `res://Art/Monster/PetTigerBoss/effects` | 资源文件或目录不存在: 分段不存在: effects |
+| `WARNING` | `Global.gd:288` | `res://Art/Monster/PetTigerBoss/model/frames/stage3` | 资源文件或目录不存在: 分段不存在: frames |
+| `WARNING` | `Global.gd:289` | `res://Art/Monster/PetTigerBoss/effects` | 资源文件或目录不存在: 分段不存在: effects |
+| `WARNING` | `Global.gd:293` | `res://Art/Monster/PetTigerBoss/model/frames/stage4` | 资源文件或目录不存在: 分段不存在: frames |
+| `WARNING` | `Global.gd:294` | `res://Art/Monster/PetTigerBoss/effects` | 资源文件或目录不存在: 分段不存在: effects |
+| `WARNING` | `Global.gd:305` | `res://Art/Monster/QiongQi/Effects` | 资源文件或目录不存在: 分段不存在: Effects |
+| `WARNING` | `Global.gd:306` | `res://Art/Monster/TaoWu/Effects` | 资源文件或目录不存在: 分段不存在: Effects |
+| `WARNING` | `Global.gd:1271` | `res://Art/AllNumber/cure/cure_` | 资源文件或目录不存在: 分段不存在: cure_ |
+| `WARNING` | `Global.gd:1272` | `res://Art/AllNumber/CureMp/CureMp_` | 资源文件或目录不存在: 分段不存在: CureMp_ |
+| `WARNING` | `Global.gd:1273` | `res://Art/AllNumber/ReduceMp/ReduceMp_` | 资源文件或目录不存在: 分段不存在: ReduceMp_ |
+| `WARNING` | `Global.gd:1274` | `res://Art/AllNumber/Physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
+| `WARNING` | `Global.gd:1275` | `res://Art/AllNumber/physicscrit/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
+| `WARNING` | `Global.gd:1276` | `res://Art/AllNumber/magic/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
+| `WARNING` | `Global.gd:1277` | `res://Art/AllNumber/magic/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
+| `WARNING` | `Global.gd:1278` | `res://Art/AllNumber/magiccrit/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
+| `WARNING` | `Global.gd:1279` | `res://Art/AllNumber/real/real_` | 资源文件或目录不存在: 分段不存在: real_ |
+| `WARNING` | `Global.gd:1280` | `res://Art/AllNumber/realcrit/real_` | 资源文件或目录不存在: 分段不存在: real_ |
+| `WARNING` | `Global.gd:1281` | `res://Art/AllNumber/LJ/lj_` | 资源文件或目录不存在: 分段不存在: lj_ |
+| `WARNING` | `Global.gd:1282` | `res://Art/AllNumber/monster/physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
+| `WARNING` | `Global.gd:1283` | `res://Art/AllNumber/monster/magic/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
+| `WARNING` | `Global.gd:1984` | `res://Scene/monster/monster_` | 资源文件或目录不存在: 分段不存在: monster_ |
+| `WARNING` | `Global.gd:2085` | `res://Art/AllNumber/cure/cure_` | 资源文件或目录不存在: 分段不存在: cure_ |
+| `WARNING` | `Global.gd:2086` | `res://Art/AllNumber/CureMp/CureMp_` | 资源文件或目录不存在: 分段不存在: CureMp_ |
+| `WARNING` | `Global.gd:2087` | `res://Art/AllNumber/ReduceMp/ReduceMp_` | 资源文件或目录不存在: 分段不存在: ReduceMp_ |
+| `WARNING` | `Global.gd:2088` | `res://Art/AllNumber/Physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
+| `WARNING` | `Global.gd:2089` | `res://Art/AllNumber/physicscrit/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
+| `WARNING` | `Global.gd:2090` | `res://Art/AllNumber/magic/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
+| `WARNING` | `Global.gd:2091` | `res://Art/AllNumber/magic/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
+| `WARNING` | `Global.gd:2092` | `res://Art/AllNumber/magiccrit/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
+| `WARNING` | `Global.gd:2093` | `res://Art/AllNumber/real/real_` | 资源文件或目录不存在: 分段不存在: real_ |
+| `WARNING` | `Global.gd:2094` | `res://Art/AllNumber/realcrit/real_` | 资源文件或目录不存在: 分段不存在: real_ |
+| `WARNING` | `Global.gd:2095` | `res://Art/AllNumber/LJ/lj_` | 资源文件或目录不存在: 分段不存在: lj_ |
+| `WARNING` | `Global.gd:2096` | `res://Art/AllNumber/monster/physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
 
-> *(剩余 35 条已收入机读 JSON 报告 docs/contract_audit.json)*
+> *(剩余 117 条已收入机读 JSON 报告 docs/contract_audit.json)*
 
 
-## 二、2. 节点路径契约 (Node Path) 详细清单 (2 条)
+## 二、2. 节点路径契约 (Node Path) 详细清单 (0 条)
 
-| 严重等级 | 文件位置 | 字面量内容 | 诊断原因与修复建议 |
-|:---:|:---|:---|:---|
-| `ERROR` | `Script/base/base_monster.gd:2327` | `buff` | 场景 'base_monster.tscn' 中节点路径大小写失配: 实际节点全名为 'Buff' → **建议**: `Buff` |
-| `WARNING` | `Global.gd:4691` | `ChaseAni` | 全局节点引用段 'ChaseAni' 疑似大小写失配，工程中存在对应节点 'Chaseani' → **建议**: `Chaseani` |
+`[√] 未检测到任何契约违规项，该类别 100% 达成合规！`
 
 ## 二、3. 动态反射契约 (Reflection) 详细清单 (13 条)
 
@@ -82,7 +79,7 @@
 |:---:|:---|:---|:---|
 | `INFO` | `Global.gd:3427` | `get_rect` | 动态反射调用的方法 'get_rect' 在工程中无对应显式声明 |
 | `INFO` | `joy.gd:88` | `get_size` | 动态反射调用的方法 'get_size' 在工程中无对应显式声明 |
-| `INFO` | `Script/base/base_monster.gd:2331` | `get_buff_node` | 动态反射调用的方法 'get_buff_node' 在工程中无对应显式声明 |
+| `INFO` | `Script/base/base_monster.gd:2329` | `get_buff_node` | 动态反射调用的方法 'get_buff_node' 在工程中无对应显式声明 |
 | `INFO` | `Script/base/summon_base_monster.gd:553` | `get_hit_damage` | 动态反射调用的方法 'get_hit_damage' 在工程中无对应显式声明 |
 | `INFO` | `Script/magic_weapon/qlsword.gd:112` | `set_physics_process` | 动态反射调用的方法 'set_physics_process' 在工程中无对应显式声明 |
 | `INFO` | `Script/main_menu/game_announcement.gd:846` | `grab_focus` | 动态反射调用的方法 'grab_focus' 在工程中无对应显式声明 |
@@ -94,12 +91,9 @@
 | `INFO` | `Script/monster/monster_zhw/monster_zhw.gd:22` | `get_power` | 动态反射调用的方法 'get_power' 在工程中无对应显式声明 |
 | `INFO` | `Script/monster/monster_zhw/monster_zhw_sq.gd:22` | `get_power` | 动态反射调用的方法 'get_power' 在工程中无对应显式声明 |
 
-## 二、4. 动画轨道契约 (Anim Track) 详细清单 (2 条)
+## 二、4. 动画轨道契约 (Anim Track) 详细清单 (0 条)
 
-| 严重等级 | 文件位置 | 字面量内容 | 诊断原因与修复建议 |
-|:---:|:---|:---|:---|
-| `ERROR` | `Scene/level/bsz.tscn` | `Bsz:self_modulate` | 动画轨道绑定节点大小写失配: 实际节点路径为 'BSz' → **建议**: `BSz:self_modulate` |
-| `ERROR` | `Scene/level/level_5.tscn` | `Wall:position` | 动画轨道绑定节点大小写失配: 实际节点路径为 'wall' → **建议**: `wall:position` |
+`[√] 未检测到任何契约违规项，该类别 100% 达成合规！`
 
 ## 二、5. 中文字典键契约 (Dict Key) 详细清单 (1797 条)
 
@@ -107,9 +101,9 @@
 |:---:|:---|:---|:---|
 | `WARNING` | `Global.gd:2218` | `技能键位` | 硬编码中文字典键 '技能键位' 已在契约表收录，建议使用 'DataKeys.Skill.KEYMAP' → **建议**: `DataKeys.Skill.KEYMAP` |
 | `WARNING` | `Global.gd:4313` | `阶段` | 硬编码中文字典键 '阶段' 已在契约表收录，建议使用 'DataKeys.Pet.STAGE' → **建议**: `DataKeys.Pet.STAGE` |
-| `WARNING` | `Global.gd:4939` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
-| `WARNING` | `Global.gd:4942` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
-| `WARNING` | `Global.gd:4942` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
+| `WARNING` | `Global.gd:4937` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
+| `WARNING` | `Global.gd:4940` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
+| `WARNING` | `Global.gd:4940` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
 | `WARNING` | `Passive_Skills.gd:75` | `被动技能` | 硬编码中文字典键 '被动技能' 已在契约表收录，建议使用 'DataKeys.Skill.PASSIVE' → **建议**: `DataKeys.Skill.PASSIVE` |
 | `WARNING` | `Passive_Skills.gd:89` | `被动技能` | 硬编码中文字典键 '被动技能' 已在契约表收录，建议使用 'DataKeys.Skill.PASSIVE' → **建议**: `DataKeys.Skill.PASSIVE` |
 | `WARNING` | `Passive_Skills.gd:99` | `被动技能` | 硬编码中文字典键 '被动技能' 已在契约表收录，建议使用 'DataKeys.Skill.PASSIVE' → **建议**: `DataKeys.Skill.PASSIVE` |
