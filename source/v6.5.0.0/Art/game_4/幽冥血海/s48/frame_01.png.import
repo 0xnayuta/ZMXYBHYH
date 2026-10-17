@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://8xpe6pbku6v0"
-path="res://.godot/imported/frame_01.png-3696207756792cb18901fc47bdc9fdba.ctex"
+path="res://.godot/imported/frame_01.png-dde2bc1d8a9632c1a5dc326c0db02b33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Game_4/幽冥血海/s48/frame_01.png"
-dest_files=["res://.godot/imported/frame_01.png-3696207756792cb18901fc47bdc9fdba.ctex"]
+source_file="res://Art/game_4/幽冥血海/s48/frame_01.png"
+dest_files=["res://.godot/imported/frame_01.png-dde2bc1d8a9632c1a5dc326c0db02b33.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://df8igmbsxn8sk"
-path="res://.godot/imported/xhz.png-8d0f48494ad6bf88a58bb351b995b0c4.ctex"
+path="res://.godot/imported/xhz.png-4ccbcd8a8b5788d549543ef9ae6995b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/xhz.png"
-dest_files=["res://.godot/imported/xhz.png-8d0f48494ad6bf88a58bb351b995b0c4.ctex"]
+source_file="res://Art/item_icon/xhz.png"
+dest_files=["res://.godot/imported/xhz.png-4ccbcd8a8b5788d549543ef9ae6995b4.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpq0dd64gliq0"
-path="res://.godot/imported/renshen.png-56e0f210f1da05817fc873e2b97827ca.ctex"
+path="res://.godot/imported/renshen.png-a028874180c556615fe233fd076d41d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/renshen.png"
-dest_files=["res://.godot/imported/renshen.png-56e0f210f1da05817fc873e2b97827ca.ctex"]
+source_file="res://Art/item_icon/renshen.png"
+dest_files=["res://.godot/imported/renshen.png-a028874180c556615fe233fd076d41d3.ctex"]
 
 [params]
 

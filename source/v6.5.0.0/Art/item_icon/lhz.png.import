@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://kuwdt2du0bol"
-path="res://.godot/imported/lhz.png-3e406a9f3de068ff637683b70220555a.ctex"
+path="res://.godot/imported/lhz.png-12c99e5e4fcc84a14d4502e272194582.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/lhz.png"
-dest_files=["res://.godot/imported/lhz.png-3e406a9f3de068ff637683b70220555a.ctex"]
+source_file="res://Art/item_icon/lhz.png"
+dest_files=["res://.godot/imported/lhz.png-12c99e5e4fcc84a14d4502e272194582.ctex"]
 
 [params]
 

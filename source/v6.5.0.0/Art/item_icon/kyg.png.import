@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8y0mhy741fkb"
-path="res://.godot/imported/kyg.png-788163f0505180937ebd77614b29472d.ctex"
+path="res://.godot/imported/kyg.png-c83cb2db0266492ffe605c3119be2992.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/kyg.png"
-dest_files=["res://.godot/imported/kyg.png-788163f0505180937ebd77614b29472d.ctex"]
+source_file="res://Art/item_icon/kyg.png"
+dest_files=["res://.godot/imported/kyg.png-c83cb2db0266492ffe605c3119be2992.ctex"]
 
 [params]
 

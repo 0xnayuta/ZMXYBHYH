@@ -281,7 +281,7 @@ func _physics_process(_delta: float) -> void:
 						"res://Art/2_5_9_0/fbIcon/" + fb_str + ".png",
 						"res://Art/MagicWeapon/Skill_Icon/" + fb_str + ".png",
 						"res://Art/BackPack/AllItems/" + fb_str + ".png",
-						"res://Art/ItemIcon/" + fb_str + ".png",
+						"res://Art/item_icon/" + fb_str + ".png",
 					]
 				)
 			)
@@ -356,7 +356,7 @@ func set_texture2_d(user_key, path: String) -> void:
 		path.find("/Art/2_5_9_0/fbIcon/") != -1
 		or path.find("/Art/MagicWeapon/Skill_Icon/") != -1
 		or path.find("/Art/BackPack/AllItems/") != -1
-		or path.find("/Art/ItemIcon/") != -1
+		or path.find("/Art/item_icon/") != -1
 	)
 	var is_main_sword_array_icon := path.find("/Art/zhuxianjianzhen/") != -1
 	var is_mount_skill_icon := path.find("/Art/Mount/Skills/") != -1

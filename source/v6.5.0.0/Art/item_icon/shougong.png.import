@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b72epqolimcou"
-path="res://.godot/imported/shougong.png-566caa41421cbc7cc2c3b80e0b212d99.ctex"
+path="res://.godot/imported/shougong.png-1b7f68bf10fe88ac500a0626a899a079.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/shougong.png"
-dest_files=["res://.godot/imported/shougong.png-566caa41421cbc7cc2c3b80e0b212d99.ctex"]
+source_file="res://Art/item_icon/shougong.png"
+dest_files=["res://.godot/imported/shougong.png-1b7f68bf10fe88ac500a0626a899a079.ctex"]
 
 [params]
 

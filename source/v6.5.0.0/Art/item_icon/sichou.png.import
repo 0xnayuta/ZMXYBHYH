@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vswuqhied837"
-path="res://.godot/imported/sichou.png-aeabcb9074d6c998e46b2c3ac2470e5b.ctex"
+path="res://.godot/imported/sichou.png-34926cee24ae8e06d1b4c8db756653a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/sichou.png"
-dest_files=["res://.godot/imported/sichou.png-aeabcb9074d6c998e46b2c3ac2470e5b.ctex"]
+source_file="res://Art/item_icon/sichou.png"
+dest_files=["res://.godot/imported/sichou.png-34926cee24ae8e06d1b4c8db756653a9.ctex"]
 
 [params]
 

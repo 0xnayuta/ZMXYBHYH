@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cajorw06ed2p2"
-path="res://.godot/imported/wuxingguo.png-76dd122b4cb2ab9ef999e0fd189ba492.ctex"
+path="res://.godot/imported/wuxingguo.png-450378a3f60fc836d38cc8931f4c2712.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/wuxingguo.png"
-dest_files=["res://.godot/imported/wuxingguo.png-76dd122b4cb2ab9ef999e0fd189ba492.ctex"]
+source_file="res://Art/item_icon/wuxingguo.png"
+dest_files=["res://.godot/imported/wuxingguo.png-450378a3f60fc836d38cc8931f4c2712.ctex"]
 
 [params]
 

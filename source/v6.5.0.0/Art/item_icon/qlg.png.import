@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dt85ce0x7fq30"
-path="res://.godot/imported/qlg.png-885ab8b17f01654157b3d9e7b2e92004.ctex"
+path="res://.godot/imported/qlg.png-9442095b5acd2c6039768bb600b15d51.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/qlg.png"
-dest_files=["res://.godot/imported/qlg.png-885ab8b17f01654157b3d9e7b2e92004.ctex"]
+source_file="res://Art/item_icon/qlg.png"
+dest_files=["res://.godot/imported/qlg.png-9442095b5acd2c6039768bb600b15d51.ctex"]
 
 [params]
 

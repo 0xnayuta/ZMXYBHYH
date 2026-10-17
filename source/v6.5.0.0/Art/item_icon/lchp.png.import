@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7ta0og8vgfji"
-path="res://.godot/imported/lchp.png-b877d00d49d7ba38fd034217f2057d43.ctex"
+path="res://.godot/imported/lchp.png-af6c74c616ba27cf1f9724d873cc9121.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/lchp.png"
-dest_files=["res://.godot/imported/lchp.png-b877d00d49d7ba38fd034217f2057d43.ctex"]
+source_file="res://Art/item_icon/lchp.png"
+dest_files=["res://.godot/imported/lchp.png-af6c74c616ba27cf1f9724d873cc9121.ctex"]
 
 [params]
 

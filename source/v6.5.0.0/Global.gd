@@ -2021,11 +2021,11 @@ func preload_level_monster_resources(monster_group: Dictionary) -> void:
 				"res://Art/add_effect/Buff_icon/htsf.png",
 				"res://Art/add_effect/Buff_icon/Bleed.png",
 				"res://Art/add_effect/Buff_icon/yxbuff.png",
-				"res://Art/ItemIcon/zxbx_3.png",
-				"res://Art/ItemIcon/peach.png",
-				"res://Art/ItemIcon/Bble.png",
-				"res://Art/ItemIcon/radish.png",
-				"res://Art/ItemIcon/qhsbx.png",
+				"res://Art/item_icon/zxbx_3.png",
+				"res://Art/item_icon/peach.png",
+				"res://Art/item_icon/Bble.png",
+				"res://Art/item_icon/radish.png",
+				"res://Art/item_icon/qhsbx.png",
 				"res://Art/BackPack/AllItems/empty.png",
 			]
 		)
@@ -2069,11 +2069,11 @@ func preload_combat_misc_resources() -> void:
 
 func preload_common_drop_textures() -> void:
 	var drop_paths: Array[String] = [
-		"res://Art/ItemIcon/zxbx_3.png",
-		"res://Art/ItemIcon/peach.png",
-		"res://Art/ItemIcon/Bble.png",
-		"res://Art/ItemIcon/radish.png",
-		"res://Art/ItemIcon/qhsbx.png",
+		"res://Art/item_icon/zxbx_3.png",
+		"res://Art/item_icon/peach.png",
+		"res://Art/item_icon/Bble.png",
+		"res://Art/item_icon/radish.png",
+		"res://Art/item_icon/qhsbx.png",
 		"res://Art/BackPack/AllItems/empty.png",
 	]
 	for path in drop_paths:

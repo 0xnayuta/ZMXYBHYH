@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://chq7nhr83mg6b"
-path="res://.godot/imported/shenhuo_3.png-a1427be38792f6ba3ef30c3034cae43a.ctex"
+path="res://.godot/imported/shenhuo_3.png-5fbd2a9c3eb2870c15c1c07e2a557d0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/shenhuo_3.png"
-dest_files=["res://.godot/imported/shenhuo_3.png-a1427be38792f6ba3ef30c3034cae43a.ctex"]
+source_file="res://Art/item_icon/shenhuo_3.png"
+dest_files=["res://.godot/imported/shenhuo_3.png-5fbd2a9c3eb2870c15c1c07e2a557d0d.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b33jfqwa0y7t6"
-path="res://.godot/imported/dshl.png-36865e30889946f9fd74b1af3b509dd6.ctex"
+path="res://.godot/imported/dshl.png-3fae47c9daa1b3b3175ba39d44284567.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/dshl.png"
-dest_files=["res://.godot/imported/dshl.png-36865e30889946f9fd74b1af3b509dd6.ctex"]
+source_file="res://Art/item_icon/dshl.png"
+dest_files=["res://.godot/imported/dshl.png-3fae47c9daa1b3b3175ba39d44284567.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjg7x0u4iqsfw"
-path="res://.godot/imported/lshb.png-1c1c677bf000d199493a0afb4202064d.ctex"
+path="res://.godot/imported/lshb.png-6bfd4dc1315db5e0e47f4815a1efa443.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/lshb.png"
-dest_files=["res://.godot/imported/lshb.png-1c1c677bf000d199493a0afb4202064d.ctex"]
+source_file="res://Art/item_icon/lshb.png"
+dest_files=["res://.godot/imported/lshb.png-6bfd4dc1315db5e0e47f4815a1efa443.ctex"]
 
 [params]
 

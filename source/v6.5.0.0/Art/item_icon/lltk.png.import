@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1av67xbv7ojm"
-path="res://.godot/imported/lltk.png-6ccafb7d941da586cb583b8db9a1e936.ctex"
+path="res://.godot/imported/lltk.png-ccfcfd4e0e24b533ff4146f7f648dbbb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/lltk.png"
-dest_files=["res://.godot/imported/lltk.png-6ccafb7d941da586cb583b8db9a1e936.ctex"]
+source_file="res://Art/item_icon/lltk.png"
+dest_files=["res://.godot/imported/lltk.png-ccfcfd4e0e24b533ff4146f7f648dbbb.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1p1iqm7kx1br"
-path="res://.godot/imported/lingli.png-67b789e7f5517d982400afb6fad231ab.ctex"
+path="res://.godot/imported/lingli.png-f70f2f935ed8916f8de6e593e680900f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/lingli.png"
-dest_files=["res://.godot/imported/lingli.png-67b789e7f5517d982400afb6fad231ab.ctex"]
+source_file="res://Art/item_icon/lingli.png"
+dest_files=["res://.godot/imported/lingli.png-f70f2f935ed8916f8de6e593e680900f.ctex"]
 
 [params]
 

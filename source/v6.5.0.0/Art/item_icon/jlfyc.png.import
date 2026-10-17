@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvyusxlodricv"
-path="res://.godot/imported/jlfyc.png-7d103402ab7716a823e1eaa197b8857f.ctex"
+path="res://.godot/imported/jlfyc.png-a4f96dd3d422cf4341cd84e00c6c6f5a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/jlfyc.png"
-dest_files=["res://.godot/imported/jlfyc.png-7d103402ab7716a823e1eaa197b8857f.ctex"]
+source_file="res://Art/item_icon/jlfyc.png"
+dest_files=["res://.godot/imported/jlfyc.png-a4f96dd3d422cf4341cd84e00c6c6f5a.ctex"]
 
 [params]
 

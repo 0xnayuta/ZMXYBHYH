@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pctlgadk72uw"
-path="res://.godot/imported/frame_01.png-0c430aabe02b49e3bd2fb2992225c8b8.ctex"
+path="res://.godot/imported/frame_01.png-e39b9aea7dd72275ebf873de1014c130.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Game_4/西牛贺洲_噩梦/s400/frame_01.png"
-dest_files=["res://.godot/imported/frame_01.png-0c430aabe02b49e3bd2fb2992225c8b8.ctex"]
+source_file="res://Art/game_4/西牛贺洲_噩梦/s400/frame_01.png"
+dest_files=["res://.godot/imported/frame_01.png-e39b9aea7dd72275ebf873de1014c130.ctex"]
 
 [params]
 

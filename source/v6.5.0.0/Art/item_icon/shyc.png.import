@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bj7sivso5n5u"
-path="res://.godot/imported/shyc.png-22b70d130e148e57725ec74bc014e6b3.ctex"
+path="res://.godot/imported/shyc.png-f71ada96cc96364c5af372800b922b95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/shyc.png"
-dest_files=["res://.godot/imported/shyc.png-22b70d130e148e57725ec74bc014e6b3.ctex"]
+source_file="res://Art/item_icon/shyc.png"
+dest_files=["res://.godot/imported/shyc.png-f71ada96cc96364c5af372800b922b95.ctex"]
 
 [params]
 

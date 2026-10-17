@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5suohv6evds3"
-path="res://.godot/imported/genguguo.png-7ae939a8c5305ba4711eda3bee1ea523.ctex"
+path="res://.godot/imported/genguguo.png-7fe4386b07faed8cf15ac6a01d504450.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/genguguo.png"
-dest_files=["res://.godot/imported/genguguo.png-7ae939a8c5305ba4711eda3bee1ea523.ctex"]
+source_file="res://Art/item_icon/genguguo.png"
+dest_files=["res://.godot/imported/genguguo.png-7fe4386b07faed8cf15ac6a01d504450.ctex"]
 
 [params]
 

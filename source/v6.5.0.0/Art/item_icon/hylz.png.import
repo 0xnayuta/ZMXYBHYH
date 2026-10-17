@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwubd51bi55ob"
-path="res://.godot/imported/hylz.png-07d9f9e664ad3113c8e77b645dbe1dd8.ctex"
+path="res://.godot/imported/hylz.png-1a67693e390f4bd92a705817b247c014.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/hylz.png"
-dest_files=["res://.godot/imported/hylz.png-07d9f9e664ad3113c8e77b645dbe1dd8.ctex"]
+source_file="res://Art/item_icon/hylz.png"
+dest_files=["res://.godot/imported/hylz.png-1a67693e390f4bd92a705817b247c014.ctex"]
 
 [params]
 

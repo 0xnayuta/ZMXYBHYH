@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://t0afpx5kp48f"
-path="res://.godot/imported/jingliangzlwsz.png-7f34bd1ff7a41a6cf824e6bf9b91a34e.ctex"
+path="res://.godot/imported/jingliangzlwsz.png-9d30d7c4bb71814bd90a8664172bb6b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ItemIcon/jingliangzlwsz.png"
-dest_files=["res://.godot/imported/jingliangzlwsz.png-7f34bd1ff7a41a6cf824e6bf9b91a34e.ctex"]
+source_file="res://Art/item_icon/jingliangzlwsz.png"
+dest_files=["res://.godot/imported/jingliangzlwsz.png-9d30d7c4bb71814bd90a8664172bb6b1.ctex"]
 
 [params]
 

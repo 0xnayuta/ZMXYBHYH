@@ -50,7 +50,7 @@ func _physics_process(_delta: float) -> void:
 		if icon_texture == null and icon_name == "PetLifeBonus":
 			icon_texture = Global.get_cached_texture("res://Art/Pet/skillicon/smjc.png")
 		if icon_texture == null and icon_name == "DoubleFallPro":
-			icon_texture = Global.get_cached_texture("res://Art/ItemIcon/xydxq.png")
+			icon_texture = Global.get_cached_texture("res://Art/item_icon/xydxq.png")
 		texture = icon_texture
 		buff_bar.texture_progress = icon_texture
 	if data_list["AddTime"] > 0:

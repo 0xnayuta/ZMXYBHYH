@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 
 
 func set_pic(name_):
-	var texture_path = "res://Art/ItemIcon/" + str(name_) + ".png"
+	var texture_path = "res://Art/item_icon/" + str(name_) + ".png"
 	var texture = load_soft(texture_path)
 
 	if not texture:
@@ -44,7 +44,7 @@ func set_pic(name_):
 			texture = load_soft(custom_icon_path)
 
 	if not texture:
-		texture = load_soft("res://Art/ItemIcon/zxbx_3.png")
+		texture = load_soft("res://Art/item_icon/zxbx_3.png")
 
 	if item_pic:
 		item_pic.visible = true
