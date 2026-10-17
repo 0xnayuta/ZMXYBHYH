@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件 3.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件 4.png" id="5"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件 5.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/AddEffect/Fire/Skull.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/add_effect/Fire/Skull.png" id="7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kwp6y"]
 radius = 121.103

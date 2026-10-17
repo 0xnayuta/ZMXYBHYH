@@ -3,7 +3,7 @@ extends BaseLevel
 const BOSS_SCENE := preload("res://Scene/monster/constellation_boss_base.tscn")
 const BOSS_GROUND_SPAWN := Vector2(500, 438)
 const BOSS_SPAWN_X_SPACING := 80.0
-const BACKGROUND_PATH_FORMAT := "res://Art/Constellations/Background/%d.png"
+const BACKGROUND_PATH_FORMAT := "res://Art/constellations/Background/%d.png"
 const PROJECT_IDS := [47101, 47102, 47103, 47104, 47105, 47106, 47107, 47108, 47109, 47110, 47111, 47112, 47113, 47114]
 const SOURCE_IDS := [140, 142, 144, 146, 147, 149, 150, 151, 152, 156, 157, 158, 159, 162]
 const TIER_NAMES := [

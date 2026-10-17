@@ -10,7 +10,7 @@ const NAMES := ["轸宿", "翼火蛇", "张月鹿", "星日马", "柳宿", "鬼�
 
 func _ready() -> void:
 	if close_button != null:
-		close_button.texture_normal = load("res://Art/Constellations/UI/31.png")
+		close_button.texture_normal = load("res://Art/constellations/UI/31.png")
 		close_button.texture_pressed = close_button.texture_normal
 		close_button.texture_hover = close_button.texture_normal
 		close_button.ignore_texture_size = true

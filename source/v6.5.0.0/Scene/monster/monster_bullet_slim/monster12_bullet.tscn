@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" path="res://Art/Monster/Monster12/BulletFire/13.png" id="14"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Monster12/BulletFire/14.png" id="15"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Monster12/BulletFire/15.png" id="16"]
-[ext_resource type="Texture2D" path="res://Art/AddEffect/Fire/Skull.png" id="17"]
+[ext_resource type="Texture2D" path="res://Art/add_effect/Fire/Skull.png" id="17"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ep4tj"]
 radius = 121.103

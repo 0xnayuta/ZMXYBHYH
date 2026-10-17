@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3Monster/Monster_147/Bullet3/15.png" id="16"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3Monster/Monster_147/Bullet3/16.png" id="17"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3Monster/Monster_147/Bullet3/17.png" id="18"]
-[ext_resource type="Texture2D" path="res://Art/AddEffect/Fire/Skull.png" id="19"]
+[ext_resource type="Texture2D" path="res://Art/add_effect/Fire/Skull.png" id="19"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqao1"]
 radius = 121.103

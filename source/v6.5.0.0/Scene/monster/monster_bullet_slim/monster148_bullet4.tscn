@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3Monster/Monster_148/Monster148Bullet4/8.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3Monster/Monster_148/Monster148Bullet4/9.png" id="5"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3Monster/Monster_148/Monster148Bullet4/10.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/AddEffect/Fire/Skull.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/add_effect/Fire/Skull.png" id="7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4myhy"]
 radius = 121.103

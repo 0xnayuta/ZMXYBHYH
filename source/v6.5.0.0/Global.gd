@@ -1507,7 +1507,7 @@ func clear_combat_runtime_cache() -> void:
 		"res://Art/Pet/",
 		"res://Art/MagicWeapon/",
 		"res://Art/zhuxianjianzhen/",
-		"res://Art/AddEffect/",
+		"res://Art/add_effect/",
 		"res://Art/all_number/",
 		"res://Scene/hero/",
 		"res://Scene/monster/",
@@ -2012,15 +2012,15 @@ func preload_level_monster_resources(monster_group: Dictionary) -> void:
 		texture_paths
 		. append_array(
 			[
-				"res://Art/AddEffect/Buff_icon/poision.png",
-				"res://Art/AddEffect/Buff_icon/mp_poision.png",
-				"res://Art/AddEffect/Buff_icon/Ice.png",
-				"res://Art/AddEffect/Buff_icon/Fire.png",
-				"res://Art/AddEffect/Buff_icon/speed_down.png",
-				"res://Art/AddEffect/Buff_icon/stun.png",
-				"res://Art/AddEffect/Buff_icon/htsf.png",
-				"res://Art/AddEffect/Buff_icon/Bleed.png",
-				"res://Art/AddEffect/Buff_icon/yxbuff.png",
+				"res://Art/add_effect/Buff_icon/poision.png",
+				"res://Art/add_effect/Buff_icon/mp_poision.png",
+				"res://Art/add_effect/Buff_icon/Ice.png",
+				"res://Art/add_effect/Buff_icon/Fire.png",
+				"res://Art/add_effect/Buff_icon/speed_down.png",
+				"res://Art/add_effect/Buff_icon/stun.png",
+				"res://Art/add_effect/Buff_icon/htsf.png",
+				"res://Art/add_effect/Buff_icon/Bleed.png",
+				"res://Art/add_effect/Buff_icon/yxbuff.png",
 				"res://Art/ItemIcon/zxbx_3.png",
 				"res://Art/ItemIcon/peach.png",
 				"res://Art/ItemIcon/Bble.png",
@@ -2044,15 +2044,15 @@ func preload_level_monster_resources(monster_group: Dictionary) -> void:
 
 func preload_combat_misc_resources() -> void:
 	var texture_paths: Array[String] = [
-		"res://Art/AddEffect/Buff_icon/poision.png",
-		"res://Art/AddEffect/Buff_icon/mp_poision.png",
-		"res://Art/AddEffect/Buff_icon/Ice.png",
-		"res://Art/AddEffect/Buff_icon/Fire.png",
-		"res://Art/AddEffect/Buff_icon/speed_down.png",
-		"res://Art/AddEffect/Buff_icon/stun.png",
-		"res://Art/AddEffect/Buff_icon/htsf.png",
-		"res://Art/AddEffect/Buff_icon/Bleed.png",
-		"res://Art/AddEffect/Buff_icon/yxbuff.png",
+		"res://Art/add_effect/Buff_icon/poision.png",
+		"res://Art/add_effect/Buff_icon/mp_poision.png",
+		"res://Art/add_effect/Buff_icon/Ice.png",
+		"res://Art/add_effect/Buff_icon/Fire.png",
+		"res://Art/add_effect/Buff_icon/speed_down.png",
+		"res://Art/add_effect/Buff_icon/stun.png",
+		"res://Art/add_effect/Buff_icon/htsf.png",
+		"res://Art/add_effect/Buff_icon/Bleed.png",
+		"res://Art/add_effect/Buff_icon/yxbuff.png",
 	]
 	for path in texture_paths:
 		get_cached_texture(path)

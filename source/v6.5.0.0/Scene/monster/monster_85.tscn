@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3_SpecialEffect/Monster_3_2/SpecialEffect_16.png" id="5"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3_SpecialEffect/Monster_3_2/SpecialEffect_35.png" id="6"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3_SpecialEffect/Monster_3_2/SpecialEffect_19.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/AddEffect/SpeedDown.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/add_effect/SpeedDown.png" id="8"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("3")

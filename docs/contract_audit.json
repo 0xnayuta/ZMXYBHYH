@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "scan_time": "2026-10-17 22:01:45",
+    "scan_time": "2026-10-17 22:27:31",
     "project_dir": "G:\\source\\repos\\ZMXYBHYH\\source\\v6.5.0.0",
     "stats": {
       "total_findings": 1967,
@@ -13,7 +13,7 @@
         "reflection": 13,
         "dict_key": 1797
       },
-      "duration_seconds": 6.14,
+      "duration_seconds": 6.11,
       "scripts_scanned": 722,
       "scenes_scanned": 1132
     }
@@ -1054,7 +1054,7 @@
       "severity": "WARNING",
       "file": "Scene/base/special_affect_slim/yxbuff.tscn",
       "line": 3,
-      "literal": "res://Art/AddEffect/animation",
+      "literal": "res://Art/add_effect/animation",
       "message": "资源文件或目录不存在: 分段不存在: animation",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1462,9 +1462,9 @@
     {
       "category": "resource_path",
       "severity": "WARNING",
-      "file": "Art/AddEffect/animation (1).png.import",
+      "file": "Art/add_effect/animation (1).png.import",
       "line": 13,
-      "literal": "res://Art/AddEffect/animation",
+      "literal": "res://Art/add_effect/animation",
       "message": "资源文件或目录不存在: 分段不存在: animation",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Script/monster/monster_bullet.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3Monster/Monster_1404/1.png" id="2"]
 [ext_resource type="Texture2D" path="res://Art/Monster/Game3Monster/Monster_1404/001.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/AddEffect/Fire/Skull.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/add_effect/Fire/Skull.png" id="4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gmgir"]
 radius = 121.103
