@@ -256,8 +256,8 @@ func _physics_process(_delta: float) -> void:
 				user_key,
 				_first_existing(
 					[
-						"res://Art/Skill/SkillIcon/" + skill_name + ".png",
-						"res://Art/Skill/LittleSkillIcon/" + skill_name + ".png",
+						"res://Art/skill/SkillIcon/" + skill_name + ".png",
+						"res://Art/skill/LittleSkillIcon/" + skill_name + ".png",
 					]
 				)
 			)
@@ -361,8 +361,8 @@ func set_texture2_d(user_key, path: String) -> void:
 	var is_main_sword_array_icon := path.find("/Art/zhuxianjianzhen/") != -1
 	var is_mount_skill_icon := path.find("/Art/Mount/Skills/") != -1
 	var is_skill_icon := (
-		path.find("/Art/Skill/SkillIcon/") != -1
-		or path.find("/Art/Skill/LittleSkillIcon/") != -1
+		path.find("/Art/skill/SkillIcon/") != -1
+		or path.find("/Art/skill/LittleSkillIcon/") != -1
 		or is_mount_skill_icon
 		or is_magic_weapon_icon
 		or is_main_sword_array_icon

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Script/skill/bd_skill.gd" id="1"]
 [ext_resource type="Script" path="res://Script/skill/passive_skill_grid_backdrop.gd" id="2"]
 [ext_resource type="FontFile" path="res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Skill/uplevel.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/skill/uplevel.png" id="4"]
 
 [node name="bd_skill" type="MarginContainer" unique_id=361076914]
 offset_right = 760.0

@@ -43,7 +43,7 @@
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/gg_2.png" id="41"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/hj1.png" id="42"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/hj2.png" id="43"]
-[ext_resource type="Texture2D" path="res://Art/MainGame/463.png" id="44"]
+[ext_resource type="Texture2D" path="res://Art/main_game/463.png" id="44"]
 [ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="45"]
 
 [sub_resource type="ShaderMaterial" id="1"]

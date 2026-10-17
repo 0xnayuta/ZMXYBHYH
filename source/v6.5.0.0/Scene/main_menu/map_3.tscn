@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/main_menu/map_3.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/MainGame/3.jpg" id="2"]
+[ext_resource type="Texture2D" path="res://Art/main_game/3.jpg" id="2"]
 [ext_resource type="Shader" path="res://Shader/LevelButton.gdshader" id="3"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/LevelButtonIcon/899.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/LevelButtonIcon/903.png" id="5"]
@@ -65,9 +65,9 @@
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/dy_2.png" id="63"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/hj1.png" id="64"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/hj2.png" id="65"]
-[ext_resource type="Texture2D" path="res://Art/MainGame/463.png" id="66"]
+[ext_resource type="Texture2D" path="res://Art/main_game/463.png" id="66"]
 [ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="67"]
-[ext_resource type="Texture2D" path="res://Art/MainGame/49.png" id="68"]
+[ext_resource type="Texture2D" path="res://Art/main_game/49.png" id="68"]
 [ext_resource type="Texture2D" path="res://Art/zhuxianjianzhen/zhu_xian_sword/sprites/DefineSprite_47/3.png" id="69"]
 
 [sub_resource type="ShaderMaterial" id="1"]

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "scan_time": "2026-10-17 21:25:49",
+    "scan_time": "2026-10-17 22:01:45",
     "project_dir": "G:\\source\\repos\\ZMXYBHYH\\source\\v6.5.0.0",
     "stats": {
       "total_findings": 1967,
@@ -13,7 +13,7 @@
         "reflection": 13,
         "dict_key": 1797
       },
-      "duration_seconds": 5.87,
+      "duration_seconds": 6.14,
       "scripts_scanned": 722,
       "scenes_scanned": 1132
     }
@@ -524,7 +524,7 @@
       "severity": "WARNING",
       "file": "Scene/other_scene/role_button.gd",
       "line": 8,
-      "literal": "res://Art/MainGame/choose_player",
+      "literal": "res://Art/main_game/choose_player",
       "message": "资源文件或目录不存在: 分段不存在: choose_player",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -534,7 +534,7 @@
       "severity": "WARNING",
       "file": "Scene/other_scene/star.gd",
       "line": 6,
-      "literal": "res://Art/MainGame/choose_player/xx_",
+      "literal": "res://Art/main_game/choose_player/xx_",
       "message": "资源文件或目录不存在: 分段不存在: choose_player",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"

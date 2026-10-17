@@ -387,7 +387,7 @@ func _log_battle_load_context(paths: Array[String]) -> void:
 	var map_scene_paths: Array[String] = []
 	for path_value in paths:
 		var path := str(path_value)
-		if path.contains("/Scene/Main_menu/Map_") or path.contains("/Art/MainGame/"):
+		if path.contains("/Scene/Main_menu/Map_") or path.contains("/Art/main_game/"):
 			map_scene_paths.append(path)
 	print("[Battle VRAM] map_paths=", map_scene_paths)
 

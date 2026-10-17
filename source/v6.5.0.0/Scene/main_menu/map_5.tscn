@@ -19,8 +19,8 @@
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/1042.png" id="17"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/1165.png" id="18"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/gg_1.png" id="19"]
-[ext_resource type="Texture2D" path="res://Art/MainGame/49.png" id="20"]
-[ext_resource type="Texture2D" path="res://Art/MainGame/463.png" id="21"]
+[ext_resource type="Texture2D" path="res://Art/main_game/49.png" id="20"]
+[ext_resource type="Texture2D" path="res://Art/main_game/463.png" id="21"]
 [ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="22"]
 [ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/dy_1.png" id="23"]
 

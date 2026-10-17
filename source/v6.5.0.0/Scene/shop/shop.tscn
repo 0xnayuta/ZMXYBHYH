@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" path="res://Art/shop/51.png" id="23"]
 [ext_resource type="Texture2D" path="res://Art/shop/53.png" id="24"]
 [ext_resource type="Texture2D" path="res://Art/shop/46.png" id="25"]
-[ext_resource type="Texture2D" path="res://Art/Skill/236.png" id="26"]
+[ext_resource type="Texture2D" path="res://Art/skill/236.png" id="26"]
 
 [sub_resource type="StyleBoxTexture" id="1"]
 texture = ExtResource("6")

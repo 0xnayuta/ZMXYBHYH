@@ -5,7 +5,7 @@ var my_father
 
 
 func _physics_process(delta: float) -> void:
-	self.set_button_icon(load("res://Art/MainGame/choose_player/" + str(my_name) + ".png"))
+	self.set_button_icon(load("res://Art/main_game/choose_player/" + str(my_name) + ".png"))
 	match my_name:
 		"swk":
 			role_name.text = "孙悟空"

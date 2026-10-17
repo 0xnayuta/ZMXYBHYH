@@ -1,14 +1,14 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/main_menu/main_menu.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/MainGame/bg_extended_runtime.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/MainGame/zmbh_runtime.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/main_game/bg_extended_runtime.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/main_game/zmbh_runtime.png" id="3"]
 [ext_resource type="FontFile" path="res://Font/1_aaa_FZCuYuan-M03S.ttf" id="4"]
-[ext_resource type="Texture2D" path="res://Art/MainGame/begin0.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/MainGame/begin2.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/MainGame/begin1.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/MainGame/b0.png" id="8"]
-[ext_resource type="Texture2D" path="res://Art/MainGame/b1.png" id="9"]
+[ext_resource type="Texture2D" path="res://Art/main_game/begin0.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/main_game/begin2.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/main_game/begin1.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/main_game/b0.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/main_game/b1.png" id="9"]
 
 [node name="Main_Menu" type="Node2D" unique_id=526767492]
 process_mode = 3

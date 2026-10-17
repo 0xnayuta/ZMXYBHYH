@@ -959,7 +959,7 @@ func prewarm_skill_page_resources() -> void:
 		6: ["nz_jlsh", "nz_fhcc", "nz_hlqg", "nz_hlhs", "nz_lblc"],
 	}
 	for icon_name in role_skill_icons[role_id]:
-		paths.append("res://Art/Skill/SkillIcon/%s.png" % icon_name)
+		paths.append("res://Art/skill/SkillIcon/%s.png" % icon_name)
 	await _preload_paths_threaded(paths)
 	skill_learn = _resource_cache.get("res://Scene/skill/learn_skill.tscn") as PackedScene
 	zd_skill = _resource_cache.get("res://Scene/skill/zd_skill.tscn") as PackedScene
@@ -3331,7 +3331,7 @@ func release_ui_runtime_cache(release_permanent: bool = false) -> void:
 			_texture_cache,
 			[
 				"res://Art/BackPack/",
-				"res://Art/Skill/",
+				"res://Art/skill/",
 				"res://Art/shop/",
 				"res://Art/ldl/",
 				"res://Art/Pet/PetPageResources/",
@@ -3390,7 +3390,7 @@ func _is_runtime_ui_scene_path(scene_path: String) -> bool:
 
 func _ui_art_prefixes_for_scene(scene_path: String) -> Array:
 	if scene_path.begins_with("res://Scene/skill/"):
-		return ["res://Art/Skill/"]
+		return ["res://Art/skill/"]
 	if scene_path.begins_with("res://Scene/back_pack/"):
 		return ["res://Art/BackPack/"]
 	if scene_path == "res://Scene/pet/pet_interface.tscn":

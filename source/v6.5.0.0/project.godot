@@ -17,9 +17,9 @@ config/features=PackedStringArray("4.7", "Mobile")
 run/max_fps=150
 run/low_processor_mode_sleep_usec=16000
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
-boot_splash/image="res://Art/MainGame/bhpic.png"
-config/icon="res://Art/MainGame/bhpic.png"
-config/windows_native_icon="res://Art/MainGame/bhico.ico"
+boot_splash/image="res://Art/main_game/bhpic.png"
+config/icon="res://Art/main_game/bhpic.png"
+config/windows_native_icon="res://Art/main_game/bhico.ico"
 
 [autoload]
 
@@ -45,7 +45,7 @@ window/size/window_height_override=944
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
-mouse_cursor/custom_image="res://Art/MainGame/sbgb.png"
+mouse_cursor/custom_image="res://Art/main_game/sbgb.png"
 window/size/initial_width=1504
 window/size/initial_height=944
 #display/window/size/width=1280

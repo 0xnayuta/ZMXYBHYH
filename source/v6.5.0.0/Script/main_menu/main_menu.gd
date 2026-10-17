@@ -88,7 +88,7 @@ func _exit_tree() -> void:
 
 func _apply_main_menu_background(index: int) -> void:
 	var clamped_index := clampi(index, 1, 6)
-	var next_background_path := "res://Art/MainGame/背景%d_runtime.jpg" % clamped_index
+	var next_background_path := "res://Art/main_game/背景%d_runtime.jpg" % clamped_index
 	if _active_main_menu_background_path != "" and _active_main_menu_background_path != next_background_path:
 		back_ground.texture = null
 		Global.release_cached_texture(_active_main_menu_background_path)
