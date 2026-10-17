@@ -11,7 +11,7 @@ var _regen_elapsed := 0.0
 
 
 func _manifest_path() -> String:
-	return "res://Art/monster/CloudBoss/3352/manifest.json"
+	return "res://Art/monster/cloud_boss/3352/manifest.json"
 
 
 func _resolve_runtime_config() -> Dictionary:

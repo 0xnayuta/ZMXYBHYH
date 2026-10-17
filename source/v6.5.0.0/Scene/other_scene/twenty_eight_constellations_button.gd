@@ -7,7 +7,7 @@ var constellation_name := ""
 func configure(level: int, display_name: String, is_north: bool) -> void:
 	level_index = clampi(level, 1, 14)
 	constellation_name = display_name
-	var icon := load("res://Art/constellations/Icons/%d.png" % level_index) as Texture2D
+	var icon := load("res://Art/constellations/icons/%d.png" % level_index) as Texture2D
 	texture_normal = icon
 	texture_pressed = icon
 	texture_hover = icon

@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/archive_interface/read_archive_interface.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/game_pic/ArchivePicture/87.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/game_pic/archive_picture/87.png" id="2"]
 [ext_resource type="FontFile" path="res://Font/1_aaa_FZCuYuan-M03S.ttf.TTF" id="3"]
 [ext_resource type="Texture2D" path="res://Art/backpack/49.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/magic_weapon/222.png" id="5"]

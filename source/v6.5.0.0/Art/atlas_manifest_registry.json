@@ -253,28 +253,28 @@
       "manifest": "res://Art/monster/Monster_73/atlas_small_monsters/manifest.json"
     },
     {
-      "root": "res://Art/monster/Monster10",
-      "manifest": "res://Art/monster/Monster10/atlas_small_monsters/manifest.json"
+      "root": "res://Art/monster/monster_10",
+      "manifest": "res://Art/monster/monster_10/atlas_small_monsters/manifest.json"
     },
     {
       "root": "res://Art/monster/Monster_7",
       "manifest": "res://Art/monster/Monster_7/atlas_small_monsters/manifest.json"
     },
     {
-      "root": "res://Art/monster/Monster1",
-      "manifest": "res://Art/monster/Monster1/atlas_small_monsters/manifest.json"
+      "root": "res://Art/monster/monster_1",
+      "manifest": "res://Art/monster/monster_1/atlas_small_monsters/manifest.json"
     },
     {
-      "root": "res://Art/monster/Monster2",
-      "manifest": "res://Art/monster/Monster2/atlas_small_monsters/manifest.json"
+      "root": "res://Art/monster/monster_2",
+      "manifest": "res://Art/monster/monster_2/atlas_small_monsters/manifest.json"
     },
     {
-      "root": "res://Art/monster/Monster3",
-      "manifest": "res://Art/monster/Monster3/atlas_small_monsters/manifest.json"
+      "root": "res://Art/monster/monster_3",
+      "manifest": "res://Art/monster/monster_3/atlas_small_monsters/manifest.json"
     },
     {
-      "root": "res://Art/monster/Monster9",
-      "manifest": "res://Art/monster/Monster9/atlas_small_monsters/manifest.json"
+      "root": "res://Art/monster/monster_9",
+      "manifest": "res://Art/monster/monster_9/atlas_small_monsters/manifest.json"
     },
     {
       "root": "res://Art/monster/QiongQi",

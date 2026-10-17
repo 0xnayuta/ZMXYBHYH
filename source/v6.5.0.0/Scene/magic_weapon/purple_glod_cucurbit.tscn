@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_magic_weapon.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/magic_weapon/purple_glod_cucurbit.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon9/hit.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon9/wait.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/magic_weapon_9/hit.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/magic_weapon_9/wait.png" id="4"]
 
 [sub_resource type="SpriteFrames" id="3"]
 animations = [{

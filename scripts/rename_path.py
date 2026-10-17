@@ -160,10 +160,16 @@ class PathRenameEngine:
                 new_content = content
                 if self.is_dir:
                     new_content = new_content.replace(f"res://{self.old_rel}/", f"res://{self.new_rel}/")
-                    new_content = new_content.replace(f"res://{self.old_rel}", f"res://{self.new_rel}")
                     new_content = new_content.replace(f'"{self.old_rel}/', f'"{self.new_rel}/')
                     new_content = new_content.replace(f"'{self.old_rel}/", f"'{self.new_rel}/")
                     new_content = new_content.replace(f'/{self.old_rel}/', f'/{self.new_rel}/')
+                    # 无斜杠形态必须附加右侧边界断言，防止误伤同层前缀兄弟目录：
+                    # 例如 Role1 误伤 Role1AllEquipment、Monster1 误伤 Monster10、Level_1 误伤 Level_1_3。
+                    new_content = re.sub(
+                        r"res://" + re.escape(self.old_rel) + r"(?![A-Za-z0-9_.\-])",
+                        lambda _m: f"res://{self.new_rel}",
+                        new_content,
+                    )
                 else:
                     new_content = new_content.replace(f"res://{self.old_rel}", f"res://{self.new_rel}")
                     new_content = new_content.replace(f'"{self.old_rel}"', f'"{self.new_rel}"')

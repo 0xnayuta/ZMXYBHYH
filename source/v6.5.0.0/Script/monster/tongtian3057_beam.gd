@@ -1,7 +1,7 @@
 extends MonsterBullet
 class_name Tongtian3057Beam
 
-const ATLAS_MANIFEST := "res://Art/monster/Tongtian3057/atlas/manifest.json"
+const ATLAS_MANIFEST := "res://Art/monster/tongtian_3057/atlas/manifest.json"
 const FRAME_COUNT := 28
 const SOURCE_FPS := 30.0
 const PULSE_COUNT := 4

@@ -1,9 +1,9 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/level/role_information.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/level/Gogo/1.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/level/Gogo/13.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/level/Gogo/67.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/level/gogo/1.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/level/gogo/13.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/level/gogo/67.png" id="4"]
 [ext_resource type="Script" path="res://Script/level/set_list.gd" id="5"]
 [ext_resource type="Texture2D" path="res://Art/role_info_icon/479.png" id="6"]
 [ext_resource type="Texture2D" path="res://Art/role_info_icon/486.png" id="7"]

@@ -1,7 +1,7 @@
 extends SummonBaseMonster
 class_name Monster143zhw
 
-const BODY_ATLAS_MANIFEST := "res://Art/monster/Monster143zhw/atlas/manifest.json"
+const BODY_ATLAS_MANIFEST := "res://Art/monster/monster_143_zhw/atlas/manifest.json"
 
 var _body_stream: StreamedPngEffect
 var _body_action: StringName = &""

@@ -1,8 +1,8 @@
 # ZMXYBHYH 全工程字面量契约诊断审计报告 (Phase 8-1)
 
-> 生成时间: 2026-10-18 00:43:27  
+> 生成时间: 2026-10-18 01:45:50  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
-> 扫描耗时: `4.72 秒`（指标要求 ≤ 30 秒）  
+> 扫描耗时: `4.60 秒`（指标要求 ≤ 30 秒）  
 > 覆盖资产: 脚本 `722 个` / 场景 `1132 个`  
 
 ---
@@ -40,30 +40,30 @@
 | `WARNING` | `Global.gd:305` | `res://Art/monster/QiongQi/Effects` | 资源文件或目录不存在: 分段不存在: Effects |
 | `WARNING` | `Global.gd:306` | `res://Art/monster/TaoWu/Effects` | 资源文件或目录不存在: 分段不存在: Effects |
 | `WARNING` | `Global.gd:1271` | `res://Art/all_number/cure/cure_` | 资源文件或目录不存在: 分段不存在: cure_ |
-| `WARNING` | `Global.gd:1272` | `res://Art/all_number/CureMp/CureMp_` | 资源文件或目录不存在: 分段不存在: CureMp_ |
-| `WARNING` | `Global.gd:1273` | `res://Art/all_number/ReduceMp/ReduceMp_` | 资源文件或目录不存在: 分段不存在: ReduceMp_ |
-| `WARNING` | `Global.gd:1274` | `res://Art/all_number/Physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
+| `WARNING` | `Global.gd:1272` | `res://Art/all_number/cure_mp/CureMp_` | 资源文件或目录不存在: 分段不存在: CureMp_ |
+| `WARNING` | `Global.gd:1273` | `res://Art/all_number/reduce_mp/ReduceMp_` | 资源文件或目录不存在: 分段不存在: ReduceMp_ |
+| `WARNING` | `Global.gd:1274` | `res://Art/all_number/physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
 | `WARNING` | `Global.gd:1275` | `res://Art/all_number/physicscrit/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
 | `WARNING` | `Global.gd:1276` | `res://Art/all_number/magic/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
 | `WARNING` | `Global.gd:1277` | `res://Art/all_number/magic/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
 | `WARNING` | `Global.gd:1278` | `res://Art/all_number/magiccrit/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
 | `WARNING` | `Global.gd:1279` | `res://Art/all_number/real/real_` | 资源文件或目录不存在: 分段不存在: real_ |
 | `WARNING` | `Global.gd:1280` | `res://Art/all_number/realcrit/real_` | 资源文件或目录不存在: 分段不存在: real_ |
-| `WARNING` | `Global.gd:1281` | `res://Art/all_number/LJ/lj_` | 资源文件或目录不存在: 分段不存在: lj_ |
+| `WARNING` | `Global.gd:1281` | `res://Art/all_number/lj/lj_` | 资源文件或目录不存在: 分段不存在: lj_ |
 | `WARNING` | `Global.gd:1282` | `res://Art/all_number/monster/physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
 | `WARNING` | `Global.gd:1283` | `res://Art/all_number/monster/magic/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
 | `WARNING` | `Global.gd:1984` | `res://Scene/monster/monster_` | 资源文件或目录不存在: 分段不存在: monster_ |
 | `WARNING` | `Global.gd:2085` | `res://Art/all_number/cure/cure_` | 资源文件或目录不存在: 分段不存在: cure_ |
-| `WARNING` | `Global.gd:2086` | `res://Art/all_number/CureMp/CureMp_` | 资源文件或目录不存在: 分段不存在: CureMp_ |
-| `WARNING` | `Global.gd:2087` | `res://Art/all_number/ReduceMp/ReduceMp_` | 资源文件或目录不存在: 分段不存在: ReduceMp_ |
-| `WARNING` | `Global.gd:2088` | `res://Art/all_number/Physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
+| `WARNING` | `Global.gd:2086` | `res://Art/all_number/cure_mp/CureMp_` | 资源文件或目录不存在: 分段不存在: CureMp_ |
+| `WARNING` | `Global.gd:2087` | `res://Art/all_number/reduce_mp/ReduceMp_` | 资源文件或目录不存在: 分段不存在: ReduceMp_ |
+| `WARNING` | `Global.gd:2088` | `res://Art/all_number/physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
 | `WARNING` | `Global.gd:2089` | `res://Art/all_number/physicscrit/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
 | `WARNING` | `Global.gd:2090` | `res://Art/all_number/magic/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
 | `WARNING` | `Global.gd:2091` | `res://Art/all_number/magic/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
 | `WARNING` | `Global.gd:2092` | `res://Art/all_number/magiccrit/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
 | `WARNING` | `Global.gd:2093` | `res://Art/all_number/real/real_` | 资源文件或目录不存在: 分段不存在: real_ |
 | `WARNING` | `Global.gd:2094` | `res://Art/all_number/realcrit/real_` | 资源文件或目录不存在: 分段不存在: real_ |
-| `WARNING` | `Global.gd:2095` | `res://Art/all_number/LJ/lj_` | 资源文件或目录不存在: 分段不存在: lj_ |
+| `WARNING` | `Global.gd:2095` | `res://Art/all_number/lj/lj_` | 资源文件或目录不存在: 分段不存在: lj_ |
 | `WARNING` | `Global.gd:2096` | `res://Art/all_number/monster/physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
 
 > *(剩余 117 条已收入机读 JSON 报告 docs/contract_audit.json)*

@@ -1,6 +1,6 @@
 extends BaseMonster
 
-const FRAME_ROOT := "res://Art/monster/Tongtian3057"
+const FRAME_ROOT := "res://Art/monster/tongtian_3057"
 const ATLAS_MANIFEST := FRAME_ROOT + "/atlas/manifest.json"
 const SOURCE_FPS := 30.0
 const HURT_RECOVERY_SECONDS := 8.0 / SOURCE_FPS

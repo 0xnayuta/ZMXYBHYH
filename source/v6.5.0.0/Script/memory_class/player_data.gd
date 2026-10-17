@@ -1895,8 +1895,8 @@ func _mount_default_data(mount_id: String) -> Dictionary:
 	template["疲劳"] = int(template.get("疲劳上限", 2400))
 	template[DataKeys.DEPLOYED] = false
 	template[MOUNT_UNLOCKED_KEY] = not MOUNT_UNLOCK_REQUIREMENTS.has(mount_id)
-	template["图标"] = "res://Art/mount/Icons/%s.png" % mount_id
-	template["立绘"] = "res://Art/mount/Portraits/%s.png" % mount_id
+	template["图标"] = "res://Art/mount/icons/%s.png" % mount_id
+	template["立绘"] = "res://Art/mount/portraits/%s.png" % mount_id
 	template["技能"] = MOUNT_CATALOG.get_skills(mount_id)
 	var skill_levels: Dictionary = {}
 	for skill_value in template["技能"]:

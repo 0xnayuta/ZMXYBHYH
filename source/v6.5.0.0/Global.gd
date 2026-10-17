@@ -256,7 +256,7 @@ const DYNAMIC_MONSTER_TEXTURE_PATHS := {
 	151: ["res://Art/monster/TaoWu/Monster47FramesCenteredCropped"],
 	152: ["res://Art/monster/HunDun/Monster60FramesCenteredCropped"],
 	153: ["res://Art/monster/TaoTie/Monster115FramesCenteredCropped"],
-	1460: ["res://Art/monster/Tongtian3057"],
+	1460: ["res://Art/monster/tongtian_3057"],
 	212:
 	[
 		"res://Art/monster/Game3Monster/Monster_212/DefineSprite_44_Monster212",
@@ -1058,7 +1058,7 @@ func preload_level_monster_runtime_resources(monster_ids: Array) -> void:
 		if monster_id in [3323, 3343]:
 			manifest_path = "res://Art/monster/PalaceBoss/%d/manifest.json" % monster_id
 		elif monster_id == 3352:
-			manifest_path = "res://Art/monster/CloudBoss/3352/manifest.json"
+			manifest_path = "res://Art/monster/cloud_boss/3352/manifest.json"
 		elif not NorthOriginalData.monster_record(monster_id).is_empty():
 			manifest_path = NorthOriginalData.manifest(monster_id)
 		if manifest_path.is_empty():
@@ -1269,16 +1269,16 @@ func _get_damage_number_texture_paths() -> Array:
 	var result: Array = []
 	var number_dirs: Array[String] = [
 		"res://Art/all_number/cure/cure_",
-		"res://Art/all_number/CureMp/CureMp_",
-		"res://Art/all_number/ReduceMp/ReduceMp_",
-		"res://Art/all_number/Physics/physics_",
+		"res://Art/all_number/cure_mp/CureMp_",
+		"res://Art/all_number/reduce_mp/ReduceMp_",
+		"res://Art/all_number/physics/physics_",
 		"res://Art/all_number/physicscrit/physics_",
 		"res://Art/all_number/magic/magic_",
 		"res://Art/all_number/magic/physics_",
 		"res://Art/all_number/magiccrit/magic_",
 		"res://Art/all_number/real/real_",
 		"res://Art/all_number/realcrit/real_",
-		"res://Art/all_number/LJ/lj_",
+		"res://Art/all_number/lj/lj_",
 		"res://Art/all_number/monster/physics/physics_",
 		"res://Art/all_number/monster/magic/magic_",
 	]
@@ -2083,16 +2083,16 @@ func preload_common_drop_textures() -> void:
 func preload_damage_number_textures() -> void:
 	var number_dirs: Array[String] = [
 		"res://Art/all_number/cure/cure_",
-		"res://Art/all_number/CureMp/CureMp_",
-		"res://Art/all_number/ReduceMp/ReduceMp_",
-		"res://Art/all_number/Physics/physics_",
+		"res://Art/all_number/cure_mp/CureMp_",
+		"res://Art/all_number/reduce_mp/ReduceMp_",
+		"res://Art/all_number/physics/physics_",
 		"res://Art/all_number/physicscrit/physics_",
 		"res://Art/all_number/magic/magic_",
 		"res://Art/all_number/magic/physics_",
 		"res://Art/all_number/magiccrit/magic_",
 		"res://Art/all_number/real/real_",
 		"res://Art/all_number/realcrit/real_",
-		"res://Art/all_number/LJ/lj_",
+		"res://Art/all_number/lj/lj_",
 		"res://Art/all_number/monster/physics/physics_",
 		"res://Art/all_number/monster/magic/magic_",
 	]

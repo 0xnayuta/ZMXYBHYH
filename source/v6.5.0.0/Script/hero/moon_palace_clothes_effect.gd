@@ -1,6 +1,6 @@
 extends AnimatedSprite2D
 
-const FRAMES := preload("res://Art/equipment_effects/MoonPalace/yuegong.tres")
+const FRAMES := preload("res://Art/equipment_effects/moon_palace/yuegong.tres")
 const BODY_IDS := ["ygfjwk", "ygfjts", "ygfjbj", "ygfjss", "ygfjbl", "ygfjnz", "341071601"]
 
 const FOOT_ORIGINS := {

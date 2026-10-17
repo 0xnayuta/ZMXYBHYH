@@ -1,0 +1,107 @@
+{
+  "padding": 2,
+  "page_size": 2048,
+  "root": "res://Art/monster/monster_10",
+  "source_frames": 7,
+  "source_bytes": 108020,
+  "pages": [
+    {
+      "path": "res://Art/monster/monster_10/atlas_small_monsters/pages/atlas_000.png"
+    }
+  ],
+  "sequences": {},
+  "files": {
+    "res://Art/monster/monster_10/Bullet.png": [
+      1,
+      0,
+      2,
+      2,
+      1690,
+      185,
+      23,
+      10,
+      85,
+      20
+    ],
+    "res://Art/monster/monster_10/Death.png": [
+      2,
+      0,
+      1038,
+      191,
+      661,
+      119,
+      14,
+      10,
+      24,
+      20
+    ],
+    "res://Art/monster/monster_10/Hit.png": [
+      3,
+      0,
+      2,
+      191,
+      1032,
+      142,
+      104,
+      19,
+      114,
+      43
+    ],
+    "res://Art/monster/monster_10/Hurt.png": [
+      4,
+      0,
+      1696,
+      2,
+      224,
+      97,
+      10,
+      10,
+      20,
+      20
+    ],
+    "res://Art/monster/monster_10/Skill.png": [
+      5,
+      0,
+      2,
+      337,
+      368,
+      85,
+      10,
+      10,
+      20,
+      20
+    ],
+    "res://Art/monster/monster_10/Wait.png": [
+      6,
+      0,
+      374,
+      337,
+      375,
+      81,
+      10,
+      10,
+      20,
+      20
+    ],
+    "res://Art/monster/monster_10/Walk.png": [
+      7,
+      0,
+      1703,
+      191,
+      301,
+      83,
+      13,
+      10,
+      23,
+      20
+    ]
+  },
+  "consumer_scenes": [
+    "res://Scene/base/base_monster.tscn",
+    "res://Scene/monster/monster_bullet_slim/knife.tscn",
+    "res://Scene/monster/monster_10.tscn"
+  ],
+  "monster_ids": [
+    10
+  ]
+}

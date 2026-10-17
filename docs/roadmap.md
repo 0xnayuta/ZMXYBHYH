@@ -544,9 +544,12 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
      - 后段（已完成）：`Pet` (1965) -> `pet`、`HeroPicture` (2196) -> `hero_picture`；
      - 压轴（已完成）：`Level` (3212) -> `level`、`Monster` (8093) -> `monster`。
 - **验收指标**：二级目录 100% snake（44/44 全部合规）；每批门禁全绿 + 实机冒烟 [已达成 · 100% PASS]。
-#### 3. Phase 10-3: `Art/` 三级及深层目录收敛（分级推进，由易到难）
+#### 3. Phase 10-3: `Art/` 三级及深层目录收敛（分级推进，由易到难） [进行中 · In Progress]
 - **推进顺序**：
-  1. **业务语义 Pascal 目录**（`HeroPicture/Role1`、`Monster/Monster12`、`Game_3/LevelButtonIcon` 等）→ `role_1` / `monster_12` / `level_button_icon`；
+  1. **业务语义 Pascal 目录**（深度 2 层全量底数 **108 个**，引用量 3 ~ 7,051）→ snake：
+     - **批 1（≤ 30 引用组，44 个目录 · 已完成）**：法宝 `MagicWeapon1~10` / `GuanyinSummon`、怪物 `Monster1~3` / `Monster6` / `Monster9` / `Monster10` / `Monster11` / `Monster70` / `Monster143zhw` / `CloudBoss` / `Game4Monster` / `Tongtian3057`、`constellations/{UI,Background,Icons,Common}`、`all_number/{Level,LJ,CureMp,ReduceMp,Physics}`、`mount/{Icons,Portraits,RiderPoses}`、`level/{Gogo,Challenge,Settlement}`、`game_2/{Button,MainPicture}`、`skill/{Awaken,NeZhaHud}`、`pet/Preview`、`lianti/Materials`、`game_pic/ArchivePicture`、`equipment_effects/MoonPalace`、`hero_picture/Role6AllEquipment` 全量达成；
+     - **批 2（30 ~ 300 引用中组，待推进 · 约 35 个）**：`monster/Monster12` (196)、`monster/MonsterHead` (201)、`hero_picture/Role1~6` (151 ~ 296)、`mount/Runtime` (535)、`monster/{TaoWu,QiongQi,NorthOriginal,Game4SpecialEffect}`、`pet/*` (8 个) 等；
+     - **批 3（300 ~ 7,051 引用高组，待推进）**：`monster/SwfPng` (7,051)、`level/Game4Level` (6,189)、`constellations/Boss` (5,796)、`monster/Game3Monster` (3,349)、`backpack/AllItems` (1,250)、`monster/LiuShaRiver` (1,177) 等。
   2. **camelCase 目录**（87 个，`fbIcon` / `skillIcon` / `jumpDown` / `aoyiSkill` …）→ snake；
   3. **中文目录**（10 个，`Game_4/东胜神州`、`BackPack/AllItems/新建文件夹` …）→ 拼音/英文（跨平台 ZIP、热更新与 CI 友好性要求）；
   4. **纯数字 ID 目录**（229 个）→ 评估"白名单"或"加语义前缀"（依据 8-1 报告是否被动态拼接）；

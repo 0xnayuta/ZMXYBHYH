@@ -1,7 +1,7 @@
 extends MonsterBullet
 class_name Tongtian3057Projectile
 
-const ATLAS_MANIFEST := "res://Art/monster/Tongtian3057/atlas/manifest.json"
+const ATLAS_MANIFEST := "res://Art/monster/tongtian_3057/atlas/manifest.json"
 const FRAME_COUNT := 10
 const SOURCE_FPS := 30.0
 const SPRITE_OFFSET := Vector2(-21.4, 2.2)

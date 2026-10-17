@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/main_menu/game_set.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/level/Settlement/结算.jpg" id="2"]
+[ext_resource type="Texture2D" path="res://Art/level/settlement/结算.jpg" id="2"]
 [ext_resource type="FontFile" path="res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf" id="3"]
 [ext_resource type="Texture2D" path="res://Art/game_pic/679.PNG" id="4"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="5"]

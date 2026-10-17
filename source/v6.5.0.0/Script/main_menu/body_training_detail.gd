@@ -107,7 +107,7 @@ func _refresh() -> void:
 	var exp_need := BodyTrainingData.get_train_requirement(int(config.get("expPos", 0)), level)
 	detail_progress.text = "已满级" if level >= max_level else "%d/%d" % [experience, exp_need]
 	var material_id := str(config.get("propId", ""))
-	detail_material_icon.texture = load("res://Art/lianti/Materials/%s.png" % material_id) as Texture2D
+	detail_material_icon.texture = load("res://Art/lianti/materials/%s.png" % material_id) as Texture2D
 	detail_material.text = "%d/%d" % [_material_count(material_id), int(config.get("propNum", 1))]
 
 

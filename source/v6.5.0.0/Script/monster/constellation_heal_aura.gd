@@ -2,7 +2,7 @@ extends Node2D
 class_name ConstellationHealAura
 
 const SOURCE_FPS := 24.0
-const FRAME_ROOT := "res://Art/constellations/Common/auraGreen"
+const FRAME_ROOT := "res://Art/constellations/common/auraGreen"
 const FRAME_COUNT := 19
 const MAX_SOURCE_TICKS := 15 * 24
 
