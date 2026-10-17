@@ -538,7 +538,11 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
      - 前段：`MainGame` (147) -> `main_game`、`Skill` (188) -> `skill`；
      - 中段：`AddEffect` (307) -> `add_effect`、`Constellations` (307) -> `constellations`；
      - 后段：`Game_4` (392) -> `game_4`、`ItemIcon` (453) -> `item_icon`；
-  4. **第四批（高引用与核心资源组，500 ~ 8000+ 处）**：`Game_3` (518)、`Mount` (644)、`MagicWeapon` (1122)、`BackPack` (1411)、`Pet` (1965)、`HeroPicture` (2196)、`Level` (3212)、`Monster` (8093)。
+  4. **第四批（高引用与核心资源组，500 ~ 8000+ 处 · 进行中）**：
+     - 前段（已完成）：`Game_3` (518) -> `game_3`、`Mount` (644) -> `mount`；
+     - 中段（待推进）：`MagicWeapon` (1122)、`BackPack` (1411)；
+     - 后段（待推进）：`Pet` (1965)、`HeroPicture` (2196)；
+     - 压轴（待推进）：`Level` (3212)、`Monster` (8093)。
 - **验收指标**：二级目录 100% snake；每批门禁全绿 + 实机冒烟。
 #### 3. Phase 10-3: `Art/` 三级及深层目录收敛（分级推进，由易到难）
 - **推进顺序**：

@@ -9,8 +9,8 @@
 [ext_resource type="FontFile" path="res://Font/1_fonts.FZCY_FZCuYuan-M03.ttf" id="7"]
 [ext_resource type="Texture2D" path="res://Art/shop/CureTimes1.png" id="8"]
 [ext_resource type="Texture2D" path="res://Art/shop/CureTimes2.png" id="9"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/close_1.png" id="10"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/close_2.png" id="11"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/close_1.png" id="10"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/close_2.png" id="11"]
 [ext_resource type="PackedScene" path="res://Scene/shop/mystery_shop_item_box.tscn" id="12"]
 
 [node name="MysteryShop" type="Node2D" unique_id=628884719]

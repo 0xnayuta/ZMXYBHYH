@@ -251,7 +251,7 @@ func _sync_special_button_layer() -> void:
 
 func update_button_texture():
 	var tex_path = (
-		"res://Art/Game_3/OtherMapButton/bxdl.png" if is_chest_mode else "res://Art/Game_3/OtherMapButton/sjdl.png"
+		"res://Art/game_3/OtherMapButton/bxdl.png" if is_chest_mode else "res://Art/game_3/OtherMapButton/sjdl.png"
 	)
 	var texture = load(tex_path)
 	if texture:

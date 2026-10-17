@@ -4,7 +4,7 @@ signal hit_landed(skill_id: String, target: BaseMonster, hit_time: float)
 
 const MOUNT_CATALOG := preload("res://Script/mount/mount_catalog.gd")
 const MOUNT_VISUAL := preload("res://Script/mount/mount_visual.gd")
-const EFFECT_RUNTIME_ROOT := "res://Art/Mount/Runtime/Effects"
+const EFFECT_RUNTIME_ROOT := "res://Art/mount/Runtime/Effects"
 const OFFICIAL_PHYSICS_SPEED_SCALE := 3.0
 
 const ORIGINAL_EFFECTS := {
@@ -250,7 +250,7 @@ func _spawn_wenyu_dash_visual() -> void:
 	_spawn_effect_visual(
 		{
 			"asset": "res2",
-			"runtime_root": "res://Art/Mount/Runtime/Mounts",
+			"runtime_root": "res://Art/mount/Runtime/Mounts",
 			"follow": true,
 			"delay": 1.0 / 30.0,
 			"lifetime": 8.0,

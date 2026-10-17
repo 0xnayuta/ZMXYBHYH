@@ -359,7 +359,7 @@ func set_texture2_d(user_key, path: String) -> void:
 		or path.find("/Art/item_icon/") != -1
 	)
 	var is_main_sword_array_icon := path.find("/Art/zhuxianjianzhen/") != -1
-	var is_mount_skill_icon := path.find("/Art/Mount/Skills/") != -1
+	var is_mount_skill_icon := path.find("/Art/mount/Skills/") != -1
 	var is_skill_icon := (
 		path.find("/Art/skill/SkillIcon/") != -1
 		or path.find("/Art/skill/LittleSkillIcon/") != -1

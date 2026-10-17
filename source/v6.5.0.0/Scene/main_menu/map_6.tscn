@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" path="res://Script/main_menu/map_6.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/game_4/南瞻部洲/地图背景.jpg" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/1047.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/1052.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/1029.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/1034.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/1066.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/1057.png" id="8"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/1042.png" id="9"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/1165.png" id="10"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/gg_1.png" id="11"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/dy_1.png" id="12"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/1047.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/1052.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/1029.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/1034.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/1066.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/1057.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/1042.png" id="9"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/1165.png" id="10"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/gg_1.png" id="11"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/dy_1.png" id="12"]
 [ext_resource type="Texture2D" path="res://Art/game_4/南瞻部洲/s1/frame_01.png" id="13"]
 [ext_resource type="Texture2D" path="res://Art/game_4/南瞻部洲/s2/frame_01.png" id="14"]
 [ext_resource type="Texture2D" path="res://Art/game_4/南瞻部洲/s3/frame_01.png" id="15"]
@@ -45,8 +45,8 @@ texture_normal = ExtResource("3")
 texture_disabled = ExtResource("3")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/Game_3/OtherMapButton/1047.png"
-metadata/lazy_texture_hover_path = "res://Art/Game_3/OtherMapButton/1049.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/OtherMapButton/1047.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/OtherMapButton/1049.png"
 
 [node name="Shop" type="TextureButton" parent="." unique_id=1788131061]
 offset_left = 65.0
@@ -57,8 +57,8 @@ texture_normal = ExtResource("4")
 texture_disabled = ExtResource("4")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/Game_3/OtherMapButton/1052.png"
-metadata/lazy_texture_hover_path = "res://Art/Game_3/OtherMapButton/1054.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/OtherMapButton/1052.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/OtherMapButton/1054.png"
 
 [node name="LDL2" type="TextureButton" parent="." unique_id=1425391106]
 offset_left = 130.0
@@ -69,8 +69,8 @@ texture_normal = ExtResource("5")
 texture_disabled = ExtResource("5")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/Game_3/OtherMapButton/1029.png"
-metadata/lazy_texture_hover_path = "res://Art/Game_3/OtherMapButton/1031.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/OtherMapButton/1029.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/OtherMapButton/1031.png"
 
 [node name="Skill" type="TextureButton" parent="." unique_id=1790336751]
 offset_left = 195.0
@@ -81,8 +81,8 @@ texture_normal = ExtResource("6")
 texture_disabled = ExtResource("6")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/Game_3/OtherMapButton/1034.png"
-metadata/lazy_texture_hover_path = "res://Art/Game_3/OtherMapButton/1036.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/OtherMapButton/1034.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/OtherMapButton/1036.png"
 
 [node name="Activity" type="TextureButton" parent="." unique_id=1713776379]
 offset_left = 260.0
@@ -93,8 +93,8 @@ texture_normal = ExtResource("7")
 texture_disabled = ExtResource("7")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/Game_3/OtherMapButton/1066.png"
-metadata/lazy_texture_hover_path = "res://Art/Game_3/OtherMapButton/1068.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/OtherMapButton/1066.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/OtherMapButton/1068.png"
 
 [node name="Task" type="TextureButton" parent="." unique_id=512161724]
 offset_left = 325.0
@@ -105,8 +105,8 @@ texture_normal = ExtResource("8")
 texture_disabled = ExtResource("8")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/Game_3/OtherMapButton/1057.png"
-metadata/lazy_texture_hover_path = "res://Art/Game_3/OtherMapButton/1059.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/OtherMapButton/1057.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/OtherMapButton/1059.png"
 
 [node name="Return" type="TextureButton" parent="." unique_id=331686415]
 offset_left = 390.0
@@ -117,8 +117,8 @@ texture_normal = ExtResource("9")
 texture_disabled = ExtResource("9")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/Game_3/OtherMapButton/1042.png"
-metadata/lazy_texture_hover_path = "res://Art/Game_3/OtherMapButton/1044.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/OtherMapButton/1042.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/OtherMapButton/1044.png"
 
 [node name="GameSet" type="TextureButton" parent="." unique_id=1208017048]
 offset_top = 445.0
@@ -128,8 +128,8 @@ texture_normal = ExtResource("10")
 texture_disabled = ExtResource("10")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/Game_3/OtherMapButton/1165.png"
-metadata/lazy_texture_hover_path = "res://Art/Game_3/OtherMapButton/1166.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/OtherMapButton/1165.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/OtherMapButton/1166.png"
 
 [node name="GameAn" type="TextureButton" parent="." unique_id=1227771218]
 offset_left = 65.0
@@ -140,8 +140,8 @@ texture_normal = ExtResource("11")
 texture_disabled = ExtResource("11")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/Game_3/OtherMapButton/gg_1.png"
-metadata/lazy_texture_hover_path = "res://Art/Game_3/OtherMapButton/gg_2.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/OtherMapButton/gg_1.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/OtherMapButton/gg_2.png"
 
 [node name="Pellet" type="TextureButton" parent="." unique_id=554658668]
 offset_left = 128.0
@@ -152,8 +152,8 @@ texture_normal = ExtResource("12")
 texture_disabled = ExtResource("12")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/Game_3/OtherMapButton/dy_1.png"
-metadata/lazy_texture_hover_path = "res://Art/Game_3/OtherMapButton/dy_2.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/OtherMapButton/dy_1.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/OtherMapButton/dy_2.png"
 
 [node name="Level_47" type="TextureButton" parent="." unique_id=123936111]
 z_index = -1

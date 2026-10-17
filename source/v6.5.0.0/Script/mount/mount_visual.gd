@@ -3,8 +3,8 @@ extends Node2D
 
 signal animation_finished(animation_name: String)
 
-const RUNTIME_ROOT := "res://Art/Mount/Runtime/Mounts"
-const EFFECT_RUNTIME_ROOT := "res://Art/Mount/Runtime/Effects"
+const RUNTIME_ROOT := "res://Art/mount/Runtime/Mounts"
+const EFFECT_RUNTIME_ROOT := "res://Art/mount/Runtime/Effects"
 const RIDER_SLOT_ORIGINS := {
 	"1002200": Vector2(-46.65, -51.15),
 	"1002700": Vector2(-0.05, -0.1),

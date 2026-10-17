@@ -6,9 +6,9 @@ var parent_node
 func _physics_process(delta: float) -> void:
 	if parent_node != null:
 		if parent_node is Map3:
-			csm.texture = load("res://Art/Game_3/OtherMapButton/jjtj_.png")
+			csm.texture = load("res://Art/game_3/OtherMapButton/jjtj_.png")
 		elif parent_node is Map4:
-			csm.texture = load("res://Art/Game_3/OtherMapButton/hdtt.png")
+			csm.texture = load("res://Art/game_3/OtherMapButton/hdtt.png")
 
 
 func _on_ttzstz_pressed() -> void:

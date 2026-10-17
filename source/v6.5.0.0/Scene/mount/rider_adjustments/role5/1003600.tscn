@@ -1,6 +1,6 @@
 [gd_scene format=3]
 
-[ext_resource type="Texture2D" path="res://Art/Mount/Runtime/Mounts/1003600/idle/back_0.png" id="1"]
+[ext_resource type="Texture2D" path="res://Art/mount/Runtime/Mounts/1003600/idle/back_0.png" id="1"]
 [ext_resource type="Texture2D" path="res://Art/HeroPicture/Role5AllEquipment/Role_5_Body_Empty.png" id="2"]
 
 [node name="RiderAdjustment" type="Node2D" unique_id=1485663092]

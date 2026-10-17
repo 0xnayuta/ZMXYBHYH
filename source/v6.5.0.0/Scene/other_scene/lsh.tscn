@@ -16,10 +16,10 @@
 [ext_resource type="Texture2D" path="res://Art/Level/Game3Level/Level_lsh/41-1.png" id="14"]
 [ext_resource type="FontFile" path="res://Font/194_宋体.ttf" id="15"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="16"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/close_1.png" id="17"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/close_2.png" id="18"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/cy_2.png" id="19"]
-[ext_resource type="Texture2D" path="res://Art/Game_3/OtherMapButton/cy_1.png" id="20"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/close_1.png" id="17"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/close_2.png" id="18"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/cy_2.png" id="19"]
+[ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/cy_1.png" id="20"]
 
 [node name="lsh" type="Node2D" unique_id=487920029]
 script = ExtResource("1")
