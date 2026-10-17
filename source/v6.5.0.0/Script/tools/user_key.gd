@@ -335,14 +335,14 @@ func _make_ws_sprite_frames() -> SpriteFrames:
 	frames.set_animation_loop("max_ws", true)
 	frames.set_animation_speed("max_ws", 10.0)
 	var paths: Array[String] = [
-		"res://Art/RoleInfoIcon/418.png",
-		"res://Art/RoleInfoIcon/420.png",
-		"res://Art/RoleInfoIcon/422.png",
-		"res://Art/RoleInfoIcon/424.png",
-		"res://Art/RoleInfoIcon/426.png",
-		"res://Art/RoleInfoIcon/428.png",
-		"res://Art/RoleInfoIcon/430.png",
-		"res://Art/RoleInfoIcon/432.png",
+		"res://Art/role_info_icon/418.png",
+		"res://Art/role_info_icon/420.png",
+		"res://Art/role_info_icon/422.png",
+		"res://Art/role_info_icon/424.png",
+		"res://Art/role_info_icon/426.png",
+		"res://Art/role_info_icon/428.png",
+		"res://Art/role_info_icon/430.png",
+		"res://Art/role_info_icon/432.png",
 	]
 	for path in paths:
 		var texture: Texture2D = load(path) as Texture2D

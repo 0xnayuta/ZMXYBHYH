@@ -290,7 +290,7 @@ func _physics_process(_delta: float) -> void:
 	if not _dynamic_icons_initialized or ws_key.res_ == "":
 		ws_key.skill_name = ""
 		ws_key.text_key.visible = false
-		set_texture2_d(ws_key, "res://Art/RoleInfoIcon/416.png")
+		set_texture2_d(ws_key, "res://Art/role_info_icon/416.png")
 
 	var sword_key = key_list[9]
 	var active_sword: String = _active_main_sword_array_id()

@@ -2731,7 +2731,7 @@ func load_(name_):
 
 
 func load_2(name_):
-	var abc = load("res://Art/LevelInfoBg/" + str(name_) + ".png")
+	var abc = load("res://Art/level_info_bg/" + str(name_) + ".png")
 	return abc
 
 
