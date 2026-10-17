@@ -1268,19 +1268,19 @@ func _warm_texture_rids_over_frames(paths: Array, per_frame: int = 6) -> void:
 func _get_damage_number_texture_paths() -> Array:
 	var result: Array = []
 	var number_dirs: Array[String] = [
-		"res://Art/AllNumber/cure/cure_",
-		"res://Art/AllNumber/CureMp/CureMp_",
-		"res://Art/AllNumber/ReduceMp/ReduceMp_",
-		"res://Art/AllNumber/Physics/physics_",
-		"res://Art/AllNumber/physicscrit/physics_",
-		"res://Art/AllNumber/magic/magic_",
-		"res://Art/AllNumber/magic/physics_",
-		"res://Art/AllNumber/magiccrit/magic_",
-		"res://Art/AllNumber/real/real_",
-		"res://Art/AllNumber/realcrit/real_",
-		"res://Art/AllNumber/LJ/lj_",
-		"res://Art/AllNumber/monster/physics/physics_",
-		"res://Art/AllNumber/monster/magic/magic_",
+		"res://Art/all_number/cure/cure_",
+		"res://Art/all_number/CureMp/CureMp_",
+		"res://Art/all_number/ReduceMp/ReduceMp_",
+		"res://Art/all_number/Physics/physics_",
+		"res://Art/all_number/physicscrit/physics_",
+		"res://Art/all_number/magic/magic_",
+		"res://Art/all_number/magic/physics_",
+		"res://Art/all_number/magiccrit/magic_",
+		"res://Art/all_number/real/real_",
+		"res://Art/all_number/realcrit/real_",
+		"res://Art/all_number/LJ/lj_",
+		"res://Art/all_number/monster/physics/physics_",
+		"res://Art/all_number/monster/magic/magic_",
 	]
 	for prefix in number_dirs:
 		for i in range(10):
@@ -1382,9 +1382,9 @@ func _prewarm_combat_hit_rendering(monster_blood_scene: PackedScene) -> void:
 				blood_label.text = "123456"
 
 	for texture_path in [
-		"res://Art/AllNumber/magic/physics_8.png",
-		"res://Art/AllNumber/magic/magic_8.png",
-		"res://Art/AllNumber/real/real_8.png",
+		"res://Art/all_number/magic/physics_8.png",
+		"res://Art/all_number/magic/magic_8.png",
+		"res://Art/all_number/real/real_8.png",
 	]:
 		var digit_sprite := Sprite2D.new()
 		digit_sprite.texture = get_cached_texture(texture_path)
@@ -1508,7 +1508,7 @@ func clear_combat_runtime_cache() -> void:
 		"res://Art/MagicWeapon/",
 		"res://Art/zhuxianjianzhen/",
 		"res://Art/AddEffect/",
-		"res://Art/AllNumber/",
+		"res://Art/all_number/",
 		"res://Scene/hero/",
 		"res://Scene/monster/",
 		"res://Scene/magic_weapon/",
@@ -2082,19 +2082,19 @@ func preload_common_drop_textures() -> void:
 
 func preload_damage_number_textures() -> void:
 	var number_dirs: Array[String] = [
-		"res://Art/AllNumber/cure/cure_",
-		"res://Art/AllNumber/CureMp/CureMp_",
-		"res://Art/AllNumber/ReduceMp/ReduceMp_",
-		"res://Art/AllNumber/Physics/physics_",
-		"res://Art/AllNumber/physicscrit/physics_",
-		"res://Art/AllNumber/magic/magic_",
-		"res://Art/AllNumber/magic/physics_",
-		"res://Art/AllNumber/magiccrit/magic_",
-		"res://Art/AllNumber/real/real_",
-		"res://Art/AllNumber/realcrit/real_",
-		"res://Art/AllNumber/LJ/lj_",
-		"res://Art/AllNumber/monster/physics/physics_",
-		"res://Art/AllNumber/monster/magic/magic_",
+		"res://Art/all_number/cure/cure_",
+		"res://Art/all_number/CureMp/CureMp_",
+		"res://Art/all_number/ReduceMp/ReduceMp_",
+		"res://Art/all_number/Physics/physics_",
+		"res://Art/all_number/physicscrit/physics_",
+		"res://Art/all_number/magic/magic_",
+		"res://Art/all_number/magic/physics_",
+		"res://Art/all_number/magiccrit/magic_",
+		"res://Art/all_number/real/real_",
+		"res://Art/all_number/realcrit/real_",
+		"res://Art/all_number/LJ/lj_",
+		"res://Art/all_number/monster/physics/physics_",
+		"res://Art/all_number/monster/magic/magic_",
 	]
 	for prefix in number_dirs:
 		for i in range(10):
@@ -3335,7 +3335,7 @@ func release_ui_runtime_cache(release_permanent: bool = false) -> void:
 				"res://Art/Shop/",
 				"res://Art/LDL/",
 				"res://Art/Pet/PetPageResources/",
-				"res://Art/Main_menu/BodyTraining/",
+				"res://Art/main_menu/BodyTraining/",
 				"res://Art/lianti/",
 				"res://Art/zhenyaota/",
 			]

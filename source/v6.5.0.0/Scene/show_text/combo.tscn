@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Scene/show_text/combo.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/AllNumber/LJ/lj_text.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/all_number/LJ/lj_text.png" id="2"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 

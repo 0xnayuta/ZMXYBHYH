@@ -68,7 +68,7 @@
 [ext_resource type="Texture2D" path="res://Art/MainGame/463.png" id="66"]
 [ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="67"]
 [ext_resource type="Texture2D" path="res://Art/MainGame/49.png" id="68"]
-[ext_resource type="Texture2D" path="res://Art/zhuxianjianzhen/ZhuXianSword/sprites/DefineSprite_47/3.png" id="69"]
+[ext_resource type="Texture2D" path="res://Art/zhuxianjianzhen/zhu_xian_sword/sprites/DefineSprite_47/3.png" id="69"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 shader = ExtResource("3")

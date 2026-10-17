@@ -42,8 +42,8 @@ const SWORD_UPGRADE_MATERIALS := {
 		{"code": "zxjh", "name": "诛仙剑魂", "count": 1},
 	],
 }
-const BATTLE_TEXT := preload("res://Art/zhuxianjianzhen/ZhuXianSword/images/76.png")
-const REST_TEXT := preload("res://Art/zhuxianjianzhen/ZhuXianSword/images/79.png")
+const BATTLE_TEXT := preload("res://Art/zhuxianjianzhen/zhu_xian_sword/images/76.png")
+const REST_TEXT := preload("res://Art/zhuxianjianzhen/zhu_xian_sword/images/79.png")
 
 @onready var _stage: Control = $Stage
 

@@ -14,4 +14,4 @@ func setup(value) -> void:
 
 
 func refresh() -> void:
-	texture = Global.get_cached_texture("res://Art/AllNumber/LJ/lj_" + str(ComboNum) + ".png")
+	texture = Global.get_cached_texture("res://Art/all_number/LJ/lj_" + str(ComboNum) + ".png")

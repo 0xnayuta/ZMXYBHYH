@@ -22,21 +22,21 @@ func changepic(Type_: String, num: int, _crit: bool):
 	if Type_ == "cure":
 		self.set_texture(
 			Global.get_cached_texture(
-				"res://Art/AllNumber/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
+				"res://Art/all_number/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
 			)
 		)
 		return
 	if Type_ == "CureMp":
 		self.set_texture(
 			Global.get_cached_texture(
-				"res://Art/AllNumber/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
+				"res://Art/all_number/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
 			)
 		)
 		return
 	if Type_ == "ReduceMp":
 		self.set_texture(
 			Global.get_cached_texture(
-				"res://Art/AllNumber/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
+				"res://Art/all_number/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
 			)
 		)
 		return
@@ -46,13 +46,13 @@ func changepic(Type_: String, num: int, _crit: bool):
 			if Type_ != "real":
 				self.set_texture(
 					Global.get_cached_texture(
-						"res://Art/AllNumber/monster/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
+						"res://Art/all_number/monster/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
 					)
 				)
 			else:
 				self.set_texture(
 					Global.get_cached_texture(
-						"res://Art/AllNumber/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
+						"res://Art/all_number/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
 					)
 				)
 		elif target is BaseMonster or target is SummonBaseMonster:
@@ -60,20 +60,20 @@ func changepic(Type_: String, num: int, _crit: bool):
 				var tt = Type_ + "crit"
 				self.set_texture(
 					Global.get_cached_texture(
-						"res://Art/AllNumber/" + str(tt) + "/" + str(Type) + "_" + str(int(num)) + ".png"
+						"res://Art/all_number/" + str(tt) + "/" + str(Type) + "_" + str(int(num)) + ".png"
 					)
 				)
 			else:
 				if Type == "physics":
 					self.set_texture(
 						Global.get_cached_texture(
-							"res://Art/AllNumber/magic/" + str(Type_) + "_" + str(int(num)) + ".png"
+							"res://Art/all_number/magic/" + str(Type_) + "_" + str(int(num)) + ".png"
 						)
 					)
 				else:
 					self.set_texture(
 						Global.get_cached_texture(
-							"res://Art/AllNumber/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
+							"res://Art/all_number/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
 						)
 					)
 	else:
@@ -81,17 +81,17 @@ func changepic(Type_: String, num: int, _crit: bool):
 			var tt = Type_ + "crit"
 			self.set_texture(
 				Global.get_cached_texture(
-					"res://Art/AllNumber/" + str(tt) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
+					"res://Art/all_number/" + str(tt) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
 				)
 			)
 		else:
 			if Type == "physics":
 				self.set_texture(
-					Global.get_cached_texture("res://Art/AllNumber/magic/" + str(Type_) + "_" + str(int(num)) + ".png")
+					Global.get_cached_texture("res://Art/all_number/magic/" + str(Type_) + "_" + str(int(num)) + ".png")
 				)
 			else:
 				self.set_texture(
 					Global.get_cached_texture(
-						"res://Art/AllNumber/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
+						"res://Art/all_number/" + str(Type_) + "/" + str(Type_) + "_" + str(int(num)) + ".png"
 					)
 				)

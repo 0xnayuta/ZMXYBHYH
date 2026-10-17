@@ -1,16 +1,16 @@
 extends Node2D
 
 const DIGIT_TEXTURES := [
-	preload("res://Art/AllNumber/Level/Level_0.png"),
-	preload("res://Art/AllNumber/Level/Level_1.png"),
-	preload("res://Art/AllNumber/Level/Level_2.png"),
-	preload("res://Art/AllNumber/Level/Level_3.png"),
-	preload("res://Art/AllNumber/Level/Level_4.png"),
-	preload("res://Art/AllNumber/Level/Level_5.png"),
-	preload("res://Art/AllNumber/Level/Level_6.png"),
-	preload("res://Art/AllNumber/Level/Level_7.png"),
-	preload("res://Art/AllNumber/Level/Level_8.png"),
-	preload("res://Art/AllNumber/Level/Level_9.png"),
+	preload("res://Art/all_number/Level/Level_0.png"),
+	preload("res://Art/all_number/Level/Level_1.png"),
+	preload("res://Art/all_number/Level/Level_2.png"),
+	preload("res://Art/all_number/Level/Level_3.png"),
+	preload("res://Art/all_number/Level/Level_4.png"),
+	preload("res://Art/all_number/Level/Level_5.png"),
+	preload("res://Art/all_number/Level/Level_6.png"),
+	preload("res://Art/all_number/Level/Level_7.png"),
+	preload("res://Art/all_number/Level/Level_8.png"),
+	preload("res://Art/all_number/Level/Level_9.png"),
 ]
 const DIGIT_SIZE := Vector2(47.0, 50.0)
 const DIGIT_SEPARATION := -23.0

@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/hittext/miss_effect.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/AllNumber/miss.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/all_number/miss.png" id="2"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "miss"

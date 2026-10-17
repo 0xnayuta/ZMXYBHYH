@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "scan_time": "2026-10-17 15:24:50",
+    "scan_time": "2026-10-17 15:31:34",
     "project_dir": "G:\\source\\repos\\ZMXYBHYH\\source\\v6.5.0.0",
     "stats": {
       "total_findings": 1967,
@@ -13,7 +13,7 @@
         "reflection": 13,
         "dict_key": 1797
       },
-      "duration_seconds": 4.49,
+      "duration_seconds": 4.61,
       "scripts_scanned": 722,
       "scenes_scanned": 1132
     }
@@ -164,7 +164,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 1271,
-      "literal": "res://Art/AllNumber/cure/cure_",
+      "literal": "res://Art/all_number/cure/cure_",
       "message": "资源文件或目录不存在: 分段不存在: cure_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -174,7 +174,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 1272,
-      "literal": "res://Art/AllNumber/CureMp/CureMp_",
+      "literal": "res://Art/all_number/CureMp/CureMp_",
       "message": "资源文件或目录不存在: 分段不存在: CureMp_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -184,7 +184,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 1273,
-      "literal": "res://Art/AllNumber/ReduceMp/ReduceMp_",
+      "literal": "res://Art/all_number/ReduceMp/ReduceMp_",
       "message": "资源文件或目录不存在: 分段不存在: ReduceMp_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -194,7 +194,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 1274,
-      "literal": "res://Art/AllNumber/Physics/physics_",
+      "literal": "res://Art/all_number/Physics/physics_",
       "message": "资源文件或目录不存在: 分段不存在: physics_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -204,7 +204,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 1275,
-      "literal": "res://Art/AllNumber/physicscrit/physics_",
+      "literal": "res://Art/all_number/physicscrit/physics_",
       "message": "资源文件或目录不存在: 分段不存在: physics_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -214,7 +214,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 1276,
-      "literal": "res://Art/AllNumber/magic/magic_",
+      "literal": "res://Art/all_number/magic/magic_",
       "message": "资源文件或目录不存在: 分段不存在: magic_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -224,7 +224,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 1277,
-      "literal": "res://Art/AllNumber/magic/physics_",
+      "literal": "res://Art/all_number/magic/physics_",
       "message": "资源文件或目录不存在: 分段不存在: physics_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -234,7 +234,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 1278,
-      "literal": "res://Art/AllNumber/magiccrit/magic_",
+      "literal": "res://Art/all_number/magiccrit/magic_",
       "message": "资源文件或目录不存在: 分段不存在: magic_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -244,7 +244,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 1279,
-      "literal": "res://Art/AllNumber/real/real_",
+      "literal": "res://Art/all_number/real/real_",
       "message": "资源文件或目录不存在: 分段不存在: real_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -254,7 +254,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 1280,
-      "literal": "res://Art/AllNumber/realcrit/real_",
+      "literal": "res://Art/all_number/realcrit/real_",
       "message": "资源文件或目录不存在: 分段不存在: real_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -264,7 +264,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 1281,
-      "literal": "res://Art/AllNumber/LJ/lj_",
+      "literal": "res://Art/all_number/LJ/lj_",
       "message": "资源文件或目录不存在: 分段不存在: lj_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -274,7 +274,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 1282,
-      "literal": "res://Art/AllNumber/monster/physics/physics_",
+      "literal": "res://Art/all_number/monster/physics/physics_",
       "message": "资源文件或目录不存在: 分段不存在: physics_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -284,7 +284,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 1283,
-      "literal": "res://Art/AllNumber/monster/magic/magic_",
+      "literal": "res://Art/all_number/monster/magic/magic_",
       "message": "资源文件或目录不存在: 分段不存在: magic_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -304,7 +304,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 2085,
-      "literal": "res://Art/AllNumber/cure/cure_",
+      "literal": "res://Art/all_number/cure/cure_",
       "message": "资源文件或目录不存在: 分段不存在: cure_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -314,7 +314,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 2086,
-      "literal": "res://Art/AllNumber/CureMp/CureMp_",
+      "literal": "res://Art/all_number/CureMp/CureMp_",
       "message": "资源文件或目录不存在: 分段不存在: CureMp_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -324,7 +324,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 2087,
-      "literal": "res://Art/AllNumber/ReduceMp/ReduceMp_",
+      "literal": "res://Art/all_number/ReduceMp/ReduceMp_",
       "message": "资源文件或目录不存在: 分段不存在: ReduceMp_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -334,7 +334,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 2088,
-      "literal": "res://Art/AllNumber/Physics/physics_",
+      "literal": "res://Art/all_number/Physics/physics_",
       "message": "资源文件或目录不存在: 分段不存在: physics_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -344,7 +344,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 2089,
-      "literal": "res://Art/AllNumber/physicscrit/physics_",
+      "literal": "res://Art/all_number/physicscrit/physics_",
       "message": "资源文件或目录不存在: 分段不存在: physics_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -354,7 +354,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 2090,
-      "literal": "res://Art/AllNumber/magic/magic_",
+      "literal": "res://Art/all_number/magic/magic_",
       "message": "资源文件或目录不存在: 分段不存在: magic_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -364,7 +364,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 2091,
-      "literal": "res://Art/AllNumber/magic/physics_",
+      "literal": "res://Art/all_number/magic/physics_",
       "message": "资源文件或目录不存在: 分段不存在: physics_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -374,7 +374,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 2092,
-      "literal": "res://Art/AllNumber/magiccrit/magic_",
+      "literal": "res://Art/all_number/magiccrit/magic_",
       "message": "资源文件或目录不存在: 分段不存在: magic_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -384,7 +384,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 2093,
-      "literal": "res://Art/AllNumber/real/real_",
+      "literal": "res://Art/all_number/real/real_",
       "message": "资源文件或目录不存在: 分段不存在: real_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -394,7 +394,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 2094,
-      "literal": "res://Art/AllNumber/realcrit/real_",
+      "literal": "res://Art/all_number/realcrit/real_",
       "message": "资源文件或目录不存在: 分段不存在: real_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -404,7 +404,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 2095,
-      "literal": "res://Art/AllNumber/LJ/lj_",
+      "literal": "res://Art/all_number/LJ/lj_",
       "message": "资源文件或目录不存在: 分段不存在: lj_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -414,7 +414,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 2096,
-      "literal": "res://Art/AllNumber/monster/physics/physics_",
+      "literal": "res://Art/all_number/monster/physics/physics_",
       "message": "资源文件或目录不存在: 分段不存在: physics_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -424,7 +424,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 2097,
-      "literal": "res://Art/AllNumber/monster/magic/magic_",
+      "literal": "res://Art/all_number/monster/magic/magic_",
       "message": "资源文件或目录不存在: 分段不存在: magic_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -434,7 +434,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 3338,
-      "literal": "res://Art/Main_menu/BodyTraining",
+      "literal": "res://Art/main_menu/BodyTraining",
       "message": "资源文件或目录不存在: 分段不存在: BodyTraining",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -574,7 +574,7 @@
       "severity": "WARNING",
       "file": "Scene/show_text/combo_num.gd",
       "line": 17,
-      "literal": "res://Art/AllNumber/LJ/lj_",
+      "literal": "res://Art/all_number/LJ/lj_",
       "message": "资源文件或目录不存在: 分段不存在: lj_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -584,7 +584,7 @@
       "severity": "WARNING",
       "file": "Script/back_pack/back_pack.gd",
       "line": 102,
-      "literal": "res://Art/AllNumber/Level/Level_",
+      "literal": "res://Art/all_number/Level/Level_",
       "message": "资源文件或目录不存在: 分段不存在: Level_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -594,7 +594,7 @@
       "severity": "WARNING",
       "file": "Script/back_pack/back_pack.gd",
       "line": 107,
-      "literal": "res://Art/AllNumber/Level/Level_",
+      "literal": "res://Art/all_number/Level/Level_",
       "message": "资源文件或目录不存在: 分段不存在: Level_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -604,7 +604,7 @@
       "severity": "WARNING",
       "file": "Script/back_pack/back_pack.gd",
       "line": 108,
-      "literal": "res://Art/AllNumber/Level/Level_",
+      "literal": "res://Art/all_number/Level/Level_",
       "message": "资源文件或目录不存在: 分段不存在: Level_",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"

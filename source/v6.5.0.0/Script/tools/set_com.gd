@@ -20,11 +20,11 @@ const KEY_BUTTON_COUNT: int = 11
 const MOUNT_BUTTON_INDEX: int = 10
 const JOY_CONFIG_INDEX: int = 11
 const MAIN_SWORD_ARRAY_ICON_PATHS := {
-	"zhuxianjian": ["res://Art/zhuxianjianzhen/ZhuXianSword/sprites/DefineSprite_61/1.png"],
-	"xianxianjian": ["res://Art/zhuxianjianzhen/ZhuXianSword/sprites/DefineSprite_61/2.png"],
-	"sijianheyi": ["res://Art/zhuxianjianzhen/ZhuXianSword/sprites/DefineSprite_61/3.png"],
-	"luxianjian": ["res://Art/zhuxianjianzhen/ZhuXianSword/sprites/DefineSprite_61/4.png"],
-	"juexianjian": ["res://Art/zhuxianjianzhen/ZhuXianSword/sprites/DefineSprite_61/5.png"],
+	"zhuxianjian": ["res://Art/zhuxianjianzhen/zhu_xian_sword/sprites/DefineSprite_61/1.png"],
+	"xianxianjian": ["res://Art/zhuxianjianzhen/zhu_xian_sword/sprites/DefineSprite_61/2.png"],
+	"sijianheyi": ["res://Art/zhuxianjianzhen/zhu_xian_sword/sprites/DefineSprite_61/3.png"],
+	"luxianjian": ["res://Art/zhuxianjianzhen/zhu_xian_sword/sprites/DefineSprite_61/4.png"],
+	"juexianjian": ["res://Art/zhuxianjianzhen/zhu_xian_sword/sprites/DefineSprite_61/5.png"],
 }
 
 var default_keys: Array = []

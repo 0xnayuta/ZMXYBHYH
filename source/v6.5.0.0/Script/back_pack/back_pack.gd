@@ -99,20 +99,20 @@ func get_level():
 
 	if digit_count == 1:
 		$background/infomation/leve_background/Level_Show.position = Vector2(-15, -15)
-		number_1.texture = load("res://Art/AllNumber/Level/Level_" + level_str + ".png")
+		number_1.texture = load("res://Art/all_number/Level/Level_" + level_str + ".png")
 		number_1.visible = true
 		number_2.visible = false
 	elif digit_count == 2:
 		$background/infomation/leve_background/Level_Show.position = Vector2(-35, -15)
-		number_1.texture = load("res://Art/AllNumber/Level/Level_" + level_str[0] + ".png")
-		number_2.texture = load("res://Art/AllNumber/Level/Level_" + level_str[1] + ".png")
+		number_1.texture = load("res://Art/all_number/Level/Level_" + level_str[0] + ".png")
+		number_2.texture = load("res://Art/all_number/Level/Level_" + level_str[1] + ".png")
 		number_1.visible = true
 		number_2.visible = true
 	else:
 		print("等级位数不支持: ", digit_count)
 
 		$background/infomation/leve_background/Level_Show.position = Vector2(-15, -15)
-		number_1.texture = load("res://Art/AllNumber/Level/Level_1.png")
+		number_1.texture = load("res://Art/all_number/Level/Level_1.png")
 		number_1.visible = true
 		number_2.visible = false
 
