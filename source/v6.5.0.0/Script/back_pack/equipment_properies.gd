@@ -752,7 +752,7 @@ func set_bs_infor():
 		hbox.alignment = 0
 		bs_pro_list.add_child(hbox)
 
-		var icon_path = "res://Art/BackPack/AllItems/" + str(i) + ".png"
+		var icon_path = "res://Art/backpack/AllItems/" + str(i) + ".png"
 		var tex = load(icon_path)
 		if tex != null:
 			var icon = TextureRect.new()

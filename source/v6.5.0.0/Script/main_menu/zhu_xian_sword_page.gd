@@ -286,7 +286,7 @@ func _get_upgrade_materials(sword_id: String, level: int) -> Array:
 
 
 func _get_material_icon_path(code: String) -> String:
-	return "res://Art/BackPack/AllItems/" + code + ".png"
+	return "res://Art/backpack/AllItems/" + code + ".png"
 
 
 func _get_material_count(code: String) -> int:

@@ -540,7 +540,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
      - 后段：`Game_4` (392) -> `game_4`、`ItemIcon` (453) -> `item_icon`；
   4. **第四批（高引用与核心资源组，500 ~ 8000+ 处 · 进行中）**：
      - 前段（已完成）：`Game_3` (518) -> `game_3`、`Mount` (644) -> `mount`；
-     - 中段（待推进）：`MagicWeapon` (1122)、`BackPack` (1411)；
+     - 中段（已完成）：`MagicWeapon` (1122) -> `magic_weapon`、`BackPack` (1411) -> `backpack`；
      - 后段（待推进）：`Pet` (1965)、`HeroPicture` (2196)；
      - 压轴（待推进）：`Level` (3212)、`Monster` (8093)。
 - **验收指标**：二级目录 100% snake；每批门禁全绿 + 实机冒烟。

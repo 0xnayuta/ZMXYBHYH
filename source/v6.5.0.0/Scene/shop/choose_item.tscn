@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://Script/shop/choose_item.gd" id="1"]
 [ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="2"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/119.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/121.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/124.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/126.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/220.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/222.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/backpack/119.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/backpack/121.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/backpack/124.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/backpack/126.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/220.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/222.png" id="8"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.568627, 0.32549, 0.129412, 1)

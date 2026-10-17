@@ -1,11 +1,11 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Scene/other_scene/lhhj_help.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/66.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/66.png" id="2"]
 [ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="3"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="4"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/ClothesChange/8.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/ClothesChange/10.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/backpack/ClothesChange/8.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/backpack/ClothesChange/10.png" id="6"]
 
 [node name="LHHJHelp" type="Node2D" unique_id=1194820640]
 script = ExtResource("1")

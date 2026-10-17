@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Script/other_menu/change_back_ground.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/set_menu/653.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/49.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/222.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/backpack/49.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/222.png" id="4"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="5"]
 
 [node name="Change_BackGround" type="CanvasLayer" unique_id=1182923936]

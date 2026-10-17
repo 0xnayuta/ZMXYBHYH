@@ -200,7 +200,7 @@ func load_(name1):
 	var icon_path := str(item_data.get("图标", ""))
 	if icon_path != "" and ResourceLoader.exists(icon_path):
 		return load(icon_path)
-	return load("res://Art/BackPack/AllItems/" + str(name1) + ".png")
+	return load("res://Art/backpack/AllItems/" + str(name1) + ".png")
 
 
 func get_xianjie_prop(result_item: String) -> Dictionary:

@@ -1,13 +1,13 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Scene/show_text/choose_scene.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/117.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/backpack/117.png" id="2"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="3"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/124.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/126.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/backpack/124.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/backpack/126.png" id="5"]
 [ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="6"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/119.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/121.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/backpack/119.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/backpack/121.png" id="8"]
 
 [node name="choose_scene" type="Control" unique_id=1977907021]
 layout_mode = 3

@@ -367,7 +367,7 @@ func on_press_when_dz():
 func _set_forge_book_box_properties(item_box) -> void:
 	if item_box == null or not is_instance_valid(item_box):
 		return
-	var icon_path := "res://Art/BackPack/AllItems/%s.png" % str(get_item_name)
+	var icon_path := "res://Art/backpack/AllItems/%s.png" % str(get_item_name)
 	item_box.set("icon", ResourceLoader.load(icon_path) as Texture2D if ResourceLoader.exists(icon_path) else null)
 	item_box.set("is_in_ldl_gz", true)
 	item_box.set("is_in_hhgz", true)
@@ -645,5 +645,5 @@ func get_max_bs():
 
 
 func load_(name_):
-	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
+	var abc = load("res://Art/backpack/AllItems/" + str(name_) + ".png")
 	return abc

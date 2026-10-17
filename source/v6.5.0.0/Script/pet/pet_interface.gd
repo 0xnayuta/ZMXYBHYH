@@ -3763,7 +3763,7 @@ func _pet_item_icon(item: Dictionary) -> Texture2D:
 			if icon_path == "":
 				continue
 			if not icon_path.begins_with("res://"):
-				icon_path = "res://Art/BackPack/AllItems/%s" % icon_path
+				icon_path = "res://Art/backpack/AllItems/%s" % icon_path
 				if icon_path.get_extension() == "":
 					icon_path += ".png"
 			if ResourceLoader.exists(icon_path):
@@ -3779,7 +3779,7 @@ func _pet_item_icon(item: Dictionary) -> Texture2D:
 		. strip_edges()
 	)
 	if item_name != "":
-		var item_path := "res://Art/BackPack/AllItems/%s.png" % item_name
+		var item_path := "res://Art/backpack/AllItems/%s.png" % item_name
 		if ResourceLoader.exists(item_path):
 			var named_icon := load(item_path) as Texture2D
 			if named_icon != null:

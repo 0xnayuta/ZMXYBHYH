@@ -199,7 +199,7 @@ func _build_attribute_page(page: VBoxContainer, mount: Dictionary) -> void:
 		unlock_row.name = "MountUnlockRequirement"
 		unlock_row.custom_minimum_size = Vector2(500, 62)
 		unlock_row.add_theme_constant_override("separation", 12)
-		var icon_path := str(item_data.get("图标", "res://Art/BackPack/AllItems/%s.png" % item_id))
+		var icon_path := str(item_data.get("图标", "res://Art/backpack/AllItems/%s.png" % item_id))
 		var icon := TextureRect.new()
 		icon.custom_minimum_size = Vector2(54, 54)
 		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE

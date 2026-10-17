@@ -29,10 +29,10 @@ func set_box():
 	var item_box = Global.add_item_box(box, true, true, item_name, 0, 1, [], AE.all_equipment[item_name])
 	if item_box == null or not is_instance_valid(item_box):
 		return
-	var icon_path := "res://Art/BackPack/AllItems/%s.png" % str(item_name)
+	var icon_path := "res://Art/backpack/AllItems/%s.png" % str(item_name)
 	item_box.set("icon", ResourceLoader.load(icon_path) as Texture2D if ResourceLoader.exists(icon_path) else null)
 
 
 func load_(name_):
-	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
+	var abc = load("res://Art/backpack/AllItems/" + str(name_) + ".png")
 	return abc

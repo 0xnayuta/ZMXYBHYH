@@ -246,7 +246,7 @@ func _on_close_pressed() -> void:
 
 
 func load_(name_):
-	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
+	var abc = load("res://Art/backpack/AllItems/" + str(name_) + ".png")
 	return abc
 
 

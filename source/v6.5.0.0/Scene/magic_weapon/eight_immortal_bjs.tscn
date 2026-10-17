@@ -6,8 +6,8 @@
 [node name="bjs" unique_id=1236894664 instance=ExtResource("1")]
 script = ExtResource("2")
 weapon_id = "bjs"
-model_path = "res://Art/MagicWeapon/EightImmortal/bjs/model.png"
+model_path = "res://Art/magic_weapon/EightImmortal/bjs/model.png"
 model_frame_size = Vector2i(60, 60)
-effect_dir = "res://Art/MagicWeapon/EightImmortal/bjs/effect"
+effect_dir = "res://Art/magic_weapon/EightImmortal/bjs/effect"
 skill_cost = 10
 skill_cooldown = 0.1

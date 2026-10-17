@@ -82,7 +82,7 @@ func set_str_info():
 
 
 func load_(name_):
-	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
+	var abc = load("res://Art/backpack/AllItems/" + str(name_) + ".png")
 	return abc
 
 
@@ -97,12 +97,12 @@ func _selected_equipment_icon() -> Texture2D:
 			if icon_path == "":
 				continue
 			if not icon_path.begins_with("res://"):
-				icon_path = "res://Art/BackPack/AllItems/" + icon_path
+				icon_path = "res://Art/backpack/AllItems/" + icon_path
 				if icon_path.get_extension() == "":
 					icon_path += ".png"
 			if ResourceLoader.exists(icon_path):
 				return load(icon_path) as Texture2D
-	var named_path := "res://Art/BackPack/AllItems/%s.png" % old_zb_name
+	var named_path := "res://Art/backpack/AllItems/%s.png" % old_zb_name
 	if ResourceLoader.exists(named_path):
 		return load(named_path) as Texture2D
 	return PET_GENERIC_EQUIPMENT_ICON

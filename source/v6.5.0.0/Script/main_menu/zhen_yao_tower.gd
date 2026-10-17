@@ -438,7 +438,7 @@ func _create_shop_item_row(
 	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	var data: Dictionary = AE.all_equipment.get(item_id, {}) as Dictionary
-	var icon_path := str(data.get("图标", "res://Art/BackPack/AllItems/%s.png" % item_id))
+	var icon_path := str(data.get("图标", "res://Art/backpack/AllItems/%s.png" % item_id))
 	icon.texture = load(icon_path) as Texture2D
 	line.add_child(icon)
 

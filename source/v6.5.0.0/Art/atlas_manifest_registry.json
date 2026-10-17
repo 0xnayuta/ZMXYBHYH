@@ -21,8 +21,8 @@
       "manifest": "res://Art/Monster/Game3_SpecialEffect/Monster_3_3/atlas_small_monsters/manifest.json"
     },
     {
-      "root": "res://Art/MagicWeapon/MagicWeapon_XianYujingping",
-      "manifest": "res://Art/MagicWeapon/MagicWeapon_XianYujingping/atlas/manifest.json"
+      "root": "res://Art/magic_weapon/MagicWeapon_XianYujingping",
+      "manifest": "res://Art/magic_weapon/MagicWeapon_XianYujingping/atlas/manifest.json"
     },
     {
       "root": "res://Art/Monster/Game3Monster/ThreePrince/nezha",

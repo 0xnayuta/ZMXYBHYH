@@ -31,9 +31,9 @@ func _sync_slot_background_style(force := false) -> void:
 	_slot_background_item_visible = item_visible
 	var slot_name := str(self.name)
 	var bg_path := (
-		"res://Art/BackPack/AllItems/empty.png" if item_visible else "res://Art/BackPack/AllItems/" + slot_name + ".png"
+		"res://Art/backpack/AllItems/empty.png" if item_visible else "res://Art/backpack/AllItems/" + slot_name + ".png"
 	)
-	var bg_texture = load(bg_path) if ResourceLoader.exists(bg_path) else load("res://Art/BackPack/AllItems/empty.png")
+	var bg_texture = load(bg_path) if ResourceLoader.exists(bg_path) else load("res://Art/backpack/AllItems/empty.png")
 	for style_name in ["normal", "pressed", "hover", "disabled", "focus"]:
 		var style := StyleBoxTexture.new()
 		style.texture = bg_texture
@@ -72,15 +72,15 @@ func _sync_avatar_frame_equipment(force := false) -> void:
 		get_item_name = ""
 		qh_level = 0
 		eq_prop = {}
-		set_button_icon(load("res://Art/BackPack/AllItems/empty.png"))
+		set_button_icon(load("res://Art/backpack/AllItems/empty.png"))
 		return
 	var item: Dictionary = equipped[0]
 	get_item_name = str(item.get(DataKeys.NAME, ""))
 	qh_level = int(item.get(DataKeys.ENHANCE_LEVEL, 0))
 	eq_prop = item.get("Data", {})
-	var item_icon_path: String = "res://Art/BackPack/AllItems/" + str(get_item_name) + ".png"
+	var item_icon_path: String = "res://Art/backpack/AllItems/" + str(get_item_name) + ".png"
 	var item_icon = (
-		load(item_icon_path) if ResourceLoader.exists(item_icon_path) else load("res://Art/BackPack/AllItems/empty.png")
+		load(item_icon_path) if ResourceLoader.exists(item_icon_path) else load("res://Art/backpack/AllItems/empty.png")
 	)
 	set_button_icon(item_icon)
 
@@ -99,15 +99,15 @@ func _sync_shengu_equipment(force := false) -> void:
 		get_item_name = ""
 		qh_level = 0
 		eq_prop = {}
-		set_button_icon(load("res://Art/BackPack/AllItems/empty.png"))
+		set_button_icon(load("res://Art/backpack/AllItems/empty.png"))
 		return
 	var item: Dictionary = equipped[0]
 	get_item_name = str(item.get(DataKeys.NAME, ""))
 	qh_level = int(item.get(DataKeys.ENHANCE_LEVEL, 0))
 	eq_prop = item.get("Data", {})
-	var item_icon_path: String = "res://Art/BackPack/AllItems/" + str(get_item_name) + ".png"
+	var item_icon_path: String = "res://Art/backpack/AllItems/" + str(get_item_name) + ".png"
 	set_button_icon(
-		load(item_icon_path) if ResourceLoader.exists(item_icon_path) else load("res://Art/BackPack/AllItems/empty.png")
+		load(item_icon_path) if ResourceLoader.exists(item_icon_path) else load("res://Art/backpack/AllItems/empty.png")
 	)
 
 
@@ -141,7 +141,7 @@ func _on_pressed() -> void:
 				eq_prop = PlayerData.player_data[DataKeys.WEAPON][0]["Data"]
 				PlayerData.add_zb(name_, ql, eq_prop)
 			else:
-				set_button_icon(load("res://Art/BackPack/wq.png"))
+				set_button_icon(load("res://Art/backpack/wq.png"))
 			PlayerData.player_data[DataKeys.WEAPON].clear()
 		"fj":
 			if PlayerData.player_data[DataKeys.ARMOR].size() != 0:
@@ -150,7 +150,7 @@ func _on_pressed() -> void:
 				eq_prop = PlayerData.player_data[DataKeys.ARMOR][0]["Data"]
 				PlayerData.add_zb(name_, ql, eq_prop)
 			else:
-				set_button_icon(load("res://Art/BackPack/fj.png"))
+				set_button_icon(load("res://Art/backpack/fj.png"))
 			PlayerData.player_data[DataKeys.ARMOR].clear()
 		"sp":
 			if PlayerData.player_data["饰品"].size() != 0:
@@ -159,7 +159,7 @@ func _on_pressed() -> void:
 				eq_prop = PlayerData.player_data["饰品"][0]["Data"]
 				PlayerData.add_zb(name_, ql, eq_prop)
 			else:
-				set_button_icon(load("res://Art/BackPack/sp.png"))
+				set_button_icon(load("res://Art/backpack/sp.png"))
 			PlayerData.player_data["饰品"].clear()
 		"shengu":
 			var equipped: Array = PlayerData.ensure_shengu_slot()
@@ -178,7 +178,7 @@ func _on_pressed() -> void:
 				eq_prop = PlayerData.player_data[DataKeys.TITLE][0]["Data"]
 				PlayerData.add_zb(name_, ql, eq_prop)
 			else:
-				set_button_icon(load("res://Art/BackPack/AllItems/tx.png"))
+				set_button_icon(load("res://Art/backpack/AllItems/tx.png"))
 			PlayerData.player_data[DataKeys.TITLE].clear()
 		"txk":
 			var equipped: Array = PlayerData.ensure_avatar_frame_slot()
@@ -197,7 +197,7 @@ func _on_pressed() -> void:
 				eq_prop = PlayerData.player_data[DataKeys.FASHION][0]["Data"]
 				PlayerData.add_zb(name_, ql, eq_prop)
 			else:
-				set_button_icon(load("res://Art/BackPack/sz.png"))
+				set_button_icon(load("res://Art/backpack/sz.png"))
 			PlayerData.player_data[DataKeys.FASHION].clear()
 		"cb":
 			if PlayerData.player_data[DataKeys.WINGS].size() != 0:
@@ -206,7 +206,7 @@ func _on_pressed() -> void:
 				eq_prop = PlayerData.player_data[DataKeys.WINGS][0]["Data"]
 				PlayerData.add_zb(name_, ql, eq_prop)
 			else:
-				set_button_icon(load("res://Art/BackPack/cb.png"))
+				set_button_icon(load("res://Art/backpack/cb.png"))
 			PlayerData.player_data[DataKeys.WINGS].clear()
 		"fb":
 			if Global.fb_cd <= 0:
@@ -217,7 +217,7 @@ func _on_pressed() -> void:
 					eq_prop = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
 					PlayerData.add_fb(name_, ql, wx, eq_prop)
 				else:
-					set_button_icon(load("res://Art/BackPack/fb.png"))
+					set_button_icon(load("res://Art/backpack/fb.png"))
 				PlayerData.player_data[DataKeys.MAGIC_WEAPON].clear()
 			else:
 				Global.add_message_show(Global.get_parent_(self, 5), "当前法宝正在使用，无法更换！！", 1.5, Vector2(80, 0))

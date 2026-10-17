@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 			var icon_path := (
 				"res://Art/TwentyEightConstellations/" + str(skill_name) + ".png"
 				if iszhenfa
-				else "res://Art/MagicWeapon/Skill_Icon/" + str(skill_name) + ".png"
+				else "res://Art/magic_weapon/Skill_Icon/" + str(skill_name) + ".png"
 			)
 			var icon_texture := Global.get_cached_texture(icon_path)
 			skillicon.texture = icon_texture

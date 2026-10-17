@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_magic_weapon.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/magic_weapon/xian_yujingping.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon_XianYujingping/atlas/pages/atlas_006.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon_XianYujingping/atlas/pages/atlas_005.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon_XianYujingping/atlas/pages/atlas_004.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon_XianYujingping/atlas/pages/atlas_006.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon_XianYujingping/atlas/pages/atlas_005.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon_XianYujingping/atlas/pages/atlas_004.png" id="5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f2ce8fe7a313"]
 atlas = ExtResource("3")

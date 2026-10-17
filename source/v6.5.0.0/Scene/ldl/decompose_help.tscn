@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Script/ldl/decompose_help.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/show_text/502.png" id="2"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="3"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/ClothesChange/8.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/ClothesChange/10.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/backpack/ClothesChange/8.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/backpack/ClothesChange/10.png" id="5"]
 
 [node name="DecomposeHelp" type="Node2D" unique_id=1056107597]
 script = ExtResource("1")

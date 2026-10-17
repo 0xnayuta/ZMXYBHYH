@@ -1505,7 +1505,7 @@ func clear_combat_runtime_cache() -> void:
 		"res://Art/Monster/",
 		"res://Art/Level/",
 		"res://Art/Pet/",
-		"res://Art/MagicWeapon/",
+		"res://Art/magic_weapon/",
 		"res://Art/zhuxianjianzhen/",
 		"res://Art/add_effect/",
 		"res://Art/all_number/",
@@ -2026,7 +2026,7 @@ func preload_level_monster_resources(monster_group: Dictionary) -> void:
 				"res://Art/item_icon/Bble.png",
 				"res://Art/item_icon/radish.png",
 				"res://Art/item_icon/qhsbx.png",
-				"res://Art/BackPack/AllItems/empty.png",
+				"res://Art/backpack/AllItems/empty.png",
 			]
 		)
 	)
@@ -2074,7 +2074,7 @@ func preload_common_drop_textures() -> void:
 		"res://Art/item_icon/Bble.png",
 		"res://Art/item_icon/radish.png",
 		"res://Art/item_icon/qhsbx.png",
-		"res://Art/BackPack/AllItems/empty.png",
+		"res://Art/backpack/AllItems/empty.png",
 	]
 	for path in drop_paths:
 		get_cached_texture(path)
@@ -3330,7 +3330,7 @@ func release_ui_runtime_cache(release_permanent: bool = false) -> void:
 		_erase_cached_paths_by_prefix(
 			_texture_cache,
 			[
-				"res://Art/BackPack/",
+				"res://Art/backpack/",
 				"res://Art/skill/",
 				"res://Art/shop/",
 				"res://Art/ldl/",
@@ -3392,7 +3392,7 @@ func _ui_art_prefixes_for_scene(scene_path: String) -> Array:
 	if scene_path.begins_with("res://Scene/skill/"):
 		return ["res://Art/skill/"]
 	if scene_path.begins_with("res://Scene/back_pack/"):
-		return ["res://Art/BackPack/"]
+		return ["res://Art/backpack/"]
 	if scene_path == "res://Scene/pet/pet_interface.tscn":
 		return ["res://Art/Pet/PetPageResources/"]
 	if scene_path.begins_with("res://Scene/ldl/"):
@@ -5511,7 +5511,7 @@ func remove_all_buff():
 
 
 func load_(name_):
-	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
+	var abc = load("res://Art/backpack/AllItems/" + str(name_) + ".png")
 	return abc
 
 

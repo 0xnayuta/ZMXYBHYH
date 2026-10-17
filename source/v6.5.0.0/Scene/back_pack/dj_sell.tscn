@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Script/back_pack/dj_sell.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/game_2/Ldl/841.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/AllItems/330.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/cannotuse.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/AllItems/335.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/dj_lock_button.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/backpack/AllItems/330.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/backpack/cannotuse.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/backpack/AllItems/335.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/backpack/dj_lock_button.png" id="6"]
 [ext_resource type="FontFile" path="res://Font/1_aaa_FZCuYuan-M03S.ttf" id="7"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]

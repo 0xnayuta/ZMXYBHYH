@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" path="res://Art/Level/Settlement/632.png" id="5"]
 [ext_resource type="Texture2D" path="res://Art/Level/Settlement/457.png" id="6"]
 [ext_resource type="Texture2D" path="res://Art/Level/Settlement/459.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/149.png" id="8"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/145.png" id="9"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/149.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/145.png" id="9"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="10"]
 [ext_resource type="PackedScene" path="res://Scene/back_pack/box_1.tscn" id="11"]
 

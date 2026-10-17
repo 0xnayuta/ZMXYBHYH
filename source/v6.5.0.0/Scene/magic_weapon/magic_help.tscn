@@ -1,11 +1,11 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/magic_weapon/magic_help.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/66.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/66.png" id="2"]
 [ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="3"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="4"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/220.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/222.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/220.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/222.png" id="6"]
 
 [node name="MagicHelp" type="Node2D" unique_id=1836521569]
 script = ExtResource("1")

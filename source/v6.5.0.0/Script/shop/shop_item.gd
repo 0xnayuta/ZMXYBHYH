@@ -169,7 +169,7 @@ func add_item_toplayer(times):
 
 
 func load_(name_):
-	return load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
+	return load("res://Art/backpack/AllItems/" + str(name_) + ".png")
 
 
 func gm():

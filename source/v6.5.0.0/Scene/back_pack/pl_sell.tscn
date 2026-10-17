@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://Script/back_pack/pl_sell.gd" id="1"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="2"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="3"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/119.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/121.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/119_1.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/BackPack/49.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/222.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/backpack/119.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/backpack/121.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/backpack/119_1.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/backpack/49.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/222.png" id="8"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 

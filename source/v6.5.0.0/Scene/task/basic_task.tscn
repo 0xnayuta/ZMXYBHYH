@@ -15,8 +15,8 @@
 [ext_resource type="Texture2D" path="res://Art/task/645.png" id="13"]
 [ext_resource type="Texture2D" path="res://Art/task/638.png" id="14"]
 [ext_resource type="Texture2D" path="res://Art/task/640.png" id="15"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/220.png" id="16"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/222.png" id="17"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/220.png" id="16"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/222.png" id="17"]
 
 [node name="BasicTask" type="Node2D" unique_id=2139097027]
 script = ExtResource("1")

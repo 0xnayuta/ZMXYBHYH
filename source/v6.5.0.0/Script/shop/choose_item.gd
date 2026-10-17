@@ -80,7 +80,7 @@ func get_item_num(idx):
 
 
 func load_(name__):
-	var abc = load("res://Art/BackPack/AllItems/" + str(name__) + ".png")
+	var abc = load("res://Art/backpack/AllItems/" + str(name__) + ".png")
 	return abc
 
 

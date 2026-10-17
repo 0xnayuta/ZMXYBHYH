@@ -2724,10 +2724,10 @@ func load_(name_):
 		var data_icon_path := str(AE.all_equipment[item_id].get("图标", ""))
 		if data_icon_path != "" and ResourceLoader.exists(data_icon_path):
 			return load(data_icon_path)
-	var icon_path := "res://Art/BackPack/AllItems/" + item_id + ".png"
+	var icon_path := "res://Art/backpack/AllItems/" + item_id + ".png"
 	if ResourceLoader.exists(icon_path):
 		return load(icon_path)
-	return load("res://Art/BackPack/AllItems/empty.png")
+	return load("res://Art/backpack/AllItems/empty.png")
 
 
 func load_2(name_):

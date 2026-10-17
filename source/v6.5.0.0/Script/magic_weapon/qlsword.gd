@@ -16,10 +16,10 @@ var weapon_level: int = 1
 var floor_duration_base: float = 10.0
 var floor_duration_per_level: float = 2.0
 
-var floor_texture_path: String = "res://Art/MagicWeapon/MagicWeapon_qlsword/2-1.png"
+var floor_texture_path: String = "res://Art/magic_weapon/MagicWeapon_qlsword/2-1.png"
 var floor_scale: Vector2 = Vector2(0.09, 0.09)
-const idle_sword_texture_path := "res://Art/MagicWeapon/MagicWeapon_qlsword/2.png"
-const cast_sword_texture_path := "res://Art/MagicWeapon/MagicWeapon_qlsword/1.png"
+const idle_sword_texture_path := "res://Art/magic_weapon/MagicWeapon_qlsword/2.png"
+const cast_sword_texture_path := "res://Art/magic_weapon/MagicWeapon_qlsword/1.png"
 
 
 func _ready() -> void:

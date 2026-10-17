@@ -224,7 +224,7 @@ func addbzpic():
 		var item_box := _add_forge_item_box(bs_box, str(item_name), 0, 1, [], data, true, false)
 		if item_box == null or not is_instance_valid(item_box):
 			continue
-		var icon_path := "res://Art/BackPack/AllItems/%s.png" % str(item_name)
+		var icon_path := "res://Art/backpack/AllItems/%s.png" % str(item_name)
 		item_box.set("icon", ResourceLoader.load(icon_path) as Texture2D if ResourceLoader.exists(icon_path) else null)
 		item_box.forge_bzid = idx
 		item_box.is_in_ldl_gz = true
@@ -282,7 +282,7 @@ func remove_all_bspic():
 
 
 func load_(name_):
-	var abc = load("res://Art/BackPack/AllItems/" + str(name_) + ".png")
+	var abc = load("res://Art/backpack/AllItems/" + str(name_) + ".png")
 	return abc
 
 
@@ -457,7 +457,7 @@ func _add_forge_item_box(
 	target.set("eq_prop", props)
 	target.set("get_item_name", item_name)
 	target.set_meta("item_name", item_name)
-	var icon_path := "res://Art/BackPack/AllItems/%s.png" % item_name
+	var icon_path := "res://Art/backpack/AllItems/%s.png" % item_name
 	target.set("icon", ResourceLoader.load(icon_path) as Texture2D if ResourceLoader.exists(icon_path) else null)
 	parent.add_child(target)
 	return target

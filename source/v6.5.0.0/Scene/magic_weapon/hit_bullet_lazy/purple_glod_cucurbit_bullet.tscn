@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/magic_weapon/hit_bullet.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/Skill_Icon/animation .png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/Skill_Icon/animation .png" id="2"]
 [ext_resource type="Script" path="res://Script/magic_weapon/area2_d.gd" id="3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8u84"]

@@ -141,11 +141,11 @@ func _select_target(index: int) -> void:
 
 
 func load_icon(item_name: String) -> Texture2D:
-	var path = "res://Art/BackPack/AllItems/" + item_name + ".png"
+	var path = "res://Art/backpack/AllItems/" + item_name + ".png"
 	if ResourceLoader.exists(path):
 		return load(path)
 	else:
-		return load("res://Art/BackPack/AllItems/empty.png")
+		return load("res://Art/backpack/AllItems/empty.png")
 
 
 func update_icons(target: String):

@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_magic_weapon.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/magic_weapon/purple_gold_bell.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon10/zjd.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon10/tooth.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon10/SpecialEffet_1.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon10/SpecialEffet_2.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon10/zjd.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon10/tooth.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon10/SpecialEffet_1.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon10/SpecialEffet_2.png" id="6"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("3")

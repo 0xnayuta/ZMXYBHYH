@@ -34,7 +34,7 @@ func set_pic(name_):
 	var texture = load_soft(texture_path)
 
 	if not texture:
-		texture_path = "res://Art/BackPack/AllItems/" + str(name_) + ".png"
+		texture_path = "res://Art/backpack/AllItems/" + str(name_) + ".png"
 		texture = load_soft(texture_path)
 
 	if not texture:

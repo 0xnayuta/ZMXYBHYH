@@ -16,7 +16,7 @@ var _stream_sprite: Sprite2D
 var _stream_time := 0.0
 var _stream_frame := -1
 
-const STREAM_FRAME_DIR := "res://Art/MagicWeapon/bsyj_wait_smooth"
+const STREAM_FRAME_DIR := "res://Art/magic_weapon/bsyj_wait_smooth"
 const STREAM_FRAME_OFFSETS := [
 	Vector2(0.0, 1.0),
 	Vector2(0.5, 1.0),

@@ -4,7 +4,7 @@ const CATALOG_DATA := preload("res://Script/main_menu/equipment_catalog_data.gd"
 const CATEGORIES := ["悟空", "唐僧", "八戒", "沙僧", "白龙", "哪吒", "通用", "法宝"]
 const PANEL_SIZE := Vector2(900.0, 540.0)
 const GOLD := Color("e8c478")
-const SLOT_BACKGROUND := preload("res://Art/BackPack/AllItems/empty.png")
+const SLOT_BACKGROUND := preload("res://Art/backpack/AllItems/empty.png")
 const CATALOG_FONT := preload("res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf")
 const QUALITY_ORDER := ["普通", "优秀", "精良", "史诗", "邪灵", "魂器", "传说", "神器", "玄冥", "黑神话", "无敌"]
 

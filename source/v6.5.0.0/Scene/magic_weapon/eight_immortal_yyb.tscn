@@ -6,8 +6,8 @@
 [node name="yyb" unique_id=1023743289 instance=ExtResource("1")]
 script = ExtResource("2")
 weapon_id = "yyb"
-model_path = "res://Art/MagicWeapon/EightImmortal/yyb/model.png"
+model_path = "res://Art/magic_weapon/EightImmortal/yyb/model.png"
 model_frame_size = Vector2i(60, 70)
-effect_dir = "res://Art/MagicWeapon/EightImmortal/yyb/effect"
+effect_dir = "res://Art/magic_weapon/EightImmortal/yyb/effect"
 skill_cost = 10
 skill_cooldown = 10.0

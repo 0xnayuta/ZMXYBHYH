@@ -27,13 +27,13 @@ func _ready() -> void:
 	fb_level = _get_weapon_level()
 	need_mp = 50
 	mg_action.sprite_frames = _build_frames(
-		"wait", "res://Art/MagicWeapon/MagicWeapon_ZhenLeiTianChui/idle_frames/%d.png", IDLE_FRAME_COUNT, true
+		"wait", "res://Art/magic_weapon/MagicWeapon_ZhenLeiTianChui/idle_frames/%d.png", IDLE_FRAME_COUNT, true
 	)
 	thunder_effect.sprite_frames = _build_frames(
-		"effect", "res://Art/MagicWeapon/MagicWeapon_ZhenLeiTianChui/effect_frames/%d.png", EFFECT_FRAME_COUNT, false
+		"effect", "res://Art/magic_weapon/MagicWeapon_ZhenLeiTianChui/effect_frames/%d.png", EFFECT_FRAME_COUNT, false
 	)
 	cast_flash.sprite_frames = _build_frames(
-		"flash", "res://Art/MagicWeapon/MagicWeapon_ZhenLeiTianChui/flash_frames/%d.png", FLASH_FRAME_COUNT, false
+		"flash", "res://Art/magic_weapon/MagicWeapon_ZhenLeiTianChui/flash_frames/%d.png", FLASH_FRAME_COUNT, false
 	)
 	effect_anchor.top_level = true
 	thunder_effect.visible = false

@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_magic_weapon.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/magic_weapon/cloud_sword.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon8/SpecialEffet_2.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon8/CloudSword.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon8/SpecialEffet_2.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon8/CloudSword.png" id="4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_klhs5"]
 atlas = ExtResource("3")

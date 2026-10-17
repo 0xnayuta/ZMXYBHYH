@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_magic_weapon.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/magic_weapon/magic_umbrella.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon5/UmbrellaHit.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon5/UmbrellaIdle.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon5/UmbrellaHit.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon5/UmbrellaIdle.png" id="4"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("3")

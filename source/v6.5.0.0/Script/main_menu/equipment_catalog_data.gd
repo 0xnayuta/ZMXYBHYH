@@ -141,7 +141,7 @@ func get_attributes(item_id: String) -> Array[String]:
 
 func get_icon_path(item_id: String) -> String:
 	var custom := str(equipment.get(item_id, {}).get("图标", ""))
-	for path in [custom, "res://Art/BackPack/AllItems/%s.png" % item_id]:
+	for path in [custom, "res://Art/backpack/AllItems/%s.png" % item_id]:
 		if path != "" and ResourceLoader.exists(path):
 			return path
 	return ""

@@ -118,12 +118,12 @@ func _pet_item_icon(item: Dictionary, item_id: String) -> Texture2D:
 			if icon_path == "":
 				continue
 			if not icon_path.begins_with("res://"):
-				icon_path = "res://Art/BackPack/AllItems/" + icon_path
+				icon_path = "res://Art/backpack/AllItems/" + icon_path
 				if icon_path.get_extension() == "":
 					icon_path += ".png"
 			if ResourceLoader.exists(icon_path):
 				return load(icon_path) as Texture2D
-	var item_path := "res://Art/BackPack/AllItems/%s.png" % item_id
+	var item_path := "res://Art/backpack/AllItems/%s.png" % item_id
 	if ResourceLoader.exists(item_path):
 		return load(item_path) as Texture2D
 	return PET_GENERIC_EQUIPMENT_ICON
@@ -345,10 +345,10 @@ func load_(name_):
 	var data_icon_path := str(item_data.get("图标", ""))
 	if data_icon_path != "" and ResourceLoader.exists(data_icon_path):
 		return load(data_icon_path)
-	var icon_path := "res://Art/BackPack/AllItems/" + item_id + ".png"
+	var icon_path := "res://Art/backpack/AllItems/" + item_id + ".png"
 	if ResourceLoader.exists(icon_path):
 		return load(icon_path)
-	return load("res://Art/BackPack/AllItems/empty.png")
+	return load("res://Art/backpack/AllItems/empty.png")
 
 
 func _on_button_pressed() -> void:

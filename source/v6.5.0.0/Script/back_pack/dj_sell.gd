@@ -1,6 +1,6 @@
 extends Control
-const LOCK_BUTTON_ICON = preload("res://Art/BackPack/dj_lock_button.png")
-const UNLOCK_BUTTON_ICON = preload("res://Art/BackPack/dj_unlock_button.png")
+const LOCK_BUTTON_ICON = preload("res://Art/backpack/dj_lock_button.png")
+const UNLOCK_BUTTON_ICON = preload("res://Art/backpack/dj_unlock_button.png")
 
 @onready var v_box_container: VBoxContainer = $MarginContainer2/MarginContainer/VBoxContainer
 @onready var infor: Label = $MarginContainer2/MarginContainer/VBoxContainer/infor

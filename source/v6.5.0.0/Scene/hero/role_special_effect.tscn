@@ -10,11 +10,11 @@
 [ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/Role2Skill_smb1.png" id="8"]
 [ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/Role2Skill_tjgl.png" id="9"]
 [ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/Role2Skill_hd.png" id="10"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon_wds/wdstbull4_1.png" id="11"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon_wds/wdstbull4_1.png" id="11"]
 [ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/Role2Skill_LXYZ5.png" id="12"]
 [ext_resource type="Texture2D" path="res://Art/HeroPicture/Role3/Role3SpecialEffect7.png" id="13"]
 [ext_resource type="Texture2D" path="res://Art/HeroPicture/Role2/Role2Skill_hd_1.png" id="14"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/MagicWeapon_wds/wdstbull4_2.png" id="15"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/MagicWeapon_wds/wdstbull4_2.png" id="15"]
 
 [sub_resource type="CanvasItemMaterial" id="1"]
 

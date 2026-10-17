@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "scan_time": "2026-10-17 22:48:54",
+    "scan_time": "2026-10-17 23:44:49",
     "project_dir": "G:\\source\\repos\\ZMXYBHYH\\source\\v6.5.0.0",
     "stats": {
       "total_findings": 1967,
@@ -1154,7 +1154,7 @@
       "severity": "WARNING",
       "file": "Scene/magic_weapon/hit_bullet.tscn",
       "line": 12,
-      "literal": "res://Art/MagicWeapon/Skill_Icon/animation",
+      "literal": "res://Art/magic_weapon/Skill_Icon/animation",
       "message": "资源文件或目录不存在: 分段不存在: animation",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1164,7 +1164,7 @@
       "severity": "WARNING",
       "file": "Scene/magic_weapon/hit_bullet.tscn",
       "line": 19,
-      "literal": "res://Art/MagicWeapon/MagicWeapon_wds/wdsfbull3-1",
+      "literal": "res://Art/magic_weapon/MagicWeapon_wds/wdsfbull3-1",
       "message": "资源文件或目录不存在: 分段不存在: wdsfbull3-1",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1174,7 +1174,7 @@
       "severity": "WARNING",
       "file": "Scene/magic_weapon/hit_bullet_lazy/purple_glod_cucurbit_bullet.tscn",
       "line": 4,
-      "literal": "res://Art/MagicWeapon/Skill_Icon/animation",
+      "literal": "res://Art/magic_weapon/Skill_Icon/animation",
       "message": "资源文件或目录不存在: 分段不存在: animation",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1184,7 +1184,7 @@
       "severity": "WARNING",
       "file": "Scene/magic_weapon/hit_bullet_lazy/wdsh_bullet2.tscn",
       "line": 4,
-      "literal": "res://Art/MagicWeapon/MagicWeapon_wds/wdsfbull3-1",
+      "literal": "res://Art/magic_weapon/MagicWeapon_wds/wdsfbull3-1",
       "message": "资源文件或目录不存在: 分段不存在: wdsfbull3-1",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1472,9 +1472,9 @@
     {
       "category": "resource_path",
       "severity": "WARNING",
-      "file": "Art/MagicWeapon/MagicWeapon_wds/wdsfbull3-1 .png.import",
+      "file": "Art/magic_weapon/MagicWeapon_wds/wdsfbull3-1 .png.import",
       "line": 13,
-      "literal": "res://Art/MagicWeapon/MagicWeapon_wds/wdsfbull3-1",
+      "literal": "res://Art/magic_weapon/MagicWeapon_wds/wdsfbull3-1",
       "message": "资源文件或目录不存在: 分段不存在: wdsfbull3-1",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1482,9 +1482,9 @@
     {
       "category": "resource_path",
       "severity": "WARNING",
-      "file": "Art/MagicWeapon/Skill_Icon/animation .png.import",
+      "file": "Art/magic_weapon/Skill_Icon/animation .png.import",
       "line": 13,
-      "literal": "res://Art/MagicWeapon/Skill_Icon/animation",
+      "literal": "res://Art/magic_weapon/Skill_Icon/animation",
       "message": "资源文件或目录不存在: 分段不存在: animation",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -3753,7 +3753,7 @@
       "category": "dict_key",
       "severity": "INFO",
       "file": "Script/back_pack/skill_select.gd",
-      "line": 114,
+      "line": 116,
       "literal": "实战法宝",
       "message": "中文字典键 '实战法宝' 尚未收录进 DataKeys",
       "suggested_fix": "",
@@ -3763,7 +3763,7 @@
       "category": "dict_key",
       "severity": "INFO",
       "file": "Script/back_pack/skill_select.gd",
-      "line": 131,
+      "line": 133,
       "literal": "实战法宝",
       "message": "中文字典键 '实战法宝' 尚未收录进 DataKeys",
       "suggested_fix": "",

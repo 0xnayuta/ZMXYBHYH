@@ -1,11 +1,11 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/back_pack/use_items.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/66.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/66.png" id="2"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="3"]
 [ext_resource type="PackedScene" path="res://Scene/back_pack/box_1.tscn" id="4"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/149.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/MagicWeapon/145.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/149.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/magic_weapon/145.png" id="6"]
 
 [node name="UseItems" type="Node2D" unique_id=1303830862]
 script = ExtResource("1")
