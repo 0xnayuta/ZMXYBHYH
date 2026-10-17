@@ -58,8 +58,8 @@ func _configure_stats() -> void:
 	Critreduce = 0
 	speed = 9
 	mysee = 1000
-	attackRange = 200
-	attackDesire = 60
+	attack_range = 200
+	attack_desire = 60
 	behit_calmtime = 0.25
 	self_rhp = 0
 	add_exp = 500
@@ -69,25 +69,25 @@ func _configure_stats() -> void:
 	fall_stone_pro = 0.0
 	fall_stone = []
 
-	objattackDic["hit1"] = {
+	obj_attack_dict["hit1"] = {
 		"power": attack_power,
 		"hurtBack": [-6, -5],
 		"attackKind": "physics",
 		"HitProtect": 0,
 	}
-	objattackDic["hit2"] = {
+	obj_attack_dict["hit2"] = {
 		"power": attack_power,
 		"hurtBack": [0, 0],
 		"attackKind": "physics",
 		"HitProtect": 0,
 	}
-	objattackDic["hit3"] = {
+	obj_attack_dict["hit3"] = {
 		"power": 900,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
 		"HitProtect": 0,
 	}
-	objattackDic["hit4"] = {
+	obj_attack_dict["hit4"] = {
 		"power": 2000,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -185,7 +185,7 @@ func ai_think() -> void:
 		_cast_gaze()
 	elif Skill_3_CD <= 0 and distance < 600.0:
 		_cast_repeated_moonlight()
-	elif distance > attackRange:
+	elif distance > attack_range:
 		have_target()
 	else:
 		stop_move()
@@ -205,7 +205,7 @@ func attack_target() -> void:
 	await get_tree().create_timer(4.0 / 24.0, false).timeout
 	if Hp > 0:
 		var offset_x := 50.0 if MonsterDirection else -50.0
-		_spawn_effect("Monster130Bullet1", global_position + Vector2(offset_x, 0), "hit1", objattackDic["hit1"])
+		_spawn_effect("Monster130Bullet1", global_position + Vector2(offset_x, 0), "hit1", obj_attack_dict["hit1"])
 	await get_tree().create_timer(10.0 / 24.0, false).timeout
 	is_attacking = false
 	_skill_busy = false
@@ -245,7 +245,7 @@ func _cast_gaze() -> void:
 	mr_player.play(&"hit3")
 	await get_tree().process_frame
 	if Hp > 0:
-		var effect = _spawn_effect("Monster130Bullet3", global_position, "hit3", objattackDic["hit3"])
+		var effect = _spawn_effect("Monster130Bullet3", global_position, "hit3", obj_attack_dict["hit3"])
 		if effect != null:
 			effect.my_father = self
 			effect.set_meta("monster130_gaze_lifetime", randf_range(1.0, 3.0))
@@ -292,7 +292,7 @@ func _spawn_moonlight_on_random_target() -> void:
 	if targets.is_empty():
 		return
 	var target := targets[randi_range(0, targets.size() - 1)] as Node2D
-	_spawn_effect("Monster130Bullet2", target.global_position + Vector2(0, -30), "hit2", objattackDic["hit2"])
+	_spawn_effect("Monster130Bullet2", target.global_position + Vector2(0, -30), "hit2", obj_attack_dict["hit2"])
 
 
 func _spawn_effect(effect_name: String, spawn_position: Vector2, attack_name: String, attack_data: Dictionary):

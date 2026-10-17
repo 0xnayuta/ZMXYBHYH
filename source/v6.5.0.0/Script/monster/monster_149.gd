@@ -37,9 +37,9 @@ func monster_101():
 
 	self.mysee = 1080
 
-	self.attackRange = 382
+	self.attack_range = 382
 
-	self.attackDesire = 325
+	self.attack_desire = 325
 	self.behit_calmtime = 0
 
 	self.self_rhp = self.SHp * 0.000216
@@ -51,13 +51,13 @@ func monster_101():
 	self.y_max = 600
 	self.y_min = 250
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 4666,
 		"hurtBack": [-4, -7],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 4666,
 		"hurtBack": [-2, -1],
 		"attackKind": "magic",
@@ -73,7 +73,7 @@ func monster_101():
 			"DeBuff": true,
 		},
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 8640,
 		"hurtBack": [-6, -1],
 		"attackKind": "magic",
@@ -130,7 +130,7 @@ func ai_think():
 		else:
 			var distance = abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
 
-			if distance >= attackRange:
+			if distance >= attack_range:
 				have_target()
 
 				if my_child == null and Skill_1_CD <= 0:
@@ -163,7 +163,7 @@ func ai_think():
 					Skill_3_CD = randi_range(0, 6)
 
 				if tick_count % 60 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 
 
@@ -220,11 +220,17 @@ func call_bullet_1():
 	var bullet_node
 	if self.MonsterDirection:
 		bullet_node = Global.add_bullet(
-			"Monster147Bullet1", self.bullet, false, 1, Vector2(35, 25) + position, "hit1", self.objattackDic["hit1"]
+			"Monster147Bullet1", self.bullet, false, 1, Vector2(35, 25) + position, "hit1", self.obj_attack_dict["hit1"]
 		)
 	else:
 		bullet_node = Global.add_bullet(
-			"Monster147Bullet1", self.bullet, false, 1, Vector2(-35, 25) + position, "hit1", self.objattackDic["hit1"]
+			"Monster147Bullet1",
+			self.bullet,
+			false,
+			1,
+			Vector2(-35, 25) + position,
+			"hit1",
+			self.obj_attack_dict["hit1"]
 		)
 	bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
@@ -235,16 +241,16 @@ func call_bullet_2():
 	var position_list3 = [Vector2(position.x + 450, 200), Vector2(position.x - 450, 200)]
 	var position_list4 = [Vector2(position.x + 600, 0), Vector2(position.x - 600, 0)]
 	for i in position_list1:
-		Global.add_bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
+		Global.add_bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.obj_attack_dict["hit2"])
 	await get_tree().create_timer(0.2, false).timeout
 	for i in position_list2:
-		Global.add_bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
+		Global.add_bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.obj_attack_dict["hit2"])
 	await get_tree().create_timer(0.2, false).timeout
 	for i in position_list3:
-		Global.add_bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
+		Global.add_bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.obj_attack_dict["hit2"])
 	await get_tree().create_timer(0.2, false).timeout
 	for i in position_list4:
-		Global.add_bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"])
+		Global.add_bullet("Monster147Bullet2", self.bullet, false, 1, i, "hit2", self.obj_attack_dict["hit2"])
 	await get_tree().create_timer(0.2, false).timeout
 
 
@@ -261,7 +267,7 @@ func call_bullet_3():
 				1,
 				u["position"] + position,
 				"hit3",
-				self.objattackDic["hit2"]
+				self.obj_attack_dict["hit2"]
 			)
 		await get_tree().create_timer(0.5, false).timeout
 

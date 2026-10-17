@@ -34,8 +34,8 @@ func monster_1407():
 	self.Critreduce = 20
 	self.speed = 20
 	self.mysee = 600
-	self.attackRange = 550
-	self.attackDesire = 100
+	self.attack_range = 550
+	self.attack_desire = 100
 	self.behit_calmtime = 0.05
 	self.self_rhp = 0
 	self.add_exp = 6000
@@ -44,20 +44,20 @@ func monster_1407():
 
 	self.has_summoned_1404 = false
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 850,
 		"hurtBack": [-4, -7],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
 
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 900,
 		"hurtBack": [0, -100],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2_1"] = {
+	self.obj_attack_dict["hit2_1"] = {
 		"power": 860,
 		"hurtBack": [-30, 0],
 		"attackKind": "magic",
@@ -73,7 +73,7 @@ func monster_1407():
 			"AttackKind": "",
 		}
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 950,
 		"hurtBack": [-4, -7],
 		"attackKind": "magic",
@@ -90,7 +90,7 @@ func monster_1407():
 		}
 	}
 
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 950,
 		"hurtBack": [-4, -7],
 		"attackKind": "magic",
@@ -107,7 +107,7 @@ func monster_1407():
 		},
 	}
 
-	self.objattackDic["hit5"] = {
+	self.obj_attack_dict["hit5"] = {
 		"power": 250,
 		"hurtBack": [-2, -1],
 		"attackKind": "magic",
@@ -157,7 +157,7 @@ func ai_think():
 
 		var distance_to_player = abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
 
-		if distance_to_player < attackRange:
+		if distance_to_player < attack_range:
 			if Skill_2_CD <= 0:
 				do_hit_2_1()
 			elif Skill_1_CD <= 0:
@@ -295,7 +295,7 @@ func call_bullet_1():
 		if i > 0:
 			await get_tree().create_timer(0.3).timeout
 		var bullet_node = Global.add_bullet(
-			"Monster1407Bullet1", self.bullet, false, 1.5, position, "hit1", self.objattackDic["hit1"]
+			"Monster1407Bullet1", self.bullet, false, 1.5, position, "hit1", self.obj_attack_dict["hit1"]
 		)
 		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
@@ -303,7 +303,7 @@ func call_bullet_1():
 func call_bullet_3():
 	for i in range(1):
 		var bullet_node = Global.add_bullet(
-			"Monster1407Bullet3", self.bullet, false, 1.5, position, "hit3", self.objattackDic["hit3"]
+			"Monster1407Bullet3", self.bullet, false, 1.5, position, "hit3", self.obj_attack_dict["hit3"]
 		)
 		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
@@ -322,7 +322,7 @@ func call_bullet_4():
 		)
 
 		var bullet = Global.add_bullet(
-			"Monster1407Bullet4", self.bullet, false, 1, spawn_position, "hit4", self.objattackDic["hit4"]
+			"Monster1407Bullet4", self.bullet, false, 1, spawn_position, "hit4", self.obj_attack_dict["hit4"]
 		)
 		if i < 9:
 			await get_tree().create_timer(0.5, false).timeout
@@ -331,13 +331,13 @@ func call_bullet_4():
 func call_bullet_5():
 	if my_child == null:
 		my_child = Global.add_bullet(
-			"Monster1407Bullet5", self.bullet, false, 1, Vector2(500, -270), "hit5", self.objattackDic["hit5"]
+			"Monster1407Bullet5", self.bullet, false, 1, Vector2(500, -270), "hit5", self.obj_attack_dict["hit5"]
 		)
 		tick_count = 0
 
 
 func move_player_2():
-	if not get_Player:
+	if not get_player:
 		return
 
 	var offset = 100

@@ -26,29 +26,29 @@ func monster_1401():
 	self.Critreduce = 5
 	self.speed = 13
 	self.mysee = 550
-	self.attackRange = 350
-	self.attackDesire = 75
+	self.attack_range = 350
+	self.attack_desire = 75
 	self.behit_calmtime = 0.18
 	self.self_rhp = 2000
 	self.add_exp = 2500
 	self.fall_coin = 1000
 	self.ebol = 0
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 550,
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
 
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 440,
 		"hurtBack": [-10, -5],
 		"attackKind": "physics",
 		"HitProtect": 15,
 	}
 
-	self.objattackDic["hit2_2"] = {
+	self.obj_attack_dict["hit2_2"] = {
 		"power": 600,
 		"hurtBack": [-10, -8],
 		"attackKind": "physics",
@@ -65,7 +65,7 @@ func monster_1401():
 		},
 	}
 
-	self.objattackDic["hit2_3"] = {
+	self.obj_attack_dict["hit2_3"] = {
 		"power": 800,
 		"hurtBack": [-10, -10],
 		"attackKind": "magic",
@@ -82,7 +82,7 @@ func monster_1401():
 		},
 	}
 
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 0,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -132,7 +132,7 @@ func ai_think():
 		else:
 			var distance = abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
 
-			if distance >= attackRange:
+			if distance >= attack_range:
 				have_target()
 				if Skill_2_CD <= 0 and distance > 200:
 					do_hit_2()
@@ -207,7 +207,7 @@ func do_hit_3():
 	mr_player.play("hit3")
 	await mr_player.animation_finished
 
-	Global.add_buff(get_Player.buff, objattackDic["hit3"]["addeffect"])
+	Global.add_buff(get_player.buff, obj_attack_dict["hit3"]["addeffect"])
 
 	is_attacking = false
 	stop_move()

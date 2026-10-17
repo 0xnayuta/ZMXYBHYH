@@ -24,14 +24,14 @@ func monster_20():
 	self.Critreduce = 0
 	self.speed = 8
 	self.mysee = 450
-	self.attackRange = 145
-	self.attackDesire = 100
+	self.attack_range = 145
+	self.attack_desire = 100
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 200
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {"power": 225, "hurtBack": [-5, -9], "attackKind": "physics"}
-	self.objattackDic["sxks"] = {
+	self.obj_attack_dict["hit1"] = {"power": 225, "hurtBack": [-5, -9], "attackKind": "physics"}
+	self.obj_attack_dict["sxks"] = {
 		"power": 245,
 		"hurtBack": [-5, -15],
 		"attackKind": "magic",
@@ -46,7 +46,7 @@ func monster_20():
 			"AttackKind": "real",
 		}
 	}
-	self.objattackDic["sxks_2"] = {
+	self.obj_attack_dict["sxks_2"] = {
 		"power": 155,
 		"hurtBack": [-7, -15],
 		"attackKind": "real",
@@ -61,7 +61,7 @@ func monster_20():
 			"AttackKind": "real",
 		}
 	}
-	self.objattackDic["spzd"] = {
+	self.obj_attack_dict["spzd"] = {
 		"power": 400,
 		"hurtBack": [-15, -15],
 		"attackKind": "real",
@@ -122,7 +122,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if Skill_2_CD <= 0:
 					do_hit_3()
@@ -136,7 +136,7 @@ func ai_think():
 					do_hit_2()
 				else:
 					if count % 90 == 0:
-						if ran_num <= attackDesire:
+						if ran_num <= attack_desire:
 							attack_target()
 					else:
 						stop_move()
@@ -193,7 +193,13 @@ func call_pp():
 	var second_position = par.position + Vector2(0, 70)
 	await get_tree().create_timer(0.8, false).timeout
 	Global.add_bullet(
-		"Monster20Bullet_1", self.bullet, self.MonsterDirection, 1, second_position, "spzd", self.objattackDic["spzd"]
+		"Monster20Bullet_1",
+		self.bullet,
+		self.MonsterDirection,
+		1,
+		second_position,
+		"spzd",
+		self.obj_attack_dict["spzd"]
 	)
 
 
@@ -202,7 +208,7 @@ func call_shark():
 	var speed_val = 700
 	var position_vec = Vector2(position.x, position.y - 20)
 	var hit_name = "sxks_2"
-	var attack_dic = objattackDic["sxks_2"]
+	var attack_dic = obj_attack_dict["sxks_2"]
 
 	if MonsterDirection:
 		var shark = Global.call_fly_bullet(bullet, bullet_name, 1, position_vec, 4000, speed_val, hit_name, attack_dic)
@@ -283,8 +289,8 @@ func state_hurt():
 
 func change_hit():
 	if not low_hp():
-		self.objattackDic["hit1"] = {"power": 245, "hurtBack": [-5, -9], "attackKind": "real"}
-		self.objattackDic["sxks"] = {
+		self.obj_attack_dict["hit1"] = {"power": 245, "hurtBack": [-5, -9], "attackKind": "real"}
+		self.obj_attack_dict["sxks"] = {
 			"power": 50,
 			"hurtBack": [-5, -15],
 			"attackKind": "magic",
@@ -297,7 +303,7 @@ func change_hit():
 				"AttackKind": "real",
 			}
 		}
-		self.objattackDic["sxks_2"] = {
+		self.obj_attack_dict["sxks_2"] = {
 			"power": 70,
 			"hurtBack": [-7, -15],
 			"attackKind": "magic",
@@ -310,7 +316,7 @@ func change_hit():
 				"AttackKind": "real",
 			}
 		}
-		self.objattackDic["spzd"] = {
+		self.obj_attack_dict["spzd"] = {
 			"power": 500,
 			"hurtBack": [-15, -15],
 			"attackKind": "real",
@@ -324,8 +330,8 @@ func change_hit():
 			}
 		}
 	else:
-		self.objattackDic["hit1"] = {"power": 105, "hurtBack": [-5, -9], "attackKind": "physics"}
-		self.objattackDic["sxks"] = {
+		self.obj_attack_dict["hit1"] = {"power": 105, "hurtBack": [-5, -9], "attackKind": "physics"}
+		self.obj_attack_dict["sxks"] = {
 			"power": 300,
 			"hurtBack": [-5, -15],
 			"attackKind": "magic",
@@ -338,7 +344,7 @@ func change_hit():
 				"AttackKind": "real",
 			}
 		}
-		self.objattackDic["sxks_2"] = {
+		self.obj_attack_dict["sxks_2"] = {
 			"power": 300,
 			"hurtBack": [-7, -15],
 			"attackKind": "real",
@@ -351,7 +357,7 @@ func change_hit():
 				"AttackKind": "real",
 			}
 		}
-		self.objattackDic["spzd"] = {
+		self.obj_attack_dict["spzd"] = {
 			"power": 210,
 			"hurtBack": [-15, -15],
 			"attackKind": "magic",

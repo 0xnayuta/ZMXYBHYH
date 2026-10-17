@@ -282,9 +282,9 @@ func _configure_monster() -> void:
 	ar = int(config.get("armor_break", 900))
 	sp = int(config.get("magic_break", 900))
 	speed = float(config.get("speed", 0.0))
-	attackRange = roundi(float(config.get("range", 0.0)))
+	attack_range = roundi(float(config.get("range", 0.0)))
 	mysee = int(config.get("sight", 940))
-	attackDesire = int(config.get("attack_desire", 100))
+	attack_desire = int(config.get("attack_desire", 100))
 	add_exp = int(config.get("exp", 10))
 	fall_coin = int(config.get("coin", 8))
 	fall_pro = float(config.get("drop_rate", 0.0))
@@ -300,8 +300,8 @@ func _configure_monster() -> void:
 			"kind": config["kind"],
 			"protect": config["protect"],
 		}
-	objattackDic.clear()
-	objattackDic["hit1"] = {
+	obj_attack_dict.clear()
+	obj_attack_dict["hit1"] = {
 		"power": int(float(attack_in) * float(attack["multiplier"])),
 		"hurtBack": Array(attack["hurt_back"]).duplicate(),
 		"attackKind": str(attack["kind"]),
@@ -564,7 +564,7 @@ func _fire_shell_spread() -> void:
 				"position": global_position + Vector2(56.0 * facing, -32.0),
 				"right": facing > 0.0,
 				"hit_name": "hit1",
-				"attack_data": objattackDic["hit1"],
+				"attack_data": obj_attack_dict["hit1"],
 				"skill_name": "NanhaiShellShot",
 				"frame_root": _projectile_root(model, "arrow1"),
 				"frame_count": 10,
@@ -597,7 +597,7 @@ func _fire_clam_shot() -> void:
 			"position": spawn_position,
 			"right": facing > 0.0,
 			"hit_name": "hit1",
-			"attack_data": objattackDic["hit1"],
+			"attack_data": obj_attack_dict["hit1"],
 			"skill_name": "NanhaiClamShot",
 			"frame_root": _projectile_root(model, "arrow1"),
 			"frame_count": 8,
@@ -623,7 +623,7 @@ func _fire_shrimp_shot() -> void:
 			"position": global_position + Vector2(43.0 * facing, -50.0),
 			"right": facing > 0.0,
 			"hit_name": "hit1",
-			"attack_data": objattackDic["hit1"],
+			"attack_data": obj_attack_dict["hit1"],
 			"skill_name": "NanhaiShrimpShot",
 			"frame_root": _projectile_root(model, "arrow1"),
 			"frame_count": 8,
@@ -655,7 +655,7 @@ func _start_tiger_shark_dash() -> void:
 			"position": start_position,
 			"right": facing > 0.0,
 			"hit_name": "hit1",
-			"attack_data": objattackDic["hit1"],
+			"attack_data": obj_attack_dict["hit1"],
 			"skill_name": "NanhaiTigerSharkDash",
 			"frame_root": _projectile_root(3049, "attack1_1"),
 			"frame_count": 17,

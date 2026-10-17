@@ -14,7 +14,7 @@ var _hit_data := {
 
 
 func _ready() -> void:
-	objattackDic["hit1"] = _hit_data
+	obj_attack_dict["hit1"] = _hit_data
 
 
 func _get_active_monster_snapshot() -> Array:

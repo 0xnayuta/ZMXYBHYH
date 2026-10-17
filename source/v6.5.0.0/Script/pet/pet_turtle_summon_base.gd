@@ -149,7 +149,7 @@ func _initialize_summon_base() -> void:
 		buff_node.name = "Buff"
 		add_child(buff_node)
 		buff = buff_node
-	iniSpeed = speed
+	init_speed = speed
 	if base_damage_box == null:
 		base_damage_box = get_node_or_null("BaseDamageBox") as Node2D
 	if monster_dir == null:
@@ -274,10 +274,10 @@ func setup_pet_turtle(stage: int) -> void:
 	Critreduce = int(pet_data.get("暴免", 0)) + int(equipment_bonus.get("暴免", 0))
 	pet_skill_cooldown_multiplier = 1.0 - float(clampi(int(pet_data.get("灵力", 0)), 0, 25)) * 0.02
 	speed = 14
-	iniSpeed = speed
-	attackRange = int(TURTLE_NORMAL_ATTACK_RANGES.get(turtle_stage, 150))
+	init_speed = speed
+	attack_range = int(TURTLE_NORMAL_ATTACK_RANGES.get(turtle_stage, 150))
 	mysee = 99999
-	attackDesire = 100
+	attack_desire = 100
 	is_boss = false
 	add_exp = 0
 	fall_coin = 0
@@ -311,10 +311,10 @@ func _rebuild_pet_turtle_attack_data() -> void:
 	var aoyi_power := PET_SKILL_PROGRESSION.scaled_power(
 		maxi(1, int(float(attack_in) * 6.0 * root_rate)), pet_data, SKILL_NAMES[SKILL_XWAOYI]
 	)
-	objattackDic["hit1"] = _attack_dic(normal_power, [6, -5], "physics", 24)
-	objattackDic["hit2"] = _attack_dic(water_power, [0, 0], "magic", 24)
-	objattackDic["hit3"] = _attack_dic(sybh_power, [0, 0], "magic", 24)
-	objattackDic["hit4"] = _attack_dic(aoyi_power, [0, 0], "magic", 24)
+	obj_attack_dict["hit1"] = _attack_dic(normal_power, [6, -5], "physics", 24)
+	obj_attack_dict["hit2"] = _attack_dic(water_power, [0, 0], "magic", 24)
+	obj_attack_dict["hit3"] = _attack_dic(sybh_power, [0, 0], "magic", 24)
+	obj_attack_dict["hit4"] = _attack_dic(aoyi_power, [0, 0], "magic", 24)
 
 
 func _attack_dic(power: int, hurt_back: Array, kind: String, interval: int) -> Dictionary:
@@ -432,7 +432,7 @@ func ai_think() -> void:
 	if is_attacking or is_aoyi or _skill_cast_frame == Engine.get_physics_frames():
 		return
 	var attack_gap := _horizontal_attack_gap(current_target)
-	if attack_gap > attackRange:
+	if attack_gap > attack_range:
 		if current_target.global_position.x > global_position.x:
 			move_right()
 		else:
@@ -440,7 +440,7 @@ func ai_think() -> void:
 	else:
 		stop_move()
 		to_monster()
-		if count % 48 == 0 and randi_range(0, 100) < attackDesire:
+		if count % 48 == 0 and randi_range(0, 100) < attack_desire:
 			do_hit_1()
 
 
@@ -774,7 +774,7 @@ func _spawn_normal_attack() -> void:
 	var y_offset := -40.0 if turtle_stage == 1 else -60.0 if turtle_stage == 2 else -75.0
 	var hit_size := Vector2(190, 82) if turtle_stage == 1 else Vector2(108, 128)
 	_add_turtle_bullet(
-		bullet_name, global_position + _front_offset(x_offset, y_offset), "hit1", objattackDic["hit1"], hit_size
+		bullet_name, global_position + _front_offset(x_offset, y_offset), "hit1", obj_attack_dict["hit1"], hit_size
 	)
 
 
@@ -784,7 +784,7 @@ func _resolve_water_shield() -> void:
 		"PetTurtle1Bullet2",
 		global_position + Vector2(0, y_offset),
 		"hit2",
-		objattackDic["hit2"],
+		obj_attack_dict["hit2"],
 		TURTLE_WATER_SHIELD_HIT_SIZE,
 		true
 	)
@@ -797,7 +797,11 @@ func _water_shield_y_offset() -> float:
 func _spawn_sybh(persistent: bool) -> void:
 	var attack_key := "hit4" if persistent else "hit3"
 	var instance := _add_turtle_bullet(
-		"PetTurtle3Bullet3", global_position + Vector2(0, -20), attack_key, objattackDic[attack_key], Vector2(560, 170)
+		"PetTurtle3Bullet3",
+		global_position + Vector2(0, -20),
+		attack_key,
+		obj_attack_dict[attack_key],
+		Vector2(560, 170)
 	)
 	if instance == null:
 		return

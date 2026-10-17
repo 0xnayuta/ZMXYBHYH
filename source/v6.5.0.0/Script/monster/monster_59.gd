@@ -22,13 +22,13 @@ func monster_59(BeHitCount):
 	self.Critreduce = 0
 	self.speed = 10
 	self.mysee = 400
-	self.attackRange = 185
-	self.attackDesire = 50 + BeHitCount * 1.5
+	self.attack_range = 185
+	self.attack_desire = 50 + BeHitCount * 1.5
 	self.behit_calmtime = 0.2
 	self.self_rhp = BeHitCount * 70
 	self.add_exp = 100
 	self.fall_coin = 100
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 128 + BeHitCount * 25,
 		"hurtBack": [-6, -1],
 		"attackKind": "physics",
@@ -43,7 +43,7 @@ func monster_59(BeHitCount):
 			"CanAdd": true,
 		}
 	}
-	self.objattackDic["zmhy"] = {
+	self.obj_attack_dict["zmhy"] = {
 		"power": 128 + BeHitCount * 25,
 		"hurtBack": [0, -18],
 		"attackKind": "magic",
@@ -58,7 +58,7 @@ func monster_59(BeHitCount):
 			"CanAdd": false,
 		}
 	}
-	self.objattackDic["zzzy"] = {
+	self.obj_attack_dict["zzzy"] = {
 		"power": 333 + BeHitCount * 20,
 		"hurtBack": [-12, -1],
 		"attackKind": "magic",
@@ -97,7 +97,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -111,7 +111,7 @@ func ai_think():
 					do_hit_2()
 				else:
 					if count % 40 == 0:
-						if randi_range(0, 100) < attackDesire:
+						if randi_range(0, 100) < attack_desire:
 							attack_target()
 						else:
 							normal_state()
@@ -148,10 +148,10 @@ func call_zzzy():
 	var bullet_pos
 	if MonsterDirection:
 		bullet_pos = Vector2(420, randi_range(-130, 130)) + self.position
-		Global.add_bullet(bullet_name, self.bullet, true, 1, bullet_pos, "zzzy", self.objattackDic["zzzy"])
+		Global.add_bullet(bullet_name, self.bullet, true, 1, bullet_pos, "zzzy", self.obj_attack_dict["zzzy"])
 	else:
 		bullet_pos = Vector2(-420, randi_range(-130, 130)) + self.position
-		Global.add_bullet(bullet_name, self.bullet, false, 1, bullet_pos, "zzzy", self.objattackDic["zzzy"])
+		Global.add_bullet(bullet_name, self.bullet, false, 1, bullet_pos, "zzzy", self.obj_attack_dict["zzzy"])
 
 
 func call_zzhy():
@@ -160,7 +160,7 @@ func call_zzhy():
 		var bullet_pos = Vector2(
 			RoleProp.get_nearest_monster_target_position(global_position).x + randi_range(-140, 140), 500
 		)
-		Global.add_bullet("Monster59Bullet_2", self.bullet, false, 1, bullet_pos, "zmhy", self.objattackDic["zmhy"])
+		Global.add_bullet("Monster59Bullet_2", self.bullet, false, 1, bullet_pos, "zmhy", self.obj_attack_dict["zmhy"])
 
 
 func state_hurt():

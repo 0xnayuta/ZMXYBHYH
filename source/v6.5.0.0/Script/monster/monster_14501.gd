@@ -50,8 +50,8 @@ func monster_14501():
 	self.Critreduce = (current_stage - 1) * 5
 	self.speed = 12 * stage_multiplier
 	self.mysee = 500
-	self.attackRange = 355
-	self.attackDesire = 355
+	self.attack_range = 355
+	self.attack_desire = 355
 	self.behit_calmtime = 0
 	self.self_rhp = SHp * 0.0002
 	self.add_exp = 1 * current_stage
@@ -60,13 +60,13 @@ func monster_14501():
 
 	var base_power_multiplier = 1.0 + (current_stage - 1) * 0.3
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": int((400 + int(RoleProp.baseroleprop.Level * 8)) * base_power_multiplier),
 		"hurtBack": [-7, -9],
 		"attackKind": "physics",
 		"HitProtect": 10
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": int((600 + int(RoleProp.baseroleprop.Level * 12)) * base_power_multiplier),
 		"hurtBack": [-7, -15],
 		"attackKind": "magic",
@@ -80,7 +80,7 @@ func monster_14501():
 			"AttackKind": "",
 		}
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": int((500 + int(RoleProp.baseroleprop.Level * 15)) * base_power_multiplier),
 		"hurtBack": [-16, -9],
 		"attackKind": "magic",
@@ -94,7 +94,7 @@ func monster_14501():
 			"AttackKind": "",
 		}
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 0,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -147,7 +147,7 @@ func ai_think():
 			normal_state()
 
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270:
 					if Skill_2_CD <= 0:
@@ -157,7 +157,7 @@ func ai_think():
 				if Skill_4_CD <= 0:
 					do_hit_wdww()
 				if count % 180 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 			else:
 				stop_move()
@@ -168,7 +168,7 @@ func ai_think():
 				if Skill_4_CD <= 0:
 					do_hit_wdww()
 				if count % 180 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 
 
@@ -218,7 +218,7 @@ func call_attack1_bullet():
 			500,
 			-4000,
 			"hit1",
-			objattackDic["hit1"]
+			obj_attack_dict["hit1"]
 		)
 	else:
 		fz = Global.call_fly_bullet(
@@ -229,7 +229,7 @@ func call_attack1_bullet():
 			500,
 			4000,
 			"hit1",
-			objattackDic["hit1"]
+			obj_attack_dict["hit1"]
 		)
 	if fz:
 		var sprite = fz.get_node("AnimatedSprite2D")
@@ -252,7 +252,7 @@ func call_attack1_3bullet():
 				500,
 				-4000,
 				"hit1",
-				objattackDic["hit1"]
+				obj_attack_dict["hit1"]
 			)
 		else:
 			fz = Global.call_fly_bullet(
@@ -263,7 +263,7 @@ func call_attack1_3bullet():
 				500,
 				4000,
 				"hit1",
-				objattackDic["hit1"]
+				obj_attack_dict["hit1"]
 			)
 		if fz:
 			var sprite = fz.get_node("AnimatedSprite2D")
@@ -277,11 +277,11 @@ func call_attack2_bullet():
 	var fz
 	if dir:
 		fz = Global.call_fly_bullet(
-			bullet, "Monster_xss_Bulet1", 1, Vector2(position.x + 150, 500), 10, 10, "hit2", objattackDic["hit2"]
+			bullet, "Monster_xss_Bulet1", 1, Vector2(position.x + 150, 500), 10, 10, "hit2", obj_attack_dict["hit2"]
 		)
 	else:
 		fz = Global.call_fly_bullet(
-			bullet, "Monster_xss_Bulet1", 1, Vector2(position.x - 150, 500), 10, -10, "hit2", objattackDic["hit2"]
+			bullet, "Monster_xss_Bulet1", 1, Vector2(position.x - 150, 500), 10, -10, "hit2", obj_attack_dict["hit2"]
 		)
 	if fz:
 		var sprite = fz.get_node("AnimatedSprite2D")
@@ -295,11 +295,11 @@ func call_attack3_bullet():
 	var fz
 	if dir:
 		fz = Global.call_fly_bullet(
-			bullet, "Monster63Bullet", 1, Vector2(position.x + 100, 450), 1000, -3400, "hit3", objattackDic["hit3"]
+			bullet, "Monster63Bullet", 1, Vector2(position.x + 100, 450), 1000, -3400, "hit3", obj_attack_dict["hit3"]
 		)
 	else:
 		fz = Global.call_fly_bullet(
-			bullet, "Monster63Bullet", 1, Vector2(position.x - 100, 450), 1000, 3400, "hit3", objattackDic["hit3"]
+			bullet, "Monster63Bullet", 1, Vector2(position.x - 100, 450), 1000, 3400, "hit3", obj_attack_dict["hit3"]
 		)
 	if fz:
 		var sprite = fz.get_node("AnimatedSprite2D")

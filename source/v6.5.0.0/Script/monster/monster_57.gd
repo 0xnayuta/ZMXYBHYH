@@ -28,13 +28,13 @@ func monster_57():
 		self.Critreduce = 0
 		self.speed = 10
 		self.mysee = 300
-		self.attackRange = 600
-		self.attackDesire = 90
+		self.attack_range = 600
+		self.attack_desire = 90
 		self.behit_calmtime = 0.2
 		self.self_rhp = 0
 		self.add_exp = 1000
 		self.fall_coin = 1000
-		self.objattackDic["hit1"] = {
+		self.obj_attack_dict["hit1"] = {
 			"power": 600,
 			"hurtBack": [-4, -9],
 			"attackKind": "magic",
@@ -49,7 +49,7 @@ func monster_57():
 				"DeBuff": true,
 			}
 		}
-		self.objattackDic["hit1_1"] = {
+		self.obj_attack_dict["hit1_1"] = {
 			"power": 660,
 			"hurtBack": [-4, -9],
 			"attackKind": "magic",
@@ -64,7 +64,7 @@ func monster_57():
 				"DeBuff": true,
 			}
 		}
-		self.objattackDic["hit1_2"] = {
+		self.obj_attack_dict["hit1_2"] = {
 			"power": 680,
 			"hurtBack": [-4, -9],
 			"attackKind": "magic",
@@ -79,7 +79,7 @@ func monster_57():
 				"DeBuff": true,
 			}
 		}
-		self.objattackDic["hit1_3"] = {
+		self.obj_attack_dict["hit1_3"] = {
 			"power": 520,
 			"hurtBack": [-4, -9],
 			"attackKind": "magic",
@@ -94,8 +94,8 @@ func monster_57():
 				"DeBuff": true,
 			}
 		}
-		self.objattackDic["dmzhl"] = {"power": 600, "hurtBack": [-8, 0], "attackKind": "magic"}
-		self.objattackDic["dmgz"] = {"power": 800, "hurtBack": [0, -7], "attackKind": "magic"}
+		self.obj_attack_dict["dmzhl"] = {"power": 600, "hurtBack": [-8, 0], "attackKind": "magic"}
+		self.obj_attack_dict["dmgz"] = {"power": 800, "hurtBack": [0, -7], "attackKind": "magic"}
 		self.fall_pro = 0.5
 		self.fall_list = [
 			{"name": "zlwdahsp1", "value": 1},
@@ -121,13 +121,13 @@ func monster_57():
 	self.Critreduce = 0
 	self.speed = 10
 	self.mysee = 300
-	self.attackRange = 600
-	self.attackDesire = 90
+	self.attack_range = 600
+	self.attack_desire = 90
 	self.behit_calmtime = 0.2
 	self.self_rhp = 0
 	self.add_exp = 1000
 	self.fall_coin = 1000
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 200,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -142,7 +142,7 @@ func monster_57():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit1_1"] = {
+	self.obj_attack_dict["hit1_1"] = {
 		"power": 220,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -157,7 +157,7 @@ func monster_57():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit1_2"] = {
+	self.obj_attack_dict["hit1_2"] = {
 		"power": 240,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -172,7 +172,7 @@ func monster_57():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit1_3"] = {
+	self.obj_attack_dict["hit1_3"] = {
 		"power": 260,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -187,8 +187,8 @@ func monster_57():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["dmzhl"] = {"power": 300, "hurtBack": [-8, 0], "attackKind": "magic"}
-	self.objattackDic["dmgz"] = {"power": 400, "hurtBack": [0, -7], "attackKind": "magic"}
+	self.obj_attack_dict["dmzhl"] = {"power": 300, "hurtBack": [-8, 0], "attackKind": "magic"}
+	self.obj_attack_dict["dmgz"] = {"power": 400, "hurtBack": [0, -7], "attackKind": "magic"}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
@@ -275,7 +275,7 @@ func call_round():
 	var tween = get_tree().create_tween().set_parallel(true)
 	for i in range(round_throw_count):
 		var round = Global.add_bullet(
-			"Monster57Bullet", bullet, false, 1, position, "dmzhl", self.objattackDic["dmzhl"]
+			"Monster57Bullet", bullet, false, 1, position, "dmzhl", self.obj_attack_dict["dmzhl"]
 		)
 		round_list.push_back(round)
 	for i in round_list:
@@ -314,7 +314,7 @@ func normal_bullet():
 			false,
 			bullet_pos,
 			hit_name,
-			self.objattackDic[hit_name]
+			self.obj_attack_dict[hit_name]
 		)
 	else:
 		Bullet = Global.call_chase_bullet(
@@ -325,7 +325,7 @@ func normal_bullet():
 			false,
 			bullet_pos,
 			hit_name,
-			self.objattackDic[hit_name]
+			self.obj_attack_dict[hit_name]
 		)
 	Bullet.scale = Vector2(0.5, 0.5)
 

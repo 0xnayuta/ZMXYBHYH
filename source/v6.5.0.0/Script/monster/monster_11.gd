@@ -21,19 +21,19 @@ func monster_11():
 	self.Critreduce = 0
 	self.speed = 12
 	self.mysee = 300
-	self.attackRange = 85
-	self.attackDesire = 85
+	self.attack_range = 85
+	self.attack_desire = 85
 	self.behit_calmtime = 0.4
 	self.self_rhp = 0
 	self.add_exp = 100
 	self.fall_coin = 30
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 135,
 		"hurtBack": [-4, -9],
 		"attackKind": "physics",
 		"HitProtect": 15,
 	}
-	self.objattackDic["kldw"] = {
+	self.obj_attack_dict["kldw"] = {
 		"power": 5,
 		"hurtBack": [0, 0],
 		"attackKind": "real",
@@ -48,7 +48,7 @@ func monster_11():
 			"AttackKind": "real",
 		}
 	}
-	self.objattackDic["ysyb"] = {
+	self.obj_attack_dict["ysyb"] = {
 		"power": 330,
 		"hurtBack": [-7, -25],
 		"attackKind": "magic",
@@ -100,7 +100,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400:
 					if Skill_1_CD <= 0:
@@ -121,7 +121,7 @@ func ai_think():
 					do_hit_3()
 				elif count % 60 == 0:
 					var rad = randi_range(0, 100)
-					if rad <= attackDesire:
+					if rad <= attack_desire:
 						attack_target()
 				else:
 					stop_move()
@@ -166,7 +166,7 @@ func call_poision():
 		for i in range(5):
 			var po = Vector2(position_x_list[i], position_y)
 			var poision = Global.add_bullet(
-				"PoisionBullet", self.bullet, self.MonsterDirection, 0.7, po, "kldw", self.objattackDic["kldw"]
+				"PoisionBullet", self.bullet, self.MonsterDirection, 0.7, po, "kldw", self.obj_attack_dict["kldw"]
 			)
 			poision.scale = Vector2(1.2, 1.2)
 			randomize()
@@ -183,7 +183,7 @@ func call_poision():
 		for i in range(5):
 			var po = Vector2(position_x_list[i], position_y)
 			var poision = Global.add_bullet(
-				"PoisionBullet", self.bullet, self.MonsterDirection, 0.7, po, "kldw", self.objattackDic["kldw"]
+				"PoisionBullet", self.bullet, self.MonsterDirection, 0.7, po, "kldw", self.obj_attack_dict["kldw"]
 			)
 			poision.scale = Vector2(1.2, 1.2)
 			randomize()
@@ -201,7 +201,7 @@ func call_ysyb():
 	var bullet_spawn_positions = [Vector2(0, 90), Vector2(-120, -20), Vector2(120, -20)]
 	for i in bullet_spawn_positions:
 		Global.add_bullet(
-			"Monster11Bullet", self.bullet, self.MonsterDirection, 1, i + position, "ysyb", self.objattackDic["ysyb"]
+			"Monster11Bullet", self.bullet, self.MonsterDirection, 1, i + position, "ysyb", self.obj_attack_dict["ysyb"]
 		)
 		await get_tree().create_timer(0.6, false).timeout
 	pass

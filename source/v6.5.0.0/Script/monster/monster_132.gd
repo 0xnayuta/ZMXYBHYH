@@ -30,21 +30,21 @@ func monster_132():
 	self.Critreduce = 0
 	self.speed = 14
 	self.mysee = 500
-	self.attackRange = 245
-	self.attackDesire = 100
+	self.attack_range = 245
+	self.attack_desire = 100
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 120
 	self.fall_coin = 155
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 200,
 		"hurtBack": [-4, -7],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
 
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 200,
 		"hurtBack": [-5, -1],
 		"attackKind": "magic",
@@ -193,10 +193,10 @@ func perform_resurrection():
 	speed += 1
 	ebol += 0.25
 
-	if objattackDic.size() != 0:
-		for attack_name in objattackDic:
-			if objattackDic[attack_name].has("power"):
-				objattackDic[attack_name].power = int(objattackDic[attack_name].power * 1.2)
+	if obj_attack_dict.size() != 0:
+		for attack_name in obj_attack_dict:
+			if obj_attack_dict[attack_name].has("power"):
+				obj_attack_dict[attack_name].power = int(obj_attack_dict[attack_name].power * 1.2)
 
 	fall_pro += 0.08
 	fall_stone_pro += 0.08
@@ -319,7 +319,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -333,7 +333,7 @@ func ai_think():
 				elif Skill_1_CD <= 0:
 					do_hit_1()
 				if count % 60 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 
 
@@ -398,7 +398,7 @@ func call_bullet():
 		var rad = deg_to_rad(new_rotation)
 		var stab_position = Vector2(self.position.x + sin(rad) * 300, self.position.y - 15 - cos(rad) * 300)
 		var arrow = Global.add_bullet(
-			"Monster132Bullet", self.bullet, false, 1, stab_position, "hit2", self.objattackDic["hit2"]
+			"Monster132Bullet", self.bullet, false, 1, stab_position, "hit2", self.obj_attack_dict["hit2"]
 		)
 		if arrow:
 			arrow.rotation_degrees = new_rotation - 90
@@ -435,10 +435,10 @@ func strength_self():
 		return
 
 	is_strength = false
-	if objattackDic.size() != 0:
-		for i in objattackDic:
-			if objattackDic[i].has("power"):
-				objattackDic[i].power *= 1.2
+	if obj_attack_dict.size() != 0:
+		for i in obj_attack_dict:
+			if obj_attack_dict[i].has("power"):
+				obj_attack_dict[i].power *= 1.2
 
 	for i in range(randi_range(3, 6)):
 		cure_hp(int(SHp * randf_range(0.01, 0.02)))

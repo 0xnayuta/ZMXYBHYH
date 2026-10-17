@@ -149,8 +149,8 @@ func _configure_monster() -> void:
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
 	mysee = int(config["sight"])
-	attackRange = int(config["range"])
-	attackDesire = int(config.get("attack_desire", 100))
+	attack_range = int(config["range"])
+	attack_desire = int(config.get("attack_desire", 100))
 	add_exp = int(config["exp"])
 	fall_coin = int(config["coin"])
 	fall_pro = float(config.get("drop_rate", 0.0))
@@ -162,11 +162,11 @@ func _configure_monster() -> void:
 
 
 func _build_base_attack_data(config: Dictionary) -> void:
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config["attacks"]
 	for attack_name: String in attacks:
 		var attack: Dictionary = attacks[attack_name]
-		objattackDic[attack_name] = {
+		obj_attack_dict[attack_name] = {
 			"power": int(float(config["attack"]) * float(attack["multiplier"])),
 			"hurtBack": attack["hurt_back"].duplicate(),
 			"attackKind": str(attack["kind"]),
@@ -330,7 +330,7 @@ func ai_think() -> void:
 	var minimum_range := float(config["min_range"])
 	if minimum_range > 0.0 and distance < minimum_range:
 		_move_away_from_hero()
-	elif distance > float(attackRange):
+	elif distance > float(attack_range):
 		have_target()
 	elif Time.get_ticks_msec() >= _next_attack_msec:
 		_start_attack(_choose_attack())
@@ -486,7 +486,7 @@ func _fire_arrow() -> void:
 		return
 	var offset := Vector2(56.0 if MonsterDirection else -56.0, -32.0)
 	Global.add_bullet(
-		"ZhuqueTigerArrow", bullet, MonsterDirection, 1.0, position + offset, "arrow", objattackDic["arrow"]
+		"ZhuqueTigerArrow", bullet, MonsterDirection, 1.0, position + offset, "arrow", obj_attack_dict["arrow"]
 	)
 
 

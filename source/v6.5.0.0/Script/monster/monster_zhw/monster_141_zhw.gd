@@ -79,10 +79,10 @@ func initialize_monster_properties() -> void:
 	self.set("fall_coin", 500)
 	self.set("ebol", 0)
 
-	attackRange = 130
+	attack_range = 130
 	mysee = 99999
 	speed = 12
-	attackDesire = 80
+	attack_desire = 80
 
 	var base_damage_hit1 = 300
 	var base_damage_hit2 = 1500
@@ -98,13 +98,13 @@ func initialize_monster_properties() -> void:
 	var actual_damage_hit5 = int(player_power * damage_ratio * (base_damage_hit5 / 300.0))
 	var actual_damage_hit6 = int(player_power * damage_ratio * (base_damage_hit6 / 300.0))
 
-	objattackDic["hit1"] = {
+	obj_attack_dict["hit1"] = {
 		"power": actual_damage_hit1,
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
 		"HitProtect": 0,
 	}
-	objattackDic["hit2"] = {
+	obj_attack_dict["hit2"] = {
 		"power": actual_damage_hit2,
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
@@ -120,7 +120,7 @@ func initialize_monster_properties() -> void:
 			"CanRemove": false,
 		}
 	}
-	objattackDic["hit3"] = {
+	obj_attack_dict["hit3"] = {
 		"power": actual_damage_hit3,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -136,7 +136,7 @@ func initialize_monster_properties() -> void:
 			"CanRemove": false,
 		}
 	}
-	objattackDic["hit4"] = {
+	obj_attack_dict["hit4"] = {
 		"power": actual_damage_hit4,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -152,13 +152,13 @@ func initialize_monster_properties() -> void:
 			"CanRemove": false,
 		}
 	}
-	objattackDic["hit5"] = {
+	obj_attack_dict["hit5"] = {
 		"power": actual_damage_hit5,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
 		"HitProtect": 0,
 	}
-	objattackDic["hit6"] = {
+	obj_attack_dict["hit6"] = {
 		"power": actual_damage_hit6,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -182,7 +182,7 @@ func _physics_process(delta: float) -> void:
 	whs_count += 1
 	if whs_count % 600 == 0:
 		var bullet = Global.add_bullet(
-			"Monster141Bullet4", self, true, 1, Vector2(0, -30), "hit6", objattackDic["hit6"]
+			"Monster141Bullet4", self, true, 1, Vector2(0, -30), "hit6", obj_attack_dict["hit6"]
 		)
 		if bullet:
 			bullet.scale = Vector2(2, 2)
@@ -201,7 +201,7 @@ func setup_skills() -> void:
 func try_use_skills() -> void:
 	if should_in_sky:
 		return
-	if randi_range(0, 100) >= attackDesire:
+	if randi_range(0, 100) >= attack_desire:
 		return
 	if not is_instance_valid(current_target):
 		return
@@ -214,7 +214,7 @@ func try_use_skills() -> void:
 		do_hit_1()
 	elif Skill_3_CD <= 0:
 		do_hit_3()
-	elif count % 90 == 0 and randi_range(0, 100) < attackDesire:
+	elif count % 90 == 0 and randi_range(0, 100) < attack_desire:
 		attack_target()
 
 
@@ -333,7 +333,7 @@ func call_bullet_1() -> void:
 	for i in range(8):
 		var pos = Vector2(position.x + randi_range(-450, 500), -300)
 		var bullet_instance = Global.add_bullet(
-			"Monster141Bullet3", bullet, false, 0.15, pos, "hit3", objattackDic["hit3"]
+			"Monster141Bullet3", bullet, false, 0.15, pos, "hit3", obj_attack_dict["hit3"]
 		)
 		if bullet_instance:
 			var lasthp = (float(SHp) - float(Hp)) / float(SHp)
@@ -353,16 +353,16 @@ func call_bullet_1() -> void:
 func call_bullet_alt2() -> void:
 	if not is_instance_valid(current_target):
 		return
-	if position.distance_to(current_target.position) < attackRange:
+	if position.distance_to(current_target.position) < attack_range:
 		return
 	var bullet_instance
 	if MonsterDirection:
 		bullet_instance = Global.add_bullet(
-			"Monster141Bullet2", bullet, false, 2, Vector2(20, 0) + position, "hit1", objattackDic["hit1"]
+			"Monster141Bullet2", bullet, false, 2, Vector2(20, 0) + position, "hit1", obj_attack_dict["hit1"]
 		)
 	else:
 		bullet_instance = Global.add_bullet(
-			"Monster141Bullet2", bullet, false, 2, Vector2(-20, 0) + position, "hit1", objattackDic["hit1"]
+			"Monster141Bullet2", bullet, false, 2, Vector2(-20, 0) + position, "hit1", obj_attack_dict["hit1"]
 		)
 	if bullet_instance:
 		bullet_instance.look_at(current_target.position)
@@ -373,17 +373,17 @@ func call_bullet_3() -> void:
 	var x_offsets = [-300, -200, -100, 0, 100, 200, 300]
 	for offset_x in x_offsets:
 		var pos = Vector2(position.x + offset_x, 370)
-		var bullet_instance = Global.add_bullet("Monster22Fire", bullet, false, 1, pos, "hit2", objattackDic["hit2"])
+		var bullet_instance = Global.add_bullet("Monster22Fire", bullet, false, 1, pos, "hit2", obj_attack_dict["hit2"])
 		if bullet_instance:
 			setup_bullet_collision(bullet_instance)
 
 
 func call_bullet_4() -> void:
 	var bullet1 = Global.add_bullet(
-		"Monster141Bullet1", bullet, false, 1, Vector2(position.x - 1000, 450), "hit4", objattackDic["hit4"]
+		"Monster141Bullet1", bullet, false, 1, Vector2(position.x - 1000, 450), "hit4", obj_attack_dict["hit4"]
 	)
 	var bullet2 = Global.add_bullet(
-		"Monster141Bullet1", bullet, true, 1, Vector2(position.x + 1000, 450), "hit4", objattackDic["hit4"]
+		"Monster141Bullet1", bullet, true, 1, Vector2(position.x + 1000, 450), "hit4", obj_attack_dict["hit4"]
 	)
 	if bullet1:
 		setup_bullet_collision(bullet1)

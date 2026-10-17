@@ -88,7 +88,7 @@ func _initialize_summon_base() -> void:
 		buff_node.name = "Buff"
 		add_child(buff_node)
 		buff = buff_node
-	iniSpeed = speed
+	init_speed = speed
 	if base_damage_box == null:
 		base_damage_box = get_node_or_null("BaseDamageBox") as Node2D
 	if monster_dir == null:
@@ -223,9 +223,9 @@ func setup_pet_phoenix(stage: int) -> void:
 	sp = int(_pet_get(pet_data, ["破魔"], 0)) + int(equipment_bonus.get("破魔", 0))
 	Critreduce = int(_pet_get(pet_data, ["暴免"], 0)) + int(equipment_bonus.get("暴免", 0))
 	speed = 15
-	attackRange = 130
+	attack_range = 130
 	mysee = 99999
-	attackDesire = 100
+	attack_desire = 100
 	is_boss = false
 	add_exp = 0
 	fall_coin = 0
@@ -321,26 +321,26 @@ func _rebuild_pet_attack_data() -> void:
 	var bone_multiplier: float = 1.0 + float(clampi(int(_pet_get(pet_data, ["根骨"], 0)), 0, 25)) * 0.02
 	var stage_multiplier: float = 1.0 + float(phoenix_stage - 1) * 0.28
 	var damage_bl := bone_multiplier * stage_multiplier
-	objattackDic["hit1"] = _attack_dic(int(attack_in * 2.0 * damage_bl), [4, -3], "physics", 8)
-	objattackDic["hit2"] = _attack_dic(
+	obj_attack_dict["hit1"] = _attack_dic(int(attack_in * 2.0 * damage_bl), [4, -3], "physics", 8)
+	obj_attack_dict["hit2"] = _attack_dic(
 		PET_SKILL_PROGRESSION.scaled_power(int(attack_in * 4.5 * damage_bl), pet_data, SKILL_NAMES[1]),
 		[0, 0],
 		"physics",
 		10
 	)
-	objattackDic["hit3"] = _attack_dic(
+	obj_attack_dict["hit3"] = _attack_dic(
 		PET_SKILL_PROGRESSION.scaled_power(int(attack_in * 5.2 * damage_bl), pet_data, SKILL_NAMES[2]),
 		[6, -4],
 		"physics",
 		10
 	)
-	objattackDic["hit4"] = _attack_dic(
+	obj_attack_dict["hit4"] = _attack_dic(
 		PET_SKILL_PROGRESSION.scaled_power(int(attack_in * 6.0 * damage_bl), pet_data, SKILL_NAMES[3]),
 		[8, -5],
 		"physics",
 		12
 	)
-	objattackDic["hit5"] = _attack_dic(
+	obj_attack_dict["hit5"] = _attack_dic(
 		PET_SKILL_PROGRESSION.scaled_power(int(attack_in * 7.0 * damage_bl), pet_data, SKILL_NAMES[4]),
 		[8, -5],
 		"physics",
@@ -366,7 +366,7 @@ func ai_think() -> void:
 			try_use_skills()
 		if _attack_lock or is_attacking:
 			return
-		if distance > attackRange:
+		if distance > attack_range:
 			if current_target.position.x > position.x:
 				move_right()
 			else:
@@ -492,7 +492,7 @@ func _finish_phoenix_nirvana() -> void:
 	_set_phoenix_model_visible(true)
 	_restore_phoenix_hurt_box()
 	Skill_1_CD = SKILL_COOLDOWNS[1] * pet_skill_cooldown_multiplier
-	_add_phoenix_bullet("PetPhoenix1Bullet2_2", position, "hit2", objattackDic["hit2"], Vector2(210, 120), true)
+	_add_phoenix_bullet("PetPhoenix1Bullet2_2", position, "hit2", obj_attack_dict["hit2"], Vector2(210, 120), true)
 	_finish_phoenix_attack()
 
 
@@ -504,7 +504,7 @@ func _show_phoenix_nirvana_start_effect() -> void:
 		"PetPhoenix1Bullet2_1",
 		position + _phoenix_nirvana_egg_offset(),
 		"hit2",
-		objattackDic["hit2"],
+		obj_attack_dict["hit2"],
 		Vector2(210, 120),
 		true,
 		0.0,
@@ -791,7 +791,7 @@ func state_hurt(attacker: Node) -> void:
 
 func call_hit_1_bullet() -> void:
 	_add_phoenix_bullet(
-		"PetPhoenix1Bullet1", position + _front_offset(75, -30), "hit1", objattackDic["hit1"], Vector2(155, 90)
+		"PetPhoenix1Bullet1", position + _front_offset(75, -30), "hit1", obj_attack_dict["hit1"], Vector2(155, 90)
 	)
 
 
@@ -800,7 +800,13 @@ func call_hy_bullet() -> void:
 		_show_phoenix_nirvana_start_effect()
 		return
 	_add_phoenix_bullet(
-		"PetPhoenix1Bullet2_1", position + Vector2(0, -60), "hit2", objattackDic["hit2"], Vector2(210, 120), true, 5.0
+		"PetPhoenix1Bullet2_1",
+		position + Vector2(0, -60),
+		"hit2",
+		obj_attack_dict["hit2"],
+		Vector2(210, 120),
+		true,
+		5.0
 	)
 
 
@@ -809,7 +815,7 @@ func call_sxhz_hit() -> void:
 		"PetPhoenix2Bullet3",
 		position + _front_offset(130, -30),
 		"hit3",
-		objattackDic["hit3"],
+		obj_attack_dict["hit3"],
 		Vector2(260, 120),
 		false,
 		0.0,
@@ -820,7 +826,7 @@ func call_sxhz_hit() -> void:
 			"PetPhoenix4Bullet3_2",
 			position + Vector2(0, -200),
 			"hit3",
-			objattackDic["hit3"],
+			obj_attack_dict["hit3"],
 			Vector2(260, 140),
 			false,
 			0.0,
@@ -830,7 +836,7 @@ func call_sxhz_hit() -> void:
 			"PetPhoenix4Bullet3_2",
 			position + Vector2(200, -200),
 			"hit3",
-			objattackDic["hit3"],
+			obj_attack_dict["hit3"],
 			Vector2(260, 140),
 			false,
 			0.0,
@@ -840,7 +846,7 @@ func call_sxhz_hit() -> void:
 			"PetPhoenix4Bullet3_2",
 			position + Vector2(-200, -200),
 			"hit3",
-			objattackDic["hit3"],
+			obj_attack_dict["hit3"],
 			Vector2(260, 140),
 			false,
 			0.0,
@@ -854,7 +860,7 @@ func call_hsqj_bullet() -> void:
 
 func call_bhaoyi_hit() -> void:
 	if hit_name == "hit5":
-		_add_phoenix_bullet("PetPhoenix4Bullet5", position, "hit5", objattackDic["hit5"], Vector2(420, 170), true)
+		_add_phoenix_bullet("PetPhoenix4Bullet5", position, "hit5", obj_attack_dict["hit5"], Vector2(420, 170), true)
 	elif hit_name == "hit6":
 		_spawn_phoenix_ground_fire(3, 3)
 
@@ -900,7 +906,7 @@ func _add_phoenix_ground_pair(idx: int, damage_times: int = 1) -> void:
 		"PetPhoenix3Bullet4",
 		position + Vector2(-x_distance, fire_y),
 		"hit4",
-		objattackDic["hit4"],
+		obj_attack_dict["hit4"],
 		Vector2(180, 150),
 		false,
 		0.0,
@@ -910,7 +916,7 @@ func _add_phoenix_ground_pair(idx: int, damage_times: int = 1) -> void:
 		"PetPhoenix3Bullet4",
 		position + Vector2(x_distance, fire_y),
 		"hit4",
-		objattackDic["hit4"],
+		obj_attack_dict["hit4"],
 		Vector2(180, 150),
 		false,
 		0.0,
@@ -922,7 +928,7 @@ func _add_phoenix_ground_pair(idx: int, damage_times: int = 1) -> void:
 			"PetPhoenix4Bullet6",
 			position + Vector2(-x_distance, aoyi_fire_y),
 			"hit4",
-			objattackDic["hit4"],
+			obj_attack_dict["hit4"],
 			Vector2(180, 150),
 			false,
 			0.0,
@@ -932,7 +938,7 @@ func _add_phoenix_ground_pair(idx: int, damage_times: int = 1) -> void:
 			"PetPhoenix4Bullet6",
 			position + Vector2(x_distance, aoyi_fire_y),
 			"hit4",
-			objattackDic["hit4"],
+			obj_attack_dict["hit4"],
 			Vector2(180, 150),
 			false,
 			0.0,

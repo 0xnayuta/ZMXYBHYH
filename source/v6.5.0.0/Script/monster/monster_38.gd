@@ -22,13 +22,13 @@ func monster_38():
 	self.Critreduce = 0
 	self.speed = 13
 	self.mysee = 500
-	self.attackRange = 55
-	self.attackDesire = 60
+	self.attack_range = 55
+	self.attack_desire = 60
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 99,
 		"hurtBack": [-7, -9],
 		"attackKind": "physics",
@@ -55,7 +55,7 @@ func _ready() -> void:
 
 
 func ai_think():
-	if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+	if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 		if count % 180 == 0:
 			attack_target()
 		else:
@@ -97,7 +97,7 @@ func call_dd():
 			true,
 			Vector2(self.position.x, self.position.y),
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 	else:
 		Global.call_chase_bullet(
@@ -108,7 +108,7 @@ func call_dd():
 			true,
 			Vector2(self.position.x, self.position.y),
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 
 
@@ -120,7 +120,7 @@ func call_death():
 		1,
 		Vector2(self.position.x, self.position.y),
 		"hit1",
-		self.objattackDic["hit1"]
+		self.obj_attack_dict["hit1"]
 	)
 
 

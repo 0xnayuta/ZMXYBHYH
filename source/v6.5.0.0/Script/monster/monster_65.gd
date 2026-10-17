@@ -29,20 +29,20 @@ func monster_65():
 	self.Critreduce = 0
 	self.speed = 13
 	self.mysee = 500
-	self.attackRange = 250
-	self.attackDesire = 60
+	self.attack_range = 250
+	self.attack_desire = 60
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 200
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 400 + int(RoleProp.baseroleprop.Level * 8.6),
 		"hurtBack": [-4, -9],
 		"attackKind": "physics",
 		"HitProtect": 10
 	}
-	self.objattackDic["zhzz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "physics", "HitProtect": 10}
-	self.objattackDic["hit2_1"] = {
+	self.obj_attack_dict["zhzz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "physics", "HitProtect": 10}
+	self.obj_attack_dict["hit2_1"] = {
 		"power": 400 + int(RoleProp.baseroleprop.Level * 8.5),
 		"hurtBack": [0, 0],
 		"attackKind": "physics",
@@ -58,7 +58,7 @@ func monster_65():
 			"CanAdd": false,
 		}
 	}
-	self.objattackDic["hit2_2"] = {
+	self.obj_attack_dict["hit2_2"] = {
 		"power": 600 + int(RoleProp.baseroleprop.Level * 8.7),
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -141,7 +141,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -253,7 +253,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		(
 			Global
 			. add_buff(
-				get_Player.buff,
+				get_player.buff,
 				{
 					"Name": "poision",
 					"AddTime": 5,

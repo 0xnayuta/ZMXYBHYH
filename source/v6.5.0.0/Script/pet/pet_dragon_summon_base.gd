@@ -158,7 +158,7 @@ func _initialize_summon_base() -> void:
 		buff_node.name = "Buff"
 		add_child(buff_node)
 		buff = buff_node
-	iniSpeed = speed
+	init_speed = speed
 	if base_damage_box == null:
 		base_damage_box = get_node_or_null("BaseDamageBox") as Node2D
 	if monster_dir == null:
@@ -421,9 +421,9 @@ func setup_pet_dragon(stage: int) -> void:
 	sp = int(equipment_bonus.get("破魔", 0))
 	Critreduce = int(equipment_bonus.get("暴免", 0))
 	speed = 14
-	attackRange = int(DRAGON_NORMAL_ATTACK_RANGES.get(dragon_stage, 80))
+	attack_range = int(DRAGON_NORMAL_ATTACK_RANGES.get(dragon_stage, 80))
 	mysee = 99999
-	attackDesire = 100
+	attack_desire = 100
 	is_boss = false
 	add_exp = 0
 	fall_coin = 0
@@ -442,10 +442,10 @@ func _rebuild_pet_dragon_attack_data() -> void:
 	var aoyi_power: int = PET_SKILL_PROGRESSION.scaled_power(
 		maxi(1, int(float(attack_in) * 7.0 * root_rate)), pet_data, SKILL_NAMES[SKILL_QLAOYI]
 	)
-	objattackDic["hit1"] = _attack_dic(hit1_power, [2, 0], "physics", 999 if dragon_stage <= 2 else 10)
-	objattackDic["hit2"] = _attack_dic(sdcc_power, [2, 0], "magic", 8)
-	objattackDic["hit3"] = _attack_dic(ltwj_power, [2, 0], "magic", 999)
-	objattackDic["hit4"] = _attack_dic(aoyi_power, [-10, -5], "magic", 999)
+	obj_attack_dict["hit1"] = _attack_dic(hit1_power, [2, 0], "physics", 999 if dragon_stage <= 2 else 10)
+	obj_attack_dict["hit2"] = _attack_dic(sdcc_power, [2, 0], "magic", 8)
+	obj_attack_dict["hit3"] = _attack_dic(ltwj_power, [2, 0], "magic", 999)
+	obj_attack_dict["hit4"] = _attack_dic(aoyi_power, [-10, -5], "magic", 999)
 
 
 func _attack_dic(power: int, hurt_back: Array, kind: String, interval: int) -> Dictionary:
@@ -536,7 +536,7 @@ func ai_think() -> void:
 		try_use_skills()
 	if is_attacking:
 		return
-	if distance > attackRange:
+	if distance > attack_range:
 		if current_target.global_position.x > global_position.x:
 			move_right()
 		else:
@@ -544,7 +544,7 @@ func ai_think() -> void:
 	else:
 		stop_move()
 		to_monster()
-		if not is_be_attacking and count % 55 == 0 and randi_range(0, 100) < attackDesire:
+		if not is_be_attacking and count % 55 == 0 and randi_range(0, 100) < attack_desire:
 			do_hit_1()
 
 
@@ -727,12 +727,12 @@ func _spawn_hit1() -> void:
 	var x_offset := 65.0 if dragon_stage == 4 else 30.0
 	var y_offset := -15.0 if dragon_stage == 4 else 0.0
 	_add_dragon_bullet(
-		bullet_name, _dragon_skill_origin() + _front_offset(x_offset, y_offset), "hit1", objattackDic["hit1"]
+		bullet_name, _dragon_skill_origin() + _front_offset(x_offset, y_offset), "hit1", obj_attack_dict["hit1"]
 	)
 
 
 func _spawn_sdcc_bullet() -> void:
-	_add_dragon_bullet("PetDragon2Bullet2", _dragon_skill_origin() + Vector2(0, 10), "hit2", objattackDic["hit2"])
+	_add_dragon_bullet("PetDragon2Bullet2", _dragon_skill_origin() + Vector2(0, 10), "hit2", obj_attack_dict["hit2"])
 
 
 func _spawn_ltwj_waves() -> void:
@@ -757,13 +757,15 @@ func _spawn_ltwj_wave_after(delay: float, offsets: Array, base_point: Vector2, f
 	for offset in offsets:
 		if not is_inside_tree() or is_queued_for_deletion() or Hp <= 0 or int(pet_data.get("isFight", 1)) != 1:
 			return
-		_add_dragon_bullet("PetDragon3Bullet3", base_point + Vector2(offset), "hit3", objattackDic["hit3"], face_left)
+		_add_dragon_bullet(
+			"PetDragon3Bullet3", base_point + Vector2(offset), "hit3", obj_attack_dict["hit3"], face_left
+		)
 		await tree.process_frame
 
 
 func _spawn_qlaoyi_step(trigger_tick: int) -> void:
 	if trigger_tick == 48:
-		var ultimate = _add_dragon_bullet("PetDragonBullet4", _dragon_skill_origin(), "hit4", objattackDic["hit4"])
+		var ultimate = _add_dragon_bullet("PetDragonBullet4", _dragon_skill_origin(), "hit4", obj_attack_dict["hit4"])
 		if ultimate != null:
 			ultimate.set_meta("pet_dragon_ignore_hurt_interrupt", true)
 	if not _has_skill(SKILL_FS):

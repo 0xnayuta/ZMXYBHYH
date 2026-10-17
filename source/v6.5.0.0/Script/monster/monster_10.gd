@@ -20,18 +20,18 @@ func monster_10():
 	self.Critreduce = 0
 	self.speed = 7
 	self.mysee = 400
-	self.attackRange = 70
-	self.attackDesire = 60
+	self.attack_range = 70
+	self.attack_desire = 60
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 20
 	self.fall_coin = 4
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 30,
 		"hurtBack": [-7, -9],
 		"attackKind": "physics",
 	}
-	self.objattackDic["dmfd"] = {
+	self.obj_attack_dict["dmfd"] = {
 		"power": 40,
 		"hurtBack": [-7, -15],
 		"attackKind": "magic",
@@ -76,7 +76,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270:
@@ -117,7 +117,7 @@ func call_knife():
 			1,
 			Vector2(self.position.x + 220, self.position.y),
 			"dmfd",
-			self.objattackDic["dmfd"]
+			self.obj_attack_dict["dmfd"]
 		)
 	else:
 		Global.add_bullet(
@@ -127,5 +127,5 @@ func call_knife():
 			1,
 			Vector2(self.position.x - 220, self.position.y),
 			"dmfd",
-			self.objattackDic["dmfd"]
+			self.obj_attack_dict["dmfd"]
 		)

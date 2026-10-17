@@ -53,8 +53,8 @@ func _configure_qiongqi() -> void:
 	Critreduce = 0
 	speed = 15
 	mysee = 1000
-	attackRange = 200
-	attackDesire = 95
+	attack_range = 200
+	attack_desire = 95
 	behit_calmtime = 0.15
 	self_rhp = 0
 	add_exp = 3500
@@ -64,9 +64,9 @@ func _configure_qiongqi() -> void:
 	self.independent_fall_list = [{"name": "wuxingguo", "value": 1, "chance": 0.1}]
 	fall_stone_pro = 0.0
 	fall_stone = []
-	objattackDic["hit1"] = {"power": 800, "hurtBack": [-6, -5], "attackKind": "physics", "HitProtect": 14}
-	objattackDic["hit2"] = {"power": 600, "hurtBack": [-5, 0], "attackKind": "magic", "HitProtect": 8}
-	objattackDic["hit3"] = {"power": 600, "hurtBack": [-15, 0], "attackKind": "magic", "HitProtect": 4}
+	obj_attack_dict["hit1"] = {"power": 800, "hurtBack": [-6, -5], "attackKind": "physics", "HitProtect": 14}
+	obj_attack_dict["hit2"] = {"power": 600, "hurtBack": [-5, 0], "attackKind": "magic", "HitProtect": 8}
+	obj_attack_dict["hit3"] = {"power": 600, "hurtBack": [-15, 0], "attackKind": "magic", "HitProtect": 4}
 
 
 func _build_original_animations() -> void:
@@ -167,7 +167,7 @@ func ai_think() -> void:
 		_use_charge_skill()
 	elif distance < 400.0 and Skill_2_CD <= 0:
 		_use_ground_spell()
-	elif distance <= attackRange:
+	elif distance <= attack_range:
 		if count % 45 == 0:
 			attack_target()
 	else:
@@ -239,7 +239,7 @@ func _apply_nearby_aura() -> void:
 		_near_buff_cooldown -= 1
 		return
 	_near_buff_cooldown = 20
-	if get_Player == null or not is_instance_valid(get_Player):
+	if get_player == null or not is_instance_valid(get_player):
 		return
 	if global_position.distance_to(RoleProp.get_nearest_monster_target_position(global_position)) > 200.0:
 		return
@@ -254,7 +254,7 @@ func _apply_original_aura(is_green: bool) -> void:
 	var token := _aura_token
 	_show_aura_visual(BUFF_GREEN_TEXTURE if is_green else BUFF_BLUE_TEXTURE)
 	if is_green:
-		get_Player.effect_reducehp(maxi(1, int(RoleProp.roleprop.SHp * 0.01)), "real")
+		get_player.effect_reducehp(maxi(1, int(RoleProp.roleprop.SHp * 0.01)), "real")
 	await get_tree().create_timer(1.0, false).timeout
 	if token == _aura_token:
 		_aura_active = false
@@ -263,14 +263,14 @@ func _apply_original_aura(is_green: bool) -> void:
 
 func _show_aura_visual(texture_path: String) -> void:
 	_clear_aura_visual()
-	if get_Player == null or not is_instance_valid(get_Player):
+	if get_player == null or not is_instance_valid(get_player):
 		return
 	_aura_visual = Sprite2D.new()
 	_aura_visual.name = "QiongQiAura"
 	_aura_visual.texture = Global.get_cached_texture(texture_path)
 	_aura_visual.position = Vector2(0, -62)
 	_aura_visual.z_index = 6
-	get_Player.add_child(_aura_visual)
+	get_player.add_child(_aura_visual)
 
 
 func _clear_aura_visual() -> void:

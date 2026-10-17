@@ -51,8 +51,8 @@ func _configure_hundun() -> void:
 	Toughness = 20
 	speed = 15
 	mysee = 1000
-	attackRange = 250
-	attackDesire = 95
+	attack_range = 250
+	attack_desire = 95
 	behit_calmtime = 0.15
 	self_rhp = 0
 	add_exp = 500
@@ -62,9 +62,9 @@ func _configure_hundun() -> void:
 	self.independent_fall_list = [{"name": "lingliguo", "value": 1, "chance": 0.1}]
 	fall_stone_pro = 0.0
 	fall_stone = []
-	objattackDic["hit1"] = {"power": 1500, "hurtBack": [6, -5], "attackKind": "physics", "HitProtect": 8}
-	objattackDic["hit2"] = {"power": 800, "hurtBack": [6, -5], "attackKind": "physics", "HitProtect": 8}
-	objattackDic["hit3"] = {"power": 800, "hurtBack": [6, -5], "attackKind": "magic", "HitProtect": 8}
+	obj_attack_dict["hit1"] = {"power": 1500, "hurtBack": [6, -5], "attackKind": "physics", "HitProtect": 8}
+	obj_attack_dict["hit2"] = {"power": 800, "hurtBack": [6, -5], "attackKind": "physics", "HitProtect": 8}
+	obj_attack_dict["hit3"] = {"power": 800, "hurtBack": [6, -5], "attackKind": "magic", "HitProtect": 8}
 
 
 func _build_original_animations() -> void:
@@ -156,9 +156,9 @@ func ai_think() -> void:
 		_use_skill(&"hit3", randi_range(6, 12))
 	elif Skill_1_CD <= 0 and distance <= 520.0:
 		_use_skill(&"hit2", randi_range(5, 10))
-	elif distance <= attackRange:
+	elif distance <= attack_range:
 		stop_move()
-		if count % 45 == 0 and randi_range(0, 100) <= attackDesire:
+		if count % 45 == 0 and randi_range(0, 100) <= attack_desire:
 			attack_target()
 	else:
 		have_target()
@@ -197,7 +197,7 @@ func _spawn_hit1() -> void:
 func _begin_hit2_charge() -> void:
 	hit_name = "hit2"
 	var lost_hp_power := maxi(500, int((SHp - Hp) / 60.0))
-	objattackDic["hit2"]["power"] = lost_hp_power
+	obj_attack_dict["hit2"]["power"] = lost_hp_power
 	_charge_direction = 1.0 if _faces_right() else -1.0
 	_charge_time_left = CHARGE_DURATION
 	_charging = true

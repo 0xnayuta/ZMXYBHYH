@@ -22,13 +22,13 @@ func monster_6602():
 	self.Critreduce = 0
 	self.speed = 0
 	self.mysee = 0
-	self.attackRange = 0
-	self.attackDesire = 0
+	self.attack_range = 0
+	self.attack_desire = 0
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 0,
 		"hurtBack": [0, 0],
 		"attackKind": "",
@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 				(
 					Global
 					. add_buff(
-						get_Player.buff,
+						get_player.buff,
 						{
 							"Name": "speed_down",
 							"AddTime": 1,
@@ -95,7 +95,7 @@ func ai_think():
 				(
 					Global
 					. add_buff(
-						get_Player.buff,
+						get_player.buff,
 						{
 							"Name": "speed_down",
 							"AddTime": 1,
@@ -108,7 +108,7 @@ func ai_think():
 
 
 func role_reduce_prop():
-	if get_Player != null:
-		if get_Player is BaseHero:
-			get_Player.effect_reducehp(randi_range(100, 200), "real")
+	if get_player != null:
+		if get_player is BaseHero:
+			get_player.effect_reducehp(randi_range(100, 200), "real")
 			RoleProp.roleprop.Mp -= 20

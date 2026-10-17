@@ -419,18 +419,18 @@ func _add_wings_animation_tracks(animation: Animation, animation_name: StringNam
 
 func _refresh_attack_data() -> void:
 	var attack := float(RoleProp.roleprop.power)
-	objattackDic["hit1"] = _hit_data(attack, 1.0, 0.0, Vector2(1, 0))
-	objattackDic["hit2"] = _hit_data(attack, 1.0, 0.0, Vector2(1, 0))
-	objattackDic["hit3"] = _hit_data(attack, 1.1, 0.0, Vector2(1, 0))
-	objattackDic["hit4"] = _hit_data(attack, 1.4, 0.0, Vector2(2, -3))
-	objattackDic["hit5"] = _hit_data(attack, 1.15, 0.0, Vector2(1, -2))
-	objattackDic[SKILL_JIULONG] = _skill_hit_data(attack, 0.6706, 0.2, 1, Vector2(0, -20))
-	objattackDic[SKILL_DASH] = _skill_hit_data(attack, 0.8504, 0.26, 2, Vector2(8, -2))
-	objattackDic[SKILL_WHEEL] = _skill_hit_data(attack, 0.8504, 0.22, 3, Vector2(3, -2))
-	objattackDic[SKILL_SPEAR] = _skill_hit_data(attack, 1.0465, 0.35, 5, Vector2(6, -2))
-	objattackDic[SKILL_SPEAR + "_ground"] = _skill_hit_data(attack, 3.0368, 0.431, 5, Vector2(6, -2))
-	objattackDic[SKILL_SPEAR + "_target"] = _skill_hit_data(attack, 0.522, 0.32, 5, Vector2.ZERO)
-	objattackDic[SKILL_SPEAR + "_target"]["addeffect"] = {
+	obj_attack_dict["hit1"] = _hit_data(attack, 1.0, 0.0, Vector2(1, 0))
+	obj_attack_dict["hit2"] = _hit_data(attack, 1.0, 0.0, Vector2(1, 0))
+	obj_attack_dict["hit3"] = _hit_data(attack, 1.1, 0.0, Vector2(1, 0))
+	obj_attack_dict["hit4"] = _hit_data(attack, 1.4, 0.0, Vector2(2, -3))
+	obj_attack_dict["hit5"] = _hit_data(attack, 1.15, 0.0, Vector2(1, -2))
+	obj_attack_dict[SKILL_JIULONG] = _skill_hit_data(attack, 0.6706, 0.2, 1, Vector2(0, -20))
+	obj_attack_dict[SKILL_DASH] = _skill_hit_data(attack, 0.8504, 0.26, 2, Vector2(8, -2))
+	obj_attack_dict[SKILL_WHEEL] = _skill_hit_data(attack, 0.8504, 0.22, 3, Vector2(3, -2))
+	obj_attack_dict[SKILL_SPEAR] = _skill_hit_data(attack, 1.0465, 0.35, 5, Vector2(6, -2))
+	obj_attack_dict[SKILL_SPEAR + "_ground"] = _skill_hit_data(attack, 3.0368, 0.431, 5, Vector2(6, -2))
+	obj_attack_dict[SKILL_SPEAR + "_target"] = _skill_hit_data(attack, 0.522, 0.32, 5, Vector2.ZERO)
+	obj_attack_dict[SKILL_SPEAR + "_target"]["addeffect"] = {
 		"Name": "DefeReduce",
 		"AddTime": 8,
 		"ReduceInterval": 0,
@@ -440,7 +440,7 @@ func _refresh_attack_data() -> void:
 		"CanRemove": false,
 		"DeBuff": true,
 	}
-	objattackDic[SKILL_YINYANG] = _skill_hit_data(attack, 0.8504, 0.2, 6, Vector2(0, -10))
+	obj_attack_dict[SKILL_YINYANG] = _skill_hit_data(attack, 0.8504, 0.2, 6, Vector2(0, -10))
 	role_equipment.visible = true
 	role_equipment.self_modulate = Color.WHITE
 
@@ -498,7 +498,7 @@ func _play_melee(
 	if not is_inside_tree() or is_death:
 		return
 	var effect := _spawn_effect(
-		effect_name, objattackDic[hit_key], -1.0, 0.0, 1, Vector2.ZERO, Vector2.ZERO, true, true
+		effect_name, obj_attack_dict[hit_key], -1.0, 0.0, 1, Vector2.ZERO, Vector2.ZERO, true, true
 	)
 	effect.follow_target = self
 	effect.bullet_player.animation_finished.connect(effect.queue_free, CONNECT_ONE_SHOT)
@@ -684,7 +684,7 @@ func _use_jiulong_fire() -> void:
 	var interrupt_generation := _begin_skill(&"skill1", SKILL_JIULONG)
 	_add_spear_energy(15)
 	velocity.y = jump_power
-	_spawn_effect(&"effect1_2", objattackDic[SKILL_JIULONG], 0.4, 0.166, 3, Vector2.ZERO, Vector2.ZERO, true, true)
+	_spawn_effect(&"effect1_2", obj_attack_dict[SKILL_JIULONG], 0.4, 0.166, 3, Vector2.ZERO, Vector2.ZERO, true, true)
 	await _wait_frames(6)
 	if interrupt_generation != _skill_interrupt_generation or not is_inside_tree() or is_death:
 		return
@@ -710,7 +710,7 @@ func _use_fire_dash() -> void:
 		return
 	_start_skill_motion(Vector2(DASH_SPEED if PlayerDir else -DASH_SPEED, 0.0), DASH_DURATION)
 	var dash_effect := _spawn_effect(
-		&"effect2_2", objattackDic[SKILL_DASH], DASH_DURATION, 0.2, 3, Vector2(240, 95), Vector2.ZERO, true
+		&"effect2_2", obj_attack_dict[SKILL_DASH], DASH_DURATION, 0.2, 3, Vector2(240, 95), Vector2.ZERO, true
 	)
 	dash_effect.z_index = z_index - 1
 	await role_action_player.animation_finished
@@ -724,11 +724,11 @@ func _use_fire_wheel() -> void:
 	await _wait_frames(2)
 	if not _is_skill_execution_current(skill_generation, SKILL_WHEEL):
 		return
-	_spawn_effect(&"effect3_0", objattackDic[SKILL_WHEEL], 0.4, 1.0, 1, Vector2(150, 75), Vector2.ZERO, true)
+	_spawn_effect(&"effect3_0", obj_attack_dict[SKILL_WHEEL], 0.4, 1.0, 1, Vector2(150, 75), Vector2.ZERO, true)
 	await _wait_frames(6)
 	if not _is_skill_execution_current(skill_generation, SKILL_WHEEL):
 		return
-	var wheel := _spawn_effect(&"effect3_1", objattackDic[SKILL_WHEEL], 5.0, 1.0, 5, Vector2.ZERO)
+	var wheel := _spawn_effect(&"effect3_1", obj_attack_dict[SKILL_WHEEL], 5.0, 1.0, 5, Vector2.ZERO)
 	wheel.orbit_target = self
 	wheel.orbit_radii = Vector2(250, 25)
 	wheel.orbit_offset = Vector2(0, -50)
@@ -830,7 +830,7 @@ func _spawn_yin_yang_sword(
 	if effect_scene == null:
 		return
 	var effect := effect_scene.instantiate() as NeZhaYinYangEffect
-	effect.configure_yin_yang(self, objattackDic[SKILL_YINYANG], PlayerDir, sword_type, trajectory_angle)
+	effect.configure_yin_yang(self, obj_attack_dict[SKILL_YINYANG], PlayerDir, sword_type, trajectory_angle)
 	effect.use_visual_collision = true
 	effect.z_index = z_index + 1 if front_layer else z_index - 1
 	var level := get_parent().get_parent()
@@ -963,11 +963,13 @@ func _use_six_arm_spear() -> void:
 	await _wait_frames(5)
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
 		return
-	_spawn_effect(&"effect5_2", objattackDic[SKILL_SPEAR], 0.567, 0.134, 3, Vector2(260, 130), Vector2.ZERO, true, true)
+	_spawn_effect(
+		&"effect5_2", obj_attack_dict[SKILL_SPEAR], 0.567, 0.134, 3, Vector2(260, 130), Vector2.ZERO, true, true
+	)
 	await _wait_frames(16)
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
 		return
-	_spawn_effect(&"effect5_3", objattackDic[SKILL_SPEAR], 0.134, 1.0, 1, Vector2(220, 130))
+	_spawn_effect(&"effect5_3", obj_attack_dict[SKILL_SPEAR], 0.134, 1.0, 1, Vector2(220, 130))
 	await _wait_frames(1)
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
 		return
@@ -980,7 +982,7 @@ func _use_six_arm_spear() -> void:
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
 		return
 	_spawn_effect(
-		&"effect5_4", objattackDic[SKILL_SPEAR + "_ground"], 0.4, 1.0, 1, Vector2(320, 150), Vector2.ZERO, true, true
+		&"effect5_4", obj_attack_dict[SKILL_SPEAR + "_ground"], 0.4, 1.0, 1, Vector2(320, 150), Vector2.ZERO, true, true
 	)
 	await role_action_player.animation_finished
 	if _is_skill_execution_current(skill_generation, SKILL_SPEAR):
@@ -993,13 +995,21 @@ func _use_six_arm_spear_enhanced() -> void:
 	_spear_move_mode = SPEAR_MOVE_ENHANCED
 	var move_direction := 1.0 if PlayerDir else -1.0
 	_start_skill_motion(Vector2(move_direction * OFFICIAL_MOVE_SPEED_SCALE, 0.0), 0.4)
-	_spawn_effect(&"effect5_5", objattackDic[SKILL_SPEAR], 0.833, 0.0, 1, Vector2.ZERO, Vector2.ZERO, true, true)
+	_spawn_effect(&"effect5_5", obj_attack_dict[SKILL_SPEAR], 0.833, 0.0, 1, Vector2.ZERO, Vector2.ZERO, true, true)
 	await _wait_frames(7)
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
 		return
 	_enhanced_spear_target = _find_nearest_active_monster()
 	var enhanced_effect := _spawn_effect(
-		&"effect5_8", objattackDic[SKILL_SPEAR + "_target"], 1.367, 0.366, 4, Vector2(2, 2), Vector2.ZERO, false, true
+		&"effect5_8",
+		obj_attack_dict[SKILL_SPEAR + "_target"],
+		1.367,
+		0.366,
+		4,
+		Vector2(2, 2),
+		Vector2.ZERO,
+		false,
+		true
 	)
 	enhanced_effect.global_position = global_position + Vector2(100.0 if PlayerDir else -100.0, -10.0)
 	if is_instance_valid(_enhanced_spear_target):
@@ -1012,14 +1022,16 @@ func _use_six_arm_spear_enhanced() -> void:
 		return
 	move_direction = 1.0 if PlayerDir else -1.0
 	_start_skill_motion(Vector2(move_direction * 300.0 * OFFICIAL_MOVE_SPEED_SCALE, 0.0), 0.3)
-	_spawn_effect(&"effect5_6", objattackDic[SKILL_SPEAR], 0.367, 1.0, 1, Vector2(220, 130), Vector2.ZERO, true, false)
+	_spawn_effect(
+		&"effect5_6", obj_attack_dict[SKILL_SPEAR], 0.367, 1.0, 1, Vector2(220, 130), Vector2.ZERO, true, false
+	)
 	await _wait_frames(10)
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
 		return
 	await _wait_frames(1)
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
 		return
-	_spawn_effect(&"effect5_5_1", objattackDic[SKILL_SPEAR], 0.7, 0.0, 1, Vector2.ZERO, Vector2.ZERO, true, true)
+	_spawn_effect(&"effect5_5_1", obj_attack_dict[SKILL_SPEAR], 0.7, 0.0, 1, Vector2.ZERO, Vector2.ZERO, true, true)
 	await _wait_frames(1)
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
 		return
@@ -1029,7 +1041,7 @@ func _use_six_arm_spear_enhanced() -> void:
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
 		return
 	_spawn_effect(
-		&"effect5_7", objattackDic[SKILL_SPEAR + "_ground"], 0.434, 1.0, 1, Vector2.ZERO, Vector2.ZERO, true, true
+		&"effect5_7", obj_attack_dict[SKILL_SPEAR + "_ground"], 0.434, 1.0, 1, Vector2.ZERO, Vector2.ZERO, true, true
 	)
 	await role_action_player.animation_finished
 	if _is_skill_execution_current(skill_generation, SKILL_SPEAR):

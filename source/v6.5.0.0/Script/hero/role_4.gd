@@ -82,40 +82,40 @@ func role_4():
 	var level_10 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
 	var level_11 = max(1, int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能11"][DataKeys.LEVEL]))
 	var level_12 = max(1, int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能12"][DataKeys.LEVEL]))
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": RoleProp.roleprop.power * randf_range(1, 1.2),
 		"hurtBack": [2, 0],
 		"attackKind": "physics",
 		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1),
 		"hurtBack": [2, 0],
 		"attackKind": "physics",
 		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1),
 		"hurtBack": [2, -2],
 		"attackKind": "physics",
 		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
-	self.objattackDic["qlj"] = {
+	self.obj_attack_dict["qlj"] = {
 		"power": RoleProp.roleprop.power * (2.5 + (level_1 * 0.4)),
 		"hurtBack": [20, -8],
 		"attackKind": "physics",
 		"WSValue": randi_range(30, 34)
 	}
-	self.objattackDic["dcj"] = {
+	self.obj_attack_dict["dcj"] = {
 		"power": RoleProp.roleprop.power * (0.6 + (level_2 * 0.3)),
 		"hurtBack": [8, -6],
 		"attackKind": "magic",
 		"WSValue": randi_range(12, 15)
 	}
-	self.objattackDic["tkj"] = {
+	self.obj_attack_dict["tkj"] = {
 		"power": 35 + RoleProp.roleprop.power * (3 + (level_4 * 0.5)),
 		"hurtBack": [1, -45],
 		"attackKind": "physics",
@@ -141,21 +141,21 @@ func role_4():
 			"AttackKind": "real",
 			"DeBuff": true
 		}
-	self.objattackDic["mmw"] = mmw_attack
-	self.objattackDic["bylt"] = {
+	self.obj_attack_dict["mmw"] = mmw_attack
+	self.obj_attack_dict["bylt"] = {
 		"power": RoleProp.roleprop.power * (1.8 + (level_11 - 1) * 0.25),
 		"hurtBack": [2, -3],
 		"attackKind": "magic",
 		"WSValue": 4
 	}
-	self.objattackDic["cmly"] = {
+	self.obj_attack_dict["cmly"] = {
 		"power": RoleProp.roleprop.power * (1.8 + (level_12 - 1) * 0.25),
 		"hurtBack": [2, -3],
 		"attackKind": "magic",
 		"WSValue": 4
 	}
 	if PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] > 0:
-		self.objattackDic["jdz"] = {
+		self.obj_attack_dict["jdz"] = {
 			"power": RoleProp.roleprop.power * (1.5 + (level_6 * 0.1)),
 			"hurtBack": [0, 0],
 			"attackKind": "magic",
@@ -171,7 +171,7 @@ func role_4():
 				"DeBuff": true
 			}
 		}
-		self.objattackDic["zq"] = {
+		self.obj_attack_dict["zq"] = {
 			"power": RoleProp.roleprop.power * (0.7 + (level_8 * 0.2)),
 			"hurtBack": [2, -6],
 			"attackKind": "magic",
@@ -187,7 +187,7 @@ func role_4():
 				"DeBuff": true
 			}
 		}
-		self.objattackDic["lhsq"] = {
+		self.obj_attack_dict["lhsq"] = {
 			"power": RoleProp.roleprop.power * (1.35 + (level_7 * 0.1)),
 			"hurtBack": [-12, -6],
 			"attackKind": "magic",
@@ -204,19 +204,19 @@ func role_4():
 			}
 		}
 	else:
-		self.objattackDic["jdz"] = {
+		self.obj_attack_dict["jdz"] = {
 			"power": RoleProp.roleprop.power * (1 + (level_6 * 0.1)),
 			"hurtBack": [0, 0],
 			"attackKind": "magic",
 			"WSValue": randi_range(6, 8),
 		}
-		self.objattackDic["zq"] = {
+		self.obj_attack_dict["zq"] = {
 			"power": RoleProp.roleprop.power * (1 + (level_8 * 0.1)),
 			"hurtBack": [2, -6],
 			"attackKind": "magic",
 			"WSValue": randi_range(8, 10),
 		}
-		self.objattackDic["lhsq"] = {
+		self.obj_attack_dict["lhsq"] = {
 			"power": RoleProp.roleprop.power * (1.35 + (level_7 * 0.1)),
 			"hurtBack": [-12, -6],
 			"attackKind": "magic",
@@ -405,7 +405,7 @@ func shovel_bylt():
 	role_action_player.play("jdz")
 	var level = get_parent().get_parent()
 	var effect = BI_LUO_TIAN_EFFECT.new()
-	effect.setup(self, PlayerDir, objattackDic["bylt"])
+	effect.setup(self, PlayerDir, obj_attack_dict["bylt"])
 	level.add_child(effect)
 	await role_action_player.animation_finished
 	turn_to_wait()
@@ -423,7 +423,7 @@ func shovel_cmly():
 	role_action_player.play("jdz")
 	var level = get_parent().get_parent()
 	var effect = CANG_MU_LONG_YUN_EFFECT.new()
-	effect.setup(self, PlayerDir, objattackDic["cmly"])
+	effect.setup(self, PlayerDir, obj_attack_dict["cmly"])
 	level.add_child(effect)
 	await get_tree().create_timer(0.5, false).timeout
 	if role_action_player.current_animation == "jdz":
@@ -485,9 +485,9 @@ func add_shovel_effect_1():
 		bullet_pos = Vector2(35, 0)
 	else:
 		bullet_pos = Vector2(-35, 0)
-	Global.add_role_bullet(self.Bullet, bullet_pos + position, !PlayerDir, "Role4Bullet3", objattackDic["mmw"])
+	Global.add_role_bullet(self.Bullet, bullet_pos + position, !PlayerDir, "Role4Bullet3", obj_attack_dict["mmw"])
 	if _is_skill_awakened("mmw") and _is_skill_awaken_enabled("mmw"):
-		Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role4Bullet3", objattackDic["mmw"])
+		Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role4Bullet3", obj_attack_dict["mmw"])
 
 
 func addmbyj():
@@ -522,13 +522,13 @@ func call_jdz():
 		return
 	if jdz != null:
 		jdz.queue_free()
-	jdz = Global.add_role_bullet(self.Bullet, position + Vector2(0, 30), false, "Role4Bullet6", objattackDic["jdz"])
+	jdz = Global.add_role_bullet(self.Bullet, position + Vector2(0, 30), false, "Role4Bullet6", obj_attack_dict["jdz"])
 	if jdz != null:
 		jdz.start_auto_free(10)
 		if _is_skill_awakened("jdz") and _is_skill_awaken_enabled("jdz"):
 			var level = get_parent().get_parent()
 			var effect := ROLE4_POISON_ARRAY_AWAKEN_EFFECT.new()
-			effect.setup(self, PlayerDir, objattackDic["jdz"], jdz)
+			effect.setup(self, PlayerDir, obj_attack_dict["jdz"], jdz)
 			level.add_child(effect)
 
 
@@ -786,7 +786,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	monster_target = check_monster(area)
 	if target == null or monster_target == null:
 		return
-	if target.objattackDic.size() == 0:
+	if target.obj_attack_dict.size() == 0:
 		return
 	if monster_target is Monster47:
 		Global.player_be_hit_count += 1
@@ -856,22 +856,22 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		cure_value += 0.3 * float(RoleProp.roleprop.SHp - RoleProp.roleprop.Hp) / float(RoleProp.roleprop.SHp)
 		if mm is BaseMonster and not _is_summon_or_pet_target(mm):
 			var cure_power = (
-				objattackDic["lhsq"]["power"]
+				obj_attack_dict["lhsq"]["power"]
 				* (0.2 + (PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL]) * 0.03)
 				* cure_value
 			)
 			cure_hp(cure_power)
 			_add_lhsq_awaken_stack()
-	if objattackDic.has(get_action):
-		if objattackDic[get_action].has("addeffect"):
+	if obj_attack_dict.has(get_action):
+		if obj_attack_dict[get_action].has("addeffect"):
 			var Monster = area.get_parent().get_parent()
 			if Monster != null:
 				if Monster is BaseMonster and not _is_summon_or_pet_target(Monster):
-					if objattackDic[get_action]["addeffect"]["Name"] == "Voodoo":
+					if obj_attack_dict[get_action]["addeffect"]["Name"] == "Voodoo":
 						if Global.check_wd(Monster) < 7:
-							Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
+							Global.add_buff(Monster.buff, obj_attack_dict[get_action]["addeffect"])
 					else:
-						Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
+						Global.add_buff(Monster.buff, obj_attack_dict[get_action]["addeffect"])
 
 
 func _is_skill_awakened(skill_id: String) -> bool:

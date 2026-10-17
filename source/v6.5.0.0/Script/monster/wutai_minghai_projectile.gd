@@ -119,7 +119,7 @@ func configure(config: Dictionary) -> void:
 	spawn_global_position = config.get("position", Vector2.ZERO)
 	hit_name = str(config.get("hit_name", "hit1"))
 	AttList = (config.get("attack_data", {}) as Dictionary).duplicate(true)
-	objattackDic = {hit_name: AttList}
+	obj_attack_dict = {hit_name: AttList}
 	skill_name = str(config.get("skill_name", "WutaiMinghaiProjectile"))
 	dir = bool(config.get("right", true))
 	frame_root = str(config.get("frame_root", ""))
@@ -686,7 +686,7 @@ func _resolve_random_target() -> Node2D:
 	if candidate is Node2D and is_instance_valid(candidate):
 		return candidate as Node2D
 	if owner_monster != null and is_instance_valid(owner_monster):
-		candidate = owner_monster.get("get_Player")
+		candidate = owner_monster.get("get_player")
 		if candidate is Node2D and is_instance_valid(candidate):
 			return candidate as Node2D
 	return null

@@ -86,9 +86,9 @@ func setup_pet_turtle(stage: int) -> void:
 	pet_data["技能"] = _mouse_skills_for_level(int(pet_data.get(DataKeys.LEVEL, 1)))
 	my_mr_name = str(MOUSE_STAGE_NAMES[turtle_stage])
 	speed = 12
-	iniSpeed = speed
-	attackRange = 200
-	attackDesire = 70
+	init_speed = speed
+	attack_range = 200
+	attack_desire = 70
 	_rebuild_pet_turtle_attack_data()
 
 
@@ -105,20 +105,20 @@ func _rebuild_pet_turtle_attack_data() -> void:
 	var boomerang_base := maxi(1, int(float(attack_in * 10 + magic_add) * root_rate))
 	var dash_power := PET_SKILL_PROGRESSION.scaled_power(dash_base, pet_data, MOUSE_SKILL_NAMES[SKILL_SC])
 	var boomerang_power := PET_SKILL_PROGRESSION.scaled_power(boomerang_base, pet_data, MOUSE_SKILL_NAMES[SKILL_HXFB])
-	objattackDic["hit1"] = _attack_dic(normal_power, [6, -5], "magic", 999)
-	objattackDic["hit2"] = _attack_dic(dash_power, [-10, 0], "physics", 5)
-	objattackDic["hit3"] = _attack_dic(boomerang_power, [-10, 0], "physics", 4)
-	objattackDic["hit3"]["damageHitCount"] = 2
-	objattackDic["aoyi_hit2"] = _attack_dic(
+	obj_attack_dict["hit1"] = _attack_dic(normal_power, [6, -5], "magic", 999)
+	obj_attack_dict["hit2"] = _attack_dic(dash_power, [-10, 0], "physics", 5)
+	obj_attack_dict["hit3"] = _attack_dic(boomerang_power, [-10, 0], "physics", 4)
+	obj_attack_dict["hit3"]["damageHitCount"] = 2
+	obj_attack_dict["aoyi_hit2"] = _attack_dic(
 		PET_SKILL_PROGRESSION.scaled_power(dash_base, pet_data, MOUSE_SKILL_NAMES[SKILL_ZSAOYI]), [-10, 0], "physics", 5
 	)
-	objattackDic["aoyi_hit3"] = _attack_dic(
+	obj_attack_dict["aoyi_hit3"] = _attack_dic(
 		PET_SKILL_PROGRESSION.scaled_power(boomerang_base, pet_data, MOUSE_SKILL_NAMES[SKILL_ZSAOYI]),
 		[-10, 0],
 		"physics",
 		4
 	)
-	objattackDic["aoyi_hit3"]["damageHitCount"] = 2
+	obj_attack_dict["aoyi_hit3"]["damageHitCount"] = 2
 
 
 func setup_skills() -> void:
@@ -183,7 +183,7 @@ func ai_think() -> void:
 	if is_attacking:
 		return
 	var distance := absf(current_target.global_position.x - global_position.x)
-	if distance > float(attackRange):
+	if distance > float(attack_range):
 		if current_target.global_position.x > global_position.x:
 			move_right()
 		else:
@@ -191,7 +191,7 @@ func ai_think() -> void:
 	else:
 		stop_move()
 		to_monster()
-		if count % 48 == 0 and randi_range(0, 100) < attackDesire:
+		if count % 48 == 0 and randi_range(0, 100) < attack_desire:
 			do_hit_1()
 
 
@@ -338,13 +338,15 @@ func _continue_mouse_aoyi(finished: String) -> void:
 
 
 func _spawn_normal_attack() -> void:
-	_spawn_mouse_effect("PetMouse1Bullet1", _mouse_role_origin() + _front_offset(20, 10), "hit1", objattackDic["hit1"])
+	_spawn_mouse_effect(
+		"PetMouse1Bullet1", _mouse_role_origin() + _front_offset(20, 10), "hit1", obj_attack_dict["hit1"]
+	)
 
 
 func _spawn_dash_attack() -> void:
 	var attack_key := "aoyi_hit2" if _mouse_aoyi_step > 0 else "hit2"
 	_spawn_mouse_effect(
-		"PetMouse1Bullet2", _mouse_role_origin() + _front_offset(40, 10), attack_key, objattackDic[attack_key]
+		"PetMouse1Bullet2", _mouse_role_origin() + _front_offset(40, 10), attack_key, obj_attack_dict[attack_key]
 	)
 
 
@@ -358,7 +360,7 @@ func _spawn_boomerangs() -> void:
 			"PetMouse1Bullet3",
 			_mouse_role_origin() + _front_offset(20, 10),
 			attack_key,
-			objattackDic[attack_key],
+			obj_attack_dict[attack_key],
 			false,
 			{
 				"pet_mouse_velocity_tick": motion,

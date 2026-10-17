@@ -21,14 +21,14 @@ func monster_96():
 	self.Critreduce = 0
 	self.speed = 12
 	self.mysee = 500
-	self.attackRange = 145
-	self.attackDesire = 90
+	self.attack_range = 145
+	self.attack_desire = 90
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {"power": 505, "hurtBack": [-4, -9], "attackKind": "physics", "HitProtect": 8}
-	self.objattackDic["tfhx"] = {
+	self.obj_attack_dict["hit1"] = {"power": 505, "hurtBack": [-4, -9], "attackKind": "physics", "HitProtect": 8}
+	self.obj_attack_dict["tfhx"] = {
 		"power": 90,
 		"hurtBack": [-35, -2],
 		"attackKind": "magic",
@@ -44,7 +44,7 @@ func monster_96():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["jfkx"] = {
+	self.obj_attack_dict["jfkx"] = {
 		"power": 450,
 		"hurtBack": [-15, -24],
 		"attackKind": "magic",
@@ -84,7 +84,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 550:
@@ -95,7 +95,7 @@ func ai_think():
 					do_hit_3()
 				else:
 					if count % 60 == 0:
-						if ran_num <= attackDesire:
+						if ran_num <= attack_desire:
 							attack_target()
 						else:
 							stop_move()

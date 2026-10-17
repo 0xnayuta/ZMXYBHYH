@@ -30,14 +30,14 @@ func monster_33():
 	self.Critreduce = 0
 	self.speed = 40
 	self.mysee = 300
-	self.attackRange = 85
-	self.attackDesire = 70
+	self.attack_range = 85
+	self.attack_desire = 70
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 500
-	self.objattackDic["hit1"] = {"power": 0, "hurtBack": [-4, -9], "attackKind": "physics"}
-	self.objattackDic["KLZD"] = {
+	self.obj_attack_dict["hit1"] = {"power": 0, "hurtBack": [-4, -9], "attackKind": "physics"}
+	self.obj_attack_dict["KLZD"] = {
 		"power": 400,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -173,7 +173,7 @@ func add_zd():
 		false,
 		Vector2(self.position.x, self.position.y),
 		"KLZD",
-		self.objattackDic["KLZD"]
+		self.obj_attack_dict["KLZD"]
 	)
 
 

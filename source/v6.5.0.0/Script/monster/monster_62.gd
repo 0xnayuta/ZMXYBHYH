@@ -26,15 +26,15 @@ func monster_62():
 	self.Critreduce = 0
 	self.speed = 0
 	self.mysee = 600
-	self.attackRange = 600
-	self.attackDesire = 60
+	self.attack_range = 600
+	self.attack_desire = 60
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 200
 	self.fall_coin = 200
 	self.ebol = 0
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 300,
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
@@ -61,7 +61,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -105,7 +105,7 @@ func call_bullet_1():
 	else:
 		po = Vector2(-50, -40)
 	var child = Global.add_bullet(
-		"Monster62bull1", bullet, MonsterDirection, 2, position + po, "hit1", self.objattackDic["hit1"]
+		"Monster62bull1", bullet, MonsterDirection, 2, position + po, "hit1", self.obj_attack_dict["hit1"]
 	)
 
 

@@ -48,8 +48,8 @@ func _configure_axe() -> void:
 	sp = 0
 	speed = FLY_SPEED
 	mysee = 2000
-	attackRange = 120
-	attackDesire = 100
+	attack_range = 120
+	attack_desire = 100
 	behit_calmtime = 0.0
 	self_rhp = 0
 	add_exp = 0
@@ -64,7 +64,7 @@ func _configure_axe() -> void:
 	cannot_attract = true
 	NoTarget = false
 	hit_name = "hit1"
-	objattackDic = {
+	obj_attack_dict = {
 		"hit1":
 		{
 			"power": int(attack_in * 0.5),

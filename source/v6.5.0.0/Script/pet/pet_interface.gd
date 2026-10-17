@@ -613,8 +613,8 @@ const PET_YIN_TIGER_PET := {
 @onready var czjnbtn := get_node_or_null("czjnbtn") as BaseButton
 @onready var czsxbtn := get_node_or_null("czsxbtn") as BaseButton
 @onready var close_button := get_node_or_null("btn_close") as BaseButton
-@onready var nextPage := get_node_or_null("nextPage") as BaseButton
-@onready var prePage := get_node_or_null("prePage") as BaseButton
+@onready var next_page := get_node_or_null("nextPage") as BaseButton
+@onready var pre_page := get_node_or_null("prePage") as BaseButton
 @onready var txtname := get_node_or_null("txtname") as Label
 @onready var tiger_level_text := get_node_or_null("TigerLevelText") as Label
 @onready var tiger_quality_wx := get_node_or_null("PetAttributeShow/TigerQualityWx") as Label
@@ -799,8 +799,8 @@ func _ready() -> void:
 	current_pet_index = -1
 	_ensure_pet_storage()
 	_connect_button(close_button, queue_free)
-	_connect_button(nextPage, _next_pet)
-	_connect_button(prePage, _previous_pet)
+	_connect_button(next_page, _next_pet)
+	_connect_button(pre_page, _previous_pet)
 	_connect_button(atebtn, ate_click)
 	_connect_button(eipbtn, eip_click)
 	_connect_button(grmmc, groom_click)

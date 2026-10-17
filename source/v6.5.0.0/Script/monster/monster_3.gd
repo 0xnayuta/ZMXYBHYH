@@ -20,13 +20,13 @@ func monster_3(is_boss_):
 		self.Critreduce = 0
 		self.speed = 12
 		self.mysee = 400
-		self.attackRange = 135
-		self.attackDesire = 100
+		self.attack_range = 135
+		self.attack_desire = 100
 		self.behit_calmtime = 0.1
 		self.self_rhp = 0
 		self.add_exp = 35
 		self.fall_coin = 10
-		self.objattackDic["hit1"] = {"power": 65, "hurtBack": [-4, -9], "attackKind": "physics", "HitProtect": 8}
+		self.obj_attack_dict["hit1"] = {"power": 65, "hurtBack": [-4, -9], "attackKind": "physics", "HitProtect": 8}
 		self.fall_pro = 1
 		self.fall_list = []
 		self.fall_stone_pro = 0
@@ -48,13 +48,13 @@ func monster_3(is_boss_):
 		self.Critreduce = 0
 		self.speed = 10
 		self.mysee = 300
-		self.attackRange = 135
-		self.attackDesire = 80
+		self.attack_range = 135
+		self.attack_desire = 80
 		self.behit_calmtime = 0.2
 		self.self_rhp = 0
 		self.add_exp = 10
 		self.fall_coin = 2
-		self.objattackDic["hit1"] = {"power": 30, "hurtBack": [-4, -9], "attackKind": "physics", "HitProtect": 8}
+		self.obj_attack_dict["hit1"] = {"power": 30, "hurtBack": [-4, -9], "attackKind": "physics", "HitProtect": 8}
 		self.fall_pro = 0.18
 		self.fall_list = [
 			{"name": "ptxzg", "value": 0},

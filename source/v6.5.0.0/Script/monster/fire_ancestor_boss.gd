@@ -79,8 +79,8 @@ func _configure_boss() -> void:
 	sp = int(config.get("magic_break", 0))
 	speed = float(config.get("speed", 0.0))
 	mysee = int(config.get("sight", 0))
-	attackRange = roundi(float(config.get("range", 0.0)))
-	attackDesire = int(config.get("attack_desire", 0))
+	attack_range = roundi(float(config.get("range", 0.0)))
+	attack_desire = int(config.get("attack_desire", 0))
 	add_exp = int(config.get("exp", 0))
 	fall_coin = int(config.get("coin", 0))
 	fall_pro = float(config.get("drop_rate", 0.0))
@@ -92,14 +92,14 @@ func _configure_boss() -> void:
 	is_fly = true
 	super_armor_active = true
 	cannot_attract = true
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config.get("attacks", {})
 	for skill_index in range(1, 4):
 		var attack_name := "hit%d" % skill_index
 		var source_name := "effect%d" % skill_index
 		var attack_value: Variant = attacks.get(attack_name, attacks.get(source_name, {}))
 		if attack_value is Dictionary:
-			objattackDic[attack_name] = _attack_data(attack_value as Dictionary)
+			obj_attack_dict[attack_name] = _attack_data(attack_value as Dictionary)
 
 
 func _resolve_runtime_config() -> Dictionary:
@@ -229,7 +229,7 @@ func ai_think() -> void:
 	if not has_target or now_msec < _next_attack_msec:
 		return
 	_next_attack_msec = now_msec + SOURCE_AI_DELAY_MSEC
-	if attackDesire <= 0 or randi_range(1, 100) > attackDesire:
+	if attack_desire <= 0 or randi_range(1, 100) > attack_desire:
 		return
 	_skill_cycle = (_skill_cycle % 3) + 1
 	_start_skill(_skill_cycle)
@@ -331,7 +331,7 @@ func _spawn_effect3_flame(flame_index: int) -> void:
 
 func _spawn_streamed_damage_effect(config: Dictionary) -> void:
 	var effect_hit_name := str(config["hit_name"])
-	var attack_value: Variant = objattackDic.get(effect_hit_name, {})
+	var attack_value: Variant = obj_attack_dict.get(effect_hit_name, {})
 	var has_attack_data := attack_value is Dictionary and not (attack_value as Dictionary).is_empty()
 	var projectile := PROJECTILE_SCRIPT.new() as NanhaiProjectile
 	(

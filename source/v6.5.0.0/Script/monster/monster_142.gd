@@ -24,26 +24,26 @@ func monster_142():
 	self.Critreduce = 0
 	self.speed = 12
 	self.mysee = 500
-	self.attackRange = 160
-	self.attackDesire = 80
+	self.attack_range = 160
+	self.attack_desire = 80
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 500
 	self.ebol = 0
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 500,
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
 		"HitProtect": 0,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 1500,
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
 		"HitProtect": 0,
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 650,
 		"hurtBack": [0, 0],
 		"attackKind": "real",
@@ -59,7 +59,7 @@ func monster_142():
 			"CanRemove": false,
 		}
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 600,
 		"hurtBack": [0, 0],
 		"attackKind": "physics",
@@ -75,13 +75,13 @@ func monster_142():
 			"CanRemove": false,
 		}
 	}
-	self.objattackDic["hit5"] = {
+	self.obj_attack_dict["hit5"] = {
 		"power": 1500,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
 		"HitProtect": 0,
 	}
-	self.objattackDic["hit6"] = {
+	self.obj_attack_dict["hit6"] = {
 		"power": 600,
 		"hurtBack": [0, 0],
 		"attackKind": "real",
@@ -119,7 +119,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_4_CD <= 0:
 					do_hit_4()
@@ -223,7 +223,7 @@ func drop():
 
 func call_bullet_1():
 	var round_num = Global.add_bullet(
-		"Monster142Bullet1", self.bullet, false, 1, position, "hit1", self.objattackDic["hit1"]
+		"Monster142Bullet1", self.bullet, false, 1, position, "hit1", self.obj_attack_dict["hit1"]
 	)
 	var tween = create_tween()
 	tween.tween_property(round_num, "position", RoleProp.source_player.position, 0.5)
@@ -242,7 +242,7 @@ func call_bullet_3():
 		Vector2(400 + position.x, 470)
 	]
 	for i in bullet_spawn_positions:
-		Global.add_bullet("Monster56Bullet", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
+		Global.add_bullet("Monster56Bullet", self.bullet, false, 1, i, "hit3", self.obj_attack_dict["hit3"])
 
 
 func call_bullet_4():
@@ -262,7 +262,9 @@ func call_bullet_4():
 	if not MonsterDirection:
 		bullet_spawn_positions.reverse()
 	for i in bullet_spawn_positions:
-		var stab = Global.add_bullet("Monster142Bullet2", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
+		var stab = Global.add_bullet(
+			"Monster142Bullet2", self.bullet, false, 1, i, "hit4", self.obj_attack_dict["hit4"]
+		)
 		await get_tree().create_timer(0.2, false).timeout
 
 
@@ -284,7 +286,7 @@ func call_bullet_5():
 	bullet_spawn_positions.shuffle()
 	for i in bullet_spawn_positions:
 		var round_num = Global.add_bullet(
-			"Monster55Bullet", self.bullet, false, 1, position, "hit5", self.objattackDic["hit5"]
+			"Monster55Bullet", self.bullet, false, 1, position, "hit5", self.obj_attack_dict["hit5"]
 		)
 		round_list.push_back(round_num)
 		var tween = create_tween()

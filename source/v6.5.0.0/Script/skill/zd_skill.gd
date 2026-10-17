@@ -37,7 +37,7 @@ var skill_variant_config = {}
 
 var current_variant = {}
 
-var Skill_list = {
+var skill_list = {
 	"角色1": ["slz", "hytj", "lys", "lyfb", "hmz", "hmz_ws", "zz", "qsez", "jdy", "hyjj", "sx", "gsrs", "hyjj_ws"],
 	"角色2": ["blb", "xbz", "shy", "tjgl", "smb", "sgq", "myhc", "jgz", "jhsj", "sjt", "by", "zfjg"],
 	"角色3": ["ssp", "dj", "dgq", "zznh", "tmc", "sd", "jsp", "xgq", "syzq", "rj", "bdqk"],
@@ -46,7 +46,7 @@ var Skill_list = {
 	"角色6": ["nz_jlsh", "nz_fhcc", "nz_hlqg", "nz_hlhs", "nz_lblc"]
 }
 
-var Skill_Name = {
+var skill_name = {
 	"角色1": ["升龙斩", "火炎突击", "烈焰闪", "烈焰风暴", "火魔斩", "火魔斩无双", "重斩", "七十二斩", "筋斗云", "火眼金睛", "嗜血", "棍式如山", "无双火眼金睛"],
 	"角色2": ["冰龙波", "玄冰阵", "水幻影", "天降甘露", "水魔爆", "饥寒冰魂", "沐浴回春", "紧箍咒", "九环圣经", "水精通", "冰雨", "正法金刚"],
 	"角色3": ["碎石破", "盾击", "地滚球", "战争怒吼", "土魔刺", "圣盾", "巨石破", "旋滚球", "圣域之墙", "刃甲", "拔地乾坤"],
@@ -152,11 +152,11 @@ func _ensure_nezha_yinyang_skill() -> void:
 	var role_key := get_role_key()
 	if not role_key.ends_with("6"):
 		return
-	var skill_list: Array = Skill_list[role_key]
+	var skill_list: Array = skill_list[role_key]
 	if "nz_yysj" in skill_list:
 		return
 	skill_list.append("nz_yysj")
-	Skill_Name[role_key].append("阴阳神剑")
+	skill_name[role_key].append("阴阳神剑")
 	skill_infor[role_key].append("开启后每隔0.27秒消耗魔法，向前方发射1把阴剑和1把阳剑。再次释放可关闭。")
 
 
@@ -271,14 +271,14 @@ func _normalize_skill_rows(row_count: int):
 
 
 func get_level_storage_index(index: int) -> int:
-	var skill_list = Skill_list[get_role_key()]
+	var skill_list = skill_list[get_role_key()]
 	if get_role_key() == "角色3" and index >= 0 and index < skill_list.size() and skill_list[index] == "bdqk":
 		return 12
 	if index >= 0 and index < skill_list.size() and skill_list[index] == "hmz_ws":
 		return 12
 	if index >= 0 and index < skill_list.size() and skill_list[index] == "hyjj_ws":
 		return 13
-	if get_role_key() == "角色1" and index > Skill_list[get_role_key()].find("hmz_ws"):
+	if get_role_key() == "角色1" and index > skill_list[get_role_key()].find("hmz_ws"):
 		return index
 	return index + 1
 
@@ -337,8 +337,8 @@ func _ready() -> void:
 		sk_11_level.visible = true
 		s_11_desc.visible = true
 
-	_set_skill_slot_visibility(Skill_list.get(role_key, []).size())
-	var max_slot = Skill_list.get(get_role_key(), []).size()
+	_set_skill_slot_visibility(skill_list.get(role_key, []).size())
+	var max_slot = skill_list.get(get_role_key(), []).size()
 	for i in range(1, max_slot + 1):
 		var ski_btn = get_node_or_null("ScrollContainer/HBoxContainer/sk_pi/ski_" + str(i))
 		if ski_btn and ski_btn is Button:
@@ -367,7 +367,7 @@ func _ready() -> void:
 	set_skill_level()
 	set_skill_infor()
 	set_skill_lh()
-	var skill_count = Skill_list.get(role_key, []).size()
+	var skill_count = skill_list.get(role_key, []).size()
 	_resize_skill_columns(skill_count)
 	_center_upgrade_controls(skill_count)
 
@@ -392,7 +392,7 @@ func _set_skill_slot_visibility(skill_count: int) -> void:
 
 
 func _fit_skill_descriptions_to_grid() -> void:
-	var skill_count = Skill_list.get(get_role_key(), []).size()
+	var skill_count = skill_list.get(get_role_key(), []).size()
 	_skill_row_heights.clear()
 	var row_top := 40.0
 	for i in range(1, skill_count + 1):
@@ -430,7 +430,7 @@ func get_skill_row_heights() -> Array[float]:
 
 
 func _setup_skill_awaken_buttons() -> void:
-	var skill_list = Skill_list.get(get_role_key(), [])
+	var skill_list = skill_list.get(get_role_key(), [])
 	for skill_index in range(skill_list.size()):
 		var icon_parent = get_node_or_null("ScrollContainer/HBoxContainer/sk_pi/ski_" + str(skill_index + 1))
 		if icon_parent == null:
@@ -472,13 +472,13 @@ func _on_skill_awaken_pressed(skill_index: int) -> void:
 
 	var icon_button = get_node_or_null("ScrollContainer/HBoxContainer/sk_pi/ski_" + str(skill_index + 1))
 	var name_label = get_node_or_null("ScrollContainer/HBoxContainer/Sk_na/skill_" + str(skill_index + 1))
-	var skill_list = Skill_list.get(get_role_key(), [])
+	var skill_list = skill_list.get(get_role_key(), [])
 	var display_name := "技能"
 	var display_icon: Texture2D = null
 	if name_label != null:
 		display_name = str(name_label.text)
-	elif skill_index >= 0 and skill_index < Skill_Name.get(get_role_key(), []).size():
-		display_name = str(Skill_Name[get_role_key()][skill_index])
+	elif skill_index >= 0 and skill_index < skill_name.get(get_role_key(), []).size():
+		display_name = str(skill_name[get_role_key()][skill_index])
 	if icon_button != null:
 		display_icon = icon_button.icon
 	if display_icon == null and skill_index >= 0 and skill_index < skill_list.size():
@@ -506,7 +506,7 @@ func _get_skill_window_root() -> Node:
 func init_skill_variants():
 	var role_key = get_role_key()
 
-	var skill_list = Skill_list.get(role_key, [])
+	var skill_list = skill_list.get(role_key, [])
 	for idx in range(skill_list.size()):
 		var skill_internal = skill_list[idx]
 		if skill_variant_config.has(skill_internal):
@@ -569,12 +569,12 @@ func setup_variant_menu(skill_num: int, skill_internal: String, config: Dictiona
 
 func get_skill_name(Num):
 	var role_key = get_role_key()
-	var skill_list = Skill_list[role_key]
+	var skill_list = skill_list[role_key]
 	if Num - 1 >= skill_list.size():
 		return ""
 	var skill_internal = skill_list[Num - 1]
 
-	return Skill_Name[role_key][Num - 1]
+	return skill_name[role_key][Num - 1]
 
 
 func get_need_mp():
@@ -586,7 +586,7 @@ func get_need_mp():
 
 func set_skill_icon():
 	var role_key = get_role_key()
-	var skill_list = Skill_list[role_key]
+	var skill_list = skill_list[role_key]
 	for i in range(skill_list.size()):
 		var target = get_node("ScrollContainer/HBoxContainer/sk_pi/ski_" + str(i + 1))
 		var skill_nbname = skill_list[i]
@@ -597,7 +597,7 @@ func set_skill_icon():
 
 func set_skill_name():
 	var role_key = get_role_key()
-	var skill_name_list = Skill_Name[role_key]
+	var skill_name_list = skill_name[role_key]
 	for i in range(skill_name_list.size()):
 		var target = get_node("ScrollContainer/HBoxContainer/Sk_na/skill_" + str(i + 1))
 		target.text = skill_name_list[i]
@@ -605,7 +605,7 @@ func set_skill_name():
 
 func set_skill_level():
 	var role_key = get_role_key()
-	var skill_list = Skill_list[role_key]
+	var skill_list = skill_list[role_key]
 	for i in range(skill_list.size()):
 		var target = get_node("ScrollContainer/HBoxContainer/sk_le/sk_" + str(i + 1))
 		var skill_level = get_skill_level_by_index(i)
@@ -622,7 +622,7 @@ func set_skill_infor():
 
 func set_skill_lh():
 	var role_key = get_role_key()
-	var skill_list = Skill_list[role_key]
+	var skill_list = skill_list[role_key]
 	for i in range(skill_list.size()):
 		var target = get_node("ScrollContainer/HBoxContainer/sk_lv/skill" + str(i + 1) + "/Need")
 		var skill_level = get_skill_level_by_index(i)
@@ -646,7 +646,7 @@ func up_level():
 		return
 
 	var role_key = get_role_key()
-	var skill_list = Skill_list[role_key]
+	var skill_list = skill_list[role_key]
 	var max_skill = skill_list.size()
 
 	if (
@@ -745,7 +745,7 @@ func skill10_xz(Level):
 
 
 func get_skill_list_name(num):
-	return Skill_list[get_role_key()][num]
+	return skill_list[get_role_key()][num]
 
 
 func _on_skill_1_pressed() -> void:
@@ -831,7 +831,7 @@ func _show_tip():
 		new_mp = mp_info[1]
 
 	var tip = "确定要升级技能%s吗？ 魔耗：%s→%s" % [skill_name, old_mp, new_mp]
-	var skill_list = Skill_list[get_role_key()]
+	var skill_list = skill_list[get_role_key()]
 	if target_skill > 0 and target_skill <= skill_list.size():
 		var skill_internal: String = str(skill_list[target_skill - 1])
 		var level: int = get_skill_level_by_index(target_skill - 1)
@@ -899,7 +899,7 @@ func _on_ski_13_pressed() -> void:
 
 
 func _set_key(index):
-	var skill_list = Skill_list[get_role_key()]
+	var skill_list = skill_list[get_role_key()]
 	if index >= skill_list.size():
 		Global.add_message_show(self, "该角色无此技能！！", 1.5, Vector2(395, 180))
 		return
@@ -1071,7 +1071,7 @@ func _compute_mp_cost(skill_name: String, next_level: bool = false) -> int:
 	if skill_name in passive_list:
 		return 0
 	var role_key = get_role_key()
-	var skill_list = Skill_list.get(role_key, [])
+	var skill_list = skill_list.get(role_key, [])
 	var skill_index = -1
 	for idx in range(skill_list.size()):
 		if skill_list[idx] == skill_name:
@@ -1209,7 +1209,7 @@ func _compute_mp_cost(skill_name: String, next_level: bool = false) -> int:
 
 func set_skill_mp_cost():
 	var role_key = get_role_key()
-	var skill_list = Skill_list[role_key]
+	var skill_list = skill_list[role_key]
 	for i in range(skill_list.size()):
 		var icon_btn = get_node("ScrollContainer/HBoxContainer/sk_pi/ski_" + str(i + 1))
 		if not icon_btn:

@@ -25,13 +25,13 @@ func monster_35():
 	self.Critreduce = 0
 	self.speed = 0
 	self.mysee = 225
-	self.attackRange = 305
-	self.attackDesire = 70
+	self.attack_range = 305
+	self.attack_desire = 70
 	self.behit_calmtime = 0.2
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 400,
 		"hurtBack": [-4, -9],
 		"attackKind": "physics",
@@ -45,7 +45,7 @@ func monster_35():
 			"AttackKind": "physics",
 		}
 	}
-	self.objattackDic["xfj"] = {
+	self.obj_attack_dict["xfj"] = {
 		"power": 400,
 		"hurtBack": [-3, -15],
 		"attackKind": "magic",
@@ -59,7 +59,7 @@ func monster_35():
 			"AttackKind": "",
 		},
 	}
-	self.objattackDic["wl"] = {
+	self.obj_attack_dict["wl"] = {
 		"power": 500,
 		"hurtBack": [-3, -15],
 		"attackKind": "magic",
@@ -100,7 +100,7 @@ func ai_think():
 	if Hp > 0:
 		if Skill_1_CD > 0 and Skill_2_CD > 0:
 			if count % 180 == 0:
-				if randi_range(0, 100) < attackDesire:
+				if randi_range(0, 100) < attack_desire:
 					do_hit_1()
 				else:
 					if not is_attacking:
@@ -151,7 +151,7 @@ func call_ljf():
 		700,
 		-400,
 		"xfj",
-		self.objattackDic["xfj"]
+		self.obj_attack_dict["xfj"]
 	)
 	ljf.set_modulate(Color(2, 0, 2, 1))
 
@@ -175,7 +175,7 @@ func call_fl():
 	new_list.reverse()
 	for i in new_list:
 		var fl = Global.add_bullet(
-			"Monster33Bullet2", self.bullet, false, 1, i["Position"] + position, "wl", self.objattackDic["wl"]
+			"Monster33Bullet2", self.bullet, false, 1, i["Position"] + position, "wl", self.obj_attack_dict["wl"]
 		)
 		fl.rotation_degrees = i["Ratation"]
 		await get_tree().create_timer(0.7, false).timeout

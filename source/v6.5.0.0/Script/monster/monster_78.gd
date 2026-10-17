@@ -21,13 +21,13 @@ func monster_78():
 	self.Critreduce = 0
 	self.speed = 10
 	self.mysee = 400
-	self.attackRange = 350
-	self.attackDesire = 75
+	self.attack_range = 350
+	self.attack_desire = 75
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 100
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 500,
 		"hurtBack": [-7, -9],
 		"attackKind": "physics",
@@ -83,7 +83,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 1200:
@@ -97,7 +97,7 @@ func ai_think():
 					do_hit_2()
 				else:
 					if count % 60 == 0:
-						if randi_range(0, 100) < attackDesire:
+						if randi_range(0, 100) < attack_desire:
 							attack_target()
 						else:
 							stop_move()
@@ -127,9 +127,9 @@ func get_monster_76():
 func strength():
 	if my_brother != null:
 		my_brother.cure_hp(SHp * 0.4)
-		for i in my_brother.objattackDic:
-			if my_brother.objattackDic[i].has("power"):
-				my_brother.objattackDic[i]["power"] *= 1.05
+		for i in my_brother.obj_attack_dict:
+			if my_brother.obj_attack_dict[i].has("power"):
+				my_brother.obj_attack_dict[i]["power"] *= 1.05
 
 
 func add_child_2():
@@ -139,5 +139,5 @@ func add_child_2():
 	else:
 		po = Vector2(-60, 5)
 	var child = Global.add_bullet(
-		"Monster78Bullet", bullet, MonsterDirection, 2, position + po, "hit1", self.objattackDic["hit1"]
+		"Monster78Bullet", bullet, MonsterDirection, 2, position + po, "hit1", self.obj_attack_dict["hit1"]
 	)

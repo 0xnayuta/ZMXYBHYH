@@ -150,9 +150,9 @@ func _configure_monster() -> void:
 	ar = int(config["armor_break"])
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
-	attackRange = roundi(float(config["range"]))
+	attack_range = roundi(float(config["range"]))
 	mysee = roundi(float(config["sight"]))
-	attackDesire = int(config["attack_desire"])
+	attack_desire = int(config["attack_desire"])
 	add_exp = int(config["exp"])
 	fall_coin = int(config["coin"])
 	fall_pro = float(config["drop_rate"])
@@ -162,11 +162,11 @@ func _configure_monster() -> void:
 	boss_max_protect = float(config["max_protect"])
 	is_fly = _model_id() == 3065
 	NoGrav = is_fly
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config["attacks"]
 	for attack_name: String in attacks:
 		var attack: Dictionary = attacks[attack_name]
-		objattackDic[attack_name] = {
+		obj_attack_dict[attack_name] = {
 			"power": roundi(float(attack_in) * float(attack["multiplier"])),
 			"hurtBack": Array(attack["hurt_back"]).duplicate(),
 			"attackKind": str(attack["kind"]),
@@ -344,7 +344,7 @@ func ai_think() -> void:
 		return
 	to_hero()
 	var minimum_range := float(_runtime_config.get("min_range", 0.0))
-	var maximum_range := float(_runtime_config.get("range", attackRange))
+	var maximum_range := float(_runtime_config.get("range", attack_range))
 	var vertical_range := float(_runtime_config.get("vertical_range", 100.0))
 	if _model_id() == 3065 and RoleProp.get_nearest_monster_target_position(global_position).y != null:
 		var target_y := float(RoleProp.get_nearest_monster_target_position(global_position).y)
@@ -538,8 +538,8 @@ func _spawn_projectile(config: Dictionary) -> WutaiMinghaiProjectile:
 
 
 func _attack_entry() -> Dictionary:
-	if objattackDic.has("hit1"):
-		return (objattackDic["hit1"] as Dictionary).duplicate(true)
+	if obj_attack_dict.has("hit1"):
+		return (obj_attack_dict["hit1"] as Dictionary).duplicate(true)
 	push_error("WutaiMinghaiMonster level config is missing attack hit1 for %s" % monster_kind)
 	return {}
 

@@ -28,21 +28,21 @@ func monster_63():
 	self.Critreduce = 0
 	self.speed = 11
 	self.mysee = 0
-	self.attackRange = 280
-	self.attackDesire = 0
+	self.attack_range = 280
+	self.attack_desire = 0
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 300 + int(RoleProp.baseroleprop.Level * 8),
 		"hurtBack": [0, 0],
 		"attackKind": "physics",
 		"HitProtect": 6
 	}
 
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 100 + int(RoleProp.baseroleprop.Level * 12),
 		"hurtBack": [-10, 0],
 		"attackKind": "magic",
@@ -58,7 +58,7 @@ func monster_63():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 100 + int(RoleProp.baseroleprop.Level * 10),
 		"hurtBack": [20, -10],
 		"attackKind": "magic",
@@ -91,8 +91,8 @@ func ai_think():
 			accumulated_hit -= 1
 
 	if not is_fs and accumulated_hit >= randi_range(4, 8):
-		if get_Player != null:
-			get_Player.effect_reducehp(int(accumulated_hit * randi_range(10, 15)), "real")
+		if get_player != null:
+			get_player.effect_reducehp(int(accumulated_hit * randi_range(10, 15)), "real")
 			cure_hp((SHp - Hp) * accumulated_hit * 0.001)
 			accumulated_hit = 0
 
@@ -109,7 +109,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -153,7 +153,7 @@ func do_hit_4():
 
 
 func move_player_to_boss(movetime: float = 0.0):
-	var player = get_Player
+	var player = get_player
 	if not player or not is_instance_valid(player):
 		return
 
@@ -245,10 +245,10 @@ func _call_fs_deferred() -> void:
 	fs.sp = int(self.sp * 0.5)
 	fs.speed = int(self.speed * 0.5)
 
-	for attack_key in self.objattackDic:
-		if attack_key in fs.objattackDic:
-			var original_power = self.objattackDic[attack_key]["power"]
-			fs.objattackDic[attack_key]["power"] = int(original_power * 0.5)
+	for attack_key in self.obj_attack_dict:
+		if attack_key in fs.obj_attack_dict:
+			var original_power = self.obj_attack_dict[attack_key]["power"]
+			fs.obj_attack_dict[attack_key]["power"] = int(original_power * 0.5)
 
 	should_fs = false
 
@@ -267,7 +267,7 @@ func call_bullet_2():
 			1,
 			bullet_pos + position,
 			"hit2",
-			self.objattackDic["hit2"]
+			self.obj_attack_dict["hit2"]
 		)
 		await get_tree().create_timer(0.1, false).timeout
 

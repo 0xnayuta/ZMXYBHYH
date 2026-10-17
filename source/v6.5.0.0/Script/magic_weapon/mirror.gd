@@ -187,7 +187,7 @@ func _physics_process(delta: float) -> void:
 	var attack_signature := "%d:%s:%d" % [self.fb_level, str(has_wood), int(RoleProp.roleprop.SHp)]
 	if attack_signature != _attack_signature:
 		_attack_signature = attack_signature
-		objattackDic["hit1"] = {
+		obj_attack_dict["hit1"] = {
 			"power":
 			int(
 				RoleProp.roleprop.SHp * ((0.16 + self.fb_level * 0.01) if has_wood else (0.08 + self.fb_level * 0.005))
@@ -241,7 +241,7 @@ func _physics_process(delta: float) -> void:
 					fix_time = 0
 				else:
 					if fix_target != null and fix_target is BaseMonster:
-						Global.add_buff(fix_target.buff, objattackDic["hit1"]["addeffect"])
+						Global.add_buff(fix_target.buff, obj_attack_dict["hit1"]["addeffect"])
 						total_hp += reduce_hp()
 					else:
 						fix_time = 0
@@ -316,7 +316,7 @@ func _on_check_monster_body_entered(body: Node2D) -> void:
 
 
 func reduce_hp():
-	var hurt = int(objattackDic["hit1"]["power"] / 15)
+	var hurt = int(obj_attack_dict["hit1"]["power"] / 15)
 	fix_target.reduce_hp(hurt)
 	return hurt
 

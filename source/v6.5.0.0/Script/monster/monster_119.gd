@@ -23,19 +23,19 @@ func monster_119():
 	self.Critreduce = 0
 	self.speed = 12
 	self.mysee = 600
-	self.attackRange = 135
-	self.attackDesire = 85
+	self.attack_range = 135
+	self.attack_desire = 85
 	self.behit_calmtime = 0.4
 	self.self_rhp = 0
 	self.add_exp = 100
 	self.fall_coin = 30
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 500,
 		"hurtBack": [-4, -9],
 		"attackKind": "physics",
 		"HitProtect": 15,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 800,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -79,7 +79,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_2()
@@ -93,7 +93,7 @@ func ai_think():
 					do_hit_3()
 				elif count % 60 == 0:
 					var rad = randi_range(0, 100)
-					if rad <= attackDesire:
+					if rad <= attack_desire:
 						attack_target()
 				else:
 					stop_move()
@@ -120,9 +120,9 @@ func do_hit_3():
 
 
 func strength_self():
-	for i in objattackDic:
-		if objattackDic[i].has("power"):
-			objattackDic[i].power *= 1.2
+	for i in obj_attack_dict:
+		if obj_attack_dict[i].has("power"):
+			obj_attack_dict[i].power *= 1.2
 	cure_bl += 0.5
 	def += 10
 	mdef += 10

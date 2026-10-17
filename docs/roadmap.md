@@ -466,7 +466,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 
 ### 9.2 实施子阶段规划（四步走）
 
-#### 1. Phase 9-1: camelCase 变量治理（50 处，由基类到派生）
+#### 1. Phase 9-1: camelCase 变量治理（50 处，由基类到派生） [已完成 · Done]
 - **残留清单（实测）**：`objattackDic`（8 个脚本）、`attackRange`（3）、`attackDesire`（2）、`iniSpeed`（2）、`get_Player`（2）、`_28_ui`（`Global.gd`）、`east_continent_monster.gd` 的 `_31xx_*` 数字段系列等。
 - **分批策略**：
   1. `Script/base/`（`base_monster` / `base_object` / `base_magic_weapon` / `summon_base_monster`）——基类改名影响全部派生类，优先且最谨慎；

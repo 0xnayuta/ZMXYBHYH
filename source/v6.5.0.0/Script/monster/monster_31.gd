@@ -22,13 +22,13 @@ func monster_31(is_boss_):
 		self.Critreduce = 0
 		self.speed = 8
 		self.mysee = 300
-		self.attackRange = 305
-		self.attackDesire = 80
+		self.attack_range = 305
+		self.attack_desire = 80
 		self.behit_calmtime = 0.1
 		self.self_rhp = 0
 		self.add_exp = 360
 		self.fall_coin = 200
-		self.objattackDic["hit1"] = {
+		self.obj_attack_dict["hit1"] = {
 			"power": 368,
 			"hurtBack": [-4, -8],
 			"attackKind": "physics",
@@ -72,13 +72,13 @@ func monster_31(is_boss_):
 		self.Critreduce = 0
 		self.speed = 7
 		self.mysee = 300
-		self.attackRange = 145
-		self.attackDesire = 60
+		self.attack_range = 145
+		self.attack_desire = 60
 		self.behit_calmtime = 0.2
 		self.self_rhp = 0
 		self.add_exp = 70
 		self.fall_coin = 27
-		self.objattackDic["hit1"] = {
+		self.obj_attack_dict["hit1"] = {
 			"power": 248,
 			"hurtBack": [-4, -8],
 			"attackKind": "physics",
@@ -124,7 +124,7 @@ func ai_think():
 				have_target()
 			elif count % 60 == 0:
 				var rad = randi_range(0, 100)
-				if rad <= attackDesire:
+				if rad <= attack_desire:
 					attack_target()
 			else:
 				stop_move()

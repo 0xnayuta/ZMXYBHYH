@@ -113,7 +113,7 @@ func _initialize_summon_base() -> void:
 		buff_node.name = "Buff"
 		add_child(buff_node)
 		buff = buff_node
-	iniSpeed = speed
+	init_speed = speed
 	if base_damage_box == null:
 		base_damage_box = get_node_or_null("BaseDamageBox") as Node2D
 	if monster_dir == null:
@@ -278,9 +278,9 @@ func setup_pet_tiger(stage: int) -> void:
 	sp = int(equipment_bonus.get("破魔", 0))
 	Critreduce = int(equipment_bonus.get("暴免", 0))
 	speed = 14
-	attackRange = 95
+	attack_range = 95
 	mysee = 99999
-	attackDesire = 100
+	attack_desire = 100
 	is_boss = false
 	add_exp = 0
 	fall_coin = 0
@@ -290,31 +290,31 @@ func setup_pet_tiger(stage: int) -> void:
 func _rebuild_pet_attack_data() -> void:
 	var bone_multiplier: float = 1.0 + float(clampi(int(pet_data.get("根骨", 0)), 0, 25)) * 0.02
 	var damage_bl: float = (1.0 + float(tiger_stage - 1) * 0.3) * bone_multiplier
-	objattackDic["hit1"] = _attack_dic(
+	obj_attack_dict["hit1"] = _attack_dic(
 		PET_SKILL_PROGRESSION.scaled_power(int(attack_in * 2.2 * damage_bl), pet_data, SKILL_NAMES["hit1"]),
 		[2, 0],
 		"physics",
 		8
 	)
-	objattackDic[SKILL_HY] = _attack_dic(
+	obj_attack_dict[SKILL_HY] = _attack_dic(
 		PET_SKILL_PROGRESSION.scaled_power(int(attack_in * 6.3 * damage_bl), pet_data, SKILL_NAMES[SKILL_HY]),
 		[2, 0],
 		"physics",
 		8
 	)
-	objattackDic[SKILL_SXHZ] = _attack_dic(
+	obj_attack_dict[SKILL_SXHZ] = _attack_dic(
 		PET_SKILL_PROGRESSION.scaled_power(int(attack_in * damage_bl), pet_data, SKILL_NAMES[SKILL_SXHZ]),
 		[0, 0],
 		"physics",
 		4
 	)
-	objattackDic[SKILL_HSQJ] = _attack_dic(
+	obj_attack_dict[SKILL_HSQJ] = _attack_dic(
 		PET_SKILL_PROGRESSION.scaled_power(int(attack_in * 5.8 * damage_bl), pet_data, SKILL_NAMES[SKILL_HSQJ]),
 		[2, 0],
 		"physics",
 		10
 	)
-	objattackDic[SKILL_BHAOYI] = _attack_dic(
+	obj_attack_dict[SKILL_BHAOYI] = _attack_dic(
 		PET_SKILL_PROGRESSION.scaled_power(int(attack_in * 5.8 * damage_bl), pet_data, SKILL_NAMES[SKILL_BHAOYI]),
 		[2, 0],
 		"physics",
@@ -361,7 +361,7 @@ func ai_think() -> void:
 			try_use_skills()
 		if is_attacking:
 			return
-		if distance > attackRange:
+		if distance > attack_range:
 			if current_target.position.x > position.x:
 				move_right()
 			else:
@@ -369,7 +369,7 @@ func ai_think() -> void:
 		else:
 			stop_move()
 			to_monster()
-			if not is_be_attacking and count % 55 == 0 and randi_range(0, 100) < attackDesire:
+			if not is_be_attacking and count % 55 == 0 and randi_range(0, 100) < attack_desire:
 				do_hit_1()
 	else:
 		current_target = null
@@ -513,7 +513,7 @@ func call_hit_1_bullet() -> void:
 		offset = Vector2(120.0, -80.0)
 	elif tiger_stage >= 3:
 		offset = Vector2(130.0, -70.0)
-	_add_tiger_bullet(bullet_name, position + _front_offset(offset.x, offset.y), "hit1", objattackDic["hit1"])
+	_add_tiger_bullet(bullet_name, position + _front_offset(offset.x, offset.y), "hit1", obj_attack_dict["hit1"])
 
 
 func call_hy_bullet() -> void:
@@ -522,7 +522,7 @@ func call_hy_bullet() -> void:
 	if tiger_stage >= 2:
 		offset = Vector2(190.0, -80.0)
 	_add_tiger_bullet(
-		"PetTiger1Bullet2", position + _front_offset(offset.x, offset.y), SKILL_HY, objattackDic[SKILL_HY]
+		"PetTiger1Bullet2", position + _front_offset(offset.x, offset.y), SKILL_HY, obj_attack_dict[SKILL_HY]
 	)
 
 
@@ -530,10 +530,10 @@ func call_sxhz_hit() -> void:
 	_sync_attack_facing()
 	var first_y := -45.0 if tiger_stage == 2 else -65.0
 	_add_tiger_bullet(
-		"PetTiger2Bullet3_1", position + _front_offset(50.0, first_y), SKILL_SXHZ, objattackDic[SKILL_SXHZ]
+		"PetTiger2Bullet3_1", position + _front_offset(50.0, first_y), SKILL_SXHZ, obj_attack_dict[SKILL_SXHZ]
 	)
 	_add_tiger_bullet(
-		"PetTiger2Bullet3_2", position + _front_offset(200.0, -200.0), SKILL_SXHZ, objattackDic[SKILL_SXHZ]
+		"PetTiger2Bullet3_2", position + _front_offset(200.0, -200.0), SKILL_SXHZ, obj_attack_dict[SKILL_SXHZ]
 	)
 
 
@@ -541,11 +541,13 @@ func call_hsqj_bullet() -> void:
 	_sync_attack_facing()
 	var attack_key := SKILL_BHAOYI if bhaoyi_running else SKILL_HSQJ
 	var mark = _add_tiger_bullet(
-		"PetTiger3Bullet4_1", position + _front_offset(85.0, -130.0), attack_key, objattackDic[attack_key]
+		"PetTiger3Bullet4_1", position + _front_offset(85.0, -130.0), attack_key, obj_attack_dict[attack_key]
 	)
 	if mark != null:
 		mark.set_meta("pet_tiger_disabled", true)
-	_add_tiger_bullet("PetTiger3Bullet4_2", position + _front_offset(105.0, -2.0), attack_key, objattackDic[attack_key])
+	_add_tiger_bullet(
+		"PetTiger3Bullet4_2", position + _front_offset(105.0, -2.0), attack_key, obj_attack_dict[attack_key]
+	)
 
 
 func _add_tiger_bullet(bullet_name: String, bullet_position: Vector2, attack_name: String, attack_data: Dictionary):

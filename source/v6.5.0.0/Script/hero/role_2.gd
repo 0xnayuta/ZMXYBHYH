@@ -59,20 +59,20 @@ func role_2_handler():
 	var level_9 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] + 1
 	var level_10 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
 	var level_11 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能11"][DataKeys.LEVEL]
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1),
 		"hurtBack": [4, -6],
 		"attackKind": "magic",
 		"HitInterv": 1,
 		"WSValue": randi_range(2, 4)
 	}
-	self.objattackDic["blb"] = {
+	self.obj_attack_dict["blb"] = {
 		"power": RoleProp.roleprop.power * (1.0 + (level_1 * 0.05)),
 		"hurtBack": [25, -10],
 		"attackKind": "magic",
 		"WSValue": randi_range(15, 18)
 	}
-	self.objattackDic["xbz"] = {
+	self.obj_attack_dict["xbz"] = {
 		"power": RoleProp.roleprop.power * (0.75 + (level_2 * 0.075)),
 		"hurtBack": [8, -13],
 		"attackKind": "magic",
@@ -87,10 +87,10 @@ func role_2_handler():
 			"DeBuff": true
 		}
 	}
-	self.objattackDic["shy"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
-	self.objattackDic["tjgl"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
-	self.objattackDic["jgz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
-	self.objattackDic["smb"] = {
+	self.obj_attack_dict["shy"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
+	self.obj_attack_dict["tjgl"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
+	self.obj_attack_dict["jgz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
+	self.obj_attack_dict["smb"] = {
 		"power": RoleProp.roleprop.power * (6.0 + level_5 * 2.2) + RoleProp.roleprop.SMp * (0.4 + level_5 * 0.3),
 		"hurtBack": [3, -8],
 		"attackKind": "magic",
@@ -105,27 +105,27 @@ func role_2_handler():
 			"DeBuff": true
 		}
 	}
-	self.objattackDic["sgq"] = {
+	self.obj_attack_dict["sgq"] = {
 		"power": RoleProp.roleprop.power * (0.15 + (level_6 * 0.02)),
 		"hurtBack": [3, -8],
 		"attackKind": "magic",
 		"WSValue": 1,
 	}
-	self.objattackDic["jhsj"] = {
+	self.obj_attack_dict["jhsj"] = {
 		"power": RoleProp.roleprop.power * (0.8 + (level_9 * 0.1)),
 		"hurtBack": [3, -8],
 		"attackKind": "magic",
 		"WSValue": randi_range(10, 15),
 	}
-	self.objattackDic["myhc"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
-	self.objattackDic["by"] = {
+	self.obj_attack_dict["myhc"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
+	self.obj_attack_dict["by"] = {
 		"power":
 		(RoleProp.roleprop.power * (2.0 + level_11 * 1.6) + RoleProp.roleprop.SMp * (0.13 + level_11 * 0.1)) * 0.32,
 		"hurtBack": [1, -2],
 		"attackKind": "magic",
 		"WSValue": 3
 	}
-	self.objattackDic["zfjg"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
+	self.obj_attack_dict["zfjg"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
 
 
 func _physics_process(delta: float) -> void:
@@ -199,7 +199,7 @@ func _is_smb_action_just_pressed() -> bool:
 
 
 func do_normalhit_1():
-	interv = objattackDic["hit1"]["HitInterv"]
+	interv = obj_attack_dict["hit1"]["HitInterv"]
 	super.get_hit_data("hit1")
 	get_action = "hit1"
 	is_can_move_attack_in_sky()
@@ -374,7 +374,7 @@ func skill_by():
 	is_attacking = true
 	super.get_hit_data("by")
 	var effect := BingYuEffect.new()
-	effect.setup(self, objattackDic["by"])
+	effect.setup(self, obj_attack_dict["by"])
 	get_tree().current_scene.add_child(effect)
 	bingyu_effects.append(effect)
 	effect.tree_exited.connect(_on_bingyu_effect_exited.bind(effect))
@@ -509,7 +509,7 @@ func add_normal_hit_effect():
 		bullet_pos = Vector2(10, 15)
 	else:
 		bullet_pos = Vector2(-10, 15)
-	Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet1", objattackDic["hit1"])
+	Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet1", obj_attack_dict["hit1"])
 
 
 func add_blb():
@@ -520,7 +520,7 @@ func add_blb():
 		bullet_pos = Vector2(15, 0)
 	else:
 		bullet_pos = Vector2(-15, 0)
-	Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet2", objattackDic["blb"])
+	Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet2", obj_attack_dict["blb"])
 
 
 func add_sgq():
@@ -530,11 +530,15 @@ func add_sgq():
 	else:
 		bullet_pos = Vector2(-35, -20)
 	if sgq == null:
-		sgq = Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
+		sgq = Global.add_role_bullet(
+			self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", obj_attack_dict["sgq"]
+		)
 		sgq.scale = Vector2(2, 2)
 	else:
 		sgq.queue_free()
-		sgq = Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", objattackDic["sgq"])
+		sgq = Global.add_role_bullet(
+			self.Bullet, bullet_pos + position, PlayerDir, "Role2Bullet5", obj_attack_dict["sgq"]
+		)
 		sgq.scale = Vector2(2, 2)
 
 
@@ -547,7 +551,7 @@ func add_xbz():
 		bullet_spawn_positions = [Vector2(80, -15), Vector2(175, -20), Vector2(275, -25)]
 	for i in bullet_spawn_positions.size():
 		var xbz = Global.add_role_bullet(
-			self.Bullet, bullet_spawn_positions[i] + position, PlayerDir, "Role2Bullet3", objattackDic["xbz"]
+			self.Bullet, bullet_spawn_positions[i] + position, PlayerDir, "Role2Bullet3", obj_attack_dict["xbz"]
 		)
 		xbz.scale = scale_list[i]
 		await get_tree().create_timer(0.2, false).timeout
@@ -566,7 +570,7 @@ func add_zfjg():
 
 
 func add_smb_2():
-	Global.add_role_bullet(self.Bullet, smpox + Vector2(0, -180), PlayerDir, "Role2Bullet4", objattackDic["smb"])
+	Global.add_role_bullet(self.Bullet, smpox + Vector2(0, -180), PlayerDir, "Role2Bullet4", obj_attack_dict["smb"])
 	if _is_skill_awakened("smb") and _is_skill_awaken_enabled("smb"):
 		_spawn_smb_awaken_extra_bursts(smpox, PlayerDir)
 
@@ -578,7 +582,9 @@ func _spawn_smb_awaken_extra_bursts(origin: Vector2, direction: bool) -> void:
 		await get_tree().create_timer(0.18 * float(burst_index + 1), false).timeout
 		if not is_instance_valid(self) or is_death:
 			return
-		Global.add_role_bullet(self.Bullet, origin + Vector2(0, -180), direction, "Role2Bullet4", objattackDic["smb"])
+		Global.add_role_bullet(
+			self.Bullet, origin + Vector2(0, -180), direction, "Role2Bullet4", obj_attack_dict["smb"]
+		)
 
 
 func add_shallow():
@@ -679,7 +685,7 @@ func _spawn_jhsj_awaken_effect() -> void:
 		jhsj_awaken_effect.queue_free()
 	var effect := JHSJ_AWAKEN_EFFECT.instantiate()
 	jhsj_awaken_effect = effect
-	var awaken_hit_data: Dictionary = objattackDic["jhsj"].duplicate(true)
+	var awaken_hit_data: Dictionary = obj_attack_dict["jhsj"].duplicate(true)
 	var skill_level: int = int(get_skill_level(9))
 	awaken_hit_data["power"] = RoleProp.roleprop.power * (15.0 + skill_level * 0.45)
 	effect.setup(self, awaken_hit_data, PlayerDir)
@@ -689,7 +695,7 @@ func _spawn_jhsj_awaken_effect() -> void:
 
 func add_jhsj_2():
 	var bullet_pos = Vector2.ZERO
-	jhsj_2 = Global.add_role_bullet(self, bullet_pos, PlayerDir, "Role2Bullet6", objattackDic["jhsj"])
+	jhsj_2 = Global.add_role_bullet(self, bullet_pos, PlayerDir, "Role2Bullet6", obj_attack_dict["jhsj"])
 	jhsj_2.show_behind_parent = true
 
 

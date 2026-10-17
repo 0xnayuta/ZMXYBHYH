@@ -88,8 +88,8 @@ func _apply_sword_boss_stats() -> void:
 	Critreduce = 15
 	speed = 10
 	mysee = 1000
-	attackRange = 230
-	attackDesire = 300
+	attack_range = 230
+	attack_desire = 300
 	behit_calmtime = 0.12
 	self_rhp = 0
 	add_exp = 4500
@@ -101,9 +101,9 @@ func _apply_sword_boss_stats() -> void:
 	independent_fall_list = []
 	fall_stone_pro = 0.0
 	fall_stone = []
-	objattackDic["hit1"] = {"power": sword_power_1, "hurtBack": [-8, -2], "attackKind": "physics", "HitProtect": 8}
-	objattackDic["hit2"] = {"power": sword_power_2, "hurtBack": [-10, -4], "attackKind": "magic", "HitProtect": 8}
-	objattackDic["hit3"] = {
+	obj_attack_dict["hit1"] = {"power": sword_power_1, "hurtBack": [-8, -2], "attackKind": "physics", "HitProtect": 8}
+	obj_attack_dict["hit2"] = {"power": sword_power_2, "hurtBack": [-10, -4], "attackKind": "magic", "HitProtect": 8}
+	obj_attack_dict["hit3"] = {
 		"power": sword_power_3,
 		"hurtBack": [-14, -6],
 		"attackKind": "magic",
@@ -376,7 +376,7 @@ func ai_think() -> void:
 		normal_state()
 		return
 	var distance := absf(RoleProp.get_nearest_monster_target_position(global_position).x - position.x)
-	if distance > attackRange:
+	if distance > attack_range:
 		have_target()
 		return
 	stop_move()

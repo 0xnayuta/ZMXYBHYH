@@ -20,19 +20,19 @@ func monster_88():
 	self.Critreduce = 0
 	self.speed = 8
 	self.mysee = 500
-	self.attackRange = 165
-	self.attackDesire = 80
+	self.attack_range = 165
+	self.attack_desire = 80
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 150
 	self.fall_coin = 110
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 150,
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 200,
 		"hurtBack": [-1, -1],
 		"attackKind": "physics",
@@ -85,19 +85,19 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 300:
 					if count % 90 == 0:
-						if randi_range(0, 100) < attackDesire:
+						if randi_range(0, 100) < attack_desire:
 							attack_target()
 			else:
 				if Skill_1_CD <= 0:
 					do_hit_1()
 				elif count % 90 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 					else:
 						stop_move()
@@ -113,5 +113,5 @@ func add_monster_bullet():
 		1,
 		Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 470),
 		"hit2",
-		self.objattackDic["hit2"]
+		self.obj_attack_dict["hit2"]
 	)

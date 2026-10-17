@@ -22,14 +22,14 @@ func monster_19():
 	self.Critreduce = 0
 	self.speed = 12
 	self.mysee = 300
-	self.attackRange = 75
-	self.attackDesire = 40
+	self.attack_range = 75
+	self.attack_desire = 40
 	self.behit_calmtime = 0.2
 	self.self_rhp = 0
 	self.add_exp = 500
 	self.fall_coin = 200
-	self.objattackDic["slj"] = {"power": 260, "hurtBack": [-4, -20], "attackKind": "real"}
-	self.objattackDic["sytx"] = {"power": 115, "hurtBack": [-4, -9], "attackKind": "physics"}
+	self.obj_attack_dict["slj"] = {"power": 260, "hurtBack": [-4, -20], "attackKind": "real"}
+	self.obj_attack_dict["sytx"] = {"power": 115, "hurtBack": [-4, -9], "attackKind": "physics"}
 	self.fall_pro = 0.5
 	self.fall_list = [
 		{"name": "qhs_1", "value": 0},
@@ -104,13 +104,21 @@ func call_ljf():
 	var xx = par.position + Vector2(0, 150)
 	await get_tree().create_timer(1.7, false).timeout
 	Global.add_bullet(
-		"Monster19Bullet", self.bullet, self.MonsterDirection, 1, xx - Vector2(0, 125), "slj", self.objattackDic["slj"]
+		"Monster19Bullet",
+		self.bullet,
+		self.MonsterDirection,
+		1,
+		xx - Vector2(0, 125),
+		"slj",
+		self.obj_attack_dict["slj"]
 	)
 
 
 func call_sylj():
 	var pp = self.position - Vector2(0, 20)
-	Global.add_bullet("Monster19Bullet_1", self.bullet, self.MonsterDirection, 1, pp, "sytx", self.objattackDic["sytx"])
+	Global.add_bullet(
+		"Monster19Bullet_1", self.bullet, self.MonsterDirection, 1, pp, "sytx", self.obj_attack_dict["sytx"]
+	)
 
 
 func have_target():
@@ -130,4 +138,6 @@ func have_target():
 
 func call_boom():
 	var pp = self.position - Vector2(0, 0)
-	Global.add_bullet("Monster19Bullet_2", self.bullet, self.MonsterDirection, 1, pp, "slj", self.objattackDic["slj"])
+	Global.add_bullet(
+		"Monster19Bullet_2", self.bullet, self.MonsterDirection, 1, pp, "slj", self.obj_attack_dict["slj"]
+	)

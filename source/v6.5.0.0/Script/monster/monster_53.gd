@@ -23,13 +23,13 @@ func monster_53():
 	self.Critreduce = 10
 	self.speed = 7
 	self.mysee = 400
-	self.attackRange = 160
-	self.attackDesire = 50
+	self.attack_range = 160
+	self.attack_desire = 50
 	self.behit_calmtime = 0.2
 	self.self_rhp = 0
 	self.add_exp = 75
 	self.fall_coin = 40
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 90,
 		"hurtBack": [-8, 0],
 		"attackKind": "magic",
@@ -75,7 +75,7 @@ func call_bullet():
 			false,
 			Vector2(self.position.x, self.position.y),
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 		await get_tree().create_timer(0.3).timeout
 

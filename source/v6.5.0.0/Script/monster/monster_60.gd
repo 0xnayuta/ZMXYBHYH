@@ -27,28 +27,28 @@ func monster_60():
 	self.Critreduce = 0
 	self.speed = 10
 	self.mysee = 500
-	self.attackRange = 245
-	self.attackDesire = 60
+	self.attack_range = 245
+	self.attack_desire = 60
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 200
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 338,
 		"hurtBack": [-7, -9],
 		"attackKind": "magic",
 	}
-	self.objattackDic["mykl"] = {
+	self.obj_attack_dict["mykl"] = {
 		"power": 338,
 		"hurtBack": [-8, 0],
 		"attackKind": "magic",
 	}
-	self.objattackDic["xmhd"] = {
+	self.obj_attack_dict["xmhd"] = {
 		"power": 0,
 		"hurtBack": [0, 0],
 		"attackKind": "",
 	}
-	self.objattackDic["sfjm"] = {
+	self.obj_attack_dict["sfjm"] = {
 		"power": 688,
 		"hurtBack": [-5, -15],
 		"attackKind": "magic",
@@ -125,7 +125,7 @@ func ai_think():
 				else:
 					have_target()
 			else:
-				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 					if Skill_2_CD <= 0:
 						if randi_range(0, 100) < 60:
 							do_hit_2()
@@ -240,17 +240,17 @@ func call_sfjm_fire():
 	]
 	for i in range(2):
 		Global.add_bullet(
-			"Monster42Bullet", self.bullet, false, 1.3, fire_position1[i], "sfjm", self.objattackDic["sfjm"]
+			"Monster42Bullet", self.bullet, false, 1.3, fire_position1[i], "sfjm", self.obj_attack_dict["sfjm"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
 		Global.add_bullet(
-			"Monster42Bullet", self.bullet, false, 1.3, fire_position2[i], "sfjm", self.objattackDic["sfjm"]
+			"Monster42Bullet", self.bullet, false, 1.3, fire_position2[i], "sfjm", self.obj_attack_dict["sfjm"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
 		Global.add_bullet(
-			"Monster42Bullet", self.bullet, false, 1.3, fire_position3[i], "sfjm", self.objattackDic["sfjm"]
+			"Monster42Bullet", self.bullet, false, 1.3, fire_position3[i], "sfjm", self.obj_attack_dict["sfjm"]
 		)
 
 
@@ -304,9 +304,9 @@ func call_hands():
 		bullet_spawn_positions = [Vector2(-37, -35), Vector2(-67, -65), Vector2(-27, -5)]
 	for i in bullet_spawn_positions:
 		Global.add_bullet(
-			"Monster60Bullet", self, MonsterDirection, randf_range(1.1, 1.3), i, "mykl", self.objattackDic["mykl"]
+			"Monster60Bullet", self, MonsterDirection, randf_range(1.1, 1.3), i, "mykl", self.obj_attack_dict["mykl"]
 		)
 		await get_tree().create_timer(0.06, false).timeout
 	await get_tree().create_timer(0.06, false).timeout
 	for i in other_po:
-		Global.add_bullet("Monster60Bullet", self, MonsterDirection, 1.35, i, "mykl", self.objattackDic["mykl"])
+		Global.add_bullet("Monster60Bullet", self, MonsterDirection, 1.35, i, "mykl", self.obj_attack_dict["mykl"])

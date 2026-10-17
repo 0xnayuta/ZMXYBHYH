@@ -513,8 +513,8 @@ func _configure_boss(config: Dictionary) -> void:
 	sp = int(config.get("magic_break", 3000))
 	speed = float(config.get("speed", 10.0))
 	mysee = int(config.get("sight", 1200))
-	attackRange = int(config.get("range", 280))
-	attackDesire = int(config.get("attack_desire", 100))
+	attack_range = int(config.get("range", 280))
+	attack_desire = int(config.get("attack_desire", 100))
 	add_exp = int(config.get("exp", 2000))
 	fall_coin = int(config.get("coin", 100))
 	fall_pro = float(config.get("drop_rate", 100.0))
@@ -525,13 +525,13 @@ func _configure_boss(config: Dictionary) -> void:
 	boss_max_protect = float(config.get("max_protect", 100.0))
 	if source_id in [140, 142, 144, 146, 147, 149, 150, 151, 152, 156, 157, 158, 159, 162]:
 		speed = 4.0
-		attackRange = 150 if source_id in [152, 158, 159, 162] else 200
+		attack_range = 150 if source_id in [152, 158, 159, 162] else 200
 		mysee = 2500
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config.get("attacks", {})
 	for attack_name: String in attacks:
 		var attack: Dictionary = attacks[attack_name]
-		objattackDic[attack_name] = {
+		obj_attack_dict[attack_name] = {
 			"power": int(attack.get("power", roundi(float(attack_in) * float(attack.get("multiplier", 1.0))))),
 			"hurtBack": Array(attack.get("hurt_back", [-3.0, -1.0])).duplicate(),
 			"attackKind": str(attack.get("kind", "physics")),
@@ -539,8 +539,8 @@ func _configure_boss(config: Dictionary) -> void:
 			"attackInterval": float(attack.get("interval", 0.16)),
 			"hitMaxCount": int(attack.get("max_hits", 99)),
 		}
-	if source_id == 140 and objattackDic.has("hit2") and not objattackDic.has("hit2_2"):
-		objattackDic["hit2_2"] = (objattackDic["hit2"] as Dictionary).duplicate(true)
+	if source_id == 140 and obj_attack_dict.has("hit2") and not obj_attack_dict.has("hit2_2"):
+		obj_attack_dict["hit2_2"] = (obj_attack_dict["hit2"] as Dictionary).duplicate(true)
 
 
 func _configure_official_body_collision() -> void:
@@ -764,7 +764,7 @@ func ai_think() -> void:
 		return
 
 	var now := Time.get_ticks_msec()
-	if _normal_attack_enabled() and distance <= float(attackRange) and now >= int(_skill_ready_msec.get(1, 0)):
+	if _normal_attack_enabled() and distance <= float(attack_range) and now >= int(_skill_ready_msec.get(1, 0)):
 		_skill_ready_msec[1] = now + 1000
 		if randf() <= _normal_attack_rate():
 			_start_skill(1)
@@ -773,7 +773,7 @@ func ai_think() -> void:
 			mr_player.play(&"wait")
 		return
 
-	if distance > float(attackRange):
+	if distance > float(attack_range):
 		_set_facing_direction(direction)
 		velocity.x = speed * SOURCE_FPS * direction
 		mr_player.play(&"walk")
@@ -794,7 +794,7 @@ func _monster140_intelligence(distance: float, direction: float) -> void:
 		_start_skill(4)
 		return
 
-	if distance <= float(attackRange) and now >= int(_skill_ready_msec.get(1, now + 1)):
+	if distance <= float(attack_range) and now >= int(_skill_ready_msec.get(1, now + 1)):
 		_skill_ready_msec[1] = now + 1000
 		if randf() <= 0.8:
 			_start_skill(1)
@@ -803,7 +803,7 @@ func _monster140_intelligence(distance: float, direction: float) -> void:
 			mr_player.play(&"wait")
 		return
 
-	if distance > float(attackRange):
+	if distance > float(attack_range):
 		_set_facing_direction(direction)
 		velocity.x = speed * SOURCE_FPS * direction
 		mr_player.play(&"walk")
@@ -1100,10 +1100,10 @@ func _monster157_adjust_damage() -> void:
 	var bonus := clampf(1.0 - average_health, 0.0, 1.0)
 	var source_power := 500.0 * float(_source_property_level()) * (1.0 + bonus)
 	for action_name in [&"hit1", &"hit2"]:
-		if objattackDic.has(action_name):
-			var attack: Dictionary = objattackDic[action_name]
+		if obj_attack_dict.has(action_name):
+			var attack: Dictionary = obj_attack_dict[action_name]
 			attack["power"] = roundi(source_power)
-			objattackDic[action_name] = attack
+			obj_attack_dict[action_name] = attack
 
 
 func _monster157_start_alpha_skill() -> void:
@@ -1981,7 +1981,7 @@ func _spawn_monster140_effect(
 				"position": spawn_position,
 				"right": right_facing,
 				"hit_name": action_name,
-				"attack_data": objattackDic.get(action_name, {}),
+				"attack_data": obj_attack_dict.get(action_name, {}),
 				"skill_name": effect_name,
 				"frame_root": _asset_root().path_join(visual_folder),
 				"frame_count": frame_count,
@@ -1999,7 +1999,7 @@ func _spawn_monster140_effect(
 				"damage_pulse_interval": pulse_interval,
 				"poll_overlaps_on_damage_pulse": true,
 				"target_move_interval": target_interval,
-				"max_hits": int((objattackDic.get(action_name, {}) as Dictionary).get("hitMaxCount", 99)),
+				"max_hits": int((obj_attack_dict.get(action_name, {}) as Dictionary).get("hitMaxCount", 99)),
 				"expire_on_hit": false,
 				"damage_enabled": not disabled,
 				"finished_callback": finished_callback,
@@ -2180,7 +2180,7 @@ func _spawn_projectile_for_slot(skill: int, attack_slot: int = -1, options: Dict
 	var resolved_attack_slot := attack_slot if attack_slot > 0 else skill
 	var hit_name_value: Variant = options.get("hit_name", "hit%d" % resolved_attack_slot)
 	var resolved_hit_name := str(hit_name_value)
-	var attack_value: Variant = options.get("attack_data", objattackDic.get(resolved_hit_name, {}))
+	var attack_value: Variant = options.get("attack_data", obj_attack_dict.get(resolved_hit_name, {}))
 	var attack_data: Dictionary = attack_value as Dictionary if attack_value is Dictionary else {}
 	var stage_index := int(options.get("stage_index", 0))
 	var folder_value: Variant = options.get("folder", "")

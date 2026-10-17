@@ -121,8 +121,8 @@ func _configure_boss() -> void:
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
 	mysee = int(config["sight"])
-	attackRange = int(config["range"])
-	attackDesire = int(config["attack_desire"])
+	attack_range = int(config["range"])
+	attack_desire = int(config["attack_desire"])
 	add_exp = int(config.get("exp", 0))
 	fall_coin = int(config.get("coin", 0))
 	fall_pro = float(config.get("drop_rate", 0.0))
@@ -133,11 +133,11 @@ func _configure_boss() -> void:
 	NoGrav = true
 	is_fly = true
 	cannot_attract = true
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config["attacks"]
 	for attack_name: String in attacks:
 		var attack: Dictionary = attacks[attack_name]
-		objattackDic[attack_name] = {
+		obj_attack_dict[attack_name] = {
 			"power": int(float(attack_in) * float(attack["multiplier"])),
 			"hurtBack": Array(attack["hurt_back"]).duplicate(),
 			"attackKind": str(attack["kind"]),

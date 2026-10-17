@@ -31,22 +31,22 @@ func monster_1402():
 	self.Critreduce = 8
 	self.speed = 14
 	self.mysee = 550
-	self.attackRange = 375
-	self.attackDesire = 80
+	self.attack_range = 375
+	self.attack_desire = 80
 	self.behit_calmtime = 0.16
 	self.self_rhp = 0
 	self.add_exp = 3000
 	self.fall_coin = 1200
 	self.ebol = 0
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 600,
 		"hurtBack": [15, -12],
 		"attackKind": "physics",
 		"HitProtect": 10,
 	}
 
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 550,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -63,7 +63,7 @@ func monster_1402():
 		},
 	}
 
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 550,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -125,7 +125,7 @@ func ai_think():
 			normal_state()
 		else:
 			var distance = abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
-			if distance >= attackRange:
+			if distance >= attack_range:
 				have_target()
 				if can_summon and summoned_monsters.size() == 0 and summon_cooldown <= 0 and distance > 200:
 					do_summon_skill()
@@ -218,7 +218,7 @@ func call_bullet_2():
 	await get_tree().create_timer(0.5, false).timeout
 
 	var ly = Global.call_chase_bullet(
-		self.bullet, "Monster1402Bullet2", 250, 10.0, false, po, "hit3", self.objattackDic["hit2"]
+		self.bullet, "Monster1402Bullet2", 250, 10.0, false, po, "hit3", self.obj_attack_dict["hit2"]
 	)
 	ly.scale = Vector2(1.2, 1.2)
 
@@ -228,7 +228,7 @@ func call_bullet_3():
 	await get_tree().create_timer(2, false).timeout
 
 	var ly = Global.call_chase_bullet(
-		self.bullet, "Monster1402Bullet3", 250, 10.0, false, po, "hit3", self.objattackDic["hit3"]
+		self.bullet, "Monster1402Bullet3", 250, 10.0, false, po, "hit3", self.obj_attack_dict["hit3"]
 	)
 	ly.scale = Vector2(2.5, 2)
 	ly.owner_monster = self

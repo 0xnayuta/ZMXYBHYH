@@ -21,19 +21,19 @@ func monster_103():
 	self.Critreduce = 0
 	self.speed = 16
 	self.mysee = 500
-	self.attackRange = 245
-	self.attackDesire = 100
+	self.attack_range = 245
+	self.attack_desire = 100
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 120
 	self.fall_coin = 155
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 300,
 		"hurtBack": [-4, -7],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 355,
 		"hurtBack": [-20, -1],
 		"attackKind": "magic",
@@ -50,7 +50,7 @@ func monster_103():
 			"DeBuff": true,
 		},
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": int(200 + RoleProp.roleprop.SHp * 0.3),
 		"hurtBack": [-18, -1],
 		"attackKind": "magic",
@@ -67,7 +67,7 @@ func monster_103():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 200,
 		"hurtBack": [-6, -8],
 		"attackKind": "real",
@@ -100,7 +100,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -119,7 +119,7 @@ func ai_think():
 				elif Skill_1_CD <= 0:
 					do_hit_1()
 				if count % 60 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 
 
@@ -169,7 +169,7 @@ func call_bullet_1():
 			600,
 			-700,
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 	else:
 		var fz = Global.call_fly_bullet(
@@ -180,7 +180,7 @@ func call_bullet_1():
 			600,
 			700,
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 		fz.get_node("AnimatedSprite2D").flip_h = true
 
@@ -189,17 +189,17 @@ func call_bullet_2():
 	var bool_list = [true, false]
 	for i in bool_list:
 		Global.add_bullet(
-			"Monster103Bullet3", self.bullet, i, 2, Vector2(0, -50) + position, "hit2", self.objattackDic["hit2"]
+			"Monster103Bullet3", self.bullet, i, 2, Vector2(0, -50) + position, "hit2", self.obj_attack_dict["hit2"]
 		)
 	await get_tree().create_timer(0.4, false).timeout
 	for i in bool_list:
 		Global.add_bullet(
-			"Monster103Bullet3", self.bullet, i, 2, Vector2(0, -50) + position, "hit2", self.objattackDic["hit2"]
+			"Monster103Bullet3", self.bullet, i, 2, Vector2(0, -50) + position, "hit2", self.obj_attack_dict["hit2"]
 		)
 	await get_tree().create_timer(0.4, false).timeout
 	for i in bool_list:
 		Global.add_bullet(
-			"Monster103Bullet3", self.bullet, i, 2, Vector2(0, -50) + position, "hit2", self.objattackDic["hit2"]
+			"Monster103Bullet3", self.bullet, i, 2, Vector2(0, -50) + position, "hit2", self.obj_attack_dict["hit2"]
 		)
 	await get_tree().create_timer(0.4, false).timeout
 
@@ -208,12 +208,12 @@ func call_bullet_3():
 	await get_tree().create_timer(4, false).timeout
 	var po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 70)
 	await get_tree().create_timer(0.2, false).timeout
-	Global.add_bullet("Monster103Bullet1", self.bullet, false, 1, po, "hit3", self.objattackDic["hit3"])
+	Global.add_bullet("Monster103Bullet1", self.bullet, false, 1, po, "hit3", self.obj_attack_dict["hit3"])
 
 
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 	if hit_name == "hit4":
-		if is_instance_valid(get_Player) and objattackDic != null and objattackDic.has("hit4"):
+		if is_instance_valid(get_player) and obj_attack_dict != null and obj_attack_dict.has("hit4"):
 			Global.add_bullet(
 				"Monster103Bullet2",
 				self.bullet,
@@ -221,7 +221,7 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 				1,
 				RoleProp.get_nearest_monster_target_position(global_position),
 				"hit4",
-				self.objattackDic["hit4"]
+				self.obj_attack_dict["hit4"]
 			)
 
 	var buff_target = super._on_hit_box_area_entered(area)

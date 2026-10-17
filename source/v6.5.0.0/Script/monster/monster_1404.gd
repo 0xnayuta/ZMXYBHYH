@@ -24,21 +24,21 @@ func monster_1404():
 	self.Critreduce = 12
 	self.speed = 16
 	self.mysee = 1000
-	self.attackRange = 600
-	self.attackDesire = 90
+	self.attack_range = 600
+	self.attack_desire = 90
 	self.behit_calmtime = 0.12
 	self.self_rhp = 0
 	self.add_exp = 4000
 	self.fall_coin = 1600
 	self.ebol = 0
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 700,
 		"hurtBack": [-4, -7],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 700,
 		"hurtBack": [-2, -1],
 		"attackKind": "magic",
@@ -54,7 +54,7 @@ func monster_1404():
 			"DeBuff": true,
 		},
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 800,
 		"hurtBack": [-6, -1],
 		"attackKind": "magic",
@@ -112,7 +112,7 @@ func ai_think():
 			normal_state()
 		else:
 			var distance_to_player = abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
-			var is_in_attack_range = distance_to_player <= attackRange
+			var is_in_attack_range = distance_to_player <= attack_range
 
 			var can_use_hit3 = Skill_3_CD <= 0
 			var can_use_hit1 = Skill_1_CD <= 0
@@ -144,10 +144,10 @@ func ai_think():
 						do_hit_3()
 
 			if is_in_attack_range and can_attack:
-				if tick_count % 60 == 0 and randi_range(0, 100) < attackDesire:
+				if tick_count % 60 == 0 and randi_range(0, 100) < attack_desire:
 					attack_target()
 			elif can_attack:
-				if tick_count % 90 == 0 and randi_range(0, 100) < attackDesire * 0.5:
+				if tick_count % 90 == 0 and randi_range(0, 100) < attack_desire * 0.5:
 					attack_target()
 
 
@@ -209,7 +209,7 @@ func call_bullet_1():
 			1.5,
 			position + Vector2(35 * direction_multiplier, 25),
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 
 		bullet_node.skill_name = "Monster1404Bullet1"
@@ -235,12 +235,14 @@ func call_bullet_2():
 
 	for i in position_list1:
 		Global.call_chase_bullet(
-			self.bullet, "Monster1404Bullet2_1", 250, 6, false, i, "hit2", self.objattackDic["hit2"]
+			self.bullet, "Monster1404Bullet2_1", 250, 6, false, i, "hit2", self.obj_attack_dict["hit2"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 
 	for i in position_list2:
-		Global.call_chase_bullet(self.bullet, "Monster1404Bullet2", 250, 6, false, i, "hit2", self.objattackDic["hit2"])
+		Global.call_chase_bullet(
+			self.bullet, "Monster1404Bullet2", 250, 6, false, i, "hit2", self.obj_attack_dict["hit2"]
+		)
 	await get_tree().create_timer(0.2, false).timeout
 
 

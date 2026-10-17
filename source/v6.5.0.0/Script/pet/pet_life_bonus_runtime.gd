@@ -127,7 +127,7 @@ func _apply_pet_effects() -> void:
 
 
 func _apply_skill_damage_bonus(pet: Node, multiplier: float) -> void:
-	var attacks_value: Variant = pet.get("objattackDic")
+	var attacks_value: Variant = pet.get("obj_attack_dict")
 	if not (attacks_value is Dictionary):
 		return
 	for attack_key in attacks_value:

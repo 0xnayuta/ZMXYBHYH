@@ -80,8 +80,8 @@ func _configure_monster() -> void:
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
 	mysee = int(config["sight"])
-	attackRange = int(config["range"])
-	attackDesire = int(config["attack_desire"])
+	attack_range = int(config["range"])
+	attack_desire = int(config["attack_desire"])
 	add_exp = int(config["exp"])
 	fall_coin = int(config["coin"])
 	fall_pro = float(config.get("drop_rate", 0.0))
@@ -92,11 +92,11 @@ func _configure_monster() -> void:
 	NoGrav = true
 	super_armor_active = true
 	cannot_attract = true
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config["attacks"]
 	for attack_name: String in attacks:
 		var attack: Dictionary = attacks[attack_name]
-		objattackDic[attack_name] = {
+		obj_attack_dict[attack_name] = {
 			"power": int(float(attack_in) * float(attack["multiplier"])),
 			"hurtBack": Array(attack["hurt_back"]).duplicate(),
 			"attackKind": str(attack["kind"]),
@@ -323,8 +323,8 @@ func ai_think() -> void:
 
 
 func _get_ai_target() -> BaseHero:
-	if get_Player != null and is_instance_valid(get_Player):
-		return get_Player
+	if get_player != null and is_instance_valid(get_player):
+		return get_player
 	if Global.get_player is BaseHero and is_instance_valid(Global.get_player):
 		return Global.get_player as BaseHero
 	return null
@@ -378,7 +378,7 @@ func _emit_dragon_projectile(side: int, locked_target_position: Vector2) -> void
 	if aim_direction.is_zero_approx():
 		aim_direction = Vector2.RIGHT
 	var projectile = Global.add_bullet(
-		"WeiyangBossBullet1", bullet, true, 1.0, mouth_world_position, "hit%d" % side, objattackDic["hit%d" % side]
+		"WeiyangBossBullet1", bullet, true, 1.0, mouth_world_position, "hit%d" % side, obj_attack_dict["hit%d" % side]
 	)
 	if projectile != null and projectile.has_method("configure_trajectory"):
 		projectile.configure_trajectory(aim_direction * PROJECTILE_SPEED, 5.0)

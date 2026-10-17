@@ -23,14 +23,14 @@ func monster_117():
 	self.Critreduce = 0
 	self.speed = 14
 	self.mysee = 500
-	self.attackRange = 325
-	self.attackDesire = 90
+	self.attack_range = 325
+	self.attack_desire = 90
 	self.behit_calmtime = 0.2
 	self.self_rhp = 0
 	self.add_exp = 15
 	self.fall_coin = 4
-	self.objattackDic["hit1"] = {"power": 600, "hurtBack": [-4, -9], "attackKind": "real"}
-	self.objattackDic["hit2"] = {"power": 500, "hurtBack": [-4, -9], "attackKind": "real"}
+	self.obj_attack_dict["hit1"] = {"power": 600, "hurtBack": [-4, -9], "attackKind": "real"}
+	self.obj_attack_dict["hit2"] = {"power": 500, "hurtBack": [-4, -9], "attackKind": "real"}
 	self.fall_pro = 0
 	self.fall_list = []
 	self.fall_stone_pro = 0
@@ -50,7 +50,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 250:
 					if Skill_1_CD <= 0:
@@ -60,7 +60,7 @@ func ai_think():
 				if Skill_1_CD <= 0:
 					do_hit_1()
 				if count % 60 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 
 

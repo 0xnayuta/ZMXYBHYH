@@ -72,8 +72,8 @@ func _configure_form(config: Dictionary) -> void:
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
 	mysee = int(config["sight"])
-	attackRange = int(config["range"])
-	attackDesire = int(config["attack_desire"])
+	attack_range = int(config["range"])
+	attack_desire = int(config["attack_desire"])
 	add_exp = int(config["exp"])
 	fall_coin = int(config["coin"])
 	fall_pro = float(config["drop_rate"])
@@ -81,11 +81,11 @@ func _configure_form(config: Dictionary) -> void:
 	independent_fall_list = Array(config.get("independent_drop_list", [])).duplicate(true)
 	is_boss = bool(config["is_boss"])
 	boss_max_protect = float(config["max_protect"])
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config.get("attacks", {})
 	for attack_name: String in attacks:
 		var attack: Dictionary = attacks[attack_name]
-		objattackDic[attack_name] = {
+		obj_attack_dict[attack_name] = {
 			"power": roundi(float(attack_in) * float(attack["multiplier"])),
 			"hurtBack": Array(attack["hurt_back"]).duplicate(),
 			"attackKind": str(attack["kind"]),
@@ -310,8 +310,8 @@ func _start_skill(skill_index: int) -> void:
 
 func _attack_entry(attack_name: StringName) -> Dictionary:
 	var key := str(attack_name)
-	if objattackDic.has(key):
-		return (objattackDic[key] as Dictionary).duplicate(true)
+	if obj_attack_dict.has(key):
+		return (obj_attack_dict[key] as Dictionary).duplicate(true)
 	push_error("WutaiEarthAncestor3077 level config is missing attack %s" % key)
 	return {}
 

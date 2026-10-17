@@ -20,7 +20,7 @@ var ar = 0
 var sp = 0
 var Critreduce = 0
 var AttList
-var objattackDic = {}
+var obj_attack_dict = {}
 var hit_name
 var total_hit = 0
 var is_get = false
@@ -143,7 +143,7 @@ func get_prop():
 			owner_monster = tt
 
 	if hit_name != "":
-		self.objattackDic[hit_name] = AttList
+		self.obj_attack_dict[hit_name] = AttList
 
 
 func _on_que_timeout() -> void:
@@ -155,8 +155,8 @@ func _on_que_timeout() -> void:
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	var target = area.get_parent().get_parent()
 
-	if objattackDic[hit_name].has("addeffect"):
-		Global.add_buff(target.buff, objattackDic[hit_name]["addeffect"])
+	if obj_attack_dict[hit_name].has("addeffect"):
+		Global.add_buff(target.buff, obj_attack_dict[hit_name]["addeffect"])
 
 	if name_ != "Monster1402Bullet2" and name_ != "Monster1402Bullet3" and name_ != "Monster1408Bullet2":
 		add_other_bullet()

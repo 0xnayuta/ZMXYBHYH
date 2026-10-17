@@ -66,14 +66,14 @@ func monster_56():
 		self.Critreduce = 12
 		self.speed = 0
 		self.mysee = 0
-		self.attackRange = 0
-		self.attackDesire = 0
+		self.attack_range = 0
+		self.attack_desire = 0
 		self.behit_calmtime = 0
 		self.self_rhp = 1000
 		self.add_exp = 0
 		self.fall_coin = 0
-		self.objattackDic["hit1"] = {"power": 200 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
-		self.objattackDic["hit2"] = {"power": 200 * poweradd, "hurtBack": [-1, -25], "attackKind": "magic"}
+		self.obj_attack_dict["hit1"] = {"power": 200 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
+		self.obj_attack_dict["hit2"] = {"power": 200 * poweradd, "hurtBack": [-1, -25], "attackKind": "magic"}
 		self.fall_pro = 0.5
 		self.fall_list = [
 			{"name": "zlwdahsp1", "value": 3},
@@ -103,14 +103,14 @@ func monster_56():
 	self.Critreduce = 12
 	self.speed = 0
 	self.mysee = 0
-	self.attackRange = 0
-	self.attackDesire = 0
+	self.attack_range = 0
+	self.attack_desire = 0
 	self.behit_calmtime = 0
 	self.self_rhp = 1000
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {"power": 200 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
-	self.objattackDic["hit2"] = {"power": 200 * poweradd, "hurtBack": [-1, -25], "attackKind": "magic"}
+	self.obj_attack_dict["hit1"] = {"power": 200 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
+	self.obj_attack_dict["hit2"] = {"power": 200 * poweradd, "hurtBack": [-1, -25], "attackKind": "magic"}
 
 	self.fall_pro = 0.5
 	self.fall_list = [
@@ -157,20 +157,20 @@ func ai_think():
 		call_stage = true
 	if Hp <= SHp and Hp > SHp * 0.8:
 		throw_cout = 1
-		self.objattackDic["hit1"] = {"power": 200 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
-		self.objattackDic["hit2"] = {"power": 90 * poweradd, "hurtBack": [-1, -5], "attackKind": "magic"}
+		self.obj_attack_dict["hit1"] = {"power": 200 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
+		self.obj_attack_dict["hit2"] = {"power": 90 * poweradd, "hurtBack": [-1, -5], "attackKind": "magic"}
 	if Hp <= SHp * 0.8 and Hp > SHp * 0.6:
 		throw_cout = 2
-		self.objattackDic["hit1"] = {"power": 500 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
-		self.objattackDic["hit2"] = {"power": 300 * poweradd, "hurtBack": [-1, -10], "attackKind": "magic"}
+		self.obj_attack_dict["hit1"] = {"power": 500 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
+		self.obj_attack_dict["hit2"] = {"power": 300 * poweradd, "hurtBack": [-1, -10], "attackKind": "magic"}
 	if Hp <= SHp * 0.6 and Hp > SHp * 0.4:
 		throw_cout = 3
-		self.objattackDic["hit1"] = {"power": 900 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
-		self.objattackDic["hit2"] = {"power": 500 * poweradd, "hurtBack": [-1, -15], "attackKind": "magic"}
+		self.obj_attack_dict["hit1"] = {"power": 900 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
+		self.obj_attack_dict["hit2"] = {"power": 500 * poweradd, "hurtBack": [-1, -15], "attackKind": "magic"}
 	if Hp <= SHp * 0.4:
 		throw_cout = 4
-		self.objattackDic["hit1"] = {"power": 1500 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
-		self.objattackDic["hit2"] = {
+		self.obj_attack_dict["hit1"] = {"power": 1500 * poweradd, "hurtBack": [-1, 0], "attackKind": "magic"}
+		self.obj_attack_dict["hit2"] = {
 			"power": 700 * poweradd,
 			"hurtBack": [-1, -25],
 			"attackKind": "magic",
@@ -209,7 +209,7 @@ func throw_round(value):
 	for u in range(value):
 		if current_round > 0:
 			var round_num = Global.add_bullet(
-				"Monster55Bullet", bullet, false, 1, position, "hit1", self.objattackDic["hit1"]
+				"Monster55Bullet", bullet, false, 1, position, "hit1", self.obj_attack_dict["hit1"]
 			)
 			round_list.push_back(round_num)
 			current_round -= 1
@@ -302,7 +302,9 @@ func call_jg(lx):
 			jg = 0.4
 			list.reverse()
 			for i in list:
-				Global.add_bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
+				Global.add_bullet(
+					"Monster56Bullet", bullet, false, 1, i + position, "hit2", self.obj_attack_dict["hit2"]
+				)
 				await get_tree().create_timer(jg, false).timeout
 			await get_tree().create_timer(1.8, false).timeout
 			list = [
@@ -315,7 +317,9 @@ func call_jg(lx):
 				Vector2(310, 325)
 			]
 			for i in list:
-				Global.add_bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
+				Global.add_bullet(
+					"Monster56Bullet", bullet, false, 1, i + position, "hit2", self.obj_attack_dict["hit2"]
+				)
 				await get_tree().create_timer(jg, false).timeout
 			await get_tree().create_timer(1.8, false).timeout
 			list = [
@@ -327,7 +331,9 @@ func call_jg(lx):
 				Vector2(425, 325)
 			]
 			for i in list:
-				Global.add_bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
+				Global.add_bullet(
+					"Monster56Bullet", bullet, false, 1, i + position, "hit2", self.obj_attack_dict["hit2"]
+				)
 				await get_tree().create_timer(0, false).timeout
 			await get_tree().create_timer(1.8, false).timeout
 			list = [
@@ -339,13 +345,15 @@ func call_jg(lx):
 				Vector2(310, 325)
 			]
 			for i in list:
-				Global.add_bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
+				Global.add_bullet(
+					"Monster56Bullet", bullet, false, 1, i + position, "hit2", self.obj_attack_dict["hit2"]
+				)
 				await get_tree().create_timer(0, false).timeout
 			await get_tree().create_timer(2, false).timeout
 			throw = true
 			return
 	for i in list:
-		Global.add_bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.objattackDic["hit2"])
+		Global.add_bullet("Monster56Bullet", bullet, false, 1, i + position, "hit2", self.obj_attack_dict["hit2"])
 		await get_tree().create_timer(jg, false).timeout
 	throw = true
 	pass
@@ -360,5 +368,5 @@ func otherjg():
 			1,
 			Vector2(randi_range(-370, 425), 325) + position,
 			"hit2",
-			self.objattackDic["hit2"]
+			self.obj_attack_dict["hit2"]
 		)

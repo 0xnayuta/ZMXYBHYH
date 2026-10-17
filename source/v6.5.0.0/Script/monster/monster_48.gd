@@ -23,16 +23,16 @@ func monster_48():
 	self.Critreduce = 0
 	self.speed = 8
 	self.mysee = 400
-	self.attackRange = 158
-	self.attackDesire = 85
+	self.attack_range = 158
+	self.attack_desire = 85
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": int(100 + RoleProp.roleprop.SHp * 0.02), "hurtBack": [0, -3], "attackKind": "real"
 	}
-	self.objattackDic["fszy"] = {
+	self.obj_attack_dict["fszy"] = {
 		"power": int(300 + RoleProp.roleprop.SHp * 0.02),
 		"hurtBack": [0, -3],
 		"attackKind": "real",
@@ -109,7 +109,7 @@ func ai_think():
 					if count % 30 == 0:
 						if (
 							abs(self.position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
-							<= attackRange
+							<= attack_range
 						):
 							attack_target()
 				else:
@@ -132,7 +132,7 @@ func ai_think():
 					elif count % 30 == 0:
 						if (
 							abs(self.position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
-							<= attackRange
+							<= attack_range
 						):
 							attack_target()
 
@@ -194,10 +194,10 @@ func _on_hit_box_area_entered(_area: Area2D) -> Node2D:
 	if hit_name == "fszy" or hit_name == "hit1":
 		if change_body_flag:
 			if hit_name == "fszy":
-				cure_hp(objattackDic[hit_name]["power"] * randi_range(1, 2) + int((SHp - Hp) * 0.02))
+				cure_hp(obj_attack_dict[hit_name]["power"] * randi_range(1, 2) + int((SHp - Hp) * 0.02))
 			else:
-				cure_hp(objattackDic[hit_name]["power"] * randi_range(1, 2) + int((SHp - Hp) * 0.01))
+				cure_hp(obj_attack_dict[hit_name]["power"] * randi_range(1, 2) + int((SHp - Hp) * 0.01))
 		else:
-			cure_hp(objattackDic[hit_name]["power"] * randi_range(18, 22))
+			cure_hp(obj_attack_dict[hit_name]["power"] * randi_range(18, 22))
 
 	return buff_target

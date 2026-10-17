@@ -23,8 +23,8 @@ func monster_66():
 	self.Critreduce = 0
 	self.speed = 9
 	self.mysee = 300
-	self.attackRange = 110
-	self.attackDesire = 70
+	self.attack_range = 110
+	self.attack_desire = 70
 	self.behit_calmtime = 0.2
 	self.self_rhp = 0
 	self.add_exp = 0
@@ -45,7 +45,7 @@ func monster_66():
 			},
 		)
 	)
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 400 + int(RoleProp.baseroleprop.Level * 8.6),
 		"hurtBack": [-4, -9],
 		"attackKind": "physics",

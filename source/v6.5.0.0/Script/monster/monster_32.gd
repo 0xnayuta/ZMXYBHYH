@@ -26,14 +26,14 @@ func monster_32():
 	self.Critreduce = 0
 	self.speed = 9
 	self.mysee = 300
-	self.attackRange = 85
-	self.attackDesire = 50
+	self.attack_range = 85
+	self.attack_desire = 50
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {"power": 350, "hurtBack": [-6, -9], "attackKind": "physics"}
-	self.objattackDic["dmzw"] = {
+	self.obj_attack_dict["hit1"] = {"power": 350, "hurtBack": [-6, -9], "attackKind": "physics"}
+	self.obj_attack_dict["dmzw"] = {
 		"power": 0,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -48,7 +48,7 @@ func monster_32():
 			"AttackKind": "",
 		}
 	}
-	self.objattackDic["dmlhc"] = {
+	self.obj_attack_dict["dmlhc"] = {
 		"power": 280,
 		"hurtBack": [-6, -8],
 		"attackKind": "magic",
@@ -98,7 +98,7 @@ func ai_think():
 			if has_target == false:
 				normal_state()
 			else:
-				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 					have_target()
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 1200:
 						if Skill_1_CD <= 0:
@@ -180,8 +180,8 @@ func relive():
 			self.def = 150
 			self.mdef = 150
 			self.crit = 10
-			self.attackDesire = 70
-			self.objattackDic["dmlhc"] = {
+			self.attack_desire = 70
+			self.obj_attack_dict["dmlhc"] = {
 				"power": 400,
 				"hurtBack": [-12, -15],
 				"attackKind": "magic",
@@ -216,8 +216,8 @@ func relive():
 			self.def = 200
 			self.mdef = 200
 			self.crit = 10
-			self.attackDesire = 100
-			self.objattackDic["dmlhc"] = {
+			self.attack_desire = 100
+			self.obj_attack_dict["dmlhc"] = {
 				"power": 400,
 				"hurtBack": [-12, -19],
 				"attackKind": "magic",
@@ -261,7 +261,7 @@ func call_gc():
 		]
 	for i in bullet_spawn_positions:
 		gc = Global.add_bullet(
-			"Monster32Bullet", self.bullet, MonsterDirection, 0.8, i + position, "dmlhc", self.objattackDic["dmlhc"]
+			"Monster32Bullet", self.bullet, MonsterDirection, 0.8, i + position, "dmlhc", self.obj_attack_dict["dmlhc"]
 		)
 		match self.current_:
 			0:
@@ -291,7 +291,7 @@ func add_eye_fix():
 	(
 		Global
 		. add_buff(
-			get_Player.buff,
+			get_player.buff,
 			{
 				"Name": "EyeFix",
 				"AddTime": 5,

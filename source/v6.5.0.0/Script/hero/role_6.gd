@@ -33,10 +33,10 @@ var has_target: bool = false
 var count: int = 0
 var is_quiescent: bool = false
 
-var attackRange: int = 85
+var attack_range: int = 85
 var mysee: int = 300
 var speed: int = 11
-var attackDesire: int = 90
+var attack_desire: int = 90
 var run_hit: bool = true
 var run_hit_count: int = 90
 
@@ -82,14 +82,14 @@ func _ready() -> void:
 
 
 func initialize_monster_properties():
-	attackRange = 85
+	attack_range = 85
 	mysee = 30000
 	speed = 11
-	attackDesire = 90
+	attack_desire = 90
 	run_hit = true
 	run_hit_count = 90
 
-	self.objattackDic["hit1"] = {"power": 100000, "hurtBack": [-4, -9], "attackKind": "physics", "HitProtect": 15}
+	self.obj_attack_dict["hit1"] = {"power": 100000, "hurtBack": [-4, -9], "attackKind": "physics", "HitProtect": 15}
 
 
 func find_player_reference():
@@ -236,7 +236,7 @@ func ai_think():
 	if distance_to_target < mysee:
 		has_target = true
 
-		if distance_to_target > attackRange:
+		if distance_to_target > attack_range:
 			if target_pos.x > position.x:
 				move_right()
 			else:
@@ -244,13 +244,13 @@ func ai_think():
 
 			if run_hit and not is_be_attacking:
 				if count % run_hit_count == 0:
-					if randi_range(0, 100) <= attackDesire:
+					if randi_range(0, 100) <= attack_desire:
 						attack_target()
 		else:
 			stop_move()
 
 			if not is_be_attacking and count % 60 == 0:
-				if randi_range(0, 100) < attackDesire:
+				if randi_range(0, 100) < attack_desire:
 					attack_target()
 	else:
 		has_target = false
@@ -417,8 +417,8 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 
 		if target is BaseMonster and target != self:
 			var damage = 20
-			if self.objattackDic.has("hit1"):
-				damage = self.objattackDic["hit1"].get("power", 20)
+			if self.obj_attack_dict.has("hit1"):
+				damage = self.obj_attack_dict["hit1"].get("power", 20)
 
 			target.reduce_hp(damage)
 

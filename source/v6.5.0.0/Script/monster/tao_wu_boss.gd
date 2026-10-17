@@ -65,8 +65,8 @@ func _configure_taowu() -> void:
 	Critreduce = 0
 	speed = 15
 	mysee = 1000
-	attackRange = 250
-	attackDesire = 95
+	attack_range = 250
+	attack_desire = 95
 	behit_calmtime = 0.15
 	self_rhp = 0
 	add_exp = 500
@@ -76,8 +76,8 @@ func _configure_taowu() -> void:
 	self.independent_fall_list = [{"name": "genguguo", "value": 1, "chance": 0.1}]
 	fall_stone_pro = 0.0
 	fall_stone = []
-	objattackDic["hit1"] = {"power": 800, "hurtBack": [0, -5], "attackKind": "magic", "HitProtect": 8}
-	objattackDic["hit2"] = {
+	obj_attack_dict["hit1"] = {"power": 800, "hurtBack": [0, -5], "attackKind": "magic", "HitProtect": 8}
+	obj_attack_dict["hit2"] = {
 		"power": 800,
 		"hurtBack": [-5, 0],
 		"attackKind": "physics",
@@ -93,7 +93,7 @@ func _configure_taowu() -> void:
 			"AttackKind": ""
 		}
 	}
-	objattackDic["hit3"] = {
+	obj_attack_dict["hit3"] = {
 		"power": 800,
 		"hurtBack": [-4, 0],
 		"attackKind": "magic",
@@ -109,7 +109,7 @@ func _configure_taowu() -> void:
 			"AttackKind": "real"
 		}
 	}
-	objattackDic["hit4"] = {"power": 800, "hurtBack": [-4, 0], "attackKind": "magic", "HitProtect": 8}
+	obj_attack_dict["hit4"] = {"power": 800, "hurtBack": [-4, 0], "attackKind": "magic", "HitProtect": 8}
 
 
 func _build_original_animations() -> void:
@@ -213,9 +213,9 @@ func ai_think() -> void:
 		_use_skill(&"hit3", 9)
 	elif Skill_1_CD <= 0 and distance <= 360.0:
 		_use_skill(&"hit2", 8)
-	elif distance <= attackRange:
+	elif distance <= attack_range:
 		stop_move()
-		if count % 45 == 0 and randi_range(0, 100) <= attackDesire:
+		if count % 45 == 0 and randi_range(0, 100) <= attack_desire:
 			attack_target()
 	else:
 		have_target()
@@ -425,7 +425,7 @@ func _pulse_effect_hitbox(shape_node: CollisionShape2D, holder: Node2D, lifetime
 	while elapsed < lifetime and is_instance_valid(holder):
 		if not is_inside_tree() or is_queued_for_deletion() or not is_instance_valid(shape_node):
 			return
-		if follow_player and get_Player != null and is_instance_valid(get_Player):
+		if follow_player and get_player != null and is_instance_valid(get_player):
 			holder.global_position = (
 				RoleProp.get_nearest_monster_target_position(global_position) + Vector2(0, bullet4_height)
 			)
@@ -446,7 +446,7 @@ func _follow_effect_target(holder: Node2D, lifetime: float) -> void:
 	while elapsed < lifetime and is_instance_valid(holder):
 		if not is_inside_tree() or is_queued_for_deletion():
 			return
-		if get_Player != null and is_instance_valid(get_Player):
+		if get_player != null and is_instance_valid(get_player):
 			holder.global_position = (
 				RoleProp.get_nearest_monster_target_position(global_position) + Vector2(0, bullet4_height)
 			)

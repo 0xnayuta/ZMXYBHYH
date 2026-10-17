@@ -20,13 +20,13 @@ func monster_83():
 	self.Critreduce = 0
 	self.speed = 10
 	self.mysee = 600
-	self.attackRange = 175
-	self.attackDesire = 90
+	self.attack_range = 175
+	self.attack_desire = 90
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 225,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -42,13 +42,13 @@ func monster_83():
 			"probability": 0.7
 		},
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 150,
 		"hurtBack": [-4, -9],
 		"attackKind": "real",
 		"HitProtect": 12,
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 325,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -65,7 +65,7 @@ func monster_83():
 			"probability": 0.7
 		},
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 325,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -115,7 +115,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -134,7 +134,7 @@ func ai_think():
 				if Skill_3_CD <= 0:
 					do_hit_3()
 				if count % 60 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 
 
@@ -183,7 +183,7 @@ func tween_to_top():
 
 
 func call_arrow_1():
-	if get_Player == null:
+	if get_player == null:
 		return
 	var bullet_spawn_positions = [
 		Vector2(0, -150),
@@ -199,7 +199,7 @@ func call_arrow_1():
 	for i in bullet_spawn_positions:
 		var desired_angle
 		var arrow = Global.add_bullet(
-			"Monster83Bullet", self.bullet, false, 2, i + position, "hit4", self.objattackDic["hit4"]
+			"Monster83Bullet", self.bullet, false, 2, i + position, "hit4", self.obj_attack_dict["hit4"]
 		)
 		arrow.scale = Vector2(0.7, 0.7)
 		arrow.modulate = Color(1, 1, 1, 0)
@@ -210,7 +210,7 @@ func call_arrow_1():
 
 
 func call_arrow_2():
-	if get_Player == null:
+	if get_player == null:
 		return
 	var desired_angle = 90
 	var bullet_spawn_positions = []
@@ -226,7 +226,7 @@ func call_arrow_2():
 	bullet_spawn_positions.shuffle()
 	for i in bullet_spawn_positions:
 		var arrow = Global.add_bullet(
-			"Monster83Bullet", self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"]
+			"Monster83Bullet", self.bullet, MonsterDirection, 1, i + position, "hit2", self.obj_attack_dict["hit2"]
 		)
 		arrow.scale = Vector2(0.9, 0.9)
 		arrow.modulate = Color(1, 1, 1, 0)
@@ -240,7 +240,7 @@ func call_arrow_2():
 
 
 func call_arrow_3():
-	if get_Player == null:
+	if get_player == null:
 		return
 	var bullet_spawn_positions = [
 		Vector2(0, -700),
@@ -270,7 +270,7 @@ func call_arrow_3():
 	bullet_spawn_positions.shuffle()
 	for i in bullet_spawn_positions:
 		var arrow = Global.add_bullet(
-			"Monster83Bullet", self.bullet, false, 3.5, i + position, "hit3", self.objattackDic["hit3"]
+			"Monster83Bullet", self.bullet, false, 3.5, i + position, "hit3", self.obj_attack_dict["hit3"]
 		)
 		arrow.scale = Vector2(1, 1)
 		arrow.rotation_degrees = 90

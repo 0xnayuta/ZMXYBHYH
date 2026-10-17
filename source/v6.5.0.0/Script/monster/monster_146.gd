@@ -34,8 +34,8 @@ func monster_146():
 	self.Critreduce = 25 * phantom_multiplier
 	self.speed = 19 * phantom_multiplier
 	self.mysee = 750
-	self.attackRange = 150
-	self.attackDesire = 188 if not is_phantom else 80
+	self.attack_range = 150
+	self.attack_desire = 188 if not is_phantom else 80
 
 	self.behit_calmtime = 0
 	self.self_rhp = SHp * (0.00015 if not is_phantom else 0.0001)
@@ -53,19 +53,19 @@ func monster_146():
 	moonlight_cooldown = 15.0
 	phantom_summoned = false
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": int(2700 * phantom_multiplier),
 		"hurtBack": [-5, -8],
 		"attackKind": "physics",
 		"HitProtect": 0,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": int(2700 * phantom_multiplier),
 		"hurtBack": [-8, -12],
 		"attackKind": "physics",
 		"HitProtect": 0,
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": int(5000 * phantom_multiplier),
 		"hurtBack": [0, 0],
 		"attackKind": "physics",
@@ -121,7 +121,7 @@ func ai_think() -> void:
 
 		var distance_to_player = abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
 
-		if distance_to_player >= attackRange:
+		if distance_to_player >= attack_range:
 			have_target()
 			_handle_ranged_combat(distance_to_player)
 		else:
@@ -241,7 +241,7 @@ func do_hit_3():
 	velocity.x = dash_direction * 900
 	await get_tree().create_timer(0.5).timeout
 
-	if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= attackRange:
+	if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= attack_range:
 		_perform_hit3_damage()
 
 	velocity.x = 0
@@ -254,7 +254,7 @@ func _perform_hit3_damage():
 
 
 func call_bullet_alt2():
-	var attack_config = objattackDic.get("hit2", {})
+	var attack_config = obj_attack_dict.get("hit2", {})
 	if not attack_config or not self.bullet:
 		return
 

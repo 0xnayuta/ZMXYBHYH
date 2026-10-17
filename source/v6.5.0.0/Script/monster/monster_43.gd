@@ -24,15 +24,15 @@ func monster_43():
 	self.Critreduce = 5
 	self.speed = 8
 	self.mysee = 400
-	self.attackRange = 105
-	self.attackDesire = 80
+	self.attack_range = 105
+	self.attack_desire = 80
 	self.behit_calmtime = 0.1
 	self.self_rhp = 0
 	self.add_exp = 50
 	self.fall_coin = 13
-	self.objattackDic["hit1"] = {"power": 220, "hurtBack": [-6, -5], "attackKind": "physics"}
-	self.objattackDic["gwjq"] = {"power": 170, "hurtBack": [-6, -5], "attackKind": "magic"}
-	self.objattackDic["csjq"] = {
+	self.obj_attack_dict["hit1"] = {"power": 220, "hurtBack": [-6, -5], "attackKind": "physics"}
+	self.obj_attack_dict["gwjq"] = {"power": 170, "hurtBack": [-6, -5], "attackKind": "magic"}
+	self.obj_attack_dict["csjq"] = {
 		"power": int(RoleProp.roleprop.SHp * 0.3),
 		"hurtBack": [-6, -5],
 		"attackKind": "physics",
@@ -145,7 +145,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_2()
@@ -158,7 +158,7 @@ func ai_think():
 				elif Skill_3_CD <= 0:
 					do_hit_4()
 				elif count % 120 == 0:
-					if ran_num <= attackDesire:
+					if ran_num <= attack_desire:
 						attack_target()
 				else:
 					stop_move()

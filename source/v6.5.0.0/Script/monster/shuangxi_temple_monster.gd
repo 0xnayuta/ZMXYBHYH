@@ -180,7 +180,7 @@ func _configure_monster() -> void:
 	def = int(d["def"])
 	mdef = int(d.get("mdef", def))
 	speed = float(d["speed"])
-	attackRange = int(d["range"])
+	attack_range = int(d["range"])
 	mysee = int(d["sight"])
 	crit = int(d.get("crit", 0))
 	miss = int(d.get("miss", 0))
@@ -189,7 +189,7 @@ func _configure_monster() -> void:
 	Critreduce = int(d.get("crit_reduce", 0))
 	ar = int(d.get("armor_break", 0))
 	sp = int(d.get("magic_break", 0))
-	attackDesire = int(d.get("attack_desire", 100))
+	attack_desire = int(d.get("attack_desire", 100))
 	add_exp = int(d.get("exp", 0))
 	fall_coin = int(d.get("coin", 0))
 	fall_pro = float(d.get("drop_rate", 0.0))
@@ -197,7 +197,7 @@ func _configure_monster() -> void:
 	independent_fall_list = Array(d.get("independent_drop_list", [])).duplicate(true)
 	is_boss = bool(d.get("is_boss", d.get("boss", false)))
 	boss_max_protect = float(d.get("max_protect", 240.0 if is_boss else 100.0))
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = d.get("attacks", {})
 	if attacks.is_empty():
 		attacks["hit1"] = {
@@ -205,7 +205,7 @@ func _configure_monster() -> void:
 		}
 	for attack_name: String in attacks:
 		var attack: Dictionary = attacks[attack_name]
-		objattackDic[attack_name] = {
+		obj_attack_dict[attack_name] = {
 			"power":
 			(
 				int(attack["power"])
@@ -382,7 +382,7 @@ func ai_think() -> void:
 		stop_move()
 		return
 	to_hero()
-	var next_attack_range := float(attackRange)
+	var next_attack_range := float(attack_range)
 	if monster_kind == 3020:
 		var skill_ranges: Array = _runtime_config.get("skill_ranges", BOSS_SKILL_RANGES)
 		next_attack_range = float(skill_ranges[(_boss_skill_index + 1) % skill_ranges.size()])
@@ -487,7 +487,7 @@ func _spawn_boss_arrow(skill_index: int) -> void:
 		1.0,
 		position + spawn_offset,
 		"hit%d" % (skill_index + 1),
-		objattackDic["hit%d" % (skill_index + 1)]
+		obj_attack_dict["hit%d" % (skill_index + 1)]
 	)
 	if arrow != null and arrow.has_method("set_direction_vector"):
 		arrow.set_direction_vector(direction.normalized(), 120.0 if skill_index == 0 else 80.0)

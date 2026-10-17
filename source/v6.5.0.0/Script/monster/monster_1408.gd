@@ -24,21 +24,21 @@ func monster_1408():
 	self.Critreduce = 20
 	self.speed = 18
 	self.mysee = 550
-	self.attackRange = 280
-	self.attackDesire = 100
+	self.attack_range = 280
+	self.attack_desire = 100
 	self.behit_calmtime = 0.05
 	self.self_rhp = 0
 	self.add_exp = 6000
 	self.fall_coin = 2500
 	self.ebol = 1.0
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 1000,
 		"hurtBack": [-5, -12],
 		"attackKind": "physics",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 900,
 		"hurtBack": [10, -10],
 		"attackKind": "magic",
@@ -54,14 +54,14 @@ func monster_1408():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 1500,
 		"hurtBack": [-30, -12],
 		"attackKind": "physics",
 		"HitProtect": 10,
 	}
 
-	self.objattackDic["hit5"] = {
+	self.obj_attack_dict["hit5"] = {
 		"power": 1800,
 		"hurtBack": [0, 0],
 		"attackKind": "real",
@@ -108,7 +108,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -208,7 +208,7 @@ func do_hit_5():
 
 
 func call_parasitic_larva():
-	var target = get_Player
+	var target = get_player
 
 	var player_max_hp = 0
 	if RoleProp and RoleProp.roleprop:
@@ -249,13 +249,13 @@ func call_bullet_2():
 	var po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 380)
 	await get_tree().create_timer(0.3, false).timeout
 	var ly = Global.call_chase_bullet(
-		self.bullet, "Monster1408Bullet2", 150, 5.0, false, po, "hit2", self.objattackDic["hit2"]
+		self.bullet, "Monster1408Bullet2", 150, 5.0, false, po, "hit2", self.obj_attack_dict["hit2"]
 	)
 	ly.scale = Vector2(1.5, 1.5)
 
 
 func move_player_2():
-	if not get_Player:
+	if not get_player:
 		return
 
 	var offset = 150

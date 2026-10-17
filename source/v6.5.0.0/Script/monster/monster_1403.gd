@@ -29,28 +29,28 @@ func monster_1403():
 	self.Critreduce = 10
 	self.speed = 15
 	self.mysee = 550
-	self.attackRange = 400
-	self.attackDesire = 85
+	self.attack_range = 400
+	self.attack_desire = 85
 	self.behit_calmtime = 0.14
 	self.self_rhp = 0
 	self.add_exp = 3500
 	self.fall_coin = 1400
 	self.ebol = 0
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 650,
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 9999999,
 		"hurtBack": [0, 0],
 		"attackKind": "real",
 		"HitProtect": 15,
 	}
 
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 600,
 		"hurtBack": [-6, -10],
 		"attackKind": "magic",
@@ -67,7 +67,7 @@ func monster_1403():
 		}
 	}
 
-	self.objattackDic["hit3_2"] = {
+	self.obj_attack_dict["hit3_2"] = {
 		"power": 650,
 		"hurtBack": [-7, -11],
 		"attackKind": "magic",
@@ -84,7 +84,7 @@ func monster_1403():
 		}
 	}
 
-	self.objattackDic["hit3_1"] = {
+	self.obj_attack_dict["hit3_1"] = {
 		"power": 600,
 		"hurtBack": [-70, -12],
 		"attackKind": "magic",
@@ -128,7 +128,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -268,10 +268,10 @@ func apply_real_stun(stun_time: float):
 
 
 func move_player_1():
-	if not get_Player:
+	if not get_player:
 		return
 	var offset = 330
-	if get_Player.PlayerDir:
+	if get_player.PlayerDir:
 		self.position = Vector2(
 			RoleProp.get_nearest_monster_target_position(global_position).x + offset,
 			RoleProp.get_nearest_monster_target_position(global_position).y
@@ -284,7 +284,7 @@ func move_player_1():
 
 
 func move_player_2():
-	if not get_Player:
+	if not get_player:
 		return
 
 	var offset = 150

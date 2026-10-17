@@ -23,13 +23,13 @@ func monster_17(is_boss):
 		self.Critreduce = 0
 		self.speed = 9
 		self.mysee = 400
-		self.attackRange = 400
-		self.attackDesire = 75
+		self.attack_range = 400
+		self.attack_desire = 75
 		self.behit_calmtime = 0.1
 		self.self_rhp = 0
 		self.add_exp = 350
 		self.fall_coin = 200
-		self.objattackDic["hit1"] = {
+		self.obj_attack_dict["hit1"] = {
 			"power": 155,
 			"hurtBack": [-4, -9],
 			"attackKind": "real",
@@ -43,7 +43,7 @@ func monster_17(is_boss):
 				"AttackKind": "",
 			}
 		}
-		self.objattackDic["xfj"] = {
+		self.obj_attack_dict["xfj"] = {
 			"power": 185,
 			"hurtBack": [-17, -15],
 			"attackKind": "magic",
@@ -72,14 +72,14 @@ func monster_17(is_boss):
 		self.Critreduce = 0
 		self.speed = 9
 		self.mysee = 300
-		self.attackRange = 95
-		self.attackDesire = 80
+		self.attack_range = 95
+		self.attack_desire = 80
 		self.behit_calmtime = 0.2
 		self.self_rhp = 0
 		self.add_exp = 50
 		self.fall_coin = 15
-		self.objattackDic["hit1"] = {"power": 100, "hurtBack": [-4, -9], "attackKind": "real"}
-		self.objattackDic["xfj"] = {"power": 35, "hurtBack": [-3, -15], "attackKind": "magic"}
+		self.obj_attack_dict["hit1"] = {"power": 100, "hurtBack": [-4, -9], "attackKind": "real"}
+		self.obj_attack_dict["xfj"] = {"power": 35, "hurtBack": [-3, -15], "attackKind": "magic"}
 		self.fall_pro = 0.0
 		self.fall_list = []
 		self.fall_stone_pro = 0
@@ -130,7 +130,7 @@ func ai_think():
 			normal_state()
 		else:
 			if is_boss:
-				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 					have_target()
 					if Skill_1_CD <= 0:
 						do_hit_2()
@@ -138,16 +138,16 @@ func ai_think():
 					if Skill_1_CD <= 0:
 						do_hit_2()
 					elif count % attack_in == 0:
-						if ran_num <= attackDesire:
+						if ran_num <= attack_desire:
 							attack_target()
 						else:
 							stop_move()
 					else:
 						have_target()
 			elif not is_boss:
-				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= attackRange:
+				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= attack_range:
 					if count % 60 == 0:
-						if ran_num <= attackDesire:
+						if ran_num <= attack_desire:
 							attack_target()
 					else:
 						stop_move()

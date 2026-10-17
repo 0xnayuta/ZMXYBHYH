@@ -70,8 +70,8 @@ func _configure_monster() -> void:
 	sp = int(config.get("magic_break", 0))
 	speed = float(config.get("speed", 25.0))
 	mysee = int(config.get("sight", 1200))
-	attackRange = roundi(float(config.get("range", 98.0)))
-	attackDesire = int(config.get("attack_desire", 100))
+	attack_range = roundi(float(config.get("range", 98.0)))
+	attack_desire = int(config.get("attack_desire", 100))
 	add_exp = int(config.get("exp", 0))
 	fall_coin = int(config.get("coin", 0))
 	fall_pro = float(config.get("drop_rate", 0.0))
@@ -82,10 +82,10 @@ func _configure_monster() -> void:
 	cannot_attract = true
 	NoGrav = false
 	is_fly = false
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config.get("attacks", {})
 	var attack: Dictionary = attacks.get("hit1", {})
-	objattackDic["hit1"] = {
+	obj_attack_dict["hit1"] = {
 		"power": roundi(float(attack_in) * float(attack.get("multiplier", 0.5))),
 		"hurtBack": Array(attack.get("hurt_back", [0.0, 0.0])).duplicate(),
 		"attackKind": str(attack.get("kind", "physics")),

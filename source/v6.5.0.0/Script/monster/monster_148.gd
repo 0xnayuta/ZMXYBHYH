@@ -28,21 +28,21 @@ func monster_101():
 	self.Critreduce = 36
 	self.speed = 28
 	self.mysee = 900
-	self.attackRange = 318
-	self.attackDesire = 271
+	self.attack_range = 318
+	self.attack_desire = 271
 	self.behit_calmtime = 0
 	self.self_rhp = self.SHp * 0.00018
 	self.add_exp = 0
 	self.fall_coin = 0
 	self.ebol = 0
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 3888,
 		"hurtBack": [-4, -7],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 3888,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -60,7 +60,7 @@ func monster_101():
 		}
 	}
 
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 7200,
 		"hurtBack": [-50, 0],
 		"attackKind": "magic",
@@ -96,7 +96,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if Skill_2_CD <= 0:
 					do_hit_2()
@@ -104,7 +104,7 @@ func ai_think():
 					do_hit_3()
 
 				if count % 90 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 						_create_bullet1_portal()
 			else:
@@ -113,7 +113,7 @@ func ai_think():
 				elif Skill_3_CD <= 0:
 					do_hit_3()
 				elif count % 60 == 0:
-					if randi_range(0, 100) <= attackDesire:
+					if randi_range(0, 100) <= attack_desire:
 						attack_target()
 						_create_bullet1_portal()
 				else:
@@ -144,7 +144,7 @@ func _on_portal1_timeout(portal):
 		1,
 		portal.position + Vector2(35 * portal.direction, 25),
 		"hit1",
-		self.objattackDic["hit1"]
+		self.obj_attack_dict["hit1"]
 	)
 	bullet_node.rotation = 0 if portal.direction < 0 else PI
 	portal.count += 1
@@ -219,7 +219,7 @@ func _spawn_bullet2_wave():
 
 	for pos in bullet2_spawn_positions:
 		var bullet = Global.add_bullet(
-			"Monster148Bullet2", self.bullet, false, 1, pos, "hit2", self.objattackDic["hit2"]
+			"Monster148Bullet2", self.bullet, false, 1, pos, "hit2", self.obj_attack_dict["hit2"]
 		)
 
 
@@ -293,7 +293,7 @@ func _on_portal3_timeout(portal):
 	var spawn_pos = Vector2(portal.position.x + 35 * portal.direction, portal.position.y + 25)
 
 	var bullet_node = Global.add_bullet(
-		"Monster148Bullet3", self.bullet, false, 1, spawn_pos, "hit3", self.objattackDic["hit3"]
+		"Monster148Bullet3", self.bullet, false, 1, spawn_pos, "hit3", self.obj_attack_dict["hit3"]
 	)
 
 	if bullet_node.has_method("set_scale"):

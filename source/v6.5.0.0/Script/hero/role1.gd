@@ -117,25 +117,25 @@ func refresh_hmz_damage_data(level_: int = -1):
 	if level_ < 1:
 		level_ = hmz_damage_level
 	var level_5 = level_
-	self.objattackDic["hmz_1"] = {
+	self.obj_attack_dict["hmz_1"] = {
 		"power": RoleProp.roleprop.power * randf_range(1.02 + (level_5 * 0.15), 1.1 + (level_5 * 0.15)) * 0.65,
 		"hurtBack": [2, -6],
 		"attackKind": "physics",
 		"WSValue": randi_range(6, 8)
 	}
-	self.objattackDic["hmz-1"] = {
+	self.obj_attack_dict["hmz-1"] = {
 		"power": RoleProp.roleprop.power * randf_range(1.08 + (level_5 * 0.18), 1.16 + (level_5 * 0.18)),
 		"hurtBack": [2, -6],
 		"attackKind": "physics",
 		"WSValue": randi_range(6, 8)
 	}
-	self.objattackDic["hmz_2"] = {
+	self.obj_attack_dict["hmz_2"] = {
 		"power": RoleProp.roleprop.power * randf_range(1.02 + (level_5 * 0.15), 1.1 + (level_5 * 0.15)),
 		"hurtBack": [22, 18],
 		"attackKind": "magic",
 		"WSValue": randi_range(6, 8)
 	}
-	self.objattackDic["hmz_3"] = {
+	self.obj_attack_dict["hmz_3"] = {
 		"power": RoleProp.roleprop.power * randf_range(3.5 + (level_5 * 0.5), 3.8 + (level_5 * 0.5)),
 		"hurtBack": [3, -28],
 		"attackKind": "magic",
@@ -148,7 +148,7 @@ func get_hmz_ws_hit_data(action_name: String = "hmz_3") -> Dictionary:
 	var ws_data: Variant = skill_data.get("技能12", {}) if skill_data is Dictionary else {}
 	var ws_level := int(ws_data.get(DataKeys.LEVEL, 0)) + 1 if ws_data is Dictionary else 1
 	set_hmz_damage_level(ws_level, "hmz_ws")
-	var attack_data: Variant = objattackDic.get(action_name, {})
+	var attack_data: Variant = obj_attack_dict.get(action_name, {})
 	return attack_data.duplicate(true) if attack_data is Dictionary else {}
 
 
@@ -175,53 +175,53 @@ func role_1():
 	else:
 		RoleProp.role1_sxbj = 4 + (level_10 - 1) * 1.6
 		RoleProp.role1_s_xxx = 0.03 + (level_10 - 1) * 0.003
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": RoleProp.roleprop.power * randf_range(1, 1.2),
 		"hurtBack": [2, 0],
 		"attackKind": "physics",
 		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1),
 		"hurtBack": [2, 0],
 		"attackKind": "physics",
 		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": RoleProp.roleprop.power * randf_range(1, 1.2),
 		"hurtBack": [2, 0],
 		"attackKind": "physics",
 		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": RoleProp.roleprop.power * randf_range(1.2, 1.4),
 		"hurtBack": [6, -5],
 		"attackKind": "physics",
 		"HitInterv": 2,
 		"WSValue": randi_range(3, 5)
 	}
-	self.objattackDic["slz"] = {
+	self.obj_attack_dict["slz"] = {
 		"power": RoleProp.roleprop.power * (2.5 + (level_1 * 0.12)),
 		"hurtBack": [6.5, -42],
 		"attackKind": "magic",
 		"WSValue": randi_range(6, 8)
 	}
-	self.objattackDic["hytj"] = {
+	self.obj_attack_dict["hytj"] = {
 		"power": RoleProp.roleprop.power * (0.25 + (level_2 * 0.02)),
 		"hurtBack": [16, -6],
 		"attackKind": "magic",
 		"WSValue": randi_range(2, 4)
 	}
-	self.objattackDic["lys"] = {
+	self.obj_attack_dict["lys"] = {
 		"power": 35 + RoleProp.roleprop.power * (0.16 + (level_3 * 0.02)),
 		"hurtBack": [1, 1],
 		"attackKind": "magic",
 		"WSValue": randi_range(15, 20)
 	}
-	self.objattackDic["lyfb"] = {
+	self.obj_attack_dict["lyfb"] = {
 		"power": RoleProp.roleprop.power * (0.7 + (level_4 * 0.2)),
 		"hurtBack": [9, -5],
 		"attackKind": "magic",
@@ -230,13 +230,13 @@ func role_1():
 
 	set_hmz_damage_level(level_5, "hmz")
 
-	self.objattackDic["zz"] = {
+	self.obj_attack_dict["zz"] = {
 		"power": RoleProp.roleprop.power * (4 + (level_6 * 0.5)),
 		"hurtBack": [19, 0],
 		"attackKind": "physics",
 		"WSValue": randi_range(15, 18)
 	}
-	self.objattackDic["gsrs"] = {
+	self.obj_attack_dict["gsrs"] = {
 		"power": RoleProp.roleprop.power * (4 + (level_11 * 0.5)),
 		"hurtBack": [3, 0],
 		"attackKind": "physics",
@@ -252,32 +252,32 @@ func role_1():
 		},
 		"WSValue": randi_range(15, 18)
 	}
-	self.objattackDic["qsez"] = {
+	self.obj_attack_dict["qsez"] = {
 		"power": RoleProp.roleprop.power * (0.07 + (level_7 * 0.02)),
 		"hurtBack": [1, 1],
 		"attackKind": "physics",
 		"WSValue": randi_range(8, 10)
 	}
-	self.objattackDic["jdy"] = {
+	self.obj_attack_dict["jdy"] = {
 		"power": RoleProp.roleprop.power * (0.4 + (level_8 * 0.07)),
 		"hurtBack": [35, 0],
 		"attackKind": "magic",
 		"WSValue": randi_range(8, 10)
 	}
-	self.objattackDic["jdy_2"] = {
+	self.obj_attack_dict["jdy_2"] = {
 		"power": RoleProp.roleprop.power * (0.4 + (level_8 * 0.07)),
 		"hurtBack": [0, -45],
 		"attackKind": "magic",
 		"WSValue": randi_range(8, 10)
 	}
-	self.objattackDic["hyjj"] = {
+	self.obj_attack_dict["hyjj"] = {
 		"power": RoleProp.roleprop.power * (0.5 + (level_9 * 0.15)),
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
 		"WSValue": randi_range(8, 10)
 	}
 	var level_13 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能13"][DataKeys.LEVEL] + 1
-	self.objattackDic["hyjj_ws"] = {
+	self.obj_attack_dict["hyjj_ws"] = {
 		"power": RoleProp.roleprop.power * (0.6 + (level_13 * 0.12)),
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -367,7 +367,7 @@ func turn_to_wait():
 
 
 func do_normalhit_1():
-	interv = objattackDic["hit1"]["HitInterv"]
+	interv = obj_attack_dict["hit1"]["HitInterv"]
 	super.get_hit_data("hit1")
 	get_action = "hit1"
 	is_can_move_attack_in_sky()
@@ -381,7 +381,7 @@ func do_normalhit_1():
 
 
 func do_normalhit_2():
-	interv = objattackDic["hit2"]["HitInterv"]
+	interv = obj_attack_dict["hit2"]["HitInterv"]
 	get_action = "hit2"
 	super.get_hit_data("hit2")
 	velocity.x = 0
@@ -394,7 +394,7 @@ func do_normalhit_2():
 
 
 func do_normalhit_3():
-	interv = objattackDic["hit3"]["HitInterv"]
+	interv = obj_attack_dict["hit3"]["HitInterv"]
 	get_action = "hit3"
 	super.get_hit_data("hit3")
 	velocity.x = 0
@@ -407,7 +407,7 @@ func do_normalhit_3():
 
 
 func do_normalhit_4():
-	interv = objattackDic["hit4"]["HitInterv"]
+	interv = obj_attack_dict["hit4"]["HitInterv"]
 	get_action = "hit4"
 	super.get_hit_data("hit4")
 	velocity.x = 0
@@ -555,7 +555,7 @@ func do_wushuang_huoyan_jinjing():
 	is_attacking = true
 	_play_hyjj_pose_only()
 	var effect := WUSHUANG_HUOYAN_EFFECT.new()
-	effect.setup(self, PlayerDir, self.objattackDic["hyjj_ws"])
+	effect.setup(self, PlayerDir, self.obj_attack_dict["hyjj_ws"])
 	var level := get_parent().get_parent()
 	if level != null:
 		level.add_child(effect)
@@ -1059,7 +1059,7 @@ func call_hyjj():
 		if i == null:
 			hyjj.erase(i)
 	if hyjj.size() < 3:
-		hyjj.push_back(Global.add_role_bullet_1(self.Bullet, Vector2(100, 0), "hyjj", self.objattackDic["hyjj"]))
+		hyjj.push_back(Global.add_role_bullet_1(self.Bullet, Vector2(100, 0), "hyjj", self.obj_attack_dict["hyjj"]))
 
 
 func add_shallow():
@@ -1069,7 +1069,7 @@ func add_shallow():
 
 func set_shallowaction(action_: String):
 	var power = (
-		self.objattackDic[action_]["power"]
+		self.obj_attack_dict[action_]["power"]
 		* (0.7 + (PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1) * 0.03)
 	)
 	if shallow_list.size() != 0:
@@ -1077,7 +1077,7 @@ func set_shallowaction(action_: String):
 			if i != null:
 				if i is Role1Shallow:
 					i.action = action_
-					i.HitDic = self.objattackDic[action_]
+					i.HitDic = self.obj_attack_dict[action_]
 					i.HitDic["power"] = power
 
 

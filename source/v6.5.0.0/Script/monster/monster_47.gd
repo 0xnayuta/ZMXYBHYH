@@ -25,16 +25,16 @@ func monster_47():
 	self.Critreduce = 0
 	self.speed = 0
 	self.mysee = 0
-	self.attackRange = 0
-	self.attackDesire = 0
+	self.attack_range = 0
+	self.attack_desire = 0
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": int(RoleProp.roleprop.SHp * 0.02) + 1, "hurtBack": [-15, -3], "attackKind": "real"
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": int(RoleProp.roleprop.SHp * 0.02) + 1,
 		"hurtBack": [-15, -3],
 		"attackKind": "real",
@@ -79,7 +79,7 @@ func call_fish():
 	for i in range(2):
 		var bullet_pos = Vector2(randi_range(-90, 90), randi_range(140, 200)) + self.position
 		if randi_range(0, 100) < 50:
-			Global.add_bullet("Fish_1", bullet, false, 1, bullet_pos, hit_name_, self.objattackDic[hit_name_])
+			Global.add_bullet("Fish_1", bullet, false, 1, bullet_pos, hit_name_, self.obj_attack_dict[hit_name_])
 		else:
-			Global.add_bullet("Fish_2", bullet, false, 1, bullet_pos, hit_name_, self.objattackDic[hit_name_])
+			Global.add_bullet("Fish_2", bullet, false, 1, bullet_pos, hit_name_, self.obj_attack_dict[hit_name_])
 	fish_count = randi_range(80, 160)

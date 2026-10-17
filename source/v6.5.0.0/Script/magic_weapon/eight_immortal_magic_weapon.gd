@@ -23,7 +23,7 @@ const DRAGON_SWORD_COOLDOWN := 0.1
 
 func _ready() -> void:
 	_build_model_frames()
-	objattackDic["hit1"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
+	obj_attack_dict["hit1"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
 
 
 func _build_model_frames() -> void:
@@ -345,12 +345,12 @@ func _use_yunyang_board() -> void:
 		pet.turn_to_gxp(int(duration))
 	else:
 		var old_speed := float(pet.get("speed"))
-		var old_ini_speed := float(pet.get("iniSpeed"))
+		var old_ini_speed := float(pet.get("init_speed"))
 		pet.set_meta("eight_yunyang_token", token)
 		pet.set_meta("eight_yunyang_speed", old_speed)
 		pet.set_meta("eight_yunyang_ini_speed", old_ini_speed)
 		pet.set("speed", old_speed * 2.0)
-		pet.set("iniSpeed", old_ini_speed * 2.0)
+		pet.set("init_speed", old_ini_speed * 2.0)
 	get_tree().create_timer(duration).timeout.connect(_reset_yunyang.bind(pet, token), CONNECT_ONE_SHOT)
 
 
@@ -358,7 +358,7 @@ func _reset_yunyang(pet: Node, token: int) -> void:
 	if not is_instance_valid(pet) or int(pet.get_meta("eight_yunyang_token", -1)) != token:
 		return
 	pet.set("speed", float(pet.get_meta("eight_yunyang_speed", pet.get("speed"))))
-	pet.set("iniSpeed", float(pet.get_meta("eight_yunyang_ini_speed", pet.get("iniSpeed"))))
+	pet.set("init_speed", float(pet.get_meta("eight_yunyang_ini_speed", pet.get("init_speed"))))
 	pet.remove_meta("eight_yunyang_token")
 	pet.remove_meta("eight_yunyang_speed")
 	pet.remove_meta("eight_yunyang_ini_speed")

@@ -89,18 +89,18 @@ func setup_pet_tiger(stage: int) -> void:
 	Critreduce = tiger_stage * 3
 	speed = 12 + tiger_stage
 	mysee = 520
-	attackRange = 95
-	attackDesire = 100
+	attack_range = 95
+	attack_desire = 100
 	behit_calmtime = 0.0
 	self_rhp = int(SHp * 0.0001)
 	add_exp = 120 + tiger_stage * 40
 	fall_coin = 120 + tiger_stage * 45
 	var damage_bl: float = 1.0 + float(tiger_stage - 1) * 0.3
-	objattackDic["hit1"] = _attack_dic(int(attack_in * 2.2 * damage_bl), [-7, -8], "physics", 8)
-	objattackDic[SKILL_HY] = _attack_dic(int(attack_in * 6.3 * damage_bl), [-5, -4], "magic", 8)
-	objattackDic[SKILL_SXHZ] = _attack_dic(int(attack_in * damage_bl), [0, 0], "physics", 4)
-	objattackDic[SKILL_HSQJ] = _attack_dic(int(attack_in * 5.8 * damage_bl), [0, 0], "magic", 10)
-	objattackDic[SKILL_BHAOYI] = _attack_dic(int(attack_in * damage_bl), [-10, -10], "magic", 12)
+	obj_attack_dict["hit1"] = _attack_dic(int(attack_in * 2.2 * damage_bl), [-7, -8], "physics", 8)
+	obj_attack_dict[SKILL_HY] = _attack_dic(int(attack_in * 6.3 * damage_bl), [-5, -4], "magic", 8)
+	obj_attack_dict[SKILL_SXHZ] = _attack_dic(int(attack_in * damage_bl), [0, 0], "physics", 4)
+	obj_attack_dict[SKILL_HSQJ] = _attack_dic(int(attack_in * 5.8 * damage_bl), [0, 0], "magic", 10)
+	obj_attack_dict[SKILL_BHAOYI] = _attack_dic(int(attack_in * damage_bl), [-10, -10], "magic", 12)
 	fall_pro = 0.35
 	fall_list = []
 	fall_stone_pro = 0.0
@@ -202,11 +202,11 @@ func ai_think() -> void:
 	if distance >= 50 and distance <= 100 and Skill_1_CD <= 0:
 		do_hy()
 		return
-	if distance > attackRange:
+	if distance > attack_range:
 		have_target()
 	else:
 		stop_move()
-		if count % 55 == 0 and randi_range(0, 100) < attackDesire:
+		if count % 55 == 0 and randi_range(0, 100) < attack_desire:
 			attack_target()
 
 
@@ -258,7 +258,7 @@ func do_hsqj() -> void:
 
 
 func do_bhaoyi() -> void:
-	if get_Player == null:
+	if get_player == null:
 		return
 	bhaoyi_running = true
 	_clear_tiger_skill_cooldowns()
@@ -289,7 +289,7 @@ func _clear_tiger_skill_cooldowns() -> void:
 
 
 func _to_target_side() -> void:
-	if get_Player == null:
+	if get_player == null:
 		return
 	var side := -1
 	if randi_range(0, 1) == 1:
@@ -313,13 +313,13 @@ func call_hit_1_bullet() -> void:
 		_stage_value(60.0, 120.0, 130.0, 130.0), _stage_value(-25.0, -80.0, -70.0, -70.0)
 	)
 	var bullet_name := "PetTiger1Bullet1" if tiger_stage == 1 else "PetTiger2Bullet1"
-	Global.add_bullet(bullet_name, bullet, MonsterDirection, 1.0, position + offset, "hit1", objattackDic["hit1"])
+	Global.add_bullet(bullet_name, bullet, MonsterDirection, 1.0, position + offset, "hit1", obj_attack_dict["hit1"])
 
 
 func call_hy_bullet() -> void:
 	var offset: Vector2 = _front_offset(_stage_value(150.0, 190.0, 190.0, 190.0), -80.0)
 	Global.add_bullet(
-		"PetTiger1Bullet2", bullet, MonsterDirection, 1.0, position + offset, SKILL_HY, objattackDic[SKILL_HY]
+		"PetTiger1Bullet2", bullet, MonsterDirection, 1.0, position + offset, SKILL_HY, obj_attack_dict[SKILL_HY]
 	)
 
 
@@ -334,10 +334,10 @@ func call_sxhz_hit() -> void:
 		1.0,
 		position + main_offset,
 		SKILL_SXHZ,
-		objattackDic[SKILL_SXHZ]
+		obj_attack_dict[SKILL_SXHZ]
 	)
 	Global.add_bullet(
-		"PetTiger2Bullet3_2", bullet, MonsterDirection, 1.0, air_stun_position, SKILL_SXHZ, objattackDic[SKILL_SXHZ]
+		"PetTiger2Bullet3_2", bullet, MonsterDirection, 1.0, air_stun_position, SKILL_SXHZ, obj_attack_dict[SKILL_SXHZ]
 	)
 	_apply_sxhz_air_stun(air_stun_position)
 
@@ -347,17 +347,23 @@ func call_hsqj_bullet() -> void:
 	var hit_offset: Vector2 = _front_offset(105.0, -2.0)
 	var mark_position := position + disabled_offset
 	var visual_bullet = Global.add_bullet(
-		"PetTiger3Bullet4_1", bullet, MonsterDirection, 1.0, mark_position, SKILL_HSQJ, objattackDic[SKILL_HSQJ]
+		"PetTiger3Bullet4_1", bullet, MonsterDirection, 1.0, mark_position, SKILL_HSQJ, obj_attack_dict[SKILL_HSQJ]
 	)
 	if visual_bullet != null:
 		visual_bullet.set_meta("pet_tiger_disabled", true)
 	Global.add_bullet(
-		"PetTiger3Bullet4_2", bullet, MonsterDirection, 1.0, position + hit_offset, SKILL_HSQJ, objattackDic[SKILL_HSQJ]
+		"PetTiger3Bullet4_2",
+		bullet,
+		MonsterDirection,
+		1.0,
+		position + hit_offset,
+		SKILL_HSQJ,
+		obj_attack_dict[SKILL_HSQJ]
 	)
 
 
 func _apply_sxhz_air_stun(air_stun_position: Vector2) -> void:
-	var target: Node = get_Player
+	var target: Node = get_player
 	if target == null or not is_instance_valid(target):
 		return
 	if not (target is Node2D):
@@ -387,9 +393,9 @@ func _apply_sxhz_three_hit_lifesteal(target: Node) -> void:
 		return
 	if not target.has_method("effect_reducehp"):
 		return
-	if not objattackDic.has(SKILL_SXHZ):
+	if not obj_attack_dict.has(SKILL_SXHZ):
 		return
-	var hit_data: Dictionary = objattackDic[SKILL_SXHZ]
+	var hit_data: Dictionary = obj_attack_dict[SKILL_SXHZ]
 	var attack_kind := "physics"
 	if hit_data.has("attackKind"):
 		attack_kind = String(hit_data["attackKind"])
@@ -432,7 +438,7 @@ func _keep_sxhz_target_in_air(target: Node, air_stun_position: Vector2, stun_tim
 
 
 func call_bhaoyi_hit() -> void:
-	var dic: Dictionary = objattackDic[SKILL_BHAOYI].duplicate(true)
+	var dic: Dictionary = obj_attack_dict[SKILL_BHAOYI].duplicate(true)
 	dic["power"] = int(dic["power"] * 1.3)
 	var offset: Vector2 = _front_offset(130.0, -70.0)
 	Global.add_bullet("PetTiger2Bullet1", bullet, MonsterDirection, 1.25, position + offset, SKILL_BHAOYI, dic)

@@ -254,8 +254,8 @@ func _configure_monster() -> void:
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
 	mysee = int(config["sight"])
-	attackRange = int(config["range"])
-	attackDesire = int(config["attack_desire"])
+	attack_range = int(config["range"])
+	attack_desire = int(config["attack_desire"])
 	add_exp = int(config["exp"])
 	fall_coin = int(config["coin"])
 	fall_pro = float(config["drop_rate"])
@@ -272,10 +272,10 @@ func _refresh_damage() -> void:
 	var config: Dictionary = _runtime_config
 	var base_power: float = float(config["attack"]) * multiplier
 	var attacks: Dictionary = config["attacks"]
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	for attack_name: String in attacks:
 		var attack: Dictionary = attacks[attack_name]
-		objattackDic[attack_name] = {
+		obj_attack_dict[attack_name] = {
 			"power": int(base_power * float(attack["multiplier"])),
 			"hurtBack": attack["hurt_back"].duplicate(),
 			"attackKind": str(attack["kind"]),
@@ -492,7 +492,7 @@ func ai_think() -> void:
 		else:
 			stop_move()
 		return
-	if distance > float(attackRange):
+	if distance > float(attack_range):
 		have_target()
 	elif Time.get_ticks_msec() >= _next_attack_msec:
 		_start_attack(_choose_attack())
@@ -622,7 +622,7 @@ func _fire_arrow() -> void:
 	_refresh_damage()
 	var offset := Vector2(100 if MonsterDirection else -100, -60)
 	Global.add_bullet(
-		"XuanwuGateArrow", bullet, MonsterDirection, 1.0, position + offset, "arrow", objattackDic["arrow"]
+		"XuanwuGateArrow", bullet, MonsterDirection, 1.0, position + offset, "arrow", obj_attack_dict["arrow"]
 	)
 
 

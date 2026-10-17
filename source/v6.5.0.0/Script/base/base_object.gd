@@ -10,7 +10,7 @@ var walk_speed: int = 240
 var run_speed: int
 var gravity: float = -980.0
 var direction: int
-var objattackDic: Dictionary
+var obj_attack_dict: Dictionary
 var jump_count: int = 0
 var jump_power: float = -540.0
 var hit_count: int = 0
@@ -56,18 +56,18 @@ func _physics_process(_delta: float) -> void:
 
 func set_data():
 	gravity = -980.0
-	objattackDic = {}
+	obj_attack_dict = {}
 	jump_count = 0
 	jump_power = -540.0
 
 
 func get_hurt(hit_name):
-	var hurt = objattackDic[hit_name].power
+	var hurt = obj_attack_dict[hit_name].power
 	return hurt
 
 
 func get_hurt_lx(hit_name):
-	var hurt_kind = objattackDic[hit_name].attackKind
+	var hurt_kind = obj_attack_dict[hit_name].attackKind
 	return hurt_kind
 
 

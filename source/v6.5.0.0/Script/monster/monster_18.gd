@@ -24,14 +24,14 @@ func monster_18():
 	self.Critreduce = 0
 	self.speed = 10
 	self.mysee = 300
-	self.attackRange = 95
-	self.attackDesire = 90
+	self.attack_range = 95
+	self.attack_desire = 90
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 200
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {"power": 165, "hurtBack": [-4, -9], "attackKind": "physics"}
-	self.objattackDic["fhjl"] = {
+	self.obj_attack_dict["hit1"] = {"power": 165, "hurtBack": [-4, -9], "attackKind": "physics"}
+	self.obj_attack_dict["fhjl"] = {
 		"power": 228,
 		"hurtBack": [-10, -5],
 		"attackKind": "real",
@@ -46,7 +46,7 @@ func monster_18():
 			"AttackKind": "",
 		}
 	}
-	self.objattackDic["dtsz"] = {
+	self.obj_attack_dict["dtsz"] = {
 		"power": 200,
 		"hurtBack": [-22, -15],
 		"attackKind": "real",
@@ -95,7 +95,7 @@ func ai_think():
 			if Skill_2_CD <= 0:
 				whencando_hit3()
 				return
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 300:
 					if Skill_1_CD <= 0:
@@ -105,7 +105,7 @@ func ai_think():
 					do_hit_2()
 				elif count % 90 == 0:
 					var rad = randi_range(0, 100)
-					if rad <= attackDesire:
+					if rad <= attack_desire:
 						attack_target()
 				else:
 					stop_move()
@@ -140,7 +140,7 @@ func call_fhjl():
 			1,
 			Vector2(self.position.x + 80, self.position.y - 10),
 			"fhjl",
-			self.objattackDic["fhjl"]
+			self.obj_attack_dict["fhjl"]
 		)
 	else:
 		Global.add_bullet(
@@ -150,7 +150,7 @@ func call_fhjl():
 			1,
 			Vector2(self.position.x - 80, self.position.y - 10),
 			"fhjl",
-			self.objattackDic["fhjl"]
+			self.obj_attack_dict["fhjl"]
 		)
 
 
@@ -180,7 +180,7 @@ func call_dtsz():
 			1,
 			bullet_spawn_positions[i],
 			"dtsz",
-			self.objattackDic["dtsz"]
+			self.obj_attack_dict["dtsz"]
 		)
 		await get_tree().create_timer(0.32, false).timeout
 
@@ -191,7 +191,7 @@ func whencando_hit3():
 		do_hit_2()
 	elif count % 90 == 0:
 		var rad = randi_range(0, 100)
-		if rad <= attackDesire:
+		if rad <= attack_desire:
 			attack_target()
 	elif abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) < 170:
 		if is_need_change:

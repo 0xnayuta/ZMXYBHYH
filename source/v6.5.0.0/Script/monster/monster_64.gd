@@ -26,25 +26,25 @@ func monster_64():
 	self.Critreduce = 0
 	self.speed = 9
 	self.mysee = 500
-	self.attackRange = 335
-	self.attackDesire = 60
+	self.attack_range = 335
+	self.attack_desire = 60
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 200
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 300 + int(RoleProp.baseroleprop.Level * 8.5),
 		"hurtBack": [-7, -9],
 		"attackKind": "physics",
 		"HitProtect": 4
 	}
-	self.objattackDic["hit1_1"] = {
+	self.obj_attack_dict["hit1_1"] = {
 		"power": 200 + int(RoleProp.baseroleprop.Level * 8),
 		"hurtBack": [-15, -20],
 		"attackKind": "magic",
 		"HitProtect": 4
 	}
-	self.objattackDic["hit1_2"] = {
+	self.obj_attack_dict["hit1_2"] = {
 		"power": 300 + int(RoleProp.baseroleprop.Level * 8.5),
 		"hurtBack": [50, -20],
 		"attackKind": "magic",
@@ -60,7 +60,7 @@ func monster_64():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["xlyj"] = {
+	self.obj_attack_dict["xlyj"] = {
 		"power": 400 + int(RoleProp.baseroleprop.Level * 8.5),
 		"hurtBack": [-8, 0],
 		"attackKind": "physics",
@@ -76,8 +76,8 @@ func monster_64():
 			"CanAdd": false,
 		}
 	}
-	self.objattackDic["yscs"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic", "HitProtect": 4}
-	self.objattackDic["tsyd"] = {
+	self.obj_attack_dict["yscs"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic", "HitProtect": 4}
+	self.obj_attack_dict["tsyd"] = {
 		"power": 500 + int(RoleProp.baseroleprop.Level * 9),
 		"hurtBack": [-3, 0],
 		"attackKind": "physics",
@@ -94,7 +94,7 @@ func monster_64():
 		}
 	}
 
-	self.objattackDic["zhq_3"] = {
+	self.obj_attack_dict["zhq_3"] = {
 		"power": 400 + int(RoleProp.baseroleprop.Level * 8.5),
 		"hurtBack": [-50, -40],
 		"attackKind": "physics",
@@ -110,7 +110,7 @@ func monster_64():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["sgq"] = {
+	self.obj_attack_dict["sgq"] = {
 		"power": 300 + int(RoleProp.baseroleprop.Level * 8.5),
 		"hurtBack": [-4, -40],
 		"attackKind": "physics",
@@ -155,7 +155,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -303,7 +303,7 @@ func call_fly_bullet():
 			1000,
 			-900,
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 	else:
 		fz = Global.call_fly_bullet(
@@ -314,7 +314,7 @@ func call_fly_bullet():
 			1000,
 			900,
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 		fz.get_node("AnimatedSprite2D").flip_h = true
 	if first:
@@ -334,7 +334,7 @@ func call_fly_bullet2():
 			300,
 			-1500,
 			"zhq_3",
-			self.objattackDic["zhq_3"]
+			self.obj_attack_dict["zhq_3"]
 		)
 	else:
 		fz = Global.call_fly_bullet(
@@ -345,7 +345,7 @@ func call_fly_bullet2():
 			300,
 			1500,
 			"zhq_3",
-			self.objattackDic["zhq_3"]
+			self.obj_attack_dict["zhq_3"]
 		)
 		fz.get_node("AnimatedSprite2D").flip_h = true
 	if first:
@@ -377,8 +377,8 @@ func change_self_color():
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	super._on_hurt_box_area_entered(area)
 	if fs:
-		if get_Player != null:
-			get_Player.effect_reducehp(self.hurt_received, "real")
+		if get_player != null:
+			get_player.effect_reducehp(self.hurt_received, "real")
 		self.hurt_received = 0
 
 
@@ -414,7 +414,7 @@ func call_bullet():
 		]
 	for i in bullet_spawn_positions:
 		var bb = Global.add_bullet(
-			"Monster63Bullet", self.bullet, false, 1, i + self.position, "tsyd", self.objattackDic["tsyd"]
+			"Monster63Bullet", self.bullet, false, 1, i + self.position, "tsyd", self.obj_attack_dict["tsyd"]
 		)
 		if first:
 			bb.scale = Vector2(1.5, 1.5)

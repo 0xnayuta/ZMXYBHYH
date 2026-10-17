@@ -46,13 +46,13 @@ func monster_139():
 	self.Critreduce = 0
 	self.speed = 10
 	self.mysee = 300
-	self.attackRange = 145
-	self.attackDesire = 70
+	self.attack_range = 145
+	self.attack_desire = 70
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 1000,
 		"hurtBack": [-3, -6],
 		"attackKind": "physics",
@@ -130,13 +130,13 @@ func ai_think():
 			if has_target == false:
 				normal_state()
 			else:
-				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 					have_target()
 				else:
 					stop_move()
 					if can_attack:
 						if count % 60 == 0:
-							if randi_range(0, 100) < attackDesire:
+							if randi_range(0, 100) < attack_desire:
 								attack_target()
 	else:
 		if not is_be_attacking:

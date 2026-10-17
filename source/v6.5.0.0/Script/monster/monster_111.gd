@@ -20,13 +20,13 @@ func monster_109():
 	self.Critreduce = 0
 	self.speed = 11
 	self.mysee = 500
-	self.attackRange = 165
-	self.attackDesire = 80
+	self.attack_range = 165
+	self.attack_desire = 80
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 220
 	self.fall_coin = 220
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 500,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -58,7 +58,7 @@ func call_bullet_1():
 			1,
 			Vector2(40, 0) + position,
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 	else:
 		bullet_node = Global.add_bullet(
@@ -68,7 +68,7 @@ func call_bullet_1():
 			1,
 			Vector2(40, 0) + position,
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 
 
@@ -100,7 +100,7 @@ func ai_think():
 				if Skill_1_CD <= 0:
 					do_hit_1()
 				if count % 60 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 
 

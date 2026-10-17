@@ -160,9 +160,9 @@ func _physics_process(delta: float) -> void:
 			Monster.fall_stone_pro = 0
 			Monster.fall_stone = []
 			if int(i["power"]) > 0:
-				for z in Monster.objattackDic:
-					if Monster.objattackDic[z].has("power"):
-						Monster.objattackDic[z]["power"] = i["power"]
+				for z in Monster.obj_attack_dict:
+					if Monster.obj_attack_dict[z].has("power"):
+						Monster.obj_attack_dict[z]["power"] = i["power"]
 		is_set = true
 	if not is_cc:
 		if Role_.position.x >= 600:

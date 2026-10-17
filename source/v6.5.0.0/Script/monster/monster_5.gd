@@ -21,13 +21,13 @@ func monster_5():
 	self.Critreduce = 0
 	self.speed = 11
 	self.mysee = 400
-	self.attackRange = 180
-	self.attackDesire = 80
+	self.attack_range = 180
+	self.attack_desire = 80
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 80
 	self.fall_coin = 30
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 55,
 		"hurtBack": [-8, -15],
 		"attackKind": "physics",
@@ -43,7 +43,7 @@ func monster_5():
 		},
 		"HitProtect": 8,
 	}
-	self.objattackDic["yyzl"] = {
+	self.obj_attack_dict["yyzl"] = {
 		"power": 75,
 		"hurtBack": [5, -15],
 		"attackKind": "magic",
@@ -80,7 +80,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 900:
@@ -112,5 +112,5 @@ func call_yyzl():
 	MonsterBullet.wait_for_monster5_stream_images()
 	if not is_inside_tree() or is_queued_for_deletion():
 		return
-	var ly = Global.add_bullet("Monster5Bullet", self.bullet, false, 1, po, "yyzl", self.objattackDic["yyzl"])
+	var ly = Global.add_bullet("Monster5Bullet", self.bullet, false, 1, po, "yyzl", self.obj_attack_dict["yyzl"])
 	ly.scale = Vector2(0.57, 0.7)

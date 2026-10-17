@@ -67,10 +67,10 @@ func initialize_monster_properties():
 	self.set("fall_coin", 500)
 	self.set("ebol", 0)
 
-	attackRange = 160
+	attack_range = 160
 	mysee = 99999
 	speed = 12
-	attackDesire = 80
+	attack_desire = 80
 
 	var base_damage_hit1 = 1500
 	var base_damage_hit2 = 4500
@@ -86,19 +86,19 @@ func initialize_monster_properties():
 	var actual_damage_hit5 = int(player_power * damage_ratio * (base_damage_hit5 / 500.0))
 	var actual_damage_hit6 = int(player_power * damage_ratio * (base_damage_hit6 / 500.0))
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": actual_damage_hit1,
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
 		"HitProtect": 0,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": actual_damage_hit2,
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
 		"HitProtect": 0,
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": actual_damage_hit3,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -114,7 +114,7 @@ func initialize_monster_properties():
 			"CanRemove": false,
 		}
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": actual_damage_hit4,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -130,13 +130,13 @@ func initialize_monster_properties():
 			"CanRemove": false,
 		}
 	}
-	self.objattackDic["hit5"] = {
+	self.obj_attack_dict["hit5"] = {
 		"power": actual_damage_hit5,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
 		"HitProtect": 0,
 	}
-	self.objattackDic["hit6"] = {
+	self.obj_attack_dict["hit6"] = {
 		"power": actual_damage_hit6,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -159,7 +159,7 @@ func ai_think() -> void:
 
 	var distance = abs(position.x - current_target.position.x)
 	if distance < mysee:
-		if distance > attackRange:
+		if distance > attack_range:
 			if current_target.position.x > position.x:
 				move_right()
 			else:
@@ -188,7 +188,7 @@ func try_use_skills():
 	if should_in_sky:
 		return
 
-	if randi_range(0, 100) >= attackDesire:
+	if randi_range(0, 100) >= attack_desire:
 		return
 
 	if Skill_4_CD <= 0:
@@ -305,7 +305,7 @@ func call_bullet_1():
 	if not current_target or not is_instance_valid(current_target):
 		return
 	var round_num = Global.add_bullet(
-		"Monster142Bullet1", self.bullet, false, 1, position, "hit1", self.objattackDic["hit1"]
+		"Monster142Bullet1", self.bullet, false, 1, position, "hit1", self.obj_attack_dict["hit1"]
 	)
 	setup_bullet_collision(round_num)
 	var tween = create_tween()
@@ -325,7 +325,9 @@ func call_bullet_3():
 		Vector2(400 + position.x, 490)
 	]
 	for i in bullet_spawn_positions:
-		var bullet = Global.add_bullet("Monster56Bullet", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"])
+		var bullet = Global.add_bullet(
+			"Monster56Bullet", self.bullet, false, 1, i, "hit3", self.obj_attack_dict["hit3"]
+		)
 		setup_bullet_collision(bullet)
 
 
@@ -345,7 +347,9 @@ func call_bullet_4():
 	if not MonsterDirection:
 		bullet_spawn_positions.reverse()
 	for i in bullet_spawn_positions:
-		var stab = Global.add_bullet("Monster142Bullet2", self.bullet, false, 1, i, "hit4", self.objattackDic["hit4"])
+		var stab = Global.add_bullet(
+			"Monster142Bullet2", self.bullet, false, 1, i, "hit4", self.obj_attack_dict["hit4"]
+		)
 		setup_bullet_collision(stab)
 		await get_tree().create_timer(0.2, false).timeout
 
@@ -368,7 +372,7 @@ func call_bullet_5():
 	bullet_spawn_positions.shuffle()
 	for i in bullet_spawn_positions:
 		var round_num = Global.add_bullet(
-			"Monster55Bullet", self.bullet, false, 1, position, "hit5", self.objattackDic["hit5"]
+			"Monster55Bullet", self.bullet, false, 1, position, "hit5", self.obj_attack_dict["hit5"]
 		)
 		setup_bullet_collision(round_num)
 		round_list.push_back(round_num)

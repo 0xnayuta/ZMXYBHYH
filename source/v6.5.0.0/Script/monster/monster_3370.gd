@@ -68,18 +68,18 @@ func _configure_test_boss() -> void:
 	sp = 0
 	speed = 6.0
 	mysee = 650
-	attackRange = 560
-	attackDesire = 100
+	attack_range = 560
+	attack_desire = 100
 	behit_calmtime = 0.0
 	self_rhp = 0
 	add_exp = 0
 	fall_coin = 0
 	fall_pro = 0.0
 	fall_stone_pro = 0.0
-	objattackDic.clear()
-	objattackDic["hit1"] = _attack_data(1.0, [-3, -4], "physics")
-	objattackDic["hit2"] = _attack_data(1.0, [-4, -3], "physics")
-	objattackDic["hit3"] = _attack_data(1.0, [-2, -2], "magic")
+	obj_attack_dict.clear()
+	obj_attack_dict["hit1"] = _attack_data(1.0, [-3, -4], "physics")
+	obj_attack_dict["hit2"] = _attack_data(1.0, [-4, -3], "physics")
+	obj_attack_dict["hit3"] = _attack_data(1.0, [-2, -2], "magic")
 
 
 func _attack_data(multiplier: float, hurt_back: Array, attack_kind: String) -> Dictionary:
@@ -202,7 +202,7 @@ func _next_skill(distance: float) -> int:
 		return candidate
 	if candidate == 2 and distance <= 560.0:
 		return candidate
-	if candidate == 3 and distance <= float(attackRange):
+	if candidate == 3 and distance <= float(attack_range):
 		return candidate
 	return 0
 
@@ -278,7 +278,7 @@ func _spawn_skill3_field() -> void:
 				"position": spawn_position,
 				"right": true,
 				"hit_name": "hit3",
-				"attack_data": (objattackDic["hit3"] as Dictionary).duplicate(true),
+				"attack_data": (obj_attack_dict["hit3"] as Dictionary).duplicate(true),
 				"skill_name": "Monster3370Effect3Field",
 				"atlas_manifest": ATLAS_MANIFEST,
 				"atlas_sequence": "effect3_1",

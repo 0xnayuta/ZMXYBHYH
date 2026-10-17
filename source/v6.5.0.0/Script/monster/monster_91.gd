@@ -25,19 +25,19 @@ func monster_91():
 	self.Critreduce = 0
 	self.speed = 9
 	self.mysee = 500
-	self.attackRange = 165
-	self.attackDesire = 80
+	self.attack_range = 165
+	self.attack_desire = 80
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 400
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 330,
 		"hurtBack": [-8, -12],
 		"attackKind": "physics",
 		"HitProtect": 30,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": int(350 * bl),
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
@@ -53,7 +53,7 @@ func monster_91():
 			"DeBuff": true,
 		},
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 350,
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
@@ -69,13 +69,13 @@ func monster_91():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 0,
 		"hurtBack": [-30, -50],
 		"attackKind": "real",
 		"HitProtect": 50,
 	}
-	self.objattackDic["hit5"] = {
+	self.obj_attack_dict["hit5"] = {
 		"power": int(RoleProp.roleprop.SHp * 10),
 		"hurtBack": [0, 0],
 		"attackKind": "real",
@@ -192,7 +192,7 @@ func ai_think():
 					if fs == null:
 						do_hit_3()
 						return
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -201,7 +201,7 @@ func ai_think():
 						do_hit_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 300:
 					if count % 90 == 0:
-						if randi_range(0, 100) < attackDesire:
+						if randi_range(0, 100) < attack_desire:
 							attack_target()
 			else:
 				if Skill_1_CD <= 0:
@@ -209,7 +209,7 @@ func ai_think():
 				elif Skill_2_CD <= 0:
 					do_hit_2()
 				elif count % 90 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 					else:
 						stop_move()
@@ -258,7 +258,7 @@ func add_bullet_2():
 			1,
 			bullet_spawn_positions + position,
 			"hit3",
-			self.objattackDic["hit3"]
+			self.obj_attack_dict["hit3"]
 		)
 		await get_tree().create_timer(0.1, false).timeout
 
@@ -271,7 +271,7 @@ func add_bullet():
 		bullet_spawn_positions = [Vector2(-100, 75), Vector2(-180, 75), Vector2(-260, 75), Vector2(-340, 75)]
 	for i in bullet_spawn_positions:
 		var lt = Global.add_bullet(
-			"Monster91Bullet1", self.bullet, MonsterDirection, 2, i + position, "hit2", self.objattackDic["hit2"]
+			"Monster91Bullet1", self.bullet, MonsterDirection, 2, i + position, "hit2", self.obj_attack_dict["hit2"]
 		)
 		lt.scale.y = 1.5
 		await get_tree().create_timer(0.1, false).timeout

@@ -120,8 +120,8 @@ func _configure_boss() -> void:
 	sp = int(config.get("magic_break", 0))
 	speed = float(config.get("speed", 0.0))
 	mysee = int(config.get("sight", 0))
-	attackRange = roundi(float(config.get("range", 0.0)))
-	attackDesire = int(config.get("attack_desire", 0))
+	attack_range = roundi(float(config.get("range", 0.0)))
+	attack_desire = int(config.get("attack_desire", 0))
 	add_exp = int(config.get("exp", 0))
 	fall_coin = int(config.get("coin", 0))
 	fall_pro = float(config.get("drop_rate", 0.0))
@@ -129,10 +129,10 @@ func _configure_boss() -> void:
 	independent_fall_list = Array(config.get("independent_drop_list", [])).duplicate(true)
 	is_boss = bool(config.get("is_boss", true))
 	boss_max_protect = float(config.get("max_protect", 100.0))
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config.get("attacks", {})
 	for attack_name: String in attacks:
-		objattackDic[attack_name] = _attack_data(attacks[attack_name])
+		obj_attack_dict[attack_name] = _attack_data(attacks[attack_name])
 
 
 func _resolve_runtime_config() -> Dictionary:

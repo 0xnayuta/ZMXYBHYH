@@ -21,19 +21,19 @@ func monster_6():
 	self.Critreduce = 0
 	self.speed = 11
 	self.mysee = 600
-	self.attackRange = 160
-	self.attackDesire = 100
+	self.attack_range = 160
+	self.attack_desire = 100
 	self.behit_calmtime = 0.4
 	self.self_rhp = 0
 	self.add_exp = 200
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 180,
 		"hurtBack": [-4, -9],
 		"attackKind": "physics",
 		"HitProtect": 8,
 	}
-	self.objattackDic["qnbx"] = {
+	self.obj_attack_dict["qnbx"] = {
 		"power": 150,
 		"hurtBack": [0, 0],
 		"attackKind": "real",
@@ -49,7 +49,7 @@ func monster_6():
 			"AttackKind": "",
 		}
 	}
-	self.objattackDic["qnhb"] = {
+	self.obj_attack_dict["qnhb"] = {
 		"power": 120,
 		"hurtBack": [-8, -25],
 		"attackKind": "real",
@@ -64,7 +64,7 @@ func monster_6():
 			"AttackKind": "real",
 		}
 	}
-	self.objattackDic["htsl"] = {
+	self.obj_attack_dict["htsl"] = {
 		"power": 100,
 		"hurtBack": [-2, -25],
 		"attackKind": "real",
@@ -108,7 +108,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if Skill_3_CD <= 0:
 					do_hit_4()
@@ -127,7 +127,7 @@ func ai_think():
 					do_hit_3()
 				elif count % 90 == 0:
 					var rad = randi_range(0, 100)
-					if rad <= attackDesire:
+					if rad <= attack_desire:
 						do_hit_1()
 				else:
 					stop_move()
@@ -193,7 +193,7 @@ func call_m6_bullet():
 			1000,
 			-3400,
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 	else:
 		fz = Global.call_fly_bullet(
@@ -204,7 +204,7 @@ func call_m6_bullet():
 			1000,
 			3400,
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 
 	if fz:
@@ -222,7 +222,7 @@ func call_bfx():
 		get_po.push_back(i + RoleProp.get_nearest_monster_target_position(global_position))
 	await get_tree().create_timer(1.6, false).timeout
 	for i in get_po:
-		Global.add_bullet("Monster6Bullet3", self.bullet, false, 1, i, "qnbx", self.objattackDic["qnbx"])
+		Global.add_bullet("Monster6Bullet3", self.bullet, false, 1, i, "qnbx", self.obj_attack_dict["qnbx"])
 
 
 func m6_hb_effect_2():
@@ -239,35 +239,35 @@ func m6_hb_effect_2():
 		self.position.x + 510
 	]
 	Global.add_bullet(
-		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[0], self.position.y), "qnhb", self.objattackDic["qnhb"]
+		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[0], self.position.y), "qnhb", self.obj_attack_dict["qnhb"]
 	)
 	await get_tree().create_timer(0.2).timeout
 	Global.add_bullet(
-		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[1], self.position.y), "qnhb", self.objattackDic["qnhb"]
+		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[1], self.position.y), "qnhb", self.obj_attack_dict["qnhb"]
 	)
 	Global.add_bullet(
-		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[2], self.position.y), "qnhb", self.objattackDic["qnhb"]
-	)
-	await get_tree().create_timer(0.2).timeout
-	Global.add_bullet(
-		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[3], self.position.y), "qnhb", self.objattackDic["qnhb"]
-	)
-	Global.add_bullet(
-		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[4], self.position.y), "qnhb", self.objattackDic["qnhb"]
+		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[2], self.position.y), "qnhb", self.obj_attack_dict["qnhb"]
 	)
 	await get_tree().create_timer(0.2).timeout
 	Global.add_bullet(
-		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[5], self.position.y), "qnhb", self.objattackDic["qnhb"]
+		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[3], self.position.y), "qnhb", self.obj_attack_dict["qnhb"]
 	)
 	Global.add_bullet(
-		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[6], self.position.y), "qnhb", self.objattackDic["qnhb"]
+		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[4], self.position.y), "qnhb", self.obj_attack_dict["qnhb"]
 	)
 	await get_tree().create_timer(0.2).timeout
 	Global.add_bullet(
-		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[7], self.position.y), "qnhb", self.objattackDic["qnhb"]
+		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[5], self.position.y), "qnhb", self.obj_attack_dict["qnhb"]
 	)
 	Global.add_bullet(
-		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[8], self.position.y), "qnhb", self.objattackDic["qnhb"]
+		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[6], self.position.y), "qnhb", self.obj_attack_dict["qnhb"]
+	)
+	await get_tree().create_timer(0.2).timeout
+	Global.add_bullet(
+		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[7], self.position.y), "qnhb", self.obj_attack_dict["qnhb"]
+	)
+	Global.add_bullet(
+		"qnhb_2", self.bullet, dir, 1.2, Vector2(position_x[8], self.position.y), "qnhb", self.obj_attack_dict["qnhb"]
 	)
 
 
@@ -281,7 +281,7 @@ func m6_hb_effect_3():
 			2,
 			Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, self.position.y),
 			"htsl",
-			self.objattackDic["htsl"]
+			self.obj_attack_dict["htsl"]
 		)
 	else:
 		Global.add_bullet(
@@ -291,5 +291,5 @@ func m6_hb_effect_3():
 			1,
 			Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, self.position.y),
 			"htsl",
-			self.objattackDic["htsl"]
+			self.obj_attack_dict["htsl"]
 		)

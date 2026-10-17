@@ -21,13 +21,13 @@ func monster_99():
 	self.Critreduce = 0
 	self.speed = 15
 	self.mysee = 500
-	self.attackRange = 255
-	self.attackDesire = 100
+	self.attack_range = 255
+	self.attack_desire = 100
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 60 + Global.llbt_level * 5
 	self.fall_coin = 70 + Global.llbt_level * 6
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 270 + Global.llbt_level * 10,
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
@@ -55,11 +55,11 @@ func call_bullet():
 
 	if self.MonsterDirection:
 		bullet_node = Global.add_bullet(
-			"Monster99Bullet", self.bullet, false, 1, Vector2(40, 20) + position, "hit1", self.objattackDic["hit1"]
+			"Monster99Bullet", self.bullet, false, 1, Vector2(40, 20) + position, "hit1", self.obj_attack_dict["hit1"]
 		)
 	else:
 		bullet_node = Global.add_bullet(
-			"Monster99Bullet", self.bullet, false, 1, Vector2(-40, 20) + position, "hit1", self.objattackDic["hit1"]
+			"Monster99Bullet", self.bullet, false, 1, Vector2(-40, 20) + position, "hit1", self.obj_attack_dict["hit1"]
 		)
 	bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 

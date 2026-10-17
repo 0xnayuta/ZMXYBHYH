@@ -20,19 +20,19 @@ func monster_107():
 	self.Critreduce = 0
 	self.speed = 11
 	self.mysee = 500
-	self.attackRange = 335
-	self.attackDesire = 80
+	self.attack_range = 335
+	self.attack_desire = 80
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 300
 	self.fall_coin = 335
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 500,
 		"hurtBack": [-5, -9],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 350,
 		"hurtBack": [-2, -1],
 		"attackKind": "magic",
@@ -48,7 +48,7 @@ func monster_107():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 800,
 		"hurtBack": [-6, -1],
 		"attackKind": "magic",
@@ -64,7 +64,7 @@ func monster_107():
 			"CanAdd": false,
 		}
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 350,
 		"hurtBack": [-2, -9],
 		"attackKind": "magic",
@@ -105,7 +105,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_3_CD <= 0:
 					do_hit_3()
@@ -121,7 +121,7 @@ func ai_think():
 				if Skill_3_CD <= 0:
 					do_hit_3()
 				if count % 60 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 
 
@@ -176,7 +176,7 @@ func call_bullet_1():
 		bullet_spawn_positions = [Vector2(-55, 0), Vector2(-25, -45), Vector2(-25, 45)]
 	for i in bullet_spawn_positions:
 		Global.add_bullet(
-			"Monster107Bullet1", self.bullet, MonsterDirection, 1.5, i + position, "hit1", self.objattackDic["hit1"]
+			"Monster107Bullet1", self.bullet, MonsterDirection, 1.5, i + position, "hit1", self.obj_attack_dict["hit1"]
 		)
 
 
@@ -188,7 +188,7 @@ func call_bullet_2():
 		bullet_spawn_positions = [Vector2(0, 0), Vector2(75, 45), Vector2(-50, 45), Vector2(75, -105), Vector2(-75, 25)]
 	for i in bullet_spawn_positions:
 		Global.add_bullet(
-			"Monster107Bullet2", self.bullet, MonsterDirection, 1, i + position, "hit3", self.objattackDic["hit3"]
+			"Monster107Bullet2", self.bullet, MonsterDirection, 1, i + position, "hit3", self.obj_attack_dict["hit3"]
 		)
 		await get_tree().create_timer(0.1, false).timeout
 

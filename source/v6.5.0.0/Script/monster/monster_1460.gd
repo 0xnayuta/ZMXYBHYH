@@ -95,8 +95,8 @@ func _configure_boss() -> void:
 	speed = 26
 	rush_speed = 180.0
 	mysee = int(SEEK_VIEW_RANGE)
-	attackRange = int(SKILL_1_SCOPE_MAX)
-	attackDesire = 100
+	attack_range = int(SKILL_1_SCOPE_MAX)
+	attack_desire = 100
 	behit_calmtime = 0
 	add_exp = 0
 	fall_coin = 0
@@ -116,7 +116,7 @@ func _configure_boss() -> void:
 func _refresh_attack_powers() -> void:
 	var base_attack := maxf(float(attack_in), 0.0)
 	var difficulty_multiplier := _get_difficulty_attack_multiplier()
-	objattackDic["skill_1"] = {
+	obj_attack_dict["skill_1"] = {
 		"power": int(round(base_attack * SKILL_1_POWER_FACTOR * difficulty_multiplier)),
 		"hurtBack": [-5.0, -4.4],
 		"sourceTargetMove": SOURCE_SKILL_1_TARGET_MOVE,
@@ -124,7 +124,7 @@ func _refresh_attack_powers() -> void:
 		"attackKind": "physics",
 		"HitProtect": 1667,
 	}
-	objattackDic["skill_1_projectile"] = {
+	obj_attack_dict["skill_1_projectile"] = {
 		"power": int(round(base_attack * SKILL_1_PROJECTILE_POWER_FACTOR * difficulty_multiplier)),
 		"hurtBack": [-0.84, -2.8],
 		"sourceTargetMove": SOURCE_SKILL_1_PROJECTILE_TARGET_MOVE,
@@ -132,7 +132,7 @@ func _refresh_attack_powers() -> void:
 		"attackKind": "magic",
 		"HitProtect": 223,
 	}
-	objattackDic["skill_2"] = {
+	obj_attack_dict["skill_2"] = {
 		"power": int(round(base_attack * SKILL_2_POWER_FACTOR * difficulty_multiplier)),
 		"hurtBack": [-9.6, -6.0],
 		"sourceTargetMove": SOURCE_SKILL_2_TARGET_MOVE,
@@ -491,7 +491,7 @@ func _fire_skill_1_sequence(generation: int) -> void:
 
 func _spawn_skill_1_projectile(spawn_position: Vector2, projectile_velocity: Vector2) -> void:
 	var projectile = PROJECTILE_SCENE.instantiate()
-	projectile.AttList = objattackDic["skill_1_projectile"].duplicate(true)
+	projectile.AttList = obj_attack_dict["skill_1_projectile"].duplicate(true)
 	projectile.hit_name = "skill_1_projectile"
 	projectile.skill_name = "Tongtian3057Projectile"
 	projectile.spawn_global_position = spawn_position
@@ -505,7 +505,7 @@ func _fire_skill_2_once() -> void:
 		return
 	_skill_2_fired = true
 	var beam = BEAM_SCENE.instantiate()
-	beam.AttList = objattackDic["skill_2"].duplicate(true)
+	beam.AttList = obj_attack_dict["skill_2"].duplicate(true)
 	beam.hit_name = "skill_2"
 	beam.skill_name = "Tongtian3057Beam"
 	beam.spawn_global_position = global_position

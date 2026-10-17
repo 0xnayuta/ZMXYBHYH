@@ -22,13 +22,13 @@ func monster_94():
 	self.Critreduce = 0
 	self.speed = 8 + Stage * 2
 	self.mysee = 500
-	self.attackRange = 165
-	self.attackDesire = 75 + Stage * 10
+	self.attack_range = 165
+	self.attack_desire = 75 + Stage * 10
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 160
 	self.fall_coin = 110
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 150 + Stage * 45,
 		"hurtBack": [-8, -12],
 		"attackKind": "physics",

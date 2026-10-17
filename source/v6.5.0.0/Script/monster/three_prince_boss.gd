@@ -186,8 +186,8 @@ func _configure_monster() -> void:
 	Critreduce = 10
 	speed = 20
 	mysee = 1000
-	attackRange = int(_config["attack_range"])
-	attackDesire = 100
+	attack_range = int(_config["attack_range"])
+	attack_desire = 100
 	behit_calmtime = 0.1
 	self_rhp = 0
 	add_exp = 500
@@ -230,29 +230,29 @@ func _configure_monster() -> void:
 			drop["name"] = NIGHTMARE_EQUIPMENT_REPLACEMENTS.get(drop["name"], drop["name"])
 	fall_stone_pro = 0.0
 	fall_stone = []
-	objattackDic.clear()
-	objattackDic["hit1"] = {
+	obj_attack_dict.clear()
+	obj_attack_dict["hit1"] = {
 		"power": _base_attack,
 		"hurtBack": [-6, -5],
 		"attackKind": "physics",
 		"attackInterval": 999,
 		"HitProtect": 8,
 	}
-	objattackDic["hit2"] = {
+	obj_attack_dict["hit2"] = {
 		"power": _base_attack if prince_kind == 0 else int(_base_attack * 0.8),
 		"hurtBack": [-3, 0],
 		"attackKind": "physics",
 		"attackInterval": 10,
 		"HitProtect": 8,
 	}
-	objattackDic["hit3"] = {
+	obj_attack_dict["hit3"] = {
 		"power": _base_attack * (2 if prince_kind < 2 else 1),
 		"hurtBack": [-25, 0],
 		"attackKind": "magic",
 		"attackInterval": 999,
 		"HitProtect": 8,
 	}
-	objattackDic["hit4"] = {
+	obj_attack_dict["hit4"] = {
 		"power": 80 if prince_kind == 0 else _base_attack * 2,
 		"hurtBack": [-25, 0],
 		"attackKind": "magic",
@@ -270,9 +270,9 @@ func _configure_monster() -> void:
 			"DeBuff": true,
 		}
 		for attack_name in ["hit1", "hit2", "hit3", "hit4"]:
-			objattackDic[attack_name]["stz_stack_bonus"] = true
-		objattackDic["hit1"]["addeffect"] = stack_effect.duplicate(true)
-		objattackDic["hit3"]["addeffect"] = stack_effect.duplicate(true)
+			obj_attack_dict[attack_name]["stz_stack_bonus"] = true
+		obj_attack_dict["hit1"]["addeffect"] = stack_effect.duplicate(true)
+		obj_attack_dict["hit3"]["addeffect"] = stack_effect.duplicate(true)
 
 
 func monster_info_base_attack() -> int:
@@ -459,7 +459,7 @@ func ai_think() -> void:
 			if distance <= 600.0 and Skill_1_CD <= 0:
 				_use_prince_action(&"hit2", 1, randi_range(6, 15))
 				return
-	if distance > float(attackRange):
+	if distance > float(attack_range):
 		have_target()
 		return
 	stop_move()
@@ -624,7 +624,7 @@ func _spawn_effect(
 	effect.follow_owner_offset = resolved_offset
 	effect.loop_visual = loop_visual_
 	effect.additive_blend = prince_kind == 0 and effect_dir in ["effect_wind", "effect_guard"]
-	effect.AttList = objattackDic.get(attack_name, {})
+	effect.AttList = obj_attack_dict.get(attack_name, {})
 	if effect.AttList is Dictionary:
 		effect.attack_interval_frames = maxi(int(effect.AttList.get("attackInterval", 0)), 0)
 	effect.hit_name = attack_name
@@ -812,7 +812,7 @@ func _get_incoming_attack_source(area: Area2D) -> Node:
 	if area == null or not is_instance_valid(area):
 		return null
 	if area is BaseRoleHitBox or area is RolehmzBullet:
-		return get_Player
+		return get_player
 	if area is MagicWeaponHit:
 		return area.get_parent()
 	var parent: Node = area.get_parent()
@@ -837,7 +837,7 @@ func _get_incoming_attack_kind(area: Area2D) -> String:
 		return str(hit_data.get("attackKind", ""))
 	if source is BaseHero:
 		var action_name: String = str(source.get("get_action"))
-		var attack_data: Variant = source.objattackDic.get(action_name, {})
+		var attack_data: Variant = source.obj_attack_dict.get(action_name, {})
 		if attack_data is Dictionary:
 			return str(attack_data.get("attackKind", ""))
 	return ""
@@ -846,7 +846,7 @@ func _get_incoming_attack_kind(area: Area2D) -> String:
 func _get_incoming_attacker(area: Area2D) -> Node:
 	var source: Node = _get_incoming_attack_source(area)
 	if source == null or not is_instance_valid(source):
-		return get_Player if get_Player != null and is_instance_valid(get_Player) else null
+		return get_player if get_player != null and is_instance_valid(get_player) else null
 	if source is BaseHero:
 		return source
 	var player_value: Variant = source.get("Player")
@@ -859,7 +859,7 @@ func _get_incoming_attacker(area: Area2D) -> Node:
 			return parent
 		parent = parent.get_parent()
 		depth += 1
-	return get_Player if get_Player != null and is_instance_valid(get_Player) else null
+	return get_player if get_player != null and is_instance_valid(get_player) else null
 
 
 func _interrupt_attack_state_on_hit() -> void:

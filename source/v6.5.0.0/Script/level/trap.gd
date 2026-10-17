@@ -7,7 +7,7 @@ var get_name_
 var can_drop
 var is_play
 var total_hit = 0
-var objattackDic = {}
+var obj_attack_dict = {}
 enum { do, remove }
 
 
@@ -27,14 +27,14 @@ func _on_hit_box_area_entered(area: Area2D, _extra = null) -> void:
 	match get_name_:
 		"Trap_1":
 			hit_name = "Trap_1"
-			self.objattackDic["Trap_1"] = {"power": 50, "hurtBack": [15, -15], "attackKind": "real"}
+			self.obj_attack_dict["Trap_1"] = {"power": 50, "hurtBack": [15, -15], "attackKind": "real"}
 		"Trap_2":
 			hit_name = "Trap_2"
-			self.objattackDic["Trap_2"] = {"power": 50, "hurtBack": [15, -15], "attackKind": "real"}
+			self.obj_attack_dict["Trap_2"] = {"power": 50, "hurtBack": [15, -15], "attackKind": "real"}
 
 	var target = area.get_parent().get_parent()
 	if target is BaseHero:
-		target.reduce_hp(objattackDic[hit_name]["power"], self, self)
+		target.reduce_hp(obj_attack_dict[hit_name]["power"], self, self)
 		if RoleProp.is_ws_state:
 			return
 		if target is Role3Hero:

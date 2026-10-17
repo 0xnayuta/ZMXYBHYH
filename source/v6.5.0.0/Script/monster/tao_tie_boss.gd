@@ -44,8 +44,8 @@ func _configure_taotie() -> void:
 	Toughness = 20
 	speed = 15
 	mysee = 1000
-	attackRange = 250
-	attackDesire = 95
+	attack_range = 250
+	attack_desire = 95
 	behit_calmtime = 0.15
 	self_rhp = 0
 	add_exp = 500
@@ -55,9 +55,9 @@ func _configure_taotie() -> void:
 	self.independent_fall_list = [{"name": "zizhiguo", "value": 3, "chance": 0.25}]
 	fall_stone_pro = 0.0
 	fall_stone = []
-	objattackDic["hit1"] = {"power": 1400, "hurtBack": [6, -5], "attackKind": "magic", "HitProtect": 8}
-	objattackDic["hit2"] = {"power": 1200, "hurtBack": [0, 0], "attackKind": "physics", "HitProtect": 0}
-	objattackDic["hit3"] = {
+	obj_attack_dict["hit1"] = {"power": 1400, "hurtBack": [6, -5], "attackKind": "magic", "HitProtect": 8}
+	obj_attack_dict["hit2"] = {"power": 1200, "hurtBack": [0, 0], "attackKind": "physics", "HitProtect": 0}
+	obj_attack_dict["hit3"] = {
 		"power": 1500,
 		"hurtBack": [6, -5],
 		"attackKind": "magic",
@@ -154,9 +154,9 @@ func ai_think() -> void:
 		_use_skill(&"hit3", randi_range(6, 12))
 	elif Skill_1_CD <= 0:
 		_use_skill(&"hit2", randi_range(5, 13))
-	elif distance <= attackRange:
+	elif distance <= attack_range:
 		stop_move()
-		if count % 45 == 0 and randi_range(0, 100) <= attackDesire:
+		if count % 45 == 0 and randi_range(0, 100) <= attack_desire:
 			attack_target()
 	else:
 		have_target()
@@ -197,7 +197,7 @@ func _spawn_hit2() -> void:
 
 func _spawn_hit3() -> void:
 	hit_name = "hit3"
-	objattackDic["hit3"]["power"] = randi_range(500, 900)
+	obj_attack_dict["hit3"]["power"] = randi_range(500, 900)
 	_effect_hit_tokens.clear()
 	for offset_x in [95.0, -95.0, 240.0, -240.0]:
 		_spawn_effect("Monster115Bullet3", Vector2(offset_x, bullet3_height), Vector2(260, 170), 1.65, "hit3", false)
@@ -300,8 +300,8 @@ func _run_reduce_hp_over_time(target: Node) -> void:
 func _pull_player_and_pets() -> void:
 	var target_point := global_position + Vector2(_front_x(30.0), -40.0)
 	var candidates: Array[Node] = []
-	if get_Player != null and is_instance_valid(get_Player):
-		candidates.append(get_Player)
+	if get_player != null and is_instance_valid(get_player):
+		candidates.append(get_player)
 	var scene_root := get_tree().current_scene
 	if scene_root != null:
 		_collect_active_pets(scene_root, candidates)

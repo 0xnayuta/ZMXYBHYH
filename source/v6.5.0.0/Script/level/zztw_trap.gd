@@ -2,7 +2,7 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 var drop: bool
 var my_name: String
-var objattackDic = {}
+var obj_attack_dict = {}
 var hit_name
 
 
@@ -14,16 +14,16 @@ func _get_trap_power() -> float:
 
 func _physics_process(delta: float) -> void:
 	hit_name = my_name
-	if objattackDic.is_empty():
-		objattackDic = {
+	if obj_attack_dict.is_empty():
+		obj_attack_dict = {
 			"Trap1": {"power": 0.0, "hurtBack": [15, -15], "attackKind": "real"},
 			"Trap2": {"power": 0.0, "hurtBack": [15, -15], "attackKind": "real"},
 			"Trap3": {"power": 0.0, "hurtBack": [15, -15], "attackKind": "real"}
 		}
 	var trap_power: float = _get_trap_power()
-	objattackDic["Trap1"]["power"] = trap_power
-	objattackDic["Trap2"]["power"] = trap_power
-	objattackDic["Trap3"]["power"] = trap_power
+	obj_attack_dict["Trap1"]["power"] = trap_power
+	obj_attack_dict["Trap2"]["power"] = trap_power
+	obj_attack_dict["Trap3"]["power"] = trap_power
 	if my_name == "Trap1":
 		if not drop:
 			animation_player.play("Trap2")

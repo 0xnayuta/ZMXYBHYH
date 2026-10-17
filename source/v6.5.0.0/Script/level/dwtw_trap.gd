@@ -7,7 +7,7 @@ var get_name_
 var is_hit: bool
 var is_play
 var total_hit = 0
-var objattackDic = {}
+var obj_attack_dict = {}
 var Player
 var hit_count: int = 0
 
@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	hit_name = "Trap_1"
-	self.objattackDic["Trap_1"] = {
+	self.obj_attack_dict["Trap_1"] = {
 		"power": int(RoleProp.roleprop.SHp * 0.05), "hurtBack": [15, -15], "attackKind": "real"
 	}
 	if Player is BaseHero:
@@ -47,7 +47,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		)
 	var target = area.get_parent().get_parent()
 	if target is BaseHero:
-		target.reduce_hp(objattackDic[hit_name]["power"], self, self)
+		target.reduce_hp(obj_attack_dict[hit_name]["power"], self, self)
 		if RoleProp.is_ws_state:
 			return
 		if target is Role3Hero:

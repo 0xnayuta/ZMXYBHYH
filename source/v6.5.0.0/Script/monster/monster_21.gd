@@ -20,13 +20,13 @@ func monster_21():
 	self.Critreduce = 0
 	self.speed = 10
 	self.mysee = 500
-	self.attackRange = 100
-	self.attackDesire = 70
+	self.attack_range = 100
+	self.attack_desire = 70
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 50
 	self.fall_coin = 20
-	self.objattackDic["hit1"] = {"power": 150, "hurtBack": [-4, -9], "attackKind": "physics"}
+	self.obj_attack_dict["hit1"] = {"power": 150, "hurtBack": [-4, -9], "attackKind": "physics"}
 	self.fall_pro = 0.0
 	self.fall_list = []
 	self.fall_stone_pro = 0

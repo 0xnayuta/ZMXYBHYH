@@ -22,19 +22,19 @@ func monster_101():
 	self.Critreduce = 0
 	self.speed = 16
 	self.mysee = 500
-	self.attackRange = 245
-	self.attackDesire = 100
+	self.attack_range = 245
+	self.attack_desire = 100
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 120
 	self.fall_coin = 155
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 350,
 		"hurtBack": [-4, -7],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 405,
 		"hurtBack": [-20, -1],
 		"attackKind": "magic",
@@ -50,7 +50,7 @@ func monster_101():
 			"DeBuff": true,
 		},
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 650,
 		"hurtBack": [-18, -1],
 		"attackKind": "magic",
@@ -66,7 +66,7 @@ func monster_101():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 0,
 		"hurtBack": [0, 0],
 		"attackKind": "",
@@ -108,7 +108,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -128,7 +128,7 @@ func ai_think():
 				elif Skill_1_CD <= 0:
 					do_hit_1()
 				if count % 60 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 
 
@@ -172,11 +172,17 @@ func call_bullet_1():
 	var bullet_node
 	if self.MonsterDirection:
 		bullet_node = Global.add_bullet(
-			"Monster102Bullet", self.bullet, false, 0.6, Vector2(50, 0) + position, "hit2", self.objattackDic["hit2"]
+			"Monster102Bullet", self.bullet, false, 0.6, Vector2(50, 0) + position, "hit2", self.obj_attack_dict["hit2"]
 		)
 	else:
 		bullet_node = Global.add_bullet(
-			"Monster102Bullet", self.bullet, false, 0.6, Vector2(-50, 0) + position, "hit2", self.objattackDic["hit2"]
+			"Monster102Bullet",
+			self.bullet,
+			false,
+			0.6,
+			Vector2(-50, 0) + position,
+			"hit2",
+			self.obj_attack_dict["hit2"]
 		)
 	bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
@@ -190,14 +196,16 @@ func call_bullet_2():
 		bullet_list = [Vector2(0, 0), Vector2(-50, 0)]
 	for i in bullet_list:
 		bullet_node = Global.add_bullet(
-			"Monster102Bullet1", self.bullet, false, 1, i + position, "hit3", self.objattackDic["hit3"]
+			"Monster102Bullet1", self.bullet, false, 1, i + position, "hit3", self.obj_attack_dict["hit3"]
 		)
 		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 		await get_tree().create_timer(0.2, false).timeout
 
 
 func call_bullet_3():
-	my_child = Global.add_bullet("Monster102Bullet2", self, false, 1, Vector2(0, 0), "hit3", self.objattackDic["hit3"])
+	my_child = Global.add_bullet(
+		"Monster102Bullet2", self, false, 1, Vector2(0, 0), "hit3", self.obj_attack_dict["hit3"]
+	)
 
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理

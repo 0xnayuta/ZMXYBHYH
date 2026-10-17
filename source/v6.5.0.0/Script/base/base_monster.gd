@@ -143,7 +143,14 @@ var tszzs: float
 var lpzjs: float
 var NoGrav: bool
 var rndi_count: int = randi_range(0, 100)
-var get_Player: BaseHero
+var get_player: BaseHero
+
+var get_Player: BaseHero:
+	get:
+		return get_player
+	set(v):
+		get_player = v
+
 var get_summon: SummonBaseMonster
 var c_hange_clam_count: float
 var hurt_special_effect: Node2D
@@ -180,8 +187,8 @@ var lucky: int
 var crit: int
 var miss: int
 var is_speed_down: bool
-var attackRange: int
-var attackDesire: int
+var attack_range: int
+var attack_desire: int
 var mysee: int
 var Skill_1_CD: int = 10
 var Skill_2_CD: int
@@ -285,7 +292,7 @@ var rush_speed: float = 0.0
 var hit_target
 var get_target
 var is_set_: bool
-var iniSpeed
+var init_speed
 var is_jgz: bool
 var jgz_bl: float = 1
 var jgz_count: int
@@ -358,8 +365,8 @@ func apply_tower_monster_config(config: Dictionary) -> void:
 		Critreduce *= 3
 		self_rhp *= 3
 
-	for attack_name in objattackDic:
-		var attack_data: Variant = objattackDic[attack_name]
+	for attack_name in obj_attack_dict:
+		var attack_data: Variant = obj_attack_dict[attack_name]
 		if attack_data is Dictionary and (attack_data as Dictionary).has("power"):
 			(attack_data as Dictionary)["power"] = tower_attack
 
@@ -522,7 +529,7 @@ func _physics_process(delta: float) -> void:
 	if not is_set_:
 		if MainSet.set_data["Difficult"] > 0 and not has_meta("tower_floor"):
 			difficult()
-		iniSpeed = speed
+		init_speed = speed
 		is_set_ = true
 	check_add_buff()
 	_recover_interrupted_combat_state()
@@ -533,7 +540,7 @@ func _physics_process(delta: float) -> void:
 		MonsterDirection = false
 	else:
 		MonsterDirection = true
-	get_Player = Global.get_player
+	get_player = Global.get_player
 	count += 1
 	if death():
 		state = State.Death
@@ -778,8 +785,8 @@ func _enforce_control_immunity_state() -> void:
 	is_speed_down = false
 	is_reverse_move = false
 	reverse_move_speed_multiplier = 1.0
-	if iniSpeed != null:
-		speed = iniSpeed
+	if init_speed != null:
+		speed = init_speed
 	_kill_control_movement_tweens()
 	_release_control_movement_lock()
 
@@ -875,7 +882,7 @@ func ai_think():
 			normal_state()
 		else:
 			if is_smart_monster:
-				if abs(position.x - float(role_position_x)) >= attackRange:
+				if abs(position.x - float(role_position_x)) >= attack_range:
 					if rndi_count < smart_wait_count:
 						have_target()
 					else:
@@ -889,14 +896,14 @@ func ai_think():
 					else:
 						stop_move()
 					if count % 60 == 0:
-						if randi_range(0, 100) < attackDesire:
+						if randi_range(0, 100) < attack_desire:
 							attack_target()
 			else:
 				if follow_hero():
 					have_target()
 					if run_hit_active:
 						if count % run_hit_count == 0:
-							if randi_range(0, 100) <= attackDesire:
+							if randi_range(0, 100) <= attack_desire:
 								attack_target()
 							else:
 								if randi_range(0, 100) <= 20:
@@ -906,7 +913,7 @@ func ai_think():
 				else:
 					stop_move()
 					if count % 60 == 0:
-						if randi_range(0, 100) < attackDesire:
+						if randi_range(0, 100) < attack_desire:
 							attack_target()
 
 
@@ -923,7 +930,7 @@ func run_hit():
 
 
 func follow_hero():
-	return abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange
+	return abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range
 
 
 func to_hero():
@@ -1186,7 +1193,7 @@ func be_hit_back(target):
 	if target == null:
 		return
 	if target is BaseHero:
-		if not get_Player.PlayerDir:
+		if not get_player.PlayerDir:
 			attack_to_right(target.HitDic["hurtBack"])
 		else:
 			attack_to_left(target.HitDic["hurtBack"])
@@ -1201,7 +1208,7 @@ func be_hit_back(target):
 		else:
 			attack_to_left(target.HitDic["hurtBack"])
 	elif target is RoleBullet1:
-		if not get_Player.PlayerDir:
+		if not get_player.PlayerDir:
 			attack_to_right(target.HitDic["hurtBack"])
 		else:
 			attack_to_left(target.HitDic["hurtBack"])
@@ -1336,8 +1343,8 @@ func _finish_sssl_death() -> void:
 
 
 func get_zcld_multiplier() -> float:
-	if get_Player != null and PlayerData.check_eq_zb("法宝", "zcld"):
-		var level = get_Player.zcld_level
+	if get_player != null and PlayerData.check_eq_zb("法宝", "zcld"):
+		var level = get_player.zcld_level
 
 		var bonus = 0.2 + level * 0.08
 
@@ -1588,7 +1595,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		return
 
 	if area is BaseRoleHitBox or area is RolehmzBullet:
-		get_target = get_Player
+		get_target = get_player
 	elif area is MagicWeaponHit:
 		get_target = area.get_parent()
 	elif area.get_parent() is Role1Shallow:
@@ -1599,7 +1606,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		get_target = area.get_parent().get_parent()
 	else:
 		return
-	apply_role_hit(get_target, get_Player)
+	apply_role_hit(get_target, get_player)
 
 
 func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_data: Dictionary = {}) -> int:
@@ -1615,7 +1622,7 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 		return 0
 
 	var old_target: Variant = get_target
-	var old_player: BaseHero = get_Player
+	var old_player: BaseHero = get_player
 	var old_source_player: Variant = RoleProp.source_player
 	var old_tszzs: float = source_player.tszzs
 	var old_hit_data: Variant = source_target.get("HitDic")
@@ -1623,7 +1630,7 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 		source_target.set("HitDic", hit_data.duplicate(true))
 
 	get_target = source_target
-	get_Player = source_player
+	get_player = source_player
 	RoleProp.source_player = source_player
 	has_target = true
 	Global.total_hit_count += 1
@@ -1676,7 +1683,7 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 		hurt_special_effect = Global.add_mr_hurt(pz, Vector2(0, 0))
 
 	get_target = old_target
-	get_Player = old_player
+	get_player = old_player
 	source_player.tszzs = old_tszzs
 	RoleProp.source_player = old_source_player
 	if not hit_data.is_empty():
@@ -1712,23 +1719,23 @@ func role5_bullet(last_hurt, source_target = null):
 	var s_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
 	if s_level <= 0:
 		return
-	if get_Player == null or last_hurt <= 0:
+	if get_player == null or last_hurt <= 0:
 		return
-	if not get_Player is Role5Hero:
+	if not get_player is Role5Hero:
 		return
 	randomize()
 	if randi_range(0, 100) > 15:
 		return
 	var hurt_value = int(last_hurt * 0.3 + (s_level * 0.02))
 	Global.add_role_bullet(
-		get_Player.Bullet,
+		get_player.Bullet,
 		Vector2(position.x, position.y + 30),
 		false,
 		"Role5Bullet6",
 		{"power": hurt_value, "hurtBack": [0, 0], "attackKind": "real", "WSValue": 5}
 	)
 	var bl = 1 + (s_level * 0.2)
-	get_Player.cure_hp(hurt_value * bl)
+	get_player.cure_hp(hurt_value * bl)
 
 
 func _get_damage_source_player(target) -> BaseHero:
@@ -2335,9 +2342,9 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 			buff_target = rro
 			break
 
-	if objattackDic != null and hit_name != null:
-		if objattackDic[hit_name].has("addeffect"):
-			var addeffect = objattackDic[hit_name]["addeffect"]
+	if obj_attack_dict != null and hit_name != null:
+		if obj_attack_dict[hit_name].has("addeffect"):
+			var addeffect = obj_attack_dict[hit_name]["addeffect"]
 			if addeffect.size() != 0:
 				if buff_node != null:
 					var probability = 1.0
@@ -2378,7 +2385,7 @@ func _on_hit_box_area_exited(_area: Area2D) -> void:
 		if Skill_1_CD > 0:
 			Skill_1_CD -= 3
 		if hit_name == "csjq":
-			cure_hp(self.objattackDic["csjq"]["power"] * 25 + int((SHp - Hp) * 0.07))
+			cure_hp(self.obj_attack_dict["csjq"]["power"] * 25 + int((SHp - Hp) * 0.07))
 			self.Skill_3_CD = 0
 
 
@@ -2395,18 +2402,18 @@ func rush():
 
 
 func gg_pl():
-	if get_Player == null:
+	if get_player == null:
 		var top = get_parent().get_parent()
 		var role_jd = top.get_node("Hero")
 		var role_ = role_jd.get_children()
 		for i in role_:
 			if i is BaseHero:
-				get_Player = i
+				get_player = i
 
 
 func move_player_to_boss(movetime):
 	var tween = create_tween()
-	tween.tween_property(get_Player, "position", self.position, movetime)
+	tween.tween_property(get_player, "position", self.position, movetime)
 
 
 func move_playerto_boss(target: Node2D, movetime: float):
@@ -2415,8 +2422,8 @@ func move_playerto_boss(target: Node2D, movetime: float):
 	if target != null and is_instance_valid(target) and target is Node2D:
 		final_target = target
 
-	elif get_Player != null and is_instance_valid(get_Player) and get_Player is Node2D:
-		final_target = get_Player
+	elif get_player != null and is_instance_valid(get_player) and get_player is Node2D:
+		final_target = get_player
 
 	if final_target == null:
 		print("无有效移动目标（无buff_target且玩家节点无效），跳过位移")
@@ -2581,10 +2588,10 @@ func check_add_buff():
 		is_stun = false
 	if not_sppeddown:
 		is_speed_down = false
-		speed = iniSpeed
+		speed = init_speed
 	if buff_child_count == 0:
 		is_speed_down = false
-		speed = iniSpeed
+		speed = init_speed
 		is_stun = false
 		is_eye_fix = false
 		is_ice = false
@@ -2669,11 +2676,11 @@ func difficult():
 	if self.fall_pro > 0:
 		self.fall_pro = self.fall_pro * mult
 
-	for attack_name in self.objattackDic:
-		if objattackDic[attack_name].has("power"):
-			objattackDic[attack_name]["power"] = int(objattackDic[attack_name]["power"] * mult)
+	for attack_name in self.obj_attack_dict:
+		if obj_attack_dict[attack_name].has("power"):
+			obj_attack_dict[attack_name]["power"] = int(obj_attack_dict[attack_name]["power"] * mult)
 			if difficulty == NIGHTMARE_DIFFICULTY:
-				objattackDic[attack_name]["power"] += attack_bonus
+				obj_attack_dict[attack_name]["power"] += attack_bonus
 
 
 func movetoplayer():
@@ -2725,9 +2732,9 @@ func set_gxp():
 		var has_zcld = false
 		var zcld_level = 0
 
-		if get_Player != null and PlayerData.check_eq_zb("法宝", "zcld"):
+		if get_player != null and PlayerData.check_eq_zb("法宝", "zcld"):
 			has_zcld = true
-			zcld_level = get_Player.zcld_level
+			zcld_level = get_player.zcld_level
 			mult = get_zcld_multiplier()
 			final_coin = int(final_coin * mult)
 
@@ -3384,9 +3391,9 @@ func _pet_matches_active_name(pet: Dictionary, active_name: String) -> bool:
 
 
 func check_player_have_debuff(target):
-	if get_Player == null:
+	if get_player == null:
 		return
-	for i in get_Player.buff.get_children():
+	for i in get_player.buff.get_children():
 		if i != null:
 			if i.BuffInfo["Name"] == target:
 				return true

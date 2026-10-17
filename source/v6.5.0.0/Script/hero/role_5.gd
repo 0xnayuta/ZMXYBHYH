@@ -77,83 +77,83 @@ func role_5():
 	role5_eat_blood = level_10 * 0.05
 	RoleProp.role1_sxbj = 0
 	RoleProp.role1_s_xxx = 0
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": RoleProp.roleprop.power * randf_range(1, 1.2),
 		"hurtBack": [1, 0],
 		"attackKind": "physics",
 		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1),
 		"hurtBack": [1, 0],
 		"attackKind": "physics",
 		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": RoleProp.roleprop.power * randf_range(1, 1.2),
 		"hurtBack": [1, 0],
 		"attackKind": "physics",
 		"HitInterv": 1,
 		"WSValue": randi_range(3, 5)
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": RoleProp.roleprop.power * randf_range(1.2, 1.4),
 		"hurtBack": [2, -3],
 		"attackKind": "physics",
 		"HitInterv": 2,
 		"WSValue": randi_range(3, 5)
 	}
-	self.objattackDic["xyq"] = {
+	self.obj_attack_dict["xyq"] = {
 		"power": RoleProp.roleprop.power * (0.3 + (level_1 * 0.2)),
 		"hurtBack": [1, -2],
 		"attackKind": "physics",
 		"WSValue": randi_range(6, 8)
 	}
-	self.objattackDic["xyq_1"] = {
+	self.obj_attack_dict["xyq_1"] = {
 		"power": RoleProp.roleprop.power * (1.5 + (level_1 * 0.2)),
 		"hurtBack": [25, -18],
 		"attackKind": "physics",
 		"WSValue": randi_range(6, 8)
 	}
-	self.objattackDic["slq"] = {
+	self.obj_attack_dict["slq"] = {
 		"power": RoleProp.roleprop.power * (2 + (level_2 * 0.12)),
 		"hurtBack": [2, -40],
 		"attackKind": "physics",
 		"WSValue": randi_range(6, 8)
 	}
-	self.objattackDic["blq"] = {
+	self.obj_attack_dict["blq"] = {
 		"power": RoleProp.roleprop.power * (0.5 + (level_3 * 0.2)),
 		"hurtBack": [30, -6],
 		"attackKind": "magic",
 		"WSValue": randi_range(6, 8)
 	}
-	self.objattackDic["fhf"] = {
+	self.obj_attack_dict["fhf"] = {
 		"power": RoleProp.roleprop.power * (3 + (level_4 * 0.2)),
 		"hurtBack": [-25, -25],
 		"attackKind": "physics",
 		"WSValue": randi_range(8, 10)
 	}
-	self.objattackDic["cxq"] = {
+	self.obj_attack_dict["cxq"] = {
 		"power": RoleProp.roleprop.power * (0.5 + (level_5 * 0.02)),
 		"hurtBack": [1, -6],
 		"attackKind": "physics",
 		"WSValue": randi_range(2, 4)
 	}
-	self.objattackDic["cxq_2"] = {
+	self.obj_attack_dict["cxq_2"] = {
 		"power": 35 + RoleProp.roleprop.power * (1.5 + (level_5 * 0.02)),
 		"hurtBack": [30, -18],
 		"attackKind": "physics",
 		"WSValue": randi_range(15, 20)
 	}
-	self.objattackDic["llrd"] = {
+	self.obj_attack_dict["llrd"] = {
 		"power": RoleProp.roleprop.power * (3 + (level_6 * 0.2)),
 		"hurtBack": [1, -1],
 		"attackKind": "magic",
 		"WSValue": randi_range(20, 25)
 	}
-	self.objattackDic["lljy_1"] = {
+	self.obj_attack_dict["lljy_1"] = {
 		"power": 0,
 		"hurtBack": [1, 0],
 		"attackKind": "magic",
@@ -169,31 +169,31 @@ func role_5():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["lljy"] = {
+	self.obj_attack_dict["lljy"] = {
 		"power": RoleProp.roleprop.power * (0.1 + (level_7 * 0.01)),
 		"hurtBack": [1, -1],
 		"attackKind": "magic",
 		"WSValue": randi_range(8, 10)
 	}
-	self.objattackDic["ygth"] = {
+	self.obj_attack_dict["ygth"] = {
 		"power": RoleProp.roleprop.power * (0.7 + (level_8 * 0.01)),
 		"hurtBack": [1, -6],
 		"attackKind": "physics",
 		"WSValue": randi_range(8, 10)
 	}
-	self.objattackDic["tllz"] = {
+	self.obj_attack_dict["tllz"] = {
 		"power": RoleProp.roleprop.power * (2.5 + (level_9 * 0.01)),
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
 		"WSValue": randi_range(8, 10)
 	}
-	self.objattackDic["ltjz"] = {
+	self.obj_attack_dict["ltjz"] = {
 		"power": RoleProp.roleprop.power * (2.3 + (level_11 - 1) * 0.25),
 		"hurtBack": [2, -5],
 		"attackKind": "magic",
 		"WSValue": randi_range(6, 9)
 	}
-	self.objattackDic["yyb"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic", "WSValue": 5}
+	self.obj_attack_dict["yyb"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic", "WSValue": 5}
 
 
 func _physics_process(delta: float) -> void:
@@ -231,7 +231,7 @@ func _physics_process(delta: float) -> void:
 
 
 func do_normalhit_1():
-	interv = objattackDic["hit1"]["HitInterv"]
+	interv = obj_attack_dict["hit1"]["HitInterv"]
 	super.get_hit_data("hit1")
 	get_action = "hit1"
 	velocity.x = 0
@@ -245,7 +245,7 @@ func do_normalhit_1():
 
 
 func do_normalhit_2():
-	interv = objattackDic["hit2"]["HitInterv"]
+	interv = obj_attack_dict["hit2"]["HitInterv"]
 	get_action = "hit2"
 	super.get_hit_data("hit2")
 	velocity.x = 0
@@ -258,7 +258,7 @@ func do_normalhit_2():
 
 
 func do_normalhit_3():
-	interv = objattackDic["hit3"]["HitInterv"]
+	interv = obj_attack_dict["hit3"]["HitInterv"]
 	get_action = "hit3"
 	super.get_hit_data("hit3")
 	velocity.x = 0
@@ -271,7 +271,7 @@ func do_normalhit_3():
 
 
 func do_normalhit_4():
-	interv = objattackDic["hit4"]["HitInterv"]
+	interv = obj_attack_dict["hit4"]["HitInterv"]
 	get_action = "hit4"
 	super.get_hit_data("hit4")
 	velocity.x = 0
@@ -284,7 +284,7 @@ func do_normalhit_4():
 
 
 func do_normalhit_5():
-	interv = objattackDic["hit3"]["HitInterv"]
+	interv = obj_attack_dict["hit3"]["HitInterv"]
 	get_action = "hit5"
 	super.get_hit_data("hit3")
 	is_can_move_attack_in_sky()
@@ -533,13 +533,13 @@ func use_ltjz():
 	_play_ltjz_action()
 	var level = get_parent().get_parent()
 	var effect = LEI_TING_JIE_ZHEN_EFFECT.new()
-	effect.setup(self, PlayerDir, objattackDic["ltjz"])
+	effect.setup(self, PlayerDir, obj_attack_dict["ltjz"])
 	level.add_child(effect)
 	if _is_skill_awakened("ltjz") and _is_skill_awaken_enabled("ltjz"):
 		var farthest_target := _get_farthest_ltjz_target()
 		if farthest_target != null:
 			var extra_effect = LEI_TING_JIE_ZHEN_EFFECT.new()
-			extra_effect.setup_at_target(self, PlayerDir, objattackDic["ltjz"], farthest_target.global_position)
+			extra_effect.setup_at_target(self, PlayerDir, obj_attack_dict["ltjz"], farthest_target.global_position)
 			level.add_child(extra_effect)
 	await role_action_player.animation_finished
 	turn_to_wait()
@@ -619,7 +619,9 @@ func slq_fly():
 		bullet_pos = Vector2(100, -150)
 	else:
 		bullet_pos = Vector2(-100, -150)
-	var slq = Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role5Bullet1", objattackDic["slq"])
+	var slq = Global.add_role_bullet(
+		self.Bullet, bullet_pos + position, PlayerDir, "Role5Bullet1", obj_attack_dict["slq"]
+	)
 	slq.scale = Vector2(1.4, 1.6)
 	velocity.y = -600
 
@@ -714,27 +716,31 @@ func call_bullet_2():
 		bullet_pos = Vector2(260, 180)
 	else:
 		bullet_pos = Vector2(-260, 180)
-	var llrd = Global.add_role_bullet(self.Bullet, bullet_pos + position, false, "Role5Bullet2", objattackDic["llrd"])
+	var llrd = Global.add_role_bullet(
+		self.Bullet, bullet_pos + position, false, "Role5Bullet2", obj_attack_dict["llrd"]
+	)
 	llrd.scale = Vector2(1.5, 1.5)
 
 
 func call_bullet_3():
-	var lljy = Global.add_role_bullet(self.Bullet, position, PlayerDir, "Role5Bullet3", objattackDic["lljy"])
+	var lljy = Global.add_role_bullet(self.Bullet, position, PlayerDir, "Role5Bullet3", obj_attack_dict["lljy"])
 
 
 func call_bullet_4():
 	if tllz != null:
 		tllz.queue_free()
-	tllz = Global.add_role_bullet(self.Bullet, position - Vector2(0, 20), false, "Role5Bullet4", objattackDic["tllz"])
+	tllz = Global.add_role_bullet(
+		self.Bullet, position - Vector2(0, 20), false, "Role5Bullet4", obj_attack_dict["tllz"]
+	)
 	tllz.scale = Vector2(1.4, 1.4)
 
 
 func call_bullet_5():
-	Global.add_role_bullet(self.Bullet, position, !PlayerDir, "Role5Bullet5", objattackDic["ygth"])
+	Global.add_role_bullet(self.Bullet, position, !PlayerDir, "Role5Bullet5", obj_attack_dict["ygth"])
 
 
 func call_ygth_awaken_bullet():
-	var awaken_hit_data: Dictionary = objattackDic["ygth"].duplicate(true)
+	var awaken_hit_data: Dictionary = obj_attack_dict["ygth"].duplicate(true)
 	awaken_hit_data["power"] = float(awaken_hit_data.get("power", 0.0)) * YGTH_AWAKEN_DAMAGE_MULTIPLIER
 	var awaken_hurt_back: Array = awaken_hit_data.get("hurtBack", [0, 0]).duplicate()
 	if not awaken_hurt_back.is_empty():
@@ -798,12 +804,12 @@ func _prepare_hit_reaction() -> void:
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	if objattackDic.has(get_action):
-		if objattackDic[get_action].has("addeffect"):
+	if obj_attack_dict.has(get_action):
+		if obj_attack_dict[get_action].has("addeffect"):
 			var Monster = area.get_parent().get_parent()
 			if Monster != null:
 				if Monster is BaseMonster and not _is_summon_or_pet_target(Monster):
-					Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
+					Global.add_buff(Monster.buff, obj_attack_dict[get_action]["addeffect"])
 
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理

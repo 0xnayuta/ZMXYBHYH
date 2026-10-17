@@ -27,10 +27,10 @@ func role_2_handler():
 	var level_8 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能8"][DataKeys.LEVEL] + 1
 	var level_9 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] + 1
 	var level_10 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
-	self.objattackDic["xbz"] = {
+	self.obj_attack_dict["xbz"] = {
 		"power": RoleProp.roleprop.power * (0.55 + (level_2 * 0.055)), "hurtBack": [8, -13], "attackKind": "magic"
 	}
-	self.objattackDic["jhsj"] = {
+	self.obj_attack_dict["jhsj"] = {
 		"power": RoleProp.roleprop.power * (0.9 + (level_9 * 0.1)), "hurtBack": [3, -8], "attackKind": "magic"
 	}
 
@@ -126,7 +126,7 @@ func add_xbz():
 		bullet_spawn_positions = [Vector2(80, -15), Vector2(175, -20), Vector2(275, -25)]
 	for i in bullet_spawn_positions.size():
 		var xbz = Global.add_role_bullet(
-			self.Bullet, bullet_spawn_positions[i] + position, dir, "Role2Bullet3", objattackDic["xbz"]
+			self.Bullet, bullet_spawn_positions[i] + position, dir, "Role2Bullet3", obj_attack_dict["xbz"]
 		)
 		xbz.scale = scale_list[i]
 		await get_tree().create_timer(0.2, false).timeout
@@ -135,7 +135,7 @@ func add_xbz():
 func add_jhsj_2():
 	var bullet_pos = Vector2()
 	bullet_pos = Vector2(0, -10)
-	var jhsj_2 = Global.add_role_bullet(self, bullet_pos, false, "Role2Bullet6", objattackDic["jhsj"])
+	var jhsj_2 = Global.add_role_bullet(self, bullet_pos, false, "Role2Bullet6", obj_attack_dict["jhsj"])
 	jhsj_2.show_behind_parent = true
 
 

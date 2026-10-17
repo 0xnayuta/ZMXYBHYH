@@ -81,8 +81,8 @@ func _configure_boss() -> void:
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
 	mysee = int(config["sight"])
-	attackRange = int(config["range"])
-	attackDesire = int(config["attack_desire"])
+	attack_range = int(config["range"])
+	attack_desire = int(config["attack_desire"])
 	add_exp = int(config.get("exp", 0))
 	fall_coin = int(config.get("coin", 0))
 	fall_pro = float(config.get("drop_rate", 0.0))
@@ -90,10 +90,10 @@ func _configure_boss() -> void:
 	independent_fall_list = Array(config.get("independent_drop_list", [])).duplicate(true)
 	is_boss = bool(config["is_boss"])
 	boss_max_protect = float(config["max_protect"])
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config["attacks"]
 	for attack_name: String in attacks:
-		objattackDic[attack_name] = _attack_data(attacks[attack_name])
+		obj_attack_dict[attack_name] = _attack_data(attacks[attack_name])
 
 
 func _attack_data(attack: Dictionary) -> Dictionary:
@@ -375,7 +375,7 @@ func _fire_water_ball() -> void:
 			"position": global_position + Vector2(65.0 * facing, -65.0),
 			"right": facing > 0.0,
 			"hit_name": "hit3",
-			"attack_data": objattackDic["hit3"],
+			"attack_data": obj_attack_dict["hit3"],
 			"skill_name": "LingganWaterBall",
 			"frame_root": ROOT.path_join("arrow1"),
 			"frame_count": int(EFFECTS["arrow1"]["frames"]),
@@ -408,7 +408,7 @@ func _start_fish_leap() -> void:
 			"position": global_position,
 			"right": facing > 0.0,
 			"hit_name": "hit4",
-			"attack_data": objattackDic["hit4"],
+			"attack_data": obj_attack_dict["hit4"],
 			"skill_name": "LingganFishLeap",
 			"frame_root": ROOT.path_join("effect4_1"),
 			"frame_count": int(EFFECTS["effect4_1"]["frames"]),

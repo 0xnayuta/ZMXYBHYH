@@ -6,7 +6,7 @@ class_name BaseMagicWeapon
 @onready var hitbox: CollisionShape2D = $HitBox/HitBox
 @onready var hit_box: Area2D = $HitBox
 var fb_level: int
-var objattackDic = {}
+var obj_attack_dict = {}
 var set_count: int = 0
 var need_mp = 20
 var is_use = false
@@ -23,7 +23,7 @@ func set_magic_weapon_player(hero) -> void:
 
 
 func get_attack_snapshot(attack_name: String = "hit1") -> Dictionary:
-	var attack_data: Variant = objattackDic.get(attack_name)
+	var attack_data: Variant = obj_attack_dict.get(attack_name)
 	if attack_data is Dictionary:
 		return attack_data.duplicate(true)
 	return {}

@@ -223,7 +223,7 @@ const HIT_SIZE_CAP := Vector2(560.0, 340.0)
 class AttackOrigin:
 	extends Node2D
 	var hit_name: String = ""
-	var objattackDic: Dictionary = {}
+	var obj_attack_dict: Dictionary = {}
 
 
 @export_enum("邪唐僧:31", "邪悟空:34", "邪后羿:192") var boss_kind := 31
@@ -283,7 +283,7 @@ func _configure_boss() -> void:
 	fall_list = []
 	fall_stone_pro = 0.0
 	fall_stone = []
-	attackRange = 250
+	attack_range = 250
 	match boss_kind:
 		31:
 			my_mr_name = "邪·唐僧"
@@ -292,16 +292,16 @@ func _configure_boss() -> void:
 			attack_in = 1100
 			def = 350
 			mdef = 450
-			attackDesire = 80
+			attack_desire = 80
 		34:
-			attackRange = 150
+			attack_range = 150
 			my_mr_name = "邪·悟空"
 			fall_list = [{"name": "yxsp_2", "value": 1}]
 			SHp = 800000
 			attack_in = 1300
 			def = 500
 			mdef = 350
-			attackDesire = 80
+			attack_desire = 80
 		192:
 			my_mr_name = "邪·后羿"
 			fall_list = [{"name": "yxsp_3", "value": 1}]
@@ -309,18 +309,18 @@ func _configure_boss() -> void:
 			attack_in = 1500
 			def = 450
 			mdef = 450
-			attackDesire = 70
+			attack_desire = 70
 	Hp = SHp
 	_fill_attack_dictionary()
 
 
 func _fill_attack_dictionary() -> void:
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var base_hurt := float(attack_in)
 	var info: Dictionary = ATTACK_INFO[boss_kind]
 	for key in info:
 		var row: Array = info[key]
-		objattackDic[str(key)] = {
+		obj_attack_dict[str(key)] = {
 			"power": int(base_hurt * float(row[0])),
 			"hurtBack": [float(row[1]), float(row[2])],
 			"attackKind": str(row[3]),
@@ -514,7 +514,7 @@ func _enter_gxp() -> void:
 	_gxp_afterimage_timer = 0.0
 	super_armor_active = true
 	speed = int(round(float(speed) * 1.5))
-	iniSpeed = speed
+	init_speed = speed
 	get_tree().create_timer(10.0, false).timeout.connect(_exit_gxp, CONNECT_ONE_SHOT)
 
 
@@ -524,7 +524,7 @@ func _exit_gxp() -> void:
 	_gxp_active = false
 	super_armor_active = false
 	speed = maxi(1, int(round(float(speed) / 1.5)))
-	iniSpeed = speed
+	init_speed = speed
 
 
 func _update_shadows(delta: float) -> void:
@@ -589,9 +589,9 @@ func ai_think() -> void:
 		if boss_kind == 192 and _skill2_cd <= 0.0:
 			_use_skill("hit3", 2)
 			return
-	if distance <= attackRange:
+	if distance <= attack_range:
 		stop_move()
-		if count % int(SOURCE_FPS) == 0 and randi_range(0, 100) <= attackDesire:
+		if count % int(SOURCE_FPS) == 0 and randi_range(0, 100) <= attack_desire:
 			attack_target()
 	else:
 		have_target()
@@ -743,7 +743,7 @@ func _tang_lifesteal_resolve(origin: Vector2, _token: int) -> void:
 	if not is_inside_tree() or death():
 		return
 	if global_position.distance_to(origin) < 100.0:
-		var entry: Dictionary = objattackDic.get("hit6", {})
+		var entry: Dictionary = obj_attack_dict.get("hit6", {})
 		_tang_regenerate(int(float(entry.get("power", 0)) * 0.5), 10)
 
 
@@ -766,7 +766,7 @@ func _tang_heal_resolve(origin: Vector2, _token: int) -> void:
 	if not is_inside_tree() or death():
 		return
 	if global_position.distance_to(origin) <= 150.0:
-		var entry: Dictionary = objattackDic.get("hit8", {})
+		var entry: Dictionary = obj_attack_dict.get("hit8", {})
 		var value := int(float(entry.get("power", 0)) * 3.0)
 		if _gxp_active:
 			value = int(value * 1.5)
@@ -1096,8 +1096,8 @@ func _spawn_visual_effect(effect_name: String, world_position: Vector2, facing_r
 func _make_attack_origin(hit_name_value: String) -> AttackOrigin:
 	var origin := AttackOrigin.new()
 	origin.hit_name = hit_name_value
-	if objattackDic.has(hit_name_value):
-		origin.objattackDic = {hit_name_value: objattackDic[hit_name_value]}
+	if obj_attack_dict.has(hit_name_value):
+		origin.obj_attack_dict = {hit_name_value: obj_attack_dict[hit_name_value]}
 	return origin
 
 

@@ -31,13 +31,13 @@ func monster_8():
 	self.Critreduce = 500
 	self.speed = 0
 	self.mysee = 300
-	self.attackRange = 75
-	self.attackDesire = 100
+	self.attack_range = 75
+	self.attack_desire = 100
 	self.behit_calmtime = 0.2
 	self.self_rhp = 50
 	self.add_exp = 50
 	self.fall_coin = 14
-	self.objattackDic["hit1"] = {"power": 0, "hurtBack": [0, 0], "attackKind": ""}
+	self.obj_attack_dict["hit1"] = {"power": 0, "hurtBack": [0, 0], "attackKind": ""}
 	self.fall_pro = 0.5
 	self.fall_list = [{"name": "whg", "value": 0}, {"name": "bsp", "value": 0}, {"name": "wtp", "value": 0}]
 	self.independent_fall_list = [

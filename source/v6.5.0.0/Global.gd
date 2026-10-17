@@ -4227,7 +4227,7 @@ func add_weapon_bullet(parent, position, name_, list, dir, Rand):
 	var target = instance_scene(_cached_scene(cache_key, scene_path), parent)
 	if target == null:
 		return null
-	target.objattackDic = list
+	target.obj_attack_dict = list
 	target.rnd = Rand
 	target.name_ = name_
 	target.dir = dir
@@ -5287,7 +5287,7 @@ func add_bullet_safe(bullet_name, parent, direction, show_speed, position, hit_n
 	target.AttList = list
 	target.hit_name = hit_name_
 	if str(hit_name_) != "" and list is Dictionary:
-		target.objattackDic[hit_name_] = list
+		target.obj_attack_dict[hit_name_] = list
 	target.position = position
 	target.dir = direction
 	target.skill_name = bullet_name

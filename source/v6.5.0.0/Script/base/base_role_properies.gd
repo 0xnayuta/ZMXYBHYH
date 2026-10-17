@@ -8,12 +8,12 @@ var roleprop = {}
 var baseroleprop = {}
 var equprop = {}
 var Paslprop = {}
-var WqBs_prop = {}
-var FjBs_prop = {}
-var SpBs_prop = {}
-var CbBs_prop = {}
-var SzBs_prop = {}
-var TxBs_prop = {}
+var wq_bs_prop = {}
+var fj_bs_prop = {}
+var sp_bs_prop = {}
+var cb_bs_prop = {}
+var sz_bs_prop = {}
+var tx_bs_prop = {}
 var role_pos_x
 var role_pos
 var role_pos_y
@@ -464,7 +464,7 @@ func _ready() -> void:
 		"ar": 0,
 		"sp": 0
 	}
-	WqBs_prop = {
+	wq_bs_prop = {
 		"SHp": 0,
 		"SMp": 0,
 		"power": 0,
@@ -482,7 +482,7 @@ func _ready() -> void:
 		"ar": 0,
 		"sp": 0
 	}
-	FjBs_prop = {
+	fj_bs_prop = {
 		"SHp": 0,
 		"SMp": 0,
 		"power": 0,
@@ -500,7 +500,7 @@ func _ready() -> void:
 		"ar": 0,
 		"sp": 0
 	}
-	SpBs_prop = {
+	sp_bs_prop = {
 		"SHp": 0,
 		"SMp": 0,
 		"power": 0,
@@ -1005,51 +1005,51 @@ func get_equ_properies():
 
 
 func get_bs_wq_properties():
-	for property_name in WqBs_prop:
-		WqBs_prop[property_name] = 0
+	for property_name in wq_bs_prop:
+		wq_bs_prop[property_name] = 0
 	if PlayerData.player_data[DataKeys.WEAPON].size() != 0:
 		var equipment: Dictionary = PlayerData.player_data[DataKeys.WEAPON][0]
 		var gem_properties: Dictionary = AE.get_divine_forge_gem_properties(
 			str(equipment[DataKeys.NAME]), equipment["Data"]
 		)
-		for property_name in WqBs_prop:
-			WqBs_prop[property_name] = gem_properties.get(property_name, 0)
+		for property_name in wq_bs_prop:
+			wq_bs_prop[property_name] = gem_properties.get(property_name, 0)
 
 
 func get_bs_fj_properties():
-	for property_name in FjBs_prop:
-		FjBs_prop[property_name] = 0
+	for property_name in fj_bs_prop:
+		fj_bs_prop[property_name] = 0
 	if PlayerData.player_data[DataKeys.ARMOR].size() != 0:
 		var equipment: Dictionary = PlayerData.player_data[DataKeys.ARMOR][0]
 		var gem_properties: Dictionary = AE.get_divine_forge_gem_properties(
 			str(equipment[DataKeys.NAME]), equipment["Data"]
 		)
-		for property_name in FjBs_prop:
-			FjBs_prop[property_name] = gem_properties.get(property_name, 0)
+		for property_name in fj_bs_prop:
+			fj_bs_prop[property_name] = gem_properties.get(property_name, 0)
 
 
 func get_bs_sp_properties():
-	for property_name in SpBs_prop:
-		SpBs_prop[property_name] = 0
+	for property_name in sp_bs_prop:
+		sp_bs_prop[property_name] = 0
 	if PlayerData.player_data["饰品"].size() != 0:
 		var equipment: Dictionary = PlayerData.player_data["饰品"][0]
 		var gem_properties: Dictionary = AE.get_divine_forge_gem_properties(
 			str(equipment[DataKeys.NAME]), equipment["Data"]
 		)
-		for property_name in SpBs_prop:
-			SpBs_prop[property_name] = gem_properties.get(property_name, 0)
+		for property_name in sp_bs_prop:
+			sp_bs_prop[property_name] = gem_properties.get(property_name, 0)
 
 
 func get_bs_cb_properties():
-	_set_slot_gem_properties("翅膀", CbBs_prop)
+	_set_slot_gem_properties("翅膀", cb_bs_prop)
 
 
 func get_bs_sz_properties():
-	_set_slot_gem_properties("时装", SzBs_prop)
+	_set_slot_gem_properties("时装", sz_bs_prop)
 
 
 func get_bs_tx_properties():
-	_set_slot_gem_properties("头衔", TxBs_prop)
+	_set_slot_gem_properties("头衔", tx_bs_prop)
 
 
 func _set_slot_gem_properties(slot_name: String, properties: Dictionary) -> void:
@@ -1081,12 +1081,12 @@ func get_equ_last_pro():
 			+ fj_prop[i]
 			+ sp_prop[i]
 			+ fb_prop[i]
-			+ WqBs_prop[i]
-			+ FjBs_prop[i]
-			+ SpBs_prop[i]
-			+ CbBs_prop[i]
-			+ SzBs_prop[i]
-			+ TxBs_prop[i]
+			+ wq_bs_prop[i]
+			+ fj_bs_prop[i]
+			+ sp_bs_prop[i]
+			+ cb_bs_prop[i]
+			+ sz_bs_prop[i]
+			+ tx_bs_prop[i]
 			+ tx_prop[i]
 			+ sz_prop[i]
 			+ cb_prop[i]
@@ -1231,117 +1231,117 @@ func remove_tx_pro():
 
 
 func remove_wq_bs():
-	WqBs_prop.SHp = 0
-	WqBs_prop.SMp = 0
-	WqBs_prop.power = 0
-	WqBs_prop.Def = 0
-	WqBs_prop.Mdef = 0
-	WqBs_prop.Crit = 0
-	WqBs_prop.Miss = 0
-	WqBs_prop.R_hp = 0
-	WqBs_prop.R_mp = 0
-	WqBs_prop.vampirism = 0
-	WqBs_prop.Lucky = 0
-	WqBs_prop.Toughness = 0
-	WqBs_prop.Htarget = 0
-	WqBs_prop.CritReduce = 0
-	WqBs_prop.ar = 0
-	WqBs_prop.sp = 0
+	wq_bs_prop.SHp = 0
+	wq_bs_prop.SMp = 0
+	wq_bs_prop.power = 0
+	wq_bs_prop.Def = 0
+	wq_bs_prop.Mdef = 0
+	wq_bs_prop.Crit = 0
+	wq_bs_prop.Miss = 0
+	wq_bs_prop.R_hp = 0
+	wq_bs_prop.R_mp = 0
+	wq_bs_prop.vampirism = 0
+	wq_bs_prop.Lucky = 0
+	wq_bs_prop.Toughness = 0
+	wq_bs_prop.Htarget = 0
+	wq_bs_prop.CritReduce = 0
+	wq_bs_prop.ar = 0
+	wq_bs_prop.sp = 0
 
 
 func remove_fj_bs():
-	FjBs_prop.SHp = 0
-	FjBs_prop.SMp = 0
-	FjBs_prop.power = 0
-	FjBs_prop.Def = 0
-	FjBs_prop.Mdef = 0
-	FjBs_prop.Crit = 0
-	FjBs_prop.Miss = 0
-	FjBs_prop.R_hp = 0
-	FjBs_prop.R_mp = 0
-	FjBs_prop.vampirism = 0
-	FjBs_prop.Lucky = 0
-	FjBs_prop.Toughness = 0
-	FjBs_prop.Htarget = 0
-	FjBs_prop.CritReduce = 0
-	FjBs_prop.ar = 0
-	FjBs_prop.sp = 0
+	fj_bs_prop.SHp = 0
+	fj_bs_prop.SMp = 0
+	fj_bs_prop.power = 0
+	fj_bs_prop.Def = 0
+	fj_bs_prop.Mdef = 0
+	fj_bs_prop.Crit = 0
+	fj_bs_prop.Miss = 0
+	fj_bs_prop.R_hp = 0
+	fj_bs_prop.R_mp = 0
+	fj_bs_prop.vampirism = 0
+	fj_bs_prop.Lucky = 0
+	fj_bs_prop.Toughness = 0
+	fj_bs_prop.Htarget = 0
+	fj_bs_prop.CritReduce = 0
+	fj_bs_prop.ar = 0
+	fj_bs_prop.sp = 0
 
 
 func remove_sp_bs():
-	SpBs_prop.SHp = 0
-	SpBs_prop.SMp = 0
-	SpBs_prop.power = 0
-	SpBs_prop.Def = 0
-	SpBs_prop.Mdef = 0
-	SpBs_prop.Crit = 0
-	SpBs_prop.Miss = 0
-	SpBs_prop.R_hp = 0
-	SpBs_prop.R_mp = 0
-	SpBs_prop.vampirism = 0
-	SpBs_prop.Lucky = 0
-	SpBs_prop.Toughness = 0
-	SpBs_prop.Htarget = 0
-	SpBs_prop.CritReduce = 0
-	SpBs_prop.ar = 0
-	SpBs_prop.sp = 0
+	sp_bs_prop.SHp = 0
+	sp_bs_prop.SMp = 0
+	sp_bs_prop.power = 0
+	sp_bs_prop.Def = 0
+	sp_bs_prop.Mdef = 0
+	sp_bs_prop.Crit = 0
+	sp_bs_prop.Miss = 0
+	sp_bs_prop.R_hp = 0
+	sp_bs_prop.R_mp = 0
+	sp_bs_prop.vampirism = 0
+	sp_bs_prop.Lucky = 0
+	sp_bs_prop.Toughness = 0
+	sp_bs_prop.Htarget = 0
+	sp_bs_prop.CritReduce = 0
+	sp_bs_prop.ar = 0
+	sp_bs_prop.sp = 0
 
 
 func remove_cb_bs():
-	CbBs_prop.SHp = 0
-	CbBs_prop.SMp = 0
-	CbBs_prop.power = 0
-	CbBs_prop.Def = 0
-	CbBs_prop.Mdef = 0
-	CbBs_prop.Crit = 0
-	CbBs_prop.Miss = 0
-	CbBs_prop.R_hp = 0
-	CbBs_prop.R_mp = 0
-	CbBs_prop.vampirism = 0
-	CbBs_prop.Lucky = 0
-	CbBs_prop.Toughness = 0
-	CbBs_prop.Htarget = 0
-	CbBs_prop.CritReduce = 0
-	CbBs_prop.ar = 0
-	CbBs_prop.sp = 0
+	cb_bs_prop.SHp = 0
+	cb_bs_prop.SMp = 0
+	cb_bs_prop.power = 0
+	cb_bs_prop.Def = 0
+	cb_bs_prop.Mdef = 0
+	cb_bs_prop.Crit = 0
+	cb_bs_prop.Miss = 0
+	cb_bs_prop.R_hp = 0
+	cb_bs_prop.R_mp = 0
+	cb_bs_prop.vampirism = 0
+	cb_bs_prop.Lucky = 0
+	cb_bs_prop.Toughness = 0
+	cb_bs_prop.Htarget = 0
+	cb_bs_prop.CritReduce = 0
+	cb_bs_prop.ar = 0
+	cb_bs_prop.sp = 0
 
 
 func remove_sz_bs():
-	SzBs_prop.SHp = 0
-	SzBs_prop.SMp = 0
-	SzBs_prop.power = 0
-	SzBs_prop.Def = 0
-	SzBs_prop.Mdef = 0
-	SzBs_prop.Crit = 0
-	SzBs_prop.Miss = 0
-	SzBs_prop.R_hp = 0
-	SzBs_prop.R_mp = 0
-	SzBs_prop.vampirism = 0
-	SzBs_prop.Lucky = 0
-	SzBs_prop.Toughness = 0
-	SzBs_prop.Htarget = 0
-	SzBs_prop.CritReduce = 0
-	SzBs_prop.ar = 0
-	SzBs_prop.sp = 0
+	sz_bs_prop.SHp = 0
+	sz_bs_prop.SMp = 0
+	sz_bs_prop.power = 0
+	sz_bs_prop.Def = 0
+	sz_bs_prop.Mdef = 0
+	sz_bs_prop.Crit = 0
+	sz_bs_prop.Miss = 0
+	sz_bs_prop.R_hp = 0
+	sz_bs_prop.R_mp = 0
+	sz_bs_prop.vampirism = 0
+	sz_bs_prop.Lucky = 0
+	sz_bs_prop.Toughness = 0
+	sz_bs_prop.Htarget = 0
+	sz_bs_prop.CritReduce = 0
+	sz_bs_prop.ar = 0
+	sz_bs_prop.sp = 0
 
 
 func remove_tx_bs():
-	TxBs_prop.SHp = 0
-	TxBs_prop.SMp = 0
-	TxBs_prop.power = 0
-	TxBs_prop.Def = 0
-	TxBs_prop.Mdef = 0
-	TxBs_prop.Crit = 0
-	TxBs_prop.Miss = 0
-	TxBs_prop.R_hp = 0
-	TxBs_prop.R_mp = 0
-	TxBs_prop.vampirism = 0
-	TxBs_prop.Lucky = 0
-	TxBs_prop.Toughness = 0
-	TxBs_prop.Htarget = 0
-	TxBs_prop.CritReduce = 0
-	TxBs_prop.ar = 0
-	TxBs_prop.sp = 0
+	tx_bs_prop.SHp = 0
+	tx_bs_prop.SMp = 0
+	tx_bs_prop.power = 0
+	tx_bs_prop.Def = 0
+	tx_bs_prop.Mdef = 0
+	tx_bs_prop.Crit = 0
+	tx_bs_prop.Miss = 0
+	tx_bs_prop.R_hp = 0
+	tx_bs_prop.R_mp = 0
+	tx_bs_prop.vampirism = 0
+	tx_bs_prop.Lucky = 0
+	tx_bs_prop.Toughness = 0
+	tx_bs_prop.Htarget = 0
+	tx_bs_prop.CritReduce = 0
+	tx_bs_prop.ar = 0
+	tx_bs_prop.sp = 0
 
 
 func cure_exp(Exp: int):

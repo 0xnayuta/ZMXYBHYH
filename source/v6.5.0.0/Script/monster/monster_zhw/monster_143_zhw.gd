@@ -95,24 +95,24 @@ func initialize_monster_properties():
 	self_rhp = int(RoleProp.roleprop.R_hp)
 	ebol = 0
 
-	attackRange = 350
+	attack_range = 350
 	mysee = 99990
 	speed = 20
-	attackDesire = 80
+	attack_desire = 80
 
-	objattackDic["hit1"] = {
+	obj_attack_dict["hit1"] = {
 		"power": owner_power * 2,
 		"hurtBack": [-8, -10],
 		"attackKind": "magic",
 		"HitProtect": 0,
 	}
-	objattackDic["hit2"] = {
+	obj_attack_dict["hit2"] = {
 		"power": owner_power * 4,
 		"hurtBack": [-20, -10],
 		"attackKind": "magic",
 		"HitProtect": 0,
 	}
-	objattackDic["hit3"] = {
+	obj_attack_dict["hit3"] = {
 		"power": owner_power * 6,
 		"hurtBack": [-15, -10],
 		"attackKind": "magic",

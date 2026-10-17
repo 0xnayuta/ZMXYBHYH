@@ -24,13 +24,13 @@ func monster_82():
 	self.Critreduce = 0
 	self.speed = 14
 	self.mysee = 800
-	self.attackRange = 355
-	self.attackDesire = 85
+	self.attack_range = 355
+	self.attack_desire = 85
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 110
 	self.fall_coin = 90
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 325,
 		"hurtBack": [-15, -12],
 		"attackKind": "physics",
@@ -75,6 +75,6 @@ func add_bullet():
 		1,
 		target_position + position,
 		"hit1",
-		self.objattackDic["hit1"]
+		self.obj_attack_dict["hit1"]
 	)
 	arrow.scale = Vector2(0.7, 0.7)

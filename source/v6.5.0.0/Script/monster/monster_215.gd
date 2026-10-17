@@ -54,8 +54,8 @@ func _configure_boss() -> void:
 	speed = 25
 	mysee = 1000
 
-	attackRange = 150
-	attackDesire = 100
+	attack_range = 150
+	attack_desire = 100
 	behit_calmtime = 0
 	add_exp = 20
 	fall_coin = 800
@@ -69,13 +69,13 @@ func _configure_boss() -> void:
 		{"name": "csblxyhbzzs", "value": 1, "chance": 0.1},
 		{"name": "342071301zzs", "value": 1, "chance": 0.1},
 	]
-	objattackDic["hit1"] = {
+	obj_attack_dict["hit1"] = {
 		"power": SKILL_1_POWER,
 		"hurtBack": [-10, -5],
 		"attackKind": "physics",
 		"HitProtect": 99,
 	}
-	objattackDic["hit2"] = {
+	obj_attack_dict["hit2"] = {
 		"power": SKILL_2_POWER,
 		"hurtBack": [-8, -2],
 		"attackKind": "magic",
@@ -167,7 +167,7 @@ func ai_think() -> void:
 		return
 	if skill_2_cooldown.is_stopped() and distance < 500.0:
 		_use_attack(&"hit2")
-	elif distance > attackRange:
+	elif distance > attack_range:
 		have_target()
 	elif skill_1_cooldown.is_stopped():
 		_use_attack(&"hit1")
@@ -200,7 +200,7 @@ func call_bullet_1() -> void:
 	_sync_attack_power(&"hit1")
 	var offset := Vector2(65, -55) if MonsterDirection else Vector2(-65, -55)
 	Global.add_bullet(
-		"Monster215Bullet1", bullet, MonsterDirection, 1.0, position + offset, "hit1", objattackDic["hit1"]
+		"Monster215Bullet1", bullet, MonsterDirection, 1.0, position + offset, "hit1", obj_attack_dict["hit1"]
 	)
 
 
@@ -210,7 +210,13 @@ func call_bullet_2() -> void:
 	for offset in [Vector2(150, 0), Vector2(170, -30), Vector2(150, -65)]:
 		var directed_offset := Vector2(offset.x * direction_sign, offset.y)
 		Global.add_bullet(
-			"Monster215Bullet2", bullet, MonsterDirection, 1.0, position + directed_offset, "hit2", objattackDic["hit2"]
+			"Monster215Bullet2",
+			bullet,
+			MonsterDirection,
+			1.0,
+			position + directed_offset,
+			"hit2",
+			obj_attack_dict["hit2"]
 		)
 
 
@@ -218,7 +224,7 @@ func _sync_attack_power(action: StringName) -> void:
 	var action_key := String(action)
 	if has_meta("tower_config"):
 		var tower_config: Dictionary = get_meta("tower_config", {})
-		objattackDic[action_key]["power"] = int(tower_config.get("attack", 0))
+		obj_attack_dict[action_key]["power"] = int(tower_config.get("attack", 0))
 		return
 	var base_power := SKILL_1_POWER if action == &"hit1" else SKILL_2_POWER
 	var difficulty := int(MainSet.set_data.get("Difficult", 0))
@@ -229,9 +235,9 @@ func _sync_attack_power(action: StringName) -> void:
 		multiplier = 3.0
 	elif difficulty == BaseMonster.NIGHTMARE_DIFFICULTY:
 		multiplier = 3.0
-	objattackDic[action_key]["power"] = int(base_power * multiplier)
+	obj_attack_dict[action_key]["power"] = int(base_power * multiplier)
 	if difficulty == BaseMonster.NIGHTMARE_DIFFICULTY:
-		objattackDic[action_key]["power"] += BaseMonster.NIGHTMARE_ATTACK_BONUS
+		obj_attack_dict[action_key]["power"] += BaseMonster.NIGHTMARE_ATTACK_BONUS
 
 
 func little_blood_bar_control():

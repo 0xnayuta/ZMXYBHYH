@@ -210,7 +210,7 @@ func apply_slow_speed() -> void:
 	last_value = normalize_slow_ratio(last_value)
 	var multiplier := 1.0 - last_value
 	if GetObj is BaseMonster:
-		GetObj.speed = GetObj.iniSpeed * multiplier
+		GetObj.speed = GetObj.init_speed * multiplier
 	elif GetObj is BaseHero:
 		var base_speed: float = GetObj._fabao_jiasu_base_speed * 2 if GetObj.is_fabao_jiasu else 240
 		GetObj.walk_speed = base_speed * multiplier

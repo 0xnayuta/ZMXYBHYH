@@ -481,21 +481,21 @@ func ws_skill() -> bool:
 		return true
 	match sz_name:
 		"ttzssz":
-			if not objattackDic.has("ttzs"):
+			if not obj_attack_dict.has("ttzs"):
 				return true
 			add_ttzs_effect()
 		"nmwsz":
-			if not objattackDic.has("nmw"):
+			if not obj_attack_dict.has("nmw"):
 				return true
 			addnmw_effect()
 		"zlwsz":
-			if not objattackDic.has("zlw"):
+			if not obj_attack_dict.has("zlw"):
 				return true
 			addzlw_effect()
 			if pz == "shenqi":
 				startzlw_shenqi_effect()
 		"smsrsz":
-			if not objattackDic.has("smsr"):
+			if not obj_attack_dict.has("smsr"):
 				return true
 			if smsrsz_timer == null:
 				smsrsz_timer = Timer.new()
@@ -1582,7 +1582,7 @@ func jump():
 
 
 func get_hit_data(hit_name_: String):
-	HitDic = objattackDic[hit_name_]
+	HitDic = obj_attack_dict[hit_name_]
 	_hit_data_needs_reset = true
 
 
@@ -1681,7 +1681,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	monster_target = check_monster(area)
 	if target == null or monster_target == null:
 		return
-	if target.objattackDic.size() == 0:
+	if target.obj_attack_dict.size() == 0:
 		return
 	if str(target.get("skill_name")) == "Monster118Bullet2":
 		Global.add_buff(
@@ -1829,9 +1829,9 @@ func reduce_hp(value: int, target_boss, target_obj):
 	RoleProp.roleprop.Hp -= value
 
 	var hit_name_value = target_obj.get("hit_name")
-	if hit_name_value == null or typeof(target_boss.objattackDic) != TYPE_DICTIONARY:
+	if hit_name_value == null or typeof(target_boss.obj_attack_dict) != TYPE_DICTIONARY:
 		return
-	var attack_data = target_boss.objattackDic.get(hit_name_value, {})
+	var attack_data = target_boss.obj_attack_dict.get(hit_name_value, {})
 	if typeof(attack_data) != TYPE_DICTIONARY or not attack_data.has("attackKind"):
 		return
 
@@ -1929,11 +1929,11 @@ func get_monster_last_hurt(target_boss, target_obj):
 	if hit_name_value == null or String(hit_name_value).is_empty():
 		return 0
 	var attack_dictionary: Dictionary = {}
-	var source_attack_dictionary: Variant = target_obj.get("objattackDic")
+	var source_attack_dictionary: Variant = target_obj.get("obj_attack_dict")
 	if source_attack_dictionary is Dictionary and (source_attack_dictionary as Dictionary).has(hit_name_value):
 		attack_dictionary = source_attack_dictionary as Dictionary
-	elif typeof(target_boss.objattackDic) == TYPE_DICTIONARY:
-		attack_dictionary = target_boss.objattackDic
+	elif typeof(target_boss.obj_attack_dict) == TYPE_DICTIONARY:
+		attack_dictionary = target_boss.obj_attack_dict
 	if not attack_dictionary.has(hit_name_value):
 		return 0
 	var attack_data = attack_dictionary[hit_name_value]
@@ -2105,9 +2105,9 @@ func _get_monster_hurt_back(target_boss, target_obj) -> Array:
 	if target_boss == null or target_obj == null:
 		return []
 	var hit_name_value = target_obj.get("hit_name")
-	if hit_name_value == null or typeof(target_boss.objattackDic) != TYPE_DICTIONARY:
+	if hit_name_value == null or typeof(target_boss.obj_attack_dict) != TYPE_DICTIONARY:
 		return []
-	var attack_data = target_boss.objattackDic.get(hit_name_value, {})
+	var attack_data = target_boss.obj_attack_dict.get(hit_name_value, {})
 	if typeof(attack_data) != TYPE_DICTIONARY or not attack_data.has("hurtBack"):
 		return []
 	var hurt_back = attack_data["hurtBack"]
@@ -2120,9 +2120,9 @@ func _get_source_target_move(target_boss, target_obj) -> Array:
 	if target_boss == null or target_obj == null:
 		return []
 	var hit_name_value = target_obj.get("hit_name")
-	if hit_name_value == null or typeof(target_boss.objattackDic) != TYPE_DICTIONARY:
+	if hit_name_value == null or typeof(target_boss.obj_attack_dict) != TYPE_DICTIONARY:
 		return []
-	var attack_data = target_boss.objattackDic.get(hit_name_value, {})
+	var attack_data = target_boss.obj_attack_dict.get(hit_name_value, {})
 	if typeof(attack_data) != TYPE_DICTIONARY:
 		return []
 	var source_move: Variant = attack_data.get("sourceTargetMove", null)
@@ -2137,8 +2137,8 @@ func _queue_hit_stiff(target_boss, target_obj) -> void:
 	var stiff_seconds := -1.0
 	if target_boss != null and target_obj != null:
 		var hit_name_value = target_obj.get("hit_name")
-		if hit_name_value != null and typeof(target_boss.objattackDic) == TYPE_DICTIONARY:
-			var attack_data = target_boss.objattackDic.get(hit_name_value, {})
+		if hit_name_value != null and typeof(target_boss.obj_attack_dict) == TYPE_DICTIONARY:
+			var attack_data = target_boss.obj_attack_dict.get(hit_name_value, {})
 			if typeof(attack_data) == TYPE_DICTIONARY and attack_data.has("sourceStiffSeconds"):
 				stiff_seconds = maxf(float(attack_data["sourceStiffSeconds"]), 0.0)
 	_pending_hit_stiff_seconds.append(stiff_seconds)
@@ -2999,19 +2999,19 @@ func add_special_effect_clothes(EqName, ClothesName):
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	if objattackDic.has(get_action):
-		if objattackDic[get_action].has("addeffect"):
+	if obj_attack_dict.has(get_action):
+		if obj_attack_dict[get_action].has("addeffect"):
 			var Monster = area.get_parent().get_parent()
 			if Monster != null:
 				if Monster is BaseMonster and not _is_summon_or_pet_target(Monster):
 					if self is Role4Hero:
-						if objattackDic[get_action]["addeffect"]["Name"] == "Voodoo":
+						if obj_attack_dict[get_action]["addeffect"]["Name"] == "Voodoo":
 							if Global.check_wd(Monster) < 10:
-								Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
+								Global.add_buff(Monster.buff, obj_attack_dict[get_action]["addeffect"])
 						else:
-							Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
+							Global.add_buff(Monster.buff, obj_attack_dict[get_action]["addeffect"])
 					else:
-						Global.add_buff(Monster.buff, objattackDic[get_action]["addeffect"])
+						Global.add_buff(Monster.buff, obj_attack_dict[get_action]["addeffect"])
 	if self is Role1Hero:
 		if get_action == "qsez":
 			velocity.x = 0
@@ -3027,9 +3027,9 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				]
 				for i in range(5):
 					if randi_range(0, 100) < 50:
-						Global.add_role_bullet_1_safe(self.Bullet, pp[i], "qsez", self.objattackDic["qsez"])
+						Global.add_role_bullet_1_safe(self.Bullet, pp[i], "qsez", self.obj_attack_dict["qsez"])
 					else:
-						Global.add_role_bullet_1_safe(self.Bullet, pp[i], "qsez_1", self.objattackDic["qsez"])
+						Global.add_role_bullet_1_safe(self.Bullet, pp[i], "qsez_1", self.obj_attack_dict["qsez"])
 					await get_tree().create_timer(0.08, false).timeout
 
 
@@ -3555,10 +3555,10 @@ func _prewarm_heavy_skill_resources() -> void:
 func addsmsr_shenqi_lightning_round() -> void:
 	if not RoleProp.is_ws_state or not has_smsrsz_fashion or current_fashion_quality != "shenqi":
 		return
-	if not objattackDic.has("smsr"):
+	if not obj_attack_dict.has("smsr"):
 		return
 	var effect := SMSR_SHENQI_LIGHTNING_EFFECT.new()
-	effect.setup(self, objattackDic["smsr"])
+	effect.setup(self, obj_attack_dict["smsr"])
 	var level := get_parent().get_parent()
 	if level != null:
 		level.add_child(effect)
@@ -3567,7 +3567,7 @@ func addsmsr_shenqi_lightning_round() -> void:
 
 
 func addsmsr_effect():
-	var dic = objattackDic["smsr"].duplicate(true)
+	var dic = obj_attack_dict["smsr"].duplicate(true)
 	if PlayerDir:
 		dic["hurtBack"] = [-20, -1]
 	else:
@@ -3577,7 +3577,7 @@ func addsmsr_effect():
 
 
 func addzlw_effect():
-	Global.add_role_bullet(self, Vector2(0, 0), false, "ZLWBullet", objattackDic["zlw"])
+	Global.add_role_bullet(self, Vector2(0, 0), false, "ZLWBullet", obj_attack_dict["zlw"])
 
 
 func startzlw_shenqi_effect():
@@ -3597,7 +3597,7 @@ func _on_zlwsz_shenqi_timer_timeout():
 
 
 func addzlw_shenqi_wheel_effect():
-	if not objattackDic.has("zlw_shenqi_ws"):
+	if not obj_attack_dict.has("zlw_shenqi_ws"):
 		return
 	if zlwsz_shenqi_gear_scene == null:
 		zlwsz_shenqi_gear_scene = load("res://Scene/hero/zlw_shenqi_gear_bullet.tscn")
@@ -3608,13 +3608,13 @@ func addzlw_shenqi_wheel_effect():
 		var gear = zlwsz_shenqi_gear_scene.instantiate()
 		gear.follow_target = self
 		gear.initial_angle = TAU / 3.0 * i
-		gear.HitDic = objattackDic["zlw_shenqi_ws"]
+		gear.HitDic = obj_attack_dict["zlw_shenqi_ws"]
 		bullet_parent.add_child(gear)
 		gear.global_position = self.global_position
 
 
 func add_ttzs_effect():
-	Global.add_role_bullet(self, Vector2(0, 0), false, "TtzsszBullet", objattackDic["ttzs"])
+	Global.add_role_bullet(self, Vector2(0, 0), false, "TtzsszBullet", obj_attack_dict["ttzs"])
 
 
 func addnmw_effect():
@@ -3655,7 +3655,7 @@ func addnmw_effect():
 		"shishi":
 			count = 3
 	for i in bullet_spawn_positions[str(count)]:
-		Global.add_role_bullet(self.Bullet, Vector2(i.x + position.x, 500), false, "NMWBullet2", objattackDic["nmw"])
+		Global.add_role_bullet(self.Bullet, Vector2(i.x + position.x, 500), false, "NMWBullet2", obj_attack_dict["nmw"])
 
 
 func set_sz_value():
@@ -3700,7 +3700,7 @@ func set_sz_value():
 					Power = RoleProp.roleprop.power * 4
 					pj = 0.4
 					time = 16
-			objattackDic["ttzs"] = {
+			obj_attack_dict["ttzs"] = {
 				"power": int(Power),
 				"hurtBack": [1, -1],
 				"attackKind": "magic",
@@ -3750,7 +3750,7 @@ func set_sz_value():
 					Power = max_hp * 1.5
 					pj = max_hp * 0.17
 					time = 13
-			objattackDic["nmw"] = {
+			obj_attack_dict["nmw"] = {
 				"power": int(Power),
 				"hurtBack": [1, -1],
 				"attackKind": "magic",
@@ -3791,7 +3791,7 @@ func set_sz_value():
 				"shenqi":
 					Power = RoleProp.roleprop.power * 9
 					time = 8
-			objattackDic["zlw"] = {
+			obj_attack_dict["zlw"] = {
 				"power": int(Power),
 				"hurtBack": [1, -1],
 				"attackKind": "magic",
@@ -3808,7 +3808,7 @@ func set_sz_value():
 				}
 			}
 			if pz == "shenqi":
-				objattackDic["zlw_shenqi_ws"] = {
+				obj_attack_dict["zlw_shenqi_ws"] = {
 					"power": int(RoleProp.roleprop.power * 2.5),
 					"hurtBack": [0, 0],
 					"attackKind": "magic",
@@ -3845,7 +3845,7 @@ func set_sz_value():
 					Power = RoleProp.roleprop.power * 3
 				"shenqi":
 					Power = RoleProp.roleprop.power * 3
-			objattackDic["smsr"] = {
+			obj_attack_dict["smsr"] = {
 				"power": int(Power),
 				"hurtBack": [0, 0],
 				"attackKind": "magic",
@@ -3971,33 +3971,33 @@ func use_zhen_fa():
 		match PlayerData.player_data["已佩戴阵法"]:
 			"slz":
 				if ZhenFaCd <= 0:
-					self.objattackDic["slz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic", "WSValue": 0}
-					Global.add_role_bullet(self, Vector2(0, 30), false, "SLZBullet", objattackDic["slz"])
+					self.obj_attack_dict["slz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic", "WSValue": 0}
+					Global.add_role_bullet(self, Vector2(0, 30), false, "SLZBullet", obj_attack_dict["slz"])
 					_start_zhen_fa_cd(30)
 			"lpz":
 				if ZhenFaCd <= 0:
-					self.objattackDic["lpz"] = {
+					self.obj_attack_dict["lpz"] = {
 						"power": int(RoleProp.roleprop.power * 1),
 						"hurtBack": [0, 0],
 						"attackKind": "magic",
 						"WSValue": 0
 					}
 					Global.add_role_bullet(
-						self.Bullet, position + Vector2(0, 40), false, "LPZBullet", objattackDic["lpz"]
+						self.Bullet, position + Vector2(0, 40), false, "LPZBullet", obj_attack_dict["lpz"]
 					)
 					_start_zhen_fa_cd(30)
 			"tsz":
 				if ZhenFaCd <= 0:
-					self.objattackDic["tsz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic", "WSValue": 0}
-					Global.add_role_bullet(self, Vector2(0, 30), false, "TSZBullet", objattackDic["tsz"])
+					self.obj_attack_dict["tsz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic", "WSValue": 0}
+					Global.add_role_bullet(self, Vector2(0, 30), false, "TSZBullet", obj_attack_dict["tsz"])
 					_start_zhen_fa_cd(30)
 			"tqz":
 				if not is_on_floor():
 					return
 				if ZhenFaCd <= 0:
-					self.objattackDic["tqz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic", "WSValue": 0}
+					self.obj_attack_dict["tqz"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic", "WSValue": 0}
 					Global.add_role_bullet(
-						self.Bullet, position + Vector2(0, 40), false, "TQZBullet", objattackDic["tqz"]
+						self.Bullet, position + Vector2(0, 40), false, "TQZBullet", obj_attack_dict["tqz"]
 					)
 					_start_zhen_fa_cd(35)
 

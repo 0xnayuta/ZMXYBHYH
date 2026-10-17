@@ -30,14 +30,14 @@ func monster_24():
 		self.Critreduce = 0
 		self.speed = 40
 		self.mysee = 300
-		self.attackRange = 85
-		self.attackDesire = 70
+		self.attack_range = 85
+		self.attack_desire = 70
 		self.behit_calmtime = 0
 		self.self_rhp = 0
 		self.add_exp = 0
 		self.fall_coin = 200
-		self.objattackDic["hit1"] = {"power": 450, "hurtBack": [-4, -9], "attackKind": "physics"}
-		self.objattackDic["Fire"] = {
+		self.obj_attack_dict["hit1"] = {"power": 450, "hurtBack": [-4, -9], "attackKind": "physics"}
+		self.obj_attack_dict["Fire"] = {
 			"power": 850,
 			"hurtBack": [-4, -9],
 			"attackKind": "magic",
@@ -81,14 +81,14 @@ func monster_24():
 	self.Critreduce = 0
 	self.speed = 40
 	self.mysee = 300
-	self.attackRange = 85
-	self.attackDesire = 70
+	self.attack_range = 85
+	self.attack_desire = 70
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {"power": 450, "hurtBack": [-4, -9], "attackKind": "physics"}
-	self.objattackDic["Fire"] = {
+	self.obj_attack_dict["hit1"] = {"power": 450, "hurtBack": [-4, -9], "attackKind": "physics"}
+	self.obj_attack_dict["Fire"] = {
 		"power": 250,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -169,7 +169,7 @@ func call_fire_1():
 			1,
 			Vector2(ppx[i] + position.x, ppy[i]),
 			"Fire",
-			self.objattackDic["Fire"]
+			self.obj_attack_dict["Fire"]
 		)
 		await get_tree().create_timer(0.4, false).timeout
 	await get_tree().create_timer(1, false).timeout
@@ -187,7 +187,7 @@ func call_fire_2():
 			1,
 			Vector2(ppx[i] + position.x, ppy[i]),
 			"Fire",
-			self.objattackDic["Fire"]
+			self.obj_attack_dict["Fire"]
 		)
 		await get_tree().create_timer(0.4, false).timeout
 	await get_tree().create_timer(1, false).timeout
@@ -206,7 +206,7 @@ func call_fire_3():
 			1,
 			Vector2(ppx[i] + position.x, ppy[i]),
 			"Fire",
-			self.objattackDic["Fire"]
+			self.obj_attack_dict["Fire"]
 		)
 	await get_tree().create_timer(1, false).timeout
 	call_fire_4()
@@ -223,7 +223,7 @@ func call_fire_4():
 			1,
 			Vector2(ppx[i] + position.x, ppy[i]),
 			"Fire",
-			self.objattackDic["Fire"]
+			self.obj_attack_dict["Fire"]
 		)
 	await get_tree().create_timer(1, false).timeout
 	rand_fire.start(randi_range(4, 5))
@@ -238,7 +238,7 @@ func _on_fire_timeout() -> void:
 			1,
 			Vector2(randi_range(-500, 500) + position.x, 370),
 			"Fire",
-			self.objattackDic["Fire"]
+			self.obj_attack_dict["Fire"]
 		)
 
 

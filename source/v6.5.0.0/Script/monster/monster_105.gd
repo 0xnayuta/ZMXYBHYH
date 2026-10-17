@@ -20,13 +20,13 @@ func monster_105():
 	self.Critreduce = 0
 	self.speed = 11
 	self.mysee = 500
-	self.attackRange = 365
-	self.attackDesire = 80
+	self.attack_range = 365
+	self.attack_desire = 80
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 220
 	self.fall_coin = 220
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 120,
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
@@ -67,7 +67,7 @@ func call_dd():
 			true,
 			Vector2(self.position.x + 70, self.position.y),
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 	else:
 		Global.call_chase_bullet(
@@ -78,5 +78,5 @@ func call_dd():
 			true,
 			Vector2(self.position.x - 70, self.position.y),
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)

@@ -22,18 +22,18 @@ func monster_77():
 	self.Critreduce = 0
 	self.speed = 14
 	self.mysee = 400
-	self.attackRange = 350
-	self.attackDesire = 75
+	self.attack_range = 350
+	self.attack_desire = 75
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 100
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 330,
 		"hurtBack": [-7, -9],
 		"attackKind": "physics",
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 600,
 		"hurtBack": [-7, -15],
 		"attackKind": "magic",
@@ -48,7 +48,7 @@ func monster_77():
 			"CanAdd": false,
 		}
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 700,
 		"hurtBack": [25, -25],
 		"attackKind": "magic",
@@ -97,7 +97,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 600:
@@ -111,7 +111,7 @@ func ai_think():
 					do_hit_2()
 				else:
 					if count % 60 == 0:
-						if randi_range(0, 100) < attackDesire:
+						if randi_range(0, 100) < attack_desire:
 							attack_target()
 						else:
 							stop_move()
@@ -154,13 +154,15 @@ func add_child_1():
 		rotation_value = 11
 		rotation2 = -40
 	var child = Global.add_bullet(
-		"Monster77Bullet2", bullet, MonsterDirection, 2, position + po, "hit2", self.objattackDic["hit2"]
+		"Monster77Bullet2", bullet, MonsterDirection, 2, position + po, "hit2", self.obj_attack_dict["hit2"]
 	)
 	child.rotation_degrees = rotation_value
 	var dir = MonsterDirection
 	await get_tree().create_timer(1, false).timeout
 	for i in bullet_spawn_positions:
-		child = Global.add_bullet("Monster77Bullet3", bullet, dir, 2, position + i, "hit3", self.objattackDic["hit3"])
+		child = Global.add_bullet(
+			"Monster77Bullet3", bullet, dir, 2, position + i, "hit3", self.obj_attack_dict["hit3"]
+		)
 		child.rotation_degrees = rotation2
 		await get_tree().create_timer(0.5, false).timeout
 
@@ -172,5 +174,5 @@ func add_child_2():
 	else:
 		po = Vector2(-50, 0)
 	var child = Global.add_bullet(
-		"Monster77Bullet1", bullet, MonsterDirection, 2, position + po, "hit1", self.objattackDic["hit1"]
+		"Monster77Bullet1", bullet, MonsterDirection, 2, position + po, "hit1", self.obj_attack_dict["hit1"]
 	)

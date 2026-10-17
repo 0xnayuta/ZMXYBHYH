@@ -20,19 +20,19 @@ func monster_29():
 	self.Critreduce = 0
 	self.speed = 13
 	self.mysee = 300
-	self.attackRange = 165
-	self.attackDesire = 90
+	self.attack_range = 165
+	self.attack_desire = 90
 	self.behit_calmtime = 0.2
 	self.self_rhp = 0
 	self.add_exp = 100
 	self.fall_coin = 100
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": int(40 + RoleProp.roleprop.power * 0.2), "hurtBack": [-3, -5], "attackKind": "physics"
 	}
-	self.objattackDic["lxhjq"] = {
+	self.obj_attack_dict["lxhjq"] = {
 		"power": int(50 + RoleProp.roleprop.power * 0.6), "hurtBack": [-3, -5], "attackKind": "magic"
 	}
-	self.objattackDic["tghs"] = {
+	self.obj_attack_dict["tghs"] = {
 		"power": int(60 + RoleProp.roleprop.power * 0.4),
 		"hurtBack": [-3, -5],
 		"attackKind": "magic",
@@ -47,7 +47,7 @@ func monster_29():
 			"AttackKind": "",
 		}
 	}
-	self.objattackDic["smzh"] = {
+	self.obj_attack_dict["smzh"] = {
 		"power": int(20 + RoleProp.roleprop.power * 0.12),
 		"hurtBack": [-3, -5],
 		"attackKind": "real",
@@ -97,7 +97,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 1600:
 					if Skill_3_CD <= 0:
@@ -117,7 +117,7 @@ func ai_think():
 					do_hit_2()
 				elif count % 60 == 0:
 					var rad = randi_range(0, 100)
-					if rad <= attackDesire:
+					if rad <= attack_desire:
 						attack_target()
 				else:
 					stop_move()
@@ -176,4 +176,6 @@ func call_lxhjq():
 		po = Vector2(90, -15) + position
 	else:
 		po = Vector2(-90, -15) + position
-	Global.add_bullet("Monster29Bullet", self.bullet, self.MonsterDirection, 1, po, "lxhjq", self.objattackDic["lxhjq"])
+	Global.add_bullet(
+		"Monster29Bullet", self.bullet, self.MonsterDirection, 1, po, "lxhjq", self.obj_attack_dict["lxhjq"]
+	)

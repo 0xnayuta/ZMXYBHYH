@@ -21,18 +21,18 @@ func monster_58():
 	self.Critreduce = 0
 	self.speed = 8
 	self.mysee = 500
-	self.attackRange = 80
-	self.attackDesire = 60
+	self.attack_range = 80
+	self.attack_desire = 60
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 90
 	self.fall_coin = 50
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 180,
 		"hurtBack": [-4, -9],
 		"attackKind": "physics",
 	}
-	self.objattackDic["dmghr"] = {
+	self.obj_attack_dict["dmghr"] = {
 		"power": 60,
 		"hurtBack": [-1, 0],
 		"attackKind": "magic",
@@ -66,7 +66,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 320:
@@ -98,7 +98,7 @@ func do_hit_2():
 func call_round():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
-	round_num = Global.add_bullet("Monster58Bullet", bullet, false, 1, pp, "dmghr", self.objattackDic["dmghr"])
+	round_num = Global.add_bullet("Monster58Bullet", bullet, false, 1, pp, "dmghr", self.obj_attack_dict["dmghr"])
 	tween.tween_property(round_num, "position", setposition(), 0.5)
 	await get_tree().create_timer(2.5, false).timeout
 	return_()

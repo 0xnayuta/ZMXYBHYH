@@ -175,9 +175,9 @@ func _configure_monster() -> void:
 	ar = int(config.get("armor_break", 0))
 	sp = int(config.get("magic_break", 0))
 	speed = float(config.get("speed", 0.0))
-	attackRange = roundi(float(config.get("range", 0.0)))
+	attack_range = roundi(float(config.get("range", 0.0)))
 	mysee = roundi(float(config.get("sight", 0.0)))
-	attackDesire = int(config.get("attack_desire", 0))
+	attack_desire = int(config.get("attack_desire", 0))
 	add_exp = int(config.get("exp", 0))
 	fall_coin = int(config.get("coin", 0))
 	fall_pro = float(config.get("drop_rate", 0.0))
@@ -187,7 +187,7 @@ func _configure_monster() -> void:
 	boss_max_protect = float(config.get("max_protect", 100.0))
 	is_fly = _model_id() == 3036
 	NoGrav = is_fly
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks_value: Variant = config.get("attacks", {})
 	var attacks: Dictionary = attacks_value if attacks_value is Dictionary else {}
 	for attack_name: String in attacks:
@@ -195,7 +195,7 @@ func _configure_monster() -> void:
 		if not attack_value is Dictionary:
 			continue
 		var attack: Dictionary = attack_value
-		objattackDic[attack_name] = {
+		obj_attack_dict[attack_name] = {
 			"power": roundi(float(attack_in) * float(attack.get("multiplier", 0.0))),
 			"hurtBack": Array(attack.get("hurt_back", [0, 0])).duplicate(),
 			"attackKind": str(attack.get("kind", "physics")),
@@ -560,8 +560,8 @@ func _spawn_projectile(config: Dictionary) -> NanhaiProjectile:
 
 
 func _attack_entry() -> Dictionary:
-	if objattackDic.has("hit1"):
-		return (objattackDic["hit1"] as Dictionary).duplicate(true)
+	if obj_attack_dict.has("hit1"):
+		return (obj_attack_dict["hit1"] as Dictionary).duplicate(true)
 	return {}
 
 

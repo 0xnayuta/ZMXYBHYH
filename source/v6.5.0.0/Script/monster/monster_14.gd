@@ -20,14 +20,14 @@ func monster_14():
 	self.Critreduce = 0
 	self.speed = 11
 	self.mysee = 300
-	self.attackRange = 600
-	self.attackDesire = 40
+	self.attack_range = 600
+	self.attack_desire = 40
 	self.behit_calmtime = 0.2
 	self.self_rhp = 0
 	self.add_exp = 35
 	self.fall_coin = 10
-	self.objattackDic["hit1"] = {"power": 30, "hurtBack": [-3, -6], "attackKind": "physics"}
-	self.objattackDic["slz"] = {"power": 90, "hurtBack": [-6, -25], "attackKind": "physics"}
+	self.obj_attack_dict["hit1"] = {"power": 30, "hurtBack": [-3, -6], "attackKind": "physics"}
+	self.obj_attack_dict["slz"] = {"power": 90, "hurtBack": [-6, -25], "attackKind": "physics"}
 	self.fall_pro = 0.0
 	self.fall_list = []
 	self.fall_stone_pro = 0
@@ -109,7 +109,7 @@ func call_fly_bullet():
 			1500,
 			600,
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 	else:
 		Global.call_fly_bullet(
@@ -120,5 +120,5 @@ func call_fly_bullet():
 			1500,
 			600,
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)

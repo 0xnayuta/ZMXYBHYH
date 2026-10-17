@@ -30,8 +30,8 @@ func monster_1406():
 	self.Critreduce = 18
 	self.speed = 18
 	self.mysee = 600
-	self.attackRange = 500
-	self.attackDesire = 95
+	self.attack_range = 500
+	self.attack_desire = 95
 	self.behit_calmtime = 0.08
 	self.self_rhp = 0
 	self.add_exp = 5000
@@ -40,13 +40,13 @@ func monster_1406():
 
 	self.has_summoned_1404 = false
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 800,
 		"hurtBack": [-4, -7],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 800,
 		"hurtBack": [-2, -1],
 		"attackKind": "magic",
@@ -62,7 +62,7 @@ func monster_1406():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 1200,
 		"hurtBack": [-6, -1],
 		"attackKind": "magic",
@@ -79,7 +79,7 @@ func monster_1406():
 		},
 	}
 
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 0,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -140,7 +140,7 @@ func ai_think():
 		return
 
 	var distance_to_player = abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
-	var is_in_attack_range = distance_to_player <= attackRange
+	var is_in_attack_range = distance_to_player <= attack_range
 
 	var can_use_hit3 = Skill_3_CD <= 0
 	var can_use_hit2 = Skill_2_CD <= 0
@@ -258,7 +258,7 @@ func call_bullet_1():
 			await get_tree().create_timer(0.3).timeout
 
 		var bullet_node = Global.add_bullet(
-			"Monster1406Bullet1", self.bullet, false, 1.5, position, "hit1", self.objattackDic["hit1"]
+			"Monster1406Bullet1", self.bullet, false, 1.5, position, "hit1", self.obj_attack_dict["hit1"]
 		)
 
 		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
@@ -271,7 +271,7 @@ func call_bullet_2():
 		var spawn_position = Vector2(position.x - x_offset if is_left else position.x + x_offset, position.y)
 
 		var bullet = Global.add_bullet(
-			"Monster1406Bullet2", self.bullet, false, 1, spawn_position, "hit2", self.objattackDic["hit2"]
+			"Monster1406Bullet2", self.bullet, false, 1, spawn_position, "hit2", self.obj_attack_dict["hit2"]
 		)
 		if i < 9:
 			await get_tree().create_timer(0.2, false).timeout
@@ -281,7 +281,9 @@ func call_bullet_3():
 	var position_list1 = [Vector2(position.x, position.y)]
 
 	for i in position_list1:
-		Global.call_chase_bullet(self.bullet, "Monster1406Bullet3", 300, 5, false, i, "hit3", self.objattackDic["hit3"])
+		Global.call_chase_bullet(
+			self.bullet, "Monster1406Bullet3", 300, 5, false, i, "hit3", self.obj_attack_dict["hit3"]
+		)
 	await get_tree().create_timer(0.2, false).timeout
 
 
@@ -317,7 +319,7 @@ func apply_control_reverse(reverse_time: float):
 
 
 func add_help():
-	Global.add_bullet("Monster1406Bullet4", self, false, 1, Vector2(15, -30), "hit4", self.objattackDic["hit4"])
+	Global.add_bullet("Monster1406Bullet4", self, false, 1, Vector2(15, -30), "hit4", self.obj_attack_dict["hit4"])
 
 	if Hp <= SHp * 0.5 and not has_summoned_1404:
 		_summon_monster_1404()

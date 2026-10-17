@@ -28,20 +28,20 @@ func monster_140():
 	self.Critreduce = 0
 	self.speed = 14
 	self.mysee = 500
-	self.attackRange = 325
-	self.attackDesire = 80
+	self.attack_range = 325
+	self.attack_desire = 80
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 500
 	self.ebol = 0
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 500,
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 450,
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
@@ -58,13 +58,13 @@ func monster_140():
 			"AttackKind": "",
 		},
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 550,
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
 		"HitProtect": 9,
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 800,
 		"hurtBack": [0, 0],
 		"attackKind": "real",
@@ -81,7 +81,7 @@ func monster_140():
 			"AttackKind": "magic",
 		},
 	}
-	self.objattackDic["hit5"] = {
+	self.obj_attack_dict["hit5"] = {
 		"power": 800,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -142,7 +142,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if skill_5_cd <= 0:
 					do_hit_5()
@@ -157,7 +157,7 @@ func ai_think():
 					if Skill_3_CD <= 0:
 						do_hit_3()
 				if count % 90 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 			else:
 				stop_move()
@@ -172,7 +172,7 @@ func ai_think():
 				if skill_5_cd <= 0:
 					do_hit_5()
 				if count % 90 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 
 
@@ -237,7 +237,7 @@ func do_hit_5():
 
 
 func move_to_top_and_face_player():
-	if _movement_command_is_blocked() or get_Player == null:
+	if _movement_command_is_blocked() or get_player == null:
 		return
 	velocity.y = 0
 	var tween = create_control_movement_tween().set_parallel(true)
@@ -261,7 +261,7 @@ func tweentotop():
 
 
 func not_move_player():
-	if _movement_command_is_blocked() or get_Player == null:
+	if _movement_command_is_blocked() or get_player == null:
 		velocity.x = 0
 		return
 	if position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
@@ -282,11 +282,17 @@ func call_bullet_1():
 	var bb
 	if self.MonsterDirection:
 		bb = Global.add_bullet(
-			"Monster140Bullet1", self.bullet, true, 2.5, Vector2(20, 0) + position, "hit1", self.objattackDic["hit1"]
+			"Monster140Bullet1", self.bullet, true, 2.5, Vector2(20, 0) + position, "hit1", self.obj_attack_dict["hit1"]
 		)
 	else:
 		bb = Global.add_bullet(
-			"Monster140Bullet1", self.bullet, true, 2.5, Vector2(-20, 0) + position, "hit1", self.objattackDic["hit1"]
+			"Monster140Bullet1",
+			self.bullet,
+			true,
+			2.5,
+			Vector2(-20, 0) + position,
+			"hit1",
+			self.obj_attack_dict["hit1"]
 		)
 	bb.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
@@ -296,11 +302,23 @@ func call_bullet_alt2():
 	var dir = self.MonsterDirection
 	if dir:
 		Bullet = Global.add_bullet(
-			"Monster140Bullet2", self.bullet, false, 0.3, Vector2(80, 0) + position, "hit2", self.objattackDic["hit2"]
+			"Monster140Bullet2",
+			self.bullet,
+			false,
+			0.3,
+			Vector2(80, 0) + position,
+			"hit2",
+			self.obj_attack_dict["hit2"]
 		)
 	else:
 		Bullet = Global.add_bullet(
-			"Monster140Bullet2", self.bullet, false, 0.3, Vector2(-80, 0) + position, "hit2", self.objattackDic["hit2"]
+			"Monster140Bullet2",
+			self.bullet,
+			false,
+			0.3,
+			Vector2(-80, 0) + position,
+			"hit2",
+			self.obj_attack_dict["hit2"]
 		)
 
 	if Bullet:
@@ -315,7 +333,7 @@ func call_bullet_3():
 		var Bullet
 		var bullet_pos = Vector2(position.x + randi_range(-450, 500), -300)
 		Bullet = Global.add_bullet(
-			"Monster140Bullet3", self.bullet, false, 0.58, bullet_pos, "hit4", self.objattackDic["hit4"]
+			"Monster140Bullet3", self.bullet, false, 0.58, bullet_pos, "hit4", self.obj_attack_dict["hit4"]
 		)
 		Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 		await get_tree().create_timer(0.3, false).timeout
@@ -335,7 +353,7 @@ func call_bullet_4():
 		Vector2(500 + position.x, 500)
 	]
 	for i in bullet_spawn_positions:
-		Global.add_bullet("Monster140Bullet4", self.bullet, false, 1, i, "hit5", self.objattackDic["hit5"])
+		Global.add_bullet("Monster140Bullet4", self.bullet, false, 1, i, "hit5", self.obj_attack_dict["hit5"])
 
 
 func to_sky():
@@ -352,7 +370,7 @@ func check_player():
 				(
 					Global
 					. add_buff(
-						get_Player.buff,
+						get_player.buff,
 						{
 							"Name": "stun",
 							"AddTime": 4,
@@ -372,7 +390,7 @@ func check_player():
 				(
 					Global
 					. add_buff(
-						get_Player.buff,
+						get_player.buff,
 						{
 							"Name": "stun",
 							"AddTime": 4,

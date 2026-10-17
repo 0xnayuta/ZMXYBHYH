@@ -20,19 +20,19 @@ func monster_113():
 	self.Critreduce = 0
 	self.speed = 11
 	self.mysee = 500
-	self.attackRange = 165
-	self.attackDesire = 80
+	self.attack_range = 165
+	self.attack_desire = 80
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 220
 	self.fall_coin = 220
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 500,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 500,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -79,5 +79,5 @@ func add_bullet():
 		1,
 		RoleProp.get_nearest_monster_target_position(global_position) + Vector2(0, 60),
 		"hit2",
-		self.objattackDic["hit2"]
+		self.obj_attack_dict["hit2"]
 	)

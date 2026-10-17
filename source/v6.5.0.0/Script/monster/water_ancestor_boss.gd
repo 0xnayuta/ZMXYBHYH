@@ -62,8 +62,8 @@ func _configure_boss() -> void:
 	sp = int(config.get("magic_break", 0))
 	speed = float(config.get("speed", 0.0))
 	mysee = int(config.get("sight", 0))
-	attackRange = roundi(float(config.get("range", 0.0)))
-	attackDesire = int(config.get("attack_desire", 0))
+	attack_range = roundi(float(config.get("range", 0.0)))
+	attack_desire = int(config.get("attack_desire", 0))
 	add_exp = int(config.get("exp", 0))
 	fall_coin = int(config.get("coin", 0))
 	fall_pro = float(config.get("drop_rate", 0.0))
@@ -75,10 +75,10 @@ func _configure_boss() -> void:
 	is_fly = true
 	super_armor_active = true
 	cannot_attract = true
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config.get("attacks", {})
 	for attack_name: String in attacks:
-		objattackDic[attack_name] = _attack_data(attacks[attack_name])
+		obj_attack_dict[attack_name] = _attack_data(attacks[attack_name])
 
 
 func _resolve_runtime_config() -> Dictionary:
@@ -269,7 +269,7 @@ func _spawn_spear_sweep() -> void:
 			"position": global_position,
 			"right": true,
 			"hit_name": "hit1",
-			"attack_data": objattackDic["hit1"],
+			"attack_data": obj_attack_dict["hit1"],
 			"skill_name": "WaterAncestorSpearSweep",
 			"atlas_sequence": "effect1_1",
 			"frame_count": 48,
@@ -301,7 +301,7 @@ func _spawn_water_shot() -> void:
 			"position": spawn_position,
 			"right": true,
 			"hit_name": "hit2",
-			"attack_data": objattackDic["hit2"],
+			"attack_data": obj_attack_dict["hit2"],
 			"skill_name": "WaterAncestorChainShot",
 			"atlas_sequence": "effect2_1",
 			"frame_count": 12,
@@ -335,7 +335,7 @@ func _spawn_whirlpool(damaging: bool) -> void:
 			"position": target_position,
 			"right": true,
 			"hit_name": "hit3",
-			"attack_data": objattackDic["hit3"],
+			"attack_data": obj_attack_dict["hit3"],
 			"skill_name": "WaterAncestorWhirlpool",
 			"atlas_sequence": "effect3_1" if damaging else "effect3_2",
 			"frame_count": 22 if damaging else 15,

@@ -244,8 +244,8 @@ func _configure_monster() -> void:
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
 	mysee = int(config["sight"])
-	attackRange = int(config["range"])
-	attackDesire = 100
+	attack_range = int(config["range"])
+	attack_desire = 100
 	add_exp = int(config["exp"])
 	fall_coin = int(config["coin"])
 	fall_pro = float(config.get("drop_rate", 0.0))
@@ -258,7 +258,7 @@ func _configure_monster() -> void:
 
 
 func _build_base_attack_data(config: Dictionary) -> void:
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config["attacks"]
 	for attack_name: String in attacks:
 		var attack: Dictionary = attacks[attack_name]
@@ -272,7 +272,7 @@ func _build_base_attack_data(config: Dictionary) -> void:
 			attack_data["sourceTargetMove"] = attack["source_target_move"]
 		if attack.has("source_stiff_seconds"):
 			attack_data["sourceStiffSeconds"] = attack["source_stiff_seconds"]
-		objattackDic[attack_name] = attack_data
+		obj_attack_dict[attack_name] = attack_data
 
 
 func _configure_regular_attack_box() -> void:
@@ -430,7 +430,7 @@ func ai_think() -> void:
 		return
 	to_hero()
 	if Time.get_ticks_msec() < _next_attack_msec:
-		if distance > float(attackRange):
+		if distance > float(attack_range):
 			have_target()
 		else:
 			stop_move()
@@ -449,7 +449,7 @@ func ai_think() -> void:
 	var minimum_range := float(config["min_range"])
 	if minimum_range > 0.0 and distance < minimum_range:
 		_move_away_from_hero()
-	elif distance > float(attackRange):
+	elif distance > float(attack_range):
 		have_target()
 	else:
 		_start_attack(&"hit1")
@@ -545,7 +545,7 @@ func _fire_arrow() -> void:
 	var offset := Vector2(33.0 if shoots_right else -33.0, -20.0)
 
 	var arrow = Global.add_bullet(
-		"JiuhuaPineArrow", bullet, shoots_right, 1.0, position + offset, "arrow", objattackDic["arrow"]
+		"JiuhuaPineArrow", bullet, shoots_right, 1.0, position + offset, "arrow", obj_attack_dict["arrow"]
 	)
 	if (
 		arrow != null
@@ -712,7 +712,7 @@ func _get_incoming_attack_source(area: Area2D) -> Node:
 	if area == null or not is_instance_valid(area):
 		return null
 	if area is BaseRoleHitBox or area is RolehmzBullet:
-		return get_Player
+		return get_player
 	if area is MagicWeaponHit:
 		return area.get_parent()
 	var parent := area.get_parent()
@@ -736,7 +736,7 @@ func _get_incoming_attack_kind(area: Area2D) -> String:
 	if hit_data is Dictionary:
 		return str(hit_data.get("attackKind", ""))
 	if source is BaseHero:
-		var attack_data: Variant = source.objattackDic.get(str(source.get("get_action")), {})
+		var attack_data: Variant = source.obj_attack_dict.get(str(source.get("get_action")), {})
 		if attack_data is Dictionary:
 			return str(attack_data.get("attackKind", ""))
 	return ""
@@ -745,7 +745,7 @@ func _get_incoming_attack_kind(area: Area2D) -> String:
 func _get_incoming_attacker(area: Area2D) -> Node:
 	var source := _get_incoming_attack_source(area)
 	if source == null or not is_instance_valid(source):
-		return get_Player if get_Player != null and is_instance_valid(get_Player) else null
+		return get_player if get_player != null and is_instance_valid(get_player) else null
 	if source is BaseHero:
 		return source
 	var player_value: Variant = source.get("Player")
@@ -758,7 +758,7 @@ func _get_incoming_attacker(area: Area2D) -> Node:
 			return parent
 		parent = parent.get_parent()
 		depth += 1
-	return get_Player if get_Player != null and is_instance_valid(get_Player) else null
+	return get_player if get_player != null and is_instance_valid(get_player) else null
 
 
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
@@ -781,7 +781,7 @@ func _add_boss_life_mark(target: BaseHero) -> void:
 
 
 func _boss_life_mark_attack_power() -> int:
-	var hit2_data: Dictionary = objattackDic.get("hit2", {})
+	var hit2_data: Dictionary = obj_attack_dict.get("hit2", {})
 	return maxi(int(hit2_data.get("power", attack_in)), 0)
 
 

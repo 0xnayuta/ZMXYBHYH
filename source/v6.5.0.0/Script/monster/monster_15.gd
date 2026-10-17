@@ -20,18 +20,18 @@ func monster_15():
 	self.Critreduce = 0
 	self.speed = 6
 	self.mysee = 400
-	self.attackRange = 80
-	self.attackDesire = 60
+	self.attack_range = 80
+	self.attack_desire = 60
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 35
 	self.fall_coin = 10
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 30,
 		"hurtBack": [-4, -9],
 		"attackKind": "physics",
 	}
-	self.objattackDic["qlzg"] = {
+	self.obj_attack_dict["qlzg"] = {
 		"power": 40,
 		"hurtBack": [0, 0],
 		"attackKind": "physics",
@@ -65,7 +65,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 120:
@@ -99,4 +99,6 @@ func do_hit_2():
 
 func call_boom():
 	var po = self.position
-	Global.add_bullet("Monster15Bullet", self.bullet, self.MonsterDirection, 0.7, po, "qlzg", self.objattackDic["qlzg"])
+	Global.add_bullet(
+		"Monster15Bullet", self.bullet, self.MonsterDirection, 0.7, po, "qlzg", self.obj_attack_dict["qlzg"]
+	)

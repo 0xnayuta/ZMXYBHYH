@@ -39,7 +39,9 @@ func _draw() -> void:
 func _get_row_count() -> int:
 	var skill_page = get_parent().get_parent().get_parent()
 	if skill_page and skill_page.has_method("get_role_key"):
-		var skill_list = skill_page.get("Skill_list")
+		var skill_list = skill_page.get("skill_list")
+		if skill_list == null:
+			skill_list = skill_page.get("Skill_list")
 		if skill_list is Dictionary:
 			var role_skills = skill_list.get(skill_page.get_role_key(), [])
 			if role_skills is Array:

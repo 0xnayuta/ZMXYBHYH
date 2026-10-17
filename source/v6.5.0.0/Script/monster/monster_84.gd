@@ -20,13 +20,13 @@ func monster_84():
 	self.Critreduce = 0
 	self.speed = 10
 	self.mysee = 300
-	self.attackRange = 165
-	self.attackDesire = 90
+	self.attack_range = 165
+	self.attack_desire = 90
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 225,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -42,7 +42,7 @@ func monster_84():
 			"DeBuff": true,
 		},
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 300,
 		"hurtBack": [-10, -55],
 		"attackKind": "real",
@@ -58,7 +58,7 @@ func monster_84():
 			"DeBuff": true,
 		},
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 350,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -74,7 +74,7 @@ func monster_84():
 			"DeBuff": true,
 		},
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 225,
 		"hurtBack": [-4, -9],
 		"attackKind": "real",
@@ -90,13 +90,13 @@ func monster_84():
 			"DeBuff": true,
 		},
 	}
-	self.objattackDic["hit5"] = {
+	self.obj_attack_dict["hit5"] = {
 		"power": 325,
 		"hurtBack": [-4, -9],
 		"attackKind": "real",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit6"] = {
+	self.obj_attack_dict["hit6"] = {
 		"power": 325,
 		"hurtBack": [-4, -9],
 		"attackKind": "real",
@@ -143,7 +143,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -162,7 +162,7 @@ func ai_think():
 				if Skill_3_CD <= 0:
 					do_hit_3()
 				if count % 60 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 
 
@@ -212,7 +212,7 @@ func tween_to_top():
 
 
 func add_fire():
-	Global.add_bullet("Monster84Bullet3", self, false, 1, Vector2(0, 0), "hit6", self.objattackDic["hit6"])
+	Global.add_bullet("Monster84Bullet3", self, false, 1, Vector2(0, 0), "hit6", self.obj_attack_dict["hit6"])
 
 
 func call_sfjm_fire():
@@ -221,17 +221,17 @@ func call_sfjm_fire():
 	var fire_position3 = [Vector2(self.position.x - 320, 440), Vector2(self.position.x + 320, 440)]
 	for i in range(2):
 		Global.add_bullet(
-			"Monster42Bullet", self.bullet, false, 1.3, fire_position1[i], "hit3", self.objattackDic["hit3"]
+			"Monster42Bullet", self.bullet, false, 1.3, fire_position1[i], "hit3", self.obj_attack_dict["hit3"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
 		Global.add_bullet(
-			"Monster42Bullet", self.bullet, false, 1.3, fire_position2[i], "hit3", self.objattackDic["hit3"]
+			"Monster42Bullet", self.bullet, false, 1.3, fire_position2[i], "hit3", self.obj_attack_dict["hit3"]
 		)
 	await get_tree().create_timer(0.2, false).timeout
 	for i in range(2):
 		Global.add_bullet(
-			"Monster42Bullet", self.bullet, false, 1.3, fire_position3[i], "hit3", self.objattackDic["hit3"]
+			"Monster42Bullet", self.bullet, false, 1.3, fire_position3[i], "hit3", self.obj_attack_dict["hit3"]
 		)
 
 
@@ -242,7 +242,13 @@ func call_hl():
 	else:
 		bullet_pos = Vector2(-250, -35)
 	var hl = Global.add_bullet(
-		"Monster84Bullet2", self.bullet, MonsterDirection, 1, bullet_pos + position, "hit4", self.objattackDic["hit4"]
+		"Monster84Bullet2",
+		self.bullet,
+		MonsterDirection,
+		1,
+		bullet_pos + position,
+		"hit4",
+		self.obj_attack_dict["hit4"]
 	)
 	hl.scale = Vector2(0.88, 0.88)
 
@@ -254,7 +260,13 @@ func call_fl():
 	else:
 		bullet_pos = Vector2(-40, -30)
 	var fl = Global.add_bullet(
-		"Monster84Bullet1", self.bullet, MonsterDirection, 1, bullet_pos + position, "hit5", self.objattackDic["hit5"]
+		"Monster84Bullet1",
+		self.bullet,
+		MonsterDirection,
+		1,
+		bullet_pos + position,
+		"hit5",
+		self.obj_attack_dict["hit5"]
 	)
 	fl.scale = Vector2(0.7, 0.7)
 

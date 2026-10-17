@@ -24,19 +24,19 @@ func monster_110():
 	self.Critreduce = 0
 	self.speed = 11
 	self.mysee = 500
-	self.attackRange = 235
-	self.attackDesire = 80
+	self.attack_range = 235
+	self.attack_desire = 80
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 300
 	self.fall_coin = 335
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 300,
 		"hurtBack": [-5, -9],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 400,
 		"hurtBack": [-2, -1],
 		"attackKind": "magic",
@@ -52,7 +52,7 @@ func monster_110():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 800,
 		"hurtBack": [-2, -1],
 		"attackKind": "magic",
@@ -106,7 +106,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_2_CD <= 0:
 					do_hit_2()
@@ -120,7 +120,7 @@ func ai_think():
 				if Skill_1_CD <= 0:
 					do_hit_1()
 				if count % 60 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 
 
@@ -151,7 +151,7 @@ func do_hit_2():
 func call_aex():
 	var pp = Vector2(self.position.x, self.position.y)
 	var tween = get_tree().create_tween()
-	aex = Global.add_bullet("Monster110Bullet", bullet, false, 1, pp, "hit2", self.objattackDic["hit2"])
+	aex = Global.add_bullet("Monster110Bullet", bullet, false, 1, pp, "hit2", self.obj_attack_dict["hit2"])
 	tween.tween_property(aex, "position", RoleProp.get_nearest_monster_target_position(global_position), 0.5)
 	await get_tree().create_timer(2.5, false).timeout
 
@@ -178,7 +178,7 @@ func call_gc():
 		]
 	for i in bullet_spawn_positions:
 		gc = Global.add_bullet(
-			"Monster32Bullet", self.bullet, MonsterDirection, 1, i + position, "hit1", self.objattackDic["hit1"]
+			"Monster32Bullet", self.bullet, MonsterDirection, 1, i + position, "hit1", self.obj_attack_dict["hit1"]
 		)
 		gc.scale = Vector2(1.2, 1)
 		await get_tree().create_timer(0.2, false).timeout

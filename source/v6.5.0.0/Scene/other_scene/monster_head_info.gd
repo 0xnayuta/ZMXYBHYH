@@ -937,8 +937,8 @@ func _get_scene_attr_data() -> Dictionary:
 		keys[13]: _read_monster_value(monster, "self_rhp", 0),
 		keys[14]: _read_monster_value(monster, "speed", 0),
 		keys[15]: _read_monster_value(monster, "mysee", 0),
-		keys[16]: _read_monster_value(monster, "attackRange", 0),
-		keys[17]: _read_monster_value(monster, "attackDesire", 0),
+		keys[16]: _read_monster_value(monster, "attack_range", _read_monster_value(monster, "attackRange", 0)),
+		keys[17]: _read_monster_value(monster, "attack_desire", 0),
 	}
 	if level_monster_config.has("damage_bonus"):
 		data["伤害"] = _read_monster_value(monster, "damage_bonus", 0.0)
@@ -948,7 +948,7 @@ func _get_scene_attr_data() -> Dictionary:
 		data.erase("攻击间隔")
 		data["基础攻击"] = monster.call("monster_info_base_attack")
 	var attacks: Array = []
-	var attack_dic = _read_monster_value(monster, "objattackDic", {})
+	var attack_dic = _read_monster_value(monster, "obj_attack_dict", {})
 	if attack_dic is Dictionary:
 		for attack_name in attack_dic.keys():
 			var attack = attack_dic[attack_name]

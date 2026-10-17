@@ -21,13 +21,13 @@ func monster_90():
 	self.Critreduce = 0
 	self.speed = 13
 	self.mysee = 500
-	self.attackRange = 365
-	self.attackDesire = 80
+	self.attack_range = 365
+	self.attack_desire = 80
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 150
 	self.fall_coin = 110
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 300,
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
@@ -57,5 +57,5 @@ func add_bullet():
 	else:
 		bullet_pos = Vector2(-50, 5)
 	Global.add_bullet(
-		"Monster90Bullet", self.bullet, MonsterDirection, 1, bullet_pos + position, "hit1", self.objattackDic["hit1"]
+		"Monster90Bullet", self.bullet, MonsterDirection, 1, bullet_pos + position, "hit1", self.obj_attack_dict["hit1"]
 	)

@@ -3,14 +3,14 @@ extends Control
 var is_set: bool = false
 var touch_scale: float = 1.0
 var size_: Vector2 = Vector2(200, 200)
-var curSize: float = 200.0
+var cur_size: float = 200.0
 
 
 func _physics_process(_delta: float) -> void:
 	var side: float = min(size_.x, size_.y)
 	if side <= 0:
-		side = curSize
-	scale = Vector2(side / max(curSize, 1.0), side / max(curSize, 1.0)) * touch_scale
+		side = cur_size
+	scale = Vector2(side / max(cur_size, 1.0), side / max(cur_size, 1.0)) * touch_scale
 
 
 func _release_dirs() -> void:

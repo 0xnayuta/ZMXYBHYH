@@ -91,7 +91,7 @@ func configure(config: Dictionary) -> void:
 	spawn_global_position = config.get("position", Vector2.ZERO)
 	hit_name = str(config.get("hit_name", "hit1"))
 	AttList = (config.get("attack_data", {}) as Dictionary).duplicate(true)
-	objattackDic = {hit_name: AttList}
+	obj_attack_dict = {hit_name: AttList}
 	skill_name = str(config.get("skill_name", "NanhaiProjectile"))
 	dir = bool(config.get("right", true))
 	frame_root = str(config.get("frame_root", ""))

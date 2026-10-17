@@ -7,7 +7,7 @@ class_name MgHit
 var source_weapon: BaseMagicWeapon = null
 var rnd: int
 var name_
-var objattackDic = {}
+var obj_attack_dict = {}
 var dir: bool
 var get_dir: bool
 var is_set: bool = false
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 			_monster_level = get_tree().current_scene
 			monster_container = _monster_level.get_node_or_null("Monster")
 
-	HitDic = objattackDic
+	HitDic = obj_attack_dict
 
 	if name_ == "wdsfBullet1" or name_ == "wdshBullet1" or name_ == "wdstBullet1" or name_ == "wdslBullet1":
 		update_tracking(delta)
@@ -181,9 +181,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			}
 			Global.add_buff(target.buff, stun_buff)
 
-		if objattackDic.has("addeffect") and objattackDic["addeffect"].size() != 0:
+		if obj_attack_dict.has("addeffect") and obj_attack_dict["addeffect"].size() != 0:
 			if randi_range(0, 100) < rnd:
-				Global.add_buff(target.buff, objattackDic["addeffect"])
+				Global.add_buff(target.buff, obj_attack_dict["addeffect"])
 
 		if name_ == "wdsfBullet1" or name_ == "wdshBullet1" or name_ == "wdstBullet1" or name_ == "wdslBullet1":
 			if target == target_monster:

@@ -39,8 +39,8 @@ func _configure_qingyang() -> void:
 	Critreduce = 25
 	speed = 25
 	mysee = 99999
-	attackRange = 650
-	attackDesire = 188
+	attack_range = 650
+	attack_desire = 188
 	behit_calmtime = 0
 	self_rhp = SHp * 0.00015
 	add_exp = 0
@@ -56,25 +56,25 @@ func _configure_qingyang() -> void:
 		{"name": "xyfjblzzs", "value": 1, "chance": 0.1},
 		{"name": "341071301zzs", "value": 1, "chance": 0.1},
 	]
-	objattackDic["hit1"] = {
+	obj_attack_dict["hit1"] = {
 		"power": 5200,
 		"hurtBack": [-8, -10],
 		"attackKind": "magic",
 		"HitProtect": 8,
 	}
-	objattackDic["hit2"] = {
+	obj_attack_dict["hit2"] = {
 		"power": 5200,
 		"hurtBack": [-5, -12],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	objattackDic["hit3"] = {
+	obj_attack_dict["hit3"] = {
 		"power": 7800,
 		"hurtBack": [18, -10],
 		"attackKind": "magic",
 		"HitProtect": 12,
 	}
-	objattackDic["hit4"] = {
+	obj_attack_dict["hit4"] = {
 		"power": 7200,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
@@ -201,7 +201,7 @@ func ai_think() -> void:
 		stop_move()
 		return
 	var distance := absf(RoleProp.get_nearest_monster_target_position(global_position).x - position.x)
-	if distance > attackRange:
+	if distance > attack_range:
 		have_target()
 	elif Skill_4_CD <= 0:
 		_use_hit_4()
@@ -282,7 +282,7 @@ func _use_hit_4() -> void:
 func call_bullet_1() -> void:
 	var offset := Vector2(58, -72) if MonsterDirection else Vector2(-58, -72)
 	Global.add_bullet(
-		"Monster212Bullet1", bullet, MonsterDirection, 1.0, position + offset, "hit1", objattackDic["hit1"]
+		"Monster212Bullet1", bullet, MonsterDirection, 1.0, position + offset, "hit1", obj_attack_dict["hit1"]
 	)
 
 
@@ -299,13 +299,13 @@ func _spawn_bullet2_at_role() -> void:
 		RoleProp.get_nearest_monster_target_position(global_position).x,
 		RoleProp.get_nearest_monster_target_position(global_position).y
 	)
-	Global.add_bullet("Monster212Bullet2", bullet, MonsterDirection, 1.0, target_pos, "hit2", objattackDic["hit2"])
+	Global.add_bullet("Monster212Bullet2", bullet, MonsterDirection, 1.0, target_pos, "hit2", obj_attack_dict["hit2"])
 
 
 func call_bullet_3() -> void:
 	var offset := Vector2(650, -136) if MonsterDirection else Vector2(-650, -136)
 	Global.add_bullet(
-		"Monster212Bullet3", bullet, MonsterDirection, 1.0, position + offset, "hit3", objattackDic["hit3"]
+		"Monster212Bullet3", bullet, MonsterDirection, 1.0, position + offset, "hit3", obj_attack_dict["hit3"]
 	)
 
 
@@ -319,7 +319,9 @@ func call_bullet_4() -> void:
 			RoleProp.get_nearest_monster_target_position(global_position).x,
 			RoleProp.get_nearest_monster_target_position(global_position).y
 		)
-		Global.add_bullet("Monster212Bullet4", bullet, MonsterDirection, 1.0, target_pos, "hit4", objattackDic["hit4"])
+		Global.add_bullet(
+			"Monster212Bullet4", bullet, MonsterDirection, 1.0, target_pos, "hit4", obj_attack_dict["hit4"]
+		)
 
 
 func little_blood_bar_control():

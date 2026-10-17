@@ -4,7 +4,7 @@ var _hit_data := {"power": 0.0, "hurtBack": [5, -5], "attackKind": "physics"}
 
 
 func _ready() -> void:
-	objattackDic["hit1"] = _hit_data
+	obj_attack_dict["hit1"] = _hit_data
 
 
 func _physics_process(delta: float) -> void:
@@ -39,7 +39,7 @@ func add_super_armor():
 			Player.buff,
 			{
 				"Name": "Indestructible1",
-				"AddTime": objattackDic["hit1"]["power"],
+				"AddTime": obj_attack_dict["hit1"]["power"],
 				"ReduceInterval": 0,
 				"value": 0,
 				"AttackKind": "",

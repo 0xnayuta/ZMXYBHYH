@@ -33,13 +33,13 @@ func monster_44():
 	self.Critreduce = 0
 	self.speed = 0
 	self.mysee = 0
-	self.attackRange = 0
-	self.attackDesire = 0
+	self.attack_range = 0
+	self.attack_desire = 0
 	self.behit_calmtime = 0.0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
+	self.obj_attack_dict["hit1"] = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
 	self.fall_pro = 1
 	self.fall_list = [
 		{"name": "yll", "value": randi_range(1, 10)},
@@ -82,10 +82,10 @@ func monster_call():
 				mm.Hp = mm.SHp
 			mm.def = 150
 			mm.mdef = 150
-			for u in mm.objattackDic:
-				if mm.objattackDic[u].has("power"):
-					if mm.objattackDic[u]["power"] <= 150:
-						mm.objattackDic[u]["power"] = 150
-						mm.objattackDic[u]["power"] = mm.objattackDic[u]["power"] * 1.5
+			for u in mm.obj_attack_dict:
+				if mm.obj_attack_dict[u].has("power"):
+					if mm.obj_attack_dict[u]["power"] <= 150:
+						mm.obj_attack_dict[u]["power"] = 150
+						mm.obj_attack_dict[u]["power"] = mm.obj_attack_dict[u]["power"] * 1.5
 					else:
-						mm.objattackDic[u]["power"] = mm.objattackDic[u]["power"] * 1.5
+						mm.obj_attack_dict[u]["power"] = mm.obj_attack_dict[u]["power"] * 1.5

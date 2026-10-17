@@ -21,7 +21,7 @@ var inherited_robe_bonus_properties: Dictionary = {}
 var inherited_avatar_bonus_properties: Dictionary = {}
 var SMp: int = 0
 var Mp: int = 0
-var R_mp: float = 0.0
+var r_mp: float = 0.0
 var vampirism: float = 0.0
 
 const SPINE_ATLAS_PATH := "res://Art/Monster/GuanyinSpine/skeleton.atlas"
@@ -143,10 +143,10 @@ func apply_role_property_snapshot(snapshot: Dictionary) -> void:
 	inherited_avatar_properties = _copy_dictionary(snapshot.get("tx_prop", {}))
 	inherited_legend_properties = _copy_dictionary(snapshot.get("cb_prop", {}))
 	inherited_magic_weapon_properties = _copy_dictionary(snapshot.get("fb_prop", {}))
-	inherited_weapon_bonus_properties = _copy_dictionary(snapshot.get("WqBs_prop", {}))
-	inherited_armor_bonus_properties = _copy_dictionary(snapshot.get("FjBs_prop", {}))
-	inherited_accessory_bonus_properties = _copy_dictionary(snapshot.get("SpBs_prop", {}))
-	inherited_legend_bonus_properties = _copy_dictionary(snapshot.get("CbBs_prop", {}))
+	inherited_weapon_bonus_properties = _copy_dictionary(snapshot.get("wq_bs_prop", snapshot.get("WqBs_prop", {})))
+	inherited_armor_bonus_properties = _copy_dictionary(snapshot.get("fj_bs_prop", snapshot.get("FjBs_prop", {})))
+	inherited_accessory_bonus_properties = _copy_dictionary(snapshot.get("sp_bs_prop", snapshot.get("SpBs_prop", {})))
+	inherited_legend_bonus_properties = _copy_dictionary(snapshot.get("cb_bs_prop", snapshot.get("CbBs_prop", {})))
 	inherited_robe_bonus_properties = _copy_dictionary(snapshot.get("SzBs_prop", {}))
 	inherited_avatar_bonus_properties = _copy_dictionary(snapshot.get("TxBs_prop", {}))
 	_apply_combat_properties()
@@ -167,7 +167,7 @@ func _apply_combat_properties() -> void:
 	Hp = clampi(int(_number("Hp", SHp)), 1, SHp)
 	SMp = maxi(0, int(_number("SMp")))
 	Mp = clampi(int(_number("Mp", SMp)), 0, SMp)
-	R_mp = _number("R_mp")
+	r_mp = _number("R_mp")
 	vampirism = _number("vampirism")
 	level = maxi(1, int(inherited_base_properties.get("Level", 1)))
 	def = int(_number("Def"))
@@ -183,17 +183,17 @@ func _apply_combat_properties() -> void:
 	self_rhp = int(_number("R_hp"))
 	my_mr_name = "观音"
 	attack_in = 100
-	attackRange = 105
+	attack_range = 105
 
-	skill_a_cast_range = attackRange * 3.0
-	skill_b_cast_range = attackRange * 3.0
+	skill_a_cast_range = attack_range * 3.0
+	skill_b_cast_range = attack_range * 3.0
 	mysee = 99999
-	iniSpeed = int(GUANYIN_MOVE_SPEED)
-	speed = iniSpeed
-	attackDesire = 100
+	init_speed = int(GUANYIN_MOVE_SPEED)
+	speed = init_speed
+	attack_desire = 100
 	return_to_player_distance = 900
 	var inherited_power := maxi(1, int(_number("power", 1.0)))
-	objattackDic = {
+	obj_attack_dict = {
 		"hit1": {"power": inherited_power, "hurtBack": [8, -2], "attackKind": "magic"},
 		"skill_a": {"power": inherited_power * 12, "hurtBack": [5, -1], "attackKind": "magic"},
 		"skill_b": {"power": inherited_power, "hurtBack": [10, -4], "attackKind": "magic"}
@@ -252,7 +252,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	var attacker: Node = null
 	if area is BaseRoleHitBox or area is RolehmzBullet:
-		attacker = get_Player
+		attacker = get_player
 	elif area.get_parent() is BaseMonster:
 		attacker = area.get_parent()
 	elif area.get_parent() != null and area.get_parent().get_parent() is BaseMonster:
@@ -359,7 +359,7 @@ func _spawn_skill_a_effect() -> void:
 	var parent := get_parent()
 	if parent == null:
 		parent = get_tree().current_scene
-	var attack_power := int(objattackDic.get("hit1", {}).get("power", 1))
+	var attack_power := int(obj_attack_dict.get("hit1", {}).get("power", 1))
 	var face_right := monster_dir.scale.x < 0.0
 	effect.setup(self, attack_power, face_right)
 	parent.add_child(effect)
@@ -386,7 +386,7 @@ func _spawn_skill_2_effect() -> void:
 	var parent := get_parent()
 	if parent == null:
 		parent = get_tree().current_scene
-	var attack_power := int(objattackDic.get("hit1", {}).get("power", 1))
+	var attack_power := int(obj_attack_dict.get("hit1", {}).get("power", 1))
 	var face_right := monster_dir.scale.x < 0.0
 	effect.setup(self, attack_power, face_right)
 	parent.add_child(effect)

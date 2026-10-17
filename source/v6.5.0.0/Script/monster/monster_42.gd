@@ -21,30 +21,30 @@ func monster_42():
 	self.Critreduce = 0
 	self.speed = 13
 	self.mysee = 550
-	self.attackRange = 225
-	self.attackDesire = 90
+	self.attack_range = 225
+	self.attack_desire = 90
 	self.behit_calmtime = 0.2
 	self.self_rhp = self.SHp * 0.002
 	self.add_exp = 5000
 	self.fall_coin = 5000
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": int(800 + RoleProp.roleprop.power),
 		"hurtBack": [-4, -9],
 		"attackKind": "physics",
 		"HitProtect": 20,
 	}
-	self.objattackDic["mykl"] = {
+	self.obj_attack_dict["mykl"] = {
 		"power": int(350 + RoleProp.roleprop.power * 0.35),
 		"hurtBack": [-4, -12],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["xmhd"] = {
+	self.obj_attack_dict["xmhd"] = {
 		"power": 0,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
 	}
-	self.objattackDic["sfjm"] = {
+	self.obj_attack_dict["sfjm"] = {
 		"power": int(800 + RoleProp.roleprop.power * 0.3),
 		"hurtBack": [-4, -5],
 		"attackKind": "magic",
@@ -179,7 +179,9 @@ func call_sfjm_fire():
 		Vector2(self.position.x + 360, self.position.y - 20)
 	]
 	for i in range(5):
-		Global.add_bullet("Monster42Bullet", self.bullet, false, 2, fire_position[i], "sfjm", self.objattackDic["sfjm"])
+		Global.add_bullet(
+			"Monster42Bullet", self.bullet, false, 2, fire_position[i], "sfjm", self.obj_attack_dict["sfjm"]
+		)
 
 
 func call_xmhd():
@@ -196,7 +198,7 @@ func call_xmhd():
 	(
 		Global
 		. add_buff(
-			get_Player.buff,
+			get_player.buff,
 			{
 				"Name": "speed_down",
 				"AddTime": 2,

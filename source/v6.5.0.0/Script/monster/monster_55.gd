@@ -30,15 +30,15 @@ func monster_55():
 		self.Critreduce = 0
 		self.speed = 6
 		self.mysee = 400
-		self.attackRange = 185
-		self.attackDesire = 90
+		self.attack_range = 185
+		self.attack_desire = 90
 		self.behit_calmtime = 0.2
 		self.self_rhp = 0
 		self.add_exp = 0
 		self.fall_coin = 10
-		self.objattackDic["wqml"] = {"power": 700, "hurtBack": [-6, -1], "attackKind": "magic"}
-		self.objattackDic["zlls"] = {"power": 900, "hurtBack": [-8, -1], "attackKind": "magic"}
-		self.objattackDic["dylh"] = {
+		self.obj_attack_dict["wqml"] = {"power": 700, "hurtBack": [-6, -1], "attackKind": "magic"}
+		self.obj_attack_dict["zlls"] = {"power": 900, "hurtBack": [-8, -1], "attackKind": "magic"}
+		self.obj_attack_dict["dylh"] = {
 			"power": 2000,
 			"hurtBack": [-1, -1],
 			"attackKind": "magic",
@@ -53,7 +53,7 @@ func monster_55():
 				"AttackKind": "",
 			}
 		}
-		self.objattackDic["dyml"] = {
+		self.obj_attack_dict["dyml"] = {
 			"power": 2077,
 			"hurtBack": [-1, -1],
 			"attackKind": "magic",
@@ -93,15 +93,15 @@ func monster_55():
 	self.Critreduce = 0
 	self.speed = 6
 	self.mysee = 400
-	self.attackRange = 185
-	self.attackDesire = 90
+	self.attack_range = 185
+	self.attack_desire = 90
 	self.behit_calmtime = 0.2
 	self.self_rhp = 500
 	self.add_exp = 1000
 	self.fall_coin = 1000
-	self.objattackDic["wqml"] = {"power": 205, "hurtBack": [-6, -1], "attackKind": "magic"}
-	self.objattackDic["zlls"] = {"power": 200, "hurtBack": [-8, -1], "attackKind": "magic"}
-	self.objattackDic["dylh"] = {
+	self.obj_attack_dict["wqml"] = {"power": 205, "hurtBack": [-6, -1], "attackKind": "magic"}
+	self.obj_attack_dict["zlls"] = {"power": 200, "hurtBack": [-8, -1], "attackKind": "magic"}
+	self.obj_attack_dict["dylh"] = {
 		"power": 600,
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
@@ -116,7 +116,7 @@ func monster_55():
 			"AttackKind": "",
 		}
 	}
-	self.objattackDic["dyml"] = {
+	self.obj_attack_dict["dyml"] = {
 		"power": 577,
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
@@ -151,7 +151,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 600:
 					if Skill_3_CD <= 0:
@@ -273,7 +273,7 @@ func call_round():
 	var tween = get_tree().create_tween()
 	if current_round > 0:
 		tween.set_parallel(false)
-		var round_num = Global.add_bullet("Monster55Bullet", bullet, false, 1, pp, "wqml", self.objattackDic["wqml"])
+		var round_num = Global.add_bullet("Monster55Bullet", bullet, false, 1, pp, "wqml", self.obj_attack_dict["wqml"])
 		round_list.push_back(round_num)
 		round_num.is_throw = true
 		tween.tween_property(round_num, "position", setposition(), 1.5)
@@ -300,22 +300,29 @@ func call_bullet():
 	if MonsterDirection:
 		pp = Vector2(-60, -10)
 		pp_1 = Vector2(75, -28)
-		zz_1 = Global.add_bullet("Monster55Bullet_2", self, false, 1, pp, "zlls", self.objattackDic["zlls"])
-		zz_2 = Global.add_bullet("Monster55Bullet_2", self, false, 1, pp_1, "zlls", self.objattackDic["zlls"])
+		zz_1 = Global.add_bullet("Monster55Bullet_2", self, false, 1, pp, "zlls", self.obj_attack_dict["zlls"])
+		zz_2 = Global.add_bullet("Monster55Bullet_2", self, false, 1, pp_1, "zlls", self.obj_attack_dict["zlls"])
 		zz_1.scale.x = -1
 		zz_2.scale.x = -1
 		zz_2.z_index = -1
 	else:
 		pp = Vector2(60, 0)
 		pp_1 = Vector2(-55, -25)
-		zz_1 = Global.add_bullet("Monster55Bullet_2", self, false, 1, pp, "zlls", self.objattackDic["zlls"])
-		zz_2 = Global.add_bullet("Monster55Bullet_2", self, false, 1, pp_1, "zlls", self.objattackDic["zlls"])
+		zz_1 = Global.add_bullet("Monster55Bullet_2", self, false, 1, pp, "zlls", self.obj_attack_dict["zlls"])
+		zz_2 = Global.add_bullet("Monster55Bullet_2", self, false, 1, pp_1, "zlls", self.obj_attack_dict["zlls"])
 		zz_2.z_index = -1
 
 
 func call_round_2():
 	Global.call_fly_bullet(
-		self.bullet, "Monster55Bullet", 1, Vector2(position.x, position.y), 6500, 400, "dyml", self.objattackDic["dyml"]
+		self.bullet,
+		"Monster55Bullet",
+		1,
+		Vector2(position.x, position.y),
+		6500,
+		400,
+		"dyml",
+		self.obj_attack_dict["dyml"]
 	)
 	Global.call_fly_bullet(
 		self.bullet,
@@ -325,7 +332,7 @@ func call_round_2():
 		6500,
 		400,
 		"dyml",
-		self.objattackDic["dyml"]
+		self.obj_attack_dict["dyml"]
 	)
 
 

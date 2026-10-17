@@ -177,7 +177,7 @@ func get_knockback_velocity_for_target(target_obj: Node, target_hero: BaseHero) 
 	var hurt_back: Array = []
 	if target_obj != null and target_obj.has_method("get"):
 		var hit_name_value: Variant = target_obj.get("hit_name")
-		var attack_value: Variant = objattackDic.get(str(hit_name_value), {})
+		var attack_value: Variant = obj_attack_dict.get(str(hit_name_value), {})
 		if attack_value is Dictionary:
 			hurt_back = Array((attack_value as Dictionary).get("hurtBack", [])).duplicate()
 	if hurt_back.size() < 2:
@@ -239,8 +239,8 @@ func _configure_stats() -> void:
 	Critreduce = int(_config.get("crit_reduce", 0))
 	speed = float(_config.get("speed", 6.0))
 	mysee = int(_config.get("sight", 1000))
-	attackRange = int(_config.get("range", 250))
-	attackDesire = int(_config.get("attack_desire", 65))
+	attack_range = int(_config.get("range", 250))
+	attack_desire = int(_config.get("attack_desire", 65))
 	behit_calmtime = float(_config.get("behit_calmtime", 0.25))
 	self_rhp = 0
 	add_exp = int(_config.get("exp", 0))
@@ -251,7 +251,7 @@ func _configure_stats() -> void:
 	fall_stone_pro = 0.0
 	fall_stone = []
 	boss_max_protect = float(_config.get("max_protect", 100.0))
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = _config.get("attacks", {})
 	if not attacks.is_empty():
 		for attack_name: String in attacks:
@@ -260,7 +260,7 @@ func _configure_stats() -> void:
 			if hurt_back.size() >= 2:
 				hurt_back[0] = clampf(float(hurt_back[0]), -2.0, 2.0)
 				hurt_back[1] = clampf(float(hurt_back[1]), -1.0, 1.0)
-			objattackDic[attack_name] = {
+			obj_attack_dict[attack_name] = {
 				"power": int(attack.get("power", attack_in)),
 				"hurtBack": hurt_back,
 				"attackKind": str(attack.get("kind", "physics")),
@@ -280,7 +280,7 @@ func _configure_stats() -> void:
 				power = 0
 			if monster_id == 169 and index == 2:
 				power = average_level * 5
-			objattackDic["hit%d" % (index + 1)] = {
+			obj_attack_dict["hit%d" % (index + 1)] = {
 				"power": power,
 				"hurtBack": [-6, -5] if index == 0 else ([1, 0] if index == 1 else [-14, -5]),
 				"attackKind": str(kinds[index]),
@@ -432,10 +432,10 @@ func ai_think() -> void:
 		_use_attack(&"hit2", 0)
 	elif Skill_2_CD <= 0 and horizontal_distance < 600.0:
 		_use_attack(&"hit3", 1)
-	elif not _combat_range_latched and horizontal_distance <= float(attackRange):
+	elif not _combat_range_latched and horizontal_distance <= float(attack_range):
 		_combat_range_latched = true
 		stop_move()
-	elif _combat_range_latched and horizontal_distance > float(attackRange) + ATTACK_RANGE_HYSTERESIS:
+	elif _combat_range_latched and horizontal_distance > float(attack_range) + ATTACK_RANGE_HYSTERESIS:
 		_combat_range_latched = false
 		have_target()
 	elif not _combat_range_latched:
@@ -628,7 +628,7 @@ func _fire(
 	action: StringName, frame_count: int, spawn_position: Vector2, options: Dictionary
 ) -> WutaiMinghaiProjectile:
 	var projectile := PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
-	var attack_data: Dictionary = objattackDic.get(String(action), {})
+	var attack_data: Dictionary = obj_attack_dict.get(String(action), {})
 	var visual_offset_value: Variant = options.get("visual_offset", Vector2.ZERO)
 	var resolved_visual_offset := visual_offset_value as Vector2 if visual_offset_value is Vector2 else Vector2.ZERO
 	var registration_value: Variant = options.get("visual_registration", _skill_visual_registration(action))
@@ -771,7 +771,7 @@ func _cast_175_returning() -> void:
 
 func _heal_from_175_hit(_projectile: Node, hit_role: BaseHero) -> void:
 	if hit_role != null:
-		cure_hp(maxi(1, int(objattackDic["hit3"].get("power", 1))))
+		cure_hp(maxi(1, int(obj_attack_dict["hit3"].get("power", 1))))
 
 
 func _start_164_pull() -> void:

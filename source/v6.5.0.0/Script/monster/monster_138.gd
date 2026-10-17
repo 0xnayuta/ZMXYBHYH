@@ -65,13 +65,13 @@ func monster_138():
 	self.Critreduce = 0
 	self.speed = 9
 	self.mysee = 0
-	self.attackRange = 0
-	self.attackDesire = 0
+	self.attack_range = 0
+	self.attack_desire = 0
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 0,
 		"hurtBack": [0, 0],
 		"attackKind": "",
@@ -112,7 +112,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	is_jgz = false
 	has_target = true
 	if area is BaseRoleHitBox or area is RolehmzBullet:
-		get_target = get_Player
+		get_target = get_player
 	elif area is MagicWeaponHit:
 		return
 	elif area.get_parent() is Role1Shallow:
@@ -128,9 +128,9 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if last_hurt >= Hp:
 		last_hurt = Hp
 	hurt_received = last_hurt
-	if get_Player is BaseHero:
-		if get_Player.is_dead_link:
-			get_Player.effect_reducehp(last_hurt, "real")
+	if get_player is BaseHero:
+		if get_player.is_dead_link:
+			get_player.effect_reducehp(last_hurt, "real")
 	cure_ws_value()
 	hurt_reduce_hp(last_hurt, get_target)
 	transfer_linked_damage(last_hurt)

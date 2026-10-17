@@ -5,7 +5,7 @@ extends TouchScreenButton
 @onready var time_text: Label = $TimeText
 
 var res_: String = ""
-var curSize: float = 50.0
+var cur_size: float = 50.0
 var skill_name: String = ""
 var max_time: float = 0.0
 var can_rest: bool = true
@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 	if texture_normal != null and not is_no_click:
 		var side: float = min(size_.x, size_.y)
 		if side <= 0:
-			side = curSize
+			side = cur_size
 		scale = Vector2(side / texture_normal.get_width(), side / texture_normal.get_height()) * touch_scale
 		_layout_content_icon()
 

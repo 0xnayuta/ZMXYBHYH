@@ -89,8 +89,8 @@ func _configure_summon(config: Dictionary) -> void:
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
 	mysee = int(config["sight"])
-	attackRange = int(config["range"])
-	attackDesire = int(config["attack_desire"])
+	attack_range = int(config["range"])
+	attack_desire = int(config["attack_desire"])
 	add_exp = 0
 	fall_coin = 0
 	fall_pro = 0.0
@@ -100,11 +100,11 @@ func _configure_summon(config: Dictionary) -> void:
 	boss_max_protect = float(config["max_protect"])
 	_projectile_speed = float(config.get("projectile_speed", 120.0))
 	_projectile_lifetime = float(config.get("projectile_lifetime", 5.0))
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config.get("attacks", {})
 	for attack_name: String in attacks:
 		var attack: Dictionary = attacks[attack_name]
-		objattackDic[attack_name] = {
+		obj_attack_dict[attack_name] = {
 			"power": roundi(float(attack_in) * float(attack["multiplier"])),
 			"hurtBack": Array(attack["hurt_back"]).duplicate(),
 			"attackKind": str(attack["kind"]),
@@ -235,7 +235,7 @@ func _fire_arrow(arrow_index: int) -> void:
 	var attack_data := _attack_entry(&"hit1")
 	if attack_data.is_empty():
 		return
-	_source_boss.objattackDic[WALL_PROJECTILE_HIT] = attack_data.duplicate(true)
+	_source_boss.obj_attack_dict[WALL_PROJECTILE_HIT] = attack_data.duplicate(true)
 	var arrow := PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
 	(
 		arrow
@@ -267,8 +267,8 @@ func _fire_arrow(arrow_index: int) -> void:
 
 func _attack_entry(attack_name: StringName) -> Dictionary:
 	var key := str(attack_name)
-	if objattackDic.has(key):
-		return (objattackDic[key] as Dictionary).duplicate(true)
+	if obj_attack_dict.has(key):
+		return (obj_attack_dict[key] as Dictionary).duplicate(true)
 	push_error("WutaiEarthWall3082 level config is missing attack %s" % key)
 	return {}
 

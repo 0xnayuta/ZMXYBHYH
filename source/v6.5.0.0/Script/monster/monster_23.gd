@@ -24,20 +24,20 @@ func monster_23():
 		self.Critreduce = 0
 		self.speed = 10
 		self.mysee = 400
-		self.attackRange = 170
-		self.attackDesire = 90
+		self.attack_range = 170
+		self.attack_desire = 90
 		self.behit_calmtime = 0.3
 		self.self_rhp = 0
 		self.add_exp = 0
 		self.fall_coin = 200
-		self.objattackDic["hit1"] = {
+		self.obj_attack_dict["hit1"] = {
 			"power": int(250 * up_power),
 			"hurtBack": [-4, -9],
 			"attackKind": "physics",
 		}
-		self.objattackDic["whs"] = {"power": int(500 * up_power), "hurtBack": [-4, -15], "attackKind": "magic"}
-		self.objattackDic["ryzj"] = {"power": int(500 * up_power), "hurtBack": [-6, 0], "attackKind": "magic"}
-		self.objattackDic["mncz"] = {
+		self.obj_attack_dict["whs"] = {"power": int(500 * up_power), "hurtBack": [-4, -15], "attackKind": "magic"}
+		self.obj_attack_dict["ryzj"] = {"power": int(500 * up_power), "hurtBack": [-6, 0], "attackKind": "magic"}
+		self.obj_attack_dict["mncz"] = {
 			"power": int(1500 * up_power),
 			"hurtBack": [-15, 0],
 			"attackKind": "magic",
@@ -78,20 +78,20 @@ func monster_23():
 	self.Critreduce = 0
 	self.speed = 10
 	self.mysee = 400
-	self.attackRange = 170
-	self.attackDesire = 90
+	self.attack_range = 170
+	self.attack_desire = 90
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": int(150 * up_power),
 		"hurtBack": [-4, -9],
 		"attackKind": "physics",
 	}
-	self.objattackDic["whs"] = {"power": int(200 * up_power), "hurtBack": [-4, -15], "attackKind": "magic"}
-	self.objattackDic["ryzj"] = {"power": int(100 * up_power), "hurtBack": [-6, 0], "attackKind": "magic"}
-	self.objattackDic["mncz"] = {
+	self.obj_attack_dict["whs"] = {"power": int(200 * up_power), "hurtBack": [-4, -15], "attackKind": "magic"}
+	self.obj_attack_dict["ryzj"] = {"power": int(100 * up_power), "hurtBack": [-6, 0], "attackKind": "magic"}
+	self.obj_attack_dict["mncz"] = {
 		"power": int(300 * up_power),
 		"hurtBack": [-15, 0],
 		"attackKind": "magic",
@@ -147,11 +147,11 @@ func ai_think():
 			normal_state()
 		else:
 			if Skill_1_CD > 0 and Skill_2_CD > 0 and Skill_3_CD > 0:
-				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 					have_target()
 				else:
 					if count % 120 == 0:
-						if ran_num <= attackDesire:
+						if ran_num <= attack_desire:
 							attack_target()
 					else:
 						stop_move()
@@ -172,11 +172,11 @@ func ai_think():
 				):
 					do_hit_4()
 				else:
-					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 						have_target()
 					else:
 						if count % 120 == 0:
-							if ran_num <= attackDesire:
+							if ran_num <= attack_desire:
 								attack_target()
 						else:
 							stop_move()
@@ -227,14 +227,14 @@ func self_cure():
 	else:
 		up_power = 10
 	if get_parent().get_parent() is LevelNMGHDGQ:
-		self.objattackDic["hit1"] = {
+		self.obj_attack_dict["hit1"] = {
 			"power": int(250 * up_power),
 			"hurtBack": [-4, -9],
 			"attackKind": "physics",
 		}
-		self.objattackDic["whs"] = {"power": int(500 * up_power), "hurtBack": [-4, -15], "attackKind": "magic"}
-		self.objattackDic["ryzj"] = {"power": int(500 * up_power), "hurtBack": [-6, 0], "attackKind": "magic"}
-		self.objattackDic["mncz"] = {
+		self.obj_attack_dict["whs"] = {"power": int(500 * up_power), "hurtBack": [-4, -15], "attackKind": "magic"}
+		self.obj_attack_dict["ryzj"] = {"power": int(500 * up_power), "hurtBack": [-6, 0], "attackKind": "magic"}
+		self.obj_attack_dict["mncz"] = {
 			"power": int(1500 * up_power),
 			"hurtBack": [-15, 0],
 			"attackKind": "magic",
@@ -251,14 +251,14 @@ func self_cure():
 			}
 		}
 		return
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": int(150 * up_power),
 		"hurtBack": [-4, -9],
 		"attackKind": "physics",
 	}
-	self.objattackDic["whs"] = {"power": int(200 * up_power), "hurtBack": [-4, -15], "attackKind": "magic"}
-	self.objattackDic["ryzj"] = {"power": int(100 * up_power), "hurtBack": [-6, 0], "attackKind": "magic"}
-	self.objattackDic["mncz"] = {
+	self.obj_attack_dict["whs"] = {"power": int(200 * up_power), "hurtBack": [-4, -15], "attackKind": "magic"}
+	self.obj_attack_dict["ryzj"] = {"power": int(100 * up_power), "hurtBack": [-6, 0], "attackKind": "magic"}
+	self.obj_attack_dict["mncz"] = {
 		"power": int(300 * up_power),
 		"hurtBack": [-15, 0],
 		"attackKind": "magic",

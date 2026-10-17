@@ -20,14 +20,14 @@ var ar = 0
 var sp = 0
 var Critreduce = 0
 var AttList
-var objattackDic = {}
+var obj_attack_dict = {}
 var skill_name: String
 var dir: bool
 var speed: float
 var bullet_name
 var hit
-var attackKind
-var hurtBack
+var attack_kind
+var hurt_back
 var hit_name
 var total_hit = 0
 var is_get = false
@@ -64,8 +64,8 @@ func _on_hit_area_area_entered(area: Area2D) -> void:
 
 	if target is BossXieShaSengWdww:
 		return
-	if objattackDic[hit_name].has("addeffect"):
-		Global.add_buff(target.buff, objattackDic[hit_name]["addeffect"])
+	if obj_attack_dict[hit_name].has("addeffect"):
+		Global.add_buff(target.buff, obj_attack_dict[hit_name]["addeffect"])
 
 	if name_ == "Monster14Bullet" or name_ == "Monster41Bullet":
 		queue_free()
@@ -87,4 +87,4 @@ func get_prop():
 		Critreduce = tt.Critreduce
 		total_hit = tt.total_hit
 	if hit_name != "":
-		self.objattackDic[hit_name] = AttList
+		self.obj_attack_dict[hit_name] = AttList

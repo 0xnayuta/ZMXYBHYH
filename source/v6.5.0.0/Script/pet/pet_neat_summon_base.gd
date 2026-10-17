@@ -99,9 +99,9 @@ func setup_pet_turtle(stage: int) -> void:
 	pet_data["技能"] = (STAGE_SKILLS[turtle_stage] as Array).duplicate(true)
 	my_mr_name = str(STAGE_NAMES[turtle_stage])
 	speed = 14
-	iniSpeed = speed
-	attackRange = 200
-	attackDesire = 70
+	init_speed = speed
+	attack_range = 200
+	attack_desire = 70
 	_rebuild_pet_turtle_attack_data()
 
 
@@ -111,9 +111,9 @@ func _rebuild_pet_turtle_attack_data() -> void:
 	var normal_power := maxi(1, int(float(attack_in + magic_add) * root_rate))
 	var rush_power := maxi(1, int(float(attack_in * 2.0 + magic_add) * root_rate))
 	var stomp_power := maxi(1, int(float(attack_in * 4.0 + magic_add) * root_rate))
-	objattackDic["hit1"] = _attack_dic(normal_power, [6, -5], "physics", 999)
-	objattackDic["hit2"] = _attack_dic(rush_power, [-10, 0], "physics", 5)
-	objattackDic["hit3"] = _attack_dic(stomp_power, [0, 0], "magic", 5)
+	obj_attack_dict["hit1"] = _attack_dic(normal_power, [6, -5], "physics", 999)
+	obj_attack_dict["hit2"] = _attack_dic(rush_power, [-10, 0], "physics", 5)
+	obj_attack_dict["hit3"] = _attack_dic(stomp_power, [0, 0], "magic", 5)
 
 
 func setup_skills() -> void:
@@ -159,7 +159,7 @@ func ai_think() -> void:
 	var center_distance := absf(current_target.global_position.x - global_position.x)
 	var normal_origin := _neat_normal_attack_origin()
 	var can_hit := (
-		center_distance <= float(attackRange) and _target_in_neat_effect_range("PetNeat1Bullet1", normal_origin)
+		center_distance <= float(attack_range) and _target_in_neat_effect_range("PetNeat1Bullet1", normal_origin)
 	)
 	if not can_hit:
 		if current_target.global_position.x > global_position.x:
@@ -169,7 +169,7 @@ func ai_think() -> void:
 	else:
 		stop_move()
 		to_monster()
-		if count % 48 == 0 and randi_range(0, 100) < attackDesire:
+		if count % 48 == 0 and randi_range(0, 100) < attack_desire:
 			do_hit_1()
 
 
@@ -355,17 +355,17 @@ func _set_turtle_action_visual(action_name: String, action_tick: int) -> void:
 
 func _process_turtle_action_triggers() -> void:
 	if _turtle_action == "hit1" and _trigger_once("neat_hit1", HIT1_EFFECT_TICK):
-		_spawn_neat_effect("PetNeat1Bullet1", "hit1", objattackDic["hit1"], NORMAL_HIT_SIZE)
+		_spawn_neat_effect("PetNeat1Bullet1", "hit1", obj_attack_dict["hit1"], NORMAL_HIT_SIZE)
 	elif _turtle_action == "hit2":
 		if _trigger_once("neat_hit2", HIT2_EFFECT_TICK):
-			_spawn_neat_effect("PetNeat1Bullet2", "hit2", objattackDic["hit2"], RUSH_HIT_SIZE, true)
+			_spawn_neat_effect("PetNeat1Bullet2", "hit2", obj_attack_dict["hit2"], RUSH_HIT_SIZE, true)
 		var rush_speed := 360.0 if _aoyi_step > 0 else 240.0
 		velocity.x = -rush_speed if MonsterDirection else rush_speed
 	elif _turtle_action == "hit3" and _trigger_once("neat_hit3", HIT3_EFFECT_TICK):
 		if _neat_aoyi_stomp:
 			_spawn_aoyi_stomp_sequence()
 		else:
-			_spawn_neat_effect("PetNeat4Bullet3", "hit3", objattackDic["hit3"], STOMP_HIT_SIZE)
+			_spawn_neat_effect("PetNeat4Bullet3", "hit3", obj_attack_dict["hit3"], STOMP_HIT_SIZE)
 
 
 func _finish_turtle_action() -> void:
@@ -380,7 +380,7 @@ func _spawn_aoyi_stomp_sequence() -> void:
 	for _index in range(3):
 		if not is_inside_tree() or Hp <= 0 or is_queued_for_deletion():
 			return
-		_spawn_neat_effect("PetNeat4Bullet3", "hit3", objattackDic["hit3"], STOMP_HIT_SIZE * 2.0, false, 2.0)
+		_spawn_neat_effect("PetNeat4Bullet3", "hit3", obj_attack_dict["hit3"], STOMP_HIT_SIZE * 2.0, false, 2.0)
 		if _index < 2:
 			await get_tree().create_timer(1.0, false).timeout
 

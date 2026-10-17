@@ -7,7 +7,7 @@ var owner_boss: BaseMonster
 var effect_kind := "feather"
 var hit_name := "hit1"
 var skill_name := "ShenguangBossEffect"
-var objattackDic: Dictionary = {}
+var obj_attack_dict: Dictionary = {}
 var frames: SpriteFrames
 var visual_offset := Vector2.ZERO
 var collision_size := Vector2.ONE
@@ -26,7 +26,7 @@ func _ready() -> void:
 	if owner_boss == null or not is_instance_valid(owner_boss):
 		queue_free()
 		return
-	objattackDic = owner_boss.objattackDic
+	obj_attack_dict = owner_boss.obj_attack_dict
 	_build_visual()
 	_middle = Node2D.new()
 	_middle.name = "middle"

@@ -23,19 +23,19 @@ func monster_93():
 	self.Critreduce = 0
 	self.speed = 12
 	self.mysee = 500
-	self.attackRange = 165
-	self.attackDesire = 80
+	self.attack_range = 165
+	self.attack_desire = 80
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 500
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 500,
 		"hurtBack": [-8, -12],
 		"attackKind": "physics",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": int(RoleProp.roleprop.SHp * 0.3 + 1000),
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
@@ -51,13 +51,13 @@ func monster_93():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 400,
 		"hurtBack": [-1, -1],
 		"attackKind": "magic",
 		"HitProtect": 5,
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 300,
 		"hurtBack": [0, 0],
 		"attackKind": "real",
@@ -73,7 +73,7 @@ func monster_93():
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit5"] = {
+	self.obj_attack_dict["hit5"] = {
 		"power": 300,
 		"hurtBack": [0, 0],
 		"attackKind": "real",
@@ -112,7 +112,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -135,7 +135,7 @@ func ai_think():
 				elif Skill_4_CD <= 0:
 					do_hit_4()
 				elif count % 90 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 					else:
 						stop_move()
@@ -203,14 +203,20 @@ func add_bullet():
 		position2 = Vector2(10, -160)
 	for i in bullet_spawn_positions:
 		var line = Global.add_bullet(
-			"Monster93Bullet", self.bullet, MonsterDirection, 1.6, i + position, "hit5", self.objattackDic["hit5"]
+			"Monster93Bullet", self.bullet, MonsterDirection, 1.6, i + position, "hit5", self.obj_attack_dict["hit5"]
 		)
 		if MonsterDirection:
 			tween.tween_property(line, "rotation_degrees", 45, 2)
 		else:
 			tween.tween_property(line, "rotation_degrees", -45, 2)
 	var line2 = Global.add_bullet(
-		"Monster93Bullet", self.bullet, MonsterDirection, 1.6, position2 + position, "hit5", self.objattackDic["hit5"]
+		"Monster93Bullet",
+		self.bullet,
+		MonsterDirection,
+		1.6,
+		position2 + position,
+		"hit5",
+		self.obj_attack_dict["hit5"]
 	)
 	line2.scale.y = 2.2
 
@@ -230,7 +236,7 @@ func add_blood_fix():
 	(
 		Global
 		. add_buff(
-			get_Player.buff,
+			get_player.buff,
 			{
 				"Name": "BloodFix",
 				"AddTime": 20,

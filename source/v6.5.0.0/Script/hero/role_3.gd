@@ -70,30 +70,30 @@ func role_3():
 	var level_8 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能8"][DataKeys.LEVEL] + 1
 	var level_9 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] + 1
 	var level_10 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": RoleProp.roleprop.power * randf_range(0.9, 1.1),
 		"hurtBack": [3, -8],
 		"attackKind": "physics",
 		"HitInterv": 3,
 		"WSValue": randi_range(5, 7),
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": RoleProp.roleprop.power * randf_range(1, 1.2),
 		"hurtBack": [3, -8],
 		"attackKind": "physics",
 		"HitInterv": 3,
 		"WSValue": randi_range(5, 7),
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": RoleProp.roleprop.power * randf_range(1, 1.3),
 		"hurtBack": [3, -8],
 		"attackKind": "physics",
 		"HitInterv": 3,
 		"WSValue": randi_range(5, 7),
 	}
-	self.objattackDic["sd"] = {"power": 0, "hurtBack": [0, 0], "attackKind": ""}
-	self.objattackDic["zznh"] = {"power": 0, "hurtBack": [0, 0], "attackKind": ""}
-	self.objattackDic["dj"] = {
+	self.obj_attack_dict["sd"] = {"power": 0, "hurtBack": [0, 0], "attackKind": ""}
+	self.obj_attack_dict["zznh"] = {"power": 0, "hurtBack": [0, 0], "attackKind": ""}
+	self.obj_attack_dict["dj"] = {
 		"power": RoleProp.roleprop.power * (3 + level_2 * 0.3),
 		"hurtBack": [25, -20],
 		"attackKind": "physics",
@@ -108,7 +108,7 @@ func role_3():
 			"DeBuff": true
 		}
 	}
-	self.objattackDic["jsp"] = {
+	self.obj_attack_dict["jsp"] = {
 		"power": RoleProp.roleprop.power * (1.4 + level_7 * 0.1),
 		"hurtBack": [4, -7],
 		"attackKind": "physics",
@@ -123,19 +123,19 @@ func role_3():
 			"DeBuff": true
 		}
 	}
-	self.objattackDic["xgq"] = {
+	self.obj_attack_dict["xgq"] = {
 		"power": RoleProp.roleprop.power * (1.1 + level_8 * 0.1),
 		"hurtBack": [1, -7],
 		"attackKind": "physics",
 		"WSValue": randi_range(18, 22),
 	}
-	self.objattackDic["dgq"] = {
+	self.obj_attack_dict["dgq"] = {
 		"power": RoleProp.roleprop.power * (1.1 + level_3 * 0.1),
 		"hurtBack": [10, 0],
 		"attackKind": "physics",
 		"WSValue": randi_range(15, 20),
 	}
-	self.objattackDic["syzq"] = {
+	self.obj_attack_dict["syzq"] = {
 		"power": RoleProp.roleprop.power * (2 + level_9 * 0.2),
 		"hurtBack": [20, 0],
 		"attackKind": "physics",
@@ -150,20 +150,20 @@ func role_3():
 			"DeBuff": true
 		}
 	}
-	self.objattackDic["ssp"] = {
+	self.obj_attack_dict["ssp"] = {
 		"power": RoleProp.roleprop.SHp * (0.03 + level_1 * 0.05) + RoleProp.roleprop.power * (0.47 + level_1 * 0.05),
 		"hurtBack": [15, -10],
 		"attackKind": "physics",
 		"WSValue": randi_range(15, 18),
 	}
-	self.objattackDic["tmc"] = {
+	self.obj_attack_dict["tmc"] = {
 		"power": RoleProp.roleprop.SHp * (0.06 + 0.09 * level_5) + RoleProp.roleprop.power * (0.04 + 0.05 * level_5),
 		"hurtBack": [0, -8],
 		"attackKind": "magic",
 		"WSValue": randi_range(5, 7),
 	}
 	var level_12 = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能12"][DataKeys.LEVEL] + 1
-	self.objattackDic["bdqk"] = {
+	self.obj_attack_dict["bdqk"] = {
 		"power": RoleProp.roleprop.SHp * (0.16 + level_12 * 0.04) + RoleProp.roleprop.power * (0.7 + level_12 * 0.14),
 		"hurtBack": [22, -16],
 		"attackKind": "physics",
@@ -244,7 +244,7 @@ func _replace_special_effect_stream(action: StringName) -> void:
 
 
 func do_normalhit_1():
-	interv = objattackDic["hit1"]["HitInterv"]
+	interv = obj_attack_dict["hit1"]["HitInterv"]
 	super.get_hit_data("hit1")
 	get_action = "hit1"
 	is_attacking = true
@@ -257,7 +257,7 @@ func do_normalhit_1():
 
 
 func do_normalhit_2():
-	interv = objattackDic["hit2"]["HitInterv"]
+	interv = obj_attack_dict["hit2"]["HitInterv"]
 	get_action = "hit2"
 	super.get_hit_data("hit2")
 	is_can_move_attack_in_sky()
@@ -271,7 +271,7 @@ func do_normalhit_2():
 
 
 func do_normalhit_3():
-	interv = objattackDic["hit3"]["HitInterv"]
+	interv = obj_attack_dict["hit3"]["HitInterv"]
 	get_action = "hit3"
 	super.get_hit_data("hit3")
 	velocity.x = 0
@@ -437,7 +437,7 @@ func skill_bdqk():
 	_play_bdqk_action()
 	var level = get_parent().get_parent()
 	var effect = BA_DI_QIAN_KUN_EFFECT.new()
-	effect.setup(self, PlayerDir, objattackDic["bdqk"])
+	effect.setup(self, PlayerDir, obj_attack_dict["bdqk"])
 	level.add_child(effect)
 	await role_action_player.animation_finished
 	turn_to_wait()
@@ -570,7 +570,7 @@ func call_syzq():
 		pp = Vector2(64, -70) + position
 	else:
 		pp = Vector2(-64, -70) + position
-	Global.add_role_bullet(self.Bullet, pp, PlayerDir, "Role3Bullet1", objattackDic["syzq"])
+	Global.add_role_bullet(self.Bullet, pp, PlayerDir, "Role3Bullet1", obj_attack_dict["syzq"])
 
 
 func add_ssp():
@@ -582,7 +582,7 @@ func add_ssp():
 		bullet_spawn_positions = [Vector2(70, 15), Vector2(160, 10), Vector2(270, 0), Vector2(400, -10)]
 	for i in bullet_spawn_positions.size():
 		var xbz = Global.add_role_bullet(
-			self.Bullet, bullet_spawn_positions[i] + position, PlayerDir, "Role3Bullet2", objattackDic["ssp"]
+			self.Bullet, bullet_spawn_positions[i] + position, PlayerDir, "Role3Bullet2", obj_attack_dict["ssp"]
 		)
 		xbz.scale = scale_list[i]
 		await get_tree().create_timer(0.2, false).timeout
@@ -601,7 +601,7 @@ func add_tmc():
 			self.position.x + sin(float(new_rotation) * PI / 180) * 100,
 			self.position.y - 15 - cos(float(new_rotation) * PI / 180) * 100
 		)
-		var stab = Global.add_role_bullet(self.Bullet, stab_position, false, "Role3Bullet3", objattackDic["tmc"])
+		var stab = Global.add_role_bullet(self.Bullet, stab_position, false, "Role3Bullet3", obj_attack_dict["tmc"])
 		stab.rotation_degrees = new_rotation - 90
 		stab.modulate = Color(1, 1, 1, 0)
 		tween.tween_property(stab, "modulate", Color(1, 1, 1, 1), 0.6)
@@ -621,7 +621,7 @@ func _process_dgq_spikes(delta: float) -> void:
 
 func _spawn_dgq_spike() -> void:
 	var spike_position := position + Vector2(0.0, -15.0)
-	var spike: Node = Global.add_role_bullet(self.Bullet, spike_position, false, "Role3Bullet3", objattackDic["tmc"])
+	var spike: Node = Global.add_role_bullet(self.Bullet, spike_position, false, "Role3Bullet3", obj_attack_dict["tmc"])
 	if spike != null and is_instance_valid(spike):
 		spike.rotation_degrees = _dgq_spike_angle - 90.0
 	_dgq_spike_angle = fmod(_dgq_spike_angle + DGQ_SPIKE_ANGLE_STEP, 360.0)

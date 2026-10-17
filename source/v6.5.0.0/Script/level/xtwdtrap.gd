@@ -7,7 +7,7 @@ var get_name_
 var is_hit: bool
 var is_play
 var total_hit = 0
-var objattackDic = {}
+var obj_attack_dict = {}
 var Player
 var hit_count: int = 0
 
@@ -55,7 +55,7 @@ func _on_hix_box_area_entered(area: Area2D) -> void:
 		target_max_hp = 100
 
 	hit_name = "Trap_1"
-	self.objattackDic["Trap_1"] = {"power": int(target_max_hp * 0.05), "hurtBack": [15, -15], "attackKind": "real"}
+	self.obj_attack_dict["Trap_1"] = {"power": int(target_max_hp * 0.05), "hurtBack": [15, -15], "attackKind": "real"}
 
 	if target.has_node("Buff"):
 		(

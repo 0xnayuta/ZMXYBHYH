@@ -96,9 +96,9 @@ func setup_pet_turtle(stage: int) -> void:
 	pet_data["技能"] = (STAGE_SKILLS[turtle_stage] as Array).duplicate(true)
 	my_mr_name = str(STAGE_NAMES[turtle_stage])
 	speed = 14
-	iniSpeed = speed
-	attackRange = int(NORMAL_ATTACK_RANGES.get(4 if turtle_stage >= 4 else 1, 90))
-	attackDesire = 100
+	init_speed = speed
+	attack_range = int(NORMAL_ATTACK_RANGES.get(4 if turtle_stage >= 4 else 1, 90))
+	attack_desire = 100
 	_rebuild_pet_tiger_attack_data()
 
 
@@ -108,11 +108,11 @@ func _rebuild_pet_tiger_attack_data() -> void:
 	var normal_power := maxi(1, int(float(attack_in + magic_add) * root_rate))
 	var skill_power := maxi(1, int(float(attack_in * 5.0 + magic_add) * root_rate))
 	var strong_power := maxi(1, int(float(attack_in * 8.0 + magic_add) * root_rate))
-	objattackDic["hit1"] = _attack_dic(normal_power, [6, -5], "physics", 5)
-	objattackDic["hit2"] = _attack_dic(
+	obj_attack_dict["hit1"] = _attack_dic(normal_power, [6, -5], "physics", 5)
+	obj_attack_dict["hit2"] = _attack_dic(
 		PET_SKILL_PROGRESSION.scaled_power(skill_power, pet_data, YIN_SKILL_NAMES[SKILL_HX]), [6, -5], "physics", 15
 	)
-	objattackDic["hit3"] = _attack_dic(
+	obj_attack_dict["hit3"] = _attack_dic(
 		PET_SKILL_PROGRESSION.scaled_power(strong_power, pet_data, YIN_SKILL_NAMES[SKILL_MHXS]), [6, -5], "physics", 10
 	)
 
@@ -261,7 +261,7 @@ func _process_turtle_action_triggers() -> void:
 				_spawn_yin_effect(
 					"PetYinTiger1Bullet1",
 					"hit1",
-					objattackDic["hit1"],
+					obj_attack_dict["hit1"],
 					_front_offset(90.0 if turtle_stage >= 4 else 80.0, -50.0)
 				)
 		"hit2":
@@ -269,13 +269,13 @@ func _process_turtle_action_triggers() -> void:
 				_spawn_yin_effect(
 					"PetYinTiger1Bullet2",
 					"hit2",
-					objattackDic["hit2"],
+					obj_attack_dict["hit2"],
 					_front_offset(60.0 if turtle_stage >= 4 else 50.0, -25.0)
 				)
 		"hit3":
 			if _trigger_once("yin_hit3", HIT3_TICK):
 				velocity.x = -HIT3_RUSH_SPEED if MonsterDirection else HIT3_RUSH_SPEED
-				_spawn_yin_effect("PetYinTiger1Bullet3", "hit3", objattackDic["hit3"], _front_offset(400.0, -100.0))
+				_spawn_yin_effect("PetYinTiger1Bullet3", "hit3", obj_attack_dict["hit3"], _front_offset(400.0, -100.0))
 			elif _turtle_action_tick >= HIT3_TICK + 19:
 				velocity.x = 0.0
 

@@ -27,13 +27,13 @@ func monster_67():
 	self.Critreduce = 0
 	self.speed = 9
 	self.mysee = 300
-	self.attackRange = 225
-	self.attackDesire = 0
+	self.attack_range = 225
+	self.attack_desire = 0
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": randi_range(100, 150), "hurtBack": [0, 0], "attackKind": "magic", "HitProtect": 0
 	}
 	self.fall_pro = 0
@@ -61,12 +61,12 @@ func ai_think():
 			current_stick_count += 1
 			if myfather != null:
 				myfather.cure_hp(randi_range(1000, 1600))
-			if get_Player != null:
-				get_Player.effect_reducehp(objattackDic["hit1"]["power"], objattackDic["hit1"]["attackKind"])
+			if get_player != null:
+				get_player.effect_reducehp(obj_attack_dict["hit1"]["power"], obj_attack_dict["hit1"]["attackKind"])
 				(
 					Global
 					. add_buff(
-						get_Player.buff,
+						get_player.buff,
 						{
 							"Name": "speed_down",
 							"AddTime": 0.4,
@@ -86,7 +86,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 			else:
 				if count % 60 == 0:

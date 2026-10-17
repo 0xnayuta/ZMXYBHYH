@@ -27,13 +27,13 @@ func monster_22():
 		self.Critreduce = 0
 		self.speed = 40
 		self.mysee = 300
-		self.attackRange = 85
-		self.attackDesire = 70
+		self.attack_range = 85
+		self.attack_desire = 70
 		self.behit_calmtime = 0
 		self.self_rhp = 0
 		self.add_exp = 0
 		self.fall_coin = 1
-		self.objattackDic["hit1"] = {
+		self.obj_attack_dict["hit1"] = {
 			"power": 1000,
 			"hurtBack": [-8, -9],
 			"attackKind": "physics",
@@ -49,7 +49,7 @@ func monster_22():
 				"AttackKind": "",
 			}
 		}
-		self.objattackDic["Fire"] = {"power": 1000, "hurtBack": [-4, -9], "attackKind": "magic"}
+		self.obj_attack_dict["Fire"] = {"power": 1000, "hurtBack": [-4, -9], "attackKind": "magic"}
 		self.fall_pro = 0.5
 		self.fall_list = [
 			{"name": "nmwdnhsp", "value": 1},
@@ -77,15 +77,15 @@ func monster_22():
 	self.Critreduce = 0
 	self.speed = 40
 	self.mysee = 300
-	self.attackRange = 85
-	self.attackDesire = 70
+	self.attack_range = 85
+	self.attack_desire = 70
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 200
 
-	self.objattackDic["hit1"] = {"power": 300, "hurtBack": [-8, -9], "attackKind": "physics"}
-	self.objattackDic["Fire"] = {"power": 300, "hurtBack": [-4, -9], "attackKind": "magic"}
+	self.obj_attack_dict["hit1"] = {"power": 300, "hurtBack": [-8, -9], "attackKind": "physics"}
+	self.obj_attack_dict["Fire"] = {"power": 300, "hurtBack": [-4, -9], "attackKind": "magic"}
 	self.fall_pro = 0.5
 	self.fall_list = [
 		{"name": "nmwdnhsp", "value": 1},
@@ -149,5 +149,5 @@ func _on_change_dir_timeout() -> void:
 
 func call_fire():
 	var po = Vector2(self.position.x, self.position.y - 100)
-	Global.add_bullet("Monster22Fire", self.bullet, false, 1, po, "Fire", self.objattackDic["Fire"])
+	Global.add_bullet("Monster22Fire", self.bullet, false, 1, po, "Fire", self.obj_attack_dict["Fire"])
 	pass

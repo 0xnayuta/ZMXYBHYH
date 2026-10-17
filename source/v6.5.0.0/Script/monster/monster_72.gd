@@ -23,23 +23,23 @@ func monster_72():
 	self.Critreduce = 0
 	self.speed = 12
 	self.mysee = 400
-	self.attackRange = 175
-	self.attackDesire = 90
+	self.attack_range = 175
+	self.attack_desire = 90
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 288,
 		"hurtBack": [-7, -9],
 		"attackKind": "magic",
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 300,
 		"hurtBack": [-7, -9],
 		"attackKind": "magic",
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 300,
 		"hurtBack": [-7, -9],
 		"attackKind": "magic",
@@ -78,7 +78,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -86,7 +86,7 @@ func ai_think():
 					if Skill_2_CD <= 0:
 						do_hit_2()
 				if count % 120 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 			else:
 				if Skill_1_CD <= 0:
@@ -94,7 +94,7 @@ func ai_think():
 				elif Skill_2_CD <= 0:
 					do_hit_2()
 				elif count % 60 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 					else:
 						stop_move()
@@ -132,24 +132,24 @@ func call_monster_bullet():
 	var bullet_spawn_positions = [Vector2(0, 0), Vector2(0, -75), Vector2(0, 75)]
 	for i in bullet_spawn_positions:
 		Global.add_bullet(
-			bullet_name, self.bullet, MonsterDirection, 1, i + position, "hit2", self.objattackDic["hit2"]
+			bullet_name, self.bullet, MonsterDirection, 1, i + position, "hit2", self.obj_attack_dict["hit2"]
 		)
 		await get_tree().create_timer(0.3, false).timeout
 
 
 func strength_obj():
 	self.cure_hp(SHp * 0.15)
-	for i in self.objattackDic:
-		if self.objattackDic[i].has("power"):
-			self.objattackDic[i]["power"] *= 1.05
+	for i in self.obj_attack_dict:
+		if self.obj_attack_dict[i].has("power"):
+			self.obj_attack_dict[i]["power"] *= 1.05
 	self.crit += 10
 	sp += 10
 	ar += 10
 	if my_father != null:
 		my_father.cure_hp(SHp * 0.15)
-		for i in my_father.objattackDic:
-			if my_father.objattackDic[i].has("power"):
-				my_father.objattackDic[i]["power"] *= 1.05
+		for i in my_father.obj_attack_dict:
+			if my_father.obj_attack_dict[i].has("power"):
+				my_father.obj_attack_dict[i]["power"] *= 1.05
 		my_father.crit += 5
 		my_father.sp += 5
 		my_father.ar += 5
@@ -165,7 +165,7 @@ func call_monster():
 		self_ref.modulate = Color("00ffff")
 		self_ref.my_mr_name = "邪·哮天犬"
 		self_ref.is_call = true
-		for i in self_ref.objattackDic:
-			if self_ref.objattackDic[i].has("power"):
-				self_ref.objattackDic[i]["power"] = self.objattackDic[i]["power"] * 1.5
+		for i in self_ref.obj_attack_dict:
+			if self_ref.obj_attack_dict[i].has("power"):
+				self_ref.obj_attack_dict[i]["power"] = self.obj_attack_dict[i]["power"] * 1.5
 		is_call = true

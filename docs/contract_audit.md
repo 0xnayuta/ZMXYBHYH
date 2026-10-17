@@ -1,8 +1,8 @@
 # ZMXYBHYH 全工程字面量契约诊断审计报告 (Phase 8-1)
 
-> 生成时间: 2026-10-17 15:57:33  
+> 生成时间: 2026-10-17 16:39:12  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
-> 扫描耗时: `4.52 秒`（指标要求 ≤ 30 秒）  
+> 扫描耗时: `4.60 秒`（指标要求 ≤ 30 秒）  
 > 覆盖资产: 脚本 `722 个` / 场景 `1132 个`  
 
 ---
@@ -79,8 +79,8 @@
 |:---:|:---|:---|:---|
 | `INFO` | `Global.gd:3427` | `get_rect` | 动态反射调用的方法 'get_rect' 在工程中无对应显式声明 |
 | `INFO` | `joy.gd:88` | `get_size` | 动态反射调用的方法 'get_size' 在工程中无对应显式声明 |
-| `INFO` | `Script/base/base_monster.gd:2329` | `get_buff_node` | 动态反射调用的方法 'get_buff_node' 在工程中无对应显式声明 |
-| `INFO` | `Script/base/summon_base_monster.gd:553` | `get_hit_damage` | 动态反射调用的方法 'get_hit_damage' 在工程中无对应显式声明 |
+| `INFO` | `Script/base/base_monster.gd:2336` | `get_buff_node` | 动态反射调用的方法 'get_buff_node' 在工程中无对应显式声明 |
+| `INFO` | `Script/base/summon_base_monster.gd:555` | `get_hit_damage` | 动态反射调用的方法 'get_hit_damage' 在工程中无对应显式声明 |
 | `INFO` | `Script/magic_weapon/qlsword.gd:112` | `set_physics_process` | 动态反射调用的方法 'set_physics_process' 在工程中无对应显式声明 |
 | `INFO` | `Script/main_menu/game_announcement.gd:846` | `grab_focus` | 动态反射调用的方法 'grab_focus' 在工程中无对应显式声明 |
 | `INFO` | `Script/monster/boss_blood.gd:169` | `start_timer` | 动态反射调用的方法 'start_timer' 在工程中无对应显式声明 |

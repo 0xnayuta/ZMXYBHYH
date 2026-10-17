@@ -107,9 +107,9 @@ func setup_pet_turtle(stage: int) -> void:
 	pet_data[DataKeys.NAME] = RABBIT_STAGE_NAMES[turtle_stage]
 	pet_data["技能"] = (RABBIT_STAGE_SKILLS[turtle_stage] as Array).duplicate(true)
 	my_mr_name = str(RABBIT_STAGE_NAMES[turtle_stage])
-	attackRange = 350
+	attack_range = 350
 	speed = 14
-	iniSpeed = speed
+	init_speed = speed
 	_rebuild_pet_turtle_attack_data()
 
 
@@ -124,9 +124,9 @@ func _rebuild_pet_turtle_attack_data() -> void:
 	var ice_power := PET_SKILL_PROGRESSION.scaled_power(
 		maxi(1, int(float(attack_in) * 6.0 * root_rate)), pet_data, RABBIT_SKILL_NAMES[SKILL_BS]
 	)
-	objattackDic["hit1"] = _attack_dic(normal_power, [6, -5], "magic", 999)
-	objattackDic["hit2"] = _attack_dic(moon_power, [-10, 0], "magic", 7)
-	objattackDic["hit3"] = _attack_dic(ice_power, [-10, 0], "magic", 999)
+	obj_attack_dict["hit1"] = _attack_dic(normal_power, [6, -5], "magic", 999)
+	obj_attack_dict["hit2"] = _attack_dic(moon_power, [-10, 0], "magic", 7)
+	obj_attack_dict["hit3"] = _attack_dic(ice_power, [-10, 0], "magic", 999)
 
 
 func setup_skills() -> void:
@@ -205,7 +205,7 @@ func ai_think() -> void:
 		return
 	var gap := absf(current_target.global_position.x - global_position.x)
 
-	var desired_range := RABBIT_ICE_FORWARD_RANGE if _rabbit_ice_ready() else float(attackRange)
+	var desired_range := RABBIT_ICE_FORWARD_RANGE if _rabbit_ice_ready() else float(attack_range)
 	if gap > desired_range:
 		if current_target.global_position.x > global_position.x:
 			move_right()
@@ -215,7 +215,7 @@ func ai_think() -> void:
 		stop_move()
 		to_monster()
 		var interval := 34 if _jifeng_active() else 48
-		if count % interval == 0 and randi_range(0, 100) < attackDesire:
+		if count % interval == 0 and randi_range(0, 100) < attack_desire:
 			do_hit_1()
 
 
@@ -353,7 +353,7 @@ func _process_turtle_action_triggers() -> void:
 			_spawn_rabbit_effect(
 				"PetPetRabbitBullet4",
 				_rabbit_ice_impact_position(),
-				objattackDic["hit3"],
+				obj_attack_dict["hit3"],
 				Vector2(500, 250),
 				false,
 				40.0 / 24.0
@@ -385,7 +385,7 @@ func _spawn_normal_attack() -> void:
 	_spawn_rabbit_effect(
 		"PetPetRabbitBullet1",
 		_rabbit_role_origin() + _front_offset(30, 0),
-		objattackDic["hit1"],
+		obj_attack_dict["hit1"],
 		Vector2(70, 70),
 		false,
 		1.8
@@ -410,7 +410,7 @@ func on_rabbit_attack_hit(hit_position: Vector2) -> void:
 		chance = 0.5
 	if randf() < float(chance):
 		_spawn_rabbit_effect(
-			"Monster130Bullet2", hit_position + Vector2(0, -40), objattackDic["hit2"], Vector2(120, 220), false, 1.3
+			"Monster130Bullet2", hit_position + Vector2(0, -40), obj_attack_dict["hit2"], Vector2(120, 220), false, 1.3
 		)
 
 

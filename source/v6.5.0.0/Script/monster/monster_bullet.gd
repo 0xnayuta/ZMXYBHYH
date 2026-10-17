@@ -41,7 +41,7 @@ var ar = 0
 var sp = 0
 var Critreduce = 0
 var AttList
-var objattackDic = {}
+var obj_attack_dict = {}
 var skill_name: String
 var _runtime_skill_name: String = ""
 var _runtime_kind: RuntimeKind = RuntimeKind.NORMAL
@@ -50,8 +50,8 @@ var dir: bool
 var speed: float
 var bullet_name
 var hit
-var attackKind
-var hurtBack
+var attack_kind
+var hurt_back
 var hit_name
 var total_hit = 0
 var show_monster71: bool
@@ -1903,11 +1903,11 @@ func _apply_pet_dragon_summon_hit(target: Node) -> void:
 	var hit_data: Dictionary = AttList if typeof(AttList) == TYPE_DICTIONARY else {}
 	if (
 		hit_data.is_empty()
-		and objattackDic != null
-		and typeof(objattackDic) == TYPE_DICTIONARY
-		and objattackDic.has(hit_name)
+		and obj_attack_dict != null
+		and typeof(obj_attack_dict) == TYPE_DICTIONARY
+		and obj_attack_dict.has(hit_name)
 	):
-		hit_data = objattackDic[hit_name]
+		hit_data = obj_attack_dict[hit_name]
 	if hit_data.is_empty():
 		return
 	var damage := int(hit_data.get("power", 0))
@@ -2282,8 +2282,8 @@ func _apply_pet_tiger_id60_six_hit(role: Node) -> void:
 	if owner == null and get_parent() != null and get_parent().get_parent() is BaseMonster:
 		owner = get_parent().get_parent()
 	var hit_data = AttList
-	if owner != null and owner.objattackDic != null and owner.objattackDic.has(hit_name):
-		hit_data = owner.objattackDic[hit_name]
+	if owner != null and owner.obj_attack_dict != null and owner.obj_attack_dict.has(hit_name):
+		hit_data = owner.obj_attack_dict[hit_name]
 	if typeof(hit_data) != TYPE_DICTIONARY or not hit_data.has("power"):
 		return
 	var attack_kind := "magic"
@@ -2316,9 +2316,9 @@ func _apply_pet_tiger_summon_hit(target: Node) -> void:
 		return
 	if get_meta("pet_tiger_disabled", false):
 		return
-	if objattackDic == null or typeof(objattackDic) != TYPE_DICTIONARY or not objattackDic.has(hit_name):
+	if obj_attack_dict == null or typeof(obj_attack_dict) != TYPE_DICTIONARY or not obj_attack_dict.has(hit_name):
 		return
-	var hit_data: Dictionary = objattackDic[hit_name]
+	var hit_data: Dictionary = obj_attack_dict[hit_name]
 	var attack_kind := str(hit_data.get("attackKind", "physics"))
 	var summon_owner = get_meta("summoner", null)
 	var targets := _collect_pet_tiger_aoe_targets(target)
@@ -2490,9 +2490,9 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		return
 
 	var applied_add_effect := false
-	if objattackDic != null and typeof(objattackDic) == TYPE_DICTIONARY:
-		if objattackDic.has(hit_name):
-			var hit_data = objattackDic[hit_name]
+	if obj_attack_dict != null and typeof(obj_attack_dict) == TYPE_DICTIONARY:
+		if obj_attack_dict.has(hit_name):
+			var hit_data = obj_attack_dict[hit_name]
 
 			if typeof(hit_data) == TYPE_DICTIONARY and hit_data.has("addeffect"):
 				var effect = hit_data["addeffect"]
@@ -2531,7 +2531,7 @@ func _get_hit_owner(area: Area2D) -> Node:
 
 
 func get_prop():
-	self.objattackDic[hit_name] = AttList
+	self.obj_attack_dict[hit_name] = AttList
 
 
 func _prepare_bullet_animation_material(animation_name: String) -> void:
@@ -2575,7 +2575,13 @@ func monster_70_bullet_2():
 			po = Vector2(168, 140)
 		if show_monster71:
 			Global.add_bullet(
-				"monster_70_bullet_2", get_parent().get_parent().bullet, dir, 1, po + position, hit_name, objattackDic
+				"monster_70_bullet_2",
+				get_parent().get_parent().bullet,
+				dir,
+				1,
+				po + position,
+				hit_name,
+				obj_attack_dict
 			)
 
 
@@ -2600,7 +2606,7 @@ func call_monster_114_bullet():
 		2,
 		Vector2(9, -120) + position,
 		hit_name,
-		objattackDic
+		obj_attack_dict
 	)
 	Bullet.look_at(RoleProp.get_nearest_monster_target_position(Bullet.global_position))
 
@@ -2632,7 +2638,7 @@ func call_monster_137_bullet_2():
 		0.5,
 		Vector2(self.position.x, 500),
 		hit_name,
-		objattackDic
+		obj_attack_dict
 	)
 
 

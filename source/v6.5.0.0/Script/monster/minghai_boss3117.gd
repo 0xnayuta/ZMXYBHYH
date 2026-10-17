@@ -76,8 +76,8 @@ func _configure_boss(config: Dictionary = {}) -> void:
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
 	mysee = int(config["sight"])
-	attackRange = int(config["range"])
-	attackDesire = int(config["attack_desire"])
+	attack_range = int(config["range"])
+	attack_desire = int(config["attack_desire"])
 	add_exp = int(config["exp"])
 	fall_coin = int(config["coin"])
 	fall_pro = float(config["drop_rate"])
@@ -87,10 +87,10 @@ func _configure_boss(config: Dictionary = {}) -> void:
 	boss_max_protect = float(config["max_protect"])
 
 	NoGrav = true
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var attacks: Dictionary = config["attacks"]
 	for attack_name: String in attacks:
-		objattackDic[attack_name] = _attack_data(attacks[attack_name])
+		obj_attack_dict[attack_name] = _attack_data(attacks[attack_name])
 
 
 func _attack_data(attack: Dictionary) -> Dictionary:
@@ -390,8 +390,8 @@ func _spawn_projectile(config: Dictionary) -> WutaiMinghaiProjectile:
 
 func _attack_entry(attack_name: StringName) -> Dictionary:
 	var key := str(attack_name)
-	if objattackDic.has(key):
-		return (objattackDic[key] as Dictionary).duplicate(true)
+	if obj_attack_dict.has(key):
+		return (obj_attack_dict[key] as Dictionary).duplicate(true)
 	push_error("MinghaiBoss3117 level config is missing attack %s" % attack_name)
 	return {}
 

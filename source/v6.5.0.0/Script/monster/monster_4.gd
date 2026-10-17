@@ -20,14 +20,14 @@ func monster_4():
 	self.Critreduce = 0
 	self.speed = 9
 	self.mysee = 500
-	self.attackRange = 115
-	self.attackDesire = 90
+	self.attack_range = 115
+	self.attack_desire = 90
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 50
 	self.fall_coin = 20
-	self.objattackDic["hit1"] = {"power": 55, "hurtBack": [-4, -9], "attackKind": "physics", "HitProtect": 8}
-	self.objattackDic["tfhx"] = {
+	self.obj_attack_dict["hit1"] = {"power": 55, "hurtBack": [-4, -9], "attackKind": "physics", "HitProtect": 8}
+	self.obj_attack_dict["tfhx"] = {
 		"power": 90,
 		"hurtBack": [-20, -8],
 		"attackKind": "magic",
@@ -43,7 +43,7 @@ func monster_4():
 			"AttackKind": "",
 		}
 	}
-	self.objattackDic["jfkx"] = {
+	self.obj_attack_dict["jfkx"] = {
 		"power": 80,
 		"hurtBack": [3, -18],
 		"attackKind": "magic",
@@ -84,14 +84,14 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 			if Skill_1_CD > 0 and Skill_2_CD > 0:
-				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 					have_target()
 				else:
 					if count % attack_in == 0:
-						if ran_num <= attackDesire:
+						if ran_num <= attack_desire:
 							attack_target()
 					else:
 						stop_move()
@@ -107,11 +107,11 @@ func ai_think():
 				):
 					do_hit_3()
 				else:
-					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 						have_target()
 					else:
 						if count % 60 == 0:
-							if ran_num <= attackDesire:
+							if ran_num <= attack_desire:
 								attack_target()
 						else:
 							stop_move()
@@ -146,7 +146,7 @@ func call_tfhx():
 	var distance = 900
 	var skill_name = "Monster4Bullet"
 	var name_ = "tfhx"
-	var hit_dic = self.objattackDic["tfhx"]
+	var hit_dic = self.obj_attack_dict["tfhx"]
 	var position_: Vector2
 	position_ = Vector2(self.position.x, self.position.y)
 	if self.MonsterDirection:

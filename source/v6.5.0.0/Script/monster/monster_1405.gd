@@ -26,21 +26,21 @@ func monster_1405():
 	self.Critreduce = 15
 	self.speed = 16
 	self.mysee = 500
-	self.attackRange = 350
-	self.attackDesire = 95
+	self.attack_range = 350
+	self.attack_desire = 95
 	self.behit_calmtime = 0.1
 	self.self_rhp = 3000
 	self.add_exp = 4500
 	self.fall_coin = 1800
 	self.ebol = 0
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 750,
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 700,
 		"hurtBack": [-6, -10],
 		"attackKind": "real",
@@ -56,7 +56,7 @@ func monster_1405():
 		}
 	}
 
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 400,
 		"hurtBack": [-6, -10],
 		"attackKind": "magic",
@@ -72,7 +72,7 @@ func monster_1405():
 		}
 	}
 
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 400,
 		"hurtBack": [-6, -10],
 		"attackKind": "magic",
@@ -118,7 +118,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -195,11 +195,11 @@ func call_bullet_2():
 	var position_list1 = [Vector2(position.x, position.y - 200)]
 	var position_list2 = [Vector2(position.x - 200, position.y - 200), Vector2(position.x + 200, position.y - 200)]
 
-	var player = get_Player if get_Player else null
+	var player = get_player if get_player else null
 
 	for i in position_list1:
 		var bullet = Global.add_bullet(
-			"Monster1405Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"]
+			"Monster1405Bullet2", self.bullet, false, 1, i, "hit2", self.obj_attack_dict["hit2"]
 		)
 		if bullet and player:
 			await get_tree().create_timer(0.6, false).timeout
@@ -207,7 +207,7 @@ func call_bullet_2():
 
 	for i in position_list2:
 		var bullet = Global.add_bullet(
-			"Monster1405Bullet2", self.bullet, false, 1, i, "hit2", self.objattackDic["hit2"]
+			"Monster1405Bullet2", self.bullet, false, 1, i, "hit2", self.obj_attack_dict["hit2"]
 		)
 		if bullet and player:
 			await get_tree().create_timer(0.6, false).timeout
@@ -220,11 +220,11 @@ func call_bullet_3():
 	var position_list3 = [Vector2(position.x, position.y - 60), Vector2(position.x, position.y + 60)]
 	var position_list4 = [Vector2(position.x, position.y - 80), Vector2(position.x, position.y + 80)]
 
-	var player = get_Player if get_Player else null
+	var player = get_player if get_player else null
 
 	for i in position_list1:
 		var bullet = Global.add_bullet(
-			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
+			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.obj_attack_dict["hit3"]
 		)
 		if bullet and player:
 			bullet.look_at(player.position)
@@ -232,7 +232,7 @@ func call_bullet_3():
 
 	for i in position_list2:
 		var bullet = Global.add_bullet(
-			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
+			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.obj_attack_dict["hit3"]
 		)
 		if bullet and player:
 			bullet.look_at(player.position)
@@ -240,7 +240,7 @@ func call_bullet_3():
 
 	for i in position_list3:
 		var bullet = Global.add_bullet(
-			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
+			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.obj_attack_dict["hit3"]
 		)
 		if bullet and player:
 			bullet.look_at(player.position)
@@ -248,7 +248,7 @@ func call_bullet_3():
 
 	for i in position_list4:
 		var bullet = Global.add_bullet(
-			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.objattackDic["hit3"]
+			"Monster1405Bullet3", self.bullet, false, 1, i, "hit3", self.obj_attack_dict["hit3"]
 		)
 		if bullet and player:
 			bullet.look_at(player.position)
@@ -256,7 +256,7 @@ func call_bullet_3():
 
 
 func add_fire():
-	Global.add_bullet("Monster1405Bullet4", self, false, 1, Vector2(-20, -50), "hit4", self.objattackDic["hit4"])
+	Global.add_bullet("Monster1405Bullet4", self, false, 1, Vector2(-20, -50), "hit4", self.obj_attack_dict["hit4"])
 
 	var player = RoleProp.source_player
 	var stun_effect = {

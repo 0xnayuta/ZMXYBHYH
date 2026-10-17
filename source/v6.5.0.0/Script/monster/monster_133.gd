@@ -25,13 +25,13 @@ func monster_133():
 	self.Critreduce = 0
 	self.speed = 0
 	self.mysee = 600
-	self.attackRange = 245
-	self.attackDesire = 100
+	self.attack_range = 245
+	self.attack_desire = 100
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 0
 	self.fall_coin = 0
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 150,
 		"hurtBack": [-4, -7],
 		"attackKind": "magic",
@@ -50,7 +50,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if my_parent != null:
-		self.objattackDic["hit1"] = my_parent.objattackDic["hit1"]
+		self.obj_attack_dict["hit1"] = my_parent.obj_attack_dict["hit1"]
 	else:
 		Hp = -10
 	super._physics_process(delta)
@@ -66,7 +66,7 @@ func ai_think():
 		has_target = true
 	if not cannotchangestatewhenattorbeatt():
 		stop_move()
-		if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= attackRange:
+		if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= attack_range:
 			if count % 60 == 0:
-				if randi_range(0, 100) < attackDesire:
+				if randi_range(0, 100) < attack_desire:
 					attack_target()

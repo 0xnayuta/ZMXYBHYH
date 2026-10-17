@@ -21,13 +21,13 @@ func monster_37():
 	self.Critreduce = 0
 	self.speed = 9
 	self.mysee = 500
-	self.attackRange = 325
-	self.attackDesire = 60
+	self.attack_range = 325
+	self.attack_desire = 60
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 200
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 120,
 		"hurtBack": [-7, -9],
 		"attackKind": "magic",
@@ -42,8 +42,8 @@ func monster_37():
 			"CanAdd": true,
 		}
 	}
-	self.objattackDic["wdzh"] = {"power": 30, "hurtBack": [0, 0], "attackKind": "magic"}
-	self.objattackDic["Dead"] = {
+	self.obj_attack_dict["wdzh"] = {"power": 30, "hurtBack": [0, 0], "attackKind": "magic"}
+	self.obj_attack_dict["Dead"] = {
 		"power": 30,
 		"hurtBack": [-7, -15],
 		"attackKind": "magic",
@@ -90,7 +90,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 200:
@@ -132,7 +132,7 @@ func call_dd():
 			true,
 			Vector2(self.position.x + 70, self.position.y),
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 	else:
 		Global.call_chase_bullet(
@@ -143,7 +143,7 @@ func call_dd():
 			true,
 			Vector2(self.position.x - 70, self.position.y),
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 
 
@@ -154,4 +154,4 @@ func call_wdww():
 
 func _on_add_deadlink_timeout() -> void:
 	if not Global.is_dead_link:
-		Global.add_buff(get_Player.buff, objattackDic["Dead"]["addeffect"])
+		Global.add_buff(get_player.buff, obj_attack_dict["Dead"]["addeffect"])

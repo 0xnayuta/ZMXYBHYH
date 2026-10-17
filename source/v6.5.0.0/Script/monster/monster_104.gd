@@ -20,13 +20,13 @@ func monster_104():
 	self.Critreduce = 0
 	self.speed = 11
 	self.mysee = 500
-	self.attackRange = 365
-	self.attackDesire = 80
+	self.attack_range = 365
+	self.attack_desire = 80
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 220
 	self.fall_coin = 220
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 300,
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
@@ -42,7 +42,7 @@ func monster_104():
 			"DeBuff": true,
 		},
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 600,
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
@@ -83,7 +83,7 @@ func call_bullet_1():
 			1,
 			Vector2(30, 25) + position,
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 	else:
 		bullet_node = Global.add_bullet(
@@ -93,7 +93,7 @@ func call_bullet_1():
 			1,
 			Vector2(-30, 25) + position,
 			"hit1",
-			self.objattackDic["hit1"]
+			self.obj_attack_dict["hit1"]
 		)
 
 

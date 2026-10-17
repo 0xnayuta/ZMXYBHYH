@@ -29,20 +29,20 @@ func monster_25():
 	self.Critreduce = 0
 	self.speed = 7
 	self.mysee = 405
-	self.attackRange = 175
-	self.attackDesire = 75
+	self.attack_range = 175
+	self.attack_desire = 75
 	self.behit_calmtime = 0.2
 	self.self_rhp = 0
 	self.add_exp = 20
 	self.fall_coin = 4
 	if get_parent().get_parent() is LevelNMGHDGQ:
-		self.objattackDic["hit1"] = {"power": 800, "hurtBack": [-4, -9], "attackKind": "physics"}
+		self.obj_attack_dict["hit1"] = {"power": 800, "hurtBack": [-4, -9], "attackKind": "physics"}
 		self.fall_pro = 0.0
 		self.fall_list = []
 		self.fall_stone_pro = 0.0
 		self.fall_stone = []
 		return
-	self.objattackDic["hit1"] = {"power": 300, "hurtBack": [-4, -9], "attackKind": "physics"}
+	self.obj_attack_dict["hit1"] = {"power": 300, "hurtBack": [-4, -9], "attackKind": "physics"}
 	self.fall_pro = 0.0
 	self.fall_list = []
 	self.fall_stone_pro = 0.0
@@ -69,13 +69,13 @@ func ai_think():
 		else:
 			if abs(RoleProp.get_nearest_monster_target_position(global_position).x - position.x) > mysee:
 				has_target = false
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if count % randi_range(90, 120) == 0:
 					move_down()
 			else:
 				if count % 120 == 0:
-					if ran_num <= attackDesire:
+					if ran_num <= attack_desire:
 						move_down()
 				else:
 					if ran_num < 30:

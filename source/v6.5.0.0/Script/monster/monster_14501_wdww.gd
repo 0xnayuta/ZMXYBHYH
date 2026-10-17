@@ -43,7 +43,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	monster_target = entity
 	if target == null or monster_target == null:
 		return
-	if target.objattackDic.size() == 0:
+	if target.obj_attack_dict.size() == 0:
 		return
 	if monster_target is Monster47:
 		Global.player_be_hit_count += 1

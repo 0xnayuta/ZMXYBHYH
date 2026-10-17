@@ -29,21 +29,21 @@ func monster_61():
 	self.Critreduce = 0
 	self.speed = 12
 	self.mysee = 500
-	self.attackRange = 300
-	self.attackDesire = 60
+	self.attack_range = 300
+	self.attack_desire = 60
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 200
 	self.fall_coin = 200
 	self.ebol = 0
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 300 + int(RoleProp.baseroleprop.Level * 9),
 		"hurtBack": [-8, -12],
 		"attackKind": "magic",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 500 + int(RoleProp.baseroleprop.Level * 13),
 		"hurtBack": [-6, -10],
 		"attackKind": "real",
@@ -59,14 +59,14 @@ func monster_61():
 		}
 	}
 
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 0,
 		"hurtBack": [0, 0],
 		"attackKind": "magic",
 		"HitProtect": 0,
 	}
 
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 400 + int(RoleProp.baseroleprop.Level * 11),
 		"hurtBack": [30, -10],
 		"attackKind": "magic",
@@ -106,7 +106,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -216,7 +216,7 @@ func call_bullet_1():
 	else:
 		po = Vector2(-50, 50)
 	var child = Global.add_bullet(
-		"Monster61WGW", bullet, MonsterDirection, 1, position + po, "hit1", self.objattackDic["hit1"]
+		"Monster61WGW", bullet, MonsterDirection, 1, position + po, "hit1", self.obj_attack_dict["hit1"]
 	)
 
 
@@ -242,7 +242,7 @@ func call_bullet_2():
 		var rad = deg_to_rad(angle)
 
 		var bullet = Global.add_bullet(
-			"Monster61Bullet2", get_parent(), base_dir, 1.3, spawn_pos, "hit2", objattackDic["hit2"]
+			"Monster61Bullet2", get_parent(), base_dir, 1.3, spawn_pos, "hit2", obj_attack_dict["hit2"]
 		)
 		if bullet:
 			bullet.rotation = rad
@@ -255,7 +255,7 @@ func call_bullet_3():
 	else:
 		po = Vector2(-300, 0)
 	var child = Global.add_bullet(
-		"Monster61Bullet3", bullet, MonsterDirection, 1, position + po, "hit4", self.objattackDic["hit4"]
+		"Monster61Bullet3", bullet, MonsterDirection, 1, position + po, "hit4", self.obj_attack_dict["hit4"]
 	)
 
 # ==============================================================================

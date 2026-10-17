@@ -1516,9 +1516,9 @@ func _configure_monster() -> void:
 	Toughness = float(_config.get("toughness", 0.0))
 	Critreduce = int(_config.get("crit_reduce", 0))
 	speed = float(_config.get("speed", 0.0))
-	attackRange = int(_config.get("range", 0))
+	attack_range = int(_config.get("range", 0))
 	mysee = int(_config.get("sight", 0))
-	attackDesire = int(_config.get("attack_desire", 100))
+	attack_desire = int(_config.get("attack_desire", 100))
 	add_exp = int(_config.get("exp", 120 if boss else 12))
 	fall_coin = int(_config.get("coin", 320 if boss else 10))
 	fall_pro = float(_config.get("drop_rate", 0.0))
@@ -1533,7 +1533,7 @@ func _configure_monster() -> void:
 	if NoGrav:
 		velocity.y = 0.0
 	boss_max_protect = float(_config.get("max_protect", 250.0 if is_boss else 100.0))
-	objattackDic.clear()
+	obj_attack_dict.clear()
 	var configured_attacks: Dictionary = _config.get("attacks", {}) as Dictionary
 	for animation_name: StringName in _config["animations"]:
 		if not str(animation_name).begins_with("hit"):
@@ -1551,7 +1551,7 @@ func _configure_monster() -> void:
 		}
 		if attack_data.has("source_target_move"):
 			configured_attack["sourceTargetMove"] = Array(attack_data["source_target_move"]).duplicate()
-		objattackDic[str(animation_name)] = configured_attack
+		obj_attack_dict[str(animation_name)] = configured_attack
 
 
 func monster_info_base_attack() -> int:
@@ -2097,7 +2097,7 @@ func ai_think() -> void:
 		stop_move()
 		return
 	to_hero()
-	var combat_range := _effective_attack_range if _effective_attack_range > 0.0 else float(attackRange)
+	var combat_range := _effective_attack_range if _effective_attack_range > 0.0 else float(attack_range)
 	if monster_kind == 3161 and SHp > 0 and float(Hp) / float(SHp) > 0.66:
 		combat_range = 620.0
 	elif monster_kind == 3179:
@@ -2217,7 +2217,7 @@ func _monster_3119_intelligence() -> void:
 	elif not scope.is_empty():
 		in_scope = _official_in_skill_scope(target_position, scope)
 	else:
-		in_scope = absf(delta.x) <= (_effective_attack_range if _effective_attack_range > 0.0 else float(attackRange))
+		in_scope = absf(delta.x) <= (_effective_attack_range if _effective_attack_range > 0.0 else float(attack_range))
 
 	var stand_position := (
 		_official_scope_stand_position(target_position, scope)
@@ -3622,7 +3622,7 @@ func _3120_screen_bounds() -> Vector2:
 
 func _attack_entry(attack_name: StringName) -> Dictionary:
 	return (
-		objattackDic
+		obj_attack_dict
 		. get(
 			str(attack_name),
 			{

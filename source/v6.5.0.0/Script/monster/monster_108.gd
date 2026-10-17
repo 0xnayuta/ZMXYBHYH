@@ -21,31 +21,31 @@ func monster_108():
 	self.Critreduce = 0
 	self.speed = 11
 	self.mysee = 500
-	self.attackRange = 235
-	self.attackDesire = 80
+	self.attack_range = 235
+	self.attack_desire = 80
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 300
 	self.fall_coin = 335
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 500,
 		"hurtBack": [-5, -9],
 		"attackKind": "physics",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 520,
 		"hurtBack": [-2, -1],
 		"attackKind": "physics",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": int(1000 + RoleProp.roleprop.SHp * 0.35),
 		"hurtBack": [-6, -1],
 		"attackKind": "real",
 		"HitProtect": 5,
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 450,
 		"hurtBack": [-2, -9],
 		"attackKind": "magic",
@@ -92,7 +92,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					do_hit_1()
@@ -109,7 +109,7 @@ func ai_think():
 				if Skill_3_CD <= 0:
 					do_hit_3()
 				if count % 90 == 0:
-					if randi_range(0, 100) < attackDesire:
+					if randi_range(0, 100) < attack_desire:
 						attack_target()
 
 
@@ -154,7 +154,7 @@ func do_hit_3():
 
 
 func tween_to_player():
-	if _movement_command_is_blocked() or get_Player == null:
+	if _movement_command_is_blocked() or get_player == null:
 		return
 	var tween = create_control_movement_tween()
 	tween.tween_property(self, "position", RoleProp.get_nearest_monster_target_position(global_position), 0.2)
@@ -187,7 +187,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 
 func movetoplayer():
-	if _movement_command_is_blocked() or get_Player == null:
+	if _movement_command_is_blocked() or get_player == null:
 		return
 	self.position.x = RoleProp.get_nearest_monster_target_position(global_position).x
 
@@ -208,7 +208,7 @@ func call_bullet_1():
 		]
 	for i in bullet_spawn_positions:
 		var Bullet = Global.add_bullet(
-			"Monster108Bullet2", self, MonsterDirection, 1, i["position"], "hit4", self.objattackDic["hit4"]
+			"Monster108Bullet2", self, MonsterDirection, 1, i["position"], "hit4", self.obj_attack_dict["hit4"]
 		)
 		Bullet.scale = i["Scale"]
 		await get_tree().create_timer(0.1, false).timeout
@@ -218,11 +218,23 @@ func call_bullet_2():
 	var Bullet
 	if self.MonsterDirection:
 		Bullet = Global.add_bullet(
-			"Monster108Bullet1", self.bullet, false, 1, Vector2(100, 25) + position, "hit1", self.objattackDic["hit1"]
+			"Monster108Bullet1",
+			self.bullet,
+			false,
+			1,
+			Vector2(100, 25) + position,
+			"hit1",
+			self.obj_attack_dict["hit1"]
 		)
 	else:
 		Bullet = Global.add_bullet(
-			"Monster108Bullet1", self.bullet, false, 1, Vector2(-100, 25) + position, "hit1", self.objattackDic["hit1"]
+			"Monster108Bullet1",
+			self.bullet,
+			false,
+			1,
+			Vector2(-100, 25) + position,
+			"hit1",
+			self.obj_attack_dict["hit1"]
 		)
 	Bullet.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
@@ -234,8 +246,8 @@ func check_player():
 
 	var buff_target: Node2D = null
 
-	if is_instance_valid(get_Player) and get_Player is Node2D:
-		buff_target = get_Player
+	if is_instance_valid(get_player) and get_player is Node2D:
+		buff_target = get_player
 
 	if self.position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
 		if Global.get_player.PlayerDir:

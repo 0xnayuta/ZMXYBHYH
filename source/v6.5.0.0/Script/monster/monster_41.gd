@@ -28,13 +28,13 @@ func monster_41():
 	self.Critreduce = 0
 	self.speed = 8
 	self.mysee = 600
-	self.attackRange = 800
-	self.attackDesire = 60
+	self.attack_range = 800
+	self.attack_desire = 60
 	self.behit_calmtime = 0.3
 	self.self_rhp = 0
 	self.add_exp = 200
 	self.fall_coin = 200
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 270,
 		"hurtBack": [-4, -9],
 		"attackKind": "magic",
@@ -79,7 +79,7 @@ func ai_think():
 		if count_ % 30 == 0:
 			add_speed_up_specialbullet()
 	else:
-		self.speed = iniSpeed
+		self.speed = init_speed
 	if not already_use_mrsp:
 		do_hit_2()
 	else:
@@ -110,7 +110,7 @@ func ai_think():
 						$Run.wait_time = 2
 						$Run.start()
 					elif (
-						abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange
+						abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range
 					):
 						have_target()
 					else:
@@ -186,11 +186,25 @@ func add_speed_up_specialbullet():
 func call_fly_bullet():
 	if MonsterDirection:
 		Global.call_fly_bullet(
-			bullet, "Monster41Bullet", 1, Vector2(position.x + 100, position.y), 800, -300, "hit1", objattackDic["hit1"]
+			bullet,
+			"Monster41Bullet",
+			1,
+			Vector2(position.x + 100, position.y),
+			800,
+			-300,
+			"hit1",
+			obj_attack_dict["hit1"]
 		)
 	else:
 		var fz = Global.call_fly_bullet(
-			bullet, "Monster41Bullet", 1, Vector2(position.x - 100, position.y), 800, 300, "hit1", objattackDic["hit1"]
+			bullet,
+			"Monster41Bullet",
+			1,
+			Vector2(position.x - 100, position.y),
+			800,
+			300,
+			"hit1",
+			obj_attack_dict["hit1"]
 		)
 		if fz:
 			var sprite = fz.get_node("AnimatedSprite2D")

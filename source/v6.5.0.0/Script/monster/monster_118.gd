@@ -20,14 +20,14 @@ func monster_118():
 	self.Critreduce = 0
 	self.speed = 12
 	self.mysee = 600
-	self.attackRange = 225
-	self.attackDesire = 80
+	self.attack_range = 225
+	self.attack_desire = 80
 	self.behit_calmtime = 0.1
 	self.self_rhp = 0
 	self.add_exp = 240
 	self.fall_coin = 240
-	self.objattackDic["hit1"] = {"power": 500, "hurtBack": [-6, -5], "attackKind": "magic"}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit1"] = {"power": 500, "hurtBack": [-6, -5], "attackKind": "magic"}
+	self.obj_attack_dict["hit2"] = {
 		"power": 800,
 		"hurtBack": [-6, -5],
 		"attackKind": "magic",
@@ -67,7 +67,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if distance > attackRange:
+			if distance > attack_range:
 				have_target()
 				if Skill_1_CD <= 0:
 					if distance <= 300:
@@ -106,7 +106,7 @@ func call_bullet_1():
 			bullet_parent = level_bullet
 	elif get_tree() != null and get_tree().current_scene != null:
 		bullet_parent = get_tree().current_scene
-	var hit_data: Dictionary = self.objattackDic["hit2"].duplicate(true)
+	var hit_data: Dictionary = self.obj_attack_dict["hit2"].duplicate(true)
 	if self.MonsterDirection:
 		bullet_node = Global.add_bullet(
 			"Monster118Bullet2", bullet_parent, false, 1, Vector2(35, 25) + global_position, "hit2", hit_data
@@ -115,7 +115,7 @@ func call_bullet_1():
 		bullet_node = Global.add_bullet(
 			"Monster118Bullet2", bullet_parent, false, 1, Vector2(-35, 25) + global_position, "hit2", hit_data
 		)
-	if bullet_node != null and get_Player != null:
+	if bullet_node != null and get_player != null:
 		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 
 

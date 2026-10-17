@@ -93,8 +93,8 @@ var fall_coin: int = 0
 var ebol: float = 0.0
 var speed: int = 10
 var mysee: int = 500
-var attackRange: int = 160
-var attackDesire: int = 80
+var attack_range: int = 160
+var attack_desire: int = 80
 
 var islljy: bool = false
 var is_lpz: bool = false
@@ -120,7 +120,8 @@ var is_death: bool = false
 var hurt_bl: float = 1.0
 var hit_name: String = ""
 var MonsterDirection: bool = false
-var get_Player: Node = null
+var get_player: Node = null
+
 var hd: int = 0
 var max_hd: int = 0
 var is_bt: bool = false
@@ -128,7 +129,8 @@ var total_hurt: int = 0
 var therapeutic_effects: float = 0.0
 var lpzjs: float = 0.0
 var is_fly: bool = false
-var iniSpeed: int = 10
+var init_speed: int = 10
+
 var NoGrav: bool = false
 var is_gxp: bool = false
 var _gxp_base_speed: int = 0
@@ -145,7 +147,7 @@ func turn_to_gxp(duration: int) -> void:
 		_gxp_base_speed = maxi(1, speed)
 		_spawn_gxp_afterimage(token)
 	speed = _gxp_base_speed * 2
-	iniSpeed = _gxp_base_speed * 2
+	init_speed = _gxp_base_speed * 2
 	get_tree().create_timer(maxi(duration, 1)).timeout.connect(_finish_gxp.bind(token), CONNECT_ONE_SHOT)
 
 
@@ -176,7 +178,7 @@ func cancel_gxp() -> void:
 		return
 	is_gxp = false
 	speed = maxi(1, _gxp_base_speed)
-	iniSpeed = speed
+	init_speed = speed
 
 
 func _play_animation_if_exists(anim_name: String) -> bool:
@@ -203,7 +205,7 @@ func _ready() -> void:
 		buff = buff_node
 
 	initialize_monster_properties()
-	iniSpeed = speed
+	init_speed = speed
 
 	try_play_default_animation()
 	base_damage_box.scale.x = 1
@@ -496,11 +498,11 @@ func check_add_buff() -> void:
 		is_stun = false
 	if not_speed_down:
 		is_speed_down = false
-		speed = iniSpeed
+		speed = init_speed
 
 	if buff_child_count == 0:
 		is_speed_down = false
-		speed = iniSpeed
+		speed = init_speed
 		is_stun = false
 		is_ice = false
 		is_dead_link = false
@@ -534,7 +536,7 @@ func get_attacker_damage(attacker: Node) -> int:
 
 	if attacker is BaseMonster or attacker is MonsterBullet:
 		var hit_name_val = attacker.get("hit_name")
-		var obj_dic = attacker.get("objattackDic")
+		var obj_dic = attacker.get("obj_attack_dict")
 		if not (obj_dic is Dictionary) or obj_dic.is_empty():
 			obj_dic = attacker.get("AttList")
 		if hit_name_val and obj_dic is Dictionary:
@@ -681,7 +683,7 @@ func ai_think() -> void:
 	var distance = abs(position.x - current_target.position.x)
 	if distance < mysee:
 		has_target = true
-		if distance > attackRange:
+		if distance > attack_range:
 			if current_target.position.x > position.x:
 				move_right()
 			else:
@@ -701,7 +703,7 @@ func ai_think() -> void:
 func try_use_skills() -> void:
 	if should_in_sky:
 		return
-	if randi_range(0, 100) >= attackDesire:
+	if randi_range(0, 100) >= attack_desire:
 		return
 	if Skill_1_CD <= 0:
 		do_hit_1()
@@ -924,7 +926,7 @@ func _show_heal_text(level_node, po: Vector2, value: int) -> void:
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	var attacker = null
 	if area is BaseRoleHitBox or area is RolehmzBullet:
-		attacker = get_Player
+		attacker = get_player
 	elif area.get_parent() is BaseMonster:
 		attacker = area.get_parent()
 	elif area.get_parent().get_parent() is BaseMonster:
@@ -970,15 +972,15 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 	if not target_node or not (target_node is BaseMonster) or target_node == self:
 		return
 
-	var hit_data: Dictionary = objattackDic.get(hit_name, {}) if objattackDic.has(hit_name) else {}
+	var hit_data: Dictionary = obj_attack_dict.get(hit_name, {}) if obj_attack_dict.has(hit_name) else {}
 	var damage := int(hit_data.get("power", 500))
 	var attack_kind := str(hit_data.get("attackKind", "magic"))
 	if deal_summon_damage(target_node, damage, attack_kind) <= 0:
 		return
 	target_node.play_hit_effect(self)
 	apply_knockback(target_node)
-	if objattackDic.has(hit_name) and objattackDic[hit_name].has("addeffect"):
-		_apply_attack_effect(target_node, objattackDic[hit_name]["addeffect"])
+	if obj_attack_dict.has(hit_name) and obj_attack_dict[hit_name].has("addeffect"):
+		_apply_attack_effect(target_node, obj_attack_dict[hit_name]["addeffect"])
 
 
 func _apply_attack_effect(target: BaseMonster, effect: Dictionary) -> void:
@@ -999,18 +1001,18 @@ func _on_summon_bullet_hit(area: Area2D, bullet_instance) -> void:
 		return
 
 	var attack_name = bullet_instance.get("hit_name")
-	if not objattackDic.has(attack_name):
+	if not obj_attack_dict.has(attack_name):
 		return
 
-	var hit_data: Dictionary = objattackDic[attack_name]
+	var hit_data: Dictionary = obj_attack_dict[attack_name]
 	var damage := int(hit_data.get("power", 0))
 	var attack_kind := str(hit_data.get("attackKind", "magic"))
 	if deal_summon_damage(target, damage, attack_kind) <= 0:
 		return
 	target.play_hit_effect(self)
 	apply_knockback(target)
-	if objattackDic[attack_name].has("addeffect"):
-		_apply_attack_effect(target, objattackDic[attack_name]["addeffect"])
+	if obj_attack_dict[attack_name].has("addeffect"):
+		_apply_attack_effect(target, obj_attack_dict[attack_name]["addeffect"])
 
 
 func apply_knockback(target: BaseMonster) -> void:
@@ -1018,7 +1020,7 @@ func apply_knockback(target: BaseMonster) -> void:
 		return
 	if target.is_control_immune() or target.get("IsIndestructible") == true:
 		return
-	var hurt_back = objattackDic.get(hit_name, {}).get("hurtBack", [0, 0]) if hit_name else [0, 0]
+	var hurt_back = obj_attack_dict.get(hit_name, {}).get("hurtBack", [0, 0]) if hit_name else [0, 0]
 	var knockback_x = hurt_back[0]
 	var knockback_y = hurt_back[1]
 

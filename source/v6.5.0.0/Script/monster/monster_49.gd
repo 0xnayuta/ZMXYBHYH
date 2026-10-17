@@ -26,19 +26,19 @@ func monster_49():
 	self.Critreduce = 0
 	self.speed = 7
 	self.mysee = 400
-	self.attackRange = 225
-	self.attackDesire = 80
+	self.attack_range = 225
+	self.attack_desire = 80
 	self.behit_calmtime = 0.1
 	self.self_rhp = 0
 	self.add_exp = 50
 	self.fall_coin = 13
-	self.objattackDic["hit1"] = {"power": 240, "hurtBack": [-8, -7], "attackKind": "magic"}
-	self.objattackDic["mffd_1"] = {
+	self.obj_attack_dict["hit1"] = {"power": 240, "hurtBack": [-8, -7], "attackKind": "magic"}
+	self.obj_attack_dict["mffd_1"] = {
 		"power": int(RoleProp.roleprop.SHp * 0.03 + 200),
 		"hurtBack": [-8, -5],
 		"attackKind": "magic",
 	}
-	self.objattackDic["mffd_2"] = {
+	self.obj_attack_dict["mffd_2"] = {
 		"power": int(RoleProp.roleprop.SHp * 0.03 + 200),
 		"hurtBack": [-8, -5],
 		"attackKind": "magic",
@@ -69,7 +69,10 @@ func ai_think():
 			else:
 				create_monster()
 				move()
-				if abs(self.position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+				if (
+					abs(self.position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
+					> attack_range
+				):
 					have_target()
 					if Skill_1_CD <= 0:
 						do_hit_2()
@@ -153,7 +156,7 @@ func add_nlls():
 	(
 		Global
 		. add_buff(
-			get_Player.buff,
+			get_player.buff,
 			{
 				"Name": "nlls",
 				"AddTime": 4,
@@ -178,7 +181,7 @@ func call_bullet():
 			false,
 			Vector2(self.position.x + 220, self.position.y - 180),
 			"mffd_1",
-			self.objattackDic["mffd_1"]
+			self.obj_attack_dict["mffd_1"]
 		)
 	else:
 		bullet = Global.call_chase_bullet(
@@ -189,7 +192,7 @@ func call_bullet():
 			false,
 			Vector2(self.position.x - 220, self.position.y - 180),
 			"mffd_1",
-			self.objattackDic["mffd_1"]
+			self.obj_attack_dict["mffd_1"]
 		)
 	bullet.scale = Vector2(2, 2)
 
@@ -210,15 +213,22 @@ func strength_boss():
 		elif call_monster is Monster37:
 			call_monster.my_mr_name = "邪·秦广王"
 		call_monster.modulate = Color("00ffff")
-		for i in call_monster.objattackDic:
-			if call_monster.objattackDic[i].has("power"):
-				call_monster.objattackDic[i]["power"] = randi_range(265, 330)
+		for i in call_monster.obj_attack_dict:
+			if call_monster.obj_attack_dict[i].has("power"):
+				call_monster.obj_attack_dict[i]["power"] = randi_range(265, 330)
 
 
 func call_fly_bullet():
 	if MonsterDirection:
 		var pp = Global.call_fly_bullet(
-			bullet, "Monster49Bulet", 1, Vector2(position.x, position.y + 30), 2500, -900, "hit1", objattackDic["hit1"]
+			bullet,
+			"Monster49Bulet",
+			1,
+			Vector2(position.x, position.y + 30),
+			2500,
+			-900,
+			"hit1",
+			obj_attack_dict["hit1"]
 		)
 		if pp:
 			var sprite = pp.get_node("AnimatedSprite2D")
@@ -226,7 +236,14 @@ func call_fly_bullet():
 				sprite.flip_h = true
 	else:
 		Global.call_fly_bullet(
-			bullet, "Monster49Bulet", 1, Vector2(position.x, position.y + 30), 2500, 900, "hit1", objattackDic["hit1"]
+			bullet,
+			"Monster49Bulet",
+			1,
+			Vector2(position.x, position.y + 30),
+			2500,
+			900,
+			"hit1",
+			obj_attack_dict["hit1"]
 		)
 
 

@@ -75,8 +75,8 @@ func init_monster(is_boss_flag: bool):
 	self.Critreduce = 20
 	self.speed = 15
 	self.mysee = 550
-	self.attackRange = 160
-	self.attackDesire = 100
+	self.attack_range = 160
+	self.attack_desire = 100
 	self.behit_calmtime = 0.05
 	self.self_rhp = 0
 
@@ -84,13 +84,13 @@ func init_monster(is_boss_flag: bool):
 	self.fall_coin = 2500 if is_boss_flag else 1250
 	self.ebol = 0
 
-	self.objattackDic["hit1"] = {
+	self.obj_attack_dict["hit1"] = {
 		"power": 1500,
 		"hurtBack": [-5, -12],
 		"attackKind": "physics",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit2"] = {
+	self.obj_attack_dict["hit2"] = {
 		"power": 1700,
 		"hurtBack": [-20, -10],
 		"attackKind": "magic",
@@ -106,7 +106,7 @@ func init_monster(is_boss_flag: bool):
 			"DeBuff": true,
 		}
 	}
-	self.objattackDic["hit3"] = {
+	self.obj_attack_dict["hit3"] = {
 		"power": 1800,
 		"hurtBack": [-8, -12],
 		"attackKind": "physics",
@@ -122,19 +122,19 @@ func init_monster(is_boss_flag: bool):
 			"CanRemove": false,
 		}
 	}
-	self.objattackDic["hit4"] = {
+	self.obj_attack_dict["hit4"] = {
 		"power": 0,
 		"hurtBack": [0, 0],
 		"attackKind": "real",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit5"] = {
+	self.obj_attack_dict["hit5"] = {
 		"power": 0,
 		"hurtBack": [0, 0],
 		"attackKind": "real",
 		"HitProtect": 10,
 	}
-	self.objattackDic["hit6"] = {
+	self.obj_attack_dict["hit6"] = {
 		"power": 10,
 		"hurtBack": [0, 0],
 		"attackKind": "real",
@@ -178,9 +178,9 @@ func init_monster(is_boss_flag: bool):
 		self.add_exp = int(self.add_exp * weaken)
 		self.fall_coin = int(self.fall_coin * weaken)
 
-		for key in self.objattackDic.keys():
-			if self.objattackDic[key].has("power"):
-				self.objattackDic[key]["power"] = int(self.objattackDic[key]["power"] * weaken)
+		for key in self.obj_attack_dict.keys():
+			if self.obj_attack_dict[key].has("power"):
+				self.obj_attack_dict[key]["power"] = int(self.obj_attack_dict[key]["power"] * weaken)
 
 
 func _ready() -> void:
@@ -218,7 +218,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attackRange:
+			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if (
 					abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 160
@@ -354,7 +354,7 @@ func call_bullet_1():
 				1,
 				Vector2(35, 25) + position,
 				"hit1",
-				self.objattackDic["hit1"]
+				self.obj_attack_dict["hit1"]
 			)
 		else:
 			bullet_node = Global.add_bullet(
@@ -364,7 +364,7 @@ func call_bullet_1():
 				1,
 				Vector2(-35, 25) + position,
 				"hit1",
-				self.objattackDic["hit1"]
+				self.obj_attack_dict["hit1"]
 			)
 		bullet_node.look_at(RoleProp.get_nearest_monster_target_position(global_position))
 		bullet_node.my_father = self
@@ -373,7 +373,7 @@ func call_bullet_1():
 
 
 func move_player_2():
-	if not get_Player:
+	if not get_player:
 		return
 	var offset = 150
 	if alternate_side:

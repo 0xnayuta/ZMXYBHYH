@@ -180,8 +180,8 @@ func _create_formula_overlay() -> void:
 
 func _populate_formula_cards(role_id: int) -> void:
 	var role_key: String = zd_sk.get_role_key()
-	var skill_ids: Array = zd_sk.Skill_list.get(role_key, [])
-	var skill_names: Array = zd_sk.Skill_Name.get(role_key, [])
+	var skill_ids: Array = zd_sk.skill_list.get(role_key, [])
+	var skill_names: Array = zd_sk.skill_name.get(role_key, [])
 	var levels := {}
 	for index in range(skill_ids.size()):
 		levels[str(skill_ids[index])] = int(zd_sk.get_skill_level_by_index(index))
