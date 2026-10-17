@@ -1,0 +1,33 @@
+{
+  "description": "ZMXYBHYH 契约扫描器 (contract_scan.py) 官方白名单与豁免规则表",
+  "version": "1.0.0",
+  "suppressed_literals": [
+    "ililillliiillil"
+  ],
+  "suppressed_files": [
+    "addons/godot_mcp"
+  ],
+  "missing_asset_known_allowlist": [
+    "res://.godot/",
+    "res://godot/"
+  ],
+  "known_extension_methods": [
+    "set_skeleton_data_res",
+    "set_skin_by_name",
+    "set_slots_to_setup_pose",
+    "set_animation",
+    "update_world_transform",
+    "get_pose",
+    "get_attachment",
+    "get_color",
+    "get_bone",
+    "find_bone",
+    "find_slot",
+    "get_global_transform",
+    "get_skeleton",
+    "get_animation_state"
+  ],
+  "unresolved_node_patterns": [
+    "/root/"
+  ]
+}
