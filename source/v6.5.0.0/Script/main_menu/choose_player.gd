@@ -28,33 +28,33 @@ var minjie_star := [0, 5, 3, 4, 3, 4, 5]
 var caozuo_star := [0, 3, 4, 3, 4, 5, 4]
 var current_choose: int = 0
 var role_card_normal := [
-	preload("res://Art/main_game/ChoosePlayerZM4/19.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/30.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/40.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/50.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/60.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/nezha_normal.png"),
+	preload("res://Art/main_game/choose_player_zm4/19.png"),
+	preload("res://Art/main_game/choose_player_zm4/30.png"),
+	preload("res://Art/main_game/choose_player_zm4/40.png"),
+	preload("res://Art/main_game/choose_player_zm4/50.png"),
+	preload("res://Art/main_game/choose_player_zm4/60.png"),
+	preload("res://Art/main_game/choose_player_zm4/nezha_normal.png"),
 ]
 var role_card_hover := [
-	preload("res://Art/main_game/ChoosePlayerZM4/25.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/35.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/45.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/55.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/65.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/nezha_hover.png"),
+	preload("res://Art/main_game/choose_player_zm4/25.png"),
+	preload("res://Art/main_game/choose_player_zm4/35.png"),
+	preload("res://Art/main_game/choose_player_zm4/45.png"),
+	preload("res://Art/main_game/choose_player_zm4/55.png"),
+	preload("res://Art/main_game/choose_player_zm4/65.png"),
+	preload("res://Art/main_game/choose_player_zm4/nezha_hover.png"),
 ]
 var role_card_selected := [
-	preload("res://Art/main_game/ChoosePlayerZM4/27.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/37.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/47.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/57.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/67.png"),
-	preload("res://Art/main_game/ChoosePlayerZM4/nezha_selected.png"),
+	preload("res://Art/main_game/choose_player_zm4/27.png"),
+	preload("res://Art/main_game/choose_player_zm4/37.png"),
+	preload("res://Art/main_game/choose_player_zm4/47.png"),
+	preload("res://Art/main_game/choose_player_zm4/57.png"),
+	preload("res://Art/main_game/choose_player_zm4/67.png"),
+	preload("res://Art/main_game/choose_player_zm4/nezha_selected.png"),
 ]
-var start_button_normal := preload("res://Art/main_game/ChoosePlayerZM4/90.png")
-var start_button_hover := preload("res://Art/main_game/ChoosePlayerZM4/92.png")
-var start_button_pressed := preload("res://Art/main_game/ChoosePlayerZM4/93.png")
-var player_one_icon := preload("res://Art/main_game/ChoosePlayerZM4/2_1P.png")
+var start_button_normal := preload("res://Art/main_game/choose_player_zm4/90.png")
+var start_button_hover := preload("res://Art/main_game/choose_player_zm4/92.png")
+var start_button_pressed := preload("res://Art/main_game/choose_player_zm4/93.png")
+var player_one_icon := preload("res://Art/main_game/choose_player_zm4/2_1P.png")
 var selected_player_icon := TextureRect.new()
 
 

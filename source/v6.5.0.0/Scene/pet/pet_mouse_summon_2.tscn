@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/pet/pet_mouse_summon_base.gd" id="1"]
-[ext_resource type="SpriteFrames" path="res://Art/pet/PetMouse/model/pet_mouse_stage2_frames.tres" id="2"]
+[ext_resource type="SpriteFrames" path="res://Art/pet/pet_mouse/model/pet_mouse_stage2_frames.tres" id="2"]
 
 [sub_resource type="RectangleShape2D" id="hit_shape"]
 size = Vector2(35, 70)

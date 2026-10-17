@@ -43,7 +43,7 @@ const FRAME_BOUNDS := [
 ]
 const TEXTURE_SIZE := Vector2(978.0, 759.0)
 const HIT_PADDING := Vector2(28.0, 35.0)
-const FRAME_PATH_FORMAT := "res://Art/hero_picture/Role3/BaDiQianKunSmooth/bdqk_%03d.png"
+const FRAME_PATH_FORMAT := "res://Art/hero_picture/role_3/BaDiQianKunSmooth/bdqk_%03d.png"
 const FRAME_OFFSETS := [
 	Vector2(-163.5, 13.5),
 	Vector2(-179.5, 21.5),

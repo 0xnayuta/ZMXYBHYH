@@ -66,8 +66,8 @@ func _physics_process(delta: float) -> void:
 
 	if skill_name != null and skill_name != "":
 		var icon_name = get_icon_name(skill_name)
-		var icon_path = "res://Art/skill/LittleSkillIcon/" + icon_name + ".png"
-		var learning_icon_path: String = "res://Art/skill/SkillIcon/" + str(icon_name) + ".png"
+		var icon_path = "res://Art/skill/little_skill_icon/" + icon_name + ".png"
+		var learning_icon_path: String = "res://Art/skill/skill_icon/" + str(icon_name) + ".png"
 		if ResourceLoader.exists(learning_icon_path):
 			icon_path = learning_icon_path
 		_set_icon_path(icon_path)

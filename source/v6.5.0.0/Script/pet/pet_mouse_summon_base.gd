@@ -40,7 +40,7 @@ const MOUSE_ACTIONS := {
 		"hit3": [2, 2, 10],
 	},
 }
-const MOUSE_MODEL_FRAMES_RES := "res://Art/pet/PetMouse/model/pet_mouse_stage%d_frames.tres"
+const MOUSE_MODEL_FRAMES_RES := "res://Art/pet/pet_mouse/model/pet_mouse_stage%d_frames.tres"
 const MOUSE_SCENE_RES := "res://Scene/pet/PetMouseSummon_%d.tscn"
 const PET_MOUSE_BULLET_SCENE := preload("res://Scene/pet/pet_mouse_bullet.tscn")
 const MOUSE_ROLE_ORIGIN_Y := -35.0

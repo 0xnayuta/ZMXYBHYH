@@ -254,8 +254,8 @@ const DYNAMIC_MONSTER_TEXTURE_PATHS := {
 		"res://Art/monster/QiongQi/Effects/BuffBlue.png",
 	],
 	151: ["res://Art/monster/TaoWu/Monster47FramesCenteredCropped"],
-	152: ["res://Art/monster/HunDun/Monster60FramesCenteredCropped"],
-	153: ["res://Art/monster/TaoTie/Monster115FramesCenteredCropped"],
+	152: ["res://Art/monster/hun_dun/Monster60FramesCenteredCropped"],
+	153: ["res://Art/monster/tao_tie/Monster115FramesCenteredCropped"],
 	1460: ["res://Art/monster/tongtian_3057"],
 	212:
 	[
@@ -297,15 +297,15 @@ const DYNAMIC_MONSTER_TEXTURE_PATHS := {
 	4402:
 	[
 		"res://Art/monster/Game3Monster/ThreePrince/muzha",
-		"res://Art/hero_picture/Role3/BaDiQianKunSmooth",
+		"res://Art/hero_picture/role_3/BaDiQianKunSmooth",
 	],
 	4403: ["res://Art/monster/Game3Monster/ThreePrince/jinzha"],
 }
 const DYNAMIC_MONSTER_STREAM_EFFECT_ROOTS := {
 	150: ["res://Art/monster/QiongQi/Effects"],
 	151: ["res://Art/monster/TaoWu/Effects"],
-	152: ["res://Art/monster/HunDun/Effects"],
-	153: ["res://Art/monster/TaoTie/Effects"],
+	152: ["res://Art/monster/hun_dun/Effects"],
+	153: ["res://Art/monster/tao_tie/Effects"],
 	163:
 	[
 		"res://Art/monster/Game3Monster/Monster_163/hit1",
@@ -959,7 +959,7 @@ func prewarm_skill_page_resources() -> void:
 		6: ["nz_jlsh", "nz_fhcc", "nz_hlqg", "nz_hlhs", "nz_lblc"],
 	}
 	for icon_name in role_skill_icons[role_id]:
-		paths.append("res://Art/skill/SkillIcon/%s.png" % icon_name)
+		paths.append("res://Art/skill/skill_icon/%s.png" % icon_name)
 	await _preload_paths_threaded(paths)
 	skill_learn = _resource_cache.get("res://Scene/skill/learn_skill.tscn") as PackedScene
 	zd_skill = _resource_cache.get("res://Scene/skill/zd_skill.tscn") as PackedScene
@@ -1056,7 +1056,7 @@ func preload_level_monster_runtime_resources(monster_ids: Array) -> void:
 	for monster_id in unique_monster_ids:
 		var manifest_path := MonsterAtlasSequence.manifest_for_model(monster_id)
 		if monster_id in [3323, 3343]:
-			manifest_path = "res://Art/monster/PalaceBoss/%d/manifest.json" % monster_id
+			manifest_path = "res://Art/monster/palace_boss/%d/manifest.json" % monster_id
 		elif monster_id == 3352:
 			manifest_path = "res://Art/monster/cloud_boss/3352/manifest.json"
 		elif not NorthOriginalData.monster_record(monster_id).is_empty():
@@ -1645,8 +1645,10 @@ func get_current_role_equipment_preload_paths(role_id: int = 0) -> Array[String]
 		return paths
 	var body_name: String = str(get_clean_name(str(names.get("body", "Empty"))))
 	var weapon_name: String = str(names.get("weapon", "Empty"))
-	var body_path := "res://Art/hero_picture/Role%dAllEquipment/role_%d_Body_%s.png" % [role_id, role_id, body_name]
-	var weapon_path := "res://Art/hero_picture/Role%dAllEquipment/role_%d_Eq_%s.png" % [role_id, role_id, weapon_name]
+	var body_path := "res://Art/hero_picture/role_%d_all_equipment/role_%d_Body_%s.png" % [role_id, role_id, body_name]
+	var weapon_path := (
+		"res://Art/hero_picture/role_%d_all_equipment/role_%d_Eq_%s.png" % [role_id, role_id, weapon_name]
+	)
 	if ResourceLoader.exists(body_path):
 		paths.append(body_path)
 	if ResourceLoader.exists(weapon_path):
@@ -2307,9 +2309,9 @@ func _role_skill_scene_paths(role_id: int) -> Array[String]:
 				paths
 				. append_array(
 					[
-						"res://Art/hero_picture/Role6/equipment_atlas/default_body/default_body.tres",
-						"res://Art/hero_picture/Role6/equipment_atlas/default_body_front/default_body_front.tres",
-						"res://Art/hero_picture/Role6/equipment_atlas/default_weapon/default_weapon.tres",
+						"res://Art/hero_picture/role_6/equipment_atlas/default_body/default_body.tres",
+						"res://Art/hero_picture/role_6/equipment_atlas/default_body_front/default_body_front.tres",
+						"res://Art/hero_picture/role_6/equipment_atlas/default_weapon/default_weapon.tres",
 						"res://Scene/hero/role_6/ne_zha_skill_effect.tscn",
 					]
 				)
@@ -2442,14 +2444,14 @@ func _role_heavy_effect_paths(role_id: int) -> Array[String]:
 	var equipped_skills := _equipped_role_skill_names()
 	var paths: Array[String] = []
 	if role_id == 4 and equipped_skills.has("bylt"):
-		_append_numbered_resource_paths(paths, "res://Art/hero_picture/Role4/BiLuoTian/cast/cast_%02d.png", 51)
-		_append_numbered_resource_paths(paths, "res://Art/hero_picture/Role4/BiLuoTian/hit/hit_%02d.png", 11)
+		_append_numbered_resource_paths(paths, "res://Art/hero_picture/role_4/BiLuoTian/cast/cast_%02d.png", 51)
+		_append_numbered_resource_paths(paths, "res://Art/hero_picture/role_4/BiLuoTian/hit/hit_%02d.png", 11)
 	elif role_id == 5 and equipped_skills.has("ltjz"):
 		_append_numbered_resource_paths(
-			paths, "res://Art/hero_picture/Role5/LeiTingJieZhen/formation_spine/formation_%02d.png", 66
+			paths, "res://Art/hero_picture/role_5/LeiTingJieZhen/formation_spine/formation_%02d.png", 66
 		)
 		_append_numbered_resource_paths(
-			paths, "res://Art/hero_picture/Role5/LeiTingJieZhen/lightning_spine/lightning_%02d.png", 47
+			paths, "res://Art/hero_picture/role_5/LeiTingJieZhen/lightning_spine/lightning_%02d.png", 47
 		)
 	return paths
 
@@ -2458,9 +2460,9 @@ func get_current_role_heavy_effect_paths() -> Array[String]:
 	var paths := _role_heavy_effect_paths(_current_role_id())
 	var fashions: Variant = PlayerData.player_data.get(DataKeys.FASHION, [])
 	if fashions is Array and not fashions.is_empty() and str(fashions[0].get(DataKeys.NAME, "")) == "shenqismsrsz":
-		_append_numbered_resource_paths(paths, "res://Art/hero_picture/SMSRShenqiLightning/lightning/d_%05d.png", 9)
+		_append_numbered_resource_paths(paths, "res://Art/hero_picture/smsr_shenqi_lightning/lightning/d_%05d.png", 9)
 		_append_numbered_resource_paths(
-			paths, "res://Art/hero_picture/SMSRShenqiLightning/hit_mesh/hit_%05d.png", 10, 0, 2
+			paths, "res://Art/hero_picture/smsr_shenqi_lightning/hit_mesh/hit_%05d.png", 10, 0, 2
 		)
 	return paths
 
@@ -3267,7 +3269,7 @@ func configure_backpack_role_preview(page: Node, player: Variant = null) -> void
 	if role_body != null:
 		role_body.texture = (
 			ResourceLoader.load(
-				"res://Art/hero_picture/Role%dAllEquipment/Role_%d_Body_Empty.png" % [role_id, role_id],
+				"res://Art/hero_picture/role_%d_all_equipment/Role_%d_Body_Empty.png" % [role_id, role_id],
 				"Texture2D",
 				ResourceLoader.CACHE_MODE_IGNORE
 			)
@@ -3276,7 +3278,7 @@ func configure_backpack_role_preview(page: Node, player: Variant = null) -> void
 	if role_equipment != null:
 		role_equipment.texture = (
 			ResourceLoader.load(
-				"res://Art/hero_picture/Role%dAllEquipment/Role_%d_Eq_Empty.png" % [role_id, role_id],
+				"res://Art/hero_picture/role_%d_all_equipment/Role_%d_Eq_Empty.png" % [role_id, role_id],
 				"Texture2D",
 				ResourceLoader.CACHE_MODE_IGNORE
 			)
@@ -3334,7 +3336,7 @@ func release_ui_runtime_cache(release_permanent: bool = false) -> void:
 				"res://Art/skill/",
 				"res://Art/shop/",
 				"res://Art/ldl/",
-				"res://Art/pet/PetPageResources/",
+				"res://Art/pet/pet_page_resources/",
 				"res://Art/main_menu/BodyTraining/",
 				"res://Art/lianti/",
 				"res://Art/zhenyaota/",
@@ -3394,7 +3396,7 @@ func _ui_art_prefixes_for_scene(scene_path: String) -> Array:
 	if scene_path.begins_with("res://Scene/back_pack/"):
 		return ["res://Art/backpack/"]
 	if scene_path == "res://Scene/pet/pet_interface.tscn":
-		return ["res://Art/pet/PetPageResources/"]
+		return ["res://Art/pet/pet_page_resources/"]
 	if scene_path.begins_with("res://Scene/ldl/"):
 		return ["res://Art/ldl/"]
 	if (
@@ -4337,9 +4339,9 @@ func get_active_pet_preload_paths() -> Array[String]:
 		return (
 			[
 				"res://Scene/pet/PetNeatSummon_%d.tscn" % stage,
-				"res://Art/pet/PetNeat/model/pet_neat_stage%d_frames.tres" % stage,
+				"res://Art/pet/pet_neat/model/pet_neat_stage%d_frames.tres" % stage,
 				"res://Scene/pet/pet_neat_bullet.tscn",
-				"res://Art/pet/PetNeat/model/actions/stage%d/wait/头像.png" % stage,
+				"res://Art/pet/pet_neat/model/actions/stage%d/wait/头像.png" % stage,
 				"res://Art/pet/skillicon/mncz.png",
 			]
 			+ (["res://Art/pet/skillicon/mljt.png"] if stage >= 3 else [])
@@ -4348,9 +4350,9 @@ func get_active_pet_preload_paths() -> Array[String]:
 	if pet_type == "PetMouse":
 		var mouse_paths: Array[String] = [
 			"res://Scene/pet/PetMouseSummon_%d.tscn" % stage,
-			"res://Art/pet/PetMouse/model/pet_mouse_stage%d_frames.tres" % stage,
+			"res://Art/pet/pet_mouse/model/pet_mouse_stage%d_frames.tres" % stage,
 			"res://Scene/pet/pet_mouse_bullet.tscn",
-			"res://Art/pet/PetMouse/model/actions/stage%d/wait/head.png" % stage,
+			"res://Art/pet/pet_mouse/model/actions/stage%d/wait/head.png" % stage,
 			"res://Art/pet/skillicon/sc.png",
 		]
 		if pet_level >= 30:
@@ -4390,9 +4392,9 @@ func get_active_pet_preload_paths() -> Array[String]:
 	if pet_type == "PetTurtle":
 		var turtle_paths: Array[String] = [
 			"res://Scene/pet/PetTurtleSummon_%d.tscn" % stage,
-			"res://Art/pet/PetTurtle/model/pet_turtle_stage%d_frames.tres" % stage,
+			"res://Art/pet/pet_turtle/model/pet_turtle_stage%d_frames.tres" % stage,
 			"res://Scene/pet/pet_turtle_bullet.tscn",
-			"res://Art/pet/PetTurtle/model/actions/stage%d/wait/头像.png" % stage,
+			"res://Art/pet/pet_turtle/model/actions/stage%d/wait/头像.png" % stage,
 			"res://Art/pet/skillicon/sld.png",
 		]
 		if stage >= 2:
@@ -4463,11 +4465,11 @@ func prewarm_active_pet_runtime_resources() -> void:
 	var bullet_scene_path := ""
 	if pet_type == "PetNeat":
 		scene_path = "res://Scene/pet/PetNeatSummon_%d.tscn" % stage
-		frames_path = "res://Art/pet/PetNeat/model/pet_neat_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/pet_neat/model/pet_neat_stage%d_frames.tres" % stage
 		bullet_scene_path = "res://Scene/pet/pet_neat_bullet.tscn"
 	elif pet_type == "PetMouse":
 		scene_path = "res://Scene/pet/PetMouseSummon_%d.tscn" % stage
-		frames_path = "res://Art/pet/PetMouse/model/pet_mouse_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/pet_mouse/model/pet_mouse_stage%d_frames.tres" % stage
 		bullet_scene_path = "res://Scene/pet/pet_mouse_bullet.tscn"
 	elif pet_type == "PetTiger":
 		scene_path = "res://Scene/pet/PetTigerSummon_%d.tscn" % stage
@@ -4479,7 +4481,7 @@ func prewarm_active_pet_runtime_resources() -> void:
 		bullet_scene_path = "res://Scene/pet/pet_tiger_bullet.tscn"
 	elif pet_type == "PetTurtle":
 		scene_path = "res://Scene/pet/PetTurtleSummon_%d.tscn" % stage
-		frames_path = "res://Art/pet/PetTurtle/model/pet_turtle_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/pet_turtle/model/pet_turtle_stage%d_frames.tres" % stage
 		bullet_scene_path = "res://Scene/pet/pet_turtle_bullet.tscn"
 	elif pet_type == "PetRabbit":
 		scene_path = "res://Scene/pet/PetRabbitSummon_%d.tscn" % stage
@@ -4522,8 +4524,8 @@ func get_magic_weapon_preload_paths(name_) -> Array[String]:
 			. append_array(
 				[
 					"res://Scene/monster/monster_zhw/guanyin_summon.tscn",
-					"res://Art/monster/GuanyinSpine/skeleton.atlas",
-					"res://Art/monster/GuanyinSpine/guanyin.spine-json",
+					"res://Art/monster/guanyin_spine/skeleton.atlas",
+					"res://Art/monster/guanyin_spine/guanyin.spine-json",
 				]
 			)
 		)
@@ -5401,9 +5403,9 @@ func get_dis_betweem(Ob_1, Ob_2):
 func load_role1_body(name_):
 	var role_id := _current_role_id()
 	var path := (
-		"res://Art/hero_picture/Role"
+		"res://Art/hero_picture/role_"
 		+ str(role_id)
-		+ "AllEquipment/Role_"
+		+ "_all_equipment/Role_"
 		+ str(role_id)
 		+ "_Body_"
 		+ str(name_)
@@ -5418,9 +5420,9 @@ func load_role1_body(name_):
 func load_role1_eq(name_):
 	var role_id := _current_role_id()
 	var path := (
-		"res://Art/hero_picture/Role"
+		"res://Art/hero_picture/role_"
 		+ str(role_id)
-		+ "AllEquipment/Role_"
+		+ "_all_equipment/Role_"
 		+ str(role_id)
 		+ "_Eq_"
 		+ str(name_)

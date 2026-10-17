@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/hero/role_bullet.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/hero_picture/Role4/SpecialEffect_29.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/role_4/SpecialEffect_29.png" id="2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t6u5o"]
 atlas = ExtResource("2")

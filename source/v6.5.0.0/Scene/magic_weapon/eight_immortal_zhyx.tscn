@@ -6,8 +6,8 @@
 [node name="zhyx" unique_id=1725973923 instance=ExtResource("1")]
 script = ExtResource("2")
 weapon_id = "zhyx"
-model_path = "res://Art/magic_weapon/EightImmortal/zhyx/model.png"
+model_path = "res://Art/magic_weapon/eight_immortal/zhyx/model.png"
 model_frame_size = Vector2i(80, 80)
-effect_dir = "res://Art/magic_weapon/EightImmortal/zhyx/effect"
+effect_dir = "res://Art/magic_weapon/eight_immortal/zhyx/effect"
 skill_cost = 10
 skill_cooldown = 10.0

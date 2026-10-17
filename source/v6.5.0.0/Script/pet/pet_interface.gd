@@ -151,8 +151,8 @@ const PET_SKILL_ICON_PATHS := {
 const PET_SKILL_SLOT_COUNT := 40
 const PET_SKILL_SLOT_SIZE := 57
 const PET_SKILL_SLOT_GAP := 8
-const PET_SKILL_SLOT_FRAME := "res://Art/pet/PetPageResources/PetInterfacev1270_id202_lossless_54x54.png"
-const PET_EQUIPMENT_SLOT_FRAME := preload("res://Art/pet/PetPageResources/PetInterfacev1270_id202_lossless_54x54.png")
+const PET_SKILL_SLOT_FRAME := "res://Art/pet/pet_page_resources/PetInterfacev1270_id202_lossless_54x54.png"
+const PET_EQUIPMENT_SLOT_FRAME := preload("res://Art/pet/pet_page_resources/PetInterfacev1270_id202_lossless_54x54.png")
 const PET_EQUIPMENT_STRENGTH_FONT := preload("res://Font/8_FZCuYuan-M03S.ttf")
 const PET_ATTRIBUTE_PAGES := [
 	[
@@ -212,7 +212,7 @@ const PET_ITEM_STAT_DISPLAY_NAMES := {
 const PET_BATCH_SELL_STAT_OPTIONS := [
 	"生命", "魔法", "攻击", "物防", "魔防", "暴击", "闪避", "幸运", "回血", "回魔", "命中", "破甲", "破魔", "韧性", "吸血", "暴免"
 ]
-const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
+const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/pet/pet_page_resources/PetInterfacev1270_id267_jpeg3_64x64.png")
 const PET_SKILL_MP_COSTS := {
 	"猛扑": 0,
 	"虎啸": 25,
@@ -4941,10 +4941,10 @@ func _refresh_pet_model_preview(pet: Dictionary) -> void:
 		pet_model_preview.visible = pet_model_preview.sprite_frames != null
 		return
 	if _is_pet_mouse(pet):
-		frames_path = "res://Art/pet/PetMouse/model/pet_mouse_stage%d_frames.tres" % clampi(stage, 1, 2)
+		frames_path = "res://Art/pet/pet_mouse/model/pet_mouse_stage%d_frames.tres" % clampi(stage, 1, 2)
 		pet_model_preview.offset = PET_MOUSE_PREVIEW_OFFSET
 	elif _is_pet_neat(pet):
-		frames_path = "res://Art/pet/PetNeat/model/pet_neat_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/pet_neat/model/pet_neat_stage%d_frames.tres" % stage
 		pet_model_preview.offset = Vector2(10, -25) if stage < 4 else Vector2(10, -20)
 	elif _is_pet_rabbit(pet):
 		frames_path = "res://Art/pet/PetRabbit/model/pet_rabbit_stage%d_frames.tres" % stage
@@ -4952,7 +4952,7 @@ func _refresh_pet_model_preview(pet: Dictionary) -> void:
 	elif _is_pet_phoenix(pet):
 		frames_path = "res://Art/pet/PetPhoenix/model/pet_phoenix_stage%d_frames.tres" % stage
 	elif _is_pet_turtle(pet):
-		frames_path = "res://Art/pet/PetTurtle/model/pet_turtle_stage%d_frames.tres" % stage
+		frames_path = "res://Art/pet/pet_turtle/model/pet_turtle_stage%d_frames.tres" % stage
 	elif _is_pet_tiger(pet):
 		frames_path = "res://Art/pet/PetTiger/model/pet_tiger_stage%d_frames.tres" % stage
 		pet_model_preview.offset = PET_TIGER_PREVIEW_OFFSETS.get(stage, Vector2.ZERO)
@@ -4979,7 +4979,7 @@ func _build_yin_tiger_preview_frames(stage: int) -> SpriteFrames:
 	frames.add_animation("wait")
 	frames.set_animation_speed("wait", 24.0)
 	frames.set_animation_loop("wait", true)
-	var root := "res://Art/pet/PetYinTiger/model/actions/stage%d/wait" % source_stage
+	var root := "res://Art/pet/pet_yin_tiger/model/actions/stage%d/wait" % source_stage
 	var stop_counts := [2.0, 2.0, 2.0, 3.0, 2.0, 4.0]
 	for frame_index in range(1, 7):
 		var texture := load(root.path_join("%d.png" % frame_index)) as Texture2D

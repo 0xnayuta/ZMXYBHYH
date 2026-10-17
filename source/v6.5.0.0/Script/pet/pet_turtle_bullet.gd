@@ -2,7 +2,7 @@ extends "res://Script/monster/monster_bullet.gd"
 class_name PetTurtleBullet
 
 const TURTLE_EFFECT_FPS := 24.0
-const TURTLE_EFFECT_DIR := "res://Art/pet/PetTurtle/effects"
+const TURTLE_EFFECT_DIR := "res://Art/pet/pet_turtle/effects"
 const TURTLE_EFFECT_FRAME_COUNTS := {
 	"PetTurtle1Bullet1": 15,
 	"PetTurtle1Bullet2": 30,

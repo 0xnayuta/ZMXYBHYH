@@ -56,7 +56,7 @@ static func _build_frames(
 	frames.set_animation_speed("default", fps)
 	frames.set_animation_loop("default", false)
 	for index in range(frame_count):
-		var path := "res://Art/hero_picture/Role4/BiLuoTian/%s/%s_%02d.png" % [kind, kind, index]
+		var path := "res://Art/hero_picture/role_4/BiLuoTian/%s/%s_%02d.png" % [kind, kind, index]
 		var texture := load(path) as Texture2D
 		if texture != null:
 			var duration := fast_tail_duration if fast_tail_start >= 0 and index >= fast_tail_start else 1.0

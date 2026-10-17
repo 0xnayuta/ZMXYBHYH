@@ -9,8 +9,8 @@ const END_WALL_THICKNESS := 600.0
 const SSSL_BOSS_BODY_FRAMES := {
 	150: ["res://Art/monster/QiongQi/Monster42FramesCenteredCropped", 42],
 	151: ["res://Art/monster/TaoWu/Monster47FramesCenteredCropped", 48],
-	152: ["res://Art/monster/HunDun/Monster60FramesCenteredCropped", 42],
-	153: ["res://Art/monster/TaoTie/Monster115FramesCenteredCropped", 42],
+	152: ["res://Art/monster/hun_dun/Monster60FramesCenteredCropped", 42],
+	153: ["res://Art/monster/tao_tie/Monster115FramesCenteredCropped", 42],
 }
 const SSSL_BOSS_IDS := [150, 151, 152, 153]
 const ENDLESS_BOSS_POSITION := Vector2(780, 340)

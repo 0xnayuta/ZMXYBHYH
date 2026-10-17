@@ -1,6 +1,6 @@
 [gd_scene format=3]
 
-[ext_resource type="Texture2D" path="res://Art/hero_picture/Role1AllEquipment/Role_1_Body_Empty.png" id="1"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/role_1_all_equipment/Role_1_Body_Empty.png" id="1"]
 
 [node name="Pose" type="Node2D" unique_id=1643777605]
 position = Vector2(0, -30)

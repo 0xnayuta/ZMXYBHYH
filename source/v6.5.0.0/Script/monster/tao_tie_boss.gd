@@ -1,11 +1,11 @@
 extends BaseMonster
 
-const BODY_FRAME_DIR := "res://Art/monster/TaoTie/Monster115FramesCenteredCropped"
+const BODY_FRAME_DIR := "res://Art/monster/tao_tie/Monster115FramesCenteredCropped"
 const BODY_FRAME_COUNT := 42
 const BODY_FRAME_COLUMNS := 6
 const SOURCE_FPS := 24.0
 const BODY_SPRITE_POSITION := Vector2(-9, -103)
-const EFFECT_ROOT := "res://Art/monster/TaoTie/Effects"
+const EFFECT_ROOT := "res://Art/monster/tao_tie/Effects"
 const EFFECT_NAMES := ["Monster115Bullet1", "Monster115Bullet2", "Monster115Bullet3"]
 static var _effect_frames_cache: Dictionary = {}
 static var _effect_prewarm_started := false

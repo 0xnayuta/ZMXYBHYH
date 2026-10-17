@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/hero/role4_bullet.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/hero_picture/Role4/SpecialEffet_9.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/role_4/SpecialEffet_9.png" id="2"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 19.0263

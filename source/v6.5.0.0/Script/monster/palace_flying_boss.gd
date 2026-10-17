@@ -24,7 +24,7 @@ var _palace_flight_height_ready := false
 
 
 func _manifest_path() -> String:
-	return "res://Art/monster/PalaceBoss/%d/manifest.json" % monster_kind
+	return "res://Art/monster/palace_boss/%d/manifest.json" % monster_kind
 
 
 func _resolve_runtime_config() -> Dictionary:

@@ -212,7 +212,7 @@ func _make_formula_card(skill_id: String, skill_name: String, stored_level: int,
 	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	icon.mouse_filter = Control.MOUSE_FILTER_PASS
-	var icon_path := "res://Art/skill/SkillIcon/" + skill_id + ".png"
+	var icon_path := "res://Art/skill/skill_icon/" + skill_id + ".png"
 	if ResourceLoader.exists(icon_path):
 		icon.texture = load(icon_path) as Texture2D
 	row.add_child(icon)

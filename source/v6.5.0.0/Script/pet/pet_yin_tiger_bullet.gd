@@ -3,7 +3,7 @@ class_name PetYinTigerBullet
 
 const FPS := 24.0
 const SECOND_HIT_DELAY := 0.12
-const ROOT := "res://Art/pet/PetYinTiger/effects"
+const ROOT := "res://Art/pet/pet_yin_tiger/effects"
 const COUNTS := {"PetYinTiger1Bullet1": 20, "PetYinTiger1Bullet2": 30, "PetYinTiger1Bullet3": 30}
 
 const EFFECT_OFFSETS := {

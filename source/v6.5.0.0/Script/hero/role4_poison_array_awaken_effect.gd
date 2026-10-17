@@ -1,8 +1,8 @@
 extends Node2D
 class_name Role4PoisonArrayAwakenEffect
 
-const ATLAS_PATH := "res://Art/hero_picture/Role4/CangMuLongYun/runtime/HeroF_6009_skill.atlas"
-const SKELETON_PATH := "res://Art/hero_picture/Role4/CangMuLongYun/runtime/HeroF_6009_skill.spine-json"
+const ATLAS_PATH := "res://Art/hero_picture/role_4/CangMuLongYun/runtime/HeroF_6009_skill.atlas"
+const SKELETON_PATH := "res://Art/hero_picture/role_4/CangMuLongYun/runtime/HeroF_6009_skill.spine-json"
 const SPINE_SCALE := Vector2(0.2, 0.2)
 const HIT_INTERVAL := 0.2
 const WHIRLWIND_HIT_HALF_SIZE := Vector2(180.0, 220.0)

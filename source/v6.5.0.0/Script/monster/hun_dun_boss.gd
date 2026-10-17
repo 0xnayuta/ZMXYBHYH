@@ -1,11 +1,11 @@
 extends BaseMonster
 
-const BODY_FRAME_DIR := "res://Art/monster/HunDun/Monster60FramesCenteredCropped"
+const BODY_FRAME_DIR := "res://Art/monster/hun_dun/Monster60FramesCenteredCropped"
 const BODY_FRAME_COUNT := 42
 const BODY_FRAME_COLUMNS := 6
 const SOURCE_FPS := 24.0
 const BODY_SPRITE_POSITION := Vector2(-16, -78)
-const EFFECT_ROOT := "res://Art/monster/HunDun/Effects"
+const EFFECT_ROOT := "res://Art/monster/hun_dun/Effects"
 const EFFECT_NAMES := ["Monster60Bullet1", "Monster60Bullet2", "Monster60Bullet3"]
 static var _effect_frames_cache: Dictionary = {}
 static var _effect_prewarm_started := false

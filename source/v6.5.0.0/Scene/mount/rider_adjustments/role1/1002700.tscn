@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" path="res://Art/mount/Runtime/Mounts/1002700/idle/back_0.png" id="1"]
 [ext_resource type="Texture2D" path="res://Art/mount/Runtime/Mounts/1002700/idle/front_0.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/hero_picture/Role1AllEquipment/Role_1_Body_Empty.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/role_1_all_equipment/Role_1_Body_Empty.png" id="3"]
 
 [node name="RiderAdjustment" type="Node2D" unique_id=24523300]
 editor_description = "角色 1 × 坐骑 1002700。只调整 Pose 节点；MountGuide 仅供 2D 编辑器对位，运行时隐藏。"

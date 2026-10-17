@@ -10,7 +10,7 @@ const BEAM_HALF_HEIGHT := 420.0
 const EFFECT_SCALE := Vector2(1, 1)
 const EFFECT_Y_OFFSET := 60
 const HIT_EVERY_FRAMES := 3
-const FRAME_PATH_FORMAT := "res://Art/hero_picture/Role1/WuShuangHuoYanJinJingCropped/hyjj_ws_%03d.png"
+const FRAME_PATH_FORMAT := "res://Art/hero_picture/role_1/WuShuangHuoYanJinJingCropped/hyjj_ws_%03d.png"
 const FRAME_OFFSETS := [
 	Vector2(-36.0, -104.0),
 	Vector2(0.0, 45.5),

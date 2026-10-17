@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
-[ext_resource type="Texture2D" path="res://Art/hero_picture/RoleProperiesBox/128.png" id="1"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/role_properies_box/128.png" id="1"]
 [ext_resource type="Script" path="res://Script/monster/boss_blood.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/hero_picture/RoleProperiesBox/124.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/role_properies_box/124.png" id="3"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="4"]
 [ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="5"]
 [ext_resource type="Texture2D" path="res://Art/blood/3f6eddd8be6d616c93f13b2bfd1f892c.png" id="6"]

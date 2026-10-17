@@ -1,10 +1,10 @@
 extends Node2D
 class_name CangMuLongYunEffect
 
-const ATLAS_PATH := "res://Art/hero_picture/Role4/CangMuLongYun/runtime/HeroF_6009_skill.atlas"
-const SKELETON_PATH := "res://Art/hero_picture/Role4/CangMuLongYun/runtime/HeroF_6009_skill01_2.spine-json"
-const FALLBACK_FRAME_META := "res://Art/hero_picture/Role4/CangMuLongYun/frames/cmly_frames.json"
-const FALLBACK_FRAME_DIR := "res://Art/hero_picture/Role4/CangMuLongYun/frames/"
+const ATLAS_PATH := "res://Art/hero_picture/role_4/CangMuLongYun/runtime/HeroF_6009_skill.atlas"
+const SKELETON_PATH := "res://Art/hero_picture/role_4/CangMuLongYun/runtime/HeroF_6009_skill01_2.spine-json"
+const FALLBACK_FRAME_META := "res://Art/hero_picture/role_4/CangMuLongYun/frames/cmly_frames.json"
+const FALLBACK_FRAME_DIR := "res://Art/hero_picture/role_4/CangMuLongYun/frames/"
 const SPINE_SCALE := Vector2(0.2, 0.2)
 const SPINE_DURATION := 1.8
 const HIT_INTERVAL := 0.12

@@ -1,8 +1,8 @@
 extends Node2D
 class_name GuanyinNormalAttackEffect
 
-const ATLAS_PATH := "res://Art/monster/GuanyinSpine/NormalAttack/302140_skill_hit.atlas"
-const SKELETON_PATH := "res://Art/monster/GuanyinSpine/NormalAttack/302140_skill_hit.spine-json"
+const ATLAS_PATH := "res://Art/monster/guanyin_spine/NormalAttack/302140_skill_hit.atlas"
+const SKELETON_PATH := "res://Art/monster/guanyin_spine/NormalAttack/302140_skill_hit.spine-json"
 const EFFECT_DURATION := 0.7
 const HIT_TIME := 0.1
 const DAMAGE_RANGE_SCALE := 1.5

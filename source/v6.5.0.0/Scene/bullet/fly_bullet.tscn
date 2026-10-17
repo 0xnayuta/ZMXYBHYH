@@ -7,15 +7,15 @@
 [ext_resource type="Texture2D" path="res://Art/monster/Monster_28/Bullet1/1.png" id="5"]
 [ext_resource type="Texture2D" path="res://Art/monster/Monster_41/Bullet.png" id="6"]
 [ext_resource type="Texture2D" path="res://Art/monster/Monster_49/Bullet_3.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/monster/Monster4/M4Bullet_1.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/monster/monster_4/M4Bullet_1.png" id="8"]
 [ext_resource type="Texture2D" path="res://Art/monster/Monster_55/Lunzi2.png" id="9"]
 [ext_resource type="Texture2D" path="res://Art/monster/Monster_64/tswEffect_2.png" id="10"]
 [ext_resource type="Texture2D" path="res://Art/monster/monster_6/Bullet_2.png" id="11"]
 [ext_resource type="Texture2D" path="res://Art/monster/Game3_SpecialEffect/Monster_4/atlas_small_monsters/pages/atlas_000.png" id="12"]
 [ext_resource type="Texture2D" path="res://Art/monster/Monster_20/Bullet_1.png" id="13"]
 [ext_resource type="Texture2D" path="res://Art/monster/Monster_61-00/tswbullet/tswbullet.png" id="14"]
-[ext_resource type="Texture2D" path="res://Art/hero_picture/Role4/SpecialEffet_12.png" id="15"]
-[ext_resource type="Texture2D" path="res://Art/hero_picture/Role4/SpecialEffet_13_1.png" id="16"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/role_4/SpecialEffet_12.png" id="15"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/role_4/SpecialEffet_13_1.png" id="16"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 71.0282

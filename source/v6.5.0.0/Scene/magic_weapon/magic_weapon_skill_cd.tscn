@@ -1,6 +1,6 @@
 [gd_scene format=3]
 
-[ext_resource type="Texture2D" path="res://Art/skill/LittleSkillIcon/Empty.png" id="1"]
+[ext_resource type="Texture2D" path="res://Art/skill/little_skill_icon/Empty.png" id="1"]
 [ext_resource type="Script" path="res://Script/magic_weapon/magic_weapon_skill_cd.gd" id="2"]
 [ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="3"]
 

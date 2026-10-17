@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://Script/main_menu/map_5.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/5.jpg" id="2"]
 [ext_resource type="Shader" path="res://Shader/WsEffect.gdshader" id="3"]
-[ext_resource type="Texture2D" path="res://Art/game_3/LevelButtonIcon/jxm_1.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/game_3/LevelButtonIcon/zjm_1.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/game_3/LevelButtonIcon/lxm_1.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/game_3/LevelButtonIcon/zjg_1.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/game_3/LevelButtonIcon/xxm_1.png" id="8"]
-[ext_resource type="Texture2D" path="res://Art/game_3/LevelButtonIcon/jjg_1.png" id="9"]
-[ext_resource type="Texture2D" path="res://Art/game_3/LevelButtonIcon/llhj.png" id="10"]
+[ext_resource type="Texture2D" path="res://Art/game_3/level_button_icon/jxm_1.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/game_3/level_button_icon/zjm_1.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/game_3/level_button_icon/lxm_1.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/game_3/level_button_icon/zjg_1.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/game_3/level_button_icon/xxm_1.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/game_3/level_button_icon/jjg_1.png" id="9"]
+[ext_resource type="Texture2D" path="res://Art/game_3/level_button_icon/llhj.png" id="10"]
 [ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/1047.png" id="11"]
 [ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/1052.png" id="12"]
 [ext_resource type="Texture2D" path="res://Art/game_3/OtherMapButton/1029.png" id="13"]
@@ -855,8 +855,8 @@ texture_normal = ExtResource("4")
 texture_disabled = ExtResource("4")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/game_3/LevelButtonIcon/jxm_1.png"
-metadata/lazy_texture_hover_path = "res://Art/game_3/LevelButtonIcon/jxm_2.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/level_button_icon/jxm_1.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/level_button_icon/jxm_2.png"
 
 [node name="Level_41" type="TextureButton" parent="." unique_id=1201041108]
 material = SubResource("ShaderMaterial_45sxn")
@@ -868,8 +868,8 @@ texture_normal = ExtResource("5")
 texture_disabled = ExtResource("5")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/game_3/LevelButtonIcon/zjm_1.png"
-metadata/lazy_texture_hover_path = "res://Art/game_3/LevelButtonIcon/zjm_2.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/level_button_icon/zjm_1.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/level_button_icon/zjm_2.png"
 
 [node name="Level_42" type="TextureButton" parent="." unique_id=1332873872]
 material = SubResource("ShaderMaterial_h1ygq")
@@ -881,8 +881,8 @@ texture_normal = ExtResource("6")
 texture_disabled = ExtResource("6")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/game_3/LevelButtonIcon/lxm_1.png"
-metadata/lazy_texture_hover_path = "res://Art/game_3/LevelButtonIcon/lxm_2.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/level_button_icon/lxm_1.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/level_button_icon/lxm_2.png"
 
 [node name="Level_43" type="TextureButton" parent="." unique_id=754234585]
 material = SubResource("ShaderMaterial_euayj")
@@ -894,8 +894,8 @@ texture_normal = ExtResource("7")
 texture_disabled = ExtResource("7")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/game_3/LevelButtonIcon/zjg_1.png"
-metadata/lazy_texture_hover_path = "res://Art/game_3/LevelButtonIcon/zjg_2.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/level_button_icon/zjg_1.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/level_button_icon/zjg_2.png"
 
 [node name="Level_44" type="TextureButton" parent="." unique_id=774824671]
 material = SubResource("ShaderMaterial_q4y7s")
@@ -907,8 +907,8 @@ texture_normal = ExtResource("8")
 texture_disabled = ExtResource("8")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/game_3/LevelButtonIcon/xxm_1.png"
-metadata/lazy_texture_hover_path = "res://Art/game_3/LevelButtonIcon/xxm_2.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/level_button_icon/xxm_1.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/level_button_icon/xxm_2.png"
 
 [node name="Level_45" type="TextureButton" parent="." unique_id=83405114]
 material = SubResource("ShaderMaterial_u6dnx")
@@ -920,8 +920,8 @@ texture_normal = ExtResource("9")
 texture_disabled = ExtResource("9")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/game_3/LevelButtonIcon/jjg_1.png"
-metadata/lazy_texture_hover_path = "res://Art/game_3/LevelButtonIcon/jjg_2.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/level_button_icon/jjg_1.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/level_button_icon/jjg_2.png"
 
 [node name="Level_46" type="TextureButton" parent="." unique_id=1145090444]
 offset_left = 459.0
@@ -932,8 +932,8 @@ texture_normal = ExtResource("10")
 texture_disabled = ExtResource("10")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/lazy_texture_pressed_path = "res://Art/game_3/LevelButtonIcon/llhj.png"
-metadata/lazy_texture_hover_path = "res://Art/game_3/LevelButtonIcon/llhj_2.png"
+metadata/lazy_texture_pressed_path = "res://Art/game_3/level_button_icon/llhj.png"
+metadata/lazy_texture_hover_path = "res://Art/game_3/level_button_icon/llhj_2.png"
 
 [node name="MemoryClass" type="TextureButton" parent="." unique_id=729164694]
 offset_top = 520.0

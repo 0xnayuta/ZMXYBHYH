@@ -1,15 +1,15 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/other_menu/c_hange_clothes_jm.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/backpack/ClothesChange/56.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/backpack/ClothesChange/53.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/backpack/clothes_change/56.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/backpack/clothes_change/53.png" id="3"]
 [ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="4"]
 [ext_resource type="PackedScene" path="res://Scene/back_pack/box_1.tscn" id="5"]
-[ext_resource type="Texture2D" path="res://Art/backpack/ClothesChange/58.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/backpack/ClothesChange/64.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/backpack/ClothesChange/62.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/backpack/clothes_change/58.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/backpack/clothes_change/64.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/backpack/clothes_change/62.png" id="8"]
 [ext_resource type="FontFile" path="res://Font/金桥简中圆.TTF" id="9"]
-[ext_resource type="Texture2D" path="res://Art/backpack/ClothesChange/68.png" id="10"]
+[ext_resource type="Texture2D" path="res://Art/backpack/clothes_change/68.png" id="10"]
 
 [node name="CHangeClothesJM" type="Node2D" unique_id=330644944]
 script = ExtResource("1")

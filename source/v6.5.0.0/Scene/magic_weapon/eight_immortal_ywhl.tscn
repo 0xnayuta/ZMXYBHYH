@@ -6,7 +6,7 @@
 [node name="ywhl" unique_id=1146071824 instance=ExtResource("1")]
 script = ExtResource("2")
 weapon_id = "ywhl"
-model_path = "res://Art/magic_weapon/EightImmortal/ywhl/model.png"
+model_path = "res://Art/magic_weapon/eight_immortal/ywhl/model.png"
 model_frame_size = Vector2i(60, 70)
 effect_dir = ""
 skill_cost = 100

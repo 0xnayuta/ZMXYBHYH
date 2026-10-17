@@ -9,7 +9,7 @@
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="7"]
 [ext_resource type="Texture2D" path="res://Art/role_info_icon/688.png" id="8"]
 [ext_resource type="Texture2D" path="res://Art/role_info_icon/694.png" id="9"]
-[ext_resource type="Texture2D" path="res://Art/hero_picture/RoleProperiesBox/748.png" id="10"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/role_properies_box/748.png" id="10"]
 [ext_resource type="Texture2D" path="res://Spritesheet/icons_ps4_animated_buttons2.png" id="11"]
 [ext_resource type="Script" path="res://Script/base/switch_role.gd" id="12"]
 [ext_resource type="Texture2D" path="res://Art/2_6_0_0/skill.png" id="13"]

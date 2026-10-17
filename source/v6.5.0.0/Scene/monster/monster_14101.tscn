@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" path="res://Art/monster/Game3_SpecialEffect/Monster_6/NMW_4_SpecialEffect_5.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/monster/Game3_SpecialEffect/Monster_6/NMW_4_SpecialEffect_3.png" id="5"]
 [ext_resource type="Texture2D" path="res://Art/monster/Game3_SpecialEffect/Monster_6/NMW_4_SpecialEffect_1.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/hero_picture/Role3/Role3SpecialEffect7.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/role_3/Role3SpecialEffect7.png" id="7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rqhif"]
 atlas = ExtResource("3")

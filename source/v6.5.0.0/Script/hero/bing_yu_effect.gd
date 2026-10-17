@@ -9,8 +9,8 @@ const SCREEN_HALF_WIDTH := 700.0
 
 const LANDING_EFFECT_Y := 50
 
-const ATLAS_PATH := "res://Art/hero_picture/Role2/BingYu/runtime/510040_attack_hit1.atlas"
-const SKELETON_PATH := "res://Art/hero_picture/Role2/BingYu/runtime/510040_attack_hit1.spine-json"
+const ATLAS_PATH := "res://Art/hero_picture/role_2/BingYu/runtime/510040_attack_hit1.atlas"
+const SKELETON_PATH := "res://Art/hero_picture/role_2/BingYu/runtime/510040_attack_hit1.spine-json"
 const SPINE_FPS := 30.0
 const SPINE_DURATION := 1.8
 const SPINE_SCALE := Vector2(0.5, 0.5)

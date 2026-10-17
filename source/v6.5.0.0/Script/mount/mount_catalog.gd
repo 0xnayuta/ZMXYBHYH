@@ -820,5 +820,5 @@ static func to_runtime_knockback_y(value: Variant) -> float:
 
 
 static func get_icon_path(skill_id: String) -> String:
-	var path := "res://Art/mount/Skills/%s.png" % skill_id
+	var path := "res://Art/mount/skills/%s.png" % skill_id
 	return path if ResourceLoader.exists(path) else ""

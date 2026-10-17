@@ -1,12 +1,12 @@
 extends RefCounted
 class_name NeZhaEquipmentVisuals
 
-const CATALOG_SCRIPT := preload("res://Art/hero_picture/Role6/equipment_atlas/NeZhaEquipmentCatalog.gd")
-const ATLAS_ROOT := "res://Art/hero_picture/Role6/equipment_atlas"
+const CATALOG_SCRIPT := preload("res://Art/hero_picture/role_6/equipment_atlas/NeZhaEquipmentCatalog.gd")
+const ATLAS_ROOT := "res://Art/hero_picture/role_6/equipment_atlas"
 const DEFAULT_PATHS := {
-	"body": "res://Art/hero_picture/Role6/equipment_atlas/default_body/default_body.tres",
-	"body_front": "res://Art/hero_picture/Role6/equipment_atlas/default_body_front/default_body_front.tres",
-	"weapon": "res://Art/hero_picture/Role6/equipment_atlas/default_weapon/default_weapon.tres",
+	"body": "res://Art/hero_picture/role_6/equipment_atlas/default_body/default_body.tres",
+	"body_front": "res://Art/hero_picture/role_6/equipment_atlas/default_body_front/default_body_front.tres",
+	"weapon": "res://Art/hero_picture/role_6/equipment_atlas/default_weapon/default_weapon.tres",
 }
 const LEGACY_NAME_ALIASES := {
 	"莲衣": "nzly",

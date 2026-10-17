@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" path="res://Art/ldl/fjbuton2.png" id="8"]
 [ext_resource type="Texture2D" path="res://Art/ldl/176.png" id="9"]
 [ext_resource type="Texture2D" path="res://Art/shop/46.png" id="10"]
-[ext_resource type="Texture2D" path="res://Art/game_2/Ldl/198.png" id="11"]
+[ext_resource type="Texture2D" path="res://Art/game_2/ldl/198.png" id="11"]
 
 [node name="Decompose" type="Node2D" unique_id=1814045041]
 script = ExtResource("1")

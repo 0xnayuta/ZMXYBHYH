@@ -41,9 +41,9 @@ const TURTLE_STAGE_SKILLS := {
 	4: ["水疗盾", "同心链接", "水湮八荒", "玄武奥义"],
 }
 const TURTLE_ACTION_TICK_RATE := 24.0
-const TURTLE_MODEL_FRAMES_RES := "res://Art/pet/PetTurtle/model/pet_turtle_stage%d_frames.tres"
+const TURTLE_MODEL_FRAMES_RES := "res://Art/pet/pet_turtle/model/pet_turtle_stage%d_frames.tres"
 const TURTLE_SCENE_RES := "res://Scene/pet/PetTurtleSummon_%d.tscn"
-const TURTLE_BUFF_TEXTURE := "res://Art/pet/PetTurtle/effects/PetTurtle2Buff/1.png"
+const TURTLE_BUFF_TEXTURE := "res://Art/pet/pet_turtle/effects/PetTurtle2Buff/1.png"
 const PET_TURTLE_BULLET_SCENE := preload("res://Scene/pet/pet_turtle_bullet.tscn")
 const TURTLE_NORMAL_ATTACK_RANGES := {1: 40, 2: 70, 3: 70, 4: 70}
 const TURTLE_WATER_SHIELD_HIT_SIZE := Vector2(500, 340)

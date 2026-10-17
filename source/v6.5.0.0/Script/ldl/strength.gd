@@ -1,6 +1,6 @@
 extends Node2D
 class_name Strength
-const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/pet/PetPageResources/PetInterfacev1270_id267_jpeg3_64x64.png")
+const PET_GENERIC_EQUIPMENT_ICON := preload("res://Art/pet/pet_page_resources/PetInterfacev1270_id267_jpeg3_64x64.png")
 @onready var lh_text = $need_lh/lh
 @onready var old_zb = $old_zb/old_zb
 @onready var new_zb = $new_zb/new_zb

@@ -1,9 +1,9 @@
 extends NeZhaSkillEffect
 class_name NeZhaYinYangEffect
 
-const SWORD_ATLAS_PATH := "res://Art/hero_picture/Role6/effects/yinYang_swords.png"
-const AURA_ATLAS_PATH := "res://Art/hero_picture/Role6/effects/yinYang_aura.png"
-const LAUNCH_ATLAS_PATH := "res://Art/hero_picture/Role6/effects/yinYang_launch.png"
+const SWORD_ATLAS_PATH := "res://Art/hero_picture/role_6/effects/yinYang_swords.png"
+const AURA_ATLAS_PATH := "res://Art/hero_picture/role_6/effects/yinYang_aura.png"
+const LAUNCH_ATLAS_PATH := "res://Art/hero_picture/role_6/effects/yinYang_launch.png"
 const SWORD_REGIONS := {
 	"yin": Rect2(0, 0, 154, 53),
 	"yang": Rect2(154, 0, 154, 53),

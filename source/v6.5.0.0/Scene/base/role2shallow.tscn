@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_hero.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/hero/role2shallow.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/hero_picture/Role2/Role2Shallow.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/hero_picture/role_2/Role2Shallow.png" id="3"]
 
 [sub_resource type="Animation" id="1"]
 length = 0.001

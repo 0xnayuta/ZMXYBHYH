@@ -1,13 +1,13 @@
 extends AnimatedSprite2D
 
-const HUAHAO_WING_FRAME_DIR := "res://Art/hero_picture/Wings/hhyq"
+const HUAHAO_WING_FRAME_DIR := "res://Art/hero_picture/wings/hhyq"
 const XIANYU_WING_PATHS := {
-	1: "res://Art/hero_picture/Wings/xyzy/role1.tres",
-	2: "res://Art/hero_picture/Wings/xyzy/role2.tres",
-	3: "res://Art/hero_picture/Wings/xyzy/role3.tres",
-	4: "res://Art/hero_picture/Wings/xyzy/role4.tres",
-	5: "res://Art/hero_picture/Wings/xyzy/role5.tres",
-	6: "res://Art/hero_picture/Wings/xyzy/role6.tres",
+	1: "res://Art/hero_picture/wings/xyzy/role1.tres",
+	2: "res://Art/hero_picture/wings/xyzy/role2.tres",
+	3: "res://Art/hero_picture/wings/xyzy/role3.tres",
+	4: "res://Art/hero_picture/wings/xyzy/role4.tres",
+	5: "res://Art/hero_picture/wings/xyzy/role5.tres",
+	6: "res://Art/hero_picture/wings/xyzy/role6.tres",
 }
 const ROLE_SCRIPT_IDS := {
 	"res://Script/hero/role1.gd": 1,

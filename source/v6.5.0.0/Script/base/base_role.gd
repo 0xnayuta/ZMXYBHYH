@@ -96,17 +96,17 @@ func _physics_process(_delta: float) -> void:
 func _set_role_head() -> void:
 	match int(PlayerData.player_data.get("Myself", 1)):
 		1:
-			role_head.texture = load("res://Art/hero_picture/RoleProperiesBox/hud_swk.png")
+			role_head.texture = load("res://Art/hero_picture/role_properies_box/hud_swk.png")
 		2:
-			role_head.texture = load("res://Art/hero_picture/RoleProperiesBox/hud_tsz.png")
+			role_head.texture = load("res://Art/hero_picture/role_properies_box/hud_tsz.png")
 		3:
-			role_head.texture = load("res://Art/hero_picture/RoleProperiesBox/hud_zbj.png")
+			role_head.texture = load("res://Art/hero_picture/role_properies_box/hud_zbj.png")
 		4:
-			role_head.texture = load("res://Art/hero_picture/RoleProperiesBox/hud_shs.png")
+			role_head.texture = load("res://Art/hero_picture/role_properies_box/hud_shs.png")
 		5:
-			role_head.texture = load("res://Art/hero_picture/RoleProperiesBox/hud_blm.png")
+			role_head.texture = load("res://Art/hero_picture/role_properies_box/hud_blm.png")
 		6:
-			role_head.texture = load("res://Art/hero_picture/RoleProperiesBox/hud_nz.png")
+			role_head.texture = load("res://Art/hero_picture/role_properies_box/hud_nz.png")
 
 
 func _load_skill_icons() -> void:
@@ -583,7 +583,7 @@ func _pet_phoenix_head_texture(stage: int) -> Texture2D:
 
 
 func _pet_turtle_head_texture(stage: int) -> Texture2D:
-	return load("res://Art/pet/PetTurtle/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4)) as Texture2D
+	return load("res://Art/pet/pet_turtle/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4)) as Texture2D
 
 
 func _pet_rabbit_head_texture(stage: int) -> Texture2D:
@@ -591,16 +591,16 @@ func _pet_rabbit_head_texture(stage: int) -> Texture2D:
 
 
 func _pet_mouse_head_texture(stage: int) -> Texture2D:
-	return load("res://Art/pet/PetMouse/model/actions/stage%d/wait/head.png" % clampi(stage, 1, 2)) as Texture2D
+	return load("res://Art/pet/pet_mouse/model/actions/stage%d/wait/head.png" % clampi(stage, 1, 2)) as Texture2D
 
 
 func _pet_neat_head_texture(stage: int) -> Texture2D:
-	return load("res://Art/pet/PetNeat/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4)) as Texture2D
+	return load("res://Art/pet/pet_neat/model/actions/stage%d/wait/头像.png" % clampi(stage, 1, 4)) as Texture2D
 
 
 func _pet_yin_tiger_head_texture(stage: int) -> Texture2D:
 	var source_stage := 2 if stage >= 4 else 1
-	var path := "res://Art/pet/PetYinTiger/model/actions/stage%d/wait/1.png" % source_stage
+	var path := "res://Art/pet/pet_yin_tiger/model/actions/stage%d/wait/1.png" % source_stage
 	return load(path) as Texture2D
 
 

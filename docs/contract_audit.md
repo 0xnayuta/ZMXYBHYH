@@ -1,8 +1,8 @@
 # ZMXYBHYH 全工程字面量契约诊断审计报告 (Phase 8-1)
 
-> 生成时间: 2026-10-18 01:45:50  
+> 生成时间: 2026-10-18 02:49:51  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
-> 扫描耗时: `4.60 秒`（指标要求 ≤ 30 秒）  
+> 扫描耗时: `4.54 秒`（指标要求 ≤ 30 秒）  
 > 覆盖资产: 脚本 `722 个` / 场景 `1132 个`  
 
 ---
@@ -11,17 +11,17 @@
 
 | 契约类别 (Category) | 严重错误 (ERROR) | 告警/建议 (WARNING) | 待收敛 (INFO) | 合计条目 | 健康状态 |
 |:---|:---:|:---:|:---:|:---:|:---:|
-| **1. 资源路径契约 (Resource Path)** | **0** | 157 | 0 | **157** | 🟡 需关注 |
+| **1. 资源路径契约 (Resource Path)** | **0** | 155 | 0 | **155** | 🟡 需关注 |
 | **2. 节点路径契约 (Node Path)** | **0** | 0 | 0 | **0** | 🟢 契约完好 |
 | **3. 动态反射契约 (Reflection)** | **0** | 0 | 13 | **13** | 🟢 契约完好 |
 | **4. 动画轨道契约 (Anim Track)** | **0** | 0 | 0 | **0** | 🟢 契约完好 |
 | **5. 中文字典键契约 (Dict Key)** | **0** | 872 | 925 | **1797** | 🟡 需关注 |
 
-**总计缺陷与待收敛项**: `1967 个`（ERROR: `0` / WARNING: `1029` / INFO: `938`）
+**总计缺陷与待收敛项**: `1965 个`（ERROR: `0` / WARNING: `1027` / INFO: `938`）
 
 ---
 
-## 二、1. 资源路径契约 (Resource Path) 详细清单 (157 条)
+## 二、1. 资源路径契约 (Resource Path) 详细清单 (155 条)
 
 | 严重等级 | 文件位置 | 字面量内容 | 诊断原因与修复建议 |
 |:---:|:---|:---|:---|
@@ -52,21 +52,21 @@
 | `WARNING` | `Global.gd:1281` | `res://Art/all_number/lj/lj_` | 资源文件或目录不存在: 分段不存在: lj_ |
 | `WARNING` | `Global.gd:1282` | `res://Art/all_number/monster/physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
 | `WARNING` | `Global.gd:1283` | `res://Art/all_number/monster/magic/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
-| `WARNING` | `Global.gd:1984` | `res://Scene/monster/monster_` | 资源文件或目录不存在: 分段不存在: monster_ |
-| `WARNING` | `Global.gd:2085` | `res://Art/all_number/cure/cure_` | 资源文件或目录不存在: 分段不存在: cure_ |
-| `WARNING` | `Global.gd:2086` | `res://Art/all_number/cure_mp/CureMp_` | 资源文件或目录不存在: 分段不存在: CureMp_ |
-| `WARNING` | `Global.gd:2087` | `res://Art/all_number/reduce_mp/ReduceMp_` | 资源文件或目录不存在: 分段不存在: ReduceMp_ |
-| `WARNING` | `Global.gd:2088` | `res://Art/all_number/physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
-| `WARNING` | `Global.gd:2089` | `res://Art/all_number/physicscrit/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
-| `WARNING` | `Global.gd:2090` | `res://Art/all_number/magic/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
-| `WARNING` | `Global.gd:2091` | `res://Art/all_number/magic/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
-| `WARNING` | `Global.gd:2092` | `res://Art/all_number/magiccrit/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
-| `WARNING` | `Global.gd:2093` | `res://Art/all_number/real/real_` | 资源文件或目录不存在: 分段不存在: real_ |
-| `WARNING` | `Global.gd:2094` | `res://Art/all_number/realcrit/real_` | 资源文件或目录不存在: 分段不存在: real_ |
-| `WARNING` | `Global.gd:2095` | `res://Art/all_number/lj/lj_` | 资源文件或目录不存在: 分段不存在: lj_ |
-| `WARNING` | `Global.gd:2096` | `res://Art/all_number/monster/physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
+| `WARNING` | `Global.gd:1986` | `res://Scene/monster/monster_` | 资源文件或目录不存在: 分段不存在: monster_ |
+| `WARNING` | `Global.gd:2087` | `res://Art/all_number/cure/cure_` | 资源文件或目录不存在: 分段不存在: cure_ |
+| `WARNING` | `Global.gd:2088` | `res://Art/all_number/cure_mp/CureMp_` | 资源文件或目录不存在: 分段不存在: CureMp_ |
+| `WARNING` | `Global.gd:2089` | `res://Art/all_number/reduce_mp/ReduceMp_` | 资源文件或目录不存在: 分段不存在: ReduceMp_ |
+| `WARNING` | `Global.gd:2090` | `res://Art/all_number/physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
+| `WARNING` | `Global.gd:2091` | `res://Art/all_number/physicscrit/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
+| `WARNING` | `Global.gd:2092` | `res://Art/all_number/magic/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
+| `WARNING` | `Global.gd:2093` | `res://Art/all_number/magic/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
+| `WARNING` | `Global.gd:2094` | `res://Art/all_number/magiccrit/magic_` | 资源文件或目录不存在: 分段不存在: magic_ |
+| `WARNING` | `Global.gd:2095` | `res://Art/all_number/real/real_` | 资源文件或目录不存在: 分段不存在: real_ |
+| `WARNING` | `Global.gd:2096` | `res://Art/all_number/realcrit/real_` | 资源文件或目录不存在: 分段不存在: real_ |
+| `WARNING` | `Global.gd:2097` | `res://Art/all_number/lj/lj_` | 资源文件或目录不存在: 分段不存在: lj_ |
+| `WARNING` | `Global.gd:2098` | `res://Art/all_number/monster/physics/physics_` | 资源文件或目录不存在: 分段不存在: physics_ |
 
-> *(剩余 117 条已收入机读 JSON 报告 docs/contract_audit.json)*
+> *(剩余 115 条已收入机读 JSON 报告 docs/contract_audit.json)*
 
 
 ## 二、2. 节点路径契约 (Node Path) 详细清单 (0 条)
@@ -77,7 +77,7 @@
 
 | 严重等级 | 文件位置 | 字面量内容 | 诊断原因与修复建议 |
 |:---:|:---|:---|:---|
-| `INFO` | `Global.gd:3427` | `get_rect` | 动态反射调用的方法 'get_rect' 在工程中无对应显式声明 |
+| `INFO` | `Global.gd:3429` | `get_rect` | 动态反射调用的方法 'get_rect' 在工程中无对应显式声明 |
 | `INFO` | `joy.gd:88` | `get_size` | 动态反射调用的方法 'get_size' 在工程中无对应显式声明 |
 | `INFO` | `Script/base/base_monster.gd:2335` | `get_buff_node` | 动态反射调用的方法 'get_buff_node' 在工程中无对应显式声明 |
 | `INFO` | `Script/base/summon_base_monster.gd:555` | `get_hit_damage` | 动态反射调用的方法 'get_hit_damage' 在工程中无对应显式声明 |
@@ -99,11 +99,11 @@
 
 | 严重等级 | 文件位置 | 字面量内容 | 诊断原因与修复建议 |
 |:---:|:---|:---|:---|
-| `WARNING` | `Global.gd:2218` | `技能键位` | 硬编码中文字典键 '技能键位' 已在契约表收录，建议使用 'DataKeys.Skill.KEYMAP' → **建议**: `DataKeys.Skill.KEYMAP` |
-| `WARNING` | `Global.gd:4312` | `阶段` | 硬编码中文字典键 '阶段' 已在契约表收录，建议使用 'DataKeys.Pet.STAGE' → **建议**: `DataKeys.Pet.STAGE` |
-| `WARNING` | `Global.gd:4936` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
-| `WARNING` | `Global.gd:4939` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
-| `WARNING` | `Global.gd:4939` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
+| `WARNING` | `Global.gd:2220` | `技能键位` | 硬编码中文字典键 '技能键位' 已在契约表收录，建议使用 'DataKeys.Skill.KEYMAP' → **建议**: `DataKeys.Skill.KEYMAP` |
+| `WARNING` | `Global.gd:4314` | `阶段` | 硬编码中文字典键 '阶段' 已在契约表收录，建议使用 'DataKeys.Pet.STAGE' → **建议**: `DataKeys.Pet.STAGE` |
+| `WARNING` | `Global.gd:4938` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
+| `WARNING` | `Global.gd:4941` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
+| `WARNING` | `Global.gd:4941` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
 | `WARNING` | `Passive_Skills.gd:75` | `被动技能` | 硬编码中文字典键 '被动技能' 已在契约表收录，建议使用 'DataKeys.Skill.PASSIVE' → **建议**: `DataKeys.Skill.PASSIVE` |
 | `WARNING` | `Passive_Skills.gd:89` | `被动技能` | 硬编码中文字典键 '被动技能' 已在契约表收录，建议使用 'DataKeys.Skill.PASSIVE' → **建议**: `DataKeys.Skill.PASSIVE` |
 | `WARNING` | `Passive_Skills.gd:99` | `被动技能` | 硬编码中文字典键 '被动技能' 已在契约表收录，建议使用 'DataKeys.Skill.PASSIVE' → **建议**: `DataKeys.Skill.PASSIVE` |

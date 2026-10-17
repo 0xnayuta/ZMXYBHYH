@@ -482,7 +482,7 @@ func _on_skill_awaken_pressed(skill_index: int) -> void:
 	if icon_button != null:
 		display_icon = icon_button.icon
 	if display_icon == null and skill_index >= 0 and skill_index < skill_list.size():
-		var icon_path := "res://Art/skill/SkillIcon/" + str(skill_list[skill_index]) + ".png"
+		var icon_path := "res://Art/skill/skill_icon/" + str(skill_list[skill_index]) + ".png"
 		if ResourceLoader.exists(icon_path):
 			display_icon = load(icon_path)
 
@@ -542,11 +542,11 @@ func update_skill_name_and_icon(skill_num: int, skill_internal: String, variant_
 	if icon_node and icon_node is Button:
 		var icon_suffix = variant["icon_suffix"]
 		var icon_name = skill_internal + icon_suffix
-		var icon_path = "res://Art/skill/SkillIcon/" + icon_name + ".png"
+		var icon_path = "res://Art/skill/skill_icon/" + icon_name + ".png"
 		if ResourceLoader.exists(icon_path):
 			icon_node.set_button_icon(load(icon_path))
 		else:
-			var fallback_path = "res://Art/skill/SkillIcon/" + skill_internal + ".png"
+			var fallback_path = "res://Art/skill/skill_icon/" + skill_internal + ".png"
 			icon_node.set_button_icon(load(fallback_path))
 
 
@@ -592,7 +592,7 @@ func set_skill_icon():
 		var skill_nbname = skill_list[i]
 		if skill_nbname == "hmz_ws":
 			skill_nbname = "hmz_ws"
-		target.set_button_icon(load("res://Art/skill/SkillIcon/" + str(skill_nbname) + ".png"))
+		target.set_button_icon(load("res://Art/skill/skill_icon/" + str(skill_nbname) + ".png"))
 
 
 func set_skill_name():

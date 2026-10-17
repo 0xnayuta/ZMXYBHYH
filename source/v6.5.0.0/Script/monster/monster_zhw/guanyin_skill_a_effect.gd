@@ -1,8 +1,8 @@
 extends Node2D
 class_name GuanyinSkillAEffect
 
-const ATLAS_PATH := "res://Art/monster/GuanyinSpine/SkillA/600020_attack_hit1.atlas"
-const SKELETON_PATH := "res://Art/monster/GuanyinSpine/SkillA/600020_attack_hit1.spine-json"
+const ATLAS_PATH := "res://Art/monster/guanyin_spine/SkillA/600020_attack_hit1.atlas"
+const SKELETON_PATH := "res://Art/monster/guanyin_spine/SkillA/600020_attack_hit1.spine-json"
 const EFFECT_DURATION := 1.2
 const HIT_TIME := 0.4
 const HIT_POSITION := Vector2(-23.45, 211.77)

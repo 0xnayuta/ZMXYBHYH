@@ -1,10 +1,10 @@
 extends Node2D
 class_name LyfbAwakenEffect
 
-const ATLAS_PATH := "res://Art/hero_picture/Role2/LYFBAwaken/runtime/HeroF_5012_skill.atlas"
-const SKELETON_PATH := "res://Art/hero_picture/Role2/LYFBAwaken/runtime/HeroF_5012_skill07-gray.spine-json"
-const RED_SKELETON_PATH := "res://Art/hero_picture/Role2/LYFBAwaken/runtime/HeroF_5012_skill07-red.spine-json"
-const FALLBACK_TEXTURE_PATH := "res://Art/hero_picture/Role2/LYFBAwaken/runtime/HeroF_5012_skill.png"
+const ATLAS_PATH := "res://Art/hero_picture/role_2/LYFBAwaken/runtime/HeroF_5012_skill.atlas"
+const SKELETON_PATH := "res://Art/hero_picture/role_2/LYFBAwaken/runtime/HeroF_5012_skill07-gray.spine-json"
+const RED_SKELETON_PATH := "res://Art/hero_picture/role_2/LYFBAwaken/runtime/HeroF_5012_skill07-red.spine-json"
+const FALLBACK_TEXTURE_PATH := "res://Art/hero_picture/role_2/LYFBAwaken/runtime/HeroF_5012_skill.png"
 const SPINE_SCALE := Vector2(0.2, 0.2)
 const SPINE_DURATION := 1.05
 

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" path="res://Scene/base/base_monster.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/monster/monster_46.gd" id="2"]
 [ext_resource type="Texture2D" path="res://Art/monster/Monster_43/GhostDoor_3/GhostDoor_3.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/monster/Monster4/Boss_Death.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/monster/monster_4/Boss_Death.png" id="4"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("3")

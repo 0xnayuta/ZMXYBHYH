@@ -1,6 +1,6 @@
 # ZMXYBHYH 全工程资产拓扑与死代码审计报告 (Phase 1)
 
-> 生成时间: 2026-10-18 01:45:45  
+> 生成时间: 2026-10-18 02:49:47  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
 > 引擎环境: `Godot 4.7.2 Headless`
 
@@ -29,7 +29,7 @@
 - `load("res://Art/main_game/choose_player/" + ...)`
 - `load("res://Art/main_game/choose_player/xx_" + ...)`
 - `load("res://Art/monster/monster_head/" + ...)`
-- `load("res://Art/skill/SkillIcon/" + ...)`
+- `load("res://Art/skill/skill_icon/" + ...)`
 
 ---
 

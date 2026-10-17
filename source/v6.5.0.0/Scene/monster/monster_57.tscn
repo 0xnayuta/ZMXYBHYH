@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" path="res://Art/monster/Monster_55/Lunzi2.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/monster/Monster_57/Walk.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/monster/Monster_57/Hurt.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/monster/Monster4/Boss_Death.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/monster/monster_4/Boss_Death.png" id="6"]
 [ext_resource type="Texture2D" path="res://Art/monster/Monster_57/Skill.png" id="7"]
 [ext_resource type="Texture2D" path="res://Art/monster/Monster_57/Hit.png" id="8"]
 

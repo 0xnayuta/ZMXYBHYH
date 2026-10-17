@@ -1,8 +1,8 @@
 extends Node2D
 class_name GuanyinSkill2Effect
 
-const ATLAS_1 := "res://Art/monster/GuanyinSpine/Skill2Cropped/600020_skill1.atlas"
-const SKELETON_1 := "res://Art/monster/GuanyinSpine/Skill2Cropped/600020_skill1.spine-json"
+const ATLAS_1 := "res://Art/monster/guanyin_spine/Skill2Cropped/600020_skill1.atlas"
+const SKELETON_1 := "res://Art/monster/guanyin_spine/Skill2Cropped/600020_skill1.spine-json"
 const VISUAL_SCALE := 1.0
 const EFFECT_DURATION := 3.45
 const DAMAGE_RANGE_SCALE := 1.5
