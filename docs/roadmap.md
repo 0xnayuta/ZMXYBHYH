@@ -528,10 +528,13 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 - **核心任务**：`Hero` → `hero`、`MainSceneMusic` → `main_scene_music`、`MonsterHurt` → `monster_hurt`、`Hero/Role3~5` → `hero/role_3~5`；同步 531 处引用（含动态拼接前缀）。
 - **验收指标**：`Music/` 100% snake；0 断裂引用；音频加载实测无异常（战斗音效 / 背景音乐抽样）。
 
-#### 2. Phase 10-2: `Art/` 顶层二级目录分批收敛（~39 个）
-- **核心任务**：按引用量**升序**分批（先 `zhuxianjianzhen` 64 / `AllNumber` 58 / `Main_menu` 62 等小目标，后 `Monster` 1,733 / `Level` 838 等大目标），每批 1~3 个目录；统一经 `rename_path.py`，逐目录原子提交。
+#### 2. Phase 10-2: `Art/` 顶层二级目录分批收敛（25 个非规范目录） [进行中 · In Progress]
+- **全量梯队排期（按引用量严格升序）**：
+  1. **第一批（超低引用组，≤ 5 处 · 已完成）**：`Bullet` (3) -> `bullet`、`EquipmentEffects` (3) -> `equipment_effects`、`StrikeSpecialEffects` (4) -> `strike_special_effects`、`Trap` (4) -> `trap`；
+  2. **第二批（低引用组，20 ~ 100 处）**：`Task` (28)、`LevelInfoBg` (43)、`RoleInfoIcon` (51)、`LDL` (61)、`AllTX` (67)、`Shop` (79)、`Game_2` (80)；
+  3. **第三批（中等引用组，100 ~ 500 处）**：`MainGame` (147)、`Skill` (188)、`AddEffect` (307)、`Constellations` (307)、`Game_4` (392)、`ItemIcon` (453)；
+  4. **第四批（高引用与核心资源组，500 ~ 8000+ 处）**：`Game_3` (518)、`Mount` (644)、`MagicWeapon` (1122)、`BackPack` (1411)、`Pet` (1965)、`HeroPicture` (2196)、`Level` (3212)、`Monster` (8093)。
 - **验收指标**：二级目录 100% snake；每批门禁全绿 + 实机冒烟。
-
 #### 3. Phase 10-3: `Art/` 三级及深层目录收敛（分级推进，由易到难）
 - **推进顺序**：
   1. **业务语义 Pascal 目录**（`HeroPicture/Role1`、`Monster/Monster12`、`Game_3/LevelButtonIcon` 等）→ `role_1` / `monster_12` / `level_button_icon`；

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bamsetxy4x8fm"
-path="res://.godot/imported/effect9_2.mp3-de9f50b87e738eb4795593a46758c6e6.mp3str"
+path="res://.godot/imported/effect9_2.mp3-739edac38d8f74cec7b9c2a34328ce0f.mp3str"
 
 [deps]
 
 source_file="res://Music/hero/role_5/effect9_2.mp3"
-dest_files=["res://.godot/imported/effect9_2.mp3-de9f50b87e738eb4795593a46758c6e6.mp3str"]
+dest_files=["res://.godot/imported/effect9_2.mp3-739edac38d8f74cec7b9c2a34328ce0f.mp3str"]
 
 [params]
 

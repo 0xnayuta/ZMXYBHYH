@@ -2,13 +2,13 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://b786pickupm09"
-path="res://.godot/imported/86_pickup.mp3-44dcb7dcc4602c39e316565e951994c1.mp3str"
+uid="uid://b786pickupm1a"
+path="res://.godot/imported/86_pickup.mp3-9b485035cb5ef40b5217bda4d768703c.mp3str"
 
 [deps]
 
 source_file="res://Music/level/86_pickup.mp3"
-dest_files=["res://.godot/imported/86_pickup.mp3-44dcb7dcc4602c39e316565e951994c1.mp3str"]
+dest_files=["res://.godot/imported/86_pickup.mp3-9b485035cb5ef40b5217bda4d768703c.mp3str"]
 
 [params]
 

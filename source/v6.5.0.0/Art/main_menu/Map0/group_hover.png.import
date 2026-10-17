@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7ps2jr8oled5"
-path="res://.godot/imported/group_hover.png-8c9ac0058f5e6263ef18cae9436aa86b.ctex"
+path="res://.godot/imported/group_hover.png-15755fcee14bf98d559420d5445f9bcc.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/main_menu/Map0/group_hover.png"
-dest_files=["res://.godot/imported/group_hover.png-8c9ac0058f5e6263ef18cae9436aa86b.ctex"]
+dest_files=["res://.godot/imported/group_hover.png-15755fcee14bf98d559420d5445f9bcc.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv44h4owvlinm"
-path="res://.godot/imported/Monster14Bullet.png-8e31b7d4654c2be3c07db708d619e131.ctex"
+uid="uid://cil776p6gpnjj"
+path="res://.godot/imported/yuegong.png-489dd576eeeea3a783701234d866c15d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Bullet/Monster14Bullet.png"
-dest_files=["res://.godot/imported/Monster14Bullet.png-8e31b7d4654c2be3c07db708d619e131.ctex"]
+source_file="res://Art/equipment_effects/MoonPalace/yuegong.png"
+dest_files=["res://.godot/imported/yuegong.png-489dd576eeeea3a783701234d866c15d.ctex"]
 
 [params]
 

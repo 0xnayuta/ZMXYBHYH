@@ -2,13 +2,13 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://b7arrowhit1m01"
-path="res://.godot/imported/ArrowHit1.mp3-dc69e9b8428d59aa6acdb625d2df6b0e.mp3str"
+uid="uid://ktynxt78lq41"
+path="res://.godot/imported/ArrowHit1.mp3-853db0f819ec9af627ce1d8a5efee46c.mp3str"
 
 [deps]
 
 source_file="res://Music/hero/role_4/ArrowHit1.mp3"
-dest_files=["res://.godot/imported/ArrowHit1.mp3-dc69e9b8428d59aa6acdb625d2df6b0e.mp3str"]
+dest_files=["res://.godot/imported/ArrowHit1.mp3-853db0f819ec9af627ce1d8a5efee46c.mp3str"]
 
 [params]
 

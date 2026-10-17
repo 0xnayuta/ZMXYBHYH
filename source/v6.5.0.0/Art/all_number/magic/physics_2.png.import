@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ovgpwudwtuki"
-path="res://.godot/imported/physics_2.png-0a98d9a408c007f70f5e891b99562d35.ctex"
+path="res://.godot/imported/physics_2.png-d76e5994781014f31dab21d95bfe2d02.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/all_number/magic/physics_2.png"
-dest_files=["res://.godot/imported/physics_2.png-0a98d9a408c007f70f5e891b99562d35.ctex"]
+dest_files=["res://.godot/imported/physics_2.png-d76e5994781014f31dab21d95bfe2d02.ctex"]
 
 [params]
 

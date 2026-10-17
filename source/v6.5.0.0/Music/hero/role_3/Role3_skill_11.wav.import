@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dromkomafmb25"
-path="res://.godot/imported/Role3_skill_11.wav-487c3177b1aac483b7af72c44e62f76f.sample"
+path="res://.godot/imported/Role3_skill_11.wav-688bd342becd71331709845a34ab7466.sample"
 
 [deps]
 
 source_file="res://Music/hero/role_3/Role3_skill_11.wav"
-dest_files=["res://.godot/imported/Role3_skill_11.wav-487c3177b1aac483b7af72c44e62f76f.sample"]
+dest_files=["res://.godot/imported/Role3_skill_11.wav-688bd342becd71331709845a34ab7466.sample"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg4vq1ubc5deu"
-path="res://.godot/imported/1.png-6e63c8dc69884333fce1b7de8b58a565.ctex"
+uid="uid://cv44h4owvlinm"
+path="res://.godot/imported/Monster14Bullet.png-ac5dd91e27c0e7112c6686cb416b9416.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Trap/Trap_1/1.png"
-dest_files=["res://.godot/imported/1.png-6e63c8dc69884333fce1b7de8b58a565.ctex"]
+source_file="res://Art/bullet/Monster14Bullet.png"
+dest_files=["res://.godot/imported/Monster14Bullet.png-ac5dd91e27c0e7112c6686cb416b9416.ctex"]
 
 [params]
 

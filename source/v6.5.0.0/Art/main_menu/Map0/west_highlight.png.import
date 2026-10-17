@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnx0ebdly6ox8"
-path="res://.godot/imported/west_highlight.png-d3fe87e89c0c4b0a2ad53806527aa8fc.ctex"
+path="res://.godot/imported/west_highlight.png-3e633d57c909b729c4e5707b5f29f1d3.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/main_menu/Map0/west_highlight.png"
-dest_files=["res://.godot/imported/west_highlight.png-d3fe87e89c0c4b0a2ad53806527aa8fc.ctex"]
+dest_files=["res://.godot/imported/west_highlight.png-3e633d57c909b729c4e5707b5f29f1d3.ctex"]
 
 [params]
 

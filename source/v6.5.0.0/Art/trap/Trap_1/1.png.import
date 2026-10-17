@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cil776p6gpnjj"
-path="res://.godot/imported/yuegong.png-abfcb76b77a4494d83b871ff2947e769.ctex"
+uid="uid://cg4vq1ubc5deu"
+path="res://.godot/imported/1.png-fe21f35087997df4dfb81ff871167518.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/EquipmentEffects/MoonPalace/yuegong.png"
-dest_files=["res://.godot/imported/yuegong.png-abfcb76b77a4494d83b871ff2947e769.ctex"]
+source_file="res://Art/trap/Trap_1/1.png"
+dest_files=["res://.godot/imported/1.png-fe21f35087997df4dfb81ff871167518.ctex"]
 
 [params]
 

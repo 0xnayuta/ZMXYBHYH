@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://j7ro0tdanpl4"
-path="res://.godot/imported/4.png-ba0be297864af0d3662649ff3b4b24e7.ctex"
+path="res://.godot/imported/4.png-4db579912d514682fd721e0e9a3d0abe.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/zhuxianjianzhen/zhu_xian_sword/sprites/DefineSprite_47/4.png"
-dest_files=["res://.godot/imported/4.png-ba0be297864af0d3662649ff3b4b24e7.ctex"]
+dest_files=["res://.godot/imported/4.png-4db579912d514682fd721e0e9a3d0abe.ctex"]
 
 [params]
 

@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Scene/monster_damage/monster_be_hit.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/StrikeSpecialEffects/MonsterBeHurt_1.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/StrikeSpecialEffects/MonsterBeHurt_2.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/strike_special_effects/MonsterBeHurt_1.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/strike_special_effects/MonsterBeHurt_2.png" id="3"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("2")

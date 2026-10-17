@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rm1ekh2ib3yj"
-path="res://.godot/imported/MonsterBeHurt_1.png-8dd07bee20acfb12cdb19352d9ab635c.ctex"
+path="res://.godot/imported/MonsterBeHurt_1.png-3510dc8fba914193b4daad231bfc4fb9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/StrikeSpecialEffects/MonsterBeHurt_1.png"
-dest_files=["res://.godot/imported/MonsterBeHurt_1.png-8dd07bee20acfb12cdb19352d9ab635c.ctex"]
+source_file="res://Art/strike_special_effects/MonsterBeHurt_1.png"
+dest_files=["res://.godot/imported/MonsterBeHurt_1.png-3510dc8fba914193b4daad231bfc4fb9.ctex"]
 
 [params]
 

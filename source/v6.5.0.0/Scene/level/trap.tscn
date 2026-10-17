@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/level/trap.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/Trap/Trap_1/1.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Trap/Trap_1/2.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/trap/Trap_1/1.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/trap/Trap_1/2.png" id="3"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 

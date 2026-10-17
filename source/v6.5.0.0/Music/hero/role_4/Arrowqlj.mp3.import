@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://b7arrowqljm05"
-path="res://.godot/imported/Arrowqlj.mp3-fa4d3d73d436bfe1fe2df79892213596.mp3str"
+path="res://.godot/imported/Arrowqlj.mp3-6b5a040d53e306a8e67e2966ae9c49df.mp3str"
 
 [deps]
 
 source_file="res://Music/hero/role_4/Arrowqlj.mp3"
-dest_files=["res://.godot/imported/Arrowqlj.mp3-fa4d3d73d436bfe1fe2df79892213596.mp3str"]
+dest_files=["res://.godot/imported/Arrowqlj.mp3-6b5a040d53e306a8e67e2966ae9c49df.mp3str"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhlnd0uavq4wq"
-path="res://.godot/imported/real_3.png-9d8e47268a8dc0c447dea10f8c435acb.ctex"
+path="res://.godot/imported/real_3.png-62f5eaf273d65b9186f684e9734adf6b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Art/all_number/realcrit/real_3.png"
-dest_files=["res://.godot/imported/real_3.png-9d8e47268a8dc0c447dea10f8c435acb.ctex"]
+dest_files=["res://.godot/imported/real_3.png-62f5eaf273d65b9186f684e9734adf6b.ctex"]
 
 [params]
 
