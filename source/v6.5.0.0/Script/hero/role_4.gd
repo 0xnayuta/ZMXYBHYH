@@ -692,43 +692,43 @@ func _is_valid_role4_skill_target(target: Node) -> bool:
 func add_music(num: int):
 	match int(num):
 		1:
-			Global.add_sound(self, "res://Music/Hero/Role4/ShovelHit1.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/ShovelHit1.mp3")
 		2:
-			Global.add_sound(self, "res://Music/Hero/Role4/ShovelHit2.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/ShovelHit2.mp3")
 		3:
-			Global.add_sound(self, "res://Music/Hero/Role4/ShovelHit3.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/ShovelHit3.mp3")
 		4:
-			Global.add_sound(self, "res://Music/Hero/Role4/ArrowHit1.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/ArrowHit1.mp3")
 		5:
-			Global.add_sound(self, "res://Music/Hero/Role4/ArrowHit2.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/ArrowHit2.mp3")
 		6:
-			Global.add_sound(self, "res://Music/Hero/Role4/Shovelqlj.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/Shovelqlj.mp3")
 		7:
-			Global.add_sound(self, "res://Music/Hero/Role4/Arrowqlj.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/Arrowqlj.mp3")
 		8:
-			Global.add_sound(self, "res://Music/Hero/Role4/Shoveldcj.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/Shoveldcj.mp3")
 		9:
-			Global.add_sound(self, "res://Music/Hero/Role4/Arrowdcj.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/Arrowdcj.mp3")
 		10:
-			Global.add_sound(self, "res://Music/Hero/Role4/Shovelmmw.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/Shovelmmw.mp3")
 		11:
-			Global.add_sound(self, "res://Music/Hero/Role4/Arrowmmw.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/Arrowmmw.mp3")
 		12:
-			Global.add_sound(self, "res://Music/Hero/Role4/Shovelzq.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/Shovelzq.mp3")
 		13:
-			Global.add_sound(self, "res://Music/Hero/Role4/Arrowzq.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/Arrowzq.mp3")
 		14:
-			Global.add_sound(self, "res://Music/Hero/Role4/Arrowtkj.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/Arrowtkj.mp3")
 		15:
-			Global.add_sound(self, "res://Music/Hero/Role4/jdz.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/jdz.mp3")
 		16:
-			Global.add_sound(self, "res://Music/Hero/Role4/lhsq.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/lhsq.mp3")
 		17:
-			Global.add_sound(self, "res://Music/Hero/Role4/mds.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/mds.mp3")
 		18:
-			Global.add_sound(self, "res://Music/Hero/Role4/wdww.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/wdww.mp3")
 		19:
-			Global.add_sound(self, "res://Music/Hero/Role4/effect6_repeat.mp3")
+			Global.add_sound(self, "res://Music/hero/role_4/effect6_repeat.mp3")
 
 
 func _on_nor_mal_hit_interv_timeout() -> void:
@@ -828,7 +828,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 				)
 	Global.total_role_hurt += int(last_hit)
 	if not is_miss:
-		Global.add_sound(self, "res://Music/Hero/68_Role3_beAttack.mp3")
+		Global.add_sound(self, "res://Music/hero/68_Role3_beAttack.mp3")
 		Global.add_mr_hurt(pz, Vector2(5, -20))
 		if not is_t_mc:
 			_add_role_protect(randi_range(3, 7))

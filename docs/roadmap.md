@@ -524,7 +524,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 
 ### 10.2 实施子阶段规划（四步走）
 
-#### 1. Phase 10-1: `Music/` 全量收敛（6 目录 / 531 引用）
+#### 1. Phase 10-1: `Music/` 全量收敛（6 目录 / 531 引用） [已完成 · Done]
 - **核心任务**：`Hero` → `hero`、`MainSceneMusic` → `main_scene_music`、`MonsterHurt` → `monster_hurt`、`Hero/Role3~5` → `hero/role_3~5`；同步 531 处引用（含动态拼接前缀）。
 - **验收指标**：`Music/` 100% snake；0 断裂引用；音频加载实测无异常（战斗音效 / 背景音乐抽样）。
 

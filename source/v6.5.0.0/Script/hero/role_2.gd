@@ -706,25 +706,25 @@ func _on_normal_hit_reduce_timeout() -> void:
 func add_music(num):
 	match num:
 		1:
-			Global.add_sound(self, "res://Music/Hero/58_Role2_hit1.mp3")
+			Global.add_sound(self, "res://Music/hero/58_Role2_hit1.mp3")
 		2:
-			Global.add_sound(self, "res://Music/Hero/59_Role2_hit2.mp3")
+			Global.add_sound(self, "res://Music/hero/59_Role2_hit2.mp3")
 		3:
-			Global.add_sound(self, "res://Music/Hero/57_Role2_hit8.mp3")
+			Global.add_sound(self, "res://Music/hero/57_Role2_hit8.mp3")
 		4:
-			Global.add_sound(self, "res://Music/Hero/60_Role2_hit3.mp3")
+			Global.add_sound(self, "res://Music/hero/60_Role2_hit3.mp3")
 		5:
-			Global.add_sound(self, "res://Music/Hero/51_Role2_hit10.mp3")
+			Global.add_sound(self, "res://Music/hero/51_Role2_hit10.mp3")
 		6:
-			Global.add_sound(self, "res://Music/Hero/11_Role2_hit4.mp3")
+			Global.add_sound(self, "res://Music/hero/11_Role2_hit4.mp3")
 		7:
-			Global.add_sound(self, "res://Music/Hero/32_Role2_hit6.mp3")
+			Global.add_sound(self, "res://Music/hero/32_Role2_hit6.mp3")
 		8:
-			Global.add_sound(self, "res://Music/Hero/40_Role2_hit7.mp3")
+			Global.add_sound(self, "res://Music/hero/40_Role2_hit7.mp3")
 		9:
-			Global.add_sound(self, "res://Music/Hero/39_Role2_hit9.mp3")
+			Global.add_sound(self, "res://Music/hero/39_Role2_hit9.mp3")
 		10:
-			Global.add_sound(self, "res://Music/Hero/75_Role2_dead.mp3")
+			Global.add_sound(self, "res://Music/hero/75_Role2_dead.mp3")
 
 
 func add_shake(power, time, inter):

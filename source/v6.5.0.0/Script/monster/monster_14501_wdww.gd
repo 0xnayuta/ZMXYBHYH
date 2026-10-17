@@ -56,11 +56,11 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	Global.total_role_hurt += int(last_hit)
 
 	if Global.get_player is Role1Hero:
-		Global.add_sound(self, "res://Music/Hero/49_Role1_beAttack.mp3")
+		Global.add_sound(self, "res://Music/hero/49_Role1_beAttack.mp3")
 	elif Global.get_player is Role2Hero:
-		Global.add_sound(self, "res://Music/Hero/62_Role2_beAttack.mp3")
+		Global.add_sound(self, "res://Music/hero/62_Role2_beAttack.mp3")
 	else:
-		Global.add_sound(self, "res://Music/Hero/68_Role3_beAttack.mp3")
+		Global.add_sound(self, "res://Music/hero/68_Role3_beAttack.mp3")
 		Global.add_mr_hurt(Global.get_player.pz, Vector2(5, -20))
 		if not Global.get_player.is_t_mc:
 			Global.get_player.current_protect += randi_range(3, 7)

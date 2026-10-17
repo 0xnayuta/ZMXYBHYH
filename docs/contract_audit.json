@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "scan_time": "2026-10-17 19:33:09",
+    "scan_time": "2026-10-17 19:40:56",
     "project_dir": "G:\\source\\repos\\ZMXYBHYH\\source\\v6.5.0.0",
     "stats": {
       "total_findings": 1967,
@@ -13,7 +13,7 @@
         "reflection": 13,
         "dict_key": 1797
       },
-      "duration_seconds": 5.46,
+      "duration_seconds": 5.76,
       "scripts_scanned": 722,
       "scenes_scanned": 1132
     }

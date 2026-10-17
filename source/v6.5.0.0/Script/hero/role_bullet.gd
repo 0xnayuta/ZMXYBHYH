@@ -364,21 +364,21 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 func add_music(num):
 	match num:
 		1:
-			Global.add_sound(self, "res://Music/Hero/58_Role2_hit1.mp3")
+			Global.add_sound(self, "res://Music/hero/58_Role2_hit1.mp3")
 		2:
-			Global.add_sound(self, "res://Music/Hero/59_Role2_hit2.mp3")
+			Global.add_sound(self, "res://Music/hero/59_Role2_hit2.mp3")
 		3:
-			Global.add_sound(self, "res://Music/Hero/57_Role2_hit8.mp3")
+			Global.add_sound(self, "res://Music/hero/57_Role2_hit8.mp3")
 		4:
-			Global.add_sound(self, "res://Music/Hero/60_Role2_hit3.mp3")
+			Global.add_sound(self, "res://Music/hero/60_Role2_hit3.mp3")
 		5:
-			Global.add_sound(self, "res://Music/Hero/51_Role2_hit10.mp3")
+			Global.add_sound(self, "res://Music/hero/51_Role2_hit10.mp3")
 		6:
-			Global.add_sound(self, "res://Music/Hero/11_Role2_hit4.mp3")
+			Global.add_sound(self, "res://Music/hero/11_Role2_hit4.mp3")
 		7:
-			Global.add_sound(self, "res://Music/Hero/effect8.mp3")
+			Global.add_sound(self, "res://Music/hero/effect8.mp3")
 		8:
-			Global.add_sound(self, "res://Music/Hero/Role5/attack_repeat.mp3")
+			Global.add_sound(self, "res://Music/hero/role_5/attack_repeat.mp3")
 
 
 func _is_summon_or_pet_target(target: Node) -> bool:

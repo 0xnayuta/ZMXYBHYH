@@ -1719,13 +1719,13 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	Global.total_role_hurt += int(last_hit)
 	if not is_miss:
 		if self is Role1Hero:
-			Global.add_sound(self, "res://Music/Hero/49_Role1_beAttack.mp3")
+			Global.add_sound(self, "res://Music/hero/49_Role1_beAttack.mp3")
 		elif self is Role2Hero:
-			Global.add_sound(self, "res://Music/Hero/62_Role2_beAttack.mp3")
+			Global.add_sound(self, "res://Music/hero/62_Role2_beAttack.mp3")
 		elif self is Role5Hero:
-			Global.add_sound(self, "res://Music/Hero/Role5/13_hurtStand.mp3")
+			Global.add_sound(self, "res://Music/hero/role_5/13_hurtStand.mp3")
 		else:
-			Global.add_sound(self, "res://Music/Hero/68_Role3_beAttack.mp3")
+			Global.add_sound(self, "res://Music/hero/68_Role3_beAttack.mp3")
 		_add_role_hit_effect_throttled()
 		if not is_t_mc:
 			_add_role_protect(randi_range(3, 7))
@@ -3015,7 +3015,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 	if self is Role1Hero:
 		if get_action == "qsez":
 			velocity.x = 0
-			Global.add_sound(self, "res://Music/Hero/27_Role1_hit13_2.mp3")
+			Global.add_sound(self, "res://Music/hero/27_Role1_hit13_2.mp3")
 			if not is_call:
 				is_call = true
 				var pp = [

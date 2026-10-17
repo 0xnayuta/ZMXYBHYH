@@ -188,7 +188,7 @@ func play_hit_effect(attacker = null) -> void:
 	if PlayerData.player_data["Myself"] != 2:
 		Global.add_sound(self, "res://Music/monster_hurt/6_BeattackByRole1.mp3")
 	else:
-		Global.add_sound(self, "res://Music/Hero/9_BeattackByRole2.mp3")
+		Global.add_sound(self, "res://Music/hero/9_BeattackByRole2.mp3")
 	if not death() and mr_player.has_animation("hurt"):
 		call_deferred("_deferred_play_hurt_animation")
 
