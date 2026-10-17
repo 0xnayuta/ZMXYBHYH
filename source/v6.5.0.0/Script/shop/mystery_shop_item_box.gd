@@ -97,7 +97,7 @@ func open():
 	need_value.visible = true
 	purchase_button.disabled = false
 	purchase_button.visible = true
-	mystery_shop_item_box.texture = load("res://Art/Shop/ShopItemBox.png")
+	mystery_shop_item_box.texture = load("res://Art/shop/ShopItemBox.png")
 	self.set_box()
 	item_num.text = str(AE.all_equipment[new_list["Name"]][DataKeys.NAME]) + "×" + str(new_list["Value"])
 	need_value.text = str(new_list["Need"]) + "灵魂"
@@ -105,7 +105,7 @@ func open():
 
 func close():
 	is_open = false
-	mystery_shop_item_box.texture = load("res://Art/Shop/CloseItemBox.png")
+	mystery_shop_item_box.texture = load("res://Art/shop/CloseItemBox.png")
 	item_box.disabled = true
 	item_box.visible = false
 	item_num.text = ""

@@ -4,8 +4,8 @@
 [ext_resource type="FontFile" path="res://Font/Aa梦里掏花对月饮_mianfeiziti.com.ttf" id="2"]
 [ext_resource type="FontFile" path="res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf" id="3"]
 [ext_resource type="Texture2D" path="res://Art/game_pic/679.PNG" id="4"]
-[ext_resource type="Texture2D" path="res://Art/LDL/86.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/LDL/87.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/ldl/86.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/ldl/87.png" id="6"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 

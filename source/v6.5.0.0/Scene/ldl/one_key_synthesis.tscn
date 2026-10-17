@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" path="res://Script/ldl/one_key_synthesis.gd" id="1"]
 [ext_resource type="FontFile" path="res://Font/1_aaa_FZCuYuan-M03S.ttf.TTF" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/215.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/game_2/Ldl/215.png" id="3"]
 [ext_resource type="PackedScene" path="res://Scene/back_pack/box_1.tscn" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/202.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/212.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/191.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/game_2/Ldl/202.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/game_2/Ldl/212.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/game_2/Ldl/191.png" id="7"]
 [ext_resource type="FontFile" path="res://Font/8_FZCuYuan-M03S.ttf" id="8"]
-[ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/193.png" id="9"]
-[ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/195.png" id="10"]
-[ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/198.png" id="11"]
+[ext_resource type="Texture2D" path="res://Art/game_2/Ldl/193.png" id="9"]
+[ext_resource type="Texture2D" path="res://Art/game_2/Ldl/195.png" id="10"]
+[ext_resource type="Texture2D" path="res://Art/game_2/Ldl/198.png" id="11"]
 
 [node name="OneKeySynthesis" type="Node2D" unique_id=1134484766]
 script = ExtResource("1")

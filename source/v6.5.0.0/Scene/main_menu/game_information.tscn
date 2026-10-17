@@ -1,12 +1,12 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/main_menu/game_information.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/LDL/炼丹炉背景.jpg" id="2"]
+[ext_resource type="Texture2D" path="res://Art/ldl/炼丹炉背景.jpg" id="2"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="3"]
 [ext_resource type="Texture2D" path="res://Art/game_pic/679.PNG" id="4"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="5"]
-[ext_resource type="Texture2D" path="res://Art/LDL/86.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/LDL/87.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/ldl/86.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/ldl/87.png" id="7"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 

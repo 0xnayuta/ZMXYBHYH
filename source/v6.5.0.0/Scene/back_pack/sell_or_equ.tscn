@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://Script/back_pack/sell_or_equ.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Art/Game_2/Ldl/841.png" id="2"]
+[ext_resource type="Texture2D" path="res://Art/game_2/Ldl/841.png" id="2"]
 [ext_resource type="Texture2D" path="res://Art/BackPack/AllItems/5.png" id="3"]
 [ext_resource type="Texture2D" path="res://Art/BackPack/15.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/BackPack/lock_button_bg.png" id="5"]

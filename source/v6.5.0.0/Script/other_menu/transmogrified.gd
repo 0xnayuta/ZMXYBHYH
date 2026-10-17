@@ -971,9 +971,9 @@ func _ensure_huahao_wing_animation() -> void:
 
 
 func _ensure_title_preview_animations() -> void:
-	_ensure_title_preview_animation("zmcq", "res://Art/AllTX/zmcq.png")
-	_ensure_title_preview_animation("htd", "res://Art/AllTX/htd.png")
-	_ensure_title_preview_animation("ymqzq", "res://Art/AllTX/ymqzq.png")
+	_ensure_title_preview_animation("zmcq", "res://Art/all_tx/zmcq.png")
+	_ensure_title_preview_animation("htd", "res://Art/all_tx/htd.png")
+	_ensure_title_preview_animation("ymqzq", "res://Art/all_tx/ymqzq.png")
 
 
 func _ensure_title_preview_animation(title_name: String, texture_path: String) -> void:

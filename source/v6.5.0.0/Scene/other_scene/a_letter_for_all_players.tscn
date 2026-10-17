@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" path="res://Art/show_text/LetterBG.png" id="3"]
 [ext_resource type="FontFile" path="res://Font/HYZhuZiMeiXinTiW.ttf" id="4"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="5"]
-[ext_resource type="Texture2D" path="res://Art/LDL/86.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/LDL/87.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/ldl/86.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/ldl/87.png" id="7"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="8"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]

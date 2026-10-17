@@ -297,8 +297,8 @@ func _ready() -> void:
 	RoleProp.set_basic_prop()
 	RoleProp.set_full_hp()
 	RoleProp.set_full_mp()
-	_ensure_title_animation("htd", "res://Art/AllTX/htd.png")
-	_ensure_title_animation("ymqzq", "res://Art/AllTX/ymqzq.png")
+	_ensure_title_animation("htd", "res://Art/all_tx/htd.png")
+	_ensure_title_animation("ymqzq", "res://Art/all_tx/ymqzq.png")
 	add_tx()
 	call_deferred("_load_equipped_magic_weapon_deferred")
 	call_deferred("_load_main_sword_array_weapon_deferred")
@@ -3911,9 +3911,9 @@ func add_tx():
 func _play_title(title_name: String) -> void:
 	tx.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	if title_name == "htd":
-		_ensure_title_animation(title_name, "res://Art/AllTX/htd.png")
+		_ensure_title_animation(title_name, "res://Art/all_tx/htd.png")
 	elif title_name == "ymqzq":
-		_ensure_title_animation(title_name, "res://Art/AllTX/ymqzq.png")
+		_ensure_title_animation(title_name, "res://Art/all_tx/ymqzq.png")
 	tx.play(title_name)
 	var title_scale := 0.85
 	if title_name == "zmcq":

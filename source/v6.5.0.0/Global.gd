@@ -3332,8 +3332,8 @@ func release_ui_runtime_cache(release_permanent: bool = false) -> void:
 			[
 				"res://Art/BackPack/",
 				"res://Art/Skill/",
-				"res://Art/Shop/",
-				"res://Art/LDL/",
+				"res://Art/shop/",
+				"res://Art/ldl/",
 				"res://Art/Pet/PetPageResources/",
 				"res://Art/main_menu/BodyTraining/",
 				"res://Art/lianti/",
@@ -3396,7 +3396,7 @@ func _ui_art_prefixes_for_scene(scene_path: String) -> Array:
 	if scene_path == "res://Scene/pet/pet_interface.tscn":
 		return ["res://Art/Pet/PetPageResources/"]
 	if scene_path.begins_with("res://Scene/ldl/"):
-		return ["res://Art/LDL/"]
+		return ["res://Art/ldl/"]
 	if (
 		scene_path == "res://Scene/main_menu/body_training.tscn"
 		or scene_path == "res://Scene/main_menu/body_training_detail.tscn"

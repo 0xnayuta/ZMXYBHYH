@@ -38,7 +38,7 @@ func _fix_dragon_prince_title_animation() -> void:
 	var title_sprite := get_node_or_null("tx") as AnimatedSprite2D
 	if title_sprite == null or title_sprite.sprite_frames == null:
 		return
-	var title_atlas := load("res://Art/AllTX/lwstz.png") as Texture2D
+	var title_atlas := load("res://Art/all_tx/lwstz.png") as Texture2D
 	if title_atlas == null:
 		return
 
