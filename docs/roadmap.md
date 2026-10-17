@@ -62,6 +62,7 @@ flowchart TD
         H1[Phase 8.1: 字面量契约全量扫描器] --> H2[Phase 8.2: 契约失配系统修复]
         H2 --> H3[Phase 8.3: 原子路径迁移引擎]
         H3 --> H4[Phase 8.4: 命名规范门禁第5维上线]
+        H4 --> H5[Phase 8.5: 命名规范白皮书与宪章前置固化]
     end
 
     subgraph P9 [Phase 9: 代码内命名彻底收尾]
@@ -74,9 +75,9 @@ flowchart TD
         J1[Music 目录全量收敛] --> J2[Art 二级与深层目录分级迁移]
     end
 
-    subgraph P11 [Phase 11: 命名标准化终局验收与规范固化]
+    subgraph P11 [Phase 11: 命名标准化终局验收与 CI 固化]
         direction TB
-        K1[全工程合规终审] --> K2[规范文档固化与门禁常态化]
+        K1[全工程合规终审] --> K2[白名单冻结与 CI 流程固化]
     end
 
     P4 -->|资产纯净排版合规| P5
@@ -446,6 +447,14 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 3. `rename_path.py` 交付 + 3 个试点目录规范化完成；
 4. `check_all.py` 第 5 维度上线，5 维全 PASS。
 
+### 8.5 规范宪章前置固化专项 (Charter Codification Special Action) [已完成 · Done]
+
+- **背景与诱因**：针对"无成文契约极易导致重构跑偏"的深层隐患，在进入 Phase 9/10 之前，将原定于 Phase 11-2 的《规范文档固化》前置落地，先立宪法再施工；
+- **交付成果**：
+  1. **全工程白皮书**：交付 `docs/naming_standard.md`，对标 Godot 4 官方风格，全景明确目录（全 snake）、场景（PascalCase）、场景树节点（100% PascalCase，禁止代码反向污染）、代码标识符、字典键强类型化与机器导出白名单（DefineSprite、symbolClass、.sprites 只读冻结）；
+  2. **行为守则固化**：在 `AGENTS.md` 增补第 3 章专属宪章，确立刚性红线与裁判优先级；
+  3. **路线图顺序重整**：前置规范后，Phase 9（代码收尾）与 Phase 10（资产迁移）获得唯一裁判标准，Phase 11 聚焦终局验收与 CI 常态化。
+
 ---
 
 ## Phase 9: 代码内命名彻底收尾 (In-Code Naming Finalization) [规划中 · Planned]
@@ -555,12 +564,12 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 
 ---
 
-## Phase 11: 命名标准化终局验收与规范固化 (Final Acceptance & Standard Codification) [规划中 · Planned]
+## Phase 11: 命名标准化终局验收与 CI 固化 (Final Acceptance & CI Pipeline Codification) [规划中 · Planned]
 
 ### 11.1 阶段定位与目标
 
-- **定位**：全工程命名标准化的收口阶段，把"达标状态"固化为"可持续状态"。
-- **核心目标**：全量合规审计 + 规范文档固化 + 门禁常态化 + 跨平台终局回归。
+- **定位**：全工程命名标准化的终局收口阶段，把"达标状态"固化为"可持续自动化状态"（规范文档已在 Phase 8.5 前置固化）。
+- **核心目标**：全量合规审计 + 白名单冻结 + CI 流水线配置文件交付 + 跨平台终局回归。
 
 ### 11.2 实施子阶段规划（四步走）
 
@@ -568,13 +577,13 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 - **核心任务**：一次性输出四张审计表——目录命名、文件命名、代码内命名（func/var/const/signal/class_name）、白名单条目；全部结论须由 `contract_scan.py` + 门禁脚本**机读产出**，禁止人工估算。
 - **验收指标**：四张表合规率 100%（白名单除外），审计报告入 `docs/`。
 
-#### 2. Phase 11-2: 规范文档固化 (Standard Codification)
-- **核心任务**：新建 `docs/naming_standard.md`（目录/文件/代码五类命名的正例反例 + 白名单 + 迁移流程），并在 `AGENTS.md` 增补"命名规范"与"新建资产规则"章节。
-- **验收指标**：文档通过"新人冷启动"演练——仅凭文档即可独立完成一次目录改名 + 门禁校验。
+#### 2. Phase 11-2: 机器导出资产白名单冻结与归档审议 (Whitelist Freezing & Archival)
+- **核心任务**：对 `contract_whitelist.json` 登记的 Flash/TexturePacker/数字ID 资产建立版本化冻结机制，输出完整书面释义与豁免边界清单，确立"后续零新增"准则。
+- **验收指标**：白名单清单 100% 具备技术评审记录；门禁拦截未登记项。
 
-#### 3. Phase 11-3: 门禁常态化 (Gate Permanence)
-- **核心任务**：`check_all.py` 五维度（LF 行尾 + gdformat + gdlint + 引擎编译 + 命名规范）作为发布前置；预留 CI 接入点。
-- **验收指标**：门禁 5 维全 PASS，且对"故意注入的非规范样本"能稳定拦截（**负向测试**）。
+#### 3. Phase 11-3: 门禁常态化与 CI 配置文件交付 (Gate Permanence & CI Pipeline Codification)
+- **核心任务**：交付 CI 工作流配置文件（如 `.github/workflows/ci.yml`），将 `check_all.py` 五维度总门禁与 `level_test_runner.py` 自动化串联；确立主干合并门禁。
+- **验收指标**：CI 脚本具备跨环境可执行性；负向测试持续拦截。
 
 #### 4. Phase 11-4: 跨平台终局回归 (Cross-Platform Final Regression)
 - **核心任务**：Linux（大小写敏感）环境克隆 + 全量扫描 + headless 启动 + `level_test_runner.py` 关卡冒烟；确认 0 断裂、0 错误。
@@ -584,13 +593,13 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 
 - ⚠️ **机读优先**：所有合规率结论必须来自脚本输出，严禁人工统计；
 - ⚠️ **负向测试必做**：门禁必须证明"能拦住坏样本"，否则视为未交付；
-- ⚠️ **零功能变更**：本阶段不含任何业务改动，仅审计、文档与门禁。
+- ⚠️ **零功能变更**：本阶段不含任何业务改动，仅审计、白名单冻结与 CI 固化。
 
 ### 11.4 验收内容与指标
 
 1. 命名合规率 **100%**（`Art/` `Music/` `Script/` `Scene/` `addons/` + 代码五类）；
-2. `docs/naming_standard.md` 交付 + `AGENTS.md` 更新；
-3. 门禁 5 维 + 负向拦截实测通过；
+2. 白名单冻结清单与技术评审归档；
+3. CI 流程配置落地，五维门禁与实机冒烟自动化闭环；
 4. 跨平台（Linux/macOS）0 断裂、实机 0 ERROR 0 WARNING。
 
 ---
@@ -599,11 +608,12 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 
 ```mermaid
 flowchart LR
-    P8["Phase 8 · 契约诊断与地基修复<br/>扫描器 + 迁移引擎 + 门禁第 5 维"] --> P9
-    P9["Phase 9 · 代码内命名收尾<br/>50 camel + 309 Pascal + 2 函数 + 49 场景文件"] --> P10
-    P10["Phase 10 · 资产目录规范化<br/>Music 6 → Art 顶层 39 → Art 深层分级"] --> P11
-    P11["Phase 11 · 终局验收与固化<br/>合规审计 + 规范文档 + 跨平台回归"]
-    P8 -.->|"contract_scan.py 报告驱动"| P9
+    P8["Phase 8 · 契约诊断与地基修复 [已完成]<br/>扫描器 + 修复 + 迁移引擎 + 门禁第5维"] --> P85["Phase 8.5 · 规范宪章前置固化 [已完成]<br/>docs/naming_standard.md + AGENTS.md 宪章"]
+    P85 --> P9["Phase 9 · 代码内命名彻底收尾 [规划中]<br/>50 camel + 309 Pascal + 2 函数 + 49 场景文件"]
+    P9 --> P10["Phase 10 · 资产目录彻底规范化 [规划中]<br/>Music 6 → Art 顶层 39 → Art 深层分级"]
+    P10 --> P11["Phase 11 · 命名标准化终局验收与 CI 固化 [规划中]<br/>合规终审 + 白名单冻结 + CI 闭环 + 跨平台回归"]
+    P85 -.->|"唯一裁判依据与红线"| P9
+    P85 -.->|"白名单与命名准则"| P10
     P8 -.->|"rename_path.py 唯一入口"| P10
 ```
 
