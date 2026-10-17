@@ -7,7 +7,7 @@ path="res://.godot/imported/zmxy_2BGM.mp3-c9e3329e68b79b76d2e299b15e11d068.mp3st
 
 [deps]
 
-source_file="res://Music/MainSceneMusic/zmxy_2BGM.mp3"
+source_file="res://Music/main_scene_music/zmxy_2BGM.mp3"
 dest_files=["res://.godot/imported/zmxy_2BGM.mp3-c9e3329e68b79b76d2e299b15e11d068.mp3str"]
 
 [params]

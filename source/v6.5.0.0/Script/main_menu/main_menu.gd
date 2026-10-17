@@ -132,24 +132,24 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_begin_game_pressed() -> void:
-	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/main_scene_music/2_SD_xz.mp3")
 
 	if ar_infer.get_child_count() == 0:
 		cd_jm = Global.add_cd_jm(ar_infer, Vector2(0, 0))
 
 
 func _on_music_pressed() -> void:
-	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/main_scene_music/2_SD_xz.mp3")
 	music_jm = Global.add_music_set(music_set, Vector2(0, 0))
 
 
 func _on_gmae_help_pressed() -> void:
-	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/main_scene_music/2_SD_xz.mp3")
 	Global.add_gm_infor(_menu_content_parent(), Vector2(0, 0))
 
 
 func _on_tiaoguo_pressed() -> void:
-	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/main_scene_music/2_SD_xz.mp3")
 	if MainSet.set_data["剧情跳过"]:
 		MainSet.set_data["剧情跳过"] = false
 		Global.add_message_show(get_parent(), "将不会跳过结束剧情！！", 1.5, Vector2(470, 340))
@@ -160,17 +160,17 @@ func _on_tiaoguo_pressed() -> void:
 
 
 func _on_change_bg_pressed() -> void:
-	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/main_scene_music/2_SD_xz.mp3")
 	Global.add_change_bg(b_gset, Vector2(0, 0))
 
 
 func _on_game_set_pressed() -> void:
-	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/main_scene_music/2_SD_xz.mp3")
 	game_set = Global.add_game_set(_menu_content_parent(), Vector2(0, 0))
 
 
 func _on_game_warn_pressed() -> void:
-	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/main_scene_music/2_SD_xz.mp3")
 	Global.add_game_need_know(_menu_content_parent(), Vector2(0, 0))
 
 
@@ -250,5 +250,5 @@ func refresh_time(data_list):
 
 
 func _on_letter_pressed() -> void:
-	Global.add_bgm(self, "res://Music/MainSceneMusic/2_SD_xz.mp3")
+	Global.add_bgm(self, "res://Music/main_scene_music/2_SD_xz.mp3")
 	Global.add_letter_for_player(_menu_content_parent(), Vector2(0, 0))

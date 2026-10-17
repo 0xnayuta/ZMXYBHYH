@@ -7,7 +7,7 @@ path="res://.godot/imported/ChoosePlayerbgm.mp3-290880b8a02a247f5f2db19533c65b66
 
 [deps]
 
-source_file="res://Music/MainSceneMusic/ChoosePlayerbgm.mp3"
+source_file="res://Music/main_scene_music/ChoosePlayerbgm.mp3"
 dest_files=["res://.godot/imported/ChoosePlayerbgm.mp3-290880b8a02a247f5f2db19533c65b66.mp3str"]
 
 [params]
