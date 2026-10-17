@@ -3,17 +3,17 @@ signal selection_requested(head: Node)
 
 const MonsterAttrData = preload("res://Scene/other_scene/monster_attr_data.gd")
 const MONSTER_HEAD_FALLBACKS := {
-	"stz_nz": "res://Art/Monster/Game3Monster/ThreePrince/nezha/idle/1.png",
-	"stz_mz": "res://Art/Monster/Game3Monster/ThreePrince/muzha/idle/1.png",
-	"stz_jz": "res://Art/Monster/Game3Monster/ThreePrince/jinzha/idle/1.png",
-	"bxgh_163": "res://Art/Monster/Game3Monster/Monster_163/body/1.png",
-	"bxgh_175": "res://Art/Monster/Game3Monster/Monster_175/body/1.png",
-	"bxgh_165": "res://Art/Monster/Game3Monster/Monster_165/body/1.png",
-	"bxgh_166": "res://Art/Monster/Game3Monster/Monster_166/body/1.png",
-	"bxgh_168": "res://Art/Monster/Game3Monster/Monster_168/body/1.png",
-	"bxgh_169": "res://Art/Monster/Game3Monster/Monster_169/body/1.png",
-	"bxgh_174": "res://Art/Monster/Game3Monster/Monster_174/body/1.png",
-	"bxgh_164": "res://Art/Monster/Game3Monster/Monster_164/body/1.png",
+	"stz_nz": "res://Art/monster/Game3Monster/ThreePrince/nezha/idle/1.png",
+	"stz_mz": "res://Art/monster/Game3Monster/ThreePrince/muzha/idle/1.png",
+	"stz_jz": "res://Art/monster/Game3Monster/ThreePrince/jinzha/idle/1.png",
+	"bxgh_163": "res://Art/monster/Game3Monster/Monster_163/body/1.png",
+	"bxgh_175": "res://Art/monster/Game3Monster/Monster_175/body/1.png",
+	"bxgh_165": "res://Art/monster/Game3Monster/Monster_165/body/1.png",
+	"bxgh_166": "res://Art/monster/Game3Monster/Monster_166/body/1.png",
+	"bxgh_168": "res://Art/monster/Game3Monster/Monster_168/body/1.png",
+	"bxgh_169": "res://Art/monster/Game3Monster/Monster_169/body/1.png",
+	"bxgh_174": "res://Art/monster/Game3Monster/Monster_174/body/1.png",
+	"bxgh_164": "res://Art/monster/Game3Monster/Monster_164/body/1.png",
 	"轸宿": "res://Art/constellations/Icons/1.png",
 	"翼火蛇": "res://Art/constellations/Icons/2.png",
 	"张月鹿": "res://Art/constellations/Icons/3.png",
@@ -538,7 +538,7 @@ func _setup_north_idle_preview() -> void:
 
 
 func load_(name_):
-	var head_path := "res://Art/Monster/monster_head/" + str(name_) + ".png"
+	var head_path := "res://Art/monster/monster_head/" + str(name_) + ".png"
 	if ResourceLoader.exists(head_path):
 		return load(head_path)
 	var fallback_path := str(MONSTER_HEAD_FALLBACKS.get(str(name_), ""))

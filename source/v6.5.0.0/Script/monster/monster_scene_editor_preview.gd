@@ -1,7 +1,7 @@
 @tool
 extends Node2D
 
-const GAME4_MONSTER_ROOT := "res://Art/Monster/SwfPng"
+const GAME4_MONSTER_ROOT := "res://Art/monster/SwfPng"
 const MODEL_ID_ALIASES := {
 	3043: 3031,
 	3044: 3030,

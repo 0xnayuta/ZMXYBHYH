@@ -249,101 +249,101 @@ const MONSTER_SCENE_ALIASES := {
 const DYNAMIC_MONSTER_TEXTURE_PATHS := {
 	150:
 	[
-		"res://Art/Monster/QiongQi/Monster42FramesCenteredCropped",
-		"res://Art/Monster/QiongQi/Effects/BuffGreen.png",
-		"res://Art/Monster/QiongQi/Effects/BuffBlue.png",
+		"res://Art/monster/QiongQi/Monster42FramesCenteredCropped",
+		"res://Art/monster/QiongQi/Effects/BuffGreen.png",
+		"res://Art/monster/QiongQi/Effects/BuffBlue.png",
 	],
-	151: ["res://Art/Monster/TaoWu/Monster47FramesCenteredCropped"],
-	152: ["res://Art/Monster/HunDun/Monster60FramesCenteredCropped"],
-	153: ["res://Art/Monster/TaoTie/Monster115FramesCenteredCropped"],
-	1460: ["res://Art/Monster/Tongtian3057"],
+	151: ["res://Art/monster/TaoWu/Monster47FramesCenteredCropped"],
+	152: ["res://Art/monster/HunDun/Monster60FramesCenteredCropped"],
+	153: ["res://Art/monster/TaoTie/Monster115FramesCenteredCropped"],
+	1460: ["res://Art/monster/Tongtian3057"],
 	212:
 	[
-		"res://Art/Monster/Game3Monster/Monster_212/DefineSprite_44_Monster212",
-		"res://Art/Monster/Game3Monster/Monster_212/DefineSprite_92_Monster212Bullet1_Cropped",
-		"res://Art/Monster/Game3Monster/Monster_212/DefineSprite_88_Monster212Bullet2",
-		"res://Art/Monster/Game3Monster/Monster_212/DefineSprite_71_Monster212Bullet3",
-		"res://Art/Monster/Game3Monster/Monster_212/DefineSprite_49_Monster212Bullet4_2_Cropped",
+		"res://Art/monster/Game3Monster/Monster_212/DefineSprite_44_Monster212",
+		"res://Art/monster/Game3Monster/Monster_212/DefineSprite_92_Monster212Bullet1_Cropped",
+		"res://Art/monster/Game3Monster/Monster_212/DefineSprite_88_Monster212Bullet2",
+		"res://Art/monster/Game3Monster/Monster_212/DefineSprite_71_Monster212Bullet3",
+		"res://Art/monster/Game3Monster/Monster_212/DefineSprite_49_Monster212Bullet4_2_Cropped",
 	],
-	163: ["res://Art/Monster/Game3Monster/Monster_163/body", "res://Art/Monster/Game3Monster/Monster_163/body_actions"],
-	164: ["res://Art/Monster/Game3Monster/Monster_164/body", "res://Art/Monster/Game3Monster/Monster_164/body_actions"],
-	165: ["res://Art/Monster/Game3Monster/Monster_165/body", "res://Art/Monster/Game3Monster/Monster_165/body_actions"],
-	166: ["res://Art/Monster/Game3Monster/Monster_166/body", "res://Art/Monster/Game3Monster/Monster_166/body_actions"],
-	168: ["res://Art/Monster/Game3Monster/Monster_168/body", "res://Art/Monster/Game3Monster/Monster_168/body_actions"],
-	169: ["res://Art/Monster/Game3Monster/Monster_169/body", "res://Art/Monster/Game3Monster/Monster_169/body_actions"],
-	174: ["res://Art/Monster/Game3Monster/Monster_174/body", "res://Art/Monster/Game3Monster/Monster_174/body_actions"],
-	175: ["res://Art/Monster/Game3Monster/Monster_175/body", "res://Art/Monster/Game3Monster/Monster_175/body_actions"],
+	163: ["res://Art/monster/Game3Monster/Monster_163/body", "res://Art/monster/Game3Monster/Monster_163/body_actions"],
+	164: ["res://Art/monster/Game3Monster/Monster_164/body", "res://Art/monster/Game3Monster/Monster_164/body_actions"],
+	165: ["res://Art/monster/Game3Monster/Monster_165/body", "res://Art/monster/Game3Monster/Monster_165/body_actions"],
+	166: ["res://Art/monster/Game3Monster/Monster_166/body", "res://Art/monster/Game3Monster/Monster_166/body_actions"],
+	168: ["res://Art/monster/Game3Monster/Monster_168/body", "res://Art/monster/Game3Monster/Monster_168/body_actions"],
+	169: ["res://Art/monster/Game3Monster/Monster_169/body", "res://Art/monster/Game3Monster/Monster_169/body_actions"],
+	174: ["res://Art/monster/Game3Monster/Monster_174/body", "res://Art/monster/Game3Monster/Monster_174/body_actions"],
+	175: ["res://Art/monster/Game3Monster/Monster_175/body", "res://Art/monster/Game3Monster/Monster_175/body_actions"],
 	1501:
 	[
-		"res://Art/Monster/PetTigerBoss/model/frames/stage1",
-		"res://Art/Monster/PetTigerBoss/effects",
+		"res://Art/monster/PetTigerBoss/model/frames/stage1",
+		"res://Art/monster/PetTigerBoss/effects",
 	],
 	1502:
 	[
-		"res://Art/Monster/PetTigerBoss/model/frames/stage2",
-		"res://Art/Monster/PetTigerBoss/effects",
+		"res://Art/monster/PetTigerBoss/model/frames/stage2",
+		"res://Art/monster/PetTigerBoss/effects",
 	],
 	1503:
 	[
-		"res://Art/Monster/PetTigerBoss/model/frames/stage3",
-		"res://Art/Monster/PetTigerBoss/effects",
+		"res://Art/monster/PetTigerBoss/model/frames/stage3",
+		"res://Art/monster/PetTigerBoss/effects",
 	],
 	1504:
 	[
-		"res://Art/Monster/PetTigerBoss/model/frames/stage4",
-		"res://Art/Monster/PetTigerBoss/effects",
+		"res://Art/monster/PetTigerBoss/model/frames/stage4",
+		"res://Art/monster/PetTigerBoss/effects",
 	],
-	4401: ["res://Art/Monster/Game3Monster/ThreePrince/nezha"],
+	4401: ["res://Art/monster/Game3Monster/ThreePrince/nezha"],
 	4402:
 	[
-		"res://Art/Monster/Game3Monster/ThreePrince/muzha",
+		"res://Art/monster/Game3Monster/ThreePrince/muzha",
 		"res://Art/hero_picture/Role3/BaDiQianKunSmooth",
 	],
-	4403: ["res://Art/Monster/Game3Monster/ThreePrince/jinzha"],
+	4403: ["res://Art/monster/Game3Monster/ThreePrince/jinzha"],
 }
 const DYNAMIC_MONSTER_STREAM_EFFECT_ROOTS := {
-	150: ["res://Art/Monster/QiongQi/Effects"],
-	151: ["res://Art/Monster/TaoWu/Effects"],
-	152: ["res://Art/Monster/HunDun/Effects"],
-	153: ["res://Art/Monster/TaoTie/Effects"],
+	150: ["res://Art/monster/QiongQi/Effects"],
+	151: ["res://Art/monster/TaoWu/Effects"],
+	152: ["res://Art/monster/HunDun/Effects"],
+	153: ["res://Art/monster/TaoTie/Effects"],
 	163:
 	[
-		"res://Art/Monster/Game3Monster/Monster_163/hit1",
-		"res://Art/Monster/Game3Monster/Monster_163/hit2",
-		"res://Art/Monster/Game3Monster/Monster_163/hit3"
+		"res://Art/monster/Game3Monster/Monster_163/hit1",
+		"res://Art/monster/Game3Monster/Monster_163/hit2",
+		"res://Art/monster/Game3Monster/Monster_163/hit3"
 	],
 	164:
 	[
-		"res://Art/Monster/Game3Monster/Monster_164/hit1",
-		"res://Art/Monster/Game3Monster/Monster_164/hit2",
-		"res://Art/Monster/Game3Monster/Monster_164/hit3"
+		"res://Art/monster/Game3Monster/Monster_164/hit1",
+		"res://Art/monster/Game3Monster/Monster_164/hit2",
+		"res://Art/monster/Game3Monster/Monster_164/hit3"
 	],
 	165:
 	[
-		"res://Art/Monster/Game3Monster/Monster_165/hit1",
-		"res://Art/Monster/Game3Monster/Monster_165/hit2",
-		"res://Art/Monster/Game3Monster/Monster_165/hit3"
+		"res://Art/monster/Game3Monster/Monster_165/hit1",
+		"res://Art/monster/Game3Monster/Monster_165/hit2",
+		"res://Art/monster/Game3Monster/Monster_165/hit3"
 	],
 	166:
 	[
-		"res://Art/Monster/Game3Monster/Monster_166/hit1",
-		"res://Art/Monster/Game3Monster/Monster_166/hit2",
-		"res://Art/Monster/Game3Monster/Monster_166/hit3"
+		"res://Art/monster/Game3Monster/Monster_166/hit1",
+		"res://Art/monster/Game3Monster/Monster_166/hit2",
+		"res://Art/monster/Game3Monster/Monster_166/hit3"
 	],
 	168:
 	[
-		"res://Art/Monster/Game3Monster/Monster_168/hit1",
-		"res://Art/Monster/Game3Monster/Monster_168/hit2",
-		"res://Art/Monster/Game3Monster/Monster_168/hit3"
+		"res://Art/monster/Game3Monster/Monster_168/hit1",
+		"res://Art/monster/Game3Monster/Monster_168/hit2",
+		"res://Art/monster/Game3Monster/Monster_168/hit3"
 	],
-	169: ["res://Art/Monster/Game3Monster/Monster_169/hit1", "res://Art/Monster/Game3Monster/Monster_169/hit3"],
+	169: ["res://Art/monster/Game3Monster/Monster_169/hit1", "res://Art/monster/Game3Monster/Monster_169/hit3"],
 	174:
 	[
-		"res://Art/Monster/Game3Monster/Monster_174/hit1",
-		"res://Art/Monster/Game3Monster/Monster_174/hit2",
-		"res://Art/Monster/Game3Monster/Monster_174/hit3"
+		"res://Art/monster/Game3Monster/Monster_174/hit1",
+		"res://Art/monster/Game3Monster/Monster_174/hit2",
+		"res://Art/monster/Game3Monster/Monster_174/hit3"
 	],
-	175: ["res://Art/Monster/Game3Monster/Monster_175/hit1", "res://Art/Monster/Game3Monster/Monster_175/hit3"],
+	175: ["res://Art/monster/Game3Monster/Monster_175/hit1", "res://Art/monster/Game3Monster/Monster_175/hit3"],
 }
 const DYNAMIC_MONSTER_SCENE_PATHS := {
 	114: ["res://Scene/monster/monster_bullet_slim/monster114_bullet2.tscn"],
@@ -1056,9 +1056,9 @@ func preload_level_monster_runtime_resources(monster_ids: Array) -> void:
 	for monster_id in unique_monster_ids:
 		var manifest_path := MonsterAtlasSequence.manifest_for_model(monster_id)
 		if monster_id in [3323, 3343]:
-			manifest_path = "res://Art/Monster/PalaceBoss/%d/manifest.json" % monster_id
+			manifest_path = "res://Art/monster/PalaceBoss/%d/manifest.json" % monster_id
 		elif monster_id == 3352:
-			manifest_path = "res://Art/Monster/CloudBoss/3352/manifest.json"
+			manifest_path = "res://Art/monster/CloudBoss/3352/manifest.json"
 		elif not NorthOriginalData.monster_record(monster_id).is_empty():
 			manifest_path = NorthOriginalData.manifest(monster_id)
 		if manifest_path.is_empty():
@@ -1502,7 +1502,7 @@ func clear_combat_runtime_cache() -> void:
 	_current_role_equipment_texture_path = ""
 	var combat_prefixes := [
 		"res://Art/hero_picture/",
-		"res://Art/Monster/",
+		"res://Art/monster/",
 		"res://Art/level/",
 		"res://Art/pet/",
 		"res://Art/magic_weapon/",
@@ -4522,8 +4522,8 @@ func get_magic_weapon_preload_paths(name_) -> Array[String]:
 			. append_array(
 				[
 					"res://Scene/monster/monster_zhw/guanyin_summon.tscn",
-					"res://Art/Monster/GuanyinSpine/skeleton.atlas",
-					"res://Art/Monster/GuanyinSpine/guanyin.spine-json",
+					"res://Art/monster/GuanyinSpine/skeleton.atlas",
+					"res://Art/monster/GuanyinSpine/guanyin.spine-json",
 				]
 			)
 		)

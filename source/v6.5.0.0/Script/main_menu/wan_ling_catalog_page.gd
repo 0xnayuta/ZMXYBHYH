@@ -210,8 +210,8 @@ const HEAVEN_EFFECT_TEXT := {
 	136: "每个+1000生命",
 	137: "每个+20暴击",
 }
-const PORTRAIT_PATH := "res://Art/Monster/万灵图录/%d.png"
-const CRYSTAL_PATH := "res://Art/Monster/魂晶/%d.png"
+const PORTRAIT_PATH := "res://Art/monster/万灵图录/%d.png"
+const CRYSTAL_PATH := "res://Art/monster/魂晶/%d.png"
 const UI_FONT := preload("res://Font/Aa文徵明琴赋小楷_mianfeiziti.com.ttf")
 
 @onready var _stage: Panel = $Stage

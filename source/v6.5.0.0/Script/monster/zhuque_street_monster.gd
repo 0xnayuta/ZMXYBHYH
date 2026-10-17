@@ -1,7 +1,7 @@
 extends BaseMonster
 
 const SOURCE_FPS := 30.0
-const FRAME_ROOT := "res://Art/Monster/SwfPng"
+const FRAME_ROOT := "res://Art/monster/SwfPng"
 const BOSS_3006_ATLAS_MANIFEST := FRAME_ROOT + "/3006/atlas/manifest.json"
 const SMALL_HURT_DURATION := 0.28
 const SMALL_CORPSE_LIFETIME := 0.75

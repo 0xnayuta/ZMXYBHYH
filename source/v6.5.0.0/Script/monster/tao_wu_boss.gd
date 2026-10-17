@@ -1,12 +1,12 @@
 extends BaseMonster
 
-const BODY_FRAME_DIR := "res://Art/Monster/TaoWu/Monster47FramesCenteredCropped"
+const BODY_FRAME_DIR := "res://Art/monster/TaoWu/Monster47FramesCenteredCropped"
 const BODY_FRAME_COUNT := 48
 const BODY_FRAME_COLUMNS := 6
 const SOURCE_FPS := 24.0
 
 const BODY_SPRITE_POSITION := Vector2(2, -104)
-const EFFECT_ROOT := "res://Art/Monster/TaoWu/Effects"
+const EFFECT_ROOT := "res://Art/monster/TaoWu/Effects"
 const EFFECT_NAMES := [
 	"Monster47Bullet1",
 	"Monster47Bullet2_1",

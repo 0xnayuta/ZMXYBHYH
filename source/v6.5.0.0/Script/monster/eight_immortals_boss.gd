@@ -892,7 +892,7 @@ func _start_absorb_state() -> void:
 		100,
 		global_position,
 		{
-			"frame_root": "res://Art/Monster/Game3Monster/Monster_169/hit2",
+			"frame_root": "res://Art/monster/Game3Monster/Monster_169/hit2",
 			"loop_visual": false,
 			"hold_last_frame": true,
 			"follow_owner": true,
@@ -1062,11 +1062,11 @@ func _action_length(action: StringName) -> float:
 
 
 func _body_action_path(action: StringName, index: int) -> String:
-	return "res://Art/Monster/Game3Monster/Monster_%d/body_actions/%s/%d.png" % [monster_id, String(action), index]
+	return "res://Art/monster/Game3Monster/Monster_%d/body_actions/%s/%d.png" % [monster_id, String(action), index]
 
 
 func _effect_root(action: StringName) -> String:
-	return "res://Art/Monster/Game3Monster/Monster_%d/%s" % [monster_id, String(action)]
+	return "res://Art/monster/Game3Monster/Monster_%d/%s" % [monster_id, String(action)]
 
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理

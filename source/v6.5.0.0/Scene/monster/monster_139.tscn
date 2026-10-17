@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_monster.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/monster/monster_139.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Monster/OtherMonster_1/Monster.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/monster/OtherMonster_1/Monster.png" id="3"]
 [ext_resource type="FontFile" path="res://Font/华康海报体W12 &amp; 华康海报体W12(P).ttc" id="4"]
 [ext_resource type="FontFile" path="res://Font/华康宋体W3.ttc" id="5"]
 

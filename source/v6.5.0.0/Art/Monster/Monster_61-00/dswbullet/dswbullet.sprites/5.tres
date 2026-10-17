@@ -1,7 +1,0 @@
-[gd_resource type="AtlasTexture" format=3]
-
-[ext_resource type="Texture2D" uid="uid://clhy8m0ocsdsw" path="res://Art/Monster/Monster_61-00/dswbullet/dswbullet.png" id="1"]
-
-[resource]
-atlas = ExtResource("1")
-region = Rect2(10, 682, 341, 316)

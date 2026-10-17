@@ -3,7 +3,7 @@ extends "res://Script/monster/sword_boss_base.gd"
 
 func _configure_sword_boss() -> void:
 	sword_name = "陷仙剑"
-	sword_root = "res://Art/Monster/Game3Monster/SwordBoss/xianxian"
+	sword_root = "res://Art/monster/Game3Monster/SwordBoss/xianxian"
 	sword_drop = "xxjp"
 	sword_hp = 4800000
 	sword_power_1 = 1150

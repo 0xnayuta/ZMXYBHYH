@@ -13,7 +13,7 @@ const NIGHTMARE_EQUIPMENT_REPLACEMENTS := {
 const PRINCE_CONFIGS := [
 	{
 		"name": "哪吒",
-		"root": "res://Art/Monster/Game3Monster/ThreePrince/nezha",
+		"root": "res://Art/monster/Game3Monster/ThreePrince/nezha",
 		"visual_position": Vector2(-80, -75),
 		"source_origin_offset": Vector2(0, -60),
 		"frame_size": Vector2i(370, 300),
@@ -41,7 +41,7 @@ const PRINCE_CONFIGS := [
 	},
 	{
 		"name": "木吒",
-		"root": "res://Art/Monster/Game3Monster/ThreePrince/muzha",
+		"root": "res://Art/monster/Game3Monster/ThreePrince/muzha",
 		"visual_position": Vector2(-10, -80),
 		"source_origin_offset": Vector2(0, -60),
 		"frame_size": Vector2i(250, 250),
@@ -69,7 +69,7 @@ const PRINCE_CONFIGS := [
 	},
 	{
 		"name": "金吒",
-		"root": "res://Art/Monster/Game3Monster/ThreePrince/jinzha",
+		"root": "res://Art/monster/Game3Monster/ThreePrince/jinzha",
 		"visual_position": Vector2(-30, -104),
 		"source_origin_offset": Vector2(0, -54),
 		"frame_size": Vector2i(300, 300),

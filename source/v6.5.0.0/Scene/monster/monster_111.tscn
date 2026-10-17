@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_monster.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/monster/monster_111.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Game3Monster/Monster_5/atlas_small_monsters/pages/atlas_000.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/monster/Game3Monster/Monster_5/atlas_small_monsters/pages/atlas_000.png" id="3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_313fcbb67b2e"]
 atlas = ExtResource("3")

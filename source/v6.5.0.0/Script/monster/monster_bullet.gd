@@ -94,8 +94,8 @@ static func clear_runtime_resource_caches() -> void:
 
 
 const PET_TIGER_BULLET_FPS := 24.0
-const PET_TIGER_EFFECT_DIR := "res://Art/Monster/PetTigerBoss/effects"
-const PET_TIGER_SHAPE_EFFECT_DIR := "res://Art/Monster/PetTigerBoss/effects/swf_shapes"
+const PET_TIGER_EFFECT_DIR := "res://Art/monster/PetTigerBoss/effects"
+const PET_TIGER_SHAPE_EFFECT_DIR := "res://Art/monster/PetTigerBoss/effects/swf_shapes"
 const PET_DRAGON_EFFECT_DIR := "res://Art/pet/PetDragon/effects"
 const PET_PHOENIX_EFFECT_DIR := "res://Art/pet/PetPhoenix/effects"
 const PET_PHOENIX_EFFECT_FRAME_COUNTS := {
@@ -179,30 +179,30 @@ static func warm_pet_dragon_ultimate_frames() -> void:
 const MONSTER5_BULLET_FPS := 25.0
 const MONSTER5_BULLET_FRAME_COUNT := 40
 const MONSTER5_BULLET_FRAME_SIZE := Vector2(1219, 609)
-const MONSTER5_BULLET_DIR := "res://Art/Monster/Monster5"
+const MONSTER5_BULLET_DIR := "res://Art/monster/Monster5"
 const MONSTER5_BULLET_SHEETS: Array[Texture2D] = [
-	preload("res://Art/Monster/Monster5/SpecialEffect2-0.png"),
-	preload("res://Art/Monster/Monster5/SpecialEffect2-1.png"),
-	preload("res://Art/Monster/Monster5/SpecialEffect2-2.png"),
-	preload("res://Art/Monster/Monster5/SpecialEffect2-3.png"),
-	preload("res://Art/Monster/Monster5/SpecialEffect2-4.png"),
-	preload("res://Art/Monster/Monster5/SpecialEffect2-5.png"),
-	preload("res://Art/Monster/Monster5/SpecialEffect2-6.png"),
-	preload("res://Art/Monster/Monster5/SpecialEffect2-7.png"),
-	preload("res://Art/Monster/Monster5/SpecialEffect2-8.png"),
-	preload("res://Art/Monster/Monster5/SpecialEffect2-9.png"),
-	preload("res://Art/Monster/Monster5/SpecialEffect2-10.png"),
-	preload("res://Art/Monster/Monster5/SpecialEffect2-11.png"),
+	preload("res://Art/monster/Monster5/SpecialEffect2-0.png"),
+	preload("res://Art/monster/Monster5/SpecialEffect2-1.png"),
+	preload("res://Art/monster/Monster5/SpecialEffect2-2.png"),
+	preload("res://Art/monster/Monster5/SpecialEffect2-3.png"),
+	preload("res://Art/monster/Monster5/SpecialEffect2-4.png"),
+	preload("res://Art/monster/Monster5/SpecialEffect2-5.png"),
+	preload("res://Art/monster/Monster5/SpecialEffect2-6.png"),
+	preload("res://Art/monster/Monster5/SpecialEffect2-7.png"),
+	preload("res://Art/monster/Monster5/SpecialEffect2-8.png"),
+	preload("res://Art/monster/Monster5/SpecialEffect2-9.png"),
+	preload("res://Art/monster/Monster5/SpecialEffect2-10.png"),
+	preload("res://Art/monster/Monster5/SpecialEffect2-11.png"),
 ]
 const STREAMED_BULLET_MANIFESTS := {
-	"Monster_61Bullet": ["res://Art/Monster/Monster_61-00/Skill_3Effect2/atlas/manifest.json", "Monster_61Bullet"],
+	"Monster_61Bullet": ["res://Art/monster/Monster_61-00/Skill_3Effect2/atlas/manifest.json", "Monster_61Bullet"],
 	"Monster114Bullet3":
-	["res://Art/Monster/Game3_SpecialEffect/Monster_5/atlas/Monster114Bullet3/manifest.json", "Monster114Bullet3"],
+	["res://Art/monster/Game3_SpecialEffect/Monster_5/atlas/Monster114Bullet3/manifest.json", "Monster114Bullet3"],
 	"Monster18Bullet_2":
-	["res://Art/Monster/Monster_18/Bullet/atlas/Monster18Bullet_2/manifest.json", "Monster18Bullet_2"],
+	["res://Art/monster/Monster_18/Bullet/atlas/Monster18Bullet_2/manifest.json", "Monster18Bullet_2"],
 	"Monster103Bullet1":
-	["res://Art/Monster/Game3_SpecialEffect/Monster_4/atlas/Monster103Bullet1/manifest.json", "Monster103Bullet1"],
-	"Monster61Bullet3": ["res://Art/Monster/Monster_61/atlas/Monster61Bullet3/manifest.json", "Monster61bull3"],
+	["res://Art/monster/Game3_SpecialEffect/Monster_4/atlas/Monster103Bullet1/manifest.json", "Monster103Bullet1"],
+	"Monster61Bullet3": ["res://Art/monster/Monster_61/atlas/Monster61Bullet3/manifest.json", "Monster61bull3"],
 }
 
 var pet_dragon_dash_damage_until: Dictionary = {}

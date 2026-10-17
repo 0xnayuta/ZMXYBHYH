@@ -1,6 +1,6 @@
 extends BaseMonster
 class_name Monster65
-const BODY_ATLAS_MANIFEST := "res://Art/Monster/Monster_65/atlas/manifest.json"
+const BODY_ATLAS_MANIFEST := "res://Art/monster/Monster_65/atlas/manifest.json"
 
 var is_top = false
 var is_drop = false

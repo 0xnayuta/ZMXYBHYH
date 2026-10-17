@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Script/hero/role_bullet_1.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/hero_picture/Role2/Role2Bullet.png" id="2"]
 [ext_resource type="Texture2D" path="res://Art/hero_picture/Role1SpecialEffect/Role1HYJJ.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster_19/Skill_1.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster_19/Skill_1.png" id="4"]
 [ext_resource type="Texture2D" path="res://Art/hero_picture/Role1SpecialEffect/qserz.png" id="5"]
 
 [sub_resource type="CircleShape2D" id="1"]

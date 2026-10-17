@@ -1,7 +1,7 @@
 extends BaseMonster
 class_name FourHeadedBoss
 
-const ROOT := "res://Art/Monster/SwfPng/3034"
+const ROOT := "res://Art/monster/SwfPng/3034"
 const ATLAS_MANIFEST := ROOT + "/atlas/manifest.json"
 const SOURCE_FPS := 24.0
 const HURT_REACTION_DURATION := 0.334
@@ -10,9 +10,9 @@ const SKILL2_DASH_DURATION := 0.8
 const SKILL2_HIT_COUNT := 6
 const SKILL2_HIT_INTERVAL := 0.134
 const HEAD_ROOTS := [
-	"res://Art/Monster/SwfPng/3048",
-	"res://Art/Monster/SwfPng/3050",
-	"res://Art/Monster/SwfPng/3051",
+	"res://Art/monster/SwfPng/3048",
+	"res://Art/monster/SwfPng/3050",
+	"res://Art/monster/SwfPng/3051",
 ]
 const HEAD_MANIFESTS := [
 	HEAD_ROOTS[0] + "/atlas/manifest.json",

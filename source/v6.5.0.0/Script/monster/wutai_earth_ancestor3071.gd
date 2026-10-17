@@ -1,6 +1,6 @@
 extends BaseMonster
 
-const ROOT := "res://Art/Monster/SwfPng/3071"
+const ROOT := "res://Art/monster/SwfPng/3071"
 const ATLAS_MANIFEST := ROOT + "/atlas/manifest.json"
 const SOURCE_FPS := 30.0
 const GUARDIAN_ID := 3076

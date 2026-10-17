@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_monster.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/monster/monster_5.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster5/Hurt.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster5/Hit.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster5/Wait.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster5/Walk.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster5/Skill.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster5/SpecialEffect1.png" id="8"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster5/SpecialEffect3.png" id="9"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster5/Hurt.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster5/Hit.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster5/Wait.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster5/Walk.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster5/Skill.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster5/SpecialEffect1.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster5/SpecialEffect3.png" id="9"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("3")

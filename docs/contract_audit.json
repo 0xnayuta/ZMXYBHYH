@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "scan_time": "2026-10-18 00:33:44",
+    "scan_time": "2026-10-18 00:43:27",
     "project_dir": "G:\\source\\repos\\ZMXYBHYH\\source\\v6.5.0.0",
     "stats": {
       "total_findings": 1967,
@@ -13,7 +13,7 @@
         "reflection": 13,
         "dict_key": 1797
       },
-      "duration_seconds": 4.76,
+      "duration_seconds": 4.72,
       "scripts_scanned": 722,
       "scenes_scanned": 1132
     }
@@ -44,7 +44,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 252,
-      "literal": "res://Art/Monster/QiongQi/Monster42FramesCenteredCropped",
+      "literal": "res://Art/monster/QiongQi/Monster42FramesCenteredCropped",
       "message": "资源文件或目录不存在: 分段不存在: Monster42FramesCenteredCropped",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -54,7 +54,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 256,
-      "literal": "res://Art/Monster/TaoWu/Monster47FramesCenteredCropped",
+      "literal": "res://Art/monster/TaoWu/Monster47FramesCenteredCropped",
       "message": "资源文件或目录不存在: 分段不存在: Monster47FramesCenteredCropped",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -64,7 +64,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 278,
-      "literal": "res://Art/Monster/PetTigerBoss/model/frames/stage1",
+      "literal": "res://Art/monster/PetTigerBoss/model/frames/stage1",
       "message": "资源文件或目录不存在: 分段不存在: frames",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -74,7 +74,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 279,
-      "literal": "res://Art/Monster/PetTigerBoss/effects",
+      "literal": "res://Art/monster/PetTigerBoss/effects",
       "message": "资源文件或目录不存在: 分段不存在: effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -84,7 +84,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 283,
-      "literal": "res://Art/Monster/PetTigerBoss/model/frames/stage2",
+      "literal": "res://Art/monster/PetTigerBoss/model/frames/stage2",
       "message": "资源文件或目录不存在: 分段不存在: frames",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -94,7 +94,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 284,
-      "literal": "res://Art/Monster/PetTigerBoss/effects",
+      "literal": "res://Art/monster/PetTigerBoss/effects",
       "message": "资源文件或目录不存在: 分段不存在: effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -104,7 +104,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 288,
-      "literal": "res://Art/Monster/PetTigerBoss/model/frames/stage3",
+      "literal": "res://Art/monster/PetTigerBoss/model/frames/stage3",
       "message": "资源文件或目录不存在: 分段不存在: frames",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -114,7 +114,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 289,
-      "literal": "res://Art/Monster/PetTigerBoss/effects",
+      "literal": "res://Art/monster/PetTigerBoss/effects",
       "message": "资源文件或目录不存在: 分段不存在: effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -124,7 +124,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 293,
-      "literal": "res://Art/Monster/PetTigerBoss/model/frames/stage4",
+      "literal": "res://Art/monster/PetTigerBoss/model/frames/stage4",
       "message": "资源文件或目录不存在: 分段不存在: frames",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -134,7 +134,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 294,
-      "literal": "res://Art/Monster/PetTigerBoss/effects",
+      "literal": "res://Art/monster/PetTigerBoss/effects",
       "message": "资源文件或目录不存在: 分段不存在: effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -144,7 +144,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 305,
-      "literal": "res://Art/Monster/QiongQi/Effects",
+      "literal": "res://Art/monster/QiongQi/Effects",
       "message": "资源文件或目录不存在: 分段不存在: Effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -154,7 +154,7 @@
       "severity": "WARNING",
       "file": "Global.gd",
       "line": 306,
-      "literal": "res://Art/Monster/TaoWu/Effects",
+      "literal": "res://Art/monster/TaoWu/Effects",
       "message": "资源文件或目录不存在: 分段不存在: Effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -484,7 +484,7 @@
       "severity": "WARNING",
       "file": "Scene/other_scene/monster_head.gd",
       "line": 150,
-      "literal": "res://Art/Monster/monster_head",
+      "literal": "res://Art/monster/monster_head",
       "message": "资源文件或目录不存在: 分段不存在: monster_head",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -504,7 +504,7 @@
       "severity": "WARNING",
       "file": "Scene/other_scene/monster_head_info.gd",
       "line": 541,
-      "literal": "res://Art/Monster/monster_head",
+      "literal": "res://Art/monster/monster_head",
       "message": "资源文件或目录不存在: 分段不存在: monster_head",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -624,7 +624,7 @@
       "severity": "WARNING",
       "file": "Script/level/level_sssl.gd",
       "line": 10,
-      "literal": "res://Art/Monster/QiongQi/Monster42FramesCenteredCropped",
+      "literal": "res://Art/monster/QiongQi/Monster42FramesCenteredCropped",
       "message": "资源文件或目录不存在: 分段不存在: Monster42FramesCenteredCropped",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -634,7 +634,7 @@
       "severity": "WARNING",
       "file": "Script/level/level_sssl.gd",
       "line": 11,
-      "literal": "res://Art/Monster/TaoWu/Monster47FramesCenteredCropped",
+      "literal": "res://Art/monster/TaoWu/Monster47FramesCenteredCropped",
       "message": "资源文件或目录不存在: 分段不存在: Monster47FramesCenteredCropped",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -844,7 +844,7 @@
       "severity": "WARNING",
       "file": "Script/monster/jiuhua_pine_arrow.gd",
       "line": 3,
-      "literal": "res://Art/Monster/SwfPng/3009/arrow",
+      "literal": "res://Art/monster/SwfPng/3009/arrow",
       "message": "资源文件或目录不存在: 分段不存在: arrow",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -854,7 +854,7 @@
       "severity": "WARNING",
       "file": "Script/monster/monster_bullet.gd",
       "line": 97,
-      "literal": "res://Art/Monster/PetTigerBoss/effects",
+      "literal": "res://Art/monster/PetTigerBoss/effects",
       "message": "资源文件或目录不存在: 分段不存在: effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -864,7 +864,7 @@
       "severity": "WARNING",
       "file": "Script/monster/monster_bullet.gd",
       "line": 98,
-      "literal": "res://Art/Monster/PetTigerBoss/effects/swf_shapes",
+      "literal": "res://Art/monster/PetTigerBoss/effects/swf_shapes",
       "message": "资源文件或目录不存在: 分段不存在: effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -904,7 +904,7 @@
       "severity": "WARNING",
       "file": "Script/monster/pet_tiger_boss_base.gd",
       "line": 10,
-      "literal": "res://Art/Monster/PetTigerBoss/model/frames",
+      "literal": "res://Art/monster/PetTigerBoss/model/frames",
       "message": "资源文件或目录不存在: 分段不存在: frames",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -914,7 +914,7 @@
       "severity": "WARNING",
       "file": "Script/monster/qiong_qi_boss.gd",
       "line": 3,
-      "literal": "res://Art/Monster/QiongQi/Monster42FramesCenteredCropped",
+      "literal": "res://Art/monster/QiongQi/Monster42FramesCenteredCropped",
       "message": "资源文件或目录不存在: 分段不存在: Monster42FramesCenteredCropped",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -924,7 +924,7 @@
       "severity": "WARNING",
       "file": "Script/monster/qiong_qi_boss.gd",
       "line": 7,
-      "literal": "res://Art/Monster/QiongQi/Effects",
+      "literal": "res://Art/monster/QiongQi/Effects",
       "message": "资源文件或目录不存在: 分段不存在: Effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -934,7 +934,7 @@
       "severity": "WARNING",
       "file": "Script/monster/tao_wu_boss.gd",
       "line": 3,
-      "literal": "res://Art/Monster/TaoWu/Monster47FramesCenteredCropped",
+      "literal": "res://Art/monster/TaoWu/Monster47FramesCenteredCropped",
       "message": "资源文件或目录不存在: 分段不存在: Monster47FramesCenteredCropped",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -944,7 +944,7 @@
       "severity": "WARNING",
       "file": "Script/monster/tao_wu_boss.gd",
       "line": 9,
-      "literal": "res://Art/Monster/TaoWu/Effects",
+      "literal": "res://Art/monster/TaoWu/Effects",
       "message": "资源文件或目录不存在: 分段不存在: Effects",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -954,7 +954,7 @@
       "severity": "WARNING",
       "file": "Script/monster/zhuque_tiger_arrow.gd",
       "line": 3,
-      "literal": "res://Art/Monster/SwfPng/3002/arrow",
+      "literal": "res://Art/monster/SwfPng/3002/arrow",
       "message": "资源文件或目录不存在: 分段不存在: arrow",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1064,7 +1064,7 @@
       "severity": "WARNING",
       "file": "Scene/bullet/chase_bullet.tscn",
       "line": 6,
-      "literal": "res://Art/Monster/Game3Monster/Monster_1402/animation",
+      "literal": "res://Art/monster/Game3Monster/Monster_1402/animation",
       "message": "资源文件或目录不存在: 分段不存在: animation",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1254,7 +1254,7 @@
       "severity": "WARNING",
       "file": "Scene/monster/monster_bullet_slim/monster147_bullet1.tscn",
       "line": 4,
-      "literal": "res://Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
+      "literal": "res://Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
       "message": "资源文件或目录不存在: 分段不存在: baigujing_effect3__bujian-元件",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1264,7 +1264,7 @@
       "severity": "WARNING",
       "file": "Scene/monster/monster_bullet_slim/monster147_bullet1.tscn",
       "line": 5,
-      "literal": "res://Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
+      "literal": "res://Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
       "message": "资源文件或目录不存在: 分段不存在: baigujing_effect3__bujian-元件",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1274,7 +1274,7 @@
       "severity": "WARNING",
       "file": "Scene/monster/monster_bullet_slim/monster147_bullet1.tscn",
       "line": 6,
-      "literal": "res://Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
+      "literal": "res://Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
       "message": "资源文件或目录不存在: 分段不存在: baigujing_effect3__bujian-元件",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1284,7 +1284,7 @@
       "severity": "WARNING",
       "file": "Scene/monster/monster_bullet_slim/monster147_bullet1.tscn",
       "line": 7,
-      "literal": "res://Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
+      "literal": "res://Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
       "message": "资源文件或目录不存在: 分段不存在: baigujing_effect3__bujian-元件",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1294,7 +1294,7 @@
       "severity": "WARNING",
       "file": "Scene/monster/monster_bullet_slim/monster147_bullet1.tscn",
       "line": 8,
-      "literal": "res://Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
+      "literal": "res://Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
       "message": "资源文件或目录不存在: 分段不存在: baigujing_effect3__bujian-元件",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1492,9 +1492,9 @@
     {
       "category": "resource_path",
       "severity": "WARNING",
-      "file": "Art/Monster/Game3Monster/Monster_1402/animation (1).png.import",
+      "file": "Art/monster/Game3Monster/Monster_1402/animation (1).png.import",
       "line": 13,
-      "literal": "res://Art/Monster/Game3Monster/Monster_1402/animation",
+      "literal": "res://Art/monster/Game3Monster/Monster_1402/animation",
       "message": "资源文件或目录不存在: 分段不存在: animation",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1502,9 +1502,9 @@
     {
       "category": "resource_path",
       "severity": "WARNING",
-      "file": "Art/Monster/Game3Monster/Monster_1402/effect02/animation (1).png.import",
+      "file": "Art/monster/Game3Monster/Monster_1402/effect02/animation (1).png.import",
       "line": 13,
-      "literal": "res://Art/Monster/Game3Monster/Monster_1402/effect02/animation",
+      "literal": "res://Art/monster/Game3Monster/Monster_1402/effect02/animation",
       "message": "资源文件或目录不存在: 分段不存在: animation",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1512,9 +1512,9 @@
     {
       "category": "resource_path",
       "severity": "WARNING",
-      "file": "Art/Monster/Game3Monster/Monster_1402/effect02/animation (2).png.import",
+      "file": "Art/monster/Game3Monster/Monster_1402/effect02/animation (2).png.import",
       "line": 13,
-      "literal": "res://Art/Monster/Game3Monster/Monster_1402/effect02/animation",
+      "literal": "res://Art/monster/Game3Monster/Monster_1402/effect02/animation",
       "message": "资源文件或目录不存在: 分段不存在: animation",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1522,9 +1522,9 @@
     {
       "category": "resource_path",
       "severity": "WARNING",
-      "file": "Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件 1.png.import",
+      "file": "Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件 1.png.import",
       "line": 13,
-      "literal": "res://Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
+      "literal": "res://Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
       "message": "资源文件或目录不存在: 分段不存在: baigujing_effect3__bujian-元件",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1532,9 +1532,9 @@
     {
       "category": "resource_path",
       "severity": "WARNING",
-      "file": "Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件 2.png.import",
+      "file": "Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件 2.png.import",
       "line": 13,
-      "literal": "res://Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
+      "literal": "res://Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
       "message": "资源文件或目录不存在: 分段不存在: baigujing_effect3__bujian-元件",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1542,9 +1542,9 @@
     {
       "category": "resource_path",
       "severity": "WARNING",
-      "file": "Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件 3.png.import",
+      "file": "Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件 3.png.import",
       "line": 13,
-      "literal": "res://Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
+      "literal": "res://Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
       "message": "资源文件或目录不存在: 分段不存在: baigujing_effect3__bujian-元件",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1552,9 +1552,9 @@
     {
       "category": "resource_path",
       "severity": "WARNING",
-      "file": "Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件 4.png.import",
+      "file": "Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件 4.png.import",
       "line": 13,
-      "literal": "res://Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
+      "literal": "res://Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
       "message": "资源文件或目录不存在: 分段不存在: baigujing_effect3__bujian-元件",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1562,9 +1562,9 @@
     {
       "category": "resource_path",
       "severity": "WARNING",
-      "file": "Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件 5.png.import",
+      "file": "Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件 5.png.import",
       "line": 13,
-      "literal": "res://Art/Monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
+      "literal": "res://Art/monster/Game3Monster/Monster_147/hit1/baigujing_effect3__bujian-元件",
       "message": "资源文件或目录不存在: 分段不存在: baigujing_effect3__bujian-元件",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"
@@ -1572,9 +1572,9 @@
     {
       "category": "resource_path",
       "severity": "WARNING",
-      "file": "Art/Monster/MonsterHead/通天教主(穷奇版).png.import",
+      "file": "Art/monster/MonsterHead/通天教主(穷奇版).png.import",
       "line": 13,
-      "literal": "res://Art/Monster/MonsterHead/通天教主",
+      "literal": "res://Art/monster/MonsterHead/通天教主",
       "message": "资源文件或目录不存在: 分段不存在: 通天教主",
       "suggested_fix": "",
       "rule_id": "RES_MISSING"

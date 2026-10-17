@@ -1,6 +1,6 @@
 extends MonsterBullet
 
-const FRAME_DIR := "res://Art/Monster/Game3Monster/Monster_215/DefineSprite_50_Monster215Bullet1"
+const FRAME_DIR := "res://Art/monster/Game3Monster/Monster_215/DefineSprite_50_Monster215Bullet1"
 const FRAME_COUNT := 18
 const SOURCE_FPS := 30.0
 

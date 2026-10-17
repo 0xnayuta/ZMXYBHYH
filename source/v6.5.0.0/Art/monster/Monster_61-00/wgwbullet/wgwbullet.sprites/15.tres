@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3]
+
+[ext_resource type="Texture2D" uid="uid://crq1ux6077fkf" path="res://Art/monster/Monster_61-00/wgwbullet/wgwbullet.png" id="1"]
+
+[resource]
+atlas = ExtResource("1")
+region = Rect2(10, 246, 576, 98)

@@ -28,7 +28,7 @@ static func store_animation_bundle(cache_key: String, bundle: Dictionary) -> voi
 
 
 const BULK_REGISTRY_PATH := "res://Art/atlas_manifest_registry.json"
-const MONSTER_ROOT := "res://Art/Monster/SwfPng"
+const MONSTER_ROOT := "res://Art/monster/SwfPng"
 const MONSTER_RESOURCE_ALIASES := {
 	3178: 3159,
 	3183: 3177,
@@ -37,11 +37,11 @@ const MONSTER_RESOURCE_ALIASES := {
 	3146: 3122,
 }
 const MONSTER_LOCATIONS := {
-	3019: "res://Art/Monster/SwfPng/3019",
-	3035: "res://Art/Monster/SwfPng/3035",
-	3037: "res://Art/Monster/SwfPng/3037",
-	3040: "res://Art/Monster/SwfPng/3040",
-	3041: "res://Art/Monster/SwfPng/3041",
+	3019: "res://Art/monster/SwfPng/3019",
+	3035: "res://Art/monster/SwfPng/3035",
+	3037: "res://Art/monster/SwfPng/3037",
+	3040: "res://Art/monster/SwfPng/3040",
+	3041: "res://Art/monster/SwfPng/3041",
 }
 
 

@@ -2,7 +2,7 @@ extends BaseMonster
 class_name ShuangxiTempleMonster
 
 const FPS := 30.0
-const ROOT := "res://Art/Monster/SwfPng"
+const ROOT := "res://Art/monster/SwfPng"
 const BOSS_ATLAS_MANIFEST := ROOT + "/3020/atlas/manifest.json"
 const CANG_ER_DASH_SPEED := 150.0
 const CANG_ER_DASH_DURATION := 0.634

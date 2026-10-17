@@ -1,7 +1,7 @@
 extends MonsterBullet
 
 const EFFECT_FPS := 24.0
-const EFFECT_ROOT := "res://Art/Monster/Game3Monster/Monster_130/effects"
+const EFFECT_ROOT := "res://Art/monster/Game3Monster/Monster_130/effects"
 const PET_RABBIT_EFFECT_ROOT := "res://Art/pet/PetRabbit/effects"
 const EFFECT_COUNTS := {
 	"Monster130Bullet1": 11,

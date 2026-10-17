@@ -2,7 +2,7 @@ extends Node2D
 class_name LiuShaRiverShadow
 
 const SOURCE_FPS := 24.0
-const SHADOW_ROOT := "res://Art/Monster/LiuShaRiver"
+const SHADOW_ROOT := "res://Art/monster/LiuShaRiver"
 
 const ACTIONS := {
 	31:

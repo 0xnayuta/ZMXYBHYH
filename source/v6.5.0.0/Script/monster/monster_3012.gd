@@ -1,7 +1,7 @@
 extends BaseMonster
 class_name WeiyangFlyingAxe
 
-const ROOT := "res://Art/Monster/SwfPng/3012"
+const ROOT := "res://Art/monster/SwfPng/3012"
 const SOURCE_FPS := 30.0
 const FLY_SPEED := 50.0
 const SCREEN_MARGIN := 100.0

@@ -1,7 +1,7 @@
 extends BaseMonster
 class_name FireAncestorOrb
 
-const ROOT := "res://Art/Monster/SwfPng/3056"
+const ROOT := "res://Art/monster/SwfPng/3056"
 const SOURCE_FPS := 30.0
 const SOURCE_LIFETIME := 72.0
 const DAMAGE_INTERVAL := 0.5

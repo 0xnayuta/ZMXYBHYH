@@ -1,0 +1,214 @@
+{
+  "padding": 2,
+  "page_size": 2048,
+  "root": "res://Art/monster/Game3Monster/Monster_124",
+  "source_frames": 16,
+  "source_bytes": 210526,
+  "pages": [
+    {
+      "path": "res://Art/monster/Game3Monster/Monster_124/atlas_small_monsters/pages/atlas_000.png"
+    }
+  ],
+  "sequences": {},
+  "files": {
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_304/1.png": [
+      1,
+      0,
+      170,
+      2,
+      104,
+      113,
+      29,
+      29,
+      46,
+      37
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_304/2.png": [
+      2,
+      0,
+      278,
+      2,
+      104,
+      113,
+      29,
+      27,
+      46,
+      37
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_304/3.png": [
+      3,
+      0,
+      386,
+      2,
+      104,
+      113,
+      29,
+      26,
+      46,
+      37
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_304/4.png": [
+      4,
+      0,
+      494,
+      2,
+      104,
+      113,
+      29,
+      24,
+      46,
+      37
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_304/5.png": [
+      5,
+      0,
+      602,
+      2,
+      104,
+      113,
+      29,
+      26,
+      46,
+      37
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_304/6.png": [
+      6,
+      0,
+      710,
+      2,
+      104,
+      113,
+      29,
+      27,
+      46,
+      37
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_306/1.png": [
+      7,
+      0,
+      85,
+      2,
+      81,
+      130,
+      59,
+      11,
+      69,
+      20
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_312/1.png": [
+      8,
+      0,
+      2,
+      2,
+      79,
+      136,
+      37,
+      0,
+      92,
+      14
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_312/2.png": [
+      9,
+      0,
+      818,
+      2,
+      107,
+      109,
+      33,
+      6,
+      64,
+      41
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_312/3.png": [
+      10,
+      0,
+      1033,
+      2,
+      124,
+      85,
+      47,
+      61,
+      47,
+      65
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_312/4.png": [
+      11,
+      0,
+      929,
+      2,
+      100,
+      96,
+      47,
+      54,
+      71,
+      54
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_312/5.png": [
+      12,
+      0,
+      1437,
+      2,
+      104,
+      60,
+      47,
+      90,
+      67,
+      90
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_315/1.png": [
+      13,
+      0,
+      1300,
+      2,
+      133,
+      83,
+      6,
+      31,
+      17,
+      67
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_315/2.png": [
+      14,
+      0,
+      1545,
+      2,
+      133,
+      51,
+      6,
+      56,
+      17,
+      99
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_315/3.png": [
+      15,
+      0,
+      1161,
+      2,
+      135,
+      84,
+      6,
+      49,
+      15,
+      66
+    ],
+    "res://Art/monster/Game3Monster/Monster_124/DefineSprite_315/4.png": [
+      16,
+      0,
+      1545,
+      2,
+      133,
+      51,
+      6,
+      56,
+      17,
+      99
+    ]
+  },
+  "consumer_scenes": [
+    "res://Scene/base/base_monster.tscn",
+    "res://Scene/monster/monster_124.tscn"
+  ],
+  "monster_ids": [
+    124
+  ]
+}

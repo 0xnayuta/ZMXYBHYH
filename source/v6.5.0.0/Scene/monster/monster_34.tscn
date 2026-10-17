@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_monster.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/monster/monster_34.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster_33_34/Monster_34/Death.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster_33_34/Monster_34/Hit.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster_33_34/Monster_34/Hurt.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster_33_34/Monster_34/Wait.png" id="6"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster_33_34/Monster_34/Walk.png" id="7"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster_33_34/Monster_34/Sp2.png" id="8"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster_33_34/Monster_34/Death.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster_33_34/Monster_34/Hit.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster_33_34/Monster_34/Hurt.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster_33_34/Monster_34/Wait.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster_33_34/Monster_34/Walk.png" id="7"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster_33_34/Monster_34/Sp2.png" id="8"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("3")

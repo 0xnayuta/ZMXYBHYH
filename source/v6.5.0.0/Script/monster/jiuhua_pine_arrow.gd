@@ -1,6 +1,6 @@
 extends MonsterBullet
 
-const FRAME_ROOT := "res://Art/Monster/SwfPng/3009/arrow"
+const FRAME_ROOT := "res://Art/monster/SwfPng/3009/arrow"
 const FRAME_COUNT := 8
 const SOURCE_FPS := 30.0
 

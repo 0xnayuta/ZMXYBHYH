@@ -528,7 +528,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 - **核心任务**：`Hero` → `hero`、`MainSceneMusic` → `main_scene_music`、`MonsterHurt` → `monster_hurt`、`Hero/Role3~5` → `hero/role_3~5`；同步 531 处引用（含动态拼接前缀）。
 - **验收指标**：`Music/` 100% snake；0 断裂引用；音频加载实测无异常（战斗音效 / 背景音乐抽样）。
 
-#### 2. Phase 10-2: `Art/` 顶层二级目录分批收敛（25 个非规范目录） [进行中 · In Progress]
+#### 2. Phase 10-2: `Art/` 顶层二级目录分批收敛（25 个非规范目录） [已完成 · Done]
 - **全量梯队排期（按引用量严格升序）**：
   1. **第一批（超低引用组，≤ 5 处 · 已完成）**：`Bullet` (3) -> `bullet`、`EquipmentEffects` (3) -> `equipment_effects`、`StrikeSpecialEffects` (4) -> `strike_special_effects`、`Trap` (4) -> `trap`；
   2. **第二批（低引用组，20 ~ 100 处 · 已完成）**：
@@ -538,12 +538,12 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
      - 前段：`MainGame` (147) -> `main_game`、`Skill` (188) -> `skill`；
      - 中段：`AddEffect` (307) -> `add_effect`、`Constellations` (307) -> `constellations`；
      - 后段：`Game_4` (392) -> `game_4`、`ItemIcon` (453) -> `item_icon`；
-  4. **第四批（高引用与核心资源组，500 ~ 8000+ 处 · 进行中）**：
+  4. **第四批（高引用与核心资源组，500 ~ 8000+ 处 · 已完成）**：
      - 前段（已完成）：`Game_3` (518) -> `game_3`、`Mount` (644) -> `mount`；
      - 中段（已完成）：`MagicWeapon` (1122) -> `magic_weapon`、`BackPack` (1411) -> `backpack`；
      - 后段（已完成）：`Pet` (1965) -> `pet`、`HeroPicture` (2196) -> `hero_picture`；
-     - 压轴（进行中）：`Level` (3212) -> `level`（已完成）、`Monster` (8093)（待推进）。
-- **验收指标**：二级目录 100% snake；每批门禁全绿 + 实机冒烟。
+     - 压轴（已完成）：`Level` (3212) -> `level`、`Monster` (8093) -> `monster`。
+- **验收指标**：二级目录 100% snake（44/44 全部合规）；每批门禁全绿 + 实机冒烟 [已达成 · 100% PASS]。
 #### 3. Phase 10-3: `Art/` 三级及深层目录收敛（分级推进，由易到难）
 - **推进顺序**：
   1. **业务语义 Pascal 目录**（`HeroPicture/Role1`、`Monster/Monster12`、`Game_3/LevelButtonIcon` 等）→ `role_1` / `monster_12` / `level_button_icon`；

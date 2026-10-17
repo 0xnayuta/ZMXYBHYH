@@ -2,7 +2,7 @@ extends BaseMonster
 class_name ShenguangJinlingBoss
 
 const EFFECT_SCRIPT := preload("res://Script/monster/shenguang_boss_effect.gd")
-const ROOT := "res://Art/Monster/SwfPng/3021"
+const ROOT := "res://Art/monster/SwfPng/3021"
 const ATLAS_MANIFEST := ROOT + "/atlas/manifest.json"
 const SOURCE_FPS := 30.0
 const BASE_ATTACK := 32000

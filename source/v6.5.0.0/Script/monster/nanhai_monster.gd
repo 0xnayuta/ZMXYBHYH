@@ -3,7 +3,7 @@ class_name NanhaiMonster
 
 const PROJECTILE_SCRIPT := preload("res://Script/monster/nanhai_projectile.gd")
 const SOURCE_FPS := 30.0
-const ROOT := "res://Art/Monster/SwfPng"
+const ROOT := "res://Art/monster/SwfPng"
 const SMALL_HURT_DURATION := 0.28
 const TIGER_SHARK_DASH_TIME := 0.667
 

@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_monster.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/monster/monster_134.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Game3Monster/MonsterHide/Monster_134.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Game3_SpecialEffect/MonsterHide/SpecialEffet_5.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Game3_SpecialEffect/MonsterHide/SpecialEffet_6.png" id="5"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster_61-00/tswbullet/tswbullet.png" id="6"]
+[ext_resource type="Texture2D" path="res://Art/monster/Game3Monster/MonsterHide/Monster_134.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/monster/Game3_SpecialEffect/MonsterHide/SpecialEffet_5.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/monster/Game3_SpecialEffect/MonsterHide/SpecialEffet_6.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster_61-00/tswbullet/tswbullet.png" id="6"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("3")

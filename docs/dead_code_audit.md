@@ -1,6 +1,6 @@
 # ZMXYBHYH 全工程资产拓扑与死代码审计报告 (Phase 1)
 
-> 生成时间: 2026-10-18 00:33:39  
+> 生成时间: 2026-10-18 00:43:22  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
 > 引擎环境: `Godot 4.7.2 Headless`
 
@@ -22,13 +22,13 @@
 
 以下前缀在代码中通过变量拼接动态 `load(...)`，其目录下的所有子脚本**严禁作为孤岛删除**：
 
-- `load("res://Art/Monster/monster_head/" + ...)`
 - `load("res://Art/all_number/Level/Level_" + ...)`
 - `load("res://Art/backpack/AllItems/" + ...)`
 - `load("res://Art/level/Challenge/ui_beizhan_pj_" + ...)`
 - `load("res://Art/level_info_bg/" + ...)`
 - `load("res://Art/main_game/choose_player/" + ...)`
 - `load("res://Art/main_game/choose_player/xx_" + ...)`
+- `load("res://Art/monster/monster_head/" + ...)`
 - `load("res://Art/skill/SkillIcon/" + ...)`
 
 ---

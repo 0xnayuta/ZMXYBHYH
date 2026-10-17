@@ -147,7 +147,7 @@ func _physics_process(delta: float) -> void:
 
 
 func load_(name_):
-	var abc = load("res://Art/Monster/monster_head/" + str(name_) + ".png")
+	var abc = load("res://Art/monster/monster_head/" + str(name_) + ".png")
 	return abc
 
 

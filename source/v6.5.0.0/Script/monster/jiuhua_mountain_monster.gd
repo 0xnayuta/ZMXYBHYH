@@ -2,7 +2,7 @@ extends BaseMonster
 class_name JiuhuaMountainMonster
 
 const SOURCE_FPS := 30.0
-const FRAME_ROOT := "res://Art/Monster/SwfPng"
+const FRAME_ROOT := "res://Art/monster/SwfPng"
 const BOSS_ATLAS_MANIFEST := FRAME_ROOT + "/3019/atlas/manifest.json"
 const SMALL_CORPSE_LIFETIME := 0.75
 const SMALL_HURT_DURATION := 0.28

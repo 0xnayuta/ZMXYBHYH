@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" path="res://Scene/base/base_monster.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/monster/monster_33.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster_33_34/256.png" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster_33_34/1.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster_33_34/klw_2.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster_33_34/256.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster_33_34/1.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster_33_34/klw_2.png" id="5"]
 
 [sub_resource type="Animation" id="1"]
 length = 1.3

@@ -18794,7 +18794,7 @@ func _add_human_soul_crystal_items() -> void:
 			"品质": "史诗",
 			"颜色": "800080",
 			"类型": "道具",
-			"图标": "res://Art/Monster/魂晶/%d.png" % int(monster_id),
+			"图标": "res://Art/monster/魂晶/%d.png" % int(monster_id),
 			"描述": "人间噩梦难度中对应怪物掉落的魂晶。",
 			"售价": 0,
 		}
@@ -18835,7 +18835,7 @@ func _add_underworld_soul_crystal_items() -> void:
 			"品质": "史诗",
 			"颜色": "800080",
 			"类型": "道具",
-			"图标": "res://Art/Monster/魂晶/%d.png" % int(monster_id),
+			"图标": "res://Art/monster/魂晶/%d.png" % int(monster_id),
 			"描述": "地府噩梦难度中对应怪物掉落的魂晶。",
 			"售价": 0,
 		}
@@ -18897,7 +18897,7 @@ func _add_heaven_soul_crystal_items() -> void:
 			"品质": "史诗",
 			"颜色": "800080",
 			"类型": "道具",
-			"图标": "res://Art/Monster/魂晶/%d.png" % int(monster_id),
+			"图标": "res://Art/monster/魂晶/%d.png" % int(monster_id),
 			"描述": "天庭噩梦难度中对应怪物掉落的魂晶。",
 			"售价": 0,
 		}

@@ -3,7 +3,7 @@ class_name EmeiMountainMonster
 
 const PROJECTILE_SCRIPT := preload("res://Script/monster/nanhai_projectile.gd")
 const SOURCE_FPS := 30.0
-const ROOT := "res://Art/Monster/SwfPng"
+const ROOT := "res://Art/monster/SwfPng"
 const SMALL_HURT_DURATION := 0.28
 const DEFAULT_AI_DELAY_MSEC := 1000
 const MONKEY_SHOT_DURATION := 1.167

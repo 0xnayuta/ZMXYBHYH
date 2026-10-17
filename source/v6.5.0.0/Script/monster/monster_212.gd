@@ -1,6 +1,6 @@
 extends BaseMonster
 
-const BODY_FRAME_DIR := "res://Art/Monster/Game3Monster/Monster_212/DefineSprite_44_Monster212"
+const BODY_FRAME_DIR := "res://Art/monster/Game3Monster/Monster_212/DefineSprite_44_Monster212"
 const BODY_FRAME_COUNT := 8
 const SOURCE_FPS := 12.0
 const LITTLE_BLOOD_OFFSET := Vector2(-30, -205)

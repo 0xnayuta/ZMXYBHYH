@@ -2,21 +2,21 @@ extends BaseMonster
 class_name EastContinentMonster
 
 const SOURCE_FPS := 30.0
-const FRAME_ROOT := "res://Art/Monster/SwfPng"
+const FRAME_ROOT := "res://Art/monster/SwfPng"
 const PROJECTILE_SCRIPT := preload("res://Script/monster/wutai_minghai_projectile.gd")
 const RAIN_ANCESTOR_WEATHER_SCRIPT := preload("res://Script/monster/rain_ancestor_weather.gd")
-const RANGED_EFFECT_ROOT := "res://Art/Monster/Game4SpecialEffect/3177/effect2_1"
-const MONKEY_EFFECT2_ROOT := "res://Art/Monster/Game4SpecialEffect/3161/effect2_1"
-const MONKEY_EFFECT3_1_ROOT := "res://Art/Monster/Game4SpecialEffect/3161/effect3_1"
-const MONKEY_EFFECT3_2_ROOT := "res://Art/Monster/Game4SpecialEffect/3161/effect3_2"
-const SIX_EAR_DASH_ROOT := "res://Art/Monster/Game4SpecialEffect/3179/effect5_1"
-const SIX_EAR_IMPACT_ROOT := "res://Art/Monster/Game4SpecialEffect/3179/effect51"
-const SAND_BOSS_WIND_ROOT := "res://Art/Monster/Game4SpecialEffect/3120/effect1_1"
-const SAND_BOSS_STONE_ROOT := "res://Art/Monster/Game4SpecialEffect/3120/effect2_3"
-const SAND_BOSS_DUST_ROOT := "res://Art/Monster/Game4SpecialEffect/3120/effect2_4"
+const RANGED_EFFECT_ROOT := "res://Art/monster/Game4SpecialEffect/3177/effect2_1"
+const MONKEY_EFFECT2_ROOT := "res://Art/monster/Game4SpecialEffect/3161/effect2_1"
+const MONKEY_EFFECT3_1_ROOT := "res://Art/monster/Game4SpecialEffect/3161/effect3_1"
+const MONKEY_EFFECT3_2_ROOT := "res://Art/monster/Game4SpecialEffect/3161/effect3_2"
+const SIX_EAR_DASH_ROOT := "res://Art/monster/Game4SpecialEffect/3179/effect5_1"
+const SIX_EAR_IMPACT_ROOT := "res://Art/monster/Game4SpecialEffect/3179/effect51"
+const SAND_BOSS_WIND_ROOT := "res://Art/monster/Game4SpecialEffect/3120/effect1_1"
+const SAND_BOSS_STONE_ROOT := "res://Art/monster/Game4SpecialEffect/3120/effect2_3"
+const SAND_BOSS_DUST_ROOT := "res://Art/monster/Game4SpecialEffect/3120/effect2_4"
 const SAND_BOSS_ACTION_ROOTS := {
-	&"hit1": "res://Art/Monster/Game4SpecialEffect/3120/effect1",
-	&"hit2": "res://Art/Monster/Game4SpecialEffect/3120/effect2",
+	&"hit1": "res://Art/monster/Game4SpecialEffect/3120/effect1",
+	&"hit2": "res://Art/monster/Game4SpecialEffect/3120/effect2",
 }
 const SAND_BOSS_ACTION_COUNTS := {&"hit1": 47, &"hit2": 31}
 
@@ -24,17 +24,17 @@ const SAND_BOSS_ACTION_VISUAL_OFFSETS := {
 	&"hit1": Vector2(0.0, -32.0),
 	&"hit2": Vector2(0.0, -16.0),
 }
-const FLOWER_ARROW_ROOT := "res://Art/Monster/Game4SpecialEffect/3121/arrow1"
-const AOLAIGUO_BOSS_MANIFEST := "res://Art/Monster/SwfPng/3136/atlas/manifest.json"
-const RAIN_ANCESTOR_MANIFEST := "res://Art/Monster/SwfPng/3182/atlas/manifest.json"
+const FLOWER_ARROW_ROOT := "res://Art/monster/Game4SpecialEffect/3121/arrow1"
+const AOLAIGUO_BOSS_MANIFEST := "res://Art/monster/SwfPng/3136/atlas/manifest.json"
+const RAIN_ANCESTOR_MANIFEST := "res://Art/monster/SwfPng/3182/atlas/manifest.json"
 const SMALL_HURT_DURATION := 0.28
 const CORPSE_LIFETIME := 0.9
 
 const MONKEY_ACTION_ROOTS := {
-	&"hit1": "res://Art/Monster/Game4SpecialEffect/3161/effect1",
-	&"hit2": "res://Art/Monster/Game4SpecialEffect/3161/effect2",
-	&"hit3": "res://Art/Monster/Game4SpecialEffect/3161/effect3",
-	&"hit4": "res://Art/Monster/Game4SpecialEffect/3161/effect4",
+	&"hit1": "res://Art/monster/Game4SpecialEffect/3161/effect1",
+	&"hit2": "res://Art/monster/Game4SpecialEffect/3161/effect2",
+	&"hit3": "res://Art/monster/Game4SpecialEffect/3161/effect3",
+	&"hit4": "res://Art/monster/Game4SpecialEffect/3161/effect4",
 }
 const MONKEY_ACTION_COUNTS := {&"hit1": 49, &"hit2": 22, &"hit3": 100, &"hit4": 19}
 
@@ -3566,7 +3566,7 @@ func _start_3120_protect_teleport() -> void:
 				"hit_name": "protectSkill",
 				"attack_data": {},
 				"skill_name": "SandBossProtectHide",
-				"frame_root": "res://Art/Monster/Game4SpecialEffect/3120/effect3",
+				"frame_root": "res://Art/monster/Game4SpecialEffect/3120/effect3",
 				"frame_count": 16,
 				"frame_fps": SOURCE_FPS,
 				"loop_visual": false,
@@ -3594,7 +3594,7 @@ func _start_3120_protect_teleport() -> void:
 				"hit_name": "protectSkill",
 				"attack_data": {},
 				"skill_name": "SandBossProtectAppear",
-				"frame_root": "res://Art/Monster/Game4SpecialEffect/3120/effect3_1",
+				"frame_root": "res://Art/monster/Game4SpecialEffect/3120/effect3_1",
 				"frame_count": 6,
 				"frame_fps": SOURCE_FPS,
 				"loop_visual": false,

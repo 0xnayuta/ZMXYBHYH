@@ -6,7 +6,7 @@ const SOURCE_FPS := 24.0
 const DASH_SCALE := 15.0
 
 const GXP_GRAVITY_SCALE := 2.5
-const BODY_ROOT := "res://Art/Monster/LiuShaRiver"
+const BODY_ROOT := "res://Art/monster/LiuShaRiver"
 const ORIGINAL_EFFECT_ROOT := BODY_ROOT + "/OriginalEffects"
 const ORIGINAL_ROLE1_EFFECT_ROOT := ORIGINAL_EFFECT_ROOT + "/Role1"
 const ORIGINAL_ROLE2_EFFECT_ROOT := ORIGINAL_EFFECT_ROOT + "/Role2"

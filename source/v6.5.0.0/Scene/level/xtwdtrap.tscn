@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Script/level/xtwdtrap.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art/level/Game3Level/Level_2_3/hp.png" id="2"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Cow/First/CowFire.png" id="3"]
+[ext_resource type="Texture2D" path="res://Art/monster/Cow/First/CowFire.png" id="3"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(424, 1692)

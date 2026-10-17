@@ -2,7 +2,7 @@ extends BaseMonster
 class_name LingganKingBoss
 
 const PROJECTILE_SCRIPT := preload("res://Script/monster/nanhai_projectile.gd")
-const ROOT := "res://Art/Monster/SwfPng/3033"
+const ROOT := "res://Art/monster/SwfPng/3033"
 const ATLAS_MANIFEST := ROOT + "/atlas/manifest.json"
 const SOURCE_FPS := 30.0
 const BASE_ATTACK := 32000

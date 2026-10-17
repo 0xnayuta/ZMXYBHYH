@@ -4,7 +4,7 @@ extends MonsterBullet
 @export var frame_count := 6
 
 const SOURCE_FPS := 30.0
-const FRAME_ROOT := "res://Art/Monster/SwfPng/3007"
+const FRAME_ROOT := "res://Art/monster/SwfPng/3007"
 const ATLAS_MANIFEST := FRAME_ROOT + "/atlas/manifest.json"
 const FLY_ANIMATION := &"arrow1"
 const END_ANIMATION := &"arrow2"

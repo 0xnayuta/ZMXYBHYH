@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" path="res://Scene/base/base_monster.tscn" id="1"]
 [ext_resource type="Script" path="res://Script/monster/monster_56.gd" id="2"]
 [ext_resource type="PackedScene" path="res://Scene/monster/zlw_special_effect_2.tscn" id="3"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster_56/Body.png" id="4"]
-[ext_resource type="Texture2D" path="res://Art/Monster/Monster_56/Head.png" id="5"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster_56/Body.png" id="4"]
+[ext_resource type="Texture2D" path="res://Art/monster/Monster_56/Head.png" id="5"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("5")

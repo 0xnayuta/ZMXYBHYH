@@ -1,0 +1,82 @@
+{
+  "padding": 2,
+  "page_size": 2048,
+  "root": "res://Art/monster/Monster2",
+  "source_frames": 5,
+  "source_bytes": 85624,
+  "pages": [
+    {
+      "path": "res://Art/monster/Monster2/atlas_small_monsters/pages/atlas_000.png"
+    }
+  ],
+  "sequences": {},
+  "files": {
+    "res://Art/monster/Monster2/Death.png": [
+      1,
+      0,
+      810,
+      2,
+      590,
+      88,
+      20,
+      10,
+      30,
+      20
+    ],
+    "res://Art/monster/Monster2/Hit.png": [
+      2,
+      0,
+      2,
+      2,
+      450,
+      113,
+      60,
+      10,
+      70,
+      21
+    ],
+    "res://Art/monster/Monster2/Hurt.png": [
+      3,
+      0,
+      1404,
+      2,
+      89,
+      87,
+      0,
+      0,
+      0,
+      0
+    ],
+    "res://Art/monster/Monster2/Wait.png": [
+      4,
+      0,
+      456,
+      2,
+      350,
+      93,
+      10,
+      10,
+      20,
+      21
+    ],
+    "res://Art/monster/Monster2/Walk.png": [
+      5,
+      0,
+      1497,
+      2,
+      424,
+      85,
+      22,
+      10,
+      40,
+      20
+    ]
+  },
+  "consumer_scenes": [
+    "res://Scene/base/base_monster.tscn",
+    "res://Scene/monster/monster_2.tscn"
+  ],
+  "monster_ids": [
+    2
+  ]
+}

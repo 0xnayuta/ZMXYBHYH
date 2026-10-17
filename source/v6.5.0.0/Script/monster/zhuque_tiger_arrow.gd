@@ -1,7 +1,7 @@
 extends MonsterBullet
 
-const FRAME_ROOT := "res://Art/Monster/SwfPng/3002/arrow"
-const ATLAS_MANIFEST := "res://Art/Monster/SwfPng/3002/atlas/manifest.json"
+const FRAME_ROOT := "res://Art/monster/SwfPng/3002/arrow"
+const ATLAS_MANIFEST := "res://Art/monster/SwfPng/3002/atlas/manifest.json"
 const FRAME_COUNT := 8
 const SOURCE_FPS := 30.0
 

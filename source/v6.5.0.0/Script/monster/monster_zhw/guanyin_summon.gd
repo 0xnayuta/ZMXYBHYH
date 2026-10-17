@@ -24,8 +24,8 @@ var Mp: int = 0
 var r_mp: float = 0.0
 var vampirism: float = 0.0
 
-const SPINE_ATLAS_PATH := "res://Art/Monster/GuanyinSpine/skeleton.atlas"
-const SPINE_SKELETON_PATH := "res://Art/Monster/GuanyinSpine/guanyin.spine-json"
+const SPINE_ATLAS_PATH := "res://Art/monster/GuanyinSpine/skeleton.atlas"
+const SPINE_SKELETON_PATH := "res://Art/monster/GuanyinSpine/guanyin.spine-json"
 const SKILL_2_EFFECT_SCENE := preload("res://Scene/monster/monster_zhw/guanyin_skill2_effect.tscn")
 const SKILL_A_EFFECT_SCENE := preload("res://Scene/monster/monster_zhw/guanyin_skill_a_effect.tscn")
 

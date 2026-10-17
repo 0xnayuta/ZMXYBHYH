@@ -22,7 +22,7 @@ static func skill(id: Variant) -> Dictionary:
 
 static func manifest(id: int) -> String:
 	var record := monster_record(id)
-	return "res://Art/Monster/NorthOriginal/%d/manifest.json" % int(record["model"]) if not record.is_empty() else ""
+	return "res://Art/monster/NorthOriginal/%d/manifest.json" % int(record["model"]) if not record.is_empty() else ""
 
 
 static func level_data(number: int, hidden: bool = false) -> Dictionary:

@@ -2,7 +2,7 @@ extends BaseMonster
 class_name EmeiBoss3041
 
 const PROJECTILE_SCRIPT := preload("res://Script/monster/nanhai_projectile.gd")
-const ROOT := "res://Art/Monster/SwfPng/3041"
+const ROOT := "res://Art/monster/SwfPng/3041"
 const ATLAS_MANIFEST := ROOT + "/atlas/manifest.json"
 const SOURCE_FPS := 30.0
 const AI_DELAY_MSEC := 1000

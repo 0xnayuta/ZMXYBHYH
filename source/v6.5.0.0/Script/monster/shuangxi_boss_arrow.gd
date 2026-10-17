@@ -1,7 +1,7 @@
 extends MonsterBullet
 
 @export var arrow_kind := 1
-const ROOT := "res://Art/Monster/SwfPng/3020"
+const ROOT := "res://Art/monster/SwfPng/3020"
 const ATLAS_MANIFEST := ROOT + "/atlas/manifest.json"
 const VISUAL_OFFSETS := {
 	1: Vector2(-11.0, -2.5),

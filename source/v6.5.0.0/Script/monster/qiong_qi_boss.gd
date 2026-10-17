@@ -1,16 +1,16 @@
 extends BaseMonster
 
-const BODY_FRAME_DIR := "res://Art/Monster/QiongQi/Monster42FramesCenteredCropped"
+const BODY_FRAME_DIR := "res://Art/monster/QiongQi/Monster42FramesCenteredCropped"
 const BODY_FRAME_COUNT := 42
 const BODY_FRAME_COLUMNS := 6
 const SOURCE_FPS := 24.0
-const EFFECT_ROOT := "res://Art/Monster/QiongQi/Effects"
+const EFFECT_ROOT := "res://Art/monster/QiongQi/Effects"
 const EFFECT_NAMES := ["bullet_1", "bullet_2", "bullet_3"]
 static var _effect_frames_cache: Dictionary = {}
 static var _effect_prewarm_started := false
 const BODY_SPRITE_POSITION := Vector2(-15, -81)
-const BUFF_GREEN_TEXTURE := "res://Art/Monster/QiongQi/Effects/BuffGreen.png"
-const BUFF_BLUE_TEXTURE := "res://Art/Monster/QiongQi/Effects/BuffBlue.png"
+const BUFF_GREEN_TEXTURE := "res://Art/monster/QiongQi/Effects/BuffGreen.png"
+const BUFF_BLUE_TEXTURE := "res://Art/monster/QiongQi/Effects/BuffBlue.png"
 
 @export_category("Skill Position Tuning")
 @export var bullet1_height := -102.0

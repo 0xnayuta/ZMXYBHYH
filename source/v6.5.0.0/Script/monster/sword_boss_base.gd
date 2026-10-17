@@ -8,19 +8,19 @@ const ATLAS_MANIFEST := "manifest.json"
 const SWORD_BOSS_PRELOAD_CONFIG := {
 	951:
 	{
-		"root": "res://Art/Monster/Game3Monster/SwordBoss/zhuxian",
+		"root": "res://Art/monster/Game3Monster/SwordBoss/zhuxian",
 	},
 	952:
 	{
-		"root": "res://Art/Monster/Game3Monster/SwordBoss/xianxian",
+		"root": "res://Art/monster/Game3Monster/SwordBoss/xianxian",
 	},
 	953:
 	{
-		"root": "res://Art/Monster/Game3Monster/SwordBoss/luxian",
+		"root": "res://Art/monster/Game3Monster/SwordBoss/luxian",
 	},
 	954:
 	{
-		"root": "res://Art/Monster/Game3Monster/SwordBoss/juexian",
+		"root": "res://Art/monster/Game3Monster/SwordBoss/juexian",
 	},
 }
 

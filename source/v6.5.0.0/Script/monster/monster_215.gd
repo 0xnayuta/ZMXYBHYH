@@ -1,6 +1,6 @@
 extends BaseMonster
 
-const FRAME_ROOT := "res://Art/Monster/Game3Monster/Monster_215"
+const FRAME_ROOT := "res://Art/monster/Game3Monster/Monster_215"
 const SOURCE_FPS := 30.0
 const LITTLE_BLOOD_OFFSET := Vector2(-30, -190)
 

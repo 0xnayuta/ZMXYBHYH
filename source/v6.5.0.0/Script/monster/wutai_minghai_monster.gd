@@ -2,7 +2,7 @@ extends BaseMonster
 
 const PROJECTILE_SCRIPT := preload("res://Script/monster/wutai_minghai_projectile.gd")
 const SOURCE_FPS := 30.0
-const ROOT := "res://Art/Monster/SwfPng"
+const ROOT := "res://Art/monster/SwfPng"
 const SMALL_HURT_DURATION := 0.28
 
 const MODEL_BY_ENTITY := {

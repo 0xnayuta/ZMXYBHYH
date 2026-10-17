@@ -1,0 +1,99 @@
+{
+  "padding": 2,
+  "page_size": 2048,
+  "root": "res://Art/monster/Game3Monster/Monster3_3",
+  "source_frames": 5,
+  "source_bytes": 2597388,
+  "pages": [
+    {
+      "path": "res://Art/monster/Game3Monster/Monster3_3/atlas_small_monsters/pages/atlas_000.png"
+    },
+    {
+      "path": "res://Art/monster/Game3Monster/Monster3_3/atlas_small_monsters/pages/atlas_001.png"
+    },
+    {
+      "path": "res://Art/monster/Game3Monster/Monster3_3/atlas_small_monsters/pages/atlas_002.png"
+    }
+  ],
+  "sequences": {},
+  "files": {
+    "res://Art/monster/Game3Monster/Monster3_3/Monster_86.png": [
+      1,
+      1,
+      2,
+      1130,
+      1110,
+      916,
+      45,
+      58,
+      90,
+      84
+    ],
+    "res://Art/monster/Game3Monster/Monster3_3/Monster_87.png": [
+      2,
+      2,
+      2,
+      2,
+      1128,
+      920,
+      43,
+      57,
+      72,
+      80
+    ],
+    "res://Art/monster/Game3Monster/Monster3_3/Monster_88.png": [
+      3,
+      0,
+      2,
+      2,
+      1639,
+      1661,
+      83,
+      96,
+      161,
+      139
+    ],
+    "res://Art/monster/Game3Monster/Monster3_3/Monster_90.png": [
+      4,
+      2,
+      2,
+      926,
+      1286,
+      724,
+      42,
+      54,
+      114,
+      76
+    ],
+    "res://Art/monster/Game3Monster/Monster3_3/Monster_92.png": [
+      5,
+      1,
+      2,
+      2,
+      1143,
+      1124,
+      38,
+      56,
+      57,
+      76
+    ]
+  },
+  "consumer_scenes": [
+    "res://Scene/base/base_monster.tscn",
+    "res://Scene/monster/monster_bullet_slim/monster87_bullet.tscn",
+    "res://Scene/monster/monster_bullet_slim/monster88_bullet.tscn",
+    "res://Scene/monster/monster_bullet_slim/monster90_bullet.tscn",
+    "res://Scene/monster/monster_86.tscn",
+    "res://Scene/monster/monster_87.tscn",
+    "res://Scene/monster/monster_88.tscn",
+    "res://Scene/monster/monster_90.tscn",
+    "res://Scene/monster/monster_92.tscn"
+  ],
+  "monster_ids": [
+    86,
+    87,
+    88,
+    90,
+    92
+  ]
+}

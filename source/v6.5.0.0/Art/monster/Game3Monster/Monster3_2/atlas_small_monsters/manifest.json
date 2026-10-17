@@ -1,0 +1,66 @@
+{
+  "padding": 2,
+  "page_size": 2048,
+  "root": "res://Art/monster/Game3Monster/Monster3_2",
+  "source_frames": 3,
+  "source_bytes": 1194058,
+  "pages": [
+    {
+      "path": "res://Art/monster/Game3Monster/Monster3_2/atlas_small_monsters/pages/atlas_000.png"
+    },
+    {
+      "path": "res://Art/monster/Game3Monster/Monster3_2/atlas_small_monsters/pages/atlas_001.png"
+    }
+  ],
+  "sequences": {},
+  "files": {
+    "res://Art/monster/Game3Monster/Monster3_2/Monster_80.png": [
+      1,
+      0,
+      2,
+      2,
+      1200,
+      1000,
+      0,
+      0,
+      0,
+      0
+    ],
+    "res://Art/monster/Game3Monster/Monster3_2/Monster_81.png": [
+      2,
+      0,
+      2,
+      1006,
+      1200,
+      1000,
+      0,
+      0,
+      0,
+      0
+    ],
+    "res://Art/monster/Game3Monster/Monster3_2/Monster_82.png": [
+      3,
+      1,
+      2,
+      2,
+      1103,
+      933,
+      27,
+      57,
+      97,
+      67
+    ]
+  },
+  "consumer_scenes": [
+    "res://Scene/base/base_monster.tscn",
+    "res://Scene/monster/monster_bullet_slim/monster82_bullet.tscn",
+    "res://Scene/monster/monster_80.tscn",
+    "res://Scene/monster/monster_81.tscn",
+    "res://Scene/monster/monster_82.tscn"
+  ],
+  "monster_ids": [
+    80,
+    81,
+    82
+  ]
+}

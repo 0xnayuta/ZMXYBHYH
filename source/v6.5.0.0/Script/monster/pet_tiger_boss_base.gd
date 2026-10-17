@@ -7,7 +7,7 @@ const SKILL_HY := "hy"
 const SKILL_SXHZ := "sxhz"
 const SKILL_HSQJ := "hsqj"
 const SKILL_BHAOYI := "bhaoyi"
-const TIGER_MODEL_FRAME_DIR := "res://Art/Monster/PetTigerBoss/model/frames"
+const TIGER_MODEL_FRAME_DIR := "res://Art/monster/PetTigerBoss/model/frames"
 const TIGER_FRAME_SPEED := 10.0
 const TIGER_ACTIONS := [
 	{},

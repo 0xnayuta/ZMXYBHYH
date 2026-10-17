@@ -2,7 +2,7 @@ extends BaseMonster
 class_name WeiyangPalaceBoss
 
 const FPS := 30.0
-const ROOT := "res://Art/Monster/SwfPng/3007"
+const ROOT := "res://Art/monster/SwfPng/3007"
 const ATLAS_MANIFEST := ROOT + "/atlas/manifest.json"
 const VISUAL_GROUND_OFFSET := Vector2(0.0, 80.0)
 const BODY_POSITION := Vector2(-0.575, -203.0)

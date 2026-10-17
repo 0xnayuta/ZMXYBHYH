@@ -1,8 +1,8 @@
 # ZMXYBHYH 全工程字面量契约诊断审计报告 (Phase 8-1)
 
-> 生成时间: 2026-10-18 00:33:44  
+> 生成时间: 2026-10-18 00:43:27  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
-> 扫描耗时: `4.76 秒`（指标要求 ≤ 30 秒）  
+> 扫描耗时: `4.72 秒`（指标要求 ≤ 30 秒）  
 > 覆盖资产: 脚本 `722 个` / 场景 `1132 个`  
 
 ---
@@ -27,18 +27,18 @@
 |:---:|:---|:---|:---|
 | `WARNING` | `Global.gd:190` | `res://Scene/base/SpecialAffectSlim` | 资源文件或目录不存在: 分段不存在: SpecialAffectSlim |
 | `WARNING` | `Global.gd:202` | `res://Scene/hero/RoleBulletSlim` | 资源文件或目录不存在: 分段不存在: RoleBulletSlim |
-| `WARNING` | `Global.gd:252` | `res://Art/Monster/QiongQi/Monster42FramesCenteredCropped` | 资源文件或目录不存在: 分段不存在: Monster42FramesCenteredCropped |
-| `WARNING` | `Global.gd:256` | `res://Art/Monster/TaoWu/Monster47FramesCenteredCropped` | 资源文件或目录不存在: 分段不存在: Monster47FramesCenteredCropped |
-| `WARNING` | `Global.gd:278` | `res://Art/Monster/PetTigerBoss/model/frames/stage1` | 资源文件或目录不存在: 分段不存在: frames |
-| `WARNING` | `Global.gd:279` | `res://Art/Monster/PetTigerBoss/effects` | 资源文件或目录不存在: 分段不存在: effects |
-| `WARNING` | `Global.gd:283` | `res://Art/Monster/PetTigerBoss/model/frames/stage2` | 资源文件或目录不存在: 分段不存在: frames |
-| `WARNING` | `Global.gd:284` | `res://Art/Monster/PetTigerBoss/effects` | 资源文件或目录不存在: 分段不存在: effects |
-| `WARNING` | `Global.gd:288` | `res://Art/Monster/PetTigerBoss/model/frames/stage3` | 资源文件或目录不存在: 分段不存在: frames |
-| `WARNING` | `Global.gd:289` | `res://Art/Monster/PetTigerBoss/effects` | 资源文件或目录不存在: 分段不存在: effects |
-| `WARNING` | `Global.gd:293` | `res://Art/Monster/PetTigerBoss/model/frames/stage4` | 资源文件或目录不存在: 分段不存在: frames |
-| `WARNING` | `Global.gd:294` | `res://Art/Monster/PetTigerBoss/effects` | 资源文件或目录不存在: 分段不存在: effects |
-| `WARNING` | `Global.gd:305` | `res://Art/Monster/QiongQi/Effects` | 资源文件或目录不存在: 分段不存在: Effects |
-| `WARNING` | `Global.gd:306` | `res://Art/Monster/TaoWu/Effects` | 资源文件或目录不存在: 分段不存在: Effects |
+| `WARNING` | `Global.gd:252` | `res://Art/monster/QiongQi/Monster42FramesCenteredCropped` | 资源文件或目录不存在: 分段不存在: Monster42FramesCenteredCropped |
+| `WARNING` | `Global.gd:256` | `res://Art/monster/TaoWu/Monster47FramesCenteredCropped` | 资源文件或目录不存在: 分段不存在: Monster47FramesCenteredCropped |
+| `WARNING` | `Global.gd:278` | `res://Art/monster/PetTigerBoss/model/frames/stage1` | 资源文件或目录不存在: 分段不存在: frames |
+| `WARNING` | `Global.gd:279` | `res://Art/monster/PetTigerBoss/effects` | 资源文件或目录不存在: 分段不存在: effects |
+| `WARNING` | `Global.gd:283` | `res://Art/monster/PetTigerBoss/model/frames/stage2` | 资源文件或目录不存在: 分段不存在: frames |
+| `WARNING` | `Global.gd:284` | `res://Art/monster/PetTigerBoss/effects` | 资源文件或目录不存在: 分段不存在: effects |
+| `WARNING` | `Global.gd:288` | `res://Art/monster/PetTigerBoss/model/frames/stage3` | 资源文件或目录不存在: 分段不存在: frames |
+| `WARNING` | `Global.gd:289` | `res://Art/monster/PetTigerBoss/effects` | 资源文件或目录不存在: 分段不存在: effects |
+| `WARNING` | `Global.gd:293` | `res://Art/monster/PetTigerBoss/model/frames/stage4` | 资源文件或目录不存在: 分段不存在: frames |
+| `WARNING` | `Global.gd:294` | `res://Art/monster/PetTigerBoss/effects` | 资源文件或目录不存在: 分段不存在: effects |
+| `WARNING` | `Global.gd:305` | `res://Art/monster/QiongQi/Effects` | 资源文件或目录不存在: 分段不存在: Effects |
+| `WARNING` | `Global.gd:306` | `res://Art/monster/TaoWu/Effects` | 资源文件或目录不存在: 分段不存在: Effects |
 | `WARNING` | `Global.gd:1271` | `res://Art/all_number/cure/cure_` | 资源文件或目录不存在: 分段不存在: cure_ |
 | `WARNING` | `Global.gd:1272` | `res://Art/all_number/CureMp/CureMp_` | 资源文件或目录不存在: 分段不存在: CureMp_ |
 | `WARNING` | `Global.gd:1273` | `res://Art/all_number/ReduceMp/ReduceMp_` | 资源文件或目录不存在: 分段不存在: ReduceMp_ |

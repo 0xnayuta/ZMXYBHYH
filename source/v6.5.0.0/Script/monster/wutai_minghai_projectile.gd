@@ -651,7 +651,7 @@ func _replace_visual_stream(next_stream: StreamedPngEffect) -> void:
 
 
 func _is_swf_png_root(root: String) -> bool:
-	return root.replace("\\", "/").begins_with("res://Art/Monster/SwfPng/")
+	return root.replace("\\", "/").begins_with("res://Art/monster/SwfPng/")
 
 
 func _exit_tree() -> void:
