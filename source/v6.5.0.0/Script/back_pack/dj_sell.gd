@@ -15,7 +15,7 @@ var my_name
 var my_page
 var be_number = 0
 var is_set = false
-var EQ_prop = {}
+var eq_prop = {}
 
 @onready var lock_button: Button = $MarginContainer2/MarginContainer/VBoxContainer/lock
 
@@ -117,8 +117,8 @@ func _on_sell_pressed() -> void:
 		Global.add_message_show(Global.get_ui_popup_layer(), "该物品已锁定，请先解锁后再出售！", 1.5, Vector2.ZERO)
 		return
 	be_number = _get_sell_count()
-	var Type = AE.all_equipment[my_name][DataKeys.TYPE]
-	match Type:
+	var type = AE.all_equipment[my_name][DataKeys.TYPE]
+	match type:
 		"道具":
 			var get_list = PlayerData.remove_dj(my_name, my_page, be_number)
 			if be_number > 0 and int(get_list["获得灵魂"]) > 0:
@@ -655,7 +655,7 @@ func use_xhp():
 						"Name": "DoubleFallPro",
 						"value": 0.0,
 						"AddTime": 7200,
-						"ReduceInterval": 0.0,
+						"reduce_interval": 0.0,
 						"AttackKind": "SpecialBuff_1",
 						"CanRemove": false,
 						"CanAdd": false,
@@ -670,7 +670,7 @@ func use_xhp():
 		"txd":
 			var parent = get_parent().get_parent().get_parent()
 
-			var target_buff_name = "LifeManaLock"
+			var target_buff_name = "life_mana_lock"
 
 			if Global.get_player != null and Global.get_player.buff != null:
 				var player = Global.get_player
@@ -681,7 +681,7 @@ func use_xhp():
 					"Name": target_buff_name,
 					"value": 0.0,
 					"AddTime": 10,
-					"ReduceInterval": 0.0,
+					"reduce_interval": 0.0,
 					"AttackKind": "",
 					"CanRemove": false,
 					"CanAdd": false,

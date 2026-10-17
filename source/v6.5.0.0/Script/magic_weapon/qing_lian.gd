@@ -89,12 +89,12 @@ func _physics_process(delta: float) -> void:
 
 
 func _follow_hero_during_skill() -> void:
-	if Player == null or not is_instance_valid(Player):
+	if player == null or not is_instance_valid(player):
 		return
 
 	var role_x = RoleProp.role_pos_x
 	var role_y = RoleProp.role_pos_y
-	var hero_position := Player.position
+	var hero_position := player.position
 	if role_x != null and role_y != null:
 		hero_position = Vector2(float(role_x), float(role_y))
 
@@ -123,20 +123,20 @@ func _update_effect_positions() -> void:
 	if foot_global_position != null and aura_effect.get_parent() == Player:
 		var frame_texture := aura_effect.sprite_frames.get_frame_texture("effect", aura_effect.frame)
 		var frame_bottom_offset := _get_sprite_visible_bottom_offset(aura_effect, frame_texture)
-		var foot_local_position: Vector2 = Player.to_local(foot_global_position)
+		var foot_local_position: Vector2 = player.to_local(foot_global_position)
 		aura_effect.position = foot_local_position - frame_bottom_offset
 	special_effect.position = Vector2(0, -75)
 
 
 func _get_player_visible_foot_global_position() -> Variant:
-	if Player == null or not is_instance_valid(Player):
+	if player == null or not is_instance_valid(player):
 		return null
 	var ground_position: Variant = _get_player_ground_global_position()
 	if ground_position != null:
 		return ground_position
 	var visible_bottom: Variant = null
 	for node_path in ["Action/RoleBody", "Action/RoleEquipment", "Action/RoleBodyFront"]:
-		var sprite := Player.get_node_or_null(node_path) as Sprite2D
+		var sprite := player.get_node_or_null(node_path) as Sprite2D
 		if sprite == null or not sprite.visible or sprite.texture == null:
 			continue
 		var sprite_bottom: Variant = _get_sprite_visible_bottom_global_position(sprite)
@@ -146,7 +146,7 @@ func _get_player_visible_foot_global_position() -> Variant:
 
 
 func _get_player_ground_global_position() -> Variant:
-	var ground_shape := Player.get_node_or_null("pz") as CollisionShape2D
+	var ground_shape := player.get_node_or_null("pz") as CollisionShape2D
 	if ground_shape == null or ground_shape.shape == null:
 		return null
 	var shape_rect: Rect2 = ground_shape.shape.get_rect()
@@ -265,20 +265,20 @@ func _get_alpha_threshold_rect(image: Image, alpha_threshold: int) -> Rect2i:
 
 
 func show_skill() -> void:
-	if Player == null or not is_instance_valid(Player):
+	if player == null or not is_instance_valid(player):
 		use_over()
 		return
-	_previous_damage_reduction = Player.wdsl_damage_reduction
-	Player.wdsl_damage_reduction += 0.5
+	_previous_damage_reduction = player.wdsl_damage_reduction
+	player.wdsl_damage_reduction += 0.5
 	_damage_reduction_applied = true
 	(
 		Global
 		. add_buff(
-			Player.buff,
+			player.buff,
 			{
 				"Name": "SuperArmor",
 				"AddTime": BUFF_DURATION,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 				"CanRemove": false,
@@ -299,12 +299,12 @@ func show_skill() -> void:
 
 
 func _show_skill_effect() -> void:
-	if Player == null or not is_instance_valid(Player):
+	if player == null or not is_instance_valid(player):
 		return
-	if special_effect.get_parent() != Player:
-		special_effect.reparent(Player, false)
-	if aura_effect.get_parent() != Player:
-		aura_effect.reparent(Player, false)
+	if special_effect.get_parent() != player:
+		special_effect.reparent(player, false)
+	if aura_effect.get_parent() != player:
+		aura_effect.reparent(player, false)
 	special_effect.position = Vector2(0, -75)
 	special_effect.z_index = 6
 	special_effect.visible = true
@@ -321,8 +321,8 @@ func _show_skill_effect() -> void:
 
 
 func _clear_skill_effect() -> void:
-	if _damage_reduction_applied and Player != null and is_instance_valid(Player):
-		Player.wdsl_damage_reduction = _previous_damage_reduction
+	if _damage_reduction_applied and player != null and is_instance_valid(player):
+		player.wdsl_damage_reduction = _previous_damage_reduction
 	_damage_reduction_applied = false
 	special_effect.stop()
 	special_effect.visible = false

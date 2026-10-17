@@ -11,7 +11,7 @@ var can_pass = false
 func _ready() -> void:
 	Global.current_level = ""
 	var role_id = PlayerData.player_data["Myself"]
-	Role_ = Global.call_hero("role_" + str(role_id), hero, Vector2(4100, 340), false)
+	role_ = Global.call_hero("role_" + str(role_id), hero, Vector2(4100, 340), false)
 	self.modulate = Color(1, 1, 1, 1)
 	front.modulate = Color(1, 1, 1, 1)
 	floor_2.modulate = Color(1, 1, 1, 1)
@@ -24,8 +24,8 @@ func _ready() -> void:
 	current_stage = 4
 	Global.add_bgm(self, "res://Music/level/9_bg3.mp3")
 	self.level_stage = 1
-	if Role_ != null:
-		my_camera = Global.add_camera(Role_, Vector2(0, 0), 1200)
+	if role_ != null:
+		my_camera = Global.add_camera(role_, Vector2(0, 0), 1200)
 		my_camera.max_left = 0
 		my_camera.max_top = 0
 		my_camera.max_bottom = 590

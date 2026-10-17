@@ -19,11 +19,11 @@ func monster_32():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 30
 	self.sp = 30
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 9
 	self.mysee = 300
 	self.attack_range = 85
@@ -43,7 +43,7 @@ func monster_32():
 			"AddTime": 5,
 			"CanAdd": false,
 			"DeBuff": true,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 		}
@@ -57,7 +57,7 @@ func monster_32():
 			"Name": "Bleed",
 			"CanAdd": true,
 			"AddTime": 2,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 5 + int(RoleProp.roleprop.SHp * 0.01),
 			"AttackKind": "physics",
 		}
@@ -83,8 +83,8 @@ func _ready() -> void:
 	super._ready()
 	monster_32()
 	is_bounds = false
-	Skill_1_CD = 0
-	Skill_2_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
 	wing.set_frame_and_progress(0, true)
 
 
@@ -101,15 +101,15 @@ func ai_think():
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 					have_target()
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 1200:
-						if Skill_1_CD <= 0:
+						if skill_1_cd <= 0:
 							do_hit_2()
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400:
-						if Skill_2_CD <= 0:
+						if skill_2_cd <= 0:
 							do_hit_3()
 				else:
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						do_hit_2()
-					elif Skill_2_CD <= 0:
+					elif skill_2_cd <= 0:
 						do_hit_3()
 					elif count % 60 == 0:
 						attack_target()
@@ -123,13 +123,13 @@ func attack_target():
 
 func do_hit_2():
 	if self.current_ == 0:
-		Skill_1_CD = 16
+		skill_1_cd = 16
 	elif self.current_ == 1:
 		to_hero()
-		Skill_1_CD = 10
+		skill_1_cd = 10
 	elif self.current_ == 2:
 		to_hero()
-		Skill_1_CD = 8
+		skill_1_cd = 8
 	hit_name = "dmzw"
 	velocity.x = 0
 	is_attacking = true
@@ -140,11 +140,11 @@ func do_hit_2():
 
 func do_hit_3():
 	if self.current_ == 0:
-		Skill_2_CD = 15
+		skill_2_cd = 15
 	elif self.current_ == 1:
-		Skill_2_CD = 12
+		skill_2_cd = 12
 	elif self.current_ == 2:
-		Skill_2_CD = 9
+		skill_2_cd = 9
 	velocity.x = 0
 	hit_name = "dmlhc"
 	is_attacking = true
@@ -172,8 +172,8 @@ func relive():
 	self.current_ += 1
 	match self.current_:
 		1:
-			Skill_1_CD = 0
-			Skill_2_CD = 0
+			skill_1_cd = 0
+			skill_2_cd = 0
 			self.my_mr_name = "白骨精·妖"
 			self.SHp = 30000
 			self.Hp = self.SHp
@@ -191,7 +191,7 @@ func relive():
 					"AddTime": 2,
 					"CanAdd": true,
 					"DeBuff": true,
-					"ReduceInterval": 1,
+					"reduce_interval": 1,
 					"value": 5 + int(RoleProp.roleprop.SHp * 0.01),
 					"AttackKind": "physics",
 				}
@@ -208,8 +208,8 @@ func relive():
 			treasure_box_item = "bgjbx1"
 			update_fall_mode()
 		2:
-			Skill_1_CD = 0
-			Skill_2_CD = 0
+			skill_1_cd = 0
+			skill_2_cd = 0
 			self.my_mr_name = "白骨精·魔"
 			self.SHp = 50000
 			self.Hp = self.SHp
@@ -227,7 +227,7 @@ func relive():
 					"AddTime": 2,
 					"CanAdd": true,
 					"DeBuff": true,
-					"ReduceInterval": 0.5,
+					"reduce_interval": 0.5,
 					"value": 5 + int(RoleProp.roleprop.SHp * 0.01),
 					"AttackKind": "physics",
 				}
@@ -251,7 +251,7 @@ func relive():
 func call_gc():
 	var gc: MonsterBullet
 	var bullet_spawn_positions: Array[Vector2] = []
-	if MonsterDirection:
+	if monster_direction:
 		bullet_spawn_positions = [
 			Vector2(40, 55), Vector2(140, 55), Vector2(240, 55), Vector2(340, 55), Vector2(440, 55)
 		]
@@ -261,7 +261,7 @@ func call_gc():
 		]
 	for i in bullet_spawn_positions:
 		gc = Global.add_bullet(
-			"Monster32Bullet", self.bullet, MonsterDirection, 0.8, i + position, "dmlhc", self.obj_attack_dict["dmlhc"]
+			"Monster32Bullet", self.bullet, monster_direction, 0.8, i + position, "dmlhc", self.obj_attack_dict["dmlhc"]
 		)
 		match self.current_:
 			0:
@@ -278,12 +278,12 @@ func call_gc():
 
 func eye_fix():
 	if self.position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
-		if Global.get_player.PlayerDir:
-			if not MonsterDirection:
+		if Global.get_player.player_dir:
+			if not monster_direction:
 				add_eye_fix()
 	else:
-		if not Global.get_player.PlayerDir:
-			if MonsterDirection:
+		if not Global.get_player.player_dir:
+			if monster_direction:
 				add_eye_fix()
 
 
@@ -295,7 +295,7 @@ func add_eye_fix():
 			{
 				"Name": "EyeFix",
 				"AddTime": 5,
-				"ReduceInterval": 0.0,
+				"reduce_interval": 0.0,
 				"value": 0,
 				"AttackKind": "",
 				"DeBuff": true,

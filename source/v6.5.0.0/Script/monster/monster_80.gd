@@ -13,11 +13,11 @@ func monster_80():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 18
-	self.Toughness = 0
+	self.htarget = 18
+	self.toughness = 0
 	self.ar = 10
 	self.sp = 10
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 9
 	self.mysee = 300
 	self.attack_range = 145
@@ -34,7 +34,7 @@ func monster_80():
 		{
 			"Name": "Bleed",
 			"AddTime": 3,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 30,
 			"AttackKind": "magic",
 			"DeBuff": true,

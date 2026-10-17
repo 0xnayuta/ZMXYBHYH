@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var big: Button = $bg/box/HBoxContainer/big
 @onready var mid: Button = $bg/box/HBoxContainer/mid
 @onready var small: Button = $bg/box/HBoxContainer/small
-@onready var role_btn: Button = $bg/box/RoleP2
+@onready var role_btn: Button = $bg/box/role_p2
 @onready var set_key: Button = $bg/box/SetKey
 
 var set_key_tscn: PackedScene = preload("res://Scene/tools/set_com.tscn")

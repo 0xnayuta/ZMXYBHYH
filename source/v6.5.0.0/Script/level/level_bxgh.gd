@@ -320,8 +320,8 @@ func _ready() -> void:
 	is_two_scene = false
 	Global.add_bgm(self, "res://Music/level/BGM_Normal.mp3")
 	super._ready()
-	if Role_ != null:
-		Role_.set_meta("disable_down_drop", true)
+	if role_ != null:
+		role_.set_meta("disable_down_drop", true)
 	exit.visible = false
 	exit_2.disabled = true
 
@@ -410,7 +410,7 @@ func _handle_boss_death() -> void:
 
 
 func _on_fall_death_body_entered(body: Node2D) -> void:
-	if (body == Role_ or body is BaseHero) and RoleProp.roleprop != null:
+	if (body == role_ or body is BaseHero) and RoleProp.roleprop != null:
 		RoleProp.roleprop.Hp = 0
 	elif body is BaseMonster and is_instance_valid(body):
 		(body as BaseMonster).Hp = 0

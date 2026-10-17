@@ -30,7 +30,7 @@ var _locked_tornado_position := Vector2.ZERO
 
 
 func _ready() -> void:
-	NoGrav = true
+	no_grav = true
 	super_armor_active = true
 	_runtime_config = _resolve_runtime_config()
 	if not _runtime_config.is_empty():
@@ -65,9 +65,9 @@ func _configure_form(config: Dictionary) -> void:
 	mdef = int(config["mdef"])
 	crit = int(config["crit"])
 	miss = int(config["miss"])
-	Htarget = int(config["hit"])
-	Toughness = float(config["toughness"])
-	Critreduce = int(config["crit_reduce"])
+	htarget = int(config["hit"])
+	toughness = float(config["toughness"])
+	crit_reduce = int(config["crit_reduce"])
 	ar = int(config["armor_break"])
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])

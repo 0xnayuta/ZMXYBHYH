@@ -22,8 +22,8 @@ func _ready() -> void:
 	_configure_taotie()
 	_build_original_animations()
 	super._ready()
-	Skill_1_CD = randi_range(5, 13)
-	Skill_2_CD = randi_range(6, 12)
+	skill_1_cd = randi_range(5, 13)
+	skill_2_cd = randi_range(6, 12)
 
 
 func _configure_taotie() -> void:
@@ -40,8 +40,8 @@ func _configure_taotie() -> void:
 	crit = 55
 	miss = 15
 	lucky = 10
-	Htarget = 100
-	Toughness = 20
+	htarget = 100
+	toughness = 20
 	speed = 15
 	mysee = 1000
 	attack_range = 250
@@ -68,7 +68,7 @@ func _configure_taotie() -> void:
 			"DeBuff": true,
 			"CanAdd": true,
 			"AddTime": 8,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.5,
 			"AttackKind": ""
 		}
@@ -150,9 +150,9 @@ func ai_think() -> void:
 		normal_state()
 		return
 	var distance := absf(RoleProp.get_nearest_monster_target_position(global_position).x - position.x)
-	if Skill_2_CD <= 0 and distance <= 300.0:
+	if skill_2_cd <= 0 and distance <= 300.0:
 		_use_skill(&"hit3", randi_range(6, 12))
-	elif Skill_1_CD <= 0:
+	elif skill_1_cd <= 0:
 		_use_skill(&"hit2", randi_range(5, 13))
 	elif distance <= attack_range:
 		stop_move()
@@ -168,9 +168,9 @@ func _use_skill(animation_name: StringName, cooldown: int) -> void:
 	_skill_busy = true
 	super.to_hero()
 	if animation_name == &"hit2":
-		Skill_1_CD = cooldown
+		skill_1_cd = cooldown
 	else:
-		Skill_2_CD = cooldown
+		skill_2_cd = cooldown
 	hit_name = String(animation_name)
 	velocity.x = 0.0
 	is_attacking = true

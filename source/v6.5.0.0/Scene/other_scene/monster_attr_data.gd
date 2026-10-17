@@ -56,7 +56,7 @@ const DATA = {
 		"金币": 2,
 		"掉落概率": 0,
 		"攻击": [{"name": "hit1", "power": 20, "kind": "physics"}],
-		"脚本": "Monster_2",
+		"脚本": "monster_2",
 		"显示名": "妖猴"
 	},
 	"dxx":
@@ -1274,7 +1274,7 @@ const DATA = {
 		"暴击": "RoleProp.roleprop.Crit",
 		"闪避": "RoleProp.roleprop.Miss",
 		"幸运": "RoleProp.roleprop.Lucky",
-		"命中": "RoleProp.roleprop.Htarget * 2",
+		"命中": "RoleProp.roleprop.htarget * 2",
 		"魔抗": 0,
 		"物穿": "RoleProp.roleprop.ar",
 		"魔穿": "RoleProp.roleprop.sp",

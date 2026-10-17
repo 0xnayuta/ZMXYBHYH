@@ -67,7 +67,7 @@ func _preload_level_resources() -> void:
 
 
 func _on_create_control_timeout() -> void:
-	if Role_ == null:
+	if role_ == null:
 		return
 	if not _second_wave_started:
 		if not _role_inside_second_wave_trigger():
@@ -89,7 +89,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _role_inside_second_wave_trigger() -> bool:
-	return Role_ != null and SECOND_WAVE_TRIGGER_RECT.has_point(Role_.position)
+	return role_ != null and SECOND_WAVE_TRIGGER_RECT.has_point(role_.position)
 
 
 func _begin_second_wave() -> void:

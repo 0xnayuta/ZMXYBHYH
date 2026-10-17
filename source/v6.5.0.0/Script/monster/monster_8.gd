@@ -10,7 +10,7 @@ var shader_material: ShaderMaterial
 
 
 func monster_8():
-	Skill_1_CD = 0
+	skill_1_cd = 0
 	self.cannot_attract = true
 	self.is_quiescent = true
 	self.is_boss = true
@@ -24,11 +24,11 @@ func monster_8():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 200
+	self.htarget = 0
+	self.toughness = 200
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 500
+	self.crit_reduce = 500
 	self.speed = 0
 	self.mysee = 300
 	self.attack_range = 75
@@ -94,7 +94,7 @@ func _physics_process(delta):
 
 
 func use_skill_1():
-	Skill_1_CD = 10
+	skill_1_cd = 10
 	call_monster()
 
 
@@ -146,7 +146,7 @@ func _on_rd_area_entered(area):
 
 
 func ai_think():
-	if Skill_1_CD <= 0:
+	if skill_1_cd <= 0:
 		use_skill_1()
 
 

@@ -383,8 +383,8 @@ func _ready() -> void:
 	is_two_scene = false
 	super._ready()
 	_update_screen_bounds()
-	if Role_ != null:
-		Role_.position = Vector2(31, 446)
+	if role_ != null:
+		role_.position = Vector2(31, 446)
 	if my_camera != null:
 		my_camera.max_bottom = WUTAI_STAGE_HEIGHT
 		my_camera.position.y = maxf((SOURCE_CAMERA_VIEW_HEIGHT - get_viewport_rect().size.y) * 0.5, 0.0)
@@ -478,9 +478,9 @@ func _on_create_control_timeout() -> void:
 
 
 func _update_stage_progression() -> void:
-	if not _spawn_runtime_ready or Role_ == null:
+	if not _spawn_runtime_ready or role_ == null:
 		return
-	var role_x := float(Role_.position.x)
+	var role_x := float(role_.position.x)
 	if current_stage == 0:
 		if role_x >= _stage_trigger_x()[0]:
 			_start_stage(1)
@@ -679,8 +679,8 @@ func _update_screen_bounds(delta: float = 0.0) -> void:
 	if current_stage >= 1 and current_stage < _stage_count() and stage_clear:
 		open_right = float(_screen_rights()[screen_index + 1])
 
-	if current_stage >= 1 and current_stage < _stage_count() and stage_clear and Role_ != null:
-		if float(Role_.position.x) >= screen_right - CAMERA_UNLOCK_MARGIN:
+	if current_stage >= 1 and current_stage < _stage_count() and stage_clear and role_ != null:
+		if float(role_.position.x) >= screen_right - CAMERA_UNLOCK_MARGIN:
 			_camera_room = maxi(_camera_room, current_stage + 1)
 	_camera_room = clampi(maxi(_camera_room, stage_for_bounds), 1, _stage_count())
 	var camera_target_left: float = _screen_starts()[_camera_room - 1]
@@ -743,7 +743,7 @@ func _build_stone_frames() -> SpriteFrames:
 
 
 func _on_stone_factory_body_entered(body: Node2D, factory_index: int) -> void:
-	if body != Role_ or _stone_factory_started.has(factory_index):
+	if body != role_ or _stone_factory_started.has(factory_index):
 		return
 	_stone_factory_started[factory_index] = true
 	_spawn_factory_stone(factory_index)
@@ -793,7 +793,7 @@ func _spawn_factory_stone(factory_index: int) -> void:
 	var damage_area := Area2D.new()
 	damage_area.name = "DamageArea"
 	damage_area.collision_layer = 0
-	damage_area.collision_mask = Role_.collision_layer if Role_ != null else 18
+	damage_area.collision_mask = role_.collision_layer if role_ != null else 18
 	damage_area.monitoring = true
 	damage_area.position = Vector2(-1, -112)
 	var damage_shape := CollisionShape2D.new()
@@ -813,30 +813,30 @@ func _spawn_factory_stone(factory_index: int) -> void:
 
 
 func _on_stone_damage_body_entered(body: Node2D, damage_area: Area2D) -> void:
-	if body == Role_:
+	if body == role_:
 		_apply_stone_damage(damage_area)
 
 
 func _on_stone_damage_timeout(damage_area: Area2D) -> void:
-	if not is_instance_valid(damage_area) or Role_ == null:
+	if not is_instance_valid(damage_area) or role_ == null:
 		return
 	for body in damage_area.get_overlapping_bodies():
-		if body == Role_:
+		if body == role_:
 			_apply_stone_damage(damage_area)
 			return
 
 
 func _apply_stone_damage(damage_area: Area2D) -> void:
-	if Role_ == null or not Role_.has_method("effect_reducehp"):
+	if role_ == null or not role_.has_method("effect_reducehp"):
 		return
 	var now := Time.get_ticks_msec()
 	var last_hit := int(damage_area.get_meta("last_role_hit_msec", -STONE_HIT_INTERVAL_MSEC))
 	if now - last_hit < STONE_HIT_INTERVAL_MSEC:
 		return
 	damage_area.set_meta("last_role_hit_msec", now)
-	Role_.effect_reducehp(STONE_DAMAGE, "physics")
+	role_.effect_reducehp(STONE_DAMAGE, "physics")
 
 
 func _on_fall_death_body_entered(body: Node2D) -> void:
-	if body == Role_:
+	if body == role_:
 		RoleProp.roleprop.Hp = 0

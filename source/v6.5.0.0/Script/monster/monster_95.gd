@@ -1,6 +1,6 @@
 extends BaseMonster
 var level_base
-var Stage = 1
+var stage = 1
 
 
 func monster_95():
@@ -8,28 +8,28 @@ func monster_95():
 	self.my_mr_name = "天兵·锤"
 	self.attack_in = 90
 	self.level = 35
-	self.SHp = 6000 + Stage * 3000
+	self.SHp = 6000 + stage * 3000
 	self.Hp = self.SHp
-	self.def = 100 + Stage * 25
-	self.mdef = 100 + Stage * 25
-	self.crit = 0 + Stage * 15
-	self.miss = 0 + Stage * 5
-	self.lucky = 0 + Stage * 15
-	self.Htarget = 0
-	self.Toughness = 0
-	self.ar = 15 + Stage * 10
-	self.sp = 15 + Stage * 10
-	self.Critreduce = 0
-	self.speed = 8 + Stage * 2
+	self.def = 100 + stage * 25
+	self.mdef = 100 + stage * 25
+	self.crit = 0 + stage * 15
+	self.miss = 0 + stage * 5
+	self.lucky = 0 + stage * 15
+	self.htarget = 0
+	self.toughness = 0
+	self.ar = 15 + stage * 10
+	self.sp = 15 + stage * 10
+	self.crit_reduce = 0
+	self.speed = 8 + stage * 2
 	self.mysee = 500
 	self.attack_range = 165
-	self.attack_desire = 75 + Stage * 10
+	self.attack_desire = 75 + stage * 10
 	self.behit_calmtime = 0
 	self.self_rhp = 0
 	self.add_exp = 160
 	self.fall_coin = 110
 	self.obj_attack_dict["hit1"] = {
-		"power": 150 + Stage * 45,
+		"power": 150 + stage * 45,
 		"hurtBack": [-8, -12],
 		"attackKind": "physics",
 		"HitProtect": 20,
@@ -37,7 +37,7 @@ func monster_95():
 		{
 			"Name": "stun",
 			"AddTime": 1,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -55,6 +55,6 @@ func monster_95():
 func _ready() -> void:
 	level_base = get_parent().get_parent()
 	if level_base is Levelpty:
-		Stage = 0
+		stage = 0
 	super._ready()
 	monster_95()

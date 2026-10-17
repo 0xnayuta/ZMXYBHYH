@@ -58,11 +58,11 @@ func monster_138():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 9
 	self.mysee = 0
 	self.attack_range = 0
@@ -136,7 +136,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	transfer_linked_damage(last_hurt)
 	Global.total_role_hit += last_hurt
 	if get_target is BaseHero or get_target is MgHit or get_target is Role1Shallow or get_target is RoleBullet:
-		match get_target.HitDic["attackKind"]:
+		match get_target.hit_dic["attackKind"]:
 			"physics":
 				Global.total_phy_hit += last_hurt
 			"magic":
@@ -155,10 +155,10 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 func reset_pro():
 	var primary_target := _get_primary_target()
 	if primary_target != null:
-		self.Toughness = primary_target.Toughness
+		self.toughness = primary_target.toughness
 		self.def = primary_target.def
 		self.mdef = primary_target.mdef
-		self.Critreduce = primary_target.Critreduce
+		self.crit_reduce = primary_target.crit_reduce
 		self.miss = primary_target.miss
 
 

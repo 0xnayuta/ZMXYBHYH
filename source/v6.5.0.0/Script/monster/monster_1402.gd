@@ -24,11 +24,11 @@ func monster_1402():
 	self.crit = 20
 	self.miss = 40
 	self.lucky = 50
-	self.Htarget = 85
-	self.Toughness = 10
+	self.htarget = 85
+	self.toughness = 10
 	self.ar = 70
 	self.sp = 70
-	self.Critreduce = 8
+	self.crit_reduce = 8
 	self.speed = 14
 	self.mysee = 550
 	self.attack_range = 375
@@ -55,7 +55,7 @@ func monster_1402():
 		{
 			"Name": "speed_down",
 			"AddTime": 3,
-			"ReduceInterval": 0.0,
+			"reduce_interval": 0.0,
 			"value": 0.5,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -70,9 +70,9 @@ func monster_1402():
 		"HitProtect": 15,
 		"addeffect":
 		{
-			"Name": "LifeManaLock",
+			"Name": "life_mana_lock",
 			"AddTime": 4,
-			"ReduceInterval": 0.0,
+			"reduce_interval": 0.0,
 			"value": 0.0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -93,9 +93,9 @@ func monster_1402():
 func _ready() -> void:
 	super._ready()
 	monster_1402()
-	Skill_1_CD = 2
-	Skill_2_CD = 5
-	Skill_3_CD = 8
+	skill_1_cd = 2
+	skill_2_cd = 5
+	skill_3_cd = 8
 	summon_cooldown = 10
 
 
@@ -129,18 +129,18 @@ func ai_think():
 				have_target()
 				if can_summon and summoned_monsters.size() == 0 and summon_cooldown <= 0 and distance > 200:
 					do_summon_skill()
-				elif Skill_3_CD <= 0 and distance > 200:
+				elif skill_3_cd <= 0 and distance > 200:
 					do_hit_3()
-				elif Skill_1_CD <= 0:
+				elif skill_1_cd <= 0:
 					do_hit_1()
 			else:
 				stop_move()
 				var random_choice = randi_range(1, 100)
 				if can_summon and summoned_monsters.size() == 0 and summon_cooldown <= 0 and random_choice <= 20:
 					do_summon_skill()
-				elif Skill_3_CD <= 0 and random_choice <= 30:
+				elif skill_3_cd <= 0 and random_choice <= 30:
 					do_hit_3()
-				elif Skill_1_CD <= 0:
+				elif skill_1_cd <= 0:
 					do_hit_1()
 
 
@@ -191,7 +191,7 @@ func enhance_monster_122(monster):
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = 2
+	skill_1_cd = 2
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -203,7 +203,7 @@ func do_hit_1():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(15, 20)
+	skill_3_cd = randi_range(15, 20)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -237,7 +237,7 @@ func call_bullet_3():
 		"Name": "HealOverTime",
 		"value": 0.01,
 		"AddTime": 5.0,
-		"ReduceInterval": 1.0,
+		"reduce_interval": 1.0,
 		"AttackKind": "cure",
 		"CanAdd": false
 	}

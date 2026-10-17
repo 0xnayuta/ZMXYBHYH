@@ -57,9 +57,9 @@ func _build_level_runtime() -> void:
 
 func _ready() -> void:
 	super._ready()
-	Role_.set_meta("allow_position_y_over_800", true)
-	Role_.floor_max_angle = deg_to_rad(80)
-	Role_.floor_snap_length = 18
+	role_.set_meta("allow_position_y_over_800", true)
+	role_.floor_max_angle = deg_to_rad(80)
+	role_.floor_snap_length = 18
 	my_camera.zoom = Vector2.ONE
 	if _source_screen_starts.size() > 1:
 		my_camera.position_smoothing_enabled = true
@@ -72,9 +72,9 @@ func _ready() -> void:
 	_camera_initialized = false
 	_update_screen_bounds()
 	if stage_number == 85:
-		Role_.gravity = 0
-		Role_.collision_mask = 0
-		Role_.set_physics_process(false)
+		role_.gravity = 0
+		role_.collision_mask = 0
+		role_.set_physics_process(false)
 
 
 func _stage_count() -> int:
@@ -108,16 +108,16 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if stage_number == 80 and not hidden_original_room and role_information != null:
 		role_information.gogo.visible = false
-	if not is_instance_valid(Role_):
+	if not is_instance_valid(role_):
 		return
 	if stage_number == 85:
-		Role_.velocity.y = 0
-		Role_._physics_process(0.0)
-		Role_.gravity = 0
-		Role_.position.y += Input.get_axis("Exit", "down") * 300.0 * delta
-		Role_.velocity.y = 0
-		Role_.global_position.x = clampf(Role_.global_position.x, 25, 915)
-		Role_.global_position.y = clampf(Role_.global_position.y, 60, 565)
+		role_.velocity.y = 0
+		role_._physics_process(0.0)
+		role_.gravity = 0
+		role_.position.y += Input.get_axis("Exit", "down") * 300.0 * delta
+		role_.velocity.y = 0
+		role_.global_position.x = clampf(role_.global_position.x, 25, 915)
+		role_.global_position.y = clampf(role_.global_position.y, 60, 565)
 	if in_void_space:
 		var alive := false
 		for unit in _void_units:
@@ -128,7 +128,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_stage_progression() -> void:
-	if not _spawn_runtime_ready or not is_instance_valid(Role_):
+	if not _spawn_runtime_ready or not is_instance_valid(role_):
 		return
 	if stage_number == 80 and not hidden_original_room:
 		if maze_room == 7:
@@ -139,7 +139,7 @@ func _update_stage_progression() -> void:
 		elif current_stage < MAZE_WAVE_COUNT and check_can_pass():
 			_activate_trigger(current_stage)
 		return
-	var collider := Role_.get_node_or_null("pz") as CollisionShape2D
+	var collider := role_.get_node_or_null("pz") as CollisionShape2D
 	if collider == null:
 		return
 	var hero_rect := collider.shape.get_rect()
@@ -191,7 +191,7 @@ func _set_battle_bounds(index: int) -> void:
 			var pos: Vector2 = point["position"]
 			top = minf(top, pos.y - 180)
 	if stage_number in [76, 79] and is_finite(top):
-		top = maxf(minf(top, Role_.position.y - 295), 0)
+		top = maxf(minf(top, role_.position.y - 295), 0)
 		_battle_bounds.position.y = top
 		_battle_bounds.size.y = map_size.y - top
 
@@ -286,8 +286,8 @@ func _update_screen_bounds(delta: float = 0.0) -> void:
 		my_camera.max_top = room.position.y
 		my_camera.max_bottom = room.end.y
 		if not in_void_space and _battle_bounds.has_area() and not clear:
-			if is_instance_valid(Role_):
-				var pos: Vector2 = Role_.global_position - global_position
+			if is_instance_valid(role_):
+				var pos: Vector2 = role_.global_position - global_position
 				var half_view: Vector2 = get_viewport_rect().size / my_camera.zoom / 2
 				var moving_left := minf(_battle_bounds.position.x, maxf(_camera_center.x - half_view.x, 0))
 				var bounded := Vector2(
@@ -295,15 +295,15 @@ func _update_screen_bounds(delta: float = 0.0) -> void:
 					maxf(pos.y, _battle_bounds.position.y + 40) if stage_number in [76, 79] else pos.y
 				)
 				if bounded.x != pos.x:
-					Role_.velocity.x = 0
+					role_.velocity.x = 0
 				if bounded.y != pos.y:
-					Role_.velocity.y = 0
-				Role_.global_position = global_position + bounded
-		if not is_instance_valid(Role_):
+					role_.velocity.y = 0
+				role_.global_position = global_position + bounded
+		if not is_instance_valid(role_):
 			return
 		var view: Vector2 = get_viewport_rect().size / my_camera.zoom
 		var half := view / 2
-		var desired: Vector2 = Role_.global_position - global_position
+		var desired: Vector2 = role_.global_position - global_position
 		if stage_number in [80, 85] and not in_void_space:
 			desired = map_size / 2
 		desired.x = clampf(desired.x, room.position.x + half.x, maxf(room.position.x + half.x, room.end.x - half.x))
@@ -388,9 +388,9 @@ func enter_maze_gate(side: int) -> void:
 
 	_configure_level_monsters()
 	_apply_monster_count_multiplier()
-	Role_.position = Vector2(590, 440)
+	role_.position = Vector2(590, 440)
 	_camera_initialized = false
-	Role_.velocity = Vector2.ZERO
+	role_.velocity = Vector2.ZERO
 	_palace_terrain.set_maze_room(maze_room)
 
 
@@ -399,18 +399,18 @@ func enter_void_space(boss: BaseMonster) -> void:
 		return
 	in_void_space = true
 	_void_boss = boss
-	_void_return = Role_.position
+	_void_return = role_.position
 	boss.visible = false
 	boss.set_physics_process(false)
 	boss.hurt_box.set_deferred("disabled", true)
 	_palace_terrain.set_void_space(true)
-	Role_.position = _palace_terrain.void_landing_position(Role_)
+	role_.position = _palace_terrain.void_landing_position(role_)
 	my_camera.top_level = true
 	my_camera.set_physics_process(false)
 	_camera_initialized = false
-	Role_.velocity = Vector2.ZERO
+	role_.velocity = Vector2.ZERO
 	_update_screen_bounds()
-	Role_.sxyr_cannot_cure = true
+	role_.sxyr_cannot_cure = true
 	_void_units.clear()
 	for i in range(4):
 		var unit := Global.create_monster(3423, monster, Vector2(4420 + i * 130, 570))
@@ -420,7 +420,7 @@ func enter_void_space(boss: BaseMonster) -> void:
 
 func leave_void_space() -> void:
 	in_void_space = false
-	Role_.position = _void_return
+	role_.position = _void_return
 	if _source_screen_starts.size() > 1:
 		my_camera.top_level = false
 		my_camera.position = Vector2.ZERO
@@ -428,8 +428,8 @@ func leave_void_space() -> void:
 		my_camera.position_smoothing_enabled = true
 		my_camera.limit_smoothed = true
 	_camera_initialized = false
-	Role_.velocity = Vector2.ZERO
-	Role_.sxyr_cannot_cure = false
+	role_.velocity = Vector2.ZERO
+	role_.sxyr_cannot_cure = false
 	_palace_terrain.set_void_space(false)
 	if is_instance_valid(_void_boss) and not _void_boss.death():
 		_void_boss.visible = true
@@ -443,5 +443,5 @@ func add_tg(_number) -> void:
 
 
 func _on_exit_2_body_entered(body: Node2D) -> void:
-	if body == Role_:
+	if body == role_:
 		super._on_exit_2_body_entered(body)

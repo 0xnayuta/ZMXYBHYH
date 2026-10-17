@@ -214,10 +214,10 @@ func apply_pet_develop_effects(data: Dictionary) -> void:
 	var new_cooldown_multiplier: float = 1.0 - float(pet_data["灵力"]) * 0.02
 	var cooldown_ratio: float = new_cooldown_multiplier / previous_cooldown_multiplier
 	pet_skill_cooldown_multiplier = new_cooldown_multiplier
-	Skill_1_CD = maxf(0.0, Skill_1_CD * cooldown_ratio)
-	Skill_2_CD = maxf(0.0, Skill_2_CD * cooldown_ratio)
-	Skill_3_CD = maxf(0.0, Skill_3_CD * cooldown_ratio)
-	Skill_4_CD = maxf(0.0, Skill_4_CD * cooldown_ratio)
+	skill_1_cd = maxf(0.0, skill_1_cd * cooldown_ratio)
+	skill_2_cd = maxf(0.0, skill_2_cd * cooldown_ratio)
+	skill_3_cd = maxf(0.0, skill_3_cd * cooldown_ratio)
+	skill_4_cd = maxf(0.0, skill_4_cd * cooldown_ratio)
 	_rebuild_pet_attack_data()
 
 
@@ -271,12 +271,12 @@ func setup_pet_tiger(stage: int) -> void:
 		+ int(PaSkill.get_value("狂暴", int(passive.get("狂暴", 0))))
 	)
 	miss = int(pet_data.get("闪避", 8)) + int(equipment_bonus.get("闪避", 0))
-	Htarget = int(equipment_bonus.get("命中", 0)) + int(PaSkill.get_value("敏锐", int(passive.get("敏锐", 0))))
+	htarget = int(equipment_bonus.get("命中", 0)) + int(PaSkill.get_value("敏锐", int(passive.get("敏锐", 0))))
 	lucky = int(pet_data.get("幸运", 20)) + int(equipment_bonus.get("幸运", 0))
-	Toughness = int(equipment_bonus.get("韧性", 0))
+	toughness = int(equipment_bonus.get("韧性", 0))
 	ar = int(equipment_bonus.get("破甲", 0))
 	sp = int(equipment_bonus.get("破魔", 0))
-	Critreduce = int(equipment_bonus.get("暴免", 0))
+	crit_reduce = int(equipment_bonus.get("暴免", 0))
 	speed = 14
 	attack_range = 95
 	mysee = 99999
@@ -327,23 +327,23 @@ func _attack_dic(power: int, hurt_back: Array, kind: String, protect: int) -> Di
 
 
 func setup_skills() -> void:
-	Skill_1_CD = 0.4 * pet_skill_cooldown_multiplier
-	Skill_2_CD = 2.5 * pet_skill_cooldown_multiplier
-	Skill_3_CD = 5.0 * pet_skill_cooldown_multiplier
-	Skill_4_CD = 7.0 * pet_skill_cooldown_multiplier
+	skill_1_cd = 0.4 * pet_skill_cooldown_multiplier
+	skill_2_cd = 2.5 * pet_skill_cooldown_multiplier
+	skill_3_cd = 5.0 * pet_skill_cooldown_multiplier
+	skill_4_cd = 7.0 * pet_skill_cooldown_multiplier
 
 
 func try_use_skills() -> void:
 	if should_in_sky or bhaoyi_running or not is_instance_valid(current_target):
 		return
 	var distance: float = abs(position.x - current_target.position.x)
-	if tiger_stage >= 4 and Skill_4_CD <= 0:
+	if tiger_stage >= 4 and skill_4_cd <= 0:
 		do_bhaoyi()
-	elif tiger_stage >= 3 and Skill_3_CD <= 0 and distance <= 450:
+	elif tiger_stage >= 3 and skill_3_cd <= 0 and distance <= 450:
 		do_hsqj()
-	elif tiger_stage >= 2 and Skill_2_CD <= 0 and distance <= 80:
+	elif tiger_stage >= 2 and skill_2_cd <= 0 and distance <= 80:
 		do_sxhz()
-	elif Skill_1_CD <= 0 and distance >= 50 and distance <= 100:
+	elif skill_1_cd <= 0 and distance >= 50 and distance <= 100:
 		do_hy()
 
 
@@ -415,7 +415,7 @@ func do_hy() -> void:
 	is_attacking = true
 	velocity.x = 0
 	hit_name = SKILL_HY
-	Skill_1_CD = randf_range(5.0, 7.0) * pet_skill_cooldown_multiplier
+	skill_1_cd = randf_range(5.0, 7.0) * pet_skill_cooldown_multiplier
 	to_monster()
 	_play_attack_animation("hit2", Callable(self, "call_hy_bullet"))
 
@@ -426,7 +426,7 @@ func do_sxhz() -> void:
 	is_attacking = true
 	velocity.x = 0
 	hit_name = SKILL_SXHZ
-	Skill_2_CD = randf_range(8.0, 11.0) * pet_skill_cooldown_multiplier
+	skill_2_cd = randf_range(8.0, 11.0) * pet_skill_cooldown_multiplier
 	to_monster()
 	await _play_attack_animation("hit3_1", Callable(self, "call_sxhz_hit"))
 	is_attacking = true
@@ -442,7 +442,7 @@ func do_hsqj() -> void:
 	is_attacking = true
 	velocity.x = 0
 	hit_name = SKILL_HSQJ
-	Skill_3_CD = randf_range(10.0, 13.0) * pet_skill_cooldown_multiplier
+	skill_3_cd = randf_range(10.0, 13.0) * pet_skill_cooldown_multiplier
 	to_monster()
 	_play_attack_animation("hit4", Callable(self, "call_hsqj_bullet"))
 
@@ -463,19 +463,19 @@ func do_bhaoyi() -> void:
 	is_attacking = true
 	_to_target_side()
 	await _play_attack_animation("hit4", Callable(self, "call_hsqj_bullet"))
-	Skill_1_CD = randf_range(5.0, 7.0) * pet_skill_cooldown_multiplier
-	Skill_2_CD = randf_range(8.0, 11.0) * pet_skill_cooldown_multiplier
-	Skill_3_CD = randf_range(10.0, 13.0) * pet_skill_cooldown_multiplier
-	Skill_4_CD = randf_range(20.0, 26.0) * pet_skill_cooldown_multiplier
+	skill_1_cd = randf_range(5.0, 7.0) * pet_skill_cooldown_multiplier
+	skill_2_cd = randf_range(8.0, 11.0) * pet_skill_cooldown_multiplier
+	skill_3_cd = randf_range(10.0, 13.0) * pet_skill_cooldown_multiplier
+	skill_4_cd = randf_range(20.0, 26.0) * pet_skill_cooldown_multiplier
 	is_attacking = false
 	bhaoyi_running = false
 
 
 func _clear_tiger_skill_cooldowns() -> void:
-	Skill_1_CD = 0
-	Skill_2_CD = 0
-	Skill_3_CD = 0
-	Skill_4_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
+	skill_3_cd = 0
+	skill_4_cd = 0
 
 
 func _to_target_side() -> void:
@@ -555,10 +555,10 @@ func _add_tiger_bullet(bullet_name: String, bullet_position: Vector2, attack_nam
 	if bullet == null or PET_TIGER_BULLET_SCENE == null:
 		return null
 	var b = PET_TIGER_BULLET_SCENE.instantiate()
-	b.AttList = attack_data
+	b.att_list = attack_data
 	b.hit_name = attack_name
 	b.position = bullet_position
-	b.dir = MonsterDirection
+	b.dir = monster_direction
 	b.skill_name = bullet_name
 	b.speed = 1.0
 	b.set_meta("summoner", self)
@@ -587,7 +587,7 @@ func _sync_attack_facing() -> void:
 
 
 func _front_offset(x: float, y: float) -> Vector2:
-	return Vector2(-x if MonsterDirection else x, y)
+	return Vector2(-x if monster_direction else x, y)
 
 
 func _apply_tiger_stage_scene_layout() -> void:
@@ -678,7 +678,7 @@ func to_monster() -> void:
 
 
 func _face_left() -> void:
-	MonsterDirection = true
+	monster_direction = true
 	if base_damage_box != null:
 		base_damage_box.scale.x = 1
 	if monster_dir != null:
@@ -687,7 +687,7 @@ func _face_left() -> void:
 
 
 func _face_right() -> void:
-	MonsterDirection = false
+	monster_direction = false
 	if base_damage_box != null:
 		base_damage_box.scale.x = -1
 	if monster_dir != null:

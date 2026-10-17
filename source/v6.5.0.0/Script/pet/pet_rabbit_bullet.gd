@@ -176,9 +176,9 @@ func _default_hit_size() -> Vector2:
 
 
 func _damage_target(target: BaseMonster) -> bool:
-	if typeof(AttList) != TYPE_DICTIONARY:
+	if typeof(att_list) != TYPE_DICTIONARY:
 		return false
-	var data: Dictionary = AttList
+	var data: Dictionary = att_list
 	var damage := int(data.get("power", 0))
 	if damage <= 0:
 		return false
@@ -211,7 +211,7 @@ func _apply_freeze(target: BaseMonster) -> void:
 				{
 					"Name": "Ice",
 					"AddTime": 2.0,
-					"ReduceInterval": 0,
+					"reduce_interval": 0,
 					"value": 0,
 					"LastTime": 2.0,
 					"AttackKind": "",

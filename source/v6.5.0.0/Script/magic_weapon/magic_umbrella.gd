@@ -12,7 +12,7 @@ var _hit_data := {
 	{
 		"Name": "poision",
 		"AddTime": 5,
-		"ReduceInterval": 1,
+		"reduce_interval": 1,
 		"value": 0,
 		"AttackKind": "real",
 		"CanAdd": true,
@@ -69,7 +69,7 @@ func add_bullet():
 func tween_to_top():
 	var po = self.position
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", Player.position + Vector2(0, -400), 0.8)
+	tween.tween_property(self, "position", player.position + Vector2(0, -400), 0.8)
 	pass
 
 # ==============================================================================

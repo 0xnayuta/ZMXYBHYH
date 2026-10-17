@@ -184,9 +184,9 @@ func _configure_monster() -> void:
 	mysee = int(d["sight"])
 	crit = int(d.get("crit", 0))
 	miss = int(d.get("miss", 0))
-	Htarget = int(d.get("hit", 0))
-	Toughness = float(d.get("toughness", 0.0))
-	Critreduce = int(d.get("crit_reduce", 0))
+	htarget = int(d.get("hit", 0))
+	toughness = float(d.get("toughness", 0.0))
+	crit_reduce = int(d.get("crit_reduce", 0))
 	ar = int(d.get("armor_break", 0))
 	sp = int(d.get("magic_break", 0))
 	attack_desire = int(d.get("attack_desire", 100))
@@ -435,7 +435,7 @@ func state_death() -> void:
 	if hurt_box != null:
 		hurt_box.set_deferred("disabled", true)
 	_cancel_attack_motion()
-	NoGrav = false
+	no_grav = false
 	velocity = Vector2.ZERO
 	mr_player.play(&"death")
 

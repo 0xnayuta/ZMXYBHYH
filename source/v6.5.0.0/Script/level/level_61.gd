@@ -699,8 +699,8 @@ const WANFO_BIRTH_POINTS := [
 
 func _ready() -> void:
 	super._ready()
-	if Role_ != null:
-		Role_.position = Vector2(31, 446)
+	if role_ != null:
+		role_.position = Vector2(31, 446)
 
 
 func _stage_count() -> int:
@@ -738,5 +738,5 @@ func _preload_level_resources() -> void:
 
 
 func _on_fall_death_body_entered(body: Node2D) -> void:
-	if body == Role_:
+	if body == role_:
 		RoleProp.roleprop.Hp = 0

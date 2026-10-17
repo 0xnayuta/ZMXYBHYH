@@ -1,10 +1,10 @@
 extends TextureRect
 @onready var boss: Label = $Boss
-@onready var monster_name: Button = $MonsterName
+@onready var monster_name_button: Button = $MonsterName
 
 var monster_info: BossInfo
-var IsBoss: bool = true
-var MonsterName: String = "dxx"
+var is_boss: bool = true
+var monster_name: String = "dxx"
 var is_set: bool
 var monster_name_list = {
 	"xh": "小猴子",
@@ -137,12 +137,12 @@ var monster_name_list = {
 
 func _physics_process(delta: float) -> void:
 	if not is_set:
-		monster_name.text = monster_name_list[MonsterName]
-		if IsBoss:
+		monster_name_button.text = monster_name_list[monster_name]
+		if is_boss:
 			boss.visible = true
 		else:
 			boss.visible = false
-		self.texture = load_(MonsterName)
+		self.texture = load_(monster_name)
 		is_set = true
 
 
@@ -153,5 +153,5 @@ func load_(name_):
 
 func _on_monster_name_pressed() -> void:
 	if monster_info == null:
-		monster_info = Global.add_monster_info(Global.get_parent_(self, 0), MonsterName, Vector2(550, 450))
+		monster_info = Global.add_monster_info(Global.get_parent_(self, 0), monster_name, Vector2(550, 450))
 		monster_info.z_index = 999

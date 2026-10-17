@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_cure:
-		self.position = Player.position - Vector2(0, 200)
+		self.position = player.position - Vector2(0, 200)
 	self.fb_level = PlayerData.get_most_level("kyl") + 1
 	need_mp = 50 + self.fb_level * 5
 	if PlayerData.check_have_wx("kyl", "木"):
@@ -37,8 +37,8 @@ func use_over():
 
 
 func cure():
-	if Player != null:
-		Player.cure_hp(obj_attack_dict["hit1"]["power"])
+	if player != null:
+		player.cure_hp(obj_attack_dict["hit1"]["power"])
 
 
 func add_super_armor():
@@ -46,11 +46,11 @@ func add_super_armor():
 	(
 		Global
 		. add_buff(
-			Player.buff,
+			player.buff,
 			{
 				"Name": "SuperArmor",
 				"AddTime": 10,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 			}

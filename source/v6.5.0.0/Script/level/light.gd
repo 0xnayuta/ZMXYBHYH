@@ -1,7 +1,7 @@
 extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var IsLight: bool = false
+var is_light: bool = false
 var current_level: String = ""
 var is_activated: bool = false
 
@@ -34,7 +34,7 @@ func configure_for_level(level_id: String) -> void:
 
 
 func _set_initial_state_for_level34() -> void:
-	IsLight = false
+	is_light = false
 	is_activated = false
 
 	modulate = Color(1.0, 1.0, 1.0, 0.0)
@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_level_28_animation() -> void:
-	if IsLight:
+	if is_light:
 		if animation_player.has_animation("Light2"):
 			animation_player.play("Light2")
 		else:
@@ -66,7 +66,7 @@ func _update_level_28_animation() -> void:
 
 
 func _update_level_34_animation() -> void:
-	if is_activated and IsLight:
+	if is_activated and is_light:
 		visible = true
 		modulate = Color(1.0, 1.0, 1.0, 1.0)
 
@@ -80,7 +80,7 @@ func _update_level_34_animation() -> void:
 
 
 func _update_default_animation() -> void:
-	if IsLight:
+	if is_light:
 		animation_player.play("Light2")
 	else:
 		animation_player.play("Light1")
@@ -88,15 +88,15 @@ func _update_default_animation() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if current_level == "Level_28":
-		IsLight = not IsLight
+		is_light = not is_light
 		Global.add_mr_hurt($Area2D, Vector2(0, 0))
-		print("Level_28: 灯状态切换为: ", IsLight)
+		print("Level_28: 灯状态切换为: ", is_light)
 
 	elif current_level == "Level_34":
 		if not is_activated:
 			if _is_attack_area(area):
 				is_activated = true
-				IsLight = true
+				is_light = true
 				Global.add_mr_hurt($Area2D, Vector2(0, 0))
 				print("Level_34: 灯被攻击点亮")
 			else:

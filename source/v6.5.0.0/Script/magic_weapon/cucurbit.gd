@@ -8,7 +8,7 @@ var _hit_data := {
 	{
 		"Name": "Fire",
 		"AddTime": 5,
-		"ReduceInterval": 1,
+		"reduce_interval": 1,
 		"value": 0,
 		"AttackKind": "real",
 		"CanAdd": true,

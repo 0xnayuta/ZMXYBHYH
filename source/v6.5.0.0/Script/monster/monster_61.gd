@@ -22,11 +22,11 @@ func monster_61():
 	self.crit = 5 + int(RoleProp.baseroleprop.Level * 0.7)
 	self.miss = 5 + int(RoleProp.baseroleprop.Level * 0.3)
 	self.lucky = 0 + int(RoleProp.baseroleprop.Level * 1.5)
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 20 + int(RoleProp.baseroleprop.Level * 0.6)
 	self.sp = 20 + int(RoleProp.baseroleprop.Level * 0.6)
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 500
 	self.attack_range = 300
@@ -52,7 +52,7 @@ func monster_61():
 		{
 			"Name": "MagicDrain",
 			"AddTime": 3.0,
-			"ReduceInterval": 1.0,
+			"reduce_interval": 1.0,
 			"value": 0,
 			"CanAdd": false,
 			"AttackKind": "control"
@@ -75,7 +75,7 @@ func monster_61():
 		{
 			"Name": "poision",
 			"AddTime": 3,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 400,
 			"CanAdd": true,
 			"AttackKind": "real",
@@ -93,10 +93,10 @@ func monster_61():
 func _ready() -> void:
 	super._ready()
 	monster_61()
-	Skill_1_CD = 2
-	Skill_2_CD = 5
-	Skill_3_CD = 8
-	Skill_4_CD = 10
+	skill_1_cd = 2
+	skill_2_cd = 5
+	skill_3_cd = 8
+	skill_4_cd = 10
 
 
 func ai_think():
@@ -108,32 +108,32 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 
 
 func do_hit_1():
-	if Skill_1_CD > 0 or is_attacking:
+	if skill_1_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_1_CD = 2
+	skill_1_cd = 2
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -145,7 +145,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(15, 20)
+	skill_2_cd = randi_range(15, 20)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -156,12 +156,12 @@ func do_hit_2():
 
 
 func do_hit_3():
-	if Skill_3_CD > 0 or is_attacking:
+	if skill_3_cd > 0 or is_attacking:
 		return
 	if get_current_summon_count() >= max_summon_count:
 		return
 	super.to_hero()
-	Skill_3_CD = randi_range(25, 30)
+	skill_3_cd = randi_range(25, 30)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -180,7 +180,7 @@ func do_hit_3():
 
 func do_hit_4():
 	super.to_hero()
-	Skill_4_CD = 20
+	skill_4_cd = 20
 	hit_name = "hit4"
 	velocity.x = 0
 	is_attacking = true
@@ -211,17 +211,17 @@ func _summon_monster_62():
 
 func call_bullet_1():
 	var po: Vector2
-	if MonsterDirection:
+	if monster_direction:
 		po = Vector2(50, 50)
 	else:
 		po = Vector2(-50, 50)
 	var child = Global.add_bullet(
-		"Monster61WGW", bullet, MonsterDirection, 1, position + po, "hit1", self.obj_attack_dict["hit1"]
+		"Monster61WGW", bullet, monster_direction, 1, position + po, "hit1", self.obj_attack_dict["hit1"]
 	)
 
 
 func call_bullet_2():
-	var base_dir = MonsterDirection
+	var base_dir = monster_direction
 	var forward_dist = 200
 	var base_offset = Vector2(forward_dist, 0) if base_dir else Vector2(-forward_dist, 0)
 
@@ -250,12 +250,12 @@ func call_bullet_2():
 
 func call_bullet_3():
 	var po: Vector2
-	if MonsterDirection:
+	if monster_direction:
 		po = Vector2(300, 0)
 	else:
 		po = Vector2(-300, 0)
 	var child = Global.add_bullet(
-		"Monster61Bullet3", bullet, MonsterDirection, 1, position + po, "hit4", self.obj_attack_dict["hit4"]
+		"Monster61Bullet3", bullet, monster_direction, 1, position + po, "hit4", self.obj_attack_dict["hit4"]
 	)
 
 # ==============================================================================

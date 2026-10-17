@@ -92,8 +92,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			role_information.gogo.visible = false
 
-	if Role_ and not Role_.is_death and Role_.position.y > 700:
-		Role_.effect_reducehp(999999, "real")
+	if role_ and not role_.is_death and role_.position.y > 700:
+		role_.effect_reducehp(999999, "real")
 
 
 func create_xyd_stages():

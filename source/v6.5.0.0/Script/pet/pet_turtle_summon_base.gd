@@ -262,16 +262,16 @@ func setup_pet_turtle(stage: int) -> void:
 		+ int(PaSkill.get_value("狂暴", int(passive.get("狂暴", 0))))
 	)
 	miss = int(pet_data.get("闪避", 6)) + int(equipment_bonus.get("闪避", 0))
-	Htarget = (
+	htarget = (
 		int(pet_data.get("命中", 0))
 		+ int(equipment_bonus.get("命中", 0))
 		+ int(PaSkill.get_value("敏锐", int(passive.get("敏锐", 0))))
 	)
 	lucky = int(pet_data.get("幸运", 10)) + int(equipment_bonus.get("幸运", 0))
-	Toughness = int(pet_data.get("韧性", 0)) + int(equipment_bonus.get("韧性", 0))
+	toughness = int(pet_data.get("韧性", 0)) + int(equipment_bonus.get("韧性", 0))
 	ar = int(pet_data.get("破甲", 0)) + int(equipment_bonus.get("破甲", 0))
 	sp = int(pet_data.get("破魔", 0)) + int(equipment_bonus.get("破魔", 0))
-	Critreduce = int(pet_data.get("暴免", 0)) + int(equipment_bonus.get("暴免", 0))
+	crit_reduce = int(pet_data.get("暴免", 0)) + int(equipment_bonus.get("暴免", 0))
 	pet_skill_cooldown_multiplier = 1.0 - float(clampi(int(pet_data.get("灵力", 0)), 0, 25)) * 0.02
 	speed = 14
 	init_speed = speed
@@ -290,10 +290,10 @@ func apply_pet_develop_effects(data: Dictionary) -> void:
 		pet_data[key] = clampi(int(data.get(key, pet_data.get(key, 0))), 0, 25)
 	pet_skill_cooldown_multiplier = 1.0 - float(pet_data["灵力"]) * 0.02
 	var ratio := pet_skill_cooldown_multiplier / previous_multiplier
-	Skill_1_CD = maxf(0.0, Skill_1_CD * ratio)
-	Skill_2_CD = maxf(0.0, Skill_2_CD * ratio)
-	Skill_3_CD = maxf(0.0, Skill_3_CD * ratio)
-	Skill_4_CD = maxf(0.0, Skill_4_CD * ratio)
+	skill_1_cd = maxf(0.0, skill_1_cd * ratio)
+	skill_2_cd = maxf(0.0, skill_2_cd * ratio)
+	skill_3_cd = maxf(0.0, skill_3_cd * ratio)
+	skill_4_cd = maxf(0.0, skill_4_cd * ratio)
 	_rebuild_pet_turtle_attack_data()
 	if _link_active():
 		_apply_turtle_link(true)
@@ -329,10 +329,10 @@ func _attack_dic(power: int, hurt_back: Array, kind: String, interval: int) -> D
 
 
 func setup_skills() -> void:
-	Skill_1_CD = SKILL_INITIAL_COOLDOWNS[SKILL_SLD] * pet_skill_cooldown_multiplier
-	Skill_2_CD = SKILL_INITIAL_COOLDOWNS[SKILL_TXLJ] * pet_skill_cooldown_multiplier
-	Skill_3_CD = SKILL_INITIAL_COOLDOWNS[SKILL_SYBH] * pet_skill_cooldown_multiplier
-	Skill_4_CD = SKILL_INITIAL_COOLDOWNS[SKILL_XWAOYI] * pet_skill_cooldown_multiplier
+	skill_1_cd = SKILL_INITIAL_COOLDOWNS[SKILL_SLD] * pet_skill_cooldown_multiplier
+	skill_2_cd = SKILL_INITIAL_COOLDOWNS[SKILL_TXLJ] * pet_skill_cooldown_multiplier
+	skill_3_cd = SKILL_INITIAL_COOLDOWNS[SKILL_SYBH] * pet_skill_cooldown_multiplier
+	skill_4_cd = SKILL_INITIAL_COOLDOWNS[SKILL_XWAOYI] * pet_skill_cooldown_multiplier
 
 
 func _unlock_new_stage_skill_cooldowns(previous_skills: Array) -> void:
@@ -342,13 +342,13 @@ func _unlock_new_stage_skill_cooldowns(previous_skills: Array) -> void:
 			continue
 		match skill_id:
 			SKILL_SLD:
-				Skill_1_CD = 0.0
+				skill_1_cd = 0.0
 			SKILL_TXLJ:
-				Skill_2_CD = 0.0
+				skill_2_cd = 0.0
 			SKILL_SYBH:
-				Skill_3_CD = 0.0
+				skill_3_cd = 0.0
 			SKILL_XWAOYI:
-				Skill_4_CD = 0.0
+				skill_4_cd = 0.0
 
 
 func _learned_skills() -> Array:
@@ -404,13 +404,13 @@ func try_use_skills() -> void:
 	var physics_frame := Engine.get_physics_frames()
 	if _skill_cast_frame == physics_frame:
 		return
-	if turtle_stage >= 4 and Skill_4_CD <= 0.0 and _can_use_skill(SKILL_XWAOYI):
+	if turtle_stage >= 4 and skill_4_cd <= 0.0 and _can_use_skill(SKILL_XWAOYI):
 		do_xwaoyi()
-	elif turtle_stage >= 3 and Skill_3_CD <= 0.0 and _can_use_skill(SKILL_SYBH):
+	elif turtle_stage >= 3 and skill_3_cd <= 0.0 and _can_use_skill(SKILL_SYBH):
 		do_sybh()
-	elif turtle_stage >= 2 and Skill_2_CD <= 0.0 and _can_use_skill(SKILL_TXLJ):
+	elif turtle_stage >= 2 and skill_2_cd <= 0.0 and _can_use_skill(SKILL_TXLJ):
 		do_txlj()
-	elif Skill_1_CD <= 0.0 and _is_target_in_water_shield_range(current_target) and _can_use_skill(SKILL_SLD):
+	elif skill_1_cd <= 0.0 and _is_target_in_water_shield_range(current_target) and _can_use_skill(SKILL_SLD):
 		do_sld()
 
 
@@ -494,7 +494,7 @@ func do_sld(without_mana: bool = false, set_cooldown: bool = true) -> void:
 	_skill_cast_frame = Engine.get_physics_frames()
 	_face_current_target()
 	if set_cooldown:
-		Skill_1_CD = SKILL_COOLDOWNS[SKILL_SLD] * pet_skill_cooldown_multiplier
+		skill_1_cd = SKILL_COOLDOWNS[SKILL_SLD] * pet_skill_cooldown_multiplier
 	hit_name = "hit2"
 	_start_turtle_action("hit2")
 
@@ -504,7 +504,7 @@ func do_txlj(without_mana: bool = false, set_cooldown: bool = true) -> void:
 		return
 	_skill_cast_frame = Engine.get_physics_frames()
 	if set_cooldown:
-		Skill_2_CD = SKILL_COOLDOWNS[SKILL_TXLJ] * pet_skill_cooldown_multiplier
+		skill_2_cd = SKILL_COOLDOWNS[SKILL_TXLJ] * pet_skill_cooldown_multiplier
 	_apply_turtle_link(false)
 
 
@@ -514,7 +514,7 @@ func do_sybh(without_mana: bool = false, set_cooldown: bool = true) -> void:
 	_skill_cast_frame = Engine.get_physics_frames()
 	_face_current_target()
 	if set_cooldown:
-		Skill_3_CD = SKILL_COOLDOWNS[SKILL_SYBH] * pet_skill_cooldown_multiplier
+		skill_3_cd = SKILL_COOLDOWNS[SKILL_SYBH] * pet_skill_cooldown_multiplier
 	hit_name = "hit3"
 	_start_turtle_action("hit3")
 
@@ -524,7 +524,7 @@ func do_xwaoyi() -> void:
 		return
 	_skill_cast_frame = Engine.get_physics_frames()
 	_face_current_target()
-	Skill_4_CD = SKILL_COOLDOWNS[SKILL_XWAOYI] * pet_skill_cooldown_multiplier
+	skill_4_cd = SKILL_COOLDOWNS[SKILL_XWAOYI] * pet_skill_cooldown_multiplier
 	_aoyi_token += 1
 	var token := _aoyi_token
 	is_aoyi = true
@@ -826,10 +826,10 @@ func _add_turtle_bullet(
 	if bullet == null or PET_TURTLE_BULLET_SCENE == null:
 		return null
 	var instance = PET_TURTLE_BULLET_SCENE.instantiate()
-	instance.AttList = attack_data
+	instance.att_list = attack_data
 	instance.hit_name = attack_name
 	instance.global_position = bullet_position
-	instance.dir = MonsterDirection
+	instance.dir = monster_direction
 	instance.skill_name = bullet_name
 	instance.speed = 1.0
 	instance.set_meta("summoner", self)
@@ -855,7 +855,7 @@ func setup_bullet_collision(bullet_instance) -> Node:
 
 
 func _front_offset(x: float, y: float) -> Vector2:
-	return Vector2(-x if MonsterDirection else x, y)
+	return Vector2(-x if monster_direction else x, y)
 
 
 func _face_current_target() -> void:
@@ -889,7 +889,7 @@ func to_monster() -> void:
 
 
 func _face_left() -> void:
-	MonsterDirection = true
+	monster_direction = true
 	if base_damage_box != null:
 		base_damage_box.scale.x = 1
 	if monster_dir != null:
@@ -898,7 +898,7 @@ func _face_left() -> void:
 
 
 func _face_right() -> void:
-	MonsterDirection = false
+	monster_direction = false
 	if base_damage_box != null:
 		base_damage_box.scale.x = -1
 	if monster_dir != null:

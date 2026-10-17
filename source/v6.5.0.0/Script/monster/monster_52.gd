@@ -13,11 +13,11 @@ func monster_52():
 	self.crit = 8
 	self.miss = 8
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = -20
+	self.htarget = 0
+	self.toughness = -20
 	self.ar = 20
 	self.sp = 0
-	self.Critreduce = 10
+	self.crit_reduce = 10
 	self.speed = 7
 	self.mysee = 400
 	self.attack_range = 120

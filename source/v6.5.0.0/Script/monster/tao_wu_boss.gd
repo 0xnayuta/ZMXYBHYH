@@ -39,9 +39,9 @@ func _ready() -> void:
 	_configure_taowu()
 	_build_original_animations()
 	super._ready()
-	Skill_1_CD = 8
-	Skill_2_CD = 9
-	Skill_3_CD = randi_range(10, 20)
+	skill_1_cd = 8
+	skill_2_cd = 9
+	skill_3_cd = randi_range(10, 20)
 
 
 func _configure_taowu() -> void:
@@ -58,11 +58,11 @@ func _configure_taowu() -> void:
 	crit = 55
 	miss = 15
 	lucky = 10
-	Htarget = 100
-	Toughness = 20
+	htarget = 100
+	toughness = 20
 	ar = 0
 	sp = 0
-	Critreduce = 0
+	crit_reduce = 0
 	speed = 15
 	mysee = 1000
 	attack_range = 250
@@ -88,7 +88,7 @@ func _configure_taowu() -> void:
 			"DeBuff": true,
 			"CanAdd": true,
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 45,
 			"AttackKind": ""
 		}
@@ -104,7 +104,7 @@ func _configure_taowu() -> void:
 			"DeBuff": true,
 			"CanAdd": true,
 			"AddTime": 5,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 90,
 			"AttackKind": "real"
 		}
@@ -207,11 +207,11 @@ func ai_think() -> void:
 		normal_state()
 		return
 	var distance := absf(RoleProp.get_nearest_monster_target_position(global_position).x - position.x)
-	if Skill_3_CD <= 0:
+	if skill_3_cd <= 0:
 		_use_skill(&"hit4", randi_range(10, 20))
-	elif Skill_2_CD <= 0 and distance <= 650.0:
+	elif skill_2_cd <= 0 and distance <= 650.0:
 		_use_skill(&"hit3", 9)
-	elif Skill_1_CD <= 0 and distance <= 360.0:
+	elif skill_1_cd <= 0 and distance <= 360.0:
 		_use_skill(&"hit2", 8)
 	elif distance <= attack_range:
 		stop_move()
@@ -228,11 +228,11 @@ func _use_skill(animation_name: StringName, cooldown: int) -> void:
 	super.to_hero()
 	match animation_name:
 		&"hit2":
-			Skill_1_CD = cooldown
+			skill_1_cd = cooldown
 		&"hit3":
-			Skill_2_CD = cooldown
+			skill_2_cd = cooldown
 		&"hit4":
-			Skill_3_CD = cooldown
+			skill_3_cd = cooldown
 	hit_name = String(animation_name)
 	velocity.x = 0
 	is_attacking = true

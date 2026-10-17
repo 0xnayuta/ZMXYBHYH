@@ -73,9 +73,9 @@ func _configure_monster() -> void:
 	mdef = int(config["mdef"])
 	crit = int(config["crit"])
 	miss = int(config["miss"])
-	Htarget = int(config["hit"])
-	Toughness = float(config.get("toughness", 0.0))
-	Critreduce = int(config.get("crit_reduce", 0))
+	htarget = int(config["hit"])
+	toughness = float(config.get("toughness", 0.0))
+	crit_reduce = int(config.get("crit_reduce", 0))
 	ar = int(config["armor_break"])
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
@@ -89,7 +89,7 @@ func _configure_monster() -> void:
 	independent_fall_list = Array(config.get("independent_drop_list", [])).duplicate(true)
 	is_boss = bool(config["is_boss"])
 	boss_max_protect = float(config["max_protect"])
-	NoGrav = true
+	no_grav = true
 	super_armor_active = true
 	cannot_attract = true
 	obj_attack_dict.clear()
@@ -415,7 +415,7 @@ func _enforce_original_fixed_state() -> void:
 	base_damage_box.scale.x = 1.0
 	super_armor_active = true
 	cannot_attract = true
-	NoGrav = true
+	no_grav = true
 
 
 func to_walk() -> void:
@@ -433,7 +433,7 @@ func state_death() -> void:
 	_busy = true
 	_despawn_active_axe()
 	velocity = Vector2.ZERO
-	NoGrav = true
+	no_grav = true
 	if hurt_box != null:
 		hurt_box.set_deferred("disabled", true)
 	if hit_box != null:

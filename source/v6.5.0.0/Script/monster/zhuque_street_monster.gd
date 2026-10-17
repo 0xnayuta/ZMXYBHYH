@@ -142,9 +142,9 @@ func _configure_monster() -> void:
 	mdef = int(config["mdef"])
 	crit = int(config["crit"])
 	miss = int(config["miss"])
-	Htarget = int(config["hit"])
-	Toughness = float(config["toughness"])
-	Critreduce = int(config["crit_reduce"])
+	htarget = int(config["hit"])
+	toughness = float(config["toughness"])
+	crit_reduce = int(config["crit_reduce"])
 	ar = int(config["armor_break"])
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
@@ -417,7 +417,7 @@ func _run_boss_skill(attack_name: StringName, serial: int) -> void:
 
 
 func _run_boss_dash(serial: int) -> void:
-	var target_x := position.x + (360.0 if MonsterDirection else -360.0)
+	var target_x := position.x + (360.0 if monster_direction else -360.0)
 	if RoleProp.get_nearest_monster_target_position(global_position).x != null:
 		target_x = float(RoleProp.get_nearest_monster_target_position(global_position).x)
 	var tween := create_tween()
@@ -484,9 +484,9 @@ func _configure_boss_attack_box(attack_name: StringName) -> void:
 func _fire_arrow() -> void:
 	if death():
 		return
-	var offset := Vector2(56.0 if MonsterDirection else -56.0, -32.0)
+	var offset := Vector2(56.0 if monster_direction else -56.0, -32.0)
 	Global.add_bullet(
-		"ZhuqueTigerArrow", bullet, MonsterDirection, 1.0, position + offset, "arrow", obj_attack_dict["arrow"]
+		"ZhuqueTigerArrow", bullet, monster_direction, 1.0, position + offset, "arrow", obj_attack_dict["arrow"]
 	)
 
 
@@ -506,7 +506,7 @@ func state_death() -> void:
 	_skill_busy = false
 	super_armor_active = false
 	cannot_attract = false
-	NoGrav = true
+	no_grav = true
 	velocity = Vector2.ZERO
 	super.state_death()
 	_ensure_death_cleanup()

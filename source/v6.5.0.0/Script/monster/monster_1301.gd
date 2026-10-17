@@ -14,11 +14,11 @@ func monster_1301():
 	self.crit = 28
 	self.miss = 28
 	self.lucky = 40
-	self.Htarget = 0
-	self.Toughness = 35
+	self.htarget = 0
+	self.toughness = 35
 	self.ar = 65
 	self.sp = 65
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 600
 	self.attack_range = 135
@@ -41,7 +41,7 @@ func _ready() -> void:
 
 func call_bullet_1():
 	var bullet_node
-	if self.MonsterDirection:
+	if self.monster_direction:
 		bullet_node = Global.add_bullet(
 			"Monster120Bullet1", self.bullet, false, 1.5, Vector2(0, 0) + position, "hit1", self.obj_attack_dict["hit1"]
 		)

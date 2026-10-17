@@ -7,7 +7,7 @@ var gogo: AnimatedSprite2D:
 			_gogo = get_node_or_null("roleLayer/Control/Control/Gogo") as AnimatedSprite2D
 		return _gogo
 @onready var role_layer: Control = $roleLayer/Control
-@onready var Control_: Control = $roleLayer/Control2
+@onready var control_2: Control = $roleLayer/Control2
 @onready var set_menu_con: BoxContainer = $roleLayer/ButtonGroup
 
 var set_key_tscn: PackedScene = preload("res://Scene/tools/set_com.tscn")
@@ -15,10 +15,10 @@ var head_tscn: PackedScene = preload("res://Scene/base/base_role.tscn")
 var head_p2_tscn: PackedScene = preload("res://Scene/base/base_role_p2.tscn")
 
 var set_com_node
-var Player
+var player
 var player_p2
 var role_p1
-var RoleP2
+var role_p2
 var buff_box: HBoxContainer
 var is_stop: bool = false
 var cur_prop: bool = false
@@ -28,46 +28,46 @@ const OLD_WUSHUANG_POSITION := Vector2(735, 505)
 func _ready() -> void:
 	add_to_group("RoleInformation")
 	Global.call_deferred("prewarm_permanent_small_ui_scenes")
-	Player = _main_role()
-	if Player == null:
-		Player = RoleProp.source_player
+	player = _main_role()
+	if player == null:
+		player = RoleProp.source_player
 	gogo.visible = false
 
 	role_p1 = head_tscn.instantiate()
-	role_p1.Player = Player
+	role_p1.player = player
 	role_layer.add_child(role_p1)
 	buff_box = role_p1.buff_box
 	Global.buff_box = buff_box
 
 	if _is_mobile():
 		set_com_node = set_key_tscn.instantiate()
-		Control_.add_child(set_com_node)
+		control_2.add_child(set_com_node)
 
 	player_p2 = _second_role()
 	if player_p2 != null:
-		RoleP2 = head_p2_tscn.instantiate()
-		RoleP2.Player = player_p2
-		role_layer.add_child(RoleP2)
+		role_p2 = head_p2_tscn.instantiate()
+		role_p2.player = player_p2
+		role_layer.add_child(role_p2)
 
 	if _is_mobile():
 		_layout_mobile()
 
 	_hide_role_hud(role_p1)
-	_hide_role_hud(RoleP2)
+	_hide_role_hud(role_p2)
 	set_menu_con.visible = false
 
 
 func _main_role():
 	var level = get_parent()
-	if level != null and level.get("Role_") != null:
-		return level.get("Role_")
+	if level != null and level.get("role_") != null:
+		return level.get("role_")
 	return null
 
 
 func _second_role():
 	var level = get_parent()
-	if level != null and level.get("RoleP2") != null:
-		return level.get("RoleP2")
+	if level != null and level.get("role_p2") != null:
+		return level.get("role_p2")
 	return null
 
 
@@ -104,7 +104,7 @@ func _hide_role_hud(role_node: Node) -> void:
 
 func reveal_after_scene_loaded() -> void:
 	_show_role_hud(role_p1)
-	_show_role_hud(RoleP2)
+	_show_role_hud(role_p2)
 	set_menu_con.visible = true
 
 
@@ -121,20 +121,20 @@ func _layout_mobile() -> void:
 
 	_show_role_hud(role_p1)
 
-	if RoleP2 != null:
-		_show_role_hud(RoleP2)
-		RoleP2.grey.position = role_p1.grey.position
+	if role_p2 != null:
+		_show_role_hud(role_p2)
+		role_p2.grey.position = role_p1.grey.position
 
 
 func switch_role() -> void:
-	if not _is_mobile() or RoleP2 == null:
+	if not _is_mobile() or role_p2 == null:
 		return
 	if cur_prop:
 		role_p1.grey.modulate.a = 1
-		RoleP2.grey.modulate.a = 1
+		role_p2.grey.modulate.a = 1
 	else:
 		role_p1.grey.modulate.a = 1
-		RoleP2.grey.modulate.a = 1
+		role_p2.grey.modulate.a = 1
 	cur_prop = not cur_prop
 
 

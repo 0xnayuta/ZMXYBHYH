@@ -13,11 +13,11 @@ func monster_115():
 	self.crit = 25
 	self.miss = 25
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 60
 	self.sp = 60
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 600
 	self.attack_range = 225
@@ -38,7 +38,7 @@ func monster_115():
 			"CanAdd": true,
 			"DeBuff": true,
 			"CanRemove": false,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 100,
 			"AttackKind": "real",
 		}
@@ -52,7 +52,7 @@ func monster_115():
 func _ready() -> void:
 	super._ready()
 	monster_115()
-	Skill_1_CD = 5
+	skill_1_cd = 5
 
 
 func ai_think():
@@ -64,7 +64,7 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 300:
 						do_hit_2()
 					else:
@@ -72,7 +72,7 @@ func ai_think():
 				else:
 					have_target()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
 				else:
 					if count % 90 == 0:
@@ -82,7 +82,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 5
+	skill_1_cd = 5
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true

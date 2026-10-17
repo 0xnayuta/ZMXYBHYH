@@ -169,9 +169,9 @@ func _configure_monster() -> void:
 	mdef = int(config.get("mdef", 0))
 	crit = int(config.get("crit", 0))
 	miss = int(config.get("miss", 0))
-	Htarget = int(config.get("hit", 0))
-	Toughness = float(config.get("toughness", 0.0))
-	Critreduce = int(config.get("crit_reduce", 0))
+	htarget = int(config.get("hit", 0))
+	toughness = float(config.get("toughness", 0.0))
+	crit_reduce = int(config.get("crit_reduce", 0))
 	ar = int(config.get("armor_break", 0))
 	sp = int(config.get("magic_break", 0))
 	speed = float(config.get("speed", 0.0))
@@ -186,7 +186,7 @@ func _configure_monster() -> void:
 	is_boss = bool(config.get("is_boss", false))
 	boss_max_protect = float(config.get("max_protect", 100.0))
 	is_fly = _model_id() == 3036
-	NoGrav = is_fly
+	no_grav = is_fly
 	obj_attack_dict.clear()
 	var attacks_value: Variant = config.get("attacks", {})
 	var attacks: Dictionary = attacks_value if attacks_value is Dictionary else {}
@@ -607,7 +607,7 @@ func state_death() -> void:
 	_disable_attack_box()
 	_busy = false
 	is_attacking = false
-	NoGrav = false
+	no_grav = false
 	is_fly = false
 	velocity = Vector2.ZERO
 	if hurt_box != null:

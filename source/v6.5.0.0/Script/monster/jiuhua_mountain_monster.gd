@@ -237,9 +237,9 @@ func _configure_monster() -> void:
 	mdef = int(config["mdef"])
 	crit = int(config["crit"])
 	miss = int(config["miss"])
-	Htarget = int(config["hit"])
-	Toughness = float(config["toughness"])
-	Critreduce = int(config["crit_reduce"])
+	htarget = int(config["hit"])
+	toughness = float(config["toughness"])
+	crit_reduce = int(config["crit_reduce"])
 	ar = int(config["armor_break"])
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
@@ -496,7 +496,7 @@ func _run_boss_skill_2(serial: int) -> void:
 	await get_tree().create_timer(15.0 / SOURCE_FPS, false).timeout
 	if not is_instance_valid(self) or serial != _attack_serial or death():
 		return
-	var target_x := position.x + (100.0 if MonsterDirection else -100.0)
+	var target_x := position.x + (100.0 if monster_direction else -100.0)
 	if RoleProp.get_nearest_monster_target_position(global_position).x != null:
 		target_x = float(RoleProp.get_nearest_monster_target_position(global_position).x)
 	var motion := create_tween()
@@ -592,7 +592,7 @@ func _activate_boss_guard() -> void:
 			{
 				"Name": "SuperArmor",
 				"AddTime": BOSS_GUARD_DURATION,
-				"ReduceInterval": 0.0,
+				"reduce_interval": 0.0,
 				"value": 0.0,
 				"AttackKind": "",
 				"CanAdd": false,
@@ -732,7 +732,7 @@ func _get_incoming_attack_kind(area: Area2D) -> String:
 	var source := _get_incoming_attack_source(area)
 	if source == null or not is_instance_valid(source):
 		return ""
-	var hit_data: Variant = source.get("HitDic")
+	var hit_data: Variant = source.get("hit_dic")
 	if hit_data is Dictionary:
 		return str(hit_data.get("attackKind", ""))
 	if source is BaseHero:
@@ -769,7 +769,7 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 
 
 func _add_boss_life_mark(target: BaseHero) -> void:
-	if target == null or not is_instance_valid(target) or target.NoDeBuff:
+	if target == null or not is_instance_valid(target) or target.no_debuff:
 		return
 	var life_mark := target.get_node_or_null("JiuhuaLifeMark")
 	if life_mark != null and not life_mark.is_queued_for_deletion():
@@ -798,7 +798,7 @@ func state_death() -> void:
 	_boss_skill_armor_active = false
 	if _boss_guard_active or _boss_guard_effect != null:
 		_deactivate_boss_guard()
-	NoGrav = false
+	no_grav = false
 	velocity = Vector2.ZERO
 	super.state_death()
 	_ensure_death_cleanup()

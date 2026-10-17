@@ -19,11 +19,11 @@ func monster_1405():
 	self.crit = 28
 	self.miss = 40
 	self.lucky = 65
-	self.Htarget = 90
-	self.Toughness = 25
+	self.htarget = 90
+	self.toughness = 25
 	self.ar = 100
 	self.sp = 100
-	self.Critreduce = 15
+	self.crit_reduce = 15
 	self.speed = 16
 	self.mysee = 500
 	self.attack_range = 350
@@ -49,7 +49,7 @@ func monster_1405():
 		{
 			"Name": "MagicDrain",
 			"AddTime": 3.0,
-			"ReduceInterval": 1.0,
+			"reduce_interval": 1.0,
 			"value": 0,
 			"CanAdd": false,
 			"AttackKind": "control"
@@ -65,7 +65,7 @@ func monster_1405():
 		{
 			"Name": "poision",
 			"AddTime": 3,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 300,
 			"CanAdd": true,
 			"AttackKind": "real",
@@ -81,7 +81,7 @@ func monster_1405():
 		{
 			"Name": "poision",
 			"AddTime": 3,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 400,
 			"CanAdd": true,
 			"AttackKind": "real",
@@ -105,10 +105,10 @@ func _ready() -> void:
 	super._ready()
 	monster_1405()
 
-	Skill_1_CD = 2
-	Skill_2_CD = 8
-	Skill_3_CD = 6
-	Skill_4_CD = 15
+	skill_1_cd = 2
+	skill_2_cd = 8
+	skill_3_cd = 6
+	skill_4_cd = 15
 
 
 func ai_think():
@@ -120,32 +120,32 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 
 
 func do_hit_1():
-	if Skill_1_CD > 0 or is_attacking:
+	if skill_1_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_1_CD = 2
+	skill_1_cd = 2
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -157,7 +157,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(20, 25)
+	skill_2_cd = randi_range(20, 25)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -169,7 +169,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(15, 20)
+	skill_3_cd = randi_range(15, 20)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -181,7 +181,7 @@ func do_hit_3():
 
 func do_hit_4():
 	super.to_hero()
-	Skill_4_CD = randi_range(25, 30)
+	skill_4_cd = randi_range(25, 30)
 	hit_name = "hit4"
 	velocity.x = 0
 	is_attacking = true
@@ -262,7 +262,7 @@ func add_fire():
 	var stun_effect = {
 		"Name": "DeadLink",
 		"AddTime": 7,
-		"ReduceInterval": 0,
+		"reduce_interval": 0,
 		"value": 0,
 		"DeBuff": true,
 		"AttackKind": "",

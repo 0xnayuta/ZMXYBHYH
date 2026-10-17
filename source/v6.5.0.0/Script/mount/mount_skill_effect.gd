@@ -126,7 +126,7 @@ func setup(owner_hero: BaseHero, skill_data: Dictionary, active_mount_id: String
 	hero = owner_hero
 	skill = skill_data.duplicate(true)
 	mount_id = active_mount_id
-	direction_right = bool(hero.PlayerDir)
+	direction_right = bool(hero.player_dir)
 	var skill_id := str(skill.get("id", ""))
 	if skill_id == "mount_normal":
 		combat = MOUNT_CATALOG.get_official_normal_combat(mount_id)
@@ -957,7 +957,7 @@ func _find_level_node() -> Node:
 func _is_valid_target(target: Variant) -> bool:
 	if target == null or not is_instance_valid(target) or not (target is BaseMonster):
 		return false
-	if target.Hp <= 0 or target.NoTarget or target.is_boss_protecting():
+	if target.Hp <= 0 or target.no_target or target.is_boss_protecting():
 		return false
 	if target.get_meta("pet_tiger_unit", false) or target.get_meta("is_summon", false):
 		return false
@@ -1010,7 +1010,7 @@ func _apply_hit(target: BaseMonster, hit_combat: Dictionary = {}) -> void:
 					{
 						"Name": "stun",
 						"AddTime": 1.5,
-						"ReduceInterval": 0,
+						"reduce_interval": 0,
 						"value": 0,
 					}
 				)

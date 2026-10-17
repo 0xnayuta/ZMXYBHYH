@@ -7,7 +7,7 @@ var is_set2: bool
 @onready var remove_pl = $remove_player
 @onready var get_area: CollisionShape2D = $Area2D/get_area
 var is_pick: bool
-var Player: BaseHero
+var player: BaseHero
 
 
 func _physics_process(delta: float) -> void:
@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			get_area.disabled = false
 		is_set2 = true
-	Player = get_parent().get_parent().Role_
+	player = get_parent().get_parent().role_
 
 	if not is_on_floor():
 		velocity.y -= delta * -980
@@ -69,7 +69,7 @@ func load_soft(path: String) -> Texture2D:
 
 
 func automatically_pick_up_items():
-	pick_up_items(Player)
+	pick_up_items(player)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

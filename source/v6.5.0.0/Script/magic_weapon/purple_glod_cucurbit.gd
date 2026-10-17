@@ -5,7 +5,7 @@ var _hit_data := {
 	"hurtBack": [0, 0],
 	"attackKind": "physics",
 	"WSValue": 0,
-	"addeffect": {"Name": "Fire", "AddTime": 5, "ReduceInterval": 1, "value": 0, "AttackKind": "real", "CanAdd": true}
+	"addeffect": {"Name": "Fire", "AddTime": 5, "reduce_interval": 1, "value": 0, "AttackKind": "real", "CanAdd": true}
 }
 
 
@@ -16,17 +16,17 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	self.fb_level = PlayerData.get_most_level("zjhl")
 	need_mp = 50 + self.fb_level * 12
-	var Power: int
+	var power: int
 	var player_power = RoleProp.roleprop.power
 	if PlayerData.check_have_wx("zjhl", "木"):
-		Power = (
+		power = (
 			int(player_power * randf_range(0.15, 0.2)) + int(player_power * (randf_range(0.08, 0.1) * self.fb_level))
 		)
 	else:
-		Power = (
+		power = (
 			int(player_power * randf_range(0.08, 0.1)) + int(player_power * (randf_range(0.05, 0.07) * self.fb_level))
 		)
-	_hit_data["power"] = Power
+	_hit_data["power"] = power
 	_hit_data["WSValue"] = randi_range(15, 20)
 	var add_effect: Dictionary = _hit_data["addeffect"]
 	add_effect["value"] = int(RoleProp.roleprop.power * 0.1)

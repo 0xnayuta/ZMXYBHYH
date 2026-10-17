@@ -5,7 +5,7 @@ var _hit_data := {
 	"power": 0,
 	"hurtBack": [8, -5],
 	"attackKind": "magic",
-	"addeffect": {"Name": "Ice", "AddTime": 0.0, "ReduceInterval": 0, "value": 0, "AttackKind": "", "DeBuff": true}
+	"addeffect": {"Name": "Ice", "AddTime": 0.0, "reduce_interval": 0, "value": 0, "AttackKind": "", "DeBuff": true}
 }
 
 

@@ -356,8 +356,8 @@ var _hazard_1022_timers: Array[Timer] = []
 
 func _ready() -> void:
 	super._ready()
-	if Role_ != null:
-		Role_.position = Vector2(31, 446)
+	if role_ != null:
+		role_.position = Vector2(31, 446)
 	_setup_hazard_1022()
 
 
@@ -386,9 +386,9 @@ func _level_number() -> int:
 
 
 func _update_stage_progression() -> void:
-	if not _spawn_runtime_ready or Role_ == null:
+	if not _spawn_runtime_ready or role_ == null:
 		return
-	var role_y := float(Role_.position.y)
+	var role_y := float(role_.position.y)
 	if current_stage == 0:
 		if role_y <= JINXIU_TRIGGER_Y[0]:
 			_start_stage(1)
@@ -477,7 +477,7 @@ func _setup_hazard_1022() -> void:
 
 
 func _on_hazard_1022_trigger_entered(body: Node2D, hazard_index: int) -> void:
-	if body != Role_ or _hazard_1022_active[hazard_index]:
+	if body != role_ or _hazard_1022_active[hazard_index]:
 		return
 	_hazard_1022_active[hazard_index] = true
 	if _hazard_1022_ready[hazard_index]:
@@ -485,7 +485,7 @@ func _on_hazard_1022_trigger_entered(body: Node2D, hazard_index: int) -> void:
 
 
 func _on_hazard_1022_trigger_exited(body: Node2D, hazard_index: int) -> void:
-	if body == Role_:
+	if body == role_:
 		_hazard_1022_active[hazard_index] = false
 
 
@@ -499,7 +499,7 @@ func _fire_hazard_1022(hazard_index: int) -> void:
 	if not _hazard_1022_ready[hazard_index]:
 		return
 	var emitter := _hazard_1022_emitters[hazard_index]
-	if emitter == null or not is_instance_valid(emitter) or Role_ == null:
+	if emitter == null or not is_instance_valid(emitter) or role_ == null:
 		return
 	var emitter_sprite := emitter.get_node_or_null("Sprite2D") as Sprite2D
 	if emitter_sprite == null:
@@ -513,7 +513,7 @@ func _fire_hazard_1022(hazard_index: int) -> void:
 		projectile.configure(
 			source_position + start_offset,
 			Vector2(horizontal_direction * HAZARD_1022_HORIZONTAL_SPEED, 0.0),
-			Role_,
+			role_,
 			HAZARD_1022_DAMAGE,
 			HAZARD_1022_SHOOT_TIME_SECONDS
 		)

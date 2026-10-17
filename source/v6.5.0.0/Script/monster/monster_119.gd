@@ -16,11 +16,11 @@ func monster_119():
 	self.crit = 28
 	self.miss = 28
 	self.lucky = 40
-	self.Htarget = 0
-	self.Toughness = 35
+	self.htarget = 0
+	self.toughness = 35
 	self.ar = 65
 	self.sp = 65
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 600
 	self.attack_range = 135
@@ -44,7 +44,7 @@ func monster_119():
 		{
 			"Name": "stun",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"CanAdd": false,
 			"CanRemove": false,
@@ -61,8 +61,8 @@ func monster_119():
 func _ready() -> void:
 	super._ready()
 	monster_119()
-	Skill_1_CD = 6
-	Skill_2_CD = 8
+	skill_1_cd = 6
+	skill_2_cd = 8
 
 
 func _physics_process(delta: float) -> void:
@@ -81,15 +81,15 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_3()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
-				elif Skill_2_CD <= 0:
+				elif skill_2_cd <= 0:
 					do_hit_3()
 				elif count % 60 == 0:
 					var rad = randi_range(0, 100)
@@ -100,7 +100,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 6
+	skill_1_cd = 6
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -110,7 +110,7 @@ func do_hit_2():
 
 
 func do_hit_3():
-	Skill_2_CD = 8
+	skill_2_cd = 8
 	velocity.x = 0
 	hit_name = "hit1"
 	is_attacking = true

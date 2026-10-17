@@ -44,7 +44,7 @@ func _on_boarding_sensor_body_exited(body: Node2D) -> void:
 
 func _is_level_role(body: Node2D) -> bool:
 	var level := get_parent()
-	return level != null and body == level.get("Role_")
+	return level != null and body == level.get("role_")
 
 
 func _can_move_in_current_screen() -> bool:

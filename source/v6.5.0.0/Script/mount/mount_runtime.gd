@@ -170,11 +170,11 @@ func process_mounted_control(_delta: float) -> bool:
 	if direction > 0.0:
 		hero.action.scale.x = -1.0
 		hero.base_damagebox.scale.x = -1.0
-		hero.PlayerDir = true
+		hero.player_dir = true
 	elif direction < 0.0:
 		hero.action.scale.x = 1.0
 		hero.base_damagebox.scale.x = 1.0
-		hero.PlayerDir = false
+		hero.player_dir = false
 	var speed_multiplier := RIDE_SPEED_MULTIPLIER * _get_active_skill_speed_multiplier()
 	if direction != 0.0:
 		hero.velocity.x = (
@@ -216,12 +216,12 @@ func _process(delta: float) -> void:
 		active_mount = PlayerData.get_active_mount()
 	var riding := bool(PlayerData.player_data.get(PlayerData.MOUNT_RIDING_KEY, false))
 	if mount_visual != null and is_instance_valid(mount_visual):
-		mount_visual.scale.x = 1.0 if bool(hero.PlayerDir) else -1.0
+		mount_visual.scale.x = 1.0 if bool(hero.player_dir) else -1.0
 		mount_visual.visible = riding and not active_mount.is_empty() and not hero.is_death
 		if riding:
 			_update_mount_locomotion()
 	if mount_overlay_visual != null and is_instance_valid(mount_overlay_visual):
-		mount_overlay_visual.scale.x = 1.0 if bool(hero.PlayerDir) else -1.0
+		mount_overlay_visual.scale.x = 1.0 if bool(hero.player_dir) else -1.0
 		mount_overlay_visual.visible = riding and _current_mount_id == "1002800" and not hero.is_death
 	if active_mount.is_empty():
 		return
@@ -269,7 +269,7 @@ func _begin_skill_movement(skill_id: String) -> void:
 	if not _skill_movement.is_empty():
 		_skill_movement["skill_id"] = skill_id
 	_skill_movement_elapsed = 0.0
-	_skill_movement_direction = 1.0 if bool(hero.PlayerDir) else -1.0
+	_skill_movement_direction = 1.0 if bool(hero.player_dir) else -1.0
 	_skill_movement_target = _nearest_monster_position()
 
 
@@ -340,7 +340,7 @@ func _nearest_monster_position() -> Vector2:
 	var result := hero.global_position + Vector2(_skill_movement_direction * 400.0, 0.0)
 	var nearest_distance := INF
 	for value in get_tree().get_nodes_in_group("monsters"):
-		if not (value is BaseMonster) or value.Hp <= 0 or value.NoTarget:
+		if not (value is BaseMonster) or value.Hp <= 0 or value.no_target:
 			continue
 		var distance := hero.global_position.distance_squared_to(value.global_position)
 		if distance < nearest_distance:
@@ -384,7 +384,7 @@ func _refresh_mount_visual() -> void:
 	mount_visual.setup(visual_id, "idle")
 	mount_visual.set_async_texture_loading(true)
 	_refresh_rider_pose()
-	mount_visual.scale = Vector2(1.0 if bool(hero.PlayerDir) else -1.0, 1.0)
+	mount_visual.scale = Vector2(1.0 if bool(hero.player_dir) else -1.0, 1.0)
 	mount_visual.position = Vector2(0.0, _get_hero_collision_bottom_y())
 	mount_visual.visible = bool(PlayerData.player_data.get(PlayerData.MOUNT_RIDING_KEY, false))
 	if mount_overlay_visual != null and is_instance_valid(mount_overlay_visual):

@@ -7,7 +7,7 @@ extends Node2D
 
 const MAX_SHOP_BUY_NUM: int = 9999
 
-var EQ_prop = {}
+var eq_prop = {}
 var total_num: int = 1
 var item_name_: String
 var choose_jm
@@ -30,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 		items.set_button_icon(load_(item_name_))
 		items.qh_level = 0
 		items.wx = []
-		items.EQ_prop = AE.all_equipment[item_name_]
+		items.eq_prop = AE.all_equipment[item_name_]
 	lh_need.text = str(_effective_price())
 
 

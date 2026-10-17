@@ -3,7 +3,7 @@ extends Node2D
 enum ColorType { WHITE, YELLOW, BLUE, RED }
 
 var idle = true
-var Value: int
+var value: int
 var color_type: ColorType = ColorType.WHITE
 
 @onready var check: CollisionShape2D = $Check/Check
@@ -51,7 +51,7 @@ func _on_check_body_entered(body: Node2D) -> void:
 	if body is BaseHero:
 		var hero = body as BaseHero
 
-		PlayerData.add_soul(Value)
+		PlayerData.add_soul(value)
 
 		match color_type:
 			ColorType.YELLOW:

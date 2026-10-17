@@ -6,7 +6,7 @@ extends Node2D
 var use_item_name
 var use_num
 var reward_items = []
-var item_info = {"Name": "ryjgb", "Value": 4, "Prop": {}, "WX": [], "StrengthValue": 0}
+var item_info = {"Name": "ryjgb", "Value": 4, "Prop": {}, "WX": [], "strength_value": 0}
 
 
 func _process(delta: float) -> void:
@@ -30,13 +30,13 @@ func _physics_process(delta: float) -> void:
 func add_box():
 	var tween = create_tween()
 	for i in reward_items:
-		var Type = AE.all_equipment[i["Name"]][DataKeys.TYPE]
-		var ItemName = i["Name"]
-		var Value = i["Value"]
-		var StrengthValue = i["StrengthValue"]
-		var Prop = i["Prop"]
+		var type = AE.all_equipment[i["Name"]][DataKeys.TYPE]
+		var item_name = i["Name"]
+		var value = i["Value"]
+		var strength_value = i["strength_value"]
+		var prop = i["Prop"]
 		var WX = i["WX"]
-		var box = Global.add_reward_box(item_list, ItemName, Value)
+		var box = Global.add_reward_box(item_list, item_name, value)
 		box.modulate = Color(1, 1, 1, 0)
 		tween.tween_property(box, "modulate", Color(1, 1, 1, 1), 0.2)
 
@@ -54,25 +54,25 @@ func _remove_used_item(item_name, use_num) -> void:
 
 func add_item_to_backpack():
 	for i in reward_items:
-		var Type = AE.all_equipment[i["Name"]][DataKeys.TYPE]
-		var ItemName = i["Name"]
-		var Value = i["Value"]
-		var StrengthValue = i["StrengthValue"]
-		var Prop = i["Prop"]
+		var type = AE.all_equipment[i["Name"]][DataKeys.TYPE]
+		var item_name = i["Name"]
+		var value = i["Value"]
+		var strength_value = i["strength_value"]
+		var prop = i["Prop"]
 		var WX = i["WX"]
-		if Value <= 0:
-			Value = 1
-		match Type:
+		if value <= 0:
+			value = 1
+		match type:
 			"武器", "防具", "饰品", "神骨", "翅膀", "头衔", "时装":
-				for u in range(Value):
-					PlayerData.add_zb(ItemName, StrengthValue, Prop)
+				for u in range(value):
+					PlayerData.add_zb(item_name, strength_value, prop)
 			"法宝":
-				for u in range(Value):
-					PlayerData.add_fb(ItemName, StrengthValue, WX, Prop)
+				for u in range(value):
+					PlayerData.add_fb(item_name, strength_value, WX, prop)
 			"道具":
-				PlayerData.add_dj(ItemName, Value)
+				PlayerData.add_dj(item_name, value)
 			"消耗品":
-				PlayerData.add_xhp(ItemName, Value)
+				PlayerData.add_xhp(item_name, value)
 	MemoryClass.save_game(Global.cd_path)
 
 

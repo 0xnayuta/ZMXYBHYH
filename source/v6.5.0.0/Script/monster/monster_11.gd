@@ -14,11 +14,11 @@ func monster_11():
 	self.crit = 10
 	self.miss = 6
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 300
 	self.attack_range = 85
@@ -42,7 +42,7 @@ func monster_11():
 		{
 			"Name": "poision",
 			"AddTime": 18,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 15,
 			"CanAdd": true,
 			"AttackKind": "real",
@@ -58,7 +58,7 @@ func monster_11():
 			"AddTime": 3,
 			"CanAdd": false,
 			"DeBuff": true,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 		}
@@ -81,8 +81,8 @@ func monster_11():
 func _ready() -> void:
 	super._ready()
 	monster_11()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
 
 
 func _physics_process(delta: float) -> void:
@@ -103,21 +103,21 @@ func ai_think():
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400:
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						if not is_on_floor():
 							have_target()
 						else:
 							do_hit_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_3()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if not is_on_floor():
 						have_target()
 					else:
 						do_hit_2()
-				elif Skill_2_CD <= 0:
+				elif skill_2_cd <= 0:
 					do_hit_3()
 				elif count % 60 == 0:
 					var rad = randi_range(0, 100)
@@ -128,7 +128,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 20
+	skill_1_cd = 20
 	hit_name = "kldw"
 	velocity.x = 0
 	is_attacking = true
@@ -138,7 +138,7 @@ func do_hit_2():
 
 
 func do_hit_3():
-	Skill_2_CD = 15
+	skill_2_cd = 15
 	velocity.x = 0
 	hit_name = "ysyb"
 	is_attacking = true
@@ -154,7 +154,7 @@ func skill_shake():
 func call_poision():
 	var position_x_list = []
 	var position_y = self.position.y - 10
-	if self.MonsterDirection:
+	if self.monster_direction:
 		position_x_list = [
 			self.position.x + 20,
 			self.position.x + 100,
@@ -166,7 +166,7 @@ func call_poision():
 		for i in range(5):
 			var po = Vector2(position_x_list[i], position_y)
 			var poision = Global.add_bullet(
-				"PoisionBullet", self.bullet, self.MonsterDirection, 0.7, po, "kldw", self.obj_attack_dict["kldw"]
+				"PoisionBullet", self.bullet, self.monster_direction, 0.7, po, "kldw", self.obj_attack_dict["kldw"]
 			)
 			poision.scale = Vector2(1.2, 1.2)
 			randomize()
@@ -183,7 +183,7 @@ func call_poision():
 		for i in range(5):
 			var po = Vector2(position_x_list[i], position_y)
 			var poision = Global.add_bullet(
-				"PoisionBullet", self.bullet, self.MonsterDirection, 0.7, po, "kldw", self.obj_attack_dict["kldw"]
+				"PoisionBullet", self.bullet, self.monster_direction, 0.7, po, "kldw", self.obj_attack_dict["kldw"]
 			)
 			poision.scale = Vector2(1.2, 1.2)
 			randomize()
@@ -191,7 +191,7 @@ func call_poision():
 
 
 func call_pp():
-	if self.MonsterDirection:
+	if self.monster_direction:
 		Global.add_special_effect(self, Vector2(150, 30), "Poisionpp", Vector2(2, 2), false, 1)
 	else:
 		Global.add_special_effect(self, Vector2(-150, 30), "Poisionpp", Vector2(2, 2), false, 1)
@@ -201,7 +201,13 @@ func call_ysyb():
 	var bullet_spawn_positions = [Vector2(0, 90), Vector2(-120, -20), Vector2(120, -20)]
 	for i in bullet_spawn_positions:
 		Global.add_bullet(
-			"Monster11Bullet", self.bullet, self.MonsterDirection, 1, i + position, "ysyb", self.obj_attack_dict["ysyb"]
+			"Monster11Bullet",
+			self.bullet,
+			self.monster_direction,
+			1,
+			i + position,
+			"ysyb",
+			self.obj_attack_dict["ysyb"]
 		)
 		await get_tree().create_timer(0.6, false).timeout
 	pass

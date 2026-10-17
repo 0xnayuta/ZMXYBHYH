@@ -12,7 +12,7 @@ var dir: bool
 var get_dir: bool
 var is_set: bool = false
 var pp
-var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
+var hit_dic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
 
 var target_monster: BaseMonster = null
 var speed: float = 600.0
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 			_monster_level = get_tree().current_scene
 			monster_container = _monster_level.get_node_or_null("Monster")
 
-	HitDic = obj_attack_dict
+	hit_dic = obj_attack_dict
 
 	if name_ == "wdsfBullet1" or name_ == "wdshBullet1" or name_ == "wdstBullet1" or name_ == "wdslBullet1":
 		update_tracking(delta)
@@ -82,9 +82,9 @@ func update_tracking(delta: float):
 		target_invalid = true
 	elif target_monster.Hp <= 0:
 		target_invalid = true
-	elif target_monster.NoDeBuff:
+	elif target_monster.no_debuff:
 		target_invalid = true
-	elif target_monster.IsIndestructible:
+	elif target_monster.is_indestructible:
 		target_invalid = true
 	else:
 		var hurt_box = target_monster.get_node_or_null("BaseDamageBox/HurtBox/HurtBox")
@@ -172,7 +172,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			var stun_buff = {
 				"Name": "stun",
 				"AddTime": 1.0,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"CanAdd": false,
 				"DeBuff": true,

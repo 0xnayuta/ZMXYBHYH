@@ -14,11 +14,11 @@ func monster_137():
 	self.crit = 20
 	self.miss = 20
 	self.lucky = 0
-	self.Htarget = 20
-	self.Toughness = 20
+	self.htarget = 20
+	self.toughness = 20
 	self.ar = 25
 	self.sp = 25
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 13
 	self.mysee = 500
 	self.attack_range = 145
@@ -36,7 +36,7 @@ func monster_137():
 		{
 			"Name": "silent",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -52,7 +52,7 @@ func monster_137():
 		{
 			"Name": "stun",
 			"AddTime": 4,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -81,11 +81,11 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 				if count % 60 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -94,7 +94,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(10, 12)
+	skill_1_cd = randi_range(10, 12)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true

@@ -19,4 +19,4 @@ func _load_skill_icons() -> void:
 	for key_name in skill_names.keys():
 		var icon = skill_tscn.instantiate()
 		icon.name = key_name
-		SkillBox.add_child(icon)
+		skill_box.add_child(icon)

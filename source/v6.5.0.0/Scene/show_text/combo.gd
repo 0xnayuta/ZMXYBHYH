@@ -3,7 +3,7 @@ extends Node2D
 @onready var combo_box: HBoxContainer = $ComBoxFather/ComboBoxText
 @onready var combo_player: AnimationPlayer = $ComboPlayer
 
-var ComboNum: int
+var combo_num: int
 var _last_combo_num: int = -1
 var _digit_nodes: Array[Node] = []
 
@@ -14,21 +14,21 @@ func _ready() -> void:
 
 
 func set_combo_num(value: int) -> void:
-	ComboNum = value
+	combo_num = value
 	_refresh_combo()
 
 
 func _refresh_combo() -> void:
 	if not is_inside_tree():
 		return
-	if ComboNum < 2:
+	if combo_num < 2:
 		visible = false
 		return
 	visible = true
-	if ComboNum == _last_combo_num:
+	if combo_num == _last_combo_num:
 		return
-	_last_combo_num = ComboNum
-	var digits = str(ComboNum).split("")
+	_last_combo_num = combo_num
+	var digits = str(combo_num).split("")
 	while _digit_nodes.size() < digits.size():
 		var node = Global.add_combo_num(combo_box, 0)
 		if node == null:
@@ -40,7 +40,7 @@ func _refresh_combo() -> void:
 			if node.has_method("setup"):
 				node.setup(digits[i])
 			else:
-				node.ComboNum = int(digits[i])
+				node.combo_num = int(digits[i])
 			node.visible = true
 		else:
 			node.visible = false

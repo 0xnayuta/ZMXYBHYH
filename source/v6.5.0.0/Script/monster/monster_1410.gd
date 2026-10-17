@@ -68,11 +68,11 @@ func init_monster(is_boss_flag: bool):
 	self.crit = 38
 	self.miss = 58
 	self.lucky = 83
-	self.Htarget = 98
-	self.Toughness = 43
+	self.htarget = 98
+	self.toughness = 43
 	self.ar = 120
 	self.sp = 120
-	self.Critreduce = 20
+	self.crit_reduce = 20
 	self.speed = 15
 	self.mysee = 550
 	self.attack_range = 160
@@ -99,7 +99,7 @@ func init_monster(is_boss_flag: bool):
 		{
 			"Name": "speed_down",
 			"AddTime": 3,
-			"ReduceInterval": 0.61,
+			"reduce_interval": 0.61,
 			"value": 0.5,
 			"AttackKind": "magic",
 			"CanAdd": false,
@@ -115,7 +115,7 @@ func init_monster(is_boss_flag: bool):
 		{
 			"Name": "Immobilize",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 1,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -169,11 +169,11 @@ func init_monster(is_boss_flag: bool):
 		self.crit = int(self.crit * weaken)
 		self.miss = int(self.miss * weaken)
 		self.lucky = int(self.lucky * weaken)
-		self.Htarget = int(self.Htarget * weaken)
-		self.Toughness = int(self.Toughness * weaken)
+		self.htarget = int(self.htarget * weaken)
+		self.toughness = int(self.toughness * weaken)
 		self.ar = int(self.ar * weaken)
 		self.sp = int(self.sp * weaken)
-		self.Critreduce = int(self.Critreduce * weaken)
+		self.crit_reduce = int(self.crit_reduce * weaken)
 
 		self.add_exp = int(self.add_exp * weaken)
 		self.fall_coin = int(self.fall_coin * weaken)
@@ -189,10 +189,10 @@ func _ready() -> void:
 
 	super._ready()
 
-	Skill_1_CD = 2
-	Skill_2_CD = 10
-	Skill_3_CD = 22
-	Skill_4_CD = 20
+	skill_1_cd = 2
+	skill_2_cd = 10
+	skill_3_cd = 22
+	skill_4_cd = 20
 	skill_5_cd = 50
 
 	instance_count += 1
@@ -208,7 +208,7 @@ func _exit_tree() -> void:
 
 func _on_buff_child_entered(child: Node):
 	if child is BaseBuff:
-		var buff_name = child.BuffInfo.get("Name", "")
+		var buff_name = child.buff_info.get("Name", "")
 		if buff_name in ["stun", "Ice", "Immobilize"]:
 			has_been_controlled = true
 
@@ -222,31 +222,31 @@ func ai_think():
 				have_target()
 				if (
 					abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 160
-					and Skill_1_CD <= 0
+					and skill_1_cd <= 0
 				):
 					do_hit_1()
 				if (
 					abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 290
-					and Skill_2_CD <= 0
+					and skill_2_cd <= 0
 				):
 					do_hit_2()
 				if (
 					abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270
-					and Skill_3_CD <= 0
+					and skill_3_cd <= 0
 				):
 					do_hit_3()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 				if _can_cast_light_orb():
 					do_hit_5()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				elif Skill_2_CD <= 0:
+				elif skill_2_cd <= 0:
 					do_hit_2()
-				elif Skill_3_CD <= 0:
+				elif skill_3_cd <= 0:
 					do_hit_3()
-				elif Skill_4_CD <= 0:
+				elif skill_4_cd <= 0:
 					do_hit_4()
 				elif _can_cast_light_orb():
 					do_hit_5()
@@ -255,11 +255,11 @@ func ai_think():
 
 
 func do_hit_1():
-	if Skill_1_CD > 0 or is_attacking:
+	if skill_1_cd > 0 or is_attacking:
 		return
 	super.to_hero()
 	var cd_base = randi_range(1, 3)
-	Skill_1_CD = int(cd_base * (1.3 if is_weakened_clone else 1.0))
+	skill_1_cd = int(cd_base * (1.3 if is_weakened_clone else 1.0))
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -272,11 +272,11 @@ func do_hit_1():
 func do_hit_2():
 	if is_weakened_clone:
 		return
-	if Skill_2_CD > 0 or is_attacking:
+	if skill_2_cd > 0 or is_attacking:
 		return
 	super.to_hero()
 	var cd_base = randi_range(10, 20)
-	Skill_2_CD = int(cd_base * (1.3 if is_weakened_clone else 1.0))
+	skill_2_cd = int(cd_base * (1.3 if is_weakened_clone else 1.0))
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -289,12 +289,12 @@ func do_hit_2():
 func do_hit_3(ignore_cd := false):
 	if is_attacking:
 		return
-	if not ignore_cd and Skill_3_CD > 0:
+	if not ignore_cd and skill_3_cd > 0:
 		return
 	super.to_hero()
 	if not ignore_cd:
 		var cd_base = randi_range(25, 30)
-		Skill_3_CD = int(cd_base * (1.3 if is_weakened_clone else 1.0))
+		skill_3_cd = int(cd_base * (1.3 if is_weakened_clone else 1.0))
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -305,11 +305,11 @@ func do_hit_3(ignore_cd := false):
 
 
 func do_hit_4():
-	if Skill_4_CD > 0 or is_attacking:
+	if skill_4_cd > 0 or is_attacking:
 		return
 	super.to_hero()
 	var cd_base = randi_range(20, 25)
-	Skill_4_CD = int(cd_base * (1.3 if is_weakened_clone else 1.0))
+	skill_4_cd = int(cd_base * (1.3 if is_weakened_clone else 1.0))
 	hit_name = "hit4"
 	velocity.x = 0
 	is_attacking = true
@@ -346,7 +346,7 @@ func call_bullet_1():
 	var bullet_count = randi_range(1, 3)
 	for i in range(bullet_count):
 		var bullet_node
-		if self.MonsterDirection:
+		if self.monster_direction:
 			bullet_node = Global.add_bullet(
 				"Monster1410Bullet1",
 				self.bullet,
@@ -403,7 +403,7 @@ func revive():
 	if buff:
 		for b in buff.get_children():
 			if b is BaseBuff:
-				var buff_name = b.BuffInfo.get("Name", "")
+				var buff_name = b.buff_info.get("Name", "")
 				if buff_name in ["stun", "Ice", "Immobilize"]:
 					b.queue_free()
 	velocity = Vector2.ZERO

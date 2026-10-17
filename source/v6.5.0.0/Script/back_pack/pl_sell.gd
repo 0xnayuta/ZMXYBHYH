@@ -47,8 +47,8 @@ func _on_qd_pressed() -> void:
 	var coin_number: int = 0
 	for u in range(15):
 		for i in PlayerData.player_data[DataKeys.EQUIPMENT_LIST]["页码" + str(page)]:
-			var Type = AE.all_equipment[i[DataKeys.NAME]][DataKeys.TYPE]
-			if Type == "时装" or Type == "法宝" or Type == "头衔":
+			var type = AE.all_equipment[i[DataKeys.NAME]][DataKeys.TYPE]
+			if type == "时装" or type == "法宝" or type == "头衔":
 				continue
 			if _is_divine_forged(i):
 				continue

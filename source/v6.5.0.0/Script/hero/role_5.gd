@@ -162,7 +162,7 @@ func role_5():
 		{
 			"Name": "lljybuff",
 			"AddTime": 1.2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -297,7 +297,7 @@ func do_normalhit_5():
 
 
 func use_slq():
-	self.Role1SkillInter["slq"] = 4.8
+	self.role1_skill_inter["slq"] = 4.8
 	velocity.x = 0
 	get_action = "slq"
 	is_using_skills = true
@@ -311,7 +311,7 @@ func use_slq():
 
 
 func use_cxq():
-	self.Role1SkillInter["cxq"] = 14
+	self.role1_skill_inter["cxq"] = 14
 	velocity.x = 0
 	get_action = "cxq"
 	is_using_skills = true
@@ -325,7 +325,7 @@ func use_cxq():
 
 
 func use_blq():
-	self.Role1SkillInter["blq"] = 6
+	self.role1_skill_inter["blq"] = 6
 	velocity.x = 0
 	get_action = "blq"
 	is_using_skills = true
@@ -339,7 +339,7 @@ func use_blq():
 
 
 func use_xyq():
-	self.Role1SkillInter["xyq"] = 6
+	self.role1_skill_inter["xyq"] = 6
 	velocity.x = 0
 	get_action = "xyq"
 	is_using_skills = true
@@ -353,7 +353,7 @@ func use_xyq():
 
 
 func use_llrd():
-	self.Role1SkillInter["llrd"] = 6
+	self.role1_skill_inter["llrd"] = 6
 	velocity.x = 0
 	get_action = "llrd"
 	is_using_skills = true
@@ -367,7 +367,7 @@ func use_llrd():
 
 
 func use_lljy():
-	self.Role1SkillInter["lljy"] = 12
+	self.role1_skill_inter["lljy"] = 12
 	velocity.x = 0
 	get_action = "lljy_1"
 	is_using_skills = true
@@ -381,7 +381,7 @@ func use_lljy():
 
 
 func use_tllz():
-	self.Role1SkillInter["tllz"] = 6
+	self.role1_skill_inter["tllz"] = 6
 	velocity.x = 0
 	get_action = "tllz"
 	is_using_skills = true
@@ -396,7 +396,7 @@ func use_tllz():
 
 func use_ygth():
 	var awakened := _is_skill_awakened("ygth") and _is_skill_awaken_enabled("ygth")
-	self.Role1SkillInter["ygth"] = YGTH_AWAKEN_COOLDOWN if awakened else YGTH_NORMAL_COOLDOWN
+	self.role1_skill_inter["ygth"] = YGTH_AWAKEN_COOLDOWN if awakened else YGTH_NORMAL_COOLDOWN
 	velocity.x = 0
 	get_action = "ygth"
 	is_using_skills = true
@@ -481,7 +481,7 @@ func _add_ygth_method_key(action: Animation, time: float, method_name: StringNam
 
 func use_fhf():
 	var awakened := _is_skill_awakened("fhf") and _is_skill_awaken_enabled("fhf")
-	self.Role1SkillInter["fhf"] = FHF_AWAKEN_COOLDOWN if awakened else FHF_NORMAL_COOLDOWN
+	self.role1_skill_inter["fhf"] = FHF_AWAKEN_COOLDOWN if awakened else FHF_NORMAL_COOLDOWN
 	velocity.x = 0
 	get_action = "fhf"
 	is_using_skills = true
@@ -525,7 +525,7 @@ func _remap_fhf_awaken_time(time: float) -> float:
 
 
 func use_ltjz():
-	self.Role1SkillInter["ltjz"] = 6.0
+	self.role1_skill_inter["ltjz"] = 6.0
 	velocity.x = 0
 	get_action = "ltjz"
 	is_using_skills = true
@@ -533,13 +533,13 @@ func use_ltjz():
 	_play_ltjz_action()
 	var level = get_parent().get_parent()
 	var effect = LEI_TING_JIE_ZHEN_EFFECT.new()
-	effect.setup(self, PlayerDir, obj_attack_dict["ltjz"])
+	effect.setup(self, player_dir, obj_attack_dict["ltjz"])
 	level.add_child(effect)
 	if _is_skill_awakened("ltjz") and _is_skill_awaken_enabled("ltjz"):
 		var farthest_target := _get_farthest_ltjz_target()
 		if farthest_target != null:
 			var extra_effect = LEI_TING_JIE_ZHEN_EFFECT.new()
-			extra_effect.setup_at_target(self, PlayerDir, obj_attack_dict["ltjz"], farthest_target.global_position)
+			extra_effect.setup_at_target(self, player_dir, obj_attack_dict["ltjz"], farthest_target.global_position)
 			level.add_child(extra_effect)
 	await role_action_player.animation_finished
 	turn_to_wait()
@@ -560,7 +560,7 @@ func _get_farthest_ltjz_target() -> BaseMonster:
 		if not candidate is BaseMonster:
 			continue
 		var monster := candidate as BaseMonster
-		if not is_instance_valid(monster) or monster.Hp <= 0 or monster.is_death or monster.NoTarget:
+		if not is_instance_valid(monster) or monster.Hp <= 0 or monster.is_death or monster.no_target:
 			continue
 		if monster.is_boss_protecting() or _is_summon_or_pet_target(monster):
 			continue
@@ -615,12 +615,12 @@ func slq_fly():
 	velocity.x = 0
 	velocity.y = 0
 	var bullet_pos = Vector2()
-	if PlayerDir:
+	if player_dir:
 		bullet_pos = Vector2(100, -150)
 	else:
 		bullet_pos = Vector2(-100, -150)
 	var slq = Global.add_role_bullet(
-		self.Bullet, bullet_pos + position, PlayerDir, "Role5Bullet1", obj_attack_dict["slq"]
+		self.Bullet, bullet_pos + position, player_dir, "Role5Bullet1", obj_attack_dict["slq"]
 	)
 	slq.scale = Vector2(1.4, 1.6)
 	velocity.y = -600
@@ -631,35 +631,35 @@ func remove_xspeed():
 
 
 func role_rush():
-	if PlayerDir:
+	if player_dir:
 		velocity.x = 800
 	else:
 		velocity.x = -800
 
 
 func role_rush_2():
-	if PlayerDir:
+	if player_dir:
 		velocity.x = 90
 	else:
 		velocity.x = -90
 
 
 func role_rush_4():
-	if PlayerDir:
+	if player_dir:
 		velocity.x = 600
 	else:
 		velocity.x = -600
 
 
 func role_rush_3():
-	if PlayerDir:
+	if player_dir:
 		velocity.x = 1500
 	else:
 		velocity.x = -1500
 
 
 func role_rush_5():
-	if PlayerDir:
+	if player_dir:
 		velocity.x = 2000
 	else:
 		velocity.x = -2000
@@ -712,7 +712,7 @@ func changexyq_hit():
 
 func call_bullet_2():
 	var bullet_pos: Vector2
-	if PlayerDir:
+	if player_dir:
 		bullet_pos = Vector2(260, 180)
 	else:
 		bullet_pos = Vector2(-260, 180)
@@ -723,7 +723,7 @@ func call_bullet_2():
 
 
 func call_bullet_3():
-	var lljy = Global.add_role_bullet(self.Bullet, position, PlayerDir, "Role5Bullet3", obj_attack_dict["lljy"])
+	var lljy = Global.add_role_bullet(self.Bullet, position, player_dir, "Role5Bullet3", obj_attack_dict["lljy"])
 
 
 func call_bullet_4():
@@ -736,7 +736,7 @@ func call_bullet_4():
 
 
 func call_bullet_5():
-	Global.add_role_bullet(self.Bullet, position, !PlayerDir, "Role5Bullet5", obj_attack_dict["ygth"])
+	Global.add_role_bullet(self.Bullet, position, !player_dir, "Role5Bullet5", obj_attack_dict["ygth"])
 
 
 func call_ygth_awaken_bullet():
@@ -746,7 +746,9 @@ func call_ygth_awaken_bullet():
 	if not awaken_hurt_back.is_empty():
 		awaken_hurt_back[0] = -int(awaken_hurt_back[0])
 		awaken_hit_data["hurtBack"] = awaken_hurt_back
-	var hook := Global.add_role_bullet(self.Bullet, position, !PlayerDir, "Role5Bullet5", awaken_hit_data) as RoleBullet
+	var hook := (
+		Global.add_role_bullet(self.Bullet, position, !player_dir, "Role5Bullet5", awaken_hit_data) as RoleBullet
+	)
 	if hook == null:
 		return
 	hook.scale = YGTH_AWAKEN_SCALE
@@ -806,10 +808,10 @@ func _prepare_hit_reaction() -> void:
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	if obj_attack_dict.has(get_action):
 		if obj_attack_dict[get_action].has("addeffect"):
-			var Monster = area.get_parent().get_parent()
-			if Monster != null:
-				if Monster is BaseMonster and not _is_summon_or_pet_target(Monster):
-					Global.add_buff(Monster.buff, obj_attack_dict[get_action]["addeffect"])
+			var monster = area.get_parent().get_parent()
+			if monster != null:
+				if monster is BaseMonster and not _is_summon_or_pet_target(monster):
+					Global.add_buff(monster.buff, obj_attack_dict[get_action]["addeffect"])
 
 # ==============================================================================
 # Phase 7-1: 高频多态弹幕与状态虚函数向后兼容代理

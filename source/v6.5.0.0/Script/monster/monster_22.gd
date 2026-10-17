@@ -20,11 +20,11 @@ func monster_22():
 		self.crit = 105
 		self.miss = 40
 		self.lucky = 100
-		self.Htarget = 200
-		self.Toughness = 0
+		self.htarget = 200
+		self.toughness = 0
 		self.ar = 100
 		self.sp = 100
-		self.Critreduce = 0
+		self.crit_reduce = 0
 		self.speed = 40
 		self.mysee = 300
 		self.attack_range = 85
@@ -44,7 +44,7 @@ func monster_22():
 				"CanAdd": true,
 				"DeBuff": true,
 				"DeRemove": false,
-				"ReduceInterval": 0.5,
+				"reduce_interval": 0.5,
 				"value": 0,
 				"AttackKind": "",
 			}
@@ -70,11 +70,11 @@ func monster_22():
 	self.crit = 5
 	self.miss = 8
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 40
 	self.mysee = 300
 	self.attack_range = 85

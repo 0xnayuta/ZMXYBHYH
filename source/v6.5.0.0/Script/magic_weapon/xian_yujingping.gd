@@ -73,7 +73,7 @@ func _capture_role_property_snapshot() -> Dictionary:
 		"roleprop": RoleProp.roleprop.duplicate(true),
 		"baseroleprop": RoleProp.baseroleprop.duplicate(true),
 		"equprop": RoleProp.equprop.duplicate(true),
-		"Paslprop": RoleProp.Paslprop.duplicate(true),
+		"pasl_prop": RoleProp.pasl_prop.duplicate(true),
 		"wq_bs_prop": RoleProp.wq_bs_prop.duplicate(true),
 		"fj_bs_prop": RoleProp.fj_bs_prop.duplicate(true),
 		"sp_bs_prop": RoleProp.sp_bs_prop.duplicate(true),

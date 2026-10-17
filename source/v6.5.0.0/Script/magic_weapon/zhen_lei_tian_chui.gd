@@ -98,7 +98,7 @@ func _get_casting_hero() -> BaseHero:
 	var source_player: Variant = RoleProp.source_player
 	if source_player is BaseHero and is_instance_valid(source_player):
 		return source_player as BaseHero
-	if Player != null and is_instance_valid(Player):
+	if player != null and is_instance_valid(player):
 		return Player
 	return null
 
@@ -137,7 +137,7 @@ func _apply_thunder_hit(casting_hero: BaseHero) -> void:
 		var monster := target as BaseMonster
 		if int(monster.Hp) <= 0:
 			continue
-		if monster.get("NoTarget") != null and bool(monster.get("NoTarget")):
+		if monster.get("no_target") != null and bool(monster.get("no_target")):
 			continue
 		if monster.global_position.distance_to(effect_anchor.global_position) > HIT_RADIUS:
 			continue
@@ -169,7 +169,7 @@ func _apply_stun(monster: BaseMonster) -> void:
 			{
 				"Name": "stun",
 				"AddTime": _get_stun_duration(),
-				"ReduceInterval": 0.0,
+				"reduce_interval": 0.0,
 				"value": 0,
 				"AttackKind": "magic",
 				"CanAdd": false,

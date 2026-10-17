@@ -35,12 +35,12 @@ var mdef = 0
 var crit = 0
 var miss = 0
 var lucky = 0
-var Htarget = 0
-var Toughness = 0
+var htarget = 0
+var toughness = 0
 var ar = 0
 var sp = 0
-var Critreduce = 0
-var AttList
+var crit_reduce = 0
+var att_list
 var obj_attack_dict = {}
 var skill_name: String
 var _runtime_skill_name: String = ""
@@ -1100,7 +1100,7 @@ static func _prewarm_pet_bullet_instances(bullet_scene: PackedScene, effect_name
 		var instance := bullet_scene.instantiate() as MonsterBullet
 		if instance == null:
 			continue
-		instance.AttList = {"power": 0, "attackKind": "physical", "hurtBack": [0, 0]}
+		instance.att_list = {"power": 0, "attackKind": "physical", "hurtBack": [0, 0]}
 		instance.hit_name = "__prewarm__"
 		instance.dir = false
 		instance.skill_name = effect_name
@@ -1372,9 +1372,9 @@ func _apply_pet_phoenix_sweep_damage(hit_rect: Rect2) -> void:
 		return
 	if hit_rect.size.x <= 0.0 or hit_rect.size.y <= 0.0:
 		return
-	if typeof(AttList) != TYPE_DICTIONARY:
+	if typeof(att_list) != TYPE_DICTIONARY:
 		return
-	var hit_data: Dictionary = AttList
+	var hit_data: Dictionary = att_list
 	var damage: int = int(hit_data.get("power", 0))
 	if damage <= 0:
 		return
@@ -1542,7 +1542,7 @@ func _sync_follow_pet_phoenix_bullet(delta: float) -> void:
 		return
 	var follow_offset: Vector2 = get_meta("pet_phoenix_follow_offset", Vector2.ZERO)
 	position = source.position + follow_offset
-	var source_faces_left := bool(source.get("MonsterDirection"))
+	var source_faces_left := bool(source.get("monster_direction"))
 	if source_faces_left != dir:
 		dir = source_faces_left
 		if middle != null:
@@ -1579,9 +1579,9 @@ func _apply_pet_phoenix_summon_targets(targets: Array[BaseMonster]) -> void:
 		return
 	if get_meta("pet_phoenix_disabled", false):
 		return
-	if typeof(AttList) != TYPE_DICTIONARY:
+	if typeof(att_list) != TYPE_DICTIONARY:
 		return
-	var hit_data: Dictionary = AttList
+	var hit_data: Dictionary = att_list
 	var summon_owner: Node = get_meta("summoner", null)
 	var damage := int(hit_data.get("power", 0))
 	if damage <= 0:
@@ -1821,7 +1821,7 @@ func _sync_follow_pet_dragon_bullet() -> void:
 
 	var follow_offset: Vector2 = get_meta("pet_dragon_follow_offset", Vector2.ZERO)
 	global_position = source.global_position + follow_offset
-	var source_faces_left := bool(source.get("MonsterDirection"))
+	var source_faces_left := bool(source.get("monster_direction"))
 	if source_faces_left != dir:
 		_apply_pet_dragon_direction(source_faces_left)
 
@@ -1900,7 +1900,7 @@ func _apply_pet_dragon_summon_hit(target: Node) -> void:
 		return
 	if get_meta("pet_dragon_disabled", false) or get_meta("pet_dragon_damage_applied", false):
 		return
-	var hit_data: Dictionary = AttList if typeof(AttList) == TYPE_DICTIONARY else {}
+	var hit_data: Dictionary = att_list if typeof(att_list) == TYPE_DICTIONARY else {}
 	if (
 		hit_data.is_empty()
 		and obj_attack_dict != null
@@ -1989,7 +1989,7 @@ func _apply_pet_summon_knockback(target: BaseMonster, summon_owner, hurt_back: A
 	if int(hurt_back[0]) == 0 and int(hurt_back[1]) == 0:
 		return
 	var face_left := (
-		bool(summon_owner.get("MonsterDirection"))
+		bool(summon_owner.get("monster_direction"))
 		if summon_owner != null and is_instance_valid(summon_owner)
 		else false
 	)
@@ -2281,7 +2281,7 @@ func _apply_pet_tiger_id60_six_hit(role: Node) -> void:
 	var owner := my_father
 	if owner == null and get_parent() != null and get_parent().get_parent() is BaseMonster:
 		owner = get_parent().get_parent()
-	var hit_data = AttList
+	var hit_data = att_list
 	if owner != null and owner.obj_attack_dict != null and owner.obj_attack_dict.has(hit_name):
 		hit_data = owner.obj_attack_dict[hit_name]
 	if typeof(hit_data) != TYPE_DICTIONARY or not hit_data.has("power"):
@@ -2410,8 +2410,8 @@ func _hold_pet_tiger_sxhz_target(target: Node, duration: float) -> void:
 	target.set_meta("pet_tiger_sxhz_hold_until", Time.get_ticks_msec() + int(duration * 1000.0))
 	target.set_meta("pet_tiger_sxhz_hold_position", hold_position)
 	target.set("global_position", hold_position)
-	if "NoGrav" in target:
-		target.NoGrav = true
+	if "no_grav" in target:
+		target.no_grav = true
 	if "is_stun" in target:
 		target.is_stun = true
 	if "is_be_attacking" in target:
@@ -2431,7 +2431,7 @@ func _hold_pet_tiger_sxhz_target(target: Node, duration: float) -> void:
 		var stun_effect = {
 			"Name": "stun",
 			"AddTime": duration,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 0,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -2457,7 +2457,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			var stun_effect = {
 				"Name": "stun",
 				"AddTime": 2,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 				"DeBuff": true,
@@ -2511,7 +2511,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				"CanAdd": true,
 				"DeBuff": true,
 				"CanRemove": false,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 900,
 				"AttackKind": "magic"
 			}
@@ -2531,7 +2531,7 @@ func _get_hit_owner(area: Area2D) -> Node:
 
 
 func get_prop():
-	self.obj_attack_dict[hit_name] = AttList
+	self.obj_attack_dict[hit_name] = att_list
 
 
 func _prepare_bullet_animation_material(animation_name: String) -> void:
@@ -2620,14 +2620,14 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 			if body is BaseMonster:
 				if body is Monster110:
 					body.cure_hp(body.SHp * 0.05)
-					body.Skill_1_CD = 0
+					body.skill_1_cd = 0
 					self.queue_free()
 	if skill_name == "Monster142Bullet1":
 		if can_cure:
 			if body is BaseMonster:
 				if body is Monster142:
 					body.cure_hp(body.SHp * 0.1)
-					body.Skill_1_CD = 0
+					body.skill_1_cd = 0
 
 
 func call_monster_137_bullet_2():

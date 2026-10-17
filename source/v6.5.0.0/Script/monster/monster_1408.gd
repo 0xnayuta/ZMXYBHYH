@@ -17,11 +17,11 @@ func monster_1408():
 	self.crit = 38
 	self.miss = 58
 	self.lucky = 83
-	self.Htarget = 98
-	self.Toughness = 43
+	self.htarget = 98
+	self.toughness = 43
 	self.ar = 120
 	self.sp = 120
-	self.Critreduce = 20
+	self.crit_reduce = 20
 	self.speed = 18
 	self.mysee = 550
 	self.attack_range = 280
@@ -47,7 +47,7 @@ func monster_1408():
 		{
 			"Name": "speed_down",
 			"AddTime": 3,
-			"ReduceInterval": 0.61,
+			"reduce_interval": 0.61,
 			"value": 0.5,
 			"AttackKind": "magic",
 			"CanAdd": false,
@@ -70,7 +70,7 @@ func monster_1408():
 		{
 			"Name": "Immobilize",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 1,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -94,10 +94,10 @@ func monster_1408():
 func _ready() -> void:
 	super._ready()
 	monster_1408()
-	Skill_1_CD = 2
-	Skill_2_CD = 15
-	Skill_3_CD = 10
-	Skill_4_CD = 20
+	skill_1_cd = 2
+	skill_2_cd = 15
+	skill_3_cd = 10
+	skill_4_cd = 20
 	skill_5_cd = 30
 
 
@@ -110,35 +110,35 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 				if skill_5_cd <= 0:
 					do_hit_5()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 				if skill_5_cd <= 0:
 					do_hit_5()
 
 
 func do_hit_1():
-	if Skill_1_CD > 0 or is_attacking:
+	if skill_1_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_1_CD = 2
+	skill_1_cd = 2
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -149,10 +149,10 @@ func do_hit_1():
 
 
 func do_hit_2():
-	if Skill_2_CD > 0 or is_attacking:
+	if skill_2_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_2_CD = randi_range(20, 30)
+	skill_2_cd = randi_range(20, 30)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -163,10 +163,10 @@ func do_hit_2():
 
 
 func do_hit_3():
-	if Skill_3_CD > 0 or is_attacking:
+	if skill_3_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_3_CD = randi_range(15, 20)
+	skill_3_cd = randi_range(15, 20)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -177,10 +177,10 @@ func do_hit_3():
 
 
 func do_hit_4():
-	if Skill_4_CD > 0 or is_attacking:
+	if skill_4_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_4_CD = randi_range(35, 40)
+	skill_4_cd = randi_range(35, 40)
 	hit_name = "hit4"
 	velocity.x = 0
 	is_attacking = true
@@ -289,8 +289,8 @@ func state_death():
 	if has_parasitic_larva():
 		is_reviving = true
 
-		if has_node("DeathCount"):
-			$DeathCount.stop()
+		if has_node("death_count"):
+			$death_count.stop()
 
 		is_attacking = false
 		is_be_attacking = false
@@ -309,8 +309,8 @@ func state_death():
 		if mr_player.has_animation("wait"):
 			mr_player.play("wait")
 
-		if has_node("DeathCount"):
-			$DeathCount.start()
+		if has_node("death_count"):
+			$death_count.start()
 	else:
 		super.state_death()
 

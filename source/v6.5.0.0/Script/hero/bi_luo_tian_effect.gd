@@ -159,7 +159,7 @@ func _damage_targets_in_front() -> void:
 func _is_valid_target(target: Node) -> bool:
 	if target == null or not is_instance_valid(target) or not (target is BaseMonster):
 		return false
-	if target.Hp <= 0 or target.NoTarget:
+	if target.Hp <= 0 or target.no_target:
 		return false
 	if target.is_boss_protecting():
 		return false
@@ -173,8 +173,8 @@ func _is_valid_target(target: Node) -> bool:
 
 
 func _apply_hit(target: BaseMonster) -> void:
-	var old_hit_data: Dictionary = owner_player.HitDic
-	owner_player.HitDic = hit_data
+	var old_hit_data: Dictionary = owner_player.hit_dic
+	owner_player.hit_dic = hit_data
 	var damage := int(target.get_role_last_hurt(owner_player))
 	if damage > 0:
 		target.hurt_reduce_hp(damage, owner_player)
@@ -196,7 +196,7 @@ func _apply_hit(target: BaseMonster) -> void:
 			_apply_voodoo_if_learned(target)
 		if not RoleProp.is_ws_state:
 			RoleProp.ws_value += int(hit_data.get("WSValue", 4))
-	owner_player.HitDic = old_hit_data
+	owner_player.hit_dic = old_hit_data
 
 
 func _apply_hit_stun(target: BaseMonster) -> void:
@@ -228,7 +228,7 @@ func _apply_voodoo_if_learned(target: Node) -> void:
 		{
 			"Name": "Voodoo",
 			"AddTime": 5,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": int(RoleProp.roleprop.power * 0.1),
 			"CanAdd": true,
 			"AttackKind": "real",

@@ -506,9 +506,9 @@ func _configure_boss(config: Dictionary) -> void:
 	mdef = int(config.get("mdef", 3000))
 	crit = int(config.get("crit", 450))
 	miss = int(config.get("miss", 180))
-	Htarget = int(config.get("hit", 400))
-	Toughness = float(config.get("toughness", 0.0))
-	Critreduce = int(config.get("crit_reduce", 0))
+	htarget = int(config.get("hit", 400))
+	toughness = float(config.get("toughness", 0.0))
+	crit_reduce = int(config.get("crit_reduce", 0))
 	ar = int(config.get("armor_break", 3000))
 	sp = int(config.get("magic_break", 3000))
 	speed = float(config.get("speed", 10.0))
@@ -935,7 +935,7 @@ func _monster149_continue_combo() -> void:
 	velocity.x = 0.0
 	var target := _monster149_combo_target
 	if _is_alive_constellation_player(target):
-		var target_faces_right := bool(target.get("PlayerDir"))
+		var target_faces_right := bool(target.get("player_dir"))
 		global_position.x = target.global_position.x - 100.0 if target_faces_right else target.global_position.x + 100.0
 		_face_role()
 	mr_player.play(&"monster149_combo_mid")
@@ -1666,7 +1666,7 @@ func _monster149_gaze_effect(_effect_position: Vector2) -> void:
 	for target in _constellation_players():
 		if target.need_protect:
 			continue
-		var target_faces_right := target.PlayerDir
+		var target_faces_right := target.player_dir
 		var in_gaze := false
 		if target.global_position.x < global_position.x:
 			in_gaze = target_faces_right and not _facing_right

@@ -452,9 +452,9 @@ func _on_create_control_timeout() -> void:
 
 
 func _update_stage_progression() -> void:
-	if not _spawn_runtime_ready or Role_ == null:
+	if not _spawn_runtime_ready or role_ == null:
 		return
-	var role_x := float(Role_.position.x)
+	var role_x := float(role_.position.x)
 	if current_stage == 0:
 		if role_x >= _stage_trigger_x()[0]:
 			_start_stage(1)
@@ -645,8 +645,8 @@ func _update_screen_bounds(delta: float = 0.0) -> void:
 	if current_stage >= 1 and current_stage < _stage_count() and stage_clear:
 		open_right = float(_screen_rights()[screen_index + 1])
 
-	if current_stage >= 1 and current_stage < _stage_count() and stage_clear and Role_ != null:
-		if float(Role_.position.x) >= screen_right - CAMERA_UNLOCK_MARGIN:
+	if current_stage >= 1 and current_stage < _stage_count() and stage_clear and role_ != null:
+		if float(role_.position.x) >= screen_right - CAMERA_UNLOCK_MARGIN:
 			_camera_room = maxi(_camera_room, current_stage + 1)
 	_camera_room = clampi(maxi(_camera_room, stage_for_bounds), 1, _stage_count())
 	var camera_target_left: float = _screen_starts()[_camera_room - 1]

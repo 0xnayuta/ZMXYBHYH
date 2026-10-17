@@ -8,13 +8,13 @@ var is_hit: bool
 var is_play
 var total_hit = 0
 var obj_attack_dict = {}
-var Player
+var player
 var hit_count: int = 0
 
 
 func _physics_process(delta: float) -> void:
 	var parent_node = get_parent().get_parent()
-	Player = parent_node.Role_
+	player = parent_node.role_
 	if not is_hit:
 		hit_count = 0
 		animation_player.play("wait")
@@ -29,15 +29,15 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 	self.obj_attack_dict["Trap_1"] = {
 		"power": int(RoleProp.roleprop.SHp * 0.05), "hurtBack": [15, -15], "attackKind": "real"
 	}
-	if Player is BaseHero:
+	if player is BaseHero:
 		(
 			Global
 			. add_buff(
-				Player.buff,
+				player.buff,
 				{
 					"Name": "speed_down",
 					"AddTime": 2,
-					"ReduceInterval": 0,
+					"reduce_interval": 0,
 					"value": 0.35,
 					"AttackKind": "",
 					"CanAdd": false,

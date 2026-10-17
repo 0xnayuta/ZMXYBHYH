@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	items.EQ_prop = AE.all_equipment[ItemName]
+	items.eq_prop = AE.all_equipment[ItemName]
 	items.wx = []
 	items.set_button_icon(load_(ItemName))
 	if total_num <= 1:

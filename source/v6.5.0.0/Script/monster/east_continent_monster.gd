@@ -1387,7 +1387,7 @@ func _configure_entity_collision_boxes() -> void:
 
 func _physics_process(delta: float) -> void:
 	if monster_kind == 3323 and not death():
-		NoGrav = true
+		no_grav = true
 		velocity.y = 0.0
 		if _3323_skill_y_locked:
 			global_position.y = _3323_skill_y
@@ -1397,7 +1397,7 @@ func _physics_process(delta: float) -> void:
 
 	if monster_kind == 3179 and _3179_fire_dash_until_msec > 0:
 		if Time.get_ticks_msec() < _3179_fire_dash_until_msec and _active_attack_name == &"hit2":
-			velocity.x = (1.0 if MonsterDirection else -1.0) * 1200.0
+			velocity.x = (1.0 if monster_direction else -1.0) * 1200.0
 			velocity.y = 0.0
 		else:
 			velocity.x = 0.0
@@ -1412,19 +1412,19 @@ func _physics_process(delta: float) -> void:
 			queue_free()
 			return
 	if _fixed_flight_height_ready and not death() and monster_kind != 3323:
-		NoGrav = true
+		no_grav = true
 		velocity.y = 0.0
 		position.y = _fixed_flight_y
 	if monster_kind in [3136, 3182] and _fixed_world_position_ready:
-		NoGrav = true
+		no_grav = true
 		velocity = Vector2.ZERO
 		global_position = _fixed_world_position
 	if monster_kind == 3323 and _3323_skill_y_locked and not death():
-		NoGrav = true
+		no_grav = true
 		velocity.y = 0.0
 		global_position.y = _3323_skill_y
 	elif monster_kind == 3323 and _fixed_flight_height_ready and not death():
-		NoGrav = true
+		no_grav = true
 		velocity.y = 0.0
 		global_position.y = _fixed_flight_y
 
@@ -1510,11 +1510,11 @@ func _configure_monster() -> void:
 	var boss := bool(_config.get("is_boss", false))
 	crit = int(_config.get("crit", 500 if boss else 340))
 	miss = int(_config.get("miss", 180))
-	Htarget = int(_config.get("hit", 500))
+	htarget = int(_config.get("hit", 500))
 	ar = int(_config.get("armor_break", 2500))
 	sp = int(_config.get("magic_break", 2500))
-	Toughness = float(_config.get("toughness", 0.0))
-	Critreduce = int(_config.get("crit_reduce", 0))
+	toughness = float(_config.get("toughness", 0.0))
+	crit_reduce = int(_config.get("crit_reduce", 0))
 	speed = float(_config.get("speed", 0.0))
 	attack_range = int(_config.get("range", 0))
 	mysee = int(_config.get("sight", 0))
@@ -1529,8 +1529,8 @@ func _configure_monster() -> void:
 	damage_reduction = float(_config.get("damage_reduction", 0.0))
 
 	is_fly = bool(_config.get("is_flying", false))
-	NoGrav = monster_kind in [3136, 3182] or is_fly
-	if NoGrav:
+	no_grav = monster_kind in [3136, 3182] or is_fly
+	if no_grav:
 		velocity.y = 0.0
 	boss_max_protect = float(_config.get("max_protect", 250.0 if is_boss else 100.0))
 	obj_attack_dict.clear()
@@ -2134,7 +2134,7 @@ func _official_in_skill_scope(target_position: Vector2, scope: Array) -> bool:
 		return false
 	var x_min := float(scope[0])
 	var x_max := float(scope[1])
-	var rect_x := global_position.x + (x_min if MonsterDirection else -x_max)
+	var rect_x := global_position.x + (x_min if monster_direction else -x_max)
 	var rect_width := x_max - x_min
 	var target_rect := _target_hurt_rect(target_position)
 	if rect_x >= target_rect.end.x or rect_x + rect_width <= target_rect.position.x:
@@ -2207,7 +2207,7 @@ func _monster_3119_intelligence() -> void:
 	has_target = true
 	to_hero()
 
-	MonsterDirection = target_position.x >= global_position.x
+	monster_direction = target_position.x >= global_position.x
 	var scope: Array = []
 	if OFFICIAL_SKILL_SCOPE.has(monster_kind):
 		scope = (OFFICIAL_SKILL_SCOPE[monster_kind] as Dictionary).get(&"hit1", [])
@@ -2264,7 +2264,7 @@ func _reachable_official_attacks() -> Array[StringName]:
 	if not target_value is Vector2:
 		return result
 	var target_position := target_value as Vector2
-	MonsterDirection = target_position.x >= global_position.x
+	monster_direction = target_position.x >= global_position.x
 	var scopes: Dictionary = OFFICIAL_SKILL_SCOPE[monster_kind]
 	for attack_index in range(1, 6):
 		var attack_name := StringName("hit%d" % attack_index)
@@ -2402,7 +2402,9 @@ func _late_effect_target_data() -> Dictionary:
 	)
 	var has_target := target_value is Vector2
 	var raw_position: Vector2 = (
-		target_value as Vector2 if has_target else global_position + Vector2(100.0 if MonsterDirection else -100.0, 0.0)
+		target_value as Vector2
+		if has_target
+		else global_position + Vector2(100.0 if monster_direction else -100.0, 0.0)
 	)
 	var target_node: Node2D = null
 	if has_target and RoleProp != null and RoleProp.source_player is Node2D:
@@ -2540,7 +2542,7 @@ func _finish_3323_skill3(impact_position: Vector2) -> void:
 	_fixed_flight_y = landing.y
 	_3323_skill_y_locked = false
 	velocity = Vector2.ZERO
-	NoGrav = true
+	no_grav = true
 	_3323_skill3_invincible = false
 	hurt_box.set_deferred("disabled", false)
 	_special_attack_active = false
@@ -2619,7 +2621,7 @@ func attack_target() -> void:
 	if monster_kind == 3323:
 		_3323_skill_y = global_position.y
 		_3323_skill_y_locked = true
-		NoGrav = true
+		no_grav = true
 		velocity.y = 0.0
 	velocity = Vector2.ZERO
 	_disable_attack_box()
@@ -2698,7 +2700,7 @@ func _spawn_3223_summon(summon_id: int, source_offset: Vector2) -> void:
 	var summoned := scene.instantiate() as EastContinentMonster
 	if summoned == null:
 		return
-	var facing := 1.0 if MonsterDirection else -1.0
+	var facing := 1.0 if monster_direction else -1.0
 	var bounds := _3120_screen_bounds()
 	var spawn_position := global_position + Vector2(source_offset.x * facing, source_offset.y)
 	spawn_position.x = clampf(spawn_position.x, bounds.x, bounds.y - 100.0)
@@ -2716,7 +2718,7 @@ func _spawn_official_pulse_area(
 	var x_max := float(scope[1])
 	var y_min := float(scope[2]) if scope.size() >= 4 else -120.0
 	var y_max := float(scope[3]) if scope.size() >= 4 else 20.0
-	var facing := 1.0 if MonsterDirection else -1.0
+	var facing := 1.0 if monster_direction else -1.0
 	var area := PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
 	(
 		area
@@ -2772,7 +2774,7 @@ func _spawn_3182_destroying_rip(serial: int) -> void:
 	await get_tree().create_timer(8.0 / SOURCE_FPS, false).timeout
 	if not _3182_attack_is_current(serial):
 		return
-	var direction := 1.0 if MonsterDirection else -1.0
+	var direction := 1.0 if monster_direction else -1.0
 	var area := PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
 	(
 		area
@@ -2808,7 +2810,7 @@ func _spawn_3182_tracking_needle_after(delay_seconds: float, serial: int) -> voi
 	var target := RoleProp.source_player as Node2D
 	if target == null or not is_instance_valid(target):
 		return
-	var direction := 1.0 if MonsterDirection else -1.0
+	var direction := 1.0 if monster_direction else -1.0
 	var spawn_position := global_position + Vector2(125.0 * direction, -100.0)
 	var aim_position := target.global_position + Vector2(0.0, -60.0)
 	var projectile := PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
@@ -2848,7 +2850,7 @@ func _run_3182_bone_needle(index: int, serial: int) -> void:
 	await get_tree().create_timer(charge_delay, false).timeout
 	if not _3182_attack_is_current(serial):
 		return
-	var facing := 1.0 if MonsterDirection else -1.0
+	var facing := 1.0 if monster_direction else -1.0
 	var source_point: Vector2 = RAIN_ANCESTOR_BONE_POINTS[index]
 	var spawn_position := global_position + Vector2(source_point.x * facing, source_point.y)
 	var charge := PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
@@ -2929,7 +2931,7 @@ func _start_3182_rain_combo(serial: int) -> void:
 
 func _run_3182_rain(rain_serial: int) -> void:
 	var weather := RAIN_ANCESTOR_WEATHER_SCRIPT.new() as RainAncestorWeather
-	weather.configure(global_position, 1.0 if MonsterDirection else -1.0, 10.0)
+	weather.configure(global_position, 1.0 if monster_direction else -1.0, 10.0)
 	var level_node := get_level_node()
 	if level_node != null:
 		level_node.add_child(weather)
@@ -3033,7 +3035,7 @@ func _spawn_ranged_effect_after_shot_frame(serial: int) -> void:
 	await get_tree().create_timer(21.0 / SOURCE_FPS, false).timeout
 	if not is_instance_valid(self) or not is_inside_tree() or death() or serial != _attack_serial:
 		return
-	var direction := 1.0 if MonsterDirection else -1.0
+	var direction := 1.0 if monster_direction else -1.0
 	var target: Variant = RoleProp.get_nearest_monster_target_position(global_position) if RoleProp != null else null
 	if target != null:
 		direction = 1.0 if float(target.x) >= global_position.x else -1.0
@@ -3075,7 +3077,7 @@ func _start_3121_arrow_burst(serial: int) -> void:
 		Vector2(-240.0, 0.0),
 	]
 
-	var direction_scale := -1.0 if MonsterDirection else 1.0
+	var direction_scale := -1.0 if monster_direction else 1.0
 	for base_velocity: Vector2 in velocities:
 		var arrow_velocity := Vector2(base_velocity.x * direction_scale, base_velocity.y)
 		var projectile := PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
@@ -3132,9 +3134,9 @@ func _start_3179_attack(attack_name: StringName, serial: int) -> void:
 func _start_3179_fire_dash(serial: int) -> void:
 	_special_attack_active = true
 	var dash_ground_y := global_position.y
-	var dash_no_grav_before := NoGrav
+	var dash_no_grav_before := no_grav
 	_3179_fire_dash_until_msec = 0
-	NoGrav = true
+	no_grav = true
 	velocity.x = 0.0
 	velocity.y = 0.0
 	await get_tree().create_timer(3.0 / SOURCE_FPS, false).timeout
@@ -3142,12 +3144,12 @@ func _start_3179_fire_dash(serial: int) -> void:
 		_3179_fire_dash_until_msec = 0
 		velocity.x = 0.0
 		velocity.y = 0.0
-		NoGrav = dash_no_grav_before
+		no_grav = dash_no_grav_before
 		_3179_fire_dash_invincible = false
 		hurt_box.set_deferred("disabled", false)
 		_special_attack_active = false
 		return
-	var direction := 1.0 if MonsterDirection else -1.0
+	var direction := 1.0 if monster_direction else -1.0
 	_3179_fire_dash_until_msec = Time.get_ticks_msec() + 334
 	_3179_fire_dash_invincible = true
 	hurt_box.set_deferred("disabled", true)
@@ -3163,7 +3165,7 @@ func _start_3179_fire_dash(serial: int) -> void:
 		velocity.x = 0.0
 		velocity.y = 0.0
 		global_position.y = dash_ground_y
-		NoGrav = dash_no_grav_before
+		no_grav = dash_no_grav_before
 		_3179_fire_dash_until_msec = 0
 		_3179_fire_dash_invincible = false
 		hurt_box.set_deferred("disabled", false)
@@ -3185,18 +3187,18 @@ func _start_3179_blood_eye(_serial: int) -> void:
 func _start_six_ear_dash(serial: int) -> void:
 	_special_attack_active = true
 	_3179_fire_slash_invincible = true
-	_3179_fire_slash_no_grav_before = NoGrav
-	NoGrav = true
+	_3179_fire_slash_no_grav_before = no_grav
+	no_grav = true
 	velocity = Vector2.ZERO
 	hurt_box.set_deferred("disabled", true)
 	await get_tree().create_timer(5.0 / SOURCE_FPS, false).timeout
 	if not is_instance_valid(self) or death() or serial != _attack_serial:
 		_3179_fire_slash_invincible = false
-		NoGrav = _3179_fire_slash_no_grav_before
+		no_grav = _3179_fire_slash_no_grav_before
 		hurt_box.set_deferred("disabled", false)
 		_special_attack_active = false
 		return
-	var direction := 1.0 if MonsterDirection else -1.0
+	var direction := 1.0 if monster_direction else -1.0
 	var dash_spawn := global_position + Vector2(177.0 * direction, -95.0)
 	var dash_velocity := Vector2(direction * 150.0, 0.0)
 	var dash_lifetime := 31.0 / SOURCE_FPS
@@ -3229,7 +3231,7 @@ func _start_six_ear_dash(serial: int) -> void:
 	await get_tree().create_timer(dash_lifetime, false).timeout
 	if not is_instance_valid(self) or death() or serial != _attack_serial:
 		_3179_fire_slash_invincible = false
-		NoGrav = _3179_fire_slash_no_grav_before
+		no_grav = _3179_fire_slash_no_grav_before
 		hurt_box.set_deferred("disabled", false)
 		_special_attack_active = false
 		return
@@ -3270,7 +3272,7 @@ func _spawn_six_ear_impact(spawn_position: Vector2, direction: float) -> void:
 
 func _finish_six_ear_impact(_position: Vector2) -> void:
 	_3179_fire_slash_invincible = false
-	NoGrav = _3179_fire_slash_no_grav_before
+	no_grav = _3179_fire_slash_no_grav_before
 	velocity = Vector2.ZERO
 	hurt_box.set_deferred("disabled", false)
 	_special_attack_active = false
@@ -3291,7 +3293,7 @@ func _start_3161_effect2(serial: int) -> void:
 			{
 				"owner": self,
 				"position": spawn_position,
-				"right": MonsterDirection,
+				"right": monster_direction,
 				"hit_name": "hit2",
 				"attack_data": _attack_entry(&"hit2"),
 				"skill_name": "WhiteApeEffect2_1",
@@ -3313,22 +3315,22 @@ func _start_3161_effect3(serial: int) -> void:
 	_special_attack_active = true
 	var dash_ground_y := global_position.y
 	_3161_dash_ground_y = dash_ground_y
-	_3161_dash_no_grav_before = NoGrav
-	NoGrav = true
+	_3161_dash_no_grav_before = no_grav
+	no_grav = true
 	velocity.y = 0.0
 	await get_tree().create_timer(1.0 / SOURCE_FPS, false).timeout
 	if not is_instance_valid(self) or death() or serial != _attack_serial:
 		_special_attack_active = false
 		return
 	var effect := PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
-	var direction := 1.0 if MonsterDirection else -1.0
+	var direction := 1.0 if monster_direction else -1.0
 	(
 		effect
 		. configure(
 			{
 				"owner": self,
 				"position": global_position + Vector2(0.0, -60.0),
-				"right": MonsterDirection,
+				"right": monster_direction,
 				"hit_name": "hit3",
 				"attack_data": _attack_entry(&"hit3"),
 				"skill_name": "WhiteApeEffect3_1",
@@ -3377,7 +3379,7 @@ func _spawn_3161_effect3_impact(spawn_position: Vector2) -> void:
 			{
 				"owner": self,
 				"position": spawn_position,
-				"right": MonsterDirection,
+				"right": monster_direction,
 				"hit_name": "hit3",
 				"attack_data": _attack_entry(&"hit3"),
 				"skill_name": "WhiteApeEffect3_2",
@@ -3399,7 +3401,7 @@ func _spawn_3161_effect3_impact(spawn_position: Vector2) -> void:
 func _finish_3161_special(_position: Vector2) -> void:
 	global_position.y = _3161_dash_ground_y
 	velocity.y = 0.0
-	NoGrav = _3161_dash_no_grav_before
+	no_grav = _3161_dash_no_grav_before
 	_special_attack_active = false
 
 
@@ -3453,7 +3455,7 @@ func _start_3120_stone_throw(serial: int) -> void:
 func _spawn_3120_dust(spawn_position: Vector2) -> void:
 	if not is_instance_valid(self) or death():
 		return
-	var direction := 1.0 if MonsterDirection else -1.0
+	var direction := 1.0 if monster_direction else -1.0
 	var dust := PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
 	(
 		dust
@@ -3483,7 +3485,7 @@ func _start_3120_wind_blade(serial: int) -> void:
 	await get_tree().create_timer(float(SAND_BOSS_WIND_FRAME) / SOURCE_FPS, false).timeout
 	if not is_instance_valid(self) or not is_inside_tree() or death() or serial != _attack_serial:
 		return
-	var direction := 1.0 if MonsterDirection else -1.0
+	var direction := 1.0 if monster_direction else -1.0
 	var wind := PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
 	(
 		wind
@@ -3560,7 +3562,7 @@ func _start_3120_protect_teleport() -> void:
 			{
 				"owner": self,
 				"position": global_position,
-				"right": MonsterDirection,
+				"right": monster_direction,
 				"hit_name": "protectSkill",
 				"attack_data": {},
 				"skill_name": "SandBossProtectHide",

@@ -26,11 +26,11 @@ func monster_12():
 	self.crit = 10
 	self.miss = 5
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 300
 	self.attack_range = 85
@@ -48,7 +48,7 @@ func monster_12():
 		{
 			"Name": "Fire",
 			"AddTime": 4,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"CanAdd": true,
 			"DeBuff": true,
 			"value": int(RoleProp.roleprop.SHp * 0.01),
@@ -65,7 +65,7 @@ func monster_12():
 			"AddTime": 4,
 			"CanAdd": true,
 			"DeBuff": true,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": int(RoleProp.roleprop.SHp * 0.01),
 			"AttackKind": "magic",
 		}
@@ -93,8 +93,8 @@ func monster_12():
 func _ready() -> void:
 	super._ready()
 	monster_12()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
 
 
 func interrupt_movement_for_control() -> void:
@@ -128,7 +128,7 @@ func ai_think():
 				have_target()
 				match is_fly:
 					true:
-						if Skill_2_CD <= 0:
+						if skill_2_cd <= 0:
 							use_skill_4()
 							is_rush = true
 						elif count % 60 == 0:
@@ -137,12 +137,12 @@ func ai_think():
 							have_target()
 					false:
 						if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 800:
-							if Skill_1_CD <= 0:
+							if skill_1_cd <= 0:
 								do_hit_2()
 			else:
 				match is_fly:
 					true:
-						if Skill_2_CD <= 0:
+						if skill_2_cd <= 0:
 							use_skill_4()
 							is_rush = true
 						elif count % 60 == 0:
@@ -150,7 +150,7 @@ func ai_think():
 						else:
 							have_target()
 					false:
-						if Skill_1_CD <= 0:
+						if skill_1_cd <= 0:
 							do_hit_2()
 						elif count % 60 == 0:
 							attack_target()
@@ -159,7 +159,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 2
+	skill_1_cd = 2
 	hit_name = "hydd"
 	velocity.x = 0
 	is_attacking = true
@@ -178,7 +178,7 @@ func do_hit_3():
 
 
 func use_skill_4():
-	Skill_2_CD = 15
+	skill_2_cd = 15
 	_skill_4_generation += 1
 	var skill_generation := _skill_4_generation
 	var sspo = [
@@ -210,7 +210,7 @@ func use_skill_4():
 
 
 func do_hit_4():
-	Skill_2_CD = 18
+	skill_2_cd = 18
 	hit_name = "bshn"
 	is_attacking = true
 	mr_player.play("FlyBirds")
@@ -220,16 +220,16 @@ func do_hit_4():
 
 
 func call_fire():
-	if self.MonsterDirection == false:
+	if self.monster_direction == false:
 		var posi = Vector2(self.position.x - 180, self.position.y)
 		var aa = Global.add_bullet(
-			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.obj_attack_dict["hydd"]
+			"Monster12Bullet", self.bullet, self.monster_direction, 1, posi, "hydd", self.obj_attack_dict["hydd"]
 		)
 		var bb = Global.add_bullet(
-			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.obj_attack_dict["hydd"]
+			"Monster12Bullet", self.bullet, self.monster_direction, 1, posi, "hydd", self.obj_attack_dict["hydd"]
 		)
 		var cc = Global.add_bullet(
-			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.obj_attack_dict["hydd"]
+			"Monster12Bullet", self.bullet, self.monster_direction, 1, posi, "hydd", self.obj_attack_dict["hydd"]
 		)
 		aa.set_rotation_degrees(-30)
 		bb.set_rotation_degrees(0)
@@ -237,13 +237,13 @@ func call_fire():
 	else:
 		var posi = Vector2(self.position.x + 180, self.position.y)
 		var aa = Global.add_bullet(
-			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.obj_attack_dict["hydd"]
+			"Monster12Bullet", self.bullet, self.monster_direction, 1, posi, "hydd", self.obj_attack_dict["hydd"]
 		)
 		var bb = Global.add_bullet(
-			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.obj_attack_dict["hydd"]
+			"Monster12Bullet", self.bullet, self.monster_direction, 1, posi, "hydd", self.obj_attack_dict["hydd"]
 		)
 		var cc = Global.add_bullet(
-			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.obj_attack_dict["hydd"]
+			"Monster12Bullet", self.bullet, self.monster_direction, 1, posi, "hydd", self.obj_attack_dict["hydd"]
 		)
 		aa.set_rotation_degrees(30)
 		bb.set_rotation_degrees(0)
@@ -251,16 +251,16 @@ func call_fire():
 
 
 func call_fire_fly():
-	if self.MonsterDirection == false:
+	if self.monster_direction == false:
 		var posi = Vector2(self.position.x - 210, self.position.y + 150)
 		var aa = Global.add_bullet(
-			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.obj_attack_dict["hydd"]
+			"Monster12Bullet", self.bullet, self.monster_direction, 1, posi, "hydd", self.obj_attack_dict["hydd"]
 		)
 		var bb = Global.add_bullet(
-			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.obj_attack_dict["hydd"]
+			"Monster12Bullet", self.bullet, self.monster_direction, 1, posi, "hydd", self.obj_attack_dict["hydd"]
 		)
 		var cc = Global.add_bullet(
-			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.obj_attack_dict["hydd"]
+			"Monster12Bullet", self.bullet, self.monster_direction, 1, posi, "hydd", self.obj_attack_dict["hydd"]
 		)
 		aa.set_rotation_degrees(-30)
 		bb.set_rotation_degrees(0)
@@ -268,13 +268,13 @@ func call_fire_fly():
 	else:
 		var posi = Vector2(self.position.x + 210, self.position.y + 150)
 		var aa = Global.add_bullet(
-			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.obj_attack_dict["hydd"]
+			"Monster12Bullet", self.bullet, self.monster_direction, 1, posi, "hydd", self.obj_attack_dict["hydd"]
 		)
 		var bb = Global.add_bullet(
-			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.obj_attack_dict["hydd"]
+			"Monster12Bullet", self.bullet, self.monster_direction, 1, posi, "hydd", self.obj_attack_dict["hydd"]
 		)
 		var cc = Global.add_bullet(
-			"Monster12Bullet", self.bullet, self.MonsterDirection, 1, posi, "hydd", self.obj_attack_dict["hydd"]
+			"Monster12Bullet", self.bullet, self.monster_direction, 1, posi, "hydd", self.obj_attack_dict["hydd"]
 		)
 		aa.set_rotation_degrees(30)
 		bb.set_rotation_degrees(0)
@@ -287,13 +287,13 @@ func protect_fire():
 		RoleProp.get_nearest_monster_target_position(global_position).y + 120
 	)
 	var aa = Global.add_bullet(
-		"Monster12Bullet", self.bullet, self.MonsterDirection, 1, po, "hydd", self.obj_attack_dict["hydd"]
+		"Monster12Bullet", self.bullet, self.monster_direction, 1, po, "hydd", self.obj_attack_dict["hydd"]
 	)
 	var bb = Global.add_bullet(
-		"Monster12Bullet", self.bullet, self.MonsterDirection, 1, po, "hydd", self.obj_attack_dict["hydd"]
+		"Monster12Bullet", self.bullet, self.monster_direction, 1, po, "hydd", self.obj_attack_dict["hydd"]
 	)
 	var cc = Global.add_bullet(
-		"Monster12Bullet", self.bullet, self.MonsterDirection, 1, po, "hydd", self.obj_attack_dict["hydd"]
+		"Monster12Bullet", self.bullet, self.monster_direction, 1, po, "hydd", self.obj_attack_dict["hydd"]
 	)
 	aa.set_rotation_degrees(30)
 	bb.set_rotation_degrees(0)

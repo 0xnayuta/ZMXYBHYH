@@ -67,11 +67,11 @@ func initialize_monster_properties() -> void:
 	self.set("crit", scaled_crit)
 	self.set("miss", scaled_miss)
 	self.set("lucky", scaled_lucky)
-	self.set("Htarget", 25)
-	self.set("Toughness", 0)
+	self.set("htarget", 25)
+	self.set("toughness", 0)
 	self.set("ar", 0)
 	self.set("sp", 0)
-	self.set("Critreduce", 0)
+	self.set("crit_reduce", 0)
 	self.set("speed", 12)
 	self.set("behit_calmtime", 0)
 	self.set("self_rhp", 0)
@@ -113,7 +113,7 @@ func initialize_monster_properties() -> void:
 		{
 			"Name": "Fire",
 			"AddTime": 5,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": int(SHp * 0.01),
 			"AttackKind": "magic",
 			"DeBuff": true,
@@ -127,9 +127,9 @@ func initialize_monster_properties() -> void:
 		"HitProtect": 10,
 		"addeffect":
 		{
-			"Name": "DefeReduce",
+			"Name": "defe_reduce",
 			"AddTime": 20,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.5,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -145,7 +145,7 @@ func initialize_monster_properties() -> void:
 		{
 			"Name": "stun",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -191,10 +191,10 @@ func _physics_process(delta: float) -> void:
 
 func setup_skills() -> void:
 	var cd_multiplier = max(0.5, 1.0 - (weapon_level - 1) * 0.05)
-	Skill_1_CD = 15 * cd_multiplier
-	Skill_2_CD = 20 * cd_multiplier
-	Skill_3_CD = 15 * cd_multiplier
-	Skill_4_CD = 12 * cd_multiplier
+	skill_1_cd = 15 * cd_multiplier
+	skill_2_cd = 20 * cd_multiplier
+	skill_3_cd = 15 * cd_multiplier
+	skill_4_cd = 12 * cd_multiplier
 	skill_5_cd = 15 * cd_multiplier
 
 
@@ -208,11 +208,11 @@ func try_use_skills() -> void:
 
 	var distance_to_target = abs(position.x - current_target.position.x)
 
-	if Skill_2_CD <= 0:
+	if skill_2_cd <= 0:
 		do_hit_2()
-	elif distance_to_target <= 300 and Skill_1_CD <= 0:
+	elif distance_to_target <= 300 and skill_1_cd <= 0:
 		do_hit_1()
-	elif Skill_3_CD <= 0:
+	elif skill_3_cd <= 0:
 		do_hit_3()
 	elif count % 90 == 0 and randi_range(0, 100) < attack_desire:
 		attack_target()
@@ -225,11 +225,11 @@ func attack_target() -> void:
 	if current_target.position.x > position.x:
 		base_damage_box.scale.x = -1
 		monster_dir.scale.x = -1
-		MonsterDirection = false
+		monster_direction = false
 	else:
 		base_damage_box.scale.x = 1
 		monster_dir.scale.x = 1
-		MonsterDirection = true
+		monster_direction = true
 
 	hit_name = "hit1"
 	is_attacking = true
@@ -246,13 +246,13 @@ func do_hit_1() -> void:
 	if current_target.position.x > position.x:
 		base_damage_box.scale.x = -1
 		monster_dir.scale.x = -1
-		MonsterDirection = false
+		monster_direction = false
 	else:
 		base_damage_box.scale.x = 1
 		monster_dir.scale.x = 1
-		MonsterDirection = true
+		monster_direction = true
 
-	Skill_1_CD = 15
+	skill_1_cd = 15
 	velocity.x = 0
 	hit_name = "hit2"
 	is_attacking = true
@@ -270,13 +270,13 @@ func do_hit_2() -> void:
 	if current_target.position.x > position.x:
 		base_damage_box.scale.x = -1
 		monster_dir.scale.x = -1
-		MonsterDirection = false
+		monster_direction = false
 	else:
 		base_damage_box.scale.x = 1
 		monster_dir.scale.x = 1
-		MonsterDirection = true
+		monster_direction = true
 
-	Skill_2_CD = 20
+	skill_2_cd = 20
 	velocity.x = 0
 	hit_name = "hit3"
 	is_attacking = true
@@ -295,13 +295,13 @@ func do_hit_3() -> void:
 	if current_target.position.x > position.x:
 		base_damage_box.scale.x = -1
 		monster_dir.scale.x = -1
-		MonsterDirection = false
+		monster_direction = false
 	else:
 		base_damage_box.scale.x = 1
 		monster_dir.scale.x = 1
-		MonsterDirection = true
+		monster_direction = true
 
-	Skill_3_CD = 15
+	skill_3_cd = 15
 	velocity.x = 0
 	hit_name = "hit4"
 	is_attacking = true
@@ -356,7 +356,7 @@ func call_bullet_alt2() -> void:
 	if position.distance_to(current_target.position) < attack_range:
 		return
 	var bullet_instance
-	if MonsterDirection:
+	if monster_direction:
 		bullet_instance = Global.add_bullet(
 			"Monster141Bullet2", bullet, false, 2, Vector2(20, 0) + position, "hit1", obj_attack_dict["hit1"]
 		)

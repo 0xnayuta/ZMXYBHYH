@@ -35,13 +35,13 @@ func show_skill():
 	var max_level = 10
 	var percentage_rate = 0.2 + (0.3 * min(base_level, max_level) / max_level)
 
-	if Player != null:
+	if player != null:
 		Global.add_buff(
-			Player.buff,
+			player.buff,
 			{
 				"Name": "yxbuff",
 				"AddTime": add_time,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": percentage_rate,
 				"AttackKind": "",
 				"CanRemove": true,
@@ -50,8 +50,8 @@ func show_skill():
 			}
 		)
 
-		var role_body = Player.get_node_or_null("Action/RoleBody")
-		var role_equipment = Player.get_node_or_null("Action/RoleEquipment")
+		var role_body = player.get_node_or_null("Action/RoleBody")
+		var role_equipment = player.get_node_or_null("Action/RoleEquipment")
 
 		if role_body and role_equipment:
 			if not is_colored:
@@ -64,8 +64,8 @@ func show_skill():
 			role_equipment.modulate = base_hsv_color
 			is_colored = true
 
-			if Player.has_meta("magic_pulse_tween"):
-				var old_tween = Player.get_meta("magic_pulse_tween")
+			if player.has_meta("magic_pulse_tween"):
+				var old_tween = player.get_meta("magic_pulse_tween")
 				if old_tween:
 					old_tween.kill()
 
@@ -80,11 +80,11 @@ func show_skill():
 
 func _restore_role_colors(body_node, equipment_node):
 	if body_node and equipment_node and is_colored:
-		if Player and Player.has_meta("magic_pulse_tween"):
-			var pulse_tween = Player.get_meta("magic_pulse_tween")
+		if player and player.has_meta("magic_pulse_tween"):
+			var pulse_tween = player.get_meta("magic_pulse_tween")
 			if pulse_tween:
 				pulse_tween.kill()
-			Player.remove_meta("magic_pulse_tween")
+			player.remove_meta("magic_pulse_tween")
 
 		body_node.modulate = original_body_color
 		equipment_node.modulate = original_equipment_color

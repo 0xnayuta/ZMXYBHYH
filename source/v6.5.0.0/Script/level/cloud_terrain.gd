@@ -14,9 +14,9 @@ func configure(level: Game4EastLateLevel, _number: int) -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	if not is_instance_valid(_level.Role_):
+	if not is_instance_valid(_level.role_):
 		return
-	var hero: BaseHero = _level.Role_
+	var hero: BaseHero = _level.role_
 	var shape := hero.get_node("pz") as CollisionShape2D
 	var hero_rect := shape.shape.get_rect()
 	hero_rect.position += shape.global_position - global_position

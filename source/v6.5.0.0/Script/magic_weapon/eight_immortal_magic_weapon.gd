@@ -140,9 +140,9 @@ func _has_wood() -> bool:
 
 
 func _level_node() -> Node:
-	if Player == null or Player.get_parent() == null:
+	if player == null or player.get_parent() == null:
 		return null
-	var level: Node = Player.get_parent().get_parent()
+	var level: Node = player.get_parent().get_parent()
 	return level if level is Node else null
 
 
@@ -183,7 +183,7 @@ func _use_dragon_sword() -> void:
 	var sword := Node2D.new()
 	sword.name = "EightImmortalDragonSword_%d" % _sword_serial
 	sword.set_meta("sword_id", _dragon_sword_id)
-	var faces_right := Player != null and bool(Player.get("PlayerDir"))
+	var faces_right := player != null and bool(player.get("player_dir"))
 	sword.set_meta("speed", 432.0 * (1.0 if faces_right else -1.0))
 	sword.set_meta("life", 12.0 if _has_wood() else 8.0)
 	sword.set_meta("damage", _role_attack_damage())
@@ -204,13 +204,13 @@ func _use_dragon_sword() -> void:
 
 
 func _dragon_sword_spawn_position() -> Vector2:
-	if Player == null or not is_instance_valid(Player):
+	if player == null or not is_instance_valid(player):
 		return global_position
-	var role_body := Player.get_node_or_null("Action/RoleBody") as Sprite2D
+	var role_body := player.get_node_or_null("Action/RoleBody") as Sprite2D
 	if role_body != null:
 		return role_body.global_position + role_body.offset
-	var action := Player.get_node_or_null("Action") as Node2D
-	return action.global_position if action != null else Player.global_position
+	var action := player.get_node_or_null("Action") as Node2D
+	return action.global_position if action != null else player.global_position
 
 
 func _update_dragon_sword_model() -> void:
@@ -232,10 +232,10 @@ func _update_dragon_sword_model() -> void:
 
 
 func _use_yaowang_bottle() -> void:
-	if Player == null or RoleProp.roleprop == null:
+	if player == null or RoleProp.roleprop == null:
 		return
 	var missing := maxi(0, int(RoleProp.roleprop.SHp) - int(RoleProp.roleprop.Hp))
-	Player.cure_hp(fb_level * 100 + int(float(missing) * 0.15))
+	player.cure_hp(fb_level * 100 + int(float(missing) * 0.15))
 	var wait_time := 10.0 if _has_wood() else 20.0
 	_spawn_effect_for_duration(wait_time)
 
@@ -257,7 +257,7 @@ func _use_flute() -> void:
 				{
 					"Name": "stun",
 					"AddTime": duration,
-					"ReduceInterval": 1.0,
+					"reduce_interval": 1.0,
 					"value": 0,
 					"AttackKind": "",
 					"DeBuff": true,
@@ -271,11 +271,11 @@ func _use_fan() -> void:
 	_fan_serial += 1
 	var fan_entity := Node2D.new()
 	fan_entity.name = "EightImmortalFan_%d" % _fan_serial
-	var fan_origin := Player.global_position if Player != null and is_instance_valid(Player) else global_position
+	var fan_origin := player.global_position if player != null and is_instance_valid(player) else global_position
 	fan_entity.global_position = fan_origin
 	fan_entity.set_meta("origin_x", fan_entity.global_position.x)
 	fan_entity.set_meta("origin_y", fan_entity.global_position.y)
-	fan_entity.set_meta("direction", 1.0 if Player != null and bool(Player.get("PlayerDir")) else -1.0)
+	fan_entity.set_meta("direction", 1.0 if player != null and bool(player.get("player_dir")) else -1.0)
 	fan_entity.set_meta("phase", 0)
 	fan_entity.set_meta("life", 5.0)
 	fan_entity.set_meta("damage", _role_attack_damage(2.0 if _has_wood() else 1.0))
@@ -291,15 +291,15 @@ func _use_fan() -> void:
 
 
 func _use_shenxing() -> void:
-	if Player == null or not Player.has_method("fabao_jiasu"):
+	if player == null or not player.has_method("fabao_jiasu"):
 		return
 	_pet_speed_serial += 1
 	var token := _pet_speed_serial
 	const duration := 8.0
-	Player.fabao_jiasu()
+	player.fabao_jiasu()
 	_spawn_effect_for_duration(maxf(1.0, duration))
-	if _effect != null and is_instance_valid(_effect) and Player != null and is_instance_valid(Player):
-		_effect.reparent(Player, false)
+	if _effect != null and is_instance_valid(_effect) and player != null and is_instance_valid(player):
+		_effect.reparent(player, false)
 		_effect.position = Vector2.ZERO
 	get_tree().create_timer(maxf(1.0, duration)).timeout.connect(_reset_speed.bind(token), CONNECT_ONE_SHOT)
 
@@ -307,8 +307,8 @@ func _use_shenxing() -> void:
 func _reset_speed(token: int) -> void:
 	if token != _pet_speed_serial:
 		return
-	if Player != null and is_instance_valid(Player) and Player.has_method("reset_fabao_jiasu"):
-		Player.reset_fabao_jiasu()
+	if player != null and is_instance_valid(player) and player.has_method("reset_fabao_jiasu"):
+		player.reset_fabao_jiasu()
 
 
 func _use_flower_basket() -> void:
@@ -321,10 +321,10 @@ func _use_flower_basket() -> void:
 func _heal_flower_tick(token: int, remaining: float) -> void:
 	if token != _flower_serial:
 		return
-	if Player != null and is_instance_valid(Player):
-		Player.cure_hp(fb_level * 2)
-		if Player.has_method("cure_mp"):
-			Player.cure_mp(fb_level)
+	if player != null and is_instance_valid(player):
+		player.cure_hp(fb_level * 2)
+		if player.has_method("cure_mp"):
+			player.cure_mp(fb_level)
 	var pet := _active_pet()
 	if pet != null and pet.has_method("cure_hp"):
 		pet.cure_hp(fb_level * 2)
@@ -453,7 +453,7 @@ func _damage_near_entity(entity: Node2D, radius: float) -> void:
 		if hit.has(id) and Time.get_ticks_msec() - last_hit < hit_interval:
 			continue
 		var actual_damage: int = int(
-			monster.receive_friendly_damage(int(entity.get_meta("damage", 1)), "magic", Player)
+			monster.receive_friendly_damage(int(entity.get_meta("damage", 1)), "magic", player)
 		)
 		if actual_damage > 0:
 			Global.add_special_effect(monster, Vector2.ZERO, "RoleBeHit", Vector2.ONE, false, 1)

@@ -12,10 +12,10 @@ func _ready() -> void:
 	_configure_qingyang()
 	_build_body_animations()
 	super._ready()
-	Skill_1_CD = 0.7
-	Skill_2_CD = randi_range(3, 7)
-	Skill_3_CD = randi_range(3, 7)
-	Skill_4_CD = randi_range(3, 7)
+	skill_1_cd = 0.7
+	skill_2_cd = randi_range(3, 7)
+	skill_3_cd = randi_range(3, 7)
+	skill_4_cd = randi_range(3, 7)
 
 
 func _configure_qingyang() -> void:
@@ -32,11 +32,11 @@ func _configure_qingyang() -> void:
 	crit = 138
 	miss = 100
 	lucky = 85
-	Htarget = 99999
-	Toughness = 30
+	htarget = 99999
+	toughness = 30
 	ar = 285
 	sp = 278
-	Critreduce = 25
+	crit_reduce = 25
 	speed = 25
 	mysee = 99999
 	attack_range = 650
@@ -203,23 +203,23 @@ func ai_think() -> void:
 	var distance := absf(RoleProp.get_nearest_monster_target_position(global_position).x - position.x)
 	if distance > attack_range:
 		have_target()
-	elif Skill_4_CD <= 0:
+	elif skill_4_cd <= 0:
 		_use_hit_4()
-	elif Skill_3_CD <= 0:
+	elif skill_3_cd <= 0:
 		_use_hit_3()
-	elif Skill_2_CD <= 0:
+	elif skill_2_cd <= 0:
 		_use_hit_2()
-	elif Skill_1_CD <= 0:
+	elif skill_1_cd <= 0:
 		_use_hit_1()
 	else:
 		stop_move()
 
 
 func _use_hit_1() -> void:
-	if Skill_1_CD > 0 or is_attacking:
+	if skill_1_cd > 0 or is_attacking:
 		return
 	to_hero()
-	Skill_1_CD = 1
+	skill_1_cd = 1
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -232,10 +232,10 @@ func _use_hit_1() -> void:
 
 
 func _use_hit_2() -> void:
-	if Skill_2_CD > 0 or is_attacking:
+	if skill_2_cd > 0 or is_attacking:
 		return
 	to_hero()
-	Skill_2_CD = 7
+	skill_2_cd = 7
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -248,10 +248,10 @@ func _use_hit_2() -> void:
 
 
 func _use_hit_3() -> void:
-	if Skill_3_CD > 0 or is_attacking:
+	if skill_3_cd > 0 or is_attacking:
 		return
 	to_hero()
-	Skill_3_CD = randi_range(5, 8)
+	skill_3_cd = randi_range(5, 8)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -264,10 +264,10 @@ func _use_hit_3() -> void:
 
 
 func _use_hit_4() -> void:
-	if Skill_4_CD > 0 or is_attacking:
+	if skill_4_cd > 0 or is_attacking:
 		return
 	to_hero()
-	Skill_4_CD = randi_range(5, 8)
+	skill_4_cd = randi_range(5, 8)
 	hit_name = "hit4"
 	velocity.x = 0
 	is_attacking = true
@@ -280,9 +280,9 @@ func _use_hit_4() -> void:
 
 
 func call_bullet_1() -> void:
-	var offset := Vector2(58, -72) if MonsterDirection else Vector2(-58, -72)
+	var offset := Vector2(58, -72) if monster_direction else Vector2(-58, -72)
 	Global.add_bullet(
-		"Monster212Bullet1", bullet, MonsterDirection, 1.0, position + offset, "hit1", obj_attack_dict["hit1"]
+		"Monster212Bullet1", bullet, monster_direction, 1.0, position + offset, "hit1", obj_attack_dict["hit1"]
 	)
 
 
@@ -299,13 +299,13 @@ func _spawn_bullet2_at_role() -> void:
 		RoleProp.get_nearest_monster_target_position(global_position).x,
 		RoleProp.get_nearest_monster_target_position(global_position).y
 	)
-	Global.add_bullet("Monster212Bullet2", bullet, MonsterDirection, 1.0, target_pos, "hit2", obj_attack_dict["hit2"])
+	Global.add_bullet("Monster212Bullet2", bullet, monster_direction, 1.0, target_pos, "hit2", obj_attack_dict["hit2"])
 
 
 func call_bullet_3() -> void:
-	var offset := Vector2(650, -136) if MonsterDirection else Vector2(-650, -136)
+	var offset := Vector2(650, -136) if monster_direction else Vector2(-650, -136)
 	Global.add_bullet(
-		"Monster212Bullet3", bullet, MonsterDirection, 1.0, position + offset, "hit3", obj_attack_dict["hit3"]
+		"Monster212Bullet3", bullet, monster_direction, 1.0, position + offset, "hit3", obj_attack_dict["hit3"]
 	)
 
 
@@ -320,7 +320,7 @@ func call_bullet_4() -> void:
 			RoleProp.get_nearest_monster_target_position(global_position).y
 		)
 		Global.add_bullet(
-			"Monster212Bullet4", bullet, MonsterDirection, 1.0, target_pos, "hit4", obj_attack_dict["hit4"]
+			"Monster212Bullet4", bullet, monster_direction, 1.0, target_pos, "hit4", obj_attack_dict["hit4"]
 		)
 
 

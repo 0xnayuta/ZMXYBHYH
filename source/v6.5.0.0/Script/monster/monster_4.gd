@@ -13,11 +13,11 @@ func monster_4():
 	self.crit = 5
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 9
 	self.mysee = 500
 	self.attack_range = 115
@@ -36,7 +36,7 @@ func monster_4():
 		{
 			"Name": "speed_down",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.6,
 			"CanAdd": false,
 			"DeBuff": true,
@@ -73,8 +73,8 @@ func monster_4():
 func _ready() -> void:
 	super._ready()
 	monster_4()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
 
 
 func ai_think():
@@ -86,7 +86,7 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-			if Skill_1_CD > 0 and Skill_2_CD > 0:
+			if skill_1_cd > 0 and skill_2_cd > 0:
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 					have_target()
 				else:
@@ -97,12 +97,12 @@ func ai_think():
 						stop_move()
 			else:
 				if (
-					Skill_1_CD <= 0
+					skill_1_cd <= 0
 					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 350
 				):
 					do_hit_2()
 				elif (
-					Skill_2_CD <= 0
+					skill_2_cd <= 0
 					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 180
 				):
 					do_hit_3()
@@ -118,7 +118,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 8
+	skill_1_cd = 8
 	hit_name = "tfhx"
 	velocity.x = 0
 	is_attacking = true
@@ -128,7 +128,7 @@ func do_hit_2():
 
 
 func do_hit_3():
-	Skill_2_CD = 11
+	skill_2_cd = 11
 	velocity.x = 0
 	hit_name = "jfkx"
 	is_attacking = true
@@ -149,7 +149,7 @@ func call_tfhx():
 	var hit_dic = self.obj_attack_dict["tfhx"]
 	var position_: Vector2
 	position_ = Vector2(self.position.x, self.position.y)
-	if self.MonsterDirection:
+	if self.monster_direction:
 		Global.call_fly_bullet(self.bullet, skill_name, dir, position_, distance, speed, name_, hit_dic)
 	else:
 		Global.call_fly_bullet(self.bullet, skill_name, dir, position_, distance, -speed, name_, hit_dic)

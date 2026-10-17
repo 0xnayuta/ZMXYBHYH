@@ -701,10 +701,10 @@ func set_box_():
 		wqq.is_in_hh = true
 		if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON] == "":
 			wqq.set_button_icon(load_("empty"))
-			wqq.EQ_prop = {}
+			wqq.eq_prop = {}
 		else:
 			wqq.set_button_icon(load_(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON]))
-			wqq.EQ_prop = AE.all_equipment[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON]]
+			wqq.eq_prop = AE.all_equipment[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WEAPON]]
 		wqq.qh_level = 0
 		wqq.wx = []
 	if fjj.get_item_name == "empty":
@@ -716,10 +716,10 @@ func set_box_():
 		fjj.is_in_hh = true
 		if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR] == "":
 			fjj.set_button_icon(load_("empty"))
-			fjj.EQ_prop = {}
+			fjj.eq_prop = {}
 		else:
 			fjj.set_button_icon(load_(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR]))
-			fjj.EQ_prop = AE.all_equipment[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR]]
+			fjj.eq_prop = AE.all_equipment[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.ARMOR]]
 		fjj.qh_level = 0
 		fjj.wx = []
 	if cbb.get_item_name == "empty":
@@ -731,10 +731,10 @@ func set_box_():
 		cbb.is_in_hh = true
 		if PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS] == "":
 			cbb.set_button_icon(load_("empty"))
-			cbb.EQ_prop = {}
+			cbb.eq_prop = {}
 		else:
 			cbb.set_button_icon(load_(PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]))
-			cbb.EQ_prop = AE.all_equipment[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]]
+			cbb.eq_prop = AE.all_equipment[PlayerData.player_data[DataKeys.TRANSMOG_LIST][DataKeys.WINGS]]
 		cbb.qh_level = 0
 		cbb.wx = []
 

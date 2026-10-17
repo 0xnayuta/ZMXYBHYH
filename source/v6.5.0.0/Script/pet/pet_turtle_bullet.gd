@@ -87,7 +87,7 @@ static func prewarm_pet_turtle_runtime(stage: int, bullet_scene: PackedScene = n
 		var instance = bullet_scene.instantiate()
 		if instance == null:
 			continue
-		instance.AttList = {"power": 0, "attackKind": "physics", "hurtBack": [0, 0]}
+		instance.att_list = {"power": 0, "attackKind": "physics", "hurtBack": [0, 0]}
 		instance.hit_name = "__prewarm__"
 		instance.skill_name = effect_name
 		instance.dir = false
@@ -183,7 +183,7 @@ func _sync_turtle_follow() -> void:
 		return
 	var follow_offset: Vector2 = get_meta("pet_turtle_follow_offset", Vector2.ZERO)
 	global_position = source.global_position + follow_offset
-	var source_faces_left := bool(source.get("MonsterDirection"))
+	var source_faces_left := bool(source.get("monster_direction"))
 	if source_faces_left != dir:
 		dir = source_faces_left
 		_setup_turtle_direction()
@@ -213,9 +213,9 @@ func _default_turtle_hit_size() -> Vector2:
 
 
 func _apply_turtle_damage() -> void:
-	if typeof(AttList) != TYPE_DICTIONARY:
+	if typeof(att_list) != TYPE_DICTIONARY:
 		return
-	var hit_data: Dictionary = AttList
+	var hit_data: Dictionary = att_list
 	var damage := int(hit_data.get("power", 0))
 	if damage <= 0:
 		return

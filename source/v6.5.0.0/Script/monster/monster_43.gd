@@ -17,11 +17,11 @@ func monster_43():
 	self.crit = 15
 	self.miss = 10
 	self.lucky = 40
-	self.Htarget = 6
-	self.Toughness = 8
+	self.htarget = 6
+	self.toughness = 8
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 5
+	self.crit_reduce = 5
 	self.speed = 8
 	self.mysee = 400
 	self.attack_range = 105
@@ -41,7 +41,7 @@ func monster_43():
 			"Name": "stun",
 			"DeBuff": true,
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"CanAdd": false,
 			"value": 0,
 			"AttackKind": "",
@@ -70,12 +70,12 @@ func monster_43():
 func _ready() -> void:
 	super._ready()
 	monster_43()
-	Skill_1_CD = 0
-	Skill_3_CD = 0
+	skill_1_cd = 0
+	skill_3_cd = 0
 
 
 func do_hit_2():
-	Skill_1_CD = 20
+	skill_1_cd = 20
 	hit_name = "csjq"
 	velocity.x = 0
 	is_attacking = true
@@ -93,7 +93,7 @@ func do_hit_3():
 
 
 func do_hit_4():
-	Skill_3_CD = 15
+	skill_3_cd = 15
 	hit_name = "gwjq"
 	velocity.x = 0
 	is_attacking = true
@@ -147,15 +147,15 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
 				elif abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 125:
-					if Skill_3_CD <= 0:
+					if skill_3_cd <= 0:
 						do_hit_4()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
-				elif Skill_3_CD <= 0:
+				elif skill_3_cd <= 0:
 					do_hit_4()
 				elif count % 120 == 0:
 					if ran_num <= attack_desire:

@@ -1,5 +1,5 @@
 extends BaseMonster
-var MonsterList = [39, 40, 30, 31]
+var monster_list = [39, 40, 30, 31]
 var curecount: int = 0
 
 
@@ -26,11 +26,11 @@ func monster_44():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 0
 	self.mysee = 0
 	self.attack_range = 0
@@ -69,7 +69,7 @@ func ai_think():
 func monster_call():
 	var base_level = get_parent().get_parent() as BaseLevel
 	if base_level.monster.get_children().size() < 6:
-		var chlid_monster = MonsterList[randi_range(0, MonsterList.size() - 1)]
+		var chlid_monster = monster_list[randi_range(0, monster_list.size() - 1)]
 		var mm = Global.create_monster(chlid_monster, get_parent(), Vector2(self.position.x, self.position.y - 30))
 		if mm is BaseMonster:
 			if mm.is_boss:

@@ -165,7 +165,7 @@ func _physics_process(_delta: float) -> void:
 		if Input.is_action_just_pressed("Exit") or _is_auto_battle_enabled():
 			_leave_level_from_exit()
 
-	if Role_ == null:
+	if role_ == null:
 		if my_camera != null:
 			my_camera.queue_free()
 
@@ -251,7 +251,7 @@ func _restart_infinite_monster_wave() -> void:
 
 
 func _on_create_control_timeout() -> void:
-	if Role_ != null:
+	if role_ != null:
 		current_stage = 1
 
 	if check_can_create(current_stage):

@@ -258,13 +258,13 @@ func _unlock_new_stage_skill_cooldowns(previous_skills: Array) -> void:
 			continue
 		match skill_id:
 			SKILL_FS:
-				Skill_1_CD = 0.0
+				skill_1_cd = 0.0
 			SKILL_SDCC:
-				Skill_2_CD = 0.0
+				skill_2_cd = 0.0
 			SKILL_LTWJ:
-				Skill_3_CD = 0.0
+				skill_3_cd = 0.0
 			SKILL_QLAOYI:
-				Skill_4_CD = 0.0
+				skill_4_cd = 0.0
 
 
 func _apply_dragon_stage_scene_layout() -> void:
@@ -343,10 +343,10 @@ func apply_pet_develop_effects(data: Dictionary) -> void:
 	pet_data["灵力"] = clampi(int(data.get("灵力", 0)), 0, 25)
 	pet_skill_cooldown_multiplier = 1.0 - float(pet_data["灵力"]) * 0.02
 	var ratio := pet_skill_cooldown_multiplier / previous_multiplier
-	Skill_1_CD = maxf(0.0, Skill_1_CD * ratio)
-	Skill_2_CD = maxf(0.0, Skill_2_CD * ratio)
-	Skill_3_CD = maxf(0.0, Skill_3_CD * ratio)
-	Skill_4_CD = maxf(0.0, Skill_4_CD * ratio)
+	skill_1_cd = maxf(0.0, skill_1_cd * ratio)
+	skill_2_cd = maxf(0.0, skill_2_cd * ratio)
+	skill_3_cd = maxf(0.0, skill_3_cd * ratio)
+	skill_4_cd = maxf(0.0, skill_4_cd * ratio)
 	_rebuild_pet_dragon_attack_data()
 
 
@@ -414,12 +414,12 @@ func setup_pet_dragon(stage: int) -> void:
 		+ int(PaSkill.get_value("狂暴", int(passive.get("狂暴", 0))))
 	)
 	miss = int(pet_data.get("闪避", 8)) + int(equipment_bonus.get("闪避", 0))
-	Htarget = int(equipment_bonus.get("命中", 0)) + int(PaSkill.get_value("敏锐", int(passive.get("敏锐", 0))))
+	htarget = int(equipment_bonus.get("命中", 0)) + int(PaSkill.get_value("敏锐", int(passive.get("敏锐", 0))))
 	lucky = int(pet_data.get("幸运", 20)) + int(equipment_bonus.get("幸运", 0))
-	Toughness = int(equipment_bonus.get("韧性", 0))
+	toughness = int(equipment_bonus.get("韧性", 0))
 	ar = int(equipment_bonus.get("破甲", 0))
 	sp = int(equipment_bonus.get("破魔", 0))
-	Critreduce = int(equipment_bonus.get("暴免", 0))
+	crit_reduce = int(equipment_bonus.get("暴免", 0))
 	speed = 14
 	attack_range = int(DRAGON_NORMAL_ATTACK_RANGES.get(dragon_stage, 80))
 	mysee = 99999
@@ -460,10 +460,10 @@ func _attack_dic(power: int, hurt_back: Array, kind: String, interval: int) -> D
 
 
 func setup_skills() -> void:
-	Skill_1_CD = SKILL_INITIAL_COOLDOWNS[SKILL_FS] * pet_skill_cooldown_multiplier
-	Skill_2_CD = SKILL_INITIAL_COOLDOWNS[SKILL_SDCC] * pet_skill_cooldown_multiplier
-	Skill_3_CD = SKILL_INITIAL_COOLDOWNS[SKILL_LTWJ] * pet_skill_cooldown_multiplier
-	Skill_4_CD = SKILL_INITIAL_COOLDOWNS[SKILL_QLAOYI] * pet_skill_cooldown_multiplier
+	skill_1_cd = SKILL_INITIAL_COOLDOWNS[SKILL_FS] * pet_skill_cooldown_multiplier
+	skill_2_cd = SKILL_INITIAL_COOLDOWNS[SKILL_SDCC] * pet_skill_cooldown_multiplier
+	skill_3_cd = SKILL_INITIAL_COOLDOWNS[SKILL_LTWJ] * pet_skill_cooldown_multiplier
+	skill_4_cd = SKILL_INITIAL_COOLDOWNS[SKILL_QLAOYI] * pet_skill_cooldown_multiplier
 
 
 func _learned_skills() -> Array:
@@ -505,16 +505,16 @@ func try_use_skills() -> void:
 	if (
 		not is_dragon_clone
 		and dragon_stage >= 4
-		and Skill_4_CD <= 0.0
+		and skill_4_cd <= 0.0
 		and distance <= 200.0
 		and _can_use_skill(SKILL_QLAOYI)
 	):
 		do_qlaoyi()
-	elif dragon_stage >= 3 and Skill_3_CD <= 0.0 and distance <= 500.0 and _can_use_skill(SKILL_LTWJ):
+	elif dragon_stage >= 3 and skill_3_cd <= 0.0 and distance <= 500.0 and _can_use_skill(SKILL_LTWJ):
 		do_ltwj()
-	elif dragon_stage >= 2 and Skill_2_CD <= 0.0 and distance <= 300.0 and _can_use_skill(SKILL_SDCC):
+	elif dragon_stage >= 2 and skill_2_cd <= 0.0 and distance <= 300.0 and _can_use_skill(SKILL_SDCC):
 		do_sdcc()
-	elif not is_dragon_clone and Skill_1_CD <= 0.0 and _can_use_skill(SKILL_FS):
+	elif not is_dragon_clone and skill_1_cd <= 0.0 and _can_use_skill(SKILL_FS):
 		do_fs()
 
 
@@ -558,7 +558,7 @@ func do_fs() -> void:
 	if is_dragon_clone or not _consume_skill(SKILL_FS):
 		return
 	_face_current_target()
-	Skill_1_CD = SKILL_COOLDOWNS[SKILL_FS] * pet_skill_cooldown_multiplier
+	skill_1_cd = SKILL_COOLDOWNS[SKILL_FS] * pet_skill_cooldown_multiplier
 	hit_name = SKILL_FS
 	_start_dragon_action("hit2")
 
@@ -568,7 +568,7 @@ func do_sdcc(without_mana: bool = false) -> void:
 		return
 	_face_current_target()
 	if not without_mana:
-		Skill_2_CD = SKILL_COOLDOWNS[SKILL_SDCC] * pet_skill_cooldown_multiplier
+		skill_2_cd = SKILL_COOLDOWNS[SKILL_SDCC] * pet_skill_cooldown_multiplier
 	hit_name = "hit2"
 	_start_dragon_action("hit3")
 
@@ -578,7 +578,7 @@ func do_ltwj(without_mana: bool = false) -> void:
 		return
 	_face_current_target()
 	if not without_mana:
-		Skill_3_CD = SKILL_COOLDOWNS[SKILL_LTWJ] * pet_skill_cooldown_multiplier
+		skill_3_cd = SKILL_COOLDOWNS[SKILL_LTWJ] * pet_skill_cooldown_multiplier
 	hit_name = "hit3"
 	_start_dragon_action("hit4")
 
@@ -587,7 +587,7 @@ func do_qlaoyi() -> void:
 	if is_dragon_clone or not _consume_skill(SKILL_QLAOYI):
 		return
 	_face_current_target()
-	Skill_4_CD = SKILL_COOLDOWNS[SKILL_QLAOYI] * pet_skill_cooldown_multiplier
+	skill_4_cd = SKILL_COOLDOWNS[SKILL_QLAOYI] * pet_skill_cooldown_multiplier
 	is_aoyi = true
 	hit_name = "hit4"
 	_start_dragon_action("hit5")
@@ -609,7 +609,7 @@ func _tick_dragon_action(delta: float) -> void:
 	if _dragon_action.is_empty() or not is_attacking:
 		return
 	if _dragon_action == "hit3":
-		velocity.x = -DRAGON_RUSH_SPEED if MonsterDirection else DRAGON_RUSH_SPEED
+		velocity.x = -DRAGON_RUSH_SPEED if monster_direction else DRAGON_RUSH_SPEED
 	elif _dragon_action == "hit5":
 		velocity.x = 0.0
 		velocity.y = DRAGON_AOYI_RISE_SPEED
@@ -737,7 +737,7 @@ func _spawn_sdcc_bullet() -> void:
 
 func _spawn_ltwj_waves() -> void:
 	var base_point := global_position + Vector2(0, 40)
-	var face_left := MonsterDirection
+	var face_left := monster_direction
 	var waves := LTWJ_CLONE_WAVES if is_dragon_clone else LTWJ_WAVES
 	var repeat_count := 1 if is_dragon_clone else LTWJ_DAMAGE_FREQUENCY_MULTIPLIER
 	for wave in waves:
@@ -831,10 +831,10 @@ func _add_dragon_bullet(
 	if bullet == null or PET_DRAGON_BULLET_SCENE == null:
 		return null
 	var instance = PET_DRAGON_BULLET_SCENE.instantiate()
-	instance.AttList = attack_data
+	instance.att_list = attack_data
 	instance.hit_name = attack_name
 	instance.global_position = bullet_position
-	instance.dir = MonsterDirection if forced_face_left == null else bool(forced_face_left)
+	instance.dir = monster_direction if forced_face_left == null else bool(forced_face_left)
 	instance.skill_name = bullet_name
 	instance.speed = 1.0
 	instance.set_meta("summoner", self)
@@ -857,7 +857,7 @@ func setup_bullet_collision(bullet_instance) -> Node:
 
 
 func _front_offset(x: float, y: float) -> Vector2:
-	return Vector2(-x if MonsterDirection else x, y)
+	return Vector2(-x if monster_direction else x, y)
 
 
 func _dragon_skill_origin() -> Vector2:
@@ -918,7 +918,7 @@ func to_monster() -> void:
 
 
 func _face_left() -> void:
-	MonsterDirection = true
+	monster_direction = true
 	if base_damage_box != null:
 		base_damage_box.scale.x = 1
 	if monster_dir != null:
@@ -927,7 +927,7 @@ func _face_left() -> void:
 
 
 func _face_right() -> void:
-	MonsterDirection = false
+	monster_direction = false
 	if base_damage_box != null:
 		base_damage_box.scale.x = -1
 	if monster_dir != null:

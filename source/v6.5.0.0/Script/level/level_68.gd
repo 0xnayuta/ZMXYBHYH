@@ -251,7 +251,7 @@ func _level_number() -> int:
 
 
 func _update_stage_progression() -> void:
-	if not _spawn_runtime_ready or Role_ == null:
+	if not _spawn_runtime_ready or role_ == null:
 		return
 	if current_stage == 0:
 		_start_stage(1)

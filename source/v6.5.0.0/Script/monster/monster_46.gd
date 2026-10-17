@@ -4,7 +4,7 @@ var de_buff_list = [
 	{
 		"Name": "stun",
 		"AddTime": 2,
-		"ReduceInterval": 0,
+		"reduce_interval": 0,
 		"value": 0,
 		"AttackKind": "",
 		"CanAdd": false,
@@ -13,7 +13,7 @@ var de_buff_list = [
 	{
 		"Name": "Ice",
 		"AddTime": 2,
-		"ReduceInterval": 0,
+		"reduce_interval": 0,
 		"value": 0,
 		"AttackKind": "",
 		"CanAdd": false,
@@ -22,7 +22,7 @@ var de_buff_list = [
 	{
 		"Name": "Fire",
 		"AddTime": 5,
-		"ReduceInterval": 1,
+		"reduce_interval": 1,
 		"value": int(RoleProp.roleprop.SHp * 0.01),
 		"AttackKind": "real",
 		"CanAdd": true,
@@ -31,7 +31,7 @@ var de_buff_list = [
 	{
 		"Name": "poision",
 		"AddTime": 5,
-		"ReduceInterval": 1,
+		"reduce_interval": 1,
 		"value": int(RoleProp.roleprop.SHp * 0.02),
 		"AttackKind": "magic",
 		"CanAdd": true,
@@ -54,11 +54,11 @@ func monster_46():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 25
+	self.htarget = 0
+	self.toughness = 25
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 25
+	self.crit_reduce = 25
 	self.speed = 0
 	self.mysee = 0
 	self.attack_range = 0

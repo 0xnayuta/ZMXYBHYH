@@ -162,7 +162,7 @@ func _apply_node_damage(bone_name: String) -> void:
 	for target in _cached_targets:
 		if target == null or not is_instance_valid(target):
 			continue
-		if target.Hp <= 0 or target.NoTarget or target.is_boss_protecting():
+		if target.Hp <= 0 or target.no_target or target.is_boss_protecting():
 			continue
 		var offset: Vector2 = target.global_position + Vector2(0.0, -70.0) - hit_center
 		if absf(offset.x) <= hit_half_size.x and absf(offset.y) <= hit_half_size.y:
@@ -250,12 +250,12 @@ func _collect_targets(node: Node) -> void:
 func _apply_hit(target: BaseMonster) -> void:
 	if target == null or not is_instance_valid(target) or target.Hp <= 0:
 		return
-	var old_hit_data: Dictionary = owner_player.HitDic
+	var old_hit_data: Dictionary = owner_player.hit_dic
 	var old_target: Variant = target.get_target
 	var old_miss: int = target.miss
 	var old_source_player: Variant = RoleProp.source_player
 	var old_tszzs: float = owner_player.tszzs
-	owner_player.HitDic = hit_data
+	owner_player.hit_dic = hit_data
 	target.get_target = owner_player
 	target.has_target = true
 
@@ -297,7 +297,7 @@ func _apply_hit(target: BaseMonster) -> void:
 		target.role5_bullet(damage, owner_player)
 	target.get_target = old_target
 	target.miss = old_miss
-	owner_player.HitDic = old_hit_data
+	owner_player.hit_dic = old_hit_data
 	owner_player.tszzs = old_tszzs
 	RoleProp.source_player = old_source_player
 

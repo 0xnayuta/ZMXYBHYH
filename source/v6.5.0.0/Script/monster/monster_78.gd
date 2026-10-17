@@ -14,11 +14,11 @@ func monster_78():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 20
+	self.htarget = 0
+	self.toughness = 20
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 400
 	self.attack_range = 350
@@ -35,7 +35,7 @@ func monster_78():
 		{
 			"Name": "speed_down",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.5,
 			"DeBuff": true,
 			"AttackKind": "",
@@ -66,7 +66,7 @@ func monster_78():
 func _ready() -> void:
 	super._ready()
 	monster_78()
-	Skill_1_CD = 0
+	skill_1_cd = 0
 
 
 func ai_think():
@@ -85,7 +85,7 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 1200:
 						do_hit_2()
 					else:
@@ -93,7 +93,7 @@ func ai_think():
 				else:
 					have_target()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
 				else:
 					if count % 60 == 0:
@@ -107,7 +107,7 @@ func ai_think():
 
 func do_hit_2():
 	to_hero()
-	Skill_1_CD = 5
+	skill_1_cd = 5
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -134,10 +134,10 @@ func strength():
 
 func add_child_2():
 	var po: Vector2
-	if MonsterDirection:
+	if monster_direction:
 		po = Vector2(60, 5)
 	else:
 		po = Vector2(-60, 5)
 	var child = Global.add_bullet(
-		"Monster78Bullet", bullet, MonsterDirection, 2, position + po, "hit1", self.obj_attack_dict["hit1"]
+		"Monster78Bullet", bullet, monster_direction, 2, position + po, "hit1", self.obj_attack_dict["hit1"]
 	)

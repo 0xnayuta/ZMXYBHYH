@@ -122,10 +122,10 @@ func _attack_dic(power: int, hurt_back: Array, kind: String, interval: int) -> D
 
 
 func setup_skills() -> void:
-	Skill_1_CD = 6.0 * pet_skill_cooldown_multiplier
-	Skill_2_CD = 8.0 * pet_skill_cooldown_multiplier
-	Skill_3_CD = 30.0 * pet_skill_cooldown_multiplier
-	Skill_4_CD = 0.0
+	skill_1_cd = 6.0 * pet_skill_cooldown_multiplier
+	skill_2_cd = 8.0 * pet_skill_cooldown_multiplier
+	skill_3_cd = 30.0 * pet_skill_cooldown_multiplier
+	skill_4_cd = 0.0
 
 
 func _has_yin_skill(skill_id: String) -> bool:
@@ -145,7 +145,7 @@ func try_use_skills() -> void:
 	var distance := global_position.distance_to(current_target.global_position)
 	if (
 		turtle_stage >= 4
-		and Skill_3_CD <= 0.0
+		and skill_3_cd <= 0.0
 		and _has_yin_skill(SKILL_YHAOYI)
 		and Mp >= _yin_skill_cost(SKILL_YHAOYI)
 		and distance <= 300.0
@@ -153,13 +153,13 @@ func try_use_skills() -> void:
 		do_yin_aoyi()
 	elif (
 		turtle_stage >= 4
-		and Skill_2_CD <= 0.0
+		and skill_2_cd <= 0.0
 		and _has_yin_skill(SKILL_MHXS)
 		and Mp >= _yin_skill_cost(SKILL_MHXS)
 		and distance <= 300.0
 	):
 		do_mhxs()
-	elif Skill_1_CD <= 0.0 and _has_yin_skill(SKILL_HX) and Mp >= _yin_skill_cost(SKILL_HX) and distance <= 200.0:
+	elif skill_1_cd <= 0.0 and _has_yin_skill(SKILL_HX) and Mp >= _yin_skill_cost(SKILL_HX) and distance <= 200.0:
 		do_hx()
 
 
@@ -178,7 +178,7 @@ func do_hx(without_mana: bool = false, set_cooldown: bool = true) -> void:
 		pet_data[DataKeys.MP] = Mp
 	_face_current_target()
 	if set_cooldown:
-		Skill_1_CD = 8.0 * pet_skill_cooldown_multiplier
+		skill_1_cd = 8.0 * pet_skill_cooldown_multiplier
 	hit_name = "hit2"
 	_start_yin_action("hit2")
 
@@ -192,7 +192,7 @@ func do_mhxs(without_mana: bool = false, set_cooldown: bool = true) -> void:
 		pet_data[DataKeys.MP] = Mp
 	_face_current_target()
 	if set_cooldown:
-		Skill_2_CD = 10.0 * pet_skill_cooldown_multiplier
+		skill_2_cd = 10.0 * pet_skill_cooldown_multiplier
 	hit_name = "hit3"
 	_start_yin_action("hit3")
 
@@ -203,7 +203,7 @@ func do_yin_aoyi() -> void:
 		return
 	Mp -= cost
 	pet_data[DataKeys.MP] = Mp
-	Skill_3_CD = 30.0 * pet_skill_cooldown_multiplier
+	skill_3_cd = 30.0 * pet_skill_cooldown_multiplier
 	_aoyi_running = true
 	_aoyi_step = 1
 	do_hx(true, false)
@@ -274,7 +274,7 @@ func _process_turtle_action_triggers() -> void:
 				)
 		"hit3":
 			if _trigger_once("yin_hit3", HIT3_TICK):
-				velocity.x = -HIT3_RUSH_SPEED if MonsterDirection else HIT3_RUSH_SPEED
+				velocity.x = -HIT3_RUSH_SPEED if monster_direction else HIT3_RUSH_SPEED
 				_spawn_yin_effect("PetYinTiger1Bullet3", "hit3", obj_attack_dict["hit3"], _front_offset(400.0, -100.0))
 			elif _turtle_action_tick >= HIT3_TICK + 19:
 				velocity.x = 0.0
@@ -305,9 +305,9 @@ func _spawn_yin_effect(
 	if bullet == null:
 		return null
 	var instance = BULLET_SCENE.instantiate()
-	instance.AttList = attack_data
+	instance.att_list = attack_data
 	instance.hit_name = attack_name
-	instance.dir = MonsterDirection
+	instance.dir = monster_direction
 	instance.skill_name = effect_name
 	instance.speed = 1.0
 	instance.set_meta("summoner", self)

@@ -31,17 +31,17 @@ func use_over():
 
 
 func move_monster_and_add_buff():
-	var level_father = Player.get_parent().get_parent()
+	var level_father = player.get_parent().get_parent()
 	if not level_father is BaseLevel:
 		return
-	var MonsterList = level_father.monster.get_children()
-	for i in MonsterList:
+	var monster_list = level_father.monster.get_children()
+	for i in monster_list:
 		if i != null:
 			if i is BaseMonster:
 				if i.is_control_immune() or i.cannot_attract:
 					continue
 				var tween = i.create_control_movement_tween()
-				tween.tween_property(i, "position", Player.position + Vector2(0, -50), 0.5)
+				tween.tween_property(i, "position", player.position + Vector2(0, -50), 0.5)
 				i.hurt_bl = add_bl
 				i.remove_hurt_bl.start(add_time)
 

@@ -13,13 +13,13 @@ extends MarginContainer
 @onready var n_name_5 = $HBoxContainer/Next_e/name_5
 @onready var n_name_6 = $HBoxContainer/Next_e/name_6
 @onready var n_name_7 = $HBoxContainer/Next_e/name_7
-@onready var l_name_1 = $HBoxContainer/NeedLh/name_1
-@onready var l_name_2 = $HBoxContainer/NeedLh/name_2
-@onready var l_name_3 = $HBoxContainer/NeedLh/name_3
-@onready var l_name_4 = $HBoxContainer/NeedLh/name_4
-@onready var l_name_5 = $HBoxContainer/NeedLh/name_5
-@onready var l_name_6 = $HBoxContainer/NeedLh/name_6
-@onready var l_name_7 = $HBoxContainer/NeedLh/name_7
+@onready var l_name_1 = $HBoxContainer/need_lh/name_1
+@onready var l_name_2 = $HBoxContainer/need_lh/name_2
+@onready var l_name_3 = $HBoxContainer/need_lh/name_3
+@onready var l_name_4 = $HBoxContainer/need_lh/name_4
+@onready var l_name_5 = $HBoxContainer/need_lh/name_5
+@onready var l_name_6 = $HBoxContainer/need_lh/name_6
+@onready var l_name_7 = $HBoxContainer/need_lh/name_7
 @onready var one_key_upgrade_button := $HBoxContainer/Up_level/OneKeyUpgradeButton as Button
 
 const TABLE_ROW_HEIGHT := 34.0
@@ -28,7 +28,7 @@ const TABLE_COLUMN_WIDTHS := {
 	"Skill_Name": 100.0,
 	"Current_e": 210.0,
 	"Next_e": 210.0,
-	"NeedLh": 120.0,
+	"need_lh": 120.0,
 	"Up_level": 120.0,
 }
 const PASSIVE_HOLD_DELAY := 2.0

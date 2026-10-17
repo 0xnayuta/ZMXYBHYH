@@ -24,14 +24,14 @@ func monster_101():
 	self.miss = 72
 
 	self.lucky = 146
-	self.Htarget = 144000
+	self.htarget = 144000
 
-	self.Toughness = 52
+	self.toughness = 52
 
 	self.ar = 492
 	self.sp = 481
 
-	self.Critreduce = 43
+	self.crit_reduce = 43
 
 	self.speed = 34
 
@@ -66,7 +66,7 @@ func monster_101():
 		{
 			"Name": "speed_down",
 			"AddTime": 4,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.3,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -82,7 +82,7 @@ func monster_101():
 		{
 			"Name": "stun",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -103,9 +103,9 @@ func monster_101():
 func _ready() -> void:
 	super._ready()
 	monster_101()
-	Skill_1_CD = randi_range(0, 6)
-	Skill_2_CD = randi_range(5, 8)
-	Skill_3_CD = randi_range(8, 13)
+	skill_1_cd = randi_range(0, 6)
+	skill_2_cd = randi_range(5, 8)
+	skill_3_cd = randi_range(8, 13)
 
 
 func ai_think():
@@ -133,34 +133,34 @@ func ai_think():
 			if distance >= attack_range:
 				have_target()
 
-				if my_child == null and Skill_1_CD <= 0:
+				if my_child == null and skill_1_cd <= 0:
 					do_hit_1()
-					Skill_1_CD = randi_range(8, 13)
+					skill_1_cd = randi_range(8, 13)
 
-				elif distance <= 200 and Skill_2_CD <= 0:
+				elif distance <= 200 and skill_2_cd <= 0:
 					do_hit_2()
-					Skill_2_CD = randi_range(5, 8)
+					skill_2_cd = randi_range(5, 8)
 
-				elif distance <= 300 and Skill_3_CD <= 0:
+				elif distance <= 300 and skill_3_cd <= 0:
 					do_hit_3()
-					Skill_3_CD = randi_range(0, 6)
+					skill_3_cd = randi_range(0, 6)
 
 			else:
 				stop_move()
 
 				_limit_y_position()
 
-				if my_child == null and Skill_1_CD <= 0:
+				if my_child == null and skill_1_cd <= 0:
 					do_hit_1()
-					Skill_1_CD = randi_range(8, 13)
+					skill_1_cd = randi_range(8, 13)
 
-				elif distance <= 200 and Skill_2_CD <= 0:
+				elif distance <= 200 and skill_2_cd <= 0:
 					do_hit_2()
-					Skill_2_CD = randi_range(5, 8)
+					skill_2_cd = randi_range(5, 8)
 
-				elif distance <= 300 and Skill_3_CD <= 0:
+				elif distance <= 300 and skill_3_cd <= 0:
 					do_hit_3()
-					Skill_3_CD = randi_range(0, 6)
+					skill_3_cd = randi_range(0, 6)
 
 				if tick_count % 60 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -182,7 +182,7 @@ func _limit_y_position():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(8, 10)
+	skill_1_cd = randi_range(8, 10)
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -194,7 +194,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(11, 13)
+	skill_2_cd = randi_range(11, 13)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -206,7 +206,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(11, 13)
+	skill_3_cd = randi_range(11, 13)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -218,7 +218,7 @@ func do_hit_3():
 
 func call_bullet_1():
 	var bullet_node
-	if self.MonsterDirection:
+	if self.monster_direction:
 		bullet_node = Global.add_bullet(
 			"Monster147Bullet1", self.bullet, false, 1, Vector2(35, 25) + position, "hit1", self.obj_attack_dict["hit1"]
 		)

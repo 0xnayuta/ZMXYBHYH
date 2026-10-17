@@ -31,9 +31,9 @@ func _ready() -> void:
 	super._ready()
 	_configure_stats()
 
-	Skill_1_CD = 3
-	Skill_2_CD = 3
-	Skill_3_CD = 10
+	skill_1_cd = 3
+	skill_2_cd = 3
+	skill_3_cd = 10
 
 
 func _configure_stats() -> void:
@@ -51,11 +51,11 @@ func _configure_stats() -> void:
 	crit = 0
 	miss = 100
 	lucky = 0
-	Htarget = 9999
-	Toughness = 20
+	htarget = 9999
+	toughness = 20
 	ar = 450
 	sp = 450
-	Critreduce = 0
+	crit_reduce = 0
 	speed = 9
 	mysee = 1000
 	attack_range = 200
@@ -179,11 +179,11 @@ func ai_think() -> void:
 	if is_ice or is_sleep or is_stun or is_immobilize or islljy or cannotchangestatewhenattorbeatt():
 		return
 
-	if Skill_1_CD <= 0 and distance < 1000.0:
+	if skill_1_cd <= 0 and distance < 1000.0:
 		_cast_moonlight()
-	elif Skill_2_CD <= 0 and distance < 400.0:
+	elif skill_2_cd <= 0 and distance < 400.0:
 		_cast_gaze()
-	elif Skill_3_CD <= 0 and distance < 600.0:
+	elif skill_3_cd <= 0 and distance < 600.0:
 		_cast_repeated_moonlight()
 	elif distance > attack_range:
 		have_target()
@@ -204,7 +204,7 @@ func attack_target() -> void:
 	mr_player.play(&"hit1")
 	await get_tree().create_timer(4.0 / 24.0, false).timeout
 	if Hp > 0:
-		var offset_x := 50.0 if MonsterDirection else -50.0
+		var offset_x := 50.0 if monster_direction else -50.0
 		_spawn_effect("Monster130Bullet1", global_position + Vector2(offset_x, 0), "hit1", obj_attack_dict["hit1"])
 	await get_tree().create_timer(10.0 / 24.0, false).timeout
 	is_attacking = false
@@ -217,7 +217,7 @@ func _cast_moonlight() -> void:
 	if _skill_busy:
 		return
 	_skill_busy = true
-	Skill_1_CD = 8
+	skill_1_cd = 8
 	to_hero()
 	velocity.x = 0
 	hit_name = "hit2"
@@ -237,7 +237,7 @@ func _cast_gaze() -> void:
 	if _skill_busy:
 		return
 	_skill_busy = true
-	Skill_2_CD = 10
+	skill_2_cd = 10
 	to_hero()
 	velocity.x = 0
 	hit_name = "hit3"
@@ -260,7 +260,7 @@ func _cast_repeated_moonlight() -> void:
 	if _skill_busy:
 		return
 	_skill_busy = true
-	Skill_3_CD = 30
+	skill_3_cd = 30
 	_barrage_generation += 1
 	var generation := _barrage_generation
 	to_hero()
@@ -296,7 +296,9 @@ func _spawn_moonlight_on_random_target() -> void:
 
 
 func _spawn_effect(effect_name: String, spawn_position: Vector2, attack_name: String, attack_data: Dictionary):
-	var effect = Global.add_bullet(effect_name, bullet, MonsterDirection, 1.0, spawn_position, attack_name, attack_data)
+	var effect = Global.add_bullet(
+		effect_name, bullet, monster_direction, 1.0, spawn_position, attack_name, attack_data
+	)
 	if effect != null:
 		if effect is Node2D:
 			effect.set_as_top_level(true)
@@ -314,9 +316,9 @@ func _apply_gaze_control() -> void:
 			continue
 		var facing_right := false
 		if target is BaseHero:
-			facing_right = bool(target.get("PlayerDir"))
+			facing_right = bool(target.get("player_dir"))
 		elif target is BaseMonster:
-			facing_right = bool(target.get("MonsterDirection"))
+			facing_right = bool(target.get("monster_direction"))
 		var looking_at_change := (
 			(target.global_position.x < global_position.x and facing_right)
 			or (target.global_position.x > global_position.x and not facing_right)
@@ -334,7 +336,7 @@ func _apply_gaze_control() -> void:
 					{
 						"Name": "EyeFix",
 						"AddTime": 3.0,
-						"ReduceInterval": 0,
+						"reduce_interval": 0,
 						"value": 0,
 						"AttackKind": "",
 						"DeBuff": true,

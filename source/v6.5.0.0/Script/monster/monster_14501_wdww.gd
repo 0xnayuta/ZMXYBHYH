@@ -63,7 +63,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		Global.add_sound(self, "res://Music/Hero/68_Role3_beAttack.mp3")
 		Global.add_mr_hurt(Global.get_player.pz, Vector2(5, -20))
 		if not Global.get_player.is_t_mc:
-			Global.get_player.CurrentProtect += randi_range(3, 7)
+			Global.get_player.current_protect += randi_range(3, 7)
 	if Global.get_player is Role3Hero:
 		if randi_range(0, 100) <= 4 + PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL] * 0.5:
 			var cur_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]

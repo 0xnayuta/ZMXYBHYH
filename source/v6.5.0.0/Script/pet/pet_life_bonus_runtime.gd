@@ -162,7 +162,7 @@ func _activate_owner_skills() -> void:
 			"Name": OWNER_BUFFS[skill_name],
 			"value": active_scaled_bonus(base_value, level, root_bone),
 			"AddTime": duration_seconds(level),
-			"ReduceInterval": 1.0,
+			"reduce_interval": 1.0,
 			"AttackKind": "",
 			"CanAdd": false
 		}

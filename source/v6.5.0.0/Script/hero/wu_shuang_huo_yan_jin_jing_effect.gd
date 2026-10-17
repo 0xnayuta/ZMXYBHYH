@@ -260,7 +260,7 @@ func _damage_target_if_in_beam(target: Variant, direction: float) -> void:
 func _is_valid_target(target: Variant) -> bool:
 	if target == null or not is_instance_valid(target) or not (target is BaseMonster):
 		return false
-	if target.Hp <= 0 or target.NoTarget:
+	if target.Hp <= 0 or target.no_target:
 		return false
 	if target.is_boss_protecting():
 		return false
@@ -272,8 +272,8 @@ func _is_valid_target(target: Variant) -> bool:
 
 
 func _apply_hit(target: BaseMonster) -> void:
-	var old_hit_data: Dictionary = owner_player.HitDic
-	owner_player.HitDic = hit_data
+	var old_hit_data: Dictionary = owner_player.hit_dic
+	owner_player.hit_dic = hit_data
 	var base_damage := float(target.get_role_last_hurt(owner_player))
 	var late_frame_multiplier := 2.0 if _beam != null and _current_frame > 25 else 1.0
 	var damage := int(
@@ -307,4 +307,4 @@ func _apply_hit(target: BaseMonster) -> void:
 		target.role5_bullet(damage, owner_player)
 		if not RoleProp.is_ws_state:
 			RoleProp.ws_value += int(hit_data.get("WSValue", 4))
-	owner_player.HitDic = old_hit_data
+	owner_player.hit_dic = old_hit_data

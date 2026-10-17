@@ -1,6 +1,6 @@
 extends TextureRect
 
-var ComboNum: int
+var combo_num: int
 
 
 func _ready() -> void:
@@ -8,10 +8,10 @@ func _ready() -> void:
 
 
 func setup(value) -> void:
-	ComboNum = int(value)
+	combo_num = int(value)
 	visible = true
 	refresh()
 
 
 func refresh() -> void:
-	texture = Global.get_cached_texture("res://Art/all_number/LJ/lj_" + str(ComboNum) + ".png")
+	texture = Global.get_cached_texture("res://Art/all_number/LJ/lj_" + str(combo_num) + ".png")

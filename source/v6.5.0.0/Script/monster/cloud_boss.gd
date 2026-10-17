@@ -49,7 +49,7 @@ func _configure_entity_collision_boxes() -> void:
 
 func _physics_process(delta: float) -> void:
 	_fixed_flight_height_ready = false
-	NoGrav = true
+	no_grav = true
 	velocity.y = 0.0
 	super._physics_process(delta)
 	if not death():
@@ -76,7 +76,7 @@ func have_target() -> void:
 		velocity = Vector2.ZERO
 		return
 	var target := RoleProp.get_nearest_monster_target_position(global_position)
-	MonsterDirection = target.x >= global_position.x
+	monster_direction = target.x >= global_position.x
 	to_hero()
 	velocity.x = signf(target.x - global_position.x) * 1200.0
 	mr_player.play(&"Fly")

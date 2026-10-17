@@ -16,11 +16,11 @@ func monster_6601():
 	self.crit = 5 + int(RoleProp.baseroleprop.Level * 1.4)
 	self.miss = 5 + int(RoleProp.baseroleprop.Level * 0.7)
 	self.lucky = 0 + int(RoleProp.baseroleprop.Level * 2.0)
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 20 + int(RoleProp.baseroleprop.Level * 1.3)
 	self.sp = 20 + int(RoleProp.baseroleprop.Level * 1.3)
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 500
 	self.attack_range = 125
@@ -42,7 +42,7 @@ func monster_6601():
 		{
 			"Name": "Boundground",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 		}
@@ -55,7 +55,7 @@ func monster_6601():
 		{
 			"Name": "speed_down",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.2,
 			"AttackKind": "",
 		}
@@ -68,7 +68,7 @@ func monster_6601():
 		{
 			"Name": "silent",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 		}
@@ -81,7 +81,7 @@ func monster_6601():
 		{
 			"Name": "poision",
 			"AddTime": 5,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 60,
 			"AttackKind": "magic",
 		}
@@ -112,10 +112,10 @@ func monster_6601():
 func _ready() -> void:
 	super._ready()
 	monster_6601()
-	Skill_1_CD = 2
-	Skill_2_CD = 4
-	Skill_3_CD = 4
-	Skill_4_CD = 0
+	skill_1_cd = 2
+	skill_2_cd = 4
+	skill_3_cd = 4
+	skill_4_cd = 0
 
 
 func ai_think():
@@ -128,29 +128,29 @@ func ai_think():
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 800:
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						use_skill_1()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 600:
 					if m_ubei == null:
-						if Skill_2_CD <= 0:
+						if skill_2_cd <= 0:
 							use_skill_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400:
-					if Skill_3_CD <= 0:
+					if skill_3_cd <= 0:
 						use_skill_3()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400:
-					if Skill_4_CD <= 0:
+					if skill_4_cd <= 0:
 						if SHp * 0.5 >= Hp:
 							use_skill_4()
 			else:
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					use_skill_3()
-				elif Skill_1_CD <= 0:
+				elif skill_1_cd <= 0:
 					use_skill_1()
-				elif Skill_2_CD <= 0:
+				elif skill_2_cd <= 0:
 					if m_ubei == null:
-						if Skill_2_CD <= 0:
+						if skill_2_cd <= 0:
 							use_skill_2()
-				elif Skill_4_CD <= 0:
+				elif skill_4_cd <= 0:
 					if SHp * 0.5 >= Hp:
 						use_skill_4()
 					elif count % 60 == 0:
@@ -175,7 +175,7 @@ func use_skill_1():
 
 
 func use_skill_2():
-	Skill_2_CD = randi_range(35, 45)
+	skill_2_cd = randi_range(35, 45)
 	super.to_hero()
 	hit_name = "skill_1_1"
 	velocity.x = 0
@@ -187,7 +187,7 @@ func use_skill_2():
 
 
 func use_skill_3():
-	Skill_3_CD = randi_range(16, 20)
+	skill_3_cd = randi_range(16, 20)
 	super.to_hero()
 	hit_name = "skill_3"
 	velocity.x = 0
@@ -199,7 +199,7 @@ func use_skill_3():
 
 
 func use_skill_4():
-	Skill_4_CD = randi_range(10, 15)
+	skill_4_cd = randi_range(10, 15)
 	super.to_hero()
 	hit_name = "skill_4"
 	velocity.x = 0
@@ -259,7 +259,7 @@ func rnd_skill():
 
 
 func change_skill():
-	Skill_1_CD = randi_range(12, 14)
+	skill_1_cd = randi_range(12, 14)
 	match Num:
 		0:
 			do_hit_1()
@@ -280,7 +280,13 @@ func call_wg_wb_ullet():
 	for i in range(randi_range(4, 6)):
 		var bullet_pos = Vector2(self.position.x, self.position.y) + Vector2(0, randi_range(-180, 80))
 		var bullet_ = Global.add_bullet(
-			"Monster61WGW", self.bullet, MonsterDirection, 1, bullet_pos, "skill_1_4", self.obj_attack_dict["skill_1_4"]
+			"Monster61WGW",
+			self.bullet,
+			monster_direction,
+			1,
+			bullet_pos,
+			"skill_1_4",
+			self.obj_attack_dict["skill_1_4"]
 		)
 		await get_tree().create_timer(0.1, false).timeout
 
@@ -295,7 +301,7 @@ func call_tsw_bullet():
 		var bullet_ = Global.add_bullet(
 			"Monster61TSw",
 			self.bullet,
-			MonsterDirection,
+			monster_direction,
 			1.7,
 			bullet_pos,
 			"skill_1_3",
@@ -307,12 +313,12 @@ func call_tsw_bullet():
 
 func call_bcw_bullet():
 	var po_sition
-	if MonsterDirection:
+	if monster_direction:
 		po_sition = self.position + Vector2(200, -30)
 	else:
 		po_sition = self.position + Vector2(-200, -30)
 	var bullet_instance = Global.add_bullet(
-		"Monster61BCW", self.bullet, MonsterDirection, 1, po_sition, "skill_1_1", self.obj_attack_dict["skill_1_1"]
+		"Monster61BCW", self.bullet, monster_direction, 1, po_sition, "skill_1_1", self.obj_attack_dict["skill_1_1"]
 	)
 	if bullet_instance:
 		bullet_instance.scale = Vector2(1.5, 1.5)
@@ -320,12 +326,12 @@ func call_bcw_bullet():
 
 func call_dsw_bullet():
 	var po_sition
-	if MonsterDirection:
+	if monster_direction:
 		po_sition = self.position + Vector2(300, -50)
 	else:
 		po_sition = self.position + Vector2(-300, -50)
 	var bullet_instance = Global.add_bullet(
-		"Monster61DSW", self.bullet, MonsterDirection, 1, po_sition, "skill_1_2", self.obj_attack_dict["skill_1_2"]
+		"Monster61DSW", self.bullet, monster_direction, 1, po_sition, "skill_1_2", self.obj_attack_dict["skill_1_2"]
 	)
 	if bullet_instance:
 		bullet_instance.scale = Vector2(1.5, 1.5)
@@ -333,12 +339,12 @@ func call_dsw_bullet():
 
 func call_bullet_4():
 	var po_sition
-	if MonsterDirection:
+	if monster_direction:
 		po_sition = self.position + Vector2(300, 0)
 	else:
 		po_sition = self.position + Vector2(-300, 0)
 	var bullet_instance = Global.add_bullet(
-		"Monster66bull4", self.bullet, MonsterDirection, 1, po_sition, "skill_4", self.obj_attack_dict["skill_4"]
+		"Monster66bull4", self.bullet, monster_direction, 1, po_sition, "skill_4", self.obj_attack_dict["skill_4"]
 	)
 
 
@@ -391,7 +397,7 @@ func call_bj():
 	for offset in base_offsets:
 		var final_pos = P + offset + Vector2(0, 40)
 		Global.add_bullet(
-			"Monster_61Bullet", self.bullet, MonsterDirection, 1, final_pos, "skill_3", self.obj_attack_dict["skill_3"]
+			"Monster_61Bullet", self.bullet, monster_direction, 1, final_pos, "skill_3", self.obj_attack_dict["skill_3"]
 		)
 
 # ==============================================================================

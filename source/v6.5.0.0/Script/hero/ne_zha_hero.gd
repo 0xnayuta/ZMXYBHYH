@@ -186,9 +186,9 @@ func _ready() -> void:
 	super._ready()
 	add_to_group("Player")
 	for skill_name in [SKILL_JIULONG, SKILL_DASH, SKILL_WHEEL, SKILL_LOTUS, SKILL_SPEAR]:
-		Role1SkillInter[skill_name] = 0.0
+		role1_skill_inter[skill_name] = 0.0
 		role1_skill_max_inter[skill_name] = 0.0
-	Role1SkillInter[SKILL_YINYANG] = 0.0
+	role1_skill_inter[SKILL_YINYANG] = 0.0
 	role1_skill_max_inter[SKILL_YINYANG] = 0.0
 	on_eqchange()
 	_refresh_attack_data()
@@ -431,9 +431,9 @@ func _refresh_attack_data() -> void:
 	obj_attack_dict[SKILL_SPEAR + "_ground"] = _skill_hit_data(attack, 3.0368, 0.431, 5, Vector2(6, -2))
 	obj_attack_dict[SKILL_SPEAR + "_target"] = _skill_hit_data(attack, 0.522, 0.32, 5, Vector2.ZERO)
 	obj_attack_dict[SKILL_SPEAR + "_target"]["addeffect"] = {
-		"Name": "DefeReduce",
+		"Name": "defe_reduce",
 		"AddTime": 8,
-		"ReduceInterval": 0,
+		"reduce_interval": 0,
 		"value": SPEAR_TARGET_DEFENSE_REDUCTION,
 		"AttackKind": "",
 		"CanAdd": false,
@@ -590,7 +590,7 @@ func get_skill(skill_name):
 		return
 	if is_silent or name == "" or is_using_skills or is_be_attacking or is_death:
 		return
-	if not Role1SkillInter.has(name) or Role1SkillInter[name] > 0.0:
+	if not role1_skill_inter.has(name) or role1_skill_inter[name] > 0.0:
 		return
 	var mp_cost := int(get_need_mp(name, false))
 	if RoleProp.roleprop.Mp < mp_cost:
@@ -598,7 +598,7 @@ func get_skill(skill_name):
 	if name != SKILL_YINYANG:
 		RoleProp.roleprop.Mp -= mp_cost
 
-	Role1SkillInter[name] = 1.8
+	role1_skill_inter[name] = 1.8
 	if name == SKILL_LOTUS:
 		_lotus_toggle_locked = true
 	elif name == SKILL_YINYANG:
@@ -708,7 +708,7 @@ func _use_fire_dash() -> void:
 	await _wait_frames(4)
 	if not _is_skill_execution_current(skill_generation, SKILL_DASH):
 		return
-	_start_skill_motion(Vector2(DASH_SPEED if PlayerDir else -DASH_SPEED, 0.0), DASH_DURATION)
+	_start_skill_motion(Vector2(DASH_SPEED if player_dir else -DASH_SPEED, 0.0), DASH_DURATION)
 	var dash_effect := _spawn_effect(
 		&"effect2_2", obj_attack_dict[SKILL_DASH], DASH_DURATION, 0.2, 3, Vector2(240, 95), Vector2.ZERO, true
 	)
@@ -830,12 +830,14 @@ func _spawn_yin_yang_sword(
 	if effect_scene == null:
 		return
 	var effect := effect_scene.instantiate() as NeZhaYinYangEffect
-	effect.configure_yin_yang(self, obj_attack_dict[SKILL_YINYANG], PlayerDir, sword_type, trajectory_angle)
+	effect.configure_yin_yang(self, obj_attack_dict[SKILL_YINYANG], player_dir, sword_type, trajectory_angle)
 	effect.use_visual_collision = true
 	effect.z_index = z_index + 1 if front_layer else z_index - 1
 	var level := get_parent().get_parent()
 	level.add_child(effect)
-	effect.global_position = global_position + Vector2(local_offset.x if PlayerDir else -local_offset.x, local_offset.y)
+	effect.global_position = (
+		global_position + Vector2(local_offset.x if player_dir else -local_offset.x, local_offset.y)
+	)
 
 
 func _spawn_yin_yang_launch(
@@ -845,11 +847,13 @@ func _spawn_yin_yang_launch(
 	if effect_scene == null:
 		return
 	var effect := effect_scene.instantiate() as NeZhaYinYangEffect
-	effect.configure_launch(self, PlayerDir, launch_kind, trajectory_angle)
+	effect.configure_launch(self, player_dir, launch_kind, trajectory_angle)
 	effect.z_index = z_index + 1 if front_layer else z_index - 1
 	var level := get_parent().get_parent()
 	level.add_child(effect)
-	effect.global_position = global_position + Vector2(local_offset.x if PlayerDir else -local_offset.x, local_offset.y)
+	effect.global_position = (
+		global_position + Vector2(local_offset.x if player_dir else -local_offset.x, local_offset.y)
+	)
 
 
 func _spawn_yinyang_aura(aura_kind: String) -> void:
@@ -857,7 +861,7 @@ func _spawn_yinyang_aura(aura_kind: String) -> void:
 	if effect_scene == null:
 		return
 	var aura := effect_scene.instantiate() as NeZhaYinYangEffect
-	aura.configure_aura(self, PlayerDir, aura_kind)
+	aura.configure_aura(self, player_dir, aura_kind)
 	aura.z_index = z_index - 1
 	var level := get_parent().get_parent()
 	level.add_child(aura)
@@ -977,7 +981,7 @@ func _use_six_arm_spear() -> void:
 	await _wait_frames(6)
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
 		return
-	_start_skill_motion(Vector2(600.0 if PlayerDir else -600.0, 870.0), 5.0 / 30.0)
+	_start_skill_motion(Vector2(600.0 if player_dir else -600.0, 870.0), 5.0 / 30.0)
 	await _wait_frames(3)
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
 		return
@@ -993,7 +997,7 @@ func _use_six_arm_spear_enhanced() -> void:
 	var skill_generation := _begin_skill(&"skill5_enhanced", SKILL_SPEAR)
 	_hide_enhanced_visuals()
 	_spear_move_mode = SPEAR_MOVE_ENHANCED
-	var move_direction := 1.0 if PlayerDir else -1.0
+	var move_direction := 1.0 if player_dir else -1.0
 	_start_skill_motion(Vector2(move_direction * OFFICIAL_MOVE_SPEED_SCALE, 0.0), 0.4)
 	_spawn_effect(&"effect5_5", obj_attack_dict[SKILL_SPEAR], 0.833, 0.0, 1, Vector2.ZERO, Vector2.ZERO, true, true)
 	await _wait_frames(7)
@@ -1011,16 +1015,16 @@ func _use_six_arm_spear_enhanced() -> void:
 		false,
 		true
 	)
-	enhanced_effect.global_position = global_position + Vector2(100.0 if PlayerDir else -100.0, -10.0)
+	enhanced_effect.global_position = global_position + Vector2(100.0 if player_dir else -100.0, -10.0)
 	if is_instance_valid(_enhanced_spear_target):
 		enhanced_effect.global_position = (
-			_enhanced_spear_target.global_position + Vector2(100.0 if PlayerDir else -100.0, -10.0)
+			_enhanced_spear_target.global_position + Vector2(100.0 if player_dir else -100.0, -10.0)
 		)
 	enhanced_effect.z_index = z_index - 10
 	await _wait_frames(7)
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
 		return
-	move_direction = 1.0 if PlayerDir else -1.0
+	move_direction = 1.0 if player_dir else -1.0
 	_start_skill_motion(Vector2(move_direction * 300.0 * OFFICIAL_MOVE_SPEED_SCALE, 0.0), 0.3)
 	_spawn_effect(
 		&"effect5_6", obj_attack_dict[SKILL_SPEAR], 0.367, 1.0, 1, Vector2(220, 130), Vector2.ZERO, true, false
@@ -1035,7 +1039,7 @@ func _use_six_arm_spear_enhanced() -> void:
 	await _wait_frames(1)
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
 		return
-	move_direction = 1.0 if PlayerDir else -1.0
+	move_direction = 1.0 if player_dir else -1.0
 	_start_skill_motion(Vector2(move_direction * OFFICIAL_MOVE_SPEED_SCALE, 0.0), 0.3)
 	await _wait_frames(7)
 	if not _is_skill_execution_current(skill_generation, SKILL_SPEAR):
@@ -1084,7 +1088,7 @@ func _apply_spear_input() -> void:
 		return
 	var frame_index := int(floor(role_action_player.current_animation_position * 30.0))
 	var wants_right := direction > 0.0
-	if wants_right != PlayerDir:
+	if wants_right != player_dir:
 		var can_turn := frame_index >= 23 and frame_index <= 30
 		if _spear_move_mode == SPEAR_MOVE_ENHANCED:
 			can_turn = frame_index >= 25 and frame_index <= 33
@@ -1095,7 +1099,7 @@ func _apply_spear_input() -> void:
 
 
 func _set_spear_facing(face_right: bool) -> void:
-	PlayerDir = face_right
+	player_dir = face_right
 	action.scale.x = -1.0 if face_right else 1.0
 	base_damagebox.scale.x = -1.0 if face_right else 1.0
 
@@ -1210,11 +1214,13 @@ func _spawn_effect(
 	if effect_scene == null:
 		return null
 	var effect := effect_scene.instantiate() as NeZhaSkillEffect
-	effect.configure(self, animation_name, hit_data, PlayerDir, duration, interval, pulses, shape_size)
+	effect.configure(self, animation_name, hit_data, player_dir, duration, interval, pulses, shape_size)
 	effect.use_visual_collision = visual_collision
 	var level := get_parent().get_parent()
 	level.add_child(effect)
-	effect.global_position = global_position + Vector2(local_offset.x if PlayerDir else -local_offset.x, local_offset.y)
+	effect.global_position = (
+		global_position + Vector2(local_offset.x if player_dir else -local_offset.x, local_offset.y)
+	)
 	if duration < 0.0 or follow_self:
 		effect.follow_target = self
 		effect.follow_offset = local_offset

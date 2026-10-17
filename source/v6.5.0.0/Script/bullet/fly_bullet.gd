@@ -14,12 +14,12 @@ var mdef = 0
 var crit = 0
 var miss = 0
 var lucky = 0
-var Htarget = 0
-var Toughness = 0
+var htarget = 0
+var toughness = 0
 var ar = 0
 var sp = 0
-var Critreduce = 0
-var AttList
+var crit_reduce = 0
+var att_list
 var obj_attack_dict = {}
 var skill_name: String
 var dir: bool
@@ -80,11 +80,11 @@ func get_prop():
 		crit = tt.crit
 		miss = tt.miss
 		lucky = tt.lucky
-		Htarget = tt.Htarget
-		Toughness = tt.Toughness
+		htarget = tt.htarget
+		toughness = tt.toughness
 		ar = tt.ar
 		sp = tt.sp
-		Critreduce = tt.Critreduce
+		crit_reduce = tt.crit_reduce
 		total_hit = tt.total_hit
 	if hit_name != "":
-		self.obj_attack_dict[hit_name] = AttList
+		self.obj_attack_dict[hit_name] = att_list

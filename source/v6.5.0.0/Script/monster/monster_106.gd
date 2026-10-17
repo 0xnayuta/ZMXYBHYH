@@ -13,11 +13,11 @@ func monster_106():
 	self.crit = 20
 	self.miss = 20
 	self.lucky = 0
-	self.Htarget = 20
-	self.Toughness = 20
+	self.htarget = 20
+	self.toughness = 20
 	self.ar = 25
 	self.sp = 25
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 11
 	self.mysee = 500
 	self.attack_range = 335
@@ -35,7 +35,7 @@ func monster_106():
 		{
 			"Name": "stun",
 			"AddTime": 1,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 0,
 			"AttackKind": "magic",
 			"CanAdd": false,

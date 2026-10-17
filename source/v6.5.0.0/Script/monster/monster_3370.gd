@@ -61,9 +61,9 @@ func _configure_test_boss() -> void:
 	crit = 100
 	miss = 0
 	lucky = 0
-	Htarget = 100
-	Toughness = 0.0
-	Critreduce = 0
+	htarget = 100
+	toughness = 0.0
+	crit_reduce = 0
 	ar = 0
 	sp = 0
 	speed = 6.0

@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 		pic.set_button_icon(load_(item_name))
 		pic.qh_level = 0
 		pic.wx = []
-		pic.EQ_prop = AE.all_equipment[item_name]
+		pic.eq_prop = AE.all_equipment[item_name]
 		var cur_level = PlayerData.player_data[real_name][str(loc_num)]["Level"]
 		locandlevel.text = str(loc_num) + "号位 Lv:" + str(cur_level)
 		if not not_show:

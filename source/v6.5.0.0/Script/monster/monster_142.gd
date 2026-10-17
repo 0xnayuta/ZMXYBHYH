@@ -17,11 +17,11 @@ func monster_142():
 	self.crit = 30
 	self.miss = 20
 	self.lucky = 20
-	self.Htarget = 25
-	self.Toughness = 0
+	self.htarget = 25
+	self.toughness = 0
 	self.ar = 60
 	self.sp = 60
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 500
 	self.attack_range = 160
@@ -50,9 +50,9 @@ func monster_142():
 		"HitProtect": 0,
 		"addeffect":
 		{
-			"Name": "DefeReduce",
+			"Name": "defe_reduce",
 			"AddTime": 20,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 1,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -68,7 +68,7 @@ func monster_142():
 		{
 			"Name": "stun",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -96,10 +96,10 @@ func monster_142():
 func _ready() -> void:
 	super._ready()
 	monster_142()
-	Skill_1_CD = 2
-	Skill_2_CD = 5
-	Skill_3_CD = 7
-	Skill_4_CD = 9
+	skill_1_cd = 2
+	skill_2_cd = 5
+	skill_3_cd = 7
+	skill_4_cd = 9
 	skill_5_cd = 11
 
 
@@ -121,21 +121,21 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 				if skill_5_cd <= 0:
 					do_hit_5()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 				if skill_5_cd <= 0:
 					do_hit_5()
@@ -143,7 +143,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = 2
+	skill_1_cd = 2
 	velocity.x = 0
 	hit_name = "hit1"
 	is_attacking = true
@@ -155,7 +155,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = 15
+	skill_2_cd = 15
 	velocity.x = 0
 	hit_name = "hit2"
 	is_attacking = true
@@ -167,7 +167,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = 17
+	skill_3_cd = 17
 	velocity.x = 0
 	hit_name = "hit3"
 	is_attacking = true
@@ -179,7 +179,7 @@ func do_hit_3():
 
 func do_hit_4():
 	super.to_hero()
-	Skill_4_CD = 13
+	skill_4_cd = 13
 	velocity.x = 0
 	hit_name = "hit6"
 	is_attacking = true
@@ -259,7 +259,7 @@ func call_bullet_4():
 		)
 		bullet_spawn_positions.push_back(stab_position)
 		target_count += 1
-	if not MonsterDirection:
+	if not monster_direction:
 		bullet_spawn_positions.reverse()
 	for i in bullet_spawn_positions:
 		var stab = Global.add_bullet(

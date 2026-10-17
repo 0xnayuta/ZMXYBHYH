@@ -13,11 +13,11 @@ func monster_84():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 18
-	self.Toughness = 0
+	self.htarget = 18
+	self.toughness = 0
 	self.ar = 10
 	self.sp = 10
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 300
 	self.attack_range = 165
@@ -35,7 +35,7 @@ func monster_84():
 		{
 			"Name": "Fire",
 			"AddTime": 1,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 20,
 			"AttackKind": "real",
 			"CanAdd": true,
@@ -51,7 +51,7 @@ func monster_84():
 		{
 			"Name": "Fire",
 			"AddTime": 2,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 50,
 			"AttackKind": "real",
 			"CanAdd": true,
@@ -67,7 +67,7 @@ func monster_84():
 		{
 			"Name": "Fire",
 			"AddTime": 2,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 20,
 			"AttackKind": "real",
 			"CanAdd": true,
@@ -83,7 +83,7 @@ func monster_84():
 		{
 			"Name": "stun",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -105,7 +105,7 @@ func monster_84():
 		{
 			"Name": "Fire",
 			"AddTime": 2,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 20,
 			"AttackKind": "real",
 			"CanAdd": true,
@@ -129,9 +129,9 @@ func monster_84():
 
 
 func _ready() -> void:
-	Skill_1_CD = 5
-	Skill_2_CD = 6
-	Skill_3_CD = 7
+	skill_1_cd = 5
+	skill_2_cd = 6
+	skill_3_cd = 7
 	super._ready()
 	monster_84()
 
@@ -145,21 +145,21 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 300:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400:
-					if Skill_3_CD <= 0:
+					if skill_3_cd <= 0:
 						do_hit_3()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 				if count % 60 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -168,7 +168,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(8, 9)
+	skill_1_cd = randi_range(8, 9)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -180,7 +180,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(15, 17)
+	skill_2_cd = randi_range(15, 17)
 	velocity.x = 0
 	hit_name = "hit3"
 	is_attacking = true
@@ -192,7 +192,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(12, 14)
+	skill_3_cd = randi_range(12, 14)
 	velocity.x = 0
 	hit_name = "hit5"
 	is_attacking = true
@@ -237,14 +237,14 @@ func call_sfjm_fire():
 
 func call_hl():
 	var bullet_pos: Vector2
-	if MonsterDirection:
+	if monster_direction:
 		bullet_pos = Vector2(250, -35)
 	else:
 		bullet_pos = Vector2(-250, -35)
 	var hl = Global.add_bullet(
 		"Monster84Bullet2",
 		self.bullet,
-		MonsterDirection,
+		monster_direction,
 		1,
 		bullet_pos + position,
 		"hit4",
@@ -255,14 +255,14 @@ func call_hl():
 
 func call_fl():
 	var bullet_pos: Vector2
-	if MonsterDirection:
+	if monster_direction:
 		bullet_pos = Vector2(40, -30)
 	else:
 		bullet_pos = Vector2(-40, -30)
 	var fl = Global.add_bullet(
 		"Monster84Bullet1",
 		self.bullet,
-		MonsterDirection,
+		monster_direction,
 		1,
 		bullet_pos + position,
 		"hit5",

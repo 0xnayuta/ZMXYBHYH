@@ -5,7 +5,7 @@ var base_level: BaseLevel
 @export var monster_id_list: Array[int]
 @export var monster_position: Array[Vector2]
 @export var id: int = 1
-@export var Stage: int = 1
+@export var stage: int = 1
 var create_inter: float = 1.2
 var can_create: bool = false
 var can_chcek: bool

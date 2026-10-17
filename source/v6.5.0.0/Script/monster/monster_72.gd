@@ -16,11 +16,11 @@ func monster_72():
 	self.crit = 20
 	self.miss = 18
 	self.lucky = 18
-	self.Htarget = 10
-	self.Toughness = 10
+	self.htarget = 10
+	self.toughness = 10
 	self.ar = 20
 	self.sp = 20
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 400
 	self.attack_range = 175
@@ -49,7 +49,7 @@ func monster_72():
 			"AddTime": 5,
 			"CanAdd": true,
 			"DeBuff": true,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 35,
 			"AttackKind": "real",
 		}
@@ -66,8 +66,8 @@ func monster_72():
 
 func _ready() -> void:
 	super._ready()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
 	monster_72()
 
 
@@ -80,18 +80,18 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_2()
 				if count % 120 == 0:
 					if randi_range(0, 100) < attack_desire:
 						attack_target()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				elif Skill_2_CD <= 0:
+				elif skill_2_cd <= 0:
 					do_hit_2()
 				elif count % 60 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -104,7 +104,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(15, 18)
+	skill_1_cd = randi_range(15, 18)
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -116,7 +116,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(10, 12)
+	skill_2_cd = randi_range(10, 12)
 	velocity.x = 0
 	hit_name = "hit2"
 	is_attacking = true
@@ -132,7 +132,7 @@ func call_monster_bullet():
 	var bullet_spawn_positions = [Vector2(0, 0), Vector2(0, -75), Vector2(0, 75)]
 	for i in bullet_spawn_positions:
 		Global.add_bullet(
-			bullet_name, self.bullet, MonsterDirection, 1, i + position, "hit2", self.obj_attack_dict["hit2"]
+			bullet_name, self.bullet, monster_direction, 1, i + position, "hit2", self.obj_attack_dict["hit2"]
 		)
 		await get_tree().create_timer(0.3, false).timeout
 

@@ -18,4 +18,4 @@ func _process(_delta: float) -> void:
 		return
 	_started = true
 	await get_tree().create_timer(LastTime).timeout
-	message_player.play("MessageShow")
+	message_player.play("message_show")

@@ -85,9 +85,9 @@ func _physics_process(delta: float) -> void:
 
 func _setup_streaming_bullet() -> void:
 	if Global.get_parent_(self, 2) is BaseHero:
-		Player = Global.get_parent_(self, 2)
+		player = Global.get_parent_(self, 2)
 	elif Global.get_parent_(self, 1) is BaseHero:
-		Player = Global.get_parent_(self, 1)
+		player = Global.get_parent_(self, 1)
 	middle.scale.x = -1 if direction else 1
 	bullet_player.visible = false
 	var special_effect := get_node_or_null("Middle/SpecialEffect") as AnimatedSprite2D

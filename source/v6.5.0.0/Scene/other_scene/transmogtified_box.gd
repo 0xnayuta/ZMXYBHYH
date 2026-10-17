@@ -15,7 +15,7 @@ func _physics_process(_delta: float) -> void:
 	show_box.set_button_icon(load_(self_name))
 	show_box.qh_level = 0
 	show_box.wx = []
-	show_box.EQ_prop = AE.all_equipment[self_name]
+	show_box.eq_prop = AE.all_equipment[self_name]
 	var list = PlayerData.player_data[DataKeys.TRANSMOG_LIST]
 	if (
 		list[DataKeys.WEAPON] == self_name

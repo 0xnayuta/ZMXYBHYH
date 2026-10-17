@@ -130,10 +130,10 @@ func _rebuild_pet_turtle_attack_data() -> void:
 
 
 func setup_skills() -> void:
-	Skill_1_CD = RABBIT_SKILL_INITIAL_CDS[SKILL_YG]
-	Skill_2_CD = RABBIT_SKILL_INITIAL_CDS[SKILL_JF] * pet_skill_cooldown_multiplier
-	Skill_3_CD = RABBIT_SKILL_INITIAL_CDS[SKILL_BS] * pet_skill_cooldown_multiplier
-	Skill_4_CD = RABBIT_SKILL_INITIAL_CDS[SKILL_YSAOYI] * pet_skill_cooldown_multiplier
+	skill_1_cd = RABBIT_SKILL_INITIAL_CDS[SKILL_YG]
+	skill_2_cd = RABBIT_SKILL_INITIAL_CDS[SKILL_JF] * pet_skill_cooldown_multiplier
+	skill_3_cd = RABBIT_SKILL_INITIAL_CDS[SKILL_BS] * pet_skill_cooldown_multiplier
+	skill_4_cd = RABBIT_SKILL_INITIAL_CDS[SKILL_YSAOYI] * pet_skill_cooldown_multiplier
 
 
 func _unlock_new_stage_skill_cooldowns(previous_skills: Array) -> void:
@@ -143,13 +143,13 @@ func _unlock_new_stage_skill_cooldowns(previous_skills: Array) -> void:
 			continue
 		match skill_id:
 			SKILL_YG:
-				Skill_1_CD = 0.0
+				skill_1_cd = 0.0
 			SKILL_JF:
-				Skill_2_CD = 0.0
+				skill_2_cd = 0.0
 			SKILL_BS:
-				Skill_3_CD = 0.0
+				skill_3_cd = 0.0
 			SKILL_YSAOYI:
-				Skill_4_CD = 0.0
+				skill_4_cd = 0.0
 
 
 func _has_skill(skill_id: String) -> bool:
@@ -179,11 +179,11 @@ func _consume_skill(skill_id: String) -> bool:
 func try_use_skills() -> void:
 	if is_attacking or is_be_attacking or not is_instance_valid(current_target):
 		return
-	if turtle_stage >= 4 and Skill_4_CD <= 0.0 and _has_skill(SKILL_YSAOYI) and Mp >= _skill_cost(SKILL_YSAOYI):
+	if turtle_stage >= 4 and skill_4_cd <= 0.0 and _has_skill(SKILL_YSAOYI) and Mp >= _skill_cost(SKILL_YSAOYI):
 		do_rabbit_aoyi()
 	elif _rabbit_ice_ready() and _rabbit_ice_target_in_range():
 		do_rabbit_ice()
-	elif turtle_stage >= 2 and Skill_2_CD <= 0.0 and _has_skill(SKILL_JF) and Mp >= _skill_cost(SKILL_JF):
+	elif turtle_stage >= 2 and skill_2_cd <= 0.0 and _has_skill(SKILL_JF) and Mp >= _skill_cost(SKILL_JF):
 		do_rabbit_jifeng()
 
 
@@ -220,7 +220,7 @@ func ai_think() -> void:
 
 
 func _rabbit_ice_ready() -> bool:
-	return turtle_stage >= 3 and Skill_3_CD <= 0.0 and _has_skill(SKILL_BS) and Mp >= _skill_cost(SKILL_BS)
+	return turtle_stage >= 3 and skill_3_cd <= 0.0 and _has_skill(SKILL_BS) and Mp >= _skill_cost(SKILL_BS)
 
 
 func _rabbit_ice_target_in_range() -> bool:
@@ -233,7 +233,7 @@ func _rabbit_ice_target_in_range() -> bool:
 func do_rabbit_jifeng() -> void:
 	if not _consume_skill(SKILL_JF):
 		return
-	Skill_2_CD = RABBIT_SKILL_CDS[SKILL_JF] * pet_skill_cooldown_multiplier
+	skill_2_cd = RABBIT_SKILL_CDS[SKILL_JF] * pet_skill_cooldown_multiplier
 	_jifeng_until_msec = Time.get_ticks_msec() + (5000 if turtle_stage == 2 else 10000)
 
 	_spawn_rabbit_effect(
@@ -250,7 +250,7 @@ func do_rabbit_ice() -> void:
 	if not _consume_skill(SKILL_BS):
 		return
 	_face_current_target()
-	Skill_3_CD = RABBIT_SKILL_CDS[SKILL_BS] * pet_skill_cooldown_multiplier
+	skill_3_cd = RABBIT_SKILL_CDS[SKILL_BS] * pet_skill_cooldown_multiplier
 	hit_name = "hit3"
 	_start_turtle_action("hit2")
 	_rabbit_ice_was_fly = is_fly
@@ -262,7 +262,7 @@ func do_rabbit_ice() -> void:
 func do_rabbit_aoyi() -> void:
 	if not _consume_skill(SKILL_YSAOYI):
 		return
-	Skill_4_CD = RABBIT_SKILL_CDS[SKILL_YSAOYI] * pet_skill_cooldown_multiplier
+	skill_4_cd = RABBIT_SKILL_CDS[SKILL_YSAOYI] * pet_skill_cooldown_multiplier
 	_aoyi_until_msec_rabbit = Time.get_ticks_msec() + 10000
 	_heal_accumulator = 0.0
 	_aoyi_heal_ticks_remaining = 10
@@ -397,7 +397,7 @@ func _rabbit_role_origin() -> Vector2:
 
 
 func _rabbit_ice_impact_position() -> Vector2:
-	var x_offset := 210.0 if MonsterDirection else -210.0
+	var x_offset := 210.0 if monster_direction else -210.0
 	var y_offset := -40.0 if turtle_stage == 3 else 50.0
 	return _rabbit_role_origin() + Vector2(x_offset, y_offset)
 
@@ -425,11 +425,11 @@ func _spawn_rabbit_effect(
 	if bullet == null:
 		return null
 	var instance = PET_RABBIT_BULLET_SCENE.instantiate()
-	instance.AttList = attack_data
+	instance.att_list = attack_data
 	instance.hit_name = (
 		"hit2" if effect_name == "Monster130Bullet2" else "hit3" if effect_name == "PetPetRabbitBullet4" else "hit1"
 	)
-	instance.dir = MonsterDirection
+	instance.dir = monster_direction
 	instance.skill_name = effect_name
 	instance.speed = 1.0
 	instance.set_meta("summoner", self)

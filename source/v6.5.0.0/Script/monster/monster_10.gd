@@ -13,11 +13,11 @@ func monster_10():
 	self.crit = 8
 	self.miss = 4
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 7
 	self.mysee = 400
 	self.attack_range = 70
@@ -39,7 +39,7 @@ func monster_10():
 		{
 			"Name": "Bleed",
 			"AddTime": 2,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"CanAdd": true,
 			"DeBuff": true,
 			"value": 6,
@@ -66,7 +66,7 @@ func monster_10():
 func _ready() -> void:
 	super._ready()
 	monster_10()
-	Skill_1_CD = 0
+	skill_1_cd = 0
 
 
 func ai_think():
@@ -78,7 +78,7 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270:
 						do_hit_2()
 					else:
@@ -86,7 +86,7 @@ func ai_think():
 				else:
 					have_target()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270:
 						do_hit_2()
 					else:
@@ -99,7 +99,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 8
+	skill_1_cd = 8
 	hit_name = "dmfd"
 	velocity.x = 0
 	is_attacking = true
@@ -109,11 +109,11 @@ func do_hit_2():
 
 
 func call_knife():
-	if self.MonsterDirection:
+	if self.monster_direction:
 		Global.add_bullet(
 			"Knife",
 			self.bullet,
-			self.MonsterDirection,
+			self.monster_direction,
 			1,
 			Vector2(self.position.x + 220, self.position.y),
 			"dmfd",
@@ -123,7 +123,7 @@ func call_knife():
 		Global.add_bullet(
 			"Knife",
 			self.bullet,
-			self.MonsterDirection,
+			self.monster_direction,
 			1,
 			Vector2(self.position.x - 220, self.position.y),
 			"dmfd",

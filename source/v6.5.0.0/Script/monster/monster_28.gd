@@ -14,11 +14,11 @@ func monster_28(is_boss_):
 		self.crit = 35
 		self.miss = 18
 		self.lucky = 0
-		self.Htarget = 10
-		self.Toughness = 10
+		self.htarget = 10
+		self.toughness = 10
 		self.ar = 20
 		self.sp = 20
-		self.Critreduce = 0
+		self.crit_reduce = 0
 		self.speed = 6
 		self.mysee = 400
 		self.attack_range = 135
@@ -35,7 +35,7 @@ func monster_28(is_boss_):
 			{
 				"Name": "Bleed",
 				"AddTime": 2,
-				"ReduceInterval": 0.5,
+				"reduce_interval": 0.5,
 				"CanAdd": true,
 				"DeBuff": true,
 				"value": int(RoleProp.roleprop.SHp * 0.02),
@@ -50,7 +50,7 @@ func monster_28(is_boss_):
 			{
 				"Name": "Fire",
 				"AddTime": 4,
-				"ReduceInterval": 0.5,
+				"reduce_interval": 0.5,
 				"CanAdd": true,
 				"DeBuff": true,
 				"value": int(RoleProp.roleprop.SHp * 0.02),
@@ -82,11 +82,11 @@ func monster_28(is_boss_):
 		self.crit = 10
 		self.miss = 10
 		self.lucky = 0
-		self.Htarget = 8
-		self.Toughness = 0
+		self.htarget = 8
+		self.toughness = 0
 		self.ar = 0
 		self.sp = 0
-		self.Critreduce = 0
+		self.crit_reduce = 0
 		self.speed = 7
 		self.mysee = 300
 		self.attack_range = 135
@@ -103,7 +103,7 @@ func monster_28(is_boss_):
 			{
 				"Name": "Bleed",
 				"AddTime": 1,
-				"ReduceInterval": 0.5,
+				"reduce_interval": 0.5,
 				"CanAdd": true,
 				"DeBuff": true,
 				"value": int(RoleProp.roleprop.SHp * 0.02),
@@ -118,7 +118,7 @@ func monster_28(is_boss_):
 			{
 				"Name": "Fire",
 				"AddTime": 1,
-				"ReduceInterval": 0.5,
+				"reduce_interval": 0.5,
 				"CanAdd": true,
 				"DeBuff": true,
 				"value": int(RoleProp.roleprop.SHp * 0.02),
@@ -149,11 +149,11 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 330:
 						do_hit_2()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
 				elif count % 90 == 0:
 					if ran_num <= attack_desire:
@@ -163,7 +163,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 8
+	skill_1_cd = 8
 	hit_name = "hsg"
 	velocity.x = 0
 	is_attacking = true
@@ -173,16 +173,16 @@ func do_hit_2():
 
 
 func call_bullet_1():
-	if self.MonsterDirection:
+	if self.monster_direction:
 		var po = Vector2(self.position.x + 40, self.position.y + 20)
 		Global.add_bullet(
-			"Monster28Bullet_2", self.bullet, self.MonsterDirection, 1, po, "hit1", self.obj_attack_dict["hit1"]
+			"Monster28Bullet_2", self.bullet, self.monster_direction, 1, po, "hit1", self.obj_attack_dict["hit1"]
 		)
 		await get_tree().create_timer(0.3, false).timeout
 		Global.add_bullet(
 			"Monster28Bullet_2",
 			self.bullet,
-			self.MonsterDirection,
+			self.monster_direction,
 			1,
 			po + Vector2(randi_range(40, 50), 0),
 			"hit1",
@@ -191,12 +191,12 @@ func call_bullet_1():
 	else:
 		var po = Vector2(self.position.x - 40, self.position.y + 20)
 		Global.add_bullet(
-			"Monster28Bullet_2", self.bullet, self.MonsterDirection, 1, po, "hit1", self.obj_attack_dict["hit1"]
+			"Monster28Bullet_2", self.bullet, self.monster_direction, 1, po, "hit1", self.obj_attack_dict["hit1"]
 		)
 		Global.add_bullet(
 			"Monster28Bullet_2",
 			self.bullet,
-			self.MonsterDirection,
+			self.monster_direction,
 			1,
 			po + Vector2(randi_range(-40, -50), 0),
 			"hit1",
@@ -205,7 +205,7 @@ func call_bullet_1():
 
 
 func call_bullet_2():
-	if self.MonsterDirection:
+	if self.monster_direction:
 		Global.call_fly_bullet(
 			self.bullet,
 			"Monster28Bullet_1",

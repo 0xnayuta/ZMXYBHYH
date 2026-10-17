@@ -1,5 +1,10 @@
 extends Node
-var Player = PlayerData.player_data
+var player_data = PlayerData.player_data
+var Player:
+	get:
+		return player_data
+	set(v):
+		player_data = v
 var initialized_data = {}
 var get_sj = {}
 var limit_time = {
@@ -170,7 +175,7 @@ func load_game(路径) -> bool:
 		var archive_data: Dictionary = archive_data_value.duplicate(true)
 		if not archive_data.is_empty():
 			archive_data.erase(ARCHIVE_TIME_KEY)
-			Player["已获取装备列表"] = []
+			player_data["已获取装备列表"] = []
 			Player.merge(archive_data, true)
 	PlayerData.normalize_soul()
 	PlayerData.migrate_consumables_from_dj_to_xhp()

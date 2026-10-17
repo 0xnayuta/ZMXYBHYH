@@ -150,8 +150,8 @@ func calculate_combat_power():
 	var role_lucky = RoleProp.roleprop.Lucky
 	var rhp = RoleProp.roleprop.R_hp
 	var rmp = RoleProp.roleprop.R_mp
-	var htarget = RoleProp.roleprop.Htarget
-	var toughness = RoleProp.roleprop.Toughness
+	var htarget = RoleProp.roleprop.htarget
+	var toughness = RoleProp.roleprop.toughness
 	var vampirism = RoleProp.roleprop.vampirism * 100
 	var crit_reduce = RoleProp.roleprop.CritReduce
 	var ar = RoleProp.roleprop.ar
@@ -299,8 +299,8 @@ func set_backpack_properies():
 		$background/infomation/ehp/ehp_tt.text = ""
 		$background/infomation/emp/emp_tt.text = ""
 
-		hp.text = str(RoleProp.roleprop.Htarget)
-		mp.text = str(RoleProp.roleprop.Toughness)
+		hp.text = str(RoleProp.roleprop.htarget)
+		mp.text = str(RoleProp.roleprop.toughness)
 
 		att.text = "%.2f" % (RoleProp.roleprop.vampirism * 100) + "%"
 		def.text = str(RoleProp.roleprop.CritReduce)
@@ -332,49 +332,49 @@ func set_icon():
 		wq.get_item_name = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME]
 		wq.set_button_icon(load_(PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME]))
 		wq.qh_level = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.ENHANCE_LEVEL]
-		wq.EQ_prop = PlayerData.player_data[DataKeys.WEAPON][0]["Data"]
+		wq.eq_prop = PlayerData.player_data[DataKeys.WEAPON][0]["Data"]
 	else:
 		wq.set_button_icon(load_("wq"))
 	if PlayerData.player_data[DataKeys.ARMOR].size() != 0:
 		fj.get_item_name = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME]
 		fj.set_button_icon(load_(PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME]))
 		fj.qh_level = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.ENHANCE_LEVEL]
-		fj.EQ_prop = PlayerData.player_data[DataKeys.ARMOR][0]["Data"]
+		fj.eq_prop = PlayerData.player_data[DataKeys.ARMOR][0]["Data"]
 	else:
 		fj.set_button_icon(load_("fj"))
 	if PlayerData.player_data["饰品"].size() != 0:
 		sp.get_item_name = PlayerData.player_data["饰品"][0][DataKeys.NAME]
 		sp.set_button_icon(load_(PlayerData.player_data["饰品"][0][DataKeys.NAME]))
 		sp.qh_level = PlayerData.player_data["饰品"][0][DataKeys.ENHANCE_LEVEL]
-		sp.EQ_prop = PlayerData.player_data["饰品"][0]["Data"]
+		sp.eq_prop = PlayerData.player_data["饰品"][0]["Data"]
 	else:
 		sp.set_button_icon(load_("sp"))
 	if PlayerData.player_data[DataKeys.TITLE].size() != 0:
 		tx.get_item_name = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.NAME]
 		tx.set_button_icon(load_(PlayerData.player_data[DataKeys.TITLE][0][DataKeys.NAME]))
 		tx.qh_level = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.ENHANCE_LEVEL]
-		tx.EQ_prop = PlayerData.player_data[DataKeys.TITLE][0]["Data"]
+		tx.eq_prop = PlayerData.player_data[DataKeys.TITLE][0]["Data"]
 	else:
 		tx.set_button_icon(load_("tx"))
 	if PlayerData.player_data[DataKeys.FASHION].size() != 0:
 		sz.get_item_name = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]
 		sz.set_button_icon(load_(PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]))
 		sz.qh_level = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.ENHANCE_LEVEL]
-		sz.EQ_prop = PlayerData.player_data[DataKeys.FASHION][0]["Data"]
+		sz.eq_prop = PlayerData.player_data[DataKeys.FASHION][0]["Data"]
 	else:
 		sz.set_button_icon(load_("sz"))
 	if PlayerData.player_data[DataKeys.WINGS].size() != 0:
 		cb.get_item_name = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 		cb.set_button_icon(load_(PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]))
 		cb.qh_level = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.ENHANCE_LEVEL]
-		cb.EQ_prop = PlayerData.player_data[DataKeys.WINGS][0]["Data"]
+		cb.eq_prop = PlayerData.player_data[DataKeys.WINGS][0]["Data"]
 	else:
 		cb.set_button_icon(load_("cb"))
 	if PlayerData.player_data[DataKeys.MAGIC_WEAPON].size() != 0:
 		fb.get_item_name = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
 		fb.set_button_icon(load_(PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]))
 		fb.qh_level = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL]
-		fb.EQ_prop = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
+		fb.eq_prop = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
 		fb.wx = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS]
 	else:
 		fb.set_button_icon(load_("fb"))

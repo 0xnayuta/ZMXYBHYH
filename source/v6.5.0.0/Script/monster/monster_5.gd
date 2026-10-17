@@ -14,11 +14,11 @@ func monster_5():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 11
 	self.mysee = 400
 	self.attack_range = 180
@@ -35,7 +35,7 @@ func monster_5():
 		{
 			"Name": "speed_down",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.35,
 			"CanAdd": false,
 			"DeBuff": true,
@@ -69,7 +69,7 @@ func monster_5():
 func _ready() -> void:
 	super._ready()
 	monster_5()
-	Skill_1_CD = 0
+	skill_1_cd = 0
 	MonsterBullet.warm_monster5_stream_images()
 
 
@@ -82,13 +82,13 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 900:
 						do_hit_2()
 					else:
 						have_target()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
 				elif count % 60 == 0:
 					attack_target()
@@ -97,7 +97,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 15
+	skill_1_cd = 15
 	hit_name = "yyzl"
 	velocity.x = 0
 	is_attacking = true

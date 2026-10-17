@@ -63,9 +63,9 @@ func _configure_monster() -> void:
 	mdef = int(config.get("mdef", 0))
 	crit = int(config.get("crit", 0))
 	miss = int(config.get("miss", 0))
-	Htarget = int(config.get("hit", 0))
-	Toughness = float(config.get("toughness", 0.0))
-	Critreduce = int(config.get("crit_reduce", 0))
+	htarget = int(config.get("hit", 0))
+	toughness = float(config.get("toughness", 0.0))
+	crit_reduce = int(config.get("crit_reduce", 0))
 	ar = int(config.get("armor_break", 0))
 	sp = int(config.get("magic_break", 0))
 	speed = float(config.get("speed", 25.0))
@@ -80,7 +80,7 @@ func _configure_monster() -> void:
 	is_boss = false
 	super_armor_active = true
 	cannot_attract = true
-	NoGrav = false
+	no_grav = false
 	is_fly = false
 	obj_attack_dict.clear()
 	var attacks: Dictionary = config.get("attacks", {})

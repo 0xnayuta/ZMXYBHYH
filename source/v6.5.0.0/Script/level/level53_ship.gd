@@ -40,4 +40,4 @@ func _on_role_contact_exited(body: Node2D) -> void:
 
 func _is_level_role(body: Node2D) -> bool:
 	var level := get_parent()
-	return level != null and body == level.get("Role_")
+	return level != null and body == level.get("role_")

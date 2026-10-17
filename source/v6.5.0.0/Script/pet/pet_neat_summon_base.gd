@@ -117,10 +117,10 @@ func _rebuild_pet_turtle_attack_data() -> void:
 
 
 func setup_skills() -> void:
-	Skill_1_CD = SKILL_INITIAL_CDS[SKILL_MNCZ] * pet_skill_cooldown_multiplier
-	Skill_2_CD = SKILL_INITIAL_CDS[SKILL_MLJT] * pet_skill_cooldown_multiplier
-	Skill_3_CD = SKILL_INITIAL_CDS[SKILL_CNAOYI] * pet_skill_cooldown_multiplier
-	Skill_4_CD = 0.0
+	skill_1_cd = SKILL_INITIAL_CDS[SKILL_MNCZ] * pet_skill_cooldown_multiplier
+	skill_2_cd = SKILL_INITIAL_CDS[SKILL_MLJT] * pet_skill_cooldown_multiplier
+	skill_3_cd = SKILL_INITIAL_CDS[SKILL_CNAOYI] * pet_skill_cooldown_multiplier
+	skill_4_cd = 0.0
 
 
 func _has_neat_skill(skill_id: String) -> bool:
@@ -183,14 +183,14 @@ func try_use_skills() -> void:
 		return
 	if (
 		turtle_stage >= 4
-		and Skill_3_CD <= 0.0
+		and skill_3_cd <= 0.0
 		and _can_use_neat_skill(SKILL_CNAOYI)
 		and _target_in_neat_skill_range(520.0)
 	):
 		do_neat_aoyi()
-	elif turtle_stage >= 4 and Skill_2_CD <= 0.0 and _can_use_neat_skill(SKILL_MLJT) and _target_in_neat_stomp_range():
+	elif turtle_stage >= 4 and skill_2_cd <= 0.0 and _can_use_neat_skill(SKILL_MLJT) and _target_in_neat_stomp_range():
 		do_neat_stomp()
-	elif Skill_1_CD <= 0.0 and _can_use_neat_skill(SKILL_MNCZ) and _target_in_neat_skill_range(520.0):
+	elif skill_1_cd <= 0.0 and _can_use_neat_skill(SKILL_MNCZ) and _target_in_neat_skill_range(520.0):
 		do_neat_rush()
 
 
@@ -200,7 +200,7 @@ func _target_in_neat_skill_range(_max_distance: float) -> bool:
 
 func _neat_effect_offset(effect_name: String) -> Vector2:
 	var offset: Vector2 = PetNeatBullet.EFFECT_OFFSETS.get(effect_name, Vector2.ZERO)
-	var facing_left := MonsterDirection
+	var facing_left := monster_direction
 	if is_instance_valid(current_target) and current_target.global_position.x != global_position.x:
 		facing_left = current_target.global_position.x < global_position.x
 	offset.x = offset.x if facing_left else -offset.x
@@ -263,7 +263,7 @@ func _target_in_neat_stomp_range() -> bool:
 func _neat_face_left_for_target() -> bool:
 	if is_instance_valid(current_target) and current_target.global_position.x != global_position.x:
 		return current_target.global_position.x < global_position.x
-	return MonsterDirection
+	return monster_direction
 
 
 func do_hit_1() -> void:
@@ -281,7 +281,7 @@ func do_neat_rush(without_mana: bool = false, set_cooldown: bool = true) -> void
 		pet_data[DataKeys.MP] = Mp
 	_face_current_target()
 	if set_cooldown:
-		Skill_1_CD = SKILL_CDS[SKILL_MNCZ] * pet_skill_cooldown_multiplier
+		skill_1_cd = SKILL_CDS[SKILL_MNCZ] * pet_skill_cooldown_multiplier
 	hit_name = "hit2"
 	_start_turtle_action("hit2")
 
@@ -295,7 +295,7 @@ func do_neat_stomp(without_mana: bool = false, set_cooldown: bool = true) -> voi
 		pet_data[DataKeys.MP] = Mp
 	_face_current_target()
 	if set_cooldown:
-		Skill_2_CD = SKILL_CDS[SKILL_MLJT] * pet_skill_cooldown_multiplier
+		skill_2_cd = SKILL_CDS[SKILL_MLJT] * pet_skill_cooldown_multiplier
 	hit_name = "hit3"
 	_start_turtle_action("hit3")
 
@@ -306,7 +306,7 @@ func do_neat_aoyi() -> void:
 		return
 	Mp -= cost
 	pet_data[DataKeys.MP] = Mp
-	Skill_3_CD = SKILL_CDS[SKILL_CNAOYI] * pet_skill_cooldown_multiplier
+	skill_3_cd = SKILL_CDS[SKILL_CNAOYI] * pet_skill_cooldown_multiplier
 	_aoyi_step = 0
 	_neat_aoyi_stomp = true
 	_face_current_target()
@@ -360,7 +360,7 @@ func _process_turtle_action_triggers() -> void:
 		if _trigger_once("neat_hit2", HIT2_EFFECT_TICK):
 			_spawn_neat_effect("PetNeat1Bullet2", "hit2", obj_attack_dict["hit2"], RUSH_HIT_SIZE, true)
 		var rush_speed := 360.0 if _aoyi_step > 0 else 240.0
-		velocity.x = -rush_speed if MonsterDirection else rush_speed
+		velocity.x = -rush_speed if monster_direction else rush_speed
 	elif _turtle_action == "hit3" and _trigger_once("neat_hit3", HIT3_EFFECT_TICK):
 		if _neat_aoyi_stomp:
 			_spawn_aoyi_stomp_sequence()
@@ -418,9 +418,9 @@ func _spawn_neat_effect(
 	var first_instance: Node = null
 	for offset in offsets:
 		var instance = BULLET_SCENE.instantiate()
-		instance.AttList = attack_data
+		instance.att_list = attack_data
 		instance.hit_name = attack_name
-		instance.dir = MonsterDirection
+		instance.dir = monster_direction
 		instance.skill_name = effect_name
 		instance.speed = 1.0
 		instance.set_meta("summoner", self)
@@ -534,8 +534,8 @@ func apply_pet_data(data: Dictionary) -> void:
 			_apply_turtle_stage_scene_layout()
 		_setup_turtle_model_frames()
 		if not previous_skills.has("蛮牛冲撞") and _has_neat_skill(SKILL_MNCZ):
-			Skill_1_CD = 0.0
+			skill_1_cd = 0.0
 		if not previous_skills.has("蛮力践踏") and _has_neat_skill(SKILL_MLJT):
-			Skill_2_CD = 0.0
+			skill_2_cd = 0.0
 		if not previous_skills.has("丑牛奥义") and _has_neat_skill(SKILL_CNAOYI):
-			Skill_3_CD = 0.0
+			skill_3_cd = 0.0

@@ -8,7 +8,7 @@ var is_hit: bool
 var is_play
 var total_hit = 0
 var obj_attack_dict = {}
-var Player
+var player
 var hit_count: int = 0
 
 
@@ -19,7 +19,7 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	var parent_node = get_parent()
-	Player = parent_node.Role_
+	player = parent_node.role_
 
 	if not is_hit:
 		hit_count = 0
@@ -65,7 +65,7 @@ func _on_hix_box_area_entered(area: Area2D) -> void:
 				{
 					"Name": "Fire",
 					"AddTime": 2,
-					"ReduceInterval": 0.5,
+					"reduce_interval": 0.5,
 					"value": int(target_max_hp * 0.01),
 					"AttackKind": "magic",
 					"CanAdd": false,

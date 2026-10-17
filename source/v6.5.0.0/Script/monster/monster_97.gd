@@ -13,11 +13,11 @@ func monster_97():
 	self.crit = 0 + Global.llbt_level * 1.5
 	self.miss = 0 + Global.llbt_level * 1
 	self.lucky = 0 + Global.llbt_level * 3
-	self.Htarget = 0 + Global.llbt_level * 1.5
-	self.Toughness = 0
+	self.htarget = 0 + Global.llbt_level * 1.5
+	self.toughness = 0
 	self.ar = 6 + Global.llbt_level * 1
 	self.sp = 6 + Global.llbt_level * 1
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 8
 	self.mysee = 500
 	self.attack_range = 125

@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	if PlayerData.check_eq_zb("头衔", "xczg"):
 		Global.change_scene("res://Scene/main_menu/main_menu.tscn")
 	if not is_cc:
-		if Role_.position.x >= 600:
+		if role_.position.x >= 600:
 			create_control.wait_time = 3
 			create_control.start()
 			is_cc = true

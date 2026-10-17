@@ -87,12 +87,12 @@ func apply_soul_gain_bonus(base_value: int) -> int:
 
 func get_passive_skill_properties():
 	var target = PlayerData.player_data["被动技能"]
-	RoleProp.Paslprop.SHp = get_value("热血", int(target["热血"]))
-	RoleProp.Paslprop.SMp = get_value("魔泉", int(target["魔泉"]))
-	RoleProp.Paslprop.Crit = get_value("狂暴", int(target["狂暴"]))
-	RoleProp.Paslprop.R_hp = get_value("永恒", int(target["永恒"]))
-	RoleProp.Paslprop.R_mp = get_value("辉煌", int(target["辉煌"]))
-	RoleProp.Paslprop.Htarget = get_value("敏锐", int(target["敏锐"]))
+	RoleProp.pasl_prop.SHp = get_value("热血", int(target["热血"]))
+	RoleProp.pasl_prop.SMp = get_value("魔泉", int(target["魔泉"]))
+	RoleProp.pasl_prop.Crit = get_value("狂暴", int(target["狂暴"]))
+	RoleProp.pasl_prop.R_hp = get_value("永恒", int(target["永恒"]))
+	RoleProp.pasl_prop.R_mp = get_value("辉煌", int(target["辉煌"]))
+	RoleProp.pasl_prop.htarget = get_value("敏锐", int(target["敏锐"]))
 
 
 func get_lh(name_):

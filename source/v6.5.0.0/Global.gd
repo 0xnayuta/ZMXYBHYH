@@ -32,8 +32,8 @@ const MONSTER_CONTROL_BUFF_NAMES := [
 	"Boundground",
 	"silent",
 	"Immobilize",
-	"BloodFix",
-	"LifeManaLock",
+	"blood_fix",
+	"life_mana_lock",
 	"Scary",
 	"speed_down",
 	"lljybuff",
@@ -72,7 +72,7 @@ func is_hidden_feature_enabled(feature_name: String) -> bool:
 
 var all_buff_list = [
 	"speed_down",
-	"DefeReduce",
+	"defe_reduce",
 	"nlls",
 	"Ice",
 	"stun",
@@ -81,8 +81,8 @@ var all_buff_list = [
 	"Boundground",
 	"silent",
 	"Immobilize",
-	"BloodFix",
-	"LifeManaLock",
+	"blood_fix",
+	"life_mana_lock",
 	"Bleed",
 	"poision",
 	"Fire",
@@ -98,7 +98,7 @@ var all_buff_list = [
 	"yxbuff",
 	"tszbuff",
 	"lljybuff",
-	"NoDeBuff",
+	"no_debuff",
 	"flls",
 	"MagicDrain",
 	"ReverseMove",
@@ -410,7 +410,7 @@ const DYNAMIC_MONSTER_SCENE_PATHS := {
 	4403: ["res://Scene/monster/monster_bullet_slim/three_prince_bullet.tscn"],
 }
 
-var BasicArButton = null
+var basic_ar_button = null
 var weapon_bullet_node = null
 var bullet = null
 var hit_text = null
@@ -418,19 +418,19 @@ var damage_text = null
 var monster_blood = null
 var monster_be_hit = null
 var special_affect = null
-var Aura_ = null
-var BuffIcon_ = null
-var DamageNumber = null
-var MissEffect = null
-var Combo = null
-var ComboNum = null
+var aura_ = null
+var buff_icon_ = null
+var damage_number = null
+var miss_effect = null
+var combo = null
+var combo_num = null
 var lj = null
 var moment_texxt = null
-var MessageShow = null
-var BaseBuff_ = null
+var message_show = null
+var base_buff_ = null
 var role_bullet = null
-var FlyBullet = null
-var ChaseBullet_ = null
+var fly_bullet = null
+var chase_bullet_ = null
 
 
 func _ready() -> void:
@@ -863,7 +863,7 @@ func prewarm_permanent_small_ui_scenes() -> void:
 func get_level_info_monster_ids(level_name: String) -> Array:
 	if level_name == "":
 		return []
-	var level_info_scene: PackedScene = LevelInfo as PackedScene
+	var level_info_scene: PackedScene = level_info as PackedScene
 	if level_info_scene == null:
 		level_info_scene = _load_scene("res://Scene/other_scene/level_info.tscn") as PackedScene
 	if level_info_scene == null:
@@ -871,7 +871,7 @@ func get_level_info_monster_ids(level_name: String) -> Array:
 	var probe := level_info_scene.instantiate()
 	if probe == null:
 		return []
-	var all_info: Variant = probe.get("LevelInfo")
+	var all_info: Variant = probe.get("level_info")
 	if not all_info is Dictionary:
 		probe.free()
 		return []
@@ -880,7 +880,7 @@ func get_level_info_monster_ids(level_name: String) -> Array:
 		probe.free()
 		return []
 	var result: Array = []
-	var monster_list: Variant = (level_info as Dictionary).get("MonsterList", [])
+	var monster_list: Variant = (level_info as Dictionary).get("monster_list", [])
 	if monster_list is Array:
 		for monster_entry_value in monster_list:
 			if not monster_entry_value is Dictionary:
@@ -961,7 +961,7 @@ func prewarm_skill_page_resources() -> void:
 	for icon_name in role_skill_icons[role_id]:
 		paths.append("res://Art/Skill/SkillIcon/%s.png" % icon_name)
 	await _preload_paths_threaded(paths)
-	Skill_learn = _resource_cache.get("res://Scene/skill/learn_skill.tscn") as PackedScene
+	skill_learn = _resource_cache.get("res://Scene/skill/learn_skill.tscn") as PackedScene
 	zd_skill = _resource_cache.get("res://Scene/skill/zd_skill.tscn") as PackedScene
 	bd_skill = _resource_cache.get("res://Scene/skill/bd_skill.tscn") as PackedScene
 
@@ -1138,7 +1138,7 @@ func load_fly_bullet_scene(bullet_name: String) -> PackedScene:
 	var slim_path := FLY_BULLET_SLIM_DIR.path_join(bullet_name + ".tscn")
 	if ResourceLoader.exists(slim_path):
 		return load_scene_uncached(slim_path)
-	return _cached_scene(&"FlyBullet", FLY_BULLET_PATH)
+	return _cached_scene(&"fly_bullet", FLY_BULLET_PATH)
 
 
 func _cache_threaded_resource(path: String, resource: Resource) -> void:
@@ -1292,8 +1292,8 @@ func preload_combat_hit_resources() -> void:
 	preload_damage_number_textures()
 	_cached_scene(&"hit_text", HIT_TEXT_PATH)
 	var damage_scene := _cached_scene(&"damage_text", DAMAGE_TEXT_PATH)
-	_cached_scene(&"DamageNumber", DAMAGE_NUMBER_PATH)
-	_cached_scene(&"MissEffect", MISS_EFFECT_PATH)
+	_cached_scene(&"damage_number", DAMAGE_NUMBER_PATH)
+	_cached_scene(&"miss_effect", MISS_EFFECT_PATH)
 	var role_be_hit_scene := preload_scene_path(ROLE_BE_HIT_EFFECT_PATH)
 	var monster_hit_scene := _cached_scene(&"monster_be_hit", MONSTER_BE_HIT_PATH)
 	var monster_blood_scene := _cached_scene(&"monster_blood", MONSTER_BLOOD_PATH)
@@ -1530,11 +1530,11 @@ func clear_combat_runtime_cache() -> void:
 	monster_blood = null
 	monster_be_hit = null
 	special_affect = null
-	DamageNumber = null
-	MissEffect = null
+	damage_number = null
+	miss_effect = null
 	role_bullet = null
-	FlyBullet = null
-	ChaseBullet_ = null
+	fly_bullet = null
+	chase_bullet_ = null
 	special_effect_bullet = null
 	role4_bullet = null
 	role_bullet_1 = null
@@ -1645,8 +1645,8 @@ func get_current_role_equipment_preload_paths(role_id: int = 0) -> Array[String]
 		return paths
 	var body_name: String = str(get_clean_name(str(names.get("body", "Empty"))))
 	var weapon_name: String = str(names.get("weapon", "Empty"))
-	var body_path := "res://Art/HeroPicture/Role%dAllEquipment/Role_%d_Body_%s.png" % [role_id, role_id, body_name]
-	var weapon_path := "res://Art/HeroPicture/Role%dAllEquipment/Role_%d_Eq_%s.png" % [role_id, role_id, weapon_name]
+	var body_path := "res://Art/HeroPicture/Role%dAllEquipment/role_%d_Body_%s.png" % [role_id, role_id, body_name]
+	var weapon_path := "res://Art/HeroPicture/Role%dAllEquipment/role_%d_Eq_%s.png" % [role_id, role_id, weapon_name]
 	if ResourceLoader.exists(body_path):
 		paths.append(body_path)
 	if ResourceLoader.exists(weapon_path):
@@ -1714,8 +1714,8 @@ func release_role_runtime_resources() -> void:
 	_erase_cached_paths_by_prefix(_audio_cache, ["res://Music/Hero/"])
 	special_effect_bullet = null
 	role_bullet = null
-	FlyBullet = null
-	ChaseBullet_ = null
+	fly_bullet = null
+	chase_bullet_ = null
 	role4_bullet = null
 	role_bullet_1 = null
 	role1_shallow = null
@@ -2694,7 +2694,7 @@ var pl_sell = null
 var ldl = null
 var game_information = null
 var zd_skill = null
-var Skill_learn = null
+var skill_learn = null
 var role_information = null
 var special_effect_bullet = null
 var choose_text = null
@@ -2740,21 +2740,21 @@ var role_magic_need = null
 var game_need_know = null
 var monster_head = null
 var level_fall_box = null
-var LevelInfo = null
+var level_info = null
 var pj = null
 var help_thing = null
 var hc_help = null
 var boss_blood = null
-var Stage = null
+var stage = null
 var decompose = null
 var decompose_help = null
 var reward_box = null
 var reward_info = null
 var task_title = null
 var basic_task = null
-var TaskReward = null
+var task_reward = null
 var add_font = null
-var GameAnnouncement = null
+var game_announcement = null
 var basic_pellet = null
 var trans_box = null
 var llbt_challenge = null
@@ -2768,7 +2768,7 @@ var LSH = null
 var LXDY = null
 var dsg_choose = null
 var line = null
-var MysteryShop = null
+var mystery_shop = null
 var cure_times_box = null
 var letter_for_player = null
 var some_monster_help = null
@@ -2776,11 +2776,11 @@ var lhhj = null
 var listbutton = null
 var lhhjhelp = null
 var monster141_aura = null
-var ReturnBackMap = null
+var return_back_map = null
 var zhenfalxbutton = null
 var zhen_fa_info = null
 var zhen_fa_ui = null
-var _28_ui = null
+var ui_28 = null
 var zhenyanbutton = null
 var zhen_yan_cure_level = null
 var zhen_fa_tu_po = null
@@ -2807,7 +2807,7 @@ func add_role_button(parent, my_name, my_father):
 
 
 func add_basic_ar_button(parent, Num):
-	var target = instance_scene(_cached_scene(&"BasicArButton", BASIC_AR_BUTTON_PATH), parent)
+	var target = instance_scene(_cached_scene(&"basic_ar_button", BASIC_AR_BUTTON_PATH), parent)
 	if target == null:
 		return null
 	target.archive_num = Num
@@ -2850,10 +2850,10 @@ func addzhenyanbutton(parent, position, loc_num, father):
 	return target
 
 
-func add_28_ui(parent, position):
-	if not _28_ui:
-		_28_ui = _load_scene("res://Scene/other_scene/twenty_eight_constellations.tscn")
-	var target = instance_scene(_28_ui, parent)
+func addui_28(parent, position):
+	if not ui_28:
+		ui_28 = _load_scene("res://Scene/other_scene/twenty_eight_constellations.tscn")
+	var target = instance_scene(ui_28, parent)
 	target.position = position
 	return target
 
@@ -2885,9 +2885,9 @@ func add_zhenfalxbutton(parent, zhenfa_name, father):
 
 
 func addhdgqmap(parent, position):
-	if not ReturnBackMap:
-		ReturnBackMap = _load_scene("res://Scene/other_scene/return_back_map.tscn")
-	var target = instance_scene(ReturnBackMap, parent)
+	if not return_back_map:
+		return_back_map = _load_scene("res://Scene/other_scene/return_back_map.tscn")
+	var target = instance_scene(return_back_map, parent)
 	target.position = position
 	return target
 
@@ -2973,9 +2973,9 @@ func add_cure_times_box(parent, position):
 
 
 func add_mystery_shop(parent, position):
-	if not MysteryShop:
-		MysteryShop = _load_scene("res://Scene/shop/mystery_shop.tscn")
-	var target = instance_scene(MysteryShop, parent)
+	if not mystery_shop:
+		mystery_shop = _load_scene("res://Scene/shop/mystery_shop.tscn")
+	var target = instance_scene(mystery_shop, parent)
 	if position == Vector2.ZERO or position == Vector2(0, 0):
 		target.position = viewport_center_for_parent(parent) - Vector2(458, 293)
 	else:
@@ -3052,11 +3052,11 @@ func add_lxdy(parent, parent_node):
 	return target
 
 
-func add_monster_info(parent, MonsterName, position):
+func add_monster_info(parent, monster_name, position):
 	if not monster_info:
 		monster_info = _load_scene("res://Scene/monster/boss_info.tscn")
 	var target = instance_scene(monster_info, parent)
-	target.MonsterName = MonsterName
+	target.monster_name = monster_name
 	target.position = position
 	return target
 
@@ -3083,7 +3083,7 @@ func add_forge_box(parent, Name, Num):
 		forge_box = _load_scene("res://Scene/ldl/forge_material_box.tscn")
 	var target = instance_scene(forge_box, parent)
 	target.ItemName = Name
-	target.NeedNum = Num
+	target.need_num = Num
 	return target
 
 
@@ -3112,9 +3112,9 @@ func add_basic_pellet(parent, position):
 
 
 func add_game_announcement(parent, position):
-	if not GameAnnouncement:
-		GameAnnouncement = _load_scene("res://Scene/main_menu/game_announcement.tscn")
-	var target = instance_scene(GameAnnouncement, parent)
+	if not game_announcement:
+		game_announcement = _load_scene("res://Scene/main_menu/game_announcement.tscn")
+	var target = instance_scene(game_announcement, parent)
 	if target is CanvasLayer:
 		target.offset = position
 	elif target is Node2D or target is Control:
@@ -3139,9 +3139,9 @@ func add_font_(parent, show_text, font, font_size, font_color, out_line_size, ou
 
 
 func add_task_reward(parent, ItemName, total_num):
-	if not TaskReward:
-		TaskReward = _load_scene("res://Scene/task/task_reward.tscn")
-	var target = instance_scene(TaskReward, parent)
+	if not task_reward:
+		task_reward = _load_scene("res://Scene/task/task_reward.tscn")
+	var target = instance_scene(task_reward, parent)
 	target.ItemName = ItemName
 	target.total_num = total_num
 	target.z_index = 99
@@ -3159,12 +3159,12 @@ func add_basic_task(parent, position):
 	return target
 
 
-func add_task_title(parent, TaskType, TaskName, my_father):
+func add_task_title(parent, task_type, task_name, my_father):
 	if not task_title:
 		task_title = _load_scene("res://Scene/task/task_title.tscn")
 	var target = instance_scene(task_title, parent)
-	target.TaskName = TaskName
-	target.TaskType = TaskType
+	target.task_name = task_name
+	target.task_type = task_type
 	target.my_father = my_father
 	target.z_index = 99
 	return target
@@ -3217,10 +3217,10 @@ func cleanup_transient_ui() -> void:
 		"ShopShadowBottom",
 		"ShopShadowLeft",
 		"ShopShadowRight",
-		"LevelInfo",
+		"level_info",
 		"BasicTask",
 		"Shop",
-		"MysteryShop",
+		"mystery_shop",
 		"LDL",
 		"ldl",
 		"lxdy",
@@ -3231,13 +3231,13 @@ func cleanup_transient_ui() -> void:
 		"LHHJ",
 		"Learn_skill",
 		"HDZM",
-		"ReturnBackMap",
-		"GameAnnouncement",
+		"return_back_map",
+		"game_announcement",
 		"GameSet",
 		"RewardInterface",
 		"Choose_item",
 		"choose_scene",
-		"MessageShow",
+		"message_show",
 		"TwentyEightConstellations"
 	]
 	var scene_root = get_tree().current_scene
@@ -3479,13 +3479,12 @@ func add_reward_info(parent, position, list, use_item_name, use_num):
 	return target
 
 
-func add_reward_box(parent, item_id, Num):
+func add_reward_box(parent, item_id, num):
 	if not reward_box:
 		reward_box = _load_scene("res://Scene/other_scene/reward_box_2.tscn")
 	var target = instance_scene(reward_box, parent)
 	target.item_id = item_id
-	target.Name = item_id
-	target.Num = Num
+	target.num = num
 	return target
 
 
@@ -3515,9 +3514,9 @@ func add_zztw_trap(parent, Name, position):
 
 
 func add_stage(parent, Obj, position):
-	if not Stage:
-		Stage = _load_scene("res://Scene/level/jctfloor_1.tscn")
-	var target = instance_scene(Stage, parent)
+	if not stage:
+		stage = _load_scene("res://Scene/level/jctfloor_1.tscn")
+	var target = instance_scene(stage, parent)
 	target.Type = Obj
 	target.position = position
 	return target
@@ -3527,7 +3526,7 @@ func add_boss_blood_(parent, Obj):
 	if not boss_blood:
 		boss_blood = _load_scene(BOSS_BLOOD_PATH)
 	var target = instance_scene(boss_blood, parent)
-	target.GetObj = Obj
+	target.get_obj = Obj
 	return target
 
 
@@ -3563,7 +3562,7 @@ func get_current_level_fall_pro(default_pro: float) -> float:
 		if level_info_scene != null:
 			var probe = level_info_scene.instantiate()
 			if probe != null:
-				sync_level_drop_pro_data(probe.LevelInfo)
+				sync_level_drop_pro_data(probe.level_info)
 				probe.queue_free()
 	var level_name = str(current_level)
 	var base_pro = -1.0
@@ -3597,7 +3596,7 @@ func _enter_level_without_info(parent, path):
 
 func add_level_info(parent, Name, position, path):
 	current_level = Name
-	var show_level_info := bool(MainSet.set_data.get("LevelInfo", false))
+	var show_level_info := bool(MainSet.set_data.get("level_info", false))
 	if (
 		str(path)
 		in [
@@ -3619,14 +3618,14 @@ func add_level_info(parent, Name, position, path):
 		constellation_endless_mode = false
 	if str(path) == "res://Scene/level/level_bxgh.tscn":
 		selected_eight_immortal_id = 0
-	if not LevelInfo:
-		LevelInfo = _load_scene("res://Scene/other_scene/level_info.tscn")
+	if not level_info:
+		level_info = _load_scene("res://Scene/other_scene/level_info.tscn")
 	if not show_level_info:
-		var probe = LevelInfo.instantiate()
+		var probe = level_info.instantiate()
 		if probe != null:
-			probe.LevelName = Name
+			probe.level_name = Name
 			probe.target_stage_path = path
-			sync_level_drop_pro_data(probe.LevelInfo)
+			sync_level_drop_pro_data(probe.level_info)
 			var nightmare_block_message := ""
 			if probe.has_method("_get_nightmare_entry_block_message"):
 				nightmare_block_message = str(probe.call("_get_nightmare_entry_block_message"))
@@ -3635,11 +3634,11 @@ func add_level_info(parent, Name, position, path):
 				add_message_show(parent, nightmare_block_message, 1.5, Vector2(470, 300))
 				return null
 		return _enter_level_without_info(parent, path)
-	var target = instance_scene(LevelInfo, parent)
+	var target = instance_scene(level_info, parent)
 	if target == null:
 		return null
-	sync_level_drop_pro_data(target.LevelInfo)
-	target.LevelName = Name
+	sync_level_drop_pro_data(target.level_info)
+	target.level_name = Name
 	target.target_stage_path = path
 	if position == Vector2.ZERO or position == Vector2(0, 0):
 		target.position = viewport_center_for_parent(parent) - Vector2(470, 295)
@@ -3648,12 +3647,12 @@ func add_level_info(parent, Name, position, path):
 	return target
 
 
-func add_monster_head(parent, Name, IsBoss, ScenePath := ""):
+func add_monster_head(parent, Name, is_boss, ScenePath := ""):
 	if not monster_head:
 		monster_head = _load_scene("res://Scene/other_scene/monster_head_info.tscn")
 	var target = instance_scene(monster_head, parent)
-	target.MonsterName = Name
-	target.IsBoss = IsBoss
+	target.monster_name = Name
+	target.is_boss = is_boss
 	target.monster_scene_path = ScenePath
 	return target
 
@@ -3666,7 +3665,7 @@ func add_level_fall_box(parent, Inldl, Inhhgz, Name, qh_level, wx, EqProp):
 	target.is_in_hhgz = Inhhgz
 	target.qh_level = qh_level
 	target.wx = wx
-	target.EQ_prop = EqProp
+	target.eq_prop = EqProp
 	target.get_item_name = Name
 	target.set_meta("item_name", Name)
 	target.set_meta("level_fall_box", true)
@@ -3682,7 +3681,7 @@ func add_item_box(parent, Inldl, Inhhgz, Name, qh_level, num, wx, EqProp):
 	target.qh_level = qh_level
 	target.total_number = num
 	target.wx = wx
-	target.EQ_prop = EqProp
+	target.eq_prop = EqProp
 	target.get_item_name = Name
 	target.set_meta("item_name", Name)
 	return target
@@ -3713,7 +3712,7 @@ func add_new_bullet(parent, position, dir, name_, dic):
 	var target = instance_scene(new_bullet, parent)
 	target.position = position
 	target.name_ = name_
-	target.HitDic = dic
+	target.hit_dic = dic
 	target.direction = dir
 	return target
 
@@ -3775,7 +3774,7 @@ func add_role_bullet(parent, position, dir, name_, dic):
 		return
 	target.position = position
 	target.name_ = name_
-	target.HitDic = dic
+	target.hit_dic = dic
 	target.direction = dir
 	return target
 
@@ -3797,7 +3796,7 @@ func add_monster65_bullet(parent, position_):
 
 
 func add_aura(parent, position_, Value, color_type = 0):
-	var target = instance_scene(_cached_scene(&"Aura_", AURA_PATH), parent)
+	var target = instance_scene(_cached_scene(&"aura_", AURA_PATH), parent)
 	if target == null:
 		return null
 	target.Value = PaSkill.apply_soul_gain_bonus(int(Value))
@@ -3819,7 +3818,7 @@ func add_buffinfor(parent, position_, Data):
 func add_buff_icon(parent, Data):
 	if parent == null or not is_instance_valid(parent) or parent.is_queued_for_deletion():
 		return null
-	var buff_scene := _cached_scene(&"BuffIcon_", BUFF_ICON_PATH)
+	var buff_scene := _cached_scene(&"buff_icon_", BUFF_ICON_PATH)
 	if buff_scene == null:
 		return null
 	var target = buff_scene.instantiate()
@@ -3830,7 +3829,7 @@ func add_buff_icon(parent, Data):
 	var buff_name := str(Data.get("Name", "")) if Data is Dictionary else ""
 	if not buff_name.is_empty():
 		target.name = buff_name
-		target.BuffName = buff_name
+		target.buff_name = buff_name
 	return target
 
 
@@ -3838,20 +3837,20 @@ func is_monster_control_buff(buff_name: Variant) -> bool:
 	return str(buff_name) in MONSTER_CONTROL_BUFF_NAMES
 
 
-func add_buff(parent, BuffInfo):
-	if parent == null or not (BuffInfo is Dictionary):
+func add_buff(parent, buff_info):
+	if parent == null or not (buff_info is Dictionary):
 		return null
 	var target = parent.get_parent()
-	if target != null and target.get("NoDeBuff") != null:
-		if target.get("NoDeBuff"):
+	if target != null and target.get("no_debuff") != null:
+		if target.get("no_debuff"):
 			if (
-				BuffInfo.has("DeBuff")
-				and BuffInfo["DeBuff"]
-				and BuffInfo["Name"] != "jgz"
-				and BuffInfo["Name"] != "zznh"
+				buff_info.has("DeBuff")
+				and buff_info["DeBuff"]
+				and buff_info["Name"] != "jgz"
+				and buff_info["Name"] != "zznh"
 			):
 				return null
-	var new_name := str(BuffInfo.get("Name", ""))
+	var new_name := str(buff_info.get("Name", ""))
 	if new_name == "":
 		return null
 	if target is BaseMonster and target.is_control_immune() and is_monster_control_buff(new_name):
@@ -3864,13 +3863,13 @@ func add_buff(parent, BuffInfo):
 		"Boundground",
 		"silent",
 		"Immobilize",
-		"BloodFix",
-		"LifeManaLock",
+		"blood_fix",
+		"life_mana_lock",
 		"Scary",
 		"SuperArmor",
 		"DoubleFallPro",
 		"PoisionBody",
-		"NoDeBuff",
+		"no_debuff",
 		"yxbuff",
 		"HealOverTime",
 		"MagicDrain",
@@ -3878,7 +3877,7 @@ func add_buff(parent, BuffInfo):
 		"jgz",
 		"zznh",
 		"speed_down",
-		"DefeReduce",
+		"defe_reduce",
 		"nlls",
 		"slzbuff",
 		"lpzbuff",
@@ -3889,24 +3888,24 @@ func add_buff(parent, BuffInfo):
 		"PetDefenseBonus",
 		"PetManaBonus"
 	]
-	var can_add := bool(BuffInfo.get("CanAdd", false)) and new_name != "speed_down"
+	var can_add := bool(buff_info.get("CanAdd", false)) and new_name != "speed_down"
 	if not can_add and new_name in unique_buff_names:
 		for child in parent.get_children():
-			var child_buff = child.get("BuffInfo")
+			var child_buff = child.get("buff_info")
 			if child_buff is Dictionary and str(child_buff.get("Name", "")) == new_name:
-				if child.get("BuffTime") != null:
-					child.BuffInfo = BuffInfo.duplicate(true)
-					child.last_value = float(BuffInfo.get("value", 0.0))
+				if child.get("buff_time") != null:
+					child.buff_info = buff_info.duplicate(true)
+					child.last_value = float(buff_info.get("value", 0.0))
 					if new_name == "speed_down" and child.has_method("apply_slow_speed"):
 						child.apply_slow_speed()
-					child.LastTime = float(BuffInfo.get("AddTime", 0.0))
-					if child.BuffTime != null:
-						child.BuffTime.start(float(BuffInfo.get("AddTime", 0.0)))
+					child.LastTime = float(buff_info.get("AddTime", 0.0))
+					if child.buff_time != null:
+						child.buff_time.start(float(buff_info.get("AddTime", 0.0)))
 					if (
 						new_name in ["PetLifeBonus", "PetAttackBonus", "PetDefenseBonus", "PetManaBonus"]
 						and child.has_method("refresh_pet_owner_bonus")
 					):
-						child.refresh_pet_owner_bonus(maxi(0, int(BuffInfo.get("value", 0))))
+						child.refresh_pet_owner_bonus(maxi(0, int(buff_info.get("value", 0))))
 					if (
 						target is BaseMonster
 						and not target.is_control_immune()
@@ -3915,12 +3914,12 @@ func add_buff(parent, BuffInfo):
 						target.interrupt_movement_for_control()
 					return child
 				return null
-	var node_instance = instance_scene(_cached_scene(&"BaseBuff_", BASE_BUFF_PATH), parent)
+	var node_instance = instance_scene(_cached_scene(&"base_buff_", BASE_BUFF_PATH), parent)
 	if node_instance == null:
 		return null
 	if node_instance.has_method("start_buff"):
 		var buff_instance = node_instance
-		buff_instance.BuffInfo = BuffInfo.duplicate(true)
+		buff_instance.buff_info = buff_info.duplicate(true)
 		if (
 			target is BaseMonster
 			and not target.is_control_immune()
@@ -3945,13 +3944,13 @@ func add_after_level_end(parent, position):
 	return target
 
 
-func add_combo(parent, ComboNum_, position):
+func add_combo(parent, combo_num_, position):
 	for child in parent.get_children():
 		if child is Node2D and child.has_method(&"set_combo_num"):
-			child.set_combo_num(ComboNum_)
+			child.set_combo_num(combo_num_)
 			child.position = position
 			return child
-	var combo_scene = _cached_scene(&"Combo", COMBO_PATH)
+	var combo_scene = _cached_scene(&"combo", COMBO_PATH)
 	if combo_scene == null:
 		return null
 	var target = combo_scene.instantiate()
@@ -3960,17 +3959,17 @@ func add_combo(parent, ComboNum_, position):
 	parent.add_child(target)
 	target.position = position
 	if target.has_method(&"set_combo_num"):
-		target.set_combo_num(ComboNum_)
+		target.set_combo_num(combo_num_)
 	else:
-		target.ComboNum = ComboNum_
+		target.combo_num = combo_num_
 	return target
 
 
-func add_combo_num(parent, ComboNum_):
-	var target = instance_scene(_cached_scene(&"ComboNum", COMBO_NUM_PATH), parent)
+func add_combo_num(parent, combo_num_):
+	var target = instance_scene(_cached_scene(&"combo_num", COMBO_NUM_PATH), parent)
 	if target == null:
 		return null
-	target.ComboNum = ComboNum_
+	target.combo_num = combo_num_
 	return target
 
 
@@ -4005,7 +4004,7 @@ func add_change_clothes_jm(parent, position, name_, transmogrified):
 
 
 func add_miss_effect(parent, position):
-	var target = instance_scene(_cached_scene(&"MissEffect", MISS_EFFECT_PATH), parent)
+	var target = instance_scene(_cached_scene(&"miss_effect", MISS_EFFECT_PATH), parent)
 	if target == null:
 		return null
 	target.position = position
@@ -4016,7 +4015,7 @@ func add_damage_number(parent, value, Type, is_crit, tar):
 	if not bool(MainSet.set_data.get("ShowDamageText", true)):
 		return null
 
-	var target = instance_scene(_cached_scene(&"DamageNumber", DAMAGE_NUMBER_PATH), parent)
+	var target = instance_scene(_cached_scene(&"damage_number", DAMAGE_NUMBER_PATH), parent)
 	if target == null:
 		return null
 	if is_instance_valid(tar):
@@ -4110,7 +4109,7 @@ func add_role_bullet_1(parent, position, name_, dic):
 	var target = instance_scene(role_bullet_1, parent)
 	target.position = position
 	target.name_ = name_
-	target.HitDic = dic
+	target.hit_dic = dic
 	return target
 
 
@@ -4568,7 +4567,7 @@ func add_magic_weapon(parent, name_, position):
 
 
 func add_message_show(parent_node, NeedText: String, time: float, Position: Vector2):
-	var target = instance_scene(_cached_scene(&"MessageShow", MESSAGE_SHOW_PATH), parent_node)
+	var target = instance_scene(_cached_scene(&"message_show", MESSAGE_SHOW_PATH), parent_node)
 	if target == null:
 		return null
 	target.z_index = 999
@@ -4681,9 +4680,9 @@ func create_hands(parent, direction, position):
 
 
 func call_chase_bullet(parent, name_, speed, time: float, dir, position, hit_name, dic):
-	var target = instance_scene(_cached_scene(&"ChaseBullet_", CHASE_BULLET_PATH), parent)
+	var target = instance_scene(_cached_scene(&"chase_bullet_", CHASE_BULLET_PATH), parent)
 	if target == null:
-		print("Error: failed to instantiate ChaseBullet_, check resource path")
+		print("Error: failed to instantiate chase_bullet_, check resource path")
 		return null
 	if target.has_node("Chaseani"):
 		target.chase_ani = target.get_node("Chaseani")
@@ -4695,7 +4694,7 @@ func call_chase_bullet(parent, name_, speed, time: float, dir, position, hit_nam
 	target.speed_ = speed
 	target.time_ = time
 	target.position = position
-	target.AttList = dic
+	target.att_list = dic
 	target.hit_name = hit_name
 	return target
 
@@ -4709,7 +4708,7 @@ func call_fly_bullet(parent, name_, dir, position, distance, speed, hit_name, di
 	target.direction_ = dir
 	target.distance = distance
 	target.position = position
-	target.AttList = dic
+	target.att_list = dic
 	target.hit_name = hit_name
 	return target
 
@@ -4808,9 +4807,9 @@ func add_role_information(parent, position):
 
 
 func add_learn_skill(parent, position):
-	if not Skill_learn:
-		Skill_learn = _load_scene("res://Scene/skill/learn_skill.tscn")
-	var target = instance_scene(Skill_learn, parent)
+	if not skill_learn:
+		skill_learn = _load_scene("res://Scene/skill/learn_skill.tscn")
+	var target = instance_scene(skill_learn, parent)
 	target.z_index = 99
 	target.position = position
 	return target
@@ -4954,7 +4953,7 @@ func add_equ_propeties_box(parent, position, name_, qh_level, wx, Data):
 		target.qh_level = qh_level
 		target.nam = name_
 		target.wx = wx
-		target.EQ_prop = Data
+		target.eq_prop = Data
 	target.position = position
 	left_align_popup_texts(target)
 	return target
@@ -5274,7 +5273,7 @@ func add_role_bullet_1_safe(parent, position, name_, dic):
 	var target = role_bullet_1.instantiate()
 	target.position = position
 	target.name_ = name_
-	target.HitDic = dic
+	target.hit_dic = dic
 	parent.call_deferred("add_child", target)
 	return target
 
@@ -5284,7 +5283,7 @@ func add_bullet_safe(bullet_name, parent, direction, show_speed, position, hit_n
 	if bullet_scene == null:
 		return null
 	var target = bullet_scene.instantiate()
-	target.AttList = list
+	target.att_list = list
 	target.hit_name = hit_name_
 	if str(hit_name_) != "" and list is Dictionary:
 		target.obj_attack_dict[hit_name_] = list
@@ -5319,7 +5318,7 @@ func add_bullet(bullet_name: String, parent, direction: bool, show_speed, positi
 	var target = instance_scene(load_monster_bullet_scene(bullet_name), parent)
 	if target == null:
 		return null
-	target.AttList = list
+	target.att_list = list
 	target.hit_name = hit_name_
 	target.position = position
 	target.dir = direction
@@ -5490,10 +5489,10 @@ func get_random_wx(count, source_list):
 
 func check_dir_between_two_obj(Player, Monster):
 	if Player.position.x >= Monster.position.x:
-		if not Player.PlayerDir:
+		if not Player.player_dir:
 			return true
 	elif Player.position.x < Monster.position.x:
-		if Player.PlayerDir:
+		if Player.player_dir:
 			return true
 	return false
 
@@ -5524,11 +5523,11 @@ func add_all_item_num(list, Num, NumRange):
 	for i in range(Num):
 		var item_name = list[randi_range(0, list.size() - 1)]
 		dic[item_name]["Num"] += NumRange
-	var List_ = []
+	var list_temp = []
 	for i in dic:
 		if int(dic[i]["Num"]) == 0:
-			List_.push_back(i)
-	for i in List_:
+			list_temp.push_back(i)
+	for i in list_temp:
 		dic.erase(i)
 	for i in dic:
 		var num = dic[i]["Num"]
@@ -5544,16 +5543,16 @@ func get_all_item_num(list, Num, NumRange):
 	for i in range(Num):
 		var item_name = list[randi_range(0, list.size() - 1)]
 		dic[item_name]["Num"] += NumRange
-	var List_ = []
+	var list_temp = []
 	for i in dic:
 		if int(dic[i]["Num"]) == 0:
-			List_.push_back(i)
-	for i in List_:
+			list_temp.push_back(i)
+	for i in list_temp:
 		dic.erase(i)
 	for i in dic:
 		var item_name = i
 		var num = dic[i]["Num"]
-		dic[i] = {"Name": item_name, "Value": num, "Prop": {}, "WX": [], "StrengthValue": 0}
+		dic[i] = {"Name": item_name, "Value": num, "Prop": {}, "WX": [], "strength_value": 0}
 	var ll = []
 	for i in dic:
 		ll.push_back(dic[i])
@@ -5563,9 +5562,9 @@ func get_all_item_num(list, Num, NumRange):
 func remove_all_active_buffs():
 	for i in RoleProp.source_player.buff.get_children():
 		if i != null:
-			if i.BuffInfo["AddTime"] < 999:
-				if i.BuffInfo.has("CanRemove"):
-					if i.BuffInfo["CanRemove"]:
+			if i.buff_info["AddTime"] < 999:
+				if i.buff_info.has("CanRemove"):
+					if i.buff_info["CanRemove"]:
 						i.queue_free()
 				else:
 					i.queue_free()
@@ -5574,7 +5573,7 @@ func remove_all_active_buffs():
 func remove_a_all_buff():
 	for i in RoleProp.source_player.buff.get_children():
 		if i != null:
-			match i.BuffInfo["Name"]:
+			match i.buff_info["Name"]:
 				"DoubleFallPro":
 					continue
 			i.queue_free()
@@ -5607,7 +5606,7 @@ func check_wd(OBJ):
 	var count: int = 0
 	for i in OBJ.buff.get_children():
 		if i != null:
-			if i.BuffInfo["Name"] == "Voodoo":
+			if i.buff_info["Name"] == "Voodoo":
 				count += 1
 	return count
 
@@ -5615,7 +5614,7 @@ func check_wd(OBJ):
 func remove_wd(OBJ):
 	for i in OBJ.buff.get_children():
 		if i != null:
-			if i.BuffInfo["Name"] == "Voodoo":
+			if i.buff_info["Name"] == "Voodoo":
 				i.queue_free()
 
 

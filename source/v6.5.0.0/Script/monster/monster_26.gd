@@ -14,11 +14,11 @@ func monster_26():
 	self.crit = 20
 	self.miss = 15
 	self.lucky = 0
-	self.Htarget = 10
-	self.Toughness = 0
+	self.htarget = 10
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 13
 	self.mysee = 300
 	self.attack_range = 45
@@ -35,7 +35,7 @@ func monster_26():
 		{
 			"Name": "Bleed",
 			"AddTime": 3,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"CanAdd": true,
 			"DeBuff": true,
 			"value": 50,

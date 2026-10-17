@@ -169,7 +169,7 @@ func _recover_interrupted_combat_state() -> void:
 
 
 func get_knockback_direction_for_target(target_obj: Node, target_hero: BaseHero) -> int:
-	return 1 if MonsterDirection else -1
+	return 1 if monster_direction else -1
 
 
 func get_knockback_velocity_for_target(target_obj: Node, target_hero: BaseHero) -> Vector2:
@@ -232,11 +232,11 @@ func _configure_stats() -> void:
 	crit = int(_config.get("crit", 0))
 	miss = int(_config.get("miss", 0))
 	lucky = int(_config.get("lucky", 0))
-	Htarget = int(_config.get("hit", 100))
-	Toughness = float(_config.get("toughness", 20.0))
+	htarget = int(_config.get("hit", 100))
+	toughness = float(_config.get("toughness", 20.0))
 	ar = int(_config.get("armor_break", average_level * 3))
 	sp = int(_config.get("magic_break", average_level * 3))
-	Critreduce = int(_config.get("crit_reduce", 0))
+	crit_reduce = int(_config.get("crit_reduce", 0))
 	speed = float(_config.get("speed", 6.0))
 	mysee = int(_config.get("sight", 1000))
 	attack_range = int(_config.get("range", 250))
@@ -305,8 +305,8 @@ func _resolve_config() -> Dictionary:
 
 func _reset_source_skill_cooldowns() -> void:
 	var ranges: Array = _config.get("cooldown_ranges", [[6, 10], [8, 10]])
-	Skill_1_CD = randi_range(int(ranges[0][0]), int(ranges[0][1]))
-	Skill_2_CD = randi_range(int(ranges[1][0]), int(ranges[1][1]))
+	skill_1_cd = randi_range(int(ranges[0][0]), int(ranges[0][1]))
+	skill_2_cd = randi_range(int(ranges[1][0]), int(ranges[1][1]))
 
 
 func _configure_visuals() -> void:
@@ -428,9 +428,9 @@ func ai_think() -> void:
 		return
 	if not _is_standing_on_boat():
 		return
-	if Skill_1_CD <= 0 and horizontal_distance < 600.0:
+	if skill_1_cd <= 0 and horizontal_distance < 600.0:
 		_use_attack(&"hit2", 0)
-	elif Skill_2_CD <= 0 and horizontal_distance < 600.0:
+	elif skill_2_cd <= 0 and horizontal_distance < 600.0:
 		_use_attack(&"hit3", 1)
 	elif not _combat_range_latched and horizontal_distance <= float(attack_range):
 		_combat_range_latched = true
@@ -470,9 +470,9 @@ func _use_attack(action: StringName, cooldown_index: int) -> void:
 		var cooldown_ranges: Array = _config.get("cooldown_ranges", [[6, 10], [8, 10]])
 		var cooldown_range: Array = cooldown_ranges[cooldown_index]
 		if cooldown_index == 0:
-			Skill_1_CD = randi_range(int(cooldown_range[0]), int(cooldown_range[1]))
+			skill_1_cd = randi_range(int(cooldown_range[0]), int(cooldown_range[1]))
 		else:
-			Skill_2_CD = randi_range(int(cooldown_range[0]), int(cooldown_range[1]))
+			skill_2_cd = randi_range(int(cooldown_range[0]), int(cooldown_range[1]))
 	mr_player.play(action)
 	var action_length := _action_length(action)
 	_drive_source_attack_movement(action, action_length)
@@ -841,7 +841,7 @@ func _apply_165_sleep(target: Node, sleep_damage: int) -> void:
 			"Name": "Immobilize",
 			"AddTime": 4.0,
 			"value": 0.0,
-			"ReduceInterval": 0.0,
+			"reduce_interval": 0.0,
 			"CanRemove": true,
 			"CanAdd": false,
 			"DeBuff": true
@@ -853,7 +853,7 @@ func _apply_165_sleep(target: Node, sleep_damage: int) -> void:
 			"Name": "hanxiangzisleep",
 			"AddTime": 4.0,
 			"value": sleep_damage,
-			"ReduceInterval": 1.0,
+			"reduce_interval": 1.0,
 			"CanRemove": true,
 			"CanAdd": false,
 			"DeBuff": true
@@ -884,7 +884,7 @@ func _drive_175_returning(projectile: WutaiMinghaiProjectile, outward_direction:
 
 func _start_absorb_state() -> void:
 	_absorb_active = true
-	IsIndestructible = true
+	is_indestructible = true
 	var absorb_time := 5.0
 
 	_fire(
@@ -913,7 +913,7 @@ func _finish_absorb_state(state_token: int, absorb_time: float) -> void:
 	await get_tree().create_timer(absorb_time, false).timeout
 	if is_inside_tree() and int(get_meta("eight_immortals_absorb_token", -1)) == state_token:
 		_absorb_active = false
-		IsIndestructible = false
+		is_indestructible = false
 
 
 func _start_full_invulnerability(duration: float) -> void:
@@ -1037,7 +1037,7 @@ func _try_stun_166_attacker(target: Variant) -> void:
 				"Name": "stun",
 				"AddTime": 1.0,
 				"value": 0.0,
-				"ReduceInterval": 0.0,
+				"reduce_interval": 0.0,
 				"CanRemove": true,
 				"CanAdd": true,
 				"DeBuff": true,

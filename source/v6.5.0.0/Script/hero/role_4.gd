@@ -135,7 +135,7 @@ func role_4():
 		mmw_attack["addeffect"] = {
 			"Name": "Voodoo",
 			"AddTime": 5,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": int(RoleProp.roleprop.power * 0.1),
 			"CanAdd": true,
 			"AttackKind": "real",
@@ -164,7 +164,7 @@ func role_4():
 			{
 				"Name": "Voodoo",
 				"AddTime": 5,
-				"ReduceInterval": 1,
+				"reduce_interval": 1,
 				"value": int(RoleProp.roleprop.power * 0.1),
 				"CanAdd": true,
 				"AttackKind": "real",
@@ -180,7 +180,7 @@ func role_4():
 			{
 				"Name": "Voodoo",
 				"AddTime": 5,
-				"ReduceInterval": 1,
+				"reduce_interval": 1,
 				"value": int(RoleProp.roleprop.power * 0.1),
 				"CanAdd": true,
 				"AttackKind": "real",
@@ -196,7 +196,7 @@ func role_4():
 			{
 				"Name": "Voodoo",
 				"AddTime": 5,
-				"ReduceInterval": 1,
+				"reduce_interval": 1,
 				"value": int(RoleProp.roleprop.power * 0.1),
 				"CanAdd": true,
 				"AttackKind": "real",
@@ -281,7 +281,7 @@ func shovel_hit_2():
 func shovel_hit_3():
 	super.get_hit_data("hit3")
 	get_action = "hit3"
-	if PlayerDir:
+	if player_dir:
 		velocity.x = 180
 	else:
 		velocity.x = -180
@@ -295,7 +295,7 @@ func shovel_hit_3():
 
 
 func shovel_qlj():
-	self.Role1SkillInter["qlj"] = 4.8
+	self.role1_skill_inter["qlj"] = 4.8
 	velocity.x = 0
 	get_action = "qlj"
 	is_using_skills = true
@@ -309,7 +309,7 @@ func shovel_qlj():
 
 
 func shovel_dcj():
-	self.Role1SkillInter["dcj"] = 4.8
+	self.role1_skill_inter["dcj"] = 4.8
 	velocity.x = 0
 	get_action = "dcj"
 	is_using_skills = true
@@ -323,11 +323,11 @@ func shovel_dcj():
 
 
 func shovel_tkj():
-	self.Role1SkillInter["tkj"] = 2.4
+	self.role1_skill_inter["tkj"] = 2.4
 	var tkj_awakened: bool = _is_skill_awakened("tkj") and _is_skill_awaken_enabled("tkj")
 	tkj_awaken_mode = 2 if tkj_awakened and Input.is_action_pressed("Exit") else (1 if tkj_awakened else 0)
 	if tkj_awaken_mode == 1:
-		velocity.x = 600.0 if PlayerDir else -600.0
+		velocity.x = 600.0 if player_dir else -600.0
 		velocity.y = 0.0
 		$Action/SpecialEffect1.global_rotation = -PI / 2.0
 		$base_damagebox/HitBox.global_rotation = -PI / 2.0
@@ -339,8 +339,8 @@ func shovel_tkj():
 	is_using_skills = true
 	super.get_hit_data("tkj")
 	if tkj_awaken_mode != 0:
-		HitDic = HitDic.duplicate(true)
-		HitDic["hurtBack"] = [0, 0]
+		hit_dic = hit_dic.duplicate(true)
+		hit_dic["hurtBack"] = [0, 0]
 	is_attacking = true
 	role_action_player.play("tkj_1")
 	await role_action_player.animation_finished
@@ -355,7 +355,7 @@ func shovel_tkj():
 
 
 func shovel_mmw():
-	self.Role1SkillInter["mmw"] = 3
+	self.role1_skill_inter["mmw"] = 3
 	velocity.x = 0
 	get_action = "mmw"
 	is_using_skills = true
@@ -369,7 +369,7 @@ func shovel_mmw():
 
 
 func shovel_zq():
-	self.Role1SkillInter["zq"] = 4.8
+	self.role1_skill_inter["zq"] = 4.8
 	velocity.x = 0
 	get_action = "zq"
 	is_using_skills = true
@@ -383,7 +383,7 @@ func shovel_zq():
 
 
 func shovel_wdww():
-	self.Role1SkillInter["wdww"] = 4.8
+	self.role1_skill_inter["wdww"] = 4.8
 	if is_on_floor():
 		velocity.x = 0
 	get_action = "wdww"
@@ -397,7 +397,7 @@ func shovel_wdww():
 
 
 func shovel_bylt():
-	self.Role1SkillInter["bylt"] = 6.0
+	self.role1_skill_inter["bylt"] = 6.0
 	velocity.x = 0
 	get_action = "bylt"
 	is_using_skills = true
@@ -405,7 +405,7 @@ func shovel_bylt():
 	role_action_player.play("jdz")
 	var level = get_parent().get_parent()
 	var effect = BI_LUO_TIAN_EFFECT.new()
-	effect.setup(self, PlayerDir, obj_attack_dict["bylt"])
+	effect.setup(self, player_dir, obj_attack_dict["bylt"])
 	level.add_child(effect)
 	await role_action_player.animation_finished
 	turn_to_wait()
@@ -414,7 +414,7 @@ func shovel_bylt():
 
 
 func shovel_cmly():
-	self.Role1SkillInter["cmly"] = 3.0
+	self.role1_skill_inter["cmly"] = 3.0
 	velocity.x = 0
 	get_action = "cmly"
 	is_using_skills = true
@@ -423,7 +423,7 @@ func shovel_cmly():
 	role_action_player.play("jdz")
 	var level = get_parent().get_parent()
 	var effect = CANG_MU_LONG_YUN_EFFECT.new()
-	effect.setup(self, PlayerDir, obj_attack_dict["cmly"])
+	effect.setup(self, player_dir, obj_attack_dict["cmly"])
 	level.add_child(effect)
 	await get_tree().create_timer(0.5, false).timeout
 	if role_action_player.current_animation == "jdz":
@@ -434,7 +434,7 @@ func shovel_cmly():
 
 
 func shovel_mbyj():
-	self.Role1SkillInter["lhsq"] = 4.8
+	self.role1_skill_inter["lhsq"] = 4.8
 	velocity.x = 0
 	get_action = "lhsq"
 	is_using_skills = true
@@ -448,7 +448,7 @@ func shovel_mbyj():
 
 
 func shovel_jdz():
-	self.Role1SkillInter["jdz"] = 6
+	self.role1_skill_inter["jdz"] = 6
 	velocity.x = 0
 	get_action = "jdz"
 	is_using_skills = true
@@ -462,7 +462,7 @@ func shovel_jdz():
 
 
 func shovel_wdzt():
-	self.Role1SkillInter["wdzt"] = 4
+	self.role1_skill_inter["wdzt"] = 4
 	if is_on_floor():
 		velocity.x = 0
 	get_action = "wdzt"
@@ -481,13 +481,13 @@ func shovel_wdzt():
 
 func add_shovel_effect_1():
 	var bullet_pos = Vector2()
-	if PlayerDir:
+	if player_dir:
 		bullet_pos = Vector2(35, 0)
 	else:
 		bullet_pos = Vector2(-35, 0)
-	Global.add_role_bullet(self.Bullet, bullet_pos + position, !PlayerDir, "Role4Bullet3", obj_attack_dict["mmw"])
+	Global.add_role_bullet(self.Bullet, bullet_pos + position, !player_dir, "Role4Bullet3", obj_attack_dict["mmw"])
 	if _is_skill_awakened("mmw") and _is_skill_awaken_enabled("mmw"):
-		Global.add_role_bullet(self.Bullet, bullet_pos + position, PlayerDir, "Role4Bullet3", obj_attack_dict["mmw"])
+		Global.add_role_bullet(self.Bullet, bullet_pos + position, player_dir, "Role4Bullet3", obj_attack_dict["mmw"])
 
 
 func addmbyj():
@@ -496,7 +496,7 @@ func addmbyj():
 
 func call_wdww():
 	var bullet_pos: Vector2
-	if PlayerDir:
+	if player_dir:
 		bullet_pos = Vector2(30, -30)
 	else:
 		bullet_pos = Vector2(-30, -30)
@@ -528,14 +528,14 @@ func call_jdz():
 		if _is_skill_awakened("jdz") and _is_skill_awaken_enabled("jdz"):
 			var level = get_parent().get_parent()
 			var effect := ROLE4_POISON_ARRAY_AWAKEN_EFFECT.new()
-			effect.setup(self, PlayerDir, obj_attack_dict["jdz"], jdz)
+			effect.setup(self, player_dir, obj_attack_dict["jdz"], jdz)
 			level.add_child(effect)
 
 
 func add_wdzt():
 	for i in buff.get_children():
 		if i != null:
-			if i.BuffInfo["Name"] == "PoisionBody":
+			if i.buff_info["Name"] == "PoisionBody":
 				i.queue_free()
 	(
 		Global
@@ -544,7 +544,7 @@ func add_wdzt():
 			{
 				"Name": "PoisionBody",
 				"AddTime": 99999 if _wdzt_awaken_enabled and _is_wdzt_awaken_active() else 6,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"CanAdd": false,
 				"CanRemove": false,
@@ -579,8 +579,8 @@ func _disable_wdzt_awaken() -> void:
 	for child in buff.get_children():
 		if (
 			child != null
-			and child.get("BuffInfo") is Dictionary
-			and str(child.BuffInfo.get("Name", "")) == "PoisionBody"
+			and child.get("buff_info") is Dictionary
+			and str(child.buff_info.get("Name", "")) == "PoisionBody"
 		):
 			child.queue_free()
 	is_wdzt = false
@@ -648,8 +648,8 @@ func get_monster():
 
 func _get_wdww_targets(limit: int) -> Array[BaseMonster]:
 	var targets: Array[BaseMonster] = []
-	var MonsterList = get_parent().get_parent().monster.get_children()
-	for i in MonsterList:
+	var monster_list = get_parent().get_parent().monster.get_children()
+	for i in monster_list:
 		if not _is_valid_wdww_target(i):
 			continue
 		targets.append(i as BaseMonster)
@@ -682,7 +682,7 @@ func _is_valid_role4_skill_target(target: Node) -> bool:
 		return false
 	if target.Hp <= 0:
 		return false
-	if target.NoTarget:
+	if target.no_target:
 		return false
 	if target.get_meta("pet_tiger_unit", false) or target.get_meta("is_summon", false):
 		return false
@@ -736,7 +736,7 @@ func _on_nor_mal_hit_interv_timeout() -> void:
 
 
 func to_top():
-	if PlayerDir:
+	if player_dir:
 		velocity = Vector2(-750, -800)
 	else:
 		velocity = Vector2(750, -800)
@@ -747,7 +747,7 @@ func remove_speed():
 
 
 func rush():
-	if PlayerDir:
+	if player_dir:
 		velocity.x = 600
 	else:
 		velocity.x = -600
@@ -766,7 +766,7 @@ func fly_top():
 
 func to_top_2():
 	is_fly = true
-	if PlayerDir:
+	if player_dir:
 		velocity = Vector2(0, -1800)
 	else:
 		velocity = Vector2(0, -1800)
@@ -818,7 +818,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 					{
 						"Name": "Voodoo",
 						"AddTime": 5,
-						"ReduceInterval": 1,
+						"reduce_interval": 1,
 						"value": int(RoleProp.roleprop.power * 0.1),
 						"CanAdd": true,
 						"CanRemove": false,
@@ -864,14 +864,14 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			_add_lhsq_awaken_stack()
 	if obj_attack_dict.has(get_action):
 		if obj_attack_dict[get_action].has("addeffect"):
-			var Monster = area.get_parent().get_parent()
-			if Monster != null:
-				if Monster is BaseMonster and not _is_summon_or_pet_target(Monster):
+			var monster = area.get_parent().get_parent()
+			if monster != null:
+				if monster is BaseMonster and not _is_summon_or_pet_target(monster):
 					if obj_attack_dict[get_action]["addeffect"]["Name"] == "Voodoo":
-						if Global.check_wd(Monster) < 7:
-							Global.add_buff(Monster.buff, obj_attack_dict[get_action]["addeffect"])
+						if Global.check_wd(monster) < 7:
+							Global.add_buff(monster.buff, obj_attack_dict[get_action]["addeffect"])
 					else:
-						Global.add_buff(Monster.buff, obj_attack_dict[get_action]["addeffect"])
+						Global.add_buff(monster.buff, obj_attack_dict[get_action]["addeffect"])
 
 
 func _is_skill_awakened(skill_id: String) -> bool:

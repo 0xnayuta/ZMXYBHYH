@@ -21,11 +21,11 @@ func monster_140():
 	self.crit = 20
 	self.miss = 40
 	self.lucky = 50
-	self.Htarget = 15
-	self.Toughness = 0
+	self.htarget = 15
+	self.toughness = 0
 	self.ar = 50
 	self.sp = 50
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 14
 	self.mysee = 500
 	self.attack_range = 325
@@ -50,7 +50,7 @@ func monster_140():
 		{
 			"Name": "speed_down",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.5,
 			"CanAdd": false,
 			"DeBuff": true,
@@ -73,7 +73,7 @@ func monster_140():
 		{
 			"Name": "Fire",
 			"AddTime": 3,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": int(RoleProp.roleprop.SHp * 0.02),
 			"CanAdd": false,
 			"DeBuff": true,
@@ -88,9 +88,9 @@ func monster_140():
 		"HitProtect": 10,
 		"addeffect":
 		{
-			"Name": "DefeReduce",
+			"Name": "defe_reduce",
 			"AddTime": 10,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.3,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -114,10 +114,10 @@ func monster_140():
 func _ready() -> void:
 	super._ready()
 	monster_140()
-	Skill_1_CD = randi_range(3, 4)
-	Skill_2_CD = 10
-	Skill_3_CD = 5
-	Skill_4_CD = 12
+	skill_1_cd = randi_range(3, 4)
+	skill_2_cd = 10
+	skill_3_cd = 5
+	skill_4_cd = 12
 	skill_5_cd = 15
 
 
@@ -146,28 +146,28 @@ func ai_think():
 				have_target()
 				if skill_5_cd <= 0:
 					do_hit_5()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 450:
-					if Skill_4_CD <= 0:
+					if skill_4_cd <= 0:
 						do_hit_4()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 500:
-					if Skill_3_CD <= 0:
+					if skill_3_cd <= 0:
 						do_hit_3()
 				if count % 90 == 0:
 					if randi_range(0, 100) < attack_desire:
 						attack_target()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 				if skill_5_cd <= 0:
 					do_hit_5()
@@ -178,7 +178,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = 10
+	skill_1_cd = 10
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -190,7 +190,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = 24
+	skill_2_cd = 24
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -202,7 +202,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = 20
+	skill_3_cd = 20
 	hit_name = "hit4"
 	velocity.x = 0
 	is_attacking = true
@@ -214,7 +214,7 @@ func do_hit_3():
 
 func do_hit_4():
 	super.to_hero()
-	Skill_4_CD = 15
+	skill_4_cd = 15
 	hit_name = "hit5"
 	velocity.x = 0
 	is_attacking = true
@@ -280,7 +280,7 @@ func drop():
 
 func call_bullet_1():
 	var bb
-	if self.MonsterDirection:
+	if self.monster_direction:
 		bb = Global.add_bullet(
 			"Monster140Bullet1", self.bullet, true, 2.5, Vector2(20, 0) + position, "hit1", self.obj_attack_dict["hit1"]
 		)
@@ -299,7 +299,7 @@ func call_bullet_1():
 
 func call_bullet_alt2():
 	var Bullet
-	var dir = self.MonsterDirection
+	var dir = self.monster_direction
 	if dir:
 		Bullet = Global.add_bullet(
 			"Monster140Bullet2",
@@ -364,8 +364,8 @@ func to_sky():
 
 func check_player():
 	if self.position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
-		if Global.get_player.PlayerDir:
-			if not MonsterDirection:
+		if Global.get_player.player_dir:
+			if not monster_direction:
 				move_player_to_boss(0.5)
 				(
 					Global
@@ -374,7 +374,7 @@ func check_player():
 						{
 							"Name": "stun",
 							"AddTime": 4,
-							"ReduceInterval": 0,
+							"reduce_interval": 0,
 							"value": 0,
 							"AttackKind": "",
 							"CanAdd": false,
@@ -384,8 +384,8 @@ func check_player():
 					)
 				)
 	else:
-		if not Global.get_player.PlayerDir:
-			if MonsterDirection:
+		if not Global.get_player.player_dir:
+			if monster_direction:
 				move_player_to_boss(0.5)
 				(
 					Global
@@ -394,7 +394,7 @@ func check_player():
 						{
 							"Name": "stun",
 							"AddTime": 4,
-							"ReduceInterval": 0,
+							"reduce_interval": 0,
 							"value": 0,
 							"AttackKind": "",
 							"CanAdd": false,

@@ -15,11 +15,11 @@ func monster_38():
 	self.crit = 20
 	self.miss = 15
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 13
 	self.mysee = 500
 	self.attack_range = 55
@@ -36,7 +36,7 @@ func monster_38():
 		{
 			"Name": "poision",
 			"AddTime": 5,
-			"ReduceInterval": 0.7,
+			"reduce_interval": 0.7,
 			"value": 50,
 			"CanAdd": true,
 			"DeBuff": true,
@@ -88,7 +88,7 @@ func do_hit_2():
 
 
 func call_dd():
-	if self.MonsterDirection:
+	if self.monster_direction:
 		Global.call_chase_bullet(
 			self.bullet,
 			"Monster37Bullet",

@@ -7,7 +7,7 @@ var init_speed: int = 5
 var speed: int = 5
 var is_begin: bool
 var fix_time: int = 960
-var MonsterList: Array = []
+var monster_list: Array = []
 var total_hp: int = 0
 var is_show_skill: bool
 var velocity
@@ -164,7 +164,7 @@ func _exit_tree() -> void:
 
 
 func _get_active_monster_snapshot() -> Array:
-	var level: Node = Player.get_parent().get_parent() if Player != null and Player.get_parent() != null else null
+	var level: Node = player.get_parent().get_parent() if player != null and player.get_parent() != null else null
 	if level != null and level.has_method("has_active_monster_index") and level.has_active_monster_index():
 		return level.get_active_monsters()
 	if level != null and "monster" in level and level.monster != null:
@@ -173,7 +173,7 @@ func _get_active_monster_snapshot() -> Array:
 
 
 func _physics_process(delta: float) -> void:
-	var level: Node = Player.get_parent().get_parent() if Player != null and Player.get_parent() != null else null
+	var level: Node = player.get_parent().get_parent() if player != null and player.get_parent() != null else null
 	var monster_version := (
 		int(level.get_active_monster_version())
 		if level != null and level.has_method("get_active_monster_version")
@@ -181,7 +181,7 @@ func _physics_process(delta: float) -> void:
 	)
 	if monster_version != _monster_snapshot_version:
 		_monster_snapshot_version = monster_version
-		MonsterList = _get_active_monster_snapshot()
+		monster_list = _get_active_monster_snapshot()
 	self.fb_level = PlayerData.get_most_level("bsyj") + 1
 	var has_wood: bool = bool(PlayerData.check_have_wx("bsyj", "木"))
 	var attack_signature := "%d:%s:%d" % [self.fb_level, str(has_wood), int(RoleProp.roleprop.SHp)]
@@ -198,7 +198,7 @@ func _physics_process(delta: float) -> void:
 			{
 				"Name": "speed_down",
 				"AddTime": 1.0 if has_wood else 0.5,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0.3 if has_wood else 0.15,
 				"AttackKind": "",
 				"DeBuff": true
@@ -226,7 +226,7 @@ func _physics_process(delta: float) -> void:
 				speed = init_speed
 			elif follow_target == Player:
 				use_over()
-				Player.f_bcure_hp(total_hp)
+				player.f_bcure_hp(total_hp)
 				total_hp = 0
 			else:
 				use_over()
@@ -259,35 +259,35 @@ func _physics_process(delta: float) -> void:
 
 func show_skill():
 	if _monster_snapshot_version < 0:
-		MonsterList = _get_active_monster_snapshot()
+		monster_list = _get_active_monster_snapshot()
 	is_follow = true
 	is_show_skill = true
 	Global.fb_cd = 5
-	var Monster: BaseMonster = null
+	var monster: BaseMonster = null
 	var a_2 = 0
-	var Monster_2: BaseMonster = null
+	var monster_2: BaseMonster = null
 	var a_3
 	var closest_dist = 5000
-	while a_2 < MonsterList.size():
-		if MonsterList[a_2] == null:
+	while a_2 < monster_list.size():
+		if monster_list[a_2] == null:
 			use_over()
 			return
-		Monster_2 = MonsterList[a_2] as BaseMonster
-		if Monster_2 == null:
+		monster_2 = monster_list[a_2] as BaseMonster
+		if monster_2 == null:
 			a_2 += 1
 			continue
-		a_3 = Global.get_dis_betweem(Player, Monster_2)
+		a_3 = Global.get_dis_betweem(player, monster_2)
 		if a_3 <= closest_dist:
 			closest_dist = a_3
-		if Monster_2 is Monster49 or Monster_2 is Monster50:
-			if not Monster_2.is_stop:
-				Monster = Monster_2
+		if monster_2 is Monster49 or monster_2 is Monster50:
+			if not monster_2.is_stop:
+				monster = monster_2
 		else:
-			Monster = Monster_2
+			monster = monster_2
 		a_2 += 1
-	if Monster != null:
+	if monster != null:
 		mg_player.play("hit")
-		fix_target = Monster
+		fix_target = monster
 		follow_target = fix_target
 	if follow_target == null or fix_target == null:
 		RoleProp.roleprop.Mp += need_mp
@@ -312,7 +312,7 @@ func use_over():
 func _on_check_monster_body_entered(body: Node2D) -> void:
 	return
 	if body is BaseMonster:
-		MonsterList.push_back(body)
+		monster_list.push_back(body)
 
 
 func reduce_hp():
@@ -322,15 +322,15 @@ func reduce_hp():
 
 
 func check_monster_death():
-	for i in MonsterList:
+	for i in monster_list:
 		if i != null:
 			if i is BaseMonster:
 				if i.is_death:
-					MonsterList.erase(i)
+					monster_list.erase(i)
 			else:
-				MonsterList.erase(i)
+				monster_list.erase(i)
 		else:
-			MonsterList.erase(i)
+			monster_list.erase(i)
 
 
 func free() -> void:

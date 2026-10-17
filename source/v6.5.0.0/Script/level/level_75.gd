@@ -56,7 +56,7 @@ func _level_bgm_path() -> String:
 
 
 func _update_stage_progression() -> void:
-	if _spawn_runtime_ready and current_stage == 0 and Role_ != null and Role_.position.x >= 326.0:
+	if _spawn_runtime_ready and current_stage == 0 and role_ != null and role_.position.x >= 326.0:
 		_start_stage(1)
 
 
@@ -76,7 +76,7 @@ func check_can_exit() -> bool:
 
 
 func _on_exit_2_body_entered(body: Node2D) -> void:
-	if body == Role_:
+	if body == role_:
 		super._on_exit_2_body_entered(body)
 
 

@@ -16,11 +16,11 @@ func monster_66():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 9
 	self.mysee = 300
 	self.attack_range = 110
@@ -36,7 +36,7 @@ func monster_66():
 			{
 				"Name": "SuperArmor",
 				"AddTime": 99999999999,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 				"CanAdd": false,
@@ -54,7 +54,7 @@ func monster_66():
 		{
 			"Name": "poision",
 			"AddTime": 3,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"DeBuff": true,
 			"CanAdd": true,
 			"value": 200,

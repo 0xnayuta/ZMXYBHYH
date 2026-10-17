@@ -14,30 +14,30 @@ var current_task_type: int = 1
 var all_daily_list = {
 	"关注造梦青川":
 	{
-		"TaskName": "关注造梦青川",
-		"TaskType": "DailyTask",
-		"TaskInfo": "关注造梦青川",
-		"TaskReward": [{"Name": "zmcq", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0}],
+		"task_name": "关注造梦青川",
+		"task_type": "DailyTask",
+		"task_info": "关注造梦青川",
+		"task_reward": [{"Name": "zmcq", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0}],
 		"UnlimitedClaim": true,
 	},
 	"至尊骨养成一":
 	{
-		"TaskName": "至尊骨养成一",
-		"TaskType": "DailyTask",
-		"TaskInfo": "玩家等级达到1级就可以领取\n（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/1）",
-		"TaskReward": [{"Name": "psdzzg", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0}],
+		"task_name": "至尊骨养成一",
+		"task_type": "DailyTask",
+		"task_info": "玩家等级达到1级就可以领取\n（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/1）",
+		"task_reward": [{"Name": "psdzzg", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0}],
 		"UnlimitedClaim": true,
 	},
 }
 var all_activity_list = {
 	"新的旅途":
 	{
-		"TaskName": "新的旅途",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "玩家等级达10级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/1）",
+		"task_name": "新的旅途",
+		"task_type": "ActivityTask",
+		"task_info": "玩家等级达10级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/1）",
 		"TaskTarget": {"玩家等级": 1},
 		"FinishType": 2,
-		"TaskReward":
+		"task_reward":
 		[
 			{
 				"Name": "zcld",
@@ -48,153 +48,153 @@ var all_activity_list = {
 					"金",
 					"木",
 				],
-				"StrengthValue": 0
+				"strength_value": 0
 			},
 		],
 	},
 	"七魔尽伏":
 	{
-		"TaskName": "七魔尽伏",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "通关所有图一副本（花果山、水帘洞、桃花源、蝙蝠窟、七星洞、迦楼罗之穴、浅岸、东海、鲨之涡流、牛魔谷）",
+		"task_name": "七魔尽伏",
+		"task_type": "ActivityTask",
+		"task_info": "通关所有图一副本（花果山、水帘洞、桃花源、蝙蝠窟、七星洞、迦楼罗之穴、浅岸、东海、鲨之涡流、牛魔谷）",
 		"TaskTarget":
 		{"花果山": 1, "水帘洞": 1, "桃花源": 1, "蝙蝠窟": 1, "七星洞": 1, "迦楼罗之穴": 1, "浅岸": 1, "东海": 1, "鲨之涡流": 1, "牛魔谷": 1},
 		"FinishType": 6,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "fmxz", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "jsbx_1", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "fmxz", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "jsbx_1", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
 		]
 	},
 	"十殿肃清":
 	{
-		"TaskName": "十殿肃清",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "通关所有图二副本（鬼城、无常巷、鬼门关、接引院、判官府、阎罗殿、忘川河、奈何桥、望乡台、转轮殿）",
+		"task_name": "十殿肃清",
+		"task_type": "ActivityTask",
+		"task_info": "通关所有图二副本（鬼城、无常巷、鬼门关、接引院、判官府、阎罗殿、忘川河、奈何桥、望乡台、转轮殿）",
 		"TaskTarget":
 		{"鬼城": 1, "无常巷": 1, "鬼门关": 1, "接引院": 1, "判官府": 1, "阎罗殿": 1, "忘川河": 1, "奈何桥": 1, "望乡台": 1, "转轮殿": 1},
 		"FinishType": 6,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "zmxz", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "jsbx_1", "Value": 3, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "zmxz", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "jsbx_1", "Value": 3, "Prop": {}, "WX": [], "strength_value": 0},
 		]
 	},
 	"成长礼包1":
 	{
-		"TaskName": "成长礼包1",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "玩家等级达10级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/10）",
+		"task_name": "成长礼包1",
+		"task_type": "ActivityTask",
+		"task_info": "玩家等级达10级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/10）",
 		"TaskTarget": {"玩家等级": 10},
 		"FinishType": 2,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "xydxq", "Value": 2, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "mpyj", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "qhsbx", "Value": 10, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "bsd_1", "Value": 3, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "xydxq", "Value": 2, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "mpyj", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "qhsbx", "Value": 10, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "bsd_1", "Value": 3, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"成长礼包2":
 	{
-		"TaskName": "成长礼包2",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "玩家等级达20级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/20）",
+		"task_name": "成长礼包2",
+		"task_type": "ActivityTask",
+		"task_info": "玩家等级达20级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/20）",
 		"TaskTarget": {"玩家等级": 20},
 		"FinishType": 2,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "xydxq", "Value": 2, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "qhsbx", "Value": 18, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "szbx_1", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "bsd_2", "Value": 3, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "xlhys", "Value": 2, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "czlxls", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "wxxls", "Value": 30, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "xydxq", "Value": 2, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "qhsbx", "Value": 18, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "szbx_1", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "bsd_2", "Value": 3, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "xlhys", "Value": 2, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "czlxls", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "wxxls", "Value": 30, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"成长礼包3":
 	{
-		"TaskName": "成长礼包3",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "玩家等级达30级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/30）",
+		"task_name": "成长礼包3",
+		"task_type": "ActivityTask",
+		"task_info": "玩家等级达30级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/30）",
 		"TaskTarget": {"玩家等级": 30},
 		"FinishType": 2,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "xydxq", "Value": 2, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "qhsbx", "Value": 25, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "szbx_2", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "renshen", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "liuhuang", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "shougong", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "lingli", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "xianmao", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "leizong", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "smlp", "Value": 50, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "xlhys", "Value": 5, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "czlxls", "Value": 30, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "wxxls", "Value": 60, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "ziyanyujin", "Value": 200, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "xydxq", "Value": 2, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "qhsbx", "Value": 25, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "szbx_2", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "renshen", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "liuhuang", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "shougong", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "lingli", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "xianmao", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "leizong", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "smlp", "Value": 50, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "xlhys", "Value": 5, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "czlxls", "Value": 30, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "wxxls", "Value": 60, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "ziyanyujin", "Value": 200, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"成长礼包4":
 	{
-		"TaskName": "成长礼包4",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "玩家等级达40级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/40）",
+		"task_name": "成长礼包4",
+		"task_type": "ActivityTask",
+		"task_info": "玩家等级达40级\n" + "（" + str(PlayerData.player_data[DataKeys.PLAYER_LEVEL]) + "/40）",
 		"TaskTarget": {"玩家等级": 40},
 		"FinishType": 2,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "xydxq", "Value": 3, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "qhsbx", "Value": 28, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "bsd_3", "Value": 3, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "renshen", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "liuhuang", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "shougong", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "lingli", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "xianmao", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "leizong", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "dudan", "Value": 30, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "smlp", "Value": 100, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "dlhys", "Value": 3, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "czlxls", "Value": 60, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "wxxls", "Value": 90, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "ziyanyujin", "Value": 300, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "xydxq", "Value": 3, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "qhsbx", "Value": 28, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "bsd_3", "Value": 3, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "renshen", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "liuhuang", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "shougong", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "lingli", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "xianmao", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "leizong", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "dudan", "Value": 30, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "smlp", "Value": 100, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "dlhys", "Value": 3, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "czlxls", "Value": 60, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "wxxls", "Value": 90, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "ziyanyujin", "Value": 300, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"决战平天大圣":
 	{
-		"TaskName": "决战平天大圣",
-		"TaskType": "ActivityTask",
+		"task_name": "决战平天大圣",
+		"task_type": "ActivityTask",
 		"TaskTarget": {"牛魔王·鬼": 5},
 		"FinishType": 1,
-		"TaskInfo": "击败牛魔王·鬼5次\n" + "（" + str(PlayerData.player_data["牛魔王·鬼"]) + "/5）",
-		"TaskReward":
+		"task_info": "击败牛魔王·鬼5次\n" + "（" + str(PlayerData.player_data["牛魔王·鬼"]) + "/5）",
+		"task_reward":
 		[
-			{"Name": "bsd_4", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "bsd_4", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"浩瀚星河":
 	{
-		"TaskName": "浩瀚星河",
-		"TaskType": "ActivityTask",
+		"task_name": "浩瀚星河",
+		"task_type": "ActivityTask",
 		"TaskTarget": {"转轮·真法": 5},
 		"FinishType": 1,
-		"TaskInfo": "击败转轮·真法5次\n" + "（" + str(PlayerData.player_data["转轮·真法"]) + "/5）",
-		"TaskReward":
+		"task_info": "击败转轮·真法5次\n" + "（" + str(PlayerData.player_data["转轮·真法"]) + "/5）",
+		"task_reward":
 		[
-			{"Name": "bsd_5", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "bsd_5", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"无首神":
 	{
-		"TaskName": "无首神",
-		"TaskType": "ActivityTask",
+		"task_name": "无首神",
+		"task_type": "ActivityTask",
 		"TaskTarget": {"战神刑天": 10, "玩家等级": 50},
 		"FinishType": 6,
-		"TaskInfo":
+		"task_info":
 		(
 			"击败战神刑天10次"
 			+ "（"
@@ -204,113 +204,113 @@ var all_activity_list = {
 			+ str(PlayerData.player_data[DataKeys.PLAYER_LEVEL])
 			+ "/50）"
 		),
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "xmzy", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "xmzy", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"小有所藏":
 	{
-		"TaskName": "小有所藏",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "幻化功能中，收集进度达5" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/5），若显示不准确，请先进去幻化界面再过来。",
+		"task_name": "小有所藏",
+		"task_type": "ActivityTask",
+		"task_info": "幻化功能中，收集进度达5" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/5），若显示不准确，请先进去幻化界面再过来。",
 		"TaskTarget": {"收集进度": 5},
 		"FinishType": 4,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "xysc", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "qhsbx", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "xysc", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "qhsbx", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"业余收藏家":
 	{
-		"TaskName": "业余收藏家",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "幻化功能中，收集进度达10" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/10），若显示不准确，请先进去幻化界面再过来。",
+		"task_name": "业余收藏家",
+		"task_type": "ActivityTask",
+		"task_info": "幻化功能中，收集进度达10" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/10），若显示不准确，请先进去幻化界面再过来。",
 		"TaskTarget": {"收集进度": 10},
 		"FinishType": 4,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "yyscj", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "qhsbx", "Value": 2, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "yyscj", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "qhsbx", "Value": 2, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"专业收藏家":
 	{
-		"TaskName": "专业收藏家",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "幻化功能中，收集进度达15" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/15），若显示不准确，请先进去幻化界面再过来。",
+		"task_name": "专业收藏家",
+		"task_type": "ActivityTask",
+		"task_info": "幻化功能中，收集进度达15" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/15），若显示不准确，请先进去幻化界面再过来。",
 		"TaskTarget": {"收集进度": 15},
 		"FinishType": 4,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "zyscj", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "qhsbx", "Value": 3, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "zyscj", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "qhsbx", "Value": 3, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"痴迷收藏家":
 	{
-		"TaskName": "痴迷收藏家",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "幻化功能中，收集进度达20" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/20），若显示不准确，请先进去幻化界面再过来。",
+		"task_name": "痴迷收藏家",
+		"task_type": "ActivityTask",
+		"task_info": "幻化功能中，收集进度达20" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/20），若显示不准确，请先进去幻化界面再过来。",
 		"TaskTarget": {"收集进度": 20},
 		"FinishType": 4,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "cmscj", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "qhsbx", "Value": 5, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "cmscj", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "qhsbx", "Value": 5, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"强迫症收藏家":
 	{
-		"TaskName": "强迫症收藏家",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "幻化功能中，收集进度达25" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/25），若显示不准确，请先进去幻化界面再过来。",
+		"task_name": "强迫症收藏家",
+		"task_type": "ActivityTask",
+		"task_info": "幻化功能中，收集进度达25" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/25），若显示不准确，请先进去幻化界面再过来。",
 		"TaskTarget": {"收集进度": 25},
 		"FinishType": 4,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "qpzscj", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "qhsbx", "Value": 8, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "qpzscj", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "qhsbx", "Value": 8, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"骨灰级收藏家":
 	{
-		"TaskName": "骨灰级收藏家",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "幻化功能中，收集进度达30" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/30），若显示不准确，请先进去幻化界面再过来。",
+		"task_name": "骨灰级收藏家",
+		"task_type": "ActivityTask",
+		"task_info": "幻化功能中，收集进度达30" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/30），若显示不准确，请先进去幻化界面再过来。",
 		"TaskTarget": {"收集进度": 30},
 		"FinishType": 4,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "ghjscj", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "qhsbx", "Value": 10, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "ghjscj", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "qhsbx", "Value": 10, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"行走博物馆":
 	{
-		"TaskName": "行走博物馆",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "幻化功能中，收集进度达35" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/35），若显示不准确，请先进去幻化界面再过来。",
+		"task_name": "行走博物馆",
+		"task_type": "ActivityTask",
+		"task_info": "幻化功能中，收集进度达35" + "（" + str(PlayerData.player_data["幻化拥有列表"].size()) + "/35），若显示不准确，请先进去幻化界面再过来。",
 		"TaskTarget": {"收集进度": 35},
 		"FinishType": 4,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "xzbwg", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "qhsbx", "Value": 15, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "xzbwg", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "qhsbx", "Value": 15, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 	"勇闯八荒":
 	{
-		"TaskName": "勇闯八荒",
-		"TaskType": "ActivityTask",
-		"TaskInfo": "未拥有过”修成正果头衔“，并且通过天庭",
+		"task_name": "勇闯八荒",
+		"task_type": "ActivityTask",
+		"task_info": "未拥有过”修成正果头衔“，并且通过天庭",
 		"TaskTarget": {"未持有": true, "天庭": true},
 		"FinishType": 5,
-		"TaskReward":
+		"task_reward":
 		[
-			{"Name": "hhyx", "Value": 1, "Prop": {}, "WX": [], "StrengthValue": 0},
-			{"Name": "jsbx_2", "Value": 2, "Prop": {}, "WX": [], "StrengthValue": 0},
+			{"Name": "hhyx", "Value": 1, "Prop": {}, "WX": [], "strength_value": 0},
+			{"Name": "jsbx_2", "Value": 2, "Prop": {}, "WX": [], "strength_value": 0},
 		],
 	},
 }
@@ -366,7 +366,7 @@ func _physics_process(delta: float) -> void:
 						completed += 1
 				text.text = "通关所有图二副本（已完成 {completed}/{total}）".format({"completed": completed, "total": total})
 			else:
-				text.text = str(all_activity_list[current_task_name]["TaskInfo"])
+				text.text = str(all_activity_list[current_task_name]["task_info"])
 
 			if task_is_finish:
 				if not PlayerData.player_data.get(current_task_name, false):
@@ -381,7 +381,7 @@ func _physics_process(delta: float) -> void:
 			if current_task_name == null or current_task_name == "" or not all_daily_list.has(current_task_name):
 				_disable_claim_button()
 				return
-			text.text = str(all_daily_list[current_task_name]["TaskInfo"])
+			text.text = str(all_daily_list[current_task_name]["task_info"])
 			lqjl.disabled = not task_is_finish
 
 
@@ -391,12 +391,12 @@ func add_task_list():
 			remove_list()
 			for i in all_activity_list:
 				Global.add_task_title(
-					task_list, all_activity_list[i]["TaskType"], all_activity_list[i]["TaskName"], self
+					task_list, all_activity_list[i]["task_type"], all_activity_list[i]["task_name"], self
 				)
 		2:
 			remove_list()
 			for i in all_daily_list:
-				Global.add_task_title(task_list, all_daily_list[i]["TaskType"], all_daily_list[i]["TaskName"], self)
+				Global.add_task_title(task_list, all_daily_list[i]["task_type"], all_daily_list[i]["task_name"], self)
 
 
 func add_reward():
@@ -405,10 +405,10 @@ func add_reward():
 	if task_data.is_empty():
 		_disable_claim_button()
 		return
-	for i in task_data["TaskReward"]:
-		var ItemName = i["Name"]
+	for i in task_data["task_reward"]:
+		var item_name = i["Name"]
 		var total_num = i["Value"]
-		Global.add_task_reward(reward_list, ItemName, total_num)
+		Global.add_task_reward(reward_list, item_name, total_num)
 
 
 func _clear_current_task_selection() -> void:
@@ -449,7 +449,7 @@ func _on_lqjl_pressed() -> void:
 		return
 	if not task_data.get("UnlimitedClaim", false):
 		PlayerData.player_data[current_task_name] = true
-	var list = task_data["TaskReward"]
+	var list = task_data["task_reward"]
 	Global.add_reward_info(Global.get_parent_(self, 1), Vector2(0, 0), list, null, null)
 	MemoryClass.save_game(Global.cd_path)
 

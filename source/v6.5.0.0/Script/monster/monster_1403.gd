@@ -22,11 +22,11 @@ func monster_1403():
 	self.crit = 22
 	self.miss = 42
 	self.lucky = 55
-	self.Htarget = 85
-	self.Toughness = 15
+	self.htarget = 85
+	self.toughness = 15
 	self.ar = 80
 	self.sp = 80
-	self.Critreduce = 10
+	self.crit_reduce = 10
 	self.speed = 15
 	self.mysee = 550
 	self.attack_range = 400
@@ -59,7 +59,7 @@ func monster_1403():
 		{
 			"Name": "silent",
 			"AddTime": 3,
-			"ReduceInterval": 0.99,
+			"reduce_interval": 0.99,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -76,7 +76,7 @@ func monster_1403():
 		{
 			"Name": "Bleed",
 			"AddTime": 5,
-			"ReduceInterval": 0.36,
+			"reduce_interval": 0.36,
 			"value": 50,
 			"AttackKind": "real",
 			"CanAdd": true,
@@ -93,7 +93,7 @@ func monster_1403():
 		{
 			"Name": "speed_down",
 			"AddTime": 2,
-			"ReduceInterval": 0.61,
+			"reduce_interval": 0.61,
 			"value": 0.99,
 			"AttackKind": "magic",
 			"CanAdd": true,
@@ -115,9 +115,9 @@ func _ready() -> void:
 	super._ready()
 	monster_1403()
 
-	Skill_1_CD = 0
-	Skill_2_CD = 10
-	Skill_3_CD = 5
+	skill_1_cd = 0
+	skill_2_cd = 10
+	skill_3_cd = 5
 	hit3_stage = 0
 
 
@@ -130,25 +130,25 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 
 
 func do_hit_1():
-	if Skill_1_CD > 0 or is_attacking:
+	if skill_1_cd > 0 or is_attacking:
 		return
 
 	super.to_hero()
-	Skill_1_CD = 2
+	skill_1_cd = 2
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -161,11 +161,11 @@ func do_hit_1():
 func do_hit_2():
 	is_attacking = false
 
-	if Skill_2_CD > 0:
+	if skill_2_cd > 0:
 		return
 
 	super.to_hero()
-	Skill_2_CD = randi_range(20, 25)
+	skill_2_cd = randi_range(20, 25)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -177,11 +177,11 @@ func do_hit_2():
 
 
 func do_hit_3():
-	if Skill_3_CD > 0 or is_attacking:
+	if skill_3_cd > 0 or is_attacking:
 		return
 
 	super.to_hero()
-	Skill_3_CD = randi_range(15, 25)
+	skill_3_cd = randi_range(15, 25)
 	velocity.x = 0
 	is_attacking = true
 
@@ -213,7 +213,7 @@ func do_hit_3():
 
 		apply_real_stun(stun_time)
 
-		if stun_time >= 4 and Skill_2_CD <= 0:
+		if stun_time >= 4 and skill_2_cd <= 0:
 			await get_tree().create_timer(0.3).timeout
 
 			is_attacking = false
@@ -240,7 +240,7 @@ func check_player_has_speed_down() -> bool:
 
 	for buff in player.buff.get_children():
 		if buff != null and buff is BaseBuff:
-			if buff.BuffInfo["Name"] == "speed_down":
+			if buff.buff_info["Name"] == "speed_down":
 				return true
 
 	return false
@@ -256,7 +256,7 @@ func apply_real_stun(stun_time: float):
 	var stun_effect = {
 		"Name": "stun",
 		"AddTime": stun_time,
-		"ReduceInterval": 0,
+		"reduce_interval": 0,
 		"value": 0,
 		"AttackKind": "",
 		"CanAdd": false,
@@ -271,7 +271,7 @@ func move_player_1():
 	if not get_player:
 		return
 	var offset = 330
-	if get_player.PlayerDir:
+	if get_player.player_dir:
 		self.position = Vector2(
 			RoleProp.get_nearest_monster_target_position(global_position).x + offset,
 			RoleProp.get_nearest_monster_target_position(global_position).y

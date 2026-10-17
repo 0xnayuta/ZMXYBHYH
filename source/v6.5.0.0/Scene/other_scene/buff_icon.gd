@@ -1,12 +1,12 @@
 extends TextureRect
 @onready var buff_bar: TextureProgressBar = $BuffBar
-@onready var buff_time: Label = $BuffTime
+@onready var buff_time_label: Label = $BuffTime
 @onready var buff_icon_remove: Timer = $BuffIconRemove
 @onready var add_times: Label = $AddTimes
 
-var BuffTime: float
-var BuffInfo
-var BuffName: String = ""
+var buff_time: float
+var buff_info
+var buff_name: String = ""
 var father_buff: Node = null
 var total_times: int = 1
 var last_hurt: float = 0.0
@@ -21,7 +21,7 @@ var _is_mouse_over: bool = false
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	buff_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	buff_time.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	buff_time_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_times.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
@@ -34,8 +34,8 @@ func start_duration(seconds: float) -> void:
 func _physics_process(_delta: float) -> void:
 	var p_parent = Global.get_parent_(self, 2)
 	if parent_node != null:
-		if p_parent != null and p_parent.get("GetObj") != null:
-			parent_node = p_parent.get("GetObj")
+		if p_parent != null and p_parent.get("get_obj") != null:
+			parent_node = p_parent.get("get_obj")
 		else:
 			parent_node = RoleProp.source_player
 	else:
@@ -43,7 +43,7 @@ func _physics_process(_delta: float) -> void:
 	if data_list == {}:
 		return
 	var icon_name := str(data_list["Name"])
-	BuffName = icon_name
+	buff_name = icon_name
 	if _last_icon_name != icon_name:
 		_last_icon_name = icon_name
 		var icon_texture = Global.get_cached_texture("res://Art/AddEffect/Buff_icon/" + icon_name + ".png")
@@ -54,7 +54,7 @@ func _physics_process(_delta: float) -> void:
 		texture = icon_texture
 		buff_bar.texture_progress = icon_texture
 	if data_list["AddTime"] > 0:
-		BuffTime = data_list["AddTime"]
+		buff_time = data_list["AddTime"]
 	if buff_bar.size != self.size:
 		buff_bar.size = self.size
 	_buff_count_elapsed += _delta
@@ -67,14 +67,14 @@ func _physics_process(_delta: float) -> void:
 	var count_text := str(_cached_buff_count) if _cached_buff_count > 1 else ""
 	if add_times.text != count_text:
 		add_times.text = count_text
-	if not BuffTime >= 99999:
-		buff_bar.value = buff_icon_remove.time_left / float(BuffTime)
+	if not buff_time >= 99999:
+		buff_bar.value = buff_icon_remove.time_left / float(buff_time)
 		var remaining_text := str(snapped(buff_icon_remove.time_left, 0.1))
-		if buff_time.text != remaining_text:
-			buff_time.text = remaining_text
+		if buff_time_label.text != remaining_text:
+			buff_time_label.text = remaining_text
 	else:
-		if buff_time.text != "永久":
-			buff_time.text = "永久"
+		if buff_time_label.text != "永久":
+			buff_time_label.text = "永久"
 	_update_hover_popup()
 
 
@@ -94,24 +94,24 @@ func _update_hover_popup() -> void:
 func _show_buff_info() -> void:
 	if data_list == {}:
 		return
-	if BuffInfo == null or not is_instance_valid(BuffInfo):
-		BuffInfo = Global.add_buffinfor(
+	if buff_info == null or not is_instance_valid(buff_info):
+		buff_info = Global.add_buffinfor(
 			Global.get_ui_popup_layer(), Global.screen_popup_position(Vector2(18, 22)), data_list
 		)
-		if BuffInfo == null:
+		if buff_info == null:
 			return
-		BuffInfo.parent_node = self
-		BuffInfo.last_hurt = data_list.get("value", 0.0)
-		BuffInfo.z_index = 4095
-		BuffInfo.top_level = false
+		buff_info.parent_node = self
+		buff_info.last_hurt = data_list.get("value", 0.0)
+		buff_info.z_index = 4095
+		buff_info.top_level = false
 	else:
-		Global.apply_popup_screen_layout(BuffInfo, Global.screen_popup_position(Vector2(18, 22)), Vector2(320, 120))
+		Global.apply_popup_screen_layout(buff_info, Global.screen_popup_position(Vector2(18, 22)), Vector2(320, 120))
 
 
 func _hide_buff_info() -> void:
-	if BuffInfo != null and is_instance_valid(BuffInfo):
-		BuffInfo.queue_free()
-	BuffInfo = null
+	if buff_info != null and is_instance_valid(buff_info):
+		buff_info.queue_free()
+	buff_info = null
 
 
 func _on_mouse_entered() -> void:
@@ -131,6 +131,6 @@ func get_buff_count():
 		while buff_child_index < buff_child_count:
 			var i = buff_parent.get_child(buff_child_index)
 			buff_child_index += 1
-			if i.BuffInfo["Name"] == data_list["Name"]:
+			if i.buff_info["Name"] == data_list["Name"]:
 				count += 1
 	return count

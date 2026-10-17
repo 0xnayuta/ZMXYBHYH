@@ -87,11 +87,11 @@ func _configure_boss() -> void:
 	crit = 400
 	miss = 150
 	lucky = 0
-	Htarget = 2000
-	Toughness = 0.01
+	htarget = 2000
+	toughness = 0.01
 	ar = 500
 	sp = 500
-	Critreduce = 0
+	crit_reduce = 0
 	speed = 26
 	rush_speed = 180.0
 	mysee = int(SEEK_VIEW_RANGE)
@@ -106,10 +106,10 @@ func _configure_boss() -> void:
 		{"name": "xyzyzzs", "value": 1, "chance": 0.1},
 		{"name": "139300016", "value": 1, "chance": 0.1},
 	]
-	Skill_1_CD = 0
-	Skill_2_CD = 0
-	Skill_3_CD = 0
-	Skill_4_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
+	skill_3_cd = 0
+	skill_4_cd = 0
 	_refresh_attack_powers()
 
 
@@ -377,11 +377,11 @@ func _set_horizontal_velocity(direction: float) -> void:
 	if sign_direction < 0.0:
 		base_damage_box.scale.x = 1.0
 		monster_dir.scale.x = 1.0
-		MonsterDirection = false
+		monster_direction = false
 	else:
 		base_damage_box.scale.x = -1.0
 		monster_dir.scale.x = -1.0
-		MonsterDirection = true
+		monster_direction = true
 	if not is_attacking and not _skill_busy and mr_player.current_animation != &"walk":
 		mr_player.play(&"walk")
 
@@ -419,7 +419,7 @@ func _has_other_super_armor_buff() -> bool:
 	for child in buff.get_children():
 		if child == null:
 			continue
-		var buff_info = child.get("BuffInfo")
+		var buff_info = child.get("buff_info")
 		if buff_info is Dictionary and str(buff_info.get("Name", "")) == "SuperArmor":
 			return true
 	return false
@@ -491,7 +491,7 @@ func _fire_skill_1_sequence(generation: int) -> void:
 
 func _spawn_skill_1_projectile(spawn_position: Vector2, projectile_velocity: Vector2) -> void:
 	var projectile = PROJECTILE_SCENE.instantiate()
-	projectile.AttList = obj_attack_dict["skill_1_projectile"].duplicate(true)
+	projectile.att_list = obj_attack_dict["skill_1_projectile"].duplicate(true)
 	projectile.hit_name = "skill_1_projectile"
 	projectile.skill_name = "Tongtian3057Projectile"
 	projectile.spawn_global_position = spawn_position
@@ -505,7 +505,7 @@ func _fire_skill_2_once() -> void:
 		return
 	_skill_2_fired = true
 	var beam = BEAM_SCENE.instantiate()
-	beam.AttList = obj_attack_dict["skill_2"].duplicate(true)
+	beam.att_list = obj_attack_dict["skill_2"].duplicate(true)
 	beam.hit_name = "skill_2"
 	beam.skill_name = "Tongtian3057Beam"
 	beam.spawn_global_position = global_position

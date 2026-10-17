@@ -1,6 +1,6 @@
 extends Node2D
 class_name Role4Bullet
-var Player: BaseHero
+var player: BaseHero
 var old_monster: BaseMonster
 var target_monster: BaseMonster
 var hit_count: int = 0
@@ -27,8 +27,8 @@ func _on_queue_timer_timeout() -> void:
 
 func check_monster():
 	var mr_list = []
-	if Player is BaseHero:
-		mr_list = Player.get_parent().get_parent().monster.get_children()
+	if player is BaseHero:
+		mr_list = player.get_parent().get_parent().monster.get_children()
 	for i in mr_list:
 		if _is_valid_tmc_target(i):
 			return i
@@ -69,7 +69,7 @@ func _on_check_body_entered(body: Node2D) -> void:
 					{
 						"Name": "Voodoo",
 						"AddTime": 5,
-						"ReduceInterval": 1,
+						"reduce_interval": 1,
 						"value": 0,
 						"CanAdd": true,
 						"AttackKind": "real",
@@ -83,7 +83,7 @@ func _on_check_body_entered(body: Node2D) -> void:
 					{
 						"Name": "stun",
 						"AddTime": 0.3,
-						"ReduceInterval": 0,
+						"reduce_interval": 0,
 						"value": 0,
 						"CanAdd": false,
 						"AttackKind": "",

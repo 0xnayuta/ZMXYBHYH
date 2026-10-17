@@ -18,11 +18,11 @@ func monster_35():
 	self.crit = 8
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 0
 	self.mysee = 225
 	self.attack_range = 305
@@ -40,7 +40,7 @@ func monster_35():
 			"Name": "Bleed",
 			"AddTime": 3,
 			"DeBuff": true,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 30,
 			"AttackKind": "physics",
 		}
@@ -54,7 +54,7 @@ func monster_35():
 			"Name": "speed_down",
 			"AddTime": 3,
 			"DeBuff": true,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.2,
 			"AttackKind": "",
 		},
@@ -69,7 +69,7 @@ func monster_35():
 			"AddTime": 5,
 			"CanAdd": false,
 			"DeBuff": true,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 		}
@@ -85,7 +85,7 @@ func _ready() -> void:
 	$ChangeWaitTime.start(randi_range(9, 12))
 	monster_35()
 	hit_name = "hit1"
-	Skill_1_CD = 0
+	skill_1_cd = 0
 
 
 func _physics_process(delta: float) -> void:
@@ -98,7 +98,7 @@ func ai_think():
 	velocity.x = 0
 	velocity.y = 0
 	if Hp > 0:
-		if Skill_1_CD > 0 and Skill_2_CD > 0:
+		if skill_1_cd > 0 and skill_2_cd > 0:
 			if count % 180 == 0:
 				if randi_range(0, 100) < attack_desire:
 					do_hit_1()
@@ -109,7 +109,7 @@ func ai_think():
 				if not is_attacking:
 					mr_player.play("wait")
 		else:
-			if Skill_2_CD <= 0:
+			if skill_2_cd <= 0:
 				do_hit_3()
 			else:
 				if not is_attacking:
@@ -125,7 +125,7 @@ func do_hit_1():
 
 
 func do_hit_2():
-	Skill_1_CD = 22
+	skill_1_cd = 22
 	hit_name = "xfj"
 	is_attacking = true
 	mr_player.play("jf")
@@ -134,7 +134,7 @@ func do_hit_2():
 
 
 func do_hit_3():
-	Skill_2_CD = 16
+	skill_2_cd = 16
 	hit_name = "wl"
 	is_attacking = true
 	mr_player.play("wl")

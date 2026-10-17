@@ -23,11 +23,11 @@ func monster_1406():
 	self.crit = 30
 	self.miss = 50
 	self.lucky = 70
-	self.Htarget = 95
-	self.Toughness = 30
+	self.htarget = 95
+	self.toughness = 30
 	self.ar = 110
 	self.sp = 110
-	self.Critreduce = 18
+	self.crit_reduce = 18
 	self.speed = 18
 	self.mysee = 600
 	self.attack_range = 500
@@ -55,7 +55,7 @@ func monster_1406():
 		{
 			"Name": "speed_down",
 			"AddTime": 3,
-			"ReduceInterval": 0.61,
+			"reduce_interval": 0.61,
 			"value": 0.3,
 			"AttackKind": "magic",
 			"CanAdd": true,
@@ -71,7 +71,7 @@ func monster_1406():
 		{
 			"Name": "silent",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.3,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -102,9 +102,9 @@ func _ready() -> void:
 	super._ready()
 	monster_1406()
 
-	Skill_1_CD = 2
-	Skill_2_CD = 5
-	Skill_3_CD = 4
+	skill_1_cd = 2
+	skill_2_cd = 5
+	skill_3_cd = 4
 
 	silent_check_timer = Timer.new()
 	silent_check_timer.one_shot = true
@@ -142,9 +142,9 @@ func ai_think():
 	var distance_to_player = abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
 	var is_in_attack_range = distance_to_player <= attack_range
 
-	var can_use_hit3 = Skill_3_CD <= 0
-	var can_use_hit2 = Skill_2_CD <= 0
-	var can_use_hit1 = Skill_1_CD <= 0
+	var can_use_hit3 = skill_3_cd <= 0
+	var can_use_hit2 = skill_2_cd <= 0
+	var can_use_hit1 = skill_1_cd <= 0
 
 	if is_attacking:
 		return
@@ -182,7 +182,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = 2
+	skill_1_cd = 2
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -194,7 +194,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(15, 20)
+	skill_2_cd = randi_range(15, 20)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -206,7 +206,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(25, 30)
+	skill_3_cd = randi_range(25, 30)
 	hit_name = "hit3"
 	velocity.x = 0
 	velocity.y = 0
@@ -293,7 +293,7 @@ func check_player_has_silent() -> bool:
 		return false
 
 	for buff in player.buff.get_children():
-		if buff != null and buff is BaseBuff and buff.BuffInfo["Name"] == "silent":
+		if buff != null and buff is BaseBuff and buff.buff_info["Name"] == "silent":
 			return true
 
 	return false
@@ -307,7 +307,7 @@ func apply_control_reverse(reverse_time: float):
 	var reverse_effect = {
 		"Name": "ReverseMove",
 		"AddTime": reverse_time,
-		"ReduceInterval": 0.5,
+		"reduce_interval": 0.5,
 		"value": 0,
 		"AttackKind": "",
 		"CanRemove": true,

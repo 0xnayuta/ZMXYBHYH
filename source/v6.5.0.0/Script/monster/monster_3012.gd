@@ -41,9 +41,9 @@ func _configure_axe() -> void:
 	crit = 0
 	miss = 0
 	lucky = 0
-	Htarget = 0
-	Toughness = 0.0
-	Critreduce = 0
+	htarget = 0
+	toughness = 0.0
+	crit_reduce = 0
 	ar = 0
 	sp = 0
 	speed = FLY_SPEED
@@ -58,11 +58,11 @@ func _configure_axe() -> void:
 	fall_stone_pro = 0.0
 	fall_list = []
 	fall_stone = []
-	NoGrav = true
+	no_grav = true
 	is_fly = true
 	has_target = true
 	cannot_attract = true
-	NoTarget = false
+	no_target = false
 	hit_name = "hit1"
 	obj_attack_dict = {
 		"hit1":
@@ -143,7 +143,7 @@ func _update_flight_direction() -> void:
 
 
 func _apply_flight_facing() -> void:
-	MonsterDirection = _fly_direction > 0.0
+	monster_direction = _fly_direction > 0.0
 	mr_ani.flip_h = _fly_direction < 0.0
 
 

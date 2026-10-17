@@ -14,11 +14,11 @@ func monster_108():
 	self.crit = 20
 	self.miss = 20
 	self.lucky = 0
-	self.Htarget = 20
-	self.Toughness = 20
+	self.htarget = 20
+	self.toughness = 20
 	self.ar = 35
 	self.sp = 35
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 11
 	self.mysee = 500
 	self.attack_range = 235
@@ -54,7 +54,7 @@ func monster_108():
 		{
 			"Name": "stun",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -76,9 +76,9 @@ func monster_108():
 func _ready() -> void:
 	super._ready()
 	monster_108()
-	Skill_1_CD = randi_range(4, 7)
-	Skill_2_CD = randi_range(6, 8)
-	Skill_3_CD = randi_range(10, 15)
+	skill_1_cd = randi_range(4, 7)
+	skill_2_cd = randi_range(6, 8)
+	skill_3_cd = randi_range(10, 15)
 
 
 func _physics_process(delta: float) -> void:
@@ -94,19 +94,19 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 				if count % 90 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -116,7 +116,7 @@ func ai_think():
 func do_hit_1():
 	is_combo = true
 	super.to_hero()
-	Skill_1_CD = 7
+	skill_1_cd = 7
 	hit_name = "hit2"
 	velocity.x = 0
 	velocity.y = 0
@@ -129,7 +129,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = 15
+	skill_2_cd = 15
 	hit_name = "hit3"
 	velocity.x = 0
 	velocity.y = 0
@@ -142,7 +142,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = 10
+	skill_3_cd = 10
 	hit_name = "hit4"
 	velocity.x = 0
 	velocity.y = 0
@@ -194,7 +194,7 @@ func movetoplayer():
 
 func call_bullet_1():
 	var bullet_spawn_positions = [{}]
-	if self.MonsterDirection:
+	if self.monster_direction:
 		bullet_spawn_positions = [
 			{"position": Vector2(50, 0), "Scale": Vector2(0.5, 0.5)},
 			{"position": Vector2(90, 0), "Scale": Vector2(0.7, 0.7)},
@@ -208,7 +208,7 @@ func call_bullet_1():
 		]
 	for i in bullet_spawn_positions:
 		var Bullet = Global.add_bullet(
-			"Monster108Bullet2", self, MonsterDirection, 1, i["position"], "hit4", self.obj_attack_dict["hit4"]
+			"Monster108Bullet2", self, monster_direction, 1, i["position"], "hit4", self.obj_attack_dict["hit4"]
 		)
 		Bullet.scale = i["Scale"]
 		await get_tree().create_timer(0.1, false).timeout
@@ -216,7 +216,7 @@ func call_bullet_1():
 
 func call_bullet_2():
 	var Bullet
-	if self.MonsterDirection:
+	if self.monster_direction:
 		Bullet = Global.add_bullet(
 			"Monster108Bullet1",
 			self.bullet,
@@ -250,12 +250,12 @@ func check_player():
 		buff_target = get_player
 
 	if self.position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
-		if Global.get_player.PlayerDir:
-			if not MonsterDirection:
+		if Global.get_player.player_dir:
+			if not monster_direction:
 				move_playerto_boss(buff_target, 0.5)
 	else:
-		if not Global.get_player.PlayerDir:
-			if MonsterDirection:
+		if not Global.get_player.player_dir:
+			if monster_direction:
 				move_playerto_boss(buff_target, 0.5)
 
 # ==============================================================================

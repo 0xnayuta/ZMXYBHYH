@@ -11,7 +11,7 @@ var is_get = false
 @onready var role_action: Sprite2D = $RoleAction
 @onready var role_player: AnimationPlayer = $RolePlayer
 @onready var wait: Timer = $wait
-var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
+var hit_dic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
 
 
 func _physics_process(_delta: float) -> void:

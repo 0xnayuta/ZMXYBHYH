@@ -238,9 +238,9 @@ func _target_hurt_rect(target: BaseMonster) -> Rect2:
 
 
 func _damage_target(target: BaseMonster) -> bool:
-	if not (AttList is Dictionary):
+	if not (att_list is Dictionary):
 		return false
-	var data: Dictionary = AttList
+	var data: Dictionary = att_list
 	var power := int(data.get("power", 0))
 	if power <= 0:
 		return false

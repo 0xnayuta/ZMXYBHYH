@@ -4,7 +4,7 @@ class_name Monster17
 
 func monster_17(is_boss):
 	self.rush_speed = 500
-	Skill_1_CD = 0
+	skill_1_cd = 0
 	self.my_mr_name = "龟丞相"
 	if is_boss:
 		self.attack_in = 30
@@ -16,11 +16,11 @@ func monster_17(is_boss):
 		self.crit = 10
 		self.miss = 5
 		self.lucky = 0
-		self.Htarget = 0
-		self.Toughness = 0
+		self.htarget = 0
+		self.toughness = 0
 		self.ar = 0
 		self.sp = 0
-		self.Critreduce = 0
+		self.crit_reduce = 0
 		self.speed = 9
 		self.mysee = 400
 		self.attack_range = 400
@@ -38,7 +38,7 @@ func monster_17(is_boss):
 				"Name": "Ice",
 				"AddTime": 1.56,
 				"DeBuff": true,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 			}
@@ -65,11 +65,11 @@ func monster_17(is_boss):
 		self.crit = 5
 		self.miss = 5
 		self.lucky = 0
-		self.Htarget = 1
-		self.Toughness = 0
+		self.htarget = 1
+		self.toughness = 0
 		self.ar = 0
 		self.sp = 0
-		self.Critreduce = 0
+		self.crit_reduce = 0
 		self.speed = 9
 		self.mysee = 300
 		self.attack_range = 95
@@ -100,7 +100,7 @@ func do_hit_2():
 		move_right()
 	else:
 		move_left()
-	Skill_1_CD = 14
+	skill_1_cd = 14
 	velocity.x = 0
 	hit_name = "xfj"
 	is_attacking = true
@@ -114,7 +114,7 @@ func do_hit_2():
 			{
 				"Name": "stun",
 				"AddTime": randi_range(3, 5),
-				"ReduceInterval": 0.0,
+				"reduce_interval": 0.0,
 				"value": 0,
 				"AttackKind": "",
 			}
@@ -132,10 +132,10 @@ func ai_think():
 			if is_boss:
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 					have_target()
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						do_hit_2()
 				else:
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						do_hit_2()
 					elif count % attack_in == 0:
 						if ran_num <= attack_desire:

@@ -86,11 +86,11 @@ func initialize_monster_properties():
 	level = int(RoleProp.baseroleprop.Level)
 	is_boss = true
 	attack_in = 90
-	Toughness = int(RoleProp.roleprop.Toughness)
-	Htarget = int(RoleProp.roleprop.Htarget)
+	toughness = int(RoleProp.roleprop.toughness)
+	htarget = int(RoleProp.roleprop.htarget)
 	ar = int(RoleProp.roleprop.ar)
 	sp = int(RoleProp.roleprop.sp)
-	Critreduce = int(RoleProp.roleprop.CritReduce)
+	crit_reduce = int(RoleProp.roleprop.CritReduce)
 	behit_calmtime = 0
 	self_rhp = int(RoleProp.roleprop.R_hp)
 	ebol = 0
@@ -119,9 +119,9 @@ func initialize_monster_properties():
 		"HitProtect": 0,
 		"addeffect":
 		{
-			"Name": "DefeReduce",
+			"Name": "defe_reduce",
 			"AddTime": 20,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.3,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -131,9 +131,9 @@ func initialize_monster_properties():
 
 
 func setup_skills():
-	Skill_1_CD = 0
-	Skill_2_CD = 2
-	Skill_3_CD = 3
+	skill_1_cd = 0
+	skill_2_cd = 2
+	skill_3_cd = 3
 
 
 func ai_think():
@@ -152,13 +152,13 @@ func ai_think():
 		return
 
 	if distance > 350:
-		if Skill_3_CD <= 0:
+		if skill_3_cd <= 0:
 			do_hit_3()
 		else:
 			have_target()
 
 	elif distance > 175:
-		if Skill_2_CD <= 0:
+		if skill_2_cd <= 0:
 			stop_move()
 			do_hit_2()
 		else:
@@ -166,11 +166,11 @@ func ai_think():
 
 	else:
 		stop_move()
-		if Skill_3_CD <= 0:
+		if skill_3_cd <= 0:
 			do_hit_3()
-		elif Skill_2_CD <= 0:
+		elif skill_2_cd <= 0:
 			do_hit_2()
-		elif Skill_1_CD <= 0:
+		elif skill_1_cd <= 0:
 			do_hit_1()
 
 
@@ -181,7 +181,7 @@ func do_hit_1():
 	if current_target == null or position.distance_to(current_target.position) > 175:
 		return
 
-	Skill_1_CD = randi_range(1, 3)
+	skill_1_cd = randi_range(1, 3)
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -197,7 +197,7 @@ func do_hit_2():
 
 	if current_target == null or position.distance_to(current_target.position) > 350:
 		return
-	Skill_2_CD = randi_range(5, 10)
+	skill_2_cd = randi_range(5, 10)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -213,7 +213,7 @@ func do_hit_3():
 
 	if current_target == null or position.distance_to(current_target.position) > 600:
 		return
-	Skill_3_CD = randi_range(8, 12)
+	skill_3_cd = randi_range(8, 12)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true

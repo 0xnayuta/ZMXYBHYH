@@ -210,14 +210,14 @@ const HEAVEN_SOUL_CRYSTAL_MONSTER_IDS := {
 @onready var pic: Sprite2D = $pic
 @onready var hot_area: ColorRect = $ColorRect
 
-@onready var monster_name: Button = $MonsterName
+@onready var monster_name_button: Button = $MonsterName
 @onready var boss: Label = $Boss
 
 var monster_info: Node = null
 var hover_attr_panel: Control = null
 var level_monster_config: Dictionary = {}
-var IsBoss: bool = true
-var MonsterName: String = "dxx"
+var is_boss: bool = true
+var monster_name: String = "dxx"
 var monster_scene_path: String = ""
 var level_path: String = ""
 var is_set: bool
@@ -446,7 +446,7 @@ func _ready() -> void:
 	gui_input.connect(_on_selection_gui_input)
 	if hot_area != null:
 		hot_area.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	monster_name.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	monster_name_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	boss.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	mouse_entered.connect(_on_monster_hover_entered)
 	mouse_exited.connect(_on_monster_hover_exited)
@@ -482,7 +482,7 @@ func set_selected(value: bool) -> void:
 
 
 func get_display_name() -> String:
-	return str(monster_name_list.get(MonsterName, MonsterName))
+	return str(monster_name_list.get(monster_name, monster_name))
 
 
 func _on_selection_gui_input(event: InputEvent) -> void:
@@ -499,14 +499,14 @@ func _on_selection_gui_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if not is_set:
 		var configured_name := str(level_monster_config.get("name", ""))
-		monster_name.text = (
-			configured_name if not configured_name.is_empty() else monster_name_list.get(MonsterName, MonsterName)
+		monster_name_button.text = (
+			configured_name if not configured_name.is_empty() else monster_name_list.get(monster_name, monster_name)
 		)
-		if IsBoss:
+		if is_boss:
 			boss.visible = true
 		else:
 			boss.visible = false
-		pic.texture = load_(MonsterName)
+		pic.texture = load_(monster_name)
 		_fit_head_icon()
 		_setup_north_idle_preview()
 		is_set = true
@@ -683,24 +683,24 @@ func _create_monster_attr_panel() -> Control:
 	list.add_theme_constant_override("separation", 3)
 	margin.add_child(list)
 
-	var display_name := str(monster_name_list.get(MonsterName, MonsterName))
+	var display_name := str(monster_name_list.get(monster_name, monster_name))
 	if not level_monster_config.is_empty() and str(level_monster_config.get("name", "")) != "":
 		display_name = str(level_monster_config["name"])
 	_add_attr_label(list, display_name, 18, "ffb347")
-	if IsBoss:
+	if is_boss:
 		_add_attr_label(list, "Boss", 14, "ff6b00")
-	if MonsterName == "ce":
+	if monster_name == "ce":
 		var rabbit_unlock_text := "击败后必定永久解锁月兔"
 		if PlayerData.has_method("is_pet_rabbit_unlocked") and PlayerData.is_pet_rabbit_unlocked():
 			rabbit_unlock_text += "（已解锁）"
 		_add_attr_label(list, rabbit_unlock_text, 14, "ffdf7e")
 
-	var data: Dictionary = (MonsterAttrData.DATA.get(MonsterName, {}) as Dictionary).duplicate(true)
+	var data: Dictionary = (MonsterAttrData.DATA.get(monster_name, {}) as Dictionary).duplicate(true)
 	var scene_data := _get_scene_attr_data()
 	if _is_scene_attr_data_valid(scene_data):
 		data = scene_data
 
-	if MonsterName == "zqj3006" and not data.has("掉落"):
+	if monster_name == "zqj3006" and not data.has("掉落"):
 		data["掉落"] = [
 			{
 				"name": "tjs",
@@ -710,7 +710,7 @@ func _create_monster_attr_panel() -> Control:
 				"chance": 0.1,
 			}
 		]
-	var human_monster_id := int(HUMAN_SOUL_CRYSTAL_MONSTER_IDS.get(MonsterName, 0))
+	var human_monster_id := int(HUMAN_SOUL_CRYSTAL_MONSTER_IDS.get(monster_name, 0))
 	if int(MainSet.set_data.get("Difficult", 0)) == BaseMonster.NIGHTMARE_DIFFICULTY and human_monster_id > 0:
 		data["掉落"] = [
 			{
@@ -727,7 +727,7 @@ func _create_monster_attr_panel() -> Control:
 		and BaseMonster.is_underworld_nightmare_path(level_path)
 	):
 		data["掉落"] = []
-		var underworld_monster_id := int(UNDERWORLD_SOUL_CRYSTAL_MONSTER_IDS.get(MonsterName, 0))
+		var underworld_monster_id := int(UNDERWORLD_SOUL_CRYSTAL_MONSTER_IDS.get(monster_name, 0))
 		if underworld_monster_id > 0:
 			data["掉落"] = [
 				{
@@ -744,7 +744,7 @@ func _create_monster_attr_panel() -> Control:
 		and BaseMonster.is_heaven_nightmare_path(level_path)
 	):
 		data["掉落"] = []
-		var heaven_monster_id := int(HEAVEN_SOUL_CRYSTAL_MONSTER_IDS.get(MonsterName, 0))
+		var heaven_monster_id := int(HEAVEN_SOUL_CRYSTAL_MONSTER_IDS.get(monster_name, 0))
 		if heaven_monster_id > 0:
 			data["掉落"] = [
 				{
@@ -877,7 +877,7 @@ func _get_scene_attr_data() -> Dictionary:
 			skip_runtime_configuration or (runtime_config is Dictionary and (runtime_config as Dictionary).is_empty())
 		)
 
-	if MonsterName == "ce" and monster.has_method("_configure_stats"):
+	if monster_name == "ce" and monster.has_method("_configure_stats"):
 		monster.call("_configure_stats")
 	if monster.has_method("set_data"):
 		monster.call("set_data")
@@ -929,11 +929,11 @@ func _get_scene_attr_data() -> Dictionary:
 		keys[5]: _read_monster_value(monster, "crit", 0),
 		keys[6]: _read_monster_value(monster, "miss", 0),
 		keys[7]: _read_monster_value(monster, "ebol", 0),
-		keys[8]: _read_monster_value(monster, "Htarget", 0),
+		keys[8]: _read_monster_value(monster, "htarget", 0),
 		keys[9]: _read_monster_value(monster, "lucky", 0),
 		keys[10]: _read_monster_value(monster, "ar", 0),
 		keys[11]: _read_monster_value(monster, "sp", 0),
-		keys[12]: _read_monster_value(monster, "Critreduce", 0),
+		keys[12]: _read_monster_value(monster, "crit_reduce", 0),
 		keys[13]: _read_monster_value(monster, "self_rhp", 0),
 		keys[14]: _read_monster_value(monster, "speed", 0),
 		keys[15]: _read_monster_value(monster, "mysee", 0),

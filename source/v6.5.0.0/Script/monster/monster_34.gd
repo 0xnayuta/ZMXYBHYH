@@ -14,11 +14,11 @@ func monster_34():
 	self.crit = 8
 	self.miss = 10
 	self.lucky = 20
-	self.Htarget = 20
-	self.Toughness = 20
+	self.htarget = 20
+	self.toughness = 20
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 9
 	self.mysee = 400
 	self.attack_range = 260
@@ -41,4 +41,4 @@ func monster_34():
 func _ready() -> void:
 	super._ready()
 	monster_34()
-	Skill_1_CD = 0
+	skill_1_cd = 0

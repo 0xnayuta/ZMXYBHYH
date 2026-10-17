@@ -68,11 +68,11 @@ func set_prop_text():
 	var list = PlayerData.player_data[real_name]
 	for i in list:
 		if typeof(list[i]) == TYPE_DICTIONARY:
-			var Prop = int(list[i]["Level"] * RoleProp.zhen_fa_props[real_name][i]["Value"])
+			var prop = int(list[i]["Level"] * RoleProp.zhen_fa_props[real_name][i]["Value"])
 			var prop_type = RoleProp.zhen_fa_props[real_name][i]["Type"]
 			var target_text = get_node("PropText/text_" + str(i))
-			if Prop > 0:
+			if prop > 0:
 				target_text.visible = true
-				target_text.text = i + "号位Lv." + str(list[i]["Level"]) + "：" + str(prop_type) + "+" + str(Prop)
+				target_text.text = i + "号位Lv." + str(list[i]["Level"]) + "：" + str(prop_type) + "+" + str(prop)
 			else:
 				target_text.visible = false

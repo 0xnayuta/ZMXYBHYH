@@ -1,5 +1,5 @@
 extends BaseMonster
-var DeathCount: int = 0
+var death_count: int = 0
 var hurtcount: int = 0
 var should_fs: bool = false
 var _fs_queued: bool = false
@@ -21,11 +21,11 @@ func monster_63():
 	self.crit = 5 + int(RoleProp.baseroleprop.Level * 0.8)
 	self.miss = 5 + int(RoleProp.baseroleprop.Level * 0.4)
 	self.lucky = 0 + int(RoleProp.baseroleprop.Level * 1.5)
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 20 + int(RoleProp.baseroleprop.Level * 0.6)
 	self.sp = 20 + int(RoleProp.baseroleprop.Level * 0.6)
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 11
 	self.mysee = 0
 	self.attack_range = 280
@@ -51,7 +51,7 @@ func monster_63():
 		{
 			"Name": "Boundground",
 			"AddTime": 4,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -72,10 +72,10 @@ func monster_63():
 func _ready() -> void:
 	super._ready()
 	monster_63()
-	Skill_1_CD = 10
-	Skill_2_CD = 0
-	Skill_3_CD = 0
-	Skill_4_CD = 15
+	skill_1_cd = 10
+	skill_2_cd = 0
+	skill_3_cd = 0
+	skill_4_cd = 15
 	should_fs = false
 
 
@@ -111,14 +111,14 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 				elif count % 120 == 0:
 					attack_target()
@@ -127,7 +127,7 @@ func ai_think():
 
 
 func do_hit_1():
-	Skill_1_CD = randi_range(20, 30)
+	skill_1_cd = randi_range(20, 30)
 	super.to_hero()
 	hit_name = "hit2"
 	velocity.x = 0
@@ -139,10 +139,10 @@ func do_hit_1():
 
 
 func do_hit_4():
-	if Skill_4_CD > 0 or is_attacking:
+	if skill_4_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_4_CD = randi_range(25, 30)
+	skill_4_cd = randi_range(25, 30)
 	hit_name = "hit4"
 	velocity.x = 0
 	is_attacking = true
@@ -256,14 +256,14 @@ func _call_fs_deferred() -> void:
 func call_bullet_2():
 	var bullet_pos
 	for i in range(randi_range(6, 10)):
-		if MonsterDirection:
+		if monster_direction:
 			bullet_pos = Vector2(-100, randi_range(-65, 35))
 		else:
 			bullet_pos = Vector2(100, randi_range(-65, 35))
 		Global.add_bullet(
 			"Monster63Bullet1",
 			self.bullet,
-			!MonsterDirection,
+			!monster_direction,
 			1,
 			bullet_pos + position,
 			"hit2",

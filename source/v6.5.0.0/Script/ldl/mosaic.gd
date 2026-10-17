@@ -47,10 +47,10 @@ func set_zb_properies():
 	if zb.strength_source == "宠物背包" and selected.get("宠物装备", {}) is Dictionary:
 		var pet_item: Dictionary = selected["宠物装备"]
 		zb.set_button_icon(_pet_item_icon(pet_item, zb.get_item_name))
-		zb.EQ_prop = pet_item
+		zb.eq_prop = pet_item
 	else:
 		zb.set_button_icon(load_(zb.get_item_name))
-		zb.EQ_prop = selected["Data"]
+		zb.eq_prop = selected["Data"]
 
 
 func set_other_prop():
@@ -70,7 +70,7 @@ func remove_infomation():
 	zb.set_button_icon(load_(str("empty")))
 	zb.get_item_name = "empty"
 	zb.qh_level = 0
-	zb.EQ_prop = {}
+	zb.eq_prop = {}
 	zb.strength_source = "装备背包"
 	zb.strength_index = -1
 	zb.set_meta("equipped_type", "")

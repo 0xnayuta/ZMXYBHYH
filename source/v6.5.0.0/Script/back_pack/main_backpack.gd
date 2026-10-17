@@ -56,7 +56,7 @@ func _set_box_item(box, item_name: String, qh_level := 0, total_num := 0, eq_pro
 	box.set_meta("item_name", item_name)
 	box.qh_level = qh_level
 	box.total_number = total_num
-	box.EQ_prop = eq_prop
+	box.eq_prop = eq_prop
 	box.item_locked = eq_prop is Dictionary and bool(eq_prop.get("锁定", false))
 	box.wx = wx_list
 	box.strength_source = "装备背包"
@@ -70,7 +70,7 @@ func _set_pet_box_item(box, item: Dictionary, item_index: int) -> void:
 	box.set_meta("item_name", item_id)
 	box.qh_level = int(item.get(DataKeys.ENHANCE_LEVEL, 0))
 	box.total_number = 0
-	box.EQ_prop = item
+	box.eq_prop = item
 	box.item_locked = false
 	box.wx = []
 	box.current_page = current_page
@@ -135,7 +135,7 @@ func _set_box_empty(box) -> void:
 	box.set_meta("item_name", "empty")
 	box.qh_level = 0
 	box.total_number = 0
-	box.EQ_prop = {}
+	box.eq_prop = {}
 	box.item_locked = false
 	box.wx = []
 	box.strength_source = "装备背包"
@@ -257,7 +257,7 @@ func set_box_data():
 				target_box(x).get_item_name = str(i.名字)
 				target_box(x).set_meta("item_name", str(i.名字))
 				target_box(x).qh_level = i.强化等级
-				target_box(x).EQ_prop = i.Data
+				target_box(x).eq_prop = i.Data
 				target_box(x).item_locked = bool(i.Data.get("锁定", false))
 				if AE.all_equipment[i.名字][DataKeys.TYPE] == "法宝":
 					target_box(x).wx = i.五行
@@ -282,7 +282,7 @@ func set_box_data():
 				target_box(x).item_locked = bool(i.get("锁定", false))
 				target_box(x).current_page = current_page
 				_mark_box_kind(target_box(x), "item")
-				target_box(x).EQ_prop = {}
+				target_box(x).eq_prop = {}
 				x += 1
 			while x < 26:
 				_set_box_empty(target_box(x))
@@ -298,7 +298,7 @@ func set_box_data():
 				target_box(x).get_item_name = str(i.名字)
 				target_box(x).set_meta("item_name", str(i.名字))
 				target_box(x).total_number = i.数量
-				target_box(x).EQ_prop = {}
+				target_box(x).eq_prop = {}
 				target_box(x).item_locked = bool(i.get("锁定", false))
 				target_box(x).current_page = current_page
 				_mark_box_kind(target_box(x), "item")

@@ -65,7 +65,7 @@ func _physics_process(_delta: float) -> void:
 
 func _main_role():
 	if is_instance_valid(cur_level):
-		var level_role: Variant = cur_level.get("Role_")
+		var level_role: Variant = cur_level.get("role_")
 		if is_instance_valid(level_role):
 			return level_role
 	var source_player: Variant = RoleProp.source_player
@@ -74,7 +74,7 @@ func _main_role():
 
 func _second_role():
 	if is_instance_valid(cur_level):
-		var second_role: Variant = cur_level.get("RoleP2")
+		var second_role: Variant = cur_level.get("role_p2")
 		if is_instance_valid(second_role):
 			return second_role
 	return null
@@ -201,7 +201,7 @@ func _toggle_magic(role_) -> void:
 func _resolve_level():
 	var p := get_parent()
 	while p != null:
-		if p.get("Role_") != null or p.get("role_information") != null:
+		if p.get("role_") != null or p.get("role_information") != null:
 			return p
 		p = p.get_parent()
 	return null

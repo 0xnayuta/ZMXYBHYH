@@ -16,11 +16,11 @@ func monster_109():
 	self.crit = 20
 	self.miss = 20
 	self.lucky = 0
-	self.Htarget = 20
-	self.Toughness = 20
+	self.htarget = 20
+	self.toughness = 20
 	self.ar = 25
 	self.sp = 25
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 11
 	self.mysee = 500
 	self.attack_range = 165
@@ -100,7 +100,7 @@ func _on_hit_box_area_entered(area: Area2D) -> Node2D:
 					{
 						"Name": "Scary",
 						"AddTime": 3,
-						"ReduceInterval": 0,
+						"reduce_interval": 0,
 						"value": 0,
 						"AttackKind": "",
 						"CanAdd": false,

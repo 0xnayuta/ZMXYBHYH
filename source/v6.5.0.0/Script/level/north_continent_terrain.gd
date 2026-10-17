@@ -35,7 +35,7 @@ func configure(level: Game4EastLateLevel, number: int) -> void:
 
 func _physics_process(delta: float) -> void:
 	_clock += delta
-	var role = _level.Role_
+	var role = _level.role_
 	if not is_instance_valid(role):
 		return
 	var role_shape := role.get_node("pz") as CollisionShape2D

@@ -21,11 +21,11 @@ func monster_41():
 	self.crit = 0
 	self.miss = 25
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 8
 	self.mysee = 600
 	self.attack_range = 800
@@ -44,7 +44,7 @@ func monster_41():
 			"CanAdd": true,
 			"AddTime": 2,
 			"DeBuff": true,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": int(RoleProp.roleprop.SHp * 0.01),
 			"AttackKind": "real",
 		}
@@ -68,8 +68,8 @@ func _ready() -> void:
 	super._ready()
 	get_parent_ = get_parent().get_parent()
 	monster_41()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
 
 
 func ai_think():
@@ -90,7 +90,7 @@ func ai_think():
 				normal_state()
 			else:
 				if not is_need_run:
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						do_hit_3()
 					elif (
 						abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) < 300
@@ -114,14 +114,14 @@ func ai_think():
 					):
 						have_target()
 					else:
-						if Skill_2_CD <= 0 and Skill_1_CD > 0:
+						if skill_2_cd <= 0 and skill_1_cd > 0:
 							do_hit_4()
 						else:
 							stop_move()
 				else:
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						do_hit_3()
-					elif Skill_2_CD <= 0 and Skill_1_CD > 0:
+					elif skill_2_cd <= 0 and skill_1_cd > 0:
 						do_hit_4()
 					else:
 						if need_left:
@@ -143,7 +143,7 @@ func do_hit_2():
 
 
 func do_hit_3():
-	Skill_1_CD = 22
+	skill_1_cd = 22
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -154,7 +154,7 @@ func do_hit_3():
 
 func do_hit_4():
 	super.to_hero()
-	Skill_2_CD = 5
+	skill_2_cd = 5
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -177,14 +177,14 @@ func _on_speed_up_timeout() -> void:
 
 
 func add_speed_up_specialbullet():
-	if self.MonsterDirection:
+	if self.monster_direction:
 		Global.add_special_effect(self, Vector2(0, 55), "SpeedUp", Vector2(1, 1), true, 1)
 	else:
 		Global.add_special_effect(self, Vector2(0, 55), "SpeedUp", Vector2(1, 1), true, 1)
 
 
 func call_fly_bullet():
-	if MonsterDirection:
+	if monster_direction:
 		Global.call_fly_bullet(
 			bullet,
 			"Monster41Bullet",

@@ -114,9 +114,9 @@ func _configure_boss() -> void:
 	mdef = int(config["mdef"])
 	crit = int(config["crit"])
 	miss = int(config["miss"])
-	Htarget = int(config["hit"])
-	Toughness = float(config.get("toughness", 0.0))
-	Critreduce = int(config.get("crit_reduce", 0))
+	htarget = int(config["hit"])
+	toughness = float(config.get("toughness", 0.0))
+	crit_reduce = int(config.get("crit_reduce", 0))
 	ar = int(config["armor_break"])
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
@@ -130,7 +130,7 @@ func _configure_boss() -> void:
 	independent_fall_list = Array(config.get("independent_drop_list", [])).duplicate(true)
 	is_boss = bool(config["is_boss"])
 	boss_max_protect = float(config["max_protect"])
-	NoGrav = true
+	no_grav = true
 	is_fly = true
 	cannot_attract = true
 	obj_attack_dict.clear()
@@ -446,7 +446,7 @@ func apply_poison_buff(role: BaseHero) -> void:
 			{
 				"Name": "poision",
 				"AddTime": 10.0,
-				"ReduceInterval": 1.0,
+				"reduce_interval": 1.0,
 				"value": maxi(1, int(RoleProp.roleprop.SHp * 0.005)),
 				"AttackKind": "magic",
 				"CanAdd": true,
@@ -475,7 +475,7 @@ func _enforce_fixed_state() -> void:
 	velocity = Vector2.ZERO
 	if _fixed_position != Vector2.ZERO:
 		position = _fixed_position
-	NoGrav = true
+	no_grav = true
 	is_fly = true
 	cannot_attract = true
 	monster_dir.scale.x = 1.0

@@ -55,9 +55,9 @@ func _ready() -> void:
 	_build_sword_frames()
 	_build_sword_animations()
 	super._ready()
-	Skill_1_CD = randi_range(3, 5)
-	Skill_2_CD = randi_range(5, 7)
-	Skill_3_CD = randi_range(8, 10)
+	skill_1_cd = randi_range(3, 5)
+	skill_2_cd = randi_range(5, 7)
+	skill_3_cd = randi_range(8, 10)
 
 
 func _configure_sword_boss() -> void:
@@ -81,11 +81,11 @@ func _apply_sword_boss_stats() -> void:
 	crit = 300
 	miss = 100
 	lucky = 50
-	Htarget = 500
-	Toughness = 30
+	htarget = 500
+	toughness = 30
 	ar = 400
 	sp = 400
-	Critreduce = 15
+	crit_reduce = 15
 	speed = 10
 	mysee = 1000
 	attack_range = 230
@@ -380,11 +380,11 @@ func ai_think() -> void:
 		have_target()
 		return
 	stop_move()
-	if Skill_3_CD <= 0:
+	if skill_3_cd <= 0:
 		_use_sword_skill(&"hit3", 9, "hit3")
-	elif Skill_2_CD <= 0:
+	elif skill_2_cd <= 0:
 		_use_sword_skill(&"hit2", 6, "hit2")
-	elif Skill_1_CD <= 0 or count % 50 == 0:
+	elif skill_1_cd <= 0 or count % 50 == 0:
 		_use_sword_skill(&"hit1", 4, "hit1")
 
 
@@ -430,11 +430,11 @@ func _use_sword_skill(animation_name: StringName, cooldown: int, hit_key: String
 	is_attacking = true
 	match hit_key:
 		"hit1":
-			Skill_1_CD = cooldown
+			skill_1_cd = cooldown
 		"hit2":
-			Skill_2_CD = cooldown
+			skill_2_cd = cooldown
 		"hit3":
-			Skill_3_CD = cooldown
+			skill_3_cd = cooldown
 	mr_player.play(animation_name)
 	await mr_player.animation_finished
 	_stop_streamed_sword_skill()

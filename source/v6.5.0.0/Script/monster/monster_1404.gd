@@ -17,11 +17,11 @@ func monster_1404():
 	self.crit = 25
 	self.miss = 45
 	self.lucky = 60
-	self.Htarget = 90
-	self.Toughness = 20
+	self.htarget = 90
+	self.toughness = 20
 	self.ar = 90
 	self.sp = 90
-	self.Critreduce = 12
+	self.crit_reduce = 12
 	self.speed = 16
 	self.mysee = 1000
 	self.attack_range = 600
@@ -47,7 +47,7 @@ func monster_1404():
 		{
 			"Name": "silent",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.3,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -63,7 +63,7 @@ func monster_1404():
 		{
 			"Name": "stun",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -86,9 +86,9 @@ func _ready() -> void:
 	super._ready()
 	monster_1404()
 
-	Skill_1_CD = randi_range(2, 4)
-	Skill_2_CD = randi_range(4, 8)
-	Skill_3_CD = randi_range(8, 16)
+	skill_1_cd = randi_range(2, 4)
+	skill_2_cd = randi_range(4, 8)
+	skill_3_cd = randi_range(8, 16)
 
 
 func ai_think():
@@ -114,9 +114,9 @@ func ai_think():
 			var distance_to_player = abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
 			var is_in_attack_range = distance_to_player <= attack_range
 
-			var can_use_hit3 = Skill_3_CD <= 0
-			var can_use_hit1 = Skill_1_CD <= 0
-			var can_use_hit2 = Skill_2_CD <= 0
+			var can_use_hit3 = skill_3_cd <= 0
+			var can_use_hit1 = skill_1_cd <= 0
+			var can_use_hit2 = skill_2_cd <= 0
 
 			var can_attack = true
 			if is_attacking:
@@ -153,7 +153,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(1, 3)
+	skill_1_cd = randi_range(1, 3)
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -165,7 +165,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(15, 20)
+	skill_2_cd = randi_range(15, 20)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -177,7 +177,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(20, 25)
+	skill_3_cd = randi_range(20, 25)
 	hit_name = "hit3"
 	velocity.x = 0
 	velocity.y = 0
@@ -192,7 +192,7 @@ func call_bullet_1():
 	var bullet_count = 3
 	var spread_angle = 30
 
-	var direction_multiplier = -1 if self.MonsterDirection else 1
+	var direction_multiplier = -1 if self.monster_direction else 1
 
 	for i in range(bullet_count):
 		if i > 0:

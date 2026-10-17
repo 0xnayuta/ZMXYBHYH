@@ -12,8 +12,8 @@ const ATTRIBUTES := {
 	"R_hp": "回血",
 	"R_mp": "回魔",
 	"Lucky": "幸运",
-	"Toughness": "韧性",
-	"Htarget": "命中",
+	"toughness": "韧性",
+	"htarget": "命中",
 	"CritReduce": "减暴",
 	"ar": "破甲",
 	"sp": "破魔",
@@ -41,7 +41,7 @@ func initialize(all_equipment: Dictionary) -> void:
 	for level_id in range(63, 76):
 		level_info.target_stage_path = "res://Scene/level/Level_%d.tscn" % level_id
 		var info: Dictionary = level_info._get_level_info()
-		_register_level("东胜神洲·" + str(info.get("LevelName", "")), info)
+		_register_level("东胜神洲·" + str(info.get("level_name", "")), info)
 	level_info.free()
 	var immortal_script := load("res://Script/level/level_bxgh.gd")
 	var immortal_drops: Dictionary = immortal_script.get_script_constant_map()["EIGHT_IMMORTAL_DROP_DATA"]

@@ -103,9 +103,9 @@ func _deal_hit(target: BaseMonster, power: int, owner: Node, attack_kind: String
 
 
 func _apply_damage() -> void:
-	if not (AttList is Dictionary):
+	if not (att_list is Dictionary):
 		return
-	var power := int(AttList.get("power", 0))
+	var power := int(att_list.get("power", 0))
 	if power <= 0:
 		return
 	var local_rect := _current_effect_rect()
@@ -115,8 +115,8 @@ func _apply_damage() -> void:
 	var owner: Node = (
 		owner_value as Node if typeof(owner_value) == TYPE_OBJECT and is_instance_valid(owner_value) else null
 	)
-	var attack_kind := str(AttList.get("attackKind", "physics"))
-	var interval := maxi(1, int(AttList.get("attackInterval", 10)))
+	var attack_kind := str(att_list.get("attackKind", "physics"))
+	var interval := maxi(1, int(att_list.get("attackInterval", 10)))
 	var world_rect := Rect2(global_position + local_rect.position, local_rect.size)
 	var locked_target: Variant = get_meta("yin_tiger_locked_target") if has_meta("yin_tiger_locked_target") else null
 	if locked_target == null and owner is BaseMonster:
@@ -157,7 +157,7 @@ func _apply_damage() -> void:
 						"kind": attack_kind
 					}
 				)
-			_apply_pet_summon_knockback(target, owner, AttList.get("hurtBack", []))
+			_apply_pet_summon_knockback(target, owner, att_list.get("hurtBack", []))
 			if target.has_method("play_hit_effect"):
 				target.play_hit_effect(self)
 			if skill_name == "PetYinTiger1Bullet2" and owner != null and owner.has_method("apply_stun_to_target"):

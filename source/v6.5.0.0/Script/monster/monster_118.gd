@@ -13,11 +13,11 @@ func monster_118():
 	self.crit = 25
 	self.miss = 25
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 60
 	self.sp = 60
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 600
 	self.attack_range = 225
@@ -38,7 +38,7 @@ func monster_118():
 			"CanAdd": true,
 			"DeBuff": true,
 			"CanRemove": false,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 900,
 			"AttackKind": "magic",
 		}
@@ -52,7 +52,7 @@ func monster_118():
 func _ready() -> void:
 	super._ready()
 	monster_118()
-	Skill_1_CD = 5
+	skill_1_cd = 5
 
 
 func ai_think():
@@ -69,7 +69,7 @@ func ai_think():
 		else:
 			if distance > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if distance <= 300:
 						do_hit_2()
 					else:
@@ -77,7 +77,7 @@ func ai_think():
 				else:
 					have_target()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
 				else:
 					if count % 90 == 0:
@@ -87,7 +87,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 5
+	skill_1_cd = 5
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -107,7 +107,7 @@ func call_bullet_1():
 	elif get_tree() != null and get_tree().current_scene != null:
 		bullet_parent = get_tree().current_scene
 	var hit_data: Dictionary = self.obj_attack_dict["hit2"].duplicate(true)
-	if self.MonsterDirection:
+	if self.monster_direction:
 		bullet_node = Global.add_bullet(
 			"Monster118Bullet2", bullet_parent, false, 1, Vector2(35, 25) + global_position, "hit2", hit_data
 		)

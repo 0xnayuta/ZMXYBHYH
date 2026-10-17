@@ -30,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 
 	var equipment: Dictionary = selected.get("item", {})
 	var item_name := str(equipment.get(DataKeys.NAME, ""))
-	var item_data: Dictionary = equipment.get("Data", {})
+	var item_data: Dictionary = equipment.get("data", {})
 	var selected_source := str(selected.get("source", MLdl.qh_list.get("来源", "装备背包")))
 	var selected_page := int(selected.get("page", 0))
 	var selected_index := int(selected.get("index", -1))
@@ -43,11 +43,11 @@ func _physics_process(_delta: float) -> void:
 
 	old_zb_name = item_name
 	new_zb_name = item_name
-	Data = item_data
+	data = item_data
 	self.qh_level = qh_level
 	old_zb.set_button_icon(load_(item_name))
 	old_zb.get_item_name = item_name
-	old_zb.EQ_prop = item_data
+	old_zb.eq_prop = item_data
 	old_zb.qh_level = qh_level
 	old_zb.current_page = selected_page
 	old_zb.strength_source = selected_source
@@ -57,7 +57,7 @@ func _physics_process(_delta: float) -> void:
 	old_zb.set_meta("backpack_index", selected_index)
 	new_zb.set_button_icon(load_(item_name))
 	new_zb.get_item_name = item_name
-	new_zb.EQ_prop = target_data
+	new_zb.eq_prop = target_data
 	new_zb.qh_level = qh_level
 	new_zb.current_page = selected_page
 	new_zb.strength_source = selected_source
@@ -71,8 +71,8 @@ func _physics_process(_delta: float) -> void:
 		n_q_2.set_button_icon(load_("empty"))
 		n_q_1.get_item_name = "empty"
 		n_q_2.get_item_name = "empty"
-		n_q_1.EQ_prop = {}
-		n_q_2.EQ_prop = {}
+		n_q_1.eq_prop = {}
+		n_q_2.eq_prop = {}
 		num_b1.text = "已满阶"
 		num_b2.text = ""
 		lh_text.text = ""
@@ -83,7 +83,7 @@ func _physics_process(_delta: float) -> void:
 	var stone_count := _count_item_all_pages(stone_id)
 	n_q_1.set_button_icon(load_(stone_id))
 	n_q_1.get_item_name = stone_id
-	n_q_1.EQ_prop = AE.all_equipment.get(stone_id, {})
+	n_q_1.eq_prop = AE.all_equipment.get(stone_id, {})
 	n_q_1.total_number = 0
 	num_b1.text = str(stone_count) + "/" + str(required_stones)
 	_set_requirement_color(num_b1, stone_count >= required_stones)
@@ -99,7 +99,7 @@ func _on_sz_pressed() -> void:
 		return
 	var equipment: Dictionary = selected["item"]
 	var item_name := str(equipment.get(DataKeys.NAME, ""))
-	var item_data: Dictionary = equipment.get("Data", {})
+	var item_data: Dictionary = equipment.get("data", {})
 	if not AE.can_divine_forge(item_name, item_data):
 		_show_message("只有神器及以上品质的武器、防具和饰品可以神铸！")
 		return
@@ -115,8 +115,8 @@ func _on_sz_pressed() -> void:
 	_consume_item_all_pages(stone_id, STONES_PER_STAGE)
 	var upgraded_data := item_data.duplicate(true)
 	upgraded_data["神铸阶段"] = target_stage
-	equipment["Data"] = upgraded_data
-	MLdl.qh_list["Data"] = upgraded_data
+	equipment["data"] = upgraded_data
+	MLdl.qh_list["data"] = upgraded_data
 	if str(selected["source"]) == "人物穿戴":
 		RoleProp.get_equ_last_pro()
 		RoleProp.get_last_prop()
@@ -211,11 +211,11 @@ func _clear_display() -> void:
 	old_zb_name = "empty"
 	new_zb_name = "empty"
 	qh_level = -1
-	Data = {}
+	data = {}
 	for slot in [old_zb, new_zb, n_q_1, n_q_2]:
 		slot.set_button_icon(load_("empty"))
 		slot.get_item_name = "empty"
-		slot.EQ_prop = {}
+		slot.eq_prop = {}
 	num_b1.text = ""
 	num_b2.text = ""
 	lh_text.text = ""
@@ -229,4 +229,4 @@ func remove_infomation() -> void:
 	MLdl.qh_list["位置"] = 0
 	MLdl.qh_list["来源"] = "装备背包"
 	MLdl.qh_list["穿戴栏"] = ""
-	MLdl.qh_list["Data"] = {}
+	MLdl.qh_list["data"] = {}

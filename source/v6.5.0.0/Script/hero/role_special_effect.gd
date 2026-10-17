@@ -11,7 +11,7 @@ var special_effect_name: String
 var dir: bool
 var is_set: bool
 var myhccount: int
-var MonsterList = []
+var monster_list = []
 var cure_count: int = 0
 var p_pl: BaseHero
 var wiil_queue: bool
@@ -92,9 +92,9 @@ func _physics_process(delta: float) -> void:
 
 	if special_effect_name == "jgz":
 		_apply_jgz_to_overlapping_bodies()
-		for i in MonsterList.duplicate():
+		for i in monster_list.duplicate():
 			if not _can_control_monster(i):
-				MonsterList.erase(i)
+				monster_list.erase(i)
 				continue
 			i.velocity.y = 0
 
@@ -182,8 +182,8 @@ func myhc_cure():
 		if i != null and is_instance_valid(i):
 			if i is BaseHero:
 				var level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1
-				var Value = int(RoleProp.roleprop.SHp * randf_range(0.04, 0.05))
-				i.cure_hp(Value)
+				var value = int(RoleProp.roleprop.SHp * randf_range(0.04, 0.05))
+				i.cure_hp(value)
 
 
 func _apply_jgz_to_overlapping_bodies() -> void:
@@ -201,15 +201,15 @@ func _apply_jgz_to_monster(body: Node) -> void:
 	if not _can_control_monster(body):
 		return
 	body.velocity.y = 0
-	if MonsterList.has(body):
+	if monster_list.has(body):
 		return
-	MonsterList.push_back(body)
+	monster_list.push_back(body)
 	Global.add_buff(
 		body.buff,
 		{
 			"Name": "jgz",
 			"AddTime": 5 + (skill_level - 1) * 0.5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": skill_level,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -275,7 +275,7 @@ func _get_zznh_buff_info() -> Dictionary:
 	return {
 		"Name": "zznh",
 		"AddTime": 8 + (skill_level - 1) * 0.5,
-		"ReduceInterval": 0,
+		"reduce_interval": 0,
 		"value": skill_level,
 		"defense_reduction": zznh_defense_reduction,
 		"AttackKind": "",

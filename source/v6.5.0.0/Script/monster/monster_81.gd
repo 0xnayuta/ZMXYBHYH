@@ -17,11 +17,11 @@ func monster_81():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 18
-	self.Toughness = 0
+	self.htarget = 18
+	self.toughness = 0
 	self.ar = 8
 	self.sp = 8
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 11
 	self.mysee = 500
 	self.attack_range = 135
@@ -38,7 +38,7 @@ func monster_81():
 		{
 			"Name": "Bleed",
 			"AddTime": 3,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 30,
 			"AttackKind": "real",
 			"CanAdd": true,

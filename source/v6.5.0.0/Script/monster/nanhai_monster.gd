@@ -276,9 +276,9 @@ func _configure_monster() -> void:
 	mdef = int(config.get("mdef", 1100))
 	crit = int(config.get("crit", 300))
 	miss = int(config.get("miss", 150))
-	Htarget = int(config.get("hit", 280))
-	Toughness = float(config.get("toughness", 0.0))
-	Critreduce = int(config.get("crit_reduce", 0))
+	htarget = int(config.get("hit", 280))
+	toughness = float(config.get("toughness", 0.0))
+	crit_reduce = int(config.get("crit_reduce", 0))
 	ar = int(config.get("armor_break", 900))
 	sp = int(config.get("magic_break", 900))
 	speed = float(config.get("speed", 0.0))
@@ -729,7 +729,7 @@ func state_death() -> void:
 	_disable_attack_box()
 	_busy = false
 	is_attacking = false
-	NoGrav = false
+	no_grav = false
 	velocity = Vector2.ZERO
 	if hurt_box != null:
 		hurt_box.set_deferred("disabled", true)

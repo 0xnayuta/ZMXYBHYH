@@ -8,7 +8,7 @@ class_name ZLWShenqiGearBullet
 @onready var hit_shape: CollisionShape2D = $middle/HitBox/Hit_Box
 @onready var queue_timer: Timer = $queue_timer
 
-var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
+var hit_dic = {"power": 0, "hurtBack": [0, 0], "attackKind": "magic"}
 var follow_target: Node2D
 var initial_angle: float = 0.0
 var life_time: float = 3.0
@@ -106,8 +106,8 @@ func _try_hurt_monster(target: BaseMonster) -> void:
 	_hurt_monster(target)
 	if target.is_boss_protecting():
 		return
-	if HitDic.has("addeffect") and randi_range(1, 100) <= int(HitDic.get("stun_chance", 100)):
-		Global.add_buff(target.buff, HitDic["addeffect"])
+	if hit_dic.has("addeffect") and randi_range(1, 100) <= int(hit_dic.get("stun_chance", 100)):
+		Global.add_buff(target.buff, hit_dic["addeffect"])
 
 
 func _find_monster_from_area(area: Area2D) -> BaseMonster:
@@ -120,13 +120,13 @@ func _find_monster_from_area(area: Area2D) -> BaseMonster:
 
 
 func _hurt_monster(monster: BaseMonster) -> void:
-	var hurt = int(HitDic.get("power", 0))
-	var attack_kind = str(HitDic.get("attackKind", "magic"))
+	var hurt = int(hit_dic.get("power", 0))
+	var attack_kind = str(hit_dic.get("attackKind", "magic"))
 	var is_crit := false
-	var crit_value = max(0, RoleProp.roleprop.Crit - monster.Critreduce)
+	var crit_value = max(0, RoleProp.roleprop.Crit - monster.crit_reduce)
 	var crit_rate = snapped(crit_value / float(crit_value + 100), 0.001)
 	if randf_range(0, 1) <= crit_rate:
-		var lucky_value = max(0, RoleProp.roleprop.Lucky - monster.Toughness)
+		var lucky_value = max(0, RoleProp.roleprop.Lucky - monster.toughness)
 		var crit_power = 2 + snapped(lucky_value / float(lucky_value + 100), 0.001)
 		hurt = int(hurt * crit_power)
 		is_crit = true

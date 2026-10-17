@@ -141,7 +141,7 @@ var _last_monster_formation_level: int = -1
 var _lhhj_drop_disabled := false
 var tszzs: float
 var lpzjs: float
-var NoGrav: bool
+var no_grav: bool
 var rndi_count: int = randi_range(0, 100)
 var get_player: BaseHero
 
@@ -162,23 +162,23 @@ var damage_reduction: float = 0.0
 var is_scary: bool
 var hurt_bl: float = 1
 var is_death: bool = false
-var DefeReduce: float
+var defe_reduce: float
 var max_ = 2
 var current_ = 0
 var super_armor_active: bool
 var is_bounds = false
 var smart_hit_count: int
 var smart_wait_count: int
-var NoTarget: bool
-var IsIndestructible: bool
+var no_target: bool
+var is_indestructible: bool
 var llrdzs: float
 var ran_1 = randf_range(0, 1)
 var ran_2 = randf_range(0, 1)
 var ran_3 = randf_range(0, 1)
 var ran_4 = randf_range(0, 1)
 var is_immobilize: bool = false
-var BloodFix: bool = false
-var LifeManaLock: bool = false
+var is_blood_fix: bool = false
+var life_mana_lock: bool = false
 var level: int
 var def: int
 var ebol: float
@@ -190,10 +190,10 @@ var is_speed_down: bool
 var attack_range: int
 var attack_desire: int
 var mysee: int
-var Skill_1_CD: int = 10
-var Skill_2_CD: int
-var Skill_3_CD: int
-var Skill_4_CD: int
+var skill_1_cd: int = 10
+var skill_2_cd: int
+var skill_3_cd: int
+var skill_4_cd: int
 var skill_5_cd: int
 var skill_6_cd: int
 var skill_7_cd: int
@@ -202,22 +202,21 @@ var state
 var ran_num: int = randi_range(10, 100)
 var speed
 var behit_calmtime: float
-var Htarget: int
-var Toughness: float = 0.0
+var htarget: int
+var toughness: float = 0.0
 var hurt_received: int
-var Critreduce: int
+var crit_reduce: int
 var ar: int
 var sp: int
-var Bullet
-var Bullet1
-var Bullet2
-var Bullet3
+var bullet_1
+var bullet_2
+var bullet_3
 var is_stun = false
 var is_sleep = false
 var attack_in: int
 var has_target = false
 var count = 0
-var IsDefeReduce: bool
+var is_defe_reduce: bool
 var add_exp: int
 var self_rhp: int
 var is_boss = false
@@ -320,7 +319,7 @@ var level_cache_valid: bool = false
 var llrd_count: int = 0
 var run_hit_active: bool
 var run_hit_count: int = 0
-var MonsterDirection: bool = false
+var monster_direction: bool = false
 var hit_text
 var is_fly = false
 enum State {
@@ -353,7 +352,7 @@ func apply_tower_monster_config(config: Dictionary) -> void:
 	mdef = int(config.get("mdef", mdef))
 	crit = int(config.get("crit", crit))
 	miss = int(config.get("miss", miss))
-	Htarget = int(config.get("hit", Htarget))
+	htarget = int(config.get("hit", htarget))
 	ar = int(config.get("armor_break", ar))
 	sp = int(config.get("magic_break", sp))
 	if bool(config.get("nightmare", false)):
@@ -361,8 +360,8 @@ func apply_tower_monster_config(config: Dictionary) -> void:
 		damage_reduction = NIGHTMARE_DAMAGE_REDUCTION
 		level += NIGHTMARE_LEVEL_BONUS
 		lucky *= 3
-		Toughness *= 3.0
-		Critreduce *= 3
+		toughness *= 3.0
+		crit_reduce *= 3
 		self_rhp *= 3
 
 	for attack_name in obj_attack_dict:
@@ -376,7 +375,7 @@ func set_gra():
 
 
 func can_set_gra():
-	return not NoGrav and not islljy and not should_in_sky
+	return not no_grav and not islljy and not should_in_sky
 
 
 func _ready() -> void:
@@ -537,9 +536,9 @@ func _physics_process(delta: float) -> void:
 	if MainSet.set_data["NoShowMonsterBody"] == false:
 		monster_dir.visible = false
 	if monster_dir.scale.x == 1:
-		MonsterDirection = false
+		monster_direction = false
 	else:
-		MonsterDirection = true
+		monster_direction = true
 	get_player = Global.get_player
 	count += 1
 	if death():
@@ -778,8 +777,8 @@ func _enforce_control_immunity_state() -> void:
 	is_sleep = false
 	is_eye_fix = false
 	is_dead_link = false
-	BloodFix = false
-	LifeManaLock = false
+	is_blood_fix = false
+	life_mana_lock = false
 	is_scary = false
 	islljy = false
 	is_speed_down = false
@@ -802,7 +801,7 @@ func _process_pet_tiger_sxhz_air_hold() -> void:
 	if Time.get_ticks_msec() < hold_until:
 		if has_meta("pet_tiger_sxhz_hold_position"):
 			global_position = get_meta("pet_tiger_sxhz_hold_position")
-		NoGrav = true
+		no_grav = true
 		is_stun = true
 		is_be_attacking = true
 		velocity = Vector2.ZERO
@@ -818,7 +817,7 @@ func _release_pet_tiger_sxhz_air_hold() -> void:
 	if has_meta("pet_tiger_sxhz_hold_position"):
 		remove_meta("pet_tiger_sxhz_hold_position")
 	_remove_pet_tiger_sxhz_stun_buff()
-	NoGrav = false
+	no_grav = false
 	should_in_sky = false
 	is_be_attacking = false
 	is_stun = false
@@ -858,7 +857,7 @@ func _remove_pet_tiger_sxhz_stun_buff() -> void:
 	for child in buff.get_children():
 		if child == null:
 			continue
-		var info = child.get("BuffInfo")
+		var info = child.get("buff_info")
 		if info is Dictionary and str(info.get("Name", "")) == "stun" and bool(info.get("PetTigerSxhz", false)):
 			buff.remove_child(child)
 			child.queue_free()
@@ -1104,7 +1103,7 @@ func state_hurt():
 		return
 
 	if self is Monster114:
-		if get_target.HitDic["hurtBack"][0] != 0 or get_target.HitDic["hurtBack"][1] != 0:
+		if get_target.hit_dic["hurtBack"][0] != 0 or get_target.hit_dic["hurtBack"][1] != 0:
 			var hurt_generation := _begin_hurt_reaction()
 			is_be_attacking = true
 
@@ -1119,7 +1118,7 @@ func state_hurt():
 			_finish_hurt_reaction(hurt_generation)
 		return
 
-	if get_target.HitDic["hurtBack"][0] != 0 or get_target.HitDic["hurtBack"][1] != 0:
+	if get_target.hit_dic["hurtBack"][0] != 0 or get_target.hit_dic["hurtBack"][1] != 0:
 		var hurt_generation := _begin_hurt_reaction()
 		is_be_attacking = true
 		velocity.x = 0
@@ -1193,46 +1192,46 @@ func be_hit_back(target):
 	if target == null:
 		return
 	if target is BaseHero:
-		if not get_player.PlayerDir:
-			attack_to_right(target.HitDic["hurtBack"])
+		if not get_player.player_dir:
+			attack_to_right(target.hit_dic["hurtBack"])
 		else:
-			attack_to_left(target.HitDic["hurtBack"])
+			attack_to_left(target.hit_dic["hurtBack"])
 	elif target is BaseMagicWeapon:
 		if not target.mg_action.flip_h:
-			attack_to_right(target.HitDic["hurtBack"])
+			attack_to_right(target.hit_dic["hurtBack"])
 		else:
-			attack_to_left(target.HitDic["hurtBack"])
+			attack_to_left(target.hit_dic["hurtBack"])
 	elif target is RoleBullet:
 		if not target.direction:
-			attack_to_right(target.HitDic["hurtBack"])
+			attack_to_right(target.hit_dic["hurtBack"])
 		else:
-			attack_to_left(target.HitDic["hurtBack"])
+			attack_to_left(target.hit_dic["hurtBack"])
 	elif target is RoleBullet1:
-		if not get_player.PlayerDir:
-			attack_to_right(target.HitDic["hurtBack"])
+		if not get_player.player_dir:
+			attack_to_right(target.hit_dic["hurtBack"])
 		else:
-			attack_to_left(target.HitDic["hurtBack"])
+			attack_to_left(target.hit_dic["hurtBack"])
 
 	elif target is MgHit:
 		var bullet = target as MgHit
 		var hero = null
 
 		if bullet.source_weapon and bullet.source_weapon is BaseMagicWeapon:
-			hero = bullet.source_weapon.Player
+			hero = bullet.source_weapon.player
 
 		if hero == null:
 			hero = Global.get_player
 
 		if hero and hero is BaseHero:
-			if hero.PlayerDir:
-				attack_to_right(bullet.HitDic["hurtBack"])
+			if hero.player_dir:
+				attack_to_right(bullet.hit_dic["hurtBack"])
 			else:
-				attack_to_left(bullet.HitDic["hurtBack"])
+				attack_to_left(bullet.hit_dic["hurtBack"])
 		else:
 			if bullet.source_weapon and bullet.source_weapon.mg_action.flip_h:
-				attack_to_right(bullet.HitDic["hurtBack"])
+				attack_to_right(bullet.hit_dic["hurtBack"])
 			else:
-				attack_to_left(bullet.HitDic["hurtBack"])
+				attack_to_left(bullet.hit_dic["hurtBack"])
 	else:
 		return
 
@@ -1625,9 +1624,9 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 	var old_player: BaseHero = get_player
 	var old_source_player: Variant = RoleProp.source_player
 	var old_tszzs: float = source_player.tszzs
-	var old_hit_data: Variant = source_target.get("HitDic")
+	var old_hit_data: Variant = source_target.get("hit_dic")
 	if not hit_data.is_empty():
-		source_target.set("HitDic", hit_data.duplicate(true))
+		source_target.set("hit_dic", hit_data.duplicate(true))
 
 	get_target = source_target
 	get_player = source_player
@@ -1660,7 +1659,7 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 	add_lj(last_hurt)
 	Global.total_role_hit += last_hurt
 	role5_bullet(last_hurt, source_target)
-	var attack_data: Variant = source_target.get("HitDic")
+	var attack_data: Variant = source_target.get("hit_dic")
 	if attack_data is Dictionary:
 		match str(attack_data.get("attackKind", "")):
 			"physics":
@@ -1687,7 +1686,7 @@ func apply_role_hit(source_target: Variant, source_player: BaseHero = null, hit_
 	source_player.tszzs = old_tszzs
 	RoleProp.source_player = old_source_player
 	if not hit_data.is_empty():
-		source_target.set("HitDic", old_hit_data)
+		source_target.set("hit_dic", old_hit_data)
 	return last_hurt
 
 
@@ -1771,7 +1770,7 @@ func _get_damage_source_player(target) -> BaseHero:
 func _apply_damage_vampirism(target, effective_damage: int) -> void:
 	if effective_damage <= 0 or target == null:
 		return
-	var attack_data_value: Variant = target.get("HitDic")
+	var attack_data_value: Variant = target.get("hit_dic")
 	if not attack_data_value is Dictionary:
 		return
 	var attack_data: Dictionary = attack_data_value
@@ -1791,13 +1790,13 @@ func _apply_damage_vampirism(target, effective_damage: int) -> void:
 func get_role_last_hurt(target):
 	is_crit = false
 	is_miss = false
-	var Hurt = 0
-	var Miss = 0
-	var Crit = 0
+	var hurt = 0
+	var miss = 0
+	var crit = 0
 	var last_def = 0
 	var last_mdef = 0
 	var cur_level: int = 0
-	var Lucky = 0
+	var lucky = 0
 	var hurt_lx: String = "real"
 	if (
 		target is BaseHero
@@ -1807,104 +1806,104 @@ func get_role_last_hurt(target):
 		or target is MgHit
 		or target is Role1Shallow
 	):
-		Miss = miss - RoleProp.roleprop.Htarget
-		Crit = RoleProp.roleprop.Crit - Critreduce
+		miss = miss - RoleProp.roleprop.htarget
+		crit = RoleProp.roleprop.Crit - crit_reduce
 		last_def = def - RoleProp.roleprop.ar
 		last_mdef = mdef - RoleProp.roleprop.sp
 		cur_level = RoleProp.baseroleprop.Level
-		Lucky = RoleProp.roleprop.Lucky - Toughness
+		lucky = RoleProp.roleprop.Lucky - toughness
 	elif target is BaseBuff:
-		Miss = miss - RoleProp.roleprop.Htarget
-		Crit = RoleProp.roleprop.Crit - Critreduce
+		miss = miss - RoleProp.roleprop.htarget
+		crit = RoleProp.roleprop.Crit - crit_reduce
 		last_def = def - RoleProp.roleprop.ar
 		last_mdef = mdef - RoleProp.roleprop.sp
 		cur_level = RoleProp.baseroleprop.Level
-		Lucky = RoleProp.roleprop.Lucky - Toughness
+		lucky = RoleProp.roleprop.Lucky - toughness
 	else:
 		return 0
 
 	if not target is BaseBuff:
-		Hurt = target.HitDic["power"]
-		hurt_lx = target.HitDic["attackKind"]
+		hurt = target.hit_dic["power"]
+		hurt_lx = target.hit_dic["attackKind"]
 	else:
-		Hurt = target.last_value
-		hurt_lx = str(target.BuffInfo.get("AttackKind", ""))
+		hurt = target.last_value
+		hurt_lx = str(target.buff_info.get("AttackKind", ""))
 	var source_player := RoleProp.source_player as BaseHero
 	if source_player != null and is_instance_valid(source_player):
 		var monster149_buff_until := int(source_player.get_meta("monster149_buff_until", 0))
 		if monster149_buff_until > 0:
 			if Time.get_ticks_msec() < monster149_buff_until:
-				Hurt = int(float(Hurt) / 2.0)
+				hurt = int(float(hurt) / 2.0)
 			else:
 				source_player.remove_meta("monster149_buff_until")
 	if RoleProp.source_player.is_xr:
-		Hurt *= RoleProp.source_player.xrbl
-	if Miss <= 0:
-		Miss = 0
+		hurt *= RoleProp.source_player.xrbl
+	if miss <= 0:
+		miss = 0
 	else:
 		var miss_bl = abs(level - cur_level) * 0.04
 		if miss_bl >= 0.9:
 			miss_bl = 0.9
 		if level_suppression(cur_level):
-			Miss = Miss * (1 + miss_bl)
+			miss = miss * (1 + miss_bl)
 		else:
-			Miss = Miss * (1 - miss_bl)
-	if Crit <= 0:
-		Crit = 0
+			miss = miss * (1 - miss_bl)
+	if crit <= 0:
+		crit = 0
 	else:
 		var crit_bl = abs(level - cur_level) * 0.11
 		if crit_bl >= 1:
 			crit_bl = 1
 		if level_suppression(cur_level):
-			Crit = Crit * (1 - crit_bl)
+			crit = crit * (1 - crit_bl)
 		else:
-			Crit = Crit * (1 + crit_bl)
+			crit = crit * (1 + crit_bl)
 	if last_def <= 0:
 		last_def = 0
 	if last_mdef <= 0:
 		last_mdef = 0
-	if IsDefeReduce:
+	if is_defe_reduce:
 		var defense_reduction := get_effective_defense_reduction()
 		last_def *= 1.0 - defense_reduction
 		last_mdef *= 1.0 - defense_reduction
-	if Lucky <= 0:
-		Lucky = 0
+	if lucky <= 0:
+		lucky = 0
 	else:
 		var lucky_bl = abs(level - cur_level) * 0.07
 		if lucky_bl >= 0.7:
 			lucky_bl = 0.7
 		if level_suppression(cur_level):
-			Lucky = Lucky * (1 - lucky_bl)
+			lucky = lucky * (1 - lucky_bl)
 		else:
-			Lucky = Lucky * (1 + lucky_bl)
+			lucky = lucky * (1 + lucky_bl)
 	var bl
 	if level_suppression(cur_level):
-		Hurt = int(Hurt * (1 - is_suppression_num(cur_level) * 0.05))
+		hurt = int(hurt * (1 - is_suppression_num(cur_level) * 0.05))
 	else:
-		Hurt = int(Hurt * (1 + not_suppression_num(cur_level) * 0.05))
-	Crit = snapped(Crit / float(Crit + 100), 0.001)
-	Miss = snapped(Miss / float(Miss + 70), 0.001)
+		hurt = int(hurt * (1 + not_suppression_num(cur_level) * 0.05))
+	crit = snapped(crit / float(crit + 100), 0.001)
+	miss = snapped(miss / float(miss + 70), 0.001)
 	randomize()
-	if randf_range(0, 1) <= Miss:
+	if randf_range(0, 1) <= miss:
 		is_miss = true
 		return 0
-	if randf_range(0, 1) <= Crit:
-		bl = 2 + snapped(Lucky / float(Lucky + 100), 0.001) + tqzbs
-		Hurt = Hurt * bl
+	if randf_range(0, 1) <= crit:
+		bl = 2 + snapped(lucky / float(lucky + 100), 0.001) + tqzbs
+		hurt = hurt * bl
 		Global.total_crit_count += 1
 		is_crit = true
 
 	match hurt_lx:
 		"physics":
 			var damage_reduction_rate = snapped(last_def / float(last_def + 100), 0.001)
-			Hurt = int(Hurt * (1 - damage_reduction_rate))
+			hurt = int(hurt * (1 - damage_reduction_rate))
 		"magic":
 			var damage_reduction_rate = snapped(last_mdef / float(last_mdef + 100), 0.001)
-			Hurt = int(Hurt * (1 - damage_reduction_rate))
-	if IsIndestructible:
-		if Hurt >= Hp:
+			hurt = int(hurt * (1 - damage_reduction_rate))
+	if is_indestructible:
+		if hurt >= Hp:
 			return 0
-	return Hurt
+	return hurt
 
 
 func _apply_role_damage_vs_reduction(value: int) -> int:
@@ -1926,7 +1925,7 @@ func reduce_hp(value: int):
 	if monster102_protect():
 		cure_hp(value)
 		return 0
-	if IsIndestructible:
+	if is_indestructible:
 		if value >= Hp:
 			return 0
 	var last_value = hd_reduce(value)
@@ -1954,7 +1953,7 @@ func reduce_pet_hp(value: int, attack_kind: String) -> int:
 	if monster102_protect():
 		cure_hp(value)
 		return 0
-	if IsIndestructible and value >= Hp:
+	if is_indestructible and value >= Hp:
 		return 0
 	var damage_kind := attack_kind if attack_kind in ["physics", "magic"] else "real"
 	var last_value := int(hd_reduce(value))
@@ -1979,7 +1978,7 @@ func reduce_pet_hp(value: int, attack_kind: String) -> int:
 
 
 func get_effective_defense_reduction() -> float:
-	return clampf(maxf(DefeReduce, zznh_defense_reduction), 0.0, 1.0)
+	return clampf(maxf(defe_reduce, zznh_defense_reduction), 0.0, 1.0)
 
 
 func resolve_friendly_damage(base_damage: int, attack_kind: String, attacker: Node = null) -> int:
@@ -2000,8 +1999,8 @@ func resolve_friendly_damage(base_damage: int, attack_kind: String, attacker: No
 		var gxp_multiplier := maxf(1.0, float(damage_source.call("get_gxp_damage_multiplier")))
 		base_damage = maxi(1, int(round(float(base_damage) * gxp_multiplier)))
 	var owner_hit := (
-		int(attacker.get("Htarget"))
-		if attacker != null and is_instance_valid(attacker) and "Htarget" in attacker
+		int(attacker.get("htarget"))
+		if attacker != null and is_instance_valid(attacker) and "htarget" in attacker
 		else 0
 	)
 	var target_miss := maxi(0, int(miss) - owner_hit)
@@ -2012,7 +2011,7 @@ func resolve_friendly_damage(base_damage: int, attack_kind: String, attacker: No
 	var owner_crit := (
 		int(attacker.get("crit")) if attacker != null and is_instance_valid(attacker) and "crit" in attacker else 0
 	)
-	var effective_crit := maxi(0, owner_crit - int(Critreduce))
+	var effective_crit := maxi(0, owner_crit - int(crit_reduce))
 	var crit_chance := float(effective_crit) / (float(effective_crit) + 100.0) if effective_crit > 0 else 0.0
 	var resolved_damage := base_damage
 	if crit_chance > 0.0 and randf() < crit_chance:
@@ -2021,7 +2020,7 @@ func resolve_friendly_damage(base_damage: int, attack_kind: String, attacker: No
 			if attacker != null and is_instance_valid(attacker) and "lucky" in attacker
 			else 0
 		)
-		var effective_lucky := maxi(0, owner_lucky - int(Toughness))
+		var effective_lucky := maxi(0, owner_lucky - int(toughness))
 		var crit_multiplier := (
 			2.0 + float(effective_lucky) / (float(effective_lucky) + 100.0) if effective_lucky > 0 else 2.0
 		)
@@ -2037,7 +2036,7 @@ func resolve_friendly_damage(base_damage: int, attack_kind: String, attacker: No
 		)
 		var defense := int(def) if attack_kind == "physics" else int(mdef)
 		defense = maxi(0, defense - penetration)
-		if IsDefeReduce:
+		if is_defe_reduce:
 			defense = maxi(0, int(float(defense) * (1.0 - get_effective_defense_reduction())))
 		var reduction: float = float(snapped(float(defense) / float(defense + 100), 0.001))
 		resolved_damage = maxi(1, int(float(resolved_damage) * (1.0 - reduction)))
@@ -2064,7 +2063,7 @@ func receive_reflected_damage(base_damage: int, attack_kind: String, penetration
 	if damage_kind in ["physics", "magic"]:
 		var defense := int(def) if damage_kind == "physics" else int(mdef)
 		defense = maxi(0, defense - maxi(0, penetration))
-		if IsDefeReduce:
+		if is_defe_reduce:
 			defense = maxi(0, int(float(defense) * (1.0 - get_effective_defense_reduction())))
 		var reduction: float = float(snapped(float(defense) / float(defense + 100), 0.001))
 		resolved_damage = maxi(1, int(float(resolved_damage) * (1.0 - reduction)))
@@ -2080,7 +2079,7 @@ func hurt_reduce_hp(value, target):
 	var skip_mds_combo: bool = (
 		value > 0
 		and target is BaseBuff
-		and str(target.BuffInfo.get("Name", "")) == "Voodoo"
+		and str(target.buff_info.get("Name", "")) == "Voodoo"
 		and _is_mds_awaken_active()
 	)
 	if Global.is_hidden_feature_enabled(Global.HIDDEN_FEATURE_INSTANT_KILL) and value > 0:
@@ -2091,7 +2090,7 @@ func hurt_reduce_hp(value, target):
 	if monster102_protect():
 		cure_hp(value)
 		return 0
-	if IsIndestructible:
+	if is_indestructible:
 		if value >= Hp:
 			return 0
 	if skip_mds_combo:
@@ -2129,7 +2128,7 @@ func add_hurt_text(value, target):
 		or target is MgHit
 		or target is Role1Shallow
 	):
-		var hurt_lx = target.HitDic["attackKind"]
+		var hurt_lx = target.hit_dic["attackKind"]
 		if is_miss:
 			var level_node = get_level_node()
 			var po = Vector2(self.position.x - 20, self.position.y - 240)
@@ -2139,7 +2138,7 @@ func add_hurt_text(value, target):
 			var po = Vector2(self.position.x - 20, self.position.y - 240)
 			Global.add_damage_text(level_node, po, value, hurt_lx, is_crit, self)
 	elif target is BaseBuff:
-		var hurt_lx = str(target.BuffInfo.get("AttackKind", ""))
+		var hurt_lx = str(target.buff_info.get("AttackKind", ""))
 		var level_node = get_level_node()
 		var po = Vector2(self.position.x - 20, self.position.y - 240)
 		Global.add_damage_text(level_node, po, value, hurt_lx, is_crit, self)
@@ -2167,9 +2166,9 @@ func hd_reduce(value):
 func cure_hp(value: int):
 	if Hp <= 0:
 		return
-	if BloodFix:
+	if is_blood_fix:
 		return
-	if LifeManaLock:
+	if life_mana_lock:
 		return
 	value = value * (1 + therapeutic_effects)
 	if value + Hp >= SHp:
@@ -2182,14 +2181,14 @@ func cure_hp(value: int):
 
 
 func remove_cd():
-	if Skill_1_CD >= 0:
-		Skill_1_CD -= 1
-	if Skill_2_CD >= 0:
-		Skill_2_CD -= 1
-	if Skill_3_CD >= 0:
-		Skill_3_CD -= 1
-	if Skill_4_CD >= 0:
-		Skill_4_CD -= 1
+	if skill_1_cd >= 0:
+		skill_1_cd -= 1
+	if skill_2_cd >= 0:
+		skill_2_cd -= 1
+	if skill_3_cd >= 0:
+		skill_3_cd -= 1
+	if skill_4_cd >= 0:
+		skill_4_cd -= 1
 	if skill_5_cd >= 0:
 		skill_5_cd -= 1
 	if skill_6_cd >= 0:
@@ -2371,8 +2370,8 @@ func add_lj(value):
 
 func monster_18_protect():
 	if self is Monster18:
-		if self.MonsterDirection == Global.player_dir:
-			if self.MonsterDirection == false:
+		if self.monster_direction == Global.player_dir:
+			if self.monster_direction == false:
 				Global.add_special_effect(self, Vector2(0, 5), "protect", Vector2(1.1, 1.1), false, 1)
 			else:
 				Global.add_special_effect(self, Vector2(0, 5), "protect", Vector2(1.1, 1.1), false, 1)
@@ -2382,11 +2381,11 @@ func monster_18_protect():
 
 func _on_hit_box_area_exited(_area: Area2D) -> void:
 	if self is Monster43:
-		if Skill_1_CD > 0:
-			Skill_1_CD -= 3
+		if skill_1_cd > 0:
+			skill_1_cd -= 3
 		if hit_name == "csjq":
 			cure_hp(self.obj_attack_dict["csjq"]["power"] * 25 + int((SHp - Hp) * 0.07))
-			self.Skill_3_CD = 0
+			self.skill_3_cd = 0
 
 
 func rush():
@@ -2395,7 +2394,7 @@ func rush():
 			velocity.x = 0
 		return
 	velocity.x = 0
-	if self.MonsterDirection:
+	if self.monster_direction:
 		velocity.x += rush_speed
 	else:
 		velocity.x -= rush_speed
@@ -2438,8 +2437,8 @@ func move_playerto_boss(target: Node2D, movetime: float):
 func cure_ws_value():
 	if not RoleProp.is_ws_state:
 		if get_target != null:
-			if get_target.HitDic.has("WSValue"):
-				RoleProp.ws_value += get_target.HitDic["WSValue"]
+			if get_target.hit_dic.has("WSValue"):
+				RoleProp.ws_value += get_target.hit_dic["WSValue"]
 			else:
 				RoleProp.ws_value += 2
 		else:
@@ -2467,7 +2466,7 @@ func check_add_buff():
 	var not_silent = true
 	var not_bound_floor = true
 	var not_immobilize = true
-	var not_blood_fix = true
+	var not_is_blood_fix = true
 	var not_life_mana_lock = true
 	var not_defe_reduce = true
 	var not_scary = true
@@ -2485,7 +2484,7 @@ func check_add_buff():
 		var i = self.buff.get_child(buff_child_index)
 		buff_child_index += 1
 		if i != null:
-			var buff_info: Dictionary = i.BuffInfo
+			var buff_info: Dictionary = i.buff_info
 			match str(buff_info["Name"]):
 				"zznh":
 					is_zznh = true
@@ -2494,7 +2493,7 @@ func check_add_buff():
 					zznh_bl = 1.1 + (skill_level - 1) * 0.1
 					zznh_defense_reduction = float(buff_info.get("defense_reduction", 0.0))
 					if zznh_defense_reduction > 0.0:
-						IsDefeReduce = true
+						is_defe_reduce = true
 						not_defe_reduce = false
 				"jgz":
 					is_jgz = true
@@ -2504,8 +2503,8 @@ func check_add_buff():
 				"lljybuff":
 					islljy = true
 					not_lljy = false
-				"NoDeBuff":
-					NoDeBuff = true
+				"no_debuff":
+					no_debuff = true
 					not_no_de_buff = false
 				"lpzbuff":
 					is_lpz = true
@@ -2514,11 +2513,11 @@ func check_add_buff():
 					is_ice = true
 					not_ice = false
 				"Indestructible":
-					IsIndestructible = true
+					is_indestructible = true
 					not_indestructible = false
-				"DefeReduce":
-					IsDefeReduce = true
-					DefeReduce = float(buff_info.get("value", i.last_value))
+				"defe_reduce":
+					is_defe_reduce = true
+					defe_reduce = float(buff_info.get("value", i.last_value))
 					not_defe_reduce = false
 				"SuperArmor":
 					super_armor_active = true
@@ -2538,11 +2537,11 @@ func check_add_buff():
 				"speed_down":
 					is_speed_down = true
 					not_sppeddown = false
-				"BloodFix":
-					BloodFix = true
-					not_blood_fix = false
-				"LifeManaLock":
-					LifeManaLock = true
+				"blood_fix":
+					is_blood_fix = true
+					not_is_blood_fix = false
+				"life_mana_lock":
+					life_mana_lock = true
 					not_life_mana_lock = false
 				"Scary":
 					is_scary = true
@@ -2557,25 +2556,25 @@ func check_add_buff():
 		is_jgz = false
 		jgz_bl = 1
 	if not_no_de_buff:
-		NoDeBuff = false
+		no_debuff = false
 	if not_lljy:
 		islljy = false
 	if not_lpz:
 		is_lpz = false
 		lpzjs = 0
 	if not_indestructible:
-		IsIndestructible = false
+		is_indestructible = false
 	if not_defe_reduce:
-		DefeReduce = 0
-		IsDefeReduce = false
+		defe_reduce = 0
+		is_defe_reduce = false
 	if not_super_armor:
 		super_armor_active = false
 	if not_scary:
 		is_scary = false
-	if not_blood_fix:
-		BloodFix = false
+	if not_is_blood_fix:
+		is_blood_fix = false
 	if not_life_mana_lock:
-		LifeManaLock = false
+		life_mana_lock = false
 	if not_immobilize:
 		is_immobilize = false
 	if not_ice:
@@ -2666,9 +2665,9 @@ func difficult():
 		self.crit *= 3
 		self.miss *= 3
 		self.lucky *= 3
-		self.Htarget = self.Htarget * 3 + NIGHTMARE_HIT_BONUS
-		self.Toughness *= 3.0
-		self.Critreduce *= 3
+		self.htarget = self.htarget * 3 + NIGHTMARE_HIT_BONUS
+		self.toughness *= 3.0
+		self.crit_reduce *= 3
 		self.self_rhp *= 3
 	self.Hp = self.SHp
 	self.fall_coin = int((0 if self.fall_coin == null else self.fall_coin) * mult)
@@ -3317,10 +3316,10 @@ func _apply_active_pet_unit_growth(
 
 
 func _unlock_pet_mouse_level_skill_cooldowns(unit: Node, old_pet_level: int, new_pet_level: int) -> void:
-	if old_pet_level < 30 and new_pet_level >= 30 and unit.get("Skill_2_CD") != null:
-		unit.set("Skill_2_CD", 0.0)
-	if old_pet_level < 50 and new_pet_level >= 50 and unit.get("Skill_3_CD") != null:
-		unit.set("Skill_3_CD", 0.0)
+	if old_pet_level < 30 and new_pet_level >= 30 and unit.get("skill_2_cd") != null:
+		unit.set("skill_2_cd", 0.0)
+	if old_pet_level < 50 and new_pet_level >= 50 and unit.get("skill_3_cd") != null:
+		unit.set("skill_3_cd", 0.0)
 
 
 func _pet_stage_for_level(pet_level: int) -> int:
@@ -3395,7 +3394,7 @@ func check_player_have_debuff(target):
 		return
 	for i in get_player.buff.get_children():
 		if i != null:
-			if i.BuffInfo["Name"] == target:
+			if i.buff_info["Name"] == target:
 				return true
 	return false
 
@@ -3406,8 +3405,8 @@ func wd_hurt():
 			var voodoo_counts = Global.check_wd(self)
 			if voodoo_counts >= 7:
 				var skill_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能10"][DataKeys.LEVEL]
-				var Power = int(RoleProp.roleprop.power) * (0.5 + skill_level * 0.05)
-				var skill_power = int(voodoo_counts * Power)
+				var power = int(RoleProp.roleprop.power) * (0.5 + skill_level * 0.05)
+				var skill_power = int(voodoo_counts * power)
 				if skill_power > 0:
 					Global.add_sound(self, "res://Music/Hero/Role4/mds.mp3")
 					Global.add_special_effect(self, Vector2(0, -25), "mds", Vector2(1, 1), false, 1)

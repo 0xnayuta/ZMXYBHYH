@@ -59,9 +59,9 @@ var _background_stream: StreamedPngEffect
 
 func _ready() -> void:
 	super._ready()
-	if Role_ != null:
-		Role_.position = Vector2(31, 446)
-		Role_.set_meta("disable_down_drop", true)
+	if role_ != null:
+		role_.position = Vector2(31, 446)
+		role_.set_meta("disable_down_drop", true)
 	_setup_background_stream()
 
 
@@ -132,5 +132,5 @@ func _level_number() -> int:
 
 
 func _on_fall_death_body_entered(body: Node2D) -> void:
-	if body == Role_:
+	if body == role_:
 		RoleProp.roleprop.Hp = 0

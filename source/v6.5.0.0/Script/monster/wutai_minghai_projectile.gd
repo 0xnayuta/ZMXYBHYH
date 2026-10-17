@@ -118,8 +118,8 @@ func configure(config: Dictionary) -> void:
 	my_father = owner_monster
 	spawn_global_position = config.get("position", Vector2.ZERO)
 	hit_name = str(config.get("hit_name", "hit1"))
-	AttList = (config.get("attack_data", {}) as Dictionary).duplicate(true)
-	obj_attack_dict = {hit_name: AttList}
+	att_list = (config.get("attack_data", {}) as Dictionary).duplicate(true)
+	obj_attack_dict = {hit_name: att_list}
 	skill_name = str(config.get("skill_name", "WutaiMinghaiProjectile"))
 	dir = bool(config.get("right", true))
 	frame_root = str(config.get("frame_root", ""))

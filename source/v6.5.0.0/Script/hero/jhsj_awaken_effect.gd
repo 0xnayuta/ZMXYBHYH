@@ -147,7 +147,7 @@ func _damage_area_after_delay(center: Vector2, delay: float) -> void:
 	for target in _cached_targets:
 		if target == null or not is_instance_valid(target):
 			continue
-		if target.Hp <= 0 or target.NoTarget or target.is_boss_protecting():
+		if target.Hp <= 0 or target.no_target or target.is_boss_protecting():
 			continue
 		var offset: Vector2 = target.global_position + Vector2(0.0, -70.0) - center
 		if absf(offset.x) <= hit_half_size.x and absf(offset.y) <= hit_half_size.y:
@@ -168,9 +168,9 @@ func _collect_targets(node: Node) -> void:
 
 
 func _apply_target_damage(node: BaseMonster) -> void:
-	var old_hit_data: Dictionary = owner_player.HitDic
+	var old_hit_data: Dictionary = owner_player.hit_dic
 	var old_miss: int = node.miss
-	owner_player.HitDic = hit_data
+	owner_player.hit_dic = hit_data
 
 	node.miss = 0
 	var damage := int(
@@ -198,7 +198,7 @@ func _apply_target_damage(node: BaseMonster) -> void:
 			_apply_hit_stun(node)
 		node.role5_bullet(damage, owner_player)
 	node.miss = old_miss
-	owner_player.HitDic = old_hit_data
+	owner_player.hit_dic = old_hit_data
 
 
 func _apply_hit_stun(target: BaseMonster) -> void:

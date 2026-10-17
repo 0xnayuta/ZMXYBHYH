@@ -7,7 +7,7 @@ var source_player
 var roleprop = {}
 var baseroleprop = {}
 var equprop = {}
-var Paslprop = {}
+var pasl_prop = {}
 var wq_bs_prop = {}
 var fj_bs_prop = {}
 var sp_bs_prop = {}
@@ -161,17 +161,17 @@ func get_nearest_monster_target_position(origin: Vector2) -> Vector2:
 
 
 func get_zf_loc_prop(Name, loc):
-	var Level = int(PlayerData.player_data[Name][str(loc)]["Level"])
+	var level = int(PlayerData.player_data[Name][str(loc)]["Level"])
 	var dic = zhen_fa_props[Name]
-	var Prop = int(dic[str(loc)]["Value"]) * Level
-	return Prop
+	var prop = int(dic[str(loc)]["Value"]) * level
+	return prop
 
 
 func get_next_level_prop(Name, loc):
-	var Level = int(PlayerData.player_data[Name][str(loc)]["Level"]) + 1
+	var level = int(PlayerData.player_data[Name][str(loc)]["Level"]) + 1
 	var dic = zhen_fa_props[Name]
-	var Prop = int(dic[str(loc)]["Value"]) * Level
-	return Prop
+	var prop = int(dic[str(loc)]["Value"]) * level
+	return prop
 
 
 func get_zf_prop(Name):
@@ -268,8 +268,8 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0.0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"damage_bonus": 0.0,
 		"damage_reduction": 0.0,
@@ -294,8 +294,8 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0.0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"damage_bonus": 0.0,
 		"damage_reduction": 0.0,
@@ -314,8 +314,8 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0.0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"ar": 0,
 		"sp": 0
@@ -332,8 +332,8 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0.0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"ar": 0,
 		"sp": 0
@@ -350,8 +350,8 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0.0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"ar": 0,
 		"sp": 0
@@ -368,8 +368,8 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0.0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"ar": 0,
 		"sp": 0
@@ -386,8 +386,8 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0.0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"ar": 0,
 		"sp": 0
@@ -404,8 +404,8 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0.0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"ar": 0,
 		"sp": 0
@@ -422,8 +422,8 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0.0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"ar": 0,
 		"sp": 0
@@ -440,13 +440,13 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0.0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"ar": 0,
 		"sp": 0
 	}
-	Paslprop = {
+	pasl_prop = {
 		"SHp": 0,
 		"SMp": 0,
 		"power": 0,
@@ -458,8 +458,8 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0.0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"ar": 0,
 		"sp": 0
@@ -476,8 +476,8 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"ar": 0,
 		"sp": 0
@@ -494,8 +494,8 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"ar": 0,
 		"sp": 0
@@ -512,8 +512,8 @@ func _ready() -> void:
 		"R_mp": 0,
 		"vampirism": 0,
 		"Lucky": 0,
-		"Toughness": 0,
-		"Htarget": 0,
+		"toughness": 0,
+		"htarget": 0,
 		"CritReduce": 0,
 		"ar": 0,
 		"sp": 0
@@ -524,18 +524,18 @@ func get_pellet_prop():
 	var Hp: int = 0
 	var Mp: int = 0
 	var att: int = 0
-	var Crit: int = 0
-	var Lucky: int = 0
+	var crit: int = 0
+	var lucky: int = 0
 	var emp: float = 0
 	for i in range(6):
 		if i > 0:
 			Hp += PlayerData.player_data["生命丹" + str(i)] * pellet_props[str(i) + "品丹"][DataKeys.HP]
 			Mp += PlayerData.player_data["魔法丹" + str(i)] * pellet_props[str(i) + "品丹"][DataKeys.MP]
 			att += PlayerData.player_data["攻击丹" + str(i)] * pellet_props[str(i) + "品丹"][DataKeys.ATTACK]
-			Crit += PlayerData.player_data["暴击丹" + str(i)] * pellet_props[str(i) + "品丹"]["暴击"]
-			Lucky += PlayerData.player_data["幸运丹" + str(i)] * pellet_props[str(i) + "品丹"]["幸运"]
+			crit += PlayerData.player_data["暴击丹" + str(i)] * pellet_props[str(i) + "品丹"]["暴击"]
+			lucky += PlayerData.player_data["幸运丹" + str(i)] * pellet_props[str(i) + "品丹"]["幸运"]
 			emp += PlayerData.player_data["回魔丹" + str(i)] * pellet_props[str(i) + "品丹"]["回魔"]
-	return [Hp, Mp, att, Crit, Lucky, emp]
+	return [Hp, Mp, att, crit, lucky, emp]
 
 
 func _get_static_prop_signature() -> int:
@@ -597,7 +597,7 @@ func get_last_prop():
 	if PlayerData.check_eq_zb("头衔", "xczg"):
 		if source_player != null:
 			for i in source_player.buff.get_children():
-				if i.BuffInfo.has("DeBuff") and i.BuffInfo["DeBuff"]:
+				if i.buff_info.has("DeBuff") and i.buff_info["DeBuff"]:
 					i.queue_free()
 	var is_sxyr: bool = bool(PlayerData.check_eq_zb("头衔", "sxyr"))
 	if is_sxyr and source_player != null and not source_player.sxyr_cannot_cure:
@@ -605,7 +605,7 @@ func get_last_prop():
 		roleprop.Hp = 1
 		source_player.sxyr_cannot_cure = true
 		for i in source_player.buff.get_children():
-			if i.BuffInfo.has("DeBuff") and i.BuffInfo["DeBuff"]:
+			if i.buff_info.has("DeBuff") and i.buff_info["DeBuff"]:
 				i.queue_free()
 
 	_refresh_static_prop_cache()
@@ -651,7 +651,7 @@ func get_last_prop():
 				(
 					baseroleprop.SHp
 					+ equprop.SHp
-					+ Paslprop.SHp
+					+ pasl_prop.SHp
 					+ pellet[0]
 					+ zf_hp
 					+ sword_hp
@@ -669,7 +669,7 @@ func get_last_prop():
 	roleprop.SMp = (
 		baseroleprop.SMp
 		+ equprop.SMp
-		+ Paslprop.SMp
+		+ pasl_prop.SMp
 		+ pellet[1]
 		+ zf_mp
 		+ sword_mp
@@ -680,7 +680,7 @@ func get_last_prop():
 	var base_power = (
 		baseroleprop.power
 		+ equprop.power
-		+ Paslprop.power
+		+ pasl_prop.power
 		+ pellet[2]
 		+ zf_power
 		+ sword_power
@@ -692,7 +692,7 @@ func get_last_prop():
 	var base_crit = (
 		baseroleprop.Crit
 		+ equprop.Crit
-		+ Paslprop.Crit
+		+ pasl_prop.Crit
 		+ role1_sxbj
 		+ pellet[3]
 		+ zf_crit
@@ -703,7 +703,7 @@ func get_last_prop():
 	var base_lucky = (
 		baseroleprop.Lucky
 		+ equprop.Lucky
-		+ Paslprop.Lucky
+		+ pasl_prop.Lucky
 		+ pellet[4]
 		+ zf_lucky
 		+ sword_lucky
@@ -722,7 +722,7 @@ func get_last_prop():
 	roleprop.Def = (
 		baseroleprop.Def
 		+ equprop.Def
-		+ Paslprop.Def
+		+ pasl_prop.Def
 		+ zf_def
 		+ sword_def
 		+ body_def
@@ -733,7 +733,7 @@ func get_last_prop():
 	roleprop.Mdef = (
 		baseroleprop.Mdef
 		+ equprop.Mdef
-		+ Paslprop.Mdef
+		+ pasl_prop.Mdef
 		+ zf_mdef
 		+ sword_mdef
 		+ body_mdef
@@ -748,45 +748,45 @@ func get_last_prop():
 			roleprop.Def = int(round(float(roleprop.Def) * 1.5))
 			roleprop.Mdef = int(round(float(roleprop.Mdef) * 1.5))
 	roleprop.Miss = (
-		baseroleprop.Miss + equprop.Miss + Paslprop.Miss + sword_miss + float(_cached_mount_props.get("Miss", 0.0))
+		baseroleprop.Miss + equprop.Miss + pasl_prop.Miss + sword_miss + float(_cached_mount_props.get("Miss", 0.0))
 	)
 	roleprop.R_hp = (
 		baseroleprop.R_hp
 		+ equprop.R_hp
-		+ Paslprop.R_hp
+		+ pasl_prop.R_hp
 		+ float(_cached_wanling_props.get("R_hp", 0.0))
 		+ float(_cached_mount_props.get("R_hp", 0.0))
 	)
 	roleprop.R_mp = (
-		baseroleprop.R_mp + equprop.R_mp + Paslprop.R_mp + pellet[5] + float(_cached_wanling_props.get("R_mp", 0.0))
+		baseroleprop.R_mp + equprop.R_mp + pasl_prop.R_mp + pellet[5] + float(_cached_wanling_props.get("R_mp", 0.0))
 	)
 	roleprop.vampirism = (
 		baseroleprop.vampirism
 		+ equprop.vampirism
-		+ Paslprop.vampirism
+		+ pasl_prop.vampirism
 		+ role1_s_xxx
 		+ float(_cached_wanling_props.get("vampirism", 0.0))
 	)
-	roleprop.Toughness = baseroleprop.Toughness + equprop.Toughness + Paslprop.Toughness
-	roleprop.Htarget = (
-		baseroleprop.Htarget
-		+ equprop.Htarget
-		+ Paslprop.Htarget
+	roleprop.toughness = baseroleprop.toughness + equprop.toughness + pasl_prop.toughness
+	roleprop.htarget = (
+		baseroleprop.htarget
+		+ equprop.htarget
+		+ pasl_prop.htarget
 		+ sword_hit
-		+ float(_cached_mount_props.get("Htarget", 0.0))
+		+ float(_cached_mount_props.get("htarget", 0.0))
 	)
-	roleprop.CritReduce = baseroleprop.CritReduce + equprop.CritReduce + Paslprop.CritReduce
+	roleprop.CritReduce = baseroleprop.CritReduce + equprop.CritReduce + pasl_prop.CritReduce
 	roleprop.damage_bonus = (
 		float(baseroleprop.get("damage_bonus", 0.0)) + float(_cached_wanling_props.get("damage_bonus", 0.0))
 	)
 	roleprop.damage_reduction = (
 		float(baseroleprop.get("damage_reduction", 0.0)) + float(_cached_wanling_props.get("damage_reduction", 0.0))
 	)
-	roleprop.ar = baseroleprop.ar + equprop.ar + Paslprop.ar + zf_ar + float(_cached_wanling_props.get("ar", 0.0))
+	roleprop.ar = baseroleprop.ar + equprop.ar + pasl_prop.ar + zf_ar + float(_cached_wanling_props.get("ar", 0.0))
 	roleprop.sp = (
 		baseroleprop.sp
 		+ equprop.sp
-		+ Paslprop.sp
+		+ pasl_prop.sp
 		+ zf_sp
 		+ float(_cached_wanling_props.get("sp", 0.0))
 		+ float(_cached_mount_props.get("sp", 0.0))
@@ -914,8 +914,8 @@ func get_equ_properies():
 	if PlayerData.player_data[DataKeys.WEAPON].size() != 0:
 		var name_ = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME]
 		var qh_level = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.ENHANCE_LEVEL]
-		var Data = PlayerData.player_data[DataKeys.WEAPON][0]["Data"]
-		var wq_list: Dictionary = AE.get_divine_forge_properties(name_, qh_level, Data)
+		var data = PlayerData.player_data[DataKeys.WEAPON][0]["Data"]
+		var wq_list: Dictionary = AE.get_divine_forge_properties(name_, qh_level, data)
 		for i in wq_list.size():
 			var loc_1 = wq_list.keys()[i]
 			if wq_prop.has(loc_1):
@@ -926,8 +926,8 @@ func get_equ_properies():
 	if PlayerData.player_data[DataKeys.ARMOR].size() != 0:
 		var name_ = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME]
 		var qh_level = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.ENHANCE_LEVEL]
-		var Data = PlayerData.player_data[DataKeys.ARMOR][0]["Data"]
-		var fj_list: Dictionary = AE.get_divine_forge_properties(name_, qh_level, Data)
+		var data = PlayerData.player_data[DataKeys.ARMOR][0]["Data"]
+		var fj_list: Dictionary = AE.get_divine_forge_properties(name_, qh_level, data)
 		for i in fj_list.size():
 			var loc_1 = fj_list.keys()[i]
 			if fj_prop.has(loc_1):
@@ -938,8 +938,8 @@ func get_equ_properies():
 	if PlayerData.player_data["饰品"].size() != 0:
 		var name_ = PlayerData.player_data["饰品"][0][DataKeys.NAME]
 		var qh_level = PlayerData.player_data["饰品"][0][DataKeys.ENHANCE_LEVEL]
-		var Data = PlayerData.player_data["饰品"][0]["Data"]
-		var sp_list: Dictionary = AE.get_divine_forge_properties(name_, qh_level, Data)
+		var data = PlayerData.player_data["饰品"][0]["Data"]
+		var sp_list: Dictionary = AE.get_divine_forge_properties(name_, qh_level, data)
 		for i in sp_list.size():
 			var loc_1 = sp_list.keys()[i]
 			if sp_prop.has(loc_1):
@@ -950,8 +950,8 @@ func get_equ_properies():
 	if PlayerData.player_data[DataKeys.FASHION].size() != 0:
 		var name_ = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]
 		var qh_level = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.ENHANCE_LEVEL]
-		var Data = PlayerData.player_data[DataKeys.FASHION][0]["Data"]
-		var sz_list = AE.get_last_equ_pro(name_, qh_level, Data)
+		var data = PlayerData.player_data[DataKeys.FASHION][0]["Data"]
+		var sz_list = AE.get_last_equ_pro(name_, qh_level, data)
 		for i in sz_list.size():
 			var loc_1 = sz_list.keys()[i]
 			if sz_prop.has(loc_1):
@@ -962,8 +962,8 @@ func get_equ_properies():
 	if PlayerData.player_data[DataKeys.TITLE].size() != 0:
 		var name_ = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.NAME]
 		var qh_level = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.ENHANCE_LEVEL]
-		var Data = PlayerData.player_data[DataKeys.TITLE][0]["Data"]
-		var tx_list = AE.get_last_equ_pro(name_, qh_level, Data)
+		var data = PlayerData.player_data[DataKeys.TITLE][0]["Data"]
+		var tx_list = AE.get_last_equ_pro(name_, qh_level, data)
 		for i in tx_list.size():
 			var loc_1 = tx_list.keys()[i]
 			if tx_prop.has(loc_1):
@@ -974,8 +974,8 @@ func get_equ_properies():
 	if PlayerData.player_data[DataKeys.WINGS].size() != 0:
 		var name_ = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 		var qh_level = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.ENHANCE_LEVEL]
-		var Data = PlayerData.player_data[DataKeys.WINGS][0]["Data"]
-		var cb_list = AE.get_last_equ_pro(name_, qh_level, Data)
+		var data = PlayerData.player_data[DataKeys.WINGS][0]["Data"]
+		var cb_list = AE.get_last_equ_pro(name_, qh_level, data)
 		for i in cb_list.size():
 			var loc_1 = cb_list.keys()[i]
 			if cb_prop.has(loc_1):
@@ -987,8 +987,8 @@ func get_equ_properies():
 		var name_ = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
 		var qh_level = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL]
 		var wxlist = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS]
-		var Data = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
-		var fb_list = AE.get_fb_last_equ_pro(name_, qh_level, wxlist, Data)
+		var data = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
+		var fb_list = AE.get_fb_last_equ_pro(name_, qh_level, wxlist, data)
 		for i in fb_list.size():
 			var loc_1 = fb_list.keys()[i]
 			if fb_prop.has(loc_1):
@@ -1106,8 +1106,8 @@ func remove_wq_pro():
 	wq_prop.R_mp = 0
 	wq_prop.vampirism = 0
 	wq_prop.Lucky = 0
-	wq_prop.Toughness = 0
-	wq_prop.Htarget = 0
+	wq_prop.toughness = 0
+	wq_prop.htarget = 0
 	wq_prop.CritReduce = 0
 	wq_prop.ar = 0
 	wq_prop.sp = 0
@@ -1126,8 +1126,8 @@ func remove_fj_pro():
 	fj_prop.R_mp = 0
 	fj_prop.vampirism = 0
 	fj_prop.Lucky = 0
-	fj_prop.Toughness = 0
-	fj_prop.Htarget = 0
+	fj_prop.toughness = 0
+	fj_prop.htarget = 0
 	fj_prop.CritReduce = 0
 	fj_prop.ar = 0
 	fj_prop.sp = 0
@@ -1146,8 +1146,8 @@ func remove_sp_pro():
 	sp_prop.R_mp = 0
 	sp_prop.vampirism = 0
 	sp_prop.Lucky = 0
-	sp_prop.Toughness = 0
-	sp_prop.Htarget = 0
+	sp_prop.toughness = 0
+	sp_prop.htarget = 0
 	sp_prop.CritReduce = 0
 	sp_prop.ar = 0
 	sp_prop.sp = 0
@@ -1166,8 +1166,8 @@ func remove_fb_pro():
 	fb_prop.R_mp = 0
 	fb_prop.vampirism = 0
 	fb_prop.Lucky = 0
-	fb_prop.Toughness = 0
-	fb_prop.Htarget = 0
+	fb_prop.toughness = 0
+	fb_prop.htarget = 0
 	fb_prop.CritReduce = 0
 	fb_prop.ar = 0
 	fb_prop.sp = 0
@@ -1185,8 +1185,8 @@ func remove_cb_pro():
 	cb_prop.R_mp = 0
 	cb_prop.vampirism = 0
 	cb_prop.Lucky = 0
-	cb_prop.Toughness = 0
-	cb_prop.Htarget = 0
+	cb_prop.toughness = 0
+	cb_prop.htarget = 0
 	cb_prop.CritReduce = 0
 	cb_prop.ar = 0
 	cb_prop.sp = 0
@@ -1204,8 +1204,8 @@ func remove_sz_pro():
 	sz_prop.R_mp = 0
 	sz_prop.vampirism = 0
 	sz_prop.Lucky = 0
-	sz_prop.Toughness = 0
-	sz_prop.Htarget = 0
+	sz_prop.toughness = 0
+	sz_prop.htarget = 0
 	sz_prop.CritReduce = 0
 	sz_prop.ar = 0
 	sz_prop.sp = 0
@@ -1223,8 +1223,8 @@ func remove_tx_pro():
 	tx_prop.R_mp = 0
 	tx_prop.vampirism = 0
 	tx_prop.Lucky = 0
-	tx_prop.Toughness = 0
-	tx_prop.Htarget = 0
+	tx_prop.toughness = 0
+	tx_prop.htarget = 0
 	tx_prop.CritReduce = 0
 	tx_prop.ar = 0
 	tx_prop.sp = 0
@@ -1242,8 +1242,8 @@ func remove_wq_bs():
 	wq_bs_prop.R_mp = 0
 	wq_bs_prop.vampirism = 0
 	wq_bs_prop.Lucky = 0
-	wq_bs_prop.Toughness = 0
-	wq_bs_prop.Htarget = 0
+	wq_bs_prop.toughness = 0
+	wq_bs_prop.htarget = 0
 	wq_bs_prop.CritReduce = 0
 	wq_bs_prop.ar = 0
 	wq_bs_prop.sp = 0
@@ -1261,8 +1261,8 @@ func remove_fj_bs():
 	fj_bs_prop.R_mp = 0
 	fj_bs_prop.vampirism = 0
 	fj_bs_prop.Lucky = 0
-	fj_bs_prop.Toughness = 0
-	fj_bs_prop.Htarget = 0
+	fj_bs_prop.toughness = 0
+	fj_bs_prop.htarget = 0
 	fj_bs_prop.CritReduce = 0
 	fj_bs_prop.ar = 0
 	fj_bs_prop.sp = 0
@@ -1280,8 +1280,8 @@ func remove_sp_bs():
 	sp_bs_prop.R_mp = 0
 	sp_bs_prop.vampirism = 0
 	sp_bs_prop.Lucky = 0
-	sp_bs_prop.Toughness = 0
-	sp_bs_prop.Htarget = 0
+	sp_bs_prop.toughness = 0
+	sp_bs_prop.htarget = 0
 	sp_bs_prop.CritReduce = 0
 	sp_bs_prop.ar = 0
 	sp_bs_prop.sp = 0
@@ -1299,8 +1299,8 @@ func remove_cb_bs():
 	cb_bs_prop.R_mp = 0
 	cb_bs_prop.vampirism = 0
 	cb_bs_prop.Lucky = 0
-	cb_bs_prop.Toughness = 0
-	cb_bs_prop.Htarget = 0
+	cb_bs_prop.toughness = 0
+	cb_bs_prop.htarget = 0
 	cb_bs_prop.CritReduce = 0
 	cb_bs_prop.ar = 0
 	cb_bs_prop.sp = 0
@@ -1318,8 +1318,8 @@ func remove_sz_bs():
 	sz_bs_prop.R_mp = 0
 	sz_bs_prop.vampirism = 0
 	sz_bs_prop.Lucky = 0
-	sz_bs_prop.Toughness = 0
-	sz_bs_prop.Htarget = 0
+	sz_bs_prop.toughness = 0
+	sz_bs_prop.htarget = 0
 	sz_bs_prop.CritReduce = 0
 	sz_bs_prop.ar = 0
 	sz_bs_prop.sp = 0
@@ -1337,8 +1337,8 @@ func remove_tx_bs():
 	tx_bs_prop.R_mp = 0
 	tx_bs_prop.vampirism = 0
 	tx_bs_prop.Lucky = 0
-	tx_bs_prop.Toughness = 0
-	tx_bs_prop.Htarget = 0
+	tx_bs_prop.toughness = 0
+	tx_bs_prop.htarget = 0
 	tx_bs_prop.CritReduce = 0
 	tx_bs_prop.ar = 0
 	tx_bs_prop.sp = 0

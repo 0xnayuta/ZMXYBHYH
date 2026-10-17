@@ -17,11 +17,11 @@ func monster_18():
 	self.crit = 15
 	self.miss = 5
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 300
 	self.attack_range = 95
@@ -39,7 +39,7 @@ func monster_18():
 		{
 			"Name": "stun",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"DeBuff": true,
 			"CanAdd": false,
 			"value": 0,
@@ -54,7 +54,7 @@ func monster_18():
 		{
 			"Name": "speed_down",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"CanAdd": false,
 			"DeBuff": true,
 			"value": 0.4,
@@ -81,8 +81,8 @@ func monster_18():
 func _ready() -> void:
 	super._ready()
 	monster_18()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
 
 
 func ai_think():
@@ -92,16 +92,16 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if Skill_2_CD <= 0:
+			if skill_2_cd <= 0:
 				whencando_hit3()
 				return
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 300:
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						do_hit_2()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
 				elif count % 90 == 0:
 					var rad = randi_range(0, 100)
@@ -112,7 +112,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 7
+	skill_1_cd = 7
 	hit_name = "fhjl"
 	velocity.x = 0
 	is_attacking = true
@@ -122,7 +122,7 @@ func do_hit_2():
 
 
 func do_hit_3():
-	Skill_2_CD = 15
+	skill_2_cd = 15
 	velocity.x = 0
 	hit_name = "dtsz"
 	is_attacking = true
@@ -132,11 +132,11 @@ func do_hit_3():
 
 
 func call_fhjl():
-	if self.MonsterDirection:
+	if self.monster_direction:
 		Global.add_bullet(
 			"Monster18Bullet_1",
 			self.bullet,
-			self.MonsterDirection,
+			self.monster_direction,
 			1,
 			Vector2(self.position.x + 80, self.position.y - 10),
 			"fhjl",
@@ -146,7 +146,7 @@ func call_fhjl():
 		Global.add_bullet(
 			"Monster18Bullet_1",
 			self.bullet,
-			self.MonsterDirection,
+			self.monster_direction,
 			1,
 			Vector2(self.position.x - 80, self.position.y - 10),
 			"fhjl",
@@ -156,7 +156,7 @@ func call_fhjl():
 
 func call_dtsz():
 	var bullet_spawn_positions = []
-	if self.MonsterDirection == false:
+	if self.monster_direction == false:
 		bullet_spawn_positions = [
 			Vector2(self.position.x - 120, self.position.y - 250),
 			Vector2(self.position.x - 270, self.position.y - 250),
@@ -176,7 +176,7 @@ func call_dtsz():
 		Global.add_bullet(
 			"Monster18Bullet_2",
 			self.bullet,
-			self.MonsterDirection,
+			self.monster_direction,
 			1,
 			bullet_spawn_positions[i],
 			"dtsz",
@@ -187,7 +187,7 @@ func call_dtsz():
 
 func whencando_hit3():
 	var pp = get_parent().get_parent()
-	if Skill_1_CD <= 0:
+	if skill_1_cd <= 0:
 		do_hit_2()
 	elif count % 90 == 0:
 		var rad = randi_range(0, 100)

@@ -18,8 +18,8 @@ var summon_duration: float = 0.0
 var duration_timer: float = 0.0
 var despawn_effect_enabled: bool = true
 var is_friendly: bool = true
-var MaxProtect: float = 100.0
-var CurrentProtect: float = 0.0
+var max_protect: float = 100.0
+var current_protect: float = 0.0
 var need_protect: bool = false
 var need_remove_protect: bool = false
 var protect_hold_time: float = 0.0
@@ -38,10 +38,10 @@ var return_to_player_distance: int = 1000
 var return_timer: float = 0.0
 var return_check_interval: float = 2.0
 
-var Skill_1_CD: float = 0.0
-var Skill_2_CD: float = 0.0
-var Skill_3_CD: float = 0.0
-var Skill_4_CD: float = 0.0
+var skill_1_cd: float = 0.0
+var skill_2_cd: float = 0.0
+var skill_3_cd: float = 0.0
+var skill_4_cd: float = 0.0
 var skill_5_cd: float = 0.0
 var skill_6_cd: float = 0.0
 
@@ -81,11 +81,11 @@ var mdef: int = 0
 var crit: int = 0
 var miss: int = 0
 var lucky: int = 0
-var Htarget: int = 0
-var Toughness: int = 0
+var htarget: int = 0
+var toughness: int = 0
 var ar: int = 0
 var sp: int = 0
-var Critreduce: int = 0
+var crit_reduce: int = 0
 var behit_calmtime: float = 0.0
 var self_rhp: int = 0
 var add_exp: int = 0
@@ -110,16 +110,16 @@ var is_immobilize: bool = false
 var is_speed_down: bool = false
 var is_scary: bool = false
 var super_armor_active: bool = false
-var IsIndestructible: bool = false
-var IsDefeReduce: bool = false
-var DefeReduce: float = 0.0
-var BloodFix: bool = false
-var LifeManaLock: bool = false
+var is_indestructible: bool = false
+var is_defe_reduce: bool = false
+var defe_reduce: float = 0.0
+var is_blood_fix: bool = false
+var life_mana_lock: bool = false
 var is_quiescent: bool = false
 var is_death: bool = false
 var hurt_bl: float = 1.0
 var hit_name: String = ""
-var MonsterDirection: bool = false
+var monster_direction: bool = false
 var get_player: Node = null
 
 var hd: int = 0
@@ -131,7 +131,7 @@ var lpzjs: float = 0.0
 var is_fly: bool = false
 var init_speed: int = 10
 
-var NoGrav: bool = false
+var no_grav: bool = false
 var is_gxp: bool = false
 var _gxp_base_speed: int = 0
 var _gxp_serial: int = 0
@@ -297,7 +297,7 @@ func _physics_process(delta: float) -> void:
 		if duration_timer >= summon_duration:
 			despawn()
 
-	MonsterDirection = (monster_dir.scale.x == 1)
+	monster_direction = (monster_dir.scale.x == 1)
 
 	if death():
 		current_state = State.DEATH
@@ -348,7 +348,7 @@ func _physics_process(delta: float) -> void:
 
 func rush() -> void:
 	velocity.x = 0
-	velocity.x -= rush_speed if MonsterDirection else -rush_speed
+	velocity.x -= rush_speed if monster_direction else -rush_speed
 
 
 func handle_gravity_and_sky(_delta: float) -> void:
@@ -362,10 +362,10 @@ func handle_gravity_and_sky(_delta: float) -> void:
 
 func update_timers(delta: float) -> void:
 	count += 1
-	Skill_1_CD -= delta
-	Skill_2_CD -= delta
-	Skill_3_CD -= delta
-	Skill_4_CD -= delta
+	skill_1_cd -= delta
+	skill_2_cd -= delta
+	skill_3_cd -= delta
+	skill_4_cd -= delta
 	skill_5_cd -= delta
 	skill_6_cd -= delta
 	target_search_timer += delta
@@ -411,7 +411,7 @@ func check_add_buff() -> void:
 	var not_super_armor = true
 	var not_indestructible = true
 	var not_defe_reduce = true
-	var not_blood_fix = true
+	var not_is_blood_fix = true
 	var not_life_mana_lock = true
 	var not_lljy = true
 	var not_lpz = true
@@ -424,13 +424,13 @@ func check_add_buff() -> void:
 		buff_child_index += 1
 		if not i:
 			continue
-		var name = i.BuffInfo.get("Name", "")
+		var name = i.buff_info.get("Name", "")
 		match name:
 			"lljybuff":
 				islljy = true
 				not_lljy = false
-			"NoDeBuff":
-				NoDeBuff = true
+			"no_debuff":
+				no_debuff = true
 				not_no_de_buff = false
 			"lpzbuff":
 				is_lpz = true
@@ -439,10 +439,10 @@ func check_add_buff() -> void:
 				is_ice = true
 				not_ice = false
 			"Indestructible":
-				IsIndestructible = true
+				is_indestructible = true
 				not_indestructible = false
-			"DefeReduce":
-				IsDefeReduce = true
+			"defe_reduce":
+				is_defe_reduce = true
 				not_defe_reduce = false
 			"SuperArmor":
 				super_armor_active = true
@@ -460,36 +460,36 @@ func check_add_buff() -> void:
 			"speed_down":
 				is_speed_down = true
 				not_speed_down = false
-			"BloodFix":
-				BloodFix = true
-				not_blood_fix = false
-			"LifeManaLock":
-				LifeManaLock = true
+			"blood_fix":
+				is_blood_fix = true
+				not_is_blood_fix = false
+			"life_mana_lock":
+				life_mana_lock = true
 				not_life_mana_lock = false
 			"Scary":
 				is_scary = true
 				not_scary = false
 
 	if not_no_de_buff:
-		NoDeBuff = false
+		no_debuff = false
 	if not_lljy:
 		islljy = false
 	if not_lpz:
 		is_lpz = false
 		lpzjs = 0.0
 	if not_indestructible:
-		IsIndestructible = false
+		is_indestructible = false
 	if not_defe_reduce:
-		DefeReduce = 0.0
-		IsDefeReduce = false
+		defe_reduce = 0.0
+		is_defe_reduce = false
 	if not_super_armor:
 		super_armor_active = false
 	if not_scary:
 		is_scary = false
-	if not_blood_fix:
-		BloodFix = false
+	if not_is_blood_fix:
+		is_blood_fix = false
 	if not_life_mana_lock:
-		LifeManaLock = false
+		life_mana_lock = false
 	if not_immobilize:
 		is_immobilize = false
 	if not_ice:
@@ -510,7 +510,7 @@ func check_add_buff() -> void:
 
 
 func can_set_gravity() -> bool:
-	return not NoGrav and not islljy and not should_in_sky
+	return not no_grav and not islljy and not should_in_sky
 
 
 func is_limit_buff() -> bool:
@@ -518,7 +518,7 @@ func is_limit_buff() -> bool:
 
 
 func is_super_armor() -> bool:
-	return super_armor_active or IsIndestructible or is_dead_link
+	return super_armor_active or is_indestructible or is_dead_link
 
 
 func when_scary() -> void:
@@ -538,7 +538,7 @@ func get_attacker_damage(attacker: Node) -> int:
 		var hit_name_val = attacker.get("hit_name")
 		var obj_dic = attacker.get("obj_attack_dict")
 		if not (obj_dic is Dictionary) or obj_dic.is_empty():
-			obj_dic = attacker.get("AttList")
+			obj_dic = attacker.get("att_list")
 		if hit_name_val and obj_dic is Dictionary:
 			var hit_info = obj_dic.get(hit_name_val)
 			if hit_info is Dictionary and hit_info.has("power"):
@@ -554,9 +554,9 @@ func get_attacker_damage(attacker: Node) -> int:
 	elif attacker is BaseHero or attacker is BaseMagicWeapon or attacker is RoleBullet:
 		if attacker.has_method("get_hit_damage"):
 			base_damage = attacker.get_hit_damage()
-		elif "HitDic" in attacker and attacker.HitDic.has("power"):
-			base_damage = attacker.HitDic["power"]
-			attack_kind = attacker.HitDic.get("attackKind", "physics")
+		elif "hit_dic" in attacker and attacker.hit_dic.has("power"):
+			base_damage = attacker.hit_dic["power"]
+			attack_kind = attacker.hit_dic.get("attackKind", "physics")
 		else:
 			return 0
 	else:
@@ -705,13 +705,13 @@ func try_use_skills() -> void:
 		return
 	if randi_range(0, 100) >= attack_desire:
 		return
-	if Skill_1_CD <= 0:
+	if skill_1_cd <= 0:
 		do_hit_1()
-	elif Skill_2_CD <= 0:
+	elif skill_2_cd <= 0:
 		do_hit_2()
-	elif Skill_3_CD <= 0:
+	elif skill_3_cd <= 0:
 		do_hit_3()
-	elif Skill_4_CD <= 0:
+	elif skill_4_cd <= 0:
 		do_hit_4()
 	elif skill_5_cd <= 0:
 		do_hit_5()
@@ -895,7 +895,7 @@ func death() -> bool:
 func reduce_hp(value: int, _attacker = null) -> void:
 	if _pet_protect_active():
 		return
-	if IsIndestructible and value >= Hp:
+	if is_indestructible and value >= Hp:
 		return
 	Hp -= value
 	total_hurt += value
@@ -906,7 +906,7 @@ func reduce_hp(value: int, _attacker = null) -> void:
 
 
 func cure_hp(value: int = 0) -> int:
-	if Hp <= 0 or BloodFix or LifeManaLock:
+	if Hp <= 0 or is_blood_fix or life_mana_lock:
 		return 0
 	value = int(value * (1 + therapeutic_effects))
 	if Hp + value >= SHp:
@@ -1018,7 +1018,7 @@ func _on_summon_bullet_hit(area: Area2D, bullet_instance) -> void:
 func apply_knockback(target: BaseMonster) -> void:
 	if not is_instance_valid(target):
 		return
-	if target.is_control_immune() or target.get("IsIndestructible") == true:
+	if target.is_control_immune() or target.get("is_indestructible") == true:
 		return
 	var hurt_back = obj_attack_dict.get(hit_name, {}).get("hurtBack", [0, 0]) if hit_name else [0, 0]
 	var knockback_x = hurt_back[0]
@@ -1130,15 +1130,15 @@ func _get_pet_protect_gain(_attacker: Node) -> int:
 
 
 func _pet_protect_active() -> bool:
-	return need_protect or CurrentProtect >= MaxProtect
+	return need_protect or current_protect >= max_protect
 
 
 func _add_pet_protect(value: int) -> void:
 	if value <= 0 or Hp <= 0 or need_protect:
 		return
-	CurrentProtect = clampf(CurrentProtect + float(value), 0.0, MaxProtect)
-	if CurrentProtect >= MaxProtect:
-		CurrentProtect = MaxProtect
+	current_protect = clampf(current_protect + float(value), 0.0, max_protect)
+	if current_protect >= max_protect:
+		current_protect = max_protect
 		need_protect = true
 		need_remove_protect = true
 		protect_hold_time = randf_range(3.0, 4.0)
@@ -1151,18 +1151,18 @@ func _clear_pet_protect() -> void:
 	need_protect = false
 	need_remove_protect = false
 	protect_hold_time = 0.0
-	CurrentProtect = 0.0
+	current_protect = 0.0
 	if hurt_box != null:
 		hurt_box.set_deferred("disabled", false)
 	modulate = Color(1, 1, 1, 1)
 
 
 func _process_pet_protect(delta: float) -> void:
-	if CurrentProtect > 0.0:
+	if current_protect > 0.0:
 		if need_remove_protect:
-			CurrentProtect = max(0.0, CurrentProtect - 1.0)
+			current_protect = max(0.0, current_protect - 1.0)
 		else:
-			CurrentProtect = max(0.0, CurrentProtect - 0.05)
+			current_protect = max(0.0, current_protect - 0.05)
 	if need_protect:
 		protect_hold_time -= delta
 		if protect_hold_time <= 0.0:
@@ -1175,7 +1175,7 @@ func apply_stun_to_target(target: BaseMonster, duration: float = 3.0) -> void:
 	var stun_buff = {
 		"Name": "stun",
 		"AddTime": duration,
-		"ReduceInterval": 0,
+		"reduce_interval": 0,
 		"value": 0,
 		"AttackKind": "",
 		"DeBuff": true,
@@ -1191,9 +1191,9 @@ func apply_defense_reduce_to_target(target: BaseMonster, duration: float = 20.0,
 	if not is_instance_valid(target) or target.Hp <= 0:
 		return
 	var defense_reduce_buff = {
-		"Name": "DefeReduce",
+		"Name": "defe_reduce",
 		"AddTime": duration,
-		"ReduceInterval": 0,
+		"reduce_interval": 0,
 		"value": reduce_value,
 		"AttackKind": "",
 		"DeBuff": true,

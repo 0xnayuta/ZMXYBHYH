@@ -17,11 +17,11 @@ func monster_23():
 		self.crit = 30
 		self.miss = 25
 		self.lucky = 60
-		self.Htarget = 20
-		self.Toughness = 10
+		self.htarget = 20
+		self.toughness = 10
 		self.ar = 40
 		self.sp = 40
-		self.Critreduce = 0
+		self.crit_reduce = 0
 		self.speed = 10
 		self.mysee = 400
 		self.attack_range = 170
@@ -48,7 +48,7 @@ func monster_23():
 				"CanAdd": true,
 				"DeBuff": true,
 				"DeRemove": false,
-				"ReduceInterval": 0.5,
+				"reduce_interval": 0.5,
 				"value": 0,
 				"AttackKind": "",
 			}
@@ -71,11 +71,11 @@ func monster_23():
 	self.crit = 20
 	self.miss = 8
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 400
 	self.attack_range = 170
@@ -101,7 +101,7 @@ func monster_23():
 			"AddTime": 5,
 			"CanAdd": true,
 			"DeBuff": true,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 20,
 			"AttackKind": "magic",
 		}
@@ -118,9 +118,9 @@ func _ready() -> void:
 	monster_23()
 	super._ready()
 	start_spawn_damage_protection()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
-	Skill_3_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
+	skill_3_cd = 0
 
 
 func _physics_process(delta: float) -> void:
@@ -146,7 +146,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if Skill_1_CD > 0 and Skill_2_CD > 0 and Skill_3_CD > 0:
+			if skill_1_cd > 0 and skill_2_cd > 0 and skill_3_cd > 0:
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 					have_target()
 				else:
@@ -157,17 +157,17 @@ func ai_think():
 						stop_move()
 			else:
 				if (
-					Skill_1_CD <= 0
+					skill_1_cd <= 0
 					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 180
 				):
 					do_hit_2()
 				elif (
-					Skill_2_CD <= 0
+					skill_2_cd <= 0
 					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 300
 				):
 					do_hit_3()
 				elif (
-					Skill_3_CD <= 0
+					skill_3_cd <= 0
 					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 280
 				):
 					do_hit_4()
@@ -183,7 +183,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 12
+	skill_1_cd = 12
 	hit_name = "whs"
 	velocity.x = 0
 	is_attacking = true
@@ -193,7 +193,7 @@ func do_hit_2():
 
 
 func do_hit_3():
-	Skill_2_CD = 20
+	skill_2_cd = 20
 	hit_name = "mncz"
 	velocity.x = 0
 	is_attacking = true
@@ -203,7 +203,7 @@ func do_hit_3():
 
 
 func do_hit_4():
-	Skill_3_CD = 18
+	skill_3_cd = 18
 	hit_name = "ryzj"
 	velocity.x = 0
 	is_attacking = true
@@ -214,7 +214,7 @@ func do_hit_4():
 
 func speed_up():
 	velocity.x = 0
-	if self.MonsterDirection:
+	if self.monster_direction:
 		velocity.x = 1000
 	else:
 		velocity.x = -1000
@@ -245,7 +245,7 @@ func self_cure():
 				"CanAdd": true,
 				"DeBuff": true,
 				"DeRemove": false,
-				"ReduceInterval": 0.5,
+				"reduce_interval": 0.5,
 				"value": 0,
 				"AttackKind": "",
 			}
@@ -268,7 +268,7 @@ func self_cure():
 			"AddTime": 5,
 			"CanAdd": true,
 			"DeBuff": true,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 20,
 			"AttackKind": "magic",
 		}

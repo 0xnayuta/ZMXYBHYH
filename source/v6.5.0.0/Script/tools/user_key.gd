@@ -178,7 +178,7 @@ func _search_level(node: Node):
 
 
 func _looks_like_level(node) -> bool:
-	return node != null and node.get("Role_") != null
+	return node != null and node.get("role_") != null
 
 
 func _update_cooldown(delta: float) -> void:
@@ -218,8 +218,8 @@ func _update_skill_cooldown(delta: float) -> void:
 		return
 	var raw_value: float = 0.0
 	var skill_key := _real_skill_key(skill_name)
-	if cur_level != null and cur_level.get("Role_") != null:
-		var cd_list = cur_level.get("Role_").get("Role1SkillInter")
+	if cur_level != null and cur_level.get("role_") != null:
+		var cd_list = cur_level.get("role_").get("role1_skill_inter")
 		if cd_list is Dictionary and cd_list.has(skill_key):
 			raw_value = max(float(cd_list[skill_key]), 0.0)
 	if raw_value > 0.0 and _last_raw_skill_cd <= 0.0:
@@ -239,7 +239,7 @@ func _update_magic_weapon_cooldown() -> void:
 	var total: float = 0.0
 	var player = _current_player()
 	if player != null:
-		var magic_weapon = player.get("Mgtarget")
+		var magic_weapon = player.get("mg_target")
 		if magic_weapon != null and is_instance_valid(magic_weapon):
 			total = max(float(magic_weapon.get("usecd")), 0.0)
 			var timer = magic_weapon.get_node_or_null("SkillCD")
@@ -260,7 +260,7 @@ func _update_main_sword_array_cooldown() -> void:
 			remaining = max(timer.time_left, 0.0)
 			total = max(max(timer.wait_time, remaining), 0.1)
 		else:
-			var cd_value = player.get("ZhenFaCd")
+			var cd_value = player.get("zhen_fa_cd")
 			if cd_value != null:
 				remaining = max(float(cd_value), 0.0)
 				if remaining > 0.0:
@@ -293,8 +293,8 @@ func _is_main_sword_array_key() -> bool:
 
 
 func _current_player():
-	if cur_level != null and cur_level.get("Role_") != null:
-		return cur_level.get("Role_")
+	if cur_level != null and cur_level.get("role_") != null:
+		return cur_level.get("role_")
 	return RoleProp.source_player
 
 

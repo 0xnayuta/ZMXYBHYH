@@ -14,11 +14,11 @@ func monster_100():
 	self.crit = 35
 	self.miss = 25
 	self.lucky = 15
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 30
 	self.sp = 30
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 11
 	self.mysee = 500
 	self.attack_range = 145
@@ -48,7 +48,7 @@ func monster_100():
 		{
 			"Name": "stun",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -78,7 +78,7 @@ func monster_100():
 func _ready() -> void:
 	super._ready()
 	monster_100()
-	Skill_1_CD = 0
+	skill_1_cd = 0
 
 
 func ai_think():
@@ -90,18 +90,18 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 560:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_2()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				elif Skill_2_CD <= 0:
+				elif skill_2_cd <= 0:
 					do_hit_2()
 				if count % 60 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -110,7 +110,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(8, 10)
+	skill_1_cd = randi_range(8, 10)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -122,7 +122,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(11, 13)
+	skill_2_cd = randi_range(11, 13)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -138,7 +138,7 @@ func move_player():
 
 
 func rush():
-	if self.MonsterDirection:
+	if self.monster_direction:
 		velocity.x = rush_speed
 	else:
 		velocity.x = -rush_speed

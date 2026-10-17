@@ -269,8 +269,8 @@ func _configure_boss() -> void:
 	crit = 30
 	miss = 18
 	lucky = 20
-	Htarget = 40
-	Toughness = 20
+	htarget = 40
+	toughness = 20
 	ar = 80
 	sp = 80
 	speed = 12

@@ -15,11 +15,11 @@ func monster_30(is_boss_):
 		self.crit = 15
 		self.miss = 10
 		self.lucky = 0
-		self.Htarget = 10
-		self.Toughness = 0
+		self.htarget = 10
+		self.toughness = 0
 		self.ar = 0
 		self.sp = 0
-		self.Critreduce = 0
+		self.crit_reduce = 0
 		self.speed = 8
 		self.mysee = 300
 		self.attack_range = 245
@@ -38,7 +38,7 @@ func monster_30(is_boss_):
 				"AddTime": 1.5,
 				"CanAdd": false,
 				"DeBuff": true,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0.5,
 				"AttackKind": "",
 			}
@@ -65,11 +65,11 @@ func monster_30(is_boss_):
 		self.crit = 10
 		self.miss = 8
 		self.lucky = 0
-		self.Htarget = 10
-		self.Toughness = 0
+		self.htarget = 10
+		self.toughness = 0
 		self.ar = 0
 		self.sp = 0
-		self.Critreduce = 0
+		self.crit_reduce = 0
 		self.speed = 7
 		self.mysee = 300
 		self.attack_range = 145
@@ -87,7 +87,7 @@ func monster_30(is_boss_):
 				"Name": "speed_down",
 				"AddTime": 1.5,
 				"CanAdd": false,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0.5,
 				"AttackKind": "",
 			}

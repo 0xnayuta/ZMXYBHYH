@@ -456,5 +456,5 @@ func _level_number() -> int:
 
 
 func _on_fall_death_body_entered(body: Node2D) -> void:
-	if body == Role_:
+	if body == role_:
 		RoleProp.roleprop.Hp = 0

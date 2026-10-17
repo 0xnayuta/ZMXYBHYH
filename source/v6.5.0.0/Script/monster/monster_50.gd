@@ -19,11 +19,11 @@ func monster_50():
 	self.crit = 18
 	self.miss = 16
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 5
+	self.htarget = 0
+	self.toughness = 5
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 400
 	self.attack_range = 255
@@ -41,7 +41,7 @@ func monster_50():
 		{
 			"Name": "Ice",
 			"AddTime": 4,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"CanAdd": false,
 			"DeBuff": true,
 			"value": 0,
@@ -56,7 +56,7 @@ func monster_50():
 		{
 			"Name": "Fire",
 			"AddTime": 2,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"CanAdd": true,
 			"DeBuff": true,
 			"value": int(RoleProp.roleprop.SHp * 0.01),
@@ -82,8 +82,8 @@ func monster_50():
 func _ready() -> void:
 	super._ready()
 	monster_50()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
 
 
 func _physics_process(delta: float) -> void:
@@ -117,14 +117,14 @@ func ai_think():
 						> attack_range
 					):
 						have_target()
-						if Skill_1_CD <= 0:
+						if skill_1_cd <= 0:
 							do_hit_2()
-						elif Skill_2_CD <= 0:
+						elif skill_2_cd <= 0:
 							do_hit_3()
 					else:
-						if Skill_1_CD <= 0:
+						if skill_1_cd <= 0:
 							do_hit_2()
-						elif Skill_2_CD <= 0:
+						elif skill_2_cd <= 0:
 							do_hit_3()
 						else:
 							if count % 60 == 0:
@@ -134,7 +134,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 12
+	skill_1_cd = 12
 	hit_name = "nlls"
 	velocity.x = 0
 	is_attacking = true
@@ -144,7 +144,7 @@ func do_hit_2():
 
 
 func do_hit_3():
-	Skill_2_CD = 10
+	skill_2_cd = 10
 	velocity.x = 0
 	is_attacking = true
 	mr_player.play("mffd")
@@ -206,7 +206,7 @@ func add_nlls():
 			{
 				"Name": "nlls",
 				"AddTime": 6,
-				"ReduceInterval": 0.01,
+				"reduce_interval": 0.01,
 				"value": 1.2,
 				"AttackKind": "magic",
 				"CanAdd": true,
@@ -226,7 +226,7 @@ func call_bullet():
 	else:
 		bullet_name = "Monster49Bullet_2"
 		hit_name = "mffd_2"
-	if MonsterDirection:
+	if monster_direction:
 		bullet = Global.call_chase_bullet(
 			self.bullet,
 			bullet_name,
@@ -275,7 +275,7 @@ func strength_boss():
 
 
 func call_fly_bullet():
-	if MonsterDirection:
+	if monster_direction:
 		var pp = Global.call_fly_bullet(
 			bullet,
 			"Monster49Bulet",

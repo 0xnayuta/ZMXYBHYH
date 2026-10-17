@@ -14,11 +14,11 @@ func monster_112():
 	self.crit = 20
 	self.miss = 20
 	self.lucky = 0
-	self.Htarget = 20
-	self.Toughness = 20
+	self.htarget = 20
+	self.toughness = 20
 	self.ar = 35
 	self.sp = 35
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 14
 	self.mysee = 500
 	self.attack_range = 235
@@ -42,7 +42,7 @@ func monster_112():
 		{
 			"Name": "Immobilize",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -77,9 +77,9 @@ func monster_112():
 func _ready() -> void:
 	super._ready()
 	monster_112()
-	Skill_1_CD = randi_range(4, 7)
-	Skill_2_CD = randi_range(6, 8)
-	Skill_3_CD = randi_range(10, 15)
+	skill_1_cd = randi_range(4, 7)
+	skill_2_cd = randi_range(6, 8)
+	skill_3_cd = randi_range(10, 15)
 
 
 func _physics_process(delta: float) -> void:
@@ -99,19 +99,19 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 560:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400:
-					if Skill_3_CD <= 0:
+					if skill_3_cd <= 0:
 						do_hit_3()
 			else:
 				stop_move()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 				if count % 60 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -120,7 +120,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(7, 10)
+	skill_1_cd = randi_range(7, 10)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -132,7 +132,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(6, 8)
+	skill_2_cd = randi_range(6, 8)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -143,11 +143,11 @@ func do_hit_2():
 
 
 func call_bullet_1():
-	if self.MonsterDirection:
+	if self.monster_direction:
 		Global.add_bullet(
 			"Monster112Bullet1",
 			self.bullet,
-			MonsterDirection,
+			monster_direction,
 			1,
 			Vector2(25, 0) + position,
 			"hit2",
@@ -157,7 +157,7 @@ func call_bullet_1():
 		Global.add_bullet(
 			"Monster112Bullet1",
 			self.bullet,
-			MonsterDirection,
+			monster_direction,
 			1,
 			Vector2(-25, 0) + position,
 			"hit2",
@@ -166,11 +166,11 @@ func call_bullet_1():
 
 
 func call_bullet_2():
-	if self.MonsterDirection:
+	if self.monster_direction:
 		Global.add_bullet(
 			"Monster112Bullet2",
 			self.bullet,
-			MonsterDirection,
+			monster_direction,
 			1,
 			Vector2(70, 0) + position,
 			"hit1",
@@ -180,7 +180,7 @@ func call_bullet_2():
 		Global.add_bullet(
 			"Monster112Bullet2",
 			self.bullet,
-			MonsterDirection,
+			monster_direction,
 			1,
 			Vector2(-70, 0) + position,
 			"hit1",

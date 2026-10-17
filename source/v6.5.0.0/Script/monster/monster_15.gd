@@ -13,11 +13,11 @@ func monster_15():
 	self.crit = 5
 	self.miss = 5
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 6
 	self.mysee = 400
 	self.attack_range = 80
@@ -41,7 +41,7 @@ func monster_15():
 			"AddTime": 0.5,
 			"CanAdd": false,
 			"DeBuff": true,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 		}
@@ -55,7 +55,7 @@ func monster_15():
 func _ready() -> void:
 	super._ready()
 	monster_15()
-	Skill_1_CD = 0
+	skill_1_cd = 0
 
 
 func ai_think():
@@ -67,7 +67,7 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 120:
 						do_hit_2()
 					else:
@@ -75,7 +75,7 @@ func ai_think():
 				else:
 					have_target()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 120:
 						do_hit_2()
 					else:
@@ -88,7 +88,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 9
+	skill_1_cd = 9
 	hit_name = "qlzg"
 	velocity.x = 0
 	is_attacking = true
@@ -100,5 +100,5 @@ func do_hit_2():
 func call_boom():
 	var po = self.position
 	Global.add_bullet(
-		"Monster15Bullet", self.bullet, self.MonsterDirection, 0.7, po, "qlzg", self.obj_attack_dict["qlzg"]
+		"Monster15Bullet", self.bullet, self.monster_direction, 0.7, po, "qlzg", self.obj_attack_dict["qlzg"]
 	)

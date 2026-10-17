@@ -14,8 +14,8 @@ var prop_list_name = [
 	"R_mp",
 	"vampirism",
 	"Lucky",
-	"Toughness",
-	"Htarget",
+	"toughness",
+	"htarget",
 	"CritReduce",
 	"ar",
 	"sp"

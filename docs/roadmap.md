@@ -474,7 +474,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
   3. `Script/monster/`（`east_continent_monster` 数字段系列）+ `Script/hero/role_6.gd`。
 - **验收指标**：50 处归零；派生类同名成员覆盖同步；字符串访问面（`get/set`）与动画轨道同步。
 
-#### 2. Phase 9-2: PascalCase 变量治理（309 处）
+#### 2. Phase 9-2: PascalCase 变量治理（309 处） [已完成 · Done]
 - **残留特征（实测）**：
   1. `Global.gd` 的"场景预制体缓存句柄"（`BasicArButton` / `Aura_` / `BuffIcon_` / `DamageNumber` / `LevelInfo` / `Stage` / `TaskReward` / `MysteryShop` / `ReturnBackMap` / `List_` 等，约 30 处）——被全工程以 `.X` 属性访问，**影响面最广**；
   2. `DataKeys`（`Global.gd:2` 契约表句柄）、`DuplicateTextureAliases`；

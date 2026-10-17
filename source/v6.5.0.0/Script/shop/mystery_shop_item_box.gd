@@ -132,8 +132,8 @@ func basic_set():
 func set_box():
 	var current_list = all_item_list["Box_" + str(my_num)]
 	new_list = current_list[randi_range(0, current_list.size() - 1)]
-	var Type = AE.all_equipment[new_list["Name"]][DataKeys.TYPE]
-	match Type:
+	var type = AE.all_equipment[new_list["Name"]][DataKeys.TYPE]
+	match type:
 		"武器", "饰品", "防具", "时装", "头衔":
 			item_box.qh_level = new_list["Level"]
 			item_box.wx = []
@@ -141,7 +141,7 @@ func set_box():
 			item_box.wx = new_list["WX"]
 		"道具", "消耗品":
 			item_box.total_number = new_list["Value"]
-	item_box.EQ_prop = AE.all_equipment[new_list["Name"]]
+	item_box.eq_prop = AE.all_equipment[new_list["Name"]]
 	item_box.get_item_name = new_list["Name"]
 	item_box.set_meta("item_name", new_list["Name"])
 	item_box.set_button_icon(load_(new_list["Name"]))
@@ -151,14 +151,14 @@ func _on_purchase_pressed() -> void:
 	if PlayerData.player_data["购买次数"] <= 0:
 		Global.add_message_show(Global.windows, "购买次数不足！！", 1.5, Vector2(470, 300))
 		return
-	var Need: int = new_list["Need"]
-	if PlayerData.get_soul() < Need:
+	var need: int = new_list["Need"]
+	if PlayerData.get_soul() < need:
 		Global.add_message_show(Global.windows, "灵魂不足！！", 1.5, Vector2(470, 300))
 		return
-	PlayerData.spend_soul(Need)
+	PlayerData.spend_soul(need)
 	PlayerData.player_data["购买次数"] -= 1
-	var Type = AE.all_equipment[new_list["Name"]][DataKeys.TYPE]
-	match Type:
+	var type = AE.all_equipment[new_list["Name"]][DataKeys.TYPE]
+	match type:
 		"武器", "饰品", "防具", "时装", "头衔":
 			PlayerData.add_zb(new_list["Name"], new_list["Level"], {})
 		"法宝":
@@ -232,7 +232,7 @@ func _drive_item_hover(item_box) -> void:
 
 func _hover_popup_size(item_box) -> Vector2:
 	if item_box != null and is_instance_valid(item_box):
-		var eq_prop = item_box.EQ_prop
+		var eq_prop = item_box.eq_prop
 		if eq_prop != null and eq_prop.size() > 0 and item_box.item_menu_kind != "item":
 			return Vector2(260, 560)
 	return Vector2(235, 240)
@@ -250,7 +250,7 @@ func _show_item_info(item_box) -> void:
 		return
 	var parent_node = Global.get_ui_popup_layer()
 	var popup_pos = Global.screen_popup_position()
-	var eq_prop = item_box.EQ_prop
+	var eq_prop = item_box.eq_prop
 	if eq_prop != null and eq_prop.size() > 0 and item_box.item_menu_kind != "item":
 		_item_hover_popup = Global.add_equ_propeties_box(
 			parent_node, popup_pos, item_name, item_box.qh_level, item_box.wx, eq_prop

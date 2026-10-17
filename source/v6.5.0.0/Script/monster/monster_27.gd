@@ -14,11 +14,11 @@ func monster_27():
 	self.crit = 20
 	self.miss = 10
 	self.lucky = 0
-	self.Htarget = 10
-	self.Toughness = 0
+	self.htarget = 10
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 300
 	self.attack_range = 45
@@ -37,7 +37,7 @@ func monster_27():
 			"AddTime": 4,
 			"CanAdd": true,
 			"DeBuff": true,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 80,
 			"AttackKind": "magic",
 		}

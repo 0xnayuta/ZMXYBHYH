@@ -46,11 +46,11 @@ func _configure_boss() -> void:
 	crit = 0
 	miss = 150
 	lucky = 0
-	Htarget = 9999
-	Toughness = 0
+	htarget = 9999
+	toughness = 0
 	ar = 1000
 	sp = 1000
-	Critreduce = 0
+	crit_reduce = 0
 	speed = 25
 	mysee = 1000
 
@@ -198,21 +198,21 @@ func _use_attack(action: StringName) -> void:
 
 func call_bullet_1() -> void:
 	_sync_attack_power(&"hit1")
-	var offset := Vector2(65, -55) if MonsterDirection else Vector2(-65, -55)
+	var offset := Vector2(65, -55) if monster_direction else Vector2(-65, -55)
 	Global.add_bullet(
-		"Monster215Bullet1", bullet, MonsterDirection, 1.0, position + offset, "hit1", obj_attack_dict["hit1"]
+		"Monster215Bullet1", bullet, monster_direction, 1.0, position + offset, "hit1", obj_attack_dict["hit1"]
 	)
 
 
 func call_bullet_2() -> void:
 	_sync_attack_power(&"hit2")
-	var direction_sign := 1.0 if MonsterDirection else -1.0
+	var direction_sign := 1.0 if monster_direction else -1.0
 	for offset in [Vector2(150, 0), Vector2(170, -30), Vector2(150, -65)]:
 		var directed_offset := Vector2(offset.x * direction_sign, offset.y)
 		Global.add_bullet(
 			"Monster215Bullet2",
 			bullet,
-			MonsterDirection,
+			monster_direction,
 			1.0,
 			position + directed_offset,
 			"hit2",

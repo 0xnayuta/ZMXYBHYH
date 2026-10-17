@@ -360,7 +360,7 @@ func _setup_hidden_lights() -> void:
 			light_node.call("configure_for_level", "Level_34")
 		else:
 			light_node.set("current_level", "Level_34")
-			light_node.set("IsLight", false)
+			light_node.set("is_light", false)
 			light_node.set("is_activated", false)
 		var area := light_node.get_node_or_null("Area2D") as Area2D
 		if area == null:
@@ -395,10 +395,10 @@ func _on_hidden_light_area_entered(area: Area2D, light_node: Node2D) -> void:
 	if int(_light_hit_time.get(light_id, 0)) + LIGHT_HIT_COOLDOWN_MS > now_time:
 		return
 	_light_hit_time[light_id] = now_time
-	if bool(light_node.get("IsLight")):
+	if bool(light_node.get("is_light")):
 		return
 	light_node.set("is_activated", true)
-	light_node.set("IsLight", true)
+	light_node.set("is_light", true)
 	var light_area := light_node.get_node_or_null("Area2D") as Area2D
 	if light_area != null:
 		Global.add_mr_hurt(light_area, Vector2(0, 0))
@@ -435,7 +435,7 @@ func _check_lights_match() -> bool:
 	var lights = [light_1, light_2, light_3, light_4]
 
 	for light in lights:
-		if light == null or not light.IsLight:
+		if light == null or not light.is_light:
 			return false
 
 	return true

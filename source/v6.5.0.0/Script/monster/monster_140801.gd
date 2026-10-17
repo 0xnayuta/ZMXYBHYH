@@ -17,11 +17,11 @@ func monster_140801():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 5
 	self.mysee = 0
 	self.attack_range = 0
@@ -46,8 +46,8 @@ func _ready() -> void:
 	super._ready()
 	monster_140801()
 
-	if has_node("DeathCount"):
-		$DeathCount.queue_free()
+	if has_node("death_count"):
+		$death_count.queue_free()
 
 
 func _physics_process(delta: float) -> void:
@@ -103,7 +103,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 	Global.total_role_hit += last_hurt
 	if get_target is BaseHero or get_target is MgHit or get_target is Role1Shallow or get_target is RoleBullet:
-		match get_target.HitDic["attackKind"]:
+		match get_target.hit_dic["attackKind"]:
 			"physics":
 				Global.total_phy_hit += last_hurt
 			"magic":

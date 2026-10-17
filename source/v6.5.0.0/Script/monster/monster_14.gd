@@ -13,11 +13,11 @@ func monster_14():
 	self.crit = 5
 	self.miss = 5
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 11
 	self.mysee = 300
 	self.attack_range = 600
@@ -100,7 +100,7 @@ func do_hit_1():
 
 
 func call_fly_bullet():
-	if self.MonsterDirection:
+	if self.monster_direction:
 		Global.call_fly_bullet(
 			self.bullet,
 			"Monster14Bullet",

@@ -15,11 +15,11 @@ func monster_19():
 	self.crit = 15
 	self.miss = 5
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 300
 	self.attack_range = 75
@@ -41,8 +41,8 @@ func monster_19():
 
 func _ready() -> void:
 	super._ready()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
 	monster_19()
 
 
@@ -54,18 +54,18 @@ func ai_think():
 			normal_state()
 		else:
 			if (
-				Skill_1_CD <= 0
+				skill_1_cd <= 0
 				and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 350
 			):
 				do_hit_1()
-			elif Skill_2_CD <= 0:
+			elif skill_2_cd <= 0:
 				do_hit_2()
 			else:
 				have_target()
 
 
 func do_hit_1():
-	Skill_1_CD = randi_range(7, 12)
+	skill_1_cd = randi_range(7, 12)
 	hit_name = "slj"
 	is_attacking = true
 	mr_player.play("slj")
@@ -75,12 +75,12 @@ func do_hit_1():
 
 func do_hit_2():
 	use_skill_2 = true
-	if self.MonsterDirection:
+	if self.monster_direction:
 		velocity.x += 700
 	else:
 		velocity.x += -700
 	velocity.y = 0
-	Skill_2_CD = randi_range(6, 15)
+	skill_2_cd = randi_range(6, 15)
 	hit_name = "sytx"
 	is_attacking = true
 	mr_player.play("sytx")
@@ -106,7 +106,7 @@ func call_ljf():
 	Global.add_bullet(
 		"Monster19Bullet",
 		self.bullet,
-		self.MonsterDirection,
+		self.monster_direction,
 		1,
 		xx - Vector2(0, 125),
 		"slj",
@@ -117,7 +117,7 @@ func call_ljf():
 func call_sylj():
 	var pp = self.position - Vector2(0, 20)
 	Global.add_bullet(
-		"Monster19Bullet_1", self.bullet, self.MonsterDirection, 1, pp, "sytx", self.obj_attack_dict["sytx"]
+		"Monster19Bullet_1", self.bullet, self.monster_direction, 1, pp, "sytx", self.obj_attack_dict["sytx"]
 	)
 
 
@@ -139,5 +139,5 @@ func have_target():
 func call_boom():
 	var pp = self.position - Vector2(0, 0)
 	Global.add_bullet(
-		"Monster19Bullet_2", self.bullet, self.MonsterDirection, 1, pp, "slj", self.obj_attack_dict["slj"]
+		"Monster19Bullet_2", self.bullet, self.monster_direction, 1, pp, "slj", self.obj_attack_dict["slj"]
 	)

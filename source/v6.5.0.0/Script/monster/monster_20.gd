@@ -17,11 +17,11 @@ func monster_20():
 	self.crit = 15
 	self.miss = 5
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 8
 	self.mysee = 450
 	self.attack_range = 145
@@ -41,7 +41,7 @@ func monster_20():
 			"AddTime": 5,
 			"CanAdd": true,
 			"DeBuff": true,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 20,
 			"AttackKind": "real",
 		}
@@ -56,7 +56,7 @@ func monster_20():
 			"AddTime": 5,
 			"DeBuff": true,
 			"CanAdd": true,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 20,
 			"AttackKind": "real",
 		}
@@ -71,7 +71,7 @@ func monster_20():
 			"AddTime": 3,
 			"CanAdd": false,
 			"DeBuff": true,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 		}
@@ -91,8 +91,8 @@ func monster_20():
 func _ready() -> void:
 	super._ready()
 	monster_20()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
 
 
 func _physics_process(delta: float) -> void:
@@ -110,7 +110,7 @@ func ai_think():
 			my_shark.state = my_shark.State.Death
 	if not is_first_low_hp:
 		if low_hp():
-			if self.MonsterDirection:
+			if self.monster_direction:
 				my_shark = Global.create_monster(19, get_parent(), Vector2(self.position.x, self.position.y - 30))
 			else:
 				my_shark = Global.create_monster(19, get_parent(), Vector2(self.position.x, self.position.y - 30))
@@ -124,15 +124,15 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_3()
 				elif abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 550:
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						do_hit_2()
 			else:
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_3()
-				elif Skill_1_CD <= 0:
+				elif skill_1_cd <= 0:
 					do_hit_2()
 				else:
 					if count % 90 == 0:
@@ -157,7 +157,7 @@ func attack_target():
 
 
 func do_hit_2():
-	Skill_1_CD = 20
+	skill_1_cd = 20
 	hit_name = "sxks"
 	velocity.x = 0
 	is_attacking = true
@@ -170,7 +170,7 @@ func do_hit_2():
 
 
 func do_hit_3():
-	Skill_2_CD = 15
+	skill_2_cd = 15
 	velocity.x = 0
 	hit_name = "spzd"
 	is_attacking = true
@@ -195,7 +195,7 @@ func call_pp():
 	Global.add_bullet(
 		"Monster20Bullet_1",
 		self.bullet,
-		self.MonsterDirection,
+		self.monster_direction,
 		1,
 		second_position,
 		"spzd",
@@ -210,7 +210,7 @@ func call_shark():
 	var hit_name = "sxks_2"
 	var attack_dic = obj_attack_dict["sxks_2"]
 
-	if MonsterDirection:
+	if monster_direction:
 		var shark = Global.call_fly_bullet(bullet, bullet_name, 1, position_vec, 4000, speed_val, hit_name, attack_dic)
 		var shark_1 = Global.call_fly_bullet(
 			bullet, bullet_name, 1, position_vec, 4000, -speed_val, hit_name, attack_dic
@@ -274,7 +274,7 @@ func stop_move():
 
 
 func state_hurt():
-	if get_target.HitDic["hurtBack"][0] != 0 or get_target.HitDic["hurtBack"][1] != 0:
+	if get_target.hit_dic["hurtBack"][0] != 0 or get_target.hit_dic["hurtBack"][1] != 0:
 		is_be_attacking = true
 		velocity.x = 0
 		if not is_quiescent:
@@ -298,7 +298,7 @@ func change_hit():
 			{
 				"Name": "Bleed",
 				"AddTime": 4,
-				"ReduceInterval": 0.5,
+				"reduce_interval": 0.5,
 				"value": 15,
 				"AttackKind": "real",
 			}
@@ -311,7 +311,7 @@ func change_hit():
 			{
 				"Name": "Bleed",
 				"AddTime": 4,
-				"ReduceInterval": 0.5,
+				"reduce_interval": 0.5,
 				"value": 15,
 				"AttackKind": "real",
 			}
@@ -324,7 +324,7 @@ func change_hit():
 			{
 				"Name": "stun",
 				"AddTime": 3,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 			}
@@ -339,7 +339,7 @@ func change_hit():
 			{
 				"Name": "Bleed",
 				"AddTime": 4,
-				"ReduceInterval": 0.5,
+				"reduce_interval": 0.5,
 				"value": 10,
 				"AttackKind": "real",
 			}
@@ -352,7 +352,7 @@ func change_hit():
 			{
 				"Name": "Bleed",
 				"AddTime": 4,
-				"ReduceInterval": 0.5,
+				"reduce_interval": 0.5,
 				"value": 10,
 				"AttackKind": "real",
 			}
@@ -365,7 +365,7 @@ func change_hit():
 			{
 				"Name": "stun",
 				"AddTime": 3,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 			}

@@ -222,18 +222,18 @@ func _physics_process(delta: float) -> void:
 
 
 func _apply_damage() -> void:
-	if not (AttList is Dictionary):
+	if not (att_list is Dictionary):
 		return
-	var power := int(AttList.get("power", 0))
+	var power := int(att_list.get("power", 0))
 	if power <= 0:
 		return
 	var owner_value = get_meta("summoner", null)
 	var owner: Node = (
 		owner_value as Node if typeof(owner_value) == TYPE_OBJECT and is_instance_valid(owner_value) else null
 	)
-	var attack_kind := str(AttList.get("attackKind", "physics"))
+	var attack_kind := str(att_list.get("attackKind", "physics"))
 	var current_tick := maxi(0, int(floor(_elapsed * FPS)))
-	var attack_interval := maxi(1, int(AttList.get("attackInterval", 999)))
+	var attack_interval := maxi(1, int(att_list.get("attackInterval", 999)))
 	if skill_name == "PetNeat4Bullet3":
 		_process_pending_stomp_hits(current_tick, owner, power, attack_kind, attack_interval)
 	var effect_rect := _current_effect_rect()
@@ -274,7 +274,7 @@ func _apply_damage() -> void:
 					owner.call("apply_defense_reduce_to_target", target, 5.0, 0.5)
 			else:
 				_next_target_hit_tick[target_id] = current_tick + attack_interval
-			_apply_pet_summon_knockback(target, owner, AttList.get("hurtBack", []))
+			_apply_pet_summon_knockback(target, owner, att_list.get("hurtBack", []))
 			if target.has_method("play_hit_effect"):
 				target.play_hit_effect(self)
 
@@ -360,5 +360,5 @@ func _sync_neat_follow() -> void:
 		return
 	global_position = owner.global_position
 	if middle != null:
-		dir = bool(owner.get("MonsterDirection"))
+		dir = bool(owner.get("monster_direction"))
 		middle.scale.x = 1.0 if dir else -1.0

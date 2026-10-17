@@ -39,11 +39,11 @@ func monster_139():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 300
 	self.attack_range = 145
@@ -183,7 +183,7 @@ func _on_buttonlist_mouse_exited() -> void:
 func hurt_reduce_hp(value, target):
 	attack_active = true
 	var skip_mds_combo: bool = (
-		target is BaseBuff and str(target.BuffInfo.get("Name", "")) == "Voodoo" and _is_mds_awaken_active()
+		target is BaseBuff and str(target.buff_info.get("Name", "")) == "Voodoo" and _is_mds_awaken_active()
 	)
 	if value > 0:
 		remove_all_hurt.start(4)
@@ -193,7 +193,7 @@ func hurt_reduce_hp(value, target):
 	if monster102_protect():
 		cure_hp(value)
 		return 0
-	if IsIndestructible:
+	if is_indestructible:
 		if value >= Hp:
 			return 0
 	if skip_mds_combo:
@@ -227,7 +227,7 @@ func reduce_hp(value: int):
 	if monster102_protect():
 		cure_hp(value)
 		return 0
-	if IsIndestructible:
+	if is_indestructible:
 		if value >= Hp:
 			return 0
 	var last_value = hd_reduce(value)

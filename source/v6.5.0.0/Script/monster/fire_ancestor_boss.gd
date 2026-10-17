@@ -72,9 +72,9 @@ func _configure_boss() -> void:
 	mdef = int(config.get("mdef", 0))
 	crit = int(config.get("crit", 0))
 	miss = int(config.get("miss", 0))
-	Htarget = int(config.get("hit", 0))
-	Toughness = float(config.get("toughness", 0.0))
-	Critreduce = int(config.get("crit_reduce", 0))
+	htarget = int(config.get("hit", 0))
+	toughness = float(config.get("toughness", 0.0))
+	crit_reduce = int(config.get("crit_reduce", 0))
 	ar = int(config.get("armor_break", 0))
 	sp = int(config.get("magic_break", 0))
 	speed = float(config.get("speed", 0.0))
@@ -88,7 +88,7 @@ func _configure_boss() -> void:
 	independent_fall_list = Array(config.get("independent_drop_list", [])).duplicate(true)
 	is_boss = bool(config.get("is_boss", true))
 	boss_max_protect = float(config.get("max_protect", 100.0))
-	NoGrav = true
+	no_grav = true
 	is_fly = true
 	super_armor_active = true
 	cannot_attract = true
@@ -382,7 +382,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	velocity = Vector2.ZERO
 	global_position = _fixed_global_position
-	NoGrav = true
+	no_grav = true
 	is_fly = true
 	super_armor_active = true
 	cannot_attract = true
@@ -393,7 +393,7 @@ func _enforce_source_state() -> void:
 	monster_dir.scale.x = 1.0
 	base_damage_box.scale.x = 1.0
 	mr_ani.flip_h = false
-	MonsterDirection = false
+	monster_direction = false
 	velocity = Vector2.ZERO
 
 

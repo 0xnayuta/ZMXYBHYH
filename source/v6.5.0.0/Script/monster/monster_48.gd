@@ -16,11 +16,11 @@ func monster_48():
 	self.crit = 25
 	self.miss = 10
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = -10
+	self.htarget = 0
+	self.toughness = -10
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 8
 	self.mysee = 400
 	self.attack_range = 158
@@ -40,7 +40,7 @@ func monster_48():
 		{
 			"Name": "Bleed",
 			"AddTime": 2,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"CanAdd": true,
 			"DeBuff": true,
 			"value": int(RoleProp.roleprop.SHp * 0.01),
@@ -101,7 +101,7 @@ func ai_think():
 				self.def = 180
 				self.mdef = 180
 				self.speed = 30
-				if Skill_1_CD > 0:
+				if skill_1_cd > 0:
 					if self.position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
 						move_right()
 					else:
@@ -117,7 +117,7 @@ func ai_think():
 						move_left()
 					else:
 						move_right()
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						if (
 							(
 								abs(self.position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
@@ -138,7 +138,7 @@ func ai_think():
 
 
 func attack_target():
-	Skill_2_CD = randi_range(7, 10)
+	skill_2_cd = randi_range(7, 10)
 	if RoleProp.get_nearest_monster_target_position(global_position).x > position.x:
 		move_right()
 	else:
@@ -160,7 +160,7 @@ func change_body():
 
 
 func do_hit_2():
-	Skill_1_CD = randi_range(7, 10)
+	skill_1_cd = randi_range(7, 10)
 	hit_name = "fszy"
 	is_attacking = true
 	mr_player.play("fszy")

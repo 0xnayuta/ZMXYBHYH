@@ -56,11 +56,11 @@ func initialize_monster_properties():
 	self.set("crit", scaled_crit)
 	self.set("miss", scaled_miss)
 	self.set("lucky", scaled_lucky)
-	self.set("Htarget", 25)
-	self.set("Toughness", 0)
+	self.set("htarget", 25)
+	self.set("toughness", 0)
 	self.set("ar", 60)
 	self.set("sp", 60)
-	self.set("Critreduce", 0)
+	self.set("crit_reduce", 0)
 	self.set("behit_calmtime", 0)
 	self.set("self_rhp", 0)
 	self.set("add_exp", 0)
@@ -105,9 +105,9 @@ func initialize_monster_properties():
 		"HitProtect": 0,
 		"addeffect":
 		{
-			"Name": "DefeReduce",
+			"Name": "defe_reduce",
 			"AddTime": 20,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.3,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -123,7 +123,7 @@ func initialize_monster_properties():
 		{
 			"Name": "stun",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -177,10 +177,10 @@ func ai_think() -> void:
 func setup_skills():
 	var cd_multiplier = max(0.5, 1.0 - (weapon_level - 1) * 0.05)
 
-	Skill_1_CD = 2 * cd_multiplier
+	skill_1_cd = 2 * cd_multiplier
 
-	Skill_3_CD = 7 * cd_multiplier
-	Skill_4_CD = 9 * cd_multiplier
+	skill_3_cd = 7 * cd_multiplier
+	skill_4_cd = 9 * cd_multiplier
 	skill_5_cd = 11 * cd_multiplier
 
 
@@ -191,11 +191,11 @@ func try_use_skills():
 	if randi_range(0, 100) >= attack_desire:
 		return
 
-	if Skill_4_CD <= 0:
+	if skill_4_cd <= 0:
 		do_hit_4()
-	elif Skill_1_CD <= 0:
+	elif skill_1_cd <= 0:
 		do_hit_1()
-	elif Skill_3_CD <= 0:
+	elif skill_3_cd <= 0:
 		do_hit_3()
 	elif skill_5_cd <= 0:
 		do_hit_5()
@@ -208,13 +208,13 @@ func do_hit_1():
 	if current_target.position.x > position.x:
 		base_damage_box.scale.x = -1
 		monster_dir.scale.x = -1
-		MonsterDirection = false
+		monster_direction = false
 	else:
 		base_damage_box.scale.x = 1
 		monster_dir.scale.x = 1
-		MonsterDirection = true
+		monster_direction = true
 
-	Skill_1_CD = 2
+	skill_1_cd = 2
 	velocity.x = 0
 	hit_name = "hit1"
 	is_attacking = true
@@ -233,13 +233,13 @@ func do_hit_3():
 	if current_target.position.x > position.x:
 		base_damage_box.scale.x = -1
 		monster_dir.scale.x = -1
-		MonsterDirection = false
+		monster_direction = false
 	else:
 		base_damage_box.scale.x = 1
 		monster_dir.scale.x = 1
-		MonsterDirection = true
+		monster_direction = true
 
-	Skill_3_CD = 17
+	skill_3_cd = 17
 	velocity.x = 0
 	hit_name = "hit3"
 	is_attacking = true
@@ -258,13 +258,13 @@ func do_hit_4():
 	if current_target.position.x > position.x:
 		base_damage_box.scale.x = -1
 		monster_dir.scale.x = -1
-		MonsterDirection = false
+		monster_direction = false
 	else:
 		base_damage_box.scale.x = 1
 		monster_dir.scale.x = 1
-		MonsterDirection = true
+		monster_direction = true
 
-	Skill_4_CD = 13
+	skill_4_cd = 13
 	velocity.x = 0
 	hit_name = "hit4"
 	is_attacking = true
@@ -283,11 +283,11 @@ func do_hit_5():
 	if current_target.position.x > position.x:
 		base_damage_box.scale.x = -1
 		monster_dir.scale.x = -1
-		MonsterDirection = false
+		monster_direction = false
 	else:
 		base_damage_box.scale.x = 1
 		monster_dir.scale.x = 1
-		MonsterDirection = true
+		monster_direction = true
 
 	skill_5_cd = 20
 	velocity.x = 0
@@ -344,7 +344,7 @@ func call_bullet_4():
 		)
 		bullet_spawn_positions.push_back(stab_position)
 		target_count += 1
-	if not MonsterDirection:
+	if not monster_direction:
 		bullet_spawn_positions.reverse()
 	for i in bullet_spawn_positions:
 		var stab = Global.add_bullet(

@@ -6,7 +6,7 @@ const FORGE_MATERIAL_BOX_SCENE: PackedScene = preload("res://Scene/ldl/forge_mat
 @onready var scw: Button = $LastItem/scw
 @onready var zzs: TextureRect = $Zzs
 @onready var last_item: TextureRect = $LastItem
-@onready var item_name: Label = $LastItem/Name/ItemName
+@onready var item_name_label: Label = $LastItem/Name/item_name
 @onready var basic_material: HBoxContainer = $BasicMaterial/BasicMaterial
 @onready var lh: Label = $LastItem/Need/LH
 @onready var bs_box: HBoxContainer = $BSBox
@@ -170,11 +170,11 @@ func load_material_box():
 
 func add_item_box():
 	var book_name := _get_current_book_name()
-	var ItemName := book_name.split("zzs")[0] if book_name != "" else ""
-	if ItemName == "" or not AE.all_equipment.has(ItemName):
+	var item_name := book_name.split("zzs")[0] if book_name != "" else ""
+	if item_name == "" or not AE.all_equipment.has(item_name):
 		scw.get_item_name = "empty"
 		scw.icon = load_("empty")
-		scw.EQ_prop = {}
+		scw.eq_prop = {}
 		remove_name_and_need()
 		return
 
@@ -183,9 +183,9 @@ func add_item_box():
 	else:
 		item_data = get_bz_prop()
 
-	scw.get_item_name = ItemName
-	scw.icon = load_(str(ItemName))
-	scw.EQ_prop = item_data
+	scw.get_item_name = item_name
+	scw.icon = load_(str(item_name))
+	scw.eq_prop = item_data
 	scw.is_in_ldl_gz = true
 
 	refresh_name()
@@ -197,14 +197,14 @@ func refresh_name():
 		return
 
 	var book_name := _get_current_book_name()
-	var ItemName := book_name.split("zzs")[0] if book_name != "" else ""
-	if ItemName == "" or not AE.all_equipment.has(ItemName):
+	var item_name := book_name.split("zzs")[0] if book_name != "" else ""
+	if item_name == "" or not AE.all_equipment.has(item_name):
 		remove_name_and_need()
 		return
-	var item_name = AE.all_equipment[ItemName][DataKeys.NAME]
-	var color = AE.all_equipment[ItemName]["颜色"]
-	item_name.text = str(item_name)
-	item_name.add_theme_color_override("font_color", color)
+	var item_display_name = AE.all_equipment[item_name][DataKeys.NAME]
+	var color = AE.all_equipment[item_name]["颜色"]
+	item_name_label.text = str(item_display_name)
+	item_name_label.add_theme_color_override("font_color", color)
 
 
 func addbzpic():
@@ -220,8 +220,8 @@ func addbzpic():
 		var jewel: Dictionary = jewel_value if jewel_value is Dictionary else {}
 		var item_name := str(jewel.get(DataKeys.NAME, ""))
 		var data_value: Variant = jewel.get("Data", {})
-		var Data: Dictionary = data_value if data_value is Dictionary else {}
-		var item_box := _add_forge_item_box(bs_box, str(item_name), 0, 1, [], Data, true, false)
+		var data: Dictionary = data_value if data_value is Dictionary else {}
+		var item_box := _add_forge_item_box(bs_box, str(item_name), 0, 1, [], data, true, false)
 		if item_box == null or not is_instance_valid(item_box):
 			continue
 		var icon_path := "res://Art/BackPack/AllItems/%s.png" % str(item_name)
@@ -387,11 +387,11 @@ func remove_material_box():
 func rmove_box():
 	scw.get_item_name = "empty"
 	scw.icon = load_("empty")
-	scw.EQ_prop = {}
+	scw.eq_prop = {}
 
 
 func remove_name_and_need():
-	item_name.text = ""
+	item_name_label.text = ""
 
 
 func remove_all() -> bool:
@@ -454,7 +454,7 @@ func _add_forge_item_box(
 	target.set("qh_level", level)
 	target.set("total_number", number)
 	target.set("wx", elements)
-	target.set("EQ_prop", props)
+	target.set("eq_prop", props)
 	target.set("get_item_name", item_name)
 	target.set_meta("item_name", item_name)
 	var icon_path := "res://Art/BackPack/AllItems/%s.png" % item_name
@@ -468,7 +468,7 @@ func _add_forge_material_box(parent: Node, material_name: String, need_num: int)
 		return null
 	var target: Node = FORGE_MATERIAL_BOX_SCENE.instantiate()
 	target.set("ItemName", material_name)
-	target.set("NeedNum", need_num)
+	target.set("need_num", need_num)
 	parent.add_child(target)
 	return target
 
@@ -492,11 +492,11 @@ func _on_froge_pressed_legacy() -> void:
 
 	if check_full_material():
 		add_item_box()
-		var ItemName: String
+		var item_name: String
 		if zzs.get_children().size() == 1:
-			ItemName = str(zzs.get_children()[0].get_item_name).split("zzs")[0]
+			item_name = str(zzs.get_children()[0].get_item_name).split("zzs")[0]
 
-		var new_equip_data = AE.all_equipment[ItemName].duplicate(true)
+		var new_equip_data = AE.all_equipment[item_name].duplicate(true)
 		var legacy_jewels_value: Variant = PlayerData.player_data.get("宝珠列表", [])
 		if not legacy_jewels_value is Array:
 			return
@@ -524,11 +524,11 @@ func _on_froge_pressed_legacy() -> void:
 		print("保存前 new_equip_data.power = ", new_equip_data.power)
 		print("宝珠列表长度 = ", PlayerData.player_data["宝珠列表"].size())
 
-		match AE.all_equipment[ItemName][DataKeys.TYPE]:
+		match AE.all_equipment[item_name][DataKeys.TYPE]:
 			"法宝":
-				PlayerData.add_fb(ItemName, 0, AE.get_wx(), new_equip_data)
+				PlayerData.add_fb(item_name, 0, AE.get_wx(), new_equip_data)
 			"武器", "防具", "饰品", "时装", "头衔", "翅膀":
-				PlayerData.add_zb(ItemName, 0, new_equip_data)
+				PlayerData.add_zb(item_name, 0, new_equip_data)
 
 		remove_all()
 		PlayerData.spend_soul(5000)
@@ -569,7 +569,7 @@ func _on_froge_pressed() -> void:
 
 	var snapshot: Dictionary = PlayerData.player_data.duplicate(true)
 	var book_level := int(book_box.get("qh_level"))
-	var book_props_value: Variant = book_box.get("EQ_prop")
+	var book_props_value: Variant = book_box.get("eq_prop")
 	var book_props: Dictionary = book_props_value if book_props_value is Dictionary else {}
 	var new_equip_data: Dictionary = item_data.duplicate(true)
 	var strengthen_value: Variant = new_equip_data.get(DataKeys.ENHANCE_PROP, {})
@@ -655,10 +655,10 @@ func get_bz_prop_legacy():
 	var book_name := _get_current_book_name()
 	if book_name == "":
 		return
-	var ItemName := book_name.split("zzs")[0]
-	if not AE.all_equipment.has(ItemName):
+	var item_name := book_name.split("zzs")[0]
+	if not AE.all_equipment.has(item_name):
 		return
-	var prop_list = AE.all_equipment[ItemName].duplicate(true)
+	var prop_list = AE.all_equipment[item_name].duplicate(true)
 	for i in AE.prop_list_name:
 		prop_list[i] += bz_prop[i]
 	return prop_list
@@ -705,10 +705,10 @@ func get_eq_prop():
 	var book_name := _get_current_book_name()
 	if book_name == "":
 		return
-	var ItemName := book_name.split("zzs")[0]
-	if not AE.all_equipment.has(ItemName):
+	var item_name := book_name.split("zzs")[0]
+	if not AE.all_equipment.has(item_name):
 		return
-	return AE.all_equipment[ItemName]
+	return AE.all_equipment[item_name]
 	pass
 
 

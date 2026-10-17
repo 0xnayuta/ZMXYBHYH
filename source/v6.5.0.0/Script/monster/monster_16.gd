@@ -13,11 +13,11 @@ func monster_16():
 	self.crit = 5
 	self.miss = 5
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 8
 	self.mysee = 300
 	self.attack_range = 225
@@ -37,7 +37,7 @@ func monster_16():
 			"AddTime": 1,
 			"CanAdd": false,
 			"DeBuff": true,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 		}
@@ -51,7 +51,7 @@ func monster_16():
 func _ready() -> void:
 	super._ready()
 	monster_16()
-	Skill_1_CD = 0
+	skill_1_cd = 0
 
 
 func ai_think():
@@ -63,7 +63,7 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 420:
 						do_hit_2()
 					else:
@@ -71,7 +71,7 @@ func ai_think():
 				else:
 					have_target()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
 				else:
 					if count % 90 == 0:
@@ -81,7 +81,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 5
+	skill_1_cd = 5
 	hit_name = "xzfc"
 	velocity.x = 0
 	is_attacking = true

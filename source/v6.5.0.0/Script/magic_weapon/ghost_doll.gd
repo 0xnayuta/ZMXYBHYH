@@ -1,7 +1,7 @@
 extends BaseMagicWeapon
 class_name GhostDoll
 var follow_target: BaseMonster
-var MonsterList = []
+var monster_list = []
 var _monster_refresh_elapsed: float = 0.0
 var hit_times: int = 0
 var max_times: int = 0
@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _get_active_monster_snapshot() -> Array:
-	var level: Node = Player.get_parent().get_parent() if Player != null and Player.get_parent() != null else null
+	var level: Node = player.get_parent().get_parent() if player != null and player.get_parent() != null else null
 	if level != null and level.has_method("has_active_monster_index") and level.has_active_monster_index():
 		return level.get_active_monsters()
 	if level != null and "monster" in level and level.monster != null:
@@ -24,9 +24,9 @@ func _get_active_monster_snapshot() -> Array:
 
 func _physics_process(delta: float) -> void:
 	_monster_refresh_elapsed += delta
-	if _monster_refresh_elapsed >= 0.1 or MonsterList.is_empty():
+	if _monster_refresh_elapsed >= 0.1 or monster_list.is_empty():
 		_monster_refresh_elapsed = 0.0
-		MonsterList = _get_active_monster_snapshot()
+		monster_list = _get_active_monster_snapshot()
 	self.fb_level = PlayerData.get_most_level("xhmt") + 1
 	if PlayerData.check_have_wx("xhmt", "木"):
 		_hit_data["power"] = int(25 + RoleProp.roleprop.power * (0.15 + (self.fb_level * 0.03)))
@@ -70,41 +70,41 @@ func change_dir():
 
 func show_skill():
 	var a_1
-	var Monster: BaseMonster = null
+	var monster: BaseMonster = null
 	var a_2 = 0
-	var Monster_2: BaseMonster = null
+	var monster_2: BaseMonster = null
 	var a_3
 	Global.remove_all_active_buffs()
 	mg_player.play("Show")
 	await mg_player.animation_finished
 	a_1 = 5000
 	a_2 = 0
-	while a_2 < MonsterList.size():
-		if MonsterList[a_2] != null and MonsterList[a_2] is BaseMonster:
-			Monster_2 = MonsterList[a_2]
+	while a_2 < monster_list.size():
+		if monster_list[a_2] != null and monster_list[a_2] is BaseMonster:
+			monster_2 = monster_list[a_2]
 		else:
 			use_over()
 			follow_target = null
 			return null
-		if Monster_2 == null:
+		if monster_2 == null:
 			use_over()
 			follow_target = null
 			return null
-		if Monster_2 is Monster138:
+		if monster_2 is Monster138:
 			a_2 += 1
 			continue
-		a_3 = Global.get_dis_betweem(Player, Monster_2)
+		a_3 = Global.get_dis_betweem(player, monster_2)
 		if a_3 <= a_1:
 			a_1 = a_3
-			if Monster_2 is Monster48:
-				if Monster_2.change_body_flag:
+			if monster_2 is Monster48:
+				if monster_2.change_body_flag:
 					use_over()
 					follow_target = null
 					return null
-			Monster = Monster_2
+			monster = monster_2
 		a_2 += 1
-	if Monster != null:
-		follow_target = Monster
+	if monster != null:
+		follow_target = monster
 		Global.fb_cd = 5
 		hit_times = max_times
 	change_dir()
@@ -115,39 +115,39 @@ func show_skill():
 
 func get_target():
 	var a_1
-	var Monster: BaseMonster = null
+	var monster: BaseMonster = null
 	var a_2 = 0
-	var Monster_2: BaseMonster = null
+	var monster_2: BaseMonster = null
 	var a_3
 	a_1 = 1000
 	a_2 = 0
-	while a_2 < MonsterList.size():
-		if MonsterList[a_2] != null and MonsterList[a_2] is BaseMonster:
-			Monster_2 = MonsterList[a_2]
+	while a_2 < monster_list.size():
+		if monster_list[a_2] != null and monster_list[a_2] is BaseMonster:
+			monster_2 = monster_list[a_2]
 		else:
 			use_over()
 			follow_target = null
 			return null
-		if Monster_2 == null:
+		if monster_2 == null:
 			use_over()
 			follow_target = null
 			return null
-		if Monster_2 is Monster138:
+		if monster_2 is Monster138:
 			a_2 += 1
 			continue
-		a_3 = Global.get_dis_betweem(Player, Monster_2)
+		a_3 = Global.get_dis_betweem(player, monster_2)
 		if a_3 <= a_1:
 			a_1 = a_3
-			if Monster_2 is Monster48:
-				if Monster_2.change_body_flag:
+			if monster_2 is Monster48:
+				if monster_2.change_body_flag:
 					follow_target = null
 					use_over()
 					return null
-			Monster = Monster_2
+			monster = monster_2
 		a_2 += 1
-	if Monster != null:
-		if not Monster_2 is Monster138:
-			follow_target = Monster
+	if monster != null:
+		if not monster_2 is Monster138:
+			follow_target = monster
 
 
 func use_over():

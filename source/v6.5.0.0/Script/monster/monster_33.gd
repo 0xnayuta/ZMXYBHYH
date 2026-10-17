@@ -23,11 +23,11 @@ func monster_33():
 	self.crit = 0
 	self.miss = 8
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 40
 	self.mysee = 300
 	self.attack_range = 85
@@ -46,7 +46,7 @@ func monster_33():
 			"Name": "stun",
 			"AddTime": 4,
 			"DeBuff": true,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 		}
@@ -69,7 +69,7 @@ func _ready() -> void:
 	super._ready()
 	Global.add_special_effect(mr_ani, Vector2(0, 0), "mw", Vector2(2.4, 2.4), false, 0.8)
 
-	Skill_1_CD = 10
+	skill_1_cd = 10
 	monster_33()
 	if mr_player.has_animation("empty"):
 		mr_player.play("empty")

@@ -23,11 +23,11 @@ func init_monster(is_boss_flag: bool):
 	self.crit = 38
 	self.miss = 58
 	self.lucky = 83
-	self.Htarget = 98
-	self.Toughness = 43
+	self.htarget = 98
+	self.toughness = 43
 	self.ar = 120
 	self.sp = 120
-	self.Critreduce = 20
+	self.crit_reduce = 20
 	self.speed = 15
 	self.mysee = 550
 	self.attack_range = 280
@@ -54,7 +54,7 @@ func init_monster(is_boss_flag: bool):
 		{
 			"Name": "speed_down",
 			"AddTime": 3,
-			"ReduceInterval": 0.61,
+			"reduce_interval": 0.61,
 			"value": 0.5,
 			"AttackKind": "magic",
 			"CanAdd": false,
@@ -70,7 +70,7 @@ func init_monster(is_boss_flag: bool):
 		{
 			"Name": "Immobilize",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 1,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -87,7 +87,7 @@ func init_monster(is_boss_flag: bool):
 		{
 			"Name": "Immobilize",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 1,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -120,10 +120,10 @@ func _ready() -> void:
 
 	super._ready()
 
-	Skill_1_CD = 2
-	Skill_2_CD = 8
-	Skill_3_CD = 15
-	Skill_4_CD = 20
+	skill_1_cd = 2
+	skill_2_cd = 8
+	skill_3_cd = 15
+	skill_4_cd = 20
 	skill_5_cd = 30
 
 	instance_count += 1
@@ -147,35 +147,35 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 				if skill_5_cd <= 0:
 					do_hit_5()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 				if skill_5_cd <= 0:
 					do_hit_5()
 
 
 func do_hit_1():
-	if Skill_1_CD > 0 or is_attacking:
+	if skill_1_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_1_CD = 2
+	skill_1_cd = 2
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -186,10 +186,10 @@ func do_hit_1():
 
 
 func do_hit_2():
-	if Skill_2_CD > 0 or is_attacking:
+	if skill_2_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_2_CD = randi_range(20, 30)
+	skill_2_cd = randi_range(20, 30)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -200,10 +200,10 @@ func do_hit_2():
 
 
 func do_hit_3():
-	if Skill_3_CD > 0 or is_attacking:
+	if skill_3_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_3_CD = randi_range(25, 30)
+	skill_3_cd = randi_range(25, 30)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -262,7 +262,7 @@ func move_player_2():
 
 func _on_buff_child_entered(child: Node):
 	if child is BaseBuff:
-		var buff_name = child.BuffInfo.get("Name", "")
+		var buff_name = child.buff_info.get("Name", "")
 		if buff_name in ["stun", "Ice", "Immobilize"]:
 			has_been_controlled = true
 
@@ -275,7 +275,7 @@ func revive_and_summon():
 	var has_control_now = false
 	if buff:
 		for b in buff.get_children():
-			if b is BaseBuff and b.BuffInfo.get("Name", "") in ["stun", "Ice", "Immobilize"]:
+			if b is BaseBuff and b.buff_info.get("Name", "") in ["stun", "Ice", "Immobilize"]:
 				has_control_now = true
 				break
 
@@ -290,7 +290,7 @@ func revive_and_summon():
 
 	if buff:
 		for b in buff.get_children():
-			if b is BaseBuff and b.BuffInfo.get("Name", "") in ["stun", "Ice", "Immobilize"]:
+			if b is BaseBuff and b.buff_info.get("Name", "") in ["stun", "Ice", "Immobilize"]:
 				b.queue_free()
 
 	velocity = Vector2.ZERO
@@ -318,7 +318,7 @@ func state_death():
 	var has_control_now = false
 	if buff:
 		for b in buff.get_children():
-			if b is BaseBuff and b.BuffInfo.get("Name", "") in ["stun", "Ice", "Immobilize"]:
+			if b is BaseBuff and b.buff_info.get("Name", "") in ["stun", "Ice", "Immobilize"]:
 				has_control_now = true
 				break
 

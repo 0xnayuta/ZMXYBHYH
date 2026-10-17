@@ -101,7 +101,7 @@ func _ready() -> void:
 			if float(point[0]) < ahead:
 				_sky_path.append(Vector2(float(point[0]) - maxf(ahead, 0), float(point[1])))
 	if is_fly or int(_raw["model"]) in [3422, 3528]:
-		NoGrav = true
+		no_grav = true
 		collision_mask = 0
 	floor_max_angle = deg_to_rad(80)
 	floor_snap_length = 18
@@ -149,11 +149,11 @@ func _configure_entity_collision_boxes() -> void:
 
 func _physics_process(delta: float) -> void:
 	_fixed_flight_height_ready = false
-	var gravity_before := NoGrav
+	var gravity_before := no_grav
 	var moving_by_skill := Time.get_ticks_msec() < _body_motion_until
 	if moving_by_skill:
-		NoGrav = true
-	if NoGrav and not is_fly:
+		no_grav = true
+	if no_grav and not is_fly:
 		velocity.y = 0
 	if Time.get_ticks_msec() < _body_motion_until:
 		velocity = _body_motion
@@ -162,7 +162,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	super._physics_process(delta)
 	if moving_by_skill:
-		NoGrav = gravity_before
+		no_grav = gravity_before
 	if death():
 		for son in _sons:
 			if is_instance_valid(son):
@@ -188,7 +188,7 @@ func _physics_process(delta: float) -> void:
 		global_position = _tree.global_position + Vector2(0, -200)
 	elif _tree != null:
 		_tree = null
-		NoGrav = is_fly
+		no_grav = is_fly
 	var level := get_level_node()
 	if level is NorthContinentLevel and not level.in_void_space:
 		var room: Rect2 = level.source_battle_bounds()
@@ -254,7 +254,7 @@ func ai_think() -> void:
 	):
 		return
 	var target := RoleProp.get_nearest_monster_target_position(global_position)
-	MonsterDirection = target.x >= global_position.x
+	monster_direction = target.x >= global_position.x
 	to_hero()
 	if is_instance_valid(_tree) and not _tree.death():
 		if Time.get_ticks_msec() >= _next_cast:
@@ -307,12 +307,12 @@ func have_target() -> void:
 func to_hero() -> void:
 	var model := int(_raw.get("model", 0))
 	if model in [3381, 3422, 3430, 3528]:
-		MonsterDirection = model != 3528
-		monster_dir.scale.x = -1 if MonsterDirection else 1
+		monster_direction = model != 3528
+		monster_dir.scale.x = -1 if monster_direction else 1
 		base_damage_box.scale.x = monster_dir.scale.x
 	else:
-		MonsterDirection = RoleProp.get_nearest_monster_target_position(global_position).x >= global_position.x
-		monster_dir.scale.x = -1 if MonsterDirection else 1
+		monster_direction = RoleProp.get_nearest_monster_target_position(global_position).x >= global_position.x
+		monster_dir.scale.x = -1 if monster_direction else 1
 		base_damage_box.scale.x = monster_dir.scale.x
 
 
@@ -502,7 +502,7 @@ func _run_source_skill(action: StringName, generation: int) -> void:
 				room = _view_rect()
 			global_position.x = clampf(target.x - target_facing * 50.0, room.position.x + 50, room.end.x - 50)
 			global_position.y = target_feet - 60.0
-		MonsterDirection = target.x >= global_position.x
+		monster_direction = target.x >= global_position.x
 		to_hero()
 		if is_instance_valid(contact):
 			contact.dir = _facing() > 0
@@ -734,7 +734,7 @@ func _facing() -> float:
 		return 1.0
 	if int(_raw["model"]) == 3528:
 		return -1.0
-	return 1.0 if MonsterDirection else -1.0
+	return 1.0 if monster_direction else -1.0
 
 
 func _duration(skill: Dictionary) -> float:
@@ -754,7 +754,7 @@ func _standard_shot(action: StringName, skill: Dictionary) -> void:
 	if model == 3371 and _skill_actions[action]["key"] == "effect3":
 		origin.x = RoleProp.get_nearest_monster_target_position(global_position).x
 	if model == 3372 and _skill_actions[action]["key"] == "effect3":
-		origin.x = _view_rect().end.x if MonsterDirection else _view_rect().position.x
+		origin.x = _view_rect().end.x if monster_direction else _view_rect().position.x
 	var speed_x := float(skill.get("shootSpeedX", "0"))
 	var velocity_source := Vector2(
 		(0.0 if speed_x == -1 else speed_x) * 3 * _facing(), float(skill.get("shootSpeedY", "0")) * 3
@@ -908,7 +908,7 @@ func _summon(skill: Dictionary, key: String) -> void:
 		_sons.append(son)
 		if model == 3481 and key == "effect5":
 			_tree = son
-			NoGrav = true
+			no_grav = true
 			_next_cast = Time.get_ticks_msec() + 2000
 		var maximum := int(skill.get("summonNumMax", "-1"))
 		if model == 3382:
@@ -1036,7 +1036,7 @@ func _apply_source_buffs(_projectile: WutaiMinghaiProjectile, target: BaseHero, 
 				{
 					"Name": name,
 					"AddTime": float(record["time"]) / 1000,
-					"ReduceInterval": 0,
+					"reduce_interval": 0,
 					"value": value,
 					"CanRemove": true,
 					"CanAdd": name != "speed_down",

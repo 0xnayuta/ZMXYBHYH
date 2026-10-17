@@ -73,7 +73,7 @@ func _physics_process(delta: float) -> void:
 		_set_icon_path(icon_path)
 
 		var real_key = get_real_skill_key(skill_name)
-		var skill_inter = RoleProp.source_player.get("Role1SkillInter")
+		var skill_inter = RoleProp.source_player.get("role1_skill_inter")
 		if skill_inter == null or not skill_inter.has(real_key):
 			return
 

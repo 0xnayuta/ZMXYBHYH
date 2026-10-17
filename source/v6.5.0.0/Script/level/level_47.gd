@@ -213,8 +213,8 @@ func _update_screen_bounds(delta: float = 0.0) -> void:
 		open_right = float(SCREEN_RIGHTS[screen_index + 1])
 	elif current_stage == 4 and stage_clear:
 		open_right = LAST_SCREEN_RIGHT
-	if current_stage < 4 and stage_clear and Role_ != null:
-		if float(Role_.position.x) >= screen_right - CAMERA_UNLOCK_MARGIN:
+	if current_stage < 4 and stage_clear and role_ != null:
+		if float(role_.position.x) >= screen_right - CAMERA_UNLOCK_MARGIN:
 			_camera_room = maxi(_camera_room, int(current_stage) + 1)
 	_camera_room = clampi(maxi(_camera_room, int(current_stage)), 1, SCREEN_STARTS.size())
 	var camera_target_left: float = float(SCREEN_STARTS[_camera_room - 1])
@@ -242,9 +242,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_create_control_timeout() -> void:
-	if Role_ == null:
+	if role_ == null:
 		return
-	var role_x: float = float(Role_.position.x)
+	var role_x: float = float(role_.position.x)
 	if current_stage == 0 and role_x >= STAGE_TRIGGER_X[0]:
 		current_stage = 1
 	elif current_stage < 4 and check_can_pass() and role_x >= STAGE_TRIGGER_X[current_stage]:

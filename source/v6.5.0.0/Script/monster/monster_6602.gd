@@ -1,5 +1,5 @@
 extends BaseMonster
-var DeathCount: int = 0
+var death_count: int = 0
 var x_ycount: int = 0
 
 
@@ -15,11 +15,11 @@ func monster_6602():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 60
 	self.sp = 60
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 0
 	self.mysee = 0
 	self.attack_range = 0
@@ -42,10 +42,10 @@ func monster_6602():
 func _ready() -> void:
 	super._ready()
 	monster_6602()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
-	Skill_3_CD = 0
-	Skill_4_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
+	skill_3_cd = 0
+	skill_4_cd = 0
 
 
 func _physics_process(delta: float) -> void:
@@ -56,9 +56,9 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 		if Hp > 0:
 			mr_player.play("wait")
-			DeathCount += 1
+			death_count += 1
 			x_ycount += 1
-			if DeathCount % 60 == 0:
+			if death_count % 60 == 0:
 				role_reduce_prop()
 			if x_ycount % 180 == 0:
 				move_playerto_boss(null, 0.3)
@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 						{
 							"Name": "speed_down",
 							"AddTime": 1,
-							"ReduceInterval": 0,
+							"reduce_interval": 0,
 							"value": 0.6,
 							"AttackKind": "",
 						}
@@ -86,9 +86,9 @@ func ai_think():
 		velocity.y = 0
 		if Hp > 0:
 			mr_player.play("wait")
-			DeathCount += 1
+			death_count += 1
 			x_ycount += 1
-			if DeathCount % 60 == 0:
+			if death_count % 60 == 0:
 				role_reduce_prop()
 			if x_ycount % 180 == 0:
 				move_playerto_boss(null, 0.3)
@@ -99,7 +99,7 @@ func ai_think():
 						{
 							"Name": "speed_down",
 							"AddTime": 1,
-							"ReduceInterval": 0,
+							"reduce_interval": 0,
 							"value": 0.6,
 							"AttackKind": "",
 						}

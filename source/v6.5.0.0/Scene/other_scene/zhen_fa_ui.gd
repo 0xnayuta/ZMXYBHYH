@@ -62,10 +62,10 @@ func add_zhenyan_button():
 		if i != null:
 			zhenfaicon.remove_child(i)
 			i.queue_free()
-	var Num: int = 1
+	var num: int = 1
 	for i in postion_list:
-		Global.addzhenyanbutton(zhenfaicon, i, Num, self)
-		Num += 1
+		Global.addzhenyanbutton(zhenfaicon, i, num, self)
+		num += 1
 
 
 func set_zhenfa_basic_info():

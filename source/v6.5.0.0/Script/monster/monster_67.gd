@@ -14,11 +14,11 @@ func monster_67():
 	self.crit = 5
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 500
 	self.attack_range = 175
@@ -37,7 +37,7 @@ func monster_67():
 		{
 			"Name": "Bleed",
 			"AddTime": 3,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 20,
 			"DeBuff": true,
 			"AttackKind": "real",
@@ -61,9 +61,9 @@ func monster_67():
 func _ready() -> void:
 	super._ready()
 	monster_67()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
-	Skill_3_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
+	skill_3_cd = 0
 
 
 func ai_think():
@@ -75,20 +75,20 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 				if count % 120 == 0:
 					attack_target()
 			else:
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				elif Skill_1_CD <= 0:
+				elif skill_1_cd <= 0:
 					do_hit_1()
-				elif Skill_3_CD <= 0:
+				elif skill_3_cd <= 0:
 					do_hit_3()
 				elif count % 60 == 0:
 					attack_target()
@@ -98,7 +98,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(8, 10)
+	skill_1_cd = randi_range(8, 10)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -109,7 +109,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(5, 7)
+	skill_2_cd = randi_range(5, 7)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -120,7 +120,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(12, 16)
+	skill_3_cd = randi_range(12, 16)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -138,7 +138,7 @@ func _on_hit_box_area_exited(_area: Area2D) -> void:
 func call_bullet():
 	var bullet_spawn_positions = []
 	if randi_range(0, 100) < 30:
-		if not MonsterDirection:
+		if not monster_direction:
 			bullet_spawn_positions = [
 				Vector2(-80, 70),
 				Vector2(-180, 70),
@@ -158,7 +158,7 @@ func call_bullet():
 			]
 		for i in bullet_spawn_positions:
 			Global.add_bullet(
-				"Monster67Bullet", self.bullet, MonsterDirection, 1, i + position, "hit3", self.obj_attack_dict["hit3"]
+				"Monster67Bullet", self.bullet, monster_direction, 1, i + position, "hit3", self.obj_attack_dict["hit3"]
 			)
 			await get_tree().create_timer(0.2, false).timeout
 	else:
@@ -173,7 +173,7 @@ func call_bullet():
 		]
 		for i in bullet_spawn_positions:
 			Global.add_bullet(
-				"Monster67Bullet", self.bullet, MonsterDirection, 1, i, "hit3", self.obj_attack_dict["hit3"]
+				"Monster67Bullet", self.bullet, monster_direction, 1, i, "hit3", self.obj_attack_dict["hit3"]
 			)
 		await get_tree().create_timer(2, false).timeout
 		bullet_spawn_positions = [
@@ -188,7 +188,7 @@ func call_bullet():
 		]
 		for i in bullet_spawn_positions:
 			Global.add_bullet(
-				"Monster67Bullet", self.bullet, MonsterDirection, 1, i, "hit3", self.obj_attack_dict["hit3"]
+				"Monster67Bullet", self.bullet, monster_direction, 1, i, "hit3", self.obj_attack_dict["hit3"]
 			)
 
 

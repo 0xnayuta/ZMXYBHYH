@@ -13,11 +13,11 @@ func monster_83():
 	self.crit = 20
 	self.miss = 22
 	self.lucky = 0
-	self.Htarget = 18
-	self.Toughness = 0
+	self.htarget = 18
+	self.toughness = 0
 	self.ar = 10
 	self.sp = 10
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 600
 	self.attack_range = 175
@@ -34,7 +34,7 @@ func monster_83():
 		{
 			"Name": "Ice",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -57,7 +57,7 @@ func monster_83():
 		{
 			"Name": "Ice",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -74,7 +74,7 @@ func monster_83():
 		{
 			"Name": "Ice",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -100,9 +100,9 @@ func monster_83():
 
 
 func _ready() -> void:
-	Skill_1_CD = 5
-	Skill_2_CD = 0
-	Skill_3_CD = 0
+	skill_1_cd = 5
+	skill_2_cd = 0
+	skill_3_cd = 0
 	super._ready()
 	monster_83()
 
@@ -117,21 +117,21 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 300:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 550:
-					if Skill_3_CD <= 0:
+					if skill_3_cd <= 0:
 						do_hit_3()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 				if count % 60 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -140,7 +140,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(12, 14)
+	skill_1_cd = randi_range(12, 14)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -152,7 +152,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(16, 18)
+	skill_2_cd = randi_range(16, 18)
 	velocity.x = 0
 	hit_name = "hit4"
 	is_attacking = true
@@ -164,7 +164,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(14, 16)
+	skill_3_cd = randi_range(14, 16)
 	velocity.x = 0
 	hit_name = "hit4"
 	is_attacking = true
@@ -214,7 +214,7 @@ func call_arrow_2():
 		return
 	var desired_angle = 90
 	var bullet_spawn_positions = []
-	if MonsterDirection:
+	if monster_direction:
 		bullet_spawn_positions = [
 			Vector2(0, -100), Vector2(-100, -50), Vector2(100, 0), Vector2(200, 50), Vector2(-200, 100)
 		]
@@ -226,13 +226,13 @@ func call_arrow_2():
 	bullet_spawn_positions.shuffle()
 	for i in bullet_spawn_positions:
 		var arrow = Global.add_bullet(
-			"Monster83Bullet", self.bullet, MonsterDirection, 1, i + position, "hit2", self.obj_attack_dict["hit2"]
+			"Monster83Bullet", self.bullet, monster_direction, 1, i + position, "hit2", self.obj_attack_dict["hit2"]
 		)
 		arrow.scale = Vector2(0.9, 0.9)
 		arrow.modulate = Color(1, 1, 1, 0)
 		var po = arrow.position - position
 		var tween = get_tree().create_tween().set_parallel(true)
-		if MonsterDirection:
+		if monster_direction:
 			desired_angle = -desired_angle
 		tween.tween_property(arrow, "rotation", desired_angle, 1)
 		tween.tween_property(arrow, "modulate", Color(1, 1, 1, 1), 1)

@@ -1,6 +1,6 @@
 extends BaseMagicWeapon
 class_name CloudSword
-var MonsterList: Array = []
+var monster_list: Array = []
 var _monster_refresh_elapsed: float = 0.0
 var target: BaseMonster
 var is_no_target: bool
@@ -9,7 +9,7 @@ var _hit_data := {
 	"hurtBack": [0, -1],
 	"attackKind": "magic",
 	"addeffect":
-	{"Name": "DefeReduce", "AddTime": 5, "ReduceInterval": 0, "value": 0.0, "AttackKind": "", "DeBuff": true}
+	{"Name": "defe_reduce", "AddTime": 5, "reduce_interval": 0, "value": 0.0, "AttackKind": "", "DeBuff": true}
 }
 
 
@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func _get_active_monster_snapshot() -> Array:
-	var level: Node = Player.get_parent().get_parent() if Player != null and Player.get_parent() != null else null
+	var level: Node = player.get_parent().get_parent() if player != null and player.get_parent() != null else null
 	if level != null and level.has_method("has_active_monster_index") and level.has_active_monster_index():
 		return level.get_active_monsters()
 	if level != null and "monster" in level and level.monster != null:
@@ -28,9 +28,9 @@ func _get_active_monster_snapshot() -> Array:
 
 func _physics_process(delta: float) -> void:
 	_monster_refresh_elapsed += delta
-	if _monster_refresh_elapsed >= 0.1 or MonsterList.is_empty():
+	if _monster_refresh_elapsed >= 0.1 or monster_list.is_empty():
 		_monster_refresh_elapsed = 0.0
-		MonsterList = _get_active_monster_snapshot()
+		monster_list = _get_active_monster_snapshot()
 	self.fb_level = PlayerData.get_most_level("qyj") + 1
 	need_mp = 80 + self.fb_level * 5
 	var basic_hit
@@ -77,11 +77,11 @@ func use_over2():
 func get_monster():
 	var max_hp = 0
 	var tt: BaseMonster
-	if MonsterList.size() <= 0:
+	if monster_list.size() <= 0:
 		return null
-	for i in MonsterList:
+	for i in monster_list:
 		if i != null:
-			if not i.NoTarget:
+			if not i.no_target:
 				if i is BaseMonster:
 					if not i is Monster138:
 						if i.Hp >= max_hp:

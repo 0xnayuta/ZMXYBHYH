@@ -2,7 +2,7 @@ extends Control
 var get_name_
 var page: int = 0
 var number: int = 0
-var EQ_prop = {}
+var eq_prop = {}
 var jm
 
 var pet_owner: Node = null
@@ -97,7 +97,7 @@ func _on_lock_pressed() -> void:
 	if not data is Dictionary:
 		return
 	(data as Dictionary)["锁定"] = not bool((data as Dictionary).get("锁定", false))
-	EQ_prop = data
+	eq_prop = data
 	MemoryClass.save_game(Global.cd_path)
 	_refresh_lock_button()
 
@@ -110,7 +110,7 @@ func setup_pet_action(owner: Node, source: Variant, index: int, slot_type: Strin
 	pet_action_label = action_label
 	is_pet_action = owner != null
 	get_name_ = _pet_item_name(source)
-	EQ_prop = _pet_item_data(source)
+	eq_prop = _pet_item_data(source)
 	page = 1
 	number = maxi(index, 0)
 	set_meta("pet_action_label", action_label)
@@ -167,11 +167,11 @@ func _on_equ_pressed() -> void:
 			if PlayerData.player_data[DataKeys.WEAPON].size() != 0:
 				var mz = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME]
 				var ql = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.ENHANCE_LEVEL]
-				EQ_prop = PlayerData.player_data[DataKeys.WEAPON][0]["Data"]
+				eq_prop = PlayerData.player_data[DataKeys.WEAPON][0]["Data"]
 				PlayerData.player_data[DataKeys.WEAPON].clear()
 				PlayerData.player_data[DataKeys.WEAPON].push_back(new_list)
 				PlayerData.zl_zb()
-				PlayerData.add_zb(mz, ql, EQ_prop)
+				PlayerData.add_zb(mz, ql, eq_prop)
 			else:
 				PlayerData.player_data[DataKeys.WEAPON].clear()
 				PlayerData.player_data[DataKeys.WEAPON].push_back(new_list)
@@ -181,11 +181,11 @@ func _on_equ_pressed() -> void:
 			if PlayerData.player_data[DataKeys.ARMOR].size() != 0:
 				var mz = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME]
 				var ql = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.ENHANCE_LEVEL]
-				EQ_prop = PlayerData.player_data[DataKeys.ARMOR][0]["Data"]
+				eq_prop = PlayerData.player_data[DataKeys.ARMOR][0]["Data"]
 				PlayerData.player_data[DataKeys.ARMOR].clear()
 				PlayerData.player_data[DataKeys.ARMOR].push_back(new_list)
 				PlayerData.zl_zb()
-				PlayerData.add_zb(mz, ql, EQ_prop)
+				PlayerData.add_zb(mz, ql, eq_prop)
 
 			else:
 				PlayerData.player_data[DataKeys.ARMOR].clear()
@@ -196,11 +196,11 @@ func _on_equ_pressed() -> void:
 			if PlayerData.player_data["饰品"].size() != 0:
 				var mz = PlayerData.player_data["饰品"][0][DataKeys.NAME]
 				var ql = PlayerData.player_data["饰品"][0][DataKeys.ENHANCE_LEVEL]
-				EQ_prop = PlayerData.player_data["饰品"][0]["Data"]
+				eq_prop = PlayerData.player_data["饰品"][0]["Data"]
 				PlayerData.player_data["饰品"].clear()
 				PlayerData.player_data["饰品"].push_back(new_list)
 				PlayerData.zl_zb()
-				PlayerData.add_zb(mz, ql, EQ_prop)
+				PlayerData.add_zb(mz, ql, eq_prop)
 			else:
 				PlayerData.player_data["饰品"].clear()
 				PlayerData.player_data["饰品"].push_back(new_list)
@@ -226,11 +226,11 @@ func _on_equ_pressed() -> void:
 			if PlayerData.player_data[DataKeys.TITLE].size() != 0:
 				var mz = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.NAME]
 				var ql = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.ENHANCE_LEVEL]
-				EQ_prop = PlayerData.player_data[DataKeys.TITLE][0]["Data"]
+				eq_prop = PlayerData.player_data[DataKeys.TITLE][0]["Data"]
 				PlayerData.player_data[DataKeys.TITLE].clear()
 				PlayerData.player_data[DataKeys.TITLE].push_back(new_list)
 				PlayerData.zl_zb()
-				PlayerData.add_zb(mz, ql, EQ_prop)
+				PlayerData.add_zb(mz, ql, eq_prop)
 			else:
 				PlayerData.player_data[DataKeys.TITLE].clear()
 				PlayerData.player_data[DataKeys.TITLE].push_back(new_list)
@@ -257,11 +257,11 @@ func _on_equ_pressed() -> void:
 			if PlayerData.player_data[DataKeys.FASHION].size() != 0:
 				var mz = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]
 				var ql = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.ENHANCE_LEVEL]
-				EQ_prop = PlayerData.player_data[DataKeys.FASHION][0]["Data"]
+				eq_prop = PlayerData.player_data[DataKeys.FASHION][0]["Data"]
 				PlayerData.player_data[DataKeys.FASHION].clear()
 				PlayerData.player_data[DataKeys.FASHION].push_back(new_list)
 				PlayerData.zl_zb()
-				PlayerData.add_zb(mz, ql, EQ_prop)
+				PlayerData.add_zb(mz, ql, eq_prop)
 
 			else:
 				PlayerData.player_data[DataKeys.FASHION].clear()
@@ -272,11 +272,11 @@ func _on_equ_pressed() -> void:
 			if PlayerData.player_data[DataKeys.WINGS].size() != 0:
 				var mz = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 				var ql = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.ENHANCE_LEVEL]
-				EQ_prop = PlayerData.player_data[DataKeys.WINGS][0]["Data"]
+				eq_prop = PlayerData.player_data[DataKeys.WINGS][0]["Data"]
 				PlayerData.player_data[DataKeys.WINGS].clear()
 				PlayerData.player_data[DataKeys.WINGS].push_back(new_list)
 				PlayerData.zl_zb()
-				PlayerData.add_zb(mz, ql, EQ_prop)
+				PlayerData.add_zb(mz, ql, eq_prop)
 			else:
 				PlayerData.player_data[DataKeys.WINGS].clear()
 				PlayerData.player_data[DataKeys.WINGS].push_back(new_list)
@@ -288,11 +288,11 @@ func _on_equ_pressed() -> void:
 					var mz = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
 					var ql = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL]
 					var wx = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS]
-					EQ_prop = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
+					eq_prop = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
 					PlayerData.player_data[DataKeys.MAGIC_WEAPON].clear()
 					PlayerData.player_data[DataKeys.MAGIC_WEAPON].push_back(new_list)
 					PlayerData.zl_zb()
-					PlayerData.add_fb(mz, ql, wx, EQ_prop)
+					PlayerData.add_fb(mz, ql, wx, eq_prop)
 				else:
 					PlayerData.player_data[DataKeys.MAGIC_WEAPON].clear()
 					PlayerData.player_data[DataKeys.MAGIC_WEAPON].push_back(new_list)
@@ -301,8 +301,8 @@ func _on_equ_pressed() -> void:
 				var mz = new_list[DataKeys.NAME]
 				var ql = new_list[DataKeys.ENHANCE_LEVEL]
 				var wx = new_list[DataKeys.FIVE_ELEMENTS]
-				EQ_prop = new_list["Data"]
-				PlayerData.add_fb(mz, ql, wx, EQ_prop)
+				eq_prop = new_list["Data"]
+				PlayerData.add_fb(mz, ql, wx, eq_prop)
 				var parent = Global.get_parent_(self, 3)
 				Global.add_message_show(parent, "当前法宝正在使用，无法更换！！", 1.5, Vector2(485, 240))
 	RoleProp.get_equ_last_pro()
@@ -322,17 +322,17 @@ func _on_sell_pressed() -> void:
 		lock_button.grab_focus()
 		Global.add_message_show(Global.get_ui_popup_layer(), "该物品已锁定，请先解锁后再出售！", 1.5, Vector2.ZERO)
 		return
-	if EQ_prop == null:
+	if eq_prop == null:
 		PlayerData.remove_zb(page, number)
 		return
-	if not EQ_prop.has(DataKeys.TYPE):
+	if not eq_prop.has(DataKeys.TYPE):
 		PlayerData.remove_zb(page, number)
 		return
-	var lx = EQ_prop[DataKeys.TYPE]
-	var pz = EQ_prop[DataKeys.QUALITY]
+	var lx = eq_prop[DataKeys.TYPE]
+	var pz = eq_prop[DataKeys.QUALITY]
 	match lx:
 		"武器", "防具", "饰品":
-			if EQ_prop[DataKeys.GEM].size() == 0:
+			if eq_prop[DataKeys.GEM].size() == 0:
 				pass
 			else:
 				var parent = Global.get_parent_(self, 3)

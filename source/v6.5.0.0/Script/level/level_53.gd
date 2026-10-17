@@ -336,9 +336,9 @@ const PUTUO_BIRTH_POINTS := [
 
 func _ready() -> void:
 	super._ready()
-	if Role_ != null:
-		Role_.position = PUTUO_ROLE_BIRTH
-		Role_.velocity = Vector2.ZERO
+	if role_ != null:
+		role_.position = PUTUO_ROLE_BIRTH
+		role_.velocity = Vector2.ZERO
 
 
 func _stage_count() -> int:

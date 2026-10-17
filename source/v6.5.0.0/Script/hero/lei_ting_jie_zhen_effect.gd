@@ -159,7 +159,7 @@ func _damage_targets(lightning_offset: float) -> void:
 func _is_valid_target(target: Node) -> bool:
 	if target == null or not is_instance_valid(target) or not (target is BaseMonster):
 		return false
-	if target.Hp <= 0 or target.NoTarget:
+	if target.Hp <= 0 or target.no_target:
 		return false
 	if target.is_boss_protecting():
 		return false
@@ -169,8 +169,8 @@ func _is_valid_target(target: Node) -> bool:
 
 
 func _apply_hit(target: BaseMonster) -> void:
-	var old_hit_data: Dictionary = owner_player.HitDic
-	owner_player.HitDic = hit_data
+	var old_hit_data: Dictionary = owner_player.hit_dic
+	owner_player.hit_dic = hit_data
 	var damage := int(target.get_role_last_hurt(owner_player))
 	if damage > 0:
 		target.hurt_reduce_hp(damage, owner_player)
@@ -189,7 +189,7 @@ func _apply_hit(target: BaseMonster) -> void:
 			_apply_hit_stun(target)
 		if not RoleProp.is_ws_state:
 			RoleProp.ws_value += int(hit_data.get("WSValue", 6))
-	owner_player.HitDic = old_hit_data
+	owner_player.hit_dic = old_hit_data
 
 
 func _apply_hit_stun(target: BaseMonster) -> void:

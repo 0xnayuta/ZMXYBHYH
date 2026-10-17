@@ -15,11 +15,11 @@ func monster_59(BeHitCount):
 	self.crit = 5 + BeHitCount * 0.2
 	self.miss = 5 + BeHitCount * 0.8
 	self.lucky = 5 + BeHitCount * 0.5
-	self.Htarget = 5 + BeHitCount * 0.5
-	self.Toughness = 0
+	self.htarget = 5 + BeHitCount * 0.5
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 400
 	self.attack_range = 185
@@ -36,7 +36,7 @@ func monster_59(BeHitCount):
 		{
 			"Name": "Bleed",
 			"AddTime": 2 + BeHitCount * 0.5,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 15 + BeHitCount * 5,
 			"AttackKind": "real",
 			"DeBuff": true,
@@ -51,7 +51,7 @@ func monster_59(BeHitCount):
 		{
 			"Name": "silent",
 			"AddTime": 4 + BeHitCount * 0.3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -66,7 +66,7 @@ func monster_59(BeHitCount):
 		{
 			"Name": "Boundground",
 			"AddTime": 3 + BeHitCount * 0.5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"DeBuff": true,
 			"AttackKind": "",
@@ -83,9 +83,9 @@ func monster_59(BeHitCount):
 
 func _ready() -> void:
 	super._ready()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
-	Skill_3_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
+	skill_3_cd = 0
 	role_be_hit_count = Global.player_be_hit_count
 	monster_59(role_be_hit_count)
 
@@ -99,15 +99,15 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 900:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_2()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				elif Skill_2_CD <= 0:
+				elif skill_2_cd <= 0:
 					do_hit_2()
 				else:
 					if count % 40 == 0:
@@ -121,7 +121,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(14, 17)
+	skill_1_cd = randi_range(14, 17)
 	hit_name = "zmhy"
 	velocity.x = 0
 	is_attacking = true
@@ -133,7 +133,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(10, 14)
+	skill_2_cd = randi_range(10, 14)
 	velocity.x = 0
 	hit_name = "zzzy"
 	is_attacking = true
@@ -146,7 +146,7 @@ func do_hit_2():
 func call_zzzy():
 	var bullet_name = "Monster59Bullet_1"
 	var bullet_pos
-	if MonsterDirection:
+	if monster_direction:
 		bullet_pos = Vector2(420, randi_range(-130, 130)) + self.position
 		Global.add_bullet(bullet_name, self.bullet, true, 1, bullet_pos, "zzzy", self.obj_attack_dict["zzzy"])
 	else:

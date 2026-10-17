@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 		Global.change_scene("res://Scene/main_menu/main_menu.tscn")
 	if not is_cc:
 		create_control.stop()
-		if Role_.position.x >= 600:
+		if role_.position.x >= 600:
 			is_cc = true
 			role_information.gogo.visible = false
 			create_control.start(3.0)

@@ -59,11 +59,11 @@ func monster_56():
 		self.crit = 25
 		self.miss = 35
 		self.lucky = 0
-		self.Htarget = 0
-		self.Toughness = 6
+		self.htarget = 0
+		self.toughness = 6
 		self.ar = 0
 		self.sp = 0
-		self.Critreduce = 12
+		self.crit_reduce = 12
 		self.speed = 0
 		self.mysee = 0
 		self.attack_range = 0
@@ -96,11 +96,11 @@ func monster_56():
 	self.crit = 18
 	self.miss = 15
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 10
+	self.htarget = 0
+	self.toughness = 10
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 12
+	self.crit_reduce = 12
 	self.speed = 0
 	self.mysee = 0
 	self.attack_range = 0
@@ -132,7 +132,7 @@ func monster_56():
 
 
 func _ready() -> void:
-	Skill_1_CD = 4
+	skill_1_cd = 4
 	super._ready()
 	monster_56()
 
@@ -178,7 +178,7 @@ func ai_think():
 			{
 				"Name": "speed_down",
 				"AddTime": 3,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0.45,
 				"DeBuff": true,
 				"AttackKind": "",
@@ -192,16 +192,16 @@ func ai_think():
 		velocity.y = 0
 	velocity.x = 0
 	if throw:
-		if Skill_1_CD <= 0:
+		if skill_1_cd <= 0:
 			throw_round(throw_cout)
 	else:
-		if Skill_1_CD <= 0:
+		if skill_1_cd <= 0:
 			return_all_round()
 
 
 func throw_round(value):
 	is_call = false
-	Skill_1_CD = randi_range(3, 5)
+	skill_1_cd = randi_range(3, 5)
 	var i = 0
 	var i_dx_list = [0, 1, 2, 3, 4, 5, 6, 7]
 	var tween = get_tree().create_tween().set_parallel(true)
@@ -238,7 +238,7 @@ func throw_round(value):
 
 
 func return_all_round():
-	Skill_1_CD = randi_range(3, 5)
+	skill_1_cd = randi_range(3, 5)
 	idx_list = [0, 1, 2, 3, 4, 5, 6, 7]
 	var tween = get_tree().create_tween().set_parallel(true)
 	if round_list.size() > 0:

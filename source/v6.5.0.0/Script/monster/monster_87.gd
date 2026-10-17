@@ -13,11 +13,11 @@ func monster_87():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 35
 	self.sp = 35
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 500
 	self.attack_range = 265
@@ -51,7 +51,7 @@ func _ready() -> void:
 
 func add_bullet():
 	var bullet_spawn_positions = []
-	if MonsterDirection:
+	if monster_direction:
 		bullet_spawn_positions = [
 			Vector2(-15, -35),
 			Vector2(-10, -55),
@@ -67,6 +67,6 @@ func add_bullet():
 		]
 	for i in bullet_spawn_positions:
 		Global.add_bullet(
-			"Monster87Bullet", self.bullet, MonsterDirection, 1, i + position, "hit1", self.obj_attack_dict["hit1"]
+			"Monster87Bullet", self.bullet, monster_direction, 1, i + position, "hit1", self.obj_attack_dict["hit1"]
 		)
 		await get_tree().create_timer(0.2, false).timeout

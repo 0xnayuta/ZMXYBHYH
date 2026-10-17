@@ -19,11 +19,11 @@ func monster_49():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 5
+	self.htarget = 0
+	self.toughness = 5
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 7
 	self.mysee = 400
 	self.attack_range = 225
@@ -52,8 +52,8 @@ func monster_49():
 func _ready() -> void:
 	super._ready()
 	monster_49()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
 
 
 func ai_think():
@@ -74,14 +74,14 @@ func ai_think():
 					> attack_range
 				):
 					have_target()
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						do_hit_2()
-					elif Skill_2_CD <= 0:
+					elif skill_2_cd <= 0:
 						do_hit_3()
 				else:
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						do_hit_2()
-					elif Skill_2_CD <= 0:
+					elif skill_2_cd <= 0:
 						do_hit_3()
 					else:
 						if count % 120 == 0:
@@ -91,7 +91,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 15
+	skill_1_cd = 15
 	velocity.x = 0
 	is_attacking = true
 	mr_player.play("nlls")
@@ -100,7 +100,7 @@ func do_hit_2():
 
 
 func do_hit_3():
-	Skill_2_CD = 18
+	skill_2_cd = 18
 	velocity.x = 0
 	is_attacking = true
 	mr_player.play("mffd")
@@ -160,7 +160,7 @@ func add_nlls():
 			{
 				"Name": "nlls",
 				"AddTime": 4,
-				"ReduceInterval": 0.01,
+				"reduce_interval": 0.01,
 				"value": 1,
 				"DeBuff": true,
 				"AttackKind": "magic",
@@ -172,7 +172,7 @@ func add_nlls():
 
 func call_bullet():
 	var bullet
-	if MonsterDirection:
+	if monster_direction:
 		bullet = Global.call_chase_bullet(
 			self.bullet,
 			"Monster49Bullet_1",
@@ -219,7 +219,7 @@ func strength_boss():
 
 
 func call_fly_bullet():
-	if MonsterDirection:
+	if monster_direction:
 		var pp = Global.call_fly_bullet(
 			bullet,
 			"Monster49Bulet",

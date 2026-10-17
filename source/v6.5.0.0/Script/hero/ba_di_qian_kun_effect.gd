@@ -259,7 +259,7 @@ func _point_inside(point: Vector2, center: Vector2, half_size: Vector2) -> bool:
 func _is_valid_target(target: Variant) -> bool:
 	if target == null or not is_instance_valid(target) or not (target is BaseMonster):
 		return false
-	if target.Hp <= 0 or target.NoTarget:
+	if target.Hp <= 0 or target.no_target:
 		return false
 	if target.is_boss_protecting():
 		return false
@@ -271,8 +271,8 @@ func _is_valid_target(target: Variant) -> bool:
 
 
 func _apply_hit(target: BaseMonster, damage_multiplier: float = 1.0) -> void:
-	var old_hit_data: Dictionary = owner_player.HitDic
-	owner_player.HitDic = hit_data
+	var old_hit_data: Dictionary = owner_player.hit_dic
+	owner_player.hit_dic = hit_data
 	var base_damage := float(target.get_role_last_hurt(owner_player))
 	var damage := int(
 		(
@@ -305,7 +305,7 @@ func _apply_hit(target: BaseMonster, damage_multiplier: float = 1.0) -> void:
 			target.hurt_special_effect = Global.add_mr_hurt(target.pz, Vector2(0, 0))
 		if not RoleProp.is_ws_state:
 			RoleProp.ws_value += int(hit_data.get("WSValue", 8))
-	owner_player.HitDic = old_hit_data
+	owner_player.hit_dic = old_hit_data
 
 
 func _apply_hit_stun(target: BaseMonster) -> void:

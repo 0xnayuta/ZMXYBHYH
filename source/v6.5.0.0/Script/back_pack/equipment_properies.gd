@@ -57,14 +57,14 @@ var bs_prop = {
 	"R_mp": 0,
 	"vampirism": 0,
 	"Lucky": 0,
-	"Toughness": 0,
-	"Htarget": 0,
+	"toughness": 0,
+	"htarget": 0,
 	"CritReduce": 0,
 	"ar": 0,
 	"sp": 0
 }
 
-var EQ_prop = {}
+var eq_prop = {}
 var qh_level: int
 var wx = []
 var nam: String
@@ -88,8 +88,8 @@ const DIVINE_PROPERTY_NAMES := [
 	"R_mp",
 	"vampirism",
 	"Lucky",
-	"Toughness",
-	"Htarget",
+	"toughness",
+	"htarget",
 	"CritReduce",
 	"ar",
 	"sp"
@@ -104,9 +104,9 @@ const PET_RANDOM_STAT_NAMES := {
 	"Miss": "闪避",
 	"R_hp": "回血",
 	"R_mp": "回魔",
-	"Htarget": "命中",
+	"htarget": "命中",
 	"Lucky": "幸运",
-	"Toughness": "韧性",
+	"toughness": "韧性",
 	"ar": "破甲",
 	"sp": "破魔",
 	"vampirism": "吸血",
@@ -119,7 +119,7 @@ func setup_pet_equipment(item: Dictionary, sale_price: int = 0) -> void:
 	pet_item = item.duplicate(true)
 	pet_sale_price = maxi(0, sale_price)
 	var data: Dictionary = item.get("Data", {}) if item.get("Data", {}) is Dictionary else {}
-	EQ_prop = data
+	eq_prop = data
 	nam = str(
 		item.get(
 			DataKeys.NAME, item.get(DataKeys.ALT_NAME, data.get(DataKeys.NAME, data.get(DataKeys.ALT_NAME, "宠物装备")))
@@ -227,9 +227,9 @@ func _set_pet_information() -> void:
 		[eq_miss, "闪避", ["闪避", "Miss"]],
 		[eq_ehp, "回血", ["回血", "R_hp"]],
 		[eq_emp, "回魔", ["回魔", "R_mp"]],
-		[eq_mz, "命中", ["命中", "Htarget"]],
+		[eq_mz, "命中", ["命中", "htarget"]],
 		[eq_lucky, "幸运", ["幸运", "Lucky"]],
-		[eq_rx, "韧性", ["韧性", "Toughness"]],
+		[eq_rx, "韧性", ["韧性", "toughness"]],
 		[eq_pj, "破甲", ["破甲", "ar"]],
 		[eq_pm, "破魔", ["破魔", "sp"]],
 		[eq_xx, "吸血", ["吸血", "vampirism"]],
@@ -367,13 +367,13 @@ func _scale_divine_value(value, name_: String, data: Dictionary):
 
 func _get_divine_display_name(name_: String) -> String:
 	var display_name = _call_divine_helper(
-		["get_divine_forge_display_name", "get_equipment_display_name"], [name_, EQ_prop]
+		["get_divine_forge_display_name", "get_equipment_display_name"], [name_, eq_prop]
 	)
 	if display_name != null:
 		return str(display_name)
-	var base_name := str(EQ_prop.get(DataKeys.NAME, AE.all_equipment.get(name_, {}).get(DataKeys.NAME, name_)))
+	var base_name := str(eq_prop.get(DataKeys.NAME, AE.all_equipment.get(name_, {}).get(DataKeys.NAME, name_)))
 	var prefixes := ["", "一阶·", "二阶·", "三阶·", "四阶·", "五阶·", "六阶·", "七阶·", "八阶·", "九阶·"]
-	return prefixes[_get_divine_stage(EQ_prop)] + base_name if _is_divine_eligible(name_, EQ_prop) else base_name
+	return prefixes[_get_divine_stage(eq_prop)] + base_name if _is_divine_eligible(name_, eq_prop) else base_name
 
 
 func _get_divine_properties(name_: String, level: int, data: Dictionary, include_gems := false) -> Dictionary:
@@ -435,9 +435,9 @@ func _physics_process(_delta: float) -> void:
 		return
 	color_rect.size = $pro_wk/information.size
 	if bs_pro_list != null:
-		if EQ_prop != {}:
-			if EQ_prop.has(DataKeys.GEM):
-				if EQ_prop[DataKeys.GEM].size() == 0:
+		if eq_prop != {}:
+			if eq_prop.has(DataKeys.GEM):
+				if eq_prop[DataKeys.GEM].size() == 0:
 					bs_pro_list.queue_free()
 	if not is_set:
 		create_tween().tween_property(self, "modulate", Color(1, 1, 1, 1), 0.2)
@@ -494,7 +494,7 @@ func set_information_(name_: String):
 		return
 
 	var equipment_data_source: Node = AE._get_data()
-	var display_name: String = equipment_data_source.get_divine_forge_display_name(name_, EQ_prop)
+	var display_name: String = equipment_data_source.get_divine_forge_display_name(name_, eq_prop)
 	if qh_level != 0:
 		eq_name.text = display_name + "(+" + str(qh_level) + ")"
 	else:
@@ -559,20 +559,20 @@ func set_information_(name_: String):
 			else:
 				eq_emp.text = "回魔:" + str(get_properies(name_, "R_mp")[0])
 
-			if get_properies(name_, "Htarget")[0] == 0 and eq_mz != null:
+			if get_properies(name_, "htarget")[0] == 0 and eq_mz != null:
 				eq_mz.queue_free()
 			else:
-				eq_mz.text = "命中:" + str(get_properies(name_, "Htarget")[0])
+				eq_mz.text = "命中:" + str(get_properies(name_, "htarget")[0])
 
 			if get_properies(name_, "Lucky")[0] == 0 and eq_lucky != null:
 				eq_lucky.queue_free()
 			else:
 				eq_lucky.text = "幸运:" + str(get_properies(name_, "Lucky")[0])
 
-			if get_properies(name_, "Toughness")[0] == 0 and eq_rx != null:
+			if get_properies(name_, "toughness")[0] == 0 and eq_rx != null:
 				eq_rx.queue_free()
 			else:
-				eq_rx.text = "韧性:" + str(get_properies(name_, "Toughness")[0])
+				eq_rx.text = "韧性:" + str(get_properies(name_, "toughness")[0])
 
 			if get_properies(name_, "ar")[0] == 0 and eq_pj != null:
 				eq_pj.queue_free()
@@ -650,20 +650,20 @@ func set_information_(name_: String):
 			else:
 				eq_emp.text = "回魔:" + str(get_properies(name_, "R_mp")[1])
 
-			if get_properies(name_, "Htarget")[0] == 0 and eq_mz != null:
+			if get_properies(name_, "htarget")[0] == 0 and eq_mz != null:
 				eq_mz.queue_free()
 			else:
-				eq_mz.text = "命中:" + str(get_properies(name_, "Htarget")[1])
+				eq_mz.text = "命中:" + str(get_properies(name_, "htarget")[1])
 
 			if get_properies(name_, "Lucky")[0] == 0 and eq_lucky != null:
 				eq_lucky.queue_free()
 			else:
 				eq_lucky.text = "幸运:" + str(get_properies(name_, "Lucky")[1])
 
-			if get_properies(name_, "Toughness")[0] == 0 and eq_rx != null:
+			if get_properies(name_, "toughness")[0] == 0 and eq_rx != null:
 				eq_rx.queue_free()
 			else:
-				eq_rx.text = "韧性:" + str(get_properies(name_, "Toughness")[1])
+				eq_rx.text = "韧性:" + str(get_properies(name_, "toughness")[1])
 
 			if get_properies(name_, "ar")[0] == 0 and eq_pj != null:
 				eq_pj.queue_free()
@@ -688,13 +688,13 @@ func set_bs_infor():
 	if not is_pet_equipment and str(AE.all_equipment.get(nam, {}).get(DataKeys.TYPE, "")) == "法宝":
 		bs_pro_list.hide()
 		return
-	if not EQ_prop.has(DataKeys.GEM):
+	if not eq_prop.has(DataKeys.GEM):
 		self.queue_free()
 		return
-	_set_gem_resonance_information(EQ_prop)
+	_set_gem_resonance_information(eq_prop)
 	for child in bs_pro_list.get_children():
 		child.queue_free()
-	if EQ_prop[DataKeys.GEM].size() == 0:
+	if eq_prop[DataKeys.GEM].size() == 0:
 		return
 
 	var prop_names = {
@@ -707,9 +707,9 @@ func set_bs_infor():
 		"Miss": "闪避",
 		"R_hp": "回血",
 		"R_mp": "回魔",
-		"Htarget": "命中",
+		"htarget": "命中",
 		"Lucky": "幸运",
-		"Toughness": "韧性",
+		"toughness": "韧性",
 		"ar": "破甲",
 		"sp": "破魔",
 		"vampirism": "吸血",
@@ -717,7 +717,7 @@ func set_bs_infor():
 	}
 
 	var equipment_data_source: Node = AE._get_data()
-	for i in EQ_prop[DataKeys.GEM]:
+	for i in eq_prop[DataKeys.GEM]:
 		var gem_data = AE.all_equipment.get(i)
 		if gem_data == null:
 			continue
@@ -735,9 +735,9 @@ func set_bs_infor():
 			"Miss",
 			"R_hp",
 			"R_mp",
-			"Htarget",
+			"htarget",
 			"Lucky",
-			"Toughness",
+			"toughness",
 			"ar",
 			"sp",
 			"vampirism",
@@ -745,7 +745,7 @@ func set_bs_infor():
 		]:
 			if gem_data.has(u) and gem_data[u] != 0:
 				var display_name = prop_names.get(u, u)
-				var scaled_value = equipment_data_source.scale_gem_resonance_value(gem_data[u], EQ_prop)
+				var scaled_value = equipment_data_source.scale_gem_resonance_value(gem_data[u], eq_prop)
 				props_text += " " + display_name + "+" + str(scaled_value)
 
 		var hbox = HBoxContainer.new()
@@ -799,13 +799,13 @@ func get_bs_prop(need):
 
 
 func set_bs_prop():
-	if EQ_prop == null or not EQ_prop.has(DataKeys.GEM):
+	if eq_prop == null or not eq_prop.has(DataKeys.GEM):
 		return {}
 	var equipment_data_source: Node = AE._get_data()
-	var divine_gem_properties: Dictionary = equipment_data_source.get_divine_forge_gem_properties(nam, EQ_prop)
+	var divine_gem_properties: Dictionary = equipment_data_source.get_divine_forge_gem_properties(nam, eq_prop)
 	for property_name in bs_prop:
 		bs_prop[property_name] = divine_gem_properties.get(property_name, 0)
-	if EQ_prop[DataKeys.GEM].is_empty():
+	if eq_prop[DataKeys.GEM].is_empty():
 		return {}
 	return bs_prop
 
@@ -827,8 +827,8 @@ func get_properies(name_, need):
 		target_count = infomation
 
 		var strengthen_val = 0
-		if EQ_prop.has(DataKeys.ENHANCE_PROP) and EQ_prop[DataKeys.ENHANCE_PROP].has(need):
-			strengthen_val = EQ_prop[DataKeys.ENHANCE_PROP][need]
+		if eq_prop.has(DataKeys.ENHANCE_PROP) and eq_prop[DataKeys.ENHANCE_PROP].has(need):
+			strengthen_val = eq_prop[DataKeys.ENHANCE_PROP][need]
 		elif (
 			AE.all_equipment[name_].has(DataKeys.ENHANCE_PROP)
 			and AE.all_equipment[name_][DataKeys.ENHANCE_PROP].has(need)
@@ -836,10 +836,10 @@ func get_properies(name_, need):
 			strengthen_val = AE.all_equipment[name_][DataKeys.ENHANCE_PROP][need]
 
 		var equipment_data_source: Node = AE._get_data()
-		var base_value = EQ_prop.get(need, AE.all_equipment[name_].get(need, 0))
-		var scaled_base = equipment_data_source.scale_divine_forge_value(base_value, name_, EQ_prop)
+		var base_value = eq_prop.get(need, AE.all_equipment[name_].get(need, 0))
+		var scaled_base = equipment_data_source.scale_divine_forge_value(base_value, name_, eq_prop)
 		var scaled_strength = equipment_data_source.scale_divine_forge_value(
-			float(strengthen_val) * float(qh_level), name_, EQ_prop
+			float(strengthen_val) * float(qh_level), name_, eq_prop
 		)
 		infomation = str(scaled_base)
 		if qh_level > 0 and strengthen_val != 0:
@@ -849,9 +849,9 @@ func get_properies(name_, need):
 
 
 func get_last_equ_pro(_name_, qh_level_):
-	if EQ_prop == null:
+	if eq_prop == null:
 		return
-	return AE._get_data().get_divine_forge_properties(_name_, qh_level_, EQ_prop)
+	return AE._get_data().get_divine_forge_properties(_name_, qh_level_, eq_prop)
 
 
 func get_name_():
@@ -867,5 +867,5 @@ func get_wx():
 
 
 func get_fb_pro(name_, need):
-	var infomation = AE.get_fb_last_equ_pro(name_, qh_level, wx, EQ_prop)[need]
+	var infomation = AE.get_fb_last_equ_pro(name_, qh_level, wx, eq_prop)[need]
 	return infomation

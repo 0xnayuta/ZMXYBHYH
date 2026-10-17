@@ -14,11 +14,11 @@ func monster_37():
 	self.crit = 20
 	self.miss = 15
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 9
 	self.mysee = 500
 	self.attack_range = 325
@@ -35,7 +35,7 @@ func monster_37():
 		{
 			"Name": "poision",
 			"AddTime": 5,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 60,
 			"AttackKind": "magic",
 			"DeBuff": true,
@@ -51,7 +51,7 @@ func monster_37():
 		{
 			"Name": "DeadLink",
 			"AddTime": 7,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"DeBuff": true,
 			"AttackKind": "",
@@ -80,7 +80,7 @@ func monster_37():
 func _ready() -> void:
 	super._ready()
 	monster_37()
-	Skill_1_CD = 0
+	skill_1_cd = 0
 
 
 func ai_think():
@@ -92,7 +92,7 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 200:
 						do_hit_2()
 					else:
@@ -100,7 +100,7 @@ func ai_think():
 				else:
 					have_target()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 200:
 						do_hit_2()
 					else:
@@ -113,7 +113,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 18
+	skill_1_cd = 18
 	hit_name = "wdzh"
 	velocity.x = 0
 	is_attacking = true
@@ -123,7 +123,7 @@ func do_hit_2():
 
 
 func call_dd():
-	if self.MonsterDirection:
+	if self.monster_direction:
 		Global.call_chase_bullet(
 			self.bullet,
 			"Monster37Bullet",

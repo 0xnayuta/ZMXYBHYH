@@ -27,11 +27,11 @@ func monster_1407():
 	self.crit = 35
 	self.miss = 55
 	self.lucky = 80
-	self.Htarget = 95
-	self.Toughness = 40
+	self.htarget = 95
+	self.toughness = 40
 	self.ar = 120
 	self.sp = 120
-	self.Critreduce = 20
+	self.crit_reduce = 20
 	self.speed = 20
 	self.mysee = 600
 	self.attack_range = 550
@@ -66,7 +66,7 @@ func monster_1407():
 		{
 			"Name": "lpzbuff",
 			"AddTime": 10,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.2,
 			"CanAdd": true,
 			"CanRemove": false,
@@ -82,7 +82,7 @@ func monster_1407():
 		{
 			"Name": "speed_down",
 			"AddTime": 3,
-			"ReduceInterval": 0.61,
+			"reduce_interval": 0.61,
 			"value": 0.3,
 			"AttackKind": "magic",
 			"CanAdd": true,
@@ -97,9 +97,9 @@ func monster_1407():
 		"HitProtect": 10,
 		"addeffect":
 		{
-			"Name": "DefeReduce",
+			"Name": "defe_reduce",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.2,
 			"AttackKind": "",
 			"CanAdd": true,
@@ -130,10 +130,10 @@ func _ready() -> void:
 	super._ready()
 	monster_1407()
 
-	Skill_1_CD = 3
-	Skill_2_CD = 10
-	Skill_3_CD = 7
-	Skill_4_CD = 12
+	skill_1_cd = 3
+	skill_2_cd = 10
+	skill_3_cd = 7
+	skill_4_cd = 12
 	skill_5_cd = 25
 
 
@@ -158,13 +158,13 @@ func ai_think():
 		var distance_to_player = abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x)
 
 		if distance_to_player < attack_range:
-			if Skill_2_CD <= 0:
+			if skill_2_cd <= 0:
 				do_hit_2_1()
-			elif Skill_1_CD <= 0:
+			elif skill_1_cd <= 0:
 				do_hit_1()
-			elif Skill_3_CD <= 0:
+			elif skill_3_cd <= 0:
 				do_hit_3()
-			elif Skill_4_CD <= 0:
+			elif skill_4_cd <= 0:
 				do_hit_4()
 			elif skill_5_cd <= 0:
 				do_hit_5()
@@ -172,13 +172,13 @@ func ai_think():
 				normal_state()
 		else:
 			have_target()
-			if Skill_3_CD <= 0:
+			if skill_3_cd <= 0:
 				do_hit_3()
-			elif Skill_1_CD <= 0:
+			elif skill_1_cd <= 0:
 				do_hit_1()
-			elif Skill_2_CD <= 0:
+			elif skill_2_cd <= 0:
 				do_hit_2_1()
-			elif Skill_4_CD <= 0:
+			elif skill_4_cd <= 0:
 				do_hit_4()
 			elif skill_5_cd <= 0:
 				do_hit_5()
@@ -191,7 +191,7 @@ func do_hit_1():
 		return
 
 	super.to_hero()
-	Skill_1_CD = 3
+	skill_1_cd = 3
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -206,7 +206,7 @@ func do_hit_2_1():
 		return
 
 	super.to_hero()
-	Skill_2_CD = randi_range(20, 25)
+	skill_2_cd = randi_range(20, 25)
 	hit_name = "hit2_1"
 	velocity.x = 0
 	velocity.y = 0
@@ -246,7 +246,7 @@ func do_hit_3():
 		return
 
 	super.to_hero()
-	Skill_3_CD = randi_range(25, 30)
+	skill_3_cd = randi_range(25, 30)
 	hit_name = "hit3"
 	velocity.x = 0
 	velocity.y = 0
@@ -266,7 +266,7 @@ func do_hit_4():
 	if is_attacking or is_special_combo:
 		return
 	super.to_hero()
-	Skill_4_CD = randi_range(25, 30)
+	skill_4_cd = randi_range(25, 30)
 	hit_name = "hit4"
 	velocity.x = 0
 	is_attacking = true

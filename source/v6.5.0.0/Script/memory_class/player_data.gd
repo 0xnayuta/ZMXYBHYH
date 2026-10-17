@@ -33,9 +33,9 @@ const PET_EQUIPMENT_TEMPLATE_STAT_KEYS := [
 	"Miss",
 	"R_hp",
 	"R_mp",
-	"Htarget",
+	"htarget",
 	"Lucky",
-	"Toughness",
+	"toughness",
 	"ar",
 	"sp",
 	"vampirism",
@@ -70,10 +70,10 @@ const PET_EQUIPMENT_STAT_ALIASES := {
 	"幸运": ["幸运", "Lucky", "lucky"],
 	"回血": ["回血", "生命恢复", "生命回复", "R_hp", "r_hp"],
 	"回魔": ["回魔", "魔法恢复", "魔法回复", "R_mp", "r_mp"],
-	"命中": ["命中", "命中率", "Htarget", "htarget"],
+	"命中": ["命中", "命中率", "htarget", "htarget"],
 	"破甲": ["破甲", "护甲穿透", "物理穿透", "ar", "AR"],
 	"破魔": ["破魔", "魔法穿透", "法术穿透", "sp", "SP"],
-	"韧性": ["韧性", "Toughness", "toughness"],
+	"韧性": ["韧性", "toughness", "toughness"],
 	"吸血": ["吸血", "vampirism", "Vampirism"],
 	"暴免": ["暴免", "暴击抵抗", "暴击减免", "CritReduce", "critreduce"],
 }
@@ -2274,7 +2274,7 @@ func get_active_mount_attribute_bonuses() -> Dictionary:
 		"Crit": int(mount.get("暴击", 0)),
 		"Miss": int(mount.get("闪避", 0)),
 		"Lucky": int(mount.get("幸运", 0)),
-		"Htarget": int(mount.get("命中", 0)),
+		"htarget": int(mount.get("命中", 0)),
 		"R_hp": int(mount.get("回血", 0)),
 		"sp": int(mount.get("破魔", 0)),
 	}
@@ -4063,9 +4063,9 @@ func remove_zb(page: int, local: int) -> Dictionary:
 	var name_ = item.get(DataKeys.NAME, "")
 	record_acquired_equipment(str(name_))
 	var qh_level = item.get(DataKeys.ENHANCE_LEVEL, 0)
-	var Data = item.get("Data", {})
+	var data = item.get("Data", {})
 	var wx = item.get(DataKeys.FIVE_ELEMENTS, [])
-	var result_item: Dictionary = {"名字": name_, "强化等级": qh_level, "五行": wx, "Data": Data}
+	var result_item: Dictionary = {"名字": name_, "强化等级": qh_level, "五行": wx, "Data": data}
 	page_items.remove_at(local)
 	return result_item
 
@@ -4081,9 +4081,9 @@ func get_zb_data(page: int, local: int) -> Dictionary:
 	var item: Dictionary = page_items[local]
 	var name_ = item.get(DataKeys.NAME, "")
 	var qh_level = item.get(DataKeys.ENHANCE_LEVEL, 0)
-	var Data = item.get("Data", {})
+	var data = item.get("Data", {})
 	var wx = item.get(DataKeys.FIVE_ELEMENTS, [])
-	return {"名字": name_, "强化等级": qh_level, "五行": wx, "Data": Data}
+	return {"名字": name_, "强化等级": qh_level, "五行": wx, "Data": data}
 
 
 func organize_backpack() -> bool:

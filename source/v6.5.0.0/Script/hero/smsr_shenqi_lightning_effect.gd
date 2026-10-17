@@ -163,7 +163,7 @@ func _try_add_target(node: Node, targets: Array[BaseMonster], seen: Dictionary) 
 func _is_valid_target(target: Variant) -> bool:
 	if target == null or not is_instance_valid(target) or not (target is BaseMonster):
 		return false
-	if target.Hp <= 0 or target.NoTarget:
+	if target.Hp <= 0 or target.no_target:
 		return false
 	if target.is_boss_protecting():
 		return false
@@ -259,7 +259,7 @@ func _apply_stun(target: BaseMonster) -> void:
 		{
 			"Name": "stun",
 			"AddTime": STUN_DURATION,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanRemove": true,
@@ -272,8 +272,8 @@ func _apply_stun(target: BaseMonster) -> void:
 func _apply_hit(target: BaseMonster) -> void:
 	if not _is_valid_target(target) or owner_player == null or not is_instance_valid(owner_player):
 		return
-	var old_hit_data: Dictionary = owner_player.HitDic
-	owner_player.HitDic = hit_data
+	var old_hit_data: Dictionary = owner_player.hit_dic
+	owner_player.hit_dic = hit_data
 	var damage := int(target.get_role_last_hurt(owner_player))
 	if damage > 0:
 		if RoleProp.source_player.istsz:
@@ -299,4 +299,4 @@ func _apply_hit(target: BaseMonster) -> void:
 		Global.total_role_hit += damage
 		Global.total_mag_hit += damage
 		Global.add_sound(target, "res://Music/MonsterHurt/6_BeattackByRole1.mp3")
-	owner_player.HitDic = old_hit_data
+	owner_player.hit_dic = old_hit_data

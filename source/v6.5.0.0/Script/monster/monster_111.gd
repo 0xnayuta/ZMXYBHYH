@@ -13,11 +13,11 @@ func monster_109():
 	self.crit = 20
 	self.miss = 20
 	self.lucky = 0
-	self.Htarget = 20
-	self.Toughness = 20
+	self.htarget = 20
+	self.toughness = 20
 	self.ar = 25
 	self.sp = 25
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 11
 	self.mysee = 500
 	self.attack_range = 165
@@ -44,17 +44,17 @@ func monster_109():
 
 func _ready() -> void:
 	super._ready()
-	Skill_1_CD = 0
+	skill_1_cd = 0
 	monster_109()
 
 
 func call_bullet_1():
 	var bullet_node
-	if self.MonsterDirection:
+	if self.monster_direction:
 		bullet_node = Global.add_bullet(
 			"Monster111Bullet",
 			self.bullet,
-			MonsterDirection,
+			monster_direction,
 			1,
 			Vector2(40, 0) + position,
 			"hit1",
@@ -64,7 +64,7 @@ func call_bullet_1():
 		bullet_node = Global.add_bullet(
 			"Monster111Bullet",
 			self.bullet,
-			MonsterDirection,
+			monster_direction,
 			1,
 			Vector2(40, 0) + position,
 			"hit1",
@@ -74,7 +74,7 @@ func call_bullet_1():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(15, 18)
+	skill_1_cd = randi_range(15, 18)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -93,11 +93,11 @@ func ai_think():
 		else:
 			if follow_hero():
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 				if count % 60 == 0:
 					if randi_range(0, 100) < attack_desire:

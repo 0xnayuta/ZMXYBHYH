@@ -203,8 +203,8 @@ func _run_hits() -> void:
 func _apply_blade_damage(bone_name: String) -> void:
 	if owner_player == null or not is_instance_valid(owner_player):
 		return
-	if hit_data.is_empty() and owner_player.HitDic is Dictionary:
-		hit_data = owner_player.HitDic.duplicate(true)
+	if hit_data.is_empty() and owner_player.hit_dic is Dictionary:
+		hit_data = owner_player.hit_dic.duplicate(true)
 	if hit_data.is_empty():
 		return
 	var hit_center := _get_blade_global_position(bone_name)
@@ -236,7 +236,7 @@ func _damage_target_if_in_range(target: Variant, hit_center: Vector2) -> void:
 	if target == null or not is_instance_valid(target) or not (target is BaseMonster):
 		return
 	var monster := target as BaseMonster
-	if monster.Hp <= 0 or monster.NoTarget or monster.is_boss_protecting():
+	if monster.Hp <= 0 or monster.no_target or monster.is_boss_protecting():
 		return
 	var offset: Vector2 = monster.global_position + Vector2(0.0, -70.0) - hit_center
 	if absf(offset.x) <= BLADE_HALF_SIZE.x and absf(offset.y) <= BLADE_HALF_SIZE.y:
@@ -282,7 +282,7 @@ func _damage_recursive(node: Node, hit_center: Vector2) -> void:
 func _apply_hit(target: BaseMonster) -> void:
 	if target == null or not is_instance_valid(target) or target.Hp <= 0:
 		return
-	var old_hit_data: Dictionary = owner_player.HitDic
+	var old_hit_data: Dictionary = owner_player.hit_dic
 	var old_target: Variant = target.get_target
 	var old_miss: int = target.miss
 	var old_source_player: Variant = RoleProp.source_player
@@ -291,7 +291,7 @@ func _apply_hit(target: BaseMonster) -> void:
 	var awakening_hit_data := hit_data.duplicate(true)
 	var skill_level := int(PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL]) + 1
 	awakening_hit_data["power"] = RoleProp.roleprop.power * (1.8 + skill_level * 0.25)
-	owner_player.HitDic = awakening_hit_data
+	owner_player.hit_dic = awakening_hit_data
 	target.get_target = owner_player
 	target.has_target = true
 
@@ -332,7 +332,7 @@ func _apply_hit(target: BaseMonster) -> void:
 		target.role5_bullet(damage, owner_player)
 	target.get_target = old_target
 	target.miss = old_miss
-	owner_player.HitDic = old_hit_data
+	owner_player.hit_dic = old_hit_data
 	owner_player.tszzs = old_tszzs
 	RoleProp.source_player = old_source_player
 

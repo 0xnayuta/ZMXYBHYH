@@ -212,16 +212,16 @@ func setup_pet_phoenix(stage: int) -> void:
 		+ int(PaSkill.get_value("狂暴", int(passive.get("狂暴", 0))))
 	)
 	miss = int(_pet_get(pet_data, ["闪避"], 6)) + int(equipment_bonus.get("闪避", 0))
-	Htarget = (
+	htarget = (
 		int(_pet_get(pet_data, ["命中"], 0))
 		+ int(equipment_bonus.get("命中", 0))
 		+ int(PaSkill.get_value("敏锐", int(passive.get("敏锐", 0))))
 	)
 	lucky = int(_pet_get(pet_data, ["幸运"], 10)) + int(equipment_bonus.get("幸运", 0))
-	Toughness = int(_pet_get(pet_data, ["韧性"], 0)) + int(equipment_bonus.get("韧性", 0))
+	toughness = int(_pet_get(pet_data, ["韧性"], 0)) + int(equipment_bonus.get("韧性", 0))
 	ar = int(_pet_get(pet_data, ["破甲"], 0)) + int(equipment_bonus.get("破甲", 0))
 	sp = int(_pet_get(pet_data, ["破魔"], 0)) + int(equipment_bonus.get("破魔", 0))
-	Critreduce = int(_pet_get(pet_data, ["暴免"], 0)) + int(equipment_bonus.get("暴免", 0))
+	crit_reduce = int(_pet_get(pet_data, ["暴免"], 0)) + int(equipment_bonus.get("暴免", 0))
 	speed = 15
 	attack_range = 130
 	mysee = 99999
@@ -304,17 +304,17 @@ func _apply_phoenix_nirvana_heal(value: int) -> int:
 
 
 func _tick_skill_cooldowns(delta: float) -> void:
-	Skill_1_CD = maxf(0.0, Skill_1_CD - delta)
-	Skill_2_CD = maxf(0.0, Skill_2_CD - delta)
-	Skill_3_CD = maxf(0.0, Skill_3_CD - delta)
-	Skill_4_CD = maxf(0.0, Skill_4_CD - delta)
+	skill_1_cd = maxf(0.0, skill_1_cd - delta)
+	skill_2_cd = maxf(0.0, skill_2_cd - delta)
+	skill_3_cd = maxf(0.0, skill_3_cd - delta)
+	skill_4_cd = maxf(0.0, skill_4_cd - delta)
 
 
 func setup_skills() -> void:
-	Skill_1_CD = 2.0
-	Skill_2_CD = 4.0
-	Skill_3_CD = 6.0
-	Skill_4_CD = 20.0
+	skill_1_cd = 2.0
+	skill_2_cd = 4.0
+	skill_3_cd = 6.0
+	skill_4_cd = 20.0
 
 
 func _rebuild_pet_attack_data() -> void:
@@ -389,18 +389,18 @@ func try_use_skills() -> void:
 		return
 	var distance: float = abs(position.x - current_target.position.x)
 	if (
-		Skill_1_CD <= 0
+		skill_1_cd <= 0
 		and Hp > 0
 		and SHp > 0
 		and float(Hp) / float(SHp) <= PHOENIX_NIRVANA_TRIGGER_HP_RATIO
 		and _can_use_pet_skill(_phoenix_skill_cost(1))
 	):
 		_use_phoenix_skill("hit2", 1)
-	elif phoenix_stage >= 4 and Skill_4_CD <= 0 and distance <= 500 and _can_use_pet_skill(_phoenix_skill_cost(4)):
+	elif phoenix_stage >= 4 and skill_4_cd <= 0 and distance <= 500 and _can_use_pet_skill(_phoenix_skill_cost(4)):
 		_use_phoenix_skill("hit5", 4)
-	elif phoenix_stage >= 3 and Skill_3_CD <= 0 and distance <= 500 and _can_use_pet_skill(_phoenix_skill_cost(3)):
+	elif phoenix_stage >= 3 and skill_3_cd <= 0 and distance <= 500 and _can_use_pet_skill(_phoenix_skill_cost(3)):
 		_use_phoenix_skill("hit4", 3)
-	elif phoenix_stage >= 2 and Skill_2_CD <= 0 and distance <= 400 and _can_use_pet_skill(_phoenix_skill_cost(2)):
+	elif phoenix_stage >= 2 and skill_2_cd <= 0 and distance <= 400 and _can_use_pet_skill(_phoenix_skill_cost(2)):
 		_use_phoenix_skill("hit3", 2)
 
 
@@ -434,11 +434,11 @@ func _use_phoenix_skill(anim_name: String, skill_index: int) -> void:
 		1:
 			_start_phoenix_nirvana()
 		2:
-			Skill_2_CD = SKILL_COOLDOWNS[2] * pet_skill_cooldown_multiplier
+			skill_2_cd = SKILL_COOLDOWNS[2] * pet_skill_cooldown_multiplier
 		3:
-			Skill_3_CD = SKILL_COOLDOWNS[3] * pet_skill_cooldown_multiplier
+			skill_3_cd = SKILL_COOLDOWNS[3] * pet_skill_cooldown_multiplier
 		4:
-			Skill_4_CD = SKILL_COOLDOWNS[4] * pet_skill_cooldown_multiplier
+			skill_4_cd = SKILL_COOLDOWNS[4] * pet_skill_cooldown_multiplier
 			_phoenix_aoyi_active = true
 			_phoenix_aoyi_drop_started = false
 			_phoenix_aoyi_hit6_elapsed = 0.0
@@ -473,7 +473,7 @@ func _start_phoenix_nirvana() -> void:
 	_phoenix_nirvana_elapsed = 0.0
 	_phoenix_nirvana_heal_timer = 0.0
 	_phoenix_nirvana_effect_started = false
-	Skill_1_CD = 0.0
+	skill_1_cd = 0.0
 	recovery_timer = 0.0
 	_phoenix_father_time = 0.0
 	_set_phoenix_model_visible(false)
@@ -491,7 +491,7 @@ func _finish_phoenix_nirvana() -> void:
 	_clear_phoenix_nirvana_effect()
 	_set_phoenix_model_visible(true)
 	_restore_phoenix_hurt_box()
-	Skill_1_CD = SKILL_COOLDOWNS[1] * pet_skill_cooldown_multiplier
+	skill_1_cd = SKILL_COOLDOWNS[1] * pet_skill_cooldown_multiplier
 	_add_phoenix_bullet("PetPhoenix1Bullet2_2", position, "hit2", obj_attack_dict["hit2"], Vector2(210, 120), true)
 	_finish_phoenix_attack()
 
@@ -975,10 +975,10 @@ func _add_phoenix_bullet(
 	if bullet == null or PET_PHOENIX_BULLET_SCENE == null:
 		return null
 	var instance = PET_PHOENIX_BULLET_SCENE.instantiate()
-	instance.AttList = attack_data
+	instance.att_list = attack_data
 	instance.hit_name = attack_name
 	instance.position = bullet_position
-	instance.dir = MonsterDirection
+	instance.dir = monster_direction
 	instance.skill_name = bullet_name
 	instance.speed = 1.0
 	instance.set_meta("summoner", self)
@@ -1017,7 +1017,7 @@ func _sync_attack_facing() -> void:
 
 
 func _front_offset(x: float, y: float) -> Vector2:
-	return Vector2(-x if MonsterDirection else x, y)
+	return Vector2(-x if monster_direction else x, y)
 
 
 func move_left() -> void:
@@ -1042,7 +1042,7 @@ func to_monster() -> void:
 
 
 func _face_left() -> void:
-	MonsterDirection = true
+	monster_direction = true
 	if base_damage_box != null:
 		base_damage_box.scale.x = 1
 	if monster_dir != null:
@@ -1051,7 +1051,7 @@ func _face_left() -> void:
 
 
 func _face_right() -> void:
-	MonsterDirection = false
+	monster_direction = false
 	if base_damage_box != null:
 		base_damage_box.scale.x = -1
 	if monster_dir != null:

@@ -23,11 +23,11 @@ func monster_132():
 	self.crit = 50
 	self.miss = 25
 	self.lucky = 115
-	self.Htarget = 35
-	self.Toughness = 0
+	self.htarget = 35
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 14
 	self.mysee = 500
 	self.attack_range = 245
@@ -51,9 +51,9 @@ func monster_132():
 		"HitProtect": 0,
 		"addeffect":
 		{
-			"Name": "DefeReduce",
+			"Name": "defe_reduce",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 1,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -72,11 +72,11 @@ func monster_132():
 func _ready() -> void:
 	super._ready()
 	monster_132()
-	Skill_1_CD = randi_range(3, 5)
-	Skill_2_CD = randi_range(5, 8)
+	skill_1_cd = randi_range(3, 5)
+	skill_2_cd = randi_range(5, 8)
 
 	death_timer = Timer.new()
-	death_timer.name = "DeathTimer"
+	death_timer.name = "death_timer"
 	death_timer.one_shot = true
 	add_child(death_timer)
 
@@ -98,9 +98,9 @@ func _physics_process(delta: float) -> void:
 	if Hp > 0 and not is_resurrecting and not resurrection_completed:
 		create_count -= 1
 		if create_count <= 0:
-			var Shallow = Global.create_monster(133, get_parent(), position) as Monster133
-			if Shallow:
-				Shallow.my_parent = self
+			var shallow = Global.create_monster(133, get_parent(), position) as Monster133
+			if shallow:
+				shallow.my_parent = self
 				create_count = randi_range(600, 720)
 
 
@@ -209,9 +209,9 @@ func perform_resurrection():
 	custom_death_handled = false
 	set_meta("counts_as_alive_for_stage_clear", false)
 
-	Skill_1_CD = 0
-	Skill_2_CD = 0
-	Skill_3_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
+	skill_3_cd = 0
 
 	if hit_box:
 		hit_box.disabled = false
@@ -321,16 +321,16 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 560:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_2()
 			else:
 				stop_move()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				elif Skill_1_CD <= 0:
+				elif skill_1_cd <= 0:
 					do_hit_1()
 				if count % 60 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -352,7 +352,7 @@ func do_hit_1():
 		return
 
 	super.to_hero()
-	Skill_1_CD = randi_range(15, 18)
+	skill_1_cd = randi_range(15, 18)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -367,7 +367,7 @@ func do_hit_2():
 		return
 
 	super.to_hero()
-	Skill_2_CD = randi_range(11, 13)
+	skill_2_cd = randi_range(11, 13)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -420,7 +420,7 @@ func _on_hurt_box_area_entered(area: Area2D):
 			{
 				"Name": "Fire",
 				"AddTime": 5,
-				"ReduceInterval": 1,
+				"reduce_interval": 1,
 				"value": int(RoleProp.roleprop.SHp * bl),
 				"AttackKind": "real",
 				"CanAdd": true,

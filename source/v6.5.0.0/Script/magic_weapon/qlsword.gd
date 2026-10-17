@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	if not is_use:
 		mg_player.play("wait")
 
-	if floor_instance != null and Player != null:
+	if floor_instance != null and player != null:
 		_update_floor_position(delta)
 
 
@@ -77,7 +77,7 @@ func show_skill():
 
 
 func _create_floor():
-	if Player == null:
+	if player == null:
 		return
 
 	var floor_scene = preload("res://Scene/level/zlw_fly_floor.tscn")
@@ -96,15 +96,15 @@ func _create_floor():
 	else:
 		get_parent().add_child(floor_instance)
 
-	var player_pos := Player.global_position
-	if Player is Role4Hero:
+	var player_pos := player.global_position
+	if player is Role4Hero:
 		var support_y := _get_role4_floor_position_y()
 		target_position_y = support_y
 		last_player_y = player_pos.y
 		floor_instance.global_position = Vector2(player_pos.x, support_y)
 	else:
 		var floor_offset_y := -40.0
-		var local_player_pos := Player.position
+		var local_player_pos := player.position
 		target_position_y = local_player_pos.y
 		last_player_y = local_player_pos.y + floor_offset_y
 		floor_instance.position = Vector2(local_player_pos.x, local_player_pos.y + floor_offset_y)
@@ -136,15 +136,15 @@ func _set_floor_appearance():
 
 
 func _update_floor_position(delta: float):
-	if floor_instance == null or Player == null:
+	if floor_instance == null or player == null:
 		return
 
-	if Player is Role4Hero:
-		floor_instance.global_position.x = Player.global_position.x
+	if player is Role4Hero:
+		floor_instance.global_position.x = player.global_position.x
 		_update_role4_floor_position(delta)
 		return
 
-	floor_instance.position.x = Player.position.x
+	floor_instance.position.x = player.position.x
 
 	if is_player_on_floor:
 		target_position_y = floor_instance.position.y
@@ -152,7 +152,7 @@ func _update_floor_position(delta: float):
 		follow_timer.stop()
 		return
 
-	var current_player_y = Player.position.y
+	var current_player_y = player.position.y
 	is_moving_down = current_player_y > last_player_y
 
 	if not is_moving_down:
@@ -171,10 +171,10 @@ func _update_floor_position(delta: float):
 
 
 func _get_role4_floor_position_y() -> float:
-	var player_pz := Player.get_node_or_null("pz") as CollisionShape2D
+	var player_pz := player.get_node_or_null("pz") as CollisionShape2D
 	var floor_pz := floor_instance.get_node_or_null("StaticBody2D/FlyPZ") as CollisionShape2D
 	if player_pz == null or player_pz.shape == null or floor_pz == null or floor_pz.shape == null:
-		return Player.global_position.y - 40.0
+		return player.global_position.y - 40.0
 
 	var player_rect := player_pz.shape.get_rect()
 	var player_foot_y := player_pz.to_global(Vector2(0.0, player_rect.end.y)).y
@@ -183,7 +183,7 @@ func _get_role4_floor_position_y() -> float:
 
 
 func _update_role4_floor_position(delta: float) -> void:
-	var current_player_y := Player.global_position.y
+	var current_player_y := player.global_position.y
 	is_moving_down = current_player_y > last_player_y
 
 	if is_player_on_floor:
@@ -215,8 +215,8 @@ func _on_floor_body_entered(body: Node2D):
 func _on_floor_body_exited(body: Node2D):
 	if body == Player:
 		is_player_on_floor = false
-		if Player != null and not Player is Role4Hero:
-			target_position_y = Player.position.y - 30
+		if player != null and not player is Role4Hero:
+			target_position_y = player.position.y - 30
 
 			if not is_moving_down:
 				is_following_y = true
@@ -227,8 +227,8 @@ func _on_floor_body_exited(body: Node2D):
 
 
 func _on_follow_timeout():
-	if Player != null and not is_player_on_floor and not Player is Role4Hero:
-		target_position_y = Player.position.y - 30
+	if player != null and not is_player_on_floor and not player is Role4Hero:
+		target_position_y = player.position.y - 30
 		is_following_y = true
 
 

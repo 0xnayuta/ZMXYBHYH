@@ -4,7 +4,7 @@ class_name BaseObject
 var is_reverse_move: bool = false
 var reverse_move_speed_multiplier: float = 1.0
 
-var NoDeBuff: bool = false
+var no_debuff: bool = false
 
 var walk_speed: int = 240
 var run_speed: int

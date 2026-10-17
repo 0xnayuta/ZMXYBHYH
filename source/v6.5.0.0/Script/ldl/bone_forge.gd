@@ -26,7 +26,7 @@ func _physics_process(_delta: float) -> void:
 		return
 	var equipment: Dictionary = selected.get("item", {})
 	var item_name := str(equipment.get(DataKeys.NAME, ""))
-	var data: Dictionary = equipment.get("Data", {}) if equipment.get("Data", {}) is Dictionary else {}
+	var data: Dictionary = equipment.get("data", {}) if equipment.get("data", {}) is Dictionary else {}
 	var template: Dictionary = AE.all_equipment.get(item_name, {})
 	var stage := int(data.get("淬骨次数", 0))
 	var next_id := str(data.get("下一阶段", template.get("下一阶段", "")))
@@ -51,13 +51,13 @@ func _physics_process(_delta: float) -> void:
 		preview_data = preview_template
 	else:
 		new_zb_name = item_name
-	Data = data
+	data = data
 	old_zb.set_button_icon(load_(item_name))
 	old_zb.get_item_name = item_name
-	old_zb.EQ_prop = data
+	old_zb.eq_prop = data
 	new_zb.set_button_icon(load_(preview_id))
 	new_zb.get_item_name = preview_id
-	new_zb.EQ_prop = preview_data
+	new_zb.eq_prop = preview_data
 	var selected_page := int(selected.get("page", 0))
 	var selected_index := int(selected.get("index", -1))
 	var selected_source := str(selected.get("source", "装备背包"))
@@ -76,10 +76,10 @@ func _physics_process(_delta: float) -> void:
 	if not valid:
 		n_q_1.set_button_icon(load_("empty"))
 		n_q_1.get_item_name = "empty"
-		n_q_1.EQ_prop = {}
+		n_q_1.eq_prop = {}
 		n_q_2.set_button_icon(load_("empty"))
 		n_q_2.get_item_name = "empty"
-		n_q_2.EQ_prop = {}
+		n_q_2.eq_prop = {}
 		num_b1.text = "已完成" if stage >= BONE_MAX_COUNT else "不可淬骨"
 		num_b2.text = ""
 		lh_text.text = ""
@@ -87,14 +87,14 @@ func _physics_process(_delta: float) -> void:
 	var fire_id: String = BONE_FIRE_IDS[stage]
 	n_q_1.set_button_icon(load_(fire_id))
 	n_q_1.get_item_name = fire_id
-	n_q_1.EQ_prop = AE.all_equipment.get(fire_id, {})
+	n_q_1.eq_prop = AE.all_equipment.get(fire_id, {})
 	n_q_1.total_number = 0
 	var fire_count := _count_item_all_pages(fire_id)
 	num_b1.text = str(fire_count) + "/3"
 	_set_requirement_color(num_b1, fire_count >= 3)
 	n_q_2.set_button_icon(load_("empty"))
 	n_q_2.get_item_name = "empty"
-	n_q_2.EQ_prop = {}
+	n_q_2.eq_prop = {}
 	n_q_2.total_number = 0
 	num_b2.text = ""
 	lh_text.text = "成功率 50%"
@@ -112,7 +112,7 @@ func _on_sz_pressed() -> void:
 		return
 	var equipment: Dictionary = selected.get("item", {})
 	var item_name := str(equipment.get(DataKeys.NAME, ""))
-	var data: Dictionary = equipment.get("Data", {}) if equipment.get("Data", {}) is Dictionary else {}
+	var data: Dictionary = equipment.get("data", {}) if equipment.get("data", {}) is Dictionary else {}
 	var template: Dictionary = AE.all_equipment.get(item_name, {})
 	var next_id := str(data.get("下一阶段", template.get("下一阶段", "")))
 	var stage := int(data.get("淬骨次数", 0))
@@ -131,7 +131,7 @@ func _on_sz_pressed() -> void:
 		_show_message("装备位置已变化，请重新选择装备！")
 		return
 	_consume_item_all_pages(fire_id, 3)
-	var upgraded_data: Dictionary = current.get("Data", {}).duplicate(true)
+	var upgraded_data: Dictionary = current.get("data", {}).duplicate(true)
 	_ensure_bone_strength_data(upgraded_data, item_name)
 	if randf() < 0.5:
 		upgraded_data["淬骨次数"] = stage + 1
@@ -176,7 +176,7 @@ func _update_selected_equipment(selected: Dictionary, item_name: String, data: D
 			var item: Dictionary = equipped[0]
 			item[DataKeys.NAME] = item_name
 			item[DataKeys.ENHANCE_LEVEL] = level
-			item["Data"] = data
+			item["data"] = data
 			equipped[0] = item
 			PlayerData.player_data[slot_type] = equipped
 		RoleProp.get_equ_last_pro()
@@ -189,7 +189,7 @@ func _update_selected_equipment(selected: Dictionary, item_name: String, data: D
 		MLdl.qh_list["位置"] = int(selected.get("index", -1))
 		MLdl.qh_list["来源"] = str(selected.get("source", "装备背包"))
 		MLdl.qh_list["穿戴栏"] = str(selected.get("穿戴栏", ""))
-		MLdl.qh_list["Data"] = data
+		MLdl.qh_list["data"] = data
 		return
 	var pages: Dictionary = PlayerData.player_data.get(DataKeys.EQUIPMENT_LIST, {})
 	var page_key := "页码" + str(int(selected.get("page", 0)))
@@ -199,7 +199,7 @@ func _update_selected_equipment(selected: Dictionary, item_name: String, data: D
 		var item: Dictionary = (page as Array)[index]
 		item[DataKeys.NAME] = item_name
 		item[DataKeys.ENHANCE_LEVEL] = level
-		item["Data"] = data
+		item["data"] = data
 		(page as Array)[index] = item
 		MLdl.qh_list[DataKeys.NAME] = item_name
 		MLdl.qh_list[DataKeys.ENHANCE_LEVEL] = level
@@ -207,7 +207,7 @@ func _update_selected_equipment(selected: Dictionary, item_name: String, data: D
 		MLdl.qh_list["位置"] = index
 		MLdl.qh_list["来源"] = "装备背包"
 		MLdl.qh_list["穿戴栏"] = ""
-		MLdl.qh_list["Data"] = data
+		MLdl.qh_list["data"] = data
 
 
 func _scale_bone_attributes(data: Dictionary, multiplier: float) -> void:

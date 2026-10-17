@@ -5,7 +5,7 @@ extends Control
 @onready var head: TextureRect = $role_hp_mp_exp
 @onready var ws_effect: TextureProgressBar = $role_menu/ws_wk/ws_effect
 @onready var max_ws: AnimatedSprite2D = $role_menu/grey/max_ws
-@onready var SkillBox: HBoxContainer = $role_menu/SkillBox
+@onready var skill_box: HBoxContainer = $role_menu/SkillBox
 @onready var role_skill_slots: Array[TextureRect] = [
 	$role_menu/skil_1,
 	$role_menu/skil_2,
@@ -48,7 +48,7 @@ const STATUS_ICON_SIZE := Vector2(32, 32)
 const PET_LEARNED_SKILL_RUNTIME := preload("res://Script/pet/pet_life_bonus_runtime.gd")
 const PET_LEARNED_ACTIVE_SKILL_ICONS := {"嗜血狂爆": "sxkb", "法术能量": "fsnl"}
 
-var Player
+var player
 var magic_cd
 var buff_icons: Dictionary = {}
 var _last_skill_bindings: Dictionary = {}
@@ -67,8 +67,8 @@ var _pet_lookup_cooldown := 0.0
 
 
 func _ready() -> void:
-	if Player == null:
-		Player = RoleProp.source_player
+	if player == null:
+		player = RoleProp.source_player
 	_set_role_head()
 	_load_skill_icons()
 	_load_buff_icons()
@@ -80,9 +80,9 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	_pet_lookup_cooldown = maxf(0.0, _pet_lookup_cooldown - _delta)
-	if Player == null:
-		Player = RoleProp.source_player
-	if Player == null:
+	if player == null:
+		player = RoleProp.source_player
+	if player == null:
 		_set_pet_values()
 		return
 
@@ -113,12 +113,12 @@ func _load_skill_icons() -> void:
 	for key_name in ["Y", "U", "I", "O", "L"]:
 		var icon = skill_tscn.instantiate()
 		icon.name = key_name
-		SkillBox.add_child(icon)
+		skill_box.add_child(icon)
 
 	_role_skill_icons.clear()
 	if role_skill_slots.size() == 5:
 		_uses_role_skill_slots = true
-		SkillBox.visible = false
+		skill_box.visible = false
 		for slot in role_skill_slots:
 			slot.texture = null
 			slot.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -148,14 +148,14 @@ func _ensure_buff_icon(buff_name: String):
 		buff_icons.erase(buff_name)
 	var buff_icon = null
 	for existing_icon in buff_box.get_children():
-		if str(existing_icon.name) == buff_name or str(existing_icon.get("BuffName")) == buff_name:
+		if str(existing_icon.name) == buff_name or str(existing_icon.get("buff_name")) == buff_name:
 			buff_icon = existing_icon
 			break
 	if buff_icon == null:
 		buff_icon = buff_tscn.instantiate()
 		buff_icon.name = buff_name
 		buff_box.add_child(buff_icon)
-	buff_icon.parent_node = Player
+	buff_icon.parent_node = player
 	buff_icon.custom_minimum_size = STATUS_ICON_SIZE
 	buff_icon.size = STATUS_ICON_SIZE
 	buff_icon.scale = Vector2.ONE
@@ -171,15 +171,15 @@ func _update_buff_icon(icon, buff, buff_obj: Dictionary, stack_count: int = 1) -
 		return
 	var buff_info: Dictionary = _make_buff_info(buff_obj)
 	buff_info["HaveCount"] = stack_count
-	icon.parent_node = Player
+	icon.parent_node = player
 	icon.data_list = buff_info
 	if not icon.visible:
 		icon.visible = true
-	if not bool(buff.get("IsCheck")):
+	if not bool(buff.get("is_check")):
 		var add_time: float = float(buff_info.get("AddTime", 0.0))
 		if add_time > 0.0:
 			icon.buff_icon_remove.start(add_time)
-		buff.set("IsCheck", true)
+		buff.set("is_check", true)
 
 
 func _set_values() -> void:
@@ -187,10 +187,10 @@ func _set_values() -> void:
 	var smp: float = max(float(RoleProp.roleprop.SMp), 1.0)
 	var max_exp: float = max(float(RoleProp.baseroleprop.max_exp), 1.0)
 	var max_ws_value: float = max(float(RoleProp.max_ws_value), 1.0)
-	var max_protect: float = max(float(Player.MaxProtect), 1.0)
+	var max_protect: float = max(float(player.max_protect), 1.0)
 
 	nature_recovery_hp.text = (
-		"+" + str(float(RoleProp.roleprop.R_hp)) + "/s * " + str(Player.cure_value)
+		"+" + str(float(RoleProp.roleprop.R_hp)) + "/s * " + str(player.cure_value)
 		if RoleProp.roleprop.Hp < RoleProp.roleprop.SHp and RoleProp.roleprop.R_hp > 0
 		else ""
 	)
@@ -212,7 +212,7 @@ func _set_values() -> void:
 	if max_ws != null:
 		var ws_percent := ws_effect.value if ws_effect != null else float(RoleProp.ws_value) / max_ws_value
 		max_ws.visible = ws_percent >= 1.0 and not RoleProp.is_ws_state
-	role_protect.value = float(Player.CurrentProtect) / max_protect
+	role_protect.value = float(player.current_protect) / max_protect
 
 
 func _bind_pet_panel_nodes() -> void:
@@ -287,8 +287,8 @@ func _set_pet_values() -> void:
 		hp = 0
 	var max_mp: int = max(1, int(pet.get("魔法上限", pet.get(DataKeys.MP, 1))))
 	var mp: int = clampi(int(pet.get(DataKeys.MP, max_mp)), 0, max_mp)
-	var max_protect: int = max(1, int(pet.get("MaxProtect", 100)))
-	var current_protect: int = clampi(int(pet.get("CurrentProtect", 0)), 0, max_protect)
+	var max_protect: int = max(1, int(pet.get("max_protect", 100)))
+	var current_protect: int = clampi(int(pet.get("current_protect", 0)), 0, max_protect)
 	var hp_recover: int = int(pet.get("回血", 0))
 	var mp_recover: int = int(pet.get("回魔", 0))
 	if pet_unit != null:
@@ -299,8 +299,8 @@ func _set_pet_values() -> void:
 		if unit_mp != null:
 			mp = clampi(int(unit_mp), 0, max_mp)
 	if pet_unit != null:
-		var unit_max_protect = pet_unit.get("MaxProtect")
-		var unit_current_protect = pet_unit.get("CurrentProtect")
+		var unit_max_protect = pet_unit.get("max_protect")
+		var unit_current_protect = pet_unit.get("current_protect")
 		if unit_max_protect != null:
 			max_protect = max(1, int(unit_max_protect))
 		if unit_current_protect != null:
@@ -720,13 +720,13 @@ func _pet_skill_cooldown_left(skill_name: String, pet_unit: Node) -> float:
 func _pet_skill_cooldown_key(skill_name: String) -> String:
 	match skill_name:
 		"hy", "hx", "fs", "np", "sld", "yg", "sc", "mncz":
-			return "Skill_1_CD"
+			return "skill_1_cd"
 		"sxhz", "sdcc", "bshn", "txlj", "jf", "hxfb", "mljt", "mhxs":
-			return "Skill_2_CD"
+			return "skill_2_cd"
 		"hsqj", "ltwj", "dhly", "sybh", "bs", "zsaoyi", "cnaoyi", "yhaoyi":
-			return "Skill_3_CD"
+			return "skill_3_cd"
 		"aoyi", "qlaoyi", "xwaoyi", "ysaoyi":
-			return "Skill_4_CD"
+			return "skill_4_cd"
 	return ""
 
 
@@ -1092,7 +1092,7 @@ func _set_skill_pic() -> void:
 	_last_skill_levels = skill_levels
 	_last_mount_skill_signature = mount_skill_signature
 	_set_skill_pic_for_icons(
-		SkillBox.get_children(), display_skill_keys, mount_runtime if mount_skill_signature != "" else null
+		skill_box.get_children(), display_skill_keys, mount_runtime if mount_skill_signature != "" else null
 	)
 	_sync_role_skill_slot_icons(display_skill_keys)
 	_set_skill_pic_for_icons(
@@ -1150,9 +1150,9 @@ func _set_skill_pic_for_icons(icons: Array, skill_keys: Variant, mount_runtime: 
 
 
 func _current_mount_runtime() -> Node:
-	if Player == null or not is_instance_valid(Player):
+	if player == null or not is_instance_valid(player):
 		return null
-	return Player.get_node_or_null("MountRuntime")
+	return player.get_node_or_null("MountRuntime")
 
 
 func _get_skill_mp(skill_name: String) -> int:
@@ -1160,10 +1160,10 @@ func _get_skill_mp(skill_name: String) -> int:
 		return 0
 	if skill_name in ["sx", "sjt", "rj", "mds", "yyb"]:
 		return 0
-	if Player != null and Player.has_method("get_skill_display_mp"):
-		return int(Player.get_skill_display_mp(skill_name))
-	if Player != null and Player.has_method("get_need_mp"):
-		return int(Player.get_need_mp(skill_name, false))
+	if player != null and player.has_method("get_skill_display_mp"):
+		return int(player.get_skill_display_mp(skill_name))
+	if player != null and player.has_method("get_need_mp"):
+		return int(player.get_need_mp(skill_name, false))
 	return 0
 
 
@@ -1183,14 +1183,14 @@ func _set_buff_icon_info() -> void:
 	var active_buff_names: Array[String] = []
 	var buff_counts: Dictionary = {}
 	var first_buff_by_name: Dictionary = {}
-	if Player == null or Player.buff == null:
+	if player == null or player.buff == null:
 		for icon in buff_icons.values():
 			if is_instance_valid(icon) and not icon.is_queued_for_deletion():
 				icon.visible = false
 		return
 
-	for buff in Player.buff.get_children():
-		var buff_obj = buff.get("BuffInfo")
+	for buff in player.buff.get_children():
+		var buff_obj = buff.get("buff_info")
 		if not buff_obj is Dictionary or not buff_obj.has("Name"):
 			continue
 		var buff_name: String = str(buff_obj["Name"])
@@ -1202,7 +1202,7 @@ func _set_buff_icon_info() -> void:
 	for buff_name in buff_counts.keys():
 		active_buff_names.append(str(buff_name))
 		var buff = first_buff_by_name[buff_name]
-		var buff_obj: Dictionary = buff.get("BuffInfo")
+		var buff_obj: Dictionary = buff.get("buff_info")
 		var icon = _ensure_buff_icon(str(buff_name))
 		_update_buff_icon(icon, buff, buff_obj, int(buff_counts[buff_name]))
 
@@ -1218,7 +1218,7 @@ func _make_buff_info(buff_obj: Dictionary) -> Dictionary:
 		"Name": str(buff_obj.get("Name", "")),
 		"value": 0.0,
 		"AddTime": float(buff_obj.get("AddTime", 0.0)),
-		"ReduceInterval": float(buff_obj.get("ReduceInterval", 0.0)),
+		"reduce_interval": float(buff_obj.get("reduce_interval", 0.0)),
 		"AttackKind": str(buff_obj.get("AttackKind", "")),
 		"HaveCount": 1,
 	}

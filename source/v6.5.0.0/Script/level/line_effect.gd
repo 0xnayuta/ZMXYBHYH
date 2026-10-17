@@ -1,23 +1,23 @@
 extends Line2D
 
-var Type: String
-var Player: BaseHero
-var Monster: BaseMonster
+var type: String
+var player: BaseHero
+var monster: BaseMonster
 var reduce_count: int
 
 
 func _physics_process(delta: float) -> void:
-	Player = RoleProp.source_player
-	if Player != null:
-		points[1] = Player.position
+	player = RoleProp.source_player
+	if player != null:
+		points[1] = player.position
 
 	reduce_count += 1
 	if reduce_count % 60 == 0:
 		reduce_count = 0
-		match Type:
+		match type:
 			"Red":
-				if Player != null:
-					Player.effect_reducehp(RoleProp.roleprop.SHp * 0.03, "magic")
+				if player != null:
+					player.effect_reducehp(RoleProp.roleprop.SHp * 0.03, "magic")
 			"Blue":
-				if Player != null:
+				if player != null:
 					RoleProp.roleprop.Mp -= RoleProp.roleprop.SMp * 0.03

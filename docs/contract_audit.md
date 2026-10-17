@@ -1,8 +1,8 @@
 # ZMXYBHYH 全工程字面量契约诊断审计报告 (Phase 8-1)
 
-> 生成时间: 2026-10-17 16:39:12  
+> 生成时间: 2026-10-17 17:40:33  
 > 审计对象: `G:\source\repos\ZMXYBHYH\source\v6.5.0.0`  
-> 扫描耗时: `4.60 秒`（指标要求 ≤ 30 秒）  
+> 扫描耗时: `4.59 秒`（指标要求 ≤ 30 秒）  
 > 覆盖资产: 脚本 `722 个` / 场景 `1132 个`  
 
 ---
@@ -79,7 +79,7 @@
 |:---:|:---|:---|:---|
 | `INFO` | `Global.gd:3427` | `get_rect` | 动态反射调用的方法 'get_rect' 在工程中无对应显式声明 |
 | `INFO` | `joy.gd:88` | `get_size` | 动态反射调用的方法 'get_size' 在工程中无对应显式声明 |
-| `INFO` | `Script/base/base_monster.gd:2336` | `get_buff_node` | 动态反射调用的方法 'get_buff_node' 在工程中无对应显式声明 |
+| `INFO` | `Script/base/base_monster.gd:2335` | `get_buff_node` | 动态反射调用的方法 'get_buff_node' 在工程中无对应显式声明 |
 | `INFO` | `Script/base/summon_base_monster.gd:555` | `get_hit_damage` | 动态反射调用的方法 'get_hit_damage' 在工程中无对应显式声明 |
 | `INFO` | `Script/magic_weapon/qlsword.gd:112` | `set_physics_process` | 动态反射调用的方法 'set_physics_process' 在工程中无对应显式声明 |
 | `INFO` | `Script/main_menu/game_announcement.gd:846` | `grab_focus` | 动态反射调用的方法 'grab_focus' 在工程中无对应显式声明 |
@@ -100,10 +100,10 @@
 | 严重等级 | 文件位置 | 字面量内容 | 诊断原因与修复建议 |
 |:---:|:---|:---|:---|
 | `WARNING` | `Global.gd:2218` | `技能键位` | 硬编码中文字典键 '技能键位' 已在契约表收录，建议使用 'DataKeys.Skill.KEYMAP' → **建议**: `DataKeys.Skill.KEYMAP` |
-| `WARNING` | `Global.gd:4313` | `阶段` | 硬编码中文字典键 '阶段' 已在契约表收录，建议使用 'DataKeys.Pet.STAGE' → **建议**: `DataKeys.Pet.STAGE` |
-| `WARNING` | `Global.gd:4937` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
-| `WARNING` | `Global.gd:4940` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
-| `WARNING` | `Global.gd:4940` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
+| `WARNING` | `Global.gd:4312` | `阶段` | 硬编码中文字典键 '阶段' 已在契约表收录，建议使用 'DataKeys.Pet.STAGE' → **建议**: `DataKeys.Pet.STAGE` |
+| `WARNING` | `Global.gd:4936` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
+| `WARNING` | `Global.gd:4939` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
+| `WARNING` | `Global.gd:4939` | `所属` | 硬编码中文字典键 '所属' 已在契约表收录，建议使用 'DataKeys.Item.BELONG' → **建议**: `DataKeys.Item.BELONG` |
 | `WARNING` | `Passive_Skills.gd:75` | `被动技能` | 硬编码中文字典键 '被动技能' 已在契约表收录，建议使用 'DataKeys.Skill.PASSIVE' → **建议**: `DataKeys.Skill.PASSIVE` |
 | `WARNING` | `Passive_Skills.gd:89` | `被动技能` | 硬编码中文字典键 '被动技能' 已在契约表收录，建议使用 'DataKeys.Skill.PASSIVE' → **建议**: `DataKeys.Skill.PASSIVE` |
 | `WARNING` | `Passive_Skills.gd:99` | `被动技能` | 硬编码中文字典键 '被动技能' 已在契约表收录，建议使用 'DataKeys.Skill.PASSIVE' → **建议**: `DataKeys.Skill.PASSIVE` |

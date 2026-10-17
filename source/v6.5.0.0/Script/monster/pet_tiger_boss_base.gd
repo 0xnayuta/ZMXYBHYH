@@ -82,11 +82,11 @@ func setup_pet_tiger(stage: int) -> void:
 	crit = 25 + tiger_stage * 8
 	miss = 8 + tiger_stage * 4
 	lucky = 30 + tiger_stage * 15
-	Htarget = 0
-	Toughness = tiger_stage * 10
+	htarget = 0
+	toughness = tiger_stage * 10
 	ar = 25 + tiger_stage * 5
 	sp = ar
-	Critreduce = tiger_stage * 3
+	crit_reduce = tiger_stage * 3
 	speed = 12 + tiger_stage
 	mysee = 520
 	attack_range = 95
@@ -117,10 +117,10 @@ func _ready() -> void:
 	if not mr_player.animation_started.is_connected(_on_tiger_animation_started):
 		mr_player.animation_started.connect(_on_tiger_animation_started)
 	_play_tiger_model_animation("wait")
-	Skill_1_CD = randi_range(2, 4)
-	Skill_2_CD = randi_range(4, 7)
-	Skill_3_CD = randi_range(7, 10)
-	Skill_4_CD = randi_range(12, 18)
+	skill_1_cd = randi_range(2, 4)
+	skill_2_cd = randi_range(4, 7)
+	skill_3_cd = randi_range(7, 10)
+	skill_4_cd = randi_range(12, 18)
 
 
 func _setup_tiger_model_frames() -> void:
@@ -190,16 +190,16 @@ func ai_think() -> void:
 		normal_state()
 		return
 	var distance: float = abs(float(RoleProp.get_nearest_monster_target_position(global_position).x) - position.x)
-	if tiger_stage >= 4 and Skill_4_CD <= 0:
+	if tiger_stage >= 4 and skill_4_cd <= 0:
 		do_bhaoyi()
 		return
-	if tiger_stage >= 3 and distance <= 450 and Skill_3_CD <= 0:
+	if tiger_stage >= 3 and distance <= 450 and skill_3_cd <= 0:
 		do_hsqj()
 		return
-	if tiger_stage >= 2 and distance <= 80 and Skill_2_CD <= 0:
+	if tiger_stage >= 2 and distance <= 80 and skill_2_cd <= 0:
 		do_sxhz()
 		return
-	if distance >= 50 and distance <= 100 and Skill_1_CD <= 0:
+	if distance >= 50 and distance <= 100 and skill_1_cd <= 0:
 		do_hy()
 		return
 	if distance > attack_range:
@@ -223,7 +223,7 @@ func attack_target() -> void:
 
 func do_hy() -> void:
 	to_hero()
-	Skill_1_CD = randi_range(5, 7)
+	skill_1_cd = randi_range(5, 7)
 	hit_name = SKILL_HY
 	velocity.x = 0
 	is_attacking = true
@@ -234,7 +234,7 @@ func do_hy() -> void:
 
 func do_sxhz() -> void:
 	to_hero()
-	Skill_2_CD = randi_range(8, 11)
+	skill_2_cd = randi_range(8, 11)
 	hit_name = SKILL_SXHZ
 	velocity.x = 0
 	is_attacking = true
@@ -248,7 +248,7 @@ func do_sxhz() -> void:
 
 func do_hsqj() -> void:
 	to_hero()
-	Skill_3_CD = randi_range(10, 13)
+	skill_3_cd = randi_range(10, 13)
 	hit_name = SKILL_HSQJ
 	velocity.x = 0
 	is_attacking = true
@@ -272,16 +272,16 @@ func do_bhaoyi() -> void:
 	_to_target_side()
 	_play_attack_animation("hit4", Callable(self, "call_hsqj_bullet"))
 	await mr_player.animation_finished
-	Skill_4_CD = randi_range(20, 26)
+	skill_4_cd = randi_range(20, 26)
 	is_attacking = false
 	bhaoyi_running = false
 
 
 func _clear_tiger_skill_cooldowns() -> void:
-	Skill_1_CD = 0
-	Skill_2_CD = 0
-	Skill_3_CD = 0
-	Skill_4_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
+	skill_3_cd = 0
+	skill_4_cd = 0
 	skill_5_cd = 0
 	skill_6_cd = 0
 	skill_7_cd = 0
@@ -313,13 +313,13 @@ func call_hit_1_bullet() -> void:
 		_stage_value(60.0, 120.0, 130.0, 130.0), _stage_value(-25.0, -80.0, -70.0, -70.0)
 	)
 	var bullet_name := "PetTiger1Bullet1" if tiger_stage == 1 else "PetTiger2Bullet1"
-	Global.add_bullet(bullet_name, bullet, MonsterDirection, 1.0, position + offset, "hit1", obj_attack_dict["hit1"])
+	Global.add_bullet(bullet_name, bullet, monster_direction, 1.0, position + offset, "hit1", obj_attack_dict["hit1"])
 
 
 func call_hy_bullet() -> void:
 	var offset: Vector2 = _front_offset(_stage_value(150.0, 190.0, 190.0, 190.0), -80.0)
 	Global.add_bullet(
-		"PetTiger1Bullet2", bullet, MonsterDirection, 1.0, position + offset, SKILL_HY, obj_attack_dict[SKILL_HY]
+		"PetTiger1Bullet2", bullet, monster_direction, 1.0, position + offset, SKILL_HY, obj_attack_dict[SKILL_HY]
 	)
 
 
@@ -330,14 +330,14 @@ func call_sxhz_hit() -> void:
 	Global.add_bullet(
 		"PetTiger2Bullet3_1",
 		bullet,
-		MonsterDirection,
+		monster_direction,
 		1.0,
 		position + main_offset,
 		SKILL_SXHZ,
 		obj_attack_dict[SKILL_SXHZ]
 	)
 	Global.add_bullet(
-		"PetTiger2Bullet3_2", bullet, MonsterDirection, 1.0, air_stun_position, SKILL_SXHZ, obj_attack_dict[SKILL_SXHZ]
+		"PetTiger2Bullet3_2", bullet, monster_direction, 1.0, air_stun_position, SKILL_SXHZ, obj_attack_dict[SKILL_SXHZ]
 	)
 	_apply_sxhz_air_stun(air_stun_position)
 
@@ -347,14 +347,14 @@ func call_hsqj_bullet() -> void:
 	var hit_offset: Vector2 = _front_offset(105.0, -2.0)
 	var mark_position := position + disabled_offset
 	var visual_bullet = Global.add_bullet(
-		"PetTiger3Bullet4_1", bullet, MonsterDirection, 1.0, mark_position, SKILL_HSQJ, obj_attack_dict[SKILL_HSQJ]
+		"PetTiger3Bullet4_1", bullet, monster_direction, 1.0, mark_position, SKILL_HSQJ, obj_attack_dict[SKILL_HSQJ]
 	)
 	if visual_bullet != null:
 		visual_bullet.set_meta("pet_tiger_disabled", true)
 	Global.add_bullet(
 		"PetTiger3Bullet4_2",
 		bullet,
-		MonsterDirection,
+		monster_direction,
 		1.0,
 		position + hit_offset,
 		SKILL_HSQJ,
@@ -375,7 +375,7 @@ func _apply_sxhz_air_stun(air_stun_position: Vector2) -> void:
 			{
 				"Name": "stun",
 				"AddTime": stun_time,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 				"DeBuff": true,
@@ -441,11 +441,11 @@ func call_bhaoyi_hit() -> void:
 	var dic: Dictionary = obj_attack_dict[SKILL_BHAOYI].duplicate(true)
 	dic["power"] = int(dic["power"] * 1.3)
 	var offset: Vector2 = _front_offset(130.0, -70.0)
-	Global.add_bullet("PetTiger2Bullet1", bullet, MonsterDirection, 1.25, position + offset, SKILL_BHAOYI, dic)
+	Global.add_bullet("PetTiger2Bullet1", bullet, monster_direction, 1.25, position + offset, SKILL_BHAOYI, dic)
 
 
 func _front_offset(x: float, y: float) -> Vector2:
-	if MonsterDirection:
+	if monster_direction:
 		return Vector2(x, y)
 	return Vector2(-x, y)
 

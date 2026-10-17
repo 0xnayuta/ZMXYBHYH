@@ -23,11 +23,11 @@ func monster_24():
 		self.crit = 40
 		self.miss = 35
 		self.lucky = 60
-		self.Htarget = 20
-		self.Toughness = 0
+		self.htarget = 20
+		self.toughness = 0
 		self.ar = 50
 		self.sp = 50
-		self.Critreduce = 0
+		self.crit_reduce = 0
 		self.speed = 40
 		self.mysee = 300
 		self.attack_range = 85
@@ -47,7 +47,7 @@ func monster_24():
 				"AddTime": 5,
 				"CanAdd": true,
 				"DeBuff": true,
-				"ReduceInterval": 0.5,
+				"reduce_interval": 0.5,
 				"value": 80,
 				"AttackKind": "real",
 			}
@@ -74,11 +74,11 @@ func monster_24():
 	self.crit = 0
 	self.miss = 8
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 40
 	self.mysee = 300
 	self.attack_range = 85
@@ -98,7 +98,7 @@ func monster_24():
 			"AddTime": 2.5,
 			"CanAdd": true,
 			"DeBuff": true,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 20,
 			"AttackKind": "magic",
 		}
@@ -112,7 +112,7 @@ func monster_24():
 
 
 func _ready() -> void:
-	Skill_1_CD = 10
+	skill_1_cd = 10
 	monster_24()
 	super._ready()
 	if mr_player.has_animation("heart"):
@@ -148,7 +148,7 @@ func ai_think():
 			hand_1.queue_free()
 		if hand_2 != null:
 			hand_2.queue_free()
-	if Skill_1_CD <= 0:
+	if skill_1_cd <= 0:
 		call_fire_1()
 
 
@@ -158,7 +158,7 @@ func _on_add_eyes_timeout() -> void:
 
 func call_fire_1():
 	rand_fire.stop()
-	Skill_1_CD = 30
+	skill_1_cd = 30
 	var ppx = [-450, -350, -250, -150, -50, 50, 150, 250, 350]
 	var ppy = [370, 370, 370, 370, 370, 370, 370, 370, 370]
 	for i in range(9):

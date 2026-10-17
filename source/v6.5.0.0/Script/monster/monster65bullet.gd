@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 					{
 						"Name": "speed_down",
 						"AddTime": 2,
-						"ReduceInterval": 0,
+						"reduce_interval": 0,
 						"value": 0.6,
 						"AttackKind": "",
 					}
@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 					{
 						"Name": "silent",
 						"AddTime": 2,
-						"ReduceInterval": 0,
+						"reduce_interval": 0,
 						"value": 0.3,
 						"AttackKind": "",
 						"CanAdd": false,
@@ -59,7 +59,7 @@ func _on_check_body_entered(body: Node2D) -> void:
 				{
 					"Name": "speed_down",
 					"AddTime": 2,
-					"ReduceInterval": 0,
+					"reduce_interval": 0,
 					"value": 0.6,
 					"AttackKind": "",
 				}
@@ -73,7 +73,7 @@ func _on_check_body_entered(body: Node2D) -> void:
 				{
 					"Name": "silent",
 					"AddTime": 2,
-					"ReduceInterval": 0,
+					"reduce_interval": 0,
 					"value": 0.3,
 					"AttackKind": "",
 					"CanAdd": false,

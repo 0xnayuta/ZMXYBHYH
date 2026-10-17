@@ -21,11 +21,11 @@ func monster_101():
 	self.crit = 55
 	self.miss = 60
 	self.lucky = 122
-	self.Htarget = 120000
-	self.Toughness = 43
+	self.htarget = 120000
+	self.toughness = 43
 	self.ar = 410
 	self.sp = 401
-	self.Critreduce = 36
+	self.crit_reduce = 36
 	self.speed = 28
 	self.mysee = 900
 	self.attack_range = 318
@@ -49,9 +49,9 @@ func monster_101():
 		"HitProtect": 10,
 		"addeffect":
 		{
-			"Name": "DefeReduce",
+			"Name": "defe_reduce",
 			"AddTime": 10,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.3,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -81,8 +81,8 @@ func _ready() -> void:
 	super._ready()
 	monster_101()
 
-	Skill_2_CD = randi_range(5, 10)
-	Skill_3_CD = randi_range(15, 20)
+	skill_2_cd = randi_range(5, 10)
+	skill_3_cd = randi_range(15, 20)
 
 
 func ai_think():
@@ -98,9 +98,9 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				elif Skill_3_CD <= 0:
+				elif skill_3_cd <= 0:
 					do_hit_3()
 
 				if count % 90 == 0:
@@ -108,9 +108,9 @@ func ai_think():
 						attack_target()
 						_create_bullet1_portal()
 			else:
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				elif Skill_3_CD <= 0:
+				elif skill_3_cd <= 0:
 					do_hit_3()
 				elif count % 60 == 0:
 					if randi_range(0, 100) <= attack_desire:
@@ -121,7 +121,7 @@ func ai_think():
 
 
 func _create_bullet1_portal():
-	var portal = {"position": position, "direction": -1 if self.MonsterDirection else 1, "count": 0, "timer": null}
+	var portal = {"position": position, "direction": -1 if self.monster_direction else 1, "count": 0, "timer": null}
 
 	portal.timer = Timer.new()
 	add_child(portal.timer)
@@ -161,7 +161,7 @@ func do_hit_2():
 	if is_attacking:
 		return
 
-	Skill_2_CD = 15
+	skill_2_cd = 15
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -246,7 +246,7 @@ func do_hit_3():
 	if is_attacking:
 		return
 
-	Skill_3_CD = 20
+	skill_3_cd = 20
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -272,7 +272,7 @@ func do_hit_3():
 
 
 func _create_bullet3_portal(direction: int = 0):
-	var portal_direction = direction if direction != 0 else (-1 if self.MonsterDirection else 1)
+	var portal_direction = direction if direction != 0 else (-1 if self.monster_direction else 1)
 
 	var portal = {"position": position, "direction": portal_direction, "count": 0, "timer": null}
 

@@ -81,7 +81,7 @@ func get_field_duration() -> float:
 
 
 func show_skill() -> void:
-	if Player == null or not is_instance_valid(Player):
+	if player == null or not is_instance_valid(player):
 		use_over()
 		return
 
@@ -155,17 +155,17 @@ func _play_activation_effects() -> void:
 
 
 func _get_player_ground_global_position() -> Vector2:
-	var ground_shape := Player.get_node_or_null("pz") as CollisionShape2D
+	var ground_shape := player.get_node_or_null("pz") as CollisionShape2D
 	if ground_shape != null and ground_shape.shape != null:
 		var shape_rect: Rect2 = ground_shape.shape.get_rect()
 		return ground_shape.to_global(Vector2(0.0, shape_rect.end.y))
-	return Player.global_position
+	return player.global_position
 
 
 func _get_player_body_global_rect() -> Rect2:
-	var body_shape := Player.get_node_or_null("pz") as CollisionShape2D
+	var body_shape := player.get_node_or_null("pz") as CollisionShape2D
 	if body_shape == null or body_shape.shape == null:
-		return Rect2(Player.global_position - Vector2(24.0, 48.0), Vector2(48.0, 96.0))
+		return Rect2(player.global_position - Vector2(24.0, 48.0), Vector2(48.0, 96.0))
 
 	var local_rect: Rect2 = body_shape.shape.get_rect()
 	var points := [
@@ -186,7 +186,7 @@ func _get_player_body_global_rect() -> Rect2:
 
 
 func _update_player_protection() -> void:
-	if Player == null or not is_instance_valid(Player):
+	if player == null or not is_instance_valid(player):
 		_set_player_protected(false)
 		return
 	_set_player_protected(_field_rect.intersects(_get_player_body_global_rect()))
@@ -195,13 +195,13 @@ func _update_player_protection() -> void:
 func _set_player_protected(should_protect: bool) -> void:
 	if should_protect == _protection_applied:
 		return
-	if Player != null and is_instance_valid(Player):
+	if player != null and is_instance_valid(player):
 		if should_protect:
-			Player.add_dikong_field_invincibility()
-			Player.wdsl_damage_reduction += 1.0
+			player.add_dikong_field_invincibility()
+			player.wdsl_damage_reduction += 1.0
 		else:
-			Player.remove_dikong_field_invincibility()
-			Player.wdsl_damage_reduction = maxf(0.0, Player.wdsl_damage_reduction - 1.0)
+			player.remove_dikong_field_invincibility()
+			player.wdsl_damage_reduction = maxf(0.0, player.wdsl_damage_reduction - 1.0)
 	_protection_applied = should_protect
 
 

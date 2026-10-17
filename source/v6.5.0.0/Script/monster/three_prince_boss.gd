@@ -144,17 +144,17 @@ func _physics_process(delta: float) -> void:
 func _reset_initial_skill_cooldowns() -> void:
 	match prince_kind:
 		0:
-			Skill_1_CD = randi_range(6, 12)
-			Skill_2_CD = randi_range(3, 8)
-			Skill_3_CD = randi_range(5, 14)
+			skill_1_cd = randi_range(6, 12)
+			skill_2_cd = randi_range(3, 8)
+			skill_3_cd = randi_range(5, 14)
 		1:
-			Skill_1_CD = randi_range(6, 15)
-			Skill_2_CD = 0
-			Skill_3_CD = randi_range(5, 15)
+			skill_1_cd = randi_range(6, 15)
+			skill_2_cd = 0
+			skill_3_cd = randi_range(5, 15)
 		2:
-			Skill_1_CD = randi_range(6, 15)
-			Skill_2_CD = randi_range(3, 8)
-			Skill_3_CD = 0
+			skill_1_cd = randi_range(6, 15)
+			skill_2_cd = randi_range(3, 8)
+			skill_3_cd = 0
 
 
 func _configure_monster() -> void:
@@ -179,11 +179,11 @@ func _configure_monster() -> void:
 	crit = 20
 	miss = 0
 	lucky = 20
-	Htarget = 100
-	Toughness = 20
+	htarget = 100
+	toughness = 20
 	ar = 1200
 	sp = 1200
-	Critreduce = 10
+	crit_reduce = 10
 	speed = 20
 	mysee = 1000
 	attack_range = int(_config["attack_range"])
@@ -263,7 +263,7 @@ func _configure_monster() -> void:
 		var stack_effect := {
 			"Name": "monster137buff",
 			"AddTime": 7.0,
-			"ReduceInterval": 0.0,
+			"reduce_interval": 0.0,
 			"value": 0.0,
 			"AttackKind": "",
 			"CanAdd": true,
@@ -433,30 +433,30 @@ func ai_think() -> void:
 	var distance := absf(role_x - position.x)
 	match prince_kind:
 		0:
-			if distance <= 400.0 and Skill_3_CD <= 0:
+			if distance <= 400.0 and skill_3_cd <= 0:
 				_use_prince_action(&"hit4", 3, randi_range(5, 14))
 				return
-			if distance <= 400.0 and Skill_2_CD <= 0:
+			if distance <= 400.0 and skill_2_cd <= 0:
 				_use_prince_action(&"hit3", 2, randi_range(3, 8))
 				return
-			if distance <= 600.0 and Skill_1_CD <= 0:
+			if distance <= 600.0 and skill_1_cd <= 0:
 				_use_prince_action(&"hit2", 1, randi_range(6, 12))
 				return
 		1:
-			if distance <= 400.0 and Skill_3_CD <= 0:
+			if distance <= 400.0 and skill_3_cd <= 0:
 				_use_prince_action(&"hit4", 3, randi_range(5, 15))
 				return
-			if distance <= 600.0 and Skill_1_CD <= 0:
+			if distance <= 600.0 and skill_1_cd <= 0:
 				_use_prince_action(&"hit2", 1, randi_range(6, 15))
 				return
 		2:
-			if distance >= 300.0 and Skill_3_CD <= 0 and _has_incoming_role_projectile():
+			if distance >= 300.0 and skill_3_cd <= 0 and _has_incoming_role_projectile():
 				_use_prince_action(&"hit4", 3, randi_range(5, 15))
 				return
-			if distance <= 400.0 and Skill_2_CD <= 0:
+			if distance <= 400.0 and skill_2_cd <= 0:
 				_use_prince_action(&"hit3", 2, randi_range(3, 8))
 				return
-			if distance <= 600.0 and Skill_1_CD <= 0:
+			if distance <= 600.0 and skill_1_cd <= 0:
 				_use_prince_action(&"hit2", 1, randi_range(6, 15))
 				return
 	if distance > float(attack_range):
@@ -477,11 +477,11 @@ func _use_prince_action(action_name: StringName, cooldown_slot: int, cooldown: i
 	is_attacking = true
 	match cooldown_slot:
 		1:
-			Skill_1_CD = cooldown
+			skill_1_cd = cooldown
 		2:
-			Skill_2_CD = cooldown
+			skill_2_cd = cooldown
 		3:
-			Skill_3_CD = cooldown
+			skill_3_cd = cooldown
 	mr_player.play(action_name)
 	await mr_player.animation_finished
 	if death():
@@ -624,9 +624,9 @@ func _spawn_effect(
 	effect.follow_owner_offset = resolved_offset
 	effect.loop_visual = loop_visual_
 	effect.additive_blend = prince_kind == 0 and effect_dir in ["effect_wind", "effect_guard"]
-	effect.AttList = obj_attack_dict.get(attack_name, {})
-	if effect.AttList is Dictionary:
-		effect.attack_interval_frames = maxi(int(effect.AttList.get("attackInterval", 0)), 0)
+	effect.att_list = obj_attack_dict.get(attack_name, {})
+	if effect.att_list is Dictionary:
+		effect.attack_interval_frames = maxi(int(effect.att_list.get("attackInterval", 0)), 0)
 	effect.hit_name = attack_name
 	effect.skill_name = "STZ_%s_%s" % [str(_config.get("name", "三太子")), effect_dir]
 	effect.dir = _faces_right()
@@ -832,7 +832,7 @@ func _get_incoming_attack_kind(area: Area2D) -> String:
 	var source: Node = _get_incoming_attack_source(area)
 	if source == null or not is_instance_valid(source):
 		return ""
-	var hit_data: Variant = source.get("HitDic")
+	var hit_data: Variant = source.get("hit_dic")
 	if hit_data is Dictionary:
 		return str(hit_data.get("attackKind", ""))
 	if source is BaseHero:

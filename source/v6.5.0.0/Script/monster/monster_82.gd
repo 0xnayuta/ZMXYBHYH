@@ -17,11 +17,11 @@ func monster_82():
 	self.crit = 25
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 58
-	self.Toughness = 0
+	self.htarget = 58
+	self.toughness = 0
 	self.ar = 20
 	self.sp = 20
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 14
 	self.mysee = 800
 	self.attack_range = 355
@@ -38,7 +38,7 @@ func monster_82():
 		{
 			"Name": "speed_down",
 			"AddTime": 1,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.7,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -64,14 +64,14 @@ func _ready() -> void:
 
 func add_bullet():
 	var target_position: Vector2
-	if MonsterDirection:
+	if monster_direction:
 		target_position = Vector2(30, 5)
 	else:
 		target_position = Vector2(-30, 5)
 	var arrow = Global.add_bullet(
 		"Monster82Bullet",
 		self.bullet,
-		MonsterDirection,
+		monster_direction,
 		1,
 		target_position + position,
 		"hit1",

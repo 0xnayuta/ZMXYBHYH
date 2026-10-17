@@ -17,11 +17,11 @@ func monster_142():
 	self.crit = 15 + int(RoleProp.baseroleprop.Level * 0.6)
 	self.miss = 15 + int(RoleProp.baseroleprop.Level * 0.3)
 	self.lucky = 45 + int(RoleProp.baseroleprop.Level * 1)
-	self.Htarget = 9999
-	self.Toughness = 0
+	self.htarget = 9999
+	self.toughness = 0
 	self.ar = 30 + int(RoleProp.baseroleprop.Level * 0.5)
 	self.sp = 30 + int(RoleProp.baseroleprop.Level * 0.5)
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 500
 	self.attack_range = 355
@@ -46,7 +46,7 @@ func monster_142():
 		{
 			"Name": "speed_down",
 			"AddTime": 5,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 0.4,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -62,7 +62,7 @@ func monster_142():
 		{
 			"Name": "stun",
 			"AddTime": 6,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 1,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -79,9 +79,9 @@ func monster_142():
 func _ready() -> void:
 	super._ready()
 	monster_142()
-	Skill_1_CD = 2
-	Skill_2_CD = 5
-	Skill_3_CD = 7
+	skill_1_cd = 2
+	skill_2_cd = 5
+	skill_3_cd = 7
 
 
 func ai_think():
@@ -93,18 +93,18 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
 				if count % 90 == 0:
 					if randi_range(0, 100) < attack_desire:
 						attack_target()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
 				if count % 90 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -113,7 +113,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = 15
+	skill_1_cd = 15
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -125,7 +125,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = 20
+	skill_2_cd = 20
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -138,7 +138,7 @@ func do_hit_2():
 func call_bullet_1():
 	var bb
 	var sp = 1 + rolelevel * 0.015
-	if self.MonsterDirection:
+	if self.monster_direction:
 		bb = Global.add_bullet(
 			"Monster145Bullet1", self.bullet, false, sp, Vector2(20, 0) + position, "hit1", self.obj_attack_dict["hit1"]
 		)
@@ -172,11 +172,11 @@ func call_bullet_2():
 func call_bullet_3():
 	var sp = 1 + rolelevel * 0.02
 	var bb
-	if self.MonsterDirection:
+	if self.monster_direction:
 		bb = Global.add_bullet(
 			"Monster145Bullet2",
 			self.bullet,
-			!self.MonsterDirection,
+			!self.monster_direction,
 			sp,
 			Vector2(20, 0) + position,
 			"hit2",
@@ -187,7 +187,7 @@ func call_bullet_3():
 		bb = Global.add_bullet(
 			"Monster145Bullet2",
 			self.bullet,
-			!self.MonsterDirection,
+			!self.monster_direction,
 			sp,
 			Vector2(-20, 0) + position,
 			"hit2",
@@ -199,11 +199,11 @@ func call_bullet_3():
 func call_bullet_4():
 	var sp = 0.5 + rolelevel * 0.01
 	var bb
-	if self.MonsterDirection:
+	if self.monster_direction:
 		bb = Global.add_bullet(
 			"Monster145Bullet3",
 			self.bullet,
-			!self.MonsterDirection,
+			!self.monster_direction,
 			sp,
 			Vector2(20, 0) + position,
 			"hit3",
@@ -213,7 +213,7 @@ func call_bullet_4():
 		bb = Global.add_bullet(
 			"Monster145Bullet3",
 			self.bullet,
-			!self.MonsterDirection,
+			!self.monster_direction,
 			sp,
 			Vector2(-20, 0) + position,
 			"hit3",

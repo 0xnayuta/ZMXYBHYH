@@ -65,7 +65,7 @@ func _ready() -> void:
 	_build_level_runtime()
 	super._ready()
 	if _palace_terrain != null:
-		Role_.set_meta("disable_down_drop", true)
+		role_.set_meta("disable_down_drop", true)
 		_update_screen_bounds()
 
 
@@ -296,7 +296,7 @@ func _update_screen_bounds(delta: float = 0.0) -> void:
 	if stage_number == 74 and my_camera != null:
 		my_camera.max_top = 0.0
 		my_camera.max_bottom = 1280.0
-		if Role_ != null and Role_.position.x >= 4248.0 and Role_.is_on_floor():
+		if role_ != null and role_.position.x >= 4248.0 and role_.is_on_floor():
 			my_camera.max_bottom = 810.0
 
 

@@ -102,7 +102,7 @@ func role_3():
 		{
 			"Name": "stun",
 			"AddTime": 3 + level_10 * 0.1,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"DeBuff": true
@@ -117,7 +117,7 @@ func role_3():
 		{
 			"Name": "stun",
 			"AddTime": 0.5 + level_10 * 0.05,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"DeBuff": true
@@ -144,7 +144,7 @@ func role_3():
 		{
 			"Name": "stun",
 			"AddTime": 2 + level_10 * 0.1,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"DeBuff": true
@@ -284,7 +284,7 @@ func do_normalhit_3():
 
 
 func skill_sd():
-	self.Role1SkillInter["sd"] = 1.2
+	self.role1_skill_inter["sd"] = 1.2
 
 	get_action = "sd"
 	is_using_skills = true
@@ -298,7 +298,7 @@ func skill_sd():
 
 
 func skill_zznh():
-	self.Role1SkillInter["zznh"] = 2
+	self.role1_skill_inter["zznh"] = 2
 
 	get_action = "zznh"
 	is_using_skills = true
@@ -312,7 +312,7 @@ func skill_zznh():
 
 
 func skill_dj():
-	self.Role1SkillInter["dj"] = 1.2
+	self.role1_skill_inter["dj"] = 1.2
 	velocity.x = 0
 	get_action = "dj"
 	is_using_skills = true
@@ -326,7 +326,7 @@ func skill_dj():
 
 
 func skill_jsp():
-	self.Role1SkillInter["jsp"] = 6
+	self.role1_skill_inter["jsp"] = 6
 	velocity.x = 0
 	get_action = "jsp"
 	is_using_skills = true
@@ -340,7 +340,7 @@ func skill_jsp():
 
 
 func skill_ssp():
-	self.Role1SkillInter["ssp"] = 4.8
+	self.role1_skill_inter["ssp"] = 4.8
 	velocity.x = 0
 	get_action = "ssp"
 	is_using_skills = true
@@ -354,7 +354,7 @@ func skill_ssp():
 
 
 func skill_xgq():
-	self.Role1SkillInter["xgq"] = 6
+	self.role1_skill_inter["xgq"] = 6
 	velocity.x = 0
 	get_action = "xgq"
 	is_using_skills = true
@@ -368,7 +368,7 @@ func skill_xgq():
 
 
 func skill_dgq():
-	self.Role1SkillInter["dgq"] = 4.2
+	self.role1_skill_inter["dgq"] = 4.2
 	velocity.x = 0
 	get_action = "dgq"
 	_dgq_spike_elapsed = 0.0
@@ -386,7 +386,7 @@ func skill_dgq():
 
 func skill_tmc():
 	self.is_t_mc = true
-	self.Role1SkillInter["tmc"] = 2.4
+	self.role1_skill_inter["tmc"] = 2.4
 	velocity.x = 0
 	get_action = "tmc"
 	is_using_skills = true
@@ -400,7 +400,7 @@ func skill_tmc():
 
 
 func skill_tmc2():
-	self.Role1SkillInter["tmc"] = 1.2
+	self.role1_skill_inter["tmc"] = 1.2
 	velocity.x = 0
 	get_action = "tmc"
 	is_using_skills = true
@@ -414,7 +414,7 @@ func skill_tmc2():
 
 
 func skill_syzq():
-	self.Role1SkillInter["syzq"] = 6
+	self.role1_skill_inter["syzq"] = 6
 	velocity.x = 0
 	get_action = "syzq"
 	is_using_skills = true
@@ -428,7 +428,7 @@ func skill_syzq():
 
 
 func skill_bdqk():
-	self.Role1SkillInter["bdqk"] = 3.0
+	self.role1_skill_inter["bdqk"] = 3.0
 	velocity.x = 0
 	get_action = "bdqk"
 	is_using_skills = true
@@ -437,7 +437,7 @@ func skill_bdqk():
 	_play_bdqk_action()
 	var level = get_parent().get_parent()
 	var effect = BA_DI_QIAN_KUN_EFFECT.new()
-	effect.setup(self, PlayerDir, obj_attack_dict["bdqk"])
+	effect.setup(self, player_dir, obj_attack_dict["bdqk"])
 	level.add_child(effect)
 	await role_action_player.animation_finished
 	turn_to_wait()
@@ -536,7 +536,7 @@ func add_sd():
 func add_zznh():
 	var skill_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能4"][DataKeys.LEVEL] + 1
 	var effect = Global.add_role_special_effect(
-		self, Vector2(30, -30) if PlayerDir else Vector2(-30, -30), false, "zznh"
+		self, Vector2(30, -30) if player_dir else Vector2(-30, -30), false, "zznh"
 	)
 	effect.skill_level = skill_level
 	effect.zznh_defense_reduction = 0.5 if _is_skill_awakened("zznh") and _is_skill_awaken_enabled("zznh") else 0.0
@@ -560,29 +560,29 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 				return
 		else:
 			return
-		if HitDic.has("addeffect"):
-			Global.add_buff(target.buff, HitDic["addeffect"])
+		if hit_dic.has("addeffect"):
+			Global.add_buff(target.buff, hit_dic["addeffect"])
 
 
 func call_syzq():
 	var pp
-	if PlayerDir:
+	if player_dir:
 		pp = Vector2(64, -70) + position
 	else:
 		pp = Vector2(-64, -70) + position
-	Global.add_role_bullet(self.Bullet, pp, PlayerDir, "Role3Bullet1", obj_attack_dict["syzq"])
+	Global.add_role_bullet(self.Bullet, pp, player_dir, "Role3Bullet1", obj_attack_dict["syzq"])
 
 
 func add_ssp():
 	var bullet_spawn_positions = []
 	var scale_list = [Vector2(1, 1), Vector2(1.6, 1.6), Vector2(2, 2), Vector2(2.5, 2.5)]
-	if !PlayerDir:
+	if !player_dir:
 		bullet_spawn_positions = [Vector2(-70, 15), Vector2(-160, 10), Vector2(-270, 0), Vector2(-400, -10)]
 	else:
 		bullet_spawn_positions = [Vector2(70, 15), Vector2(160, 10), Vector2(270, 0), Vector2(400, -10)]
 	for i in bullet_spawn_positions.size():
 		var xbz = Global.add_role_bullet(
-			self.Bullet, bullet_spawn_positions[i] + position, PlayerDir, "Role3Bullet2", obj_attack_dict["ssp"]
+			self.Bullet, bullet_spawn_positions[i] + position, player_dir, "Role3Bullet2", obj_attack_dict["ssp"]
 		)
 		xbz.scale = scale_list[i]
 		await get_tree().create_timer(0.2, false).timeout
@@ -629,7 +629,7 @@ func _spawn_dgq_spike() -> void:
 
 func rush():
 	var roll_speed: float = DGQ_ROLL_SPEED if _is_dgq_awaken_active() else DGQ_NORMAL_ROLL_SPEED
-	if PlayerDir:
+	if player_dir:
 		velocity.x += roll_speed
 	else:
 		velocity.x -= roll_speed

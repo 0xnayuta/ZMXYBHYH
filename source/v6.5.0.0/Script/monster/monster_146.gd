@@ -23,15 +23,15 @@ func monster_146():
 
 	self.def = 1290 * phantom_multiplier
 	self.mdef = 1250 * phantom_multiplier
-	self.Toughness = 30 * phantom_multiplier
+	self.toughness = 30 * phantom_multiplier
 
 	self.crit = 38 * phantom_multiplier
 	self.miss = 42 if not is_phantom else 30
 	self.lucky = 85 * phantom_multiplier
-	self.Htarget = 99999
+	self.htarget = 99999
 	self.ar = 285 * phantom_multiplier
 	self.sp = 278 * phantom_multiplier
-	self.Critreduce = 25 * phantom_multiplier
+	self.crit_reduce = 25 * phantom_multiplier
 	self.speed = 19 * phantom_multiplier
 	self.mysee = 750
 	self.attack_range = 150
@@ -74,7 +74,7 @@ func monster_146():
 		{
 			"Name": "Immobilize",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 1,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -90,9 +90,9 @@ func _ready() -> void:
 	if is_phantom:
 		modulate = Color(0.7, 0.3, 0.3, 1.0)
 
-	Skill_1_CD = 2.0
-	Skill_2_CD = 10.0
-	Skill_3_CD = 8.0
+	skill_1_cd = 2.0
+	skill_2_cd = 10.0
+	skill_3_cd = 8.0
 
 
 func _process(delta: float) -> void:
@@ -130,20 +130,20 @@ func ai_think() -> void:
 
 
 func _handle_ranged_combat(distance: float) -> void:
-	if Skill_2_CD <= 0:
+	if skill_2_cd <= 0:
 		do_hit_2()
-	elif Skill_3_CD <= 0 and distance > 400 and _can_dash_towards_player():
+	elif skill_3_cd <= 0 and distance > 400 and _can_dash_towards_player():
 		do_hit_3()
-	elif Skill_1_CD <= 0 and distance <= 155:
+	elif skill_1_cd <= 0 and distance <= 155:
 		do_hit_1()
 
 
 func _handle_melee_combat(distance: float) -> void:
-	if Skill_1_CD <= 0 and distance <= 155:
+	if skill_1_cd <= 0 and distance <= 155:
 		do_hit_1()
-	elif Skill_3_CD <= 0 and distance < 200 and _can_dash_towards_player():
+	elif skill_3_cd <= 0 and distance < 200 and _can_dash_towards_player():
 		do_hit_3()
-	elif Skill_2_CD <= 0:
+	elif skill_2_cd <= 0:
 		do_hit_2()
 
 
@@ -200,10 +200,10 @@ func hurt_reduce_hp(value, target):
 func do_hit_1():
 	if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > 155:
 		return
-	if Skill_1_CD > 0 or is_attacking:
+	if skill_1_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_1_CD = 2.0
+	skill_1_cd = 2.0
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -214,10 +214,10 @@ func do_hit_1():
 
 
 func do_hit_2():
-	if Skill_2_CD > 0 or is_attacking:
+	if skill_2_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_2_CD = 10.0
+	skill_2_cd = 10.0
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -228,10 +228,10 @@ func do_hit_2():
 
 
 func do_hit_3():
-	if Skill_3_CD > 0 or is_attacking:
+	if skill_3_cd > 0 or is_attacking:
 		return
 	super.to_hero()
-	Skill_3_CD = 8.0
+	skill_3_cd = 8.0
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -262,7 +262,7 @@ func call_bullet_alt2():
 	var bullet_name = "Monster146Bullet"
 
 	var bb = Global.add_bullet(
-		bullet_name, self.bullet, !self.MonsterDirection, sp, Vector2(0, 0) + position, "hit2", attack_config
+		bullet_name, self.bullet, !self.monster_direction, sp, Vector2(0, 0) + position, "hit2", attack_config
 	)
 
 	if bb:

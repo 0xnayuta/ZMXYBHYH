@@ -22,11 +22,11 @@ func monster_65():
 	self.crit = 5 + int(RoleProp.baseroleprop.Level * 1.2)
 	self.miss = 5 + int(RoleProp.baseroleprop.Level * 0.6)
 	self.lucky = 0 + int(RoleProp.baseroleprop.Level * 1.8)
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 20 + int(RoleProp.baseroleprop.Level * 1.0)
 	self.sp = 20 + int(RoleProp.baseroleprop.Level * 1.0)
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 13
 	self.mysee = 500
 	self.attack_range = 250
@@ -51,7 +51,7 @@ func monster_65():
 		{
 			"Name": "Boundground",
 			"AddTime": 4,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -67,7 +67,7 @@ func monster_65():
 		{
 			"Name": "stun",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -85,9 +85,9 @@ func monster_65():
 func _ready() -> void:
 	super._ready()
 	monster_65()
-	Skill_1_CD = 20
-	Skill_2_CD = 10
-	Skill_3_CD = 15
+	skill_1_cd = 20
+	skill_2_cd = 10
+	skill_3_cd = 15
 	_sync_body_visual()
 
 
@@ -143,29 +143,29 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_skill_2_1()
 				if (
 					count % 60 == 0
 					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 250
 				):
 					attack_target()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_skill_2_1()
 				if (
 					count % 60 == 0
 					and abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 250
 				):
 					attack_target()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 
 
@@ -195,7 +195,7 @@ func return_normal():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(30, 35)
+	skill_1_cd = randi_range(30, 35)
 	hit_name = "zhzz"
 	velocity.x = 0
 	is_attacking = true
@@ -206,7 +206,7 @@ func do_hit_1():
 
 func do_skill_2_1():
 	super.to_hero()
-	Skill_2_CD = randi_range(15, 20)
+	skill_2_cd = randi_range(15, 20)
 	hit_name = "zhzz"
 	velocity.x = 0
 	is_attacking = true
@@ -234,7 +234,7 @@ func do_skill_2_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(20, 30)
+	skill_3_cd = randi_range(20, 30)
 	hit_name = "zhzz"
 	velocity.x = 0
 	is_attacking = true
@@ -257,7 +257,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 				{
 					"Name": "poision",
 					"AddTime": 5,
-					"ReduceInterval": 1,
+					"reduce_interval": 1,
 					"value": 100,
 					"AttackKind": "real",
 					"DeBuff": true,
@@ -268,7 +268,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 
 func call_wang():
-	if MonsterDirection:
+	if monster_direction:
 		Global.add_monster65_bullet(self.bullet, position + Vector2(240, -55))
 	else:
 		Global.add_monster65_bullet(self.bullet, position + Vector2(-240, -55))

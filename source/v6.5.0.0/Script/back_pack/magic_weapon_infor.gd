@@ -189,8 +189,8 @@ func get_need_lh() -> int:
 func get_fb_pro(name__, need):
 	var wx = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS]
 	var level_ = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL]
-	var Data = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
-	var infomation = AE.get_fb_last_equ_pro(name__, level_, wx, Data)[need]
+	var data = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
+	var infomation = AE.get_fb_last_equ_pro(name__, level_, wx, data)[need]
 	return infomation
 
 

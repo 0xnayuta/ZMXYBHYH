@@ -143,7 +143,7 @@ func level_create_monster(stage):
 
 
 func _on_create_control_timeout() -> void:
-	if Role_ == null:
+	if role_ == null:
 		return
 	if Global.sss_lendless_mode:
 		current_stage = 1
@@ -155,11 +155,11 @@ func _on_create_control_timeout() -> void:
 		return
 	if current_stage == 0:
 		current_stage = 1
-	elif current_stage == 1 and Role_.position.x >= 1600 and check_can_pass():
+	elif current_stage == 1 and role_.position.x >= 1600 and check_can_pass():
 		current_stage = 2
-	elif current_stage == 2 and Role_.position.x >= 2700 and check_can_pass():
+	elif current_stage == 2 and role_.position.x >= 2700 and check_can_pass():
 		current_stage = 3
-	elif current_stage == 3 and Role_.position.x >= 4000 and check_can_pass():
+	elif current_stage == 3 and role_.position.x >= 4000 and check_can_pass():
 		current_stage = 4
 	_update_stage_walls()
 	if current_stage >= 1 and current_stage <= 4 and not _is_sssl_stage_ready(current_stage):
@@ -174,9 +174,9 @@ func _physics_process(delta: float) -> void:
 		_set_endless_camera_limits()
 	check_monster_death()
 	_update_stage_walls()
-	if Role_ != null:
-		RoleProp.role_pos_x = Role_.position.x
-		RoleProp.role_pos_y = Role_.position.y
+	if role_ != null:
+		RoleProp.role_pos_x = role_.position.x
+		RoleProp.role_pos_y = role_.position.y
 	if role_information != null and role_information.gogo != null:
 		role_information.gogo.visible = current_stage >= 1 and current_stage < 4 and check_can_pass()
 

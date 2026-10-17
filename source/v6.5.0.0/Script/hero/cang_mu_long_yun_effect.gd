@@ -536,7 +536,7 @@ func _is_valid_target(target: Node) -> bool:
 
 	if target.is_queued_for_deletion() or target.is_death:
 		return false
-	if target.Hp <= 0 or target.NoTarget or target.is_boss_protecting():
+	if target.Hp <= 0 or target.no_target or target.is_boss_protecting():
 		return false
 	return true
 
@@ -548,11 +548,11 @@ func _apply_hit(target: BaseMonster) -> void:
 	if source_player == null:
 		return
 
-	var old_hit_data: Dictionary = source_player.HitDic
+	var old_hit_data: Dictionary = source_player.hit_dic
 	var old_target: Variant = target.get_target
 	var old_source_player: Variant = RoleProp.source_player
 	var old_tszzs: float = source_player.tszzs
-	source_player.HitDic = hit_data
+	source_player.hit_dic = hit_data
 	target.get_target = source_player
 	target.has_target = true
 
@@ -601,7 +601,7 @@ func _apply_hit(target: BaseMonster) -> void:
 			RoleProp.ws_value += int(hit_data.get("WSValue", 4))
 		target.role5_bullet(damage, owner_player)
 	target.get_target = old_target
-	source_player.HitDic = old_hit_data
+	source_player.hit_dic = old_hit_data
 	source_player.tszzs = old_tszzs
 	RoleProp.source_player = old_source_player
 
@@ -624,7 +624,7 @@ func _apply_voodoo_if_learned(target: Node) -> void:
 		{
 			"Name": "Voodoo",
 			"AddTime": 5,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": int(RoleProp.roleprop.power * 0.1),
 			"CanAdd": true,
 			"AttackKind": "real",

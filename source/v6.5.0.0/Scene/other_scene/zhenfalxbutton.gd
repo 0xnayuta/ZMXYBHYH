@@ -26,13 +26,13 @@ func _on_pressed() -> void:
 		"tqz":
 			real_name = "太清阵"
 	var list = PlayerData.player_data[real_name]
-	var Num: int = 0
+	var num: int = 0
 	for i in list:
 		if typeof(list[i]) == TYPE_DICTIONARY:
-			Num += 1
+			num += 1
 	if father != null:
 		father.current_zhen_fa_name = zhenfa_name
-		if father.current_num > Num:
+		if father.current_num > num:
 			father.current_num = 1
 		father.on_change_name()
 		father.add_zhenyan_button()

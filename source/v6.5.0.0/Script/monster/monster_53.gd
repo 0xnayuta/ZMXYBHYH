@@ -16,11 +16,11 @@ func monster_53():
 	self.crit = 8
 	self.miss = 8
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = -20
+	self.htarget = 0
+	self.toughness = -20
 	self.ar = 0
 	self.sp = 20
-	self.Critreduce = 10
+	self.crit_reduce = 10
 	self.speed = 7
 	self.mysee = 400
 	self.attack_range = 160
@@ -67,7 +67,7 @@ func check_have_sh():
 
 func call_bullet():
 	for i in range(randi_range(3, 5)):
-		Bullet = Global.call_chase_bullet(
+		bullet = Global.call_chase_bullet(
 			self.bullet,
 			"Monster53Bullet",
 			250,

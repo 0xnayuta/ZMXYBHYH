@@ -14,11 +14,11 @@ func monster_120():
 	self.crit = 28
 	self.miss = 28
 	self.lucky = 40
-	self.Htarget = 0
-	self.Toughness = 35
+	self.htarget = 0
+	self.toughness = 35
 	self.ar = 65
 	self.sp = 65
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 600
 	self.attack_range = 135
@@ -41,7 +41,7 @@ func monster_120():
 		{
 			"Name": "lpzbuff",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.4,
 			"CanAdd": false,
 			"CanRemove": false,
@@ -57,7 +57,7 @@ func monster_120():
 func _ready() -> void:
 	super._ready()
 	monster_120()
-	Skill_1_CD = 6
+	skill_1_cd = 6
 
 
 func _physics_process(delta: float) -> void:
@@ -73,14 +73,14 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
 				if count % 90 == 0:
 					if randi_range(0, 100) < attack_desire:
 						attack_target()
 						call_bullet_1()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
 				elif count % 60 == 0:
 					var rad = randi_range(0, 100)
@@ -92,7 +92,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 10
+	skill_1_cd = 10
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -104,7 +104,7 @@ func do_hit_2():
 
 func call_bullet_1():
 	var bullet_node
-	if self.MonsterDirection:
+	if self.monster_direction:
 		bullet_node = Global.add_bullet(
 			"Monster120Bullet1", self.bullet, false, 1.5, Vector2(0, 0) + position, "hit1", self.obj_attack_dict["hit1"]
 		)

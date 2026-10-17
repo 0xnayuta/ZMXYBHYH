@@ -26,7 +26,7 @@ var bgm_changed_for_stage_4: bool = false
 
 var is_set_smooth
 var mr: BaseMonster
-var Role_
+var role_
 var my_camera
 var role_information
 var level_stage
@@ -85,16 +85,16 @@ func _ready() -> void:
 	var role_id = int(PlayerData.player_data.get("Myself", 1))
 	if role_id <= 0:
 		role_id = 1
-	Role_ = Global.call_hero("role_" + str(role_id), hero, Vector2(100, 340), false)
+	role_ = Global.call_hero("role_" + str(role_id), hero, Vector2(100, 340), false)
 	if role_information == null:
 		role_information = Global.add_role_information(self, Vector2(0, 0))
 		role_information.z_index = 10
 
-	if Role_ != null:
+	if role_ != null:
 		call_deferred("_spawn_active_pet_deferred")
-		Role_.action.scale.x = -1
-		Role_.base_damagebox.scale.x = -1
-		my_camera = Global.add_camera(Role_, Vector2(0, 0), 1200)
+		role_.action.scale.x = -1
+		role_.base_damagebox.scale.x = -1
+		my_camera = Global.add_camera(role_, Vector2(0, 0), 1200)
 		my_camera.max_left = 0
 		my_camera.max_top = 0
 		my_camera.max_bottom = 590
@@ -233,10 +233,10 @@ func _active_pet_dead_aliases(pet_name: String) -> Array[String]:
 
 
 func _spawn_active_pet_deferred() -> void:
-	if Role_ == null:
+	if role_ == null:
 		return
 	for i in range(20):
-		if Role_.has_method("is_on_floor") and Role_.is_on_floor():
+		if role_.has_method("is_on_floor") and role_.is_on_floor():
 			break
 		await get_tree().physics_frame
 	await _spawn_active_pet()
@@ -376,7 +376,7 @@ func _spawn_active_pet() -> void:
 	var scene := Global.preload_scene_path(scene_path)
 	if scene == null:
 		return
-	if Role_ == null or monster == null:
+	if role_ == null or monster == null:
 		return
 	var pet = scene.instantiate()
 	if pet_kind == "PetYinTiger":
@@ -426,7 +426,7 @@ func _spawn_active_pet() -> void:
 	_place_active_pet_near_role(pet, spawn_position)
 	call_deferred("_place_active_pet_near_role", pet, spawn_position)
 	if pet.has_method("set_summon_properties"):
-		pet.call_deferred("set_summon_properties", Role_, 0.0)
+		pet.call_deferred("set_summon_properties", role_, 0.0)
 
 
 func _pet_dragon_stage_for_level(level: int) -> int:
@@ -1019,8 +1019,8 @@ func _pet_phoenix_scene_path(stage: int) -> String:
 
 
 func _active_pet_spawn_position(pet: Node) -> Vector2:
-	var role_anchor: Vector2 = Role_.global_position
-	var role_pz: Node = Role_.get_node_or_null("pz") if Role_ != null and Role_.has_method("get_node_or_null") else null
+	var role_anchor: Vector2 = role_.global_position
+	var role_pz: Node = role_.get_node_or_null("pz") if role_ != null and role_.has_method("get_node_or_null") else null
 	if role_pz is CollisionShape2D:
 		role_anchor = _collision_shape_bottom_anchor(role_pz)
 	elif role_pz is Node2D:
@@ -1307,7 +1307,7 @@ func _physics_process(_delta: float) -> void:
 		_leave_level_from_exit()
 	elif _is_auto_battle_enabled() and exit_ready:
 		_leave_level_from_exit()
-	if Role_ == null:
+	if role_ == null:
 		if my_camera != null:
 			my_camera.queue_free()
 	set_through()
@@ -1601,24 +1601,24 @@ func check_can_create(stage):
 
 
 func _on_create_control_timeout() -> void:
-	if Role_ != null:
+	if role_ != null:
 		if not is_two_scene:
-			if Role_.position.x < 1600 and current_stage == 0:
+			if role_.position.x < 1600 and current_stage == 0:
 				current_stage = 1
-			if Role_.position.x >= 1600 and Role_.position.x < 2700 and current_stage == 1:
+			if role_.position.x >= 1600 and role_.position.x < 2700 and current_stage == 1:
 				current_stage = 2
-			if Role_.position.x >= 2700 and Role_.position.x < 4000 and current_stage == 2:
+			if role_.position.x >= 2700 and role_.position.x < 4000 and current_stage == 2:
 				current_stage = 3
-			if Role_.position.x >= 4000 and current_stage == 3:
+			if role_.position.x >= 4000 and current_stage == 3:
 				current_stage = 4
 		else:
-			if Role_.position.x < 1000 and current_stage == 0:
+			if role_.position.x < 1000 and current_stage == 0:
 				current_stage = 1
-			if Role_.position.x >= 1300 and Role_.position.x < 2700 and current_stage == 1:
+			if role_.position.x >= 1300 and role_.position.x < 2700 and current_stage == 1:
 				current_stage = 2
-			if Role_.position.x >= 2700 and Role_.position.x < 4000 and current_stage == 2:
+			if role_.position.x >= 2700 and role_.position.x < 4000 and current_stage == 2:
 				current_stage = 3
-			if Role_.position.x >= 4000 and current_stage == 3:
+			if role_.position.x >= 4000 and current_stage == 3:
 				current_stage = 4
 
 	if current_stage >= 1 and current_stage <= 4:

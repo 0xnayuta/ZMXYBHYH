@@ -347,9 +347,9 @@ func _load_tower_floor(floor_number: int, reset_role_position: bool = true) -> v
 	_auto_next_floor_elapsed = -1.0
 	exit.visible = false
 	exit_2.disabled = true
-	if reset_role_position and Role_ != null:
-		Role_.position = Vector2(100.0, 340.0)
-		Role_.velocity = Vector2.ZERO
+	if reset_role_position and role_ != null:
+		role_.position = Vector2(100.0, 340.0)
+		role_.velocity = Vector2.ZERO
 	_save_floor_progress(_tower_floor)
 	_refresh_tower_labels()
 
@@ -452,13 +452,13 @@ func one_check_can_exit() -> bool:
 
 
 func _on_exit_2_body_entered(body: Node2D) -> void:
-	if body == Role_ and _tower_floor_complete:
+	if body == role_ and _tower_floor_complete:
 		can_exit = true
 		_tower_exit_can_use = true
 
 
 func _on_exit_2_body_exited(body: Node2D) -> void:
-	if body == Role_:
+	if body == role_:
 		can_exit = false
 		_tower_exit_can_use = false
 

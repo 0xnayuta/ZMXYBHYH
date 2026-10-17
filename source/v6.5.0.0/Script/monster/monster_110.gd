@@ -17,11 +17,11 @@ func monster_110():
 	self.crit = 20
 	self.miss = 20
 	self.lucky = 0
-	self.Htarget = 20
-	self.Toughness = 20
+	self.htarget = 20
+	self.toughness = 20
 	self.ar = 35
 	self.sp = 35
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 11
 	self.mysee = 500
 	self.attack_range = 235
@@ -45,7 +45,7 @@ func monster_110():
 		{
 			"Name": "speed_down",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.4,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -61,7 +61,7 @@ func monster_110():
 		{
 			"Name": "stun",
 			"AddTime": 1,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -89,13 +89,13 @@ func monster_110():
 func _ready() -> void:
 	super._ready()
 	monster_110()
-	Skill_1_CD = randi_range(2, 5)
-	Skill_2_CD = randi_range(4, 6)
+	skill_1_cd = randi_range(2, 5)
+	skill_2_cd = randi_range(4, 6)
 
 
 func ai_think():
 	if is_rush:
-		if MonsterDirection:
+		if monster_direction:
 			velocity.x = 600
 		else:
 			velocity.x = -600
@@ -108,16 +108,16 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 360:
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						do_hit_1()
 			else:
 				stop_move()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 				if count % 60 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -126,7 +126,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(8, 10)
+	skill_1_cd = randi_range(8, 10)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -138,7 +138,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(15, 17)
+	skill_2_cd = randi_range(15, 17)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -168,7 +168,7 @@ func return_():
 func call_gc():
 	var gc: MonsterBullet
 	var bullet_spawn_positions: Array[Vector2] = []
-	if MonsterDirection:
+	if monster_direction:
 		bullet_spawn_positions = [
 			Vector2(40, 55), Vector2(140, 55), Vector2(240, 55), Vector2(340, 55), Vector2(440, 55)
 		]
@@ -178,7 +178,7 @@ func call_gc():
 		]
 	for i in bullet_spawn_positions:
 		gc = Global.add_bullet(
-			"Monster32Bullet", self.bullet, MonsterDirection, 1, i + position, "hit1", self.obj_attack_dict["hit1"]
+			"Monster32Bullet", self.bullet, monster_direction, 1, i + position, "hit1", self.obj_attack_dict["hit1"]
 		)
 		gc.scale = Vector2(1.2, 1)
 		await get_tree().create_timer(0.2, false).timeout

@@ -18,11 +18,11 @@ func monster_91():
 	self.crit = 10
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 20
-	self.Toughness = 0
+	self.htarget = 20
+	self.toughness = 0
 	self.ar = 20
 	self.sp = 20
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 9
 	self.mysee = 500
 	self.attack_range = 165
@@ -46,7 +46,7 @@ func monster_91():
 		{
 			"Name": "speed_down",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.4,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -62,7 +62,7 @@ func monster_91():
 		{
 			"Name": "stun",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -84,7 +84,7 @@ func monster_91():
 		{
 			"Name": "stun",
 			"AddTime": 30,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -114,13 +114,13 @@ func monster_91():
 func _ready() -> void:
 	super._ready()
 	monster_91()
-	Skill_1_CD = randi_range(3, 4)
-	Skill_3_CD = 18
+	skill_1_cd = randi_range(3, 4)
+	skill_3_cd = 18
 
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(8, 12)
+	skill_1_cd = randi_range(8, 12)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -132,7 +132,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(8, 12)
+	skill_2_cd = randi_range(8, 12)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -144,7 +144,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(8, 12)
+	skill_3_cd = randi_range(8, 12)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -194,19 +194,19 @@ func ai_think():
 						return
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 500:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 300:
 					if count % 90 == 0:
 						if randi_range(0, 100) < attack_desire:
 							attack_target()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				elif Skill_2_CD <= 0:
+				elif skill_2_cd <= 0:
 					do_hit_2()
 				elif count % 90 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -221,7 +221,7 @@ func to_top():
 	if _movement_command_is_blocked():
 		return
 	var po = Vector2(RoleProp.get_nearest_monster_target_position(global_position).x, 100)
-	if MonsterDirection:
+	if monster_direction:
 		po = Vector2(position.x, 100)
 	else:
 		po = Vector2(position.x, 100)
@@ -233,7 +233,7 @@ func to_drop():
 	if _movement_command_is_blocked():
 		velocity = Vector2.ZERO
 		return
-	if MonsterDirection:
+	if monster_direction:
 		velocity.x += 1200
 	else:
 		velocity.x += -1200
@@ -246,7 +246,7 @@ func removeve():
 
 func add_bullet_2():
 	var bullet_spawn_positions
-	if MonsterDirection:
+	if monster_direction:
 		bullet_spawn_positions = Vector2(25, -30)
 	else:
 		bullet_spawn_positions = Vector2(-25, -30)
@@ -254,7 +254,7 @@ func add_bullet_2():
 		Global.add_bullet(
 			"Monster91Bullet2",
 			self.bullet,
-			MonsterDirection,
+			monster_direction,
 			1,
 			bullet_spawn_positions + position,
 			"hit3",
@@ -265,13 +265,13 @@ func add_bullet_2():
 
 func add_bullet():
 	var bullet_spawn_positions = []
-	if MonsterDirection:
+	if monster_direction:
 		bullet_spawn_positions = [Vector2(100, 75), Vector2(180, 75), Vector2(260, 75), Vector2(340, 75)]
 	else:
 		bullet_spawn_positions = [Vector2(-100, 75), Vector2(-180, 75), Vector2(-260, 75), Vector2(-340, 75)]
 	for i in bullet_spawn_positions:
 		var lt = Global.add_bullet(
-			"Monster91Bullet1", self.bullet, MonsterDirection, 2, i + position, "hit2", self.obj_attack_dict["hit2"]
+			"Monster91Bullet1", self.bullet, monster_direction, 2, i + position, "hit2", self.obj_attack_dict["hit2"]
 		)
 		lt.scale.y = 1.5
 		await get_tree().create_timer(0.1, false).timeout

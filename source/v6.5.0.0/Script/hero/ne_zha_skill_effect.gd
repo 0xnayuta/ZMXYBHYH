@@ -37,9 +37,9 @@ func configure(
 	hit_pulses: int,
 	shape_size: Vector2
 ) -> void:
-	Player = source
+	player = source
 	effect_animation = animation_name
-	HitDic = hit_data.duplicate(true)
+	hit_dic = hit_data.duplicate(true)
 	direction = facing_right
 	life_seconds = duration
 	hit_interval = interval
@@ -53,7 +53,7 @@ func _ready() -> void:
 		rectangle = rectangle.duplicate() as RectangleShape2D
 		rectangle.size = collision_size
 		collion.shape = rectangle
-	collion.disabled = HitDic.is_empty() or float(HitDic.get("power", 0.0)) <= 0.0
+	collion.disabled = hit_dic.is_empty() or float(hit_dic.get("power", 0.0)) <= 0.0
 	bullet_player.frame_changed.connect(_update_visual_collision)
 	bullet_player.animation_finished.connect(_on_effect_animation_finished)
 	bullet_player.play(effect_animation)
@@ -72,12 +72,12 @@ func _ready() -> void:
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	super._on_hit_box_area_entered(area)
-	if effect_animation != &"effect5_8" or not HitDic.has("addeffect"):
+	if effect_animation != &"effect5_8" or not hit_dic.has("addeffect"):
 		return
 	var target := _get_monster_from_hit_area(area)
 	if target == null or _is_summon_or_pet_target(target) or target.buff == null:
 		return
-	Global.add_buff(target.buff, HitDic["addeffect"])
+	Global.add_buff(target.buff, hit_dic["addeffect"])
 
 
 func _physics_process(delta: float) -> void:
@@ -98,7 +98,7 @@ func _physics_process(delta: float) -> void:
 			orbit_angle += TAU
 	elif is_instance_valid(follow_target):
 		if follow_target_facing and follow_target is BaseHero:
-			direction = follow_target.PlayerDir
+			direction = follow_target.player_dir
 			middle.scale.x = _facing_scale()
 		global_position = (
 			follow_target.global_position + Vector2(follow_offset.x if direction else -follow_offset.x, follow_offset.y)
@@ -187,5 +187,5 @@ func _update_visual_collision() -> void:
 
 
 func _refresh_collision_state() -> void:
-	var has_damage := not HitDic.is_empty() and float(HitDic.get("power", 0.0)) > 0.0
+	var has_damage := not hit_dic.is_empty() and float(hit_dic.get("power", 0.0)) > 0.0
 	collion.set_deferred("disabled", not has_damage or _damage_exhausted or _rearming or not _visual_collision_visible)

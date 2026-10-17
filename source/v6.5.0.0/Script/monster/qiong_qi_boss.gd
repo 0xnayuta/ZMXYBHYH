@@ -5,7 +5,7 @@ const BODY_FRAME_COUNT := 42
 const BODY_FRAME_COLUMNS := 6
 const SOURCE_FPS := 24.0
 const EFFECT_ROOT := "res://Art/Monster/QiongQi/Effects"
-const EFFECT_NAMES := ["Bullet1", "Bullet2", "Bullet3"]
+const EFFECT_NAMES := ["bullet_1", "bullet_2", "bullet_3"]
 static var _effect_frames_cache: Dictionary = {}
 static var _effect_prewarm_started := false
 const BODY_SPRITE_POSITION := Vector2(-15, -81)
@@ -28,8 +28,8 @@ func _ready() -> void:
 	_configure_qiongqi()
 	_build_original_animations()
 	super._ready()
-	Skill_1_CD = randi_range(10, 12)
-	Skill_2_CD = randi_range(5, 8)
+	skill_1_cd = randi_range(10, 12)
+	skill_2_cd = randi_range(5, 8)
 
 
 func _configure_qiongqi() -> void:
@@ -46,11 +46,11 @@ func _configure_qiongqi() -> void:
 	crit = 70
 	miss = 20
 	lucky = 10
-	Htarget = 100
-	Toughness = 20
+	htarget = 100
+	toughness = 20
 	ar = 0
 	sp = 0
-	Critreduce = 0
+	crit_reduce = 0
 	speed = 15
 	mysee = 1000
 	attack_range = 200
@@ -163,9 +163,9 @@ func ai_think() -> void:
 		return
 	_apply_nearby_aura()
 	var distance := absf(RoleProp.get_nearest_monster_target_position(global_position).x - position.x)
-	if Skill_1_CD <= 0:
+	if skill_1_cd <= 0:
 		_use_charge_skill()
-	elif distance < 400.0 and Skill_2_CD <= 0:
+	elif distance < 400.0 and skill_2_cd <= 0:
 		_use_ground_spell()
 	elif distance <= attack_range:
 		if count % 45 == 0:
@@ -177,7 +177,7 @@ func ai_think() -> void:
 func _use_charge_skill() -> void:
 	_skill_busy = true
 	super.to_hero()
-	Skill_1_CD = randi_range(10, 12)
+	skill_1_cd = randi_range(10, 12)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -194,7 +194,7 @@ func _use_charge_skill() -> void:
 func _use_ground_spell() -> void:
 	_skill_busy = true
 	super.to_hero()
-	Skill_2_CD = randi_range(5, 8)
+	skill_2_cd = randi_range(5, 8)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -208,23 +208,23 @@ func _use_ground_spell() -> void:
 
 
 func _on_normal_strike() -> void:
-	var direction := 1.0 if MonsterDirection else -1.0
-	_spawn_effect("Bullet1", Vector2(direction * 190.0, bullet1_height))
+	var direction := 1.0 if monster_direction else -1.0
+	_spawn_effect("bullet_1", Vector2(direction * 190.0, bullet1_height))
 
 
 func _spawn_charge_effect() -> void:
-	var direction := 1.0 if MonsterDirection else -1.0
-	_spawn_effect("Bullet2", Vector2(direction * 150.0, bullet2_height), true)
+	var direction := 1.0 if monster_direction else -1.0
+	_spawn_effect("bullet_2", Vector2(direction * 150.0, bullet2_height), true)
 
 
 func _begin_charge_dash() -> void:
-	var direction := 1.0 if MonsterDirection else -1.0
+	var direction := 1.0 if monster_direction else -1.0
 	velocity.x = direction * 30.0 * SOURCE_FPS
 
 
 func _on_ground_spell() -> void:
-	var direction := 1.0 if MonsterDirection else -1.0
-	_spawn_effect("Bullet3", Vector2(direction * 150.0, bullet3_height))
+	var direction := 1.0 if monster_direction else -1.0
+	_spawn_effect("bullet_3", Vector2(direction * 150.0, bullet3_height))
 
 
 func _on_hit_box_area_entered(area: Area2D) -> Node2D:
@@ -285,7 +285,7 @@ func _spawn_effect(folder: String, local_offset: Vector2, follow_boss := false) 
 	if not MonsterAtlasSequence.configure_stream_for_paths(effect, source_paths):
 		effect.frame_paths = source_paths
 	effect.fps = SOURCE_FPS
-	effect.flip_h = MonsterDirection
+	effect.flip_h = monster_direction
 	effect.z_index = 5
 	if follow_boss:
 		add_child(effect)

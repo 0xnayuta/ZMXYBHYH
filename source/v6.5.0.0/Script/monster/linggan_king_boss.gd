@@ -74,9 +74,9 @@ func _configure_boss() -> void:
 	mdef = int(config["mdef"])
 	crit = int(config["crit"])
 	miss = int(config["miss"])
-	Htarget = int(config["hit"])
-	Toughness = float(config.get("toughness", 0.0))
-	Critreduce = int(config.get("crit_reduce", 0))
+	htarget = int(config["hit"])
+	toughness = float(config.get("toughness", 0.0))
+	crit_reduce = int(config.get("crit_reduce", 0))
 	ar = int(config["armor_break"])
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
@@ -509,7 +509,7 @@ func state_death() -> void:
 		skill4_leap_completed.emit()
 	_finish_skill2_dash()
 	_disable_attack_box()
-	NoGrav = false
+	no_grav = false
 	velocity = Vector2.ZERO
 	if hurt_box != null:
 		hurt_box.set_deferred("disabled", true)

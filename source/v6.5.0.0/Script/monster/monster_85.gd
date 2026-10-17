@@ -17,11 +17,11 @@ func monster_85():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 18
-	self.Toughness = 0
+	self.htarget = 18
+	self.toughness = 0
 	self.ar = 10
 	self.sp = 10
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 300
 	self.attack_range = 165
@@ -39,7 +39,7 @@ func monster_85():
 		{
 			"Name": "poision",
 			"AddTime": 1,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 20,
 			"AttackKind": "real",
 			"CanAdd": true,
@@ -55,7 +55,7 @@ func monster_85():
 		{
 			"Name": "MagicDrain",
 			"AddTime": 3.0,
-			"ReduceInterval": 1.0,
+			"reduce_interval": 1.0,
 			"value": 0,
 			"CanAdd": false,
 			"AttackKind": "control"
@@ -70,7 +70,7 @@ func monster_85():
 		{
 			"Name": "poision",
 			"AddTime": 2,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 50,
 			"AttackKind": "real",
 			"CanAdd": true,
@@ -86,7 +86,7 @@ func monster_85():
 		{
 			"Name": "stun",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -102,7 +102,7 @@ func monster_85():
 		{
 			"Name": "speed_down",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.55,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -118,7 +118,7 @@ func monster_85():
 		{
 			"Name": "poision",
 			"AddTime": 2,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 80,
 			"AttackKind": "real",
 			"CanAdd": true,
@@ -147,9 +147,9 @@ func monster_85():
 
 
 func _ready() -> void:
-	Skill_1_CD = 0
-	Skill_2_CD = 0
-	Skill_3_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
+	skill_3_cd = 0
 	super._ready()
 	monster_85()
 
@@ -180,20 +180,20 @@ func ai_think():
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 600:
-					if Skill_3_CD <= 0:
+					if skill_3_cd <= 0:
 						do_hit_3()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 400:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_2()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 				if count % 60 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -202,7 +202,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(12, 15)
+	skill_1_cd = randi_range(12, 15)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -214,7 +214,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(8, 10)
+	skill_2_cd = randi_range(8, 10)
 	velocity.x = 0
 	hit_name = "hit3"
 	is_attacking = true
@@ -226,7 +226,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(14, 16)
+	skill_3_cd = randi_range(14, 16)
 	velocity.x = 0
 	hit_name = "hit5"
 	is_attacking = true
@@ -267,14 +267,14 @@ func call_ltwj():
 
 func add_bullet():
 	var target_position: Vector2
-	if MonsterDirection:
+	if monster_direction:
 		target_position = Vector2(55, 5)
 	else:
 		target_position = Vector2(-55, 5)
 	var arrow = Global.add_bullet(
 		"Monster85Bullet3",
 		self.bullet,
-		MonsterDirection,
+		monster_direction,
 		1,
 		target_position + position,
 		"hit1",
@@ -288,7 +288,7 @@ func add_sd():
 	]
 	for i in bullet_spawn_positions:
 		Global.add_bullet(
-			"Monster85Bullet2", self.bullet, MonsterDirection, 1, i + position, "hit5", self.obj_attack_dict["hit5"]
+			"Monster85Bullet2", self.bullet, monster_direction, 1, i + position, "hit5", self.obj_attack_dict["hit5"]
 		)
 
 

@@ -72,9 +72,9 @@ func _configure_boss(config: Dictionary = {}) -> void:
 	mdef = int(config["mdef"])
 	crit = int(config["crit"])
 	miss = int(config["miss"])
-	Htarget = int(config["hit"])
-	Toughness = float(config["toughness"])
-	Critreduce = int(config["crit_reduce"])
+	htarget = int(config["hit"])
+	toughness = float(config["toughness"])
+	crit_reduce = int(config["crit_reduce"])
 	ar = int(config["armor_break"])
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
@@ -419,7 +419,7 @@ func state_death() -> void:
 	_busy = true
 	_finish_golden_dash()
 	_disable_attack_box()
-	NoGrav = false
+	no_grav = false
 	velocity = Vector2.ZERO
 	if hurt_box != null:
 		hurt_box.set_deferred("disabled", true)

@@ -13,11 +13,11 @@ func monster_104():
 	self.crit = 20
 	self.miss = 20
 	self.lucky = 0
-	self.Htarget = 20
-	self.Toughness = 20
+	self.htarget = 20
+	self.toughness = 20
 	self.ar = 25
 	self.sp = 25
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 11
 	self.mysee = 500
 	self.attack_range = 365
@@ -35,7 +35,7 @@ func monster_104():
 		{
 			"Name": "Fire",
 			"AddTime": 5,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 100,
 			"AttackKind": "magic",
 			"CanAdd": false,
@@ -51,7 +51,7 @@ func monster_104():
 		{
 			"Name": "Fire",
 			"AddTime": 8,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": 150,
 			"AttackKind": "magic",
 			"CanAdd": false,
@@ -75,11 +75,11 @@ func _ready() -> void:
 
 func call_bullet_1():
 	var bullet_node
-	if self.MonsterDirection:
+	if self.monster_direction:
 		bullet_node = Global.add_bullet(
 			"Monster104Bullet",
 			self.bullet,
-			MonsterDirection,
+			monster_direction,
 			1,
 			Vector2(30, 25) + position,
 			"hit1",
@@ -89,7 +89,7 @@ func call_bullet_1():
 		bullet_node = Global.add_bullet(
 			"Monster104Bullet",
 			self.bullet,
-			MonsterDirection,
+			monster_direction,
 			1,
 			Vector2(-30, 25) + position,
 			"hit1",

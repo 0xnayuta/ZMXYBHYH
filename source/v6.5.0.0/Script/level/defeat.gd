@@ -64,7 +64,7 @@ func _ready() -> void:
 	box_1.set_button_icon(load_("xczg"))
 	box_1.qh_level = 0
 	box_1.wx = []
-	box_1.EQ_prop = AE.all_equipment["xczg"]
+	box_1.eq_prop = AE.all_equipment["xczg"]
 	if MainSet.is_auto_battle_enabled() and bool(MainSet.set_data.get("AutoBattleRetry", false)):
 		call_deferred("_auto_rechallenge")
 

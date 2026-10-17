@@ -14,11 +14,11 @@ func monster_74():
 	self.crit = 10
 	self.miss = 8
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 20
+	self.htarget = 0
+	self.toughness = 20
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 9
 	self.mysee = 400
 	self.attack_range = 200
@@ -52,7 +52,7 @@ func monster_74():
 func _ready() -> void:
 	super._ready()
 	monster_74()
-	Skill_1_CD = 0
+	skill_1_cd = 0
 
 
 func ai_think():
@@ -64,7 +64,7 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270:
 						do_hit_2()
 					else:
@@ -72,7 +72,7 @@ func ai_think():
 				else:
 					have_target()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270:
 						do_hit_2()
 					else:
@@ -85,7 +85,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 8
+	skill_1_cd = 8
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true

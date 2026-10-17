@@ -76,7 +76,7 @@ func _play_scene_animations(node: Node) -> void:
 
 func _physics_process(delta: float) -> void:
 	_clock += delta
-	var role = _level.Role_
+	var role = _level.role_
 	if not is_instance_valid(role):
 		return
 	if _level.stage_number == 73:

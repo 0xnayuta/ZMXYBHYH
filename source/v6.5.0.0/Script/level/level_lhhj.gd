@@ -112,60 +112,60 @@ func _physics_process(delta: float) -> void:
 	if not is_set:
 		for u in Global.lhhj_boss_list:
 			var i = Global.lhhj_boss_list[u]
-			var Monster
+			var monster
 			var id = i["Num"]
 			var local = Vector2(1100, 400)
 			if id == 33 or id == 24 or id == 56:
 				local = Vector2(700, 390)
-			Monster = Global.create_monster(i["Num"], monster, local)
-			if Monster == null:
+			monster = Global.create_monster(i["Num"], monster, local)
+			if monster == null:
 				continue
 			if i["Name"] != null and str(i["Name"]) != "":
-				Monster.my_mr_name = str(i["Name"])
+				monster.my_mr_name = str(i["Name"])
 			if int(i["Level"]) > 0:
-				Monster.level = i["Level"]
+				monster.level = i["Level"]
 			if int(i["SHp"]) > 0:
-				Monster.SHp = i["SHp"]
-				Monster.Hp = Monster.SHp
+				monster.SHp = i["SHp"]
+				monster.Hp = monster.SHp
 			if int(i["def"]) > 0:
-				Monster.def = i["def"]
+				monster.def = i["def"]
 			if int(i["mdef"]) > 0:
-				Monster.mdef = i["mdef"]
+				monster.mdef = i["mdef"]
 			if int(i["crit"]) > 0:
-				Monster.crit = i["crit"]
+				monster.crit = i["crit"]
 			if int(i["miss"]) > 0:
-				Monster.miss = i["miss"]
+				monster.miss = i["miss"]
 			if int(i["lucky"]) > 0:
-				Monster.lucky = i["lucky"]
-			if int(i["Htarget"]) > 0:
-				Monster.Htarget = i["Htarget"]
-			if int(i["Toughness"]) > 0:
-				Monster.Toughness = i["Toughness"]
-			if int(i["Critreduce"]) > 0:
-				Monster.Critreduce = i["Critreduce"]
+				monster.lucky = i["lucky"]
+			if int(i["htarget"]) > 0:
+				monster.htarget = i["htarget"]
+			if int(i["toughness"]) > 0:
+				monster.toughness = i["toughness"]
+			if int(i["crit_reduce"]) > 0:
+				monster.crit_reduce = i["crit_reduce"]
 			if int(i["ar"]) > 0:
-				Monster.ar = i["ar"]
+				monster.ar = i["ar"]
 			if int(i["sp"]) > 0:
-				Monster.sp = i["sp"]
+				monster.sp = i["sp"]
 			if int(i["speed"]) > 0:
-				Monster.speed = i["speed"]
+				monster.speed = i["speed"]
 			if int(i["self_rhp"]) > 0:
-				Monster.self_rhp = i["self_rhp"]
+				monster.self_rhp = i["self_rhp"]
 			if float(i["ebol"]) > 0:
-				Monster.ebol = i["ebol"]
-			Monster.fall_list = []
-			Monster.add_exp = 0
-			Monster.fall_coin = 0
-			Monster.fall_pro = 0
-			Monster.fall_stone_pro = 0
-			Monster.fall_stone = []
+				monster.ebol = i["ebol"]
+			monster.fall_list = []
+			monster.add_exp = 0
+			monster.fall_coin = 0
+			monster.fall_pro = 0
+			monster.fall_stone_pro = 0
+			monster.fall_stone = []
 			if int(i["power"]) > 0:
-				for z in Monster.obj_attack_dict:
-					if Monster.obj_attack_dict[z].has("power"):
-						Monster.obj_attack_dict[z]["power"] = i["power"]
+				for z in monster.obj_attack_dict:
+					if monster.obj_attack_dict[z].has("power"):
+						monster.obj_attack_dict[z]["power"] = i["power"]
 		is_set = true
 	if not is_cc:
-		if Role_.position.x >= 600:
+		if role_.position.x >= 600:
 			create_control.wait_time = 3
 			create_control.start()
 			is_cc = true

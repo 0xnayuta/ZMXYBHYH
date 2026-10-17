@@ -67,7 +67,7 @@ func _ready() -> void:
 		add_child(buff_node)
 		buff = buff_node
 
-	NoDeBuff = false
+	no_debuff = false
 
 	initialize_monster_properties()
 

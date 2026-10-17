@@ -14,12 +14,12 @@ var mdef = 0
 var crit = 0
 var miss = 0
 var lucky = 0
-var Htarget = 0
-var Toughness = 0
+var htarget = 0
+var toughness = 0
 var ar = 0
 var sp = 0
-var Critreduce = 0
-var AttList
+var crit_reduce = 0
+var att_list
 var obj_attack_dict = {}
 var hit_name
 var total_hit = 0
@@ -132,18 +132,18 @@ func get_prop():
 		crit = tt.crit
 		miss = tt.miss
 		lucky = tt.lucky
-		Htarget = tt.Htarget
-		Toughness = tt.Toughness
+		htarget = tt.htarget
+		toughness = tt.toughness
 		ar = tt.ar
 		sp = tt.sp
-		Critreduce = tt.Critreduce
+		crit_reduce = tt.crit_reduce
 		total_hit = tt.total_hit
 
 		if name_ == "Monster1402Bullet3" and owner_monster == null:
 			owner_monster = tt
 
 	if hit_name != "":
-		self.obj_attack_dict[hit_name] = AttList
+		self.obj_attack_dict[hit_name] = att_list
 
 
 func _on_que_timeout() -> void:
@@ -170,12 +170,12 @@ func add_other_bullet():
 	match name_:
 		"Monster33Bullet":
 			Global.add_bullet(
-				"Monster33Bullet", get_parent(), false, 1, Vector2(self.position.x, self.position.y), hit_name, AttList
+				"Monster33Bullet", get_parent(), false, 1, Vector2(self.position.x, self.position.y), hit_name, att_list
 			)
 		"Monster37Bullet":
 			Global.add_bullet(
-				"Monster37Bullet", get_parent(), false, 1, Vector2(self.position.x, self.position.y), hit_name, AttList
+				"Monster37Bullet", get_parent(), false, 1, Vector2(self.position.x, self.position.y), hit_name, att_list
 			)
 			Global.add_bullet(
-				"PoisionBullet", get_parent(), false, 1, Vector2(self.position.x, self.position.y), hit_name, AttList
+				"PoisionBullet", get_parent(), false, 1, Vector2(self.position.x, self.position.y), hit_name, att_list
 			)

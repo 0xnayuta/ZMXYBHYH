@@ -458,7 +458,7 @@ class AtlasStreamingFrameEffect:
 
 @onready var sprite: AnimatedSprite2D = $Sprite2D
 
-var Player: Node2D
+var player: Node2D
 var sword_id: String = ""
 var _follow_tick: int = 0
 var _follow_tween: Tween
@@ -512,7 +512,7 @@ func cast_skill() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not is_instance_valid(Player):
+	if not is_instance_valid(player):
 		queue_free()
 		return
 	_update_hover_float(delta)
@@ -887,7 +887,7 @@ func _get_zhuxian_effect_position(target: BaseMonster) -> Vector2:
 	if is_instance_valid(target):
 		return target.global_position + Vector2(0, -45)
 	var dir_x := -1.0 if _get_player_direction() else 1.0
-	return Player.global_position + Vector2(dir_x * 300.0, -80.0)
+	return player.global_position + Vector2(dir_x * 300.0, -80.0)
 
 
 func _get_player_direction() -> bool:
@@ -898,8 +898,8 @@ func _get_follow_origin() -> Vector2:
 	if RoleProp.role_pos_x is int or RoleProp.role_pos_x is float:
 		if RoleProp.role_pos_y is int or RoleProp.role_pos_y is float:
 			return Vector2(float(RoleProp.role_pos_x), float(RoleProp.role_pos_y))
-	if is_instance_valid(Player):
-		return Player.position
+	if is_instance_valid(player):
+		return player.position
 	return position
 
 
@@ -918,7 +918,7 @@ func _damage_sword_targets(
 	direction = null,
 	hit_radius: float = IMPACT_RADIUS
 ) -> void:
-	if Player == null or not is_instance_valid(Player):
+	if player == null or not is_instance_valid(player):
 		return
 	var hit_dic := {
 		"power": int(int(RoleProp.roleprop.get("power", 0)) * _get_power_rate()),
@@ -931,7 +931,7 @@ func _damage_sword_targets(
 		hit_dic["addeffect"] = {
 			"Name": "stun",
 			"AddTime": stun_time,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "magic",
 			"CanAdd": false,
@@ -989,7 +989,7 @@ func _spawn_sword_hit_bullet(center: Vector2, hit_radius: float, hit_dic: Dictio
 	parent.add_child(bullet)
 	bullet.global_position = center
 	bullet.name_ = "SwordArrayHit"
-	bullet.HitDic = hit_dic
+	bullet.hit_dic = hit_dic
 	bullet.direction = direction
 	bullet.set_meta("sword_array_damage", true)
 	bullet.visible = false
@@ -1093,7 +1093,7 @@ func _get_highest_hp_monster() -> BaseMonster:
 	for monster in monster_parent.get_children():
 		if not is_instance_valid(monster) or not (monster is BaseMonster):
 			continue
-		if monster.get("NoTarget") != null and monster.NoTarget:
+		if monster.get("no_target") != null and monster.no_target:
 			continue
 		if int(monster.Hp) <= 0:
 			continue
@@ -1104,9 +1104,9 @@ func _get_highest_hp_monster() -> BaseMonster:
 
 
 func _get_monster_parent() -> Node:
-	if Player == null or not is_instance_valid(Player):
+	if player == null or not is_instance_valid(player):
 		return null
-	var player_parent := Player.get_parent()
+	var player_parent := player.get_parent()
 	if player_parent == null or player_parent.get_parent() == null:
 		return null
 	return player_parent.get_parent().get("monster") as Node
@@ -1120,9 +1120,9 @@ func _add_defe_reduce(monster: BaseMonster) -> void:
 		. add_buff(
 			monster.buff,
 			{
-				"Name": "DefeReduce",
+				"Name": "defe_reduce",
 				"AddTime": 8,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": SWORD_ARRAY_DEFE_REDUCE_VALUE,
 				"AttackKind": "",
 				"DeBuff": true,
@@ -1141,7 +1141,7 @@ func _add_short_stun(monster: BaseMonster, stun_time: float) -> void:
 			{
 				"Name": "stun",
 				"AddTime": stun_time,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 				"CanAdd": false,
@@ -1193,7 +1193,7 @@ func _release_sword_hurt_animation(monster: BaseMonster, token: int) -> void:
 
 
 func _apply_role_attack_control(monster: BaseMonster, source: RoleBullet) -> void:
-	if monster == null or not is_instance_valid(monster) or Player == null or not is_instance_valid(Player):
+	if monster == null or not is_instance_valid(monster) or player == null or not is_instance_valid(player):
 		return
 	if monster.is_control_immune():
 		return

@@ -14,11 +14,11 @@ func monster_6():
 	self.crit = 5
 	self.miss = 0
 	self.lucky = 15
-	self.Htarget = 10
-	self.Toughness = 0
+	self.htarget = 10
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 11
 	self.mysee = 600
 	self.attack_range = 160
@@ -42,7 +42,7 @@ func monster_6():
 		{
 			"Name": "Ice",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"CanAdd": false,
 			"DeBuff": true,
@@ -58,7 +58,7 @@ func monster_6():
 		{
 			"Name": "Bleed",
 			"AddTime": 5,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"CanAdd": true,
 			"value": 20,
 			"AttackKind": "real",
@@ -96,9 +96,9 @@ func monster_6():
 func _ready() -> void:
 	super._ready()
 	monster_6()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
-	Skill_3_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
+	skill_3_cd = 0
 
 
 func ai_think():
@@ -110,20 +110,20 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_4()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_3()
 				if count % 90 == 0:
 					do_hit_1()
 			else:
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_4()
-				elif Skill_1_CD <= 0:
+				elif skill_1_cd <= 0:
 					do_hit_2()
-				elif Skill_2_CD <= 0:
+				elif skill_2_cd <= 0:
 					do_hit_3()
 				elif count % 90 == 0:
 					var rad = randi_range(0, 100)
@@ -153,7 +153,7 @@ func do_hit_2():
 	is_attacking = true
 	mr_player.play("qnbx")
 	await mr_player.animation_finished
-	Skill_1_CD = 19
+	skill_1_cd = 19
 	is_attacking = false
 	return
 
@@ -165,7 +165,7 @@ func do_hit_3():
 	is_attacking = true
 	mr_player.play("qnhb")
 	await mr_player.animation_finished
-	Skill_2_CD = 16
+	skill_2_cd = 16
 	is_attacking = false
 	return
 
@@ -176,14 +176,14 @@ func do_hit_4():
 	is_attacking = true
 	mr_player.play("htsl")
 	await mr_player.animation_finished
-	Skill_3_CD = 12
+	skill_3_cd = 12
 	is_attacking = false
 	return
 
 
 func call_m6_bullet():
 	var fz
-	var dir = self.MonsterDirection
+	var dir = self.monster_direction
 	if dir:
 		fz = Global.call_fly_bullet(
 			self.bullet,
@@ -226,7 +226,7 @@ func call_bfx():
 
 
 func m6_hb_effect_2():
-	var dir = self.MonsterDirection
+	var dir = self.monster_direction
 	var position_x = [
 		self.position.x,
 		self.position.x - 110,
@@ -272,7 +272,7 @@ func m6_hb_effect_2():
 
 
 func m6_hb_effect_3():
-	var dir = self.MonsterDirection
+	var dir = self.monster_direction
 	if dir:
 		Global.add_bullet(
 			"htsl",

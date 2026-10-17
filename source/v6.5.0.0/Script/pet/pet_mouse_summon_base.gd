@@ -122,17 +122,17 @@ func _rebuild_pet_turtle_attack_data() -> void:
 
 
 func setup_skills() -> void:
-	Skill_1_CD = MOUSE_SKILL_INITIAL_CDS[SKILL_SC] * pet_skill_cooldown_multiplier
-	Skill_2_CD = MOUSE_SKILL_INITIAL_CDS[SKILL_HXFB] * pet_skill_cooldown_multiplier
-	Skill_3_CD = MOUSE_SKILL_INITIAL_CDS[SKILL_ZSAOYI] * pet_skill_cooldown_multiplier
-	Skill_4_CD = 0.0
+	skill_1_cd = MOUSE_SKILL_INITIAL_CDS[SKILL_SC] * pet_skill_cooldown_multiplier
+	skill_2_cd = MOUSE_SKILL_INITIAL_CDS[SKILL_HXFB] * pet_skill_cooldown_multiplier
+	skill_3_cd = MOUSE_SKILL_INITIAL_CDS[SKILL_ZSAOYI] * pet_skill_cooldown_multiplier
+	skill_4_cd = 0.0
 
 
 func _unlock_new_stage_skill_cooldowns(previous_skills: Array) -> void:
 	if not previous_skills.has(MOUSE_SKILL_NAMES[SKILL_HXFB]) and _has_skill(SKILL_HXFB):
-		Skill_2_CD = 0.0
+		skill_2_cd = 0.0
 	if not previous_skills.has(MOUSE_SKILL_NAMES[SKILL_ZSAOYI]) and _has_skill(SKILL_ZSAOYI):
-		Skill_3_CD = 0.0
+		skill_3_cd = 0.0
 
 
 func _has_skill(skill_id: String) -> bool:
@@ -154,11 +154,11 @@ func try_use_skills() -> void:
 	if is_attacking or is_be_attacking or not is_instance_valid(current_target):
 		return
 	var distance := global_position.distance_to(current_target.global_position)
-	if distance <= 400.0 and Skill_3_CD <= 0.0 and _can_use_mouse_skill(SKILL_ZSAOYI):
+	if distance <= 400.0 and skill_3_cd <= 0.0 and _can_use_mouse_skill(SKILL_ZSAOYI):
 		do_mouse_aoyi()
-	elif distance <= 400.0 and Skill_2_CD <= 0.0 and _can_use_mouse_skill(SKILL_HXFB):
+	elif distance <= 400.0 and skill_2_cd <= 0.0 and _can_use_mouse_skill(SKILL_HXFB):
 		do_mouse_boomerang()
-	elif Skill_1_CD <= 0.0 and _can_use_mouse_skill(SKILL_SC) and (turtle_stage == 1 or distance <= 300.0):
+	elif skill_1_cd <= 0.0 and _can_use_mouse_skill(SKILL_SC) and (turtle_stage == 1 or distance <= 300.0):
 		do_mouse_dash()
 
 
@@ -206,7 +206,7 @@ func do_mouse_dash(without_mana: bool = false, set_cooldown: bool = true) -> voi
 		return
 	_face_current_target()
 	if set_cooldown:
-		Skill_1_CD = MOUSE_SKILL_CDS[SKILL_SC] * pet_skill_cooldown_multiplier
+		skill_1_cd = MOUSE_SKILL_CDS[SKILL_SC] * pet_skill_cooldown_multiplier
 	hit_name = "hit2"
 	_start_turtle_action("hit2")
 
@@ -216,7 +216,7 @@ func do_mouse_boomerang(without_mana: bool = false, set_cooldown: bool = true) -
 		return
 	_face_current_target()
 	if set_cooldown:
-		Skill_2_CD = MOUSE_SKILL_CDS[SKILL_HXFB] * pet_skill_cooldown_multiplier
+		skill_2_cd = MOUSE_SKILL_CDS[SKILL_HXFB] * pet_skill_cooldown_multiplier
 	hit_name = "hit3"
 	_start_turtle_action("hit3")
 
@@ -225,7 +225,7 @@ func do_mouse_aoyi() -> void:
 	if not _consume_skill(SKILL_ZSAOYI):
 		return
 	_face_current_target()
-	Skill_3_CD = MOUSE_SKILL_CDS[SKILL_ZSAOYI] * pet_skill_cooldown_multiplier
+	skill_3_cd = MOUSE_SKILL_CDS[SKILL_ZSAOYI] * pet_skill_cooldown_multiplier
 	_mouse_aoyi_step = 1
 	_spawn_mouse_effect("AoyiBuff", _mouse_role_origin(), "", {}, true)
 	if _has_skill(SKILL_SC):
@@ -282,7 +282,7 @@ func _process_turtle_action_triggers() -> void:
 				_spawn_normal_attack()
 		"hit2":
 			if _turtle_action_tick <= 9:
-				velocity.x = -MOUSE_DASH_SPEED_PER_SECOND if MonsterDirection else MOUSE_DASH_SPEED_PER_SECOND
+				velocity.x = -MOUSE_DASH_SPEED_PER_SECOND if monster_direction else MOUSE_DASH_SPEED_PER_SECOND
 			else:
 				velocity.x = 0.0
 			if _trigger_once("mouse_hit2", 10):
@@ -352,8 +352,8 @@ func _spawn_dash_attack() -> void:
 
 func _spawn_boomerangs() -> void:
 	var attack_key := "aoyi_hit3" if _mouse_aoyi_step > 0 else "hit3"
-	var x_velocity := -35.0 if MonsterDirection else 35.0
-	var x_acceleration := 1.0 if MonsterDirection else -1.0
+	var x_velocity := -35.0 if monster_direction else 35.0
+	var x_acceleration := 1.0 if monster_direction else -1.0
 	for motion in [Vector2(x_velocity, 0), Vector2(x_velocity, -4), Vector2(x_velocity, -8)]:
 		var y_acceleration := 0.0 if motion.y == 0.0 else 0.25 if motion.y == -4.0 else 0.125
 		_spawn_mouse_effect(
@@ -381,9 +381,9 @@ func _spawn_mouse_effect(
 	if bullet == null:
 		return null
 	var instance = PET_MOUSE_BULLET_SCENE.instantiate()
-	instance.AttList = attack_data
+	instance.att_list = attack_data
 	instance.hit_name = attack_name
-	instance.dir = MonsterDirection
+	instance.dir = monster_direction
 	instance.skill_name = effect_name
 	instance.speed = 1.0
 	instance.set_meta("summoner", self)

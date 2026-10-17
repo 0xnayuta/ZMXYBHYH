@@ -23,11 +23,11 @@ func monster_55():
 		self.crit = 20
 		self.miss = 15
 		self.lucky = 15
-		self.Htarget = 15
-		self.Toughness = 0
+		self.htarget = 15
+		self.toughness = 0
 		self.ar = 0
 		self.sp = 80
-		self.Critreduce = 0
+		self.crit_reduce = 0
 		self.speed = 6
 		self.mysee = 400
 		self.attack_range = 185
@@ -46,7 +46,7 @@ func monster_55():
 			{
 				"Name": "stun",
 				"AddTime": 3,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"CanAdd": false,
 				"DeBuff": true,
 				"value": 0,
@@ -62,7 +62,7 @@ func monster_55():
 				"Name": "stun",
 				"DeBuff": true,
 				"AddTime": 3,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 			}
@@ -86,11 +86,11 @@ func monster_55():
 	self.crit = 10
 	self.miss = 8
 	self.lucky = 15
-	self.Htarget = 15
-	self.Toughness = 0
+	self.htarget = 15
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 6
 	self.mysee = 400
 	self.attack_range = 185
@@ -109,7 +109,7 @@ func monster_55():
 		{
 			"Name": "stun",
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"CanAdd": false,
 			"DeBuff": true,
 			"value": 0,
@@ -125,7 +125,7 @@ func monster_55():
 			"Name": "stun",
 			"DeBuff": true,
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 		}
@@ -138,9 +138,9 @@ func monster_55():
 
 func _ready() -> void:
 	super._ready()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
-	Skill_3_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
+	skill_3_cd = 0
 	monster_55()
 
 
@@ -154,24 +154,24 @@ func ai_think():
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 600:
-					if Skill_3_CD <= 0:
+					if skill_3_cd <= 0:
 						do_hit_3()
 					else:
-						if Skill_1_CD <= 0:
+						if skill_1_cd <= 0:
 							do_hit_1()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 900:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_2()
 			else:
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 				else:
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						if count % 100 == 0:
 							do_hit_1()
 						else:
 							stop_move()
-					elif Skill_2_CD <= 0:
+					elif skill_2_cd <= 0:
 						do_hit_2()
 					else:
 						stop_move()
@@ -210,7 +210,7 @@ func state_death():
 func do_hit_1():
 	super.to_hero()
 	zlw_special_effect.state = true
-	Skill_1_CD = 1
+	skill_1_cd = 1
 	hit_name = "wqml"
 	velocity.x = 0
 	is_attacking = true
@@ -223,7 +223,7 @@ func do_hit_1():
 func do_hit_2():
 	super.to_hero()
 	zlw_special_effect.state = false
-	Skill_2_CD = 15
+	skill_2_cd = 15
 	velocity.x = 0
 	hit_name = "zlls"
 	is_attacking = true
@@ -236,7 +236,7 @@ func do_hit_2():
 func do_hit_3():
 	super.to_hero()
 	zlw_special_effect.state = false
-	Skill_3_CD = 17
+	skill_3_cd = 17
 	velocity.x = 0
 	hit_name = "dylh"
 	is_attacking = true
@@ -297,7 +297,7 @@ func call_bullet():
 	var pp_1
 	var zz_1
 	var zz_2
-	if MonsterDirection:
+	if monster_direction:
 		pp = Vector2(-60, -10)
 		pp_1 = Vector2(75, -28)
 		zz_1 = Global.add_bullet("Monster55Bullet_2", self, false, 1, pp, "zlls", self.obj_attack_dict["zlls"])

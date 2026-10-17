@@ -135,7 +135,7 @@ func apply_role_property_snapshot(snapshot: Dictionary) -> void:
 	inherited_role_properties = _copy_dictionary(snapshot.get("roleprop", {}))
 	inherited_base_properties = _copy_dictionary(snapshot.get("baseroleprop", {}))
 	inherited_equipment_properties = _copy_dictionary(snapshot.get("equprop", {}))
-	inherited_passive_properties = _copy_dictionary(snapshot.get("Paslprop", {}))
+	inherited_passive_properties = _copy_dictionary(snapshot.get("pasl_prop", {}))
 	inherited_weapon_properties = _copy_dictionary(snapshot.get("wq_prop", {}))
 	inherited_armor_properties = _copy_dictionary(snapshot.get("fj_prop", {}))
 	inherited_accessory_properties = _copy_dictionary(snapshot.get("sp_prop", {}))
@@ -175,9 +175,9 @@ func _apply_combat_properties() -> void:
 	crit = int(_number("Crit"))
 	miss = int(_number("Miss"))
 	lucky = int(_number("Lucky"))
-	Htarget = int(_number("Htarget"))
-	Toughness = int(_number("Toughness"))
-	Critreduce = int(_number("CritReduce"))
+	htarget = int(_number("htarget"))
+	toughness = int(_number("toughness"))
+	crit_reduce = int(_number("CritReduce"))
 	ar = int(_number("ar"))
 	sp = int(_number("sp"))
 	self_rhp = int(_number("R_hp"))
@@ -272,9 +272,9 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 
 func setup_skills() -> void:
-	Skill_1_CD = 1.0
-	Skill_2_CD = 1.0
-	Skill_3_CD = 8.0
+	skill_1_cd = 1.0
+	skill_2_cd = 1.0
+	skill_3_cd = 8.0
 
 
 func try_use_skills() -> void:
@@ -282,9 +282,9 @@ func try_use_skills() -> void:
 		return
 	var offset := current_target.global_position - global_position
 
-	if Skill_3_CD <= 0.0 and absf(offset.x) <= skill_b_cast_range:
+	if skill_3_cd <= 0.0 and absf(offset.x) <= skill_b_cast_range:
 		_attack_with_animation("skill_b", 8.0)
-	elif Skill_2_CD <= 0.0 and absf(offset.x) <= skill_a_cast_range:
+	elif skill_2_cd <= 0.0 and absf(offset.x) <= skill_a_cast_range:
 		_attack_with_animation("skill_a", 1.0)
 
 
@@ -313,11 +313,11 @@ func _attack_with_animation(attack_name: String, cooldown: float) -> void:
 	is_attacking = true
 	match attack_name:
 		"hit1":
-			Skill_1_CD = cooldown
+			skill_1_cd = cooldown
 		"skill_a":
-			Skill_2_CD = 1.0
+			skill_2_cd = 1.0
 		"skill_b":
-			Skill_3_CD = cooldown
+			skill_3_cd = cooldown
 	var hit_shape := $BaseDamageBox/HitBox/HitBox as CollisionShape2D
 	var attack_track: Variant = _play_spine(_animation_for_attack(attack_name), false)
 	if attack_name == "skill_a":

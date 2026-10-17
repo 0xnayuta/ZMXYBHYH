@@ -6,7 +6,7 @@ var direction: int = 1
 var pd: bool = true
 var currentposition: Vector2
 var catch: bool = false
-var Player: BaseHero
+var player: BaseHero
 var is_set: bool = false
 
 var platform_texture: Texture2D
@@ -30,8 +30,8 @@ func _physics_process(_delta: float) -> void:
 		if position.x <= max_position_x:
 			position = currentposition
 	if catch:
-		if Player != null:
-			Player.position.x += direction * speed
+		if player != null:
+			player.position.x += direction * speed
 
 
 func set_texture(texture: Texture2D) -> void:
@@ -44,7 +44,7 @@ func set_texture(texture: Texture2D) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	catch = true
 	if body is BaseHero:
-		Player = body
+		player = body
 
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:

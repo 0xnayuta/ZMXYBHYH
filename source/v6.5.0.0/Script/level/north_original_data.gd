@@ -92,14 +92,14 @@ static func preview(number: int) -> Dictionary:
 		entries.append(
 			{
 				"Name": record["name"],
-				"IsBoss": record["boss"] == "1",
+				"is_boss": record["boss"] == "1",
 				"ScenePath": "res://Scene/monster/monster_%d.tscn" % id,
 				"ConfigId": id
 			}
 		)
 	return {
-		"LevelName": data["name"],
-		"MonsterList": entries,
+		"level_name": data["name"],
+		"monster_list": entries,
 		"fall_pro": 0,
 		"LevelFall": [],
 		"NeedZDL": {},

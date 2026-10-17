@@ -16,11 +16,11 @@ func monster_117():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 20
 	self.sp = 20
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 14
 	self.mysee = 500
 	self.attack_range = 325
@@ -40,7 +40,7 @@ func monster_117():
 func _ready() -> void:
 	super._ready()
 	monster_117()
-	Skill_1_CD = 10
+	skill_1_cd = 10
 
 
 func ai_think():
@@ -53,11 +53,11 @@ func ai_think():
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 250:
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						do_hit_1()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 				if count % 60 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -66,7 +66,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = 10
+	skill_1_cd = 10
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true

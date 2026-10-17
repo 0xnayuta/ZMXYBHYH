@@ -188,7 +188,7 @@ func _is_valid_target(target: BaseMonster) -> bool:
 		and is_instance_valid(target)
 		and target.Hp > 0
 		and not target.is_death
-		and not target.NoTarget
+		and not target.no_target
 		and not target.is_boss_protecting()
 		and not target.get_meta("pet_tiger_unit", false)
 		and not target.get_meta("is_summon", false)
@@ -196,10 +196,10 @@ func _is_valid_target(target: BaseMonster) -> bool:
 
 
 func _apply_hit(target: BaseMonster) -> void:
-	var old_hit_data: Dictionary = owner_player.HitDic
+	var old_hit_data: Dictionary = owner_player.hit_dic
 	var old_target: Variant = target.get_target
 	var old_source_player: Variant = RoleProp.source_player
-	owner_player.HitDic = hit_data
+	owner_player.hit_dic = hit_data
 	target.get_target = owner_player
 	target.has_target = true
 	RoleProp.source_player = owner_player
@@ -229,7 +229,7 @@ func _apply_hit(target: BaseMonster) -> void:
 		_apply_voodoo_if_learned(target)
 		target.role5_bullet(damage, owner_player)
 	target.get_target = old_target
-	owner_player.HitDic = old_hit_data
+	owner_player.hit_dic = old_hit_data
 	RoleProp.source_player = old_source_player
 
 
@@ -243,7 +243,7 @@ func _apply_voodoo_if_learned(target: BaseMonster) -> void:
 		{
 			"Name": "Voodoo",
 			"AddTime": 5,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": int(RoleProp.roleprop.power * 0.1),
 			"CanAdd": true,
 			"AttackKind": "real",

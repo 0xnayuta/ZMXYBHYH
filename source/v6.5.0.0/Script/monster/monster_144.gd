@@ -25,11 +25,11 @@ func monster_144():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 13
 	self.mysee = 400
 	self.attack_range = 200
@@ -172,7 +172,7 @@ func attack_target():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(12, 14)
+	skill_1_cd = randi_range(12, 14)
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -184,7 +184,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(16, 18)
+	skill_2_cd = randi_range(16, 18)
 	velocity.x = 0
 	hit_name = "hit1"
 	is_attacking = true
@@ -196,7 +196,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(14, 16)
+	skill_3_cd = randi_range(14, 16)
 	velocity.x = 0
 	hit_name = "hit1"
 	is_attacking = true

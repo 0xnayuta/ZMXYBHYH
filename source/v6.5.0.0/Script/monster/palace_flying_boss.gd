@@ -100,7 +100,7 @@ func _physics_process(delta: float) -> void:
 	_palace_clock += delta
 	_fixed_flight_height_ready = false
 	_3323_skill_y_locked = false
-	NoGrav = true
+	no_grav = true
 	velocity.y = 0.0
 	super._physics_process(delta)
 	if death():
@@ -116,8 +116,8 @@ func have_target() -> void:
 		velocity = Vector2.ZERO
 		return
 	var target := RoleProp.get_nearest_monster_target_position(global_position)
-	MonsterDirection = target.x >= global_position.x
-	monster_dir.scale.x = -1.0 if MonsterDirection else 1.0
+	monster_direction = target.x >= global_position.x
+	monster_dir.scale.x = -1.0 if monster_direction else 1.0
 	base_damage_box.scale.x = monster_dir.scale.x
 	if monster_kind == 3323 and absf(target.x - global_position.x) > 240.0:
 		velocity.x = signf(target.x - global_position.x) * 80.0
@@ -158,7 +158,7 @@ func _on_palace_hit(area: Area2D) -> void:
 func _reachable_official_attacks() -> Array[StringName]:
 	var result: Array[StringName] = []
 	var target := RoleProp.get_nearest_monster_target_position(global_position)
-	MonsterDirection = target.x >= global_position.x
+	monster_direction = target.x >= global_position.x
 	for index in range(SCOPES[monster_kind].size()):
 		if _official_in_skill_scope(target, SCOPES[monster_kind][index]):
 			result.append(StringName("hit%d" % (index + 1)))
@@ -187,7 +187,7 @@ func _start_palace_attack(action: StringName) -> void:
 	velocity = Vector2.ZERO
 	var target := RoleProp.get_nearest_monster_target_position(global_position)
 	_cast_direction = 1.0 if target.x >= global_position.x else -1.0
-	MonsterDirection = _cast_direction > 0.0
+	monster_direction = _cast_direction > 0.0
 	monster_dir.scale.x = -_cast_direction
 	base_damage_box.scale.x = -_cast_direction
 	_cast_position = global_position
@@ -399,7 +399,7 @@ func _keep_in_view() -> void:
 	scale = Vector2.ONE * maxf(fit, 0.25)
 	var left_extent := -float(origin[0]) * scale.x
 	var right_extent := (float(origin[0]) + float(size[0])) * scale.x
-	if MonsterDirection:
+	if monster_direction:
 		var old_left := left_extent
 		left_extent = right_extent
 		right_extent = old_left

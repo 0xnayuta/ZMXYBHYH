@@ -15,11 +15,11 @@ func monster_31(is_boss_):
 		self.crit = 15
 		self.miss = 10
 		self.lucky = 0
-		self.Htarget = 10
-		self.Toughness = 0
+		self.htarget = 10
+		self.toughness = 0
 		self.ar = 0
 		self.sp = 0
-		self.Critreduce = 0
+		self.crit_reduce = 0
 		self.speed = 8
 		self.mysee = 300
 		self.attack_range = 305
@@ -38,7 +38,7 @@ func monster_31(is_boss_):
 				"AddTime": 3,
 				"CanAdd": true,
 				"DeBuff": true,
-				"ReduceInterval": 1,
+				"reduce_interval": 1,
 				"value": 5 + int(RoleProp.roleprop.SHp * 0.01),
 				"AttackKind": "magic",
 			}
@@ -65,11 +65,11 @@ func monster_31(is_boss_):
 		self.crit = 10
 		self.miss = 8
 		self.lucky = 0
-		self.Htarget = 10
-		self.Toughness = 0
+		self.htarget = 10
+		self.toughness = 0
 		self.ar = 0
 		self.sp = 0
-		self.Critreduce = 0
+		self.crit_reduce = 0
 		self.speed = 7
 		self.mysee = 300
 		self.attack_range = 145
@@ -86,7 +86,7 @@ func monster_31(is_boss_):
 			{
 				"Name": "poision",
 				"AddTime": 3,
-				"ReduceInterval": 1,
+				"reduce_interval": 1,
 				"CanAdd": true,
 				"value": 5 + int(RoleProp.roleprop.SHp * 0.01),
 				"AttackKind": "magic",

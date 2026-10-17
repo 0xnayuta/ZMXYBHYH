@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if not _finished and shadow_callback.is_valid() and is_instance_valid(owner_monster):
 		var level := owner_monster.get_level_node()
-		var hero: BaseHero = level.Role_ if level is NorthContinentLevel else null
+		var hero: BaseHero = level.role_ if level is NorthContinentLevel else null
 		if is_instance_valid(hero) and not hero.is_death:
 			var collider := hero.get_node("pz") as CollisionShape2D
 			var hero_rect := collider.shape.get_rect()

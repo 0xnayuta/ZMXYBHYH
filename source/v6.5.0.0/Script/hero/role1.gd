@@ -242,9 +242,9 @@ func role_1():
 		"attackKind": "physics",
 		"addeffect":
 		{
-			"Name": "DefeReduce",
+			"Name": "defe_reduce",
 			"AddTime": 8,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": get_gsrs_defense_reduction(level_11),
 			"AttackKind": "",
 			"CanAdd": false,
@@ -420,7 +420,7 @@ func do_normalhit_4():
 
 
 func do_slz():
-	self.Role1SkillInter["slz"] = 2.4
+	self.role1_skill_inter["slz"] = 2.4
 	get_action = "slz"
 	is_using_skills = true
 	super.get_hit_data("slz")
@@ -434,7 +434,7 @@ func do_slz():
 
 
 func do_hytj():
-	self.Role1SkillInter["hytj"] = 3.6
+	self.role1_skill_inter["hytj"] = 3.6
 	velocity.x = 0
 	if action.scale.x == -1:
 		velocity.x += 570
@@ -453,8 +453,8 @@ func do_hytj():
 
 
 func do_lys():
-	self.Role1SkillInter["lys"] = 2.8
-	self.Role1SkillInter["hmz"] = 3.6
+	self.role1_skill_inter["lys"] = 2.8
+	self.role1_skill_inter["hmz"] = 3.6
 	velocity.x = 0
 	if action.scale.x == -1:
 		velocity.x += 1000
@@ -485,7 +485,7 @@ func do_lys():
 
 
 func do_lyfb():
-	self.Role1SkillInter["lyfb"] = 3.2
+	self.role1_skill_inter["lyfb"] = 3.2
 	if is_on_floor():
 		velocity.x = 0
 	get_action = "lyfb"
@@ -497,7 +497,7 @@ func do_lyfb():
 		lyfb_original_effect.visible = false
 		lyfb_hit_shape.set_deferred("disabled", true)
 		var awaken_effect := LYFB_AWAKEN_EFFECT.instantiate()
-		awaken_effect.setup(self, PlayerDir, HitDic)
+		awaken_effect.setup(self, player_dir, hit_dic)
 		awaken_effect.position = position
 		get_parent().add_child(awaken_effect)
 	is_attacking = true
@@ -514,7 +514,7 @@ func do_lyfb():
 
 
 func do_zz():
-	self.Role1SkillInter["zz"] = 1.2
+	self.role1_skill_inter["zz"] = 1.2
 	velocity.x = 0
 	get_action = "zz"
 	set_shallowaction("zz")
@@ -531,7 +531,7 @@ func do_zz():
 
 
 func do_gsrs():
-	self.Role1SkillInter["gsrs"] = 1.2
+	self.role1_skill_inter["gsrs"] = 1.2
 	velocity.x = 0
 	get_action = "gsrs"
 	set_shallowaction("gsrs")
@@ -548,14 +548,14 @@ func do_gsrs():
 
 
 func do_wushuang_huoyan_jinjing():
-	self.Role1SkillInter["hyjj_ws"] = 6.0
+	self.role1_skill_inter["hyjj_ws"] = 6.0
 	velocity = Vector2.ZERO
 	get_action = "hyjj"
 	is_using_skills = true
 	is_attacking = true
 	_play_hyjj_pose_only()
 	var effect := WUSHUANG_HUOYAN_EFFECT.new()
-	effect.setup(self, PlayerDir, self.obj_attack_dict["hyjj_ws"])
+	effect.setup(self, player_dir, self.obj_attack_dict["hyjj_ws"])
 	var level := get_parent().get_parent()
 	if level != null:
 		level.add_child(effect)
@@ -598,7 +598,7 @@ func _prepare_hyjj_pose_animation() -> bool:
 
 
 func do_hyjj():
-	self.Role1SkillInter["hyjj"] = 4.8
+	self.role1_skill_inter["hyjj"] = 4.8
 	velocity.x = 0
 	get_action = "hyjj"
 	is_using_skills = true
@@ -613,7 +613,7 @@ func do_hyjj():
 
 
 func do_jdy():
-	self.Role1SkillInter["jdy"] = 0
+	self.role1_skill_inter["jdy"] = 0
 	is_jdy = true
 	if action.scale.x == -1:
 		velocity.x += 1000
@@ -636,7 +636,7 @@ func do_jdy():
 
 
 func do_jdy_2():
-	self.Role1SkillInter["jdy"] = 2.4
+	self.role1_skill_inter["jdy"] = 2.4
 	velocity.x = 0
 	velocity.y = -1200
 
@@ -655,7 +655,7 @@ func do_jdy_2():
 
 
 func do_qsez():
-	self.Role1SkillInter["qsez"] = 4.8
+	self.role1_skill_inter["qsez"] = 4.8
 	velocity.x = 0
 	if action.scale.x == -1:
 		velocity.x += 1000
@@ -707,13 +707,13 @@ func do_hmz_one():
 	const UP_OFFSET = 100
 
 	var abc
-	if PlayerDir:
+	if player_dir:
 		abc = Global.add_special_effectBullet(
 			self.Bullet,
 			Vector2(position.x + FRONT_OFFSET, position.y - UP_OFFSET),
 			Vector2(1.17, 1.17),
 			"hmz_1",
-			PlayerDir
+			player_dir
 		)
 	else:
 		abc = Global.add_special_effectBullet(
@@ -721,7 +721,7 @@ func do_hmz_one():
 			Vector2(position.x - FRONT_OFFSET, position.y - UP_OFFSET),
 			Vector2(1.17, 1.17),
 			"hmz_1",
-			PlayerDir
+			player_dir
 		)
 	abc.tt = self
 
@@ -799,7 +799,7 @@ func do_hmz_flush():
 
 func do_hmz_two():
 	await get_tree().physics_frame
-	self.Role1SkillInter[hmz_cooldown_key] = 4.8
+	self.role1_skill_inter[hmz_cooldown_key] = 4.8
 
 	get_action = "hmz"
 	is_attacking = true
@@ -836,18 +836,18 @@ func do_hmz_two():
 	if hmz_awaken_active:
 		var effect_parent: Node = get_parent()
 		var awaken_effect := HMZ_AWAKEN_EFFECT.instantiate()
-		awaken_effect.setup(self, PlayerDir, HitDic)
+		awaken_effect.setup(self, player_dir, hit_dic)
 		awaken_effect.position = position
 		effect_parent.add_child(awaken_effect)
 	else:
 		var abc
-		if PlayerDir:
+		if player_dir:
 			abc = Global.add_special_effectBullet(
-				self.Bullet, Vector2(position.x + 0, position.y), Vector2(sc_x, sc_y), "hmz_2", PlayerDir
+				self.Bullet, Vector2(position.x + 0, position.y), Vector2(sc_x, sc_y), "hmz_2", player_dir
 			)
 		else:
 			abc = Global.add_special_effectBullet(
-				self.Bullet, Vector2(position.x - 0, position.y), Vector2(sc_x, sc_y), "hmz_2", PlayerDir
+				self.Bullet, Vector2(position.x - 0, position.y), Vector2(sc_x, sc_y), "hmz_2", player_dir
 			)
 		abc.tt = self
 
@@ -885,9 +885,9 @@ func do_hmz_pro_old():
 	Global.add_sound(self, "res://Music/Hero/35_Role1_hit10_1.mp3")
 	var abc
 	var x = 0
-	if PlayerDir:
+	if player_dir:
 		abc = Global.add_special_effectBullet(
-			self.Bullet, Vector2(position.x + 25, position.y - 80), Vector2(1.15, 1.15), "hmz_pro", !PlayerDir
+			self.Bullet, Vector2(position.x + 25, position.y - 80), Vector2(1.15, 1.15), "hmz_pro", !player_dir
 		)
 		if position.x < abc.position.x + 70:
 			velocity.x = 470
@@ -899,7 +899,7 @@ func do_hmz_pro_old():
 			velocity.y = 0
 	else:
 		abc = Global.add_special_effectBullet(
-			self.Bullet, Vector2(position.x - 25, position.y - 80), Vector2(1.15, 1.15), "hmz_pro", !PlayerDir
+			self.Bullet, Vector2(position.x - 25, position.y - 80), Vector2(1.15, 1.15), "hmz_pro", !player_dir
 		)
 		if position.x > abc.position.x - 70:
 			velocity.x = -470
@@ -932,13 +932,13 @@ func do_hmz_one_old():
 	Global.add_sound(self, "res://Music/Hero/36_Role1_hit10_2.mp3")
 	role_action_player.play("hmz__")
 	var abc
-	if PlayerDir:
+	if player_dir:
 		abc = Global.add_special_effectBullet(
-			self.Bullet, Vector2(position.x - 25, position.y + 45), Vector2(1.17, 1.17), "hmz-1", PlayerDir
+			self.Bullet, Vector2(position.x - 25, position.y + 45), Vector2(1.17, 1.17), "hmz-1", player_dir
 		)
 	else:
 		abc = Global.add_special_effectBullet(
-			self.Bullet, Vector2(position.x + 25, position.y + 45), Vector2(1.17, 1.17), "hmz-1", PlayerDir
+			self.Bullet, Vector2(position.x + 25, position.y + 45), Vector2(1.17, 1.17), "hmz-1", player_dir
 		)
 	abc.tt = self
 	await get_tree().create_timer(1.44, false).timeout
@@ -955,17 +955,17 @@ func do_hmz_flush_old():
 	is_hmz_drop = true
 	super.get_hit_data("hmz_2")
 	var abc
-	if PlayerDir == false:
+	if player_dir == false:
 		velocity.x = -walk_speed * 2.7
 	else:
 		velocity.x = walk_speed * 2.7
-	if PlayerDir:
+	if player_dir:
 		abc = Global.add_special_effectBullet(
-			self.Bullet, Vector2(position.x + 65, position.y + 90), Vector2(1.1, 1.1), "hmz_flush", !PlayerDir
+			self.Bullet, Vector2(position.x + 65, position.y + 90), Vector2(1.1, 1.1), "hmz_flush", !player_dir
 		)
 	else:
 		abc = Global.add_special_effectBullet(
-			self.Bullet, Vector2(position.x - 65, position.y + 90), Vector2(1.1, 1.1), "hmz_flush", !PlayerDir
+			self.Bullet, Vector2(position.x - 65, position.y + 90), Vector2(1.1, 1.1), "hmz_flush", !player_dir
 		)
 	abc.tt = self
 	role_action_player.play("hmz__")
@@ -976,7 +976,7 @@ func do_hmz_flush_old():
 
 
 func do_hmz_two_old():
-	self.Role1SkillInter[hmz_cooldown_key] = 4.8
+	self.role1_skill_inter[hmz_cooldown_key] = 4.8
 	role_action_player.play("hmz__")
 	get_action = "hmz"
 	is_attacking = true
@@ -999,13 +999,13 @@ func do_hmz_two_old():
 		shake_power = 30
 		sc_x = 1.5
 		sc_y = 2.2
-	if PlayerDir:
+	if player_dir:
 		abc = Global.add_special_effectBullet(
-			self.Bullet, Vector2(position.x + 0, position.y), Vector2(sc_x, sc_y), "hmz-2", PlayerDir
+			self.Bullet, Vector2(position.x + 0, position.y), Vector2(sc_x, sc_y), "hmz-2", player_dir
 		)
 	else:
 		abc = Global.add_special_effectBullet(
-			self.Bullet, Vector2(position.x - 0, position.y), Vector2(sc_x, sc_y), "hmz-2", PlayerDir
+			self.Bullet, Vector2(position.x - 0, position.y), Vector2(sc_x, sc_y), "hmz-2", player_dir
 		)
 	abc.tt = self
 
@@ -1077,8 +1077,8 @@ func set_shallowaction(action_: String):
 			if i != null:
 				if i is Role1Shallow:
 					i.action = action_
-					i.HitDic = self.obj_attack_dict[action_]
-					i.HitDic["power"] = power
+					i.hit_dic = self.obj_attack_dict[action_]
+					i.hit_dic["power"] = power
 
 
 func _on_nor_mal_hit_interv_timeout() -> void:

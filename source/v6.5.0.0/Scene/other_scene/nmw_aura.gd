@@ -1,6 +1,6 @@
 extends Node2D
 var idle = true
-var Value: int
+var value: int
 @onready var chekc: CollisionShape2D = $Check/Chekc
 
 var speed: float = 0

@@ -20,11 +20,11 @@ func monster_67():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 9
 	self.mysee = 300
 	self.attack_range = 225
@@ -46,7 +46,7 @@ func _ready() -> void:
 	target_offset = Vector2(randi_range(-10, 10), randi_range(-15, 15))
 	super._ready()
 	monster_67()
-	Skill_1_CD = 0
+	skill_1_cd = 0
 
 
 func ai_think():
@@ -70,7 +70,7 @@ func ai_think():
 						{
 							"Name": "speed_down",
 							"AddTime": 0.4,
-							"ReduceInterval": 0,
+							"reduce_interval": 0,
 							"value": 0.3,
 							"AttackKind": "",
 							"DeBuff": true,
@@ -98,7 +98,7 @@ func ai_think():
 func attack_target():
 	to_hero()
 	hit_name = "hit1"
-	if MonsterDirection:
+	if monster_direction:
 		velocity.x += 188
 	else:
 		velocity.x -= 188

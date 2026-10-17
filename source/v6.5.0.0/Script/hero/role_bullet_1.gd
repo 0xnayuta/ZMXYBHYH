@@ -2,18 +2,18 @@ extends Area2D
 class_name RoleBullet1
 @onready var bullet_an: AnimatedSprite2D = $BulletAN
 @onready var bullet_player: AnimationPlayer = $BulletPlayer
-var MonsterList
+var monster_list
 var name_: String
-var Player: BaseHero
+var player: BaseHero
 var is_set = false
-var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
-var Shallow
+var hit_dic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
+var shallow
 var first_hyjj: bool = true
 
 
 func _physics_process(_delta: float) -> void:
 	if not is_set:
-		Player = get_parent().get_parent()
+		player = get_parent().get_parent()
 		if name_ == "hyjj":
 			call_hyjj()
 		else:
@@ -26,13 +26,13 @@ func call_hyjj():
 	var cur_level = PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能9"][DataKeys.LEVEL] + 1
 
 	for i in range(3):
-		var Monster = get_monster()
+		var monster = get_monster()
 
-		if Monster == null:
+		if monster == null:
 			self.queue_free()
 			return
 
-		self.position = Monster.position
+		self.position = monster.position
 
 		bullet_player.play(name_)
 		Global.add_sound(self, "res://Music/Hero/44_Role1_hit12_2.mp3")
@@ -44,7 +44,7 @@ func call_hyjj():
 
 
 func get_monster():
-	var all_monster_list = Player.get_parent().get_parent().get_node("Monster").get_children()
+	var all_monster_list = player.get_parent().get_parent().get_node("Monster").get_children()
 	if all_monster_list.size() <= 0:
 		return null
 	for i in all_monster_list:
@@ -69,14 +69,14 @@ func get_monster():
 				if i.is_stop:
 					continue
 
-			if abs(i.position.x - Player.position.x) >= 2000:
+			if abs(i.position.x - player.position.x) >= 2000:
 				continue
 
-			if Player.PlayerDir:
-				if i.position.x > Player.position.x:
+			if player.player_dir:
+				if i.position.x > player.position.x:
 					return i
 			else:
-				if i.position.x < Player.position.x:
+				if i.position.x < player.position.x:
 					return i
 	return null
 
@@ -86,15 +86,15 @@ func _on_area_entered(_area: Area2D) -> void:
 	if name_ == "qsez" or name_ == "qsez_1":
 		var num = randi_range(0, 4)
 
-		if Player.shallow_list.size() < get_max_min_shallow_num()[0]:
+		if player.shallow_list.size() < get_max_min_shallow_num()[0]:
 			for i in range(get_max_min_shallow_num()[0]):
-				if Player.shallow_list.size() > get_max_min_shallow_num()[1]:
+				if player.shallow_list.size() > get_max_min_shallow_num()[1]:
 					return
-				Global.add_role1_shallow(Player.get_parent(), Player.position, Player.action.scale.x, num)
-		if Player.shallow_list.size() >= get_max_min_shallow_num()[1]:
+				Global.add_role1_shallow(player.get_parent(), player.position, player.action.scale.x, num)
+		if player.shallow_list.size() >= get_max_min_shallow_num()[1]:
 			return
 		if randi_range(0, 100) < 45 + (PlayerData.player_data[DataKeys.SKILL_LEARNED]["技能7"][DataKeys.LEVEL] + 1) * 3:
-			Global.add_role1_shallow(Player.get_parent(), Player.position + Vector2(0, -20), Player.action.scale.x, num)
+			Global.add_role1_shallow(player.get_parent(), player.position + Vector2(0, -20), player.action.scale.x, num)
 
 
 func get_max_min_shallow_num():

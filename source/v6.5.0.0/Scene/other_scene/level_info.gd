@@ -59,48 +59,48 @@ const EAST_LATE_LEVEL_NAMES := {
 const EAST_LATE_LEVEL_MONSTERS := {
 	69:
 	[
-		{"Name": "3198", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3198.tscn", "ConfigId": 3198},
-		{"Name": "3199", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3199.tscn", "ConfigId": 3199},
-		{"Name": "3201", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3201.tscn", "ConfigId": 3201},
-		{"Name": "3200", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3200.tscn", "ConfigId": 3200},
+		{"Name": "3198", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3198.tscn", "ConfigId": 3198},
+		{"Name": "3199", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3199.tscn", "ConfigId": 3199},
+		{"Name": "3201", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3201.tscn", "ConfigId": 3201},
+		{"Name": "3200", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3200.tscn", "ConfigId": 3200},
 	],
 	70:
 	[
-		{"Name": "3221", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3199.tscn", "ConfigId": 3221},
-		{"Name": "3222", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3222.tscn", "ConfigId": 3222},
-		{"Name": "3226", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3198.tscn", "ConfigId": 3226},
-		{"Name": "3223", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3223.tscn", "ConfigId": 3223},
+		{"Name": "3221", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3199.tscn", "ConfigId": 3221},
+		{"Name": "3222", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3222.tscn", "ConfigId": 3222},
+		{"Name": "3226", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3198.tscn", "ConfigId": 3226},
+		{"Name": "3223", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3223.tscn", "ConfigId": 3223},
 	],
 	71:
 	[
-		{"Name": "3274", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3222.tscn", "ConfigId": 3274},
-		{"Name": "3275", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3198.tscn", "ConfigId": 3275},
-		{"Name": "3276", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3276.tscn", "ConfigId": 3276},
-		{"Name": "3277", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3277.tscn", "ConfigId": 3277},
+		{"Name": "3274", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3222.tscn", "ConfigId": 3274},
+		{"Name": "3275", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3198.tscn", "ConfigId": 3275},
+		{"Name": "3276", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3276.tscn", "ConfigId": 3276},
+		{"Name": "3277", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3277.tscn", "ConfigId": 3277},
 	],
 	72:
 	[
-		{"Name": "3308", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3308.tscn", "ConfigId": 3308},
-		{"Name": "3309", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3309.tscn", "ConfigId": 3309},
-		{"Name": "3310", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3310.tscn", "ConfigId": 3310},
+		{"Name": "3308", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3308.tscn", "ConfigId": 3308},
+		{"Name": "3309", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3309.tscn", "ConfigId": 3309},
+		{"Name": "3310", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3310.tscn", "ConfigId": 3310},
 	],
 	73:
 	[
-		{"Name": "3320", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3320.tscn", "ConfigId": 3320},
-		{"Name": "3321", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3308.tscn", "ConfigId": 3321},
-		{"Name": "3322", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3309.tscn", "ConfigId": 3322},
-		{"Name": "3323", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3323.tscn", "ConfigId": 3323},
+		{"Name": "3320", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3320.tscn", "ConfigId": 3320},
+		{"Name": "3321", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3308.tscn", "ConfigId": 3321},
+		{"Name": "3322", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3309.tscn", "ConfigId": 3322},
+		{"Name": "3323", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3323.tscn", "ConfigId": 3323},
 	],
 	74:
 	[
-		{"Name": "3340", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3320.tscn", "ConfigId": 3340},
-		{"Name": "3341", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3308.tscn", "ConfigId": 3341},
-		{"Name": "3342", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3309.tscn", "ConfigId": 3342},
-		{"Name": "3343", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3343.tscn", "ConfigId": 3343},
+		{"Name": "3340", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3320.tscn", "ConfigId": 3340},
+		{"Name": "3341", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3308.tscn", "ConfigId": 3341},
+		{"Name": "3342", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3309.tscn", "ConfigId": 3342},
+		{"Name": "3343", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3343.tscn", "ConfigId": 3343},
 	],
 	75:
 	[
-		{"Name": "3352", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3352.tscn", "ConfigId": 3352},
+		{"Name": "3352", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3352.tscn", "ConfigId": 3352},
 	],
 }
 const HUMAN_SOUL_CRYSTAL_MONSTER_IDS := {
@@ -205,7 +205,7 @@ const HEAVEN_SOUL_CRYSTAL_MONSTER_IDS := {
 @onready var my_pj: Label = $ColorRect/TextureRect/pj/MyPj
 @onready var fall_list: HBoxContainer = $ColorRect/TextureRect/ScrollContainer/FallList
 @onready var monster_scroll: ScrollContainer = $ColorRect/TextureRect/ScrollContainer2
-@onready var monster_list: HBoxContainer = $ColorRect/TextureRect/ScrollContainer2/MonsterList
+@onready var monster_list: HBoxContainer = $ColorRect/TextureRect/ScrollContainer2/monster_list
 @onready var mybg: TextureRect = $ColorRect/TextureRect/Mybg
 @onready var fall: Label = $ColorRect/TextureRect/Fall
 @onready var pj: Label = $ColorRect/TextureRect/pj
@@ -222,19 +222,20 @@ const HEAVEN_SOUL_CRYSTAL_MONSTER_IDS := {
 var font_color_list = {
 	"font_colorList": ["4c4c4c", "818181", "00ff00", "0095ff", "ba2cff", "ff9d2e"],
 }
-var PjList = {
-	"PjList": ["暂无", "丙", "乙", "甲", "超凡", "至尊"],
+var pj_list = {
+	"pj_list": ["暂无", "丙", "乙", "甲", "超凡", "至尊"],
 }
-var LevelInfo = {
+
+var level_info = {
 	"广寒宫":
 	{
-		"LevelName": "广寒宫",
+		"level_name": "广寒宫",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
 			{
 				"Name": "ce",
-				"IsBoss": true,
+				"is_boss": true,
 				"ScenePath": "res://Scene/monster/monster_130.tscn",
 				"HideIndependentDrops": true
 			},
@@ -252,13 +253,13 @@ var LevelInfo = {
 	},
 	"挑战三太子":
 	{
-		"LevelName": "挑战三太子",
+		"level_name": "挑战三太子",
 		"fall_pro": 50,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "stz_nz", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_4401.tscn", "SelectId": 4401},
-			{"Name": "stz_mz", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_4402.tscn", "SelectId": 4402},
-			{"Name": "stz_jz", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_4403.tscn", "SelectId": 4403},
+			{"Name": "stz_nz", "is_boss": true, "ScenePath": "res://Scene/monster/monster_4401.tscn", "SelectId": 4401},
+			{"Name": "stz_mz", "is_boss": true, "ScenePath": "res://Scene/monster/monster_4402.tscn", "SelectId": 4402},
+			{"Name": "stz_jz", "is_boss": true, "ScenePath": "res://Scene/monster/monster_4403.tscn", "SelectId": 4403},
 		],
 		"LevelFall": ["rls", "llst", "llzx", "llkj", "lltk"],
 		"LevelFallProbability": {"rls": 50, "llst": 20, "llzx": 20, "llkj": 20, "lltk": 20},
@@ -274,18 +275,18 @@ var LevelInfo = {
 	},
 	"八仙过海":
 	{
-		"LevelName": "八仙过海",
+		"level_name": "八仙过海",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "bxgh_163", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_163.tscn", "SelectId": 163},
-			{"Name": "bxgh_175", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_175.tscn", "SelectId": 175},
-			{"Name": "bxgh_165", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_165.tscn", "SelectId": 165},
-			{"Name": "bxgh_166", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_166.tscn", "SelectId": 166},
-			{"Name": "bxgh_168", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_168.tscn", "SelectId": 168},
-			{"Name": "bxgh_169", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_169.tscn", "SelectId": 169},
-			{"Name": "bxgh_174", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_174.tscn", "SelectId": 174},
-			{"Name": "bxgh_164", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_164.tscn", "SelectId": 164},
+			{"Name": "bxgh_163", "is_boss": true, "ScenePath": "res://Scene/monster/monster_163.tscn", "SelectId": 163},
+			{"Name": "bxgh_175", "is_boss": true, "ScenePath": "res://Scene/monster/monster_175.tscn", "SelectId": 175},
+			{"Name": "bxgh_165", "is_boss": true, "ScenePath": "res://Scene/monster/monster_165.tscn", "SelectId": 165},
+			{"Name": "bxgh_166", "is_boss": true, "ScenePath": "res://Scene/monster/monster_166.tscn", "SelectId": 166},
+			{"Name": "bxgh_168", "is_boss": true, "ScenePath": "res://Scene/monster/monster_168.tscn", "SelectId": 168},
+			{"Name": "bxgh_169", "is_boss": true, "ScenePath": "res://Scene/monster/monster_169.tscn", "SelectId": 169},
+			{"Name": "bxgh_174", "is_boss": true, "ScenePath": "res://Scene/monster/monster_174.tscn", "SelectId": 174},
+			{"Name": "bxgh_164", "is_boss": true, "ScenePath": "res://Scene/monster/monster_164.tscn", "SelectId": 164},
 		],
 		"LevelFall": [],
 		"NeedZDL":
@@ -300,24 +301,24 @@ var LevelInfo = {
 	},
 	"挑战28星宿":
 	{
-		"LevelName": "挑战28星宿",
+		"level_name": "挑战28星宿",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "轸宿", "IsBoss": true, "SelectConstellationLevel": 1, "ConfigId": 47101},
-			{"Name": "翼火蛇", "IsBoss": true, "SelectConstellationLevel": 2, "ConfigId": 47102},
-			{"Name": "张月鹿", "IsBoss": true, "SelectConstellationLevel": 3, "ConfigId": 47103},
-			{"Name": "星日马", "IsBoss": true, "SelectConstellationLevel": 4, "ConfigId": 47104},
-			{"Name": "柳宿", "IsBoss": true, "SelectConstellationLevel": 5, "ConfigId": 47105},
-			{"Name": "鬼宿", "IsBoss": true, "SelectConstellationLevel": 6, "ConfigId": 47106},
-			{"Name": "井宿", "IsBoss": true, "SelectConstellationLevel": 7, "ConfigId": 47107},
-			{"Name": "壁宿", "IsBoss": true, "SelectConstellationLevel": 8, "ConfigId": 47108},
-			{"Name": "室宿", "IsBoss": true, "SelectConstellationLevel": 9, "ConfigId": 47109},
-			{"Name": "危宿", "IsBoss": true, "SelectConstellationLevel": 10, "ConfigId": 47110},
-			{"Name": "虚宿", "IsBoss": true, "SelectConstellationLevel": 11, "ConfigId": 47111},
-			{"Name": "女宿", "IsBoss": true, "SelectConstellationLevel": 12, "ConfigId": 47112},
-			{"Name": "牛宿", "IsBoss": true, "SelectConstellationLevel": 13, "ConfigId": 47113},
-			{"Name": "斗宿", "IsBoss": true, "SelectConstellationLevel": 14, "ConfigId": 47114},
+			{"Name": "轸宿", "is_boss": true, "SelectConstellationLevel": 1, "ConfigId": 47101},
+			{"Name": "翼火蛇", "is_boss": true, "SelectConstellationLevel": 2, "ConfigId": 47102},
+			{"Name": "张月鹿", "is_boss": true, "SelectConstellationLevel": 3, "ConfigId": 47103},
+			{"Name": "星日马", "is_boss": true, "SelectConstellationLevel": 4, "ConfigId": 47104},
+			{"Name": "柳宿", "is_boss": true, "SelectConstellationLevel": 5, "ConfigId": 47105},
+			{"Name": "鬼宿", "is_boss": true, "SelectConstellationLevel": 6, "ConfigId": 47106},
+			{"Name": "井宿", "is_boss": true, "SelectConstellationLevel": 7, "ConfigId": 47107},
+			{"Name": "壁宿", "is_boss": true, "SelectConstellationLevel": 8, "ConfigId": 47108},
+			{"Name": "室宿", "is_boss": true, "SelectConstellationLevel": 9, "ConfigId": 47109},
+			{"Name": "危宿", "is_boss": true, "SelectConstellationLevel": 10, "ConfigId": 47110},
+			{"Name": "虚宿", "is_boss": true, "SelectConstellationLevel": 11, "ConfigId": 47111},
+			{"Name": "女宿", "is_boss": true, "SelectConstellationLevel": 12, "ConfigId": 47112},
+			{"Name": "牛宿", "is_boss": true, "SelectConstellationLevel": 13, "ConfigId": 47113},
+			{"Name": "斗宿", "is_boss": true, "SelectConstellationLevel": 14, "ConfigId": 47114},
 		],
 		"LevelFall": [],
 		"NeedZDL":
@@ -332,14 +333,14 @@ var LevelInfo = {
 	},
 	"挑战四剑":
 	{
-		"LevelName": "挑战四剑",
+		"level_name": "挑战四剑",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "zxjboss", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_951.tscn"},
-			{"Name": "xxjboss", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_952.tscn"},
-			{"Name": "lxjboss", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_953.tscn"},
-			{"Name": "jxjboss", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_954.tscn"},
+			{"Name": "zxjboss", "is_boss": true, "ScenePath": "res://Scene/monster/monster_951.tscn"},
+			{"Name": "xxjboss", "is_boss": true, "ScenePath": "res://Scene/monster/monster_952.tscn"},
+			{"Name": "lxjboss", "is_boss": true, "ScenePath": "res://Scene/monster/monster_953.tscn"},
+			{"Name": "jxjboss", "is_boss": true, "ScenePath": "res://Scene/monster/monster_954.tscn"},
 		],
 		"LevelFall": ["zxjp", "xxjp", "lxjp", "jxjp", "zxjh"],
 		"LevelFallProbability":
@@ -362,10 +363,10 @@ var LevelInfo = {
 	},
 	"花果山":
 	{
-		"LevelName": "花果山",
+		"level_name": "花果山",
 		"fall_pro": 25,
-		"MonsterList":
-		[{"Name": "xh", "IsBoss": false}, {"Name": "yh", "IsBoss": false}, {"Name": "dxx", "IsBoss": true}],
+		"monster_list":
+		[{"Name": "xh", "is_boss": false}, {"Name": "yh", "is_boss": false}, {"Name": "dxx", "is_boss": true}],
 		"LevelFall":
 		["ptxzg", "ptxzf", "ptsmz", "ptjs", "ptdp", "ptcs", "ptyyc", "ptcp", "pttq", "ptcf", "nzhjq", "nzly"],
 		"NeedZDL":
@@ -380,15 +381,15 @@ var LevelInfo = {
 	},
 	"水帘洞":
 	{
-		"LevelName": "水帘洞",
+		"level_name": "水帘洞",
 		"fall_pro": 25,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "xh", "IsBoss": false},
-			{"Name": "yh", "IsBoss": false},
-			{"Name": "dxx", "IsBoss": false},
-			{"Name": "mhw", "IsBoss": true},
-			{"Name": "lw", "IsBoss": true}
+			{"Name": "xh", "is_boss": false},
+			{"Name": "yh", "is_boss": false},
+			{"Name": "dxx", "is_boss": false},
+			{"Name": "mhw", "is_boss": true},
+			{"Name": "lw", "is_boss": true}
 		],
 		"LevelFall":
 		[
@@ -434,10 +435,10 @@ var LevelInfo = {
 	},
 	"桃花源":
 	{
-		"LevelName": "桃花源",
+		"level_name": "桃花源",
 		"fall_pro": 25,
-		"MonsterList":
-		[{"Name": "yh", "IsBoss": false}, {"Name": "dxx", "IsBoss": false}, {"Name": "yrw", "IsBoss": true}],
+		"monster_list":
+		[{"Name": "yh", "is_boss": false}, {"Name": "dxx", "is_boss": false}, {"Name": "yrw", "is_boss": true}],
 		"LevelFall":
 		[
 			"ptxzg",
@@ -469,9 +470,9 @@ var LevelInfo = {
 	},
 	"蝙蝠窟":
 	{
-		"LevelName": "蝙蝠窟",
+		"level_name": "蝙蝠窟",
 		"fall_pro": 33,
-		"MonsterList": [{"Name": "bf", "IsBoss": false}, {"Name": "bfsx", "IsBoss": true}],
+		"monster_list": [{"Name": "bf", "is_boss": false}, {"Name": "bfsx", "is_boss": true}],
 		"LevelFall":
 		[
 			"ptxzg",
@@ -504,14 +505,14 @@ var LevelInfo = {
 	},
 	"七星洞":
 	{
-		"LevelName": "七星洞",
+		"level_name": "七星洞",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "bf", "IsBoss": false},
-			{"Name": "ys", "IsBoss": false},
-			{"Name": "dsj", "IsBoss": false},
-			{"Name": "stw", "IsBoss": true}
+			{"Name": "bf", "is_boss": false},
+			{"Name": "ys", "is_boss": false},
+			{"Name": "dsj", "is_boss": false},
+			{"Name": "stw", "is_boss": true}
 		],
 		"LevelFall":
 		[
@@ -543,14 +544,14 @@ var LevelInfo = {
 	},
 	"迦楼罗之穴":
 	{
-		"LevelName": "迦楼罗之穴",
+		"level_name": "迦楼罗之穴",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "jjy", "IsBoss": false},
-			{"Name": "ys", "IsBoss": false},
-			{"Name": "dsj", "IsBoss": false},
-			{"Name": "pmw", "IsBoss": true}
+			{"Name": "jjy", "is_boss": false},
+			{"Name": "ys", "is_boss": false},
+			{"Name": "dsj", "is_boss": false},
+			{"Name": "pmw", "is_boss": true}
 		],
 		"LevelFall":
 		[
@@ -584,10 +585,10 @@ var LevelInfo = {
 	},
 	"浅岸":
 	{
-		"LevelName": "浅岸",
+		"level_name": "浅岸",
 		"fall_pro": 33,
-		"MonsterList":
-		[{"Name": "xb", "IsBoss": false}, {"Name": "xj", "IsBoss": false}, {"Name": "gcx", "IsBoss": true}],
+		"monster_list":
+		[{"Name": "xb", "is_boss": false}, {"Name": "xj", "is_boss": false}, {"Name": "gcx", "is_boss": true}],
 		"LevelFall": ["xqzy"],
 		"NeedZDL":
 		{
@@ -601,15 +602,15 @@ var LevelInfo = {
 	},
 	"东海":
 	{
-		"LevelName": "东海",
+		"level_name": "东海",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "xb", "IsBoss": false},
-			{"Name": "xj", "IsBoss": false},
-			{"Name": "gcx", "IsBoss": false},
-			{"Name": "yjj", "IsBoss": false},
-			{"Name": "jmw", "IsBoss": true}
+			{"Name": "xb", "is_boss": false},
+			{"Name": "xj", "is_boss": false},
+			{"Name": "gcx", "is_boss": false},
+			{"Name": "yjj", "is_boss": false},
+			{"Name": "jmw", "is_boss": true}
 		],
 		"LevelFall": ["xwj", "pxk", "bxp", "211007002"],
 		"LevelFallProbability": {"211007002": 25},
@@ -625,16 +626,16 @@ var LevelInfo = {
 	},
 	"鲨之涡流":
 	{
-		"LevelName": "鲨之涡流",
+		"level_name": "鲨之涡流",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "xb", "IsBoss": false},
-			{"Name": "xj", "IsBoss": false},
-			{"Name": "gcx", "IsBoss": false},
-			{"Name": "yjj", "IsBoss": false},
-			{"Name": "sy", "IsBoss": true},
-			{"Name": "smw", "IsBoss": true}
+			{"Name": "xb", "is_boss": false},
+			{"Name": "xj", "is_boss": false},
+			{"Name": "gcx", "is_boss": false},
+			{"Name": "yjj", "is_boss": false},
+			{"Name": "sy", "is_boss": true},
+			{"Name": "smw", "is_boss": true}
 		],
 		"LevelFall": ["qlp", "zqj", "ttj"],
 		"NeedZDL":
@@ -649,14 +650,14 @@ var LevelInfo = {
 	},
 	"牛魔谷":
 	{
-		"LevelName": "牛魔谷",
+		"level_name": "牛魔谷",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "nmds", "IsBoss": false},
-			{"Name": "nmw1", "IsBoss": true},
-			{"Name": "nmw2", "IsBoss": true},
-			{"Name": "nmw3", "IsBoss": true}
+			{"Name": "nmds", "is_boss": false},
+			{"Name": "nmw1", "is_boss": true},
+			{"Name": "nmw2", "is_boss": true},
+			{"Name": "nmw3", "is_boss": true}
 		],
 		"LevelFall": ["ttlp1"],
 		"NeedZDL":
@@ -671,9 +672,9 @@ var LevelInfo = {
 	},
 	"火焰山":
 	{
-		"LevelName": "火焰山",
+		"level_name": "火焰山",
 		"fall_pro": 33,
-		"MonsterList": [{"Name": "hhe", "IsBoss": true}],
+		"monster_list": [{"Name": "hhe", "is_boss": true}],
 		"LevelFall": ["jgj", "ssj"],
 		"NeedZDL":
 		{
@@ -687,10 +688,10 @@ var LevelInfo = {
 	},
 	"鬼城":
 	{
-		"LevelName": "鬼城",
+		"level_name": "鬼城",
 		"fall_pro": 33,
-		"MonsterList":
-		[{"Name": "gd", "IsBoss": false}, {"Name": "js", "IsBoss": false}, {"Name": "syr", "IsBoss": true}],
+		"monster_list":
+		[{"Name": "gd", "is_boss": false}, {"Name": "js", "is_boss": false}, {"Name": "syr", "is_boss": true}],
 		"LevelFall": ["lzp", "jmy", "221007001"],
 		"LevelFallProbability": {"221007001": 33},
 		"NeedZDL":
@@ -705,16 +706,16 @@ var LevelInfo = {
 	},
 	"无常巷":
 	{
-		"LevelName": "无常巷",
+		"level_name": "无常巷",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "gd", "IsBoss": false},
-			{"Name": "js", "IsBoss": false},
-			{"Name": "syr", "IsBoss": false},
-			{"Name": "hwc", "IsBoss": true},
-			{"Name": "bwc", "IsBoss": true},
-			{"Name": "bgj", "IsBoss": true}
+			{"Name": "gd", "is_boss": false},
+			{"Name": "js", "is_boss": false},
+			{"Name": "syr", "is_boss": false},
+			{"Name": "hwc", "is_boss": true},
+			{"Name": "bwc", "is_boss": true},
+			{"Name": "bgj", "is_boss": true}
 		],
 		"LevelFall": ["yhj", "tsgl", "bsyz", "bsxj", "bszj", "bsbc", "bshq", "csgs", "bszy"],
 		"NeedZDL":
@@ -729,9 +730,9 @@ var LevelInfo = {
 	},
 	"白骨秘境":
 	{
-		"LevelName": "白骨精",
+		"level_name": "白骨精",
 		"fall_pro": 30,
-		"MonsterList": [{"Name": "bgj", "IsBoss": true}],
+		"monster_list": [{"Name": "bgj", "is_boss": true}],
 		"LevelFall": ["bsxj", "bszj", "bsyz", "bsbc", "bshq", "csgs", "bszy"],
 		"NeedZDL":
 		{
@@ -745,14 +746,14 @@ var LevelInfo = {
 	},
 	"鬼门关":
 	{
-		"LevelName": "鬼门关",
+		"level_name": "鬼门关",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "gd", "IsBoss": false},
-			{"Name": "js", "IsBoss": false},
-			{"Name": "syr", "IsBoss": false},
-			{"Name": "klw", "IsBoss": true}
+			{"Name": "gd", "is_boss": false},
+			{"Name": "js", "is_boss": false},
+			{"Name": "syr", "is_boss": false},
+			{"Name": "klw", "is_boss": true}
 		],
 		"LevelFall": ["lcgy", "tsgp"],
 		"NeedZDL":
@@ -767,10 +768,10 @@ var LevelInfo = {
 	},
 	"接引院":
 	{
-		"LevelName": "接引院",
+		"level_name": "接引院",
 		"fall_pro": 33,
-		"MonsterList":
-		[{"Name": "nt", "IsBoss": false}, {"Name": "mm", "IsBoss": false}, {"Name": "qgw", "IsBoss": true}],
+		"monster_list":
+		[{"Name": "nt", "is_boss": false}, {"Name": "mm", "is_boss": false}, {"Name": "qgw", "is_boss": true}],
 		"LevelFall": ["gtq", "gtb", "gtc", "tsyj", "220007001"],
 		"LevelFallProbability": {"220007001": 33},
 		"NeedZDL":
@@ -785,15 +786,15 @@ var LevelInfo = {
 	},
 	"判官府":
 	{
-		"LevelName": "判官府",
+		"level_name": "判官府",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "nt", "IsBoss": false},
-			{"Name": "mm", "IsBoss": false},
-			{"Name": "hwc", "IsBoss": false},
-			{"Name": "bwc", "IsBoss": false},
-			{"Name": "pg", "IsBoss": true}
+			{"Name": "nt", "is_boss": false},
+			{"Name": "mm", "is_boss": false},
+			{"Name": "hwc", "is_boss": false},
+			{"Name": "bwc", "is_boss": false},
+			{"Name": "pg", "is_boss": true}
 		],
 		"LevelFall": ["gtq", "gtb", "lcld", "tsyp"],
 		"NeedZDL":
@@ -808,16 +809,16 @@ var LevelInfo = {
 	},
 	"阎罗殿":
 	{
-		"LevelName": "阎罗殿",
+		"level_name": "阎罗殿",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "nt", "IsBoss": false},
-			{"Name": "mm", "IsBoss": false},
-			{"Name": "hwc", "IsBoss": false},
-			{"Name": "bwc", "IsBoss": false},
-			{"Name": "sdgm", "IsBoss": true},
-			{"Name": "ylw", "IsBoss": true}
+			{"Name": "nt", "is_boss": false},
+			{"Name": "mm", "is_boss": false},
+			{"Name": "hwc", "is_boss": false},
+			{"Name": "bwc", "is_boss": false},
+			{"Name": "sdgm", "is_boss": true},
+			{"Name": "ylw", "is_boss": true}
 		],
 		"LevelFall": ["gtq", "gtb", "yll", "fygwj", "lchp", "221007002"],
 		"LevelFallProbability": {"221007002": 33},
@@ -833,9 +834,9 @@ var LevelInfo = {
 	},
 	"忘川河":
 	{
-		"LevelName": "忘川河",
+		"level_name": "忘川河",
 		"fall_pro": 33,
-		"MonsterList": [{"Name": "gy", "IsBoss": false}, {"Name": "sdw", "IsBoss": true}],
+		"monster_list": [{"Name": "gy", "is_boss": false}, {"Name": "sdw", "is_boss": true}],
 		"LevelFall": [],
 		"NeedZDL":
 		{
@@ -849,14 +850,14 @@ var LevelInfo = {
 	},
 	"奈何桥":
 	{
-		"LevelName": "奈何桥",
+		"level_name": "奈何桥",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "mz", "IsBoss": false},
-			{"Name": "sh", "IsBoss": false},
-			{"Name": "ht", "IsBoss": false},
-			{"Name": "yc", "IsBoss": true}
+			{"Name": "mz", "is_boss": false},
+			{"Name": "sh", "is_boss": false},
+			{"Name": "ht", "is_boss": false},
+			{"Name": "yc", "is_boss": true}
 		],
 		"LevelFall": ["yazfw", "yizfw", "hshb", "zshb", "lssp", "qssp", "lczh", "xhmj", "xhxc", "220007002"],
 		"LevelFallProbability": {"220007002": 33},
@@ -872,15 +873,15 @@ var LevelInfo = {
 	},
 	"望乡台":
 	{
-		"LevelName": "望乡台",
+		"level_name": "望乡台",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "mz", "IsBoss": false},
-			{"Name": "sh", "IsBoss": false},
-			{"Name": "ht", "IsBoss": false},
-			{"Name": "qs", "IsBoss": false},
-			{"Name": "mp", "IsBoss": true}
+			{"Name": "mz", "is_boss": false},
+			{"Name": "sh", "is_boss": false},
+			{"Name": "ht", "is_boss": false},
+			{"Name": "qs", "is_boss": false},
+			{"Name": "mp", "is_boss": true}
 		],
 		"LevelFall":
 		["yazfw", "yizfw", "hshb", "zshb", "lshb", "lssp", "qssp", "jssp", "xhgp", "xhxh", "xhyk", "xhymk"],
@@ -896,9 +897,9 @@ var LevelInfo = {
 	},
 	"十八地狱":
 	{
-		"LevelName": "十八地狱",
+		"level_name": "十八地狱",
 		"fall_pro": 33,
-		"MonsterList": [{"Name": "xt", "IsBoss": true}, {"Name": "zsxt", "IsBoss": true}],
+		"monster_list": [{"Name": "xt", "is_boss": true}, {"Name": "zsxt", "is_boss": true}],
 		"LevelFall": ["qtz", "dszk", "jljs", "tpzy", "lhz", "tpltp", "jlfyc", "jlfyj", "ylhq", "yljj"],
 		"NeedZDL":
 		{
@@ -912,14 +913,14 @@ var LevelInfo = {
 	},
 	"转轮殿":
 	{
-		"LevelName": "转轮殿",
+		"level_name": "转轮殿",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "zlsz", "IsBoss": false},
-			{"Name": "zlw1", "IsBoss": true},
-			{"Name": "zlw2", "IsBoss": true},
-			{"Name": "zlw3", "IsBoss": true}
+			{"Name": "zlsz", "is_boss": false},
+			{"Name": "zlw1", "is_boss": true},
+			{"Name": "zlw2", "is_boss": true},
+			{"Name": "zlw3", "is_boss": true}
 		],
 		"LevelFall": ["ttlp2", "myz", "nyd", "syc", "shyc", "xyq"],
 		"NeedZDL":
@@ -934,15 +935,15 @@ var LevelInfo = {
 	},
 	"螺旋地狱":
 	{
-		"LevelName": "螺旋地狱",
+		"level_name": "螺旋地狱",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "wgw", "IsBoss": true},
-			{"Name": "bcw", "IsBoss": true},
-			{"Name": "tsw", "IsBoss": true},
-			{"Name": "dsw", "IsBoss": true},
-			{"Name": "pdw", "IsBoss": true}
+			{"Name": "wgw", "is_boss": true},
+			{"Name": "bcw", "is_boss": true},
+			{"Name": "tsw", "is_boss": true},
+			{"Name": "dsw", "is_boss": true},
+			{"Name": "pdw", "is_boss": true}
 		],
 		"LevelFall": ["szyj", "xzyj", "czyj", "zzyj", "gzyj"],
 		"NeedZDL":
@@ -956,9 +957,9 @@ var LevelInfo = {
 	},
 	"九重天":
 	{
-		"LevelName": "九重天",
+		"level_name": "九重天",
 		"fall_pro": 33,
-		"MonsterList": [{"Name": "ey", "IsBoss": false}, {"Name": "xtq", "IsBoss": true}],
+		"monster_list": [{"Name": "ey", "is_boss": false}, {"Name": "xtq", "is_boss": true}],
 		"LevelFall": [],
 		"NeedZDL":
 		{
@@ -972,16 +973,16 @@ var LevelInfo = {
 	},
 	"天宫道":
 	{
-		"LevelName": "天宫道",
+		"level_name": "天宫道",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "hg", "IsBoss": false},
-			{"Name": "hh", "IsBoss": false},
-			{"Name": "wy", "IsBoss": false},
-			{"Name": "qly", "IsBoss": true},
-			{"Name": "sfe", "IsBoss": true},
-			{"Name": "mhwtf", "IsBoss": true}
+			{"Name": "hg", "is_boss": false},
+			{"Name": "hh", "is_boss": false},
+			{"Name": "wy", "is_boss": false},
+			{"Name": "qly", "is_boss": true},
+			{"Name": "sfe", "is_boss": true},
+			{"Name": "mhwtf", "is_boss": true}
 		],
 		"LevelFall": ["kys", "xhz", "kyz", "kyc", "tfljzzs", "231007001"],
 		"LevelFallProbability": {"231007001": 33},
@@ -997,14 +998,14 @@ var LevelInfo = {
 	},
 	"南天门":
 	{
-		"LevelName": "南天门",
+		"level_name": "南天门",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "hg", "IsBoss": false},
-			{"Name": "hh", "IsBoss": false},
-			{"Name": "wy", "IsBoss": false},
-			{"Name": "jls", "IsBoss": true}
+			{"Name": "hg", "is_boss": false},
+			{"Name": "hh", "is_boss": false},
+			{"Name": "wy", "is_boss": false},
+			{"Name": "jls", "is_boss": true}
 		],
 		"LevelFall": ["xhp", "xhc", "xhj", "230007001"],
 		"LevelFallProbability": {"230007001": 33},
@@ -1020,14 +1021,14 @@ var LevelInfo = {
 	},
 	"南天王殿":
 	{
-		"LevelName": "南天王殿",
+		"level_name": "南天王殿",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "tbd", "IsBoss": false},
-			{"Name": "tbq", "IsBoss": false},
-			{"Name": "tbg", "IsBoss": false},
-			{"Name": "zztw", "IsBoss": true}
+			{"Name": "tbd", "is_boss": false},
+			{"Name": "tbq", "is_boss": false},
+			{"Name": "tbg", "is_boss": false},
+			{"Name": "zztw", "is_boss": true}
 		],
 		"LevelFall": ["qyfp", "qybd", "qysq"],
 		"NeedZDL":
@@ -1042,14 +1043,14 @@ var LevelInfo = {
 	},
 	"西天王殿":
 	{
-		"LevelName": "西天王殿",
+		"level_name": "西天王殿",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "tbd", "IsBoss": false},
-			{"Name": "tbq", "IsBoss": false},
-			{"Name": "tbg", "IsBoss": false},
-			{"Name": "gmtw", "IsBoss": true}
+			{"Name": "tbd", "is_boss": false},
+			{"Name": "tbq", "is_boss": false},
+			{"Name": "tbg", "is_boss": false},
+			{"Name": "gmtw", "is_boss": true}
 		],
 		"LevelFall": ["hylk", "qysz"],
 		"NeedZDL":
@@ -1064,15 +1065,15 @@ var LevelInfo = {
 	},
 	"北天王殿":
 	{
-		"LevelName": "北天王殿",
+		"level_name": "北天王殿",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "tbd", "IsBoss": false},
-			{"Name": "tbq", "IsBoss": false},
-			{"Name": "tbg", "IsBoss": false},
-			{"Name": "dwtw", "IsBoss": true},
-			{"Name": "mtj", "IsBoss": true}
+			{"Name": "tbd", "is_boss": false},
+			{"Name": "tbq", "is_boss": false},
+			{"Name": "tbg", "is_boss": false},
+			{"Name": "dwtw", "is_boss": true},
+			{"Name": "mtj", "is_boss": true}
 		],
 		"LevelFall": ["hylc", "hylz", "mgzhzzs", "231007002"],
 		"LevelFallProbability": {"231007002": 33},
@@ -1088,15 +1089,15 @@ var LevelInfo = {
 	},
 	"彩虹楼":
 	{
-		"LevelName": "彩虹楼",
+		"level_name": "彩虹楼",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "goy", "IsBoss": false},
-			{"Name": "yy", "IsBoss": false},
-			{"Name": "ny", "IsBoss": false},
-			{"Name": "zzz", "IsBoss": true},
-			{"Name": "cgtw", "IsBoss": true}
+			{"Name": "goy", "is_boss": false},
+			{"Name": "yy", "is_boss": false},
+			{"Name": "ny", "is_boss": false},
+			{"Name": "zzz", "is_boss": true},
+			{"Name": "cgtw", "is_boss": true}
 		],
 		"LevelFall": ["zjqj", "zjksf", "zjgp", "zjxmczzs", "hljhzzs", "tdlzjzzs", "230007002"],
 		"LevelFallProbability": {"230007002": 33},
@@ -1112,15 +1113,15 @@ var LevelInfo = {
 	},
 	"朝会殿":
 	{
-		"LevelName": "朝会殿",
+		"level_name": "朝会殿",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "goy", "IsBoss": false},
-			{"Name": "yy", "IsBoss": false},
-			{"Name": "ny", "IsBoss": false},
-			{"Name": "sey", "IsBoss": false},
-			{"Name": "yuh", "IsBoss": true}
+			{"Name": "goy", "is_boss": false},
+			{"Name": "yy", "is_boss": false},
+			{"Name": "ny", "is_boss": false},
+			{"Name": "sey", "is_boss": false},
+			{"Name": "yuh", "is_boss": true}
 		],
 		"LevelFall": ["zjbtgzzs", "wsjgzzs", "blmqzzs", "jllm", "smz"],
 		"NeedZDL":
@@ -1135,15 +1136,15 @@ var LevelInfo = {
 	},
 	"凌霄宝殿":
 	{
-		"LevelName": "凌霄宝殿",
+		"level_name": "凌霄宝殿",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "yy", "IsBoss": false},
-			{"Name": "ny", "IsBoss": false},
-			{"Name": "wgj", "IsBoss": false},
-			{"Name": "xtq", "IsBoss": true},
-			{"Name": "els", "IsBoss": true}
+			{"Name": "yy", "is_boss": false},
+			{"Name": "ny", "is_boss": false},
+			{"Name": "wgj", "is_boss": false},
+			{"Name": "xtq", "is_boss": true},
+			{"Name": "els", "is_boss": true}
 		],
 		"LevelFall": ["shsjt"],
 		"NeedZDL":
@@ -1158,17 +1159,17 @@ var LevelInfo = {
 	},
 	"玲珑宝塔":
 	{
-		"LevelName": "玲珑宝塔",
+		"level_name": "玲珑宝塔",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "jdhw", "IsBoss": false},
-			{"Name": "cdhw", "IsBoss": false},
-			{"Name": "hdhw", "IsBoss": false},
-			{"Name": "txs", "IsBoss": true},
-			{"Name": "lzz", "IsBoss": true},
-			{"Name": "nz", "IsBoss": true},
-			{"Name": "tttw", "IsBoss": true}
+			{"Name": "jdhw", "is_boss": false},
+			{"Name": "cdhw", "is_boss": false},
+			{"Name": "hdhw", "is_boss": false},
+			{"Name": "txs", "is_boss": true},
+			{"Name": "lzz", "is_boss": true},
+			{"Name": "nz", "is_boss": true},
+			{"Name": "tttw", "is_boss": true}
 		],
 		"LevelFall":
 		[
@@ -1202,21 +1203,21 @@ var LevelInfo = {
 	},
 	"兜率宫":
 	{
-		"LevelName": "兜率宫",
+		"level_name": "兜率宫",
 		"fall_pro": 30,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "lhtz", "IsBoss": false},
-			{"Name": "wdtz", "IsBoss": false},
-			{"Name": "ghtz", "IsBoss": false},
-			{"Name": "yntz", "IsBoss": false},
-			{"Name": "rstz", "IsBoss": false},
-			{"Name": "dhtz", "IsBoss": false},
-			{"Name": "yjdw", "IsBoss": true},
-			{"Name": "jjdw", "IsBoss": true},
-			{"Name": "qnj", "IsBoss": true},
-			{"Name": "tbjx", "IsBoss": true},
-			{"Name": "tslj", "IsBoss": true}
+			{"Name": "lhtz", "is_boss": false},
+			{"Name": "wdtz", "is_boss": false},
+			{"Name": "ghtz", "is_boss": false},
+			{"Name": "yntz", "is_boss": false},
+			{"Name": "rstz", "is_boss": false},
+			{"Name": "dhtz", "is_boss": false},
+			{"Name": "yjdw", "is_boss": true},
+			{"Name": "jjdw", "is_boss": true},
+			{"Name": "qnj", "is_boss": true},
+			{"Name": "tbjx", "is_boss": true},
+			{"Name": "tslj", "is_boss": true}
 		],
 		"LevelFall":
 		[
@@ -1256,14 +1257,14 @@ var LevelInfo = {
 	},
 	"神兽森林":
 	{
-		"LevelName": "神兽森林",
+		"level_name": "神兽森林",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "qiongqi", "IsBoss": true},
-			{"Name": "taowu", "IsBoss": true},
-			{"Name": "hundun", "IsBoss": true},
-			{"Name": "taotie", "IsBoss": true}
+			{"Name": "qiongqi", "is_boss": true},
+			{"Name": "taowu", "is_boss": true},
+			{"Name": "hundun", "is_boss": true},
+			{"Name": "taotie", "is_boss": true}
 		],
 		"LevelFall": ["wuxingguo", "genguguo", "lingliguo", "zizhiguo"],
 		"LevelFallProbability": {"wuxingguo": 10, "genguguo": 10, "lingliguo": 10, "zizhiguo": 25},
@@ -1279,14 +1280,14 @@ var LevelInfo = {
 	},
 	"火龙岛":
 	{
-		"LevelName": "火龙岛",
+		"level_name": "火龙岛",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "hlhw", "IsBoss": false},
-			{"Name": "fyj", "IsBoss": true},
-			{"Name": "wll", "IsBoss": true},
-			{"Name": "yzx", "IsBoss": true}
+			{"Name": "hlhw", "is_boss": false},
+			{"Name": "fyj", "is_boss": true},
+			{"Name": "wll", "is_boss": true},
+			{"Name": "yzx", "is_boss": true}
 		],
 		"LevelFall": ["240007001zzs", "qszzs", "rczzs", "ytzzs", "llzzs", "ldzzs"],
 		"NeedZDL":
@@ -1301,10 +1302,10 @@ var LevelInfo = {
 	},
 	"九龙岛":
 	{
-		"LevelName": "九龙岛",
+		"level_name": "九龙岛",
 		"fall_pro": 33,
-		"MonsterList":
-		[{"Name": "emlqs", "IsBoss": false}, {"Name": "hylqs", "IsBoss": false}, {"Name": "hbsz", "IsBoss": true}],
+		"monster_list":
+		[{"Name": "emlqs", "is_boss": false}, {"Name": "hylqs", "is_boss": false}, {"Name": "hbsz", "is_boss": true}],
 		"LevelFall": ["241007001zzs", "dzzzs", "ztzzs", "jtzzs", "jszzs", "tlzzs"],
 		"NeedZDL":
 		{
@@ -1318,10 +1319,10 @@ var LevelInfo = {
 	},
 	"龙脊山":
 	{
-		"LevelName": "龙脊山",
+		"level_name": "龙脊山",
 		"fall_pro": 33,
-		"MonsterList":
-		[{"Name": "hylqs", "IsBoss": false}, {"Name": "yflqs", "IsBoss": false}, {"Name": "jnsz", "IsBoss": true}],
+		"monster_list":
+		[{"Name": "hylqs", "is_boss": false}, {"Name": "yflqs", "is_boss": false}, {"Name": "jnsz", "is_boss": true}],
 		"LevelFall":
 		[
 			"241007005zzs",
@@ -1340,14 +1341,14 @@ var LevelInfo = {
 	},
 	"尾妖林":
 	{
-		"LevelName": "尾妖林",
+		"level_name": "尾妖林",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "dylqs", "IsBoss": false},
-			{"Name": "yflqs", "IsBoss": false},
-			{"Name": "basz", "IsBoss": true},
-			{"Name": "ly", "IsBoss": true}
+			{"Name": "dylqs", "is_boss": false},
+			{"Name": "yflqs", "is_boss": false},
+			{"Name": "basz", "is_boss": true},
+			{"Name": "ly", "is_boss": true}
 		],
 		"LevelFall":
 		[
@@ -1373,9 +1374,9 @@ var LevelInfo = {
 	},
 	"仙音岛":
 	{
-		"LevelName": "仙音岛",
+		"level_name": "仙音岛",
 		"fall_pro": 40,
-		"MonsterList": [{"Name": "fl", "IsBoss": false}, {"Name": "bx", "IsBoss": true}],
+		"monster_list": [{"Name": "fl", "is_boss": false}, {"Name": "bx", "is_boss": true}],
 		"LevelFall": ["ygs", "zhhzzzs"],
 		"NeedZDL":
 		{
@@ -1389,9 +1390,9 @@ var LevelInfo = {
 	},
 	"仙幻岛":
 	{
-		"LevelName": "仙幻岛",
+		"level_name": "仙幻岛",
 		"fall_pro": 40,
-		"MonsterList": [{"Name": "lzg", "IsBoss": false}, {"Name": "qx", "IsBoss": true}],
+		"monster_list": [{"Name": "lzg", "is_boss": false}, {"Name": "qx", "is_boss": true}],
 		"LevelFall": ["ygs", "phhlzzs"],
 		"NeedZDL":
 		{
@@ -1405,10 +1406,10 @@ var LevelInfo = {
 	},
 	"仙树岛":
 	{
-		"LevelName": "仙树岛",
+		"level_name": "仙树岛",
 		"fall_pro": 28,
-		"MonsterList":
-		[{"Name": "lzg", "IsBoss": false}, {"Name": "fl", "IsBoss": false}, {"Name": "yx", "IsBoss": true}],
+		"monster_list":
+		[{"Name": "lzg", "is_boss": false}, {"Name": "fl", "is_boss": false}, {"Name": "yx", "is_boss": true}],
 		"LevelFall": ["ygs", "bxhyzzs"],
 		"NeedZDL":
 		{
@@ -1422,16 +1423,16 @@ var LevelInfo = {
 	},
 	"蓬莱岛":
 	{
-		"LevelName": "蓬莱岛",
+		"level_name": "蓬莱岛",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "dylqs", "IsBoss": false},
-			{"Name": "hylqs", "IsBoss": false},
-			{"Name": "emlqs", "IsBoss": false},
-			{"Name": "yflqs", "IsBoss": false},
-			{"Name": "qnyw", "IsBoss": true},
-			{"Name": "qnwg", "IsBoss": true}
+			{"Name": "dylqs", "is_boss": false},
+			{"Name": "hylqs", "is_boss": false},
+			{"Name": "emlqs", "is_boss": false},
+			{"Name": "yflqs", "is_boss": false},
+			{"Name": "qnyw", "is_boss": true},
+			{"Name": "qnwg", "is_boss": true}
 		],
 		"LevelFall": ["ttsl1", "shenhuo_1", "ttsl2", "shenhuo_2"],
 		"NeedZDL":
@@ -1446,15 +1447,15 @@ var LevelInfo = {
 	},
 	"蓬莱仙境":
 	{
-		"LevelName": "蓬莱仙境",
+		"level_name": "蓬莱仙境",
 		"fall_pro": 33,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "dylqs", "IsBoss": false},
-			{"Name": "hylqs", "IsBoss": false},
-			{"Name": "emlqs", "IsBoss": false},
-			{"Name": "yflqs", "IsBoss": false},
-			{"Name": "qnyc", "IsBoss": true}
+			{"Name": "dylqs", "is_boss": false},
+			{"Name": "hylqs", "is_boss": false},
+			{"Name": "emlqs", "is_boss": false},
+			{"Name": "yflqs", "is_boss": false},
+			{"Name": "qnyc", "is_boss": true}
 		],
 		"LevelFall": ["ttsl3", "shenhuo_3"],
 		"NeedZDL":
@@ -1469,9 +1470,9 @@ var LevelInfo = {
 	},
 	"绝仙门":
 	{
-		"LevelName": "绝仙门",
+		"level_name": "绝仙门",
 		"fall_pro": 10,
-		"MonsterList": [{"Name": "dylqs", "IsBoss": false}, {"Name": "cysj", "IsBoss": true}],
+		"monster_list": [{"Name": "dylqs", "is_boss": false}, {"Name": "cysj", "is_boss": true}],
 		"LevelFall": ["sqzlwzzs"],
 		"NeedZDL":
 		{
@@ -1485,13 +1486,13 @@ var LevelInfo = {
 	},
 	"陷仙门":
 	{
-		"LevelName": "陷仙门",
+		"level_name": "陷仙门",
 		"fall_pro": 10,
-		"MonsterList":
+		"monster_list":
 		[
 			{
 				"Name": "qysj",
-				"IsBoss": true,
+				"is_boss": true,
 				"ScenePath": "res://Scene/monster/monster_212.tscn",
 				"HideIndependentDrops": true
 			}
@@ -1518,14 +1519,14 @@ var LevelInfo = {
 	},
 	"绝境宫":
 	{
-		"LevelName": "绝境宫",
+		"level_name": "绝境宫",
 		"fall_pro": 10,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "dylqs", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_118.tscn"},
+			{"Name": "dylqs", "is_boss": false, "ScenePath": "res://Scene/monster/monster_118.tscn"},
 			{
 				"Name": "hyr",
-				"IsBoss": true,
+				"is_boss": true,
 				"ScenePath": "res://Scene/monster/monster_215.tscn",
 				"HideIndependentDrops": true
 			},
@@ -1552,13 +1553,13 @@ var LevelInfo = {
 	},
 	"通天教主":
 	{
-		"LevelName": "通天教主",
+		"level_name": "通天教主",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
 			{
 				"Name": "ttjz",
-				"IsBoss": true,
+				"is_boss": true,
 				"ScenePath": "res://Scene/monster/monster_1460.tscn",
 				"HideIndependentDrops": true
 			}
@@ -1581,16 +1582,16 @@ var LevelInfo = {
 	},
 	"玄武门":
 	{
-		"LevelName": "玄武门",
+		"level_name": "玄武门",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "xwm3001", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3001.tscn"},
-			{"Name": "xwm3003", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3003.tscn"},
-			{"Name": "xwm3004", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3004.tscn"},
+			{"Name": "xwm3001", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3001.tscn"},
+			{"Name": "xwm3003", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3003.tscn"},
+			{"Name": "xwm3004", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3004.tscn"},
 			{
 				"Name": "xwm3005",
-				"IsBoss": true,
+				"is_boss": true,
 				"ScenePath": "res://Scene/monster/monster_3005.tscn",
 				"HideIndependentDrops": true
 			},
@@ -1609,14 +1610,14 @@ var LevelInfo = {
 	},
 	"朱雀街":
 	{
-		"LevelName": "朱雀街",
+		"level_name": "朱雀街",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "xwm3001", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3001.tscn"},
-			{"Name": "zqj3002", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3002.tscn"},
-			{"Name": "xwm3004", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3004.tscn"},
-			{"Name": "zqj3006", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3006.tscn"},
+			{"Name": "xwm3001", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3001.tscn"},
+			{"Name": "zqj3002", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3002.tscn"},
+			{"Name": "xwm3004", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3004.tscn"},
+			{"Name": "zqj3006", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3006.tscn"},
 		],
 		"LevelFall": ["tjs"],
 		"LevelFallProbability": {"tjs": 10},
@@ -1632,14 +1633,14 @@ var LevelInfo = {
 	},
 	"未央宫":
 	{
-		"LevelName": "未央宫",
+		"level_name": "未央宫",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "xwm3001", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3001.tscn"},
-			{"Name": "zqj3002", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3002.tscn"},
-			{"Name": "xwm3004", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3004.tscn"},
-			{"Name": "weiyang3007", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3007.tscn"},
+			{"Name": "xwm3001", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3001.tscn"},
+			{"Name": "zqj3002", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3002.tscn"},
+			{"Name": "xwm3004", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3004.tscn"},
+			{"Name": "weiyang3007", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3007.tscn"},
 		],
 		"LevelFall": ["139300014V1", "1_jns"],
 		"LevelFallProbability": {"139300014V1": 10, "1_jns": 20},
@@ -1655,15 +1656,15 @@ var LevelInfo = {
 	},
 	"九华山麓":
 	{
-		"LevelName": "九华山麓",
+		"level_name": "九华山麓",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "蘑菇精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3008.tscn"},
-			{"Name": "金钱松", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3009.tscn"},
+			{"Name": "蘑菇精", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3008.tscn"},
+			{"Name": "金钱松", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3009.tscn"},
 			{
 				"Name": "闵老护法",
-				"IsBoss": true,
+				"is_boss": true,
 				"ScenePath": "res://Scene/monster/monster_3019.tscn",
 				"HideIndependentDrops": true
 			}
@@ -1682,16 +1683,16 @@ var LevelInfo = {
 	},
 	"双溪寺":
 	{
-		"LevelName": "双溪寺",
+		"level_name": "双溪寺",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "蘑菇精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3008.tscn"},
-			{"Name": "人形藤蔓", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3010.tscn"},
-			{"Name": "苍耳妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3011.tscn"},
+			{"Name": "蘑菇精", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3008.tscn"},
+			{"Name": "人形藤蔓", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3010.tscn"},
+			{"Name": "苍耳妖", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3011.tscn"},
 			{
 				"Name": "道明妖僧",
-				"IsBoss": true,
+				"is_boss": true,
 				"ScenePath": "res://Scene/monster/monster_3020.tscn",
 				"HideIndependentDrops": true
 			}
@@ -1710,14 +1711,14 @@ var LevelInfo = {
 	},
 	"神光金岭":
 	{
-		"LevelName": "神光金岭",
+		"level_name": "神光金岭",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "金钱松", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3009.tscn"},
-			{"Name": "人形藤蔓", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3010.tscn"},
-			{"Name": "苍耳妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3011.tscn"},
-			{"Name": "木之祖巫", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3021.tscn"}
+			{"Name": "金钱松", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3009.tscn"},
+			{"Name": "人形藤蔓", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3010.tscn"},
+			{"Name": "苍耳妖", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3011.tscn"},
+			{"Name": "木之祖巫", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3021.tscn"}
 		],
 		"LevelFall": ["139300012", "105400003"],
 		"LevelFallProbability": {"139300012": 10, "105400003": 10},
@@ -1733,13 +1734,13 @@ var LevelInfo = {
 	},
 	"普陀山脚":
 	{
-		"LevelName": "普陀山脚",
+		"level_name": "普陀山脚",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "虾兵", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3031.tscn"},
-			{"Name": "虎鲨", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3029.tscn"},
-			{"Name": "灵感大王", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3033.tscn"}
+			{"Name": "虾兵", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3031.tscn"},
+			{"Name": "虎鲨", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3029.tscn"},
+			{"Name": "灵感大王", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3033.tscn"}
 		],
 		"LevelFall": ["105400005V1"],
 		"LevelFallProbability": {"105400005V1": 10},
@@ -1755,14 +1756,14 @@ var LevelInfo = {
 	},
 	"九龙宝殿":
 	{
-		"LevelName": "九龙宝殿",
+		"level_name": "九龙宝殿",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "贝壳", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3028.tscn"},
-			{"Name": "夜叉", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3032.tscn"},
-			{"Name": "虾兵", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3031.tscn", "ConfigId": 3031},
-			{"Name": "四头虫", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3034.tscn"}
+			{"Name": "贝壳", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3028.tscn"},
+			{"Name": "夜叉", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3032.tscn"},
+			{"Name": "虾兵", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3031.tscn", "ConfigId": 3031},
+			{"Name": "四头虫", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3034.tscn"}
 		],
 		"LevelFall": ["ymqzq"],
 		"LevelFallProbability": {"ymqzq": 10},
@@ -1778,14 +1779,14 @@ var LevelInfo = {
 	},
 	"法华灵洞":
 	{
-		"LevelName": "法华灵洞",
+		"level_name": "法华灵洞",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "蚌女", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3030.tscn", "ConfigId": 3030},
-			{"Name": "夜叉", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3032.tscn", "ConfigId": 3032},
-			{"Name": "贝壳", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3028.tscn", "ConfigId": 3028},
-			{"Name": "水之祖巫", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3035.tscn"}
+			{"Name": "蚌女", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3030.tscn", "ConfigId": 3030},
+			{"Name": "夜叉", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3032.tscn", "ConfigId": 3032},
+			{"Name": "贝壳", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3028.tscn", "ConfigId": 3028},
+			{"Name": "水之祖巫", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3035.tscn"}
 		],
 		"LevelFall": ["139300018", "hhyq"],
 		"LevelFallProbability": {"139300018": 10, "hhyq": 10},
@@ -1801,13 +1802,13 @@ var LevelInfo = {
 	},
 	"峨眉山道":
 	{
-		"LevelName": "峨眉山道",
+		"level_name": "峨眉山道",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "岩石怪", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3047.tscn"},
-			{"Name": "忍猴", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3038.tscn"},
-			{"Name": "赤炎金刚", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3040.tscn"}
+			{"Name": "岩石怪", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3047.tscn"},
+			{"Name": "忍猴", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3038.tscn"},
+			{"Name": "赤炎金刚", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3040.tscn"}
 		],
 		"LevelFall": ["zqfjwkzzs", "zqfjtszzs", "zqfjbjzzs"],
 		"LevelFallProbability": {"zqfjwkzzs": 10, "zqfjtszzs": 10, "zqfjbjzzs": 10},
@@ -1823,14 +1824,14 @@ var LevelInfo = {
 	},
 	"清音阁":
 	{
-		"LevelName": "清音阁",
+		"level_name": "清音阁",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "百足蜈蚣", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3039.tscn"},
-			{"Name": "蝎子精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3037.tscn"},
-			{"Name": "火焰鸟", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3036.tscn"},
-			{"Name": "噬火毒蝎", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3041.tscn"}
+			{"Name": "百足蜈蚣", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3039.tscn"},
+			{"Name": "蝎子精", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3037.tscn"},
+			{"Name": "火焰鸟", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3036.tscn"},
+			{"Name": "噬火毒蝎", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3041.tscn"}
 		],
 		"LevelFall": ["zqfjsszzs", "zqfjblzzs", "zqfjnzzzs"],
 		"LevelFallProbability": {"zqfjsszzs": 10, "zqfjblzzs": 10, "zqfjnzzzs": 10},
@@ -1846,15 +1847,15 @@ var LevelInfo = {
 	},
 	"金顶云海":
 	{
-		"LevelName": "金顶云海",
+		"level_name": "金顶云海",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "岩石怪", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3047.tscn", "ConfigId": 3047},
-			{"Name": "忍猴", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3038.tscn", "ConfigId": 3038},
-			{"Name": "火焰鸟", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3036.tscn", "ConfigId": 3036},
-			{"Name": "百足蜈蚣", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3039.tscn", "ConfigId": 3039},
-			{"Name": "火之祖巫", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3042.tscn"}
+			{"Name": "岩石怪", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3047.tscn", "ConfigId": 3047},
+			{"Name": "忍猴", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3038.tscn", "ConfigId": 3038},
+			{"Name": "火焰鸟", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3036.tscn", "ConfigId": 3036},
+			{"Name": "百足蜈蚣", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3039.tscn", "ConfigId": 3039},
+			{"Name": "火之祖巫", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3042.tscn"}
 		],
 		"LevelFall": ["139300021", "zqwqwkzzs", "zqwqtszzs", "zqwqbjzzs"],
 		"LevelFallProbability": {"139300021": 10, "zqwqwkzzs": 10, "zqwqtszzs": 10, "zqwqbjzzs": 10},
@@ -1870,14 +1871,14 @@ var LevelInfo = {
 	},
 	"五台山口":
 	{
-		"LevelName": "五台山口",
+		"level_name": "五台山口",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "鸟身女妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3065.tscn"},
-			{"Name": "泥偶精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3066.tscn"},
-			{"Name": "核桃精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3068.tscn"},
-			{"Name": "金光孔雀", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3069.tscn"}
+			{"Name": "鸟身女妖", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3065.tscn"},
+			{"Name": "泥偶精", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3066.tscn"},
+			{"Name": "核桃精", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3068.tscn"},
+			{"Name": "金光孔雀", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3069.tscn"}
 		],
 		"LevelFall": ["zqwqsszzs", "zqwqblzzs", "zqwqnzzzs"],
 		"LevelFallProbability": {"zqwqsszzs": 10, "zqwqblzzs": 10, "zqwqnzzzs": 10},
@@ -1893,13 +1894,13 @@ var LevelInfo = {
 	},
 	"锦绣峰":
 	{
-		"LevelName": "锦绣峰",
+		"level_name": "锦绣峰",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "鸟身女妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3065.tscn"},
-			{"Name": "花妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3067.tscn"},
-			{"Name": "芙蓉仙子", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3070.tscn"}
+			{"Name": "鸟身女妖", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3065.tscn"},
+			{"Name": "花妖", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3067.tscn"},
+			{"Name": "芙蓉仙子", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3070.tscn"}
 		],
 		"LevelFall": ["469000004"],
 		"LevelFallProbability": {"469000004": 10},
@@ -1915,17 +1916,17 @@ var LevelInfo = {
 	},
 	"万佛朝阁":
 	{
-		"LevelName": "万佛朝阁",
+		"level_name": "万佛朝阁",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
-			{"Name": "花妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3067.tscn", "ConfigId": 3067},
-			{"Name": "核桃精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3068.tscn", "ConfigId": 3068},
-			{"Name": "泥偶精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3066.tscn", "ConfigId": 3066},
-			{"Name": "守卫", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3076.tscn", "ConfigId": 3076},
+			{"Name": "花妖", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3067.tscn", "ConfigId": 3067},
+			{"Name": "核桃精", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3068.tscn", "ConfigId": 3068},
+			{"Name": "泥偶精", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3066.tscn", "ConfigId": 3066},
+			{"Name": "守卫", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3076.tscn", "ConfigId": 3076},
 			{
 				"Name": "土之祖巫",
-				"IsBoss": true,
+				"is_boss": true,
 				"ScenePath": "res://Scene/monster/monster_3071.tscn",
 				"ConfigId": 3071,
 				"HideIndependentDrops": true
@@ -1945,13 +1946,13 @@ var LevelInfo = {
 	},
 	"冥海":
 	{
-		"LevelName": "冥海",
+		"level_name": "冥海",
 		"fall_pro": 0,
-		"MonsterList":
+		"monster_list":
 		[
 			{
 				"Name": "通天教主(穷奇版)",
-				"IsBoss": true,
+				"is_boss": true,
 				"ScenePath": "res://Scene/monster/monster_3117.tscn",
 				"HideIndependentDrops": true
 			}
@@ -1970,9 +1971,9 @@ var LevelInfo = {
 	},
 	"紫晶门":
 	{
-		"LevelName": "紫晶门",
+		"level_name": "紫晶门",
 		"fall_pro": 10,
-		"MonsterList": [{"Name": "dylqs", "IsBoss": false}, {"Name": "zmjw", "IsBoss": true}],
+		"monster_list": [{"Name": "dylqs", "is_boss": false}, {"Name": "zmjw", "is_boss": true}],
 		"LevelFall": ["sqnmwdnhzzs"],
 		"NeedZDL":
 		{
@@ -1986,9 +1987,9 @@ var LevelInfo = {
 	},
 	"戮仙门":
 	{
-		"LevelName": "戮仙门",
+		"level_name": "戮仙门",
 		"fall_pro": 10,
-		"MonsterList": [{"Name": "bssj", "IsBoss": true}],
+		"monster_list": [{"Name": "bssj", "is_boss": true}],
 		"LevelFall": ["cjshenjzzs", "cdshenjzzs", "zhshenjzzs"],
 		"NeedZDL":
 		{
@@ -2002,9 +2003,9 @@ var LevelInfo = {
 	},
 	"指景宫":
 	{
-		"LevelName": "指景宫",
+		"level_name": "指景宫",
 		"fall_pro": 0,
-		"MonsterList": [{"Name": "fyg", "IsBoss": false}, {"Name": "zqpw", "IsBoss": true}],
+		"monster_list": [{"Name": "fyg", "is_boss": false}, {"Name": "zqpw", "is_boss": true}],
 		"LevelFall": ["xianyjp"],
 		"LevelFallProbability": {"xianyjp": 5},
 		"NeedZDL":
@@ -2019,8 +2020,8 @@ var LevelInfo = {
 	},
 }
 
-var LevelName: String
-var Num: int
+var level_name: String
+var num: int
 var target_stage_path: String
 var _fall_refresh_pending := false
 var _monster_touch_active := false
@@ -2105,7 +2106,7 @@ func _get_level_info() -> Dictionary:
 	var stage := int(target_stage_path.get_file().get_basename().trim_prefix("Level_"))
 	var tier := int(stages.get(stage, 0))
 	if tier == 0:
-		tier = int({"九华山麓": 2, "普陀山脚": 3, "峨眉山道": 4, "五台山口": 5}.get(str(info.get("LevelName", "")), 0))
+		tier = int({"九华山麓": 2, "普陀山脚": 3, "峨眉山道": 4, "五台山口": 5}.get(str(info.get("level_name", "")), 0))
 	if tier > 0:
 		info = info.duplicate(true)
 		var stone_id := "pgs_%d" % tier
@@ -2137,28 +2138,28 @@ func _get_level_info() -> Dictionary:
 
 func _get_base_level_info() -> Dictionary:
 	if target_stage_path == "res://Scene/level/level_63.tscn":
-		var east_jinshacun := (LevelInfo["金沙村"] as Dictionary).duplicate(true) if LevelInfo.has("金沙村") else {}
-		east_jinshacun["LevelName"] = "金沙村"
-		east_jinshacun["MonsterList"] = [
-			{"Name": "金沙村小怪", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3118.tscn"},
-			{"Name": "金沙村飞行怪", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3119.tscn"},
-			{"Name": "金沙村首领", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3120.tscn"},
+		var east_jinshacun := (level_info["金沙村"] as Dictionary).duplicate(true) if level_info.has("金沙村") else {}
+		east_jinshacun["level_name"] = "金沙村"
+		east_jinshacun["monster_list"] = [
+			{"Name": "金沙村小怪", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3118.tscn"},
+			{"Name": "金沙村飞行怪", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3119.tscn"},
+			{"Name": "金沙村首领", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3120.tscn"},
 		]
 		east_jinshacun = _clear_east_continent_drop_preview(east_jinshacun)
 		east_jinshacun["LevelFall"] = ["469000011"]
 		east_jinshacun["LevelFallProbability"] = {"469000011": 10}
 		return east_jinshacun
 	if target_stage_path == "res://Scene/level/level_64.tscn":
-		var east_baixianyuan := (LevelInfo["百仙园"] as Dictionary).duplicate(true) if LevelInfo.has("百仙园") else {}
-		east_baixianyuan["LevelName"] = "百仙园"
-		east_baixianyuan["MonsterList"] = [
-			{"Name": "百仙园弓手", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3121.tscn"},
-			{"Name": "百仙园妖灵", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3122.tscn"},
-			{"Name": "煞人蜂", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3126.tscn"},
-			{"Name": "百仙园首领", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3123.tscn"},
+		var east_baixianyuan := (level_info["百仙园"] as Dictionary).duplicate(true) if level_info.has("百仙园") else {}
+		east_baixianyuan["level_name"] = "百仙园"
+		east_baixianyuan["monster_list"] = [
+			{"Name": "百仙园弓手", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3121.tscn"},
+			{"Name": "百仙园妖灵", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3122.tscn"},
+			{"Name": "煞人蜂", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3126.tscn"},
+			{"Name": "百仙园首领", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3123.tscn"},
 			{
 				"Name": "百仙碟",
-				"IsBoss": true,
+				"is_boss": true,
 				"ScenePath": "res://Scene/monster/monster_3125.tscn",
 				"HideIndependentDrops": true
 			},
@@ -2168,13 +2169,13 @@ func _get_base_level_info() -> Dictionary:
 		east_baixianyuan["LevelFallProbability"] = {"2_jns": 20}
 		return east_baixianyuan
 	if target_stage_path == "res://Scene/level/level_65.tscn":
-		var east_aolaiguo := (LevelInfo["傲来国"] as Dictionary).duplicate(true) if LevelInfo.has("傲来国") else {}
-		east_aolaiguo["LevelName"] = "傲来国"
-		east_aolaiguo["MonsterList"] = [
-			{"Name": "3144", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3144.tscn", "ConfigId": 3144},
-			{"Name": "3145", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3121.tscn", "ConfigId": 3145},
-			{"Name": "3146", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3122.tscn", "ConfigId": 3146},
-			{"Name": "3136", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3136.tscn", "ConfigId": 3136},
+		var east_aolaiguo := (level_info["傲来国"] as Dictionary).duplicate(true) if level_info.has("傲来国") else {}
+		east_aolaiguo["level_name"] = "傲来国"
+		east_aolaiguo["monster_list"] = [
+			{"Name": "3144", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3144.tscn", "ConfigId": 3144},
+			{"Name": "3145", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3121.tscn", "ConfigId": 3145},
+			{"Name": "3146", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3122.tscn", "ConfigId": 3146},
+			{"Name": "3136", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3136.tscn", "ConfigId": 3136},
 		]
 		east_aolaiguo = _clear_east_continent_drop_preview(east_aolaiguo)
 		if not east_aolaiguo.has("NeedZDL"):
@@ -2185,27 +2186,27 @@ func _get_base_level_info() -> Dictionary:
 			east_aolaiguo["Level"] = 90
 		return east_aolaiguo
 	if target_stage_path == "res://Scene/level/level_66.tscn":
-		var east_huaguoshan := (LevelInfo["花果山"] as Dictionary).duplicate(true)
-		east_huaguoshan["MonsterList"] = [
-			{"Name": "猴妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3159.tscn"},
-			{"Name": "银杏精", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3160.tscn"},
-			{"Name": "通臂白猿", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3161.tscn"},
+		var east_huaguoshan := (level_info["花果山"] as Dictionary).duplicate(true)
+		east_huaguoshan["monster_list"] = [
+			{"Name": "猴妖", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3159.tscn"},
+			{"Name": "银杏精", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3160.tscn"},
+			{"Name": "通臂白猿", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3161.tscn"},
 		]
 		return _clear_east_continent_drop_preview(east_huaguoshan)
 	if target_stage_path == "res://Scene/level/level_67.tscn":
-		var east_shuiliandong := (LevelInfo["水帘洞"] as Dictionary).duplicate(true)
-		east_shuiliandong["MonsterList"] = [
-			{"Name": "猴妖", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3159.tscn"},
-			{"Name": "蘑菇长老", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3177.tscn"},
-			{"Name": "六耳猕猴", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3179.tscn"},
+		var east_shuiliandong := (level_info["水帘洞"] as Dictionary).duplicate(true)
+		east_shuiliandong["monster_list"] = [
+			{"Name": "猴妖", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3159.tscn"},
+			{"Name": "蘑菇长老", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3177.tscn"},
+			{"Name": "六耳猕猴", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3179.tscn"},
 		]
 		return _clear_east_continent_drop_preview(east_shuiliandong)
 	if target_stage_path == "res://Scene/level/level_68.tscn":
-		var east_taohuagu := (LevelInfo["桃花源"] as Dictionary).duplicate(true)
-		east_taohuagu["LevelName"] = "桃花谷"
-		east_taohuagu["MonsterList"] = [
-			{"Name": "骨刺兽", "IsBoss": false, "ScenePath": "res://Scene/monster/monster_3181.tscn"},
-			{"Name": "雨之祖巫", "IsBoss": true, "ScenePath": "res://Scene/monster/monster_3182.tscn"},
+		var east_taohuagu := (level_info["桃花源"] as Dictionary).duplicate(true)
+		east_taohuagu["level_name"] = "桃花谷"
+		east_taohuagu["monster_list"] = [
+			{"Name": "骨刺兽", "is_boss": false, "ScenePath": "res://Scene/monster/monster_3181.tscn"},
+			{"Name": "雨之祖巫", "is_boss": true, "ScenePath": "res://Scene/monster/monster_3182.tscn"},
 		]
 		return _clear_east_continent_drop_preview(east_taohuagu)
 	var target_stage_text := target_stage_path.get_file().get_basename().trim_prefix("Level_")
@@ -2214,9 +2215,11 @@ func _get_base_level_info() -> Dictionary:
 		if target_stage >= 76 and target_stage <= 85:
 			return NorthOriginalData.preview(target_stage)
 		if EAST_LATE_LEVEL_MONSTERS.has(target_stage):
-			var east_late := (LevelInfo[LevelName] as Dictionary).duplicate(true) if LevelInfo.has(LevelName) else {}
-			east_late["LevelName"] = str(EAST_LATE_LEVEL_NAMES[target_stage])
-			east_late["MonsterList"] = (EAST_LATE_LEVEL_MONSTERS[target_stage] as Array).duplicate(true)
+			var east_late := (
+				(level_info[level_name] as Dictionary).duplicate(true) if level_info.has(level_name) else {}
+			)
+			east_late["level_name"] = str(EAST_LATE_LEVEL_NAMES[target_stage])
+			east_late["monster_list"] = (EAST_LATE_LEVEL_MONSTERS[target_stage] as Array).duplicate(true)
 			if not east_late.has("fall_pro"):
 				east_late["fall_pro"] = 0
 			if not east_late.has("LevelFall"):
@@ -2228,13 +2231,13 @@ func _get_base_level_info() -> Dictionary:
 			if not east_late.has("Level"):
 				east_late["Level"] = 90
 			return _clear_east_continent_drop_preview(east_late)
-	if LevelInfo.has(LevelName):
-		return LevelInfo[LevelName]
-	push_warning("LevelInfo missing: " + str(LevelName))
+	if level_info.has(level_name):
+		return level_info[level_name]
+	push_warning("level_info missing: " + str(level_name))
 	return {
-		"LevelName": LevelName,
+		"level_name": level_name,
 		"fall_pro": 0,
-		"MonsterList": [],
+		"monster_list": [],
 		"LevelFall": [],
 		"NeedZDL": {},
 		"SelfBg": "hgs",
@@ -2265,10 +2268,10 @@ func _physics_process(delta: float) -> void:
 	if not is_set:
 		var info := _get_level_info()
 		level_down.text = str(info.get("Level", 0))
-		pj.text = str(info.get("LevelName", LevelName)) + "历史最高评价："
-		Title.text = str(info.get("LevelName", LevelName))
-		fall.text = str(info.get("LevelName", LevelName)) + "概率掉落："
-		Num = PlayerData.player_data["关卡评价"].get(LevelName, 0)
+		pj.text = str(info.get("level_name", level_name)) + "历史最高评价："
+		Title.text = str(info.get("level_name", level_name))
+		fall.text = str(info.get("level_name", level_name)) + "概率掉落："
+		num = PlayerData.player_data["关卡评价"].get(level_name, 0)
 		mybg.texture = load_2(str(info.get("SelfBg", "hgs")))
 		set_pj_font_color()
 		add_level_fall_item()
@@ -2283,8 +2286,8 @@ func _physics_process(delta: float) -> void:
 
 
 func set_pj_font_color():
-	my_pj.text = PjList["PjList"][Num]
-	my_pj.add_theme_color_override("font_color", font_color_list["font_colorList"][Num])
+	my_pj.text = pj_list["pj_list"][num]
+	my_pj.add_theme_color_override("font_color", font_color_list["font_colorList"][num])
 
 
 func add_level_fall_item() -> void:
@@ -2415,7 +2418,7 @@ func _is_heaven_nightmare_level() -> bool:
 
 func _get_heaven_nightmare_soul_items(level_info: Dictionary) -> Array:
 	var items: Array = []
-	for monster_info: Variant in level_info.get("MonsterList", []):
+	for monster_info: Variant in level_info.get("monster_list", []):
 		if not monster_info is Dictionary:
 			continue
 		var monster_key := str(monster_info.get("Name", ""))
@@ -2430,7 +2433,7 @@ func _get_heaven_nightmare_soul_items(level_info: Dictionary) -> Array:
 
 func _get_underworld_nightmare_soul_items(level_info: Dictionary) -> Array:
 	var items: Array = []
-	for monster_info: Variant in level_info.get("MonsterList", []):
+	for monster_info: Variant in level_info.get("monster_list", []):
 		if not monster_info is Dictionary:
 			continue
 		var monster_key := str(monster_info.get("Name", ""))
@@ -2445,7 +2448,7 @@ func _get_underworld_nightmare_soul_items(level_info: Dictionary) -> Array:
 
 func _get_human_nightmare_soul_items(level_info: Dictionary) -> Array:
 	var items: Array = []
-	for monster_info: Variant in level_info.get("MonsterList", []):
+	for monster_info: Variant in level_info.get("monster_list", []):
 		if not monster_info is Dictionary:
 			continue
 		var monster_key := str(monster_info.get("Name", ""))
@@ -2600,9 +2603,9 @@ func _refresh_fall_pro_display():
 
 func add_monster_head():
 	var level_info := _get_level_info()
-	var info_dic = level_info.get("MonsterList", [])
+	var info_dic = level_info.get("monster_list", [])
 	for i in info_dic:
-		var head = Global.add_monster_head(monster_list, i["Name"], i["IsBoss"], str(i.get("ScenePath", "")))
+		var head = Global.add_monster_head(monster_list, i["Name"], i["is_boss"], str(i.get("ScenePath", "")))
 		if head != null:
 			head.level_path = target_stage_path
 			var constellation_level := int(i.get("SelectConstellationLevel", 0))
@@ -2616,15 +2619,15 @@ func add_monster_head():
 			)
 			head.set_meta("hide_independent_drops", bool(i.get("HideIndependentDrops", false)))
 			var select_id := int(i.get("SelectId", 0))
-			if LevelName == "挑战三太子" and select_id > 0:
+			if level_name == "挑战三太子" and select_id > 0:
 				head.set_meta("three_prince_id", select_id)
 				head.set_selectable(true)
 				head.selection_requested.connect(_on_three_prince_head_selected)
-			if LevelName == "八仙过海" and select_id in EIGHT_IMMORTAL_IDS:
+			if level_name == "八仙过海" and select_id in EIGHT_IMMORTAL_IDS:
 				head.set_meta("eight_immortal_id", select_id)
 				head.set_selectable(true)
 				head.selection_requested.connect(_on_eight_immortal_head_selected)
-			if LevelName == "挑战28星宿" and constellation_level in range(1, 15):
+			if level_name == "挑战28星宿" and constellation_level in range(1, 15):
 				head.set_meta("constellation_level", constellation_level)
 				head.set_selectable(true)
 				head.selection_requested.connect(_on_constellation_head_selected)
@@ -2675,7 +2678,7 @@ func _on_three_prince_head_selected(head: Node) -> void:
 	for child in monster_list.get_children():
 		if child.has_method("set_selected"):
 			child.set_selected(child == head)
-	var prince_name := str(head.get("MonsterName"))
+	var prince_name := str(head.get("monster_name"))
 	if head.has_method("get_display_name"):
 		prince_name = str(head.call("get_display_name"))
 	Title.text = "挑战三太子 · " + prince_name
@@ -2691,7 +2694,7 @@ func _on_eight_immortal_head_selected(head: Node) -> void:
 	for child in monster_list.get_children():
 		if child.has_method("set_selected"):
 			child.set_selected(child == head)
-	var immortal_name := str(head.get("MonsterName"))
+	var immortal_name := str(head.get("monster_name"))
 	if head.has_method("get_display_name"):
 		immortal_name = str(head.call("get_display_name"))
 	Title.text = "八仙过海 · " + immortal_name
@@ -2707,7 +2710,7 @@ func _on_constellation_head_selected(head: Node) -> void:
 	for child in monster_list.get_children():
 		if child.has_method("set_selected"):
 			child.set_selected(child == head)
-	var constellation_name := str(head.get("MonsterName"))
+	var constellation_name := str(head.get("monster_name"))
 	if head.has_method("get_display_name"):
 		constellation_name = str(head.call("get_display_name"))
 	Title.text = "挑战28星宿 · " + constellation_name

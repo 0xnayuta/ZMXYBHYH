@@ -40,10 +40,10 @@ func _physics_process(delta: float) -> void:
 	cl_2.set_button_icon(load_(item_info["cl_2"]))
 	cl_3.set_button_icon(load_(item_info["cl_3"]))
 	scw.set_button_icon(load_(item_info["scw"]))
-	cl_1.EQ_prop = AE.all_equipment[item_info["cl_1"]]
-	cl_2.EQ_prop = AE.all_equipment[item_info["cl_2"]]
-	cl_3.EQ_prop = AE.all_equipment[item_info["cl_3"]]
-	scw.EQ_prop = AE.all_equipment[item_info["scw"]]
+	cl_1.eq_prop = AE.all_equipment[item_info["cl_1"]]
+	cl_2.eq_prop = AE.all_equipment[item_info["cl_2"]]
+	cl_3.eq_prop = AE.all_equipment[item_info["cl_3"]]
+	scw.eq_prop = AE.all_equipment[item_info["scw"]]
 	set_physics_process(false)
 
 

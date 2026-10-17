@@ -39,8 +39,8 @@ func _physics_process(delta: float) -> void:
 	call_count += 1
 	if call_count % 360 == 0:
 		for i in range(randi_range(1, 2)):
-			Global.create_monster(73, monster, Role_.position + Vector2(randi_range(-120, 102), randi_range(-125, 155)))
-	if Role_.position.y <= -4900:
+			Global.create_monster(73, monster, role_.position + Vector2(randi_range(-120, 102), randi_range(-125, 155)))
+	if role_.position.y <= -4900:
 		my_camera.max_bottom = -4835
 	super._physics_process(delta)
 
@@ -83,10 +83,10 @@ func add_stage():
 		{"Type": "an_5" + str(randi_range(1, 5)), "Position": Vector2(randi_range(565, 695), -4610)},
 		{"Type": "an_5" + str(randi_range(1, 5)), "Position": Vector2(randi_range(465, 595), -4810)},
 	]
-	var Stage
+	var stage
 	for i in stage_info:
 		var ta = "an_" + str(randi_range(1, 5))
-		Stage = Global.add_stage(floor, "an_" + str(randi_range(1, 5)), i["Position"])
+		stage = Global.add_stage(floor, "an_" + str(randi_range(1, 5)), i["Position"])
 		if randi_range(0, 50) > 25:
 			Stage.scale.x = -1
 		await get_tree().create_timer(randf_range(0.5, 1))

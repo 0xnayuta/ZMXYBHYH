@@ -5,7 +5,7 @@ class_name RolehmzBullet
 @onready var hit_box: CollisionShape2D = $Hit_Box
 @onready var special_effect_player: AnimationPlayer = $SpecialEffectPlayer
 @onready var check_mr: Area2D = $check_mr
-var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
+var hit_dic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
 var dire: bool
 var scale_: Vector2
 var action_name: String

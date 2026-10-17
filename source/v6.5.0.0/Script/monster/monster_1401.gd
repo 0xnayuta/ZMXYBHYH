@@ -19,11 +19,11 @@ func monster_1401():
 	self.crit = 18
 	self.miss = 38
 	self.lucky = 45
-	self.Htarget = 80
-	self.Toughness = 5
+	self.htarget = 80
+	self.toughness = 5
 	self.ar = 60
 	self.sp = 60
-	self.Critreduce = 5
+	self.crit_reduce = 5
 	self.speed = 13
 	self.mysee = 550
 	self.attack_range = 350
@@ -57,7 +57,7 @@ func monster_1401():
 		{
 			"Name": "Fire",
 			"AddTime": 2,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 500,
 			"AttackKind": "real",
 			"CanAdd": true,
@@ -74,7 +74,7 @@ func monster_1401():
 		{
 			"Name": "stun",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -89,9 +89,9 @@ func monster_1401():
 		"HitProtect": 9,
 		"addeffect":
 		{
-			"Name": "DefeReduce",
+			"Name": "defe_reduce",
 			"AddTime": 8,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.8,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -116,10 +116,10 @@ func _ready() -> void:
 	super._ready()
 	monster_1401()
 
-	Skill_1_CD = 2
-	Skill_2_CD = 5
-	Skill_3_CD = 0
-	Skill_4_CD = 0
+	skill_1_cd = 2
+	skill_2_cd = 5
+	skill_3_cd = 0
+	skill_4_cd = 0
 
 
 func ai_think():
@@ -134,19 +134,19 @@ func ai_think():
 
 			if distance >= attack_range:
 				have_target()
-				if Skill_2_CD <= 0 and distance > 200:
+				if skill_2_cd <= 0 and distance > 200:
 					do_hit_2()
-				elif Skill_1_CD <= 0:
+				elif skill_1_cd <= 0:
 					do_hit_1()
 			else:
 				stop_move()
 				var random_choice = randi_range(1, 100)
 
-				if Skill_3_CD <= 0 and random_choice <= 30:
+				if skill_3_cd <= 0 and random_choice <= 30:
 					do_hit_3()
-				elif Skill_2_CD <= 0 and random_choice <= 60 and distance > 100:
+				elif skill_2_cd <= 0 and random_choice <= 60 and distance > 100:
 					do_hit_2()
-				elif Skill_1_CD <= 0:
+				elif skill_1_cd <= 0:
 					do_hit_1()
 
 
@@ -154,7 +154,7 @@ func do_hit_1():
 	"普通攻击"
 	super.to_hero()
 
-	Skill_1_CD = 2
+	skill_1_cd = 2
 	hit_name = "hit1"
 	velocity.x = 0
 	is_attacking = true
@@ -168,7 +168,7 @@ func do_hit_2():
 	"冲锋连招：冲锋→攻击→眩晕终结"
 	super.to_hero()
 
-	Skill_2_CD = randi_range(15, 20)
+	skill_2_cd = randi_range(15, 20)
 	is_attacking = true
 
 	hit_name = "hit2"
@@ -200,7 +200,7 @@ func do_hit_3():
 	"特殊技能 - 防御削减"
 	super.to_hero()
 
-	Skill_3_CD = randi_range(20, 25)
+	skill_3_cd = randi_range(20, 25)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true

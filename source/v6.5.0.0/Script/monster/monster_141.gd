@@ -16,11 +16,11 @@ func monster_141():
 	self.crit = 30
 	self.miss = 20
 	self.lucky = 20
-	self.Htarget = 25
-	self.Toughness = 0
+	self.htarget = 25
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 500
 	self.attack_range = 130
@@ -45,7 +45,7 @@ func monster_141():
 		{
 			"Name": "Fire",
 			"AddTime": 5,
-			"ReduceInterval": 1,
+			"reduce_interval": 1,
 			"value": int(RoleProp.roleprop.SHp * 0.01),
 			"AttackKind": "real",
 			"DeBuff": true,
@@ -59,9 +59,9 @@ func monster_141():
 		"HitProtect": 10,
 		"addeffect":
 		{
-			"Name": "DefeReduce",
+			"Name": "defe_reduce",
 			"AddTime": 20,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.5,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -77,7 +77,7 @@ func monster_141():
 		{
 			"Name": "stun",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"DeBuff": true,
@@ -109,10 +109,10 @@ func monster_141():
 func _ready() -> void:
 	super._ready()
 	monster_141()
-	Skill_1_CD = randi_range(3, 4)
-	Skill_2_CD = 10
-	Skill_3_CD = 5
-	Skill_4_CD = 12
+	skill_1_cd = randi_range(3, 4)
+	skill_2_cd = 10
+	skill_3_cd = 5
+	skill_4_cd = 12
 	skill_5_cd = 15
 
 
@@ -135,23 +135,23 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 300:
-					if Skill_1_CD <= 0:
+					if skill_1_cd <= 0:
 						do_hit_1()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 				if count % 90 == 0:
 					if randi_range(0, 100) < attack_desire:
 						attack_target()
 			else:
 				stop_move()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
 				if count % 90 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -160,7 +160,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = 15
+	skill_1_cd = 15
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -172,7 +172,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = 20
+	skill_2_cd = 20
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -184,7 +184,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = 15
+	skill_3_cd = 15
 	hit_name = "hit4"
 	velocity.x = 0
 	is_attacking = true
@@ -206,14 +206,14 @@ func state_hurt():
 		await mr_player.animation_finished
 		is_be_attacking = false
 		return
-	if get_target.HitDic["hurtBack"][0] != 0 or get_target.HitDic["hurtBack"][1] != 0:
+	if get_target.hit_dic["hurtBack"][0] != 0 or get_target.hit_dic["hurtBack"][1] != 0:
 		is_be_attacking = true
 		velocity.x = 0
 		if is_quiescent or is_bt:
 			pass
 		else:
 			be_hit_back(get_target)
-		if get_target.HitDic["hurtBack"][0] != 0 or get_target.HitDic["hurtBack"][1] != 0:
+		if get_target.hit_dic["hurtBack"][0] != 0 or get_target.hit_dic["hurtBack"][1] != 0:
 			mr_player.play("hurt")
 			await mr_player.animation_finished
 		is_be_attacking = false
@@ -239,7 +239,7 @@ func call_bullet_alt2():
 	if dis < attack_range:
 		return
 	var bb
-	if self.MonsterDirection:
+	if self.monster_direction:
 		bb = Global.add_bullet(
 			"Monster141Bullet2", self.bullet, false, 2, Vector2(20, 0) + position, "hit1", self.obj_attack_dict["hit1"]
 		)

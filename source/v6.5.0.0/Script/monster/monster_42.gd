@@ -14,11 +14,11 @@ func monster_42():
 	self.crit = RoleProp.roleprop.Crit
 	self.miss = RoleProp.roleprop.Miss
 	self.lucky = RoleProp.roleprop.Lucky
-	self.Htarget = RoleProp.roleprop.Htarget * 2
-	self.Toughness = 0
+	self.htarget = RoleProp.roleprop.htarget * 2
+	self.toughness = 0
 	self.ar = RoleProp.roleprop.ar
 	self.sp = RoleProp.roleprop.sp
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 13
 	self.mysee = 550
 	self.attack_range = 225
@@ -55,7 +55,7 @@ func monster_42():
 			"DeBuff": true,
 			"CanAdd": false,
 			"AddTime": 3,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 		}
@@ -71,9 +71,9 @@ func monster_42():
 
 func _ready() -> void:
 	super._ready()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
-	Skill_3_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
+	skill_3_cd = 0
 	monster_42()
 
 
@@ -85,12 +85,12 @@ func ai_think():
 			normal_state()
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 295:
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					if randf_range(0, 1) < 0.8:
 						do_hit_3()
 					else:
 						attack_target()
-				elif Skill_2_CD <= 0:
+				elif skill_2_cd <= 0:
 					do_hit_2()
 				elif count % 30 == 0:
 					if randf_range(0, 1) < 0.7:
@@ -100,7 +100,7 @@ func ai_think():
 				else:
 					have_target()
 			elif abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 500:
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					if randf_range(0, 1) < 0.8:
 						do_hit_3()
 					else:
@@ -113,7 +113,7 @@ func ai_think():
 				else:
 					have_target()
 			elif abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 800:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 				else:
 					have_target()
@@ -128,7 +128,7 @@ func stop_move():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = 6 + randi_range(0, 4)
+	skill_1_cd = 6 + randi_range(0, 4)
 	hit_name = "xmhd"
 	velocity.x = 0
 	is_attacking = true
@@ -139,7 +139,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = 15
+	skill_2_cd = 15
 	velocity.x = 0
 	hit_name = "mykl"
 	is_attacking = true
@@ -150,7 +150,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = 20
+	skill_3_cd = 20
 	velocity.x = 0
 	hit_name = "sfjm"
 	is_attacking = true
@@ -185,7 +185,7 @@ func call_sfjm_fire():
 
 
 func call_xmhd():
-	if not self.MonsterDirection:
+	if not self.monster_direction:
 		var hd = Global.add_special_effect(self, Vector2(-50, -5), "Monster42Bullet_1", Vector2(0.5, 0.9), false, 0.9)
 		var xw = Global.add_special_effect(self, Vector2(-50, -5), "Monster42Bullet_2", Vector2(0.5, 0.9), false, 0.9)
 		hd.set_rotation_degrees(-20)
@@ -202,7 +202,7 @@ func call_xmhd():
 			{
 				"Name": "speed_down",
 				"AddTime": 2,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0.5,
 				"AttackKind": "magic",
 				"CanAdd": false,

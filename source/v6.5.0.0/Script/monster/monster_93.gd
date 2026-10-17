@@ -16,11 +16,11 @@ func monster_93():
 	self.crit = 0
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 12
 	self.mysee = 500
 	self.attack_range = 165
@@ -44,7 +44,7 @@ func monster_93():
 		{
 			"Name": "stun",
 			"AddTime": 5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -64,9 +64,9 @@ func monster_93():
 		"HitProtect": 10,
 		"addeffect":
 		{
-			"Name": "BloodFix",
+			"Name": "blood_fix",
 			"AddTime": 20,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -92,10 +92,10 @@ func monster_93():
 func _ready() -> void:
 	super._ready()
 	monster_93()
-	Skill_1_CD = randi_range(3, 4)
-	Skill_2_CD = 10
-	Skill_3_CD = 5
-	Skill_4_CD = 0
+	skill_1_cd = randi_range(3, 4)
+	skill_2_cd = 10
+	skill_3_cd = 5
+	skill_4_cd = 0
 
 
 func ai_think():
@@ -114,25 +114,25 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
 
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_4()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 300:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_2()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 800:
-					if Skill_3_CD <= 0:
+					if skill_3_cd <= 0:
 						do_hit_3()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_1()
-				elif Skill_2_CD <= 0:
+				elif skill_2_cd <= 0:
 					do_hit_2()
-				elif Skill_3_CD <= 0:
+				elif skill_3_cd <= 0:
 					do_hit_3()
-				elif Skill_4_CD <= 0:
+				elif skill_4_cd <= 0:
 					do_hit_4()
 				elif count % 90 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -145,7 +145,7 @@ func ai_think():
 
 func do_hit_1():
 	super.to_hero()
-	Skill_1_CD = randi_range(10, 12)
+	skill_1_cd = randi_range(10, 12)
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -157,7 +157,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(8, 12)
+	skill_2_cd = randi_range(8, 12)
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -169,7 +169,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(15, 18)
+	skill_3_cd = randi_range(15, 18)
 	hit_name = "hit4"
 	velocity.x = 0
 	is_attacking = true
@@ -181,7 +181,7 @@ func do_hit_3():
 
 func do_hit_4():
 	super.to_hero()
-	Skill_4_CD = randi_range(10, 14)
+	skill_4_cd = randi_range(10, 14)
 	hit_name = "hit5"
 	velocity.x = 0
 	is_attacking = true
@@ -195,7 +195,7 @@ func add_bullet():
 	var bullet_spawn_positions = [Vector2()]
 	var position2: Vector2
 	var tween = create_tween().set_parallel(true)
-	if MonsterDirection:
+	if monster_direction:
 		bullet_spawn_positions = [Vector2(-10, -315), Vector2(70, -70), Vector2(-65, -70)]
 		position2 = Vector2(-10, -160)
 	else:
@@ -203,16 +203,16 @@ func add_bullet():
 		position2 = Vector2(10, -160)
 	for i in bullet_spawn_positions:
 		var line = Global.add_bullet(
-			"Monster93Bullet", self.bullet, MonsterDirection, 1.6, i + position, "hit5", self.obj_attack_dict["hit5"]
+			"Monster93Bullet", self.bullet, monster_direction, 1.6, i + position, "hit5", self.obj_attack_dict["hit5"]
 		)
-		if MonsterDirection:
+		if monster_direction:
 			tween.tween_property(line, "rotation_degrees", 45, 2)
 		else:
 			tween.tween_property(line, "rotation_degrees", -45, 2)
 	var line2 = Global.add_bullet(
 		"Monster93Bullet",
 		self.bullet,
-		MonsterDirection,
+		monster_direction,
 		1.6,
 		position2 + position,
 		"hit5",
@@ -223,12 +223,12 @@ func add_bullet():
 
 func blood_fix():
 	if self.position.x > RoleProp.get_nearest_monster_target_position(global_position).x:
-		if Global.get_player.PlayerDir:
-			if not MonsterDirection:
+		if Global.get_player.player_dir:
+			if not monster_direction:
 				add_blood_fix()
 	else:
-		if not Global.get_player.PlayerDir:
-			if MonsterDirection:
+		if not Global.get_player.player_dir:
+			if monster_direction:
 				add_blood_fix()
 
 
@@ -238,9 +238,9 @@ func add_blood_fix():
 		. add_buff(
 			get_player.buff,
 			{
-				"Name": "BloodFix",
+				"Name": "blood_fix",
 				"AddTime": 20,
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 				"CanAdd": false,

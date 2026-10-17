@@ -12,7 +12,7 @@ var old_zb_name = "empty"
 var new_zb_name = "empty"
 var qhs_1_name = "empty"
 var qhs_2_name = "empty"
-var Data = {}
+var data = {}
 var qh_level = -1
 var qhs_1_num = 0
 var qhs_2_num = 0
@@ -20,7 +20,7 @@ var need_lh: int
 
 
 func _get_strength_max_level(item_name: String) -> int:
-	var item: Dictionary = MLdl.qh_list.get("Data", {}) if MLdl.qh_list.get("Data", {}) is Dictionary else {}
+	var item: Dictionary = MLdl.qh_list.get("data", {}) if MLdl.qh_list.get("data", {}) is Dictionary else {}
 	return PlayerData.get_equipment_strength_max_level(item, item_name)
 
 
@@ -39,7 +39,7 @@ func _physics_process(_delta: float) -> void:
 	if MLdl.qh_list[DataKeys.NAME] != "":
 		old_zb_name = MLdl.qh_list[DataKeys.NAME]
 	qh_level = MLdl.qh_list[DataKeys.ENHANCE_LEVEL]
-	Data = MLdl.qh_list["Data"]
+	data = MLdl.qh_list["data"]
 	get_qhs_name()
 	set_color()
 	set_str_info()
@@ -54,13 +54,13 @@ func set_str_info():
 	old_zb.get_item_name = old_zb_name
 	old_zb.set_meta("item_name", old_zb_name)
 	old_zb.qh_level = qh_level
-	old_zb.EQ_prop = Data
+	old_zb.eq_prop = data
 	old_zb.strength_source = str(MLdl.qh_list.get("来源", "装备背包"))
 	old_zb.strength_index = int(MLdl.qh_list.get("位置", -1))
 	new_zb.set_button_icon(equipment_icon)
 	new_zb.get_item_name = new_zb_name
 	new_zb.set_meta("item_name", new_zb_name)
-	new_zb.EQ_prop = Data
+	new_zb.eq_prop = data
 	new_zb.strength_source = old_zb.strength_source
 	new_zb.strength_index = old_zb.strength_index
 	var max_level = _get_strength_max_level(old_zb_name)
@@ -89,8 +89,8 @@ func load_(name_):
 func _selected_equipment_icon() -> Texture2D:
 	if str(MLdl.qh_list.get("来源", "装备背包")) != "宠物背包":
 		return load_(str(old_zb_name))
-	var item: Dictionary = Data if Data is Dictionary else {}
-	var nested: Dictionary = item.get("Data", {}) if item.get("Data", {}) is Dictionary else {}
+	var item: Dictionary = data if data is Dictionary else {}
+	var nested: Dictionary = item.get("data", {}) if item.get("data", {}) is Dictionary else {}
 	for source in [item, nested]:
 		for key in ["图标", "图标路径", "icon", "Icon"]:
 			var icon_path := str(source.get(key, "")).strip_edges()
@@ -121,7 +121,7 @@ func set_color():
 
 func _on_qh__pressed() -> void:
 	var selected_name: String = str(MLdl.qh_list.get(DataKeys.NAME, ""))
-	var selected_data: Dictionary = MLdl.qh_list.get("Data", {}) if MLdl.qh_list.get("Data", {}) is Dictionary else {}
+	var selected_data: Dictionary = MLdl.qh_list.get("data", {}) if MLdl.qh_list.get("data", {}) is Dictionary else {}
 	var template_data: Dictionary = AE.all_equipment.get(selected_name, {})
 	if (
 		bool(selected_data.get("不可强化", template_data.get("不可强化", false)))
@@ -140,10 +140,10 @@ func _on_qh__pressed() -> void:
 	var current_level = int(equipment.get(DataKeys.ENHANCE_LEVEL, 0))
 	MLdl.qh_list[DataKeys.ENHANCE_LEVEL] = current_level
 	qh_level = current_level
-	var Type = AE.all_equipment.get(MLdl.qh_list[DataKeys.NAME], {}).get(DataKeys.QUALITY, "")
+	var type = AE.all_equipment.get(MLdl.qh_list[DataKeys.NAME], {}).get(DataKeys.QUALITY, "")
 	var max_level: int = _get_strength_max_level(MLdl.qh_list[DataKeys.NAME])
 	if current_level >= max_level:
-		Global.add_message_show(get_parent(), str(Type) + "品质装备最高强化" + str(max_level) + "级！！", 1.5, Vector2(15, -45))
+		Global.add_message_show(get_parent(), str(type) + "品质装备最高强化" + str(max_level) + "级！！", 1.5, Vector2(15, -45))
 		return
 	old_zb_name = MLdl.qh_list[DataKeys.NAME]
 	if PlayerData.get_item_data(qhs_1_name) >= qhs_1_num and PlayerData.get_item_data(qhs_2_name) >= qhs_2_num:
@@ -194,7 +194,7 @@ func _get_selected_equipment(position_index: int) -> Variant:
 	if not (equipment is Dictionary):
 		return null
 	if source == "宠物背包":
-		if not is_same(equipment, MLdl.qh_list.get("Data", {})):
+		if not is_same(equipment, MLdl.qh_list.get("data", {})):
 			return null
 	elif str(equipment.get(DataKeys.NAME, "")) != str(MLdl.qh_list.get(DataKeys.NAME, "")):
 		return null
@@ -271,5 +271,5 @@ func remove_infomation():
 	MLdl.qh_list["位置"] = 0
 	MLdl.qh_list["来源"] = "装备背包"
 	MLdl.qh_list["穿戴栏"] = ""
-	MLdl.qh_list["Data"] = {}
+	MLdl.qh_list["data"] = {}
 	MemoryClass.save_game(Global.cd_path)

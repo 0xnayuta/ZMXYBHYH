@@ -13,13 +13,18 @@ var is_use = false
 var is_canuse = true
 var cd_remain: int
 var usecd: float
-var Player: BaseHero
-var HitDic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
+var player: BaseHero
+var Player: BaseHero:
+	get:
+		return player
+	set(v):
+		player = v
+var hit_dic = {"power": 0, "hurtBack": [0, 0], "attackKind": "real"}
 var self_dir: bool
 
 
 func set_magic_weapon_player(hero) -> void:
-	Player = hero
+	player = hero
 
 
 func get_attack_snapshot(attack_name: String = "hit1") -> Dictionary:

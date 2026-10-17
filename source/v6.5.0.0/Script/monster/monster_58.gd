@@ -14,11 +14,11 @@ func monster_58():
 	self.crit = 10
 	self.miss = 0
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 8
 	self.mysee = 500
 	self.attack_range = 80
@@ -40,7 +40,7 @@ func monster_58():
 		{
 			"Name": "Bleed",
 			"AddTime": 3,
-			"ReduceInterval": 0.5,
+			"reduce_interval": 0.5,
 			"value": 10,
 			"CanAdd": true,
 			"DeBuff": true,
@@ -56,7 +56,7 @@ func monster_58():
 func _ready() -> void:
 	super._ready()
 	monster_58()
-	Skill_1_CD = 0
+	skill_1_cd = 0
 
 
 func ai_think():
@@ -68,7 +68,7 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 320:
 						do_hit_2()
 					else:
@@ -76,7 +76,7 @@ func ai_think():
 				else:
 					have_target()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					do_hit_2()
 				else:
 					if count % 90 == 0:
@@ -86,7 +86,7 @@ func ai_think():
 
 
 func do_hit_2():
-	Skill_1_CD = 4
+	skill_1_cd = 4
 	hit_name = "dmghr"
 	velocity.x = 0
 	is_attacking = true

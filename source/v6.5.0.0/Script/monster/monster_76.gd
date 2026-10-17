@@ -14,11 +14,11 @@ func monster_76():
 	self.crit = 18
 	self.miss = 8
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 20
+	self.htarget = 0
+	self.toughness = 20
 	self.ar = 25
 	self.sp = 25
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 11
 	self.mysee = 400
 	self.attack_range = 350
@@ -40,7 +40,7 @@ func monster_76():
 		{
 			"Name": "speed_down",
 			"AddTime": 2,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"CanAdd": false,
 			"DeBuff": true,
 			"value": 0.3,
@@ -62,7 +62,7 @@ func monster_76():
 func _ready() -> void:
 	super._ready()
 	monster_76()
-	Skill_1_CD = 0
+	skill_1_cd = 0
 
 
 func ai_think():
@@ -74,7 +74,7 @@ func ai_think():
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270:
 						do_hit_2()
 					else:
@@ -82,7 +82,7 @@ func ai_think():
 				else:
 					have_target()
 			else:
-				if Skill_1_CD <= 0:
+				if skill_1_cd <= 0:
 					if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270:
 						do_hit_2()
 					else:
@@ -96,7 +96,7 @@ func ai_think():
 
 func do_hit_2():
 	to_hero()
-	Skill_1_CD = 8
+	skill_1_cd = 8
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -132,10 +132,10 @@ func setposition():
 
 func call_knife():
 	var po: Vector2
-	if MonsterDirection:
+	if monster_direction:
 		po = Vector2(70, -20)
 	else:
 		po = Vector2(-70, -20)
 	Global.add_bullet(
-		"Monster76Bullet1", bullet, MonsterDirection, 1, position + po, "hit1", self.obj_attack_dict["hit1"]
+		"Monster76Bullet1", bullet, monster_direction, 1, position + po, "hit1", self.obj_attack_dict["hit1"]
 	)

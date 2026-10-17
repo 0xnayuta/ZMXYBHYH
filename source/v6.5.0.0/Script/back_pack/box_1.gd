@@ -4,7 +4,7 @@ var get_type
 var add_equ_box
 var sell_box
 var qh_level: int
-var EQ_prop = {}
+var eq_prop = {}
 var total_number: int
 var current_page: int
 var gl_po: Vector2
@@ -27,7 +27,7 @@ var item_locked := false
 
 
 func _get_strength_max_level(item_name: String) -> int:
-	return PlayerData.get_equipment_strength_max_level(EQ_prop, item_name)
+	return PlayerData.get_equipment_strength_max_level(eq_prop, item_name)
 
 
 func _ready() -> void:
@@ -126,12 +126,12 @@ func on_press_when_in_back():
 		"武器", "防具", "饰品", "神骨", "翅膀", "时装", "头衔", "法宝", "时装", "头衔", "翅膀":
 			sell_box = Global.add_se_eq_jm(parent_, position_vec, get_item_name, current_page, number)
 			_keep_click_menu_near_item(sell_box, parent_)
-			sell_box.EQ_prop = EQ_prop
+			sell_box.eq_prop = eq_prop
 			sell_box.source_box = self
 		"消耗品", "道具":
 			var pp = Global.add_dj_sell(parent_, position_vec, get_item_name, current_page)
 			_keep_click_menu_near_item(pp, parent_)
-			pp.EQ_prop = EQ_prop
+			pp.eq_prop = eq_prop
 			pp.source_box = self
 
 
@@ -164,7 +164,7 @@ func _keep_click_menu_near_item(menu: Node, parent_: Node) -> void:
 
 
 func on_press_when_strength():
-	if bool(EQ_prop.get("不可强化", false)) and get_item_name not in ["cjxianjie", "cdxianjie", "zhxianjie"]:
+	if bool(eq_prop.get("不可强化", false)) and get_item_name not in ["cjxianjie", "cdxianjie", "zhxianjie"]:
 		var parent_ = Global.get_parent_(self, 7)
 		Global.add_message_show(parent_, "该装备不可强化！", 1.5, Vector2(500, 305))
 		return
@@ -178,7 +178,7 @@ func on_press_when_strength():
 			MLdl.qh_list["位置"] = strength_index if strength_index >= 0 else int(str(self.name).split("_")[1]) - 1
 			MLdl.qh_list["来源"] = strength_source
 			MLdl.qh_list["穿戴栏"] = str(get_meta("equipped_type", ""))
-			MLdl.qh_list["Data"] = EQ_prop
+			MLdl.qh_list["Data"] = eq_prop
 		else:
 			var parent_ = Global.get_parent_(self, 7)
 			Global.add_message_show(parent_, "装备等级已达最高等级！！无法继续强化！", 1.5, Vector2(500, 305))
@@ -187,9 +187,9 @@ func on_press_when_strength():
 func on_press_when_divine_forge() -> void:
 	var item_data: Dictionary = AE.all_equipment.get(get_item_name, {})
 	if (
-		bool(EQ_prop.get("不可神铸", item_data.get("不可神铸", false)))
+		bool(eq_prop.get("不可神铸", item_data.get("不可神铸", false)))
 		or item_data.is_empty()
-		or not AE.can_divine_forge(get_item_name, EQ_prop)
+		or not AE.can_divine_forge(get_item_name, eq_prop)
 	):
 		var parent_ = Global.get_parent_(self, 7)
 		Global.add_message_show(parent_, "只有神器及以上品质的武器、防具和饰品可以神铸！", 1.5, Vector2(500, 305))
@@ -200,13 +200,13 @@ func on_press_when_divine_forge() -> void:
 	MLdl.qh_list["位置"] = _get_equipment_source_index()
 	MLdl.qh_list["来源"] = strength_source
 	MLdl.qh_list["穿戴栏"] = str(get_meta("equipped_type", ""))
-	MLdl.qh_list["Data"] = EQ_prop.duplicate(true)
+	MLdl.qh_list["Data"] = eq_prop.duplicate(true)
 
 
 func on_press_when_bone_forge() -> void:
 	var item_data: Dictionary = AE.all_equipment.get(get_item_name, {})
-	var item_type := str(EQ_prop.get(DataKeys.TYPE, item_data.get(DataKeys.TYPE, "")))
-	var next_stage := str(EQ_prop.get("下一阶段", item_data.get("下一阶段", "")))
+	var item_type := str(eq_prop.get(DataKeys.TYPE, item_data.get(DataKeys.TYPE, "")))
+	var next_stage := str(eq_prop.get("下一阶段", item_data.get("下一阶段", "")))
 	if item_data.is_empty() or item_type != "神骨" or next_stage == "":
 		var parent_ = Global.get_parent_(self, 7)
 		Global.add_message_show(parent_, "只有设置了下一阶段的神骨装备才可以淬骨！", 1.5, Vector2(500, 305))
@@ -217,7 +217,7 @@ func on_press_when_bone_forge() -> void:
 	MLdl.qh_list["位置"] = _get_equipment_source_index()
 	MLdl.qh_list["来源"] = strength_source
 	MLdl.qh_list["穿戴栏"] = str(get_meta("equipped_type", ""))
-	MLdl.qh_list["Data"] = EQ_prop.duplicate(true)
+	MLdl.qh_list["Data"] = eq_prop.duplicate(true)
 
 
 func _has_socketed_gems(data: Dictionary) -> bool:
@@ -258,7 +258,7 @@ func on_press_when_synthesis():
 				PlayerData.player_data["放入列表"][i].push_back(PlayerData.get_dj_page(get_item_name))
 				PlayerData.player_data["放入列表"][i].push_back(int(str(self.name).split("_")[1]) - 1)
 				PlayerData.player_data["放入列表"][i].push_back(qh_level)
-				PlayerData.player_data["放入列表"][i].push_back(EQ_prop.duplicate(true))
+				PlayerData.player_data["放入列表"][i].push_back(eq_prop.duplicate(true))
 				if (
 					get_tt == "武器"
 					or get_tt == "防具"
@@ -267,7 +267,7 @@ func on_press_when_synthesis():
 					or get_tt == "时装"
 					or get_tt == "头衔"
 				):
-					if _has_socketed_gems(EQ_prop):
+					if _has_socketed_gems(eq_prop):
 						PlayerData.player_data["放入列表"][i].clear()
 						Global.add_message_show(parent_, "请先卸下该装备上的宝石！！！", 1.5, Vector2(500, 305))
 						return
@@ -288,7 +288,7 @@ func on_press_when_synthesis():
 		if list.has(str(get_item_name)):
 			var get_tt = AE.all_equipment[list[0]][DataKeys.TYPE]
 			if get_tt == "武器" or get_tt == "防具" or get_tt == "饰品" or get_tt == "翅膀" or get_tt == "时装" or get_tt == "头衔":
-				PlayerData.add_zb(get_item_name, list[3], EQ_prop)
+				PlayerData.add_zb(get_item_name, list[3], eq_prop)
 			elif get_tt == "道具":
 				PlayerData.add_dj(list[0], 1)
 			elif get_tt == "消耗品":
@@ -306,15 +306,15 @@ func on_press_when_dz():
 	var item_data: Dictionary = AE.all_equipment.get(str(get_item_name), {})
 	if item_data.is_empty():
 		return
-	var Type := str(item_data.get(DataKeys.TYPE, ""))
+	var type := str(item_data.get(DataKeys.TYPE, ""))
 	var have := str(item_data.get("所属", ""))
 	var item_name := str(item_data.get(DataKeys.NAME, ""))
-	if Type == "" or have == "" or item_name == "":
+	if type == "" or have == "" or item_name == "":
 		Global.add_message_show(Global.get_parent_(self, 7), "物品数据异常，无法参与打造！", 1.5, Vector2(500, 305))
 		return
 	var parent_ = Global.get_parent_(self, 7)
 	if not is_in_ldl_gz:
-		if Type != "道具":
+		if type != "道具":
 			Global.add_message_show(parent_, str(item_name) + "不可以参与打造！", 1.5, Vector2(500, 305))
 			return
 		if Global.forge.zzs.get_children().size() <= 0:
@@ -322,7 +322,7 @@ func on_press_when_dz():
 				Global.add_message_show(parent_, "只有制作书可以参与打造！", 1.5, Vector2(500, 305))
 				return
 			else:
-				Global.forge.replace_book(get_item_name, qh_level, EQ_prop)
+				Global.forge.replace_book(get_item_name, qh_level, eq_prop)
 		else:
 			if have != "制作书":
 				var count_baozhu = 0
@@ -353,13 +353,13 @@ func on_press_when_dz():
 					Global.add_message_show(parent_, "只能放入宝珠或晶石！", 1.5, Vector2(500, 305))
 					return
 
-				var bz_prop = {"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
+				var bz_prop = {"名字": get_item_name, "强化等级": qh_level, "Data": eq_prop.duplicate(true)}
 				PlayerData.player_data["宝珠列表"].push_back(bz_prop)
 				Global.forge.addbzpic()
 				PlayerData.remove_dj(get_item_name, PlayerData.get_dj_page(get_item_name), 1)
 				return
 			else:
-				Global.forge.replace_book(get_item_name, qh_level, EQ_prop)
+				Global.forge.replace_book(get_item_name, qh_level, eq_prop)
 	else:
 		Global.forge.remove_bspic(forge_bzid)
 
@@ -374,7 +374,7 @@ func _set_forge_book_box_properties(item_box) -> void:
 	item_box.set("qh_level", qh_level)
 	item_box.set("total_number", 1)
 	item_box.set("wx", [])
-	item_box.set("EQ_prop", EQ_prop)
+	item_box.set("eq_prop", eq_prop)
 	item_box.set("get_item_name", get_item_name)
 	item_box.set_meta("item_name", get_item_name)
 	item_box.set("position", Vector2(8, 8))
@@ -393,11 +393,11 @@ func on_press_whenfj():
 		if PlayerData.player_data[DataKeys.DECOMPOSE_LIST].size() != 0:
 			name_str = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
 			var cur_level = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.ENHANCE_LEVEL]
-			var Data = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0]["Data"]
+			var data = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0]["Data"]
 			get_tt = AE.all_equipment[name_str][DataKeys.TYPE]
 			match get_tt:
 				"武器", "饰品", "防具":
-					PlayerData.add_zb(name_str, cur_level, Data)
+					PlayerData.add_zb(name_str, cur_level, data)
 					PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
 				"道具":
 					PlayerData.add_dj(name_str, 1)
@@ -421,15 +421,15 @@ func on_press_whenfj():
 				return
 			"道具":
 				PlayerData.player_data[DataKeys.DECOMPOSE_LIST].push_back(
-					{"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
+					{"名字": get_item_name, "强化等级": qh_level, "Data": eq_prop.duplicate(true)}
 				)
 				PlayerData.remove_dj(get_item_name, current_page, 1)
 			"武器", "防具", "饰品", "翅膀", "时装", "头衔":
-				if _has_socketed_gems(EQ_prop):
+				if _has_socketed_gems(eq_prop):
 					Global.add_message_show(parent_, "请先卸下该装备上的宝石！！！", 1.5, Vector2(500, 305))
 					return
 				PlayerData.player_data[DataKeys.DECOMPOSE_LIST].push_back(
-					{"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
+					{"名字": get_item_name, "强化等级": qh_level, "Data": eq_prop.duplicate(true)}
 				)
 				PlayerData.remove_zb(_get_equipment_source_page(), _get_equipment_source_index())
 			"":
@@ -439,11 +439,11 @@ func on_press_whenfj():
 		if PlayerData.player_data[DataKeys.DECOMPOSE_LIST].size() != 0:
 			var name_str = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.NAME]
 			var cur_level = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0][DataKeys.ENHANCE_LEVEL]
-			var Data = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0]["Data"]
+			var data = PlayerData.player_data[DataKeys.DECOMPOSE_LIST][0]["Data"]
 			get_tt = AE.all_equipment[name_str][DataKeys.TYPE]
 			match get_tt:
 				"武器", "饰品", "防具":
-					PlayerData.add_zb(name_str, cur_level, Data)
+					PlayerData.add_zb(name_str, cur_level, data)
 					PlayerData.player_data[DataKeys.DECOMPOSE_LIST].clear()
 				"道具":
 					PlayerData.add_dj(name_str, 1)
@@ -458,7 +458,7 @@ func on_press_when_xq():
 			if PlayerData.player_data[DataKeys.INLAY_LIST].size() != 0:
 				Global.add_message_show(parent_, "请先将镶嵌格子内装备卸下！！", 1.5, Vector2(500, 305))
 				return
-			if not PlayerData.take_pet_equipment_for_mosaic(strength_index, EQ_prop, get_item_name):
+			if not PlayerData.take_pet_equipment_for_mosaic(strength_index, eq_prop, get_item_name):
 				Global.add_message_show(parent_, "宠物装备位置已变化，请重新选择！！", 1.5, Vector2(500, 305))
 			return
 		var get_tt = AE.all_equipment[get_item_name][DataKeys.TYPE]
@@ -483,14 +483,14 @@ func on_press_when_xq():
 					if strength_source == "人物穿戴":
 						var equipped_slot := str(get_meta("equipped_type", ""))
 						var taken_equipment: Dictionary = PlayerData.take_equipped_equipment_for_mosaic(
-							equipped_slot, get_item_name, EQ_prop
+							equipped_slot, get_item_name, eq_prop
 						)
 						if taken_equipment.is_empty():
 							Global.add_message_show(parent_, "穿戴装备位置已变化，请重新选择！", 1.5, Vector2(500, 305))
 							return
 					else:
 						PlayerData.player_data[DataKeys.INLAY_LIST].push_back(
-							{"名字": get_item_name, "强化等级": qh_level, "Data": EQ_prop.duplicate(true)}
+							{"名字": get_item_name, "强化等级": qh_level, "Data": eq_prop.duplicate(true)}
 						)
 						PlayerData.remove_zb(_get_equipment_source_page(), _get_equipment_source_index())
 					Global.get_parent_(self, 6).set_box_data()
@@ -499,7 +499,7 @@ func on_press_when_xq():
 					Global.add_message_show(parent_, "错误？？！！", 1.5, Vector2(500, 305))
 					return
 		else:
-			var Data = PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"]
+			var data = PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"]
 			match get_tt:
 				"法宝":
 					Global.add_message_show(parent_, "法宝不可以镶嵌宝石！！", 1.5, Vector2(500, 305))
@@ -509,8 +509,8 @@ func on_press_when_xq():
 					return
 				"道具":
 					if base == "宝石":
-						if Data[DataKeys.GEM].size() < get_max_bs():
-							if Data[DataKeys.GEM].size() != 0:
+						if data[DataKeys.GEM].size() < get_max_bs():
+							if data[DataKeys.GEM].size() != 0:
 								PlayerData.player_data[DataKeys.INLAY_LIST][0]["Data"][DataKeys.GEM].push_back(
 									get_item_name
 								)
@@ -601,10 +601,10 @@ func _on_mouse_entered() -> void:
 	if get_item_name != "empty" and add_equ_box == null:
 		var tt = get_parent_()
 		var pp = Global.popup_position_for_parent(tt, Vector2(25, 20))
-		if EQ_prop != null:
-			add_equ_box = Global.add_equ_propeties_box(tt, pp, get_item_name, qh_level, wx, EQ_prop)
+		if eq_prop != null:
+			add_equ_box = Global.add_equ_propeties_box(tt, pp, get_item_name, qh_level, wx, eq_prop)
 			if strength_source == "宠物背包" and add_equ_box.has_method("setup_pet_equipment"):
-				add_equ_box.call("setup_pet_equipment", EQ_prop)
+				add_equ_box.call("setup_pet_equipment", eq_prop)
 			add_equ_box.is_in_ldl_gz = is_in_ldl_gz
 			add_equ_box.is_in_shop = is_in_shop
 

@@ -369,7 +369,7 @@ func _on_hidden_light_area_entered(area: Area2D, light_node: Node2D) -> void:
 	if int(_light_hit_time.get(light_id, 0)) + LIGHT_HIT_COOLDOWN_MS > now_time:
 		return
 	_light_hit_time[light_id] = now_time
-	light_node.set("IsLight", not bool(light_node.get("IsLight")))
+	light_node.set("is_light", not bool(light_node.get("is_light")))
 	var light_area := light_node.get_node_or_null("Area2D") as Area2D
 	if light_area != null:
 		Global.add_mr_hurt(light_area, Vector2(0, 0))
@@ -391,11 +391,11 @@ func _is_light_attack_area(area: Area2D) -> bool:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	if light.IsLight == light_id[0]:
-		if light_2.IsLight == light_id[1]:
-			if light_3.IsLight == light_id[2]:
-				if light_4.IsLight == light_id[3]:
-					if light_5.IsLight == light_id[4]:
+	if light.is_light == light_id[0]:
+		if light_2.is_light == light_id[1]:
+			if light_3.is_light == light_id[2]:
+				if light_4.is_light == light_id[3]:
+					if light_5.is_light == light_id[4]:
 						if not is_play:
 							a_nplayer.play("floordown")
 							is_play = true
@@ -424,7 +424,7 @@ func set_through():
 
 func move_playerto_boss():
 	var tween = create_tween()
-	tween.tween_property(Role_, "position", $Player.position, 1)
+	tween.tween_property(role_, "position", $Player.position, 1)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

@@ -1,9 +1,9 @@
 extends Node2D
 @onready var monster_info: VBoxContainer = $BG/ColorRect/MonsterInfo/ScrollContainer/MonsterInfo
 
-var MonsterName: String:
+var monster_name: String:
 	set(vl):
-		MonsterName = vl
+		monster_name = vl
 		refresh_info()
 var monster_skill_info_list: Dictionary = {
 	"dxx": ["主动技能：", "1.挥拳：挥出强力一拳，对玩家造成伤害。"],
@@ -391,12 +391,12 @@ var monster_skill_info_list: Dictionary = {
 
 
 func refresh_info():
-	if MonsterName != "":
-		if monster_skill_info_list.has(MonsterName):
+	if monster_name != "":
+		if monster_skill_info_list.has(monster_name):
 			for i in monster_info.get_children():
 				if i != null:
 					i.queue_free()
-			for i in monster_skill_info_list[MonsterName]:
+			for i in monster_skill_info_list[monster_name]:
 				if i == "主动技能：" or i == "被动技能：":
 					Global.add_font_(
 						monster_info, i, "res://Font/Aa梦里掏花对月饮_mianfeiziti.com.ttf", 25, "FFFFFF", 1, "FFFFFF"
@@ -406,51 +406,51 @@ func refresh_info():
 
 
 func _on_dxx_pressed() -> void:
-	MonsterName = "dxx"
+	monster_name = "dxx"
 
 
 func _on_mhw_pressed() -> void:
-	MonsterName = "mhw"
+	monster_name = "mhw"
 
 
 func _on_yrw_pressed() -> void:
-	MonsterName = "yrw"
+	monster_name = "yrw"
 
 
 func _on_bfsx_pressed() -> void:
-	MonsterName = "bfsx"
+	monster_name = "bfsx"
 
 
 func _on_stw_pressed() -> void:
-	MonsterName = "stw"
+	monster_name = "stw"
 
 
 func _on_pmw_pressed() -> void:
-	MonsterName = "pmw"
+	monster_name = "pmw"
 
 
 func _on_gcx_pressed() -> void:
-	MonsterName = "gcx"
+	monster_name = "gcx"
 
 
 func _on_jmw_pressed() -> void:
-	MonsterName = "jmw"
+	monster_name = "jmw"
 
 
 func _on_smw_pressed() -> void:
-	MonsterName = "smw"
+	monster_name = "smw"
 
 
 func _on_nmw_1_pressed() -> void:
-	MonsterName = "nmw1"
+	monster_name = "nmw1"
 
 
 func _on_nmw_2_pressed() -> void:
-	MonsterName = "nmw2"
+	monster_name = "nmw2"
 
 
 func _on_nmw_3_pressed() -> void:
-	MonsterName = "nmw3"
+	monster_name = "nmw3"
 
 
 func _on_close_pressed() -> void:
@@ -458,188 +458,188 @@ func _on_close_pressed() -> void:
 
 
 func _on_lw_pressed() -> void:
-	MonsterName = "lw"
+	monster_name = "lw"
 
 
 func _on_hhe_pressed() -> void:
-	MonsterName = "hhe"
+	monster_name = "hhe"
 
 
 func _on_syr_pressed() -> void:
-	MonsterName = "syr"
+	monster_name = "syr"
 
 
 func _on_hbwc_pressed() -> void:
-	MonsterName = "hbwc"
+	monster_name = "hbwc"
 
 
 func _on_bgj_pressed() -> void:
-	MonsterName = "bgj"
+	monster_name = "bgj"
 
 
 func _on_klw_pressed() -> void:
-	MonsterName = "klw"
+	monster_name = "klw"
 
 
 func _on_qgw_pressed() -> void:
-	MonsterName = "qgw"
+	monster_name = "qgw"
 
 
 func _on_pg_pressed() -> void:
-	MonsterName = "pg"
+	monster_name = "pg"
 
 
 func _on_ylw_pressed() -> void:
-	MonsterName = "ylw"
+	monster_name = "ylw"
 
 
 func _on_sdw_pressed() -> void:
-	MonsterName = "sdw"
+	monster_name = "sdw"
 
 
 func _on_yc_pressed() -> void:
-	MonsterName = "yc"
+	monster_name = "yc"
 
 
 func _on_xt_pressed() -> void:
-	MonsterName = "xt"
+	monster_name = "xt"
 
 
 func _on_mp_pressed() -> void:
-	MonsterName = "mp"
+	monster_name = "mp"
 
 
 func _on_zlw_1_pressed() -> void:
-	MonsterName = "zlw1"
+	monster_name = "zlw1"
 
 
 func _on_zlw_2_pressed() -> void:
-	MonsterName = "zlw2"
+	monster_name = "zlw2"
 
 
 func _on_zlw_3_pressed() -> void:
-	MonsterName = "zlw3"
+	monster_name = "zlw3"
 
 
 func _on_zsxt_pressed() -> void:
-	MonsterName = "zsxt"
+	monster_name = "zsxt"
 
 
 func _on_xtq_pressed() -> void:
-	MonsterName = "xtq"
+	monster_name = "xtq"
 
 
 func _on_qly_pressed() -> void:
-	MonsterName = "qly"
+	monster_name = "qly"
 
 
 func _on_sfe_pressed() -> void:
-	MonsterName = "sfe"
+	monster_name = "sfe"
 
 
 func _on_mhwtf_pressed() -> void:
-	MonsterName = "mhwtf"
+	monster_name = "mhwtf"
 
 
 func _on_jls_pressed() -> void:
-	MonsterName = "jls"
+	monster_name = "jls"
 
 
 func _on_zztw_pressed() -> void:
-	MonsterName = "zztw"
+	monster_name = "zztw"
 
 
 func _on_gmtw_pressed() -> void:
-	MonsterName = "gmtw"
+	monster_name = "gmtw"
 
 
 func _on_dwtw_pressed() -> void:
-	MonsterName = "dwtw"
+	monster_name = "dwtw"
 
 
 func _on_mtj_pressed() -> void:
-	MonsterName = "mtj"
+	monster_name = "mtj"
 
 
 func _on_cgtw_pressed() -> void:
-	MonsterName = "cgtw"
+	monster_name = "cgtw"
 
 
 func _on_zzz_pressed() -> void:
-	MonsterName = "zzz"
+	monster_name = "zzz"
 
 
 func _on_yh_pressed() -> void:
-	MonsterName = "yh"
+	monster_name = "yh"
 
 
 func _on_tslj_pressed() -> void:
-	MonsterName = "tslj"
+	monster_name = "tslj"
 
 
 func _on_tbjx_pressed() -> void:
-	MonsterName = "tbjx"
+	monster_name = "tbjx"
 
 
 func _on_jjdw_pressed() -> void:
-	MonsterName = "jjdw"
+	monster_name = "jjdw"
 
 
 func _on_yjdw_pressed() -> void:
-	MonsterName = "yjdw"
+	monster_name = "yjdw"
 
 
 func _on_tttw_pressed() -> void:
-	MonsterName = "tttw"
+	monster_name = "tttw"
 
 
 func _on_nz_pressed() -> void:
-	MonsterName = "nz"
+	monster_name = "nz"
 
 
 func _on_lzz_pressed() -> void:
-	MonsterName = "lzz"
+	monster_name = "lzz"
 
 
 func _on_txs_pressed() -> void:
-	MonsterName = "txs"
+	monster_name = "txs"
 
 
 func _on_els_pressed() -> void:
-	MonsterName = "els"
+	monster_name = "els"
 
 
 func _on_qnj_pressed() -> void:
-	MonsterName = "qnj"
+	monster_name = "qnj"
 
 
 func _on_cjw_pressed() -> void:
-	MonsterName = "cjw"
+	monster_name = "cjw"
 
 
 func _on_fyj_pressed() -> void:
-	MonsterName = "fyj"
+	monster_name = "fyj"
 
 
 func _on_wll_pressed() -> void:
-	MonsterName = "wll"
+	monster_name = "wll"
 
 
 func _on_yzx_pressed() -> void:
-	MonsterName = "yzx"
+	monster_name = "yzx"
 
 
 func _on_nmw_4_pressed() -> void:
-	MonsterName = "nmw4"
+	monster_name = "nmw4"
 
 
 func _on_zlw_4_pressed() -> void:
-	MonsterName = "zlw4"
+	monster_name = "zlw4"
 
 
 func _on_hy_pressed() -> void:
-	MonsterName = "hy"
+	monster_name = "hy"
 
 
 func _on_ttzs_pressed() -> void:
-	MonsterName = "ttzs"
+	monster_name = "ttzs"

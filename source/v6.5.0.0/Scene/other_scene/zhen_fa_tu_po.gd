@@ -37,7 +37,7 @@ func set_item_pic():
 	item.set_button_icon(load_(item_name))
 	item.qh_level = 0
 	item.wx = []
-	item.EQ_prop = AE.all_equipment[item_name]
+	item.eq_prop = AE.all_equipment[item_name]
 
 
 func load_(name_):
@@ -134,14 +134,14 @@ func set_need_and_lh_info():
 	var cur_level = PlayerData.player_data[real_name]["Level"]
 	var item_name = "zftps"
 	var material_need_value = int(cur_level) * 10 + 10
-	var NeedLh = int(cur_level) * 10000 + 1000
+	var need_lh = int(cur_level) * 10000 + 1000
 	var current_num = int(PlayerData.get_item_data(item_name))
 	need.text = str(PlayerData.get_item_data(item_name)) + "/" + str(material_need_value)
 	if current_num >= material_need_value:
 		need.add_theme_color_override("font_color", "00ff00")
 	else:
 		need.add_theme_color_override("font_color", "ff0000")
-	needlh.text = "灵魂：" + str(NeedLh)
+	needlh.text = "灵魂：" + str(need_lh)
 
 
 func check_full_level():
@@ -159,7 +159,7 @@ func _on_tupo_pressed() -> void:
 	var cur_level = PlayerData.player_data[real_name]["Level"]
 	var item_name = "zftps"
 	var material_need_value = int(cur_level) * 10 + 10
-	var NeedLh = int(cur_level) * 10000 + 1000
+	var need_lh = int(cur_level) * 10000 + 1000
 	var current_num := int(PlayerData.get_item_data(item_name))
 	if cur_level >= 10:
 		Global.add_message_show(Global.windows, "阵法已满级！！", 1.5, Vector2(500, 305))
@@ -167,13 +167,13 @@ func _on_tupo_pressed() -> void:
 	if current_num < material_need_value:
 		Global.add_message_show(Global.windows, "材料不足！！", 1.5, Vector2(500, 305))
 		return
-	if PlayerData.get_soul() < NeedLh:
+	if PlayerData.get_soul() < need_lh:
 		Global.add_message_show(Global.windows, "灵魂不足！！", 1.5, Vector2(500, 305))
 		return
 	if not check_full_level():
 		Global.add_message_show(Global.windows, "还有阵法未达到指定要求！！", 1.5, Vector2(500, 305))
 		return
-	PlayerData.spend_soul(NeedLh)
+	PlayerData.spend_soul(need_lh)
 	PlayerData.remove_dj(item_name, PlayerData.get_dj_page(item_name), material_need_value)
 	PlayerData.player_data[real_name]["Level"] += 1
 	Global.add_message_show(Global.windows, "阵法突破成功！！", 1.5, Vector2(500, 305))

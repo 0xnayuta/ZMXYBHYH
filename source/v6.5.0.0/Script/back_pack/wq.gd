@@ -4,7 +4,7 @@ var get_item_name
 var qh_level: int
 var pp
 var wx = []
-var EQ_prop = {}
+var eq_prop = {}
 var _slot_background_ready := false
 var _slot_background_item_visible := false
 var _avatar_frame_signature := ""
@@ -71,13 +71,13 @@ func _sync_avatar_frame_equipment(force := false) -> void:
 	if equipped.is_empty() or not (equipped[0] is Dictionary):
 		get_item_name = ""
 		qh_level = 0
-		EQ_prop = {}
+		eq_prop = {}
 		set_button_icon(load("res://Art/BackPack/AllItems/empty.png"))
 		return
 	var item: Dictionary = equipped[0]
 	get_item_name = str(item.get(DataKeys.NAME, ""))
 	qh_level = int(item.get(DataKeys.ENHANCE_LEVEL, 0))
-	EQ_prop = item.get("Data", {})
+	eq_prop = item.get("Data", {})
 	var item_icon_path: String = "res://Art/BackPack/AllItems/" + str(get_item_name) + ".png"
 	var item_icon = (
 		load(item_icon_path) if ResourceLoader.exists(item_icon_path) else load("res://Art/BackPack/AllItems/empty.png")
@@ -98,13 +98,13 @@ func _sync_shengu_equipment(force := false) -> void:
 	if equipped.is_empty() or not (equipped[0] is Dictionary):
 		get_item_name = ""
 		qh_level = 0
-		EQ_prop = {}
+		eq_prop = {}
 		set_button_icon(load("res://Art/BackPack/AllItems/empty.png"))
 		return
 	var item: Dictionary = equipped[0]
 	get_item_name = str(item.get(DataKeys.NAME, ""))
 	qh_level = int(item.get(DataKeys.ENHANCE_LEVEL, 0))
-	EQ_prop = item.get("Data", {})
+	eq_prop = item.get("Data", {})
 	var item_icon_path: String = "res://Art/BackPack/AllItems/" + str(get_item_name) + ".png"
 	set_button_icon(
 		load(item_icon_path) if ResourceLoader.exists(item_icon_path) else load("res://Art/BackPack/AllItems/empty.png")
@@ -138,8 +138,8 @@ func _on_pressed() -> void:
 			if PlayerData.player_data[DataKeys.WEAPON].size() != 0:
 				var name_ = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.NAME]
 				var ql = PlayerData.player_data[DataKeys.WEAPON][0][DataKeys.ENHANCE_LEVEL]
-				EQ_prop = PlayerData.player_data[DataKeys.WEAPON][0]["Data"]
-				PlayerData.add_zb(name_, ql, EQ_prop)
+				eq_prop = PlayerData.player_data[DataKeys.WEAPON][0]["Data"]
+				PlayerData.add_zb(name_, ql, eq_prop)
 			else:
 				set_button_icon(load("res://Art/BackPack/wq.png"))
 			PlayerData.player_data[DataKeys.WEAPON].clear()
@@ -147,8 +147,8 @@ func _on_pressed() -> void:
 			if PlayerData.player_data[DataKeys.ARMOR].size() != 0:
 				var name_ = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.NAME]
 				var ql = PlayerData.player_data[DataKeys.ARMOR][0][DataKeys.ENHANCE_LEVEL]
-				EQ_prop = PlayerData.player_data[DataKeys.ARMOR][0]["Data"]
-				PlayerData.add_zb(name_, ql, EQ_prop)
+				eq_prop = PlayerData.player_data[DataKeys.ARMOR][0]["Data"]
+				PlayerData.add_zb(name_, ql, eq_prop)
 			else:
 				set_button_icon(load("res://Art/BackPack/fj.png"))
 			PlayerData.player_data[DataKeys.ARMOR].clear()
@@ -156,8 +156,8 @@ func _on_pressed() -> void:
 			if PlayerData.player_data["饰品"].size() != 0:
 				var name_ = PlayerData.player_data["饰品"][0][DataKeys.NAME]
 				var ql = PlayerData.player_data["饰品"][0][DataKeys.ENHANCE_LEVEL]
-				EQ_prop = PlayerData.player_data["饰品"][0]["Data"]
-				PlayerData.add_zb(name_, ql, EQ_prop)
+				eq_prop = PlayerData.player_data["饰品"][0]["Data"]
+				PlayerData.add_zb(name_, ql, eq_prop)
 			else:
 				set_button_icon(load("res://Art/BackPack/sp.png"))
 			PlayerData.player_data["饰品"].clear()
@@ -175,8 +175,8 @@ func _on_pressed() -> void:
 			if PlayerData.player_data[DataKeys.TITLE].size() != 0:
 				var name_ = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.NAME]
 				var ql = PlayerData.player_data[DataKeys.TITLE][0][DataKeys.ENHANCE_LEVEL]
-				EQ_prop = PlayerData.player_data[DataKeys.TITLE][0]["Data"]
-				PlayerData.add_zb(name_, ql, EQ_prop)
+				eq_prop = PlayerData.player_data[DataKeys.TITLE][0]["Data"]
+				PlayerData.add_zb(name_, ql, eq_prop)
 			else:
 				set_button_icon(load("res://Art/BackPack/AllItems/tx.png"))
 			PlayerData.player_data[DataKeys.TITLE].clear()
@@ -194,8 +194,8 @@ func _on_pressed() -> void:
 			if PlayerData.player_data[DataKeys.FASHION].size() != 0:
 				var name_ = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.NAME]
 				var ql = PlayerData.player_data[DataKeys.FASHION][0][DataKeys.ENHANCE_LEVEL]
-				EQ_prop = PlayerData.player_data[DataKeys.FASHION][0]["Data"]
-				PlayerData.add_zb(name_, ql, EQ_prop)
+				eq_prop = PlayerData.player_data[DataKeys.FASHION][0]["Data"]
+				PlayerData.add_zb(name_, ql, eq_prop)
 			else:
 				set_button_icon(load("res://Art/BackPack/sz.png"))
 			PlayerData.player_data[DataKeys.FASHION].clear()
@@ -203,8 +203,8 @@ func _on_pressed() -> void:
 			if PlayerData.player_data[DataKeys.WINGS].size() != 0:
 				var name_ = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.NAME]
 				var ql = PlayerData.player_data[DataKeys.WINGS][0][DataKeys.ENHANCE_LEVEL]
-				EQ_prop = PlayerData.player_data[DataKeys.WINGS][0]["Data"]
-				PlayerData.add_zb(name_, ql, EQ_prop)
+				eq_prop = PlayerData.player_data[DataKeys.WINGS][0]["Data"]
+				PlayerData.add_zb(name_, ql, eq_prop)
 			else:
 				set_button_icon(load("res://Art/BackPack/cb.png"))
 			PlayerData.player_data[DataKeys.WINGS].clear()
@@ -214,8 +214,8 @@ func _on_pressed() -> void:
 					var name_ = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.NAME]
 					var ql = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.ENHANCE_LEVEL]
 					var wx = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0][DataKeys.FIVE_ELEMENTS]
-					EQ_prop = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
-					PlayerData.add_fb(name_, ql, wx, EQ_prop)
+					eq_prop = PlayerData.player_data[DataKeys.MAGIC_WEAPON][0]["Data"]
+					PlayerData.add_fb(name_, ql, wx, eq_prop)
 				else:
 					set_button_icon(load("res://Art/BackPack/fb.png"))
 				PlayerData.player_data[DataKeys.MAGIC_WEAPON].clear()
@@ -255,12 +255,12 @@ func _on_mouse_entered() -> void:
 		if Global.get_parent_(self, 3).get_icon_name(self) != "empty" and add_equ_box == null:
 			var popup_parent = Global.get_parent_(self, 3)
 			pp = _mouse_position_for_popup(popup_parent)
-			add_equ_box = Global.add_equ_propeties_box(popup_parent, pp, get_item_name, qh_level, wx, EQ_prop)
+			add_equ_box = Global.add_equ_propeties_box(popup_parent, pp, get_item_name, qh_level, wx, eq_prop)
 	else:
 		if Global.get_parent_(self, 5).get_icon_name(self) != "empty" and add_equ_box == null:
 			var popup_parent = Global.get_parent_(self, 5)
 			pp = _mouse_position_for_popup(popup_parent)
-			add_equ_box = Global.add_equ_propeties_box(popup_parent, pp, get_item_name, qh_level, wx, EQ_prop)
+			add_equ_box = Global.add_equ_propeties_box(popup_parent, pp, get_item_name, qh_level, wx, eq_prop)
 
 
 func _on_mouse_exited() -> void:

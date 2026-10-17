@@ -247,9 +247,9 @@ func _configure_monster() -> void:
 	mdef = int(config["mdef"])
 	crit = int(config["crit"])
 	miss = int(config["miss"])
-	Htarget = int(config["hit"])
-	Toughness = float(config["toughness"])
-	Critreduce = int(config["crit_reduce"])
+	htarget = int(config["hit"])
+	toughness = float(config["toughness"])
+	crit_reduce = int(config["crit_reduce"])
 	ar = int(config["armor_break"])
 	sp = int(config["magic_break"])
 	speed = float(config["speed"])
@@ -434,7 +434,7 @@ func state_death() -> void:
 	_skill_busy = false
 	super_armor_active = false
 	cannot_attract = false
-	NoGrav = true
+	no_grav = true
 	velocity = Vector2.ZERO
 	super.state_death()
 	_ensure_death_cleanup()
@@ -549,7 +549,7 @@ func _run_boss_skill_2(serial: int) -> void:
 	_play_frames(&"dash")
 	_configure_boss_attack_box(&"hit2_dash")
 	_enable_attack_box(&"hit2")
-	var target_x := position.x + (240.0 if MonsterDirection else -240.0)
+	var target_x := position.x + (240.0 if monster_direction else -240.0)
 	if RoleProp.get_nearest_monster_target_position(global_position).x != null:
 		target_x = float(RoleProp.get_nearest_monster_target_position(global_position).x)
 	var dash_distance := absf(target_x - position.x)
@@ -620,9 +620,9 @@ func _configure_boss_attack_box(action: StringName) -> void:
 func _fire_arrow() -> void:
 	hit_name = "arrow"
 	_refresh_damage()
-	var offset := Vector2(100 if MonsterDirection else -100, -60)
+	var offset := Vector2(100 if monster_direction else -100, -60)
 	Global.add_bullet(
-		"XuanwuGateArrow", bullet, MonsterDirection, 1.0, position + offset, "arrow", obj_attack_dict["arrow"]
+		"XuanwuGateArrow", bullet, monster_direction, 1.0, position + offset, "arrow", obj_attack_dict["arrow"]
 	)
 
 

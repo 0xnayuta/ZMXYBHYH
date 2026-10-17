@@ -21,11 +21,11 @@ func monster_57():
 		self.crit = 25
 		self.miss = 8
 		self.lucky = 15
-		self.Htarget = 15
-		self.Toughness = 0
+		self.htarget = 15
+		self.toughness = 0
 		self.ar = 30
 		self.sp = 70
-		self.Critreduce = 0
+		self.crit_reduce = 0
 		self.speed = 10
 		self.mysee = 300
 		self.attack_range = 600
@@ -42,7 +42,7 @@ func monster_57():
 			{
 				"Name": "stun",
 				"AddTime": randi_range(2, 3),
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 				"CanAdd": false,
@@ -57,7 +57,7 @@ func monster_57():
 			{
 				"Name": "Ice",
 				"AddTime": randi_range(2, 3),
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 				"CanAdd": false,
@@ -72,7 +72,7 @@ func monster_57():
 			{
 				"Name": "poision",
 				"AddTime": randi_range(2, 3),
-				"ReduceInterval": randf_range(0.6, 1),
+				"reduce_interval": randf_range(0.6, 1),
 				"value": randi_range(40, 60),
 				"AttackKind": "magic",
 				"CanAdd": true,
@@ -87,7 +87,7 @@ func monster_57():
 			{
 				"Name": "Fire",
 				"AddTime": randi_range(2, 3),
-				"ReduceInterval": randf_range(0.6, 1),
+				"reduce_interval": randf_range(0.6, 1),
 				"value": randi_range(40, 60),
 				"AttackKind": "magic",
 				"CanAdd": true,
@@ -114,11 +114,11 @@ func monster_57():
 	self.crit = 25
 	self.miss = 8
 	self.lucky = 15
-	self.Htarget = 15
-	self.Toughness = 0
+	self.htarget = 15
+	self.toughness = 0
 	self.ar = 30
 	self.sp = 30
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 300
 	self.attack_range = 600
@@ -135,7 +135,7 @@ func monster_57():
 		{
 			"Name": "stun",
 			"AddTime": randi_range(2, 3),
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -150,7 +150,7 @@ func monster_57():
 		{
 			"Name": "Ice",
 			"AddTime": randi_range(2, 3),
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 			"CanAdd": false,
@@ -165,7 +165,7 @@ func monster_57():
 		{
 			"Name": "poision",
 			"AddTime": randi_range(2, 3),
-			"ReduceInterval": randf_range(0.6, 1),
+			"reduce_interval": randf_range(0.6, 1),
 			"value": randi_range(40, 60),
 			"AttackKind": "magic",
 			"CanAdd": true,
@@ -180,7 +180,7 @@ func monster_57():
 		{
 			"Name": "Fire",
 			"AddTime": randi_range(2, 3),
-			"ReduceInterval": randf_range(0.6, 1),
+			"reduce_interval": randf_range(0.6, 1),
 			"value": randi_range(40, 60),
 			"AttackKind": "magic",
 			"CanAdd": true,
@@ -197,7 +197,7 @@ func monster_57():
 
 func _ready() -> void:
 	super._ready()
-	Skill_1_CD = 0
+	skill_1_cd = 0
 	monster_57()
 
 
@@ -209,7 +209,7 @@ func ai_think():
 		if has_target == false:
 			normal_state()
 		else:
-			if Skill_1_CD <= 0:
+			if skill_1_cd <= 0:
 				use_skill()
 			elif follow_hero():
 				have_target()
@@ -232,7 +232,7 @@ func normal_hit():
 
 func use_skill():
 	super.to_hero()
-	Skill_1_CD = randi_range(10, 14)
+	skill_1_cd = randi_range(10, 14)
 	hit_name = "dmzhl"
 	velocity.x = 0
 	is_attacking = true
@@ -305,7 +305,7 @@ func normal_bullet():
 	else:
 		bullet_name = "Monster57Bullet4"
 		hit_name = "hit1_3"
-	if MonsterDirection:
+	if monster_direction:
 		Bullet = Global.call_chase_bullet(
 			self.bullet,
 			bullet_name,

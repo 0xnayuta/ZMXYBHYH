@@ -20,11 +20,11 @@ func monster_60():
 	self.crit = 22
 	self.miss = 15
 	self.lucky = 0
-	self.Htarget = 0
-	self.Toughness = 0
+	self.htarget = 0
+	self.toughness = 0
 	self.ar = 0
 	self.sp = 0
-	self.Critreduce = 0
+	self.crit_reduce = 0
 	self.speed = 10
 	self.mysee = 500
 	self.attack_range = 245
@@ -58,7 +58,7 @@ func monster_60():
 			"AddTime": 4,
 			"CanAdd": false,
 			"DeBuff": true,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 		}
@@ -89,9 +89,9 @@ func monster_60():
 func _ready() -> void:
 	monster_60()
 	super._ready()
-	Skill_1_CD = 0
-	Skill_2_CD = 0
-	Skill_3_CD = 0
+	skill_1_cd = 0
+	skill_2_cd = 0
+	skill_3_cd = 0
 
 
 func _physics_process(delta: float) -> void:
@@ -118,15 +118,15 @@ func ai_think():
 			normal_state()
 		else:
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) >= 335:
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				elif Skill_3_CD <= 0:
+				elif skill_3_cd <= 0:
 					do_hit_3()
 				else:
 					have_target()
 			else:
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						if randi_range(0, 100) < 60:
 							do_hit_2()
 						else:
@@ -136,18 +136,18 @@ func ai_think():
 								have_target()
 					else:
 						if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 260:
-							if Skill_1_CD <= 0:
+							if skill_1_cd <= 0:
 								do_hit_1()
-						elif Skill_3_CD <= 0:
+						elif skill_3_cd <= 0:
 							do_hit_3()
 						else:
 							have_target()
 				else:
-					if Skill_3_CD <= 0:
+					if skill_3_cd <= 0:
 						do_hit_3()
-					elif Skill_1_CD <= 0:
+					elif skill_1_cd <= 0:
 						do_hit_1()
-					elif Skill_2_CD <= 0:
+					elif skill_2_cd <= 0:
 						if randi_range(0, 100) < 60:
 							do_hit_2()
 						else:
@@ -163,7 +163,7 @@ func ai_think():
 
 
 func do_hit_1():
-	Skill_1_CD = 12
+	skill_1_cd = 12
 	hit_name = "mykl"
 	velocity.x = 0
 	is_attacking = true
@@ -175,7 +175,7 @@ func do_hit_1():
 
 func do_hit_2():
 	super.to_hero()
-	Skill_2_CD = randi_range(14, 18)
+	skill_2_cd = randi_range(14, 18)
 	hit_name = "sfjm"
 	velocity.x = 0
 	is_attacking = true
@@ -187,7 +187,7 @@ func do_hit_2():
 
 func do_hit_3():
 	super.to_hero()
-	Skill_3_CD = randi_range(6, 10)
+	skill_3_cd = randi_range(6, 10)
 	hit_name = "xmhd"
 	velocity.x = 0
 	is_attacking = true
@@ -213,14 +213,14 @@ func drop():
 		is_top = false
 		velocity = Vector2.ZERO
 		return
-	var Shallow = Global.add_special_effect(
-		self.bullet, Vector2(self.position.x, 500), "Shallow", Vector2(1, 1), false, 1
+	var shallow = Global.add_special_effect(
+		self.bullet, Vector2(self.position.x, 500), "shallow", Vector2(1, 1), false, 1
 	)
-	Shallow.scale = Vector2(0.4, 0.4)
+	shallow.scale = Vector2(0.4, 0.4)
 	var tween = get_tree().create_tween()
-	tween.tween_property(Shallow, "scale", Vector2(2, 2), 0.6)
+	tween.tween_property(shallow, "scale", Vector2(2, 2), 0.6)
 	await get_tree().create_timer(0.6, false).timeout
-	Shallow.queue_free()
+	shallow.queue_free()
 	velocity.y += 2000
 	velocity.x = 0
 	mr_player.play("sfjm_2")
@@ -296,7 +296,7 @@ func is_alive_for_stage_clear() -> bool:
 func call_hands():
 	var bullet_spawn_positions = []
 	var other_po = []
-	if MonsterDirection:
+	if monster_direction:
 		other_po = [Vector2(37, 55), Vector2(67, 45), Vector2(27, 25)]
 		bullet_spawn_positions = [Vector2(37, -35), Vector2(67, -65), Vector2(27, -5)]
 	else:
@@ -304,9 +304,9 @@ func call_hands():
 		bullet_spawn_positions = [Vector2(-37, -35), Vector2(-67, -65), Vector2(-27, -5)]
 	for i in bullet_spawn_positions:
 		Global.add_bullet(
-			"Monster60Bullet", self, MonsterDirection, randf_range(1.1, 1.3), i, "mykl", self.obj_attack_dict["mykl"]
+			"Monster60Bullet", self, monster_direction, randf_range(1.1, 1.3), i, "mykl", self.obj_attack_dict["mykl"]
 		)
 		await get_tree().create_timer(0.06, false).timeout
 	await get_tree().create_timer(0.06, false).timeout
 	for i in other_po:
-		Global.add_bullet("Monster60Bullet", self, MonsterDirection, 1.35, i, "mykl", self.obj_attack_dict["mykl"])
+		Global.add_bullet("Monster60Bullet", self, monster_direction, 1.35, i, "mykl", self.obj_attack_dict["mykl"])

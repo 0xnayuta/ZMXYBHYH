@@ -36,11 +36,11 @@ func add_super_armor():
 	(
 		Global
 		. add_buff(
-			Player.buff,
+			player.buff,
 			{
 				"Name": "Indestructible1",
 				"AddTime": obj_attack_dict["hit1"]["power"],
-				"ReduceInterval": 0,
+				"reduce_interval": 0,
 				"value": 0,
 				"AttackKind": "",
 				"CanRemove": false,

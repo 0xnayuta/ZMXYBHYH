@@ -43,11 +43,11 @@ func monster_14501():
 	self.crit = int((15 + int(RoleProp.baseroleprop.Level * 0.6)) * stage_multiplier)
 	self.miss = int((3 + int(RoleProp.baseroleprop.Level * 0.1)) * stage_multiplier)
 	self.lucky = int((45 + int(RoleProp.baseroleprop.Level * 1)) * stage_multiplier)
-	self.Htarget = 9999
-	self.Toughness = (current_stage - 1) * 10
+	self.htarget = 9999
+	self.toughness = (current_stage - 1) * 10
 	self.ar = int((30 + int(RoleProp.baseroleprop.Level * 0.5)) * stage_multiplier)
 	self.sp = int((30 + int(RoleProp.baseroleprop.Level * 0.5)) * stage_multiplier)
-	self.Critreduce = (current_stage - 1) * 5
+	self.crit_reduce = (current_stage - 1) * 5
 	self.speed = 12 * stage_multiplier
 	self.mysee = 500
 	self.attack_range = 355
@@ -75,7 +75,7 @@ func monster_14501():
 		{
 			"Name": "stun",
 			"AddTime": 1.5,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0,
 			"AttackKind": "",
 		}
@@ -89,7 +89,7 @@ func monster_14501():
 		{
 			"Name": "speed_down",
 			"AddTime": 1,
-			"ReduceInterval": 0,
+			"reduce_interval": 0,
 			"value": 0.2,
 			"AttackKind": "",
 		}
@@ -124,10 +124,10 @@ func monster_14501():
 func _ready() -> void:
 	super._ready()
 	monster_14501()
-	Skill_1_CD = 2
-	Skill_2_CD = 5
-	Skill_3_CD = 7
-	Skill_4_CD = 10
+	skill_1_cd = 2
+	skill_2_cd = 5
+	skill_3_cd = 7
+	skill_4_cd = 10
 	has_summoned_next = false
 
 
@@ -150,22 +150,22 @@ func ai_think():
 			if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) > attack_range:
 				have_target()
 				if abs(position.x - RoleProp.get_nearest_monster_target_position(global_position).x) <= 270:
-					if Skill_2_CD <= 0:
+					if skill_2_cd <= 0:
 						do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_wdww()
 				if count % 180 == 0:
 					if randi_range(0, 100) < attack_desire:
 						attack_target()
 			else:
 				stop_move()
-				if Skill_2_CD <= 0:
+				if skill_2_cd <= 0:
 					do_hit_2()
-				if Skill_3_CD <= 0:
+				if skill_3_cd <= 0:
 					do_hit_3()
-				if Skill_4_CD <= 0:
+				if skill_4_cd <= 0:
 					do_hit_wdww()
 				if count % 180 == 0:
 					if randi_range(0, 100) < attack_desire:
@@ -174,7 +174,7 @@ func ai_think():
 
 func do_hit_2():
 	to_hero()
-	Skill_2_CD = 5
+	skill_2_cd = 5
 	hit_name = "hit2"
 	velocity.x = 0
 	is_attacking = true
@@ -185,7 +185,7 @@ func do_hit_2():
 
 func do_hit_3():
 	to_hero()
-	Skill_3_CD = 8
+	skill_3_cd = 8
 	hit_name = "hit3"
 	velocity.x = 0
 	is_attacking = true
@@ -196,7 +196,7 @@ func do_hit_3():
 
 func do_hit_wdww():
 	to_hero()
-	Skill_4_CD = 20
+	skill_4_cd = 20
 	hit_name = "hit4"
 	velocity.x = 0
 	is_attacking = true
@@ -207,7 +207,7 @@ func do_hit_wdww():
 
 func call_attack1_bullet():
 	velocity.x = 0
-	var dir = MonsterDirection
+	var dir = monster_direction
 	var fz
 	if dir:
 		fz = Global.call_fly_bullet(
@@ -239,7 +239,7 @@ func call_attack1_bullet():
 
 func call_attack1_3bullet():
 	velocity.x = 0
-	var dir = MonsterDirection
+	var dir = monster_direction
 	var y_offsets = [-30, 0, 30]
 	for offset in y_offsets:
 		var fz
@@ -273,7 +273,7 @@ func call_attack1_3bullet():
 
 func call_attack2_bullet():
 	velocity.x = 0
-	var dir = MonsterDirection
+	var dir = monster_direction
 	var fz
 	if dir:
 		fz = Global.call_fly_bullet(
@@ -291,7 +291,7 @@ func call_attack2_bullet():
 
 func call_attack3_bullet():
 	velocity.x = 0
-	var dir = MonsterDirection
+	var dir = monster_direction
 	var fz
 	if dir:
 		fz = Global.call_fly_bullet(
