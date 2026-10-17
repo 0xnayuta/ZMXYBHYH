@@ -482,7 +482,7 @@ Phase 7 四大子阶段落地后，追加执行 B0~B5a 六轮追加收敛冲刺�
 - **分批策略**：`Global.gd` → `Scene/other_scene/*` → 其余脚本；每批同步三类访问面：直接属性访问、字符串访问（`get/set/has`）、注释文档。
 - **验收指标**：309 处归零；`health_check.py` 0 Parse Error；实机冒烟 0 ERROR 0 WARNING。
 
-#### 3. Phase 9-3: 残余非 snake 函数治理（2 处）
+#### 3. Phase 9-3: 残余非 snake 函数治理（2 处） [已完成 · Done]
 - **清单**：`Script/monster/east_continent_monster.gd` 的 `_3182_attack_is_current`、`_3120_screen_bounds`（数字前缀段破坏 snake 结构）。
 - **验收指标**：规范为语义化 `snake_case`（如 `_attack_3182_is_current`），调用点 100% 同步。
 

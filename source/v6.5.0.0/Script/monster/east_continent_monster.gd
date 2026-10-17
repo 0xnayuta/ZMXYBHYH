@@ -2701,7 +2701,7 @@ func _spawn_3223_summon(summon_id: int, source_offset: Vector2) -> void:
 	if summoned == null:
 		return
 	var facing := 1.0 if monster_direction else -1.0
-	var bounds := _3120_screen_bounds()
+	var bounds := _screen_bounds_3120()
 	var spawn_position := global_position + Vector2(source_offset.x * facing, source_offset.y)
 	spawn_position.x = clampf(spawn_position.x, bounds.x, bounds.y - 100.0)
 	summoned.position = parent.to_local(spawn_position)
@@ -2772,7 +2772,7 @@ func _start_3182_attack(attack_name: StringName, serial: int) -> void:
 
 func _spawn_3182_destroying_rip(serial: int) -> void:
 	await get_tree().create_timer(8.0 / SOURCE_FPS, false).timeout
-	if not _3182_attack_is_current(serial):
+	if not _attack_3182_is_current(serial):
 		return
 	var direction := 1.0 if monster_direction else -1.0
 	var area := PROJECTILE_SCRIPT.new() as WutaiMinghaiProjectile
@@ -2805,7 +2805,7 @@ func _spawn_3182_tracking_needles(serial: int) -> void:
 
 func _spawn_3182_tracking_needle_after(delay_seconds: float, serial: int) -> void:
 	await get_tree().create_timer(delay_seconds, false).timeout
-	if not _3182_attack_is_current(serial):
+	if not _attack_3182_is_current(serial):
 		return
 	var target := RoleProp.source_player as Node2D
 	if target == null or not is_instance_valid(target):
@@ -2848,7 +2848,7 @@ func _run_3182_bone_needle(index: int, serial: int) -> void:
 	var charge_delay := 0.297 + float(index) * 0.33
 	var fire_delay := 1.485 + float(index) * 0.495
 	await get_tree().create_timer(charge_delay, false).timeout
-	if not _3182_attack_is_current(serial):
+	if not _attack_3182_is_current(serial):
 		return
 	var facing := 1.0 if monster_direction else -1.0
 	var source_point: Vector2 = RAIN_ANCESTOR_BONE_POINTS[index]
@@ -2875,7 +2875,7 @@ func _run_3182_bone_needle(index: int, serial: int) -> void:
 	)
 	bullet.add_child(charge)
 	await get_tree().create_timer(maxf(fire_delay - charge_delay, 0.0), false).timeout
-	if not _3182_attack_is_current(serial):
+	if not _attack_3182_is_current(serial):
 		return
 	var target_value: Variant = (
 		RoleProp.get_nearest_monster_target_position(spawn_position) if RoleProp != null else null
@@ -2916,7 +2916,7 @@ func _run_3182_bone_needle(index: int, serial: int) -> void:
 func _start_3182_rain_combo(serial: int) -> void:
 	_special_attack_active = true
 	await get_tree().create_timer(1.5, false).timeout
-	if not _3182_attack_is_current(serial):
+	if not _attack_3182_is_current(serial):
 		_special_attack_active = false
 		return
 	_disable_attack_box()
@@ -2948,7 +2948,7 @@ func _run_3182_rain(rain_serial: int) -> void:
 		cure_hp(maxi(1, roundi(float(SHp) * 0.018)))
 
 
-func _3182_attack_is_current(serial: int) -> bool:
+func _attack_3182_is_current(serial: int) -> bool:
 	return is_instance_valid(self) and is_inside_tree() and not death() and serial == _attack_serial
 
 
@@ -3579,7 +3579,7 @@ func _start_3120_protect_teleport() -> void:
 	await get_tree().create_timer(SAND_BOSS_PROTECT_DELAY, false).timeout
 	if not is_instance_valid(self) or not is_inside_tree() or death() or serial != _3120_protect_serial:
 		return
-	var bounds := _3120_screen_bounds()
+	var bounds := _screen_bounds_3120()
 	var move_left := global_position.x >= (bounds.x + bounds.y) * 0.5
 	global_position.x = bounds.x + 50.0 if move_left else bounds.y - 50.0
 	monster_dir.scale.x = -1.0 if move_left else 1.0
@@ -3611,7 +3611,7 @@ func _start_3120_protect_teleport() -> void:
 	_special_attack_active = false
 
 
-func _3120_screen_bounds() -> Vector2:
+func _screen_bounds_3120() -> Vector2:
 	var level_node := get_level_node()
 	if level_node != null and level_node.has_method("_screen_starts") and level_node.has_method("_screen_rights"):
 		var starts: Array = level_node.call("_screen_starts")
